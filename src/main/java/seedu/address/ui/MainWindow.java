@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
@@ -14,7 +13,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.policy.Policy;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +29,6 @@ public class MainWindow extends UiPart<Stage> {
     private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
-    private Client selectedClient;
     private PolicyListPanel policyListPanel;
     private ResultDisplay resultDisplay;
 
@@ -83,7 +80,14 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         // Populate client label with first client in client list
-        // DEBUG: WILL CAUSE ERROR IF CLIENT LIST IS EMPTY
+        Client selectedClient = logic.getSelectedClient();
+        int selectedClientIndex = logic.getSelectedClientIndex();
+        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+
+        if (clientLabel.getChildren().size() > 0) {
+            clientLabel.getChildren().remove(0);
+        }
+        clientLabel.getChildren().add(selectedClientCard.getRoot());
 
         // Populate policy list of selected client
         policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
@@ -111,21 +115,17 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Selects a client based on user input.
      */
-    public void handleSelect(Client targetClient) throws CommandException {
-        if (targetClient == null) {
-            throw new CommandException("Selection Error: No client selected");
-        }
-        logic.updateSelectedClient(targetClient);
-        ClientLabel selectedClientCard = new ClientLabel(targetClient,
-                logic.getFilteredClientList().indexOf(targetClient) + 1);
+    public void handleSelect() {
+        Client selectedClient = logic.getSelectedClient();
+        int selectedClientIndex = logic.getSelectedClientIndex();
+        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
 
         if (clientLabel.getChildren().size() > 0) {
             clientLabel.getChildren().remove(0);
         }
         clientLabel.getChildren().add(selectedClientCard.getRoot());
 
-        ObservableList<Policy> policyList = targetClient.getFilteredPolicyList();
-        policyListPanel.updatePolicyList(policyList);
+        policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
     }
 
     /**
@@ -166,17 +166,14 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        assert(false);
+        assert (false);
         try {
             CommandResult commandResult = logic.execute(commandText);
             String feedbackToUser = commandResult.getFeedbackToUser();
-            Client targetClient = commandResult.getTargetClient();
             logger.info("Result: " + feedbackToUser);
             resultDisplay.setFeedbackToUser(feedbackToUser);
 
-            if (commandResult.isSelect()) {
-                handleSelect(targetClient);
-            }
+            handleSelect();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
