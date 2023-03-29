@@ -54,6 +54,14 @@ public class EventCard extends UiPart<Region> {
         setCompleted(event.isCompleted());
     }
 
+    private void setCompleted(boolean isCompleted) {
+        if (isCompleted) {
+            completed.setText("Completed");
+            completed.setStyle("-fx-background-color: #3e7b91; -fx-background-radius: 10;");
+            checkMark.setImage(CHECK_MARK_IMAGE);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -70,13 +78,5 @@ public class EventCard extends UiPart<Region> {
         EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
                 && event.equals(card.event);
-    }
-
-    private void setCompleted(boolean isCompleted) {
-        if (isCompleted) {
-            completed.setText("Completed");
-            completed.setStyle("-fx-background-color: #3e7b91; -fx-background-radius: 10;");
-            checkMark.setImage(CHECK_MARK_IMAGE);
-        }
     }
 }
