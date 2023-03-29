@@ -3,12 +3,14 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -29,7 +31,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
+    private ExportProgressWindow exportProgressWindow;
+    private Logic logic;
     @FXML
     private HBox cardPane;
     @FXML
@@ -56,12 +59,14 @@ public class PersonCard extends UiPart<Region> {
     private ImageView addressIcon;
     @FXML
     private ImageView emailIcon;
+    @FXML
+    private Button exportProgressButton;
 
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, ExportProgressWindow exportProgressWindow) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -77,6 +82,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         personCardImage(person);
+        this.exportProgressWindow = exportProgressWindow;
     }
 
     /**
@@ -111,5 +117,17 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText()) && person.equals(card.person);
+    }
+
+    /**
+     * Opens the export progress window or focuses on it if it's already opened.
+     */
+    public void exportProgress() {
+        this.exportProgressWindow.setCheckedPerson(this.person);
+        if (!this.exportProgressWindow.isShowing()) {
+            exportProgressWindow.show();
+        } else {
+            exportProgressWindow.focus();
+        }
     }
 }
