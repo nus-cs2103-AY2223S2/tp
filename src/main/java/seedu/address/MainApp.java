@@ -21,15 +21,15 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.HistoryStorage;
+import seedu.address.storage.InputHistoryStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.TxtHistoryStorage;
+import seedu.address.storage.TxtInputHistoryStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -60,11 +60,11 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        History history = new History();
-        HistoryStorage historyStorage = new TxtHistoryStorage(history.getHistoryStoragePath());
-        historyStorage.readHistoryString();
+        InputHistory inputHistory = new InputHistory();
+        InputHistoryStorage inputHistoryStorage = new TxtInputHistoryStorage(inputHistory.getHistoryStoragePath());
+        inputHistoryStorage.readHistoryString();
 
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, historyStorage);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, inputHistoryStorage);
 
         initLogging(config);
 
@@ -84,7 +84,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         Optional<String> historyStringOptional;
-        History initialHistory;
+        InputHistory initialInputHistory;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -97,18 +97,18 @@ public class MainApp extends Application {
             if (!historyStringOptional.isPresent()) {
                 logger.info("History file not found. Will be starting with the default file");
             }
-            initialHistory = new History(historyStringOptional.orElse(""));
+            initialInputHistory = new InputHistory(historyStringOptional.orElse(""));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            initialHistory = new History();
+            initialInputHistory = new InputHistory();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
-            initialHistory = new History();
+            initialInputHistory = new InputHistory();
         }
 
-        return new ModelManager(initialData, userPrefs, initialHistory);
+        return new ModelManager(initialData, userPrefs, initialInputHistory);
     }
 
     private void initLogging(Config config) {

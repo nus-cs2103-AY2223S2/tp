@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 
 /**
- * Represents a storage for {@link seedu.address.model.History}.
+ * Represents a storage for {@link seedu.address.model.history.InputHistory}.
  */
-public interface HistoryStorage {
+public interface InputHistoryStorage {
 
     /**
      * Returns the file path of the data file.
@@ -38,7 +38,7 @@ public interface HistoryStorage {
     void saveHistoryString(String historyString) throws IOException;
 
     /**
-     * @see #saveHistory(History)
+     * @see #saveHistory(InputHistory)
      */
     void saveHistoryString(String historyString, Path filePath) throws IOException;
 

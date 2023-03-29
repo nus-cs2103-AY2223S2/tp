@@ -8,20 +8,20 @@ import java.nio.file.Paths;
 /**
  * Encapsulates the executed input command that the user entered.
  */
-public class History {
+public class InputHistory {
     private String historyString = "";
-    private Path historyStorageFilePath = Paths.get("data", "history.txt");
+    private Path historyStorageFilePath = Paths.get("data", "inputHistory.txt");
 
-    public History() {}
+    public InputHistory() {}
 
-    public History(String historyString) {
+    public InputHistory(String historyString) {
         this.historyString = historyString;
     }
 
     /**
      * Creates a History with the contents from {@code toBeCopied}
      */
-    public History(History toBeCopied) {
+    public InputHistory(InputHistory toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,11 +49,11 @@ public class History {
     /**
      * Resets the existing data of this {@code History} with {@code newHistory}.
      */
-    public void resetData(History newHistory) {
-        requireNonNull(newHistory);
+    public void resetData(InputHistory newInputHistory) {
+        requireNonNull(newInputHistory);
 
-        setHistoryStoragePath(newHistory.getHistoryStoragePath());
-        setHistoryString(newHistory.getHistoryString());
+        setHistoryStoragePath(newInputHistory.getHistoryStoragePath());
+        setHistoryString(newInputHistory.getHistoryString());
     }
 
     @Override
