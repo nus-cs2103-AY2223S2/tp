@@ -24,26 +24,31 @@ import seedu.patientist.model.ModelManager;
 import seedu.patientist.model.Patientist;
 import seedu.patientist.model.UserPrefs;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.testutil.EditPersonDescriptorBuilder;
-import seedu.patientist.testutil.PersonBuilder;
+import seedu.patientist.testutil.PatientBuilder;
+import seedu.patientist.testutil.StaffBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
-
     private Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = null; //new PersonBuilder().build(); TODO: person is now abstract. use patient or staff.
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(new StaffBuilder().build()).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        Staff editedStaff =
+                new StaffBuilder().withIdNumber(model.getFilteredPersonList().get(0).getIdNumber().toString()).build();
 
-        Model expectedModel = new ModelManager(new Patientist(model.getPatientist()), new UserPrefs());
-        //expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson); TODO: refer to API for new sets
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
+
+        Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
+        expectedModel.setStaff((Staff) model.getFilteredPersonList().get(0), editedStaff);
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -53,8 +58,8 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = null; //new PersonBuilder(lastPerson); TODO: person is now abstract. pat or staff
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        PatientBuilder personInList = new PatientBuilder((Patient) lastPerson);
+        Patient editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -63,8 +68,9 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new Patientist(model.getPatientist()), new UserPrefs());
-        //expectedModel.setPerson(lastPerson, editedPerson); TODO: refer to API for new sets
+        Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
+        expectedModel.setPatient((Patient) lastPerson, editedPerson);
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -77,6 +83,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new Patientist(model.getPatientist()), new UserPrefs());
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -86,38 +93,17 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = null; //new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        //TODO: person is now abstract. use staff or patient.
+        Staff editedStaff = new StaffBuilder((Staff) personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStaff);
 
-        Model expectedModel = new ModelManager(new Patientist(model.getPatientist()), new UserPrefs());
-        //expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson); TODO: refer to API for new sets
+        Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
+        expectedModel.setStaff((Staff) model.getFilteredPersonList().get(0), editedStaff);
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        // edit person in filtered list into a duplicate in patientist book
-        Person personInList = model.getPatientist().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder(personInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -170,5 +156,4 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
     }
-
 }

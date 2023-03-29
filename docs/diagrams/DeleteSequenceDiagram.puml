@@ -59,7 +59,7 @@ deactivate Model
 DeleteCommand -> Patientist : removePerson(p)
 activate Patientist
 
-Patientist -> DeleteCommand
+Patientist --> DeleteCommand
 deactivate Patientist
 
 create CommandResult

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.Region;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
@@ -16,7 +16,7 @@ import seedu.patientist.model.person.patient.Patient;
 /**
  * The UI component that is responsible for a pop-up to show details of Person.
  */
-public class DetailsPopup extends UiPart<Stage> {
+public class DetailsPopup extends UiPart<Region> {
 
     private static final Logger logger = LogsCenter.getLogger(DetailsPopup.class);
     private static final String FXML = "DetailsPopup.fxml";
@@ -52,9 +52,18 @@ public class DetailsPopup extends UiPart<Stage> {
     /**
      * Creates a {@code DetailsPopup} with the given {@code personListPanel}.
      */
-    public DetailsPopup(Person personToView, Stage root) {
-        super(FXML, root);
+    public DetailsPopup(Person personToView) {
+        super(FXML);
         this.person = personToView;
+        if (personToView == null) {
+            name.setText("");
+            phone.setText("");
+            address.setText("");
+            email.setText("");
+            idNumber.setText("");
+            status.setText("");
+            return;
+        }
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -68,36 +77,5 @@ public class DetailsPopup extends UiPart<Stage> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    /**
-     * Creates a {@code DetailsPopup} with the given {@code personListPanel}.
-     */
-    public DetailsPopup(Person personToView) {
-        this(personToView, new Stage());
-    }
-
-    /**
-     * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
-     */
-    public void show() {
-        logger.fine("Showing help page about the application.");
-        getRoot().show();
-        getRoot().centerOnScreen();
     }
 }

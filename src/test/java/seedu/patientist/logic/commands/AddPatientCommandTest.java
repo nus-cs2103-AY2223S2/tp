@@ -222,6 +222,11 @@ public class AddPatientCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public List<String> getWardNames() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
