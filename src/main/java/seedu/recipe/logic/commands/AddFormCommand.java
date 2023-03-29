@@ -16,8 +16,9 @@ import seedu.recipe.ui.AddRecipeForm;
 public class AddFormCommand extends Command {
 
     public static final String COMMAND_WORD = "addf";
-    public static final String MESSAGE_SUCCESS = "Successfully added recipe ";
+    public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
+    public static final String MESSAGE_PARSE_RECIPE = "This recipe could not be parsed properly.";
 
     /**
      * Creates an AddFormCommand instance.
@@ -35,20 +36,20 @@ public class AddFormCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StringBuilder stringBuilder = new StringBuilder();
-        AddRecipeForm recipeForm = new AddRecipeForm(stringBuilder);
+        StringBuilder commands = new StringBuilder();
+        AddRecipeForm recipeForm = new AddRecipeForm(commands);
         recipeForm.display();
-        String commandString = stringBuilder.toString();
+        String commandString = commands.toString();
         try {
-            RecipeDescriptor toAdd = AddCommandParser.parseToAddCommand(commandString);
+            RecipeDescriptor toAdd = AddCommandParser.parseToRecipeDescriptor(commandString);
             Recipe recipeToAdd = toAdd.toRecipe();
             if (model.hasRecipe(recipeToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
             }
             model.addRecipe(recipeToAdd);
-            return new CommandResult(MESSAGE_SUCCESS + recipeToAdd.getName() + " .");
+            return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd.getName()));
         } catch (ParseException e) {
-            return null;
+            throw new CommandException(MESSAGE_PARSE_RECIPE);
         }
     }
 }

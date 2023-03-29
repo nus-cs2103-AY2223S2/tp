@@ -9,17 +9,13 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 //JavaFX imports
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -34,6 +30,7 @@ import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
+import seedu.recipe.ui.util.FieldsUtil;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
@@ -246,12 +243,12 @@ public class RecipeForm extends UiPart<Region> {
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
             recipe.getIngredients().forEach((ingredient, information) -> {
-                TextArea ingredientField = createDynamicTextArea(ingredient.toString());
+                TextArea ingredientField = FieldsUtil.createDynamicTextArea(ingredient.toString());
                 ingredientField.setWrapText(true);
                 ingredientsBox.getChildren().add(ingredientField);
             });
         } else {
-            TextArea emptyIngredientField = createDynamicTextArea("");
+            TextArea emptyIngredientField = FieldsUtil.createDynamicTextArea("");
             emptyIngredientField.setPromptText("Add an ingredient " + INGREDIENT_PROMPT);
             ingredientsBox.getChildren().add(emptyIngredientField);
         }
@@ -259,12 +256,12 @@ public class RecipeForm extends UiPart<Region> {
         //Steps
         if (!recipe.getSteps().isEmpty()) {
             recipe.getSteps().forEach(step -> {
-                TextArea stepField = createDynamicTextArea(step.toString());
+                TextArea stepField = FieldsUtil.createDynamicTextArea(step.toString());
                 stepField.setWrapText(true);
                 stepsBox.getChildren().add(stepField);
             });
         } else {
-            TextArea emptyStepField = createDynamicTextArea("");
+            TextArea emptyStepField = FieldsUtil.createDynamicTextArea("");
             emptyStepField.setPromptText("Add a step");
             stepsBox.getChildren().add(emptyStepField);
         }
@@ -370,118 +367,6 @@ public class RecipeForm extends UiPart<Region> {
         } catch (CommandException | ParseException e) {
             logger.info("Failed to edit recipe: " + index);
         }
-    }
-
-    /**
-     * Returns the next TextArea below the current TextArea within the same parent VBox, if any.
-     *
-     * @param currentTextArea The current TextArea.
-     * @return The next TextArea below the current TextArea or null if there's no TextArea below it.
-     */
-    private TextArea getNextTextArea(TextArea currentTextArea) {
-        VBox parentBox = (VBox) currentTextArea.getParent();
-        int currentIndex = parentBox.getChildren().indexOf(currentTextArea);
-        int lastIndex = parentBox.getChildren().size() - 1;
-
-        if (currentIndex < lastIndex) {
-            Node nextNode = parentBox.getChildren().get(currentIndex + 1);
-            if (nextNode instanceof TextArea) {
-                return (TextArea) nextNode;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Creates a dynamic TextArea with the specified initial text.
-     * The TextArea will support UP, DOWN, and TAB navigation.
-     * If the TextArea is the last in the VBox and gains focus, a new empty TextArea will be added below it.
-     * If the TextArea loses focus and is the last in the VBox and empty, it will be removed.
-     *
-     * @param text The initial text for the TextArea.
-     * @return The created dynamic TextArea.
-     */
-    private TextArea createDynamicTextArea(String text) {
-        //Styling
-        TextArea textArea = new TextArea(text);
-        textArea.setWrapText(true);
-        textArea.setMaxHeight(5.0);
-        textArea.setPrefHeight(5.0);
-
-        //Keyboard listener for navigation
-        textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            int currentIndex = ((VBox) textArea.getParent()).getChildren().indexOf(textArea);
-
-            if (event.getCode() == KeyCode.UP) {
-                // Condition 1: UP key pressed
-                if (currentIndex > 0) {
-                    TextInputControl prevField = (TextInputControl) ((VBox) textArea.getParent())
-                                                                       .getChildren()
-                                                                       .get(currentIndex - 1);
-                    prevField.requestFocus();
-                }
-            } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
-                TextArea nextField = (TextArea) ((VBox) textArea.getParent()).getChildren().get(currentIndex + 1);
-
-                // >>> Should be removed - arrow keys are for navigation WITHIN text field
-                // Condition 2.1: DOWN key pressed
-                if (event.getCode() == KeyCode.DOWN) {
-                    nextField.requestFocus();
-
-                // Condition 2.2: Purely TAB key pressed
-                } else if (event.getCode() == KeyCode.TAB && !event.isShiftDown()) {
-                    // If it is a new placeholder row and there's another TextArea after it, skip to the field after
-                    if (nextField.getText().isEmpty()
-                            && currentIndex + 2
-                                < ((VBox) textArea.getParent()).getChildren().size()) {
-                        nextField = (TextArea) ((VBox) textArea.getParent())
-                                .getChildren()
-                                .get(currentIndex + 2);
-                    }
-                    nextField.requestFocus();
-                // Shift + TAB
-                } else if (event.getCode() == KeyCode.TAB) {
-                    ObservableList<Node> childList = ((VBox) textArea.getParent()).getChildren();
-                    if (textArea.getText().isEmpty()) {
-                        childList.remove(textArea);
-                    } else {
-                        int index = childList.indexOf(textArea);
-                        if (index > 0) {
-                            childList.get(index - 1).requestFocus();
-                        }
-                    }
-                }
-                event.consume();
-            }
-        });
-
-        //Text field listener for automatically adding/removing new input rows
-        textArea.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            VBox parentBox = (VBox) textArea.getParent();
-            if (parentBox == null) {
-                return;
-            }
-            int lastIndex = parentBox.getChildren().size() - 1;
-
-            // Check if the TextArea has gained focus
-            if (newValue) {
-                // Check if it's the last TextArea in the VBox
-                if (parentBox.getChildren().indexOf(textArea) == lastIndex) {
-                    TextArea newField = createDynamicTextArea("");
-                    parentBox.getChildren().add(newField);
-                }
-            } else {
-                // Check if it's the last TextArea, it's empty, and the focus is not in the same VBox, then remove it
-                if (getNextTextArea(textArea) != null
-                        && getNextTextArea(textArea).getText().isEmpty()
-                        && textArea.getText().isEmpty()) {
-                    parentBox.getChildren().remove(getNextTextArea(textArea));
-                }
-            }
-        });
-
-        return textArea;
     }
 
     /**

@@ -28,9 +28,6 @@ import seedu.recipe.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
-    //private static final CommandExecutor commandExecutor;
-
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
@@ -46,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        RecipeDescriptor recipeDescriptor = parseToAddCommand(args);
+        RecipeDescriptor recipeDescriptor = parseToRecipeDescriptor(args);
         return new AddCommand(recipeDescriptor);
     }
 
@@ -58,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @return the RecipeDescriptor based on user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static RecipeDescriptor parseToAddCommand(String args) throws ParseException {
+    public static RecipeDescriptor parseToRecipeDescriptor(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
                                    PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);

@@ -83,6 +83,8 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
+
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
         helpWindow = new HelpWindow();
