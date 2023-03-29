@@ -106,4 +106,38 @@ public class RecurringExpenseManager {
                 + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
                 + " Recurring Expense Type: " + recurringExpenseType;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        RecurringExpenseManager recurringExpense = (RecurringExpenseManager) object;
+
+        if (recurringExpense.startDate != this.startDate) {
+            return false;
+        }
+
+        if (recurringExpense.expenseAmount != this.expenseAmount) {
+            return false;
+        }
+
+        if (recurringExpense.endDate != this.endDate) {
+            return false;
+        }
+
+        if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
+            return false;
+        }
+
+        if (recurringExpense.expenseCategory != this.expenseCategory) {
+            return false;
+        }
+
+        return recurringExpense.expenseName == this.expenseName;
+    }
 }

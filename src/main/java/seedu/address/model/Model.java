@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * The API of the DataModel component.
@@ -154,4 +155,16 @@ public interface Model {
      * @param budget
      */
     void setBudget(Budget budget);
+
+    /**
+     * Indicates if a RecurringExpense exists in the RecurringExpenseList
+     * @param recurringExpense the RecurringExpense to check for
+     */
+    boolean hasRecurringExpense(RecurringExpenseManager recurringExpense);
+
+    /**
+     * Adds a RecurringExpense to the RecurringExpense list.
+     * @param recurringExpenseManager the Recurring expense to add.
+     */
+    void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager);
 }

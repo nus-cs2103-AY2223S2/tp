@@ -13,6 +13,8 @@ import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
+import seedu.address.model.expense.RecurringExpenseList;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Wraps all data at the expense tracker level
@@ -23,6 +25,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
+    private final RecurringExpenseList recurringGenerators;
     private final ObjectProperty<Budget> simpleBudget;
 
 
@@ -41,6 +44,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         categories = new UniqueCategoryList();
         expenses = new ExpenseList();
         simpleBudget = new SimpleObjectProperty<>(new Budget(0));
+        recurringGenerators = new RecurringExpenseList();
     }
 
     public ExpenseTracker() {
@@ -74,6 +78,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     public void setBudget(Budget budget) {
         this.simpleBudget.set(budget);
     }
+
 
     /**
      * Resets the existing data of this {@code ExpenseTracker} with {@code newData}.
@@ -208,5 +213,13 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenses.contains(expense);
+    }
+
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return recurringGenerators.contains(recurringExpenseManager);
+    }
+
+    public void addRecurringGenerator(RecurringExpenseManager generator) {
+        recurringGenerators.addRecurringExpense(generator);
     }
 }

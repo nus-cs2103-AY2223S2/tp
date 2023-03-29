@@ -4,7 +4,7 @@ import java.time.LocalDate;
 /**
  * Enum for Recurring Expense Type.
  */
-enum RecurringExpenseType {
+public enum RecurringExpenseType {
     MONTHLY,
     WEEKLY,
     DAILY,

@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Represents the in-memory model of the expense tracker data.
@@ -226,5 +227,15 @@ public class ModelManager implements Model {
     @Override
     public void setBudget(Budget budget) {
         expenseTracker.setBudget(budget);
+    }
+
+    @Override
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return expenseTracker.hasRecurringExpense(recurringExpenseManager);
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        expenseTracker.addRecurringGenerator(recurringExpenseManager);
     }
 }
