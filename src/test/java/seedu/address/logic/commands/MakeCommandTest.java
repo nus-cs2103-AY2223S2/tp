@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,11 @@ import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
+
 
 public class MakeCommandTest {
 
@@ -39,7 +41,7 @@ public class MakeCommandTest {
         CommandResult commandResult = new MakeCommand(validEntity).execute(modelStub);
 
         assertEquals(String.format(MakeCommand.MESSAGE_SUCCESS, validEntity), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validEntity), modelStub.personsAdded);
+        assertEquals(Collections.singletonList(validEntity), modelStub.personsAdded);
     }
 
     @Test
@@ -49,7 +51,7 @@ public class MakeCommandTest {
         ModelStub modelStub = new ModelStubWithEntity(validEntity);
 
         assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, () ->
-                                                                            makeCommand.execute(modelStub));
+                makeCommand.execute(modelStub));
     }
 
     @Test
@@ -60,20 +62,20 @@ public class MakeCommandTest {
         MakeCommand addBobCommand = new MakeCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         MakeCommand addAliceCommandCopy = new MakeCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(1, addAliceCommand);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addAliceCommand, addBobCommand);
     }
 
     /**
@@ -81,12 +83,12 @@ public class MakeCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,8 +118,8 @@ public class MakeCommandTest {
         }
 
         @Override
-        public void setReroll(ReadOnlyReroll newData) {
-            throw new AssertionError("This method should not be called.");
+        public Predicate<Entity> getClassificationPredicate(Classification classification) {
+            return null;
         }
 
         @Override
@@ -126,7 +128,17 @@ public class MakeCommandTest {
         }
 
         @Override
+        public void setReroll(ReadOnlyReroll newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasEntity(Entity entity) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEntities(List<Entity> entities) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -141,6 +153,11 @@ public class MakeCommandTest {
         }
 
         @Override
+        public List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate) {
+            return null;
+        }
+
+        @Override
         public ObservableList<Entity> getFilteredEntityList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -151,9 +168,21 @@ public class MakeCommandTest {
         }
 
         @Override
-        public void addFilteredEntityList(Predicate<Entity> predicate) {
+        public Predicate<? super Entity> getCurrentPredicate() {
             throw new AssertionError("This method should not be called.");
         }
+
+        /**
+         * Adds the predicate of the filtered entity list to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void addPredicate(Predicate<Entity> predicate) {
+
+        }
+
 
         @Override
         public void resetFilteredEntityList() {
@@ -176,12 +205,12 @@ public class MakeCommandTest {
         }
 
         @Override
-        public void setCurrentSelectedEntity(Entity newSelection) {
+        public Entity getCurrentSelectedEntity() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Entity getCurrentSelectedEntity() {
+        public void setCurrentSelectedEntity(Entity newSelection) {
             throw new AssertionError("This method should not be called.");
         }
 
