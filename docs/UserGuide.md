@@ -1,11 +1,52 @@
 ---
 layout: page
-title: User Guide
+title: Vimificattion User Guide
 ---
+
+<!---
+Outstanding TODOs:
+[ ] Add numbering to all the sections in both the TOC & section headings
+
+--- STRUCTURE ---
+--- Use double indents for each nested layer ---
+
+Table of Contents
+Introduction
+Purpose of User Guide
+Quick Start
+    Installation
+    For Windows
+    For Mac (M1 Chip)
+    Trying out the commands
+Navigating Vimification
+Using the commands
+Information on commands' parameters
+Features and commands
+    Viewing help
+    Adding a task
+    Adding a task with a deadline
+    Deleting a task
+    Exiting the application
+    Saving the tasklist data
+    Editing tasklist data stored
+    Archiving tasklist data
+FAQ
+Flag summary
+Command summary
+-->
+
+## Table of Contents
+
+- Table of Contents
+  {:toc}
 
 ## Introduction
 
+<!-- Might want to make this introduction more concise -->
+
 Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+
+Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
 
 Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
 
@@ -13,7 +54,9 @@ With Vimification, you can quickly and easily create new tasks, set due dates, p
 
 So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
 
-## Purpose of User Guide
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+## Purpose of this User Guide
 
 The purpose of this user guide is to provide you with a comprehensive resource that will guide you through the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using VimPlanner's powerful and intuitive interface.
 
@@ -23,29 +66,17 @@ Additionally, it will offer troubleshooting tips and solutions to common issues 
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
 
----
-
-## Installation
-
-1. Download the latest `Vimification.jar` from [here](https://github.com/AY2122S2-CS2103T-W11-4/tp/releases).
-
-2. # Save the file in your intended folder.
-   Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [Features](#features)
-  - [Viewing help](#viewing-help)
-  - [Adding a todo task](#adding-a-todo-task)
-  - [Adding a task with deadline](#adding-a-task-with-deadline)
-  - [Deleting a task](#deleting-a-task)
-  - [Exiting the program](#exiting-the-program)
-  - [Saving the data](#saving-the-data)
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
 ## Quick Start
+
+### Installation
+
+1. Download the latest `vimification.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-3/tp/releases).
+
+2. Save the file in your intended folder.
 
 ### For Windows
 
@@ -61,21 +92,20 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
 
-3. Run `java -jar Vimification.jar`.
+3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   <img class="ui-img" src="images/Ui.png" alt="Ui Image" title="Overall User Interface">
 
-## Using the Command-Line Interface (CLI)
-
-=======
+### Trying out the commands
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
    Some example commands you can try:
 
-   - `:i todo CS2130T UG` : Adds a todo task with description `CS2130T UG` to Vimification.
+   - `:a Enhance CS2103T tp user guide` : Adds a task with the title `Enhance CS2103T tp user guide` to Vimification.
 
-   - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
+   - `:a Finish up weekly tp tasks -d 2023-04-01` : Adds a task with the title `Finish up weekly tp tasks` and deadline `2023-04-01` to Vimification.
 
    - `:d 2` : Deletes the 2nd task shown in the current list.
 
@@ -83,40 +113,66 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 2. Refer to the [Features](#features) below for details of each command.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ---
 
 ## Navigating Vimification
 
-Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j,`,`k`,`l` to move to the left, down, up, right respectively.
+Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j`,`k`,`l` to move to the left, down, up, right respectively.
 
-## Using commands
+Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.
 
-Similar to Vim, you can bring up the command input by pressing the `:` key on your keyboard.
-e.g:
-![](images/ug-images/showCommand/commandExample.png)
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
-## Features
+## Using the commands
+
+<p>Similar to Vim, you can access command mode by pressing the `:` key on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</p>
+Example:
+<img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+## Information on commands' parameters
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+<!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
 
-- Words in UPPER_CASE are the parameters to be supprised by the users.<br>
-  e.g. `:i todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `:i todo quiz`.
+_Take note of how the command format is being interpretted, to know what parameters it requires._
 
-- Words in square brackets are compulsory parameters to be supplied by the user.<br>
-  e.g. in `:i todo [DESCRIPTION]`, `DESCRIPTION` is a parameter must be provided.
+Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t cs2103t`, `-t cs2103t -t groupwork` etc.
+- e.g. `:a <title> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
+- Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `-p PRIORITY -t TAG`, `-t TAG -p PRIORITY` is also acceptable.
+Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- e.g. in `:a <title>`, the user must provide the `<title>` parameter, for example, `:a Do weekly quiz`.
+
+Words in **square brackets** are **optional** parameters to be supplied by the user.
+
+- e.g. `:a <title> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
+
+Bracketed items with `…`​ behind means that user can provide multiple parameters.
+
+- e.g. `:a <title> [-l <label>]…​`, for example, `:a Do OP2 slides -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
+
+Parameters identified by flags can be in any order.
+
+- e.g. `:a Do OP2 slides -t cs2101 -p high`, `:a Do OP2 slides -p high -t cs2101` are both acceptable.
+
+For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
+
+- e.g. if the user inputs `:help 123`, it will be interpreted as `help`.
 
 </div>
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+---
+
+## Features and commands
 
 ### Viewing help
 
@@ -126,83 +182,98 @@ Shows a message explaning how to access the help page.
 
 Format: `:help`
 
-### Adding a todo task
+### Adding task
 
-Adds a to-do to Vimification.
+Adds a task to the current task list.
 
-Format: `:i todo [DESCRIPTION]`
-| parameter | description | examples |
-| ------------- | ----------------------------------------------- | ------------ |
-| `description` | description of the task. | `CS2103T UG` |
+Format: `:a <title> [-l <label>]... [-p <priority>]`
 
-Examples:
+| Parameter    | Detail                              | Compulsory | Example            |
+| ------------ | ----------------------------------- | ---------- | ------------------ |
+| `<title>`    | Title of the task                   | Yes        | `CS2103T UG`       |
+| `<label>`    | Label given to the task             | No         | `household chores` |
+| `<priority>` | Priority level assigned to the task | No         | `high`             |
 
-`:i todo CS2130T UG`
+- SoC students can put module code as the label.
 
-**After**
-![](images/ug-images/AddTaskCommandDemo.png)
+Example after the command, `:a Enhance CS2103T tp user guide`:
 
-### Adding a task with deadline
+<img class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" title="Add Task Command Demo">
 
-Adds a task with `deadline` to Vimification.
+### Adding task with deadline
 
-Format: `:i deadline [DESCRIPTION] /[DEADLINE]`
+Adds a task with a deadline to the current task list.
 
-| parameter     | description                                     | examples     |
-| ------------- | ----------------------------------------------- | ------------ |
-| `description` | description of the task.                        | `CS2103T UG` |
-| `deadline`    | The deadline of the task in `YYYY-MM-DD` format | `2023-03-31` |
+Format: `:a <title> -d <deadline>`
 
-Examples:
+| Parameter    | Detail                                      | Compulsory | Example        |
+| ------------ | ------------------------------------------- | ---------- | -------------- |
+| `<title>`    | Title of the task                           | Yes        | `CS2103T UG`   |
+| `<deadline>` | Deadline of the task in `YYYY-MM-DD` format | Yes        | `2023-03-31`   |
+| `<label>`    | Label given to the task                     | No         | `presentation` |
+| `<priority>` | Priority level assigned to the task         | No         | `high`         |
 
-`:i deadline CS2130T v1.3 /2022-03-31`
+- SoC students can put module code as the label.
 
-**After**
-![](images/ug-images/AddDeadlineCommandDemo.png)
+Example after the command, `:a CS2130T v1.3 -d 2022-03-31`:
 
-### Deleting a task
+<img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" title="Add Deadline Command Demo">
 
-Deletes the specified person from the address book.
+### Deleting task
 
-Format: `:d [TASK_INDEX]`
+Deletes a task from the current task list by specifying the task number.
 
-- Deletes the task at the specified `task_index`.
-- The index refers to the index number shown in the displayed `TaskList`.
-- The index **must be a positive integer**, i.e 1, 2, 3, …​
-- The index must not exceed the number of tasks in `TaskList`, otherwise Vimification will show an error message.
+Format: `:d <task_index>`
 
-Examples:
+| Parameter      | Detail                               | Compulsory | Example                                         |
+| -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
+| `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
 
-**Before**
-![](images/ug-images/deleteCommand/before.png)
+- Deletes the task at the specified `<task_index>`.
+- The index refers to the index number shown in the displayed task list.
+- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
-**After**
-![](images/ug-images/deleteCommand/after.png)
+Example:
 
-### Exiting the program
+<table style="width:100%; border:none;">
+<tr>
+<td style="width:50%;">Before the command <code>:d 4</code></td>
+<td style="width:50%;">After the command <code>:d 4</code></td>
+</tr>
+<tr>
+<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" title="Before Delete Command"></td>
+<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" title="After Delete Command"></td>
+</tr>
+</table>
 
-Similar to Vim, we can use the `q` command with write `w` to exit the program.
+### Exiting the application
+
+Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
 
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
-Examples:
-![](images/ug-images/quitCommand/quitExample1.png)
+Example:
 
-### Saving the data
+<img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" title="Quit Example 1">
 
-Vimification data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Saving the task list data
 
-### Editing the data file
+The task list data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Vimification data are saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
+### Editing existing task list data
+
+Existing task list data is saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files (future feature)
 
-_Details coming soon ..._
+_Details coming soon in v2.0 ..._
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
@@ -211,14 +282,26 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
 ---
+
+## Flag summary
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+
+<!-- TODO: Complete this command summary box -->
 
 ## Command summary
 
-| Action           | Format, Examples                                                                         |
-| ---------------- | ---------------------------------------------------------------------------------------- | --- |
-| **Add To-do**    | `:i todo [description]` <br> e.g., `i todo CS2103T UG`                                   |
-| **Add Deadline** | `:i deadline [description] /[deadline]` <br> e.g., `i deadline CS2103T v1.3 /2022-03-31` |     |
-| **Delete**       | `:d [index]`<br> e.g., `:d 3`                                                            |
-| **Exit**         | `:wq!`, `:q!`,,`:wq`,`:q`                                                                |
-| **Help**         | `:help`                                                                                  |
+| Action                 | Format                     | Examples                                           |
+| ---------------------- | -------------------------- | -------------------------------------------------- |
+| View help              | `:help`                    | No variation thus no example                       |
+| Add task               | `:a <title>`               | `:a Enhance formatting of CS2103T UG`              |
+| Add task with deadline | `:a <title> -d <deadline>` | `:a Finalise CS2103T milestone v1.3 -d 2022-03-31` |
+| Delete task            | `:d [index]`               | `:d 3`                                             |
+| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q` | No variation thus no example                       |
+| Save current data      |                            |                                                    |
+| Edit existing data     |                            |                                                    |
+
+<p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
