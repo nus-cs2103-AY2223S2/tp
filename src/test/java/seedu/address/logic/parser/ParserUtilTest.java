@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseStart;
+import static seedu.address.logic.parser.ParserUtil.parseDateTime;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -227,45 +227,10 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseStart_validLocalDateTime_returnsTrue() {
+    public void parseDateTime_validLocalDateTime_returnsTrue() {
         LocalDateTime expected = LocalDateTime.of(2023, 3, 23, 14, 0);
-        LocalDateTime parsed = parseStart("23-03-2023 14:00");
+        LocalDateTime parsed = parseDateTime("23-03-2023 14:00");
         assertEquals(expected, parsed);
     }
 
-    @Test
-    public void parseEnd_endsOnSameDay_returnsTrue() {
-        LocalDateTime expected = LocalDateTime.of(2023, 3, 23, 14, 30);
-        String start = "23-03-2023 14:00";
-        String end = "14:30";
-        LocalDateTime parsedEnd = ParserUtil.parseEnd(start, end);
-        assertEquals(expected, parsedEnd);
-    }
-
-    @Test
-    public void parseEnd_endsOnNextDay_returnsTrue() {
-        LocalDateTime expected = LocalDateTime.of(2023, 3, 24, 1, 0);
-        String start = "23-03-2023 14:00";
-        String end = "01:00";
-        LocalDateTime parsedEnd = ParserUtil.parseEnd(start, end);
-        assertEquals(expected, parsedEnd);
-    }
-
-    @Test
-    public void parseEnd_endsOnNextMonth_returnsTrue() {
-        LocalDateTime expected = LocalDateTime.of(2023, 4, 1, 1, 0);
-        String start = "31-03-2023 23:00";
-        String end = "01:00";
-        LocalDateTime parsedEnd = ParserUtil.parseEnd(start, end);
-        assertEquals(expected, parsedEnd);
-    }
-
-    @Test
-    public void parseEnd_endsOnNextYear_returnsTrue() {
-        LocalDateTime expected = LocalDateTime.of(2024, 1, 1, 1, 0);
-        String start = "31-12-2023 23:00";
-        String end = "01:00";
-        LocalDateTime parsedEnd = ParserUtil.parseEnd(start, end);
-        assertEquals(expected, parsedEnd);
-    }
 }
