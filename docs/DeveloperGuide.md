@@ -965,7 +965,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. FitBook shows an error for incorrect format.
 
       Use case ends.
-    
+
 ---
 ### Non-Functional Requirements
 
