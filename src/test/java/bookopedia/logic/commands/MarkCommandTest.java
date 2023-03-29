@@ -3,6 +3,7 @@ package bookopedia.logic.commands;
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static bookopedia.logic.commands.MarkCommand.MESSAGE_DONE_STATUS_CHANGED;
 import static bookopedia.logic.commands.MarkCommand.MESSAGE_RETURN_STATUS_CHANGED;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
@@ -30,23 +31,6 @@ public class MarkCommandTest {
     @Test
     public void execute_markOtw_success() {
         DeliveryStatus deliveryStatus = DeliveryStatus.OTW;
-
-        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person updatedPersonToMark = new PersonBuilder(personToMark).withDeliveryStatus(deliveryStatus).build();
-
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
-        String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, personToMark.getName(), deliveryStatus);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(
-                INDEX_FIRST_PERSON.getZeroBased()), updatedPersonToMark);
-
-        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_markDone_success() {
-        DeliveryStatus deliveryStatus = DeliveryStatus.DONE;
 
         Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person updatedPersonToMark = new PersonBuilder(personToMark).withDeliveryStatus(deliveryStatus).build();
@@ -99,12 +83,33 @@ public class MarkCommandTest {
     }
 
     @Test
-    public void execute_markReturn_success() {
-        DeliveryStatus deliveryStatus = DeliveryStatus.RETURN;
+    public void execute_markDone_success() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.DONE;
 
         Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person updatedPersonToMark = new PersonBuilder(personToMark).withDeliveryStatus(deliveryStatus).build();
 
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+        String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, personToMark.getName(), deliveryStatus);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(
+                INDEX_FIRST_PERSON.getZeroBased()), updatedPersonToMark);
+
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_markReturn_success() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.RETURN;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person newPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.OTW)
+                .build();
+        Person updatedPersonToMark = new PersonBuilder(personToMark).withDeliveryStatus(deliveryStatus).build();
+
+        model.setPerson(personToMark, newPersonToMark);
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
         String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, personToMark.getName(), deliveryStatus);
 
@@ -140,6 +145,81 @@ public class MarkCommandTest {
                 INDEX_FIRST_PERSON.getZeroBased()), updatedPersonToMark);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_markOtwOnDoneDelivery_failed() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.OTW;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.DONE)
+                .build();
+
+        model.setPerson(personToMark, updatedPersonToMark);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+
+        assertCommandFailure(markCommand, model, MESSAGE_DONE_STATUS_CHANGED);
+    }
+
+    @Test
+    public void execute_markDoneOnDoneDelivery_failed() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.DONE;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.DONE)
+                .build();
+
+        model.setPerson(personToMark, updatedPersonToMark);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+
+        assertCommandFailure(markCommand, model, MESSAGE_DONE_STATUS_CHANGED);
+    }
+
+    @Test
+    public void execute_markFailedOnDoneDelivery_failed() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.FAILED;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.DONE)
+                .build();
+
+        model.setPerson(personToMark, updatedPersonToMark);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+
+        assertCommandFailure(markCommand, model, MESSAGE_DONE_STATUS_CHANGED);
+    }
+
+    @Test
+    public void execute_markPendingOnDoneDelivery_failed() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.OTW;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.DONE)
+                .build();
+
+        model.setPerson(personToMark, updatedPersonToMark);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+
+        assertCommandFailure(markCommand, model, MESSAGE_DONE_STATUS_CHANGED);
+    }
+
+    @Test
+    public void execute_markReturnOnDoneDelivery_failed() {
+        DeliveryStatus deliveryStatus = DeliveryStatus.RETURN;
+
+        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(DeliveryStatus.DONE)
+                .build();
+
+        model.setPerson(personToMark, updatedPersonToMark);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
+
+        assertCommandFailure(markCommand, model, MESSAGE_DONE_STATUS_CHANGED);
     }
 
     @Test
