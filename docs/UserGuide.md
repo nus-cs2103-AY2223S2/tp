@@ -8,7 +8,7 @@ Outstanding TODOs:
 [ ] Add numbering to all the sections in both the TOC & section headings
 
 --- STRUCTURE ---
---- Use double indents for each nested layer---
+--- Use double indents for each nested layer ---
 
 Table of Contents
 Introduction
