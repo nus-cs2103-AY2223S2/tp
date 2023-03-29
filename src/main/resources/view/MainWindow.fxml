@@ -33,7 +33,7 @@
                             <Insets left="13.0" top="20.0" />
                         </VBox.margin>
                     </ImageView>
-                    <Button fx:id="profileButton" mnemonicParsing="false" onAction="#handleShowUserProfile" prefHeight="25.0" prefWidth="54.0" style="-fx-text-fill: white;" styleClass="side-button">
+                    <Button fx:id="profileButton" mnemonicParsing="false" onAction="#handleShowUserProfile" prefHeight="25.0" prefWidth="54.0" styleClass="side-button">
                         <graphic>
                             <ImageView fitHeight="32.0" fitWidth="30.0" preserveRatio="true" style="-fx-opacity: 0.5;">
                                 <image>
@@ -88,7 +88,7 @@
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="179.0" styleClass="profile-text" text="Check your profile" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="179.0" styleClass="profile-text-light" text="Keep your details up to date!" />
-                        <Button fx:id="profileButton1" mnemonicParsing="false" onAction="#handleShowUserProfile" prefHeight="25.0" prefWidth="54.0" style="-fx-text-fill: white;" styleClass="side-button">
+                        <Button fx:id="profileButton1" mnemonicParsing="false" onAction="#handleShowUserProfile" prefHeight="25.0" prefWidth="54.0" styleClass="side-button">
                             <graphic>
                                 <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="166.0" styleClass="edumate-header" text="/$username" />
                             </graphic>

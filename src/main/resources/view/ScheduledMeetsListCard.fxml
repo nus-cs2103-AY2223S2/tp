@@ -3,45 +3,62 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" styleClass="no-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane styleClass="no-background" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" style="-fx-background-color: transparent;" GridPane.columnIndex="0">
-            <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: transparent;">
-                <VBox prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: black; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
-                    <HBox prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: rgb(227, 211, 238); -fx-background-radius: 5;">
-                        <Label fx:id="id" text="\$id">
-                            <minWidth>
-                                <Region fx:constant="USE_PREF_SIZE" />
-                            </minWidth>
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </Label>
-                       <Label fx:id="time" text="\$time" wrapText="true">
+        <VBox alignment="CENTER_LEFT" styleClass="no-background" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="5" styleClass="no-background">
+                <VBox prefHeight="26.0" prefWidth="150.0" styleClass="organised-meet-main-card" HBox.hgrow="ALWAYS">
+                    <HBox prefHeight="26.0" prefWidth="150.0" styleClass="organised-meet-card-top">
+                  <FlowPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="id" styleClass="organised-meet-card-top-label" text="\$id">
+                                  <minWidth>
+                                      <Region fx:constant="USE_PREF_SIZE" />
+                                  </minWidth>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                              </Label>
+                             <Label fx:id="time" styleClass="organised-meet-card-top-label" text="\$time" wrapText="true" />
+                     </children>
                      <HBox.margin>
-                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                        <Insets />
                      </HBox.margin>
-                       </Label>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </FlowPane>
                     </HBox>
-                    <Label fx:id="loc" style="-fx-text-fill: white;" text="\$location" wrapText="true">
-                        <VBox.margin>
-                            <Insets bottom="2.0" left="5.0" top="5.0" />
-                        </VBox.margin>
-                    </Label>
-                     <Label fx:id="participants" style="-fx-text-fill: white;" text="\$participants">
+               <FlowPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="149.0" VBox.vgrow="NEVER">
+                  <children>
+                          <Label fx:id="loc" styleClass="organised-meet-card-bottom-label" text="\$location" wrapText="true">
+                        <padding>
+                           <Insets left="5.0" />
+                        </padding>
+                          </Label>
+                           <Label fx:id="participants" styleClass="organised-meet-card-bottom-label" text="\$participants">
+                        <padding>
+                           <Insets left="5.0" />
+                        </padding>
+                           </Label>
+                  </children>
                   <VBox.margin>
-                     <Insets bottom="5.0" left="5.0" />
+                     <Insets />
                   </VBox.margin>
-                     </Label>
+                  <padding>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+               </FlowPane>
                 </VBox>
             </HBox>
         </VBox>
