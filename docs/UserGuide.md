@@ -334,7 +334,7 @@ Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM]
 You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-A contact can have any number of tags, modules and CCAs! (including 0)
+A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (including 0)
 </div>
 
 **Example 1:**
@@ -349,7 +349,7 @@ A contact can have any number of tags, modules and CCAs! (including 0)
 
 **Result:**<br>![AddContactExample2](images/johndoe.png)
 
-Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 [↑ Back to feature list](#4-features)
 
@@ -362,7 +362,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">deleting a tag</a> instead!
+If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">Adding Additional Tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">Deleting Existing Tags</a> instead!
 </div>
 
 The `edit` command:
@@ -378,7 +378,7 @@ The `edit` command:
 
 **Result:**<br>![EditContactExample](images/johndoe.png)
 
-Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 [↑ Back to feature list](#4-features)
 
@@ -563,14 +563,14 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 ## 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
-* Names should only contain alphanumeric characters and spaces.
+* Names should only contain <u>alphanumeric</u> characters and spaces.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.2 Phone: `p/`
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
-* Phone numbers should only contain numeric characters.
+* Phone numbers should only contain <u>numeric</u> characters.
 * Phone numbers should be at least 3 digits long.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -579,11 +579,11 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
-    * The local-part should only contain alphanumeric characters and these special characters:`+_.-`. The local-part may not start or end with any special characters.
+    * The local-part should only contain <u>alphanumeric</u> characters and these <u>special characters</u>:`+_.-`. The local-part may not start or end with any special characters.
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
       The domain name must:
         - end with a domain label at least 2 characters long
-        - have each domain label start and end with alphanumeric characters
+        - have each domain label start and end with <u>alphanumeric</u> characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -591,15 +591,15 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 ## 5.4 Address: `a/`
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
-* Addresses can take any values, including special characters.
+* Addresses can take any values, including <u>special characters</u>.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.5 Instagram: `ig/`
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
-* Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
-    * The username should only contain alphanumeric characters and the special character: `.`.
+* Instagram usernames should be of the format `john.123.doe` and adhere to the following constraints:
+    * The username should only contain <u>alphanumeric</u> characters and the special character: `.`.
     * The dots `.` must not be consecutive or at the end.
     * The username should contain at most 30 characters.
 
@@ -608,8 +608,8 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 ## 5.6 Telegram: `tg/`
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
-* Telegram usernames should be of the format johndoe and adhere to the following constraints:
-    * The username should only contain alphanumeric characters and the special character `_`.
+* Telegram usernames should be of the format `johndoe` and adhere to the following constraints:
+    * The username should only contain <u>alphanumeric</u> characters and the special character `_`.
     * The username should contain at least 5 characters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -618,7 +618,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
-    * Phone numbers should only contain numeric characters.
+    * Phone numbers should only contain <u>numeric</u> characters.
     * Phone numbers should be at least 3 digits long.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -637,9 +637,9 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 There are four kinds of tags in ConnectUS.
 
 ### 5.9.1 Module Tags: `mod/`
-* Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+* <u>Module</u> is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
-* Module names should be alphanumeric.
+* Module names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have any number of modules assigned to it.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -647,15 +647,15 @@ There are four kinds of tags in ConnectUS.
 ### 5.9.2 Major Tags: `major/`
 * Major is an *optional* field, i.e. a contact can exist even if it does not have a major.
 * The prefix for a module is `major/`.
-* Major names should be alphanumeric.
+* Major names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have at most 2 majors assigned to it (i.e. a contact can have 0-2 majors).
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ### 5.9.3 CCA Tags: `cca/`
-* CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
+* <u>CCA</u> is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
-* CCA names should be alphanumeric.
+* CCA names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have any number of CCAs assigned to it.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -663,7 +663,7 @@ There are four kinds of tags in ConnectUS.
 ### 5.9.4 Remark Tags: `r/`
 * Remark is an *optional* field, i.e. a contact can exist even if it does not have a remark.
 * The prefix for a remark is `r/`.
-* Remark names should be alphanumeric.
+* Remark names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have any number of remarks assigned to it.
 * Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
 
@@ -760,7 +760,14 @@ There are four kinds of tags in ConnectUS.
 > **JSON:**
 > Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
 
+### M
+> **Module:**
+> Modules are courses that students take at the National University of Singapore.
+
 ### N
+> **Numeric:**
+> Numbers only.
+> 
 > **NUS:**
 > Short for the National University of Singapore. 
 > 
@@ -772,6 +779,9 @@ There are four kinds of tags in ConnectUS.
 ### S
 > **School of Computing:**
 > Also known as SoC. A computing school in the National University of Singapore.
+> 
+> **Special Characters:**
+> Characters that are not alphabetic or numeric.
 
 ### U
 > **UTown Residence:**
