@@ -5,8 +5,8 @@ title: User Guide
 
 # Introduction
 
-Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling for faster mastery of course materials through the use of flashcards _(which we will be referring as **cards** throughout the User Guide)_.
-As a university student, you can capitalise on PowerCard's **powerful cards management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
+Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
+As a university student, you can capitalise on our **powerful cards management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 
 This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
 
