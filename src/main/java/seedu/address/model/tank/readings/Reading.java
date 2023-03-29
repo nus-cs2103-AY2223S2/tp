@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.date.DateUtil;
 import seedu.address.model.tank.Tank;
@@ -14,25 +16,26 @@ import seedu.address.model.tank.Tank;
 abstract class Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Reading dates should be in the format of dd/mm/yyyy";
-    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+            "Reading dates should be in the format of dd/mm/yyyy HH:mm";
+    public static final String VALIDATION_REGEX =
+            "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4} (?:[01]\\d|2[0-3]):[0-5]\\d$";
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     public final String dateString;
-    public final LocalDate localDate;
+    public final LocalDateTime localDateTime;
     public final String alphaNumericDate;
-
     public final Tank tank;
 
     /**
      * Constructor for reading
-     * @param date date reading was recorded
+     * @param dateTime dateTime reading was recorded
      * @param tank the tank this reading belongs to
      */
-    public Reading(String date, Tank tank) {
-        requireNonNull(date);
-        checkArgument(isValidReading(date), MESSAGE_CONSTRAINTS);
-        dateString = date;
-        localDate = DateUtil.parseStringToDate(date);
-        alphaNumericDate = DateUtil.getTaskDescriptionDateFormat(localDate);
+    public Reading(String dateTime, Tank tank) {
+        requireNonNull(dateTime);
+        checkArgument(isValidReading(dateTime), MESSAGE_CONSTRAINTS);
+        dateString = dateTime;
+        localDateTime = LocalDateTime.parse(dateTime, formatter);
+        alphaNumericDate = DateUtil.getTaskDescriptionDateTimeFormat(localDateTime);
         this.tank = tank;
     }
 

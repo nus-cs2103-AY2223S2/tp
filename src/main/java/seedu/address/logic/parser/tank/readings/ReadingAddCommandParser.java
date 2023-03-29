@@ -40,13 +40,13 @@ public class ReadingAddCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReadingsAddCommand.MESSAGE_USAGE));
         }
         Index tankIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TANK).get());
-        String currentDate = DateUtil.getCurrentDate();
+        String currentDateTime = DateUtil.getCurrentDateTime();
         String ammoniaValue = argMultimap.getValue(PREFIX_AMMONIA_LEVEL).get();
         String pHValue = argMultimap.getValue(PREFIX_PH).get();
         String tempValue = argMultimap.getValue(PREFIX_TEMPERATURE).get();
-        AmmoniaLevel ammoniaLevel = ParserUtil.parseAmmoniaLevel(ammoniaValue, currentDate);
-        PH pH = ParserUtil.parsePH(pHValue, currentDate);
-        Temperature temp = ParserUtil.parseTemperature(tempValue, currentDate);
+        AmmoniaLevel ammoniaLevel = ParserUtil.parseAmmoniaLevel(ammoniaValue, currentDateTime);
+        PH pH = ParserUtil.parsePH(pHValue, currentDateTime);
+        Temperature temp = ParserUtil.parseTemperature(tempValue, currentDateTime);
         return new ReadingsAddCommand(ammoniaLevel, pH, temp, tankIndex);
     }
 
