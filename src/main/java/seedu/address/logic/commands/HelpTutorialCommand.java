@@ -16,31 +16,31 @@ public class HelpTutorialCommand extends HelpCommand {
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
     public static final String ADD_TUTORIAL = "Add:                         "
-            +"touch Tutorial/TUTORIAL_NAME";
+            + "touch Tutorial/TUTORIAL_NAME";
 
     public static final String ADD_RECUR = "Add Multiple:            "
-            +"schedule Recur/Tutorial/TUTORIAL_NAME -n REPETITIONS";
+            + "schedule Recur/Tutorial/TUTORIAL_NAME -n REPETITIONS";
 
     public static final String DELETE_TUTORIAL = "Delete:                     "
-            +"delete Tutorial/INDEX";
+            + "delete Tutorial/INDEX";
 
     public static final String EDIT_TUTORIAL = "Edit:                         "
-            +"editEvent EVENT_INDEX Tutorial/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
+            + "editEvent EVENT_INDEX Tutorial/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
 
     public static final String ADD_STUDENT = "Add Student:            "
-            +"addStudent INDEX Tutorial/TUTORIAL_NAME";
+            + "addStudent INDEX Tutorial/TUTORIAL_NAME";
 
     public static final String DELETE_STUDENT = "Delete Student:        "
-            +"deleteStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_NAME";
+            + "deleteStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_NAME";
 
     public static final String ADD_NOTE = "Add Note:         "
-            +"add-note -content NOTE ?????";
+            + "add-note -content NOTE ?????";
 
     public static final String EDIT_NOTE = "Edit Note:          "
-            +"edit-note -content NOTE ?????";
+            + "edit-note -content NOTE ?????";
 
     public static final String DELETE_NOTE = "Delete Note:      "
-            +"rm-note -type Tutorial -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
+            + "rm-note -type Tutorial -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
 
     @Override
     public CommandResult execute(Model model) {

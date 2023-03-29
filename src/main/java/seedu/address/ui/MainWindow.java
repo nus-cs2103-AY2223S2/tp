@@ -257,6 +257,16 @@ public class MainWindow extends UiPart<Stage> {
         tabPane.getSelectionModel().select(eventTabId);
     }
 
+    @FXML
+    private void stayAtTab() {
+        if (tabPane.getSelectionModel().isSelected(studentTabId)) {
+            tabPane.getSelectionModel().select(studentTabId);
+        } else {
+            tabPane.getSelectionModel().select(eventTabId);
+        }
+
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -284,6 +294,8 @@ public class MainWindow extends UiPart<Stage> {
                 enterStudentTab();
             } else if (commandResult.isEventTab()) {
                 enterEventTab();
+            } else {
+                stayAtTab();
             }
 
             fillInnerParts();

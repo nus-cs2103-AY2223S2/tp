@@ -121,7 +121,6 @@ public class DeleteEventCommand extends Command {
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
-                break;
             }
         }
 
@@ -164,7 +163,6 @@ public class DeleteEventCommand extends Command {
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
-                break;
             }
         }
 
@@ -208,7 +206,6 @@ public class DeleteEventCommand extends Command {
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
-                break;
             }
         }
 

@@ -355,7 +355,6 @@ public class ParserUtil {
         LocalDateTime end = range[1];
         for (int i = 0; i < MASTER_TIME.size(); i++) {
             if (MASTER_TIME.size() == 0) {
-                MASTER_TIME.add(range);
                 return false;
             }
             LocalDateTime[] currentRange = MASTER_TIME.get(i);
@@ -372,8 +371,16 @@ public class ParserUtil {
                 return true;
             }
         }
-        MASTER_TIME.add(range);
         return false;
+    }
+
+
+    /**
+     * Checks if a new event with current time can be added by checking if the TA already has a scheduled event
+     * @param range LocalDateTime[]
+     */
+    public static void makeBusy(LocalDateTime[] range) {
+        MASTER_TIME.add(range);
     }
 
 

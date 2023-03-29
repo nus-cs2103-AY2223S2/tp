@@ -56,13 +56,19 @@ public class AddLabParser implements Parser<AddLabCommand> {
         File file;
         String note;
         Lab lab = new Lab(name);
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 2);
             lab.changeDate(date);
         }
 
-        if (ParserUtil.isBusy(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(2)})) {
-            throw new ParseException("You are already busy during this period");
+        //Checks for date availability when no date prefix is stated
+        if (!argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            if (ParserUtil.isBusy(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(2)})) {
+                throw new ParseException("You are already busy during this period");
+            } else {
+                ParserUtil.makeBusy(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(2)});
+            }
         }
 
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {

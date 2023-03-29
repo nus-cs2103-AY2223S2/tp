@@ -28,7 +28,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        studentTab = true;
+        studentTab = false;
         eventTab = false;
     }
 

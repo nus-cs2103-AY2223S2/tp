@@ -56,13 +56,19 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
         File file;
         String note;
         Consultation consultation = new Consultation(name);
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1);
             consultation.changeDate(date);
         }
 
-        if (ParserUtil.isBusy(new LocalDateTime[]{consultation.getDate(), consultation.getDate().plusHours(1)})) {
-            throw new ParseException("You are already busy during this period");
+        //Checks for date availability when no date prefix is stated
+        if (!argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            if (ParserUtil.isBusy(new LocalDateTime[]{consultation.getDate(), consultation.getDate().plusHours(1)})) {
+                throw new ParseException("You are already busy during this period");
+            } else {
+                ParserUtil.makeBusy(new LocalDateTime[]{consultation.getDate(), consultation.getDate().plusHours(1)});
+            }
         }
 
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
