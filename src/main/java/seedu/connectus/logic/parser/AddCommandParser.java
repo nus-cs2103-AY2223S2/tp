@@ -51,45 +51,45 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get(), true);
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Person person = new Person(name);
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get(), true);
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             person.setPhone(phone);
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get(), true);
+            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             person.setEmail(email);
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get(), true);
+            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
             person.setAddress(address);
         }
 
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get(), true);
+            Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
             person.setBirthday(birthday);
         }
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            Set<Remark> remarkList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK), true);
+            Set<Remark> remarkList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
             person.setRemarks(remarkList);
         }
 
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE), true);
+            Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
             person.setModules(moduleList);
         }
         if (argMultimap.getValue(PREFIX_CCA).isPresent()) {
-            Set<Cca> ccaList = ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA), true);
+            Set<Cca> ccaList = ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA));
             person.setCcas(ccaList);
         }
         if (argMultimap.getValue(PREFIX_CCA_POSITION).isPresent()) {
             Set<CcaPosition> ccaPositionList = ParserUtil.parseCcaPositions(argMultimap
-                    .getAllValues(PREFIX_CCA_POSITION), true);
+                    .getAllValues(PREFIX_CCA_POSITION));
             person.setCcaPositions(ccaPositionList);
         }
 
