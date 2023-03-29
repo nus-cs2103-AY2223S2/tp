@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalModules.CARL;
-import static seedu.address.testutil.TypicalModules.ELLE;
-import static seedu.address.testutil.TypicalModules.FIONA;
+import static seedu.address.testutil.TypicalModules.CS1101S_LEC;
+import static seedu.address.testutil.TypicalModules.CS1231S_TUT;
+import static seedu.address.testutil.TypicalModules.CS2101_OP;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -67,11 +67,13 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleModulesFound() {
         String expectedMessage = String.format(MESSAGE_MODULES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("CS2101 CS1101 CS1231S");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getDisplayedModuleList());
+        
+        assertEquals(Arrays.asList(CS2101_OP, CS1231S_TUT, CS1101S_LEC), model.getFilteredModuleList());
+
     }
 
     /**

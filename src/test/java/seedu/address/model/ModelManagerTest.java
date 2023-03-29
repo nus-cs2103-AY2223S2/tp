@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.ALICE;
-import static seedu.address.testutil.TypicalModules.BENSON;
+import static seedu.address.testutil.TypicalModules.CS2103T_LEC;
+import static seedu.address.testutil.TypicalModules.CS2106_TUT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasModule_moduleNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasModule(ALICE));
+        assertFalse(modelManager.hasModule(CS2106_TUT));
     }
 
     @Test
     public void hasModule_moduleInAddressBook_returnsTrue() {
-        modelManager.addModule(ALICE);
-        assertTrue(modelManager.hasModule(ALICE));
+        modelManager.addModule(CS2106_TUT);
+        assertTrue(modelManager.hasModule(CS2106_TUT));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withModule(ALICE).withModule(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withModule(CS2106_TUT).withModule(CS2103T_LEC).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = CS2106_TUT.getName().fullName.split("\\s+");
         modelManager.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
