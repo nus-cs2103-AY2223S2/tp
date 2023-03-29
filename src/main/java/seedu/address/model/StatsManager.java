@@ -33,4 +33,8 @@ public class StatsManager {
             s.updateStatsInformation();
         }
     }
+
+    public List<StatsInformation> getStatsInformations() {
+        return statsInformations;
+    }
 }

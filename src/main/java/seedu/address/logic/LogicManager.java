@@ -14,6 +14,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.StatsManager;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.TodoType;
@@ -31,13 +32,15 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final StatsManager statsManager;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, StatsManager statsManager) {
         this.model = model;
         this.storage = storage;
+        this.statsManager = statsManager;
         addressBookParser = new AddressBookParser();
     }
 
@@ -48,7 +51,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        // StatsManager
+        statsManager.updateAllStatsInformation();
 
         try {
             if (commandResult.getType() == TodoType.NONE) {
