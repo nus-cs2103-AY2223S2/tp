@@ -1,8 +1,35 @@
-<img src="images/Reroll_Banner.png" />
 ---
 layout: page title: Developer Guide
 
 ---
+<br />
+<div align="center">
+  <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp">
+    <img alt="Banner" src="images/Reroll_Banner.png" alt="Logo" width="1000">
+  </a>
+<h3 align="center">TTRPG Entity Management Solution</h3>
+  <p align="center">
+    An all-in-one developer's guide to Reroll!
+    <br />
+    <a href="https://nus-cs2103-ay2223s2.github.io/tp/"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md">Meet the Team</a>
+    <br />
+    🎉 Version 1.2.1 is out. Check out the latest release
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">here</a>.
+    <br />
+    <br />
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/v/release/AY2223S2-CS2103T-T15-1/tp" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/watchers/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/stars/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+  </p>
+</div>
 
 * Table of Contents {:toc}
 
