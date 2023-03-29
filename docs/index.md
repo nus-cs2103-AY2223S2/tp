@@ -7,7 +7,7 @@ title: Mycelium
 [![Java CI](https://github.com/AY2223S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W14-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103T-W14-1/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/FuzzyDemoInitial.png)
 
 **Mycelium is a desktop application for freelance devs to manage clients and projects.**
 
