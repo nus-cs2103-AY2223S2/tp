@@ -86,7 +86,7 @@ public class CommandTestUtil {
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new AssertionError("File does not exist.", e);
         } catch (ParseException e) {
             throw new AssertionError("File should be selected.", e);
         }
