@@ -15,7 +15,7 @@ This User Guide will provide you with an in-depth documentation for you to easil
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
-{% include page-break.html %}
+<div style="page-break-after: always"></div>
 
 ---
 
@@ -68,6 +68,8 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 - [7. Command Summary](#7-command-summary)
 - [8. Prefix Summary](#8-prefix-summary)
 - [9. Glossary](#9-glossary)
+
+<div style="page-break-after: always"></div>
 
 ---
 
