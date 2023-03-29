@@ -87,9 +87,11 @@ public class CommandTestUtil {
     public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR + "Alex&"; // '&' not allowed in doctor names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
+    public static final String NULL_EMAIL = " " + PREFIX_EMAIL + "null";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String NULL_STRING = " " + "null";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;

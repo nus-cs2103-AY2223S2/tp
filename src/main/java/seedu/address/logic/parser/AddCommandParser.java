@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     PREFIX_DOCTOR, PREFIX_MEDICINE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS,
-            PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL)
+            PREFIX_DRUG_ALLERGY, PREFIX_GENDER, PREFIX_PHONE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -55,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(null));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Doctor doctor = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());

@@ -25,6 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NULL_EMAIL;
+import static seedu.address.logic.commands.CommandTestUtil.NULL_STRING;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -108,6 +110,17 @@ public class AddCommandParserTest {
             + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB
             + TAG_DESC_HUSBAND + GENDER_DESC_BOB + DOCTOR_DESC_BOB
             + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+    }
+
+    @Test
+    public void nullStringEmail_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + NULL_EMAIL + ADDRESS_DESC_BOB
+                + DRUG_ALLERGY_DESC_BOB + GENDER_DESC_BOB, expectedMessage);
+
+        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + NULL_STRING + ADDRESS_DESC_BOB
+                + DRUG_ALLERGY_DESC_BOB + GENDER_DESC_BOB, expectedMessage);
     }
 
     @Test
