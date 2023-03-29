@@ -1,6 +1,7 @@
 package seedu.dengue.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.dengue.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
@@ -31,6 +32,7 @@ public class RedoCommand extends UndoRedoCommand {
         requireNonNull(model);
         model.redo();
         int counts = 1 + undoOrRedoAtMost(model, this.numberOfRedos - 1, false);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, counts));
     }
