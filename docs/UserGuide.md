@@ -134,12 +134,14 @@ Adds a person to the patient records.
 Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
 **Tip**:
-A patient can have any number of tags and medicine (including 0).
+
+<br/>A patient can have any number of tags and medicine (including 0)
+<br/>A patient can leave out the email prefix should they not want to share it
 
 Examples:
 
-* `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex e/johnd@example.com t/Diabetic m/Lantus`
-* `add i/T0012345B n/Betsy Crowe p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
+* `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus`
+* `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
 
 ### Editing a patient record: `edit`
 

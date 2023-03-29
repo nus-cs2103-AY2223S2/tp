@@ -19,6 +19,7 @@ public class Person {
     // Identity fields
     private final Nric nric;
     private final Name name;
+    private final DateOfBirth date;
     private final Phone phone;
     private final Email email;
     private final Gender gender;
@@ -34,11 +35,14 @@ public class Person {
      * Every field must be present and not null.
      */
 
-    public Person(Nric nric, Name name, Phone phone, Email email, Address address,
-                  DrugAllergy drugAllergy, Gender gender, Doctor doctor, Set<Tag> tags, Set<Medicine> medicines) {
+    public Person(Nric nric, Name name, DateOfBirth date, Phone phone,
+                  Email email, Address address, DrugAllergy drugAllergy,
+                  Gender gender, Doctor doctor,
+                  Set<Tag> tags, Set<Medicine> medicines) {
         requireAllNonNull(name, phone, email, address, tags);
         this.nric = nric;
         this.name = name;
+        this.date = date;
         this.phone = phone;
         this.email = email;
         this.gender = gender;
@@ -55,6 +59,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public DateOfBirth getDate() {
+        return date;
     }
 
     public Phone getPhone() {
@@ -148,6 +156,8 @@ public class Person {
         builder.append(getNric())
                 .append("; Name: ")
                 .append(getName())
+                .append("; DOB: ")
+                .append(getDate())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
