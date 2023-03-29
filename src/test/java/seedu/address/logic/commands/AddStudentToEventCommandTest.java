@@ -45,6 +45,9 @@ class AddStudentToEventCommandTest {
         modifiedModel.addLab(new Lab(SAMPLE_LAB.getName()));
         modifiedModel.addConsultation(new Consultation(SAMPLE_CONSULTATION.getName()));
 
+        Model supposedlySameModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        supposedlySameModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
+
         modifiedModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                 first, SAMPLE_TUTORIAL.getName(), TUTORIAL_STRING),
