@@ -50,9 +50,9 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             return new EditSessionCommand(index, newSession);
         case STUDENT:
             /*  Note: Parsing of student info is done in EditStudentCommand::execute to catch error when user is not
-                on STUDENT_PAGE, therefore we need to catch runtime error separately here
+                on STUDENT_PAGE, therefore we need to catch ArrayIndexOutOfBoundsException separately in
+                parseStudentIndex. (Others are handled in their parseInfo methods)
              */
-
             index = parseStudentIndex(args);
             return new EditStudentCommand(index, args);
         default:
