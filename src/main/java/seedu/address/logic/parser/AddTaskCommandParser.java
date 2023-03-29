@@ -15,13 +15,13 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
 /**
- * Parses input arguments and creates a new AddTaskCommand object
+ * Parses input arguments and creates a new AddTaskCommand object.
  */
 public class AddTaskCommandParser implements ApplicationParser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

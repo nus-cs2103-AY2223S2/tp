@@ -14,7 +14,7 @@ import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
 
 /**
- * Deletes a task from an application in the internship book.
+ * Deletes a task from a specified application in the internship book.
  */
 public class DeleteTaskCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "delete-task";

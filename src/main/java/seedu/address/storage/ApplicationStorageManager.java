@@ -47,7 +47,7 @@ public class ApplicationStorageManager implements ApplicationStorage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ InternshipBook methods ==============================
 
     @Override
     public Path getInternshipBookFilePath() {

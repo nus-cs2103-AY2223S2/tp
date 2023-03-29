@@ -9,8 +9,8 @@ import seedu.address.model.application.Application;
 import seedu.address.model.application.UniqueApplicationList;
 
 /**
- * Wraps all data at the internship-book level
- * Duplicates are not allowed
+ * Wraps all data at the internship-book level.
+ * Duplicates are not allowed.
  * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class InternshipBook implements ReadOnlyInternshipBook {
@@ -31,7 +31,7 @@ public class InternshipBook implements ReadOnlyInternshipBook {
     public InternshipBook() {}
 
     /**
-     * Creates an InternshipBook using the Applications in the {@code toBeCopied}
+     * Creates an InternshipBook using the Applications in the {@code toBeCopied}.
      */
     public InternshipBook(ReadOnlyInternshipBook toBeCopied) {
         this();

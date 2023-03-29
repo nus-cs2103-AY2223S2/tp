@@ -78,7 +78,7 @@ class JsonAdaptedApplication {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Application} object.
+     * Converts this Jackson-friendly adapted application object into the model's {@code Application} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted application.
      */

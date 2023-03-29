@@ -5,7 +5,7 @@ import java.util.Comparator;
 import seedu.address.logic.parser.SortApplicationCommandParser.SortingSequence;
 
 /**
- * Compares two applications based on alphabetical order of company name.
+ * Compares two applications based on alphabetical order of company name and role.
  */
 public class AlphabeticalComparator implements Comparator<Application> {
 

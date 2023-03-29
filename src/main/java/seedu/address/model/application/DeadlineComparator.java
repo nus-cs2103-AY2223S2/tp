@@ -7,7 +7,6 @@ import seedu.address.model.task.Task;
 
 /**
  * Compares two applications based on the deadline of their upcoming task.
- * Applications with no tasks are ranked lower.
  */
 public class DeadlineComparator implements Comparator<Application> {
 

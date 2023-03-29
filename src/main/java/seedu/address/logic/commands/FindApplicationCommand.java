@@ -22,6 +22,9 @@ public class FindApplicationCommand extends ApplicationCommand {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an FindApplicationCommand to find applications that fulfil the given predicate.
+     */
     public FindApplicationCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

@@ -40,7 +40,7 @@ public class AddApplicationCommand extends ApplicationCommand {
     private final Application toAdd;
 
     /**
-     * Creates an AddApplicationCommand to add the specified {@code Application}
+     * Creates an AddApplicationCommand to add the specified {@code Application}.
      */
     public AddApplicationCommand(Application application) {
         requireNonNull(application);

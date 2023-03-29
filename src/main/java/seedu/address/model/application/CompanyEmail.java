@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the company's email for an Application in the internship book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}.
  */
 public class CompanyEmail {
     private static final String SPECIAL_CHARACTERS = "+_.-";

@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
@@ -39,9 +39,13 @@ public class HelpWindow extends UiPart<Stage> {
                     new HelpCommand("Find app(s)",
                             "find [keyword(s)] [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]\n"),
                     new HelpCommand("Sort apps",
-                            "sort alphabetical/deadline\n"),
+                            "sort a/d alphabetical/deadline\n"),
                     new HelpCommand("Clear internship book",
                             "clear\n"),
+                    new HelpCommand("Undo previous command",
+                            "undo\n"),
+                    new HelpCommand("Redo undone command",
+                            "redo\n"),
                     new HelpCommand("Help",
                             "help\n"),
                     new HelpCommand("Exit",

@@ -3,7 +3,7 @@ package seedu.address.model.application;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Application} has a {@code Task}
+ * Tests that a {@code Application} has a {@code Task}.
  */
 public class ApplicationHasTaskPredicate implements Predicate<Application> {
 

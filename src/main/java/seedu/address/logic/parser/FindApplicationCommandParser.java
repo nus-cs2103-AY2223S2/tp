@@ -15,14 +15,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindApplicationCommand object
+ * Parses input arguments and creates a new FindApplicationCommand object.
  */
 public class FindApplicationCommandParser implements ApplicationParser<FindApplicationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindApplicationCommand
      * and returns a FindApplicationCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FindApplicationCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -61,15 +61,17 @@ public class FindApplicationCommandParser implements ApplicationParser<FindAppli
 
 
     /**
+     * Returns all the user-inputted strings for the given prefix.
      * @param argMultimap An argument multimap.
      * @param prefix A prefix.
-     * @return A list of string for the prefix made by user input.
+     * @return A list of string(s) for the prefix made by user input.
      */
     public List<String> getValues(ArgumentMultimap argMultimap, Prefix prefix) {
         return argMultimap.getAllValues(prefix);
     }
 
     /**
+     * Checks if there are any prefixes in the user input.
      * @param argumentMultimap An argument multimap.
      * @param prefixes A number of prefixes.
      * @return if any of the prefix in as key in argumentMultimap has non-null value.

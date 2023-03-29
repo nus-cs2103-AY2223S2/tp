@@ -122,7 +122,7 @@ public class EditApplicationCommandTest {
      */
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateApplicationUnfilteredList_failure() {
         Application firstPerson =
                 model.getFilteredApplicationList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         EditApplicationCommand.EditApplicationDescriptor descriptor =
@@ -135,7 +135,7 @@ public class EditApplicationCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateApplicationFilteredList_failure() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
 
         // edit person in filtered list into a duplicate in address book
@@ -149,7 +149,7 @@ public class EditApplicationCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidApplicationIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicationList().size() + 1);
         EditApplicationCommand.EditApplicationDescriptor descriptor =
                 new EditApplicationDescriptorBuilder()
@@ -166,7 +166,7 @@ public class EditApplicationCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidApplicationIndexFilteredList_failure() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
         Index outOfBoundIndex = INDEX_SECOND_APPLICATION;
         // ensures that outOfBoundIndex is still in bounds of address book list

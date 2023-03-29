@@ -16,7 +16,7 @@ import seedu.address.testutil.ApplicationBuilder;
 
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the ApplicationModel) for {@code AddApplicationCommand}.
  */
 public class AddApplicationCommandIntegrationTest {
 
@@ -29,7 +29,7 @@ public class AddApplicationCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newApplication_success() {
         Application validApplication = new ApplicationBuilder().build();
 
         ApplicationModel expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
@@ -41,7 +41,7 @@ public class AddApplicationCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateApplication_throwsCommandException() {
         Application appInList = model.getInternshipBook().getApplicationList().get(0);
         assertCommandFailure(new AddApplicationCommand(appInList),
                 model, commandHistory, AddApplicationCommand.MESSAGE_DUPLICATE_APPLICATION);

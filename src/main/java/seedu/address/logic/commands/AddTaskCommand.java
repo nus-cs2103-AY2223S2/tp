@@ -39,7 +39,7 @@ public class AddTaskCommand extends ApplicationCommand {
     private final EditApplicationDescriptor editApplicationDescriptor;
 
     /**
-     * Creates an AddTaskCommand to add the specified {@code Task} to an application
+     * Creates an AddTaskCommand to add the specified {@code Task} to an application.
      */
     public AddTaskCommand(Index targetIndex, EditApplicationDescriptor editApplicationDescriptor) {
         requireNonNull(targetIndex);

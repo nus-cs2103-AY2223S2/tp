@@ -6,7 +6,7 @@ import seedu.address.logic.commands.SortApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new SortApplicationCommand object
+ * Parses input arguments and creates a new SortApplicationCommand object.
  */
 public class SortApplicationCommandParser implements ApplicationParser<SortApplicationCommand> {
     /**
@@ -35,7 +35,7 @@ public class SortApplicationCommandParser implements ApplicationParser<SortAppli
         ASCENDING, DESCENDING;
 
         /**
-         * Returns true if a given string is a valid sorting order.
+         * Returns true if a given string is a valid sorting sequence.
          */
         public static boolean isValidSortingSequence(String test) {
             if (test.equalsIgnoreCase("a") || test.equalsIgnoreCase("d")) {

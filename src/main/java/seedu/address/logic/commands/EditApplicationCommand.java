@@ -61,8 +61,9 @@ public class EditApplicationCommand extends ApplicationCommand {
     private final EditApplicationDescriptor editApplicationDescriptor;
 
     /**
-     * @param index of the application in the filtered application list to edit
-     * @param editApplicationDescriptor details to edit the application with
+     * Creates an EditApplicationCommand to edit the specified {@code Application}.
+     * @param index of the application in the displayed application list to edit.
+     * @param editApplicationDescriptor details to edit the application with.
      */
     public EditApplicationCommand(Index index, EditApplicationDescriptor editApplicationDescriptor) {
         requireNonNull(index);
