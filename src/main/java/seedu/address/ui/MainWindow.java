@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, this);
 
     }
 
@@ -294,6 +294,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Focuses on the main window.
+     */
+    public void focus() {
+        getRoot().requestFocus();
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -303,6 +310,20 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Opened help window.");
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Lists jobs and prompts to users that jobs are listed in Main Window
+     */
+    public void handleShowJobList() {
+        try {
+            CommandResult commandResult = logic.execute("list_job");
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (FileNotFoundException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
         }
     }
 
@@ -534,6 +555,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowReminderList()) {
                 handleReminderList();
+            }
+
+            if (commandResult.isShowAddressBook()) {
+                handleAddressBook();
             }
 
             if (commandResult.isExit()) {

@@ -42,9 +42,39 @@ public class CommandResult {
     private final boolean showReminderList;
 
     /**
+     * Address book should be shown to the user.
+     */
+    private final boolean showAddressBook;
+
+    /**
+     * Main window should be shown and focused to the user.
+     */
+    private final boolean showJobList;
+
+    /**
      * The application should exit.
      */
     private final boolean exit;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
+                         boolean showUnschedule, boolean showComplete, boolean showReminderList,
+                         boolean showStatistics, boolean showAddressBook,
+                         boolean showJobList, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.showTimetable = showTimetable;
+        this.showUnschedule = showUnschedule;
+        this.showComplete = showComplete;
+        this.showReminderList = showReminderList;
+        this.showStatistics = showStatistics;
+        this.showAddressBook = showAddressBook;
+        this.showJobList = showJobList;
+        this.exit = exit;
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -60,6 +90,8 @@ public class CommandResult {
         this.showComplete = showComplete;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
+        this.showAddressBook = false;
+        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -83,6 +115,8 @@ public class CommandResult {
         this.showComplete = false;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
+        this.showAddressBook = false;
+        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -142,6 +176,20 @@ public class CommandResult {
      */
     public boolean isShowReminderList() {
         return showReminderList;
+    }
+
+    /**
+     * Checks if address window is shown
+     */
+    public boolean isShowAddressBook() {
+        return showAddressBook;
+    }
+
+    /**
+     * Checks if main window is required to focus
+     */
+    public boolean isShowJobList() {
+        return showJobList;
     }
 
     /**

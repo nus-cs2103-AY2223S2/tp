@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.Main;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
@@ -14,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -28,6 +30,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
+    private final MainWindow dukeDriverWindow;
 
     private Stage primaryStage;
     private Logic logic;
@@ -57,6 +60,22 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
+        this.dukeDriverWindow = new MainWindow(primaryStage, logic);
+
+        // Set dependencies
+        this.primaryStage = primaryStage;
+        this.logic = logic;
+        this.selectHandler = selectHandler;
+    }
+
+    /**
+     * Creates a {@code AddressBookWindow} with the given {@code Stage} and
+     * {@code Logic} with a select handler and {@code MainWindow}.
+     */
+    public AddressBookWindow(Stage primaryStage, Logic logic,
+                             Consumer<Person> selectHandler, MainWindow dukeDriverWindow) {
+        super(FXML, primaryStage);
+        this.dukeDriverWindow = dukeDriverWindow;
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -126,6 +145,12 @@ public class AddressBookWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleListJob() {
+        primaryStage.hide();
+        dukeDriverWindow.focus();
+        dukeDriverWindow.handleShowJobList();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -140,6 +165,10 @@ public class AddressBookWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowJobList()) {
+                handleListJob();
             }
 
             return commandResult;
