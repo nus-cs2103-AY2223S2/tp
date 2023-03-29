@@ -287,11 +287,8 @@ Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
 
-<<<<<<< HEAD
-=======
 - Displays the total revenue.
 
->>>>>>> master
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
 Displays events that start within a specified number of days.
