@@ -314,6 +314,15 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PCs home folder.
 
+**Q**: Will my data be automatically saved?<br>
+**A**: **Yes**, PowerCards automatically saves your data after every command entered.
+
+**Q**: Where is my data saved?<br>
+**A**: Go to where you have downloaded your `powercards.jar` file, there a `/data` folder will be created and the data will be saved under `powercards.json`.
+
+**Q**: Can I rename my saved data file?<br>
+**A**: **No**, PowerCards currently only supports the use of `powercards.json` as the name of the saved data file.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
