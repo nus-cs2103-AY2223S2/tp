@@ -37,7 +37,7 @@
 
         <SplitPane fx:id="masterDeckList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
          <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="300"/>
-          <VBox minWidth="300" prefHeight="0.0" prefWidth="0.0">
+          <VBox prefHeight="0.0" prefWidth="0.0" minWidth="300" >
             <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" />
             <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
           </VBox>
