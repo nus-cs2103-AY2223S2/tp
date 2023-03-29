@@ -115,18 +115,17 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
 
-2. Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
+2. Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br> <div style="page-break-after: avoid"></div>
    ![Latest](images/ConnectUSLatest.png)
 
-<div style="page-break-after: always"></div>
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
+
+3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br> <div style="page-break-after: avoid"></div>
    ![Home Folder](images/ConnectUSHomeFolder.png)
 
-<div style="page-break-after: always"></div>
 
 4. Double-click the `ConnectUS.jar` file to start the app.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> <div style="page-break-after: avoid"></div>
    ![Ui](images/Ui.png)
 
 Congratulations! You have successfully set up ConnectUS.
@@ -580,12 +579,12 @@ Format: `chat PERSON_INDEX wa/ m/`
 > Sends a chat to an existing contact.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-You'll need to download the desktop application <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
+You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
 </div>
 
 **Example:**
 
-**Input in Command Box:** `chat 1 wa/ m/hello world!`
+**Input in Command Box:** `chat 1 [wa/] [tg/] m/hello world!`
 
 **Result:**<br>![ChatContactExample](images/johndoe.png)
 
