@@ -111,6 +111,16 @@ Examples:
 - `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`. 
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
+### Sorting all patients in the system: `sort`
+
+Sorts all the patients with the specified field and order in the system.
+
+Format: `sort FIELD/ORDER`
+
+Examples:
+
+- `sort s/asc`
+
 ### Finding patients by name in the system: `find`
 
 Shows a list of all patients with their details that match input name or NRIC.
@@ -194,6 +204,10 @@ _Details coming soon ..._
 
 **A**: Yes! Entering the `help` command will show a message explaining how to access the help page.
 
+**Q**: How do I transfer my data to another device/ computer?
+
+**A**: Install the app in the other device/ computer and overwrite the empty data file it creates with the file that contains the data of your previous MedInfo home folder
+
 [//]: # 'Coming soon'
 [//]: # '**Q**: How do I transfer my data to another Computer?<br>'
 [//]: #
@@ -203,12 +217,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format, Examples                                                                           |
-| ------------ | ------------------------------------------------------------------------------------------ |
-| **Add**      | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 1`                                                        |
-| **Edit**     | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
-| **Find**     | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
-| **Add Ward** | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
-| **List**     | `list`                                                                                     |
-| **Help**     | `help`                                                                                     |
+| Action          | Format, Examples                                                                           |
+|-----------------|--------------------------------------------------------------------------------------------|
+| **Add**         | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
+| **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
+| **List**        | `list`                                                                                     |
+| **Help**        | `help`                                                                                     |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |

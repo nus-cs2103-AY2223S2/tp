@@ -3,24 +3,69 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+**MedInfo** is a desktop application that empowers clinics and hopitals  to manage their patients.
+
+This Developer Guide provides an in-depth documentation on how **MedInfo** is designed and implemented.
+It covers the architecture of **MedInfo** and provides detailed descriptions regarding the implementation design.
+
+You can use this guide to maintain, upgrade, and evolve **MedInfo**.
+
+## Table of contents
+
+* [Acknowledgements](#acknowledgements)
+* [Getting Started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [UI](#ui-component)
+    * [Logic](#logic-component)
+    * [Model](#model-component)
+    * [Storage](#storage-component)
+    * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+    * [Add Patients Feature](#adding-a-patient)
+    * [Add Wards Feature](#adding-a-ward)
+    * [Edit Patients Feature](#editing-a-patient)
+    * [Delete Patients Feature](#deleting-a-patient)
+    * [Find Patients Feature](#finding-patients)
+    * [List Patients Feature](#list-all-patients)
+    * [[Proposed] Undo Redo Feature](#proposed-undoredo-feature)
+    * [[Proposed] Data Archiving](#proposed-data-archiving)
+* [Appendix: Requirements](#appendix-requirements)
+    * [Target User Profile](#target-user-profile)
+    * [Value Proposition](#value-proposition)
+    * [User Stories](#user-stories)
+    * [Use Cases](#use-cases)
+        * [Use case: **add a patient**](#use-case-uc01---add-a-patient)
+        * [Use case: **delete a patient**](#use-case-uc02---delete-a-patient)
+        * [Use case: **edit a patient**](#use-case-uc03---edit-a-patient)
+        * [Use case: **find a patient**](#use-case-uc04---find-a-patient)
+        * [Use case: **clear all patients**](#use-case-uc05---clear-all-patients)
+        * [Use case: **add a ward**](#use-case-uc06---add-a-new-ward)
+        * [Use case: **delete a ward**](#use-case-uc07---delete-a-ward)
+        * [Use case: **sort patients**](#use-case-uc08---sort-patients)
+    * [Non-Functional Requirement](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: Instructions for Manual Testing ](#appendix-instructions-for-manual-testing)
+  * [**Launch and shutdown**](#launch-and-shutdown)
+  * [**Delete a patient**](#delete-a-patient)
+  * [**Save data**](#save-data)
+
 
 ---
 
-## **Acknowledgements**
+## Acknowledgements
 
 - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ---
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -346,16 +391,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
-
-**Target user profile**:
+### Target user profile
 
 - has a need to manage a significant number of patients coming into an A&E in a private hospital
 - can type fast
 - prefers typing to execute commands and allocating patients by their status to their respective wards
 - is reasonably comfortable using CLI apps
 
-**Value proposition**:
+### Value proposition
 
 - solve the problem of slow and multiple step process of allocating patients to their respective wards in an A&E
 - provide faster access to a particular patient’s details for hospital admin staff
@@ -402,7 +445,7 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `MedInfo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a patient**
+#### Use case: UC01 - Add a patient
 
 **MSS**
 
@@ -447,7 +490,7 @@ Use case resumes at step 2.
   Use case resumes at step 2.
 
 
-**Use case: UC02 - Delete a patient**
+#### Use case: UC02 - Delete a patient
 
 **MSS**
 
@@ -479,7 +522,7 @@ Use case resumes at step 2.
 
     Use case resumes at step 2.
 
-**Use case: UC03 - Edit a patient**
+#### Use case: UC03 - Edit a patient
 
 **MSS**
 
@@ -540,7 +583,7 @@ Use case resumes at step 2.
     Use case resumes at step 2.
 
 
-**Use case: UC04 - Find a patient**
+#### Use case: UC04 - Find a patient
 
 **MSS**
 
@@ -575,7 +618,7 @@ Use case resumes at step 2.
 
   Use case ends.
 
-**Use case: UC05 - Clear all patients**
+#### Use case: UC05 - Clear all patients
 
 **MSS**
 
@@ -589,7 +632,7 @@ Use case resumes at step 2.
     - 3a1. MedInfo shows the patient list
 
 
-**Use case: UC06 - Add a new ward**
+#### Use case: UC06 - Add a new ward
 
 **MSS**
 
@@ -624,7 +667,7 @@ Use case resumes at step 2.
   Use case resumes at step 2.
 
 
-**Use case: UC07 - Delete a ward**
+#### Use case: UC07 - Delete a ward
 
 **MSS**
 
@@ -659,6 +702,32 @@ Use case resumes at step 2.
 
       Use case resumes at step 2
 
+#### Use case: UC08 - Sort Patients
+
+**MSS**
+
+1. User requests to list patients
+2. MedInfo shows a list of patients
+3. User requests to sort all the patients by a specific order
+4. MedInfo sorts all the patients
+5. MedInfo displays the sorted list
+
+    Use case ends
+
+**Extensions**
+
+- 2. The patient list is empty
+
+    Use case ends.
+- 3a. The requested sorting order is invalid
+  - 3a1. MedInfo shows an error message.
+  
+    Use case resumes at step 2.
+
+- 3b. The requested sorting field is invalid
+    - 3b1. MedInfo shows an error message.
+  
+      Use case resumes at step 2.
 
 
 _{More to be added}_
@@ -676,6 +745,8 @@ _{More to be added}_
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **CLI**:  Command Line Interface
+- **Use case**: It describes an interaction between the user and the system for a specific functionality of the system.
 - **Priority Level**: Level of seriousness of a patient's health condition (e.g. `Stable`, `Mild`, `Severe`)
 - **Medical Record**: Blood type, allergies, medical cases and history of medical conditions
 
@@ -698,38 +769,38 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-### Deleting a patient
+### Delete a patient
 
 1. Deleting a patient while all patients are being shown
 
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
-### Saving data
+### Save data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
