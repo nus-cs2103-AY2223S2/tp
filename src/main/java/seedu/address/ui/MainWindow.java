@@ -18,6 +18,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Level;
+import seedu.address.model.Navigation;
+import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
@@ -213,9 +215,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.getCurrentContext() != "") {
-                commandBox.setContextLabel(commandResult.getCurrentContext());
-            }
+            ReadOnlyNavigation nav = logic.getNavigation();
+            commandBox.setContextLabel(nav.getCurrentContext().toString());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

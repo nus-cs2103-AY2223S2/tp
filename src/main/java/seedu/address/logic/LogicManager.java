@@ -19,8 +19,10 @@ import seedu.address.logic.injector.NavigationInjector;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.trackereventsystem.TrackerEventSystem;
+import seedu.address.logic.trackereventsystem.navigation.NavigationObserver;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
@@ -54,6 +56,12 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+
+        // Subscribe to tracker system
+        NavigationObserver navObserver = new NavigationObserver(model);
+        this.trackerEventSystem.addOnModuleModifiedObserver(navObserver);
+        this.trackerEventSystem.addOnLectureModifiedObserver(navObserver);
+
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         commandText = navigationInjector.inject(commandText, model);
@@ -64,6 +72,10 @@ public class LogicManager implements Logic {
         CommandResult commandResult = command.execute(model);
 
         triggerTrackerEvents(commandResult);
+
+        // Unsubscribe to tracker system
+        this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver);
+        this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver);
 
         try {
             storage.saveTracker(model.getTracker());
@@ -77,6 +89,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyTracker getTracker() {
         return model.getTracker();
+    }
+
+    @Override
+    public ReadOnlyNavigation getNavigation() {
+        return model.getNavigation();
     }
 
     @Override
