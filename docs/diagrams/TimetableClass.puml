@@ -12,9 +12,9 @@ class HourBlock
 enum "<<enumeration>>\nDay" as Day
 class Commitment
 
-Day "5"--left- Timetable : has <
-HourBlock -up-* Timetable
-HourBlock --> "1" Day : occurs on >
+Day "5    " --right-- Timetable : has <
+HourBlock -up-*"consists   \nof    " Timetable
+HourBlock ---right---> "  1" Day : occurs on
 HourBlock --> "0...1" Commitment : contains >
 
 @enduml
