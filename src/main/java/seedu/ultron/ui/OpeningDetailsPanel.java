@@ -2,11 +2,8 @@ package seedu.ultron.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.ultron.commons.core.LogsCenter;
@@ -40,12 +37,14 @@ public class OpeningDetailsPanel extends UiPart<Region> {
     public OpeningDetailsPanel(Opening opening) {
         super(FXML);
         this.opening = opening;
-        company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
+        company.setText("Company: " + opening.getCompany().fullCompany);
         status.setText("Status: " + opening.getStatus().fullStatus);
         email.setText("Email: " + opening.getEmail().value);
         remark.setText(String.format("Remark: %s", opening.getRemark().value));
         opening.getDates().stream()
                 .forEach(date -> dates.getChildren().add(new DateCard(date)));
+
+        remark.setWrapText(true);
     }
 }

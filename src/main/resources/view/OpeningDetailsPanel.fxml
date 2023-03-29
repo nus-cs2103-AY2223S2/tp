@@ -3,9 +3,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 
 <VBox fx:id="openingDetailsPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="position" text="\$position" />
+    <Label fx:id="position" styleClass="details-header" text="\$position" />
     <Label fx:id="company" text="\$company" />
     <Label fx:id="status" text="\$status" />
     <FlowPane fx:id="dates" />
