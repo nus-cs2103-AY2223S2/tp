@@ -159,6 +159,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+### Current Implementation
+The add function is facilitated by `AddXCommand` (`X` is a placeholder for the specific entity to be added e.g. `AddCustomerCommand`)
+
+Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call.
+
+<img src="images/AddXSequenceDiagram.png"/>
+
+The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
+
 ### View Feature
 
 ### Current Implementation
