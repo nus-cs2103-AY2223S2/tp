@@ -116,12 +116,10 @@ public class MakeCommandTest {
         public void addEntity(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
-        /*
         @Override
         public Predicate<Entity> getClassificationPredicate(Classification classification) {
             return null;
         }
-         */
 
         @Override
         public ReadOnlyReroll getReroll() {
