@@ -1,5 +1,6 @@
 package seedu.quickcontacts.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -69,7 +70,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
+        loadTheme();
         helpWindow = new HelpWindow();
     }
 
@@ -81,8 +82,16 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
+    private void loadTheme() {
+        String theme = logic.getGuiSettings().isDarkTheme() ? "DarkTheme.css" : "LightTheme.css";
+        primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                        "view/" + theme))
+                .toExternalForm());
+    }
+
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -155,6 +164,33 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes the current theme
+     */
+    @FXML
+    public void handleTheme() {
+        if (logic.getGuiSettings().isDarkTheme()) {
+            primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                            "view/LightTheme.css"))
+                    .toExternalForm());
+            primaryStage.getScene().getStylesheets().remove(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource(
+                            "view/DarkTheme.css")).toExternalForm());
+        } else {
+            primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                            "view/DarkTheme.css"))
+                    .toExternalForm());
+            primaryStage.getScene().getStylesheets().remove(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource(
+                            "view/LightTheme.css")).toExternalForm());
+        }
+
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY(), !logic.getGuiSettings().isDarkTheme());
+        logic.setGuiSettings(guiSettings);
+
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -165,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().isDarkTheme());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

@@ -99,6 +99,12 @@ This user guide serves as an introduction on how to incorporate QuickContacts in
 
 </div>
 
+### Theme toggling
+
+Toggles the theme from dark to light or vice versa.
+
+![toggle theme](images/toggleTheme.png)
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.

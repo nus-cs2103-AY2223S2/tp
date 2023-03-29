@@ -251,8 +251,8 @@ followed by the import of Person2 throwing a DuplicatePersonError, resulting in 
 message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`. 
 
 However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the 
-Person does not already exist, and ignores those that do. This allows the previous situation to complete with `
-[Person1, Person2, Person3, Person4]` in the system.
+Person does not already exist, and ignores those that do. 
+This allows the previous situation to complete with `[Person1, Person2, Person3, Person4]` in the system.
 
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
@@ -330,6 +330,11 @@ This way, formats are easily extensible and maintainable. The parsing of `dateTi
 
 ### Sort Meeting commands
 `SortMeetingCommand` is a Java class that sorts the meeting objects stored in a Model object based on a specified attribute. This command allows the user to sort meetings by their title, date and time, location, or description. The user can also specify whether the sorting should be done in reverse order. The sorting is done by creating a Comparator for the specified attribute and passing it to the Model object's sortFilteredMeetingList method. The execute method of this class takes a `Model` object as an argument, applies the correct `Comparator` based on the prefix given by the user, and then returns a `CommandResult` object with a success message indicating the attribute that the meetings have been sorted by. If an invalid prefix is provided, a `CommandException` is thrown.
+
+### Light Theme
+The current theme is stored as a boolean inside GuiSettings, which is stored inside UserPrefs. Clicking the button 
+toggles the boolean and removes the current stylesheet (eg. LightTheme.css/DarkTheme.css) and adds the opposite 
+stylesheet to the scene.
 
 --------------------------------------------------------------------------------------------------------------------
 
