@@ -60,7 +60,7 @@ public class ApplicationCard extends UiPart<Region> {
         companyEmail.setText(application.getCompanyEmail().value);
         taskDetails.setPrefHeight(Region.USE_PREF_SIZE);
         if (application.hasTask()) {
-            Label taskHeader = new Label("Pending Task");
+            Label taskHeader = new Label("Outstanding Task");
             taskHeader.setId("taskHeader");
             taskDetails.getChildren().add(taskHeader);
             initialiseTaskDetails(application);
@@ -87,7 +87,6 @@ public class ApplicationCard extends UiPart<Region> {
 
         Label description = new Label(application.getTask().getDescription().value);
         Label deadline = new Label(application.getTask().getDeadline().toDisplayString());
-
         descriptionContainer.getChildren().addAll(descriptionLabel, description);
         descriptionContainer.setAlignment(Pos.CENTER_LEFT);
         deadlineContainer.getChildren().addAll(deadlineLabel, deadline);

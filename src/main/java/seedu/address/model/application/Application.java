@@ -61,6 +61,10 @@ public class Application {
         return getTask() != null;
     }
 
+    public boolean hasOutdatedTask() {
+        return !this.task.hasValidDeadline();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

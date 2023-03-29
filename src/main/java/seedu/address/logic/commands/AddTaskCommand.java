@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditApplicationCommand.EditApplicationDescri
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
+import seedu.address.model.task.Deadline;
 
 /**
  * Adds a task to an application in the internship book.
@@ -69,7 +70,11 @@ public class AddTaskCommand extends ApplicationCommand {
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.commitInternshipBookChange();
         commandHistory.setLastCommandAsModify();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication.getTask()));
+        String displayMessage = MESSAGE_SUCCESS;
+        if (editedApplication.hasOutdatedTask()) {
+            displayMessage = Deadline.DEADLINE_HAS_PASSED + displayMessage;
+        }
+        return new CommandResult(String.format(displayMessage, editedApplication.getTask()));
     }
 
     @Override

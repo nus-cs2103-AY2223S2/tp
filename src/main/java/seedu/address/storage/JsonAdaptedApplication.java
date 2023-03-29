@@ -139,9 +139,6 @@ class JsonAdaptedApplication {
             if (!Deadline.isValidDate(taskDeadline)) {
                 throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             }
-            if (!Deadline.isValidDeadline(taskDeadline)) {
-                throw new IllegalValueException(Deadline.DEADLINE_HAS_PASSED);
-            }
             final Description modelDescription = new Description(taskDescription);
             final Deadline modelDeadline = new Deadline(taskDeadline);
             modelTask = new Task(modelDeadline, modelDescription);
