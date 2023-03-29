@@ -28,8 +28,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private final RecurringExpenseList recurringGenerators;
     private final ObjectProperty<Budget> simpleBudget;
 
-
-
     /*
      * The 'unusual' code block below is a non-static initialization block,
      * sometimes used to avoid duplication
@@ -79,6 +77,9 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         this.simpleBudget.set(budget);
     }
 
+    public void setRecurringExpenseGenerators(List<RecurringExpenseManager> recurringExpenseGenerators) {
+        this.recurringGenerators.setRecurringExpenseList(recurringExpenseGenerators);
+    }
 
     /**
      * Resets the existing data of this {@code ExpenseTracker} with {@code newData}.
@@ -88,6 +89,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         setExpenses(newData.getExpenseList());
         setCategories(newData.getCategoryList());
         setBudget(newData.getBudget());
+        setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
     }
 
     //// category-level operations
@@ -164,6 +166,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return recurringGenerators.asUnmodifiableList();
+    }
+    @Override
     public Budget getBudget() {
         return this.simpleBudget.get();
     }
@@ -203,6 +209,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     public void clearCategory() {
         categories.clear();
+    }
+
+    public void clearRecurringExpense() {
+        recurringGenerators.clear();
     }
 
     /**
