@@ -208,6 +208,8 @@
     -fx-text-fill: black !important;
 }
 
+
+
 .status-bar .label {
     -fx-font-weight: lighter;
     -fx-text-fill: white;

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-           xmlns:fx="http://javafx.com/fxml/1">
-  <HBox styleClass="result-display">
-    <ImageView >
-      <Image url="@/images/careflow_bot.gif"/>
+<!--<GridPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">-->
+<!--  <HBox alignment="CENTER" prefWidth="1024.0">-->
+<!--    <ImageView preserveRatio="true">-->
+<!--      <Image url="@/images/careflow_bot.gif" />-->
+<!--    </ImageView>-->
+<!--    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />-->
+<!--  </HBox>-->
+<!--</GridPane>-->
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+    <ImageView fitHeight="100" fitWidth="100">
+      <Image url="@/images/careflow_bot.gif" />
     </ImageView>
-    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-  </HBox>
-</StackPane>
+    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
+</HBox>

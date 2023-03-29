@@ -12,9 +12,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.commons.core.LogsCenter;
@@ -75,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane drugPieChartPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private HBox resultDisplayPlaceholder;
 
     @FXML
     private StackPane hospitalRecordPanelPlaceholder;
