@@ -19,11 +19,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Subject;
 
+/**
+ * Card containing a person
+ */
 public class ResultPersonCard extends UiPart<Region> {
     private static final String FXML = "ResultPersonCard.fxml";
-    private final Logger logger = LogsCenter.getLogger(ResultPersonCard.class);
-
     public final Person person;
+    private final Logger logger = LogsCenter.getLogger(ResultPersonCard.class);
 
     @FXML
     private HBox cardPane;
