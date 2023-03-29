@@ -35,7 +35,7 @@ public class TaskListPanel extends UiPart<VBox> {
     }
 
     public void requestFocus() {
-        this.taskListView.requestFocus();
+        taskListView.requestFocus();
     }
 
     /**

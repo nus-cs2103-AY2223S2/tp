@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <TabPane>
+    <tabs>
+      <Tab text="Tasks" fx:id="ongoingTab">
+        <VBox fx:id="ongoingTaskListComponent"></VBox>
+      </Tab>
+      <Tab text="Completed" fx:id="completedTab">
+        <VBox fx:id="completedTaskListComponent"></VBox>
+      </Tab>
+    </tabs>
+  </TabPane>
+</VBox>

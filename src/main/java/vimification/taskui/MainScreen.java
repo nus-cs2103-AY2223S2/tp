@@ -32,6 +32,7 @@ public class MainScreen extends UiPart<VBox> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskTabPanel taskTabPanel;
     private TaskCreationPanel taskCreationPanel;
     private CommandInput commandInput;
 
@@ -81,9 +82,8 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public void initializeTaskListPanel() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanel.setMainScreen(this);
-        loadLeftComponent(taskListPanel);
+        taskTabPanel = new TaskTabPanel(this, logic);
+        loadLeftComponent(taskTabPanel);
     }
 
     private void intializeCommandInput() {
@@ -112,7 +112,7 @@ public class MainScreen extends UiPart<VBox> {
             break;
         case "j":
         case "k":
-            taskListPanel.requestFocus();
+            taskTabPanel.requestFocus();
             break;
         }
     }
