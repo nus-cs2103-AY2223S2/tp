@@ -25,9 +25,7 @@ import seedu.address.model.task.Description;
 public class EditTaskCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "edit-task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing task "
-            + "in the internship book. "
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] \n"
             + "Example: " + COMMAND_WORD + " 1 "

@@ -14,11 +14,10 @@ public class UndoCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_SUCCESS = "The last command that modified the internship book"
-            + " has been undone!\nSuccessfully undo the following command, '%s'";
+    public static final String MESSAGE_SUCCESS = "The last command, %s, has been undone!\n";
 
     public static final String MESSAGE_FAILURE = "There is no command to undo!"
-            + " The command to be undone need to previously modified the internship book.";
+            + " The command to be undone needs to previously modified the internship book.";
 
     @Override
     public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {

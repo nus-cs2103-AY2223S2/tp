@@ -22,9 +22,7 @@ import seedu.address.model.application.Application;
 public class AddTaskCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "add-task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to an existing application "
-            + "in the internship book. "
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " 1 "

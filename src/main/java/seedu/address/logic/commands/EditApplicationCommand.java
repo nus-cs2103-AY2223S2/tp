@@ -38,18 +38,15 @@ public class EditApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "edit-app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the application identified "
-            + "by the index number used in the displayed application list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: edit-app INDEX "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_COMPANY_NAME + "COMPANY NAME] "
-            + "[" + PREFIX_COMPANY_EMAIL + "COMPANY EMAIL] "
+            + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME] "
+            + "[" + PREFIX_COMPANY_EMAIL + "COMPANY_EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG(s)]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY_EMAIL + "gogglerecruiter@goggletalents.com "
-            + PREFIX_STATUS + "ACCEPTED";
+            + PREFIX_STATUS + "Accepted";
 
     public static final String MESSAGE_EDIT_APPLICATION_SUCCESS = "Edited Application: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -14,11 +14,9 @@ public class RedoCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_SUCCESS = "The next command that modified the internship book"
-            + " has been redone.\nSuccessfully redo the following command, '%s'";
-
+    public static final String MESSAGE_SUCCESS = "The last command, %s, has been redone!\n";
     public static final String MESSAGE_FAILURE = "There is no command to redo!"
-            + " The command to be redone need to previously modified the internship book.";
+            + " The command to be redone needs to previously modified the internship book.";
 
     @Override
     public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
