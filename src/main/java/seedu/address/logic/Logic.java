@@ -117,6 +117,8 @@ public interface Logic {
      */
     int getTotalCompleted(ObservableList<DeliveryJob> list);
 
+    int getTotalPending(ObservableList<DeliveryJob> list);
+
     /**
      * Returns the user prefs' delivery job system file path.
      */
