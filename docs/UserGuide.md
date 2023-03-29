@@ -81,46 +81,46 @@ Table 1. Symbols and formats used in this User Guide.
 # 3. Quick start
 
 1. Ensure you have Java 11 installed in your Computer.
-    <details>
-    <summary>Click here for more information on Java 11 installation</summary>
-    
    <details>
-    <summary> I. Installing Java 11 on Windows: </summary>
+   <summary>Click here for more information on Java 11 installation</summary>
+    
+      <details>
+      <summary> I. Installing Java 11 on Windows: </summary>
      
-     * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
+      * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
      
-     * Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
-       <p align="center">
+      * Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
+        <p align="center">
        <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
-      </p>
-     <br>
+        </p>
+        <br>
      
-     * Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
+      * Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
     <p align="center">
        <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
       </p>
           <br>
 
-     * Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
-    <p align="center">
-       <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
-      </p>
-     <br>
+      * Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
+        <p align="center">
+          <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
+        </p>
+        <br>
 
-     *  Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
-     <p align="center">
-       <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
-      </p>
-     <p align="center">
-       <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
-      </p>
-     <br>  
+      *  Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
+        <p align="center">
+          <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
+        </p>
+        <p align="center">
+          <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
+        </p>
+        <br>  
      
-     * Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
-     <p align="center">
-       <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
-      </p>
-     <br> 
+      * Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
+        <p align="center">
+          <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
+        </p>
+        <br> 
       </details>
 
       <details> 
@@ -139,35 +139,34 @@ Table 1. Symbols and formats used in this User Guide.
 3. Copy the jar file to the folder you want to use as the home folder for your careflowBook. For instance, you can create a folder `CareFlow` on your desktop and put the jar file inside.
 
 4. Open a `command terminal`
-    <details>
-    <summary>Click here for more information on Java 11 installation</summary>
-    <details> 
-    <summary> I. For macOS: </summary>
-   
+   <details>
+   <summary>Click here for more information on Java 11 installation</summary>
+      <details> 
+      <summary> I. For macOS: </summary>
+
       * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
-        <p align="center">
-          <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
-        </p>
-        <br>
-      * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
-        <p align="center">
-             <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
-        </p>
-        <br>
-  
-      * Step 3: You're now looking at the `command terminal`, good job!
-        <p align="center">
-          <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
-        </p>
-        <br>
-        </details>  
-  
+          <p align="center">
+            <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
+          </p>
+          <br>
+        * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
+          <p align="center">
+               <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
+          </p>
+          <br>
+
+        * Step 3: You're now looking at the `command terminal`, good job!
+          <p align="center">
+            <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
+          </p>
+          <br>
+          </details>  
        <details> 
        <summary> II. For Windows:</summary>
 
           * _To Be Added_
          </details>
-         </details>
+     </details>
 
 5. The next step is to navigate into the folder you put the jar file in with the `cd` command
    <details>
