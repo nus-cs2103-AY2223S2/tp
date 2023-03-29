@@ -144,28 +144,28 @@ Table 1. Symbols and formats used in this User Guide.
     <details> 
     <summary> I. For macOS: </summary>
    
-   * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
-     <p align="center">
-       <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
-     </p>
-     <br>
-   * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
-       <p align="center">
+      * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
+        <p align="center">
+          <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
+        </p>
+        <br>
+      * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
+        <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
-       </p>
-       <br>
+        </p>
+        <br>
   
-   * Step 3: You're now looking at the `command terminal`, good job!
-       <p align="center">
-     <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
-     </p>
-     <br>
-       </details>  
+      * Step 3: You're now looking at the `command terminal`, good job!
+        <p align="center">
+          <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
+        </p>
+        <br>
+        </details>  
   
        <details> 
        <summary> II. For Windows:</summary>
 
-     * _To Be Added_
+          * _To Be Added_
          </details>
          </details>
 
@@ -187,19 +187,19 @@ Table 1. Symbols and formats used in this User Guide.
       <details> 
       <summary>Click here for  Some example commands you can try</summary>
 
-   * `p list` : Lists all patients.
+      * `p list` : Lists all patients.
+ 
+      * `d list` : Lists all drugs.
 
-   * `d list` : Lists all drugs.
+      * `add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C` : Adds a patient named `John Lo` to the patient records.
 
-   * `add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C` : Adds a patient named `John Lo` to the patient records.
+      * `p delete 3` : Deletes the 3rd patient record shown in the current list.
 
-   * `p delete 3` : Deletes the 3rd patient record shown in the current list.
+      * `p clear` : Deletes all patient records.
 
-   * `p clear` : Deletes all patient records.
-
-   * `d clear` : Deletes all drug records
-
-   * `exit` : Exits the app.
+      * `d clear` : Deletes all drug records
+  
+      * `exit` : Exits the app.
         </details>
    
     
