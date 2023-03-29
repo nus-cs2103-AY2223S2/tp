@@ -64,18 +64,12 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
    * `clear` : Deletes all Bookmarks.
-   
-<<<<<<< HEAD
-   * `clear` : Goto url of Bookmark.
-=======
 
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
-
->>>>>>> master
    
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command. 
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -185,26 +179,13 @@ Examples:
 
 ### Locating bookmarks by specific fields: `find`
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-
->>>>>>> master
 Find bookmarks whose specified fields contain the given keywords.
-=======
 
-<<<<<<< HEAD
 `find` helps you to find bookmarks whose specified fields contain the given keywords. You can use this when you
 want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
 using the title, author, genre and/or tags of a bookmark.
->>>>>>> Stashed changes
-
-Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]`
-=======
 
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
->>>>>>> master
-
 
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`

@@ -3,81 +3,66 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":LibraryParser" as LibraryParser LOGIC_COLOR
-participant ":GoToCommandParser" as GoToCommandParser LOGIC_COLOR
-participant ":GoToCommand" as GoToCommand LOGIC_COLOR
+participant ":LibaryParser" as LibraryParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant ":Desktop" as Desktop LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("goto 1")
+[-> LogicManager : execute("del 1")
 activate LogicManager
 
-LogicManager -> LibraryParser : parseCommand("delete 1")
+LogicManager -> LibraryParser : parseCommand("del 1")
 activate LibraryParser
 
-create GoToCommandParser
-LibraryParser -> GoToCommandParser
-activate GoToCommandParser
+create DeleteCommandParser
+LibraryParser -> DeleteCommandParser
+activate DeleteCommandParser
 
-GoToCommandParser --> LibraryParser
-deactivate GoToCommandParser
+DeleteCommandParser --> LibraryParser
+deactivate DeleteCommandParser
 
-LibraryParser -> GoToCommandParser : parse("1")
-activate GoToCommandParser
+LibraryParser -> DeleteCommandParser : parse("1")
+activate DeleteCommandParser
 
-create GoToCommand
-GoToCommandParser -> GoToCommand : GoToCommand(1)
-activate GoToCommand
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
 
-GoToCommand --> GoToCommandParser :
-deactivate GoToCommand
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
 
-GoToCommandParser --> LibraryParser :
-deactivate GoToCommandParser
+DeleteCommandParser --> LibraryParser : d
+deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-GoToCommandParser -[hidden]-> LibraryParser
-destroy GoToCommandParser
+DeleteCommandParser -[hidden]-> LibraryParser
+destroy DeleteCommandParser
 
-LibraryParser --> LogicManager :
+LibraryParser --> LogicManager : d
 deactivate LibraryParser
 
-LogicManager -> GoToCommand : execute()
-activate GoToCommand
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
 
-GoToCommand -> Model : getFilteredBookmarkList()
+DeleteCommand -> Model : deleteBookmark(1)
 activate Model
 
-Model --> GoToCommand : lastShownList
+Model --> DeleteCommand
 deactivate Model
 
-create Desktop
-GoToCommand -> Desktop
-activate Desktop
-Desktop --> GoToCommand
-deactivate Desktop
-
-GoToCommand -> Desktop : openUrl(url)
-activate Desktop
-Desktop --> GoToCommand
-deactivate Desktop
-
-
 create CommandResult
-GoToCommand -> CommandResult
+DeleteCommand -> CommandResult
 activate CommandResult
 
-
-CommandResult --> GoToCommand :result
+CommandResult --> DeleteCommand
 deactivate CommandResult
 
-
-GoToCommand --> LogicManager : result
-deactivate GoToCommand
+DeleteCommand --> LogicManager : result
+deactivate DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager

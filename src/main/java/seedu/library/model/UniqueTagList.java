@@ -92,6 +92,7 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

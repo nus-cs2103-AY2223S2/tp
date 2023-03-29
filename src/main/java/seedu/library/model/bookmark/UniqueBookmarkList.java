@@ -80,6 +80,16 @@ public class UniqueBookmarkList implements Iterable<Bookmark> {
             throw new BookmarkNotFoundException();
         }
     }
+    /**
+     * Views the equivalent bookmark from the list.
+     * The bookmark must exist in the list.
+     */
+    public void view(Bookmark toView) {
+        requireNonNull(toView);
+        if (!contains(toView)) {
+            throw new BookmarkNotFoundException();
+        }
+    }
 
     public void setBookmarks(UniqueBookmarkList replacement) {
         requireNonNull(replacement);

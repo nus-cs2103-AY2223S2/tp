@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyLibrary" as ReadOnlyLibrary
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as Model1
 Class Library
 Class ModelManager
 Class UserPrefs
@@ -20,17 +20,18 @@ Class Title
 Class Author
 Class Tag
 Class URL
+class Rating
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model1
 
 Library .up.|> ReadOnlyLibrary
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyLibrary
+ModelManager .up.|> Model1
+Model1 .right.> ReadOnlyUserPrefs
+Model1 .left.> ReadOnlyLibrary
 ModelManager -left-> "1" Library
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -43,6 +44,7 @@ Bookmark *--> Genre
 Bookmark *--> Progress
 Bookmark *--> "*" Tag
 Bookmark *--> URL
+Bookmark *--> Rating
 
 Title -[hidden]right-> Author
 Author -[hidden]right-> Genre
