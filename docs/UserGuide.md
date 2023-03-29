@@ -206,8 +206,6 @@ Closes Paidlancers.
 
 **Format**: `exit`
 
-- Closes the application.
-
 ### Find Event: `find` <a id = "find-event"></a>
 
 Finds event(s) from the event book based on the given search string.
@@ -228,12 +226,11 @@ Finds event(s) from the event book based on the given search string.
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-Links client contact to an event.
+Links a client contact to an event.
 
 **Format**: `linkcontact INDEX PHONE`
 
-- Links contact using `PHONE` to the event at the specified `INDEX`.
-
+- Links contact using `PHONE` to the event at the specified `INDEX`
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
   - The `PHONE` must be a valid phone number in the contact list.
@@ -254,8 +251,7 @@ Marks a specified event in Paidlancers as done.
 
 **Format**: `mark INDEX`
 
-- Marks the event at the specified `INDEX` as done.
-
+- Marks the event at the specified `INDEX` as done
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -269,7 +265,7 @@ Unmarks a specified event in Paidlancers.
 
 **Format**: `unmark INDEX`
 
-- Unmarks the event at the specified `INDEX`.
+- Unmarks the event at the specified `INDEX`
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -288,8 +284,7 @@ Displays the total revenue based on all the completed events.
 Displays events that start within a specified number of days.
 
 **Format**: `remind DAYS`
-
-- Displays events that start within the specified number of `DAYS`.
+- Displays events that start within the specified number of `DAYS`
   - `DAYS` must be a positive integer 1, 2, 3, …
   - Only events that start after the current date and time will be displayed.
   - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
