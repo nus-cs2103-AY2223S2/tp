@@ -8,6 +8,8 @@ import seedu.dengue.model.person.Person;
  */
 public class EndAge extends Age implements End<Age> {
 
+    public static final Age DEFAULT_ENDAGE = new Age("200");
+
     /**
      * Constructs an {@code Age}.
      *

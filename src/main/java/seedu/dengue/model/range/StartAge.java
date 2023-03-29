@@ -8,6 +8,8 @@ import seedu.dengue.model.person.Person;
  */
 public class StartAge extends Age implements Start<Age> {
 
+    public static final Age DEFAULT_STARTAGE = new Age("0");
+
     /**
      * Constructs an {@code Age}.
      *
