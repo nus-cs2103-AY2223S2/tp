@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.lesson;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -10,21 +10,26 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteExamCommand;
+import seedu.address.logic.commands.lesson.DeleteLessonCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
  * Parses input arguments and creates a new DeleteLessonCommand object
  */
-public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
+public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
     private List<String> inputNames = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteLessonCommand
      * and returns a CreateHomeworkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteExamCommand parse(String args) throws ParseException {
+    public DeleteLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
@@ -33,7 +38,7 @@ public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteExamCommand.MESSAGE_USAGE));
+                DeleteLessonCommand.MESSAGE_USAGE));
         }
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
@@ -50,7 +55,7 @@ public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
         inputNames = nameKeywords;
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        return new DeleteExamCommand(inputNames, new NamePredicate(nameKeywords), index);
+        return new DeleteLessonCommand(inputNames, new NamePredicate(nameKeywords), index);
     }
 
     /**

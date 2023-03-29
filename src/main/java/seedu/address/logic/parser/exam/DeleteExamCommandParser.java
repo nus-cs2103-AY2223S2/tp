@@ -1,48 +1,47 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.exam;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.CreateExamCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exam.DeleteExamCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
- * Parses input arguments and creates a new CreateHomeworkExam object
+ * Parses input arguments and creates a new DeleteLessonCommand object
  */
-public class CreateExamCommandParser implements Parser<CreateExamCommand> {
-    private List<String> names = new ArrayList<>();
+public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
+    private List<String> inputNames = new ArrayList<>();
     /**
-     * Parses the given {@code String} of arguments in the context of the CreateExamCommand
-     * and returns a CreateExamCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteLessonCommand
+     * and returns a CreateHomeworkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CreateExamCommand parse(String args) throws ParseException {
+    public DeleteExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CreateExamCommand.MESSAGE_USAGE));
+                DeleteExamCommand.MESSAGE_USAGE));
         }
 
-        String examDescription = argMultimap.getValue(PREFIX_EXAM).get();
-        LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
-        LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
@@ -53,10 +52,10 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
             //            }
             nameKeywords.set(i, name);
         }
-        names = nameKeywords;
+        inputNames = nameKeywords;
 
-        return new CreateExamCommand(names, new NamePredicate(nameKeywords),
-                examDescription, startTime, endTime);
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        return new DeleteExamCommand(inputNames, new NamePredicate(nameKeywords), index);
     }
 
     /**
