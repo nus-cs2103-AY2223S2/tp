@@ -82,27 +82,19 @@ public class UntagCommand extends Command {
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index == null) {
-            return untagUser(model);
+        if (tagType == TagType.GROUP) {
+            return untagGroups(model);
         }
 
-        return untagPerson(model);
+        if (index == null) {
+            return untagUserModules(model);
+        }
 
-        //        if (this.tagType == TagType.GROUP) {
-        //            personToEdit.removeGroupTags(this.groupTags);
-        //            if (personToEdit instanceof User) {
-        //                return new ViewCommandResult(String.format(MESSAGE_GROUP_UNTAG_USER_SUCCESS
-        //                            + "Name: " + personToEdit.getName().toString() + '\n'
-        //                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-        //            }
-        //            return new ViewCommandResult(String.format(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS
-        //                        + "Name: " + personToEdit.getName().toString() + '\n'
-        //                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-        //        }
+        return untagPersonModules(model);
 
     }
 
-    private ViewCommandResult untagPerson(Model model) throws CommandException {
+    private ViewCommandResult untagPersonModules(Model model) throws CommandException {
         IndexHandler indexHandler = new IndexHandler(model);
         Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
@@ -120,7 +112,27 @@ public class UntagCommand extends Command {
 
         return new ViewCommandResult(MESSAGE_MODULE_UNTAG_PERSON_SUCCESS, editedPerson);
     }
-    private ViewCommandResult untagUser(Model model) throws CommandException {
+
+    private ViewCommandResult untagGroups(Model model) throws CommandException {
+        Person personToEdit;
+        if (index == null) {
+            personToEdit = model.getUser();
+        } else {
+            IndexHandler indexHandler = new IndexHandler(model);
+            personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                    new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        }
+
+        personToEdit.removeGroupTags(this.groupTags);
+
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
+
+        return (personToEdit instanceof User)
+                ? new ViewCommandResult(MESSAGE_GROUP_UNTAG_USER_SUCCESS, personToEdit)
+                : new ViewCommandResult(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS, personToEdit);
+    }
+    private ViewCommandResult untagUserModules(Model model) throws CommandException {
         User userToEdit = model.getUser();
         User editedUser = userToEdit.copy();
 
@@ -154,6 +166,7 @@ public class UntagCommand extends Command {
             UntagCommand otherCommand = (UntagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
+            // Currently wrong due to presence of Lessons in ModuleTag.
         }
         return false;
 
