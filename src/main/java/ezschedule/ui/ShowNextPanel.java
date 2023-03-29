@@ -48,7 +48,8 @@ public class ShowNextPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ShowNextCard(event, getIndex() + 1).getRoot());
+                String displayNumber = String.format("%02d", getIndex() + 1);
+                setGraphic(new ShowNextCard(event, displayNumber).getRoot());
             }
         }
     }
