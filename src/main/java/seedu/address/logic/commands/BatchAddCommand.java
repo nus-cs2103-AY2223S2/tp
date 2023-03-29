@@ -32,8 +32,8 @@ public class BatchAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " executivepro.csv";
     public static final String MESSAGE_WORKS = "Batch added employees. %d employees were added.";
     public static final String MESSAGE_FILE_NOT_FOUND = "File Not Found";
-    public static final String MESSAGE_MISSING_NEEDED_FIELDS = "Name, Phone, Email, Department or Payroll is missing " +
-            "for one person!";
+    public static final String MESSAGE_MISSING_NEEDED_FIELDS = "Name, Phone, Email, Department or Payroll is missing "
+            + "for one person!";
     public static final String MESSAGE_NO_DATA = "%s does not have any data";
     public static final String MESSAGE_DUPLICATE_FOUND = "One person in the list is found to be a duplicate. "
             + "Call aborted";

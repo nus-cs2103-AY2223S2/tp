@@ -62,10 +62,10 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        int current_EmployeeId = EmployeeId.getCount();
+        int currId = EmployeeId.getCount();
         //Keep EmployeeId to current count if Employee added is a duplicate employee
         if (model.hasEmployee(toAdd)) {
-            EmployeeId.setCount(--current_EmployeeId);
+            EmployeeId.setCount(--currId);
             throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE, toAdd.getName()));
         }
 
