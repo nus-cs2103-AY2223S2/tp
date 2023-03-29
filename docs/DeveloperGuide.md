@@ -232,8 +232,6 @@ Then, it calls `returnBook` on `editedPerson` and passes in the Book object `boo
 
 Given below is an example usage scenario and how the findBook command progresses from step to step.
 
-[//]: # (Step 1. The user launches the app and enters `findBook The` command to look for any books with the keyword `The` in its title &#40;non case-sensitive&#41;. `CommandBox.fxml` detects that a new command has been entered and invokes the `CommandBox#handleCommandEntered&#40;&#41;` to handle the findBook command, which calls `MainWindow#executeCommand&#40;&#41;` to execute the findBook command which then passes the control over to the Logic component by calling `LogicManager#execute&#40;&#41;`.)
-
 Step 1. The user launches the app and enters `findBook The` command to look for any books with the keyword `The` in its title (non case-sensitive). `MainWindow#executeCommand()` is called, which passes the control over to the Logic component by calling `LogicManager#execute()`.
 
 Step 2. `ExpressLibraryParser#parseCommand` is called to parse the given findBook command text, which calls `FindBookCommandParser#parse` to further parse findBook command text. This ultimately produces a `FindBookCommand` object. The logic manager then calls `FindBookCommand#execute` on the new object which passes control to the Model component.
