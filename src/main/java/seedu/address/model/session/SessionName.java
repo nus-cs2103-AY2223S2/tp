@@ -2,6 +2,7 @@ package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.ParserUtil.toTitleCase;
 
 /**
  * Represents a Session's name in the address book.
@@ -28,8 +29,7 @@ public class SessionName {
     public SessionName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        String lowerCaseName = name.toLowerCase();
-        sessionName = lowerCaseName.substring(0, 1).toUpperCase() + lowerCaseName.substring(1);
+        sessionName = toTitleCase(name);
     }
 
     /**
