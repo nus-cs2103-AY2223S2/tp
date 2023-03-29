@@ -6,12 +6,14 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that an {@code InternshipApplication}'s {@code CompanyName}
- * and {@code JobTitle} matches any of the keywords given.
+ * Tests that an {@code Note}'s {@code NoteContent} matches any of the keywords given.
  */
 public class ContentContainsKeywordsPredicate implements Predicate<Note> {
     private final List<String> keywords;
 
+    /**
+     * Creates a {@code ContentContainsKeywordsPredicate} instance using the provided {@code keyword}.
+     */
     public ContentContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

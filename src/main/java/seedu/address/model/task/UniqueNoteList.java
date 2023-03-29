@@ -8,23 +8,20 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicateNoteException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.task.exceptions.DuplicateNoteException;
+import seedu.address.model.task.exceptions.NoteNotFoundException;
 
 /**
- * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
- * An InternshipApplication is considered unique by comparing using
- * {@code InternshipApplication#isSameApplication(InternshipApplication)}. As such, adding and updating of
- * persons uses InternshipApplication#isSameApplication(InternshipApplication) for equality
- * so as to ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
- * However, the removal of a person uses InternshipApplication#equals(Object) so
- * as to ensure that the InternshipApplication with exactly the same fields will be removed.
+ * A list of Note that enforces uniqueness between its elements and does not allow nulls.
+ * A Note is considered unique by comparing using {@code Note#isSameNote(Note)}. As such, adding and updating of
+ * notes uses Note#isSameNote(Note) for equality to ensure that the note being added or updated is unique in terms of
+ * identity in the UniqueNoteList.
+ * However, the removal of a note uses Note#equals(Object) to ensure that the Note with exactly the same fields will
+ * be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Note#isSameNote(Note)
  */
 public class UniqueNoteList implements Iterable<Note> {
     private final ObservableList<Note> internalNoteList = FXCollections.observableArrayList();
@@ -52,37 +49,37 @@ public class UniqueNoteList implements Iterable<Note> {
     }
 
     /**
-     * Replaces the application {@code target} in the list with {@code editedApplication}.
+     * Replaces the note {@code target} in the list with {@code editedNote}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedApplication} must not be the same
-     * as another existing application in the list.
-     * @param target
-     * @param editedNote
+     * The identity of {@code editedNote} must not be the same as another existing note in the list.
      */
     public void setNotes(Note target, Note editedNote) {
         requireAllNonNull(target, editedNote);
 
         int index = internalNoteList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new NoteNotFoundException();
         }
 
         if (!target.isSameNote(editedNote) && containsNote(editedNote)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateNoteException();
         }
 
         internalNoteList.set(index, editedNote);
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not contain duplicate notes.
+     */
     public void setNotes(UniqueNoteList replacement) {
         requireNonNull(replacement);
         internalNoteList.setAll(replacement.internalNoteList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     * @param notes
+     * Replaces the contents of this list with {@code notes}.
+     * {@code notes} must not contain duplicate notes.
      */
     public void setNotes(List<Note> notes) {
         requireAllNonNull(notes);
@@ -94,13 +91,13 @@ public class UniqueNoteList implements Iterable<Note> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent note from the list.
+     * The note must exist in the list.
      */
     public void remove(Note toRemove) {
         requireNonNull(toRemove);
         if (!internalNoteList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new NoteNotFoundException();
         }
     }
 

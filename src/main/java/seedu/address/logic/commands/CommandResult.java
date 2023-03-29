@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 
 /**
  * Represents the result of a command execution.
@@ -19,7 +19,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private TodoType type = TodoType.NONE;
+    private TaskType type = TaskType.NONE;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -42,7 +42,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and set type to the command type.
      */
-    public CommandResult(String feedbackToUser, TodoType type) {
+    public CommandResult(String feedbackToUser, TaskType type) {
         this(feedbackToUser, false, false);
         this.type = type;
     }
@@ -59,7 +59,7 @@ public class CommandResult {
         return exit;
     }
 
-    public TodoType getType() {
+    public TaskType getType() {
         return type;
     }
 

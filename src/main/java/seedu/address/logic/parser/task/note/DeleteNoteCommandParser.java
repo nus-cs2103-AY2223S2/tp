@@ -9,13 +9,14 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeletenOTECommand object
+ * Parses input arguments and creates a new DeleteNoteCommand object
  */
 public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteNoteCommand
      * and returns a DeleteNoteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteNoteCommand parse(String args) throws ParseException {
