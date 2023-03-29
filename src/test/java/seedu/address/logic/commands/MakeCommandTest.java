@@ -48,8 +48,8 @@ public class MakeCommandTest {
         MakeCommand makeCommand = new MakeCommand(validEntity);
         ModelStub modelStub = new ModelStubWithEntity(validEntity);
 
-        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, (
-        ) -> makeCommand.execute(modelStub));
+        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY,
+                () -> makeCommand.execute(modelStub));
     }
 
     @Test
