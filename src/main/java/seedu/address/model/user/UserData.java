@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Person;
 
 /**
  * Wraps all data at the UserData level
@@ -13,7 +15,7 @@ import seedu.address.model.event.Event;
  */
 public class UserData implements ReadOnlyUserData {
 
-    private ReadOnlyObjectWrapper<User> user;
+    private final ReadOnlyObjectWrapper<User> user;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -55,30 +57,54 @@ public class UserData implements ReadOnlyUserData {
         setUser(newData.getData().getValue());
     }
 
-    //// util methods
+    //// Event methods
 
-    //@Override
-    //public String toString() {
-    // TODO: refine later
-    //}
+    public void addEvent(Event e) {
+        this.user.getValue().addEvent(e);
+    }
 
-    @Override
-    public ReadOnlyObjectProperty<User> getData() {
-        return this.user.getReadOnlyProperty();
+    public void deleteEvent(Event event) {
+        this.user.getValue().deleteEvent(event);
     }
 
     public boolean hasEvent(Event e) {
         return this.user.getValue().hasEvent(e);
     }
-    public void addEvent(Event e) {
-        this.user.getValue().addEvent(e);
+
+    public void deletePersonFromAllEvents(Person target) {
+        this.user.getValue().deletePersonFromAllEvents(target);
     }
+
+    public void tagPersonToEvent(Index index, Person p) {
+        this.user.getValue().tagPersonToEvent(index, p);
+    }
+
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.user.getValue().untagPersonFromEvent(index, p);
+    }
+
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.user.getValue().isPersonTaggedToEvent(index, p);
+    }
+
+
+    //// util methods
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UserData // instanceof handles nulls
                 && user.equals(((UserData) other).user));
+    }
+
+    @Override
+    public String toString() {
+        return this.user.toString();
+    }
+
+    @Override
+    public ReadOnlyObjectProperty<User> getData() {
+        return this.user.getReadOnlyProperty();
     }
 
     @Override

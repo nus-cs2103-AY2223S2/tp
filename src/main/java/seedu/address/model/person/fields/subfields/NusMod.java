@@ -1,5 +1,8 @@
 package seedu.address.model.person.fields.subfields;
 
+
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,15 +10,16 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import seedu.address.model.person.fields.Field;
+
 /**
  * Represents a Person's singular mod taken in the address book.
  */
-public class NusMod {
+public class NusMod extends Field {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
     public static final String MODULELIST_FILE_PATH = "data/moduleList.json";
     private static final Map<String, Boolean> MODULE_MAP = new HashMap<>();
-    public final String name;
 
     static {
         try {
@@ -35,29 +39,31 @@ public class NusMod {
         }
     }
 
+    /**
+     * Constructs an {@code NusMod}.
+     * @param modsString A valid module code.
+     */
     public NusMod(String modsString) {
-        this.name = modsString;
+        super(modsString);
+        checkArgument(isValidModName(modsString), MESSAGE_CONSTRAINTS);
     }
 
     /**
-     * Checks whether a module is a valid NUSMod by comapring the String name to the module list data
+     * Checks whether a module is a valid NUSMod by comparing the String name to the module list data
      *
-     * @param trimmedTag The module name to be checked
+     * @param trimmedMod The module name to be checked
      * @return false if the module does not exist in NUSMods
      */
-    public static boolean isValidModName(String trimmedTag) {
-        return MODULE_MAP.containsKey(trimmedTag);
+    public static boolean isValidModName(String trimmedMod) {
+        return MODULE_MAP.containsKey(trimmedMod);
     }
+
 
     @Override
     public boolean equals(Object other) {
         return this == other
                 || (other instanceof NusMod
-                && this.name.equals(((NusMod) other).name));
+                && this.value.equals(((NusMod) other).value));
     }
 
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
-    }
 }

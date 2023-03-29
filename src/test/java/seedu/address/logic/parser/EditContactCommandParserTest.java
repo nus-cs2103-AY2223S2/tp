@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
-import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.fields.Email;
 import seedu.address.model.person.fields.Name;
@@ -114,7 +114,7 @@ public class EditContactCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         descriptor.setIndex(Optional.of(targetIndex));
@@ -128,7 +128,7 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         descriptor.setIndex(Optional.of(targetIndex));
         EditContactCommand expectedCommand = new EditContactCommand(descriptor);
@@ -141,7 +141,7 @@ public class EditContactCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         descriptor.setIndex(Optional.of(targetIndex));
         EditContactCommand expectedCommand = new EditContactCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -182,7 +182,7 @@ public class EditContactCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         descriptor.setIndex(Optional.of(targetIndex));
@@ -196,7 +196,7 @@ public class EditContactCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         descriptor.setIndex(Optional.of(targetIndex));
         EditContactCommand expectedCommand = new EditContactCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -216,7 +216,7 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        PersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         descriptor.setIndex(Optional.of(targetIndex));
 
         EditContactCommand expectedCommand = new EditContactCommand(descriptor);

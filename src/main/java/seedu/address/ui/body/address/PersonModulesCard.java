@@ -43,9 +43,9 @@ public class PersonModulesCard extends UiPart<Region> {
 
         return mods.stream()
                 .filter(Objects::nonNull)
-                .filter(mod -> mod.name != null && !mod.name.isBlank())
-                .sorted(Comparator.comparing(mod -> mod.name))
-                .map(mod -> mod.name)
+                .filter(mod -> mod.value != null && !mod.value.isBlank())
+                .sorted(Comparator.comparing(mod -> mod.value))
+                .map(mod -> mod.value)
                 .map(Label::new)
                 .collect(Collectors.toList());
     }

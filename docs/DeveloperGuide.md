@@ -144,6 +144,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+Within the Model component holds the Person Class.
+
+<img src="images/PersonDiagram.png" width="450" />
+
+Each field in Person inherits from either the Field abstract class or the SuperField abstract class.
+
+* The Field abstract class represents a field with a singular value. This is used for fields like e.g. Name, Gender
+and Major. 
+* The SuperField abstract class represents a field that has multiple values. This is used for fields like e.g. Modules 
+and Tags. The SuperField class contains a set of values that are a subclass of Field.
+* The Field and SuperField abstract classes are used to abstract our common logic between the various fields in Person, while
+  also allowing for polymorphism.
+
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
@@ -158,9 +172,18 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save both address book data, user data and user preference data in json format, and read them back into 
+corresponding objects.
+* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one 
+(if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects 
+that belong to the `Model`). In particular, the changes to the following 5 classes will require a change in their
+respective classes in Storage.
+  * Person
+  * Event
+  * User
+  * NusMod
+  * Tag
 
 ### Common classes
 
@@ -189,6 +212,32 @@ There are two ways to switch between tabs:
 Consequently, the state of the selected tab needs to be shared between the two methods, so that the user can be correctly notified if they are already on a tab that they are trying to navigate to.
 
 > **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
+
+### Command for Favourite Contacts
+
+For improved User Experience, we want users to be able to easily look up contacts they frequently contact.
+This addresses the issue of convenience.
+
+The Favourite Command works by having the User entering a "fav" command and specify the index of that particular contact. The index will be displayed on the UI of the AddressBook.
+The Favourited Contact will have a Star Emoji displayed beside the Contact's name and will also be displayed under a "Favourite" List for easier convenience and lookup for the User.
+
+### Command for Unfavourite Contacts
+
+Following the Favourite Contacts Command, we want users to fully manage their favourite list. We added an Unfavourite Command to remove contacts they do not frequently contact.
+
+The Unfavourite Command works by having the User entering a "unfav" command and specify the index of that particular contact that is currently in the Favourite List. The index will be displayed on the UI of the AddressBook.
+The Unfavourited Contact will remove the Star Emoji displayed beside the Contact's name and remove the Contact from the Favourite List.
+
+### Command for Add Event Command
+
+AddressBook Neo implements an Event Calendar Interface for users to track any notable events. There are 2 types of Events that can be added by the Users. Firstly, a One Time event that occurs only once on the specified date and time.
+Secondly, recurring events that occur periodically e.g. Weekly Lectures, Daily Reminders etc. There are multiple recurrences which can be specified by the users: Daily, Weekly, Monthly and Yearly.
+Users have can choose to input these 4 different type of Recurring Events into AddressBook Neo. 
+
+The Add Event Command works by having the User entering the "addevent" command. The User will then specify the Description of the Event, Start Date and Time of the event,
+End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
+If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of AddressBook Neo.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -332,13 +381,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User cancels the command.
+* 2a. AddressBook is unable to save the person.
 
-  Use case ends.
-
-* 2b. AddressBook is unable to save the person.
-
-    * 2b1. AddressBook shows an error message.
+    * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -411,12 +456,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Locating persons by name**
+**Use case: Find persons by specified fields**
 
 **MSS**
 
-1.  User enters a command to search for persons by specifying one or more keywords
-2.  AddressBook searches for persons whose names contain any of the given keywords
+1.  User enters a command to search for persons by specifying one or more keywords for different fields
+2.  AddressBook searches for persons who contain any of the given keywords for the fields specified
 3.  AddressBook returns a list of persons matching the search criteria
 
     Use case ends.
@@ -426,12 +471,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters an invalid command or incorrect details.
 
     * 1a1. AddressBook shows an error message.
-
-      Use case ends.
-
-* 2a. AddressBook is unable to search for persons.
-
-    * 2a1. AddressBook shows an error message.
 
       Use case ends.
 

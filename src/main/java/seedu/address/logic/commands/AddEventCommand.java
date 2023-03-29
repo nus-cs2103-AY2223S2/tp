@@ -26,8 +26,8 @@ public class AddEventCommand extends Command {
             + "[" + PREFIX_RECURRENCE + "INTERVAL] "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "CS2103T Lecture "
-            + PREFIX_START_DATE_TIME + "2023-03-10 16:00 "
-            + PREFIX_END_DATE_TIME + "2023-03-10 18:00"
+            + PREFIX_START_DATE_TIME + "2023-03-10 1600 "
+            + PREFIX_END_DATE_TIME + "2023-03-10 1800"
             + PREFIX_RECURRENCE + "weekly ";
 
     private static final String MESSAGE_SUCCESS = "New event added: %1$s";
@@ -53,6 +53,7 @@ public class AddEventCommand extends Command {
         if (model.hasEvent(toDo)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+
         if (!DateTime.isValidInterval(toDo.getStartDateTime(), toDo.getEndDateTime())) {
             throw new CommandException(MESSAGE_INVALID_INTERVAL);
         }

@@ -93,6 +93,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Finds the person with given {@code name}.
+     */
+    public Person getPersonWithName(String name) {
+        return this.persons.getPersonWithName(name);
+    }
+
+    /**
+     * Finds the person with given {@code name}.
+     */
+    public boolean hasPersonWithName(String name) {
+        return this.persons.hasPersonWithName(name);
+    }
+
     //// util methods
 
     @Override

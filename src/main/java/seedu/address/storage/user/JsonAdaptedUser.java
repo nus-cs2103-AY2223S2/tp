@@ -22,6 +22,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.user.User;
@@ -42,15 +43,15 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("race") String race,
-                             @JsonProperty("major") String major, @JsonProperty("gender") String gender,
-                             @JsonProperty("comms") String comms,
-                             @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("favorite") String isFavorite,
-                           @JsonProperty("faculty") String faculty,
-                           @JsonProperty("events") List<JsonAdaptedEvent> events) {
+                            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                            @JsonProperty("race") String race,
+                            @JsonProperty("major") String major, @JsonProperty("gender") String gender,
+                            @JsonProperty("comms") String comms,
+                            @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                            @JsonProperty("favorite") String isFavorite,
+                            @JsonProperty("faculty") String faculty,
+                            @JsonProperty("events") List<JsonAdaptedEvent> events) {
         super(name, phone, email, address, race, major, gender, comms, modules, tagged, isFavorite, faculty);
         if (events != null) {
             this.events.addAll(events);
@@ -144,7 +145,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         final Faculty modelFaculty = new Faculty(faculty);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Tags modelTags = new Tags(new HashSet<>(personTags));
         return new User(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
                 modelModules, modelRace, modelTags, modelComms, modelFavoriteStatus, modelFaculty, modelUserEvents);
     }

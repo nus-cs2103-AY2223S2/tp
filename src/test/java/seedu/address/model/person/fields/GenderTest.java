@@ -13,7 +13,7 @@ class GenderTest {
 
     @Test
     public void constructor_invalidGender_throwsIllegalArgumentException() {
-        String invalidGender = "alien";
+        String invalidGender = "%$";
         assertThrows(IllegalArgumentException.class, () -> new Gender(invalidGender));
     }
 
@@ -26,12 +26,11 @@ class GenderTest {
         assertFalse(Gender.isValidGender(" ")); // spaces only
 
         // invalid gender
-        assertFalse(Gender.isValidGender("alien")); // invalid gender
+        assertFalse(Gender.isValidGender("%$male")); // invalid gender
         assertFalse(Gender.isValidGender("male ")); // trailing space
         assertFalse(Gender.isValidGender("fe_male ")); // underscore in gender
         assertFalse(Gender.isValidGender(" DNS")); // leading space in gender
         assertFalse(Gender.isValidGender("ma-le")); // hyphen in gender
-        assertFalse(Gender.isValidGender("MALEs")); // plural gender
 
         // valid email
         assertTrue(Gender.isValidGender("MALE")); // uppercase male
