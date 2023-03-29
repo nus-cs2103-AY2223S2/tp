@@ -69,7 +69,9 @@ Throughout this user guide, you may come across different formatting styles and 
 | `command`                     | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                            |
 | [2. About](#2-about)          | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                                     |
 
-Table 1. Symbols and formats used in this User Guide.
+<p align="center">
+  <i>Table 1. Symbols and formats used in this User Guide.</i>
+</p>
 
 [Back to top](#top)
 
@@ -686,6 +688,10 @@ The following are the general commands that are available in Careflow for you to
 | **Help** | `g help` | Opens up a window with a link to the User Guide. |
 | **Exit** | `g exit` | Saves all data and safely exits. |
 
+<p align="center">
+  <i>Table 2. Command table for general commands.</i>
+</p>
+
 ## 6.2 Patient Commands
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
@@ -701,6 +707,10 @@ The following commands are patient-related commands that are available in Carefl
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                         | Removes all patient records stored in CareFlow.|
 | **List patient**              | `p list`                                                                                                                                                                                                                                                                                          | Lists all the patients that have been recorded in CareFlow.| 
 
+<p align="center">
+  <i>Table 3. Command table for patient commands.</i>
+</p>
+
 ## 6.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
@@ -715,5 +725,8 @@ The following commands are drug-related commands that are available in Careflow 
 | **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided.|
 | **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow. |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
+<p align="center">
+  <i>Table 4. Command table for drug commands.</i>
+</p>
 
 [Back to top](#top)
