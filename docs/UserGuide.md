@@ -33,27 +33,7 @@ QuickContacts into your daily workflow. From having QuickContacts installed to m
 this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
-- [Getting started](#getting-started)
-- [Features](#features)
-    - [`help`](#viewing-help--help)
-    - [`add`](#adding-a-person--add)
-    - [`list`](#listing-all-persons--list)
-    - [`edit`](#editing-a-person--edit)
-    - [`find`](#locating-persons-by-name--find)
-    - [`delete`](#deleting-a-person--delete)
-    - [`clear`](#clearing-all-entries--clear)
-    - [`exit`](#exiting-the-program--exit)
-    - [`addm`](#adding-a-meeting--addm)
-    - [`findm`](#finding-meetings-by-name--findm)
-    - [`export`](#exporting-of-contact--export)
-    - [`import`](#importing-of-contacts--import)
-    - [`exportm`](#export-meetings--exportm)
-    - [`importm`](#import-meetings--importm)
-    - [Saving of data](#saving-the-data)
-    - [Editing of data](#editing-the-data-file)
-    - [Archiving of data](#archiving-data-files-coming-in-v20)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
