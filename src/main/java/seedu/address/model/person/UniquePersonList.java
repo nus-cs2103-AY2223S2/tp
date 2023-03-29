@@ -73,7 +73,7 @@ public class UniquePersonList implements Iterable<Person> {
 
         List<Person> combinedList = new ArrayList<>(List.copyOf(internalList));
         combinedList.addAll(newPersons);
-        int index = PersonUtil.findDuplicates(newPersons).getValue();
+        int index = PersonUtil.findDuplicates(combinedList).getValue();
         return index == -1 ? index : index - internalList.size();
     }
 
@@ -81,7 +81,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns the String representing the duplicate field found between {@code newPerson} and the list.
      * Gives an empty String if none are found.
      */
-    public String getDuplicatedString(Person duplicatedPerson) {
+    public String findDuplicatedString(Person duplicatedPerson) {
         requireNonNull(duplicatedPerson);
 
         for (int i = 0; i < internalList.size(); i++) {

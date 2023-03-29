@@ -107,9 +107,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getDuplicateString(Person person) {
+    public String findDuplicateString(Person person) {
         requireNonNull(person);
-        return addressBook.getDuplicateString(person);
+        return addressBook.findDuplicateString(person);
     }
 
     @Override

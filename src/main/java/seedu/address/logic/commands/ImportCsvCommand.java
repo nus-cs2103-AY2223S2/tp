@@ -16,10 +16,10 @@ import seedu.address.model.person.PersonUtil;
 public class ImportCsvCommand extends Command {
 
     public static final String COMMAND_WORD = "importcsv";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds persons from a CSV file to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds person(s) from a CSV file to the address book. "
             + "Parameters: PATH (to CSV file)";
 
-    public static final String MESSAGE_SUCCESS = "%1$d New person added.";
+    public static final String MESSAGE_SUCCESS = "%1$d new person(s) added.";
     public static final String MESSAGE_DUPLICATE_PERSON_CSV = "Rows %1$d and %2$d (%3$s) are duplicates";
     public static final String MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK =
             "Row %1$d (%2$s) already exists in the address book";
@@ -38,14 +38,13 @@ public class ImportCsvCommand extends Command {
     }
 
     private static void requireNoDuplicates(List<Person> personList) throws CommandException {
-        Pair<Integer, Integer> pairOfDuplicates = PersonUtil.findDuplicates(personList);
-
-        if (!pairOfDuplicates.equals(PersonUtil.NO_DUPLICATES_PAIR)) {
+        if (PersonUtil.hasDuplicates(personList)) {
+            Pair<Integer, Integer> pairOfDuplicates = PersonUtil.findDuplicates(personList);
             String duplicatedFieldString = PersonUtil.findDuplicateFieldString(
                     personList.get(pairOfDuplicates.getKey()), personList.get(pairOfDuplicates.getValue()));
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_CSV,
                     pairOfDuplicates.getKey() + HEADER_AND_ZERO_INDEX_OFFSET, pairOfDuplicates.getValue()
-                    + HEADER_AND_ZERO_INDEX_OFFSET, duplicatedFieldString));
+                            + HEADER_AND_ZERO_INDEX_OFFSET, duplicatedFieldString));
         }
     }
 
@@ -69,8 +68,9 @@ public class ImportCsvCommand extends Command {
         if (model.hasPersons(personsToAdd)) {
             int index = model.findDuplicateIndex(personsToAdd);
             assert index >= 0 : "no duplicate found even though duplicates between CSV and address book were reported";
+            String duplicatedField = model.findDuplicateString(personsToAdd.get(index));
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK,
-                    index + HEADER_AND_ZERO_INDEX_OFFSET, personsToAdd.get(index).getName().toString()));
+                    index + HEADER_AND_ZERO_INDEX_OFFSET, duplicatedField));
         }
 
         model.addPersons(personsToAdd);

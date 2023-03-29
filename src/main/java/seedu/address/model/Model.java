@@ -78,7 +78,7 @@ public interface Model {
      * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the address
      * book. Returns empty {@code String} if no duplicates are found.
      */
-    String getDuplicateString(Person duplicatePerson);
+    String findDuplicateString(Person duplicatePerson);
 
     /**
      * Deletes the given person.
