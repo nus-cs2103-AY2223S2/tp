@@ -12,7 +12,8 @@ import java.util.Objects;
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only be in the format yyyy-MM-dd e.g. 2023-01-01";
+            "Keys should not be blank or only contain whitespaces. Keys and dates should be directly connected by '@'."
+                    + " Dates should only be in the format YYYY-MM-DD e.g. Interview@2023-01-01";
 
     public final String fullDate;
     public final String fullName;
@@ -34,7 +35,7 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
         try {
             dateFormat.parse(test);
             return true;

@@ -9,7 +9,6 @@ import static java.util.Objects.requireNonNull;
 public class Remark {
 
     public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values, and it should not be blank";
-
     public final String value;
 
     /**
@@ -20,6 +19,13 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Returns true if a given string is a valid company.
+     */
+    public static boolean isValidRemark(String test) {
+        return !test.strip().isEmpty();
     }
 
     @Override
