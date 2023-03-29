@@ -101,7 +101,7 @@ public class CommandBox extends UiPart<Region> {
         int inputIndex = currentText.indexOf("c/") + 2;
         String updatedString;
         updatedString = currentText.substring(0, inputIndex) + categoryName;
-        commandTextField.setText(updatedString);
+        commandTextField.setText(updatedString + " ");
     }
 
     /**
@@ -114,6 +114,30 @@ public class CommandBox extends UiPart<Region> {
             Node suggestionsList = mainStage.getScene().lookup("#suggestionListView");
             if (event.getCode() == KeyCode.UP && suggestionsList.isVisible()) {
                 suggestionsList.requestFocus();
+            }
+            if (event.getCode() == KeyCode.TAB) {
+                // simulate UP key press
+                KeyEvent upEvent = new KeyEvent(
+                    KeyEvent.KEY_PRESSED,
+                    "",
+                    "",
+                    KeyCode.UP,
+                    false,
+                    false,
+                    false,
+                    false);
+                commandTextField.fireEvent(upEvent);
+                // simulate ENTER key press
+                KeyEvent enterEvent = new KeyEvent(
+                    KeyEvent.KEY_PRESSED,
+                    "",
+                    "", KeyCode.ENTER,
+                    false,
+                    false,
+                    false,
+                    false);
+                suggestionsList.fireEvent(enterEvent);
+                event.consume();
             }
         });
     }

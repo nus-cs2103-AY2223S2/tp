@@ -38,6 +38,7 @@ public class SuggestionListPanel extends UiPart<Region> {
         suggestionListView.setItems(filteredCategoryList);
         this.commandBox = commandBox;
         this.suggestionListView.setVisible(false);
+        suggestionListView.setTranslateX(-200);
         initialiseAutocompleteHandlers();
     }
 
@@ -73,8 +74,9 @@ public class SuggestionListPanel extends UiPart<Region> {
      */
     private void addKeyPressListener() {
         suggestionListView.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (KeyCode.ENTER == event.getCode()) {
-                setSuggestedText();
+
+            if (KeyCode.ENTER == event.getCode() || KeyCode.TAB == event.getCode()) {
+                updateSuggestedText();
                 event.consume();
             }
             if (KeyCode.DOWN == event.getCode()) {
@@ -87,7 +89,7 @@ public class SuggestionListPanel extends UiPart<Region> {
      * Sets the text in the CommandBox to the selected category in the suggestion list
      * and hides the suggestion list.
      */
-    private void setSuggestedText() {
+    private void updateSuggestedText() {
         Category selectedCategory = suggestionListView.getSelectionModel().getSelectedItem();
         commandBox.updateCommandBoxText(selectedCategory.getCategoryName());
         suggestionListView.setVisible(false);
@@ -125,6 +127,7 @@ public class SuggestionListPanel extends UiPart<Region> {
                 }
             }
             // Hide the suggestion list if it is empty or the user is not typing a category
+            suggestionListView.getSelectionModel().clearSelection();
             suggestionListView.setVisible(false);
         });
     }

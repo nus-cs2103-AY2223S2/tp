@@ -249,6 +249,11 @@
      -fx-background-radius: 8px;
 }
 
+.suggestionPane .scroll-bar {
+    -fx-background-color: #000032;
+}
+
+
 .stack-pane {
      -fx-background-color: #000026
 }
