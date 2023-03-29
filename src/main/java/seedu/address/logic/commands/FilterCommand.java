@@ -155,6 +155,7 @@ public class FilterCommand extends Command {
         }
 
         public void setNameValue(String nameValue) {
+            requireNonNull(nameValue);
             this.nameValue = nameValue;
         }
 
@@ -163,6 +164,7 @@ public class FilterCommand extends Command {
         }
 
         public void setPhoneValue(String phoneValue) {
+            requireNonNull(phoneValue);
             this.phoneValue = phoneValue;
         }
 
@@ -171,6 +173,7 @@ public class FilterCommand extends Command {
         }
 
         public void setEmailValue(String emailValue) {
+            requireNonNull(emailValue);
             this.emailValue = emailValue;
         }
 
@@ -179,6 +182,7 @@ public class FilterCommand extends Command {
         }
 
         public void setAddressValue(String addressValue) {
+            requireNonNull(addressValue);
             this.addressValue = addressValue;
         }
 
@@ -187,6 +191,7 @@ public class FilterCommand extends Command {
         }
 
         public void setRankValue(String rankValue) {
+            requireNonNull(rankValue);
             this.rankValue = rankValue;
         }
 
@@ -195,6 +200,7 @@ public class FilterCommand extends Command {
         }
 
         public void setUnitValue(String unitValue) {
+            requireNonNull(unitValue);
             this.unitValue = unitValue;
         }
 
@@ -203,6 +209,7 @@ public class FilterCommand extends Command {
         }
 
         public void setCompanyValue(String companyValue) {
+            requireNonNull(companyValue);
             this.companyValue = companyValue;
         }
 
@@ -211,6 +218,7 @@ public class FilterCommand extends Command {
         }
 
         public void setPlatoonValue(String platoonValue) {
+            requireNonNull(platoonValue);
             this.platoonValue = platoonValue;
         }
 
@@ -219,6 +227,7 @@ public class FilterCommand extends Command {
         }
 
         public void setTagValues(List<String> tagValues) {
+            requireNonNull(tagValues);
             this.tagValues = tagValues;
         }
 
