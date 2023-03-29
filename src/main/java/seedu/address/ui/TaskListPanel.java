@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,7 +26,7 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(seedu.address.model.student.Student student) {
+    public TaskListPanel(Student student) {
         super(FXML);
 
         name.setText("No student being checked now");

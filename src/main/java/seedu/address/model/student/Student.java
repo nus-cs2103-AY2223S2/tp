@@ -33,7 +33,7 @@ public class Student {
     private final Address address;
     private final Phone parentPhone;
     private final Set<Tag> tags = new HashSet<>();
-    private final seedu.address.model.task.UniqueTaskList uniqueTaskList;
+    private final UniqueTaskList uniqueTaskList;
     private final UniqueScoreList uniqueScoreList;
 
     /**
@@ -47,7 +47,7 @@ public class Student {
         this.address = address;
         this.parentPhone = parentPhone;
         this.tags.addAll(tags);
-        this.uniqueTaskList = new seedu.address.model.task.UniqueTaskList();
+        this.uniqueTaskList = new UniqueTaskList();
         this.uniqueScoreList = new UniqueScoreList();
     }
 
@@ -55,7 +55,7 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Phone parentPhone, Set<Tag> tags,
-                   seedu.address.model.task.UniqueTaskList uniqueTaskList, UniqueScoreList uniqueScoreList) {
+                   UniqueTaskList uniqueTaskList, UniqueScoreList uniqueScoreList) {
         requireAllNonNull(name, phone, email, address, tags, uniqueTaskList, uniqueScoreList);
         this.name = name;
         this.phone = phone;

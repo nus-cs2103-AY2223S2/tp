@@ -47,6 +47,7 @@ public class UniqueScoreList implements Iterable<Score> {
             throw new DuplicateScoreException();
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(Score::getLocalDate));
     }
 
     /**
