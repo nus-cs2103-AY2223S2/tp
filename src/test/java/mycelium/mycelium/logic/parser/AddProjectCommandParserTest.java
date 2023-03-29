@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
@@ -42,12 +40,11 @@ public class AddProjectCommandParserTest {
             Map.entry("name, but no email", "-pn Bing -e"),
             Map.entry("name and email not separated", "-pnBing-ejamal@hogriders.org")
         );
+        String expectedOutput =
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
-            assertParseFailure(new AddProjectCommandParser(), input, String.format(
-                Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                AddProjectCommand.MESSAGE_USAGE
-            ), "While testing case: " + desc);
+            assertParseFailure(new AddProjectCommandParser(), input, expectedOutput, "While testing case: " + desc);
         });
     }
 
@@ -60,7 +57,7 @@ public class AddProjectCommandParserTest {
         // For each of the following cases, we expect the parser to throw an exception.
         Map<String, Pair<String, String>> tests = Map.ofEntries(
             Map.entry("invalid name (whitespace)",
-                Pair.of("-pn  -e jamal@hogriders.org", Name.MESSAGE_CONSTRAINTS)),
+                Pair.of("-pn  -e jamal@hogriders.org", Messages.MESSAGE_EMPTY_PROJECT_NAME)),
             Map.entry("invalid email (whitespace)",
                 Pair.of("-pn Bing -e ", Email.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid email",
@@ -90,10 +87,8 @@ public class AddProjectCommandParserTest {
                 Pair.of(basic + "-s hog_riders", ProjectStatus.MESSAGE_CONSTRAINTS))
         );
         tests.forEach((desc, tt) -> {
-            String input = " " + tt;
-            Assertions.assertThrows(ParseException.class, ()
-                    -> new AddProjectCommandParser().parse(input),
-                "While testing case: " + desc);
+            String input = " " + tt.first;
+            assertParseFailure(new AddProjectCommandParser(), input, tt.second, "While testing case: " + desc);
         });
     }
 
@@ -138,8 +133,7 @@ public class AddProjectCommandParserTest {
         for (String desc : tests.keySet()) {
             String input = " " + tests.get(desc).first;
             AddProjectCommand expected = tests.get(desc).second;
-            assertParseSuccess(new AddProjectCommandParser(), input, expected,
-                "While testing case: " + desc);
+            assertParseSuccess(new AddProjectCommandParser(), input, expected, "While testing case: " + desc);
         }
     }
 }

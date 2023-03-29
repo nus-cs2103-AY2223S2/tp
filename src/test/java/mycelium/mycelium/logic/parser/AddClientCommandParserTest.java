@@ -41,14 +41,10 @@ public class AddClientCommandParserTest {
             Map.entry("prefixes are not separated", "-cn-e"),
             Map.entry("name and email not separated", "-cnBob-ehogrider@coc.org")
         );
+        String expectedErr = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
-            // NOTE(jy): don't know why the argument tokenizer is written in this way where it expects an initial
-            // whitespace. But this is why I added the " " in front.
             String input = " " + tt;
-            assertParseFailure(new AddClientCommandParser(), input, String.format(
-                Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                AddClientCommand.MESSAGE_USAGE
-            ), "While testing case: " + desc);
+            assertParseFailure(new AddClientCommandParser(), input, expectedErr, "While testing case: " + desc);
         });
     }
 
