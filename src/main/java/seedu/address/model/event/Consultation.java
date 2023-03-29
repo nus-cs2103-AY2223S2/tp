@@ -87,6 +87,10 @@ public class Consultation extends Event {
         return super.getStudentProfiles();
     }
 
+    public boolean hasStudent(Person student) {
+        return super.hasStudent(student);
+    }
+
     /**
      * Gets the date of the event
      *
