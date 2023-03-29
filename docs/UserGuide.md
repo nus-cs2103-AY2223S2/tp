@@ -539,7 +539,7 @@ ___
       <br>
     * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dUpdate.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dupdate.png" style="zoom:80%">
       </p>
       <br>
       
