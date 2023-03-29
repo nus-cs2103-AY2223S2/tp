@@ -20,7 +20,7 @@ import seedu.address.logic.parser.Prefix;
 // with almost complete overhauling, including refactoring, bug-fixing, adding 
 // of asserts, and changing the behaviour of the feature to suit our needs.
 /**
- * Suggests a command based on the user input.
+ * Suggests and autocompletes command/argument based on the user input.
  */
 public class CommandSuggestor {
 
@@ -92,7 +92,7 @@ public class CommandSuggestor {
      * Suggests a command based on the user input.
      *
      * @param userInput User input.
-     * @return Suggested command.
+     * @return Suggested command (including the user input).
      * @throws CommandException If the user input is invalid.
      */
     public String suggestCommand(String userInput) throws CommandException {
@@ -133,9 +133,9 @@ public class CommandSuggestor {
     /**
      * Returns the new user input when user auto-completes the command.
      *
-     * @param userInput Current User Input.
-     * @param commandSuggestion Current Command Suggestion
-     * @return New User Input.
+     * @param userInput Current user input.
+     * @param commandSuggestion Current command suggestion.
+     * @return New user input.
      */
     public String autocompleteCommand(String userInput, String commandSuggestion) {
         // Command suggested but not yet entered by user
@@ -153,8 +153,8 @@ public class CommandSuggestor {
     /**
      * Suggests prompts for arguments for {@code command} based on the user input.
      *
-     * @param commmandBody The command body of the current user input.
      * @param command The command to suggest arguments for.
+     * @param commmandBody The command body of the current user input.
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
