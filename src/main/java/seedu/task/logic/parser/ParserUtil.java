@@ -34,7 +34,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndexList} into an {@code IndexList} and returns it. Leading and trailing whitespaces
      * will be trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
         String trimmedIndices = oneBasedIndexList.trim();

@@ -280,8 +280,9 @@ Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
 
 :bulb: Here are some **PRO TIPS**:
-* For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
+* For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs. Repeated inputs are only considered once.
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
+    * e.g. `find all/ n/try n/try n/lab` is interpreted as `find all/ n/try n/lab`
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
     * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
