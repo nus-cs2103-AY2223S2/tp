@@ -112,6 +112,12 @@ public interface Logic {
     double getTotalEarnings(ObservableList<DeliveryJob> list);
 
     /**
+     * Gets total number of completed jobs in job list
+     * @param list
+     */
+    int getTotalCompleted(ObservableList<DeliveryJob> list);
+
+    /**
      * Returns the user prefs' delivery job system file path.
      */
     Path getDeliveryJobSystemFilePath();

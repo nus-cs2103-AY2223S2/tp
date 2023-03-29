@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.stats.TotalCompleted;
 import seedu.address.model.stats.TotalEarnings;
 import seedu.address.model.stats.TotalJobs;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
@@ -121,10 +122,11 @@ public class StatisticsWindow extends UiPart<Stage> {
         ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
         TotalJobs totalJobs = new TotalJobs(list.size());
         TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
+        TotalCompleted totalCompleted = new TotalCompleted(logic.getTotalCompleted(list));
         // new simple DeliveryJobListPanel constructor with no event handlers
         //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
         //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        totalJob.setText(totalJobs.toString() + totalEarnings.toString());
+        totalJob.setText(totalJobs + totalEarnings.toString() + totalCompleted);
 
         //resultDisplay = new ResultDisplay();
         //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
