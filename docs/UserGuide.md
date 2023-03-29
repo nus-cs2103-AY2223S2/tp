@@ -283,13 +283,25 @@ Format: `help`
 
 Undo the previous command that you have typed in.
 
+This command works for all the commands made in the period that you opened sprINT for.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command if you have accidentally deleted an application entry or the entire internship book, and you wish to retrieve them back.
+You can use this command if you have accidentally deleted an application entry or cleared the entire internship book, and you wish to retrieve them back.
 </div>
 
 Format: `undo`
 
-#### 3.4.3 Clearing all applications : `clear`
+#### 3.4.3 Redoing a command : `redo`
+
+Redo the previous command that you have undo-ed.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you added a new command after undo, you won't be able to redo the command that you may wish to redo.
+</div>
+
+Format: `redo`
+
+#### 3.4.4 Clearing all applications : `clear`
 
 Clears all entries from the internship book.
 
@@ -300,19 +312,19 @@ Format: `clear`
 If you accidentally issued the `clear` command, use the `undo` command to revert back to the previous state.
 </div>
 
-#### 3.4.4 Exiting the program : `exit`
+#### 3.4.5 Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window. sprINT updates
-your data [periodically](#345-saving-the-data), so you don't have to worry about unsaved or possible loss of data when exiting the program.
+your data [periodically](#346-saving-the-data), so you don't have to worry about unsaved or possible loss of data when exiting the program.
 
 Format: `exit`
 
-#### 3.4.5 Saving the data
+#### 3.4.6 Saving the data
 
 Data in the internship book are automatically saved in your local storage after any command that modifies the data. There is no need to save manually.
 
-#### 3.4.6 Editing the data file
+#### 3.4.7 Editing the data file
 
 Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
@@ -335,21 +347,22 @@ If your changes to the data file makes its format invalid, the internship book w
 
 ## **5. Command Summary**
 
-| Action                       | Format, Examples                                                                                                                                                 |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application    | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/goggleHR@example.com`               |
-| **Delete**<br/> Application  | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
-| **Add** <br/> Task           | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task          | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
-| **Delete** <br/> Task        | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
-| **List**                     | `list`                                                                                                                                                           |
-| **Find**                     | `find [search term]` <br/> e.g. `find Mata` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Mata s/Offered`         |
-| **Sort**                     | `sort ORDER` <br/> e.g. `sort alphabetical` or `sort deadline`                                                                                                   |
-| **Help**                     | `help`                                                                                                                                                           |
-| **Undo**                     | `undo`                                                                                                                                                           |
-| **Clear**                    | `clear`                                                                                                                                                          |
-| **Exit**                     | `exit`                                                                                                                                                           |
+| Action                      | Format, Examples                                                                                                                                                 |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
+| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/goggleHR@example.com`               |
+| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
+| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
+| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
+| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
+| **List**                    | `list`                                                                                                                                                           |
+| **Find**                    | `find [search term]` <br/> e.g. `find Mata` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Mata s/Offered`         |
+| **Sort**                    | `sort ORDER` <br/> e.g. `sort alphabetical` or `sort deadline`                                                                                                   |
+| **Help**                    | `help`                                                                                                                                                           |
+| **Undo**                    | `undo`                                                                                                                                                           |
+| **Redo**                    | `redo`                                                                                                                                                           |
+| **Clear**                   | `clear`                                                                                                                                                          |
+| **Exit**                    | `exit`                                                                                                                                                           |                                                                                                                                                                  |
 
 
 <div style="page-break-after: always;"></div>
