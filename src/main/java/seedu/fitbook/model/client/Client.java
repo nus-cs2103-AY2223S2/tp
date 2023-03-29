@@ -136,16 +136,20 @@ public class Client {
      * Changes the {@code routines} set with the updated Routine with updated {@code RoutineName}.
      */
     public void changeRoutineIfRoutineNameMatch(Routine routineToEdit, Routine routineToChange) {
-        routines.removeIf(routine -> routine.isSameRoutineName(routineToEdit));
-        routines.add(routineToChange);
+        if (routines.stream().anyMatch(routine -> routine.isSameRoutineName(routineToEdit))) {
+                routines.removeIf(routine -> routine.isSameRoutineName(routineToEdit));
+                routines.add(routineToChange);
+        }
     }
 
     /**
      * Changes the {@code routines} set with the updated Routine with updated {@code Exercise}.
      */
     public void changeExerciseIfRoutineNameMatch(Routine routineToChange) {
-        routines.removeIf(routine -> routine.isSameRoutineName(routineToChange));
-        routines.add(routineToChange);
+        if (routines.stream().anyMatch(routine -> routine.isSameRoutineName(routineToChange))) {
+            routines.removeIf(routine -> routine.isSameRoutineName(routineToChange));
+            routines.add(routineToChange);
+        }
     }
 
     /**
