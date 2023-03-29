@@ -19,21 +19,26 @@ public class JsonAdaptedAppointment {
     private final String nric;
     private final String booking;
 
+    private final String drNric;
+
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("nric") String nric, @JsonProperty("Booking") String booking) {
+    public JsonAdaptedAppointment(@JsonProperty("nric") String nric, @JsonProperty("Booking") String booking,
+                                  @JsonProperty("drnric") String drNric) {
         this.nric = nric;
         this.booking = booking;
+        this.drNric = drNric;
     }
 
     /**
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        nric = source.getPatientNric().toString(); // todo change to nric
+        nric = source.getPatientNric().toString();
         booking = source.getBooking().toString();
+        drNric = source.getDrNric().toString();
     }
 
     /**
@@ -49,7 +54,7 @@ public class JsonAdaptedAppointment {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
-        final Nric modelNric = new Nric(nric);
+        final Nric modelPatientNric = new Nric(nric);
 
         if (booking == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Booking.class.getSimpleName()));
@@ -60,6 +65,14 @@ public class JsonAdaptedAppointment {
 
         final Booking modelBooking = new Booking(booking);
 
-        return new Appointment(modelNric, modelBooking);
+        if (drNric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(drNric)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelDrNric = new Nric(drNric);
+
+        return new Appointment(modelPatientNric, modelBooking, modelDrNric);
     }
 }

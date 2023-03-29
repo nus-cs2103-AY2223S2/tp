@@ -20,6 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -47,8 +48,10 @@ public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Role role = new Role("Doctor");
 
-        Doctor doctor = new Doctor(name, phone, email, nric, address, tagList, new ArrayList<>());
+        Doctor doctor = new Doctor(name, phone, email, nric, address, tagList, new ArrayList<>(), role);
+
 
         return new AddDoctorCommand(doctor);
     }

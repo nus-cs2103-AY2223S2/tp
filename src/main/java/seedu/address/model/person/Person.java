@@ -23,6 +23,7 @@ public class Person {
     private final Email email;
 
     private final Nric nric;
+    private final Role role;
 
     // Data fields
     private final Address address;
@@ -34,8 +35,9 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
-                  ArrayList<Appointment> patientAppointments) {
-        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments);
+                  ArrayList<Appointment> patientAppointments, Role role) {
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments, role);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,6 +45,8 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.patientAppointments.addAll(patientAppointments);
+        this.role = role;
+
     }
 
     public Name getName() {
@@ -65,6 +69,10 @@ public class Person {
         return address;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -74,6 +82,7 @@ public class Person {
     }
 
     /**
+     * Returns true if both persons have the same NRIC.
      * Returns a list of Appointments.
      */
     public ArrayList<Appointment> getPatientAppointments() {
@@ -81,7 +90,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same NRIC.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -90,7 +99,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -105,6 +114,7 @@ public class Person {
         return otherNric != null
                 && otherNric.equals(this.getNric());
     }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -163,11 +173,25 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if a person is a doctor.
+     * Returns false otherwise.
+     */
     public boolean isDoctor() {
+        if (role.toString().equals("Doctor")) {
+            return true;
+        }
         return false;
     }
 
+    /**
+     * Returns true if a person is a patient.
+     * Returns false otherwise.
+     */
     public boolean isPatient() {
+        if (role.toString().equals("Patient")) {
+            return true;
+        }
         return false;
     }
 
@@ -177,5 +201,13 @@ public class Person {
      */
     public void addPatientAppointment(Appointment appointment) {
         patientAppointments.add(appointment);
+    }
+
+    /**
+     * Gets size of appointment list.
+     * @return appointment size
+     */
+    public int getAppointmentSize() {
+        return this.patientAppointments.size();
     }
 }

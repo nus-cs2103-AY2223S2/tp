@@ -22,16 +22,17 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPatientCommand object
  */
 public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPatientCommand
+     * and returns an AddPatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientCommand parse(String args) throws ParseException {
@@ -51,8 +52,11 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Role role = new Role("Patient");
 
-        Patient patient = new Patient(name, phone, email, nric, address, medication, tagList, new ArrayList<>());
+
+        Patient patient = new Patient(name, phone, email, nric, address, medication, tagList, new ArrayList<>(), role);
+
         return new AddPatientCommand(patient);
     }
 

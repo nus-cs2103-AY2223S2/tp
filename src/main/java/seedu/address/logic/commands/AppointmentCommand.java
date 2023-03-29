@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -21,10 +22,14 @@ public class AppointmentCommand extends Command {
     public static final String COMMAND_WORD = "appointment";
 
     public static final String MESSAGE_USAGE = "";
-    public static final String MESSAGE_SUCCESS = "New appointment booked for "; // todo patient name
+    public static final String MESSAGE_SUCCESS = "New appointment booked: %1$s"; // todo patient name
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment slot is already booked";
 
-    public static final String MESSAGE_INVALID_PERSON = "This patient does not exist";
+    public static final String MESSAGE_INVALID_PERSON = "This patient that you want to schedule an appointment for"
+            + " does not exist";
+    public static final String MESSAGE_INVALID_DOCTOR = "This doctor that you want to schedule an appointment with"
+            + " does not exist";
+
     private final Appointment appointment;
 
     /**
@@ -39,11 +44,14 @@ public class AppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPatientByNric(appointment.getPatientNric())) { // todo hasPerson by name not person
+        if (!model.hasPatientByNric(appointment.getPatientNric())) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
-        // todo only disallow appointment duplication per doctor and not the entire system
+        if (!model.hasDrByNric(appointment.getDrNric())) {
+            throw new CommandException(MESSAGE_INVALID_DOCTOR);
+        }
+
         if (model.hasAppointment(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
@@ -52,50 +60,44 @@ public class AppointmentCommand extends Command {
         List<Person> persons = model.getFilteredPersonList();
 
         Patient appointmentPatient = null;
+        Doctor appointmentDoctor = null;
         for (Person person : persons) {
             if (person.isDoctor()) {
-                continue;
+                boolean isMatchDr = person.getNric().equals(appointment.getDrNric());
+                if (isMatchDr) {
+                    appointmentDoctor = (Doctor) person;
+                }
             }
-            Nric otherPatientNricAppointment = person.getNric();
-            if (patientNricAppointment.equals(otherPatientNricAppointment)) {
-                appointmentPatient = (Patient) person;
+            if (person.isPatient()) {
+                Nric otherPatientNricAppointment = person.getNric();
+                if (patientNricAppointment.equals(otherPatientNricAppointment)) {
+                    appointmentPatient = (Patient) person;
+                }
             }
         }
         try {
             model.bookAppointment(appointment);
             appointmentPatient.addPatientAppointment(appointment);
+            appointmentDoctor.addPatientAppointment(appointment);
         } catch (DuplicateAppointmentException e) {
             throw new DuplicateAppointmentException();
         }
-        // String s = appointmentPatient.patientAppointmentstoString();
+
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
                 appointmentPatient.getMedication(), appointmentPatient.getTags(),
-                appointmentPatient.getPatientAppointments());
+                appointmentPatient.getPatientAppointments(), appointmentPatient.getRole());
 
+        Doctor editedDoctor = new Doctor(appointmentDoctor.getName(), appointmentDoctor.getPhone(),
+                appointmentDoctor.getEmail(), appointmentDoctor.getNric(), appointmentDoctor.getAddress(),
+                appointmentDoctor.getTags(),
+                appointmentDoctor.getPatientAppointments(), appointmentDoctor.getRole());
         model.setPerson(appointmentPatient, editedPatient);
+        model.setPerson(appointmentDoctor, editedDoctor);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
-    }
 
-    /**
-     * Gets patient NRIC in String from Appointment.
-     * @param appointment
-     * @return NRIC
-     */
-    public String getPatientNric(Appointment appointment) {
-        Nric patientNric = appointment.getPatientNric();
-        String patientNameStr = patientNric.toString();
-        return patientNameStr;
-    }
-
-    /**
-     * Shows message for successful appointment booked.
-     * @param appointment
-     * @return success message
-     */
-    public String fullSuccessMessage(Appointment appointment) {
-        String fullMessage = MESSAGE_SUCCESS + getPatientNric(appointment); // todo show the name instead of ic
-        return fullMessage;
+        return new CommandResult(String.format(MESSAGE_SUCCESS
+                + appointmentDoctor.drAppointmentsToString(), appointment));
     }
 }

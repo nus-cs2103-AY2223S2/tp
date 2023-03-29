@@ -154,6 +154,74 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a Person
+
+The add mechanism is facilitated by `MediConnect`. 
+
+It allows the user to add new a person (Patient/Doctor) to the `list` using `addPatient` or `addDoctor`
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application. The list of existing patients and doctors is shown.
+
+Step 2. The user inputs the appropriate command (either addPatient or addDoctor), followed by the required input fields as shown below: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd t/Pediatrician`
+
+Step 3. The `addDoctor` command will check whether all the required fields are correct and if the person does not already exist in the doctors' list.
+
+Step 4. call Model...
+
+Step 5. create new Doctor object and add to list...
+
+### Deleting a Person
+
+The delete mechanism is facilitated by `MediConnect`. It extends `MediConnect` with a delete function.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+![deleteState0](images/deleteState0.png)
+
+Step 2. The user executes addDoctor n/David Tan …​ to add a new doctor. The add command also calls Model#commitAddressBook(), causing another modified address book state to be saved into the addressBookStateList.
+
+![deleteState1](images/deleteState1.png)
+
+Step 3. The user now wants to delete the person, and decides to carry out the delete operation by executing the `delete` command. 
+
+Step 4. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the MediConnect. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+![deleteState2](images/deleteState2.png)
+
+#### Design considerations:
+
+**Aspect: How delete executes:**
+
+* **Current choice:** Delete the patient/doctor with the given NRIC
+    * Pros: Easy to implement. No need to worry about multiple people with same name, since everyone has a unique nric number.
+    * Cons: Cannot delete multiple people at once. User might delete the wrong nric accidentally since it is a long chain of numbers.
+
+
+### Adding an appointment
+
+The add appointment mechanism is facilitated by `MediConnect`. 
+
+Given below is an example usage scenario and how the add appointment mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `appointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to add an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `appointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `appointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+### \[Proposed\] Deleting an appointment
+
+The delete appointment mechanism is facilitated by `MediConnect`.
+
+Given below is an example usage scenario and how the delete appointment mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `MediConnect` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `deleteAppointment ic/S1234567X d/20-12-2020 20:20 dric/S7654321R` command to delete an appointment at the specified date, with the specified doctor by NRIC, for the specified patient by NRIC.  The `deleteAppointment` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deleteAppointment` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -391,6 +459,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
+**Use case: UC04 - Delete patient's information**
+
+**Actor: Hospital administration**
+
+**MSS**
+
+1. User choose to delete patient information.
+2. MC request for the patient's nric number.
+3. User enters the requested details
+4. MC displays the confirmation of the deleted patient.
+   Use case ends. 
+
+**Extensions**
+* 3a. MC cannot find the patient's nric in the list
+
+  * 3a1. MC informs the user that the patient cannot be found
+  
+  * 3a2. User enters the corrected nric.
+  
+    Steps 3a1-3a2 are repeated until the data entered are correct.
+  
+    Use case resumes from step 4.
+  
+* 3b. User does not enter the `ic/` field after the `delete` command.
+
+  * 3b1. MC informs the user that it is an invalid command format.
+  
+  * 3b2. User enters the correct command format.
+  
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+  
+    Use case resumes from step 4.
+  
+* 3c. User does not enter a nric number or enters an invalid nric format number after the `ic/` field.
+
+  * 3c1. MC informs the user that NRIC must follow a specific format.
+  
+  * User enters the correct nric format number.
+  
+    Steps 3c1-3c2 are repeated until the data entered are correct.
+  
+    Use case resumes from step 4. 
+
 
 *{More to be added}*
 
@@ -445,10 +556,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete ic/S1234567A`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete ic/0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>

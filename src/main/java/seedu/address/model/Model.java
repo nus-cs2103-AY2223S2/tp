@@ -71,7 +71,11 @@ public interface Model {
      */
     boolean hasDoctor(Doctor doctor);
 
+    /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
     boolean hasPatientByNric(Nric nric);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -103,6 +107,20 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setDoctor(Doctor target, Doctor editedPerson);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setPatient(Patient target, Patient editedPerson);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -111,9 +129,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredPersonListNric(Nric nric);
+
     boolean hasAppointment(Appointment appointment);
 
     void bookAppointment(Appointment appointment);
+    void deleteAppointment(Appointment appointment);
 
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
+    boolean hasDrByNric(Nric drNric);
 
 }

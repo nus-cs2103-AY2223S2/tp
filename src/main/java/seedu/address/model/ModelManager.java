@@ -104,6 +104,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDrByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasDrByNric(nric);
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return addressBook.hasPatient(patient);
@@ -145,6 +151,20 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setDoctor(Doctor doctor, Doctor editedDoctor) {
+        requireAllNonNull(doctor, editedDoctor);
+
+        addressBook.setDoctor(doctor, editedDoctor);
+    }
+
+    @Override
+    public void setPatient(Patient patient, Patient editedPatient) {
+        requireAllNonNull(patient, editedPatient);
+
+        addressBook.setPatient(patient, editedPatient);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -160,6 +180,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonListNric(Nric nric) {
+        requireNonNull(nric);
+        updateFilteredPersonList(p -> p.getNric().equals(nric));
     }
 
     @Override
@@ -193,4 +219,9 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        addressBook.deleteAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }

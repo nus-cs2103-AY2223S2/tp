@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -137,11 +138,33 @@ public class UniquePersonList implements Iterable<Person> {
     private boolean personsAreUnique(List<Person> persons) {
         for (int i = 0; i < persons.size() - 1; i++) {
             for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+                String personIRole = persons.get(i).getRole().toString();
+                String personJRole = persons.get(j).getRole().toString();
+                if (persons.get(i).isSamePerson(persons.get(j))
+                        && (personIRole.equals(personJRole))) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsDrByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person instanceof Doctor
+                && person.isSamePersonByNric(toCheck));
+    }
+
+    public Name getNameByNric(Nric nric) {
+        requireNonNull(nric);
+        Optional<Person> optionalPerson = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .findFirst();
+        return optionalPerson.map(Person::getName).orElse(null);
     }
 }

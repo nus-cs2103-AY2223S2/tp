@@ -14,6 +14,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -28,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NRIC = "S1234967G";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_MEDICATION = "";
+    public static final String DEFAULT_ROLE_PATIENT = "Patient";
 
     private Name name;
     private Phone phone;
@@ -37,6 +39,7 @@ public class PersonBuilder {
     private Medication medication;
     private Set<Tag> tags;
     private ArrayList<Appointment> appointments;
+    private Role role;
     private boolean isDoctor;
 
     /**
@@ -51,6 +54,22 @@ public class PersonBuilder {
         medication = new Medication(DEFAULT_MEDICATION);
         tags = new HashSet<>();
         appointments = new ArrayList<>();
+        role = new Role(DEFAULT_ROLE_PATIENT);
+    }
+
+    /**
+     * Initializes the PersonBuilder with the data of {@code role}.
+     */
+    public PersonBuilder(String role) {
+        name = new Name(DEFAULT_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        nric = new Nric(DEFAULT_NRIC);
+        address = new Address(DEFAULT_ADDRESS);
+        medication = new Medication(DEFAULT_MEDICATION);
+        tags = new HashSet<>();
+        appointments = new ArrayList<>();
+        this.role = new Role(role);
     }
 
     /**
@@ -70,6 +89,7 @@ public class PersonBuilder {
         }
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new ArrayList<>(personToCopy.getPatientAppointments());
+        role = personToCopy.getRole();
     }
 
     /**
@@ -137,6 +157,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Role} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRole(String role) {
+        this.role = new Role(role);
+        return this;
+    }
+
+    /**
      * Returns {@code Doctor} or {@code Patient} with all the details defined by the with functions.
      * Undefined attributes will have default values
      */
@@ -149,11 +177,11 @@ public class PersonBuilder {
     }
 
     public Patient buildPatient() {
-        return new Patient(name, phone, email, nric, address, medication, tags, appointments);
+        return new Patient(name, phone, email, nric, address, medication, tags, appointments, role);
     }
 
     public Doctor buildDoctor() {
-        return new Doctor(name, phone, email, nric, address, tags, appointments);
+        return new Doctor(name, phone, email, nric, address, tags, appointments, role);
     }
 
 }

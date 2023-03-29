@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DR_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.AppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -25,17 +25,18 @@ public class AppointmentCommandParser implements Parser<AppointmentCommand> {
      */
     public AppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_BOOKING);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_BOOKING, PREFIX_DR_NRIC);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_BOOKING)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_BOOKING, PREFIX_DR_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AppointmentCommand.MESSAGE_USAGE));
         }
 
-        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Booking booking = ParserUtil.parseBooking(argMultimap.getValue(PREFIX_BOOKING).get());
+        Nric drNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_DR_NRIC).get());
 
-        Appointment appointment = new Appointment(nric, booking);
+        Appointment appointment = new Appointment(patientNric, booking, drNric);
 
         return new AppointmentCommand(appointment);
     }

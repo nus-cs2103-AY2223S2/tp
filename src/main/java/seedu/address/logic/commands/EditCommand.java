@@ -32,6 +32,7 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -91,7 +92,15 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        if (personToEdit.getRole().toString().equals("Doctor")) {
+            model.setDoctor((Doctor) personToEdit, (Doctor) editedPerson);
+        } else if (personToEdit.getRole().toString().equals("Patient")) {
+            model.setPatient((Patient) personToEdit, (Patient) editedPerson);
+        } else {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
+        //model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -109,20 +118,21 @@ public class EditCommand extends Command {
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role role = personToEdit.getRole();
 
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
             Medication updatedMedication = editPersonDescriptor.getMedication().orElse(patientToEdit.getMedication());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
             return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedMedication,
-                    updatedTags, patientAppointments);
+                    updatedTags, patientAppointments, role);
         }
 
         if (personToEdit.isDoctor()) {
             Doctor doctorToEdit = (Doctor) personToEdit;
             ArrayList<Appointment> patientAppointments = doctorToEdit.getPatientAppointments();
             return new Doctor(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags,
-                    patientAppointments);
+                    patientAppointments, role);
         }
 
         return null; // should not return
@@ -159,6 +169,7 @@ public class EditCommand extends Command {
         private Medication medication;
         private Set<Tag> tags;
         private ArrayList<Appointment> appointments;
+        private Role role;
 
         public EditPersonDescriptor() {}
 
@@ -175,6 +186,7 @@ public class EditCommand extends Command {
             setMedication(toCopy.medication);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
+            setRole(toCopy.role);
         }
 
         /**
@@ -230,6 +242,10 @@ public class EditCommand extends Command {
 
         public Optional<Nric> getNric() {
             return Optional.ofNullable(nric);
+        }
+
+        public void setRole(Role role) {
+            this.role = role;
         }
 
         /**

@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
@@ -34,6 +35,7 @@ public class TypicalPersons {
             .withNric("S1234567A")
             .withMedication("")
             .withTags("friends")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient BENSON = new PersonBuilder()
             .withName("Benson Meier")
@@ -43,6 +45,7 @@ public class TypicalPersons {
             .withNric("S1234567B")
             .withMedication("20 Paracetamol")
             .withTags("owesMoney", "friends")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient CARL = new PersonBuilder()
             .withName("Carl Kurz")
@@ -51,6 +54,7 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withMedication("20 Paracetamol; 20 Oprhenadrine")
             .withAddress("wall street")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -60,6 +64,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withMedication("1 Cough Syrup")
             .withTags("friends")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient ELLE = new PersonBuilder()
             .withName("Elle Meyer")
@@ -68,6 +73,7 @@ public class TypicalPersons {
             .withNric("S1234569L")
             .withMedication("1 Physiotherapy")
             .withAddress("michegan ave")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
@@ -76,6 +82,7 @@ public class TypicalPersons {
             .withNric("M1234067P")
             .withMedication("1 Drug A; 2 Drug B; 3 Drug C; 4 Drug D")
             .withAddress("little tokyo")
+            .withRole("Patient")
             .buildPatient();
     public static final Patient GEORGE = new PersonBuilder()
             .withName("George Best")
@@ -84,32 +91,48 @@ public class TypicalPersons {
             .withMedication("1 annual checkup")
             .withNric("S9874567A")
             .withAddress("4th street")
+            .withRole("Patient")
             .buildPatient();
+    public static final Doctor SARAH = new PersonBuilder()
+            .withName("Sarah Tan")
+            .withPhone("9482427")
+            .withEmail("sarah@example.com")
+            .withNric("S1234567S")
+            .withMedication("")
+            .withAddress("Sarah Street")
+            .withRole("Doctor")
+            .buildDoctor();
 
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withNric("S0934581L").withRole("Patient")
+            .build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withNric("S0134381S").withRole("Patient")
+            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withNric(VALID_NRIC_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withRole("Patient")
+            .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRole("Patient")
             .build();
 
     public static final Person JOHN1 = new PersonBuilder().withName("John Doe").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("T2458659P")
+            .withRole("Patient").build();
 
     public static final Person JOHN2 = new PersonBuilder().withName("John Tay").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("M3438159L")
+            .withRole("Patient").build();
 
     public static final Person JOHN3 = new PersonBuilder().withName("John Sena").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("S3458659P")
+            .withRole("Patient").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -127,6 +150,7 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JOHN1, JOHN2, JOHN3));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, SARAH,
+                JOHN1, JOHN2, JOHN3));
     }
 }
