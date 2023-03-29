@@ -69,14 +69,10 @@ public class AdvanceCommand extends Command {
         }
 
         Person personToAdvance = personList.get(0);
-        Person advancedPerson;
 
-        /* this if-statement will check whether the applicant can be advanced and also whether
-        the interview datetime input is valid.
-        If any exception occurs along the way, then CommandException will be thrown */
         checkAdvanceApplicant(personToAdvance);
         checkValidInterviewDateInput(model, personToAdvance, this.interviewDateTime);
-        advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
+        Person advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
         model.setPerson(personToAdvance, advancedPerson);
         model.refreshListWithPredicate(predicate);
         return new CommandResult(String.format(MESSAGE_ADVANCE_PERSON_SUCCESS,
@@ -100,7 +96,6 @@ public class AdvanceCommand extends Command {
             } else if (!isAfterApplicationDateTime(personToAdvance, interviewDateTime.get())) {
                 throw new CommandException(String.format(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION,
                         personToAdvance.getName(), personToAdvance.getApplicationDateTime()));
-            } else {
             }
         } else {
             if (personToAdvance.getStatus() == Status.APPLIED) {
