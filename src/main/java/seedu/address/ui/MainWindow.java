@@ -153,7 +153,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Changes the theme of NeoBook to dark mode.
      */
-    @FXML
     public void handleDarkMode() {
         toggleTheme(false, false);
     }
@@ -161,7 +160,6 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Changes the theme of NeoBook to light mode.
      */
-    @FXML
     public void handleLightMode() {
         toggleTheme(true, false);
     }
