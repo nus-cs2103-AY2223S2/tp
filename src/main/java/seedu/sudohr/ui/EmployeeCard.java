@@ -33,8 +33,6 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label department;
-    @FXML
     private Label employeeId;
     @FXML
     private Label index;
@@ -55,7 +53,6 @@ public class EmployeeCard extends UiPart<Region> {
         this.employee = employee;
         index.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
-        department.setText(getEmployeeDepartment(employee, departments));
         employeeId.setText("Employee ID: " + employee.getId().value);
         phone.setText(employee.getPhone().value);
         address.setText(employee.getAddress().value);
@@ -65,14 +62,6 @@ public class EmployeeCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    private String getEmployeeDepartment(Employee employee, ObservableList<Department> departmentList) {
-        for (Department department : departmentList) {
-            if (department.hasEmployee(employee)) {
-                return department.getName().fullName;
-            }
-        }
-        return "";
-    }
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

@@ -41,7 +41,7 @@ public class DepartmentCard extends UiPart<Region> {
         super(FXMl);
         this.department = department;
         number.setText(displayedIndex + ". ");
-        totalEmployees.setText("Number of employees: " + department.getEmployees().size());
+        totalEmployees.setText("Number of employees: " + department.employeeCount());
         name.setText(department.getName().toString());
         department.getEmployees().stream()
                 .sorted(Comparator.comparing(employee-> employee.getName().toString()))
