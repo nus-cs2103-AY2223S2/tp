@@ -8,7 +8,7 @@ images with the path images/johndoe.png
 are placeholder images to be changed.
 -->
 
-## Welcome to ConnectUS!
+# Welcome to ConnectUS!
 
 ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can **connect with people** without the stress of remembering who you met where (on top of the stress of a growing assignment backlog — ~~_trust us, we know!_~~) holding you back from socialising.
 
@@ -20,7 +20,7 @@ This User Guide will provide you with an in-depth documentation for you to easil
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
-## Table of Contents
+# Table of Contents
 
 - [1. Using this guide](#1-using-this-guide)
   - [1.1 Notation](#11-notation)
@@ -67,20 +67,20 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 
 ---
 
-## 1. Using this guide
+# 1. Using this guide
 
 Thank you for choosing ConnectUS! We are delighted to have you onboard with us as a user.
 
 We **highly recommend** that you read through our User Guide in a sequential order.
 
-### 1.1 Notation
+## 1.1 Notation
 
 Some special notations are used throughout this guide:
 
 - [Links in blue](#11-notation) will help you navigate through this document, or take you to places on the Internet.
 - **Bolded words** are phrases that you should pay attention to.
 
-### 1.2 Navigation
+## 1.2 Navigation
 
 - If this is your **first time** using ConnectUS, head over to our [installation](#2-installation) guide for instructions on setting up ConnectUS, and our [quick start guide](#3-quick-start-guide) to begin using ConnectUS.
 
@@ -96,7 +96,7 @@ Some special notations are used throughout this guide:
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 2. Installation
+# 2. Installation
 
 If you have yet to install ConnectUS, simply follow these steps to set it up:
 
@@ -118,13 +118,17 @@ Congratulations! You have successfully set up ConnectUS.
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 3. Quick Start Guide
+# 3. Quick Start Guide
 
-### 3.1 Layout
+## 3.1 Layout
 
-### 3.2 Key Definitions
+Let's take a look at the different components in ConnectUS.<br>
 
-### 3.3 Command Format
+![Layout](images/Layout.png)
+
+## 3.2 Key Definitions
+
+## 3.3 Command Format
 
 <div markdown="block" class="alert alert-info">
 
@@ -153,7 +157,7 @@ Congratulations! You have successfully set up ConnectUS.
 
 </div>
 
-### 3.4 How to Use the CLI
+## 3.4 How to Use the CLI
 
 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
@@ -177,7 +181,7 @@ Refer to the [Features](#4-features) below for details of each command.
 
 ---
 
-## 4. Features
+# 4. Features
 
 ConnectUS has a list of features to assist you in your contact management needs!
 
@@ -196,7 +200,7 @@ ConnectUS has a list of features to assist you in your contact management needs!
 - [4.12 Saving the data](#413-saving-the-data)
 - [4.13 Editing the data file](#414-editing-the-data-file)
 
-### 4.1 Viewing help: `help`
+## 4.1 Viewing help: `help`
 
 Format: `help [COMMAND]`
 
@@ -212,7 +216,7 @@ Examples: `help`, `help add`, `help list`
 
 [↑ Back to feature list](#4-features)
 
-### 4.2 Listing all contacts: `list`
+## 4.2 Listing all contacts: `list`
 
 Format: `list`
 
@@ -222,7 +226,7 @@ Use `list` when you need to view a list of *all* the contacts in your ConnectUS.
 
 [↑ Back to feature list](#4-features)
 
-### 4.3 Clearing all entries: `clear`
+## 4.3 Clearing all entries: `clear`
 
 Format: `clear`
 
@@ -234,7 +238,7 @@ ConnectUS comes with a set of default contacts. If you want to remove all defaul
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
 </div>
 
-### 4.4 Adding a contact: `add`
+## 4.4 Adding a contact: `add`
 
 Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​ [r/REMARK]…​`
 
@@ -262,7 +266,7 @@ Please refer to [this section](#5-information-fields--prefixes) for details on h
 
 [↑ Back to feature list](#4-features)
 
-### 4.5 Editing a contact: `edit`
+## 4.5 Editing a contact: `edit`
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`
 
@@ -291,7 +295,7 @@ Please refer to [this section](#5-information-fields--prefixes) for details on h
 
 [↑ Back to feature list](#4-features)
 
-### 4.6 Adding additional tags to a contact: `add-t`
+## 4.6 Adding additional tags to a contact: `add-t`
 
 Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`
 
@@ -311,7 +315,7 @@ The `add-t` command:
 
 **Result:**<br>![AddTagToContactExample](images/johndoe.png)
 
-### 4.7 Deleting tags from a contact: `delete-t`
+## 4.7 Deleting tags from a contact: `delete-t`
 
 Format: `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [major/MAJOR_INDEX]`
 
@@ -335,7 +339,7 @@ The `delete-t` command:
 
 **Result:**<br>![DeleteTagFromContactExample](images/johndoe.png)
 
-### 4.8 Deleting a contact: `delete`
+## 4.8 Deleting a contact: `delete`
 
 Format: `delete PERSON_INDEX`
 
@@ -363,7 +367,7 @@ The `delete` command:
 
 [↑ Back to feature list](#4-features)
 
-### 4.9 Searching for contact information: `search`
+## 4.9 Searching for contact information: `search`
 
 Format: `search KEYWORD`
 
@@ -383,7 +387,7 @@ Examples:
 
 [↑ Back to feature list](#4-features)
 
-### 4.10 Opening a social media platform: `open`
+## 4.10 Opening a social media platform: `open`
 
 Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
 
@@ -403,7 +407,7 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 
 [↑ Back to feature list](#4-features)
 
-### 4.11 Sending chats to a contact: `chat`
+## 4.11 Sending chats to a contact: `chat`
 
 Format: `chat PERSON_INDEX wa/ m/`
 
@@ -421,7 +425,7 @@ You'll need to download the desktop application <a href="https://www.whatsapp.co
 
 [↑ Back to feature list](#4-features)
 
-### 4.12 Exiting the program: `exit`
+## 4.12 Exiting the program: `exit`
 
 Format: `exit`
 
@@ -431,13 +435,13 @@ When you are done with your contact management needs, you can exit ConnectUS wit
 
 [↑ Back to feature list](#4-features)
 
-### 4.13 Saving the data
+## 4.13 Saving the data
 
 You won't ever need to worry about losing your contacts. ConnectUS automatically saves your data in the hard disk after any command that changes the data. There is no need to save manually.
 
 [↑ Back to feature list](#4-features)
 
-### 4.14 Editing the data file
+## 4.14 Editing the data file
 
 If you are an advanced user, you are welcome to update data directly by editing the data file.
 
@@ -451,7 +455,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to table of contents](#table-of-contents)
 
-## 5. Information Fields & Prefixes
+# 5. Information Fields & Prefixes
 
 Here is a list of prefixes that ConnectUS uses when taking parameters.
 
@@ -469,14 +473,14 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
   - [5.9.3 CCA Tag: `cca/`](#593-cca-tags-cca)
   - [5.9.3 Remark Tag: `r/`](#594-remark-tags-r)
 
-### 5.1 Name: `n/`
+## 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.2 Phone: `p/`
+## 5.2 Phone: `p/`
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain numeric characters.
@@ -484,7 +488,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.3 Email: `e/`
+## 5.3 Email: `e/`
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -497,14 +501,14 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.4 Address: `a/`
+## 5.4 Address: `a/`
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including special characters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.5 Instagram: `ig/`
+## 5.5 Instagram: `ig/`
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
@@ -514,7 +518,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.6 Telegram: `tg/`
+## 5.6 Telegram: `tg/`
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
@@ -523,7 +527,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.7 WhatsApp: `wa/`
+## 5.7 WhatsApp: `wa/`
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
@@ -532,7 +536,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.8 Birthday: `b/`
+## 5.8 Birthday: `b/`
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
@@ -541,7 +545,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.9 Tags
+## 5.9 Tags
 
 There are four kinds of tags in ConnectUS.
 
@@ -582,7 +586,7 @@ There are four kinds of tags in ConnectUS.
 
 ---
 
-## 6. FAQ
+# 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ConnectUS home folder.
@@ -592,7 +596,7 @@ There are four kinds of tags in ConnectUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Command Summary
+# 7. Command Summary
 
 | Command               | Format                                                                                                                                          | Example                                                                               |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
@@ -611,7 +615,7 @@ There are four kinds of tags in ConnectUS.
 
 [↑ Back to top](#table-of-contents)
 
-## 8. Prefix Summary
+# 8. Prefix Summary
 
 | Information Field | Prefix   | Example                        |
 |-------------------|----------|--------------------------------|
@@ -630,6 +634,6 @@ There are four kinds of tags in ConnectUS.
 
 [↑ Back to top](#table-of-contents)
 
-## 9. Glossary
+# 9. Glossary
 
 [↑ Back to top](#table-of-contents)
