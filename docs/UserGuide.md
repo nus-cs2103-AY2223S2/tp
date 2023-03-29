@@ -125,7 +125,7 @@ The UI is split into 4 main parts
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
-Adding a contact to contacts
+Adds a new contact.
 
 **Format**: `newcontact n/NAME p/NUMBER`
 
@@ -137,26 +137,25 @@ Adding a contact to contacts
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
-### Clear all Events: `clear` <a id = "clear-all-events"></a>
+### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
-Clears all events in Paidlancers.
+Clears all events and contacts.
 
 **Format**: `clear`
 
-- Clears all events in the event book.
-
 <div markdown="span" class="alert alert-warning">:exclamation: Caution:
-This is a destructive command. Once you clear all events, there is no way to recover them!
+This is a destructive command. Once you clear all events and contacts, there is no way to recover them!
 Please be careful when using this command.
 </div>
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
-Creates a new event
+Adds a new event.
 
-**Format**: `newevent n/NAME r/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
+**Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
-- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
+- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and `TAG`s
+    - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
@@ -164,12 +163,11 @@ Creates a new event
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
-Deletes the specified event from the event book.
+Deletes the specified event.
 
 **Format**: `delete INDEX`
 
 - Deletes the event at the specified `INDEX`
-
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -179,12 +177,11 @@ Deletes the specified event from the event book.
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
-Edits the specified event from the event book.
+Edits the specified event.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
 - Edits the event at the specified `INDEX`
-
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
   - `[]` are optional parameters.
@@ -208,8 +205,6 @@ Closes Paidlancers.
 
 **Format**: `exit`
 
-- Close the application.
-
 ### Find Event: `find` <a id = "find-event"></a>
 
 Finds event(s) from the event book based on the given search string.
@@ -230,12 +225,11 @@ Finds event(s) from the event book based on the given search string.
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
-Links client contact to an event.
+Links a client contact to an event.
 
 **Format**: `linkcontact INDEX PHONE`
 
-- Links contact using `PHONE` to the event at the specified `INDEX`.
-
+- Links contact using `PHONE` to the event at the specified `INDEX`
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
   - The `PHONE` must be a valid phone number in the contact list.
@@ -246,11 +240,9 @@ Links client contact to an event.
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
-Shows a list of all events in Paidlancers
+Displays all events.
 
 **Format**: `list`
-
-- List down the events in the event book.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
@@ -258,8 +250,7 @@ Marks a specified event in Paidlancers as done.
 
 **Format**: `mark INDEX`
 
-- Marks the event at the specified `INDEX` as done.
-
+- Marks the event at the specified `INDEX` as done
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -273,7 +264,7 @@ Unmarks a specified event in Paidlancers.
 
 **Format**: `unmark INDEX`
 
-- Unmarks the event at the specified `INDEX`.
+- Unmarks the event at the specified `INDEX`
   - The `INDEX` refers to the index number in the displayed events list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -283,11 +274,9 @@ Unmarks a specified event in Paidlancers.
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
-Calculates and displays the total revenue based on all the completed events.
+Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
-
-- Displays the total revenue.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
@@ -295,7 +284,7 @@ Displays events that start within a specified number of days.
 
 **Format**: `remind DAYS`
 
-- Displays events that start within the specified number of `DAYS`.
+- Displays events that start within the specified number of `DAYS`
   - `DAYS` must be a positive integer 1, 2, 3, …
   - Only events that start after the current date and time will be displayed.
   - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
@@ -305,7 +294,7 @@ Displays events that start within a specified number of days.
 Assume the current date and time is 22-03-2023 11:00.
 
 - `remind 2`
-  - Events that start within 2 days will be displayed. These are events that start on:
+  - This command will display events that start within 2 days. These are events that start on:
     * 22-03-2023 after 11:00
     * 23-03-2023 the whole day
     * 24-03-2023 the whole day
@@ -338,7 +327,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |                    Features                     |                                Features Format                                |                                                     Example Usage                                                     |
 |:-----------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
 |         [Add a Contact](#add-a-contact)         |                         `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
-|      [Clear all Events](#clear-all-events)      |                                    `clear`                                    |                                                        `clear`                                                        |
+|      [Clear all Events and Contacts](#clear-all-events)      |                                    `clear`                                    |                                                        `clear`                                                        |
 |      [Create New Event](#create-new-event)      |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`     | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
 |       [Delete an Event](#delete-an-event)       |                                `delete INDEX`                                 |                                                      `delete 2`                                                       |
 |         [Edit an Event](#edit-an-event)         | `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
