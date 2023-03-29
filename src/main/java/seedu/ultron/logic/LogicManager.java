@@ -72,7 +72,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setSelectedOpening(Index index) {
-        model.setSelectedOpening(index);
+        model.setSelectedIndex(index);
     }
 
     @Override

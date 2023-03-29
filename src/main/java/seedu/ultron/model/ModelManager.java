@@ -158,7 +158,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setSelectedOpening(Index index) {
+    public void setSelectedIndex(Index index) {
         selectedIndex = index;
     }
 

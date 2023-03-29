@@ -100,8 +100,8 @@ public interface Model {
     Opening getSelectedOpening();
 
     /**
-     * Sets the currently selected opening in the filtered opening list.
+     * Sets the index of currently selected opening in the filtered opening list.
      */
-    void setSelectedOpening(Index index);
+    void setSelectedIndex(Index index);
 
 }
