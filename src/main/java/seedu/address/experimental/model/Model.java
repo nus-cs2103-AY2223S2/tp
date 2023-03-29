@@ -41,22 +41,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Reroll file path.
      */
     Path getRerollFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Reroll file path.
      */
     void setRerollFilePath(Path rerollFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns Reroll
      */
     ReadOnlyReroll getReroll();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code Reroll}.
      */
     void setReroll(ReadOnlyReroll reroll);
 
@@ -71,19 +71,18 @@ public interface Model {
     void deleteEntities(List<Entity> entities);
 
     /**
-     * Deletes the given entity. The entity must exist in the address book.
+     * Deletes the given entity. The entity must exist in Reroll.
      */
     void deleteEntity(Entity target);
 
     /**
-     * Adds the given entity. {@code entity} must not already exist in the address book.
+     * Adds the given entity. {@code entity} must not already exist in Reroll.
      */
     void addEntity(Entity entity);
 
     /**
-     * Replaces the given entity {@code target} with {@code editedPerson}. {@code target} must exist in the address
-     * book. The entity identity of {@code editedPerson} must not be the same as another existing entity in the address
-     * book.
+     * Replaces the given entity {@code target} with {@code editedEntity}. {@code target} must exist in Reroll.
+     * The entity identity of {@code editedEntity} must not be the same as another existing entity in Reroll.
      */
     void setEntity(Entity target, Entity editedEntity);
 
