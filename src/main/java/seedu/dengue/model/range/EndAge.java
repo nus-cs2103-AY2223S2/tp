@@ -10,6 +10,7 @@ import seedu.dengue.model.person.Person;
  */
 public class EndAge implements End<Age> {
 
+    private static final AgeComparator AGE_COMPARATOR = new AgeComparator();
     private final Optional<Age> age;
 
     /**
@@ -27,6 +28,9 @@ public class EndAge implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        return AGE_COMPARATOR.compare(this, p.getAge()) >= 0;
+        if (!age.isPresent()) {
+            return true;
+        }
+        return AGE_COMPARATOR.compare(age.get(), p.getAge()) >= 0;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.dengue.model.range;
 
+import java.util.Optional;
+
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
 
@@ -8,6 +10,7 @@ import seedu.dengue.model.person.Person;
  */
 public class EndDate implements End<Date> {
 
+    private static final DateComparator DATE_COMPARATOR = new DateComparator();
     private final Optional<Date> date;
 
     /**
@@ -25,6 +28,9 @@ public class EndDate implements End<Date> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        return DATE_COMPARATOR.compare(this, p.getDate()) >= 0;
+        if (!date.isPresent()) {
+            return true;
+        }
+        return DATE_COMPARATOR.compare(date.get(), p.getDate()) >= 0;
     }
 }
