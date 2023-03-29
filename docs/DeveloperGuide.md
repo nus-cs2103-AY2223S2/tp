@@ -223,11 +223,11 @@ Step 1. The user launches the application. The `StackUndoRedo` will be initializ
 
 ![UndoRedo0](images/UndoRedo2.png)
 
-Step 2. The user executes delete command. The delete command will be pushed into the `StackUndoRedo`.
+Step 2. The user executes delete command. The delete command will be pushed into the `undoStack` of `StackUndoRedo`.
 
 ![UndoRedo0](images/UndoRedo3.png)
 
-Step 3. The user executes add customer command to add a new customer.
+Step 3. The user executes add customer command to add a new customer. Similarly, the add command will be pushed into the `undoStack` of `StackUndoRedo`.
 
 ![UndoRedo0](images/UndoRedo4.png)
 
@@ -261,7 +261,7 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 
 * **Alternative 2:** Individual command has attached logic that allows it to undo/redo by itself.
     * Pros: Will use less memory (e.g. just save what is being deleted).
-    * Cons: Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accomodate the undo/redo feature.
+    * Cons: Must ensure that the implementation of each command is correct. Adds a lot of complexity that may not seem justified as it is to only accommodate the undo/redo feature.
 
 **Aspect: Data structure to support the undo/redo commands:**
 
@@ -271,7 +271,7 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 
 * **Alternative 2:** Use `HistoryManager` for undo/redo.
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
-    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle two different things._
+    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application. 
 
 ### Update Service Priority Feature
 This feature updates the priority of a service by increasing or decreasing it by 1 level. Priority levels are defined: low, medium, high
