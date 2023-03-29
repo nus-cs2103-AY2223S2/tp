@@ -2,8 +2,13 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -13,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 public class RemarkWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "RemarkWindow.fxml";
+    private final KeyCodeCombination ctrlZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
 
     @FXML
     private TextArea textArea;
@@ -55,10 +61,20 @@ public class RemarkWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         textArea.setText(existingRemark);
         textArea.positionCaret(existingRemark.length());
+        textArea.setOnKeyPressed(ctrlZHandler);
         getRoot().showAndWait();
-        //getRoot().centerOnScreen();
         return textArea.getText();
     }
+
+    EventHandler<KeyEvent> ctrlZHandler = new EventHandler<>() {
+        @Override
+        public void handle(KeyEvent event) {
+            if (ctrlZ.match(event)) {
+                event.consume();
+                getRoot().close();
+            }
+        }
+    };
 
     /**
      * Returns true if the help window is currently being shown.
