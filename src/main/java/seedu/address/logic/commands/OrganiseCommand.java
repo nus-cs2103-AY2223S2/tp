@@ -6,20 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.joda.time.LocalTime;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.recommendation.Recommendation;
-import seedu.address.model.time.Day;
-import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
 
 /**
@@ -40,7 +37,6 @@ public class OrganiseCommand extends Command {
     private final Location location;
     private final Participants participants;
 
-
     /**
      * Constructor for a {@code OrganiseCommand}.
      * @param index A recommendation's index.
@@ -54,16 +50,13 @@ public class OrganiseCommand extends Command {
 
     /**
      * Constructor for a {@code OrganiseCommand}.
-     * @param day The day of the meeting.
-     * @param startTime The starting time of the meeting.
-     * @param endTime The ending time of the meeting.
+     * @param timePeriod The day and time of the meeting.
      * @param location The location of the meeting.
      * @param participants The participants of the meeting.
      */
-    public OrganiseCommand(Day day, LocalTime startTime, LocalTime endTime, Location location,
-                           Participants participants) {
+    public OrganiseCommand(TimePeriod timePeriod, Location location, Participants participants) {
         this.index = null;
-        this.timePeriod = new TimeBlock(startTime, endTime, day);
+        this.timePeriod = timePeriod;
         this.location = location;
         this.participants = participants;
     }
@@ -71,33 +64,26 @@ public class OrganiseCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         //for recommendations
         if (this.index != null) {
-            if (model.getRecommendationByIndex(this.index).isEmpty()) {
-                throw new CommandException(MESSAGE_NO_SUCH_RECOMMENDATION);
-            }
-            Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
-            Participants participants = model.getParticipants();
-
-            for (Person person : participants.getParticipants()) {
-                if (!model.hasPerson(person)) { //meet -> delete someone -> organise
-                    throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, person.getName()));
-                }
-            }
-
-            ContactIndex newIndex = model.getMeetUpIndex();
-            MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
-            model.addMeetUp(meetUp);
-            model.updateObservableMeetUpList();
-            return new CommandResult(MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS);
+            return organiseRecommendation(model);
         }
-
         //for customised new meetings
-        ContactIndex newIndex = model.getMeetUpIndex();
+        return organiseCustomisedMeeting(model);
+    }
 
+    /**
+     * Organises a new meeting based on customised inputs.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException CommandException If an error occurs during command execution.
+     */
+    private CommandResult organiseCustomisedMeeting(Model model) throws CommandException {
+
+        MeetUpIndex newIndex = model.getMeetUpIndex();
         List<Person> people = new ArrayList<>();
         assert participants != null;
+
         for (ContactIndex contactIndex : participants.getContactIndices()) {
             Optional<Person> person = model.getPersonByIndex(contactIndex);
             if (person.isEmpty()) {
@@ -106,17 +92,47 @@ public class OrganiseCommand extends Command {
             people.add(person.get());
         }
         participants.setParticipants(people);
-
         MeetUp meetUp = new MeetUp(timePeriod, location, participants, newIndex);
+        addMeetUp(meetUp, model);
+        return new CommandResult(MESSAGE_ORGANISE_NEW_MEETING_SUCCESS);
+    }
 
+    /**
+     * Adds a meet up to storage.
+     * @throws CommandException if a duplicate meet is to be added.
+     */
+    private void addMeetUp(MeetUp meetUp, Model model) throws CommandException {
         try {
             model.addMeetUp(meetUp);
-        } catch (DuplicateMeetUpException dm) {
+        } catch (DuplicateMeetUpException dme) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-
         model.updateObservableMeetUpList();
-        return new CommandResult(MESSAGE_ORGANISE_NEW_MEETING_SUCCESS);
+    }
+
+    /**
+     * Organises a new meeting based on meet recommendations.
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException CommandException If an error occurs during command execution.
+     */
+    private CommandResult organiseRecommendation(Model model) throws CommandException {
+        if (model.getRecommendationByIndex(this.index).isEmpty()) {
+            throw new CommandException(MESSAGE_NO_SUCH_RECOMMENDATION);
+        }
+        Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
+        Participants participants = model.getParticipants();
+
+        for (Person person : participants.getParticipants()) {
+            if (!model.hasPerson(person)) { //meet -> delete someone -> organise
+                throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, person.getName()));
+            }
+        }
+
+        MeetUpIndex newIndex = model.getMeetUpIndex();
+        MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
+        addMeetUp(meetUp, model);
+        return new CommandResult(MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS);
     }
 
     @Override

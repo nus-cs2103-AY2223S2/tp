@@ -1,7 +1,6 @@
 package seedu.address.model.meetup;
 
 import seedu.address.model.location.Location;
-import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.TimePeriod;
 
@@ -12,12 +11,12 @@ public class MeetUp implements Comparable<MeetUp> {
     private final TimePeriod timePeriod;
     private final Location location;
     private final Participants participants;
-    private final ContactIndex meetUpIndex;
+    private final MeetUpIndex meetUpIndex;
 
     /**
      * Constructor for a {@code MeetUp} object.
      */
-    public MeetUp(Recommendation recommendation, Participants participants, ContactIndex meetUpIndex) {
+    public MeetUp(Recommendation recommendation, Participants participants, MeetUpIndex meetUpIndex) {
         this.timePeriod = recommendation.getTimePeriod();
         this.location = recommendation.getLocation();
         this.participants = participants;
@@ -27,7 +26,7 @@ public class MeetUp implements Comparable<MeetUp> {
     /**
      * Overloaded constructor for a {@code MeetUp} object not from meet recommendations.
      */
-    public MeetUp(TimePeriod timePeriod, Location location, Participants participants, ContactIndex meetUpIndex) {
+    public MeetUp(TimePeriod timePeriod, Location location, Participants participants, MeetUpIndex meetUpIndex) {
         this.timePeriod = timePeriod;
         this.location = location;
         this.participants = participants;
@@ -37,7 +36,7 @@ public class MeetUp implements Comparable<MeetUp> {
     /**
      * Gets index of meetup.
      */
-    public ContactIndex getMeetUpIndex() {
+    public MeetUpIndex getMeetUpIndex() {
         return this.meetUpIndex;
     }
 

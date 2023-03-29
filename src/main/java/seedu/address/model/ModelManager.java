@@ -18,7 +18,9 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
+import seedu.address.logic.parser.MeetUpIndexHandler;
 import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Recommendation> filteredRecommendations;
     private final SortedList<Recommendation> observableRecommendations;
     private final IndexHandler indexHandler;
+    private final MeetUpIndexHandler meetUpIndexHandler;
     private final FilteredList<MeetUp> filteredMeetUps;
     private final SortedList<MeetUp> observableMeetUps;
 
@@ -55,6 +58,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.eduMateHistory = new EduMateHistory(eduMateHistory);
         indexHandler = new IndexHandler(this);
+        meetUpIndexHandler = new MeetUpIndexHandler(this);
+
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
         observablePersons = new SortedList<>(filteredPersons);
 
@@ -63,7 +68,6 @@ public class ModelManager implements Model {
 
         filteredRecommendations = new FilteredList<>(this.eduMate.getRecommendationList());
         observableRecommendations = new SortedList<>(filteredRecommendations);
-
 
     }
 
@@ -303,21 +307,7 @@ public class ModelManager implements Model {
         return indexHandler.getRecommendationByIndex(index);
     }
 
-    @Override
-    public void addMeetUp(MeetUp meetUp) {
-        ContactIndex contactIndex = indexHandler.assignMeetUpIndex();
-        eduMate.addMeetUp(meetUp);
-    }
-
-    @Override
-    public ContactIndex getMeetUpIndex() {
-        return indexHandler.assignMeetUpIndex();
-    }
-
-    @Override
-    public ObservableList<MeetUp> getObservableMeetUpList() {
-        return observableMeetUps;
-    }
+    //=========== Participants Accessors =============================================================
 
     @Override
     public Participants getParticipants() {
@@ -334,10 +324,29 @@ public class ModelManager implements Model {
         eduMate.setParticipants(new Participants(people));
     }
 
+    //=========== Meet Up List Accessors =============================================================
+
     @Override
     public void updateObservableMeetUpList() {
         filteredMeetUps.setPredicate(PREDICATE_SHOW_ALL_MEETUPS);
         observableMeetUps.setComparator(COMPARATOR_CONTACT_INDEX_MEETUP);
     }
+
+    @Override
+    public void addMeetUp(MeetUp meetUp) {
+        MeetUpIndex meetUpIndex = meetUpIndexHandler.assignMeetUpIndex();
+        eduMate.addMeetUp(meetUp);
+    }
+
+    @Override
+    public MeetUpIndex getMeetUpIndex() {
+        return meetUpIndexHandler.assignMeetUpIndex();
+    }
+
+    @Override
+    public ObservableList<MeetUp> getObservableMeetUpList() {
+        return observableMeetUps;
+    }
+
 
 }

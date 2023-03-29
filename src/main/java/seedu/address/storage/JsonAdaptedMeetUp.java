@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
-import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.TimePeriod;
 
 /**
@@ -15,12 +15,12 @@ import seedu.address.model.time.TimePeriod;
  */
 public class JsonAdaptedMeetUp {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "MeetUps %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meet ups %s field is missing!";
 
     protected final JsonAdaptedLocation location;
     protected final JsonAdaptedTimePeriod timePeriod;
     protected final JsonAdaptedParticipants participants;
-    protected final Integer contactIndex;
+    protected final Integer meetUpIndex;
 
     /**
      * Constructs a {@code JsonAdaptedMeetUp} with the given meet up details.
@@ -30,11 +30,11 @@ public class JsonAdaptedMeetUp {
             @JsonProperty("location") JsonAdaptedLocation location,
             @JsonProperty("timePeriod")JsonAdaptedTimePeriod timePeriod,
             @JsonProperty("participants") JsonAdaptedParticipants participants,
-            @JsonProperty("contactIndex") Integer contactIndex) {
+            @JsonProperty("meetUpIndex") Integer meetUpIndex) {
         this.location = location;
         this.participants = participants;
         this.timePeriod = timePeriod;
-        this.contactIndex = contactIndex;
+        this.meetUpIndex = meetUpIndex;
     }
 
     /**
@@ -45,7 +45,7 @@ public class JsonAdaptedMeetUp {
         assert (meetUp.getParticipants() != null);
         participants = new JsonAdaptedParticipants(meetUp.getParticipants());
         timePeriod = new JsonAdaptedTimePeriod(meetUp.getTimePeriod());
-        contactIndex = meetUp.getMeetUpIndex().getContactIndex();
+        meetUpIndex = meetUp.getMeetUpIndex().getMeetUpIndex();
     }
 
     /**
@@ -65,11 +65,8 @@ public class JsonAdaptedMeetUp {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName()));
         }
         final TimePeriod modelTimePeriod = timePeriod.toModelType();
-
-        final ContactIndex modelContactIndex = new ContactIndex(contactIndex);
-
+        final MeetUpIndex modelMeetUpIndex = new MeetUpIndex(meetUpIndex);
         final Participants modelParticipants = participants.toModelType();
-
-        return new MeetUp(modelTimePeriod, modelLocation, modelParticipants, modelContactIndex);
+        return new MeetUp(modelTimePeriod, modelLocation, modelParticipants, modelMeetUpIndex);
     }
 }
