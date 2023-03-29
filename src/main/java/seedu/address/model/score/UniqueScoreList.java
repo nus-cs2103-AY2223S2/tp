@@ -30,8 +30,6 @@ public class UniqueScoreList implements Iterable<Score> {
     private final ObservableList<Score> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    //private ObservableList<Score> sortedScoreList = FXCollections.observableArrayList();
-
     /**
      * Returns true if the list contains an equivalent score as the given argument.
      */
@@ -50,7 +48,6 @@ public class UniqueScoreList implements Iterable<Score> {
             throw new DuplicateScoreException();
         }
         internalList.add(toAdd);
-        //sortedScoreList.add(toAdd);
     }
 
     /**
@@ -117,10 +114,7 @@ public class UniqueScoreList implements Iterable<Score> {
      * @return A view of list of sorted score.
      */
     public ObservableList<Score> getSortedScoreList() {
-        //ObservableList<Score> sortedScoreList = FXCollections.observableArrayList();
-        //sortedScoreList.sort(Comparator.comparing(Score::getLocalDate).reversed());
         internalList.sort(Comparator.comparing(Score::getLocalDate).reversed());
-        //return sortedScoreList;
         return internalList;
     }
 
