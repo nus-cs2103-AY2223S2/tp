@@ -90,7 +90,8 @@ public class BatchAddCommand extends Command {
         } catch (IOException exception) {
             throw new CommandException(exception.getMessage());
         } catch (ParseException exception) {
-            if (exception.getMessage().equals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE))) {
+            if (exception.getMessage().equals(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.MESSAGE_USAGE))) {
                 throw new CommandException(MESSAGE_MISSING_NEEDED_FIELDS);
             } else {
                 throw new CommandException(exception.getMessage());
