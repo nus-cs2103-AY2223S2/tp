@@ -177,6 +177,7 @@ Format: `:help`
 Adds a task to the current task list.
 
 Format: `:a <title> [-l <label>]... [-p <priority>]`
+
 | Parameter     | Detail                              | Compulsory | Example            |
 | ------------- | ----------------------------------- | ---------- | ------------------ |
 | `<title>`     | Title of the task                   | Yes        | `CS2103T UG`       |
@@ -194,6 +195,7 @@ Example after the command, `:a Enhance CS2103T tp user guide`:
 Adds a task with a deadline to the current task list.
 
 Format: `:a <title> -d <deadline>`
+
 | Parameter     | Detail                                      | Compulsory | Example            |
 | ------------- | ------------------------------------------- | ---------- | ------------------ |
 | `<title>`     | Title of the task                           | Yes        | `CS2103T UG`       |
@@ -212,6 +214,7 @@ Example after the command, `:a CS2130T v1.3 -d 2022-03-31`:
 Deletes a task from the current task list by specifying the task number.
 
 Format: `:d <task_index>`
+
 | Parameter      | Detail                               | Compulsory | Example                                         |
 | -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
