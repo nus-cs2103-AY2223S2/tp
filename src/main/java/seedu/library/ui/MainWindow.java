@@ -225,7 +225,8 @@ public class MainWindow extends UiPart<Stage> {
             zoomView = new ZoomView(selectedBookmark);
             zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
         } else {
-            //Reset to original introduction information
+            zoomView = new ZoomView();
+            zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
 
         }
     }
