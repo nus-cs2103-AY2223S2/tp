@@ -85,10 +85,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exportProgress() throws Exception {
         String filePath = System.getProperty("user.home");
-        assertTrue(parser.parseCommand(ExportProgressCommand.COMMAND_WORD + " 1") instanceof
-                ExportProgressCommand);
-        assertTrue(parser.parseCommand(ExportProgressCommand.COMMAND_WORD + " 1 " + PREFIX_FILEPATH + filePath) instanceof
-                ExportProgressCommand);
+        assertTrue(parser.parseCommand(ExportProgressCommand.COMMAND_WORD + " 1")
+                instanceof ExportProgressCommand);
+        assertTrue(parser.parseCommand(ExportProgressCommand.COMMAND_WORD + " 1 " + PREFIX_FILEPATH + filePath)
+                instanceof ExportProgressCommand);
     }
 
     @Test
