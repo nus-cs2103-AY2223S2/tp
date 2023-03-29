@@ -3,6 +3,8 @@ package seedu.address.model.employee;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Class represents an employee's payroll details in the database.
  */
@@ -34,13 +36,12 @@ public class LeaveCounter {
     public static boolean isValidLeaveCount(String test) {
         if (test == null) {
             return true;
-        } else {
-            try {
-                int leaveCount = Integer.parseInt(test.trim());
-                return true;
-            } catch (NumberFormatException nfe) {
-                return false;
-            }
+        }
+        try {
+            int leaveCount = Integer.parseInt(test.trim());
+            return (leaveCount >= 0);
+        } catch (NumberFormatException nfe) {
+            return false;
         }
     }
 
@@ -61,9 +62,9 @@ public class LeaveCounter {
     /**
      * Checks if there are enough days of leave.
      */
-    public LeaveCounter takeLeave(int numberOfDays) throws Exception {
+    public LeaveCounter takeLeave(int numberOfDays) throws CommandException {
         if (!hasEnoughLeave(numberOfDays)) {
-            throw new Exception("Not enough days of leave.");
+            throw new CommandException("Not enough days of leave.");
         }
         return new LeaveCounter(leaveCount - numberOfDays);
     }
