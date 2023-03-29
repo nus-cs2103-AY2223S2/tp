@@ -51,10 +51,11 @@ public class PersonViewPanel extends UiPart<Region> {
      */
     public PersonViewPanel(Person person) {
         super(FXML);
-        /*if (person == null) {
+        if (person == null) {
             this.person = null;
             return;
         }
+        /*
         this.person = person;
         setPersonalDetails();
         setAppointmentDetails();
