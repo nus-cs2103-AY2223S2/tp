@@ -31,12 +31,10 @@
         <VBox style="-fx-border-color: white;" >
             <Label fx:id="chart" styleClass="title_label" text="Score Chart" minHeight="-Infinity" wrapText="true"/>
             <Label fx:id="nameChart" styleClass="heading_label" minHeight="-Infinity" wrapText="true"/>
+            <Label prefHeight="5" minHeight="5" maxHeight="5" ></Label>
             <ScrollPane fx:id = "scoreScroll" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-padding:0;-fx-background-insets: 0, 1;">
                 <VBox VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="00" bottom="0" left="0" />
-                    </padding>
-                    <LineChart fx:id="scoreChart" visible="false" prefHeight="120" prefWidth="120" style="-fx-padding: 10 10 0 0">
+                    <LineChart fx:id="scoreChart" visible="false" prefHeight="120" prefWidth="120" style="-fx-padding: 14 10 0 0">
                         <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                         </xAxis>
@@ -44,7 +42,6 @@
                         <NumberAxis fx:id="yAxis" autoRanging="false" lowerBound="0" upperBound="100" tickUnit="20" />
                         </yAxis>
                     </LineChart>
-
                     <Label prefHeight="10" minHeight="10" maxHeight="10"></Label>
                     <TableView fx:id="scoreStatistic" maxHeight="80" minHeight="80" minWidth="20">
                         <columns>

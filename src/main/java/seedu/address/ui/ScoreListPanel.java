@@ -98,6 +98,10 @@ public class ScoreListPanel extends UiPart<Region> {
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
                 nameChart.setText("No score chart for " + person.getName().fullName);
+                if (person.getName().fullName.length() >= 30) {
+                    name.setText("No score history found for " + person.getName().fullName.substring(0, 29) + "...");
+                    nameChart.setText("No score chart for " + person.getName().fullName.substring(0, 29) + "...");
+                }
             }
         }
 
@@ -240,7 +244,12 @@ public class ScoreListPanel extends UiPart<Region> {
      */
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
-        nameChart.setText("Recent scores for " + person.getName().fullName + "( at most 5)");
+        nameChart.setText("Recent scores for " + person.getName().fullName + " (at most 5)");
+        if (person.getName().fullName.length() >= 30) {
+            name.setText("Score history for " + person.getName().fullName.substring(0, 29) + "...");
+            nameChart.setText("Recent scores for " + person.getName().fullName.substring(0, 29) + "..."
+                    + " (at most 5)");
+        }
         scoreChart.setVisible(true);
         scoreChart.setLegendVisible(false);
         XYChart.Series<String, Double> series = new XYChart.Series<>();
