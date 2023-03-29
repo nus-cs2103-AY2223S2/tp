@@ -63,6 +63,11 @@ public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUnd
                     "Only one name is allowed for mark homework as Undone command."));
         }
 
+        if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one index is allowed for mark homework as undone command."));
+        }
+
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new MarkHomeworkAsUndoCommand(names, new NamePredicate(nameKeywords), index);

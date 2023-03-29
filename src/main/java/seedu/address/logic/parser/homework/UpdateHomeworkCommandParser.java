@@ -48,6 +48,7 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
@@ -66,6 +67,11 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
                     "Only one name is allowed for update homework command."));
         }
 
+        if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one index is allowed for update homework command."));
+        }
+
         // if homework name is not present, set it to null, else parse it
         Optional<String> homeworkName = Optional.empty();
         if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
@@ -76,6 +82,11 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
         Optional<LocalDateTime> deadline = Optional.empty();
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+
+            // deadline must be in the future
+            if (deadline.get().isBefore(LocalDateTime.now())) {
+                throw new ParseException(String.format("Deadline must be in the future."));
+            }
         }
 
         return new UpdateHomeworkCommand(names, index, new NamePredicate(nameKeywords),

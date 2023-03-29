@@ -39,22 +39,36 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_HOMEWORK, PREFIX_DEADLINE);
 
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_HOMEWORK, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreateHomeworkCommand.MESSAGE_USAGE));
         }
 
-        // all homework name cannot be empty
-        for (String homeworkName : argMultimap.getAllValues(PREFIX_HOMEWORK)) {
-            if (homeworkName.isEmpty()) {
-                throw new ParseException("Homework name cannot be empty");
-            }
+        // only one homework keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one homework name is allowed."));
         }
-
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_HOMEWORK).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Homework name cannot be empty."));
+        }
         String homeworkName = argMultimap.getValue(PREFIX_HOMEWORK).get();
+
+        // only one deadline keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_DEADLINE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one deadline is allowed."));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Deadline cannot be empty."));
+        }
         LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
 
         // for all the names, trim the name and only take the first word
@@ -68,6 +82,11 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
+
+        if (nameKeywords.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one name is allowed for mark homework as done command."));
+        }
 
         return new CreateHomeworkCommand(names, new NamePredicate(nameKeywords),
                 homeworkName, deadline);

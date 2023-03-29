@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
  * Update the information of an existing homework.
@@ -94,17 +95,24 @@ public class UpdateHomeworkCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Homework homeworkToUpdate = student.getHomework(index);
 
-        String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
-        LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
-        Homework newHomework = new Homework(newHomeworkName, newDeadline);
-        student.setHomework(homeworkToUpdate, newHomework);
+        try {
+            Homework homeworkToUpdate = student.getHomework(index);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
-                        student.getName().getFirstName(),
-                        newHomeworkName, newDeadline));
+            String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
+            LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
+            Homework newHomework = new Homework(newHomeworkName, newDeadline);
+            student.setHomework(homeworkToUpdate, newHomework);
+
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
+                            student.getName().getFirstName(),
+                            newHomeworkName, newDeadline));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        } catch (DuplicateEntryException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override
