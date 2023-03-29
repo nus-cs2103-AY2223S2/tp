@@ -94,13 +94,15 @@ software editing, building, testing, and packaging in an easy-to-use application
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Main View - Projects and Clients
+## Main View
 
-**TODO: update this**
+The main view of Mycelium is composed of two panels. The left panel is what we will refer to as the **Entity Panel** and the right panel is what we will refer to as the **Statistics Panel**.
 
-Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
+### Entity Panel
 
-### Projects Tab
+The Entity Panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients. 
+
+#### Projects Tab
 
 The Projects tab lists all the projects you've created. Each project block contains the project’s
 
@@ -112,7 +114,7 @@ The Projects tab lists all the projects you've created. Each project block conta
 - Accepted date
 - Deadline
 
-### Clients Tab
+#### Clients Tab
 
 The Clients tab lists all the clients you've created. Each client block contains the client’s
 
@@ -121,6 +123,14 @@ The Clients tab lists all the clients you've created. Each client block contains
 - Email
 - Phone number
 - List of associated platforms
+
+### Statistics Panel
+
+The Statistics Panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
+
+The top portion is composed of two tabs, one that lists the projects that are due soon and the other lists projects that overdue.
+
+The bottom portion shows a pie chart that displays the relative proportions of projects that are not started, in progress, and done.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -518,19 +528,14 @@ since it is similar to, for example, finding files in IDEs, or the well known
 might wish to note:
 
 * Each fuzzy query will be applied to both clients and project. That is, when
-  you query for something, say, "coc", this query is applied to both the client
-  and project tabs, regardless of which tab is currently being displayed.
+  you query for something, say, "coc", this query is applied to both the Clients 
+  tab and the Projects tab, regardless of which tab is currently being displayed.
 * You might experience some input lag while in search mode. This is expected to
   improve as we refine the implementation.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## HotKeys
-
-<div markdown="span" class="alert alert-info">
-:information_source: We will refer to the left panel containing the project and client tabs as the **entity panel**
-and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
-</div>
 
 HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
@@ -556,27 +561,30 @@ This shortcut allows you to quickly clear the current line in the command box. T
 
 ### (CTRL+S) Switch Panels
 
-This shortcut allows you to quickly switch the focus between the entity panel and the statistic panel.
+This shortcut allows you to quickly switch the focus between the Entity Panel and the Statistics Panel.
 The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
 This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
-If the main panel is in focus, then the tabs will be the projects and clients tabs. 
-If the right statistic panel is in focus, then the tabs will be the overdue and due soon tabs.
+If the left Entity Panel is in focus, then the tabs will be the Projects tab and Clients tab. 
+If the right Statistics Panel is in focus, then the tabs will be the Overdue and Due soon tabs.
 
 ### (CTRL+J) Select next
 
-This shortcut allows you to quickly select the next item on the currently selected list in the
-currently selected panel, either the entity panel or statistic panel.
+This shortcut allows you to quickly select the next item on the list in the currently selected tab 
+in the currently selected panel. 
+This could be the either the Projects tab or Clients tab in the Entity Panel or the Overdue tab or Due soon tab in the Statistics Panel.
 
-Within the tab that is in focus, the next item in the list will be selected. If there was no item originally selected, then the first item in the list will be selected.
+If there was no item originally selected, then the first item in the list will be selected.
 
 ### (CTRL+K) Select previous
 
-This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the entity panel or statistic panel.
+This shortcut allows you to quickly select the previous item on the list in the currently selected tab
+in the currently selected panel.
+This could be the either the Projects tab or Clients tab in the Entity Panel or the Overdue tab or Due soon tab in the Statistics Panel.
 
-Within the tab that is in focus, the previous item in the list will be selected. If there was no item originally selected, then the last item in the list will be selected.
+If there was no item originally selected, then the last item in the list will be selected.
 
 ### (CTRL+F) Search
 
@@ -606,8 +614,8 @@ read the statement `q -a foo [-b bar]` like so:
 Action | Format | Example 
 --------|------------------|------
 [**Create new client**](#creating-a-client-contact--c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
-[**Delete an existing client** ](#deleting-a-client-contact--dc)| dc -e email | `dc -e alice_baker@bakers.com`
-[**Update an existing client**](#updating-a-client-uc) | uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email] | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
+[**Delete an existing client** ](#deleting-a-client-contact--dc)| `dc -e email` | `dc -e alice_baker@bakers.com`
+[**Update an existing client**](#updating-a-client-uc) | `uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email]` | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
 [**Create a project**](#creating-a-project--p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
 [**Delete a project**](#deleting-a-project--dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
 [**Update an existing project**](#updating-a-project--up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`

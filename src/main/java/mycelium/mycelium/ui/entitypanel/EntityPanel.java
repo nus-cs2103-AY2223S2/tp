@@ -36,7 +36,7 @@ public class EntityPanel extends UiPart<TabPane> implements TabsPanel {
         projectListPanel = new EntityList<Project>(projectList, ProjectEntity::new);
         clientListPanel = new EntityList<Client>(clientList, ClientEntity::new);
         projectTab = new EntityTab("Projects", projectListPanel);
-        clientTab = new EntityTab("Client", clientListPanel);
+        clientTab = new EntityTab("Clients", clientListPanel);
         this.selectionModel = getRoot().getSelectionModel();
         this.tabs = getRoot().getTabs();
         this.tabs.add(projectTab.getRoot());
@@ -76,7 +76,7 @@ public class EntityPanel extends UiPart<TabPane> implements TabsPanel {
         case "Projects":
             this.projectListPanel.nextItem();
             break;
-        case "Client":
+        case "Clients":
             this.clientListPanel.nextItem();
             break;
         default:
@@ -91,7 +91,7 @@ public class EntityPanel extends UiPart<TabPane> implements TabsPanel {
         case "Projects":
             this.projectListPanel.prevItem();
             break;
-        case "Client":
+        case "Clients":
             this.clientListPanel.prevItem();
             break;
         default:
@@ -144,7 +144,7 @@ public class EntityPanel extends UiPart<TabPane> implements TabsPanel {
             return Optional.ofNullable(this.projectListPanel.getSelectedItem())
                 .map(Project::getName)
                 .map(NonEmptyString::toString);
-        case "Client":
+        case "Clients":
             return Optional.ofNullable(this.clientListPanel.getSelectedItem())
                 .map(Client::getEmail)
                 .map(Email::toString);
