@@ -76,11 +76,11 @@ At Paidlancers, we understand that time is money, and every second matters for f
 That's why we've designed our app with a user interface (UI) that optimizes productivity, streamlines workflows,
 and ensures freelancers can get the most out of every moment.
 
-![Ui_Callout](images/Callout_UI.png)
+![Ui_Callout](images/Ui_Callout.png)
 The UI is split into 4 main parts
 - Eventbook
   - This is where the events that you specified are displayed. 
-- Contact
+- Contactbook
   - This is where the contacts you have stored are displayed.
 - Message Box
   - This is where the messages regarding the status of your commands are displayed.
