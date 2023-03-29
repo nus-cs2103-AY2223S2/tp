@@ -79,7 +79,6 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             if (leaveToAdd.hasEmployee(employeeToAdd)) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE, employeeToAdd, leaveToAdd));
             }
-            
             leavesToAdd.add(leaveToAdd);
         }
 
