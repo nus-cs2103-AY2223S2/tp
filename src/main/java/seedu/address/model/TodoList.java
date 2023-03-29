@@ -66,7 +66,6 @@ public class TodoList implements ReadOnlyTodoList {
         setTodo(newData.getTodoList());
     }
 
-    /// application-level operations
     /**
      * Returns true if a todo with the same identity
      * as {@code todo} exists in the tracker.

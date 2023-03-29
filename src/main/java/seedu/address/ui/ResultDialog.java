@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
- * A UI component that is responsible for outputting the result of user requests.
+ * A UI component that is responsible for showing the result of user requests.
  */
 public class ResultDialog {
 

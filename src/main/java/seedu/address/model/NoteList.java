@@ -65,7 +65,6 @@ public class NoteList implements ReadOnlyNote {
         setNote(newData.getNoteList());
     }
 
-    /// application-level operations
     /**
      * Returns true if a note with the same identity
      * as {@code note} exists in the tracker.

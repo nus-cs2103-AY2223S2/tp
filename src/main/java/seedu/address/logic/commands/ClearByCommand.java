@@ -29,8 +29,7 @@ public class ClearByCommand extends Command {
         private String name;
 
         /**
-         * Creates string representation for the respective ParamType.
-         * @param name
+         * Creates string representation{@code name} for the respective ParamType.
          */
         ParamType(String name) {
             this.name = name;

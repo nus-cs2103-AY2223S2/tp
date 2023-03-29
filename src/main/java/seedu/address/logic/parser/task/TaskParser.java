@@ -16,12 +16,12 @@ import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
 import seedu.address.logic.parser.task.note.AddNoteCommandParser;
+import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
+import seedu.address.logic.parser.task.todo.AddTodoCommandParser;
 import seedu.address.logic.parser.task.todo.DeleteTodoCommandParser;
 import seedu.address.logic.parser.task.todo.EditContentCommandParser;
 import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
-import seedu.address.logic.parser.task.todo.AddTodoCommandParser;
 
 /**
  * Parses user input related to task package.
