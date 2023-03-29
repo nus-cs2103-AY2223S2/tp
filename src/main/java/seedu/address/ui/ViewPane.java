@@ -33,6 +33,8 @@ public class ViewPane extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label date;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -55,6 +57,7 @@ public class ViewPane extends UiPart<Region> {
         this.person = person;
         nric.setText("Nric: " + person.getNric().fullNric);
         name.setText(person.getName().fullName);
+        date.setText(person.getDate().dateOfBirth);
         phone.setText("Phone Number: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         gender.setText("Gender: " + person.getGender().gender);

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -26,6 +27,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -49,6 +51,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NRIC + "NRIC] "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_DATE_OF_BIRTH + "DATEOFBIRTH] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -110,6 +113,7 @@ public class EditCommand extends Command {
 
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        DateOfBirth updatedDate = editPersonDescriptor.getDate().orElse(personToEdit.getDate());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -119,7 +123,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
 
-        return new Person(updatedNric, updatedName, updatedPhone, updatedEmail,
+        return new Person(updatedNric, updatedName, updatedDate, updatedPhone, updatedEmail,
             updatedAddress, updatedAllergy, updatedGender, updatedDoctor, updatedTags, updatedMedicines);
     }
 
@@ -148,6 +152,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Nric nric;
         private Name name;
+        private DateOfBirth date;
         private Phone phone;
         private Email email;
         private Address address;
@@ -167,6 +172,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setNric(toCopy.nric);
             setName(toCopy.name);
+            setDate(toCopy.date);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -199,6 +205,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setDate(DateOfBirth date) {
+            this.date = date;
+        }
+
+        public Optional<DateOfBirth> getDate() {
+            return Optional.ofNullable(date);
         }
 
         public void setPhone(Phone phone) {
