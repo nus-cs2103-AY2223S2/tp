@@ -157,23 +157,6 @@ Format: `check INDEX`
 Examples:
 * `list` followed by `check 2` checks the 2nd student in the student list.
 
-### Filter the student list using students' tags: `filter`
-
-Filters the student list to only display students with any of the given tags.
-
-Format: `filter KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `Primary` will match `primary`
-* Only the tags are searched.
-* Only full words will be matched e.g. `primary` will not match `primary-1`
-* Students with tags matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `primary secondary` will return any students tagged with `primary` or `secondary`
-
-Examples:
-* `filter primary` returns students tagged with `primary`
-* `filter secondary primary polytechnic` returns students tagged with any of `secondary`, `primary` or `polytechnic` tags<br>
-
-
 ### Adding a task for a student: `addTask`
 
 Adds a task to a specific student.
@@ -205,8 +188,28 @@ Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 Examples:
 
 * `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the 
+* `find Betsy` followed by `deleteTask 1 6` deletes the sixth task of the 1st student in the results of the 
 `find` command.
+
+### Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
+
+Marks the specified task from the task list of a student as complete, in progress or late.
+
+Format:
+<br> Mark task as complete: `markComplete INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as in progress: `markInProgress INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as late: `markLate INDEX_OF_STUDENT INDEX_OF_TASK`
+
+* Marks the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`) as complete, in progress or late, depending on the command called.
+* The first index refers to the index number shown in the displayed student list and
+  the second index refers to the index of the task in the displayed task list of the student.
+* Both indexes **must be positive integers** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `markComplete 2 3` marks the third task of the 2nd student in the student list as complete.
+* `find Betsy` followed by `markLate 1 6` marks the sixth task of the 1st student in the results of the
+  `find` command as late.
 
 ### Adding a score for a student: `addScore`
 
@@ -300,6 +303,7 @@ _Details coming soon ..._
 | **List Students**  | `list`                                                                                                                                                                                          |
 | **Add Task**       | `addTask INDEX t/TITLE`<br> e.g `addTask 2 Homework Assignment 1`                                                                                                                               |
 | **Delete Task**    | `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deleteTask 2 1`                                                                                                                            |
+| **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markComplete`, `markLate` or `markInProgress`)<br> e.g. `markComplete 1 2`<br>                                     |
 | **Add Score**      | `addScore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addScore l/CA2 A Math v/70 d/2022-03-03`                                                                                                    |
 | **Delete Score**   | `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deleteScore 3 4`                                                                                                                        |
 | **Help**           | `help`                                                                                                                                                                                          |
