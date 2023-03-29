@@ -144,8 +144,6 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         memory.saveNewLatest(this.dengueHotspotTracker);
         updateFromMemoryStack();
-
-
     }
 
     @Override
@@ -215,8 +213,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && overview.equals(other.overview);
     }
-
-
-
-
 }

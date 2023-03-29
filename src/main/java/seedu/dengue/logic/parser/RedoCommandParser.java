@@ -14,7 +14,6 @@ public class RedoCommandParser implements Parser<RedoCommand> {
      * and returns a RedoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-
     public RedoCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {

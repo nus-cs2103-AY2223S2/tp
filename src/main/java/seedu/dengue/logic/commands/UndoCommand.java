@@ -17,9 +17,15 @@ public class UndoCommand extends Command {
             + "eg. undo 1";
 
     private final int numberOfUndos;
+
+    /**
+     * Creates a {@code UndoCommand} to undo previous actions by the user.
+     * @param numberOfUndos The number of steps to undo.
+     */
     public UndoCommand(int numberOfUndos) {
         this.numberOfUndos = numberOfUndos;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

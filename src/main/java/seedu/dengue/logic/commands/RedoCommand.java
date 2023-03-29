@@ -17,6 +17,11 @@ public class RedoCommand extends Command {
             + "eg. redo 2";
 
     private final int numberOfRedos;
+
+    /**
+     * Creates a {@code RedoCommand} to redo previous actions by the user.
+     * @param numberOfRedos The number of steps to redo.
+     */
     public RedoCommand(int numberOfRedos) {
         this.numberOfRedos = numberOfRedos;
     }

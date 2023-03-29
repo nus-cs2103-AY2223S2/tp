@@ -18,7 +18,10 @@ public class MemoryStack implements StackWithStorage<ReadOnlyDengueHotspotTracke
     private final Deque<ReadOnlyDengueHotspotTracker> memory;
     private final Stack<ReadOnlyDengueHotspotTracker> storage;
 
-
+    /**
+     * Creates a specialised stack that stores {@Code ReadOnlyDengueHotspotTracker} objects.
+     * @param latest A {@link ReadOnlyDengueHotspotTracker} object.
+     */
     protected MemoryStack(ReadOnlyDengueHotspotTracker latest) {
         this.storage = new Stack<>();
         this.memory = new ArrayDeque<ReadOnlyDengueHotspotTracker>(MAX_SIZE + 1);
@@ -84,9 +87,5 @@ public class MemoryStack implements StackWithStorage<ReadOnlyDengueHotspotTracke
     public boolean isFull() {
         return this.memory.size() > MAX_SIZE;
     }
-
-
-
-
 
 }
