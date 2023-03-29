@@ -40,8 +40,14 @@ Trackr is a **desktop app for managing deliveries for your business, optimised f
 
 **:information_source: Notes about the command format:**<br>
 
+* Command keywords are case-sensitive, all command keywords must be in lower-case.
+  e.g. For add supplier command, `add_supplier` is valid but `ADD_SUPPLIER` and `Add_Supplier` are not.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
+
+* Prefixes of the parameters are case-sensitive.<br>
+  e.g. `n/` in `add_s n/NAME` is case-sensitive (i.e. `N/` is an invalid prefix).
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -92,12 +98,13 @@ Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER 
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided.
-* Status available for setting are: Open, Preparing, Ready, Delivering, Delivered.
-* If no status is provided, it is defaulted to Open.
+* Status available for setting are: Not Delivered, In Progress and Delivered.
+* Key in `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
+* If no status is provided, it is defaulted to Not Delivered.
 
 Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
-* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
+* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/N`
 
 ### Adding a task: `add_task` / `add_t`
 
@@ -105,7 +112,7 @@ Adds a task to the list of tasks.
 
 Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
 
-* Status available for setting are: `N` (Not done), `D` (Done).
+* Status available for setting are: `N` / `n` (Not done), `D` / `d` (Done).
 * If no status is provided, it is defaulted to `N` (Not done).
 
 Examples:
@@ -140,6 +147,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Existing values will be replaced with the new values given.
 * When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
 * Typing `t/` without any input will remove all the existing tags.
+* To change status, use `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
 
 Examples:
 `edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
@@ -172,6 +180,7 @@ Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 * User is required to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing status, the existing status of the order will be removed and replaced with the given status.
+* To edit status, use `N` / `n` for Not done or `D` / `d` for Done.
 
 Examples:
 * `edit_task 1 n/Get creamer` edits the 1st task description to be get creamer
@@ -252,6 +261,22 @@ Syntax: `delete_task INDEX`
 Examples:
 * `delete_task 2` deletes the first task
 * `find_t flour` followed by `delete_t 3` deletes the 1st task in the results of the `find_t` command
+
+### Sorting a task: `sort_task` / `sort_t`
+
+Syntax: `sort_task [c/CRITERIA]`
+
+* Sorts all the tasks according to a criteria.
+* Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
+* The default criteria (when no criteria is specified) is `Status_and_deadline`.
+* Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
+* Sorting by `Deadline` puts the tasks with the earlier deadlines on the top of tasks with further deadlines.
+* Sorting by `Status` puts the tasks with "Not Done" status on top and tasks with "Done" status below.
+* Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case) 
+(i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
+* Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines 
+on top and tasks done and have the furthest deadlines below.
+(i.e. Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
 
 ### Switching tabs: `tab`
 
