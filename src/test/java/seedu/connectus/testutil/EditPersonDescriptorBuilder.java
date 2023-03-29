@@ -14,7 +14,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -34,7 +34,6 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    //TODO descriptor.setAddress, descriptor.setEmail, descriptor.setPhone, descriptor.setBirthday
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
@@ -42,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
-        descriptor.setTags(person.getTags());
+        descriptor.setRemarks(person.getRemarks());
         descriptor.setCcas(person.getCcas());
         descriptor.setCcaPositions(person.getCcaPositions());
         descriptor.setModules(person.getModules());
@@ -85,8 +84,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        Set<Remark> tagSet = Stream.of(tags).map(Remark::new).collect(Collectors.toSet());
+        descriptor.setRemarks(tagSet);
         return this;
     }
 

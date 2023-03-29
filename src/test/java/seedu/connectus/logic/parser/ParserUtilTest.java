@@ -28,7 +28,7 @@ import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -173,49 +173,49 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(INVALID_TAG));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_TAG_1);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_TAG_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseRemark_validValueWithWhitespace_returnsTrimmedRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_TAG_1);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(remarkWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseRemarks_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemarks(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseRemarks_collectionWithInvalidRemarks_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemarks(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseRemarks_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseRemarks(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
+    public void parseRemarks_collectionWithValidRemarks_returnsRemarkSet() throws Exception {
+        Set<Remark> actualRemarkSet = ParserUtil.parseRemarks(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Remark> expectedRemarkSet = new HashSet<Remark>(Arrays.asList(new Remark(VALID_TAG_1),
+                new Remark(VALID_TAG_2)));
+        assertEquals(expectedRemarkSet, actualRemarkSet);
     }
 
     @Test
@@ -292,7 +292,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseModules_collectionWithInvalidTags_throwsParseException() {
+    public void parseModules_collectionWithInvalidModules_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseModules(Arrays.asList(VALID_MODULE_1,
                 INVALID_MODULE)));
     }

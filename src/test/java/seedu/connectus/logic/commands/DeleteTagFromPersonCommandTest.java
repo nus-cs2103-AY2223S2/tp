@@ -32,7 +32,7 @@ public class DeleteTagFromPersonCommandTest {
         Person personToFiddle = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         List<Module> modifiedModules = convertSetToList(personToFiddle.getModules());
         modifiedModules.remove(0);
-        Person expectedPerson = new Person(personToFiddle, personToFiddle.getTags(), new HashSet<>(modifiedModules));
+        Person expectedPerson = new Person(personToFiddle, personToFiddle.getRemarks(), new HashSet<>(modifiedModules));
         DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, null,
             Index.fromOneBased(1));
 

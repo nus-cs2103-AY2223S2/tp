@@ -24,8 +24,8 @@ import seedu.connectus.logic.commands.ListCommand;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
+import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
-import seedu.connectus.testutil.EditPersonDescriptorBuilder;
 import seedu.connectus.testutil.PersonBuilder;
 import seedu.connectus.testutil.PersonUtil;
 
@@ -55,10 +55,9 @@ public class ConnectUsParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        EditPersonDescriptor descriptor = new EditPersonDescriptor();
+        descriptor.setName(new Name("Alex"));
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " 1 n/Alex");
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

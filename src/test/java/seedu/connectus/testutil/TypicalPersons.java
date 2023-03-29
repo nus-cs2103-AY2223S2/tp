@@ -14,8 +14,8 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_REMARK_FRIEND;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_REMARK_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,20 +32,20 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends")
+            .withRemarks("friends")
             .withModules("CS2101")
             .withCcas("NES")
             .withCcaPositions("President").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withBirthday("30/04/2004")
+            .withRemarks("owesMoney", "friends").withBirthday("30/04/2004")
             .withModules("CS2103T").withCcas("ICS")
             .withCcaPositions("President").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").withCcas("ICS")
+            .withEmail("cornelia@example.com").withAddress("10th street").withRemarks("friends").withCcas("ICS")
             .withCcaPositions("President").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
@@ -76,11 +76,13 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withRemarks(VALID_REMARK_FRIEND)
             .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
             .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withRemarks(VALID_REMARK_HUSBAND, VALID_REMARK_FRIEND)
             .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES)
             .withCcaPositions(VALID_CCA_POSITION_PRESIDENT).build();
 

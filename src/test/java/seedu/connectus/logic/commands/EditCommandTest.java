@@ -4,12 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.connectus.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -57,13 +53,10 @@ public class EditCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withModules(VALID_MODULE_CS2101)
-                .withCcas(VALID_CCA_ICS).withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withPhone(VALID_PHONE_BOB).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

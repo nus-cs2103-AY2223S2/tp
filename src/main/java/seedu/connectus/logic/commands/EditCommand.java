@@ -3,16 +3,12 @@ package seedu.connectus.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -36,7 +32,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * Edits the details of an existing person in the ConnectUS.
@@ -56,11 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM] "
             + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
-            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_MODULE + "MODULE]... "
-            + "[" + PREFIX_CCA + "CCA]... "
-            + "[" + PREFIX_CCA_POSITION + "CCA_POSITION]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -113,12 +105,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
-        Set<Cca> updatedCcas = editPersonDescriptor.getCcas().orElse(personToEdit.getCcas());
-        Set<CcaPosition> updatedCcaPositions = editPersonDescriptor.getCcaPositions()
-                .orElse(personToEdit.getCcaPositions());
-        Person p = new Person(updatedName, updatedTags, updatedModules, updatedCcas, updatedCcaPositions);
+        Person p = new Person(updatedName);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
             p.setPhone(editPersonDescriptor.getPhone().get());
@@ -146,7 +133,7 @@ public class EditCommand extends Command {
 
         if (editPersonDescriptor.getSocialMedia().isPresent()) {
             p.setSocialMedia(personToEdit.getSocialMedia().orElse(SocialMedia.create())
-                .updateWith(editPersonDescriptor.getSocialMedia().get()));
+                    .updateWith(editPersonDescriptor.getSocialMedia().get()));
         } else {
             if (personToEdit.getSocialMedia().isPresent()) {
                 p.setSocialMedia(personToEdit.getSocialMedia().get());
@@ -158,6 +145,38 @@ public class EditCommand extends Command {
         } else {
             if (personToEdit.getBirthday().isPresent()) {
                 p.setBirthday(personToEdit.getBirthday().get());
+            }
+        }
+
+        if (editPersonDescriptor.getRemarks().isPresent()) {
+            p.setRemarks(editPersonDescriptor.getRemarks().get());
+        } else {
+            if (!personToEdit.getRemarks().isEmpty()) {
+                p.setRemarks(personToEdit.getRemarks());
+            }
+        }
+
+        if (editPersonDescriptor.getModules().isPresent()) {
+            p.setModules(editPersonDescriptor.getModules().get());
+        } else {
+            if (!personToEdit.getModules().isEmpty()) {
+                p.setModules(personToEdit.getModules());
+            }
+        }
+
+        if (editPersonDescriptor.getCcas().isPresent()) {
+            p.setCcas(editPersonDescriptor.getCcas().get());
+        } else {
+            if (!personToEdit.getCcas().isEmpty()) {
+                p.setCcas(personToEdit.getCcas());
+            }
+        }
+
+        if (editPersonDescriptor.getCcaPositions().isPresent()) {
+            p.setCcaPositions(editPersonDescriptor.getCcaPositions().get());
+        } else {
+            if (!personToEdit.getCcaPositions().isEmpty()) {
+                p.setCcaPositions(personToEdit.getCcaPositions());
             }
         }
 
@@ -193,7 +212,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private SocialMedia socialMedia;
-        private Set<Tag> tags;
+        private Set<Remark> remarks;
         private Birthday birthday;
         private Set<Module> modules;
         private Set<Cca> ccas;
@@ -212,7 +231,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setSocialMedia(toCopy.socialMedia);
-            setTags(toCopy.tags);
+            setRemarks(toCopy.remarks);
             setModules(toCopy.modules);
             setCcas(toCopy.ccas);
             setCcaPositions(toCopy.ccaPositions);
@@ -223,8 +242,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags,
-                    birthday, modules, ccas, ccaPositions);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, birthday);
         }
 
         public void setName(Name name) {
@@ -278,21 +296,21 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code remarks} to this object's {@code remarks}.
+         * A defensive copy of {@code remarks} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setRemarks(Set<Remark> remarks) {
+            this.remarks = (remarks != null) ? new HashSet<>(remarks) : null;
         }
 
         /**
          * Returns an unmodifiable tag set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code remarks} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Remark>> getRemarks() {
+            return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
         }
 
 
@@ -369,7 +387,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getRemarks().equals(e.getRemarks());
         }
     }
 }

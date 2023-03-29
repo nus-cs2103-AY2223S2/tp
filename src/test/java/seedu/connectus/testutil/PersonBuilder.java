@@ -13,7 +13,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 import seedu.connectus.model.util.SampleDataUtil;
 
 /**
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private SocialMedia socialMedia;
-    private Set<Tag> tags;
+    private Set<Remark> remarks;
     private Set<Module> modules;
     private Set<Cca> ccas;
     private Set<CcaPosition> ccaPositions;
@@ -46,7 +46,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         socialMedia = SocialMedia.create();
-        tags = new HashSet<>();
+        remarks = new HashSet<>();
         modules = new HashSet<>();
         ccas = new HashSet<>();
         ccaPositions = new HashSet<>();
@@ -61,7 +61,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail().get();
         address = personToCopy.getAddress().get();
         socialMedia = personToCopy.getSocialMedia().orElse(SocialMedia.create());
-        tags = new HashSet<>(personToCopy.getTags());
+        remarks = new HashSet<>(personToCopy.getRemarks());
         modules = new HashSet<>(personToCopy.getModules());
         ccas = new HashSet<>(personToCopy.getCcas());
         ccaPositions = new HashSet<>(personToCopy.getCcaPositions());
@@ -79,8 +79,8 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
      * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withRemarks(String... tags) {
+        this.remarks = SampleDataUtil.getRemarkSet(tags);
         return this;
     }
 
@@ -161,7 +161,7 @@ public class PersonBuilder {
      * @return a person with the given details.
      */
     public Person build() {
-        Person p = new Person(name, tags, modules, ccas, ccaPositions);
+        Person p = new Person(name);
 
         if (phone != null) {
             p.setPhone(phone);
@@ -181,6 +181,26 @@ public class PersonBuilder {
 
         if (birthday != null) {
             p.setBirthday(birthday);
+
+        }
+
+        if (remarks != null) {
+            p.setRemarks(remarks);
+
+        }
+
+        if (modules != null) {
+            p.setModules(modules);
+
+        }
+
+        if (ccas != null) {
+            p.setCcas(ccas);
+
+        }
+
+        if (ccaPositions != null) {
+            p.setCcaPositions(ccaPositions);
 
         }
 
