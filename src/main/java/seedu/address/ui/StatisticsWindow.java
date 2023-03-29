@@ -15,6 +15,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.stats.StatisticItemList;
 import seedu.address.model.stats.TotalCompleted;
 import seedu.address.model.stats.TotalEarnings;
 import seedu.address.model.stats.TotalJobs;
@@ -118,18 +119,35 @@ public class StatisticsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Returns a String that represents the statistics to be displayed
+     *
+     * @param list List of delivery jobs to generate statistic from
      */
-    void fillInnerParts() {
-        ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
+    public String fillStats(ObservableList<DeliveryJob> list) {
         TotalJobs totalJobs = new TotalJobs(list.size());
         TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
         TotalCompleted totalCompleted = new TotalCompleted(logic.getTotalCompleted(list));
         TotalPending totalPending = new TotalPending(logic.getTotalPending(list));
+
+        StatisticItemList statisticItemList = new StatisticItemList();
+
+        statisticItemList.addStats((totalJobs));
+        statisticItemList.addStats(totalEarnings);
+        statisticItemList.addStats(totalCompleted);
+        statisticItemList.addStats(totalPending);
+
+        return statisticItemList.printStats();
+    }
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillInnerParts() {
+        ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
         // new simple DeliveryJobListPanel constructor with no event handlers
         //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
         //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        totalJob.setText(totalJobs + totalEarnings.toString() + totalCompleted + totalPending);
+        totalJob.setText(fillStats(list));
 
         //resultDisplay = new ResultDisplay();
         //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
