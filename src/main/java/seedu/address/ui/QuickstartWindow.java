@@ -71,6 +71,14 @@ public class QuickstartWindow extends UiPart<Stage> {
             return QuickstartImages.QUICKSTART_SEVENTHPAGE;
         case 7:
             return QuickstartImages.QUICKSTART_EIGHTHPAGE;
+        case 8:
+            return QuickstartImages.QUICKSTART_NINTHPAGE;
+        case 9:
+            return QuickstartImages.QUICKSTART_TENTHPAGE;
+        case 10:
+            return QuickstartImages.QUICKSTART_ELEVENTHPAGE;
+        case 11:
+            return QuickstartImages.QUICKSTART_TWELFTHPAGE;
         default:
             return QuickstartImages.QUICKSTART_FIRSTPAGE;
         }
