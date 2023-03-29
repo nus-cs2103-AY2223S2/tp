@@ -14,12 +14,11 @@ import seedu.address.model.tag.TagContainsKeywordsPredicate;
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any prefix tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any tag "
             + "that matches with the filter condition (case-insensitive) and displays the "
-            + " filtered result as a list with index numbers.\n"
+            + "filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Supported filter types: primary, secondary, jc, poly, university.\n"
-            + "Example: " + COMMAND_WORD + " secondary";
+            + "Example: " + COMMAND_WORD + " friends";
 
     private final TagContainsKeywordsPredicate predicate;
 
