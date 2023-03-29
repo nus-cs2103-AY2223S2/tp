@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -54,6 +55,7 @@ public class DayOfWeekPanel extends UiPart<Region> {
 
         setAllFont(18.0);
         setAllWrappingWidth(60.0);
+        setAllTextColorWhite();
 
         dayOfWeekPanel.getChildren().addAll(mon, tue, wed, thur, fri, sat, sun);
         dayOfWeekPanel.setSpacing((primaryStage.getWidth() - 420) / 7);
@@ -73,6 +75,19 @@ public class DayOfWeekPanel extends UiPart<Region> {
         sat.setFont(new Font(fontSize));
         sun.setFont(new Font(fontSize));
 
+    }
+
+    /**
+     * Sets all text color to white
+     */
+    private void setAllTextColorWhite() {
+        mon.setFill(Color.WHITE);
+        tue.setFill(Color.WHITE);
+        wed.setFill(Color.WHITE);
+        thur.setFill(Color.WHITE);
+        fri.setFill(Color.WHITE);
+        sat.setFill(Color.WHITE);
+        sun.setFill(Color.WHITE);
     }
 
     /**
