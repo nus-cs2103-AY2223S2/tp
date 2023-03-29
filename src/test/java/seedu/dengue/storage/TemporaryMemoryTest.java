@@ -46,7 +46,7 @@ public class TemporaryMemoryTest {
         assertFalse(this.memory.isFull());
         for (i = i; i < inputs.size(); i++) {
             this.memory.saveNewLatest(this.inputs.get(i++));
-            assertEquals(this.memory.getMemory().size(), 10);
+            assertEquals(this.memory.getMemory().size(), this.memory.MAX_SIZE);
         }
     }
     // Saves multiple files into the stack, then perform undo a number of times
