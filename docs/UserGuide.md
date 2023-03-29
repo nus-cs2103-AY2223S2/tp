@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Trackr is a **desktop app for managing deliveries for your business, optimised for the use of Command Line Interface**, while still having the benefits of a Graphical User Interface (GUI). If you are a busy home business owner who hates excel or is on a time crunch, this is for you.
+Trackr is a **desktop app for managing deliveries for your business, optimised for the use of Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). If you are a busy home business owner who hates excel or is on a time crunch, this is for you.
 
-This guide shows you the relevant information for setting up and using Trackr.
+This guide shows you the relevant information for setting up and using Trackr to manage your suppliers, orders and tasks.
 
 You can click on any of the links below to navigate to the respective sections for more information.
 
@@ -16,17 +16,17 @@ You can click on any of the links below to navigate to the respective sections f
   * [Quick start](#quick-start)
   * [Features](#features)
     * [Viewing help : `help`](#viewing-help--help)
-    * [Adding a supplier: `add_supplier` or `add_s`](#adding-a-supplier-addsupplier-or-adds)
-    * [Adding an order: `add_order` or `add_o`](#adding-an-order-addorder-or-addo)
-    * [Adding a task: `add_task` or `add_t`](#adding-a-task-addtask-or-addt)
-    * [Editing a supplier: `edit_supplier` or `edit_s`](#editing-a-supplier-editsupplier-or-edits)
-    * [Editing an order : `edit_order` or `edit_o`](#editing-an-order--editorder-or-edito)
-    * [Editing a task : `edit_task` or `edit_t`](#editing-a-task--edittask-or-editt)
-    * [Finding a supplier : `find_supplier` or `find_s`](#finding-a-supplier--findsupplier-or-finds)
-    * [Finding a task : `find_task` or `find_t`](#finding-a-task--findtask-or-findt)
-    * [Deleting a supplier: `delete_supplier` or `delete_s`](#deleting-a-supplier-deletesupplier-or-deletes)
-    * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
-    * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
+    * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier-or-adds)
+    * [Adding an order: `add_order`](#adding-an-order-addorder-or-addo)
+    * [Adding a task: `add_task`](#adding-a-task-addtask-or-addt)
+    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-editsupplier-or-edits)
+    * [Editing an order : `edit_order`](#editing-an-order--editorder-or-edito)
+    * [Editing a task : `edit_task`](#editing-a-task--edittask-or-editt)
+    * [Finding a supplier : `find_supplier`](#finding-a-supplier--findsupplier-or-finds)
+    * [Finding a task : `find_task`](#finding-a-task--findtask-or-findt)
+    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier-or-deletes)
+    * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder-or-deleteo)
+    * [Deleting a task: `delete_task`](#deleting-a-task-deletetask-or-deletet)
     * [Switching tabs: `tab`](#switching-tabs-tab)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
@@ -67,7 +67,7 @@ You can click on any of the links below to navigate to the respective sections f
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
 
 * Items in square brackets are optional.<br>
