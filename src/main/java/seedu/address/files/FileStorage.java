@@ -10,8 +10,10 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  * The type Image storage.
@@ -126,7 +128,7 @@ public class FileStorage {
      * proper GUI interaction. The SwingUtilities.invokeLater() method is used to
      * achieve this.
      */
-    public void uploadFile() throws RuntimeException {
+    public void uploadFile() {
         SwingUtilities.invokeLater(() -> {
             JFileChooser fileChooser = configFileChooser();
             int result = fileChooser.showOpenDialog(null);
@@ -138,6 +140,8 @@ public class FileStorage {
                 checkDir(userDir);
                 try {
                     copySelectedFiles(selectedFiles, userDirPath, DEFAULT_FILE_SIZE);
+                    JOptionPane.showMessageDialog(null, "Files uploaded successfully!",
+                            "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException e) {
                     throw new RuntimeException(e.getMessage());
                 }

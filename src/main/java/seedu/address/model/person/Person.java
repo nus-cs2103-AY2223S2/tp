@@ -314,4 +314,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Sets medical condition.
+     *
+     * @param medicalCondition the medical condition
+     */
+    public void setMedicalCondition(MedicalCondition medicalCondition) {
+        this.medicalCondition = medicalCondition;
+    }
 }
