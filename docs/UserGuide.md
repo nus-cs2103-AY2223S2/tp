@@ -231,8 +231,8 @@ Example:
 <td style="width:50%;">After the command <code>:d 4</code></td>
 </tr>
 <tr>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/before.png" width="200" alt="Delete Command Before Image" title="Before Delete Command"></td>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/after.png" width="200" alt="Delete Command After Image" title="After Delete Command"></td>
+<td style="width:50%;"><img style="width:33%;" class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" title="Before Delete Command"></td>
+<td style="width:50%;"><img style="width:33%;" class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" title="After Delete Command"></td>
 </tr>
 </table>
 
