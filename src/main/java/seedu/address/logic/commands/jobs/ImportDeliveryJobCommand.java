@@ -1,9 +1,10 @@
 package seedu.address.logic.commands.jobs;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
