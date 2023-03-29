@@ -130,7 +130,6 @@ public class DetailDisplay extends UiPart<Region> {
                 hideGenerateButton();
                 hideViewDisplay();
                 filesManager.addFile();
-  
                 try {
                     filesManager.addFile();
                 } catch (RuntimeException e) {
