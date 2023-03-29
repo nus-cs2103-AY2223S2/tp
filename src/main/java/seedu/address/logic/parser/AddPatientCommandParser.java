@@ -44,7 +44,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                         PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HEIGHT, PREFIX_WEIGHT,
-                PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG)
+                PREFIX_DIAGNOSIS, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
@@ -56,7 +56,8 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Diagnosis diagnosis = ParserUtil.parseDiagnosis(argMultimap.getValue(PREFIX_DIAGNOSIS).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+        Remark remark = argMultimap.getValue(PREFIX_REMARK).isPresent() ? ParserUtil.parseRemark(argMultimap
+                .getValue(PREFIX_REMARK).get()) : new Remark("NIL");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Patient patient = new Patient(name, phone, email, height, weight, diagnosis, status, remark, tagList);
