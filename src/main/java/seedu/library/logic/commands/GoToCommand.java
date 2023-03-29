@@ -45,7 +45,7 @@ public class GoToCommand extends Command {
         Bookmark bookmarkToGoto = lastShownList.get(targetIndex.getZeroBased());
         String url = bookmarkToGoto.getUrl().toString();
         try {
-            if (url.isEmpty()){
+            if (url.isEmpty()) {
                 throw new CommandException(EMPTY_URL_ERROR);
             }
             openUrl(url);
