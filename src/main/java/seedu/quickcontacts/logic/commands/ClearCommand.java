@@ -2,11 +2,11 @@ package seedu.quickcontacts.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.quickcontacts.model.AddressBook;
 import seedu.quickcontacts.model.Model;
+import seedu.quickcontacts.model.QuickBook;
 
 /**
- * Clears the address book.
+ * Clears the quick book.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setQuickBook(new QuickBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

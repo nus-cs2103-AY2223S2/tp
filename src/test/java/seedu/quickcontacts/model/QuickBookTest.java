@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.quickcontacts.testutil.Assert.assertThrows;
-import static seedu.quickcontacts.testutil.TypicalAddressBooks.getTypicalAddressBook;
 import static seedu.quickcontacts.testutil.TypicalMeetings.MEETING_A;
 import static seedu.quickcontacts.testutil.TypicalPersons.ALICE;
+import static seedu.quickcontacts.testutil.TypicalQuickBooks.getTypicalQuickBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,25 +26,25 @@ import seedu.quickcontacts.model.person.exceptions.DuplicatePersonException;
 import seedu.quickcontacts.testutil.MeetingBuilder;
 import seedu.quickcontacts.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class QuickBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final QuickBook quickBook = new QuickBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), quickBook.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> quickBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyQuickBook_replacesData() {
+        QuickBook newData = getTypicalQuickBook();
+        quickBook.resetData(newData);
+        assertEquals(newData, quickBook);
     }
 
     @Test
@@ -53,9 +53,9 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
             .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Collections.singletonList(MEETING_A));
+        QuickBookStub newData = new QuickBookStub(newPersons, Collections.singletonList(MEETING_A));
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> quickBook.resetData(newData));
     }
 
     @Test
@@ -64,94 +64,94 @@ public class AddressBookTest {
         Meeting editedMeetingA = new MeetingBuilder(MEETING_A).withLocation(CommandTestUtil.VALID_MEETING_LOCATION)
             .withDescription(CommandTestUtil.VALID_MEETING_DESCRIPTION).build();
         List<Meeting> newMeetings = Arrays.asList(MEETING_A, editedMeetingA);
-        AddressBookStub newData = new AddressBookStub(Collections.singletonList(ALICE), newMeetings);
+        QuickBookStub newData = new QuickBookStub(Collections.singletonList(ALICE), newMeetings);
 
-        assertThrows(DuplicateMeetingException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateMeetingException.class, () -> quickBook.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> quickBook.hasPerson(null));
     }
 
     @Test
     public void hasMeeting_nullMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasMeeting(null));
+        assertThrows(NullPointerException.class, () -> quickBook.hasMeeting(null));
     }
 
     @Test
     public void getPersonByName_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.getPersonByName(null));
+        assertThrows(NullPointerException.class, () -> quickBook.getPersonByName(null));
     }
 
     @Test
-    public void getPersonByName_personNotInAddressBook_returnsNull() {
-        assertNull(addressBook.getPersonByName(ALICE.getName()));
+    public void getPersonByName_personNotInQuickBook_returnsNull() {
+        assertNull(quickBook.getPersonByName(ALICE.getName()));
     }
 
     @Test
-    public void getPersonByName_personInAddressBook_returnsPerson() {
-        addressBook.addPerson(ALICE);
-        assertEquals(ALICE, addressBook.getPersonByName(ALICE.getName()));
+    public void getPersonByName_personInQuickBook_returnsPerson() {
+        quickBook.addPerson(ALICE);
+        assertEquals(ALICE, quickBook.getPersonByName(ALICE.getName()));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInQuickBook_returnsFalse() {
+        assertFalse(quickBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasMeeting_meetingNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasMeeting(MEETING_A));
+    public void hasMeeting_meetingNotInQuickBook_returnsFalse() {
+        assertFalse(quickBook.hasMeeting(MEETING_A));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInQuickBook_returnsTrue() {
+        quickBook.addPerson(ALICE);
+        assertTrue(quickBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasMeeting_meetingInAddressBook_returnsTrue() {
-        addressBook.addMeeting(MEETING_A);
-        assertTrue(addressBook.hasMeeting(MEETING_A));
+    public void hasMeeting_meetingInQuickBook_returnsTrue() {
+        quickBook.addMeeting(MEETING_A);
+        assertTrue(quickBook.hasMeeting(MEETING_A));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInQuickBook_returnsTrue() {
+        quickBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
             .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(quickBook.hasPerson(editedAlice));
     }
 
     @Test
-    public void hasMeeting_meetingWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addMeeting(MEETING_A);
+    public void hasMeeting_meetingWithSameIdentityFieldsInQuickBook_returnsTrue() {
+        quickBook.addMeeting(MEETING_A);
         Meeting editedMeeting = new MeetingBuilder(MEETING_A).withLocation(CommandTestUtil.VALID_MEETING_LOCATION)
             .withDescription(CommandTestUtil.VALID_MEETING_DESCRIPTION).build();
-        assertTrue(addressBook.hasMeeting(editedMeeting));
+        assertTrue(quickBook.hasMeeting(editedMeeting));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> quickBook.getPersonList().remove(0));
     }
 
     @Test
     public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getMeetingList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> quickBook.getMeetingList().remove(0));
     }
 
 
     /**
-     * A stub ReadOnlyAddressBook whose persons/meetings list can violate interface constraints.
+     * A stub ReadOnlyQuickBook whose persons/meetings list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class QuickBookStub implements ReadOnlyQuickBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings) {
+        QuickBookStub(Collection<Person> persons, Collection<Meeting> meetings) {
             this.persons.setAll(persons);
             this.meetings.setAll(meetings);
         }

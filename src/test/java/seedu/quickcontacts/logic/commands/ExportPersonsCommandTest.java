@@ -14,11 +14,11 @@ import seedu.quickcontacts.model.ModelManager;
 import seedu.quickcontacts.model.UserPrefs;
 import seedu.quickcontacts.model.person.Person;
 import seedu.quickcontacts.storage.JsonAdaptedPerson;
-import seedu.quickcontacts.testutil.TypicalAddressBooks;
 import seedu.quickcontacts.testutil.TypicalIndexes;
+import seedu.quickcontacts.testutil.TypicalQuickBooks;
 
 public class ExportPersonsCommandTest {
-    private final Model model = new ModelManager(TypicalAddressBooks.getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalQuickBooks.getTypicalQuickBook(), new UserPrefs());
 
     @Test
     public void index_inRange_success() {

@@ -2,24 +2,24 @@ package seedu.quickcontacts.testutil;
 
 import static seedu.quickcontacts.testutil.TypicalMeetings.getTypicalMeetings;
 
-import seedu.quickcontacts.model.AddressBook;
+import seedu.quickcontacts.model.QuickBook;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.model.person.Person;
 
 /**
- * A utility class containing a list of {@code AddressBook} objects to be used in tests.
+ * A utility class containing a list of {@code QuickBook} objects to be used in tests.
  */
-public class TypicalAddressBooks {
+public class TypicalQuickBooks {
     /**
      * Prevents initialisation
      */
-    private TypicalAddressBooks() {}
+    private TypicalQuickBooks() {}
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons only.
+     * Returns an {@code QuickBook} with all the typical persons only.
      */
-    public static AddressBook getTypicalAddressBookPersonsOnly() {
-        AddressBook ab = new AddressBook();
+    public static QuickBook getTypicalQuickBookPersonsOnly() {
+        QuickBook ab = new QuickBook();
         for (Person person : TypicalPersons.getTypicalPersons()) {
             ab.addPerson(person);
         }
@@ -28,10 +28,10 @@ public class TypicalAddressBooks {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical meetings only.
+     * Returns an {@code QuickBook} with all the typical meetings only.
      */
-    public static AddressBook getTypicalAddressBookMeetingsOnly() {
-        AddressBook ab = new AddressBook();
+    public static QuickBook getTypicalQuickBookMeetingsOnly() {
+        QuickBook ab = new QuickBook();
         for (Meeting meeting : getTypicalMeetings()) {
             ab.addMeeting(meeting);
         }
@@ -40,10 +40,10 @@ public class TypicalAddressBooks {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons and meetings.
+     * Returns an {@code QuickBook} with all the typical persons and meetings.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static QuickBook getTypicalQuickBook() {
+        QuickBook ab = new QuickBook();
         for (Person person : TypicalPersons.getTypicalPersons()) {
             ab.addPerson(person);
         }

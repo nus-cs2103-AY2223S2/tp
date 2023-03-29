@@ -14,14 +14,14 @@ import seedu.quickcontacts.model.Model;
 import seedu.quickcontacts.model.ModelManager;
 import seedu.quickcontacts.model.UserPrefs;
 import seedu.quickcontacts.model.meeting.MeetingContainsNamesPredicate;
-import seedu.quickcontacts.testutil.TypicalAddressBooks;
+import seedu.quickcontacts.testutil.TypicalQuickBooks;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindMeetingCommandTest {
-    private final Model model = new ModelManager(TypicalAddressBooks.getTypicalAddressBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(TypicalAddressBooks.getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalQuickBooks.getTypicalQuickBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(TypicalQuickBooks.getTypicalQuickBook(), new UserPrefs());
 
     @Test
     public void equals() {

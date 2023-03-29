@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.quickcontacts.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.quickcontacts.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.quickcontacts.testutil.TypicalAddressBooks.getTypicalAddressBook;
 import static seedu.quickcontacts.testutil.TypicalPersons.CARL;
 import static seedu.quickcontacts.testutil.TypicalPersons.ELLE;
 import static seedu.quickcontacts.testutil.TypicalPersons.FIONA;
+import static seedu.quickcontacts.testutil.TypicalQuickBooks.getTypicalQuickBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.quickcontacts.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalQuickBook(), new UserPrefs());
 
     @Test
     public void equals() {

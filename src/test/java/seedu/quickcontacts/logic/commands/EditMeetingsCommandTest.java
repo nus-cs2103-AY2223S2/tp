@@ -9,22 +9,22 @@ import org.junit.jupiter.api.Test;
 import seedu.quickcontacts.commons.core.Messages;
 import seedu.quickcontacts.commons.core.index.Index;
 import seedu.quickcontacts.logic.commands.EditMeetingsCommand.EditMeetingDescriptor;
-import seedu.quickcontacts.model.AddressBook;
 import seedu.quickcontacts.model.Model;
 import seedu.quickcontacts.model.ModelManager;
+import seedu.quickcontacts.model.QuickBook;
 import seedu.quickcontacts.model.UserPrefs;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.testutil.EditMeetingDescriptorBuilder;
 import seedu.quickcontacts.testutil.MeetingBuilder;
-import seedu.quickcontacts.testutil.TypicalAddressBooks;
 import seedu.quickcontacts.testutil.TypicalIndexes;
+import seedu.quickcontacts.testutil.TypicalQuickBooks;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingsCommand.
  */
 public class EditMeetingsCommandTest {
 
-    private final Model model = new ModelManager(TypicalAddressBooks.getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalQuickBooks.getTypicalQuickBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class EditMeetingsCommandTest {
 
         String expectedMessage = String.format(EditMeetingsCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new QuickBook(model.getQuickBook()), new UserPrefs());
         expectedModel.setMeeting(model.getMeetingsList().get(0), editedMeeting);
 
         CommandTestUtil.assertCommandSuccess(editMeetingsCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class EditMeetingsCommandTest {
 
         String expectedMessage = String.format(EditMeetingsCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new QuickBook(model.getQuickBook()), new UserPrefs());
         expectedModel.setMeeting(lastMeeting, editedMeeting);
 
         CommandTestUtil.assertCommandSuccess(editedCommand, model, expectedMessage, expectedModel);
@@ -73,7 +73,7 @@ public class EditMeetingsCommandTest {
 
         String expectedMessage = String.format(EditMeetingsCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new QuickBook(model.getQuickBook()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }

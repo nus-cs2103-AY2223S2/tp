@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.quickcontacts.model.AddressBook;
-import seedu.quickcontacts.model.ReadOnlyAddressBook;
+import seedu.quickcontacts.model.QuickBook;
+import seedu.quickcontacts.model.ReadOnlyQuickBook;
 import seedu.quickcontacts.model.meeting.DateTime;
 import seedu.quickcontacts.model.meeting.Description;
 import seedu.quickcontacts.model.meeting.Location;
@@ -19,7 +19,7 @@ import seedu.quickcontacts.model.person.Phone;
 import seedu.quickcontacts.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code QuickBook} with sample data.
  */
 public class SampleDataUtil {
     /**
@@ -57,8 +57,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyQuickBook getSampleQuickBook() {
+        QuickBook sampleAb = new QuickBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

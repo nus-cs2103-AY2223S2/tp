@@ -21,32 +21,32 @@ import seedu.quickcontacts.model.person.Name;
 import seedu.quickcontacts.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the quick book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final QuickBook quickBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given quickBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyQuickBook quickBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(quickBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with quick book: " + quickBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.quickBook = new QuickBook(quickBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+        filteredPersons = new FilteredList<>(this.quickBook.getPersonList());
+        filteredMeetings = new FilteredList<>(this.quickBook.getMeetingList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new QuickBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,37 +74,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getQuickBookFilePath() {
+        return userPrefs.getQuickBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setQuickBookFilePath(Path quickBookFilePath) {
+        requireNonNull(quickBookFilePath);
+        userPrefs.setQuickBookFilePath(quickBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== QuickBook ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyQuickBook getQuickBook() {
+        return quickBook;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setQuickBook(ReadOnlyQuickBook quickBook) {
+        this.quickBook.resetData(quickBook);
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return quickBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        quickBook.removePerson(target);
     }
 
     @Override
@@ -138,7 +138,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        quickBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -146,19 +146,19 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        quickBook.setPerson(target, editedPerson);
     }
 
     @Override
     public Person getPersonByName(Name personName) {
-        return addressBook.getPersonByName(personName);
+        return quickBook.getPersonByName(personName);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedQuickBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -180,12 +180,12 @@ public class ModelManager implements Model {
 
     @Override
     public void sortFilteredMeetingList(Comparator comparator) {
-        addressBook.sortMeeting(comparator);
+        quickBook.sortMeeting(comparator);
     }
 
     @Override
     public void removeMeeting(Meeting key) {
-        addressBook.removeMeeting(key);
+        quickBook.removeMeeting(key);
     }
 
     @Override
@@ -202,7 +202,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return quickBook.equals(other.quickBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
@@ -210,25 +210,25 @@ public class ModelManager implements Model {
     //================= Meeting accessors ==================//
     @Override
     public void addMeeting(Meeting meeting) {
-        addressBook.addMeeting(meeting);
+        quickBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
-        return addressBook.hasMeeting(meeting);
+        return quickBook.hasMeeting(meeting);
     }
 
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-        addressBook.setMeeting(target, editedMeeting);
+        quickBook.setMeeting(target, editedMeeting);
     }
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedQuickBook}
      */
     @Override
     public ObservableList<Meeting> getMeetingsList() {
@@ -237,7 +237,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedQuickBook}
      */
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {

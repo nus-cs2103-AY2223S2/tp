@@ -8,7 +8,7 @@ import seedu.quickcontacts.logic.commands.AutocompleteResult;
 import seedu.quickcontacts.logic.commands.CommandResult;
 import seedu.quickcontacts.logic.commands.exceptions.CommandException;
 import seedu.quickcontacts.logic.parser.exceptions.ParseException;
-import seedu.quickcontacts.model.ReadOnlyAddressBook;
+import seedu.quickcontacts.model.ReadOnlyQuickBook;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.model.person.Person;
 
@@ -34,11 +34,11 @@ public interface Logic {
     AutocompleteResult autocomplete(String commandText);
 
     /**
-     * Returns the AddressBook.
+     * Returns the QuickBook.
      *
-     * @see seedu.quickcontacts.model.Model#getAddressBook()
+     * @see seedu.quickcontacts.model.Model#getQuickBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyQuickBook getQuickBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -49,9 +49,9 @@ public interface Logic {
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' quick book file path.
      */
-    Path getAddressBookFilePath();
+    Path getQuickBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -9,21 +9,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.collections.ObservableList;
 import seedu.quickcontacts.commons.core.index.Index;
 import seedu.quickcontacts.commons.util.JsonUtil;
-import seedu.quickcontacts.model.AddressBook;
 import seedu.quickcontacts.model.Model;
 import seedu.quickcontacts.model.ModelManager;
+import seedu.quickcontacts.model.QuickBook;
 import seedu.quickcontacts.model.UserPrefs;
 import seedu.quickcontacts.model.meeting.DateTime;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.storage.JsonAdaptedMeeting;
 import seedu.quickcontacts.testutil.MeetingBuilder;
-import seedu.quickcontacts.testutil.TypicalAddressBooks;
 import seedu.quickcontacts.testutil.TypicalIndexes;
+import seedu.quickcontacts.testutil.TypicalQuickBooks;
 
 public class ExportMeetingsCommandTest {
     @Test
     public void index_inRange_success() {
-        Model model = new ModelManager(TypicalAddressBooks.getTypicalAddressBookMeetingsOnly(), new UserPrefs());
+        Model model = new ModelManager(TypicalQuickBooks.getTypicalQuickBookMeetingsOnly(), new UserPrefs());
 
         List<Index> indexList = List.of(new Index[]{
             TypicalIndexes.INDEX_FIRST_MEETING, TypicalIndexes.INDEX_SECOND_MEETING});
@@ -44,7 +44,7 @@ public class ExportMeetingsCommandTest {
 
     @Test
     public void index_outOfRange_failure() {
-        Model model = new ModelManager(TypicalAddressBooks.getTypicalAddressBookMeetingsOnly(), new UserPrefs());
+        Model model = new ModelManager(TypicalQuickBooks.getTypicalQuickBookMeetingsOnly(), new UserPrefs());
 
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
         List<Index> indexList = List.of(new Index[]{Index.fromZeroBased(meetings.size())});
@@ -57,7 +57,7 @@ public class ExportMeetingsCommandTest {
 
     @Test
     public void date_success() {
-        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        Model model = new ModelManager(new QuickBook(), new UserPrefs());
         model.addMeeting(new MeetingBuilder().withDateTime("01/01/1970").build());
         model.addMeeting(new MeetingBuilder().withDateTime("02/01/1970").build());
         model.addMeeting(new MeetingBuilder().withDateTime("03/01/1970").build());
@@ -83,7 +83,7 @@ public class ExportMeetingsCommandTest {
 
     @Test
     public void dateWithIndex_success() {
-        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        Model model = new ModelManager(new QuickBook(), new UserPrefs());
         model.addMeeting(new MeetingBuilder().withDateTime("01/01/1970").build());
         model.addMeeting(new MeetingBuilder().withDateTime("02/01/1970").build());
         model.addMeeting(new MeetingBuilder().withDateTime("03/01/1970").build());

@@ -14,10 +14,10 @@ import seedu.quickcontacts.model.person.Person;
 import seedu.quickcontacts.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the quick-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class QuickBook implements ReadOnlyQuickBook {
 
     private final UniquePersonList persons;
     private final UniqueMeetingList meetings;
@@ -34,13 +34,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings = new UniqueMeetingList();
     }
 
-    public AddressBook() {
+    public QuickBook() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an QuickBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public QuickBook(ReadOnlyQuickBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -64,9 +64,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code QuickBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyQuickBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -76,7 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the quick book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -84,8 +84,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the quick book.
+     * The person must not already exist in the quick book.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -98,8 +98,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the quick book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the quick book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -108,8 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code QuickBook}.
+     * {@code key} must exist in the quick book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -118,7 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// meeting-level operations
 
     /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the quick book.
      */
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
@@ -126,15 +126,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a meeting to the address book.
-     * The meeting must not already exist in the address book.
+     * Adds a meeting to the quick book.
+     * The meeting must not already exist in the quick book.
      */
     public void addMeeting(Meeting m) {
         meetings.add(m);
     }
 
     /**
-     * Sort Meeting in addressbook.
+     * Sort Meeting in quickbook.
      */
     public void sortMeeting(Comparator comparator) {
         meetings.sort(comparator);
@@ -142,8 +142,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
-     * {@code target} must exist in the address book.
-     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the address
+     * {@code target} must exist in the quick book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the quick
      * book.
      */
     public void setMeeting(Meeting target, Meeting editedMeeting) {
@@ -153,8 +153,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code QuickBook}.
+     * {@code key} must exist in the quick book.
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
@@ -182,9 +182,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons)
-            && meetings.equals(((AddressBook) other).meetings));
+            || (other instanceof QuickBook // instanceof handles nulls
+            && persons.equals(((QuickBook) other).persons)
+            && meetings.equals(((QuickBook) other).meetings));
     }
 
     @Override

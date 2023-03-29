@@ -19,9 +19,9 @@ import javafx.collections.ObservableList;
 import seedu.quickcontacts.commons.core.GuiSettings;
 import seedu.quickcontacts.commons.core.index.Index;
 import seedu.quickcontacts.logic.commands.exceptions.CommandException;
-import seedu.quickcontacts.model.AddressBook;
 import seedu.quickcontacts.model.Model;
-import seedu.quickcontacts.model.ReadOnlyAddressBook;
+import seedu.quickcontacts.model.QuickBook;
+import seedu.quickcontacts.model.ReadOnlyQuickBook;
 import seedu.quickcontacts.model.ReadOnlyUserPrefs;
 import seedu.quickcontacts.model.meeting.DateTime;
 import seedu.quickcontacts.model.meeting.Meeting;
@@ -105,12 +105,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getQuickBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setQuickBookFilePath(Path quickBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -120,12 +120,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyQuickBook getQuickBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setQuickBook(ReadOnlyQuickBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -249,8 +249,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyQuickBook getQuickBook() {
+            return new QuickBook();
         }
     }
 

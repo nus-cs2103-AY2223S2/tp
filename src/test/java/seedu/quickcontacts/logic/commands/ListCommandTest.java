@@ -1,7 +1,7 @@
 package seedu.quickcontacts.logic.commands;
 
-import static seedu.quickcontacts.testutil.TypicalAddressBooks.getTypicalAddressBook;
 import static seedu.quickcontacts.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.quickcontacts.testutil.TypicalQuickBooks.getTypicalQuickBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalQuickBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getQuickBook(), new UserPrefs());
     }
 
     @Test

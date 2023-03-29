@@ -46,38 +46,38 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' quick book file path.
      */
-    Path getAddressBookFilePath();
+    Path getQuickBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' quick book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setQuickBookFilePath(Path quickBookFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns the QuickBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyQuickBook getQuickBook();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces quick book data with the data in {@code quickBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setQuickBook(ReadOnlyQuickBook quickBook);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the quick book.
      */
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if a meeting with the same identity as {@code person} exists in the address book.
+     * Returns true if a meeting with the same identity as {@code person} exists in the quick book.
      */
     boolean hasMeeting(Meeting meeting);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the quick book.
      */
     void deletePerson(Person target);
 
@@ -96,27 +96,27 @@ public interface Model {
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the quick book.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the quick book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the quick book.
      */
 
     void setPerson(Person target, Person editedPerson);
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the quick book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the quick book.
      */
     void setMeeting(Meeting target, Meeting editedMeeting);
 
 
     /**
-     * Gets the Person matching the name from the address book.
+     * Gets the Person matching the name from the quick book.
      *
      * @param personName name of the person to be retrieved.
      * @return the person with the given name.
@@ -155,8 +155,8 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code QuickBook}.
+     * {@code key} must exist in the quick book.
      */
     void removeMeeting(Meeting meeting);
 

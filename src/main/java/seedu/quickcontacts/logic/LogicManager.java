@@ -14,7 +14,7 @@ import seedu.quickcontacts.logic.commands.exceptions.CommandException;
 import seedu.quickcontacts.logic.parser.QuickContactsParser;
 import seedu.quickcontacts.logic.parser.exceptions.ParseException;
 import seedu.quickcontacts.model.Model;
-import seedu.quickcontacts.model.ReadOnlyAddressBook;
+import seedu.quickcontacts.model.ReadOnlyQuickBook;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.model.person.Person;
 import seedu.quickcontacts.storage.Storage;
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveQuickBook(model.getQuickBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -62,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyQuickBook getQuickBook() {
+        return model.getQuickBook();
     }
 
     @Override
@@ -76,8 +76,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getQuickBookFilePath() {
+        return model.getQuickBookFilePath();
     }
 
     @Override

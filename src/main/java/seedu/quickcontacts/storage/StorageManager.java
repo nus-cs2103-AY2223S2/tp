@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import seedu.quickcontacts.commons.core.LogsCenter;
 import seedu.quickcontacts.commons.exceptions.DataConversionException;
-import seedu.quickcontacts.model.ReadOnlyAddressBook;
+import seedu.quickcontacts.model.ReadOnlyQuickBook;
 import seedu.quickcontacts.model.ReadOnlyUserPrefs;
 import seedu.quickcontacts.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of QuickBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private QuickBookStorage quickBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code QuickBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(QuickBookStorage quickBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.quickBookStorage = quickBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ QuickBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getQuickBookFilePath() {
+        return quickBookStorage.getQuickBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyQuickBook> readQuickBook() throws DataConversionException, IOException {
+        return readQuickBook(quickBookStorage.getQuickBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyQuickBook> readQuickBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return quickBookStorage.readQuickBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveQuickBook(ReadOnlyQuickBook quickBook) throws IOException {
+        saveQuickBook(quickBook, quickBookStorage.getQuickBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveQuickBook(ReadOnlyQuickBook quickBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        quickBookStorage.saveQuickBook(quickBook, filePath);
     }
 
 }

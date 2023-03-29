@@ -6,7 +6,7 @@ import static seedu.quickcontacts.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.quickcontacts.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in the quick book to the user.
  */
 public class ListCommand extends Command {
 
