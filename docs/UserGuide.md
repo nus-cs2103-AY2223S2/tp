@@ -104,7 +104,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 1. First word is assumed to be a command word (add/delete/list/find).
 
-2. Words in ≈ are the parameters to be supplied by the user.<br>
+2. Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 3. Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/important`, `t/important t/urgent` etc.
@@ -164,15 +164,15 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
-:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color.
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q5-why-does-two-different-tags-have-the-same-tag-color)
 
 :warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
 :warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
-:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
-
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
+
+:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
 
 :warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`. Input fields will have unexpected behaviour when it contains these characters.
 
@@ -289,7 +289,7 @@ Examples:
 
 :warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 
-e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task.
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return a list with only the latter task.
 
 
 ### 2.7 Getting statistics : `stats`
@@ -322,7 +322,7 @@ Examples:
 
 #### 2.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
-Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan.
+Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-date-and-a-shortdate-)
 
 #### 2.9.2 Generating a New Plan
 When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
@@ -440,6 +440,8 @@ _Details coming soon ..._
 ### Q5 Why does two different tags have the same tag color??
 **A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
 
+### Q6 What is the difference between a `Date` and a `ShortDate`?
+**A**: A `ShortDate` omits the `HHMM` component of a `Date`. 
 
 --------------------------------------------------------------------------------------------------------------------
 
