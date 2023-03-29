@@ -14,6 +14,10 @@ import tfifteenfour.clipboard.model.course.ElementNotFoundException;
 import tfifteenfour.clipboard.model.course.UniqueCoursesList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 
+
+/**
+ * A list that enforces its items to be unique
+ */
 public abstract class UniqueList<T> implements Iterable<T> {
 
     protected final ObservableList<T> internalList = FXCollections.observableArrayList();
@@ -31,11 +35,21 @@ public abstract class UniqueList<T> implements Iterable<T> {
      * Adds a course to the list.
      * The course must not already exist in the list.
      */
-
     public abstract void add(T toAdd);
-    public abstract void set(T target, T edited);
-	protected abstract boolean elementsAreUnique(List<T> items);
 
+    /**
+     * Replaces an item in the list with a new item
+     * @param target item to replace
+     * @param newItem item that is replacing
+     */
+    public abstract void set(T target, T newItem);
+
+    protected abstract boolean elementsAreUnique(List<T> items);
+
+    /**
+     * Removes the specified item from the list
+     * @param toRemove item to remove
+     */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
@@ -48,13 +62,13 @@ public abstract class UniqueList<T> implements Iterable<T> {
         internalList.setAll(replacement.internalList);
     }
 
-    public void setInternalList(List<T> courses) {
-        requireAllNonNull(courses);
-        if (!elementsAreUnique(courses)) {
+    public void setInternalList(List<T> items) {
+        requireAllNonNull(items);
+        if (!elementsAreUnique(items)) {
             throw new DuplicateGroupException();
         }
 
-        internalList.setAll(courses);
+        internalList.setAll(items);
     }
 
     /**
@@ -79,10 +93,9 @@ public abstract class UniqueList<T> implements Iterable<T> {
         return filteredList;
     }
 
-
-	public void updateFilterPredicate(Predicate<T> predicate) {
-		this.filteredList.setPredicate(predicate);
-	}
+    public void updateFilterPredicate(Predicate<T> predicate) {
+        this.filteredList.setPredicate(predicate);
+    }
 
     @Override
     public Iterator<T> iterator() {
@@ -93,14 +106,11 @@ public abstract class UniqueList<T> implements Iterable<T> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueCoursesList // instanceof handles nulls
-                        && internalList.equals(((UniqueCoursesList) other).internalList));
+                && internalList.equals(((UniqueCoursesList) other).internalList));
     }
 
     @Override
     public int hashCode() {
         return internalList.hashCode();
     }
-
-
 }
-

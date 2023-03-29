@@ -10,8 +10,12 @@ import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
+/**
+ * Finds a student in a group.
+ */
 public class FindStudentCommand extends FindCommand {
-	public static final String COMMAND_TYPE_WORD = "student";
+
+    public static final String COMMAND_TYPE_WORD = "student";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
             + ": Finds a student. "
@@ -21,25 +25,31 @@ public class FindStudentCommand extends FindCommand {
             + " " + COMMAND_TYPE_WORD
             + " " + "kelvin ";
 
-	public static final String MESSAGE_SUCCESS = "Found %1$s results";
+    public static final String MESSAGE_SUCCESS = "Found %1$s results";
     private final StudentNameContainsPredicate predicate;
-	private final CurrentSelection currentSelection;
+    private final CurrentSelection currentSelection;
 
-
-
+    /**
+     * Creates a FindStudentCommand with the given StudentNameContainsPredicate and CurrentSelection.
+     *
+     * @param predicate The StudentNameContainsPredicate to use for finding the student.
+     * @param currentSelection The CurrentSelection object to get the selected group from.
+     */
     public FindStudentCommand(StudentNameContainsPredicate predicate, CurrentSelection currentSelection) {
         this.predicate = predicate;
-		this.currentSelection = currentSelection;
+        this.currentSelection = currentSelection;
     }
-	/**
+
+    /**
      * Executes the command and returns the result message.
+     *
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection of the {@code LogicManager}.
+     * @param currentSelection The CurrentSelection object to get the selected group from.
      * @throws CommandException If an error occurs during command execution.
      */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
-		Group selectedGroup = currentSelection.getSelectedGroup();
+        Group selectedGroup = currentSelection.getSelectedGroup();
         selectedGroup.updateFilteredStudents(predicate);
         int filteredSize = selectedGroup.getUnmodifiableFilteredStudentList().size();
 

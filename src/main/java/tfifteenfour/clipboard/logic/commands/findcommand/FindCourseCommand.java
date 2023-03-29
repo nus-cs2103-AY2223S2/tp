@@ -10,8 +10,11 @@ import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
 
+/**
+ * Finds a course whose name contains any of the specified keywords.
+ */
 public class FindCourseCommand extends FindCommand {
-	public static final String COMMAND_TYPE_WORD = "course";
+    public static final String COMMAND_TYPE_WORD = "course";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
             + ": Finds a course. "
@@ -24,8 +27,11 @@ public class FindCourseCommand extends FindCommand {
     public static final String MESSAGE_SUCCESS = "Found %1$s results";
     private final CourseNameContainsPredicate predicate;
 
-
-
+    /**
+     * Creates a FindCourseCommand to find the specified courses with the given predicate.
+     * @param predicate The predicate to filter courses with.
+     * @param currentSelection The current selection of the LogicManager.
+     */
     public FindCourseCommand(CourseNameContainsPredicate predicate) {
         this.predicate = predicate;
     }

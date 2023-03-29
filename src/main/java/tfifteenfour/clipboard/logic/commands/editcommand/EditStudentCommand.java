@@ -87,7 +87,8 @@ public class EditStudentCommand extends EditCommand {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && currentSelection.getSelectedGroup().hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent)
+            && currentSelection.getSelectedGroup().hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

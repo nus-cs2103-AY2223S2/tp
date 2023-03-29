@@ -22,7 +22,7 @@ import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private static String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to find %1$s";
+    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to find %1$s";
 
     private final CurrentSelection currentSelection;
 
@@ -82,6 +82,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+
+    /**
+     * Parses the find command arguments and returns the search keywords as a String array.
+     * @param args User input arguments.
+     * @return String array of search keywords.
+     * @throws ParseException If user input does not meet expected format.
+     */
     public String[] parseFindKeywords(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
 

@@ -10,28 +10,35 @@ import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
+/**
+ * Finds a task in the selected group whose name contains any of the specified keywords.
+ */
 public class FindTaskCommand extends FindCommand {
-	public static final String COMMAND_TYPE_WORD = "task";
+    public static final String COMMAND_TYPE_WORD = "task";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
-            + ": Finds a session. "
+            + ": Finds a task. "
             + "Parameters: "
-            + "SESSION_SEARCH_TERM\n"
+            + "TASK_SEARCH_TERM\n"
             + "Example: " + COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
             + " " + "Assignment1 ";
 
-	public static final String MESSAGE_SUCCESS = "Found %1$s results";
+    public static final String MESSAGE_SUCCESS = "Found %1$s results";
     private final TaskNameContainsPredicate predicate;
-	private final CurrentSelection currentSelection;
+    private final CurrentSelection currentSelection;
 
-
-
+    /**
+     * Creates a FindTaskCommand to find the specified sessions with the given predicate.
+     * @param predicate The predicate to filter tasks with.
+     * @param currentSelection The current selection of the LogicManager.
+     */
     public FindTaskCommand(TaskNameContainsPredicate predicate, CurrentSelection currentSelection) {
         this.predicate = predicate;
-		this.currentSelection = currentSelection;
+        this.currentSelection = currentSelection;
     }
-	/**
+
+    /**
      * Executes the command and returns the result message.
      * @param model {@code Model} which the command should operate on.
      * @param currentSelection of the {@code LogicManager}.
@@ -39,7 +46,7 @@ public class FindTaskCommand extends FindCommand {
      */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
-		Group selectedGroup = currentSelection.getSelectedGroup();
+        Group selectedGroup = currentSelection.getSelectedGroup();
         selectedGroup.updateFilteredTasks(predicate);
         int filteredSize = selectedGroup.getUnmodifiableFilteredTaskList().size();
 
