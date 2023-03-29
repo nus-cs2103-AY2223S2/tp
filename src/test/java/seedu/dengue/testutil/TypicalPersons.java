@@ -95,6 +95,22 @@ public class TypicalPersons {
             .withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE)
             .build();
 
+    // Manually added
+
+    public static final Person AMISH = new PersonBuilder().withName("Amish Bii").withPostal(VALID_POSTAL_CARL)
+            .withDate(VALID_DATE_BOB).withAge(VALID_AGE_BOB)
+            .withVariants(VALID_VARIANT_DENV2_UPPERCASE, VALID_VARIANT_DENV1_UPPERCASE)
+            .build();
+
+    public static final Person BECCA = new PersonBuilder().withName("Becca Poo").withPostal("135211")
+            .withDate(VALID_DATE_AMY).withAge(VALID_AGE_AMY)
+            .withVariants(VALID_VARIANT_DENV1_UPPERCASE, VALID_VARIANT_DENV2_UPPERCASE)
+            .build();
+
+    public static final Person CAROL = new PersonBuilder().withName("Carol See").withPostal(VALID_POSTAL_FIONA)
+            .withDate(VALID_DATE_HOON).withAge(VALID_AGE_IDA).build();
+
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -111,6 +127,8 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(
+                ALICE, BENSON, CARL, DANIEL,
+                ELLE, FIONA, GEORGE));
     }
 }

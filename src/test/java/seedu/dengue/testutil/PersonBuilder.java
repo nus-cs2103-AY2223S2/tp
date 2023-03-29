@@ -1,6 +1,7 @@
 package seedu.dengue.testutil;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import seedu.dengue.model.person.Age;
@@ -20,6 +21,10 @@ public class PersonBuilder {
     public static final String DEFAULT_POSTAL = "654214";
     public static final String DEFAULT_DATE = "2023-03-05";
     public static final String DEFAULT_AGE = "23";
+
+    private static final Random RANDOM = new Random();
+    private static final int BOUND = 199;
+    private static final int SMALL_BOUND = 15;
 
     private Name name;
     private Postal postal;
@@ -91,6 +96,22 @@ public class PersonBuilder {
 
     public Person build() {
         return new Person(name, postal, date, age, variants);
+    }
+
+    /**
+     * Builds a random person with a randomly generated name and age.
+     * @return A new random person.
+     */
+    public Person buildRandom() {
+        StringBuilder nameBuilder = new StringBuilder();
+        for (int i = 0; i < RANDOM.nextInt(SMALL_BOUND) + 5; i++) {
+            nameBuilder.append(RANDOM.nextInt(26) + 97);
+        }
+        String newName = nameBuilder.toString();
+
+        return new PersonBuilder().withAge(String.valueOf(RANDOM.nextInt(BOUND)))
+                .withName(newName)
+                .build();
     }
 
 }
