@@ -177,6 +177,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortFilteredFoodListByExpiryDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Food> getFilteredFoodList() {
             throw new AssertionError("This method should not be called.");
         }
