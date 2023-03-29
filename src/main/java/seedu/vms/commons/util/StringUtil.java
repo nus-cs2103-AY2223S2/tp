@@ -163,4 +163,34 @@ public class StringUtil {
         return message.substring(0, message.length() - 1);
     }
 
+
+    /**
+     * Wraps the text to the specified length.
+     */
+    public static String wrapText(String text, int wrapAt) {
+        String[] lines = text.split("[\n\r]");
+        StringBuilder builder = new StringBuilder();
+        for (String line : lines) {
+            builder.append(wrapLine(line, wrapAt));
+        }
+        return builder.toString().strip();
+    }
+
+
+    /**
+     * Wraps the line to the specified length. An additional new line will
+     * always be present at the end.
+     */
+    public static String wrapLine(String line, int wrapAt) {
+        int cur = 0;
+        StringBuilder builder = new StringBuilder();
+        while (cur < line.length()) {
+            int nextCur = Math.min(cur + wrapAt, line.length());
+            builder.append(line.substring(cur, nextCur));
+            builder.append("\n");
+            cur = nextCur;
+        }
+        return builder.toString();
+    }
+
 }
