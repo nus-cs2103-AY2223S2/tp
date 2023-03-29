@@ -46,11 +46,7 @@ public class RedoCommand extends Command {
         requireNonNull(history);
         int redoneCommands = history.redo(numCommands);
         Model redoneModel = history.presentModel();
-        model.setAddressBook(redoneModel.getAddressBook());
-        model.updateFilteredPersonList(redoneModel.getPredicate());
-        if (redoneModel.isFrozen()) {
-            model.freezeWith(redoneModel.getFilteredPersonList());
-        }
+        model.replicateStateOf(redoneModel);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, redoneCommands, numCommands), false, false);
     }
