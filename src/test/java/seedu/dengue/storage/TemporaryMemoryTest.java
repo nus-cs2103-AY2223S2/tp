@@ -36,6 +36,7 @@ public class TemporaryMemoryTest {
     }
 
     // Positive random test cases.
+
     @Test
     public void pushManySaves_randomDengueHotspotTrackers_memoryKeepsOnlyTenSaves() {
         int i;
@@ -48,9 +49,10 @@ public class TemporaryMemoryTest {
             assertEquals(this.memory.getMemory().size(), 10);
         }
     }
-
+    // Saves multiple files into the stack, then perform undo a number of times
+    // less than the number of saves.
     @Test
-    public void saveMultipleandUndoLessTimes_randomNumberOfRandomFiles_loadsCorrectFile()
+    public void saveMultipleThenUndoFewerTimes_randomNumberOfRandomFiles_loadsCorrectFile()
             throws CommandException {
         Random random = new Random();
         int numFiles = random.nextInt(10) + 3;
