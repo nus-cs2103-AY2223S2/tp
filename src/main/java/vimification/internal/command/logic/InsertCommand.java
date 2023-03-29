@@ -20,9 +20,9 @@ public class InsertCommand extends UndoableLogicCommand {
             + "Example: " + COMMAND_WORD + " 1" + "2023-01-01";
 
     public static final String SUCCESS_MESSAGE_FORMAT =
-            "deadline of task %1$s inserted.";
+            "New field(s) were inserted into task %1$s.";
     public static final String UNDO_MESSAGE =
-            "The command has been undone. The deadline of the task has been changed back.";
+            "The command has been undone. The new field(s) were discarded.";
 
     private final Index targetIndex;
     private final InsertRequest request;
@@ -45,7 +45,7 @@ public class InsertCommand extends UndoableLogicCommand {
         }
         request.getInsertedLabels().forEach(newTask::addLabel);
         taskList.set(index, newTask);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
     }
 
     @Override

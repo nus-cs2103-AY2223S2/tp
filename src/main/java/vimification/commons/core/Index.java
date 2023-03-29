@@ -57,4 +57,9 @@ public class Index {
         Index otherIndex = (Index) other;
         return zeroBasedIndex == otherIndex.zeroBasedIndex;
     }
+
+    @Override
+    public String toString() {
+        return "Index [" + getOneBased() + "]";
+    }
 }

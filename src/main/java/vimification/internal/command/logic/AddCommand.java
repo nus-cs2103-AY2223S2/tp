@@ -10,14 +10,14 @@ import vimification.model.task.Task;
  * Creates a new task and adds it to the task planner.
  */
 public class AddCommand extends UndoableLogicCommand {
-    public static final String COMMAND_WORD = "i";
+    public static final String COMMAND_WORD = "a";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": adds a task to the displayed task list.\n"
             + "Parameters: DESCRIPTION (description of the task to be added)\n"
             + "Conditions: Description cannot be empty.\n"
             + "Example: " + COMMAND_WORD + " quiz";
 
-    public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s created";
+    public static final String SUCCESS_MESSAGE = "A new task has been created.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. The new task has been deleted.";
 
@@ -35,7 +35,7 @@ public class AddCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList) {
         requireNonNull(taskList);
         taskList.add(addedTask);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, addedTask));
+        return new CommandResult(SUCCESS_MESSAGE);
     }
 
     @Override

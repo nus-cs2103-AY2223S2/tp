@@ -3,6 +3,7 @@ package vimification.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import vimification.commons.util.FileUtil;
 import vimification.commons.util.JsonUtil;
 import vimification.model.UserPrefs;
 
@@ -29,6 +30,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
 
     @Override
     public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
+        FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
 

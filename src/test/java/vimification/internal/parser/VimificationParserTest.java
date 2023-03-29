@@ -31,5 +31,9 @@ public class VimificationParserTest {
         String input = "a 'play touhou 6'";
         Command cmd = PARSER.parse(input);
         assertTrue(cmd != null);
+
+        String input1 = "a \"todo 1\"";
+        Command cmd1 = PARSER.parse(input1);
+        assertTrue(cmd1 != null);
     }
 }

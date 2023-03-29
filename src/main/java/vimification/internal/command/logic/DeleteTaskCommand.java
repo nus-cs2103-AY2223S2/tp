@@ -21,7 +21,7 @@ public class DeleteTaskCommand extends DeleteCommand {
             + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s deleted";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s has been deleted.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. The deleted task has been added back.";
 
@@ -45,7 +45,7 @@ public class DeleteTaskCommand extends DeleteCommand {
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
         taskList.add(targetIndex.getZeroBased(), deletedTask);
-        return new CommandResult(String.format(UNDO_MESSAGE, deletedTask));
+        return new CommandResult(UNDO_MESSAGE);
     }
 
     @Override

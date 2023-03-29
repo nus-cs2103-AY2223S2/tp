@@ -97,6 +97,7 @@ public class CommandInput extends UiPart<HBox> {
             }
             System.out.println(result.getFeedbackToUser());
         } catch (CommandException e) {
+            e.printStackTrace();
             System.out.println("[Your command] " + input + " is invalid");
         } catch (ParserException e) {
             // TODO: Remove this once execute no longer throws error and returns error in
