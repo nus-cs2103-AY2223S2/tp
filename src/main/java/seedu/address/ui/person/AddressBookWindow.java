@@ -1,5 +1,6 @@
 package seedu.address.ui.person;
 
+import java.io.FileNotFoundException;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -104,6 +105,8 @@ public class AddressBookWindow extends UiPart<Stage> {
                 logic.execute(new DeleteCommand(personIndex));
             } catch (ParseException | CommandException e) {
                 logger.warning(e.getMessage());
+            } catch (FileNotFoundException e) {
+                logger.warning(e.getMessage());
             }
         });
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -128,7 +131,8 @@ public class AddressBookWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -141,6 +145,10 @@ public class AddressBookWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (FileNotFoundException e) {
+            logger.info("File not found: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

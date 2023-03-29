@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -182,7 +183,8 @@ public class StatisticsWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -191,6 +193,11 @@ public class StatisticsWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            //resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (FileNotFoundException e) {
+            logger.info("File not found: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             //resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

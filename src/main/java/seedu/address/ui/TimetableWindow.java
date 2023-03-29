@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -156,7 +157,8 @@ public class TimetableWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#executeTimetableCommand(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException {
         try {
             CommandResult commandResult = logic.executeTimetableCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -173,6 +175,10 @@ public class TimetableWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (FileNotFoundException e) {
+            logger.info("File not found: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
