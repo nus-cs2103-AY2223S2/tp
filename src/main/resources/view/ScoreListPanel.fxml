@@ -16,43 +16,46 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.control.ScrollPane?>
 
-
-<TabPane fx:id="fullTabs" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.geometry.Insets?>
+<TabPane fx:id="fullTabs" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <Tab fx:id="tab1" closable="false" styleClass="list_tab" text="Text">
-        <VBox>
-        <Label fx:id="title" styleClass="title_label" text="Score List" />
-        <Label fx:id="name" styleClass="heading_label" />
-        <ListView fx:id="scoreListView" style="-fx-padding: 10 18 18 18" VBox.vgrow="ALWAYS" />
+        <VBox style="-fx-border-color: transparent;" minHeight="40">
+            <Label fx:id="title" styleClass="title_label" text="Score List" minHeight="-Infinity" wrapText="true"/>
+            <Label fx:id="name" styleClass="heading_label" minHeight="-Infinity" wrapText="true"/>
+            <ListView fx:id="scoreListView" style="-fx-padding: 10 18 18 18" VBox.vgrow="ALWAYS" />
         </VBox>
     </Tab>
-    <Tab fx:id="tab2" closable="false" styleClass="list_tab" text="Chart">
-        <VBox>
-            <Label fx:id="chart" styleClass="title_label" text="Score Chart" />
-            <Label fx:id="nameChart" styleClass="heading_label" />
-            <LineChart fx:id="scoreChart" prefWidth="500" prefHeight="200" visible="false">
-                <xAxis>
-                    <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                </xAxis>
-                <yAxis>
-                    <NumberAxis fx:id="yAxis" autoRanging="false" lowerBound="0" upperBound="100" tickUnit="20" />
-                </yAxis>
-            </LineChart>
-            <TableView fx:id="scoreStatistic" prefHeight="75" prefWidth="500.0">
-                <columns>
-                    <TableColumn fx:id="maxScore" text="Max Score">
-                    </TableColumn>
-                    <TableColumn fx:id="minScore" text="Min Score">
-                    </TableColumn>
-                    <TableColumn fx:id="average" text="Average">
-                    </TableColumn>
-                    <TableColumn fx:id="percentage" text="Percentage %">
-                    </TableColumn>
-                </columns>
-            <columnResizePolicy>
-               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-            </TableView>
+    <Tab fx:id="tab2" closable="false" styleClass="list_tab" text="Chart" >
+        <VBox style="-fx-border-color: white;" >
+            <Label fx:id="chart" styleClass="title_label" text="Score Chart" minHeight="-Infinity" wrapText="true"/>
+            <Label fx:id="nameChart" styleClass="heading_label" minHeight="-Infinity" wrapText="true"/>
+            <Label prefHeight="5" minHeight="5" maxHeight="5" ></Label>
+            <ScrollPane fx:id = "scoreScroll" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-padding:0;-fx-background-insets: 0, 1;">
+                <VBox VBox.vgrow="ALWAYS">
+                    <LineChart fx:id="scoreChart" visible="false" prefHeight="120" prefWidth="120" style="-fx-padding: 14 10 0 0">
+                        <xAxis>
+                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                        </xAxis>
+                        <yAxis>
+                        <NumberAxis fx:id="yAxis" autoRanging="false" lowerBound="0" upperBound="100" tickUnit="20" />
+                        </yAxis>
+                    </LineChart>
+                    <Label prefHeight="10" minHeight="10" maxHeight="10"></Label>
+                    <TableView fx:id="scoreStatistic" maxHeight="80" minHeight="80" minWidth="20">
+                        <columns>
+                            <TableColumn fx:id="maxScore" text="Max" />
+                            <TableColumn fx:id="minScore" text="Min" />
+                            <TableColumn fx:id="average" text="Average" />
+                            <TableColumn fx:id="percentage" text="Percentage" />
+                        </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                        </columnResizePolicy>
+                    </TableView>
+                </VBox>
+            </ScrollPane>
         </VBox>
     </Tab>
 </TabPane>

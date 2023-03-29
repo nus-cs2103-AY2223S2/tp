@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        model.checkPerson(null);
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
-
 }
