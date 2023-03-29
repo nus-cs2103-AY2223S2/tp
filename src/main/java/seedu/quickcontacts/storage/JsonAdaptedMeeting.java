@@ -52,8 +52,16 @@ public class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         title = source.getTitle().toString();
         dateTime = source.getDateTime().toString();
-        location = source.getLocation().toString();
-        description = source.getDescription().toString();
+        if (source.getLocation() != null) {
+            location = source.getLocation().toString();
+        } else {
+            location = null;
+        }
+        if (source.getDescription() != null) {
+            description = source.getDescription().toString();
+        } else {
+            description = null;
+        }
         attendees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -87,23 +95,25 @@ public class JsonAdaptedMeeting {
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 
-        if (location == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Location.class.getSimpleName()));
+        final Location modelLocation;
+        if (location != null) {
+            if (!Location.isValidLocation(location)) {
+                throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+            }
+            modelLocation = new Location(location);
+        } else {
+            modelLocation = null;
         }
-        if (!Location.isValidLocation(location)) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-        final Location modelLocation = new Location(location);
 
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Description.class.getSimpleName()));
+        final Description modelDescription;
+        if (description != null) {
+            if (!Description.isValidDescription(description)) {
+                throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            }
+            modelDescription = new Description(description);
+        } else {
+            modelDescription = null;
         }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
-        final Description modelDescription = new Description(description);
 
         final Set<Person> modelAttendees = new HashSet<>(meetingAttendees);
         return new Meeting(modelTitle, modelDateTime, modelAttendees, modelLocation, modelDescription);

@@ -24,10 +24,20 @@ public class SortMeetingCommand extends Command {
     private static Prefix sortByPrefix;
     private static String prefix;
     private static boolean isReverse;
-    private static Comparator<Meeting> titleComparator = Comparator.comparing(m -> m.getTitle().toString());
-    private static Comparator<Meeting> descriptorComparator = Comparator.comparing(m -> m.getDescription().toString());
-    private static Comparator<Meeting> locationComparator = Comparator.comparing(m -> m.getLocation().toString());
-    private static Comparator<Meeting> dateTimeComparator = Comparator.comparing((Meeting m) -> m.getDateTime()
+    private static final Comparator<Meeting> titleComparator = Comparator.comparing(m -> m.getTitle().toString());
+    private static final Comparator<Meeting> descriptorComparator = Comparator.comparing(m -> {
+        if (m.getDescription() == null) {
+            return "";
+        }
+        return m.getDescription().toString();
+    });
+    private static final Comparator<Meeting> locationComparator = Comparator.comparing(m -> {
+        if (m.getLocation() == null) {
+            return "";
+        }
+        return m.getLocation().toString();
+    });
+    private static final Comparator<Meeting> dateTimeComparator = Comparator.comparing((Meeting m) -> m.getDateTime()
                                                                 .get());
     private static final String MESSAGE_SUCCESS = "Sorted by %1$s";
     /**
@@ -35,8 +45,8 @@ public class SortMeetingCommand extends Command {
      * {@code DateTime}, {@code Location}, {@code Description}
      */
     public SortMeetingCommand(Prefix sortByPrefix, boolean isReverse) {
-        this.sortByPrefix = sortByPrefix;
-        this.isReverse = isReverse;
+        SortMeetingCommand.sortByPrefix = sortByPrefix;
+        SortMeetingCommand.isReverse = isReverse;
     }
     /**
      * executes the sort command, by the prefix given pass the correct comparator
@@ -45,7 +55,7 @@ public class SortMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         prefix = sortByPrefix.toString();
-        String prefixName = "";
+        String prefixName;
         switch (prefix) {
         case "m/":
             reverseSort(model, titleComparator, isReverse);
@@ -68,7 +78,7 @@ public class SortMeetingCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, prefixName));
     }
-    private void reverseSort(Model model, Comparator comparator, boolean isReverse) {
+    private void reverseSort(Model model, Comparator<Meeting> comparator, boolean isReverse) {
         if (isReverse) {
             model.sortFilteredMeetingList(comparator.reversed());
         } else {

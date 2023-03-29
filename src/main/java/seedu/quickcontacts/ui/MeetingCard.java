@@ -42,15 +42,21 @@ public class MeetingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(meeting.getTitle().toString());
         dateTime.setText(meeting.getDateTime().toString());
-        attendees.setText(
+        if (meeting.getAttendees().size() > 0) {
+            attendees.setText(
                 "Attendees: "
-                        + meeting.getAttendees()
-                        .stream()
-                        .map(person -> person.getName().toString())
-                        .reduce((s, s2) -> s + "," + s2)
-                        .get());
-        meetingLocation.setText("Location: " + meeting.getLocation().toString());
-        description.setText("Description: " + meeting.getDescription().toString());
+                    + meeting.getAttendees()
+                    .stream()
+                    .map(person -> person.getName().toString())
+                    .reduce((s, s2) -> s + "," + s2)
+                    .get());
+        }
+        if (meeting.getLocation() != null) {
+            meetingLocation.setText("Location: " + meeting.getLocation().toString());
+        }
+        if (meeting.getDescription() != null) {
+            description.setText("Description: " + meeting.getDescription().toString());
+        }
         formatDateTimePast();
     }
 

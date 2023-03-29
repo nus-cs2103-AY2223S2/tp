@@ -28,7 +28,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -88,10 +88,34 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        if (otherPerson.getPhone() == null) {
+            if (getPhone() != null) {
+                return false;
+            }
+        } else {
+            if (!otherPerson.getPhone().equals(getPhone())) {
+                return false;
+            }
+        }
+        if (otherPerson.getEmail() == null) {
+            if (getEmail() != null) {
+                return false;
+            }
+        } else {
+            if (!otherPerson.getEmail().equals(getEmail())) {
+                return false;
+            }
+        }
+        if (otherPerson.getAddress() == null) {
+            if (getAddress() != null) {
+                return false;
+            }
+        } else {
+            if (!otherPerson.getAddress().equals(getAddress())) {
+                return false;
+            }
+        }
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 

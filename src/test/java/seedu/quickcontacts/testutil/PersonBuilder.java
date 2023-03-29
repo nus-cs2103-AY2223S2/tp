@@ -69,6 +69,9 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
+        if (address == null) {
+            return null;
+        }
         this.address = new Address(address);
         return this;
     }
@@ -77,6 +80,9 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
+        if (phone == null) {
+            return null;
+        }
         this.phone = new Phone(phone);
         return this;
     }
@@ -85,6 +91,9 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
+        if (email == null) {
+            return null;
+        }
         this.email = new Email(email);
         return this;
     }
