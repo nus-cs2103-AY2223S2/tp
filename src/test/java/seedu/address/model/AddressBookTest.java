@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -92,6 +93,9 @@ public class AddressBookTest {
         AddressBookStub(Collection<Patient> patients) {
             this.patients.setAll(patients);
         }
+
+        @Override
+        public void sortPatients(Comparator<Patient> comparator) {}
 
         @Override
         public ObservableList<Patient> getPatientList() {

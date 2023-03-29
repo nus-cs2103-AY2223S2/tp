@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -137,6 +138,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(key);
         patients.remove(key);
         wards.remove(key);
+    }
+
+    @Override
+    public void sortPatients(Comparator<Patient> comparator) {
+        patients.sortPatients(comparator);
     }
 
     //// ward-level operations

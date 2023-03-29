@@ -28,7 +28,7 @@ public class Ward {
 
     public final WardName value;
 
-    private final Capacity capacity;
+    private Capacity capacity;
 
     private UniquePatientList patients;
 
@@ -60,13 +60,23 @@ public class Ward {
     }
 
     /**
-     * Ward constructor with string for comparisons
+     * Ward factory constructor with string for comparisons
      * @param name
      * @return placeholder Ward
      */
     public static Ward wardWithName(String name) {
         WardName wardName = new WardName(name);
         return new Ward(wardName);
+    }
+
+    /**
+     * Edit capacity of this ward
+     * @param capacity
+     * @return Ward with edited capacity
+     */
+    public Ward withCapacity(int capacity) {
+        this.capacity = new Capacity(capacity);
+        return this;
     }
 
     /**
