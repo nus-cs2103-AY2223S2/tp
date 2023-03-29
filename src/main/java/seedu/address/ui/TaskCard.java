@@ -3,6 +3,8 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
@@ -57,6 +59,9 @@ public class TaskCard extends UiPart<Region> {
 
     @FXML
     private Circle circle5;
+
+    @FXML
+    private GridPane gridPane;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
