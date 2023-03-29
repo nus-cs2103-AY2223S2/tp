@@ -64,7 +64,7 @@ public class NonEmptyString {
         if (o == null) {
             return false;
         }
-        // We allow comparision against regular strings too, for convenience.
+        // We allow comparison against regular strings too, for convenience.
         if (o instanceof String) {
             return value.equals(o);
         }

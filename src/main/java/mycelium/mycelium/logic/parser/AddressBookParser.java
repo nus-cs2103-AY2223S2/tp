@@ -19,6 +19,7 @@ import mycelium.mycelium.logic.commands.ExitCommand;
 import mycelium.mycelium.logic.commands.FindCommand;
 import mycelium.mycelium.logic.commands.HelpCommand;
 import mycelium.mycelium.logic.commands.ListCommand;
+import mycelium.mycelium.logic.commands.UpdateClientCommand;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 
@@ -78,6 +79,9 @@ public class AddressBookParser {
 
         case AddProjectCommand.COMMAND_ACRONYM:
             return new AddProjectCommandParser().parse(arguments);
+
+        case UpdateClientCommand.COMMAND_ACRONYM:
+            return new UpdateClientCommandParser().parse(arguments);
 
         case DeleteClientCommand.COMMAND_ACRONYM:
             return new DeleteClientCommandParser().parse(arguments);

@@ -89,6 +89,15 @@ public class UpdateProjectCommandParserTest {
     }
 
     @Test
+    public void parse_oldAndNewNamesIdentical_success() {
+        // This tests what happens if we give a command to update a project's name, but then give it back the same name
+        var descriptor = new UpdateProjectDescriptorBuilder().withName("foobar").build();
+        var input = " -pn foobar -pn2 foobar";
+        var want = new UpdateProjectCommand(new NonEmptyString("foobar"), descriptor);
+        assertParseSuccess(parser, input, want);
+    }
+
+    @Test
     public void parse_invalidArgfollowedByValidArg_success() {
         var descriptor = new UpdateProjectCommand.UpdateProjectDescriptor();
         descriptor.setName(new NonEmptyString("barfoo"));

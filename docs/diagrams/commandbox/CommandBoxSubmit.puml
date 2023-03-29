@@ -1,0 +1,22 @@
+@startuml
+!include ../style.puml
+
+participant ":CommandBox" as CommandBox UI_COLOR
+participant "mode:Mode" as Mode MODE_COLOR_T3
+
+[-> CommandBox : handleCommandEntered()
+activate CommandBox
+CommandBox -> CommandBox : getInput()
+CommandBox -> Mode : onInputSubmit(input)
+activate Mode
+Mode --> CommandBox : optionalNewMode
+deactivate Mode
+
+opt optionalNewMode is not empty
+    CommandBox -> CommandBox: setMode(newMode)
+end
+
+CommandBox -->[
+deactivate CommandBox
+@enduml
+

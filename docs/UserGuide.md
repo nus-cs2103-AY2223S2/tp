@@ -18,9 +18,27 @@ process and basic usage.
 
 Alternatively, you may wish to use this guide as a reference for commands and
 hotkeys. The three main parts of this guide contain descriptions on how to use
-commands for managing clients and projects, as well as the available hotkeys.
+commands for managing [clients](#managing-clients) and
+[projects](#managing-projects), as well as the available [hotkeys](#hotkeys).
 
-**TODO: add internal links for the para above**
+### Icons and conventions
+
+The following typographical conventions are used in this guide.
+
+* (KEYCAP) - Indicates a literal set of keys, e.g. (CTRL+F) refers to the
+  combination of the 'Control' and 'F' keys.
+
+<div markdown="span" class="alert alert-success">
+:bulb: This box signifies a tip or suggestion.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: This box signifies a general note.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+:warning: This box indicates a warning or caution.
+</div>
 
 * Table of Contents
 {:toc}
@@ -48,9 +66,9 @@ java -jar mycelium.jar
 
 If you see a window like the one shown below, then you have successfully
 installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later. 
+to help you get a feel for the application. Feel free to delete them later.
 
-**TODO: add a screenshot**
+<img src="images/OnStartupScreenshot.png" />
 
 At this point, we recommend that you jump over to the [Command
 Summary](#command-summary) and [HotKey Summary](#hotkey-summary) section to get
@@ -78,6 +96,8 @@ software editing, building, testing, and packaging in an easy-to-use application
 
 ## Main View - Projects and Clients
 
+**TODO: update this**
+
 Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
 
 ### Projects Tab
@@ -102,7 +122,6 @@ The Clients tab lists all the clients you've created. Each client block contains
 - Phone number
 - List of associated platforms
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Layout
@@ -120,7 +139,7 @@ separated tokens.
 As an example, the command below creates a new project with the name *Mycelium
 Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
 about what the arguments mean for now, this example is just meant to
-demonstrate the layout.) 
+demonstrate the layout.)
 
 ```bash
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
@@ -130,11 +149,11 @@ You will also discover that all command names in Mycelium are at most two
 characters long. This terseness is *intentional* to allow for faster
 keystrokes.
 
-### A note on dates
-
-Some arguments are in the form of dates. For these, Mycelium only accepts input
-of the format dd/MM/yyyy. For example, "14/03/2023" is okay, but "14/3/2023",
-or "14-03-2023" are not okay.
+<div markdown="span" class="alert alert-info"> 
+:information_source: **A note on dates:** some arguments are in the form of
+dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
+example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +168,7 @@ Creates a new client contact.
 - **`-cn client_name`**
     - The client’s name.
 - **`-e email`**
-    - The client’s email. Must be unique in Mycelium.
+    - The client’s email. Must be unique in Mycelium. Case sensitive.
 
 **Optional Arguments**
 
@@ -157,7 +176,7 @@ Creates a new client contact.
     - The client’s year of birth.
     - **Default**: *null*
 - **`-src source`**
-    - The client’s digital service platform, e.g. Fiverr.
+    - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
     - **Default:** *null*
 - **`-mn mobile_number`**
     - The client’s mobile number.
@@ -168,12 +187,23 @@ Creates a new client contact.
 The following command creates a new client with name *Alice Baker*, whose email is *alice_baker@bakers.com*, born in the year *2000*.
 
 ```bash
-c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
+c -cn Alice Baker -e alice_baker@bakers.com -y 2000
+```
+You should see the following output if the client is created successfully.
+
+```bash
+New client added: Alice Baker (alice_baker@bakers.com)
 ```
 
 ### Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
+
+**Notes**
+
+- You should not add any quotation marks around any of the attributes.
+- An error message will be shown with an attempt to create a client with an existing email
+in Mycelium.
 
 **Compulsory Arguments**
 
@@ -184,6 +214,46 @@ Deletes an *existing* client contact.
 
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
+Expected output:
+```bash
+Deleted Client: Alice Baker (alice_baker@bakers.com)
+```
+
+### Updating a client: `uc`
+
+Updates an *existing* client contact.
+
+**Compulsory Arguments**
+- **`-e email`**
+  - Email of the client to update.
+
+**Optional Arguments**
+
+At least one of the following arguments must be provided:
+- **`-cn client_name`**
+  - The client’s new name.
+  - **Default:** *null*
+- **`-e2 new email`**
+  - THe client's new email. Must be unique in Mycelium. Case sensitive.
+  - **Default:** *null*
+- **`-y year_of_birth`**
+  - The client’s new year of birth.
+  - **Default:** *null*
+- **`-src source`**
+  - The client’s new digital service platform, e.g. Fiverr.
+  - **Default:** *null*
+- **`-mn mobile_number`**
+  - The client’s new mobile number.
+  - **Default:** *null*
+
+**Examples**
+
+The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the client with email *alice_bakers@bakers.com* to have the name *Bobby Baker*.
+
+**Expected output:**
+```bash
+Updated Client: Bobby Baker (alice_baker@bakers.com)
+```
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Projects
@@ -203,8 +273,8 @@ Creates a new project.
 **Optional Arguments**
 
 - `-s status`
-    - Here `status` should be set, verbatim, to one of `not_started`,
-      `in_progress`, or `done`.
+    - Here `status` should be set, to one of `not_started`, `in_progress`, or
+      `done`.
     - **Default:** `not_started`
 - `-src source`
     - The platform the project is sourced from, such as Fiverr. This can be any
@@ -214,34 +284,43 @@ Creates a new project.
     - A short description of the project.
     - **Default:** *null*
 - `-ad accepted_date`
-    - The date that the project was accepted.
+    - The date that the project was accepted, in the format dd/MM/yyyy.
     - **Default**: the current date
 - `-dd deadline_date`
-    - The deadline of the project.
+    - The deadline of the project, in the format dd/MM/yyyy.
     - **Default:** *null*
 
-**Examples**
+**Example**
 
 The following command creates a new project whose name is *Mycelium Desktop*,
-submitted from the client *spiderman@gmail.com* from *fiverr.com*, with a
-deadline on *30 February, 2075*.
+submitted from the client *spiderman@gmail.com* and sourced from *fiverr.com*,
+with a deadline on *30 February, 2075*.
 
 ```
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
 
-If the project is added successfully, you should see the following message in the output box:
+If the project is added successfully, you should see the following message in
+the output box:
 
 ```
 New project added: Mycelium Desktop from client spiderman@gmail.com
 ```
 
-**Notes**
+<div markdown="span" class="alert alert-tip">
+:bulb: The project's status is not case sensitive. Meaning you may key in
+`not_started` as `NOT_STARTED` or `nOT_sTArtED`.
+</div>
 
-* The client specified by the `-e` argument does not need to exist in Mycelium.
-  You can add them later if you wish.
-* If you attempt to create a project with a name which already exists in
-  Mycelium, an error will be displayed to block the operation.
+<div markdown="span" class="alert alert-info">
+:information_source: The client specified by the `-e` argument does not need to
+exist in Mycelium. You can add them later if you wish.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: If you attempt to create a project with a name which already exists
+in Mycelium, an error will be displayed to block the operation.
+</div>
 
 ### Deleting a project: `dp`
 
@@ -252,7 +331,7 @@ Deletes an existing project.
 - `-pn project_name`
     - Name of the project to delete. Case sensitive.
 
-**Examples**
+**Example**
 
 The following command deletes a project with name *Mycelium Desktop*.
 
@@ -261,17 +340,21 @@ dp -pn Mycelium Desktop
 ```
 
 If successful, you should see the following message in the output box. (In this
-example, the project's client is *spiderman@gmail.com*).
+example, the project's client is *spiderman@gmail.com*.)
 
 ```
 Deleted Project: Mycelium Desktop from client spiderman@gmail.com
 ```
 
-**Notes**
+<div markdown="span" class="alert alert-info">
+:information_source: If you attempt to delete a project which does not exist in
+Mycelium, an error will be displayed and no changes will be made to your data.
+</div>
 
-* If you attempt to delete a project which does not exist in Mycelium, an error
-  will be displayed and no changes will be made to your data.
-* Deletion is irreversible!
+<div markdown="span" class="alert alert-danger">
+:warning: Deletion is irreversible! Mycelium does not provide a mechanism to
+undo deletions.
+</div>
 
 ### Updating a project: `up`
 
@@ -291,7 +374,7 @@ Performs partial updates an existing project.
     * A new client email.
     * **Default:** *null*
 * `-s status`
-    * A new project status. Should be set, verbatim, to one of `not_started`,
+    * A new project status. Should be set, to one of `not_started`,
       `in_progress`, or `done`.
     * **Default:** *null*
 * `-src source`
@@ -310,14 +393,13 @@ Performs partial updates an existing project.
 Each of these arguments, if specified, will be used to (paritially) update the
 target project.
 
-<div markdown="span" class="alert alert-info">
-:information_source: Notice that the arguments here are similar to that of
-creating a project. You may refer to the section above on [creating a
-project](#creating-a-project:-p) for further details on what each argument
-means.
+<div markdown="span" class="alert alert-tip">
+:bulb: Notice that the arguments here are similar to that of creating a
+project. You may refer to the section above on [creating a
+project](#creating-a-project:-p) for more details on what each argument means.
 </div>
 
-**Examples**
+**Example**
 
 Suppose we have a project named *Mycelium Desktop*, and wish to update
 
@@ -330,19 +412,31 @@ The following command will do the trick.
 up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
 ```
 
-**TODO: add output**
+If successful, you should see the following message in the output box. (Here we
+assume the project came from client *foo@bar.com*.)
 
-**Notes**
+```
+Updated project: Mycelium Mobile from client foo@bar.com
+```
 
-* It is not possible to "unset" an optional field. For example, Mycelium allows
-  projects to have deadlines. Suppose that you have project, *X*, which
-  currently has a deadline. Then it is not possible to use the `up` command to
-  unset the deadline.
-* The target project should already exist in Mycelium. Otherwise, an error will
-  be displayed and no changes are made to the data.
-* If the project's name is updated, then it must be a unique name. Suppose we
-  currently have the projects *foo* and *bar*. An attempt to update *foo*'s
-  name to *bar* will result in an error, and the operation will be blocked.
+<div markdown="span" class="alert alert-info">
+:information_source: If the project's name is updated, then it must be a unique
+name. Suppose we currently have the projects *foo* and *bar*. An attempt to
+update *foo*'s name to *bar* will result in an error, and the operation will be
+blocked.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: The target project should already exist in Mycelium.
+Otherwise, an error will be displayed and no changes are made to the data.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+:warning: It is not possible to "unset" an optional field. For example,
+Mycelium allows projects to have deadlines. Suppose that you have a project,
+which currently has a deadline. Then it is not possible to use the `up` command
+to unset the deadline.
+</div>
 
 ## Fuzzy Search
 
@@ -363,37 +457,52 @@ Please take note of these details for fuzzy search:
 * Projects or clients which do not match at all will not be shown;
 * Fuzzy search is *not* case-sensitive.
 
-Note that by "do not match at all", we refer to the case where literally not a
-single character matches. As long as at least one character matches, the
-project or client will be listed (although possibly ranked very low).
-
 The following two sections will walk through performing fuzzy search on
 projects and clients.
 
+<div markdown="span" class="alert alert-success">
+:bulb: Note that by "do not match at all", we refer to the case where literally
+not a single character matches. As long as at least one character matches, the
+project or client will be listed (although possibly ranked very low).
+</div>
+
 ### Fuzzy searching projects
 
-Let us assume we have the following projects in Mycelium:
+We will now demonstrate fuzzy searching through an example. Let us assume we
+have the following projects in Mycelium:
 
-**TODO: insert screenshot with some sample projects**
+<img src="images/FuzzyDemoInitial.png" />
 
 <div markdown="span" class="alert alert-info">
 :information_source: Recall that Mycelium supports fuzzy search for projects by
 their *names* only!
 </div>
 
-First, press `Ctrl+F` to toggle to search mode (if you are not already in
-search mode). You should see the command box turn light blue; now we can begin
-searching. Suppose we wanted to search for *Clash of Clans*. With the power of
-fuzzy matching, just typing *coc* is enough, as shown below.
+First, press (CTRL+F) to toggle to **search mode** (if you are not already in
+search mode). You should see the command box turn teal; now we can begin
+searching. Suppose we wanted to search for *Clash of Clans* listed at the
+bottom in the screenshot above. With the power of fuzzy matching, just typing
+*coc* is enough, as shown below.
 
-**TODO: add screenshot**
+<img src="images/FuzzyDemoSearching.png" />
 
 If we queried a term which matches nothing at all, then no results will be
 listed.
 
-**TODO: add screenshot**
+<img src="images/FuzzyDemoSearchingNoResults.png" />
 
-Once we are done, pressing `Ctrl+F` again switches us back to command mode.
+Once we are done, pressing (CTRL+F) again switches us back to command mode.
+
+<div markdown="span" class="alert alert-info">
+:information_source: The example we have here is quite trivial. But you can
+imagine having tens or hundreds of projects and clients; fuzzy search would be
+quite a quality-of-life feature!
+</div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: Confused about search mode? You may check out the [section
+below](#ctrlf-search) for more information.
+</div>
 
 ### Fuzzy searching clients
 
@@ -411,14 +520,17 @@ might wish to note:
 * Each fuzzy query will be applied to both clients and project. That is, when
   you query for something, say, "coc", this query is applied to both the client
   and project tabs, regardless of which tab is currently being displayed.
-* **TODO: add more gotchas**
+* You might experience some input lag while in search mode. This is expected to
+  improve as we refine the implementation.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## HotKeys
 
-> We will refer to the left panel containing the project and client tabs as the **Entity panel** 
-> and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+<div markdown="span" class="alert alert-info">
+:information_source: We will refer to the left panel containing the project and client tabs as the **entity panel**
+and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+</div>
 
 HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
@@ -444,7 +556,7 @@ This shortcut allows you to quickly clear the current line in the command box. T
 
 ### (CTRL+S) Switch Panels
 
-This shortcut allows you to quickly switch the focus between the main panel and the statistic panel. 
+This shortcut allows you to quickly switch the focus between the entity panel and the statistic panel.
 The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
@@ -455,14 +567,14 @@ If the right statistic panel is in focus, then the tabs will be the overdue and 
 
 ### (CTRL+J) Select next
 
-This shortcut allows you to quickly select the next item on the currently selected list in the 
-currently selected panel, either the main panel or statistic panel.
+This shortcut allows you to quickly select the next item on the currently selected list in the
+currently selected panel, either the entity panel or statistic panel.
 
 Within the tab that is in focus, the next item in the list will be selected. If there was no item originally selected, then the first item in the list will be selected.
 
 ### (CTRL+K) Select previous
 
-This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the main panel or statistic panel.
+This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the entity panel or statistic panel.
 
 Within the tab that is in focus, the previous item in the list will be selected. If there was no item originally selected, then the last item in the list will be selected.
 
@@ -470,11 +582,16 @@ Within the tab that is in focus, the previous item in the list will be selected.
 
 This shortcut allows you toggle the command box between **search mode** and **command mode** (default).
 
-In **command mode**, the input in the command box is used to execute the command. 
+In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **main panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the main panel will be put into focus automatically.
+In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the entity panel will be put into focus automatically.
 
-If you have a project or client selected, pressing ***Enter*** in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
+If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
+
+<div markdown="span" class="alert alert-danger">
+:warning: You cannot execute any commands while in **search mode**. Similary,
+no searching can be done while in **command mode**.
+</div>
 
 # Command summary
 
