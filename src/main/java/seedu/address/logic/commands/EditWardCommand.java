@@ -69,7 +69,7 @@ public class EditWardCommand extends Command {
       throw new CommandException(MESSAGE_DUPLICATE_WARD);
     }
 
-    if (wardToEdit.getOccupancy() > editedWard.getCapacity().getValue()) {
+    if (!editedWard.canSupport(wardToEdit.getOccupancy())) {
       throw new CommandException(MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY);
     }
 
