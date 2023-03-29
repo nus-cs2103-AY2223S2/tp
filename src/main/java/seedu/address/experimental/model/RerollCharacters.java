@@ -1,6 +1,7 @@
 package seedu.address.experimental.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 
 /**
@@ -21,6 +22,18 @@ public class RerollCharacters implements ReadOnlyEntities {
     @Override
     public ObservableList<Entity> getEntityList() {
         return characters;
+    }
+
+    @Override
+    public Entity getEntityWithName(String name) {
+        Entity toReturn = null;
+        for (Entity character : characters) {
+            if (character.getName().fullName.equals(name)) {
+                toReturn = character;
+                break;
+            }
+        }
+        return toReturn;
     }
 
     @Override

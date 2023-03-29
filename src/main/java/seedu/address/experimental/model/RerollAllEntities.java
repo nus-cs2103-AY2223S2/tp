@@ -57,6 +57,18 @@ public class RerollAllEntities implements ReadOnlyEntities {
     }
 
     @Override
+    public Entity getEntityWithName(String name) {
+        Entity toReturn = null;
+        for (Entity entity : entities) {
+            if (entity.getName().fullName.equals(name)) {
+                toReturn = entity;
+                break;
+            }
+        }
+        return toReturn;
+    }
+
+    @Override
     public String toString() {
         return entities.asUnmodifiableObservableList().size() + " entities";
     }
