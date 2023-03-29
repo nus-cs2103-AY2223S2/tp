@@ -83,7 +83,7 @@ public class DeliverySlot {
         case "1":
             return "10AM - 11AM";
         case "2":
-            return "11PM - 12PM";
+            return "11AM - 12PM";
         case "3":
             return "1PM  - 2PM";
         case "4":
