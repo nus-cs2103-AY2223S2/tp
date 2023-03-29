@@ -2,6 +2,8 @@ package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -98,7 +100,9 @@ public class Recipe {
         for (Ingredient i : ingredients) {
             cost += i.quantity * i.pricePerUnit;
         }
-        return cost;
+        return BigDecimal.valueOf(cost)
+                .setScale(2, RoundingMode.HALF_UP)
+                .doubleValue();
     }
     /**
      * Returns true if both recipes have the same title.
