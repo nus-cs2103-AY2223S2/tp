@@ -76,6 +76,11 @@ public class PersonDetailPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets specified selected person and corresponding index in detail panel
+     * @param person
+     * @param indexOfPerson
+     */
     public void setSelectedPerson(Person person, int indexOfPerson) {
         this.setPerson(person);
         this.setDisplayedIndex(indexOfPerson);

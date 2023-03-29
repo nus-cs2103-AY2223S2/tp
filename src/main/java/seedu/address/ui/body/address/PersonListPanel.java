@@ -34,9 +34,9 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<PersonListCellData> personListView;
-    private int selectedIndex;
+    private int selectedIndex; //used to bind Logic and Clicks on All Contacts
 
-    private int originalClick; //check >> still have bug (the binding issue)
+    private int originalClick; //required to differentiate clicks on Favourites
 
     private List<PersonListCardData> allData;
 
@@ -62,14 +62,13 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setOnMouseClicked(event -> {
             resultDisplay.setFeedbackToUser("Enter command below");
             int clickedIndex = personListView.getSelectionModel().getSelectedIndex();
-            if (clickedIndex == selectedIndex) {
-                clearSelection(); //clear
-                this.originalClick = EMPTY_INDEX; //check
+            if (clickedIndex == selectedIndex || clickedIndex == originalClick) {
+                clearSelection();
             } else {
                 selectedIndex = clickedIndex;
                 originalClick = clickedIndex;
                 logic.setSelectedPerson(getActualIndex(clickedIndex));
-                this.setOriginalClick(); //check
+                this.setOriginalClick();
             }
         });
 
@@ -109,6 +108,7 @@ public class PersonListPanel extends UiPart<Region> {
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
         selectedIndex = EMPTY_INDEX;
+        originalClick = EMPTY_INDEX;
     }
 
     /**
@@ -128,7 +128,7 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Get index of the selected person in the list panel
+     * Gets index of the selected person in the list panel
      * @return
      */
     private int getListIndex(int commandIndex) {
@@ -139,6 +139,11 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Gets index of selected person to display by looping through all contacts and matching
+     * @param person
+     * @return (int) index to display
+     */
     public int getIndexOfSelectedPerson(Person person) {
         for (PersonListCardData card: allData) {
             if (Objects.equals(card.getPerson(), person)) {
@@ -148,6 +153,11 @@ public class PersonListPanel extends UiPart<Region> {
         return 0; // change to exception later
     }
 
+    /**
+     * Gets the actual index of person in filtered list corresponding to the UI clicked index
+     * @param listIndex
+     * @return Index to specify in logic's selectPerson
+     */
     private Index getActualIndex(int listIndex) {
         int actualIndex;
         if (listIndex > favData.size()) {

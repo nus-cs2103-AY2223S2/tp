@@ -40,10 +40,19 @@ public class AddressPanel extends UiPart<Region> {
         return personListPanel;
     }
 
+    /**
+     * Gets the index to display of specified person
+     * @param person
+     * @return (int) index
+     */
     public int getIndexOfSelectedPerson(Person person) {
         return personListPanel.getIndexOfSelectedPerson(person);
     }
 
+    /**
+     * Sets selected person's details in person detail panel
+     * @param person
+     */
     public void setSelectedPerson(Person person) {
         int indexOfPerson = this.getIndexOfSelectedPerson(person);
         this.personDetailPanel.setSelectedPerson(person, indexOfPerson);

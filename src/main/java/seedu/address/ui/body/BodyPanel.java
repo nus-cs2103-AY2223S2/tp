@@ -111,6 +111,10 @@ public class BodyPanel extends UiPart<Region> {
         });
     }
 
+    /**
+     * Sets selected person's details in person detail panel
+     * @param person
+     */
     public void setSelectedPerson(Person person) {
         this.addressPanel.setSelectedPerson(person);
     }
