@@ -137,7 +137,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 :man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
 
-Adds a task to the address book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
+Adds a task to the task book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
 For `Deadline` and `Event` `Date` field(s) are required.
 
 `Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
@@ -183,7 +183,7 @@ e.g. `add n/Sample d/Why can't I add n/?`
 
 :man_technologist: Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.
 
-Edits an existing task in the address book.
+Edits an existing task in the task book.
 
 Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 
@@ -207,9 +207,9 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 :man_technologist: Congratulations! You have completed a task. Now, you can remove it by using this command.
 
-Deletes the specified task from the address book.
+Deletes the specified task from the task  book.
 
-Format: `delete INDEX(S)`
+Format: `delete INDEX [INDEX]…​`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -218,7 +218,7 @@ Format: `delete INDEX(S)`
 * The command will reject all specified indices if one of them is invalid.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the address book.
+* `list` followed by `delete 2` deletes the 2nd task in the task book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
@@ -226,7 +226,7 @@ Examples:
 
 :man_technologist: Want to have an overview of all your tasks? Try this!
 
-Shows a list of all tasks in the address book.
+Shows a list of all tasks in the task book.
 
 Format: `list`
 
@@ -390,7 +390,7 @@ Format: `help`
 
 :man_technologist: Think twice before using this. This action is not reversible.
 
-Clears all entries from the address book.
+Clears all entries from the task book.
 
 Format: `clear`
 
@@ -425,7 +425,7 @@ _Details coming soon ..._
 ## 4. FAQ
 
 ### Q1 How do I transfer my data to another Computer?
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
 ### Q2 What is a valid Date?
 **A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
