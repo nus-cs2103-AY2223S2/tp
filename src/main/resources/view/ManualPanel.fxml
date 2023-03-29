@@ -7,10 +7,5 @@
 <?import javafx.scene.web.WebView?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="10">
-    <Label text="Vimification Manual Page">
-        <font>
-            <Font size="24" />
-        </font>
-    </Label>
     <WebView fx:id="webView" />
 </VBox>

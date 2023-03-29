@@ -27,6 +27,8 @@ public class MainScreen extends UiPart<VBox> {
 
     private static DoubleBinding topComponentHeight; // Height of left and right component
     private static DoubleBinding bottomComponentHeight;
+    private static DoubleBinding leftComponentWidth;
+    private static DoubleBinding rightComponentWidth;
 
     private Logic logic;
 
@@ -55,6 +57,9 @@ public class MainScreen extends UiPart<VBox> {
         windowWidth = this.getRoot().widthProperty();
         topComponentHeight = windowHeight.multiply(0.9);
         bottomComponentHeight = windowHeight.multiply(0.1);
+
+        leftComponentWidth = windowWidth.multiply(0.3);
+        rightComponentWidth = windowWidth.multiply(0.7);
         setup();
     }
 
@@ -153,12 +158,15 @@ public class MainScreen extends UiPart<VBox> {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
+        component.getRoot().prefWidthProperty().bind(leftComponentWidth);
+
     }
 
     protected <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
+        component.getRoot().prefWidthProperty().bind(rightComponentWidth);
     }
 
     protected <T extends Pane> void loadBottomComponent(UiPart<T> component) {
