@@ -51,7 +51,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NRIC + "NRIC] "
         + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_DATE_OF_BIRTH + "PHONE] "
+        + "[" + PREFIX_DATE_OF_BIRTH + "DATEOFBIRTH] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
