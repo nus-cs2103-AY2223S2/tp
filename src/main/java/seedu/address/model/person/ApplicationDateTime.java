@@ -45,4 +45,3 @@ public class ApplicationDateTime {
                 && applicationDateTime.equals(((ApplicationDateTime) other).applicationDateTime)); // state check
     }
 }
-

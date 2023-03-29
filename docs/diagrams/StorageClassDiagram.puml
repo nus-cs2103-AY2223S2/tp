@@ -17,7 +17,7 @@ Class StorageManager
 package "HMHero Storage" #F4F6F6{
 Class "<<interface>>\nHMHeroStorage" as HMHeroStorage
 Class JsonHMHeroStorage
-Class JsonSerializableAddressBook
+Class JsonSerializableHMHero
 Class JsonAdaptedPerson
 Class JsonAdaptedNote
 }
@@ -36,8 +36,8 @@ storage -right-|> HMHeroStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonHMHeroStorage .up.|> HMHeroStorage
-JsonHMHeroStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonHMHeroStorage ..> JsonSerializableHMHero
+JsonSerializableHMHero --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedNote
 
 @enduml

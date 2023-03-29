@@ -213,7 +213,7 @@ layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
 1. [Command Input Box](#command-input-box)
-2. [Command Result Box](#command-output-box)
+2. [Command Output Box](#command-output-box)
 3. [Applicant List Box](#applicant-list-box)
 
 The following picture of the main window shows the three components, numbered accordingly:
