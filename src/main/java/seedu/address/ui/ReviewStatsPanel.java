@@ -4,8 +4,10 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
@@ -36,11 +38,16 @@ public class ReviewStatsPanel extends UiPart<Region> {
             if (empty || pair == null) {
                 setGraphic(null);
                 setText(null);
-
             } else {
-                setGraphic(new ReviewStat(pair).getRoot());
-                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
-                        + "-fx-background-color:transparent ");
+                if (pair.getKey().equals("")) {
+                    setGraphic(new NavGuide().getRoot());
+                    setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
+                            + "-fx-background-color:transparent ");
+                } else {
+                    setGraphic(new ReviewStat(pair).getRoot());
+                    setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
+                            + "-fx-background-color:transparent ");
+                }
             }
         }
     }

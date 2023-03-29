@@ -72,8 +72,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TextFlow titlePanel;
 
-
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -244,7 +242,7 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), true);
+        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
