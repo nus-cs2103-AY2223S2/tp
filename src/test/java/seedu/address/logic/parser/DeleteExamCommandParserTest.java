@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteExamCommand;
-
+import seedu.address.logic.commands.exam.DeleteExamCommand;
+import seedu.address.logic.parser.exam.DeleteExamCommandParser;
 
 class DeleteExamCommandParserTest {
     private DeleteExamCommandParser parser = new DeleteExamCommandParser();
