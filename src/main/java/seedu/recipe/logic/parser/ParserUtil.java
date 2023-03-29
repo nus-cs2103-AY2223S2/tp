@@ -114,7 +114,6 @@ public class ParserUtil {
         String trimmedIngredient = ingredient.trim();
         String[] ingredientFields = trimmedIngredient.split(",");
         if (ingredientFields.length != 4) {
-            System.out.println(Arrays.toString(ingredientFields));
             throw new ParseException(Ingredient.INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS);
         }
 
