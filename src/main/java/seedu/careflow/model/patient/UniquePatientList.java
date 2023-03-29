@@ -28,19 +28,11 @@ public class UniquePatientList implements Iterable<Patient> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent patient's name as the given argument.
+     * Returns true if the list contains an equivalent patient as the given argument.
      */
-    public boolean containName(Patient toCheck) {
+    public boolean contains(Patient toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePatient);
-    }
-
-    /**
-     * Returns true if the list contains an equivalent patient's NRIC as the given argument.
-     */
-    public boolean containIc(Patient toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameIc);
     }
 
     /**
@@ -49,7 +41,7 @@ public class UniquePatientList implements Iterable<Patient> {
      */
     public void add(Patient toAdd) {
         requireNonNull(toAdd);
-        if (containName(toAdd)) {
+        if (contains(toAdd)) {
             throw new DuplicatePatientException();
         }
         internalList.add(toAdd);
@@ -68,7 +60,7 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && containName(editedPatient)) {
+        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
             throw new DuplicatePatientException();
         }
 

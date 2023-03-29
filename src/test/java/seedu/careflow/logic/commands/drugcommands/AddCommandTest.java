@@ -158,12 +158,7 @@ class AddCommandTest {
         }
 
         @Override
-        public boolean hasSamePatientName(Patient patient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasSamePatientIc(Patient patient) {
+        public boolean hasPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 

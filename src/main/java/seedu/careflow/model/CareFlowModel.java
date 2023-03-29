@@ -88,14 +88,9 @@ public interface CareFlowModel {
     ReadOnlyHospitalRecords getHospitalRecords();
 
     /**
-     * Returns true if a patient with the same name as {@code patient} exists in the patient record.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient record.
      */
-    boolean hasSamePatientName(Patient patient);
-
-    /**
-     * Returns true if a patient with the same NRIC as {@code patient} exists in the patient record.
-     */
-    boolean hasSamePatientIc(Patient patient);
+    boolean hasPatient(Patient patient);
 
     /**
      * Returns true if a drug with the same identity as {@code drug} exists in the drug inventory.

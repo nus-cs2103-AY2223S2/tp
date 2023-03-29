@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.careflow.commons.core.Messages.MESSAGE_DRUGS_LISTED_OVERVIEW;
-import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.testutil.TypicalDrugs.METFORMIN;
 import static seedu.careflow.testutil.TypicalDrugs.ROBITUSSIN;
 import static seedu.careflow.testutil.TypicalDrugs.SUDAFED;

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_AMY;
 import static seedu.careflow.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -52,19 +51,7 @@ class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
 
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PATIENT_NAME, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_duplicatePatientIc_throwsCommandException() {
-        Patient validPatient = new PatientBuilder().withIc(VALID_IC_AMY).build();
-        AddCommand addCommand = new AddCommand(validPatient);
-        ModelStub modelStub = new ModelStubWithPatient(validPatient);
-        // patient with duplicate IC as validPatient
-        Patient patient = new PatientBuilder().withIc(VALID_IC_AMY).build();
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PATIENT_IC, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -158,12 +145,7 @@ class AddCommandTest {
         }
 
         @Override
-        public boolean hasSamePatientName(Patient patient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasSamePatientIc(Patient patient) {
+        public boolean hasPatient(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -240,7 +222,7 @@ class AddCommandTest {
         }
 
         @Override
-        public boolean hasSamePatientName(Patient patient) {
+        public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
@@ -253,7 +235,7 @@ class AddCommandTest {
         final ArrayList<Patient> patientsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasSamePatientName(Patient patient) {
+        public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(patient::isSamePatient);
         }
