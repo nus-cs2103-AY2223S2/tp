@@ -24,7 +24,7 @@ public class UnmarkAttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "Unmarked attendance of %1s in  %2s\n";
+    public static final String MESSAGE_SUCCESS = "Unmarked attendance of %1s in %2s\n";
 
     public static final String MESSAGE_PERSON_NOT_FOUND = "person specified cannot be found";
 
@@ -62,6 +62,5 @@ public class UnmarkAttendanceCommand extends Command {
         model.setSession(sessionToEdit, editedSession);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, sessionToEdit.getName()));
-
     }
 }

@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+//import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.AddressBook;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 
@@ -29,13 +31,15 @@ public class Session implements Comparable<Session> {
     private final String endDateTime;
     private final SessionName name;
     private final int id;
-    private Location location;
+    private final Location location;
     private HashMap<String, Boolean> attendanceMap;
 
     /**
      * Every field must be present and not null.
-     * @param startDateTime
-     * @param endDateTime
+     * @param startDateTime start time
+     * @param endDateTime end time
+     * @param name name of session
+     * @param location place of event
      */
     public Session(String startDateTime, String endDateTime, SessionName name, Location location) {
         this.startDateTime = startDateTime;
@@ -87,13 +91,9 @@ public class Session implements Comparable<Session> {
         this.location = location;
         this.id = id;
 
-        attendanceMap = new HashMap<>();
-
         for (NameBooleanPair pair : nameBooleanPairs) {
             attendanceMap.put(pair.getName(), pair.isPresent());
         }
-
-        this.attendanceMap = attendanceMap;
 
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
@@ -105,7 +105,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * adds person to a session
-     * @param name
+     * @param name String name of person
      */
     public void addPersonToSession(String name) {
         attendanceMap.put(name, false);
@@ -113,7 +113,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * removes person from a session
-     * @param name
+     * @param name String name of person
      */
     public void removePersonFromSession(String name) {
         attendanceMap.remove(name);
@@ -121,7 +121,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * sets student as present
-     * @param name
+     * @param name String name of person
      */
     public void markStudentPresent(String name) {
         attendanceMap.put(name, true);
@@ -129,7 +129,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * sets student as absent
-     * @param name
+     * @param name String name of person
      */
     public void markStudentAbsent(String name) {
         attendanceMap.put(name, false);
@@ -137,7 +137,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * checks if session contains student
-     * @param name
+     * @param name String name of person
      */
     public boolean contains(String name) {
         return attendanceMap.containsKey(name);
@@ -299,8 +299,46 @@ public class Session implements Comparable<Session> {
             sb.setLength(sb.length() - 2);
         }
 
-        String toStringOutput = sb.toString();
-        return toStringOutput;
+        return sb.toString();
+    }
+
+    /**
+     * Calculates the total pay for a session based on the pay rates of the attendees in the given address book
+     * and the duration of the session.
+     *
+     * @param addressBook the address book containing the details of the attendees
+     * @return the total pay for the session
+     */
+    public float getTotalPay(AddressBook addressBook) {
+        float totalPay = 0;
+        long durationInMins = getSessionDuration().toMinutes();
+
+        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+            if (entry.getValue()) {
+                float indivPay = addressBook.getPayRateFromName(entry.getKey());
+                totalPay += indivPay / 60 * durationInMins;
+            }
+        }
+        return totalPay;
+    }
+
+    /**
+     * Returns a string representation of the attendance count for the session.
+     *
+     * @return a string of the format "X/Y", where X is the number of attendees
+     *      present and Y is the total number of attendees
+     */
+    public String getAttendanceCount() {
+        int totalCount = 0;
+        int presentCount = 0;
+        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+            if (entry.getValue()) {
+                presentCount++;
+            }
+            totalCount++;
+        }
+
+        return String.format("%d/%d", presentCount, totalCount);
     }
 
     @Override
@@ -398,6 +436,7 @@ public class Session implements Comparable<Session> {
     public HashMap<String, Boolean> getHashMap() {
         return attendanceMap;
     }
+
     /**
      * Returns a new Session object that is a copy of this session.
      * @return A new Session object that is a copy of this session.

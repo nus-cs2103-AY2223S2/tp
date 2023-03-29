@@ -20,8 +20,8 @@ public class StudentAddCommand extends Command {
     public static final String COMMAND_WORD = "student-add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a student of index i to a session specified. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "\nParameters: INDEX (must be a positive integer) "
+            + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "hall";
 
     public static final String SESSION_ADD_PERSON_SUCCESS = "Added Person: %1$s to Session: %2$s";
