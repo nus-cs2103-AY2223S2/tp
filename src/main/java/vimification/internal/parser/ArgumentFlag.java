@@ -33,7 +33,7 @@ public class ArgumentFlag {
     @Override
     public String toString() {
         return String.format(
-                "Prefix [shortForm: %s, longForm: %s, maxCount: %d]",
+                "Prefix [shortForm: %s; longForm: %s; maxCount: %d]",
                 shortForm, longForm, maxCount);
     }
 

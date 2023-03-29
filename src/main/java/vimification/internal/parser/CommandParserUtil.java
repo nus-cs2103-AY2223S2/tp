@@ -1,6 +1,8 @@
 package vimification.internal.parser;
 
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import vimification.commons.core.Index;
 import vimification.model.task.Priority;
@@ -48,25 +50,34 @@ public class CommandParserUtil {
                     .dropNext(ApplicativeParser.string(quote)))
             .or(ApplicativeParser.nonWhitespaces1());
 
-    public static ApplicativeParser<ArgumentMultimap> arguments(ArgumentFlag... flags) {
-        ArgumentMultimap map = new ArgumentMultimap(flags);
-        /**
-         * This parser parses a single flag.
-         */
-        ApplicativeParser<Void> flagParser = Arrays.stream(flags).map(flag -> {
-            String shortForm = flag.getShortForm();
-            String longForm = flag.getLongForm();
-            return ApplicativeParser
-                    .string(shortForm)
-                    .or(ApplicativeParser.string(longForm))
-                    .dropNext(ApplicativeParser.skipWhitespaces1())
-                    .takeNext(STRING_PARSER)
-                    .<Void>map(value -> {
-                        map.put(flag, value);
-                        return null;
-                    });
-        }).reduce(ApplicativeParser::or).orElseGet(ApplicativeParser::fail);
-        return flagParser.sepBy(ApplicativeParser.skipWhitespaces1()).constMap(map);
+    // public static ApplicativeParser<ArgumentCounter> arguments(ArgumentFlag... flags) {
+    // ArgumentCounter map = new ArgumentCounter(flags);
+    // /**
+    // * This parser parses a single flag.
+    // */
+    // ApplicativeParser<Void> flagParser = Arrays.stream(flags).map(flag -> {
+    // String shortForm = flag.getShortForm();
+    // String longForm = flag.getLongForm();
+    // return ApplicativeParser
+    // .string(shortForm)
+    // .or(ApplicativeParser.string(longForm))
+    // .dropNext(ApplicativeParser.skipWhitespaces1())
+    // .takeNext(STRING_PARSER)
+    // .<Void>map(value -> {
+    // map.put(flag, value);
+    // return null;
+    // });
+    // }).reduce(ApplicativeParser::or).orElseGet(ApplicativeParser::fail);
+    // return flagParser.sepBy(ApplicativeParser.skipWhitespaces1()).constMap(map);
+    // }
+
+    public static ApplicativeParser<ArgumentFlag> flag(ArgumentFlag flag) {
+        return Stream.of(flag.getShortForm(), flag.getLongForm())
+                .filter(Objects::nonNull)
+                .map(ApplicativeParser::string)
+                .reduce(ApplicativeParser::or)
+                .orElseGet(ApplicativeParser::fail)
+                .constMap(flag);
     }
 
     private CommandParserUtil() {}

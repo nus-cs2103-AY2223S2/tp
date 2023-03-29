@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -356,6 +357,13 @@ public final class ApplicativeParser<T> {
             ApplicativeParser<? extends U> that,
             Function<? super T, Function<? super U, ? extends V>> combiner) {
         return lift(combiner, this, that);
+    }
+
+    public ApplicativeParser<Void> consume(Consumer<? super T> action) {
+        return map(value -> {
+            action.accept(value);
+            return null;
+        });
     }
 
     /**
