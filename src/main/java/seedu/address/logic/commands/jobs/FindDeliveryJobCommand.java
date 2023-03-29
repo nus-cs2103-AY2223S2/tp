@@ -35,7 +35,8 @@ public class FindDeliveryJobCommand extends Command {
         model.updateFilteredDeliveryJobList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW,
-                        model.getFilteredDeliveryJobList().size()));
+                        model.getFilteredDeliveryJobList().size()),
+                false, false, false, false, false, false, false, true, false);
     }
 
     @Override

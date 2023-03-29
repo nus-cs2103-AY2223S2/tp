@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, this);
 
     }
 
@@ -294,6 +294,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Focuses on the main window.
+     */
+    public void focus() {
+        getRoot().requestFocus();
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -305,7 +312,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
-
 
     /**
      * Reloads and opens Timetable window.
@@ -343,7 +349,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens unscheduled jobs window
+     * Opens updated unscheduled jobs window
      */
     @FXML
     private void handleUnscheduledTimetable() {
@@ -365,7 +371,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens completed jobs window
+     * Opens updated completed jobs window
      */
     @FXML
     private void handleCompletedTimetable() {
@@ -534,6 +540,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowReminderList()) {
                 handleReminderList();
+            }
+
+            if (commandResult.isShowAddressBook()) {
+                handleAddressBook();
             }
 
             if (commandResult.isExit()) {

@@ -151,7 +151,7 @@ public interface Model {
     void addDeliveryJob(DeliveryJob job);
 
     /**
-     * Sets delivery job in job list to
+     * Sets/updates delivery job in job list
      * @param target job to edit/to be replaced
      * @param editedJob new job to replace
      */
@@ -213,7 +213,7 @@ public interface Model {
     Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate();
 
     /**
-     * Returns job lis in the week
+     * Returns job list in the week
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 

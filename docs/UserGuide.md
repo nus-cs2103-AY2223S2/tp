@@ -28,7 +28,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dukeDriver.jar` from [here](https://github.com/).
+1. Download the latest `dukeDriver.jar` in the latest release from [here](https://github.com/AY2223S2-CS2103-F11-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -40,20 +40,20 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    Some example commands you can try:
 
    * `list` : Lists all contacts.
+   
+   * `list_job` : Lists all jobs.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+  * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+  * `timetable` : Shows timetable of current week.
 
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
+  * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -74,7 +74,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list_job`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -87,8 +87,8 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
+## 1. Features related to Customers
+### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -102,13 +102,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### 1.2. Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book in Customer Window.
 
 Format: `list`
 
-### Editing a person : `edit`
+### 1.3. Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -125,9 +125,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### 1.4. Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds and lists persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -143,7 +143,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### 1.5. Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -157,13 +157,40 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Listing all reminders : `list_reminder`
+## 2. Features related to Delivery Jobs
+### 2.1. Adding a job: `add_job`
 
-Shows a list of all reminders in the address book.
+Adds a delivery job to the delivery job system.
+
+Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+
+* Adds the job to delivery job system.
+* `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
+* Delivery date **must be in format YYYY-mm-DD**.
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
+* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
+* Earning **must be a double**.
+
+Examples:
+* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
+* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+### 2.2. Listing all jobs : `list_job`
+
+Shows a list of all jobs in the delivery job system in Main Window.
+
+Format: `list_job`
+
+
+## 3. Features related to Reminders
+### 3.1. Listing all reminders : `list_reminder`
+
+Shows a list of all reminders in Duke Driver.
 
 Format: `list_reminder`
 
-### Adding a reminder : `add_reminder`
+### 3.2. Adding a reminder : `add_reminder`
 
 Adds a reminder into the address book.
 
@@ -176,9 +203,9 @@ Format: `add_reminder d/DESCRIPTION time/YYYY-MM-DD HH:mm`
 Examples:
 * `add_reminder` followed by `d/Submit homework time/2023-12-12 12:00` adds a reminder that will remind the user to submit their homework. The reminder will occur at 12pm, 12 December 2023.
 
-### Deleting a reminder : `delete_reminder`
+### 3.3. Deleting a reminder : `delete_reminder`
 
-Deletes a reminder into the address book.
+Deletes a reminder in Duke Driver.
 
 Format: `delete_reminder INDEX`
 
@@ -189,24 +216,39 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
-### Showing timetable : `timetable`
 
-Shows timetable of jobs, with the week shown being current week.
+## 4. Features related to Timetable
+### 4.1. Showing timetable : `timetable`
+
+Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
 
 Format: `timetable`
 
-### Showing timetable of specific date: `timetable_date`
+### 4.2. Showing timetable of week containing specific date: `timetable_date`
 
 Shows timetable of specific week containing a specific date
 
 Format: `timetable_date date/YYYY-mm-DD`
 
-* Shows timetable of the week containing the given date
+* Shows timetable of the week containing the given date.
+* This is the one and only command that Timetable Window can parse/proceed/understand.
 
 Examples:
-* `timetable` followed by `2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+* `timetable_date date/2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+
+### 4.3. Showing list of completed jobs
+Shows list of completed jobs, sorted in increasing date and decreasing earning order.
+
+Format: `timetable_completed`
+
+### 4.4. Showing list of unscheduled jobs
+Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
+Jobs are sorted in increasing date and decreasing earning order.
+
+Format: `timetable_unscheduled`
 
 
+## Other features
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -221,11 +263,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Duke Driver data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.json` and `[JAR file location]/data/deliveryjobsystem.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -254,7 +296,12 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 **List reminder** | `list_reminder`
 **Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
 **Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
+**Show Timetable** | `timetable`
+**Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
+**Show List of Completed Jobs** | `timetable_completed`
+**Show List of Unscheduled Jobs** | `timetable_unscheduled`
 **Help** | `help`

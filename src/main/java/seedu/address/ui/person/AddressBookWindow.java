@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -28,6 +29,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
+    private final MainWindow dukeDriverWindow;
 
     private Stage primaryStage;
     private Logic logic;
@@ -57,6 +59,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
+        this.dukeDriverWindow = new MainWindow(primaryStage, logic);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -65,7 +68,22 @@ public class AddressBookWindow extends UiPart<Stage> {
     }
 
     /**
-     * Show main window.
+     * Creates a {@code AddressBookWindow} with the given {@code Stage} and
+     * {@code Logic} with a select handler and {@code MainWindow}.
+     */
+    public AddressBookWindow(Stage primaryStage, Logic logic,
+                             Consumer<Person> selectHandler, MainWindow dukeDriverWindow) {
+        super(FXML, primaryStage);
+        this.dukeDriverWindow = dukeDriverWindow;
+
+        // Set dependencies
+        this.primaryStage = primaryStage;
+        this.logic = logic;
+        this.selectHandler = selectHandler;
+    }
+
+    /**
+     * Show address book window.
      */
     public void show() {
         logger.fine("Showing address book page");
@@ -74,28 +92,28 @@ public class AddressBookWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the stats window is currently being shown.
+     * Returns true if the address book window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the stats window.
+     * Hides the address book window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the stats window.
+     * Focuses on the address book window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * fillInnerParts.
+     * Fills inner parts and contents in all placeholders in the window.
      */
     public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), (person) -> {
@@ -126,6 +144,10 @@ public class AddressBookWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleListJob() {
+        dukeDriverWindow.focus();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -142,6 +164,10 @@ public class AddressBookWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowJobList()) {
+                handleListJob();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -153,4 +179,5 @@ public class AddressBookWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }
