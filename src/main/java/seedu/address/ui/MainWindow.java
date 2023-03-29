@@ -154,14 +154,14 @@ public class MainWindow extends UiPart<Stage> {
      * Changes the theme of NeoBook to dark mode.
      */
     public void handleDarkMode() {
-        toggleTheme(false, false);
+        toggleTheme(false, true);
     }
 
     /**
      * Changes the theme of NeoBook to light mode.
      */
     public void handleLightMode() {
-        toggleTheme(true, false);
+        toggleTheme(true, true);
     }
 
     /**
