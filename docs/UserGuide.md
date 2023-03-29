@@ -11,7 +11,7 @@ CLIpboard is a desktop app that helps educators (like you!), especially those th
 
 CLIpboard is optimized **for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It can get your student management tasks done faster than traditional GUI apps. CLIpboard is optimised for keyboard users, so if you can type fast, CLIpboard can work even faster.
 
-![image](./images/UpdatedUi.png)
+![image](./images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------
 
