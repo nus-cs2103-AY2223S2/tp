@@ -38,6 +38,7 @@ public class TodoListPanel extends UiPart<Region> {
         this.viewContentPanel = viewContentPanel;
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
+        logger.info("Todo List updated.");
     }
 
     /**
@@ -51,12 +52,17 @@ public class TodoListPanel extends UiPart<Region> {
         viewContentPanel.setInternshipTodo(todoSelected);
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ApplicationTodo} using a {@code TodoCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code InternshipTodo} using a {@code TodoCard}.
      */
     class TodoListViewCell extends ListCell<InternshipTodo> {
         @Override

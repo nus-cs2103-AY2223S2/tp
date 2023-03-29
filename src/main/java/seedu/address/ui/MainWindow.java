@@ -2,13 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.Mnemonic;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -19,13 +13,12 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.ui.task.note.NoteListPanel;
 import seedu.address.ui.task.todo.TodoListPanel;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -83,52 +76,18 @@ public class MainWindow extends UiPart<Stage> {
         quickAccessToolbar = new QuickAccessToolbar(this::executeCommand);
         quickAccessToolbarPlaceholder.getChildren().add(quickAccessToolbar.getRoot());
 
-        setAccelerators();
         helpWindow = new HelpWindow();
         headerGridPane.maxWidthProperty().bind(primaryStage.widthProperty());
         commandBoxPlaceholder.maxWidthProperty().bind(primaryStage.widthProperty());
     }
 
+    /**
+     * Getter for primary stage.
+     *
+     * @return current primary stage
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-
-    private void setAccelerators() {
-        setAccelerator(quickAccessToolbar.getHelpButton(), KeyCombination.valueOf("F1"));
-    }
-
-
-
-    /**
-     * Sets the accelerator of a button.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(Button helpButton, KeyCombination keyCombination) {
-        Mnemonic m = new Mnemonic(helpButton, keyCombination);
-        primaryStage.getScene().addMnemonic(m);
-
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                helpButton.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
     }
 
     /**
@@ -170,11 +129,11 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
-    private void changePanelPlaceholder(MainWindow m, TodoType type) {
-        m.getApplicationListPanel().getRoot().setVisible(type == TodoType.NONE);
-        m.getTodoListPanel().getRoot().setVisible(type == TodoType.TODO);
-        m.getNoteListPanel().getRoot().setVisible(type == TodoType.NOTE);
-        m.getMixedPanel().getRoot().setVisible(type == TodoType.BOTH);
+    private void changePanelPlaceholder(MainWindow m, TaskType type) {
+        m.getApplicationListPanel().getRoot().setVisible(type == TaskType.NONE);
+        m.getTodoListPanel().getRoot().setVisible(type == TaskType.TODO);
+        m.getNoteListPanel().getRoot().setVisible(type == TaskType.NOTE);
+        m.getMixedPanel().getRoot().setVisible(type == TaskType.BOTH);
     }
 
     /**
@@ -217,18 +176,38 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Getter for application list panel.
+     *
+     * @return application list panel
+     */
     public ApplicationListPanel getApplicationListPanel() {
         return applicationListPanel;
     }
 
+    /**
+     * Getter for todo list panel.
+     *
+     * @return todo list panel
+     */
     public TodoListPanel getTodoListPanel() {
         return todoListPanel;
     }
 
+    /**
+     * Getter for note list panel.
+     *
+     * @return note list panel
+     */
     public NoteListPanel getNoteListPanel() {
         return noteListPanel;
     }
 
+    /**
+     * Getter for mix panel.
+     *
+     * @return person list panel
+     */
     public MixedPanel getMixedPanel() {
         return mixedPanel;
     }
@@ -253,6 +232,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            quickAccessToolbar.focusHomeButton();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -36,7 +36,7 @@ public class MixedPanel extends UiPart<Region> {
     private VBox container;
 
     /**
-     * Creates a {@code MixedPanel} with the given {@code ObservableList}.
+     * Creates a {@code MixedPanel} with the given two {@code ObservableList}.
      */
     public MixedPanel(ObservableList<InternshipTodo> todoList, ObservableList<Note> noteList,
                       ViewContentPanel viewContentPanel) {
@@ -46,6 +46,7 @@ public class MixedPanel extends UiPart<Region> {
         todoListView.setCellFactory(listView -> new TodoListViewCell());
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+        logger.info("Mixed panel updated.");
     }
 
     /**
@@ -70,6 +71,11 @@ public class MixedPanel extends UiPart<Region> {
         viewContentPanel.setNote(noteSelected);
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }

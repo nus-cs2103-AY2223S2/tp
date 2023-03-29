@@ -7,11 +7,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
- * Adds an application to the internship tracker.
+ * Adds a quick note to the note list.
  */
 public class AddNoteCommand extends Command {
 
@@ -26,12 +26,12 @@ public class AddNoteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the todo list";
 
-    private static final TodoType type = TodoType.NOTE;
+    private static final TaskType type = TaskType.NOTE;
 
     private final Note note;
 
     /**
-     * Creates an AddCommand to add the specified {@code InternshipApplication}
+     * Creates an AddNoteCommand to add the specified {@code Note}.
      */
     public AddNoteCommand(Note noteContent) {
         requireNonNull(noteContent);

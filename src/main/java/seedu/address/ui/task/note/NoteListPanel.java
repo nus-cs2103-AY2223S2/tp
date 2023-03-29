@@ -38,6 +38,7 @@ public class NoteListPanel extends UiPart<Region> {
         this.viewContentPanel = viewContentPanel;
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+        logger.info("Note List updated.");
     }
 
     /**
@@ -51,6 +52,11 @@ public class NoteListPanel extends UiPart<Region> {
         viewContentPanel.setNote(noteSelected);
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }
