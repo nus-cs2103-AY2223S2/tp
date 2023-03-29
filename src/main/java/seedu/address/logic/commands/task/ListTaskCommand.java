@@ -8,7 +8,7 @@ import java.util.List;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
@@ -22,7 +22,7 @@ public class ListTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all todos and notes";
     public static final String MESSAGE_NO_APPLICATIONS = "No task (todo and note) at the moment";
 
-    private static final TodoType type = TodoType.BOTH;
+    private static final TaskType type = TaskType.BOTH;
 
 
     @Override

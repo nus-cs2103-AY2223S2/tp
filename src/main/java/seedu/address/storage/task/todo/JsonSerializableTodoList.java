@@ -19,13 +19,12 @@ import seedu.address.model.task.InternshipTodo;
 @JsonRootName(value = "todolist")
 class JsonSerializableTodoList {
 
-    public static final String MESSAGE_DUPLICATE_TODO = "Internship todo list "
-                                                        + "contains duplicate InternshipTodo(s).";
+    public static final String MESSAGE_DUPLICATE_TODO = "Internship todo list contains duplicate InternshipTodo(s).";
 
     private final List<JsonAdaptedTodo> todos = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given applications.
+     * Constructs a {@code JsonSerializableTodoList} with the given todo tasks.
      */
     @JsonCreator
     public JsonSerializableTodoList(@JsonProperty("todos")
@@ -34,9 +33,9 @@ class JsonSerializableTodoList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTodoList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTodoList}.
      */
     public JsonSerializableTodoList(ReadOnlyTodoList source) {
         todos.addAll(source.getTodoList().stream().map(
@@ -44,7 +43,7 @@ class JsonSerializableTodoList {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this todo list into the model's {@code TodoList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -14,7 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
@@ -35,7 +35,7 @@ public class EditDeadlineCommand extends Command {
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Deadline updated: %1$s";
 
-    private static final TodoType type = TodoType.TODO;
+    private static final TaskType type = TaskType.TODO;
 
     private final Index targetIndex;
 

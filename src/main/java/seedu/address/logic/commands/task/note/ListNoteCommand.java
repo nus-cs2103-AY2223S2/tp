@@ -8,7 +8,7 @@ import java.util.List;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
@@ -20,7 +20,7 @@ public class ListNoteCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all notes";
     public static final String MESSAGE_NO_NOTE = "No note at the moment";
 
-    private static final TodoType type = TodoType.NOTE;
+    private static final TaskType type = TaskType.NOTE;
 
 
     @Override

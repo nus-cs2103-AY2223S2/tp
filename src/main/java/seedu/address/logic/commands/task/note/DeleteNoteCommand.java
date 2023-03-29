@@ -10,7 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
@@ -29,7 +29,7 @@ public class DeleteNoteCommand extends Command {
 
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note: %1$s";
 
-    private static final TodoType type = TodoType.NOTE;
+    private static final TaskType type = TaskType.NOTE;
 
     private final Index targetIndex;
 

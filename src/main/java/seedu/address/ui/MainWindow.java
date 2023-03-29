@@ -19,7 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.ui.task.note.NoteListPanel;
 import seedu.address.ui.task.todo.TodoListPanel;
 
@@ -177,11 +177,11 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
-    private void changePanelPlaceholder(MainWindow m, TodoType type) {
-        m.getApplicationListPanel().getRoot().setVisible(type == TodoType.NONE);
-        m.getTodoListPanel().getRoot().setVisible(type == TodoType.TODO);
-        m.getNoteListPanel().getRoot().setVisible(type == TodoType.NOTE);
-        m.getMixedPanel().getRoot().setVisible(type == TodoType.BOTH);
+    private void changePanelPlaceholder(MainWindow m, TaskType type) {
+        m.getApplicationListPanel().getRoot().setVisible(type == TaskType.NONE);
+        m.getTodoListPanel().getRoot().setVisible(type == TaskType.TODO);
+        m.getNoteListPanel().getRoot().setVisible(type == TaskType.NOTE);
+        m.getMixedPanel().getRoot().setVisible(type == TaskType.BOTH);
     }
 
     /**

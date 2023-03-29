@@ -4,7 +4,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ContentContainsKeywordsPredicate;
 import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
@@ -22,7 +22,7 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " google software engineer intern";
 
-    private static final TodoType type = TodoType.BOTH;
+    private static final TaskType type = TaskType.BOTH;
 
     private final TitleContainsKeywordsPredicate titlePredicate;
     private final ContentContainsKeywordsPredicate contentPredicate;
