@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import vimification.commons.core.Index;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 import vimification.model.task.Task;

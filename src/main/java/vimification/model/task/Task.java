@@ -13,6 +13,7 @@ public class Task {
     private LocalDateTime deadline;
     private Status status;
     private Priority priority;
+    private Set<String> tags;    
 
     /**
      * Every field must be present and not null.
@@ -23,7 +24,9 @@ public class Task {
         this.deadline = deadline;
         this.status = status;
         this.priority = priority;
+        this.tags = new HashSet<>();
     }
+    
     public Task(String title) {     //used when creating new tasks
         this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
@@ -40,6 +43,7 @@ public class Task {
         requireNonNull(title);
         this.title = title;
     }
+    
     public Priority getPriority() {
         return priority;
     }
@@ -65,9 +69,11 @@ public class Task {
     public void setStatus(int level) {
         this.status = Status.fromInt(level);
     }
+    
     public LocalDateTime getDeadline() {
         return deadline;
-    };
+    }
+    
     public void setDeadline(LocalDateTime deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;
@@ -80,12 +86,27 @@ public class Task {
     public boolean containsKeyword(String keyword) {
         return title.contains(keyword);
     }
+    
+    public void addTag(String newTag) {
+        requireNonNull(newTag);
+        newTag = newTag.toLowerCase();
+        if (tags.contains(newTag)) {
+            throw new IllegalArgumentException("Tag already exists");
+        }
+        tags.add(newTag);
+    }
+
+    public void removeTag(String tag) {
+        if (!tags.remove(tag)) {
+            throw new IllegalArgumentException("Tag does not exist");
+        }
+    }
 
     /**
     public boolean containsLabel(String label) {
         return labels.contains(label);
     }
-     */
+    */
 
     public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
@@ -106,7 +127,7 @@ public class Task {
 
     public Task clone() {
         return new Task(getTitle(), getDeadline(), getStatus(), getPriority());
-    };
+    }
 
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
