@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Template;
 
 /**
  * The API of the Model component.
@@ -135,4 +136,9 @@ public interface Model {
      * Get list of entities by classification
      */
     ObservableList<Entity> getListByClassification(String classification);
+
+    /**
+     * Get list of templates
+     */
+    ObservableList<Template> getTemplates();
 }

@@ -2,6 +2,7 @@ package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Template;
 
 /**
  * Wraps all data at Reroll level.
@@ -25,6 +27,7 @@ public class Reroll implements ReadOnlyReroll {
     private final ReadOnlyEntities characters;
     private final ReadOnlyEntities items;
     private final ReadOnlyEntities mobs;
+    private final UniqueTemplateList templates;
 
     // Initializer
     {
@@ -32,6 +35,7 @@ public class Reroll implements ReadOnlyReroll {
         characters = new RerollCharacters(new FilteredList<>(entities.getEntityList(), isCharacter));
         items = new RerollItems(new FilteredList<>(entities.getEntityList(), isItem));
         mobs = new RerollMobs(new FilteredList<>(entities.getEntityList(), isMob));
+        templates = new UniqueTemplateList();
     }
 
     public Reroll() {}
@@ -54,6 +58,14 @@ public class Reroll implements ReadOnlyReroll {
 
         // Initialize all entities
         entities.resetData(newData.getEntities());
+        this.resetTemplates(newData.getTemplates());
+    }
+
+    /*** Reset templates */
+    public void resetTemplates(List<Template> newTemplates) {
+        requireNonNull(newTemplates);
+
+        templates.setTemplates(newTemplates);
     }
 
     @Override
@@ -74,6 +86,11 @@ public class Reroll implements ReadOnlyReroll {
     @Override
     public ReadOnlyEntities getMobs() {
         return mobs;
+    }
+
+    @Override
+    public ObservableList<Template> getTemplates() {
+        return templates.asUnmodifiableObservableList();
     }
 
     // Entity level operations ===============

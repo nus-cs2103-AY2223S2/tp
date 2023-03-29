@@ -21,6 +21,7 @@ import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
 
 public class MakeCommandTest {
@@ -186,6 +187,11 @@ public class MakeCommandTest {
 
         @Override
         public ObservableList<Entity> getListByClassification(String classification) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Template> getTemplates() {
             throw new AssertionError("This method should not be called.");
         }
     }
