@@ -455,7 +455,7 @@ It may cause the person to become unlinked from the event completely.
 <hr style="border:2px solid gray">
 
 
-### Tagging Contacts to an Event: `untagpersonevent`
+### Untagging Contacts from an Event: `untagpersonevent`
 
 Want to remove somebody who was a part of a certain event?
 
@@ -487,9 +487,15 @@ NeoBook data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-NeoBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+NeoBook data are saved as JSON files. Two of which will be of interest to you:
+- `[JAR file location]/data/addressbook.json`.
+- `[JAR file location]/data/userdata.json`.
 
 You are welcome to update the data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you edit the taggedPerson in User data, beware that you may end up unlinking the person from any changes to the original contact in NeoBook
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
