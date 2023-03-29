@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.roles.commons.exceptions.IllegalValueException;
 import seedu.roles.model.job.Company;
 import seedu.roles.model.job.Email;
+import seedu.roles.model.job.Experience;
 import seedu.roles.model.job.JobDescription;
 import seedu.roles.model.job.Name;
 import seedu.roles.model.job.Phone;
@@ -25,7 +26,7 @@ public class JsonAdaptedRoleTest {
     private static final String INVALID_JOBDESCRIPTION = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_EXPERIENCE = "0 Years";
+    private static final String INVALID_EXPERIENCE = " ";
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -123,6 +124,22 @@ public class JsonAdaptedRoleTest {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_COMPANY,
                 null, VALID_TAGS, VALID_WEBSITE, VALID_SALARY, VALID_DEADLINE, VALID_EXPERIENCE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, JobDescription.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidExperience_throwsIllegalValueException() {
+        JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_COMPANY,
+                VALID_JOBDESCRIPTION, VALID_TAGS, VALID_WEBSITE, VALID_SALARY, VALID_DEADLINE, INVALID_EXPERIENCE);
+        String expectedMessage = Experience.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullExperience_throwsIllegalValueException() {
+        JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_COMPANY,
+                VALID_JOBDESCRIPTION, VALID_TAGS, VALID_WEBSITE, VALID_SALARY, VALID_DEADLINE, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Experience.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
 
