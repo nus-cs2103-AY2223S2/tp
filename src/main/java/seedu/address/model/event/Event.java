@@ -52,20 +52,40 @@ public abstract class Event {
         return recurrence;
     }
 
-    public void addTaggedPerson(Person p) {
-        this.taggedPeople.add(p);
-    }
+    /**
+     * Creates a copy of this event, with the Person {@code p} removed.
+     */
+    public Event deleteTaggedPerson(Person p) {
+        Set<Person> taggedPeople = this.taggedPeople;
+        taggedPeople.removeIf(p1 -> p1.equals(p));
+        Description description = this.getDescription();
+        DateTime startDateTime = this.getStartDateTime();
+        DateTime endDateTime = this.getEndDateTime();
+        Recurrence recurrence = this.getRecurrence();
 
-    public void deleteTaggedPerson(Person p) {
-        this.taggedPeople.removeIf(p2 -> p2.equals(p));
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
+        } else {
+            return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
+        }
     }
 
     /**
-     * Edits {@code personToEdit} into {@code editedPerson} if {@code personToEdit} exists.
+     * Creates a copy of this event, with the {@code personToEdit} removed and the {@code editedPerson} added in.
      */
-    public void editTaggedPerson(Person personToEdit, Person editedPerson) {
-        this.taggedPeople = this.taggedPeople.stream().map(
+    public Event editTaggedPerson(Person personToEdit, Person editedPerson) {
+        Set<Person> taggedPeople = this.taggedPeople.stream().map(
                 person -> person.equals(personToEdit) ? editedPerson : person).collect(Collectors.toSet());
+        Description description = this.getDescription();
+        DateTime startDateTime = this.getStartDateTime();
+        DateTime endDateTime = this.getEndDateTime();
+        Recurrence recurrence = this.getRecurrence();
+
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
+        } else {
+            return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
+        }
     }
 
     /**
@@ -108,6 +128,24 @@ public abstract class Event {
 
         return otherEvent != null
                 && otherEvent.getDescription().equals(getDescription());
+    }
+
+    /**
+     * Returns a copy of this Event object.
+     */
+    public Event copy() {
+        Description description = this.getDescription();
+        DateTime startDateTime = this.getStartDateTime();
+        DateTime endDateTime = this.getEndDateTime();
+        Recurrence recurrence = this.getRecurrence();
+
+        Set<Person> people = this.getTaggedPeople();
+
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, people);
+        } else {
+            return new OneTimeEvent(description, startDateTime, endDateTime, people);
+        }
     }
 
     /**

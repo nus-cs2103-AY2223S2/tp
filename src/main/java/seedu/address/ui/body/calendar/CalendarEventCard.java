@@ -16,7 +16,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.Name;
 import seedu.address.ui.UiPart;
 
 /**
@@ -62,16 +61,7 @@ public class CalendarEventCard extends UiPart<Region> {
         indexTag.setText(String.format("Index %d", index.getOneBased()));
 
         // TODO: replace with actual list of people
-        Set<Person> people = Set.of(
-                new Person(new Name("Jane1 Appleseed")),
-                new Person(new Name("Jane2 Appleseed")),
-                new Person(new Name("Jane3 Appleseed")),
-                new Person(new Name("Jane4 Appleseed")),
-                new Person(new Name("Jane5 Appleseed")),
-                new Person(new Name("Jeremy Oppenheimer Jeremy Oppenheimer Jeremy Oppenheimer Jeremy Oppenheimer")),
-                new Person(new Name("Johnny"))
-        );
-
+        Set<Person> people = event.getTaggedPeople();
         if (people.isEmpty()) {
             eventContainer.getChildren().remove(attendeesCard);
         } else {
