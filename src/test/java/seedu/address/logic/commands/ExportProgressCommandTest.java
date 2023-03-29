@@ -9,11 +9,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
