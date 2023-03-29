@@ -75,7 +75,7 @@ public class AddMeetingCommand extends Command {
      */
     public AddMeetingCommand(Title meetingTitle, DateTime dateTime, Set<Name> attendees, Location location,
                              Description description) {
-        requireAllNonNull(meetingTitle, attendees, dateTime, location, description);
+        requireAllNonNull(meetingTitle, attendees, dateTime);
         this.meetingTitle = meetingTitle;
         this.dateTime = dateTime;
         this.attendeeNames.addAll(attendees);

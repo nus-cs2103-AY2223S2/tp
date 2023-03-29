@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,17 +40,35 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(userInput, PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_TITLE, PREFIX_DATETIME, PREFIX_PERSON, PREFIX_LOCATION,
-            PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_TITLE, PREFIX_DATETIME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
-
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MEETING_TITLE).get());
-        Set<Name> attendeeNames = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_PERSON));
-        DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Title title = null;
+        if (argMultimap.getValue(PREFIX_MEETING_TITLE).isPresent()) {
+            title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MEETING_TITLE).get());
+        }
+        assert title != null;
+        DateTime dateTime = null;
+        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
+            dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        }
+        assert dateTime != null;
+        Set<Name> attendeeNames = new HashSet<>();
+        Location location = null;
+        Description description = null;
+        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
+            dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        }
+        if (argMultimap.getValue(PREFIX_PERSON).isPresent()) {
+            attendeeNames = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_PERSON));
+        }
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
 
         return new AddMeetingCommand(title, dateTime, attendeeNames, location, description);
     }

@@ -102,31 +102,11 @@ public class JsonAdaptedMeetingTest {
     }
 
     @Test
-    public void toModelType_nullLocation_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_TITLE, VALID_DATETIME, VALID_ATTENDEES,
-                        null, VALID_DESCRIPTION);
-        String expectedMessage = String.format(JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT,
-                Location.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting =
                 new JsonAdaptedMeeting(VALID_TITLE, VALID_DATETIME, VALID_ATTENDEES,
                         VALID_LOCATION, INVALID_DESCRIPTION);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting =
-                new JsonAdaptedMeeting(VALID_TITLE, VALID_DATETIME, VALID_ATTENDEES,
-                        VALID_LOCATION, null);
-        String expectedMessage = String.format(JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT,
-                Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 }

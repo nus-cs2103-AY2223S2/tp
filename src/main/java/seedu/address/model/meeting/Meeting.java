@@ -30,7 +30,7 @@ public class Meeting {
      * Every field must be present and not null.
      */
     public Meeting(Title title, DateTime dateTime, Set<Person> attendees, Location location, Description description) {
-        requireAllNonNull(title, dateTime, attendees, location, description);
+        requireAllNonNull(title, dateTime);
         this.title = title;
         this.dateTime = dateTime;
         this.attendees.addAll(attendees);

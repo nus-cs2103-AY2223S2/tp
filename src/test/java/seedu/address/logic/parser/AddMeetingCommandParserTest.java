@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.MEETING_PERSON_ALICE_
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_PERSON_BENSON_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATETIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DESCRIPTION;
@@ -71,18 +70,6 @@ public class AddMeetingCommandParserTest {
         // missing datetime prefix
         assertParseFailure(parser, MEETING_TITLE_DESC + VALID_MEETING_DATETIME + MEETING_PERSON_ALICE_DESC
             + MEETING_LOCATION_DESC + MEETING_DESCRIPTION_DESC, expectedMessage);
-
-        // missing person prefix
-        assertParseFailure(parser, MEETING_TITLE_DESC + MEETING_DATETIME_DESC + NAME_DESC_AMY
-            + MEETING_LOCATION_DESC + MEETING_DESCRIPTION_DESC, expectedMessage);
-
-        // missing location prefix
-        assertParseFailure(parser, MEETING_TITLE_DESC + MEETING_DATETIME_DESC + MEETING_PERSON_ALICE_DESC
-            + VALID_MEETING_LOCATION + MEETING_DESCRIPTION_DESC, expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, MEETING_TITLE_DESC + MEETING_DATETIME_DESC + MEETING_PERSON_ALICE_DESC
-            + MEETING_LOCATION_DESC + VALID_MEETING_DESCRIPTION, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_MEETING_TITLE + VALID_MEETING_DATETIME + NAME_DESC_ALICE
