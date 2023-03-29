@@ -14,8 +14,9 @@ title: BookFace
 * The project simulates an ongoing software project for a desktop application (called BookFace) used for managing
   contact details.
 * It is named BookFace because it is an address book organizer with photos of the contacts you save.
-* For the detailed documentation of this project, see
-  the **[BookFace Product Website](https://ay2223s2-cs2103-f11-4.github.io/tp/)**.
+
+* If you are interested in using BookFace, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing BookFace, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
