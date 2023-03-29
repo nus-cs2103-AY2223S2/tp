@@ -5,33 +5,43 @@ title: User Guide
 
 # Introduction
 
-HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line  
-Interface**  
-(CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can
-get  
-your contact management tasks done faster than traditional GUI apps.
+Streamline your patient management with lightning-fast efficiency using HospiSearch - the CLI optimized GUI desktop app.
+
+HospiSearch is a **desktop app for managing hospital/clinic patients' particulars, optimized for use via a 
+Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. 
+If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
+
+Our target audience is hospital and clinical administrative staff who deal with the management of large physical 
+patient records and seek a more efficient and streamlined solution.
+
+## About this Guide
+
+The purpose of this user guide document is to provide staff with a clear understanding of the features and benefits 
+of HospiSearch. The guide aims to assist users in effectively utilizing HospiSearch's features to streamline 
+their patient management tasks and improve overall efficiency.
 
 # Table of Contents:
 
 - [Setup](#setup)
+- [GUI Information](#setup)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-    - [Help](#help-menu--help)
-    - [Undo](#undoing-previous-command--undo)
-    - [Redo](#redoing-previous-undo--redo)
+    - [Help](#viewing-help--help) `help`
+    - [Undo](#undoing-previous-command--undo) `undo`
+    - [Redo](#redoing-previous-undo--redo) `redo`
     - [Add patient](#adding-patient-record--add): `add`
-- [Edit patient](#editing-a-patient-record--edit): `edit`
-- [Delete patient](#deleting-a-patient-record--delete): `delete`
-- [List all patients](#listing-all-patients--list): `list`
-- [Filter patients](#find-patients-by-nric-name-address-or-tags--find): `find`
-- [Backup patient records](#backup-data--backup): `backup`
-- [Load backups](#load-data--load): `load`
-- [View backups](#view-backup--viewbackup): `viewbackup`
-- [Delete backup](#delete-backup--deletebackup): `deletebackup`
-- [Clear all data](#clearing-all-data--clear): `clear`
-- [Light mode](#switch-to-light-mode--light): `light`
-- [Dark mode](#switch-to-dark-mode--dark): `dark`
-- [FAQ](#faq)
+    - [Edit patient](#editing-a-patient-record--edit): `edit`
+    - [Delete patient](#deleting-a-patient-record--delete): `delete`
+    - [List all patients](#listing-all-patients--list): `list`
+    - [Filter patients](#find-patients-by-nric-name-address-or-tags--find): `find`
+    - [Backup patient records](#backup-patient-records--backup): `backup`
+    - [Load backups](#load-data--load): `load`
+    - [View backups](#view-backup-data--viewbackup): `viewbackup`
+    - [Delete backup](#delete-backup-data--deletebackup): `deletebackup`
+    - [Clear all data](#clearing-all-data--clear): `clear`
+    - [Light mode](#switch-to-light-mode--light): `light`
+    - [Dark mode](#switch-to-dark-mode--dark): `dark`
+    - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------  
@@ -49,10 +59,16 @@ your contact management tasks done faster than traditional GUI apps.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>  
    ![Ui](images/Ui.png)
 5. Type in a command in the command box to execute it. Some commands to try:
-1. `help` opens up the help menu
+   1. `help` opens up the help menu.
 6. Refer to the [Features](#features) below for details of each command.
 
+Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
+
 <sub>[return to table of contents](#table-of-contents-)</sub>
+
+## GUI Information
+
+ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
   
 --------------------------------------------------------------------------------------------------------------------  
 
@@ -78,33 +94,37 @@ your contact management tasks done faster than traditional GUI apps.
 ### Notes:
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
-  which  
-  can be used as `add n/John Doe`.
+  which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Items with `…` after them can be used multiple times including zero times. e.g. [t/TAG]…​ can be used as   (i.e. 0  
-  times), t/friend, t/friend t/family etc.
+- Items with `…` after them can be used multiple times, including zero. e.g. [t/TAG] …​ can be used
+(i.e. 0 or more times), t/friend t/family etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is
-  also  
-  acceptable.
+  also acceptable.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
-  be  
-  ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 ### Viewing help : `help`
 
-Lists out all the commands available, along with a brief description
+Lists out all the commands available, along with a brief description.
 
 Format: `help`
 
 ### Undoing previous command: `undo`
 
-Reverts the patient records to the state before the previous command was executed. Format: `undo`
+Reverts the patient records to the state before the previous command was executed.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
+launch of HospiSearch application. Undo can be executed up to the initial starting state.
+
+Format: `undo`
 
 ### Redoing previous undo: `redo`
 
-Reverts the patient records to the state before the previous undo was executed. Format: `redo`
+Reverts the patient records to the state before the previous undo was executed. 
+
+Format: `redo`
 
 ### Adding patient record: `add`
 
