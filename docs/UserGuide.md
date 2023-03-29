@@ -216,12 +216,13 @@ the data of your previous DengueHotspotTracker home folder.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                               |
-|------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
-| **Clear**  | `clear`                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
-| **List**   | `list`                                                                                                                         |
-| **Help**   | `help`                                                                                                                         |
+| Action        | Format, Examples                                                                                                               |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
+| **Clear**     | `clear`                                                                                                                        |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
+| **Edit**      | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
+| **List**      | `list`                                                                                                                         |
+| **Help**      | `help`                                                                                                                         |
+| **Undo/Redo** | `undo [INTEGER]` or `redo [INTEGER]`                                                                                           |
