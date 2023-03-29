@@ -514,19 +514,10 @@ What you should expect to find:
 
 **Assumption:**
 
-HMHero does not already contain an applicant with the name "Thomas".
+HMHero does not already contain an applicant with the name "Adam".
 
-**Command Input Box:**
+![add_command.png](images%2Fadd_command.png)
 
-```
-add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
-```
-
-**Command Output Box:**
-```
-New person added: Thomas; Phone: 91918153; Email: thomas@gmail.com; 
-Address: 6 Sims Drive (s)543230; Status: APPLIED
-```
 
 [Back to Table of Contents](#table-of-contents)
 

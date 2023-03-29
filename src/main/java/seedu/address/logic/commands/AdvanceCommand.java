@@ -94,19 +94,12 @@ public class AdvanceCommand extends Command {
 
         // interviewDateTime is only required if the applicant's status is Applied
         if (interviewDateTime.isPresent()) {
-<<<<<<< Updated upstream
-            if (isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
-                return true;
-            } else {
-                throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_NOT_REQUIRED);
-=======
             if (!isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_NOT_REQUIRED);
             } else if (!isAfterApplicationDateTime(personToAdvance, interviewDateTime.get())) {
                 throw new CommandException(String.format(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION,
                         personToAdvance.getName(), personToAdvance.getApplicationDateTime()));
             } else {
->>>>>>> Stashed changes
             }
         } else {
             if (personToAdvance.getStatus() == Status.APPLIED) {

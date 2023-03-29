@@ -58,6 +58,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updateFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
