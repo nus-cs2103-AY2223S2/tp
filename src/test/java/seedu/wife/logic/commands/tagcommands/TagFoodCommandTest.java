@@ -8,8 +8,8 @@ import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_NEW;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_TEST;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_USED;
-import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
 import static seedu.wife.testutil.TypicalIndex.INDEX_THIRD_FOOD;
 import static seedu.wife.testutil.TypicalWife.getTypicalWifeWithoutFoodTag;
@@ -90,7 +90,7 @@ public class TagFoodCommandTest {
     }
 
     @Test
-    public void execute_maxTagInFood_ThrowsCommandException() {
+    public void execute_maxTagInFood_throwsCommandException() {
         final Model model = new ModelManager(getTypicalWifeWithoutFoodTag(), new UserPrefs());
         ArrayList<Tag> testTags = new ArrayList<>();
         ArrayList<String> validTags = new ArrayList<>(Arrays.asList(VALID_TAG_CHOCOLATE,
