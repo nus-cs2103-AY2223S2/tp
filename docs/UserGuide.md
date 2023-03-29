@@ -264,7 +264,7 @@ This command can be used to edit: phone number, address, email, tags
 * `INDEX` is the index of the pet in the currently displayed list.<br>
 * You must provide **at least one** of the optional fields .
 * Does not allow you to update a pet to have the same name and phone number as a current person in the PetPal.
-* Allows you to update a person to have same name but different phone number or same number and different name as a current person in the FABook.
+* Allows you to update a pet to have same owner name but different phone number or, same number but different owner name as a current pet in the PetPal.
 * Person profiles do not refresh when person is updated, they are only updated when we re-click the person card
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
@@ -393,16 +393,16 @@ You can replace `exit` with `e` for convenience.
 
 ### Saving the data
 
-Your FABook data are saved in the hard disk automatically after any command that changes the data. This means hassle free saving.
+Your PetPal data are saved in the hard disk automatically after any command that changes the data. This means hassle free saving.
 
 ### Editing the data file
 
-FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
+PetPal data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PetPal will discard all data and start with an empty data file at the next run.
 
 </div>
 
@@ -419,7 +419,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 3. Download the latest release of PetPal from [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases) on your new computer.
 4. Launch PetPal on your new computer and exit.
 5. You should see a new `data` folder containing a new `PetPal.json` with a sample. Replace this file with the save file copied over from your old computer.
-6. Launch FABook again. Your data should be there!
+6. Launch PetPal again. Your data should be there!
 
 <div markdown="block" class="alert alert-block alert-success">
 
@@ -457,7 +457,7 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                     |
 | Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                 |
 | Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                   |
-| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                     |
+| JAR                      | JAR stands for Java ARchive. PetPal uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                     |
 | JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                         |
 
 [Return to Table of Contents](#table-of-contents)
