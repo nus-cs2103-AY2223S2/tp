@@ -77,33 +77,29 @@ public class CommandSuggestor {
      */
     public String suggestCommand(String userInput) throws CommandException {
         assert userInput != null && !userInput.isEmpty();
+
         String[] userInputArray = userInput.split(" ", 2);
         String commandWord = userInputArray[0];
-        String suggestedCommand = "";
+        String commandBody = userInputArray.length > 1 ? userInputArray[1] : "";
+
+        CommandException noSuchCommandException = new CommandException(
+            String.format("No command starting with \"%s\" found.", commandWord));
+
         boolean isCommandComplete = userInput.contains(" ");
-
-        for (String command : commandList) {
-            if (command.startsWith(commandWord)) {
-                if (isCommandComplete && !command.equals(commandWord)) {
-                    continue;
-                }
-                suggestedCommand = command;
-                break;
-            }
+        if (!isCommandComplete) {
+            String suggestedCommand = commandList.stream()
+                    .filter(command -> command.startsWith(commandWord))
+                    .findFirst()
+                    .orElseThrow(() -> noSuchCommandException);
+            return suggestedCommand + suggestArguments(suggestedCommand, commandBody);
         }
 
-        if (suggestedCommand.equals("") && !commandWord.equals("")) {
-            throw new CommandException("Invalid command");
+        boolean isInvalidCommand = !commandList.contains(commandWord);
+        if (isInvalidCommand) {
+            throw noSuchCommandException;
         }
 
-        if (userInputArray.length > 1) {
-            if (userInput.charAt(userInput.length() - 1) == ' ') {
-                userInput = userInput.substring(0, userInput.length() - 1);
-            }
-            return userInput + suggestArguments(suggestedCommand, userInputArray[1]);
-        } else {
-            return suggestedCommand + suggestArguments(suggestedCommand, "");
-        }
+        return userInput + suggestArguments(commandWord, commandBody);
     }
 
     /**
