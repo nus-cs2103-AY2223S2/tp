@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecurCommand;
@@ -91,7 +93,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
      */
     public AddRecurCommand parseEvent(String newArgs, Prefix prefix) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, prefix, PREFIX_COUNT);
+                ArgumentTokenizer.tokenize(newArgs, prefix, PREFIX_COUNT, PREFIX_DATE);
         //Make the user not create (lab or tutorial) and students with the same command
         if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
@@ -102,14 +104,29 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         int count = ParserUtil.parseRecurCount(argMultimap.getValue(PREFIX_COUNT).get());
 
         String name = ParserUtil.parseEventName(argMultimap.getValue(prefix).get());
+
+        LocalDateTime date = LocalDateTime.now();
+
+        //Lab is 2 hours long, Tutorial and Consultation is 1 hour long according to CS2040 Timetables
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() && prefix.equals(PREFIX_LAB)) {
+            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 2);
+        } else if (argMultimap.getValue(PREFIX_DATE).isPresent() && prefix.equals(PREFIX_TUTORIAL)) {
+            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1);
+        } else if (argMultimap.getValue(PREFIX_DATE).isPresent() && prefix.equals(PREFIX_CONSULTATION)) {
+            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1);
+        }
+
         if (prefix.equals(PREFIX_LAB)) {
             Lab lab = new Lab(name);
+            lab.changeDate(date);
             return new AddRecurCommand(lab, true, false, false, count);
         } else if (prefix.equals(PREFIX_TUTORIAL)) {
             Tutorial tutorial = new Tutorial(name);
+            tutorial.changeDate(date);
             return new AddRecurCommand(tutorial, false, true, false, count);
         } else {
             Consultation consultation = new Consultation(name);
+            consultation.changeDate(date);
             return new AddRecurCommand(consultation, false, false, true, count);
         }
     }

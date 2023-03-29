@@ -116,8 +116,10 @@ public class DeleteEventCommand extends Command {
 
         Tutorial tutorialToDelete = lastShownList.get(targetIndex[0].getZeroBased());
 
+        LocalDateTime deleteDate = tutorialToDelete.getDate();
+        LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
-            if (range[0].isEqual(tutorialToDelete.getDate())) {
+            if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
                 break;
             }
@@ -157,8 +159,10 @@ public class DeleteEventCommand extends Command {
 
         Lab labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
 
+        LocalDateTime deleteDate = labToDelete.getDate();
+        LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
-            if (range[0].isEqual(labToDelete.getDate())) {
+            if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
                 break;
             }
@@ -199,8 +203,10 @@ public class DeleteEventCommand extends Command {
 
         Consultation consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
 
+        LocalDateTime deleteDate = consultationToDelete.getDate();
+        LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
-            if (range[0].isEqual(consultationToDelete.getDate())) {
+            if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
                 ParserUtil.MASTER_TIME.remove(range);
                 break;
             }
