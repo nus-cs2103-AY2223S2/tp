@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.dengue.model.person.Person;
 
 /**
- * Unmodifiable view of an Dengue Hotspot Tracker
+ * Unmodifiable view of a Dengue Hotspot Tracker
  */
 public interface ReadOnlyDengueHotspotTracker {
 
@@ -13,5 +13,12 @@ public interface ReadOnlyDengueHotspotTracker {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    /**
+     * Generates a deep copy of an unmodifiable list.
+     * @return A deep copy of the list.
+     */
+    ReadOnlyDengueHotspotTracker generateDeepCopy();
+
 
 }

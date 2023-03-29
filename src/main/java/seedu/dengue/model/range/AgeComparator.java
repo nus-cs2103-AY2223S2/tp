@@ -1,9 +1,12 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.range;
+
+import seedu.dengue.model.person.Age;
 
 /**
  * A Comparator that compares between the ages of two persons.
  */
 public class AgeComparator extends GeneralComparator<Age> {
+
     /**
      * Compares two ages.
      * @param a1 the first object to be compared.

@@ -3,7 +3,9 @@ package seedu.dengue.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.UniquePersonList;
@@ -52,7 +54,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
      */
     public void resetData(ReadOnlyDengueHotspotTracker newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
     }
 
@@ -82,7 +83,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -117,5 +117,18 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    @Override
+    public DengueHotspotTracker generateDeepCopy() {
+        DengueHotspotTracker copy = new DengueHotspotTracker();
+        ObservableList<Person> personList = this.getPersonList()
+                .stream()
+                .map(p -> p.getCopy())
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        copy.setPersons(personList);
+        return copy;
+
     }
 }
