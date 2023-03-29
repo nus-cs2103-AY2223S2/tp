@@ -1,4 +1,4 @@
-package trackr.ui;
+package trackr.ui.listpanels;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import trackr.commons.core.LogsCenter;
 import trackr.model.order.Order;
+import trackr.ui.UiPart;
+import trackr.ui.cards.OrderCard;
 
 /**
  * Panel containing the list of orders.
