@@ -35,7 +35,7 @@ public class ReviewCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Card} and index to display.
+     * Creates a {@code CardCode} with the given {@code Card} and index to display.
      */
     public ReviewCard(Card card) {
         super(FXML);
@@ -46,7 +46,7 @@ public class ReviewCard extends UiPart<Region> {
         answer.setText(EMPTY_STRING);
 
         if (!card.getTag().tagName.equals(Tag.TagName.UNTAGGED)) {
-            tags.getChildren().add(new PersonCard.CardTag(card.getTagName()));
+            tags.getChildren().add(new CardElement.CardTag(card.getTagName()));
         }
 
         if (card.isFlipped()) {
@@ -63,12 +63,12 @@ public class ReviewCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof CardElement)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        CardElement card = (CardElement) other;
         return this.card.equals(card.card);
     }
 }

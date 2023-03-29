@@ -123,7 +123,7 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
-#personListView {
+#cardListView {
     -fx-background-color: #e6eaeb;
     -fx-background-radius: 0 0 15 15;
     -fx-border-radius: 0 0 15 15;

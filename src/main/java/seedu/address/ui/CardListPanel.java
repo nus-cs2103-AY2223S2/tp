@@ -13,21 +13,21 @@ import seedu.address.model.card.Card;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class CardListPanel extends UiPart<Region> {
+    private static final String FXML = "CardListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(CardListPanel.class);
 
     @FXML
-    private ListView<Card> personListView;
+    private ListView<Card> cardListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code CardListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Card> cardList, boolean isReview) {
+    public CardListPanel(ObservableList<Card> cardList, boolean isReview) {
         super(FXML);
 
-        personListView.setItems(cardList);
-        personListView.setCellFactory(listView -> new CardListViewCell());
+        cardListView.setItems(cardList);
+        cardListView.setCellFactory(listView -> new CardListViewCell());
 
         if (isReview) {
             toggleReview();
@@ -37,15 +37,15 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     private void toggleReview() {
-        personListView.setCellFactory(listView -> new ReviewCardListViewCell());
+        cardListView.setCellFactory(listView -> new ReviewCardListViewCell());
     }
 
     private void endReview() {
-        personListView.setCellFactory(listView -> new CardListViewCell());
+        cardListView.setCellFactory(listView -> new CardListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ReviewCard} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code ReviewCard} using a {@code CardElement}.
      */
     static class ReviewCardListViewCell extends ListCell<Card> {
         @Override
@@ -64,7 +64,7 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code CardElement}.
      */
     static class CardListViewCell extends ListCell<Card> {
         @Override
@@ -75,7 +75,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
 
             } else {
-                setGraphic(new PersonCard(card, getIndex() + 1).getRoot());
+                setGraphic(new CardElement(card, getIndex() + 1).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
                         + "-fx-background-color:#e6eaeb ");
             }
