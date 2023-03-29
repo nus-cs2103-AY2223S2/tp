@@ -13,18 +13,6 @@ end box
 [-> SelectCommand : execute(model)
 activate SelectCommand
 
-SelectCommand -> ModelManager : setSelectedIndex(index)
-activate ModelManager
-
-ModelManager -> AddressBook : setSelectedIndex(index)
-activate AddressBook
-
-AddressBook ---> ModelManager
-deactivate AddressBook
-
-ModelManager ---> SelectCommand
-deactivate ModelManager
-
 SelectCommand -> ModelManager : setSelectedPerson(index)
 activate ModelManager
 

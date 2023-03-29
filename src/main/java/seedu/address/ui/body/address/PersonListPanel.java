@@ -36,6 +36,8 @@ public class PersonListPanel extends UiPart<Region> {
     private ListView<PersonListCellData> personListView;
     private int selectedIndex;
 
+    private int originalClick; //check >> still have bug (the binding issue)
+
     private List<PersonListCardData> allData;
 
     private List<PersonListCardData> favData;
@@ -62,9 +64,12 @@ public class PersonListPanel extends UiPart<Region> {
             int clickedIndex = personListView.getSelectionModel().getSelectedIndex();
             if (clickedIndex == selectedIndex) {
                 clearSelection(); //clear
+                this.originalClick = EMPTY_INDEX; //check
             } else {
                 selectedIndex = clickedIndex;
+                originalClick = clickedIndex;
                 logic.setSelectedPerson(getActualIndex(clickedIndex));
+                this.setOriginalClick(); //check
             }
         });
 
@@ -84,6 +89,11 @@ public class PersonListPanel extends UiPart<Region> {
             }
         });
 
+    }
+
+    private void setOriginalClick() {
+        MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
+        model.select(originalClick);
     }
 
     /**

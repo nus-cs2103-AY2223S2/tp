@@ -217,20 +217,17 @@ Consequently, the state of the selected tab needs to be shared between the two m
 
 The `select` feature allows user to select which contact's details to display on the person details panel.
 
-There are _selected person_ and _selected index_ fields in `AddressBook` that keep tracks of which person's details should be displayed.
-These fields are initialised to null at the start when no person is selected yet.
-
+There is _selected person_ field in `AddressBook` that keep tracks of which person's details should be displayed.
+This field is initialised to null at the start when no person is selected yet.
 The `select` feature is facilitated through `SelectCommandParser` and `SelectCommand`.
-The `LogicManager` executes the `SelectCommand`, which communicates with the `ModelManager` and updates the _selected person_ and _selected index_ fields in `AddressBook`
-
-![Class Diagram of `select`](images/SelectClassDiagram.png)
+The `LogicManager` executes the `SelectCommand`, which communicates with the `ModelManager` and updates the _selected person_ field in `AddressBook`.
 
 The following sequence diagram illustrates the execution of a successful select command.
 Low-level details of the parsing of select command in logic is omitted as it has been described [above](#logic-component)
 
 ![Sequence Diagram of successful `select`](images/SelectSequenceDiagram.png)
 
-Upon execution, the `selectedIndex` and `selectedPerson` fields of AddressBook would be updated, allowing the GUI to access it
+Upon execution, the `selectedPerson` field of AddressBook would be updated, allowing the GUI to access it
 and display changes accordingly.
 
 #### Design considerations:
@@ -239,7 +236,7 @@ There are two ways to select a contact:
 * **Method 1:** Click on the contact in the current displayed contact list
 * **Method 2:** Use the `select` command
 
-Consequently, the state of the selected person and index needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
+Consequently, the state of the selected person needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
 > **Example:** 
 > - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already select.
 > - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
