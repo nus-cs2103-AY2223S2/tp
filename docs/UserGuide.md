@@ -187,36 +187,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
 * `find n/Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Adding new weight to a client: `addWeight`
-
-Adds a new weight to the weight history of the client in the FitBook.
-
-Format: `addWeight INDEX w/WEIGHT d/DATE`
-
-* Adds weight to the weight history of the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
-
-Examples:
-* `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 October 2023, 6pm.
-* `find n/Alex` followed by `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg, dated 10 October 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
-
-### Plotting weight history graph for a client: `graph`
-
-Plots the weight history of the client in the FitBook.
-
-Format: `graph INDEX`
-
-* Plots the weight history of the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The weight history graph will be shown only for weights dated within one month of the current date and time.
-
-Examples:
-* `graph 1` plots the weight history of the first client in the FitBook.
-* `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
-
 ### Deleting a client : `delete`
 
 Deletes the specified client from the FitBook.
@@ -343,6 +313,36 @@ Examples:
 Exports the routine details locally into a csv file.
 
 Format: `exportRoutines`
+
+### Adding new weight to a client: `addWeight`
+
+Adds a new weight to the weight history of the client in the FitBook.
+
+Format: `addWeight INDEX w/WEIGHT d/DATE`
+
+* Adds weight to the weight history of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
+
+Examples:
+* `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 October 2023, 6pm.
+* `find n/Alex` followed by `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg, dated 10 October 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
+
+### Plotting weight history graph for a client: `graph`
+
+Plots the weight history of the client in the FitBook.
+
+Format: `graph INDEX`
+
+* Plots the weight history of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The weight history graph will be shown only for weights dated within one month of the current date and time.
+
+Examples:
+* `graph 1` plots the weight history of the first client in the FitBook.
+* `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
 <h3><span style="color:#faac69">Exiting the program : `exit`</span></h3>
 
