@@ -16,6 +16,7 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
@@ -36,6 +37,7 @@ public class MarkCommandTest {
         DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
         taskBookModel.addTask(validDeadlineTask);
         Task taskToMark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+        taskToMark.assignPerson(INDEX_FIRST_PERSON, "Test Name", "Test Role");
         Score score = new Score(4);
         CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON, score).execute(model, taskBookModel);
 
