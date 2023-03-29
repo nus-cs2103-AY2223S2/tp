@@ -51,8 +51,6 @@ public class SummaryCard extends UiPart<Region> {
     @FXML
     private Label routines;
     @FXML
-    private Label exercises;
-    @FXML
     private FlowPane appointments;
     @FXML
     private FlowPane tags;
@@ -78,6 +76,8 @@ public class SummaryCard extends UiPart<Region> {
     private ImageView caloriesIcon;
     @FXML
     private ImageView routineIcon;
+    @FXML
+    private Label exerciseTitle;
 
 
     /**
@@ -141,17 +141,19 @@ public class SummaryCard extends UiPart<Region> {
      */
     private void setRoutineCondition(Client client, Label routines) {
         if (!client.getRoutines().isEmpty()) {
+            exerciseTitle.setText("Exercise\nRoutines: ");
             StringBuilder str = new StringBuilder();
+            int routineCounter = 1;
             for (Routine routine : client.getRoutines()) {
-                str.append(routine.getRoutineName());
+                str.append(routineCounter++ + ". " + routine.getRoutineName());
                 str.append("\n");
                 str.append(routine.exerciseListToString() + "\n");
             }
             routines.setText(str.toString());
             routineIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/routineIcon.png")));
         } else {
+            exerciseTitle.setManaged(false);
             routines.setManaged(false);
-            exercises.setManaged(false);
             routineIcon.setManaged(false);
         }
     }

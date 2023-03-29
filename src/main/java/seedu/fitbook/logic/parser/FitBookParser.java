@@ -27,6 +27,7 @@ import seedu.fitbook.logic.commands.GraphCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.commands.ListRoutinesCommand;
+import seedu.fitbook.logic.commands.ViewDetailCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -115,6 +116,9 @@ public class FitBookParser {
 
         case GraphCommand.COMMAND_WORD:
             return new GraphCommandParser().parse(arguments);
+
+        case ViewDetailCommand.COMMAND_WORD:
+            return new ViewDetailCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

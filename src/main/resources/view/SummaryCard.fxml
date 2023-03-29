@@ -63,7 +63,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT">
                     <ImageView fx:id="routineIcon" fitWidth="35" fitHeight="35" />
-                    <Label fx:id="ExerciseTitle" alignment="CENTER_LEFT" contentDisplay="LEFT" styleClass="subTitle" text="Exercises:" textAlignment="LEFT"/>
+                    <Label fx:id="exerciseTitle" alignment="CENTER_LEFT" contentDisplay="LEFT" styleClass="subTitle" textAlignment="LEFT"/>
                 </HBox>
                 <Label fx:id="routines" styleClass="cell_small_label" text="\$routine"/>
             </VBox>
