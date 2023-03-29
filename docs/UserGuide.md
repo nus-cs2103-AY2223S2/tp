@@ -197,47 +197,37 @@ Examples:
 * `sort 1 1` sorts the athlete list by name in alphabetical order.
 * `sort 2 1` sorts the athlete list according to pay rate, from cheapest to most expensive.
 
-### Creating/Deleting a group : `group`
+### Adding a tag : `add-tag`
 
-Creates a group to add athletes to. / Deletes an existing group.
+Adds a specified tag to a specified athlete.
 
-Format: `group m/MODIFICATION g/GROUPNAME`
-
-* Creates a group of name `GROUPNAME` when used with modification `add`.
-* Deletes the group of name `GROUPNAME` when used with modification `delete`.
-* Modification field can only be either `add` or `delete`.
-* Name field g/ and modification field m/ **must be provided.**
-* Only groups that already exist can be deleted.
+Format: `add-tag INDEX t/TAGNAME`
+* Adds a tag of `TAGNAME` to the athelete at `INDEX`
 
 Examples:
-* `group m/add g/Team Dynamite` adds a group of name `Team Dynamite`.
-* `group m/delete g/Tennis` deletes the existing group named `Tennis`.
+* add-tag 1 t/Hall adds a tag of name `Hall` to the person at Index 1.
 
-### Add athletes to a group / Delete athletes from a group: `groupmod`
+### Removing a tag : `remove-tag`
 
-Adds an athlete to a group /Deletes an athlete from a group.
+Adds a specified tag to a specified athlete.
 
-Format: `groupmod INDEX m/MODIFICATION g/GROUPNAME`
+Format: `remove-tag INDEX t/TAGNAME`
 
-* Adds an athlete at the specified `INDEX` to the group with specified `GROUPNAME` when used with modification `add`.
-* Modification field can only be either `add` or `delete`.
-* Both index and group **must already exist and be provided.**
-* Modification field m/ **must be provided.**
-* An athlete cannot be added to a group they are already in.
-* An athlete cannot be removed from a group they do not belong to.
+* Removes a tag of `TAGNAME` to the athelete at `INDEX`
+
 
 Examples:
-* `groupmod 2 m/add g/Team Dynamite` adds the 2nd athlete in the athlete list to the group named `Team Dynamite`.
-* `groupmod 5 m/delete g/Bowling` deletes the 5th athlete in the athlete list from the group named `Bowling`.
+* remove-tag 1 t/Hall remove a tag of name `Hall` to the person at Index 1.
 
-### Showing athletes from a group : `show`
 
-Shows all athletes belonging to at least one of the groups specified.
+### Showing athletes with the specified tag : `show`
+
+Shows all athletes belonging to at least one of the tags specified.
 
 Format: `show [GROUP1]…​`
 
 * Filters list of athletes to only contain athletes belonging to one or more of the specific group(s).
-* At least one group name **must be provided.**
+* At least one tag name **must be provided.**
 
 Examples:
 * `show varsity` shows people belonging to group `varsity`.
