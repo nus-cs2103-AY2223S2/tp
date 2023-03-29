@@ -22,7 +22,7 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Statuses should only be one of the following: interested, applied, offered or rejected, "
-                    + "and it should not be blank.";
+                    + "and it should not be left blank.";
 
     public final StatusType value;
 

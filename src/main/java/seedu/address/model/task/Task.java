@@ -60,7 +60,8 @@ public class Task {
         builder.append("Task description: ")
                 .append(getDescription())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append(".");
 
         return builder.toString();
     }
