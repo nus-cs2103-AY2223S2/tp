@@ -23,9 +23,10 @@ public class ManualPanel extends UiPart<VBox> {
         File manualHtml = new File("./src/main/resources/view/ManualPanel.html");
         System.out.println(manualHtml.exists());
         WebEngine webEngine = webView.getEngine();
-
         webEngine.load(manualHtml.toURI().toString());
 
+        webView.prefWidthProperty().bind(this.getRoot().widthProperty());
+        webView.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
 
 }
