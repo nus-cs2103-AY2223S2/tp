@@ -20,6 +20,8 @@ This User Guide will provide you with an in-depth documentation for you to easil
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
+---
+
 # Table of Contents
 
 - [1. Using this guide](#1-using-this-guide)
@@ -28,7 +30,12 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 - [2. Installation](#2-installation)
 - [3. Quick Start Guide](#3-quick-start-guide)
   - [3.1 Layout](#31-layout)
+    - [3.1.1 Command Box](#311-command-box)
+    - [3.1.2 Command Result Feedback](#312-command-result-feedback)
+    - [3.1.3 Contact List](#313-contact-list)
   - [3.2 Key Definitions](#32-key-definitions)
+    - [3.2.1 Command](#321-command)
+    - [3.2.2](#322-parameter)
   - [3.3 Command Format](#33-command-format)
   - [3.4 How to Use the CLI](#34-how-to-use-the-cli)
 - [4. Features](#4-features)
@@ -96,6 +103,8 @@ Some special notations are used throughout this guide:
 
 [↑ Back to table of contents](#table-of-contents)
 
+---
+
 # 2. Installation
 
 If you have yet to install ConnectUS, simply follow these steps to set it up:
@@ -118,6 +127,8 @@ Congratulations! You have successfully set up ConnectUS.
 
 [↑ Back to table of contents](#table-of-contents)
 
+---
+
 # 3. Quick Start Guide
 
 ## 3.1 Layout
@@ -126,9 +137,58 @@ Let's take a look at the different components in ConnectUS.<br>
 
 ![Layout](images/Layout.png)
 
+### 3.1.1 Command Box
+
+![CommandBox](images/CommandBox.png)
+
+The command box allows you to enter commands that you wish to perform. For starters, try typing the `help` command and hit enter!
+
+### 3.1.2 Command Result Feedback
+
+![CommandResultFeedback](images/CommandResultFeedback.png)
+
+The command result feedback box will provide you with a feedback message after a command is entered. For example, after typing `help`, you should see the above feedback in your ConnectUS application, along with a new Help Window!
+
+If you enter an unrecognized command or a command with the wrong format, an error message will be shown in this feedback box:<br>
+
+![CommandFeedbackInvalid](images/CommandFeedbackInvalid.png)
+
+You can then use the scroll bar below the feedback box to navigate through the feedback given.
+
+### 3.1.3 Contact List
+
+![ContactList](images/ContactList.png)
+
+The contact list shows the contacts that exist within your ConnectUS with all their registered information fields.
+
+* There is a scroll bar beside the contact list container for you to scroll through your contact list.
+* The index beside the contact name is the contact's index. It is used for certain commands such as `delete`. More details on this can be found in [Features](#4-features).
+* The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* You can also find a condensed summary table of these information fields in the [Prefix Summary](#8-prefix-summary).
+
 ## 3.2 Key Definitions
 
+### 3.2.1 Command
+
+Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as [parameters](#322-parameter), for ConnectUS to perform the action.
+
+### 3.2.2 Parameter
+
+Parameters are user inputs that ConnectUS requires to perform certain [commands](#321-command).
+
+Example: `n/NAME`
+
+In this case, `NAME` is the information field that you wish to input. The `n/` prefix must be used for ConnectUS to recognise that you intend on adding a `NAME` to a contact.
+
+* The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* You can also find a condensed summary of these information fields in the [Prefix Summary](#8-prefix-summary).
+
 ## 3.3 Command Format
+
+To use ConnectUS, type the [command](#321-command) along with its [parameters](#322-parameter), if required. You can leave the parameters empty if it is optional (i.e. if it is wrapped in square brackets like this: `help [COMMAND]`).
+
+* The detailed list of commands and their command formats can be found in [Features](#4-features). 
+* You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
 
 <div markdown="block" class="alert alert-info">
 
@@ -141,7 +201,7 @@ Let's take a look at the different components in ConnectUS.<br>
   e.g `n/NAME [b/BIRTHDAY]` can be used as `n/John Doe b/14/02/2000` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T` (i.e. 1 time), `mod/CS2103T mod/CS2107` (i.e. 2 times) etc.
+  e.g. `[mod/MODULE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T` (i.e. 1 time), `mod/CS2103T mod/CS2107` (i.e. 2 times) etc.
 
 * Information fields can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -159,21 +219,45 @@ Let's take a look at the different components in ConnectUS.<br>
 
 ## 3.4 How to Use the CLI
 
-Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+To use the [Command Line Interface (CLI)](), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it.e.g. typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
-   Some example commands you can try:
 
-   * `list` : Lists all contacts.
+To familiarise yourself with ConnectUS, let's try out the `add` command! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
 
-   * `add n/James p/12345678 e/james@example.com a/Clementi tg/itsjameshere b/14/02/2000` : Adds a contact named `James` to ConnectUS.
+**Format:** `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​ [r/REMARK]…​`
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+**What does Format mean?**
 
-   * `clear` : Deletes all contacts.
+The first word of every command allows ConnectUS to distinguish different commands.
 
-   * `exit` : Exits the app.
+* `add` tells ConnectUS that this command is to add a new contact
+* Prefixes such as `n/` and `p/` are delimiters that allow ConnectUS to distinguish different parameters from the input that you supply
+* Information fields such as `NAME` and `PHONE` show you what you should place in each portion of the command.
 
-Refer to the [Features](#4-features) below for details of each command.
+Notice how there are square brackets `[]` surrounding certain parameters like in `[p/PHONE]`. This indicates that the parameter is **optional**, i.e. a contact can exist even if it does not have this field.
+
+Other parameters that end with `…​` like in `[mod/MODULE]…​` indicates that this parameter can be used multiple times.
+
+**Let's test this out!**
+
+Suppose you have a friend whom you call Lineup Larry. His phone number is 91234567, and he stays on campus in UTown Residences. His Telegram username is lineuplarry, takes the modules CS2103T and CS2101, and is in the Art Club.
+
+`NAME`: Lineup Larry<br>
+`PHONE`: 91234567<br>
+`ADDRESS`: UTown Residences<br>
+`TELEGRAM`: lineuplarry<br>
+`MODULE`: CS2103T, CS2101<br>
+`CCA`: Art Club
+
+The command you would enter into the command box would be:<br>
+`add n/Lineup Larry p/91234567 a/UTown Residences tg/lineuplarry mod/CS2103T mod/CS2101 cca/Art Club`
+
+If you have a new contact added in the Contact List as follows:<br>
+![NewContactTutorial](images/NewContactTutorial.png)
+
+Congratulations! You have successfully added your first contact!
+
+There are many other features in ConnectUS. Do refer to the [Features](#4-features) below for details on each feature and command!
 
 [↑ Back to top of section](#3-quick-start-guide)
 
@@ -244,7 +328,7 @@ Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM]
 
 >Adds a contact to the ConnectUS app.
  
-You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE_CODE` etc.) are optional. 
+You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 A contact can have any number of tags, modules and CCAs! (including 0)
@@ -331,7 +415,7 @@ The `delete-t` command:
 
 * All indexes (i.e. `PERSON_INDEX`, `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX`, `MAJOR_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `MAJOR_INDEX`).
-* The specified tag will be deleted from the person specified at the `PEROSN_INDEX`.
+* The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
 
 **Example:**
 
@@ -635,5 +719,10 @@ There are four kinds of tags in ConnectUS.
 [↑ Back to top](#table-of-contents)
 
 # 9. Glossary
+
+>#A
+> test<br>
+> test
+
 
 [↑ Back to top](#table-of-contents)
