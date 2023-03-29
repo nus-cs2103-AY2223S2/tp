@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ public class PersonViewPanel extends UiPart<Region> {
     private ListView<Appointment> appointments;
 
     @FXML
-    private FlowPane medications;
+    private Label medication;
 
     /**
      * Generates a Person View Panel.
@@ -69,6 +70,7 @@ public class PersonViewPanel extends UiPart<Region> {
         }
          */
         setAppointmentDetails();
+        setMedicationDetails();
     }
 
     private void setAppointmentDetails() {
@@ -76,6 +78,13 @@ public class PersonViewPanel extends UiPart<Region> {
                 new ObservableListWrapper<>(person.getPatientAppointments());
         appointments.setItems(appointmentsObservableList);
         appointments.setCellFactory(item -> new AppointmentListViewCell());
+    }
+
+    private void setMedicationDetails() {
+        if (person.isPatient()) {
+            Patient patient = (Patient) person;
+            medication.setText(patient.getMedication().toString());
+        }
     }
 
     class AppointmentListViewCell extends ListCell<Appointment> {
