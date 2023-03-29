@@ -2,6 +2,7 @@ package seedu.dengue.model.range;
 
 import java.util.Optional;
 
+import seedu.dengue.logic.comparators.DateComparator;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
 

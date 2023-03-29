@@ -191,6 +191,14 @@ public class ModelManager implements Model {
         this.overview = newOverview;
     }
 
+    //=========== Sort Stuff =============================================================
+
+    public void sort(List<Person> sortedList) {
+        dengueHotspotTracker.setPersons(sortedList);
+    }
+
+    //=========== Misc Stuff =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
