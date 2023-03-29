@@ -7,10 +7,13 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.body.address.AddressPanel;
 import seedu.address.ui.body.calendar.CalendarPanel;
 import seedu.address.ui.body.user.UserPanel;
+import seedu.address.ui.result.ResultDisplay;
+
 
 /**
  * A UI component representing the body section of the app with tabs.
@@ -20,21 +23,21 @@ public class BodyPanel extends UiPart<Region> {
 
     @FXML
     private TabPane bodyTabs;
-
     private final Logic logic;
-
     private final AddressPanel addressPanel;
     private final CalendarPanel calendarPanel;
     private final UserPanel userPanel;
 
+    private final ResultDisplay resultDisplay;
     /**
      * Creates a {@code BodyPanel} with the given {@code Logic}.
      */
-    public BodyPanel(Logic logic) {
+    public BodyPanel(Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
 
         this.logic = logic;
-        this.addressPanel = new AddressPanel(logic.getFilteredPersonList());
+        this.resultDisplay = resultDisplay;
+        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), this.logic, this.resultDisplay);
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
@@ -91,6 +94,7 @@ public class BodyPanel extends UiPart<Region> {
             }
             bodyTabs.getSelectionModel().select(newValue.getIndex().getZeroBased());
         });
+
     }
 
     /**
@@ -103,6 +107,15 @@ public class BodyPanel extends UiPart<Region> {
                 return;
             }
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
+            resultDisplay.setFeedbackToUser("Enter command below");
         });
+    }
+
+    /**
+     * Sets selected person's details in person detail panel
+     * @param person
+     */
+    public void setSelectedPerson(Person person) {
+        this.addressPanel.setSelectedPerson(person);
     }
 }

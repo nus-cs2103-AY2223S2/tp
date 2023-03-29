@@ -7,10 +7,10 @@
 <HBox spacing="10" minHeight="100"
       styleClass="pane-with-rounded-corner-muted, pa"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <VBox spacing="5" minWidth="160">
-        <Label fx:id="dateNumber" text="10" styleClass="label-h4" />
-        <Label fx:id="dateMonthYear" text="April, 2023" styleClass="label-h5" />
-        <Label fx:id="day" text="Friday" styleClass="label-h6" />
+    <VBox spacing="5" minWidth="160" prefWidth="160">
+        <Label fx:id="dateNumber" text="\$dayOfMonth" styleClass="label-h4" />
+        <Label fx:id="day" text="\$day" styleClass="label-h6" />
+        <Label fx:id="dateMonthYear" text="\$monthAndYear" styleClass="label-h5" />
     </VBox>
     <VBox fx:id="eventsContainer" spacing="10" HBox.hgrow="ALWAYS" />
 </HBox>
