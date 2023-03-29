@@ -132,6 +132,17 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd opening in the opening list.
 
+### Deleting all openings : `clear`
+
+Deletes all openings from the list.
+
+Format: `clear`
+
+* This command allows you to delete all openings from the list in a single command
+* Useful when you want to start a fresh new list!
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
