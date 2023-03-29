@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +12,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.ui.events.ProceedCreatePasswordEvent;
+import seedu.address.ui.events.SkipCreatePasswordEvent;
 
 /**
  * The manager of the UI component.
@@ -31,6 +34,7 @@ public class UiManager implements Ui {
     private MainWindow mainWindow;
     private LoginWindow loginWindow;
 
+    private Stage primaryStage;
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
@@ -40,15 +44,16 @@ public class UiManager implements Ui {
 
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
         logger.info("Starting UI...");
 
         //Set the application icon.
-        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        this.primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
             //this.showMainWindow(primaryStage);
             //mainWindow = new MainWindow(primaryStage, logic);
-            this.showLoginWindow(primaryStage);
+            this.showLoginWindow();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -58,25 +63,25 @@ public class UiManager implements Ui {
 
     /**
      * Shows the main window which is the main application
-     * @param primaryStage Primary stage of the whole application
      */
-    public void showMainWindow(Stage primaryStage) {
-        mainWindow = new MainWindow(primaryStage, logic);
+    public void showMainWindow() {
+        mainWindow = new MainWindow(this.primaryStage, logic);
         mainWindow.show(); //This should be called before creating other UI parts
         mainWindow.fillInnerParts();
     }
 
     /**
      * Shows the welcome page
-     * @param primaryStage Primary stage of the whole application
      * @throws IOException Input Output Exception
      */
-    public void showLoginWindow(Stage primaryStage) {
+    public void showLoginWindow() {
         try {
-            loginWindow = new LoginWindow(primaryStage, logic);
+            loginWindow = new LoginWindow(this.primaryStage, logic);
             // Observer design pattern is used here to register events
-            primaryStage.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD,
+            this.primaryStage.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD,
                     this::onProceedCreatePassword);
+            this.primaryStage.addEventHandler(SkipCreatePasswordEvent.SKIP_CREATE_PASSWORD_EVENT,
+                    this::onSkipCreatePassword);
             loginWindow.show();
             loginWindow.fillWelcomeNewUserSection();
         } catch (Throwable e) {
@@ -93,15 +98,27 @@ public class UiManager implements Ui {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/"));
             Scene scene = new Scene(root);
-
-
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error when switching scenes", e);
         }
+    }
 
-
+    private void onSkipCreatePassword(SkipCreatePasswordEvent event) {
+        try {
+            // show the loading section first
+            loginWindow.fillLoadingSection();
+            // then show the real app after X seconds
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(currentEvent -> {
+                loginWindow.close();
+                this.showMainWindow();
+            });
+            delay.play();
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error when switching stage", e);
+        }
     }
 
     private Image getImage(String imagePath) {

@@ -24,6 +24,7 @@ public class LoginWindow extends UiPart<Stage> {
 
     // Independent Ui parts
     private WelcomeSection welcomeSection;
+    private LoadingSection loadingSection;
 
     @FXML
     private VBox container;
@@ -60,11 +61,27 @@ public class LoginWindow extends UiPart<Stage> {
     }
 
     /**
+     * Closes the stage
+     */
+    void close() {
+        primaryStage.close();
+    }
+
+    /**
      * Fill the Vbox with WelcomeNewUserSection
      */
     public void fillWelcomeNewUserSection() {
         welcomeSection = new WelcomeSection();
         container.getChildren().add(welcomeSection.getRoot());
+    }
+
+    /**
+     * Fill the Vbox with the loading page
+     */
+    public void fillLoadingSection() {
+        loadingSection = new LoadingSection();
+        container.getChildren().removeAll(welcomeSection.getRoot());
+        container.getChildren().add(loadingSection.getRoot());
     }
 
 

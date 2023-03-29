@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox fx:id="tempContainer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="tempContainer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
     <Label fx:id="welcomeMessage" text="Welcome To Modcheck!">
         <VBox.margin>
             <Insets bottom="20.0" />

@@ -10,8 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.ui.events.ProceedCreatePasswordEvent;
+import seedu.address.ui.events.SkipCreatePasswordEvent;
 
 /**
  * Welcome Section
@@ -21,10 +21,8 @@ import seedu.address.ui.events.ProceedCreatePasswordEvent;
 public class WelcomeSection extends UiPart<Region> {
 
     private static final String FXML = "WelcomeSection.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-
     @FXML
-    private Label errorMessagelabel;
+    private Label errorMessageLabel;
 
     @FXML
     private TextField inputField;
@@ -46,9 +44,12 @@ public class WelcomeSection extends UiPart<Region> {
             if (input.equals("yes") || input.equals("y")) {
                 ProceedCreatePasswordEvent proceedCreatePasswordEvent = new ProceedCreatePasswordEvent();
                 Event.fireEvent(tempContainer, proceedCreatePasswordEvent);
+            } else if (input.equals("no") || input.equals("n")) {
+                SkipCreatePasswordEvent skipCreatePasswordEvent = new SkipCreatePasswordEvent();
+                Event.fireEvent(tempContainer, skipCreatePasswordEvent);
             } else {
                 // show error message
-                errorMessagelabel.setText("Please enter only `yes`,`y`, `n`,`n` only!");
+                this.errorMessageLabel.setText("Please enter only `yes`,`y`, `no`,`n` only!");
             }
         }
     }
