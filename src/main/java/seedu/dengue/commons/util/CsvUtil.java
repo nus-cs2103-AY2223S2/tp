@@ -91,7 +91,7 @@ public class CsvUtil {
         CsvToBean csvToBean = new CsvToBeanBuilder(r)
                 .withType(instanceClass)
                 .withSeparator(',')
-                .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
+                .withQuoteChar(CSVWriter.DEFAULT_QUOTE_CHARACTER)
                 .withIgnoreLeadingWhiteSpace(true)
                 .withIgnoreEmptyLine(true)
                 .build();
@@ -148,7 +148,7 @@ public class CsvUtil {
         FileUtil.createIfMissing(file);
         FileWriter writer = new FileWriter(file.toString());
         char sp = ',';
-        char qc = CSVWriter.NO_QUOTE_CHARACTER;
+        char qc = CSVWriter.DEFAULT_QUOTE_CHARACTER;
         String le = CSVWriter.DEFAULT_LINE_END;
         char ec = '\\';
         CSVWriter csvWriter = new CSVWriter(writer, sp, qc, ec, le);
