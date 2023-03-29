@@ -96,15 +96,43 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<? super Person> predicate);
 
+    /**
+     * Freezes the visible list of filtered persons, temporarily halting reactive updates
+     * from Predicate checks.
+     * @throws ModifyFrozenStateException if this Model is already frozen
+     */
     void freezeFilteredPersonList() throws ModifyFrozenStateException;
 
+    /**
+     * Unfreezes the visible list of filtered persons, resuming reactive updates
+     * from Predicate checks.
+     * @throws ModifyFrozenStateException if this Model is not frozen
+     */
     void unfreezeFilteredPersonList() throws ModifyFrozenStateException;
 
+    /**
+     * Freezes the visible list of filtered persons,
+     * and changes the visible list to show only persons currently equal to
+     * at least one element of {@code frozenPersons}.
+     */
     void freezeWith(List<Person> frozenPersons);
 
+    /**
+     * Returns {@code true} if this Model is currently frozen.
+     */
     boolean isFrozen();
 
+    /**
+     * Returns the Predicate used to filter the visible list (ignoring freezing).
+     */
     Predicate<? super Person> getPredicate();
+
+    /**
+     * Changes this Model's state into a copy of that of {@code other}.
+     *
+     * @param other The model to copy from.
+     */
+    void replicateStateOf(Model other);
 
     /**
      * Returns a state-detached copy of this Model.

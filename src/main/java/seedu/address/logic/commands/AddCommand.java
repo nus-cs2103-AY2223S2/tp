@@ -55,6 +55,11 @@ public class AddCommand extends Command {
     }
 
     @Override
+    public AddCommand deepCopy() {
+        return new AddCommand(toAdd.deepCopy());
+    }
+
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -256,6 +257,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void replicateStateOf(Model other) {
+        setAddressBook(other.getAddressBook());
+        updateFilteredPersonList(other.getPredicate());
+        if (other.isFrozen()) {
+            freezeWith(other.getFilteredPersonList());
+        }
+    }
+
+    @Override
     public Predicate<? super Person> getPredicate() {
         if (isFrozen) {
             return frozenPredicate;
@@ -279,7 +289,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && isFrozen == other.isFrozen
+                && (!isFrozen || Objects.equals(frozenPredicate, other.frozenPredicate));
     }
 
 }

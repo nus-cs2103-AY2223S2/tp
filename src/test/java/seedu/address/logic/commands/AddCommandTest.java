@@ -183,6 +183,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void replicateStateOf(Model other) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void addTag(Person person, Tag tag) {
             throw new AssertionError("This method should not be called");
         }

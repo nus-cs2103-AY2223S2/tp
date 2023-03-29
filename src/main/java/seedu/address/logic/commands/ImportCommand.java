@@ -87,7 +87,7 @@ public class ImportCommand extends Command {
             }
         }
 
-        return new CommandResult("Imported data from file", false, false);
+        return new CommandResult("Imported data from file", true, false);
     }
 
     @Override
