@@ -11,11 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 // import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.LogicTaskList;
-import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
-import vimification.model.oldcode.Todo;
-import vimification.storage.oldcode.JsonAdaptedDeadline;
-import vimification.storage.oldcode.JsonAdaptedTodo;
 
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.

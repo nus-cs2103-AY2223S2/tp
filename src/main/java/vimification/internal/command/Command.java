@@ -7,7 +7,7 @@ import vimification.model.task.Task;
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */
-public abstract class Command {
+public interface Command {
     // /**
     // * Executes the command and returns the result message.
     // *

@@ -5,12 +5,24 @@ import java.util.Set;
 
 public class DeleteFieldsRequest {
 
-    public boolean deadline = false;
-    public Set<String> labels = new HashSet<>();
+    private boolean deleteDeadline = false;
+    private Set<String> deletedLabels = new HashSet<>();
 
-    public DeleteFieldsRequest() {
+    public DeleteFieldsRequest() {}
 
+    public boolean shouldDeleteDeadline() {
+        return deleteDeadline;
     }
 
+    public void setDeleteDeadline(boolean deleteDeadline) {
+        this.deleteDeadline = deleteDeadline;
+    }
 
+    public Set<String> getDeletedLabels() {
+        return deletedLabels;
+    }
+
+    public void setDeletedLabels(Set<String> deletedLabels) {
+        this.deletedLabels = deletedLabels;
+    }
 }

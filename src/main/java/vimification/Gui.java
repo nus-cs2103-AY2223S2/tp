@@ -16,7 +16,6 @@ import vimification.internal.LogicManager;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
-import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonMacroMapStorage;
