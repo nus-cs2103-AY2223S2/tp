@@ -9,8 +9,8 @@ import static seedu.address.testutil.TypicalPersons.ALEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 //import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -250,7 +250,7 @@ public class AddCommandTest {
 
         @Override
         public Optional<Person> getPersonByIndex(ContactIndex index) {
-            return Optional.empty();
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
