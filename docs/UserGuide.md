@@ -118,8 +118,12 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 2. Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
    ![Latest](images/ConnectUSLatest.png)
 
+<div style="page-break-after: always"></div>
+
 3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
    ![Home Folder](images/ConnectUSHomeFolder.png)
+
+<div style="page-break-after: always"></div>
 
 4. Double-click the `ConnectUS.jar` file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -149,6 +153,8 @@ Let's take a look at the different components in ConnectUS.<br>
 
 The command box allows you to enter commands that you wish to perform. For starters, try typing the `help` command and hit enter!
 
+<div style="page-break-after: always"></div>
+
 ### 3.1.2 Command Result Feedback
 
 ![CommandResultFeedback](images/CommandResultFeedback.png)
@@ -161,6 +167,8 @@ If you enter an unrecognized command or a command with the wrong format, an erro
 
 You can then use the scroll bars of the feedback box to navigate through the feedback given.
 
+<div style="page-break-after: always"></div>
+
 ### 3.1.3 Contact List
 
 ![ContactList](images/ContactList.png)
@@ -171,6 +179,8 @@ The contact list shows the contacts that exist within your ConnectUS with all th
 * The index beside the contact name is the contact's index. It is used for certain commands such as `delete`. More details on this can be found in [Features](#4-features).
 * The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
 * You can also find a condensed summary table of these information fields in the [Prefix Summary](#8-prefix-summary).
+
+<div style="page-break-after: always"></div>
 
 ## 3.2 Key Definitions
 
@@ -223,6 +233,8 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 </div>
 
+<div style="page-break-after: always"></div>
+
 ## 3.4 How to Use the CLI
 
 To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
@@ -243,6 +255,8 @@ The first word of every command allows ConnectUS to distinguish different comman
 Notice how there are square brackets `[]` surrounding certain parameters like in `[p/PHONE]`. This indicates that the parameter is **optional**, i.e. a contact can exist even if it does not have this field.
 
 Other parameters that end with `…​` like in `[mod/MODULE]…​` indicates that this parameter can be used multiple times.
+
+<div style="page-break-after: always"></div>
 
 **Let's test this out!**
 
@@ -275,7 +289,7 @@ There are many other features in ConnectUS. Do refer to the [Features](#4-featur
 
 # 4. Features
 
-ConnectUS has a list of features to assist you in your contact management needs!
+ConnectUS has many features to assist you in your contact management needs. The exhaustive list of supported commands are as follows:
 
 - [4.1 Viewing help: `help`](#41-viewing-help-help)
 - [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
@@ -291,6 +305,8 @@ ConnectUS has a list of features to assist you in your contact management needs!
 - [4.11 Exiting the program: `exit`](#412-exiting-the-program-exit)
 - [4.12 Saving the data](#413-saving-the-data)
 - [4.13 Editing the data file](#414-editing-the-data-file)
+
+<div style="page-break-after: always"></div>
 
 ## 4.1 Viewing help: `help`
 
@@ -309,6 +325,8 @@ If you want to know the usage instructions of a specific command, simply use `he
 Examples: `help`, `help add`, `help list`
 
 [↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
 
 ## 4.2 Listing all contacts: `list`
 
@@ -337,6 +355,8 @@ Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do procee
 **Input in Command Box:** `clear`
 
 **Result:**<br>![ClearCommand](images/ClearCommand.png)
+
+<div style="page-break-after: always"></div>
 
 ## 4.4 Adding a contact: `add`
 
@@ -369,6 +389,8 @@ ConnectUS helps you to detect duplicate contacts by checking the existing contac
 </div>
 
 [↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
 
 ## 4.5 Editing a contact: `edit`
 
@@ -405,6 +427,8 @@ ConnectUS helps you to detect duplicate contacts by checking the existing contac
 
 [↑ Back to feature list](#4-features)
 
+<div style="page-break-after: always"></div>
+
 ## 4.6 Adding additional tags to a contact: `add-t`
 
 Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`
@@ -427,6 +451,7 @@ The `add-t` command:
 
 **After:**<br>![AddTagAfter](images/AddTagAfter.png)
 
+<div style="page-break-after: always"></div>
 
 ## 4.7 Deleting tags from a contact: `delete-t`
 
@@ -453,6 +478,8 @@ The `delete-t` command:
 **Before:**<br>![AddTagAfter](images/AddTagAfter.png)
 
 **After:**<br>![DeleteTagAfter](images/DeleteTagAfter.png)
+
+<div style="page-break-after: always"></div>
 
 ## 4.8 Deleting a contact: `delete`
 
@@ -490,6 +517,8 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 [↑ Back to feature list](#4-features)
 
+<div style="page-break-after: always"></div>
+
 ## 4.9 Searching for contact information: `search`
 
 Format: `search KEYWORD`
@@ -514,6 +543,8 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 [↑ Back to feature list](#4-features)
 
+<div style="page-break-after: always"></div>
+
 ## 4.10 Opening a social media platform: `open`
 
 Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
@@ -534,6 +565,8 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 
 [↑ Back to feature list](#4-features)
 
+<div style="page-break-after: always"></div>
+
 ## 4.11 Sending chats to a contact: `chat`
 
 Format: `chat PERSON_INDEX wa/ m/`
@@ -551,6 +584,8 @@ You'll need to download the desktop application <a href="https://www.whatsapp.co
 **Result:**<br>![ChatContactExample](images/johndoe.png)
 
 [↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
 
 ## 4.12 Exiting the program: `exit`
 
@@ -604,6 +639,8 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
   - [5.9.3 CCA Position Tags: `ccapos/`](#593-cca-position-tags-ccapos)
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
+<div style="page-break-after: always"></div>
+
 ## 5.1 Name: `n/`
 >Name refers to a contact's name.
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
@@ -642,6 +679,8 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 * Addresses can take any values, including <u>special characters</u>.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
 
 ## 5.5 Instagram: `ig/`
 >Instagram refers to a contact's Instagram username.
@@ -682,7 +721,9 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
-[↑ Back to prefix list](#5-information-fields--prefixes)
+[↑ Back to prefix list](#5-information-fields--prefixes
+
+<div style="page-break-after: always"></div>
 
 ## 5.9 Tags
 
