@@ -219,6 +219,7 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.setMinWidth(500); // Resize to fit navigation guide
 
         personListPanel = new PersonListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
@@ -241,6 +242,7 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.setMinWidth(300);
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();

@@ -9,9 +9,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.text.TextFlow?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
@@ -32,30 +32,20 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+
         <TextFlow fx:id="titlePanel" />
-        <SplitPane fx:id="cardList" dividerPositions="0.2" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <items>
-            <VBox prefHeight="0.0" prefWidth="0.0">
-              <children>
-                <StackPane fx:id="leftPanelPlaceholder" minWidth="50.0" styleClass="panel" VBox.vgrow="ALWAYS" />
-              </children>
-            </VBox>
-            <VBox prefHeight="0.0" prefWidth="0.0">
-              <children>
-                <StackPane prefHeight="110" minHeight="110" minWidth="50.0" fx:id="rightPanelTitlePlaceholder" />
-                <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
-              </children>
-            </VBox>
-          </items>
+
+        <SplitPane fx:id="masterDeckList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+         <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="300"/>
+          <VBox minWidth="300" prefHeight="0.0" prefWidth="0.0">
+            <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" />
+            <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
+          </VBox>
         </SplitPane>
 
         <SplitPane fx:id="commandBox" dividerPositions="0.5" VBox.vgrow="NEVER">
-          <items>
-            <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border">
-            </StackPane>
-            <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border">
-            </StackPane>
-          </items>
+          <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border" />
+          <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border" />
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
