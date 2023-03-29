@@ -245,6 +245,7 @@ Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `Logic
 The following sequence diagram shows how the findBook operation works:
 
 ![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
