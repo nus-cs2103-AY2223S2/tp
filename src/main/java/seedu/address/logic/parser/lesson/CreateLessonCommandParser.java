@@ -44,6 +44,10 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
         }
 
         String lessonName = argMultimap.getValue(PREFIX_LESSON).get();
+        if (lessonName.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                CreateLessonCommand.MESSAGE_USAGE));
+        }
         LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
@@ -55,6 +59,10 @@ public class CreateLessonCommandParser implements Parser<CreateLessonCommand> {
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
+            if (name.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CreateLessonCommand.MESSAGE_USAGE));
+            }
             name = name.trim();
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {

@@ -46,6 +46,10 @@ public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
+            if (name.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteExamCommand.MESSAGE_USAGE));
+            }
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {
             //                name = name.substring(0, spaceIndex);
