@@ -6,9 +6,9 @@ title: User Guide
 _Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
 Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
-# Index
-
-* [Quick start](#quick-start)
+<h1 id="index">Index</h1>
+-------------------------
+* [Quick Start](#quick-start)
 * [Features](#features)
   * [Command summary](#command-summary)
     * [Add event](#add) : `add` command
@@ -29,18 +29,18 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 
 <h1 id="quick-start">Quick Start</h1>
-=====================================
-
+-------------------------------------
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ez-Schedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-3/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your EzSchedule.
 4. Open a command terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
 
+
 <h1 id="features">Features</h1>
 -------------------------------
 
-## <h2 id="command-summary">Command Summary</h2>
+<h2 id="command-summary">Command Summary</h2>
 
 | Action |                    Command Format                    |
 |:-------|:----------------------------------------------------:|
@@ -53,7 +53,8 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 | Exit   |                        `exit`                        |
 [[Back to top](#index)]
 
-### <h3 id="add">Adding a event: `add`</h3> ###
+<h3 id="add">Adding a event: `add`</h3>
+ --------------------------------------
 
 Adds an event into the Scheduler.
 
