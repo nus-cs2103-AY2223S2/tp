@@ -6,7 +6,7 @@ title: User Guide
 # Introduction
 
 Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
-As a university student, you can capitalise on our **powerful cards management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
+As a university student, you can capitalise on our **powerful card management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 
 This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
 
@@ -48,7 +48,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PCs.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar powercards.jar` command to run the application.<br>
+4. Open a command terminal, enter the folder you put the jar file in using the `cd` command, and use the `java -jar powercards.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -68,7 +68,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
   e.g. in `add q\QUESTION`, `QUESTION` is a parameter which can be used as `add q\What is chemical symbol for Oxygen?`.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d\science d\chemsitry`, only `d\chemsitry` will be taken.
+  e.g. if you specify `d\science d\chemistry`, only `d\chemistry` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
