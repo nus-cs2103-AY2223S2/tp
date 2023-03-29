@@ -48,7 +48,7 @@ class JsonAdaptedTask {
 
         description = source.getDescription().description;
         if (source.hasPriority()) {
-            priority = source.getPriority().priority;
+            priority = source.getPriority().toString();
         } else {
             priority = null;
         }
