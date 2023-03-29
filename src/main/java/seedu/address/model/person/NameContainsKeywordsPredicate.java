@@ -28,7 +28,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        String fullName = person.getName().fullName.toLowerCase();
+        String fullName = person.getName().formattedName.toLowerCase();
         for (String keyword : keywords) {
             if (isFuzzyMatch(fullName, keyword.toLowerCase())) {
                 return true;

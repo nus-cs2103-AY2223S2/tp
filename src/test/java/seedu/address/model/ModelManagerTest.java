@@ -133,7 +133,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getName().formattedName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
@@ -178,7 +178,7 @@ public class ModelManagerTest {
         modelManager.addPerson(ALICE);
         modelManager.addPerson(BENSON);
 
-        modelManager.updateFilteredPersonList(p -> p.getName().fullName.contains("Ben"));
+        modelManager.updateFilteredPersonList(p -> p.getName().formattedName.contains("Ben"));
         assertEquals(1, modelManager.getFilteredPersonList().size());
         assertTrue(modelManager.getFilteredPersonList().contains(BENSON));
     }

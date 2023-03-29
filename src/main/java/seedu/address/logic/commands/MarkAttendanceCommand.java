@@ -22,7 +22,7 @@ public class MarkAttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_SUCCESS = "marked attendance of %1s in  %2s\n";
+    public static final String MESSAGE_SUCCESS = "marked attendance of %1s in %2s\n";
 
     public static final String MESSAGE_PERSON_NOT_FOUND = "person specified cannot be found";
 
@@ -52,15 +52,14 @@ public class MarkAttendanceCommand extends Command {
 
         Session editedSession = sessionToEdit.copy();
 
-        if (!sessionToEdit.contains(personName.fullName)) {
+        if (!sessionToEdit.contains(personName.formattedName)) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
         //mark student in session
-        editedSession.markStudentPresent(personName.fullName);
+        editedSession.markStudentPresent(personName.formattedName);
         model.setSession(sessionToEdit, editedSession);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, sessionToEdit.getName()));
-
     }
 }

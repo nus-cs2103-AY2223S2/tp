@@ -18,7 +18,7 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String formattedName;
 
     /**
      * Constructs a {@code Name}.
@@ -28,7 +28,8 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        String lowerCaseName = name.toLowerCase();
+        formattedName = lowerCaseName.substring(0, 1).toUpperCase() + lowerCaseName.substring(1);
     }
 
     /**
@@ -38,22 +39,21 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
-        return fullName;
+        return formattedName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && formattedName.equals(((Name) other).formattedName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return formattedName.hashCode();
     }
 
 }

@@ -53,12 +53,12 @@ public class UnmarkAttendanceCommand extends Command {
 
         Session editedSession = sessionToEdit.copy();
 
-        if (!sessionToEdit.contains(personName.fullName)) {
+        if (!sessionToEdit.contains(personName.formattedName)) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
         //unmark student in session
-        editedSession.markStudentAbsent(personName.fullName);
+        editedSession.markStudentAbsent(personName.formattedName);
         model.setSession(sessionToEdit, editedSession);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, sessionToEdit.getName()));
