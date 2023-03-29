@@ -3,7 +3,11 @@ package seedu.recipe.storage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
@@ -13,12 +17,17 @@ import seedu.recipe.commons.exceptions.DataConversionException;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * API to import a RecipeBook from other directories
  */
 public class ImportManager {
 
+    private final Path recipeBookFilePath = Paths.get("data", "recipebook.json");
     private final Stage owner;
 
     public ImportManager(Stage owner) {
@@ -42,6 +51,23 @@ public class ImportManager {
         ObservableList<Recipe> importedRecipes = importRecipes(importedFile);
         return importedRecipes;
     }
+
+    //Dont remove might be required for a fix
+//    public ObservableList<Recipe> uniqueImportedRecipes(ObservableList<Recipe> importedRecipes) throws
+//            DataConversionException {
+//        JsonRecipeBookStorage currentStorage = new JsonRecipeBookStorage((recipeBookFilePath));
+//        Optional<ReadOnlyRecipeBook> currentRecipeBook;
+//        try {
+//            currentRecipeBook = currentStorage.readRecipeBook();
+//        } catch (DataConversionException e) {
+//            throw e;
+//        }
+//        ObservableList<Recipe> currentRecipes = currentRecipeBook.get().getRecipeList();
+//        for (Recipe importedRecipe : importedRecipes) {
+//            if (currentRecipes.stream().anyMatch())
+//        }
+//
+//    }
 
     /**
      * Prompts the user to select a JSON file to import and returns the selected File object.
@@ -99,5 +125,69 @@ public class ImportManager {
             throw e;
         }
         return importedRecipeBook.get().getRecipeList();
+    }
+
+    public String getCommandText(Recipe recipe) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(" n/");
+        stringBuilder.append(recipe.getName().toString());
+
+        if (recipe.getDurationNullable() != null) {
+            stringBuilder.append(" d/");
+            stringBuilder.append(recipe.getDuration().toString());
+        }
+
+        if (recipe.getPortionNullable() != null) {
+            stringBuilder.append(" p/");
+            stringBuilder.append(recipe.getPortion().toString());
+        }
+
+        if (!recipe.getTags().isEmpty()) {
+            Set<Tag> tags = recipe.getTags();
+            for (Tag tag : tags) {
+                stringBuilder.append(" t/");
+                stringBuilder.append(tag.getTagName());
+            }
+        }
+
+        if (!recipe.getIngredients().isEmpty()) {
+            HashMap<Ingredient, IngredientInformation> ingredientTable = recipe.getIngredients();
+            ingredientTable.forEach(
+                    (ingredient, ingredientInfomation) -> {
+                        stringBuilder.append(" i/");
+                        stringBuilder.append(" -n " + ingredient.getName());
+                        if (!ingredient.getCommonName().isEmpty()) {
+                            stringBuilder.append(" -cn " + ingredient.getCommonName());
+                        }
+                        if (ingredientInfomation.getQuantity().isPresent()) {
+                            stringBuilder.append(" -a " + ingredientInfomation.getQuantity().get().toString());
+                        }
+                        if (ingredientInfomation.getEstimatedQuantity().isPresent()) {
+                            stringBuilder.append(" -e " + ingredientInfomation.getEstimatedQuantity().get().toString());
+                        }
+                        if (!ingredientInfomation.getRemarks().isEmpty()) {
+                            List<String> remarks = ingredientInfomation.getRemarks();
+                            for (String remark : remarks) {
+                                stringBuilder.append(" -r " + remark);
+                            }
+                        }
+                        if (!ingredientInfomation.getSubstitutions().isEmpty()) {
+                            List<Ingredient> substitutions = ingredientInfomation.getSubstitutions();
+                            for (Ingredient substitution : substitutions) {
+                                stringBuilder.append(" -s " + substitution.getName());
+                            }
+                        }
+                    });
+        }
+
+        if (!recipe.getSteps().isEmpty()) {
+            List<Step> steps = recipe.getSteps();
+            for (Step step : steps) {
+                stringBuilder.append(" s/");
+                stringBuilder.append(step.toString());
+            }
+        }
+        return stringBuilder.toString();
     }
 }
