@@ -13,14 +13,14 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
-Let's get you rizzed up in the fastest way possible!
+Let's get you _rizzed_ up in the fastest way possible!
 
 1. Ensure you have Java `11` or above installed in you computer.
 2. Download the latest `recipebook.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
 3. Copy the file to the folder you want to use as the _home folder_ for RIZZipe.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
    recipebook.jar` command to run the application.
-5. A GUI similar to the below should appear in a few seconds. ![UI QuickStart](images/Ui.png)
+5. A GUI similar to the below should appear in a few seconds. ![UI QuickStart](images/UiQuickStart.png)
 6. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
 commands, refer to the [Features](#features) Section.
 
