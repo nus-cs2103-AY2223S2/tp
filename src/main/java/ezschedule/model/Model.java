@@ -86,6 +86,8 @@ public interface Model {
     ArrayList<Command> recentCommand();
     
     ArrayList<Event> recentEvent();
+    
+    void undoRecent(ArrayList<Command> commandList, ArrayList<Event> eventList);
     /**
      * Returns an unmodifiable view of the filtered event list
      */

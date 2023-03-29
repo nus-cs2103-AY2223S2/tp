@@ -7,6 +7,9 @@ import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Adds a event to the scheduler.
  */
@@ -44,16 +47,18 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        ArrayList<Command> commandList = new ArrayList<Command>();
+        ArrayList<Event> eventList = new ArrayList<Event>();
         requireNonNull(model);
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
-        model.recentEvent().clear();
-        model.recentCommand().clear();
         model.addEvent(toAdd);
-        model.recentEvent().add(toAdd);
-        model.recentCommand().add(this);
+    
+        commandList.add(this);
+        eventList.add(toAdd);
+        model.undoRecent(commandList, eventList);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

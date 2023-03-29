@@ -2,6 +2,7 @@ package ezschedule.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,10 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
+        ArrayList<Command> commandList = new ArrayList<Command>();
+        ArrayList<Event> eventList = new ArrayList<Event>();
+        
+        
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -92,11 +97,11 @@ public class EditCommand extends Command {
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
-        model.recentCommand().clear();
-        model.recentEvent().clear();
-        model.recentCommand().add(this);
-        model.recentEvent().add(eventToEdit);
-        model.recentEvent().add(editedEvent);
+    
+        commandList.add(this);
+        eventList.add(editedEvent);
+        eventList.add(eventToEdit);
+        model.undoRecent(commandList, eventList);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

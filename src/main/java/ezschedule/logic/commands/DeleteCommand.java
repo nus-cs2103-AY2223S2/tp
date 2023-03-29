@@ -2,6 +2,7 @@ package ezschedule.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ezschedule.commons.core.Messages;
@@ -37,17 +38,19 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
+        ArrayList<Command> commandList = new ArrayList<Command>();
+        ArrayList<Event> eventList = new ArrayList<Event>();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.recentCommand().clear();
-        model.recentEvent().clear();
         model.deleteEvent(eventToDelete);
-        model.recentEvent().add(eventToDelete);
-        model.recentCommand().add(this);
+    
+        commandList.add(this);
+        eventList.add(eventToDelete);
+        model.undoRecent(commandList, eventList);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }
 

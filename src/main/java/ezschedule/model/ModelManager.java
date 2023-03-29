@@ -135,6 +135,12 @@ public class ModelManager implements Model {
     }
     
     @Override
+    public void undoRecent(ArrayList<Command> commandList, ArrayList<Event> eventList) {
+        this.recentCommand = commandList;
+        this.recentEvent = eventList;
+    }
+    
+    @Override
     protected void finalize() throws Throwable {
         super.finalize();
     }

@@ -27,6 +27,7 @@ public class UndoCommand extends Command {
         requireNonNull(model);
         Command prevCommand = model.recentCommand().get(0);
         Event preEvent = model.recentEvent().get(0);
+        System.out.println(model.recentEvent());
         switch (prevCommand.commandWord()) {
         case "add":
             model.deleteEvent(preEvent);
