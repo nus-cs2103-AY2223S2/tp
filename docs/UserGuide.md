@@ -45,7 +45,7 @@ The following typographical conventions are used in this guide.
 * Table of Contents
 {:toc}
 
-### Quick Start
+## Quick Start
 
 Mycelium runs on Java 11, so you should first head over to [Oracle's
 website](https://www.oracle.com/java/technologies/downloads/) to install Java
