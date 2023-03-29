@@ -3,9 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_JOINING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEAVE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYROLL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -33,7 +37,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_DEPARTMENT, PREFIX_TAG);
+                        PREFIX_DEPARTMENT, PREFIX_PAYROLL, PREFIX_LEAVE_COUNT, PREFIX_DATE_OF_BIRTH,
+                        PREFIX_DATE_OF_JOINING, PREFIX_TAG);
 
         EmployeeId employeeId;
 
@@ -60,6 +65,22 @@ public class EditCommandParser implements Parser<EditCommand> {
             editEmployeeDescriptor.setDepartment(ParserUtil.parseDepartment(
                     argMultimap.getValue(PREFIX_DEPARTMENT).get()));
         }
+        if (argMultimap.getValue(PREFIX_PAYROLL).isPresent()) {
+            editEmployeeDescriptor.setPayroll(ParserUtil.parsePayroll(argMultimap.getValue(PREFIX_PAYROLL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LEAVE_COUNT).isPresent()) {
+            editEmployeeDescriptor.setLeaveCounter(ParserUtil.parseLeaveCount(
+                    argMultimap.getValue(PREFIX_LEAVE_COUNT)));
+        }
+        if (argMultimap.getValue(PREFIX_DATE_OF_BIRTH).isPresent()) {
+            editEmployeeDescriptor.setDateOfBirth(ParserUtil.parseDateOfBirth(
+                    argMultimap.getValue(PREFIX_DATE_OF_BIRTH)));
+        }
+        if (argMultimap.getValue(PREFIX_DATE_OF_JOINING).isPresent()) {
+            editEmployeeDescriptor.setDateOfJoining(ParserUtil.parseDateOfJoining(
+                    argMultimap.getValue(PREFIX_DATE_OF_JOINING)));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEmployeeDescriptor::setTags);
 
         if (!editEmployeeDescriptor.isAnyFieldEdited()) {

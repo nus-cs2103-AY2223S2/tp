@@ -90,12 +90,12 @@ How do we build an employee profile?
 
 The first step is to add a new employee to the database, 
 so ExecutivePro can begin managing their particulars and profile for you. 
-To do this, you use the add command, together with the employee particulars that you have available for this person.
+To do this, use the add command, together with the employee particulars that you have available for this person.
 
 Upon successfully adding a new employee, ExecutivePro will then keep track of the new profile and details in the 
 database, and you are free to access and modify the particulars with other commands later on.
 
-However, this function could fail (and ExecutivePro simply does not add anyone), if:
+However, this function could fail (and ExecutivePro simply does not add any employee), if:
 
 1. There are missing particulars which are compulsory. These mandatory details are listed below.
 2. The particulars keyed in are in the wrong format. 
@@ -180,8 +180,8 @@ and it should look something like the below image.
 
 The command could be unsuccessful, and there are a few potential causes of this:
 
-1. There could be a *duplicate* entry in the file, i.e. two employees share the same identity in the file.
-2. If any of the particulars in the wrong format, ExecutivePro will also not be able to read the file properly 
+1. There could be a *duplicate* entry in the file, i.e. two employees sharing the same identity in the file.
+2. If any of the particulars in the wrong format, ExecutivePro will not be able to read the file properly 
    and the command will not run.
 
 
@@ -197,7 +197,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 
 ### Adding multiple employees at once: `batchexport`
 
-ExecutivePro allows you to export the employee's data into a `.csv` file.
+ExecutivePro allows you to export the employees' data into a `.csv` file.
 
 Format: `batchexport FILENAME`
 
@@ -244,24 +244,29 @@ Examples:
 
 Shows a list of all employees in address book whose names match the keyword provided.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
-* Displays list of employees matching at least one keyword if multiple keywords are provided.
-* Keyword is for the name only, not any other details
+* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords. 
+* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords. 
+* Even if the keyword just partially matches a part of employees full name, it is considered a match.
+* For finding department, the keyword has to be a full match.
+* Keyword is to search for the name and department of the employee only, not any other details.
 
 Examples:
-* `find John` displays list of all employees whose full name contains a 'John' in it
+* `find John Sales` displays list of all employees whose full name contains a 'John' in it, 
+or they are in the 'Sales' department 
+* `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
 
 ### Deleting an employee : `delete`
 
-Deletes the specified employee from the ExecutivePro database.
+Deletes the details of the employee with the specified `EMPLOYEE_ID` from the ExecutivePro database.
 
 Format: `delete EMPLOYEE_ID`
 
-* Deletes the details of the employee with the specific `EMPLOYEE_ID`.
-* The EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
-* The EMPLOYEE_ID **must be a positive integer** 1, 2, 3, …​
+* You can delete the details of the employee with the specific `EMPLOYEE_ID`.
+* The `EMPLOYEE_ID` refers to the id of an employee shown in the displayed employees list.
+* The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 `delete 2` deletes the employee with EMPLOYEE_ID 2 in ExecutivePro.
@@ -286,8 +291,8 @@ then sets the selected picture for the specified employee.
 Format: `setpicture EMPLOYEE_ID`
 
 * Sets the picture of the employee with the specific `EMPLOYEE_ID`.
-* The EMPLOYEE_ID refers to the id of an employee shown in the displayed employees list.
-* The EMPLOYEE_ID **must be a positive integer** 1, 2, 3, …​
+* The `EMPLOYEE_ID` refers to the id of an employee shown in the displayed employees list.
+* The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 `setpicture 2` sets the picture for the employee with EMPLOYEE_ID 2 in ExecutivePro.
@@ -320,7 +325,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app on the other computer and overwrite the empty data file. This creates a new file that contains the data of your previous ExecutivePro home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,12 +334,15 @@ _Details coming soon ..._
 
 | Action          | Format, Examples                                                                                                                                                                                                |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                                          |
 | **Add**         | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing t/friends` |
 | **BatchAdd**    | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                      |
 | **BatchExport** | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                           |
-| **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **List**        | `list`                                                                                                                                                                                                          |
 | **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                 |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                      |
-| **List**        | `list`                                                                                                                                                                                                          |
-| **Help**        | `help`                                                                                                                                                                                                          |
+| **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                     |
+| **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                               |
+| **Exit**        | `exit`                                                                                                                                                                                                          |
 

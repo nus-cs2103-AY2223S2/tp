@@ -170,6 +170,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleChangeTheme(String theme) {
         if (theme.equals("light")) {
             String lightThemeUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
+            System.out.println(lightThemeUrl);
             String lightExtensionsUrl = getClass().getResource("/view/LightExtensions.css").toExternalForm();
             primaryStage.getScene().getStylesheets().setAll();
             primaryStage.getScene().getStylesheets().add(lightThemeUrl);

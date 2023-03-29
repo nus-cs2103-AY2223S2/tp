@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -14,7 +16,9 @@ import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Payroll;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -65,6 +69,18 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String Array nameKeywords} into a boolean indicating the presence of asterisk.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean parseAsterisk(String[] nameKeywords) {
+        requireNonNull(nameKeywords);
+        if (nameKeywords[0].compareTo("*") != 0) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -140,6 +156,68 @@ public class ParserUtil {
             throw new ParseException(Department.MESSAGE_CONSTRAINTS);
         }
         return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String payroll} into a {@code Payroll}.
+     * Leading and trailing whitespaces will be trimmed. Payroll consists of two integer values
+     * for salary and monthly date of payment.
+     *
+     * @throws ParseException if the given {@code payroll} is invalid.
+     */
+    public static Payroll parsePayroll(String payroll) throws ParseException {
+        requireNonNull(payroll);
+        String trimmedPayroll = payroll.trim();
+
+        if (!Payroll.isValidPayroll(trimmedPayroll)) {
+            throw new ParseException(Payroll.MESSAGE_CONSTRAINTS);
+        }
+        String[] parts = payroll.split(" ");
+        assert (parts.length == 2);
+        int salary = Integer.parseInt(parts[0]);
+        int dateOfPayment = Integer.parseInt(parts[1]);
+        return new Payroll(salary, dateOfPayment);
+    }
+
+    /**
+     * Parses a {@code String leaveCount} into a {@code LeaveCounter}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code leaveCount} is invalid.
+     */
+    public static LeaveCounter parseLeaveCount(Optional<String> leaveCount) throws ParseException {
+        requireNonNull(leaveCount);
+        Optional<String> trimmedLeaveCount = leaveCount.map(s -> s.trim());
+
+
+        if (!LeaveCounter.isValidLeaveCount(trimmedLeaveCount.orElse("0"))) {
+            throw new ParseException(LeaveCounter.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedLeaveCount.map(c -> new LeaveCounter(Integer.parseInt(c))).orElseGet(() -> new LeaveCounter());
+    }
+
+    /**
+     * Parses a {@code Optional<String> dateOfBirth} into a {@code Optional<LocalDate>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateOfBirth} is invalid.
+     */
+    public static Optional<LocalDate> parseDateOfBirth(Optional<String> dateOfBirth) throws ParseException {
+        requireNonNull(dateOfBirth);
+        Optional<LocalDate> localDate = dateOfBirth.map(date -> LocalDate.parse(date));
+        return localDate;
+    }
+
+    /**
+     * Parses a {@code Optional<String> dateOfJoining} into a {@code Optional<LocalDate>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateOfJoining} is invalid.
+     */
+    public static Optional<LocalDate> parseDateOfJoining(Optional<String> dateOfJoining) throws ParseException {
+        requireNonNull(dateOfJoining);
+        Optional<LocalDate> localDate = dateOfJoining.map(date -> LocalDate.parse(date));
+        return localDate;
     }
 
     /**

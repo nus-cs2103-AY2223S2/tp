@@ -2,13 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_OF_JOINING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEAVE_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYROLL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -23,8 +28,11 @@ import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Payroll;
 import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +51,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_PAYROLL + "PAYROLL] "
+            + "[" + PREFIX_LEAVE_COUNT + "LEAVE COUNT] "
+            + "[" + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH] "
+            + "[" + PREFIX_DATE_OF_JOINING + "DATE OF JOINING] "
             + "[" + PREFIX_TAG + "TAG]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -88,6 +100,7 @@ public class EditCommand extends Command {
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
     }
 
@@ -95,8 +108,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedEmployee(Employee employeeToEdit,
-                                                 EditEmployeeDescriptor editEmployeeDescriptor) {
+    static Employee createEditedEmployee(Employee employeeToEdit,
+                                         EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
@@ -104,11 +117,23 @@ public class EditCommand extends Command {
         Email updatedEmail = editEmployeeDescriptor.getEmail().orElse(employeeToEdit.getEmail());
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
         Department updatedDepartment = editEmployeeDescriptor.getDepartment().orElse(employeeToEdit.getDepartment());
+        Payroll updatedPayroll = editEmployeeDescriptor.getPayroll().orElse(employeeToEdit.getPayroll());
+        LeaveCounter updatedLeaveCounter = editEmployeeDescriptor.getLeaveCounter()
+                .orElse(employeeToEdit.getLeaveCounter());
+        Optional<LocalDate> updatedDateOfBirth = Optional.ofNullable(editEmployeeDescriptor.getDateOfBirth())
+                .flatMap(s -> s).or(employeeToEdit::getDateOfBirthOptional);
+        Optional<LocalDate> updatedDateOfJoining = Optional.ofNullable(editEmployeeDescriptor.getDateOfJoining())
+                .flatMap(s -> s).or(employeeToEdit::getDateOfJoiningOptional);
+        if (updatedDateOfJoining.isEmpty()) {
+            updatedDateOfJoining = employeeToEdit.getDateOfJoiningOptional();
+        }
+        Optional<PicturePath> updatedPicturePath = Optional.of(employeeToEdit.getPicturePath());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 
         EmployeeId employeeId = employeeToEdit.getEmployeeId();
-        return new Employee(updatedName, employeeId, updatedPhone, updatedEmail, updatedAddress,
-                updatedDepartment, updatedTags);
+        return new Employee(updatedName, employeeId, updatedPhone, updatedEmail, updatedAddress, updatedDepartment,
+                updatedPayroll, updatedLeaveCounter, updatedDateOfBirth, updatedDateOfJoining, updatedPicturePath,
+                updatedTags);
     }
 
     @Override
@@ -139,6 +164,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Department department;
+        private Payroll payroll;
+        private LeaveCounter leaveCounter;
+        private Optional<LocalDate> dateOfBirth;
+        private Optional<LocalDate> dateOfJoining;
         private Set<Tag> tags;
 
         public EditEmployeeDescriptor() {}
@@ -153,6 +182,10 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setDepartment(toCopy.department);
+            setPayroll(toCopy.payroll);
+            setLeaveCounter(toCopy.leaveCounter);
+            setDateOfBirth(toCopy.dateOfBirth);
+            setDateOfJoining(toCopy.dateOfJoining);
             setTags(toCopy.tags);
         }
 
@@ -160,7 +193,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, department, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, department, payroll, leaveCounter,
+                    dateOfBirth, dateOfJoining, tags);
         }
 
         public void setName(Name name) {
@@ -203,6 +237,38 @@ public class EditCommand extends Command {
             return Optional.ofNullable(department);
         }
 
+        public void setPayroll(Payroll payroll) {
+            this.payroll = payroll;
+        }
+
+        public Optional<Payroll> getPayroll() {
+            return Optional.ofNullable(payroll);
+        }
+
+        public void setLeaveCounter(LeaveCounter leaveCounter) {
+            this.leaveCounter = leaveCounter;
+        }
+
+        public Optional<LeaveCounter> getLeaveCounter() {
+            return Optional.ofNullable(leaveCounter);
+        }
+
+        public void setDateOfBirth(Optional<LocalDate> dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<LocalDate> getDateOfBirth() {
+            return dateOfBirth;
+        }
+
+        public void setDateOfJoining(Optional<LocalDate> dateOfJoining) {
+            this.dateOfJoining = dateOfJoining;
+        }
+
+        public Optional<LocalDate> getDateOfJoining() {
+            return dateOfJoining;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -240,6 +306,10 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDepartment().equals(e.getDepartment())
+                    && getPayroll().equals(e.getPayroll())
+                    && getLeaveCounter().equals(e.getLeaveCounter())
+                    && getDateOfBirth().equals(e.getDateOfBirth())
+                    && getDateOfJoining().equals(e.getDateOfJoining())
                     && getTags().equals(e.getTags());
         }
     }

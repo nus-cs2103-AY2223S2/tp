@@ -2,9 +2,11 @@ package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -14,6 +16,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
+    public static final String DEFAULT_PICTURE_PATH = "src/main/resources/employeepictures/default.png";
 
     // Identity fields
     private final Name name;
@@ -24,38 +27,33 @@ public class Employee {
     // Data fields
     private final Address address;
     private final Department department;
+    private final Payroll payroll;
+    private final LeaveCounter leaveCounter;
+    private final Optional<LocalDate> dateOfBirth;
+    private final Optional<LocalDate> dateOfJoining;
     private PicturePath picturePath;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null except picturePathString.
+     * Every field must be present and not null except for Optional fields.
      */
     public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
-                    Department department, Set<Tag> tags) {
-        requireAllNonNull(name, employeeId, phone, email, address, department, tags);
+                    Department department, Payroll payroll, LeaveCounter leaveCounter,
+                    Optional<LocalDate> dateOfBirth, Optional<LocalDate> dateOfJoining,
+                    Optional<PicturePath> picturePath, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, address, department, payroll, leaveCounter,
+                dateOfBirth, dateOfJoining, tags);
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.department = department;
-        this.picturePath = new PicturePath("src/main/resources/employeepictures/default.png");
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
-                    Department department, PicturePath picturePath, Set<Tag> tags) {
-        requireAllNonNull(name, employeeId, phone, email, address, department, tags);
-        this.name = name;
-        this.employeeId = employeeId;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.department = department;
-        this.picturePath = picturePath;
+        this.payroll = payroll;
+        this.leaveCounter = leaveCounter;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfJoining = dateOfJoining;
+        this.picturePath = picturePath.orElseGet(() -> new PicturePath(DEFAULT_PICTURE_PATH));
         this.tags.addAll(tags);
     }
 
@@ -81,6 +79,34 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public Payroll getPayroll() {
+        return payroll;
+    }
+
+    public int getLeaveCount() {
+        return leaveCounter.getLeaveCount();
+    }
+
+    public LeaveCounter getLeaveCounter() {
+        return leaveCounter;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth.map(s -> s.toString()).orElse("");
+    }
+
+    public Optional<LocalDate> getDateOfBirthOptional() {
+        return dateOfBirth;
+    }
+
+    public String getDateOfJoining() {
+        return dateOfJoining.map(s -> s.toString()).orElse("");
+    }
+
+    public Optional<LocalDate> getDateOfJoiningOptional() {
+        return dateOfJoining;
     }
 
     public PicturePath getPicturePath() {
@@ -181,5 +207,4 @@ public class Employee {
         }
         return builder.toString();
     }
-
 }
