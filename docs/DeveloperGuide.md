@@ -95,9 +95,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a Patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a Patient).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -155,27 +155,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find (`find`) and find details (`find_details`) command
+### Edit patient (`edit`) command
+
+**Implementation**
+
+The edit command edits a patient in the patient list by finding the patient, creating a new `EditPatientDescriptor` based on the original patient, modifying that object with the given parameters, then replacing the patient in the model's patient list with a new patient constructed using the given `EditPatientDescriptor`.
+
+**Design considerations**
+
+One way to reduce the amount of overhead in each edit command is to store only the relevant changes for each edit command in `EditPatientDescriptor`. This would remove the need to make a copy of every field of the original patient which would save some time. However, this would require `EditCommand#execute()` to have to check for each field's presence, through something like an `Optional`. This would also involve making `Patient` mutable, which would make it difficult to ensure that the patient list stays valid after various commands.
+
+### Edit appointment (`edit_appt`) command
+
+**Implementation**
+
+The edit appointment command edits an appointment in the appointment list by finding the appointment, creating a new `EditAppointmentDescriptor` based on the original appointment, modifying that object with the given parameters, then replacing the appointment in the model's appointment list with a new appointment constructed using the given `EditAppointmentDescriptor`.
+
+**Design considerations**
+
+Similar to `edit`, storing the relevant changes for each edit command instead of storing every field of the appointment would make the edit appointment command more efficient. However, making any model mutable is undesirable as immutability allows us to easily ensure certain properties about the internal list of patients and appointments.
+
+### Find patient (`find`) and find patient by details (`find_details`) commands
 
 **Implementation**
 
 The find and find details commands offer two ways of finding a patient to view their info. `find` is less comprehensive, and only searches for by patient name, while `find_details` tries to find a match in a patient's details, including their phone, address, email and tags. Both utilise a `Predicate<Patient>` in order to filter `model`'s appointment list via `Model#updateFilteredPatientList(Predicate<Patient>)`. `find` uses a `NameContainsKeywordsPredicate`, while `find_details` uses a `DetailsContainKeywordsPredicate`.
 
-Both predicates work in a similar fashion as they implement Java's base `Predicate` interface. `NameContainsKeywordsPredicate:test(Patient)` takes the patient's full name, turns it into a `List<String>`, and checks if any of the keywords match any word in the name. `DetailsContainKeywordsPredicate#test(Patient)` calls `Patient:getDetailsAsList()` and matches the keywords against that list of all the patient's details instead.
-
-**Alternative implementations**
-
-The two commands are very similar. Currently, they only differ in their predicate's type, and have the same `execute` method implementation. An alternative way of implementing `find_details` would be to change `FindCommand`'s constructor to accept a `Predicate<Patient>` instead, and `FindCommandParser` to create the correct type of `Predicate`.
+Both predicates work in a similar fashion as they implement Java's base `Predicate` interface. `NameContainsKeywordsPredicate#test(Patient)` takes the patient's full name, turns it into a `List<String>`, and checks if any of the keywords match any word in the name. `DetailsContainKeywordsPredicate#test(Patient)` calls `Patient#getDetailsAsList()` and matches the keywords against that list of all the patient's details instead.
 
 **Design considerations**
 
+The two commands are very similar. Currently, they only differ in their predicate's type, and have the same `execute` method implementation. An alternative way of implementing `find_details` would be to change `FindCommand`'s constructor to accept a `Predicate<Patient>` instead, and `FindCommandParser` to create the correct type of `Predicate`.
+
 We chose to use two different commands as we expect to expand upon the find commands differently in the future, such as allowing partial matches for `find` but not `find_details`. The details of a patient often include too many words for partial matching to be relevant. Thus, decoupling the commands from each other allows future extension of the commands to be easier.
 
-### Delete appointment ('delete_appt') command
+### Find appointment (`find_appt`) command
 
 **Implementation**
 
-The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by identifying the chosen appointment by its AppointmentId, filtering `model` appointment list via `model.getFilteredAppointmentList()` and obtaining a `matchingAppointments` list and finally removing the first `Appointment` on the list.
+The find appointment command utilises a `Predicate<Appointment>` in order to filter `model`'s appointment list via `Model#updateFilteredAppointmentList(Predicate<Appointment>)`. The type of `Predicate` is determined during parsing, where a single date time in the command will use a `TimeInTimeslotPredicate`, while two date times in the command will result in a `AppointmentDuringTimePredicate` being used instead.
+
+`TimeInTimeslotPredicate#test(Appointment)` checks if the time in the command is during the timeslot of the given appointment.  `AppointmentDuringTimePredicate#test(Appointment)` checks if the given timeslot in the command overlaps with the timeslot of the given appointment.
+
+**Design considerations**
+
+We chose to use a single command instead of two different commands like `find` and `find_details` since the functionality of the two types of appointment finding commands is very similar, and unlikely to change in the future.
+
+### Delete appointment (`delete_appt`) command
+
+**Implementation**
+
+The delete appointment command allows the user to delete an existing appointment from MediMeet. This is executed by identifying the chosen appointment by its AppointmentId, filtering `model` appointment list via `Model#getFilteredAppointmentList()` and obtaining a `matchingAppointments` list and finally removing the first `Appointment` on the list.
 
 **Design considerations**
 
@@ -407,7 +437,7 @@ Use case resumes at step 2.
 1. User requests to filter appointments.
 2. MediMeet asks the user to enter the criteria to filter appointments by.
 3. User enters the criteria to filter appointments by.
-4. MediMeet shows the list of appointments that match the request.                                                                              
+4. MediMeet shows the list of appointments that match the request.
    Use case ends.
 
 **Extensions:**
