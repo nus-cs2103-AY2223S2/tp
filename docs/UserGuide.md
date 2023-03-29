@@ -21,6 +21,7 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
+- [Navigating the User Guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
