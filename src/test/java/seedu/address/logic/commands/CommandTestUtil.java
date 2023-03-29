@@ -92,6 +92,10 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
+            System.out.println("Expected result: " + expectedCommandResult.getFeedbackToUser());
+            System.out.println("Ultron result: " + result.getFeedbackToUser());
+            System.out.println("Expected list: " + expectedModel.getFilteredOpeningList().toString());
+            System.out.println("Ultron list: " + actualModel.getFilteredOpeningList().toString());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
