@@ -245,7 +245,7 @@
                            </HBox>
                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #515658;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                               <children>
-                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... ">
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]... ">
                                     <font>
                                        <Font name="Segoe UI" size="12.0" />
                                     </font>
