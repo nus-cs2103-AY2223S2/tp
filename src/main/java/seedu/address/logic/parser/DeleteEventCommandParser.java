@@ -68,6 +68,7 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
             deleteEventCommand = new DeleteEventCommand(index);
             deleteEventCommand.markLab();
         }
+
         return deleteEventCommand;
 
     }

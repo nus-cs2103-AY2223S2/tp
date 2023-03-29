@@ -32,12 +32,12 @@
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="User Guide"/>
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="User Guide" />
           </Menu>
         </MenuBar>
         <HBox prefHeight="0.0" prefWidth="340.0" style="-fx-background-color: transparent;">
           <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: #1d1d1d; -fx-text-fill: #3c64b1;" text="TrAcker">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="101.0" style="-fx-background-color: derive(#1D1D1D, 5%); -fx-text-fill: #3c64b1; -fx-font-size: 25; -fx-border-color: transparent;" text="TrAcker">
               <HBox.margin>
                 <Insets />
               </HBox.margin>
@@ -58,16 +58,16 @@
         </StackPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         <HBox VBox.vgrow="ALWAYS">
-          <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <tabs>
-              <Tab text="Students">
+              <Tab fx:id="studentTab" text="Students">
                 <content>
                       <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                       </VBox>
                 </content>
               </Tab>
-              <Tab text="Events (Tutorials, Labs, Consultations)">
+              <Tab fx:id="eventTab" text="Events (Tutorials, Labs, Consultations)">
                 <content>
                       <VBox fx:id="eventList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />

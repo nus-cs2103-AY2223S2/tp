@@ -21,6 +21,7 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
     private static final String DEFAULT_PHOTO_PATH = "/images/studentProfiles/student_";
+    private static final String DEFAULT_MORE_PHOTO = "/images/more_icon.png";
     private static final String DEFAULT_PHOTO_FORMAT = ".png";
     private static final int DEFAULT_PHOTO_START_INDEX = 1;
     private static final int DEFAULT_PHOTO_END_INDEX = 16;
@@ -34,6 +35,9 @@ public class GuiSettings implements Serializable {
     private static final String DEFAULT_ATTACHMENT_ICON = "/images/attachment.png";
     private static final String DEFAULT_NO_ATTACHMENT_ICON = "/images/noAttachment.png";
 
+    private static final String DEFAULT_NOTE_ICON = "/images/note.png";
+    private static final String DEFAULT_NO_NOTE_ICON = "/images/noNote.png";
+
     private static final Point NULL_COORDINATE = null;
 
     private final double windowWidth;
@@ -46,6 +50,7 @@ public class GuiSettings implements Serializable {
     private final int circleRadius;
     private final String photoPath;
     private final String photoFormat;
+    private final String morePhoto;
     private final int photoStartIndex;
     private final int photoEndIndex;
     private final String tutorialIcon;
@@ -53,6 +58,8 @@ public class GuiSettings implements Serializable {
     private final String consultationIcon;
     private final String attachmentIcon;
     private final String noAttachmentIcon;
+    private final String noteIcon;
+    private final String noNoteIcon;
     private final int eventIconSize;
 
     /**
@@ -68,6 +75,7 @@ public class GuiSettings implements Serializable {
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
         photoPath = DEFAULT_PHOTO_PATH;
+        morePhoto = DEFAULT_MORE_PHOTO;
         photoFormat = DEFAULT_PHOTO_FORMAT;
         photoStartIndex = DEFAULT_PHOTO_START_INDEX;
         photoEndIndex = DEFAULT_PHOTO_END_INDEX;
@@ -77,6 +85,8 @@ public class GuiSettings implements Serializable {
         attachmentIcon = DEFAULT_ATTACHMENT_ICON;
         noAttachmentIcon = DEFAULT_NO_ATTACHMENT_ICON;
         eventIconSize = DEFAULT_EVENT_ICON_SIZE;
+        noteIcon = DEFAULT_NOTE_ICON;
+        noNoteIcon = DEFAULT_NO_NOTE_ICON;
     }
 
     //Allow user to modify student profile size in next iteration
@@ -93,6 +103,7 @@ public class GuiSettings implements Serializable {
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
         photoPath = DEFAULT_PHOTO_PATH;
+        morePhoto = DEFAULT_MORE_PHOTO;
         photoFormat = DEFAULT_PHOTO_FORMAT;
         photoStartIndex = DEFAULT_PHOTO_START_INDEX;
         photoEndIndex = DEFAULT_PHOTO_END_INDEX;
@@ -102,6 +113,8 @@ public class GuiSettings implements Serializable {
         attachmentIcon = DEFAULT_ATTACHMENT_ICON;
         noAttachmentIcon = DEFAULT_NO_ATTACHMENT_ICON;
         eventIconSize = DEFAULT_EVENT_ICON_SIZE;
+        noteIcon = DEFAULT_NOTE_ICON;
+        noNoteIcon = DEFAULT_NO_NOTE_ICON;
     }
 
     public double getWindowWidth() {
@@ -140,6 +153,10 @@ public class GuiSettings implements Serializable {
         return photoPath;
     }
 
+    public String getMorePhoto() {
+        return morePhoto;
+    }
+
     public String getPhotoFormat() {
         return photoFormat;
     }
@@ -171,12 +188,15 @@ public class GuiSettings implements Serializable {
     public String getNoAttachmentIcon() {
         return noAttachmentIcon;
     }
-
+    public String getNoteIcon() {
+        return noteIcon;
+    }
+    public String getNoNoteIcon() {
+        return noNoteIcon;
+    }
     public int getEventIconSize() {
         return eventIconSize;
     }
-
-
 
     @Override
     public boolean equals(Object other) {

@@ -2,20 +2,26 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERFORMANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
 
 /**
  * Parses input arguments and creates a new AddLab object
@@ -32,7 +38,6 @@ public class AddLabParser implements Parser<AddLabCommand> {
         String newArgs = args.trim().replaceFirst("Lab", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_LAB);
-        System.out.println(argMultimap.getPreamble().isEmpty());
         //Make the user not create lab and students with the same command
         if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
@@ -47,8 +52,22 @@ public class AddLabParser implements Parser<AddLabCommand> {
         }
 
         String name = ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get());
-
+        LocalDateTime date;
+        File file;
+        String note;
         Lab lab = new Lab(name);
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get());
+            lab.changeDate(date);
+        }
+        if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
+            file = ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get());
+            lab.addAttachment(file);
+        }
+        if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
+            note = ParserUtil.parseEventNote(argMultimap.getValue(PREFIX_NOTE).get());
+            lab.addNote(new Note(note));
+        }
         return new AddLabCommand(lab);
     }
 

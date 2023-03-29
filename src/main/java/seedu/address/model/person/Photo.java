@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
  */
 public class Photo {
 
+    public static final String NULL_PHOTO = "NO_PHOTO";
     public static final String MESSAGE_CONSTRAINTS = "Photo should be of the format https://valid_path "
             + "and adhere to the following constraints:\n"
             + "1. The url is a valid url \n"
@@ -23,6 +24,10 @@ public class Photo {
     private int circleX;
     private int circleY;
     private int radius;
+
+    public Photo() {
+        photoFilePath = NULL_PHOTO;
+    }
 
     /**
      * Accepts photo that is not empty

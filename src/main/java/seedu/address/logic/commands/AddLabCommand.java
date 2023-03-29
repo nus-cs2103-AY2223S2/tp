@@ -41,7 +41,7 @@ public class AddLabCommand extends Command {
         }
 
         model.addLab(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
     }
 
     @Override

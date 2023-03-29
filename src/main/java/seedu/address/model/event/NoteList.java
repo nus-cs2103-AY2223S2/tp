@@ -1,14 +1,16 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
 /**
- * Encapsulates a list of notes for each event
+ * List of notes class
  */
 public class NoteList {
-    private List<Note> notes = new LinkedList<>();
+    private final List<Note> notes = new LinkedList<>();
 
     /**
      * Set notes with a predefined list of notes
@@ -16,14 +18,6 @@ public class NoteList {
      */
     public NoteList(List<Note> notes) {
         this.notes.addAll(notes);
-    }
-
-    /**
-     * Initialize a note list with a single note
-     * @param singleNote A single {@code Note} object
-     */
-    public NoteList(Note singleNote) {
-        notes.add(singleNote);
     }
 
     /**
@@ -70,10 +64,30 @@ public class NoteList {
     }
 
     /**
+     * Get the indexed position of note
+     * @param index The integer index
+     * @return Desired note at index position
+     */
+    public Note get(int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
+        return getNotes().get(index);
+    }
+
+    /**
+     * Replaces the indexed note with a new {@code Note} object.
+     * @param index
+     */
+    public void replace(Note note, int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
+        getNotes().set(index, note);
+    }
+
+    /**
      * Removes the specified note
      * @param note The note to remove from the list
      */
     public boolean remove(Note note) {
+        requireNonNull(note);
         return getNotes().remove(note);
     }
 
@@ -82,6 +96,7 @@ public class NoteList {
      * @param index Integer for index
      */
     public Note remove(int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
         return getNotes().remove(index);
     }
 
@@ -109,10 +124,17 @@ public class NoteList {
         return getNotes().size();
     }
 
+    /**
+     * Copy the original list to avoid conflicts
+     * @return A new list with the same notes
+     */
+    public NoteList copy() {
+        return new NoteList(new ArrayList<>(getNotes()));
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        int i = 0;
         getNotes().stream()
                 .map(note -> "\n Note #" + getNotes().indexOf(note) + ":\n" + note.toString())
                 .forEach(builder::append);

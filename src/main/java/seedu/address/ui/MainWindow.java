@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -70,6 +71,13 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane eventDisplayPlaceholder;
+
+    @FXML
+    private TabPane tabPane;
+
+    private final int studentTabId = 0;
+
+    private final int eventTabId = 1;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -233,6 +241,22 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Enters student tab in TabPane.
+     */
+    @FXML
+    private void enterStudentTab() {
+        tabPane.getSelectionModel().select(studentTabId);
+    }
+
+    /**
+     * Enters event tab in TabPane.
+     */
+    @FXML
+    private void enterEventTab() {
+        tabPane.getSelectionModel().select(eventTabId);
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -256,6 +280,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isStudentTab()) {
+                enterStudentTab();
+            } else if (commandResult.isEventTab()) {
+                enterEventTab();
+            }
+
+            fillInnerParts();
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

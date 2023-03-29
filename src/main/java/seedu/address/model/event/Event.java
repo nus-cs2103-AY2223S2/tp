@@ -1,12 +1,13 @@
 package seedu.address.model.event;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Photo;
 
@@ -16,13 +17,16 @@ import seedu.address.model.person.Photo;
  */
 public abstract class Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Repititon for recur must be a number between 0 and 10";
-
+    public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10. "
+            + "Also, an event name cannot be just the name of the event alone. For example, tutorial cannot be "
+            + "just tutorial, or just Tutorial etc. "
+            + "Lastly, the event name cannot contain the other type of event. So, tutorial's name cannot have the"
+            + " word consultation or lab in it.";
     private String name;
-    private LocalDate eventDate;
+    private LocalDateTime eventDate;
     private final List<Person> students;
     private final List<File> attachments;
-    private final List<Note> notes;
+    private final NoteList notes;
 
     /**
      * Constructor with name parameter only. The time of the event will be
@@ -31,10 +35,10 @@ public abstract class Event {
      */
     public Event(String name) {
         this.name = name;
-        eventDate = LocalDate.now();
+        eventDate = LocalDateTime.now();
         students = new ArrayList<>();
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -45,10 +49,10 @@ public abstract class Event {
      */
     public Event(String name, List<Person> students) {
         this.name = name;
-        this.eventDate = LocalDate.now();
+        this.eventDate = LocalDateTime.now();
         this.students = students;
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -58,12 +62,12 @@ public abstract class Event {
      * @param students
      * @param eventDate
      */
-    public Event(String name, LocalDate eventDate, List<Person> students) {
+    public Event(String name, LocalDateTime eventDate, List<Person> students) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -74,12 +78,12 @@ public abstract class Event {
      * @param students
      * @param attachments
      */
-    public Event(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+    public Event(String name, LocalDateTime eventDate, List<Person> students, List<File> attachments) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
         this.attachments = attachments;
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -90,13 +94,13 @@ public abstract class Event {
      * @param notes
      * @param eventDate
      */
-    public Event(String name, List<Person> students, List<Note> notes, LocalDate eventDate) {
+    public Event(String name, List<Person> students, List<Note> notes, LocalDateTime eventDate) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
         //Ensures the list of attachments is kept at zero instead of null
         this.attachments = Arrays.asList(new File[0]);;
-        this.notes = notes;
+        this.notes = new NoteList(notes);
     }
 
     /**
@@ -107,13 +111,13 @@ public abstract class Event {
      * @param attachments
      * @param notes
      */
-    public Event(String name, LocalDate eventDate, List<Person> students,
+    public Event(String name, LocalDateTime eventDate, List<Person> students,
                  List<File> attachments, List<Note> notes) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
         this.attachments = attachments;
-        this.notes = notes;
+        this.notes = new NoteList(notes);
     }
 
     public String getName() {
@@ -182,9 +186,9 @@ public abstract class Event {
 
     /**
      * Gets the date of the event
-     * @return localdate
+     * @return LocalDateTime
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return eventDate;
     }
 
@@ -192,7 +196,7 @@ public abstract class Event {
      * Changes the date of the event
      * @param date
      */
-    public void changeDate(LocalDate date) {
+    public void changeDate(LocalDateTime date) {
         eventDate = date;
     }
 
@@ -210,7 +214,12 @@ public abstract class Event {
         return attachments.size();
     }
 
+    /**
+     * Ensures only 1 file can be added
+     * @param file
+     */
     public void addAttachment(File file) {
+        attachments.clear();
         attachments.add(file);
     }
 
@@ -223,13 +232,24 @@ public abstract class Event {
      * Methods to manipulate notes in an event                                 *
      *                                                                         *
      **************************************************************************/
+    public boolean hasNote(Note note) {
+        return notes.contains(note);
+    }
+
+    public void setNote(Note note, Index index) {
+        notes.replace(note, index.getZeroBased());
+    }
 
     public List<Note> getNotes() {
-        return notes;
+        return notes.getNotes();
+    }
+
+    public NoteList getNoteList() {
+        return notes.copy();
     }
 
     public int countNotes() {
-        return notes.size();
+        return notes.len();
     }
 
     public void addNote(Note note) {

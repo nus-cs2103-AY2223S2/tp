@@ -19,7 +19,7 @@ public class PhotoCommand extends Command {
 
     public static final String COMMAND_WORD = "photo";
 
-    public static final String MESSAGE_USAGE = "Photo Syntax: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Photo Syntax: photo INDEX (must be a positive integer) "
             + "photo/ [PHOTO]";
 
     public static final String PHOTO_EXAMPLE = "Example: " + COMMAND_WORD + " 1 "

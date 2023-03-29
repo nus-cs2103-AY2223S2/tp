@@ -62,7 +62,7 @@ public class SerializableTestClass {
         return name;
     }
 
-    public List<LocalDateTime> getListOfLocalDateTimes() {
+    public List<LocalDateTime> getlistOfLocalDateTimes() {
         return listOfLocalDateTimes;
     }
 

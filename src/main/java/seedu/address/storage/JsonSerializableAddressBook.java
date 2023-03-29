@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Consultation;
@@ -77,6 +79,7 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
             Tutorial tutorial = jsonAdaptedTutorial.toModelType();
+            ParserUtil.MASTER_TIME.add(new LocalDateTime[]{tutorial.getDate(), tutorial.getDate().plusHours(1)});
             if (addressBook.hasTutorial(tutorial)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
             }
@@ -84,6 +87,7 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedLab jsonAdaptedLab : labs) {
             Lab lab = jsonAdaptedLab.toModelType();
+            ParserUtil.MASTER_TIME.add(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(1)});
             if (addressBook.hasLab(lab)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LAB);
             }
@@ -91,6 +95,8 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedConsultation jsonAdaptedConsultation : consultations) {
             Consultation consultation = jsonAdaptedConsultation.toModelType();
+            ParserUtil.MASTER_TIME.add(new LocalDateTime[]{consultation.getDate(),
+                    consultation.getDate().plusHours(1)});
             if (addressBook.hasConsultation(consultation)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }

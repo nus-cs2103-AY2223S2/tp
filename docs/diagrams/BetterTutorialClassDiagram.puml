@@ -15,7 +15,7 @@ UniqueTutorialList -right-> Tutorial
 Tutorial -up-|> Event
 
 Tutorial *--> "1" Name
-Tutorial *--> "1" LocalDate
+Tutorial *--> "1" LocalDateTime
 Tutorial *--> "*" Note
 Tutorial *--> "*" Person
 

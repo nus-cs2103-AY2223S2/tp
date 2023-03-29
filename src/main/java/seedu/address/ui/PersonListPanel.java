@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -43,7 +45,11 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private TableColumn<Person, String> remark;
     @FXML
+    private TableColumn<Person, String> telegram;
+    @FXML
     private TableColumn<Person, String> photo;
+    @FXML
+    private TableColumn<Person, Void> index;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -51,19 +57,55 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
 
-        //Does not obey law of demeter
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName().toString()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail().toString()));
-        address.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().toString()));
+        telegram.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getPhone().toString()));
+        address.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getAddress().toString()));
         performance.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
         photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
 
+        index.setCellFactory(col -> {
+            TableCell<Person, Void> cell = new TableCell<>();
+            cell.textProperty().bind(Bindings.createStringBinding(() -> {
+                if (cell.isEmpty()) {
+                    return null;
+                } else {
+                    return Integer.toString(cell.getIndex() + 1);
+                }
+            }, cell.emptyProperty(), cell.indexProperty()));
+            return cell;
+        });
+
+
+        address.setCellFactory(param -> {
+            return new TableCell<Person, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        Text text = new Text(item);
+                        text.setStyle("-fx-text-alignment:justify;");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty());
+                        setGraphic(text);
+                    }
+                }
+            };
+        });
+
+
         //Sort
         SortedList<Person> sorted = new SortedList<>(personList);
         table.setItems(sorted);
         sorted.comparatorProperty().bind(table.comparatorProperty());
+        int i = 0;
         table.setRowFactory(tableView -> {
             TableRow<Person> row = new TableRow<>();
             return row;
