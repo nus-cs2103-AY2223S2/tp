@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -12,6 +13,7 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +22,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
-import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.DeleteFieldCommand;
+import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.internship.logic.commands.ExitCommand;
@@ -54,9 +57,35 @@ public class InternBuddyParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_INTERNSHIP), command);
+        DeleteIndexCommand command = (DeleteIndexCommand) parser.parseCommand(
+                DeleteIndexCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new DeleteIndexCommand(NON_EMPTY_INDEXLIST), command);
+    }
+
+    @Test
+    public void parseCommand_deleteField() throws Exception {
+        List<String> nameKeywords = Arrays.asList("bar bar", "baz", "foo foo");
+        List<String> roleKeywords = Arrays.asList("ha ha ha", "blah");
+        List<String> statusKeywords = Arrays.asList("new", "rejected");
+        List<String> keyDate = Arrays.asList("2023-02-02", "2023-02-01");
+        // Note: Elements in the lists must be ordered this way as this is how HashSet orders them.
+        DeleteFieldCommand command = (DeleteFieldCommand) parser.parseCommand(
+                DeleteFieldCommand.COMMAND_WORD
+                        + nameKeywords.stream()
+                        .map(name -> " " + PREFIX_COMPANY_NAME + name)
+                        .collect(Collectors.joining(""))
+                        + roleKeywords.stream()
+                        .map(role -> " " + PREFIX_ROLE + role)
+                        .collect(Collectors.joining(" "))
+                        + statusKeywords.stream()
+                        .map(status -> " " + PREFIX_STATUS + status)
+                        .collect(Collectors.joining(""))
+                        + keyDate.stream()
+                        .map(date -> " " + PREFIX_DATE + date)
+                        .collect(Collectors.joining("")));
+        InternshipContainsKeywordsPredicate p = new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords,
+                statusKeywords, keyDate, new ArrayList<>());
+        assertEquals(new DeleteFieldCommand(p), command);
     }
 
     @Test
