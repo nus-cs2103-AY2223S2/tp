@@ -125,11 +125,25 @@ public class AddMcInfo extends UiPart<Stage> {
             String doctorName = this.getDoctorNameInput();
             String medical = this.getMedicalConditionInput();
             int duration = this.getDurationInput();
+            if (duration < 1 || duration > 60) {
+                throw new DurationException("Duration should be 1-60 days");
+            }
             filesManager.generateMc(doctorName, medical, duration);
             closeAddAppointmentWindow();
             mcStage.close();
         } catch (NumberFormatException e) {
             errorMessageDisplay.setError("duration should be integer format");
+        } catch (DurationException e) {
+            errorMessageDisplay.setError(e.getMessage());
+        }
+    }
+
+    /**
+     * Exception thrown when duration is not in the right format
+     */
+    public class DurationException extends Exception {
+        public DurationException(String message) {
+            super(message);
         }
     }
 }
