@@ -19,9 +19,17 @@ public class InternshipApplication {
     private final CompanyName companyName;
     private final JobTitle jobTitle;
     private final Set<Review> reviews = new HashSet<>();
+    private final Set<ProgrammingLanguage> programmingLanguages = new HashSet<>();
+    private final Set<Qualification> qualifications = new HashSet<>();
+    private final Location location;
+    private final Salary salary;
+    private final Set<Note> notes = new HashSet<>();
+    private final Rating rating;
+    private final Set<Reflection> reflections = new HashSet<>();
+
+    // Interview fields
     private final InterviewDate interviewDate;
     private final InternshipStatus status;
-
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -30,12 +38,19 @@ public class InternshipApplication {
     /**
      * Every field must be present and not null.
      */
-    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews) {
+    public InternshipApplication(CompanyName name, JobTitle job) {
+
         requireAllNonNull(name, job);
+        //Identity field
         this.companyName = name;
         this.jobTitle = job;
-        this.reviews.addAll(reviews);
+        this.location = null;
+        this.salary = null;
+        this.rating = null;
+
+        // Data field
         this.contact = null;
+        //Interview field
         this.status = InternshipStatus.PENDING;
         this.interviewDate = null;
     }
@@ -43,12 +58,53 @@ public class InternshipApplication {
     /**
      * The company name and job title field must be present and not null.
      */
+    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews,
+        Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
+        Salary salary, Set<Note> notes, Rating rating, Set<Reflection> reflections) {
+
+        requireAllNonNull(name, job);
+        //Identity field
+        this.companyName = name;
+        this.jobTitle = job;
+        this.reviews.addAll(reviews);
+        this.programmingLanguages.addAll(programmingLanguages);
+        this.qualifications.addAll(qualifications);
+        this.location = location;
+        this.salary = salary;
+        this.notes.addAll(notes);
+        this.rating = rating;
+        this.reflections.addAll(reflections);
+
+        // Data field
+        this.contact = null;
+        this.status = InternshipStatus.PENDING;
+
+        //Interview field
+        this.interviewDate = null;
+    }
+
+    /**
+     * The company name and job title field must be present and not null.
+     */
     public InternshipApplication(CompanyName companyName, JobTitle job, Set<Review> reviews,
-                                 Contact contact, InternshipStatus status, InterviewDate interviewDate) {
+        Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
+        Salary salary, Set<Note> notes, Rating rating, Set<Reflection> reflections, Contact contact,
+        InternshipStatus status, InterviewDate interviewDate) {
+
         requireAllNonNull(companyName, job);
+        //Identity field
         this.companyName = companyName;
         this.jobTitle = job;
         this.reviews.addAll(reviews);
+        this.programmingLanguages.addAll(programmingLanguages);
+        this.qualifications.addAll(qualifications);
+        this.location = location;
+        this.salary = salary;
+        this.notes.addAll(notes);
+        this.rating = rating;
+        this.reflections.addAll(reflections);
+
+        // Data field
         this.contact = contact;
         this.status = status;
         this.interviewDate = interviewDate;
@@ -62,6 +118,21 @@ public class InternshipApplication {
     }
     public Set<Review> getReviews() {
         return Collections.unmodifiableSet(reviews);
+    }
+    public Set<ProgrammingLanguage> getProgrammingLanguages() {
+        return Collections.unmodifiableSet(programmingLanguages);
+    }
+    public Set<Qualification> getQualifications() {
+        return Collections.unmodifiableSet(qualifications);
+    }
+    public Location getLocation() { return location; }
+    public Salary getSalary() { return salary; }
+    public Set<Note> getNotes() {
+        return Collections.unmodifiableSet(notes);
+    }
+    public Rating getRating() { return rating; }
+    public Set<Reflection> getReflections() {
+        return Collections.unmodifiableSet(reflections);
     }
 
     public InternshipStatus getStatus() {
@@ -133,15 +204,44 @@ public class InternshipApplication {
                 .append("; Status: ")
                 .append(getStatus());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-
         if (!reviews.isEmpty()) {
             builder.append("; Review: ");
             reviews.forEach(builder::append);
+        }
+
+        if (!programmingLanguages.isEmpty()) {
+            builder.append("; Programming Language: ");
+            programmingLanguages.forEach(builder::append);
+        }
+
+        if (!qualifications.isEmpty()) {
+            builder.append("; Qualification: ");
+            qualifications.forEach(builder::append);
+        }
+
+        if (location != null) {
+            builder.append("; Location: ")
+                    .append(getLocation());
+        }
+
+        if (salary != null) {
+            builder.append("; Salary: ")
+                    .append(getSalary());
+        }
+
+        if (!notes.isEmpty()) {
+            builder.append("; Note: ");
+            notes.forEach(builder::append);
+        }
+
+        if (rating != null) {
+            builder.append("; Rating: ")
+                    .append(getRating());
+        }
+
+        if (!reflections.isEmpty()) {
+            builder.append("; Reflection: ");
+            reflections.forEach(builder::append);
         }
 
         if (contact != null) {

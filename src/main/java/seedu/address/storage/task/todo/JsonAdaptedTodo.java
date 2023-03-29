@@ -92,7 +92,7 @@ public class JsonAdaptedTodo {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     CompanyName.class.getSimpleName()));
         }
-        if (!CompanyName.isValidName(title)) {
+        if (!CompanyName.isValidCompanyName(title)) {
             throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         return new CompanyName(title);

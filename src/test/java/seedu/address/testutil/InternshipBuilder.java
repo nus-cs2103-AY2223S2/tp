@@ -20,6 +20,7 @@ public class InternshipBuilder {
     private JobTitle jobTitle;
     private Set<Review> reviews;
     private InternshipStatus status;
+
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
      */
@@ -64,6 +65,6 @@ public class InternshipBuilder {
     }
 
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews, null, status, null);
+        return new InternshipApplication(companyName, jobTitle);
     }
 }
