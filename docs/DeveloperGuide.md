@@ -743,9 +743,9 @@ feature would work in practice.
 
 2. OfficeConnect opens help interface with dedicated help instructions.
 
-3. User specifies command he wishes to get help on.
+3. User navigates to command he wishes to get help on.
 
-4. OfficeConnect displays how command works, along with format of queried command to user.
+4. OfficeConnect presents information on said command to user.
 
 5. User reads closes window after getting required info.
 
@@ -753,11 +753,11 @@ feature would work in practice.
 
 **Extensions**
 
-* 2a. User requests for more info on command.
+* 4a. User requests for more info on command.
 
-    * 2a1. Help interface provides link to user guide.
+    * 4a1. Help interface provides link to user guide.
 
-    * 2a2. User retrieves user guide providing more detail on command.
+    * 4a2. User retrieves user guide providing more detail on command.
 
       Use case resumes at step 5.
 
