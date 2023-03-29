@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.commons.core.Messages;
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.commons.util.CollectionUtil;
@@ -21,6 +22,7 @@ import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
@@ -95,13 +97,12 @@ public class EditTaskCommand extends Command {
 
         if (taskToEdit instanceof ToDo) {
             ToDo todoToEdit = (ToDo) taskToEdit;
-            EditTodoDescriptor editTodoDescriptor = new EditTodoDescriptor(editTaskDescriptor);
 
-            Title updatedTitle = editTodoDescriptor.getTitle().orElse(todoToEdit.getTitle());
-            TodoDateTime updatedBy = editTodoDescriptor.getBy().orElse(todoToEdit.getBy());
+            Title updatedTitle = editTaskDescriptor.getTitle().orElse(todoToEdit.getTitle());
             Description oldDescription = todoToEdit.getDescription().orElse(null);
-            Description updatedDescription = editTodoDescriptor.getDescription().orElse(oldDescription);
-            Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
+            Description updatedDescription = editTaskDescriptor.getDescription().orElse(oldDescription);
+            Priority updatedPriority = editTaskDescriptor.getPriority().orElse(todoToEdit.getPriority());
+            TodoDateTime updatedBy = editTaskDescriptor.getByDateTime().orElse(todoToEdit.getBy());
 
             ToDo updatedTodo = new ToDo(updatedTitle, updatedBy);
             updatedTodo.setDescription(updatedDescription);
@@ -111,23 +112,21 @@ public class EditTaskCommand extends Command {
 
         } else if (taskToEdit instanceof Event) {
             Event eventToEdit = (Event) taskToEdit;
-            EditEventDescriptor editEventDescriptor = new EditEventDescriptor(editTaskDescriptor);
 
-            Title updatedTitle = editEventDescriptor.getTitle().orElse(eventToEdit.getTitle());
+            Title updatedTitle = editTaskDescriptor.getTitle().orElse(eventToEdit.getTitle());
+            Description oldDescription = eventToEdit.getDescription().orElse(null);
+            Description updatedDescription = editTaskDescriptor.getDescription().orElse(oldDescription);
+            Priority updatedPriority = editTaskDescriptor.getPriority().orElse(eventToEdit.getPriority());
 
-            LocalDateTime updatedFromDateTime = editEventDescriptor.getFromDateTime()
+            LocalDateTime updatedFromDateTime = editTaskDescriptor.getFromDateTime()
                     .orElse(eventToEdit.getEventDateTimes().from);
-            LocalDateTime updatedToDateTime = editEventDescriptor.getToDateTime()
+            LocalDateTime updatedToDateTime = editTaskDescriptor.getToDateTime()
                     .orElse(eventToEdit.getEventDateTimes().to);
 
             if (!EventDateTimes.isValidEventDateTimes(updatedFromDateTime, updatedToDateTime)) {
                 throw new CommandException(EventDateTimes.MESSAGE_CONSTRAINTS);
             }
             EventDateTimes updatedEventTimes = new EventDateTimes(updatedFromDateTime, updatedToDateTime);
-
-            Description oldDescription = eventToEdit.getDescription().orElse(null);
-            Description updatedDescription = editEventDescriptor.getDescription().orElse(oldDescription);
-            Priority updatedPriority = editEventDescriptor.getPriority().orElse(eventToEdit.getPriority());
 
             Event updatedEvent = new Event(updatedTitle, updatedEventTimes);
             updatedEvent.setDescription(updatedDescription);
@@ -149,6 +148,7 @@ public class EditTaskCommand extends Command {
     public static class EditTaskDescriptor {
         private Title title;
         private Description description;
+        private Location location;
         private TodoDateTime byDateTime;
         private LocalDateTime fromDateTime;
         private LocalDateTime toDateTime;
@@ -162,9 +162,10 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
-            setBy(toCopy.byDateTime);
-            setFrom(toCopy.fromDateTime);
-            setTo(toCopy.toDateTime);
+            setLocation(toCopy.location);
+            setByDateTime(toCopy.byDateTime);
+            setFromDateTime(toCopy.fromDateTime);
+            setToDateTime(toCopy.toDateTime);
             setPriority(toCopy.priority);
         }
 
@@ -179,77 +180,6 @@ public class EditTaskCommand extends Command {
         public void setTitle(Title title) {
             this.title = title;
         }
-
-        public void setDescription(Description description) {
-            this.description = description;
-        }
-
-        public void setBy(TodoDateTime todoDateTime) {
-            this.byDateTime = todoDateTime;
-        }
-
-        public void setFrom(LocalDateTime localDateTime) {
-            this.fromDateTime = localDateTime;
-        }
-
-        public void setTo(LocalDateTime localDateTime) {
-            this.toDateTime = localDateTime;
-        }
-
-        public void setPriority(Priority priority) {
-            this.priority = priority;
-        }
-    }
-
-
-    /**
-     * Stores the details to edit the todo task with. Each non-empty field value will replace the
-     * corresponding field value of the todo Task.
-     */
-    public static class EditTodoDescriptor {
-        private Title title;
-        private Description description;
-        private TodoDateTime byDateTime;
-        private Priority priority;
-
-        /**
-         * Creates a new {@code EditTodoDescriptor} object with the
-         * same title and byDateTime as the template given.
-         *
-         * @param toCopy The {@code EditTaskDescriptor} to copy from
-         */
-        public EditTodoDescriptor(EditTaskDescriptor toCopy) {
-            setTitle(toCopy.title);
-            setDescription(toCopy.description);
-            setBy(toCopy.byDateTime);
-            setPriority(toCopy.priority);
-
-        }
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditTodoDescriptor(EditTodoDescriptor toCopy) {
-            setTitle(toCopy.title);
-            setDescription(toCopy.description);
-            setBy(toCopy.byDateTime);
-            setPriority(toCopy.priority);
-
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title,
-                    description, byDateTime, priority);
-        }
-
-        public void setTitle(Title title) {
-            this.title = title;
-        }
-
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
@@ -257,123 +187,35 @@ public class EditTaskCommand extends Command {
         public void setDescription(Description description) {
             this.description = description;
         }
-
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        public void setBy(TodoDateTime todoDateTime) {
-            this.byDateTime = todoDateTime;
+        public Optional<Location> getLocation() {
+            return Optional.ofNullable(location);
+
+        }
+        public void setLocation(Location location) {
+            this.location = location;
         }
 
-        public Optional<TodoDateTime> getBy() {
+        public void setByDateTime(TodoDateTime todoDateTime) {
+            this.byDateTime = todoDateTime;
+        }
+        public Optional<TodoDateTime> getByDateTime() {
             return Optional.ofNullable(byDateTime);
         }
 
-        public void setPriority(Priority priority) {
-            this.priority = priority;
+        public void setFromDateTime(LocalDateTime localDateTime) {
+            this.fromDateTime = localDateTime;
         }
-
-        public Optional<Priority> getPriority() {
-            return Optional.ofNullable(priority);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTodoDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTodoDescriptor e = (EditTodoDescriptor) other;
-
-            return getTitle().equals(e.getTitle())
-                    && getDescription().equals(e.getDescription())
-                    && getBy().equals(e.getBy())
-                    && getPriority().equals(e.getPriority());
-        }
-    }
-
-
-    /**
-     * Stores the details to edit the event task with. Each non-empty field value will replace the
-     * corresponding field value of the event Task.
-     */
-    public static class EditEventDescriptor {
-        private Title title;
-        private Description description;
-        private LocalDateTime fromDateTime;
-        private LocalDateTime toDateTime;
-        private Priority priority;
-
-        /**
-         * Creates a new {@code EditEventDescriptor} object with the
-         * same title, fromDateTime, toDateTime as the template given.
-         *
-         * @param toCopy The {@code EditTaskDescriptor} to copy from
-         */
-        public EditEventDescriptor(EditTaskDescriptor toCopy) {
-            setTitle(toCopy.title);
-            setDescription(toCopy.description);
-            setFromDateTime(toCopy.fromDateTime);
-            setToDateTime(toCopy.toDateTime);
-            setPriority(toCopy.priority);
-        }
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditEventDescriptor(EditEventDescriptor toCopy) {
-            setTitle(toCopy.title);
-            setDescription(toCopy.description);
-            setFromDateTime(toCopy.fromDateTime);
-            setToDateTime(toCopy.toDateTime);
-            setPriority(toCopy.priority);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, fromDateTime,
-                    toDateTime, priority);
-        }
-
-        public void setTitle(Title title) {
-            this.title = title;
-        }
-
-        public Optional<Title> getTitle() {
-            return Optional.ofNullable(title);
-        }
-
-        public void setDescription(Description description) {
-            this.description = description;
-        }
-
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
-        public void setFromDateTime(LocalDateTime fromDateTime) {
-            this.fromDateTime = fromDateTime;
-        }
-
         public Optional<LocalDateTime> getFromDateTime() {
             return Optional.ofNullable(fromDateTime);
         }
 
-        public void setToDateTime(LocalDateTime toDateTime) {
-            this.toDateTime = toDateTime;
+        public void setToDateTime(LocalDateTime localDateTime) {
+            this.toDateTime = localDateTime;
         }
-
         public Optional<LocalDateTime> getToDateTime() {
             return Optional.ofNullable(toDateTime);
         }
@@ -381,7 +223,6 @@ public class EditTaskCommand extends Command {
         public void setPriority(Priority priority) {
             this.priority = priority;
         }
-
         public Optional<Priority> getPriority() {
             return Optional.ofNullable(priority);
         }
@@ -394,19 +235,19 @@ public class EditTaskCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditEventDescriptor)) {
+            if (!(other instanceof EditTaskDescriptor)) {
                 return false;
             }
 
             // state check
-            EditEventDescriptor e = (EditEventDescriptor) other;
-
+            EditTaskDescriptor e = (EditTaskDescriptor) other;
             return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
+                    && getLocation().equals(e.getLocation())
+                    && getByDateTime().equals(e.getByDateTime())
                     && getFromDateTime().equals(e.getFromDateTime())
                     && getToDateTime().equals(e.getToDateTime())
                     && getPriority().equals(e.getPriority());
         }
     }
-
 }
