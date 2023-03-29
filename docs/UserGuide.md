@@ -291,8 +291,7 @@ Use this command to find contacts using keywords and fields you specify!
 
 _Here are some important requirements for you to take note:_
 * The keywords are case-insensitive.
-  * i.e. `find n/Abigail' can return people with names of 'Abigail`, 
-'aBiGail', 'abigail', 'ABIGAIL'.
+  * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
 
 * For each field specified, as long as one of the keywords is contained
