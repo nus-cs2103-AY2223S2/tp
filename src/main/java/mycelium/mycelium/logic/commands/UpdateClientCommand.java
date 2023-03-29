@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.YearOfBirth;
@@ -94,21 +95,22 @@ public class UpdateClientCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        TabSwitchAction action = new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT);
         Optional<Client> uniqueClient = model.getUniqueClient(c -> c.getEmail().equals(email));
 
         if (!uniqueClient.isPresent()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT, action);
         }
         Optional<Client> updatedClient = createUpdatedClient(uniqueClient.get(), updateClientDescriptor);
         if (updatedClient.isEmpty()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NOT_EDITED, action);
         }
         // Ensures that new email is not a mandatory option
         if (updateClientDescriptor.email.isPresent() && model.hasClient(updatedClient.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT, action);
         }
         model.setClient(uniqueClient.get(), updatedClient.get());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClient.get()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClient.get()), action);
     }
 
     /**

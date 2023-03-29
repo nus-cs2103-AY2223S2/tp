@@ -142,6 +142,14 @@ public class ProjectBuilder {
     }
 
     /**
+     * Sets the project's deadline using a string representation of a date.
+     */
+    public ProjectBuilder withDeadline(String dateStr) {
+        this.deadline = LocalDate.parse(dateStr, Project.DATE_FMT);
+        return this;
+    }
+
+    /**
      * Builds a project with the given fields.
      */
     public Project build() {
