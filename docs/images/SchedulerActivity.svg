@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="700px" preserveAspectRatio="none" style="width:376px;height:700px;background:#FFFFFF;" version="1.1" viewBox="0 0 376 700" width="376px" zoomAndPan="magnify"><defs/><g><ellipse cx="175.75" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="191" x="80.25" y="50"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="171" x="90.25" y="71.6016">User enters a meet command</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="98" x="122.25" y="85.7344">(meet/eat/study)</text><rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="234" x="58.75" y="118.2656"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="214" x="68.75" y="139.8672">Recommender triggers the scheduler</text><rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="138" x="106.75" y="172.3984"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="118" x="116.75" y="194">adds all participants</text><polygon fill="#F1F1F1" points="175.75,231.2617,175.75,231.2617,187.75,243.2617,175.75,255.2617,175.75,255.2617,163.75,243.2617,175.75,231.2617" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="100" x="56.75" y="227.9863">[Some participants</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="56.75" y="240.9414">could not be added]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="187.75" y="240.9414">[else]</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="150" x="11" y="265.2617"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="126" x="25" y="286.8633">Error: No Such Person</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="49" x="53" y="300.9961">in Model</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="155" x="188" y="265.2617"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="131" x="202" y="286.8633">Adds participants' and</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="92" x="214" y="300.9961">user's timetable</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="191.5" y="333.5273"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="100" x="205.5" y="355.1289">Finds all common</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="128" x="201.5" y="369.2617">available time periods</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="149" x="191" y="456.748"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="122" x="205" y="478.3496">Sorts all time periods</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="129" x="201" y="492.4824">in decreasing duration</text><polygon fill="#F1F1F1" points="265.5,401.793,265.5,401.793,277.5,413.793,265.5,425.793,265.5,425.793,253.5,413.793,265.5,401.793" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="269.5" y="436.4277">[Have common</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="71" x="275.5" y="449.3828">time periods]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="277.5" y="411.4727">[else]</text><polygon fill="#F1F1F1" points="265.5,525.0137,277.5,537.0137,265.5,549.0137,253.5,537.0137,265.5,525.0137" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="190" y="569.0137"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="77" x="228" y="590.6152">Feedbacks to</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="131" x="200" y="604.748">LocationRecommender</text><polygon fill="#F1F1F1" points="175.75,623.2793,187.75,635.2793,175.75,647.2793,163.75,635.2793,175.75,623.2793" style="stroke:#181818;stroke-width:0.5;"/><ellipse cx="175.75" cy="678.2793" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="175.75" cy="678.2793" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="175.75" x2="175.75" y1="30" y2="50"/><polygon fill="#181818" points="171.75,40,175.75,50,179.75,40,175.75,44" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="175.75" x2="175.75" y1="98.2656" y2="118.2656"/><polygon fill="#181818" points="171.75,108.2656,175.75,118.2656,179.75,108.2656,175.75,112.2656" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="175.75" x2="175.75" y1="152.3984" y2="172.3984"/><polygon fill="#181818" points="171.75,162.3984,175.75,172.3984,179.75,162.3984,175.75,166.3984" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="313.5273" y2="333.5273"/><polygon fill="#181818" points="261.5,323.5273,265.5,333.5273,269.5,323.5273,265.5,327.5273" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="425.793" y2="456.748"/><polygon fill="#181818" points="261.5,446.748,265.5,456.748,269.5,446.748,265.5,450.748" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="277.5" x2="350" y1="413.793" y2="413.793"/><polygon fill="#181818" points="346,470.8809,350,480.8809,354,470.8809,350,474.8809" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="350" x2="350" y1="413.793" y2="537.0137"/><line style="stroke:#181818;stroke-width:1.0;" x1="350" x2="277.5" y1="537.0137" y2="537.0137"/><polygon fill="#181818" points="287.5,533.0137,277.5,537.0137,287.5,541.0137,283.5,537.0137" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="505.0137" y2="525.0137"/><polygon fill="#181818" points="261.5,515.0137,265.5,525.0137,269.5,515.0137,265.5,519.0137" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="381.793" y2="401.793"/><polygon fill="#181818" points="261.5,391.793,265.5,401.793,269.5,391.793,265.5,395.793" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="549.0137" y2="569.0137"/><polygon fill="#181818" points="261.5,559.0137,265.5,569.0137,269.5,559.0137,265.5,563.0137" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="163.75" x2="86" y1="243.2617" y2="243.2617"/><line style="stroke:#181818;stroke-width:1.0;" x1="86" x2="86" y1="243.2617" y2="265.2617"/><polygon fill="#181818" points="82,255.2617,86,265.2617,90,255.2617,86,259.2617" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="187.75" x2="265.5" y1="243.2617" y2="243.2617"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="243.2617" y2="265.2617"/><polygon fill="#181818" points="261.5,255.2617,265.5,265.2617,269.5,255.2617,265.5,259.2617" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="86" x2="86" y1="313.5273" y2="635.2793"/><line style="stroke:#181818;stroke-width:1.0;" x1="86" x2="163.75" y1="635.2793" y2="635.2793"/><polygon fill="#181818" points="153.75,631.2793,163.75,635.2793,153.75,639.2793,157.75,635.2793" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="265.5" y1="617.2793" y2="635.2793"/><line style="stroke:#181818;stroke-width:1.0;" x1="265.5" x2="187.75" y1="635.2793" y2="635.2793"/><polygon fill="#181818" points="197.75,631.2793,187.75,635.2793,197.75,639.2793,193.75,635.2793" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="175.75" x2="175.75" y1="206.5313" y2="231.2617"/><polygon fill="#181818" points="171.75,221.2617,175.75,231.2617,179.75,221.2617,175.75,225.2617" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="175.75" x2="175.75" y1="647.2793" y2="667.2793"/><polygon fill="#181818" points="171.75,657.2793,175.75,667.2793,179.75,657.2793,175.75,661.2793" style="stroke:#181818;stroke-width:1.0;"/><!--MD5=[ef58cd4f3962be8831d572a54dc76292]
+@startuml
+'https://plantuml.com/class-diagram
+
+start
+:User enters a meet command
+        (meet/eat/study);
+:Recommender triggers the scheduler;
+:adds all participants;
+if () then ([Some participants
+could not be added])
+    : Error: No Such Person
+            in Model;
+else  ([else])
+    : Adds participants' and
+        user's timetable;
+    : Finds all common
+    available time periods;
+    if () then ([Have common
+  time periods])
+        : Sorts all time periods
+        in decreasing duration;
+    else ([else])
+    endif
+    :       Feedbacks to
+    LocationRecommender;
+endif
+stop
+@enduml
+
+@startuml
+
+start
+:User enters a meet command
+        (meet/eat/study);
+:Recommender triggers the scheduler;
+:adds all participants;
+if () then ([Some participants
+could not be added])
+    : Error: No Such Person
+            in Model;
+else  ([else])
+    : Adds participants' and
+        user's timetable;
+    : Finds all common
+    available time periods;
+    if () then ([Have common
+  time periods])
+        : Sorts all time periods
+        in decreasing duration;
+    else ([else])
+    endif
+    :       Feedbacks to
+    LocationRecommender;
+endif
+stop
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
