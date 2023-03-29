@@ -4,7 +4,7 @@ title: User Guide
 ---
 <img src="images/FitBookBanner.png" width="1200" />
 
-##About FitBook
+<h2><div style="color:#f9963f">About FitBook</div></h2>
 
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
 
@@ -14,7 +14,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Quick start
+## Quick start
 
 1. Ensure you have **Java** `11` or above installed in your Computer.
 
@@ -50,7 +50,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,7 +77,7 @@ This User Guide provides brief documentation on how you can install the applicat
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
 </div>
 
-###Viewing help : `help`
+### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
@@ -85,7 +85,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-###Adding a client: `add`
+### Adding a client: `add`
 
 Adds a client to the FitBook.
 
@@ -106,7 +106,7 @@ Examples:
 Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio` in the command input box will look like this:
 <img src="images/AddClientUG.png"/>
 
-###Listing all clients : `listClients`
+### Listing all clients : `listClients`
 
 Displays a list of all clients in the FitBook under the Client panel.
 
@@ -117,7 +117,7 @@ Format: `listClients`
 * Initiate the command with 'listClients'
 * All clients in FitBook has been listed once again!
 
-###Editing a client : `edit`
+### Editing a client : `edit`
 
 Edits an existing client in the FitBook.
 
@@ -142,7 +142,7 @@ Examples:
 Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will look like this:
 <img src="images/EditClientUG.png"/>
 
-###Locating clients by fields: `find`
+### Locating clients by fields: `find`
 
 Finds Clients in FitBook whose details contain any of the given keywords.
 
@@ -170,7 +170,7 @@ Examples:
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
 '91234567'
 
-###Deleting a client : `delete`
+### Deleting a client : `delete`
 
 Deletes the specified client from the FitBook.
 
@@ -184,19 +184,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-###Clearing all entries : `clear`
+### Clearing all entries : `clear`
 
 Clears all entries from the FitBook.
 
 Format: `clear`
 
-###Export Client details : `export`
+### Export Client details : `export`
 
 Exports the client details locally into a csv file.
 
 Format: `export`
 
-###Adding a routine: `addRoutine`</span></h3>
+### Adding a routine: `addRoutine`</span></h3>
 
 Adds a routine to the FitBook.
 
@@ -208,7 +208,7 @@ Examples:
 * `addRoutine r/Cardio`
 * `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
-###Editing a routine : `editRoutine`
+### Editing a routine : `editRoutine`
 
 Edits an existing routine in the FitBook.
 
@@ -222,7 +222,7 @@ Examples:
 *  `editRoutine 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
 *  `editRoutine 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 
-###Listing all Routines in FitBook : `listRoutines`
+### Listing all Routines in FitBook : `listRoutines`
 
 List all Routines in FitBook under Exercise tab.
 
@@ -231,7 +231,7 @@ Format: `listRoutines`
 * Initiate the command with 'listRoutines'
 * All Routines in FitBook has been listed once again!
 
-###Locating Routines by name: `findRoutine`
+### Locating Routines by name: `findRoutine`
 
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
 
@@ -243,13 +243,13 @@ Format: `findRoutine KEYWORD`
 Examples:
 * `findRoutine Cardio`
 
-###Clearing all Routine entries : `clearRoutines`
+### Clearing all Routine entries : `clearRoutines`
 
 Clears all Routine entries in FitBook under the `Exercise` Tab.
 
 Format: `clearRoutines`
 
-###Deleting a routine : `deleteRoutine`
+### Deleting a routine : `deleteRoutine`
 
 Deletes the specified Routine from the FitBook.
 
@@ -263,7 +263,7 @@ Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
 
-###Adding an Exercise : `addExercise`
+### Adding an Exercise : `addExercise`
 
 Adds an exercise to a current Routine in FitBook.
 
@@ -276,7 +276,7 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
 
-###Deleting an Exercise : `deleteExercise`
+### Deleting an Exercise : `deleteExercise`
 
 Deletes an exercise from a Routine in FitBook.
 
@@ -291,23 +291,23 @@ Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
 
-###Export Routine details : `exportRoutines`
+### Export Routine details : `exportRoutines`
 
 Exports the routine details locally into a csv file.
 
 Format: `exportRoutines`
 
-###Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-###Saving the data
+### Saving the data
 
 FitBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-###Editing the data file
+### Editing the data file
 
 FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -315,121 +315,11 @@ FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. A
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
 
-###Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-///PLACE HOLDER OUR ACTUAL FEATURE LIST////
-1.	Adding new client
-Add a new customer profile: addClient
-Format: addClient c/CLIENT_NAME p/PHONE_NUMBER add/ADDRESS [appt/APPOINTMENT_TIME] [w/WEIGHT] [cal/TARGET_CALORIES_INTAKE][g/ GOAL] [r/Routines] [g/gender]
-
-Example:
-•	addClient c/Lisa p/95230245 cal/2000 w/50 r/1,2,3
-
-2.	Removing a client: removeClient
-Removes a client profile.
-Format: removeClient c/CLIENT_NAME
-
-Examples:
-•	removeClient c/Lisa
-
-3.	Editing client information
-Edits client details (e.g. phone number)
-Format: editClient c/CLIENT_NAME [p/PHONE_NUMBER] [add/ADDRESS] [appt/APPOINTMENT_TIME]
-[w/WEIGHT] [cal/TARGET_CALORIES_INTAKE][g/ GOAL] [r/Routines] [g/gender]
-`
-Examples:
-•	editClient c/Lisa p/95230245
-
-4.	Finding client by name
-Locates client
-Format: findClient c/CLIENT_NAME
-
-Examples:
-•	findClient c/Lisa
-
-5.	Listing all clients: listClients
-Lists all clients added. “Change tab to clients”.
-Format: listClients
-
-6.	Listing all the routines: listRoutines
-Lists all routines added. “Change tab to lists”.
-Format: listRoutines
-
-7.	Exiting the app
-Exits the program.
-Format: logout
-
-8.	Creating an exercise routine: createRoutine
-Creates an empty exercise routine to the list of exercise routines.
-Format: createRoutine n/EXERCISE_ROUTINE_NAME
-
-Examples:
-•	createRoutine n/Slimming Exercise
-•	createRoutine n/Cardio Exercise
-
-9.	Saving exercise routines: saveExercise
-Saves an exercise routine to the FitBook.
-Format: saveExercise e/EXERCISE_NUMBER r/ROUTINE_NUMBER n/ROUTINE [t/DURATION_OR_REPS][s/SETS]
-
-Examples:
-•	saveExercise e/3 r/2 n/Dumbbell curls t/20 s/3
-•	saveExercise e/2 r/3 n/Lateral Raises t/10 s/4
-•	saveExercise e/1 r/1 n/Treadmill Sprint t/10 minutes
-
-10.	Showing the list of exercise routines: listRoutines
-Shows the list of exercise routines in the fitbook.
-Format: listRoutines [f/SEARCH]
-
-Examples:
-•	listRoutines
-•	listRoutines f/Cardio
-
-11.	Tagging the exercise routine to each client: tagExercise
-Tags an exercise routine to each client in the fitbook.
-Format: tagExercise p/PERSON_INDEX_IN_THE_LIST e/EXERCISE_INDEX_IN_THE_EXERCISE_LIST
-
-Examples:
-•	tagExercise p/2 e/3
-
-12.	  Filtering clients by exercises: filterExercise
-Filters and shows the clients by their routine.
-Format: filterExercise e/EXERCISE_NAME
-
-Examples:
-•	filterExercise e/Cardio
-•	filterExercise e/Strength
-
-Filtering the clients by gender: filterGender
-Filters and shows the clients by gender.
-Format: filterGender g/GENDER
-
-13.	Marking the exercise of a client’s routine as done: markExercise
-Marks the exercise of a client’s routine as done.
-markExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER e/EXERCISE_NUMBER
-
-Example:
-•	markExercise p/2 r/1 e/3
-
-14.	Unmarking the exercise of a client’s routine as not done: unmarkExercise
-Unmarks the exercise of a client’s routine as not done.
-unmarkExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER e/EXERCISE_NUMBER
-
-Example:
-•	unmarkExercise p/2 r/1 e/3
-
-15.	Unmarking all the exercise of a client’s routine as not done:
-unmarkAllExercise
-Unmarks all the exercise of a client’s routine as not done.
-unmarkAllExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER
-
-Example:
-•	unmarkAllExercise p/1 r/3
-
+### Archiving data files `[coming in v2.0]`
 
 --------------------------------------------------------------------------------------------------------------------
 
-##FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
@@ -441,7 +331,7 @@ Example:
 **A**: The exercise routine is probably not inside the list of routines or the routine name is wrong. The routine name is case-sensitive.
 --------------------------------------------------------------------------------------------------------------------
 
-##Command summary
+## Command summary
 
 | Action                           | Format, Examples                                                                                                                                                                                                                                                                                 |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
