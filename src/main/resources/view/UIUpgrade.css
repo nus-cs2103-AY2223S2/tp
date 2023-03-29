@@ -1,11 +1,17 @@
 @font-face {
+    font-family: "Source Sans Pro";
     src: url("../fonts/SourceSansPro-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Source Sans Pro Semibold";
+    src: url("../fonts/SourceSansPro-Semibold.ttf");
 }
 
 
 .root{
     -fx-font-size: 11pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
 }
 
 .background {
@@ -14,29 +20,29 @@
 }
 
 .label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
 }
 
 .tab-pane {
@@ -76,7 +82,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -104,10 +110,11 @@
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #CACCCE;
+    -fx-background-color: white;
 }
-
 
 .list-cell:filled {
     -fx-background-color: white;
@@ -122,13 +129,13 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -149,17 +156,14 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
 
-.result-display .label {
-    -fx-text-fill: white !important;
-}
 
 .status-bar .label {
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -199,7 +203,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -219,7 +223,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #ffffff;
-    -fx-font-family: "Source Sans Pro Regular", Arial, "Source Sans Pro Regular", sans-serif;
+    -fx-font-family: "Source Sans Pro", Arial, "Source Sans Pro", sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -327,7 +331,7 @@
     -fx-background-insets: 0;
     -fx-border-radius: 5;
     -fx-border-insets: 0;
-    -fx-font-family: "Source Sans Pro Regular";
+    -fx-font-family: "Source Sans Pro";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -342,6 +346,14 @@
     -fx-border-radius: 5;
 }
 
+#openingContainer {
+    -fx-text-fill: black;
+}
+
+#openingDetailsPanel {
+    -fx-font-size: 16px;
+}
+
 #dates {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -349,17 +361,17 @@
 
 #position {
     -fx-text-fill: #0077B5;
+    -fx-font-family: "Source Sans Pro Semibold";
 }
 
 .date {
-    -fx-text-fill: white;
-    -fx-background-color: #00A0DC;
+    -fx-background-color: #cfedfb;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
+    -fx-border-radius: 5;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 12;
 }
 
 .date.past {
-    -fx-background-color: #E68523;
+    -fx-background-color: #FFE7BB;
 }

@@ -42,9 +42,9 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         this.opening = opening;
         company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
-        status.setText(opening.getStatus().fullStatus);
-        email.setText(opening.getEmail().value);
-        remark.setText(String.format("Remark: [%s]", opening.getRemark().value));
+        status.setText("Status: " + opening.getStatus().fullStatus);
+        email.setText("Email: " + opening.getEmail().value);
+        remark.setText(String.format("Remark: %s", opening.getRemark().value));
         opening.getDates().stream()
                 .forEach(date -> dates.getChildren().add(new DateCard(date)));
     }
