@@ -1,10 +1,12 @@
 package seedu.vms.logic;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -193,12 +195,18 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public void loadManagers() {
-        new Thread(this::performLoadSequence).start();
+    public void loadManagers(BiConsumer<String, String> beyondDeathErrHandler) {
+        new Thread(() -> performLoadSequence(beyondDeathErrHandler)).start();
     }
 
 
-    private void performLoadSequence() {
+    private void performLoadSequence(BiConsumer<String, String> beyondDeathErrHandler) {
+        if (Path.of("data").toFile().isFile()) {
+            beyondDeathErrHandler.accept(
+                    "[data] already exists and is not a directory",
+                    "Close the application and remove [data] file before restarting.");
+        }
+
         ReadOnlyPatientManager patientManager = new PatientManager();
         try {
             patientManager = storage.readPatientManager();
