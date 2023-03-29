@@ -109,7 +109,9 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - What it does: Assigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
-  
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Unassigning a patient to a doctor:
 - Command format: `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`
 - What it does: Unassigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
