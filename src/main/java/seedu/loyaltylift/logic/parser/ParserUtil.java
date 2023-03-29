@@ -219,7 +219,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String statusValue} into a {@code StatusValue}.
-     * @throws ParseException if the given {@code attribute} is invalid.
+     * @throws ParseException if the given {@code statusValue} is invalid.
      */
     public static StatusValue parseStatusValue(String statusValue) throws ParseException {
         requireNonNull(statusValue);
@@ -249,14 +249,17 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String filterOption} into a {@code Predicate<Customer>}.
-     * @throws ParseException if the given {@code attribute} is invalid.
+     * @throws ParseException if the given {@code filterOption} is invalid.
      */
     public static Predicate<Customer> parseCustomerFilterOption(String filterOption) throws ParseException {
         requireNonNull(filterOption);
-        String trimmedAttribute = filterOption.trim();
-        switch (trimmedAttribute) {
-        case "marked":
+        String trimmedFilterOption = filterOption.trim().toUpperCase();
+        switch (trimmedFilterOption) {
+        case "MARKED":
             return Customer.FILTER_SHOW_MARKED;
+        case "IND":
+        case "ENT":
+            return new CustomerTypePredicate(parseCustomerType(trimmedFilterOption));
         default:
             throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_FILTER);
         }

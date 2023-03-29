@@ -15,6 +15,8 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.CustomerTypePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCustomerCommand.
@@ -33,17 +35,21 @@ public class ListCustomerCommandTest {
     @Test
     public void equals() {
         ListCustomerCommand listCommand = new ListCustomerCommand();
-        ListCustomerCommand listSortOrderCommand = new ListCustomerCommand(
+        ListCustomerCommand listSortPointsCommand = new ListCustomerCommand(
                 Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS);
-        ListCustomerCommand listFilterMarkedCommand = new ListCustomerCommand(
-                Customer.SORT_NAME, Customer.FILTER_SHOW_MARKED);
+        ListCustomerCommand listSortNameIndividualCommand = new ListCustomerCommand(
+                Customer.SORT_NAME, new CustomerTypePredicate(CustomerType.INDIVIDUAL));
 
         // same object -> returns true
         assertTrue(listCommand.equals(listCommand));
 
-        // same comparator -> returns true
+        // same comparator and predicate -> returns true
         ListCustomerCommand listCommandCopy = new ListCustomerCommand();
         assertTrue(listCommand.equals(listCommandCopy));
+
+        ListCustomerCommand listSortNameIndividualCommandCopy = new ListCustomerCommand(
+                Customer.SORT_NAME, new CustomerTypePredicate(CustomerType.INDIVIDUAL));
+        assertTrue(listSortNameIndividualCommand.equals(listSortNameIndividualCommandCopy));
 
         // different types -> returns false
         assertFalse(listCommand.equals(1));
@@ -52,10 +58,10 @@ public class ListCustomerCommandTest {
         assertFalse(listCommand.equals(null));
 
         // different comparator -> returns false
-        assertFalse(listCommand.equals(listSortOrderCommand));
+        assertFalse(listCommand.equals(listSortPointsCommand));
 
         // different predicate -> returns false
-        assertFalse(listCommand.equals(listFilterMarkedCommand));
+        assertFalse(listCommand.equals(listSortNameIndividualCommand));
     }
 
     @Test

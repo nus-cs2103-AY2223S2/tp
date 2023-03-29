@@ -108,17 +108,21 @@ public class AddressBookParserTest {
     public void parseCommand_listc() throws Exception {
         ListCustomerCommand parsedCommand;
 
+        // no args
         parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD);
-        assertEquals(new ListCustomerCommand(Customer.SORT_NAME, PREDICATE_SHOW_ALL_CUSTOMERS), parsedCommand);
+        assertEquals(new ListCustomerCommand(), parsedCommand);
 
+        // sort points
         parsedCommand = (ListCustomerCommand) parser.parseCommand(
                 ListCustomerCommand.COMMAND_WORD + " " + PREFIX_SORT + "points");
         assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS), parsedCommand);
 
+        // filter marked
         parsedCommand = (ListCustomerCommand) parser.parseCommand(
                 ListCustomerCommand.COMMAND_WORD + " " + PREFIX_FILTER + "marked");
         assertEquals(new ListCustomerCommand(Customer.SORT_NAME, Customer.FILTER_SHOW_MARKED), parsedCommand);
 
+        // sort points and filter marked
         parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " "
                 + PREFIX_SORT + "points" + " " + PREFIX_FILTER + "marked");
         assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, Customer.FILTER_SHOW_MARKED), parsedCommand);

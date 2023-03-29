@@ -18,8 +18,7 @@ public class ListCustomerCommandParserTest {
     @Test
     public void parse_emptyArgs_success() {
         // sort by name
-        ListCustomerCommand expectedListCustomerCommand =
-                new ListCustomerCommand(Customer.SORT_NAME, PREDICATE_SHOW_ALL_CUSTOMERS);
+        ListCustomerCommand expectedListCustomerCommand = new ListCustomerCommand();
         assertParseSuccess(parser, "    ", expectedListCustomerCommand);
     }
 
@@ -40,6 +39,8 @@ public class ListCustomerCommandParserTest {
     @Test
     public void parse_invalidSortOption_failure() {
         assertParseFailure(parser, " " + PREFIX_SORT + "invalid", ListCustomerCommand.MESSAGE_INVALID_SORT);
+
+        assertParseFailure(parser, " " + PREFIX_FILTER + "invalid", ListCustomerCommand.MESSAGE_INVALID_FILTER);
     }
 
 }
