@@ -25,7 +25,6 @@ public class DeliverySlot {
     public DeliverySlot(String value) {
         requireNonNull(value);
         checkArgument(isValidDeliverySlot(value), MESSAGE_CONSTRAINTS);
-        int valueInt = Integer.parseInt(value);
         this.value = value;
     }
 

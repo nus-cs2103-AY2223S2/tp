@@ -10,6 +10,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -31,7 +32,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleOrderBySchedule" text="Schedule Date &amp; Slot" />
               </items>
                <graphic>
-                  <Label fx:id="orderIndicator" text="⬆" />
+                  <Label fx:id="orderIndicator" graphicTextGap="0.0" text="↑">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
                </graphic>
             </Menu>
             <Menu mnemonicParsing="false" text="Filter By">

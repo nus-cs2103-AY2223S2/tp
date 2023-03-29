@@ -20,8 +20,8 @@ public class SortbyEarning extends OrderedSorter {
      */
     public int compare(DeliveryJob a, DeliveryJob b) {
         if (a.getEarning().isPresent() && b.getEarning().isPresent()) {
-            return isAsc() ? Double.compare(a.getEarning().get().toDouble(), b.getEarning().get().toDouble())
-                    : Double.compare(b.getEarning().get().toDouble(), a.getEarning().get().toDouble());
+            return isAsc() ? a.getEarning().get().compareTo(b.getEarning().get())
+                    : b.getEarning().get().compareTo(a.getEarning().get());
         } else if (a.getEarning().isPresent() && b.getEarning().isEmpty()) {
             return isAsc() ? 1 : -1;
         } else {
