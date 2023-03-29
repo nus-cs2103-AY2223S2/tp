@@ -106,17 +106,17 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
-    <td><strong>Prefix</strong></td>
-    <td>
-      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill ...
-    </td>
-  </tr>
-  <tr>
     <td><strong>Index</strong></td>
     <td>
       An identifier which is the number corresponding to order of which your contacts and courses are listed out, 
       and used in conjunction with the commands to specify the contact with the given index. Each contact and course 
       is identified with a unique index. Index must be a positive integer 1, 2, 3, ...
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Prefix</strong></td>
+    <td>
+      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill ...
     </td>
   </tr>
   <tr>
