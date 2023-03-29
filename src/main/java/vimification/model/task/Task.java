@@ -1,11 +1,11 @@
 package vimification.model.task;
 
+import static java.util.Objects.requireNonNull;
+import static vimification.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Task {
 
@@ -13,30 +13,23 @@ public class Task {
     private LocalDateTime deadline;
     private Status status;
     private Priority priority;
-    private Set<String> tags;
+    private Set<String> labels;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(String title, LocalDateTime deadline, Status status, Priority priority) { // used
-                                                                                          // when
-                                                                                          // converting
-                                                                                          // from
-                                                                                          // storage
-        requireAllNonNull(title, priority);
+    public Task(String title, LocalDateTime deadline, Status status, Priority priority) {
+        requireAllNonNull(title, status, priority);
         this.title = title;
         this.deadline = deadline;
         this.status = status;
         this.priority = priority;
-        this.tags = new HashSet<>();
+        this.labels = new HashSet<>();
     }
 
-    public Task(String title) { // used when creating new tasks
+    public Task(String title) {
+        // used when creating new tasks
         this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
-    }
-
-    Task(String title, LocalDateTime deadline) {
-        this(title, deadline, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
     public String getTitle() {
@@ -46,44 +39,6 @@ public class Task {
     public void setTitle(String title) {
         requireNonNull(title);
         this.title = title;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void mark() {
-        this.status = Status.COMPLETED;
-    }
-
-    public void unmark() {
-        this.status = Status.NOT_DONE;
-    }
-
-    public boolean isDone() {
-        return status == Status.COMPLETED;
-    }
-
-    public void setPriority(Priority priority) {
-        requireNonNull(priority);
-        this.priority = priority;
-    }
-
-    public void setPriority(int level) {
-        this.priority = Priority.fromInt(level);
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        requireNonNull(status);
-        this.status = status;
-    }
-
-    public void setStatus(int level) {
-        this.status = Status.fromInt(level);
     }
 
     public LocalDateTime getDeadline() {
@@ -99,28 +54,59 @@ public class Task {
         this.deadline = null;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        requireNonNull(status);
+        this.status = status;
+    }
+
+    public void setStatus(int level) {
+        this.status = Status.fromInt(level);
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        requireNonNull(priority);
+        this.priority = priority;
+    }
+
+    public void setPriority(int level) {
+        this.priority = Priority.fromInt(level);
+    }
+
     public boolean containsKeyword(String keyword) {
         return title.contains(keyword);
     }
 
-    public void addTag(String newTag) {
-        requireNonNull(newTag);
-        newTag = newTag.toLowerCase();
-        if (tags.contains(newTag)) {
-            throw new IllegalArgumentException("Tag already exists");
-        }
-        tags.add(newTag);
+    public Set<String> getLabels() {
+        return labels;
     }
 
-    public void removeTag(String tag) {
-        if (!tags.remove(tag)) {
+    public void addLabel(String label) {
+        requireNonNull(label);
+        label = label.toLowerCase();
+        if (!labels.add(label)) {
+            throw new IllegalArgumentException("Tag already exists");
+        }
+    }
+
+    public void removeLabel(String label) {
+        requireNonNull(label);
+        label = label.toLowerCase();
+        if (!labels.remove(label)) {
             throw new IllegalArgumentException("Tag does not exist");
         }
     }
 
-    /**
-     * public boolean containsLabel(String label) { return labels.contains(label); }
-     */
+    public boolean containsLabel(String label) {
+        return labels.contains(label.toLowerCase());
+    }
 
     public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
@@ -138,25 +124,23 @@ public class Task {
         return deadline != null && (deadline.isAfter(date) || deadline.isEqual(date));
     }
 
-
     public Task clone() {
-        return new Task(getTitle(), getDeadline(), getStatus(), getPriority());
+        Task clonedTask = new Task(title, deadline, status, priority);
+        clonedTask.labels.addAll(labels);
+        return clonedTask;
     }
 
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
         }
-        boolean isSame = otherTask.title.equals(title) && otherTask.deadline.equals(deadline)
-                && otherTask.status.equals(status) && otherTask.priority.equals(priority);
-        // && otherTask.labels.equals(labels);
-        return isSame;
+        return otherTask.title.equals(title)
+                && otherTask.deadline.equals(deadline)
+                && otherTask.status.equals(status)
+                && otherTask.priority.equals(priority)
+                && otherTask.labels.equals(labels);
     }
 
-    /**
-     * Returns true if both persons have the same identity and data fields. This defines a stronger
-     * notion of equality between two persons.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -171,13 +155,9 @@ public class Task {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("title: ")
-                .append(title)
-                .append("; status: ")
-                .append(status.toString())
-                .append("; priority: ")
-                .append(priority.toString());
-        return builder.toString();
+        return String.format("Task [title: %s;"
+                + " deadline: %s; status: %s;"
+                + " priority: %s; labels: %s]",
+                title, deadline, status, priority, labels);
     }
 }

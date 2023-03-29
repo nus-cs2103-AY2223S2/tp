@@ -11,11 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 // import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.LogicTaskList;
-import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
-import vimification.model.oldcode.Todo;
-import vimification.storage.oldcode.JsonAdaptedDeadline;
-import vimification.storage.oldcode.JsonAdaptedTodo;
 
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
@@ -29,7 +25,10 @@ public class JsonAdaptedLogicTaskList {
 
     @JsonCreator
     public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        this.tasks = tasks == null ? List.of() : tasks;
+        if (tasks == null) {
+            tasks = List.of();
+        }
+        this.tasks = tasks;
     }
 
     /**
@@ -59,6 +58,6 @@ public class JsonAdaptedLogicTaskList {
 
     @Override
     public String toString() {
-        return "JsonAdpatedLogicTaskList: [" + tasks + "]";
+        return "JsonAdpatedLogicTaskList: " + tasks;
     }
 }

@@ -1,30 +1,22 @@
 package vimification.internal.parser;
 
 import vimification.commons.core.Index;
+import vimification.internal.command.logic.DeleteCommand;
+import vimification.internal.command.logic.DeleteFieldsCommand;
+import vimification.internal.command.logic.DeleteFieldsRequest;
 import vimification.internal.command.logic.DeleteTaskCommand;
 
-public class DeleteCommandParser implements LogicCommandParser<DeleteTaskCommand> {
+public class DeleteCommandParser implements CommandParser<DeleteCommand> {
 
-    private static final ApplicativeParser<Index> INDEX_PARSER =
-            ApplicativeParser.nonWhitespaces().flatMap(indexStr -> {
-                try {
-                    int indexInt = Integer.parseInt(indexStr);
-                    Index index = Index.fromOneBased(indexInt);
-                    return ApplicativeParser.of(index);
-                } catch (NumberFormatException | IndexOutOfBoundsException ex) {
-                    return ApplicativeParser.fail();
-                }
-            });
+    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER =
+            CommandParserUtil.ONE_BASED_INDEX_PARSER
+                    .flatMap(DeleteCommandParser::parseArguments)
+                    .dropNext(ApplicativeParser.skipWhitespaces())
+                    .dropNext(ApplicativeParser.eof());
 
-    private static final ApplicativeParser<DeleteTaskCommand> COMMAND_PARSER = INDEX_PARSER
-            .dropNext(ApplicativeParser.skipWhitespaces())
-            .dropNext(ApplicativeParser.eof())
-            .map(DeleteTaskCommand::new);
-
-    private static final ApplicativeParser<ApplicativeParser<DeleteTaskCommand>> INTERNAL_PARSER =
+    private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
             ApplicativeParser
-                    .skipWhitespaces()
-                    .takeNext(ApplicativeParser.string("d"))
+                    .string("d")
                     .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 
@@ -32,12 +24,37 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteTaskCommand
 
     private DeleteCommandParser() {}
 
+    private static ApplicativeParser<DeleteCommand> parseArguments(Index index) {
+        DeleteFieldsRequest request = new DeleteFieldsRequest();
+        ArgumentCounter counter = new ArgumentCounter(
+                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
+                CommandParserUtil.DEADLINE_FLAG);
+
+        ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
+                CommandParserUtil.LABEL_FLAG_PARSER
+                        .consume(counter::add)
+                        .takeNext(ApplicativeParser.skipWhitespaces1())
+                        .takeNext(CommandParserUtil.LABEL_PARSER)
+                        .consume(label -> request.getDeletedLabels().add(label)),
+                CommandParserUtil.DEADLINE_FLAG_PARSER
+                        .consume(flag -> {
+                            counter.add(flag);
+                            request.setDeleteDeadline(true);
+                        }));
+        return ApplicativeParser
+                .skipWhitespaces1()
+                .takeNext(flagParser)
+                .optional() // flag is optional
+                .<DeleteCommand>constMap(new DeleteFieldsCommand(index, request))
+                .orElse(new DeleteTaskCommand(index));
+    }
+
     public static DeleteCommandParser getInstance() {
         return INSTANCE;
     }
 
     @Override
-    public ApplicativeParser<ApplicativeParser<DeleteTaskCommand>> getInternalParser() {
+    public ApplicativeParser<ApplicativeParser<DeleteCommand>> getInternalParser() {
         return INTERNAL_PARSER;
     }
 }

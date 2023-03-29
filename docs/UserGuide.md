@@ -8,7 +8,7 @@ Outstanding TODOs:
 [ ] Add numbering to all the sections in both the TOC & section headings
 
 --- STRUCTURE ---
---- Use double indents for each nested layer ---
+--- Use double indents for each nested layer---
 
 Table of Contents
 Introduction
@@ -36,12 +36,14 @@ Command summary
 -->
 
 ## Table of Contents
-* Table of Contents
-{:toc}
+
+- Table of Contents
+  {:toc}
 
 ## Introduction
 
 <!-- Might want to make this introduction more concise -->
+
 Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
 
 Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
@@ -71,6 +73,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 ## Quick Start
 
 ### Installation
+
 1. Download the latest `vimification.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-3/tp/releases).
 
 2. Save the file in your intended folder.
@@ -135,26 +138,33 @@ Example:
 <div markdown="block" class="alert alert-info">
 
 <!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
-*Take note of how the command format is being interpretted, to know what parameters it requires.*
+
+_Take note of how the command format is being interpretted, to know what parameters it requires._
 
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
-  - e.g. `:a <title> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
-  - Refer to the [Flag summary](#flag-summary) below for details of each flag.
+
+- e.g. `:a <title> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
+- Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
-  - e.g. in `:a <title>`, the user must provide the `<title>` parameter, for example, `:a Do weekly quiz`.
+
+- e.g. in `:a <title>`, the user must provide the `<title>` parameter, for example, `:a Do weekly quiz`.
 
 Words in **square brackets** are **optional** parameters to be supplied by the user.
-  - e.g. `:a <title> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
+
+- e.g. `:a <title> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
-  - e.g. `:a <title> [-l <label>]…​`, for example, `:a Do OP2 slides -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
+
+- e.g. `:a <title> [-l <label>]…​`, for example, `:a Do OP2 slides -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
 
 Parameters identified by flags can be in any order.
-  - e.g. `:a Do OP2 slides -t cs2101 -p high`, `:a Do OP2 slides -p high -t cs2101` are both acceptable.
+
+- e.g. `:a Do OP2 slides -t cs2101 -p high`, `:a Do OP2 slides -p high -t cs2101` are both acceptable.
 
 For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
-  - e.g. if the user inputs `:help 123`, it will be interpreted as `help`.
+
+- e.g. if the user inputs `:help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -178,11 +188,11 @@ Adds a task to the current task list.
 
 Format: `:a <title> [-l <label>]... [-p <priority>]`
 
-| Parameter     | Detail                              | Compulsory | Example            |
-| ------------- | ----------------------------------- | ---------- | ------------------ |
-| `<title>`     | Title of the task                   | Yes        | `CS2103T UG`       |
-| `<label>`     | Label given to the task             | No         | `household chores` |
-| `<priority>`  | Priority level assigned to the task | No         | `high`             |
+| Parameter    | Detail                              | Compulsory | Example            |
+| ------------ | ----------------------------------- | ---------- | ------------------ |
+| `<title>`    | Title of the task                   | Yes        | `CS2103T UG`       |
+| `<label>`    | Label given to the task             | No         | `household chores` |
+| `<priority>` | Priority level assigned to the task | No         | `high`             |
 
 - SoC students can put module code as the label.
 
@@ -196,12 +206,12 @@ Adds a task with a deadline to the current task list.
 
 Format: `:a <title> -d <deadline>`
 
-| Parameter     | Detail                                      | Compulsory | Example            |
-| ------------- | ------------------------------------------- | ---------- | ------------------ |
-| `<title>`     | Title of the task                           | Yes        | `CS2103T UG`       |
-| `<deadline>`  | Deadline of the task in `YYYY-MM-DD` format | Yes        | `2023-03-31`       |
-| `<label>`     | Label given to the task                     | No         | `presentation`     |
-| `<priority>`  | Priority level assigned to the task         | No         | `high`             |
+| Parameter    | Detail                                      | Compulsory | Example        |
+| ------------ | ------------------------------------------- | ---------- | -------------- |
+| `<title>`    | Title of the task                           | Yes        | `CS2103T UG`   |
+| `<deadline>` | Deadline of the task in `YYYY-MM-DD` format | Yes        | `2023-03-31`   |
+| `<label>`    | Label given to the task                     | No         | `presentation` |
+| `<priority>` | Priority level assigned to the task         | No         | `high`         |
 
 - SoC students can put module code as the label.
 
@@ -225,6 +235,7 @@ Format: `:d <task_index>`
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
 Example:
+
 <table style="width:100%; border:none;">
 <tr>
 <td style="width:50%;">Before the command <code>:d 4</code></td>
@@ -280,17 +291,17 @@ _Details coming soon in v2.0 ..._
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 <!-- TODO: Complete this command summary box -->
+
 ## Command summary
 
-| Action                     | Format                                                                               | Examples                                           |
-| -------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------- |
-| View help              | `:help`                                                                                  | No variation thus no example                       |
-| Add task               | `:a <title>`                                                                             | `:a Enhance formatting of CS2103T UG`              |
-| Add task with deadline | `:a <title> -d <deadline>`                                                               | `:a Finalise CS2103T milestone v1.3 -d 2022-03-31` |
-| Delete task            | `:d [index]`                                                                             | `:d 3`                                             |
-| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                                               | No variation thus no example                       |
-| Save current data      |                                                                                          |                                                    |
-| Edit existing data     |                                                                                          |                                                    |
-
+| Action                 | Format                     | Examples                                           |
+| ---------------------- | -------------------------- | -------------------------------------------------- |
+| View help              | `:help`                    | No variation thus no example                       |
+| Add task               | `:a <title>`               | `:a Enhance formatting of CS2103T UG`              |
+| Add task with deadline | `:a <title> -d <deadline>` | `:a Finalise CS2103T milestone v1.3 -d 2022-03-31` |
+| Delete task            | `:d [index]`               | `:d 3`                                             |
+| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q` | No variation thus no example                       |
+| Save current data      |                            |                                                    |
+| Edit existing data     |                            |                                                    |
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>

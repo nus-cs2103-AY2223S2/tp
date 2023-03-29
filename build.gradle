@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 mainClassName = 'vimification.Main'
@@ -22,6 +23,13 @@ checkstyle {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        showExceptions = true
+        exceptionFormat = "full"
+        showCauses = true
+        showStackTraces = true
+        showStandardStreams = true
+    }
     finalizedBy jacocoTestReport
 }
 
@@ -56,6 +64,9 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
+    implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'win'
+    implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-web', version: javaFxVersion, classifier: 'linux'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
@@ -64,8 +75,13 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
+javafx {
+    version = "11"
+    modules = [ 'javafx.controls','javafx.fxml','javafx.web' ]
+}
+
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'vimification.jar'
 }
 
 run {

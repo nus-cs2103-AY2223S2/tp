@@ -10,14 +10,19 @@ import static java.util.Objects.requireNonNull;
 public class Deadline {
 
     private LocalDateTime deadline;
+/**
+    public Deadline(String description, Status status, Priority priority, LocalDateTime deadline) {
+        super(description, status, priority);
+        requireNonNull(deadline);
+        this.deadline = deadline;
+    }
 
-    /**
-     * public Deadline(String description, Status status, Priority priority, LocalDateTime deadline)
-     * { super(description, status, priority); requireNonNull(deadline); this.deadline = deadline; }
-     * 
-     * public Deadline(String description, LocalDateTime deadline) { super(description);
-     * requireNonNull(deadline); this.deadline = deadline; }
-     */
+    public Deadline(String description, LocalDateTime deadline) {
+        super(description);
+        requireNonNull(deadline);
+        this.deadline = deadline;
+    }
+*/
     public LocalDateTime getDeadline() {
         return deadline;
     }
@@ -37,16 +42,24 @@ public class Deadline {
     public boolean isDateAfter(LocalDateTime date) {
         return deadline.isAfter(date) || deadline.isEqual(date);
     }
+/**
+    @Override
+    public Deadline clone() {
+        return new Deadline(getDescription(), getStatus(), getPriority(), deadline);
+    }
 
-    /**
-     * @Override public Deadline clone() { return new Deadline(getTitle(), getStatus(),
-     *           getPriority(), deadline); }
-     * 
-     * @Override public boolean isSameTask(Task task) { if (task == this) { return true; } if
-     *           (!(task instanceof Deadline)) { return false; } Deadline otherDeadline = (Deadline)
-     *           task; return super.isSameTask(otherDeadline) &&
-     *           otherDeadline.deadline.equals(deadline); }
-     */
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task == this) {
+            return true;
+        }
+        if (!(task instanceof Deadline)) {
+            return false;
+        }
+        Deadline otherDeadline = (Deadline) task;
+        return super.isSameTask(otherDeadline) && otherDeadline.deadline.equals(deadline);
+    }
+*/
     @Override
     public boolean equals(Object other) {
         if (other == this) {
