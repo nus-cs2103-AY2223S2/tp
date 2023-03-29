@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":DeleteSubtaskParser" as DeleteSubtaskParser LOGIC_COLOR
 participant "d:DeleteSubtaskCommand" as DeleteSubtaskCommand LOGIC_COLOR
 participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
@@ -21,17 +21,17 @@ end box
 [-> LogicManager : execute("remove-subsection 1 I/1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("remove-subsection 1 I/1")
-activate AddressBookParser
+LogicManager -> TaskBookParser : parseCommand("remove-subsection 1 I/1")
+activate TaskBookParser
 
 create DeleteSubtaskParser
-AddressBookParser -> DeleteSubtaskParser
+TaskBookParser -> DeleteSubtaskParser
 activate DeleteSubtaskParser
 
-DeleteSubtaskParser --> AddressBookParser
+DeleteSubtaskParser --> TaskBookParser
 deactivate DeleteSubtaskParser
 
-AddressBookParser -> DeleteSubtaskParser : parse("1 I/1")
+TaskBookParser -> DeleteSubtaskParser : parse("1 I/1")
 activate DeleteSubtaskParser
 
 create DeleteSubtaskCommand
@@ -41,14 +41,14 @@ activate DeleteSubtaskCommand
 DeleteSubtaskCommand --> DeleteSubtaskParser : d
 deactivate DeleteSubtaskCommand
 
-DeleteSubtaskParser --> AddressBookParser : d
+DeleteSubtaskParser --> TaskBookParser : d
 deactivate DeleteSubtaskParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteSubtaskParser -[hidden]-> AddressBookParser
+DeleteSubtaskParser -[hidden]-> TaskBookParser
 destroy DeleteSubtaskParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+TaskBookParser --> LogicManager : a
+deactivate TaskBookParser
 
 LogicManager -> DeleteSubtaskCommand : execute()
 activate DeleteSubtaskCommand

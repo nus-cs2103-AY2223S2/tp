@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "d:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
@@ -22,17 +22,17 @@ end box
 [-> LogicManager : execute("edit 1 n/homework")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit 1 n/homework")
-activate AddressBookParser
+LogicManager -> TaskBookParser : parseCommand("edit 1 n/homework")
+activate TaskBookParser
 
 create EditCommandParser
-AddressBookParser -> EditCommandParser
+TaskBookParser -> EditCommandParser
 activate EditCommandParser
 
-EditCommandParser --> AddressBookParser
+EditCommandParser --> TaskBookParser
 deactivate EditCommandParser
 
-AddressBookParser -> EditCommandParser : parse("1 n/homework")
+TaskBookParser -> EditCommandParser : parse("1 n/homework")
 activate EditCommandParser
 
 create EditTaskDescriptor
@@ -49,14 +49,14 @@ activate EditCommand
 EditCommand --> EditCommandParser : e
 deactivate EditCommand
 
-EditCommandParser --> AddressBookParser : e
+EditCommandParser --> TaskBookParser : e
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditCommandParser -[hidden]-> AddressBookParser
+EditCommandParser -[hidden]-> TaskBookParser
 destroy EditCommandParser
 
-AddressBookParser --> LogicManager : e
-deactivate AddressBookParser
+TaskBookParser --> LogicManager : e
+deactivate TaskBookParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand

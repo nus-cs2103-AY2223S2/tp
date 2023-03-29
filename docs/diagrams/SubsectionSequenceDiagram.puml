@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":AddSubtaskParser" as AddSubtaskParser LOGIC_COLOR
 participant "a:AddSubtaskCommand" as AddSubtaskCommand LOGIC_COLOR
 participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
@@ -21,17 +21,17 @@ end box
 [-> LogicManager : execute("Subsection 1 n/CS2100 d/Lab 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("Subsection 1 n/homework d/Lab 1")
-activate AddressBookParser
+LogicManager -> TaskBookParser : parseCommand("Subsection 1 n/homework d/Lab 1")
+activate TaskBookParser
 
 create AddSubtaskParser
-AddressBookParser -> AddSubtaskParser
+TaskBookParser -> AddSubtaskParser
 activate AddSubtaskParser
 
-AddSubtaskParser --> AddressBookParser
+AddSubtaskParser --> TaskBookParser
 deactivate AddSubtaskParser
 
-AddressBookParser -> AddSubtaskParser : parse("1 n/CS2100 d/Lab 1")
+TaskBookParser -> AddSubtaskParser : parse("1 n/CS2100 d/Lab 1")
 activate AddSubtaskParser
 
 create AddSubtaskCommand
@@ -41,14 +41,14 @@ activate AddSubtaskCommand
 AddSubtaskCommand --> AddSubtaskParser : a
 deactivate AddSubtaskCommand
 
-AddSubtaskParser --> AddressBookParser : a
+AddSubtaskParser --> TaskBookParser : a
 deactivate AddSubtaskParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddSubtaskParser -[hidden]-> AddressBookParser
+AddSubtaskParser -[hidden]-> TaskBookParser
 destroy AddSubtaskParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+TaskBookParser --> LogicManager : a
+deactivate TaskBookParser
 
 LogicManager -> AddSubtaskCommand : execute()
 activate AddSubtaskCommand

@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueTaskList
-AddressBook *-right-> "1" UniqueTagList
+taskBook *-right-> "1" UniqueTaskList
+taskBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueTaskList
 UniqueTagList -[hidden]down- UniqueTaskList
 
