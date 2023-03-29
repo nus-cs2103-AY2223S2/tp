@@ -5,11 +5,11 @@ title: CareFlow User Guide
 <a id="top"></a>
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 1. Introduction11111
+# 1. Introduction1
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
@@ -38,22 +38,22 @@ Welcome to the CareFlow user guide! This guide is designed to help you make the 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
 1. Section [1. Introduction](#1-introduction)
-   - If you want to know what CareFlow is all about, head over to section 1, "Introduction". In this section, you'll learn about CareFlow's goals and purpose, as well as get an overview of what the system can do for you.
+    - If you want to know what CareFlow is all about, head over to section 1, "Introduction". In this section, you'll learn about CareFlow's goals and purpose, as well as get an overview of what the system can do for you.
 
 2. Section [2. About](#2-about)
-   - if you want to learn more about the guide itself and how to use it, refer to section 2, "About". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+    - if you want to learn more about the guide itself and how to use it, refer to section 2, "About". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
 3. Section [3. Quick Start](#3-quick-start)
-   - If you're new to CareFlow and need help getting started, head to Section 3, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
+    - If you're new to CareFlow and need help getting started, head to Section 3, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
 4. Section [4. Features](#4-features)
-   - If you're looking for information on specific features, check out Section 4, "Features". Here you'll find a detailed explanation of each feature and how to use it.
+    - If you're looking for information on specific features, check out Section 4, "Features". Here you'll find a detailed explanation of each feature and how to use it.
 
 5. Section [5. FAQ](#5-faq)
-   - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
+    - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
 
 6. Section [6. Command Summary](#6-command-summary)
-   - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+    - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
 To make the most of this user guide, we recommend reading through it in order, starting with the Introduction and working your way through each section. You can also use the table of contents to jump to specific sections as needed.
 
@@ -83,56 +83,55 @@ Table 1. Symbols and formats used in this User Guide.
 1. Ensure you have Java 11 installed in your Computer.
    <details>
    <summary>Click here for more information on Java 11 installation</summary>
-    
       <details>
       <summary> I. Installing Java 11 on Windows: </summary>
-     
-      * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
-     
-      * Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
-        <p align="center">
-       <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
-        </p>
-        <br>
-     
-      * Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
-    <p align="center">
-       <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
+
+   * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
+
+   * Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
+     <p align="center">
+      <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
+       </p>
+       <br>
+
+   * Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
+     <p align="center">
+        <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
+       </p>
+           <br>
+
+   * Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
+     <p align="center">
+       <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
+     </p>
+     <br>
+
+   * Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
+      <p align="center">
+      <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
       </p>
-          <br>
+      <p align="center">
+      <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
+      </p>
+      <br>
 
-      * Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
-        <p align="center">
-          <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
-        </p>
-        <br>
+   * Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
+     <p align="center">
+       <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
+     </p>
+     <br> 
+     </details>
 
-      *  Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
-        <p align="center">
-          <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
-        </p>
-        <p align="center">
-          <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
-        </p>
-        <br>  
-     
-      * Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
-        <p align="center">
-          <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
-        </p>
-        <br> 
-      </details>
+     <details> 
+     <summary>II. Installing Java 11 on macOS</summary>
 
-      <details> 
-      <summary>II. Installing Java 11 on macOS</summary>
-
-   * Click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html) and scroll down to `Installing JDK on macOS` and simply follow the instructions there!
-         <p align="center">
-          <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
-         </p>
-        <br>
-         </details>
-         </details>
+     * Click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html) and scroll down to `Installing JDK on macOS` and simply follow the instructions there!
+       <p align="center">
+       <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
+       </p>
+       <br>
+       </details>
+       </details>
 
 2. Download the latest `careflow.jar` jar file from [here](https://github.com/AY2223S2-CS2103T-W09-3/tp).
 
@@ -144,16 +143,16 @@ Table 1. Symbols and formats used in this User Guide.
       <details> 
       <summary> I. For macOS: </summary>
 
-      * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
-          <p align="center">
-            <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
-          </p>
-          <br>
-        * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
-          <p align="center">
-               <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
-          </p>
-          <br>
+    * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
+        <p align="center">
+          <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
+        </p>
+        <br>
+      * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
+        <p align="center">
+             <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
+        </p>
+        <br>
 
         * Step 3: You're now looking at the `command terminal`, good job!
           <p align="center">
@@ -171,11 +170,11 @@ Table 1. Symbols and formats used in this User Guide.
 5. The next step is to navigate into the folder you put the jar file in with the `cd` command
    <details>
    <summary> Click here for more information on navigating to jar file </summary>
-   
-   * Suppose you have adopted the suggestion to put the jar file inside a folder called `CareFlow` on your desktop, you should type:`cd desktop/CareFlow` into your `command terminal` and hit `Enter`.
-   * For keen learners, you can take a look at the short video below to fund out more about the `cd` command
-     * For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
-     * For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
+
+    * Suppose you have adopted the suggestion to put the jar file inside a folder called `CareFlow` on your desktop, you should type:`cd desktop/CareFlow` into your `command terminal` and hit `Enter`.
+    * For keen learners, you can take a look at the short video below to fund out more about the `cd` command
+        * For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
+        * For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
@@ -186,22 +185,24 @@ Table 1. Symbols and formats used in this User Guide.
       <details> 
       <summary>Click here for  Some example commands you can try</summary>
 
-      * `p list` : Lists all patients.
- 
-      * `d list` : Lists all drugs.
-
-      * `add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C` : Adds a patient named `John Lo` to the patient records.
-
-      * `p delete 3` : Deletes the 3rd patient record shown in the current list.
-
-      * `p clear` : Deletes all patient records.
-
-      * `d clear` : Deletes all drug records
-  
-      * `exit` : Exits the app.
-        </details>
+    * `p list` : Lists all patients. <br>
    
+    * `d list` : Lists all drugs.<br>
+
+    * `add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C` : Adds a patient named `John Lo` to the patient records. <br>
+
+    * `p delete 3` : Deletes the 3rd patient record shown in the current list.<br>
+
+    * `p clear` : Deletes all patient records.<br>
+
+    * `d clear` : Deletes all drug records<br>
+
+    * `exit` : Exits the app.<br>
+   
+      </details>
     
+    <br>
+
 [Back to top](#top)
 
 <br>
@@ -241,25 +242,26 @@ ___
   \
   &nbsp;
 * **Format:** `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]`
-\
-&nbsp;
+  \
+  &nbsp;
 * **Example:** `p add -n John Doe -ph 91234567 -em johndoe@example.com -ad John Street, Block 123, #01-01 -dob 09-09-2000 -g male -ic S9284729C -da Xanax -ec 81234567`
-  * Type the command into the command box and hit `Enter`
-    <p align="center">
-      <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-      <img src="images/UIscreenshots/patientSS/patientAddresult.png" style="zoom:100%">
-    </p>
-    <br>    
+    * Type the command into the command box and hit `Enter`
+      <p align="center">
+        <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
+      </p>
+      <br>
+      
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+        <img src="images/UIscreenshots/patientSS/patientAddresult.png" style="zoom:100%">
+      </p>
+      <br>    
 
-  * John Doe is now added to the patient record. Click on John Doe and you will see his information being displayed at the right side.
-    <p align="center">
-      <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:60%">
-    </p>
-    <br>    
+    * John Doe is now added to the patient record. Click on John Doe and you will see his information being displayed at the right side.
+      <p align="center">
+        <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:60%">
+      </p>
+      <br>    
 
 
 [Back to top](#top)
@@ -279,19 +281,19 @@ ___
               <img src="images/UIscreenshots/patientSS/pdeleteic.png" style="zoom:80%">
         </p>
         <br>
-    
+
     * Patient to be deleted:
         <p align="center">
       <img src="images/UIscreenshots/patientSS/pIC.png" style="zoom:25%">
         </p>
         <br>
-    
+
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
         <p align="center">
         <img src="images/UIscreenshots/patientSS/pdeleteICres.png" style="zoom:80%">
         </p>
         <br>
-      
+
     * You can scroll through the list of patient, and John Doe should not be present.
 
 [Back to top](#top)
@@ -300,27 +302,27 @@ ___
 
 ### Delete a Patient record by index: `p delete`
 * You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
-  * The index refers to the index number shown in the displayed person list.
-  * The index must be a positive integer 1, 2, 3, …​
-    \
-    &nbsp;
+    * The index refers to the index number shown in the displayed person list.
+    * The index must be a positive integer 1, 2, 3, …​
+      \
+      &nbsp;
 * **Format:** `p delete -i PATIENT_INDEX`
   \
   &nbsp;
 * **Example:** `p delete -i 8`
-  * Then, scroll through the displayed list of patient record, and identify the index of the patient you wish to delete. Suppose we want to delete the 8th patient in the list, John Doe.
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/8p.png" style="zoom:80%">
-    </p>
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/pdelete.png" style="zoom:80%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
+    * Then, scroll through the displayed list of patient record, and identify the index of the patient you wish to delete. Suppose we want to delete the 8th patient in the list, John Doe.
       <p align="center">
-           <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:60%">
+            <img src="images/UIscreenshots/patientSS/8p.png" style="zoom:80%">
       </p>
-        <br>    
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/pdelete.png" style="zoom:80%">
+      </p>
+      <br>
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+        <p align="center">
+             <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:60%">
+        </p>
+          <br>    
 
 [Back to top](#top)
 
@@ -332,21 +334,21 @@ ___
   \
   &nbsp;
 * **Format:** `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`
-  * When you wish to update some, if not all information of a patient, simply include the parameters that you wish to update.
-    \
-    &nbsp;
+    * When you wish to update some, if not all information of a patient, simply include the parameters that you wish to update.
+      \
+      &nbsp;
 * **Example:**
-  * Suppose we wish to update the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 98765432 respectively. The command would be:`p update John Doe -ph 91234567 -em johndoe@example.com -ec 98765432`
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/pupdate.png" style="zoom:80%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/pupdateres.png" style="zoom:80%">
-    </p>
-    <br>
-  * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
+    * Suppose we wish to update the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 98765432 respectively. The command would be:`p update John Doe -ph 91234567 -em johndoe@example.com -ec 98765432`
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/pupdate.png" style="zoom:80%">
+      </p>
+      <br>
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/pupdateres.png" style="zoom:80%">
+      </p>
+      <br>
+    * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
 
 [Back to top](#top)
 
@@ -357,16 +359,16 @@ ___
   \
   &nbsp;
 * **Format:** `p find PATIENT_NAME`
-  * The search is case-insensitive. e.g hans will match Hans
-    \
-    &nbsp;
+    * The search is case-insensitive. e.g hans will match Hans
+      \
+      &nbsp;
 * **Examples:**
-  * `p find Doe` returns David Doe and John Doe
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/patientFindresult.png" style="zoom:80%">
-    </p>
-    <br>
-  * You can click on either record to see detailed information.
+    * `p find Doe` returns David Doe and John Doe
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/patientFindresult.png" style="zoom:80%">
+      </p>
+      <br>
+    * You can click on either record to see detailed information.
 
 [Back to top](#top)
 
@@ -382,11 +384,11 @@ ___
   \
   &nbsp;
 * **Example:** `p view -i 1`
-  * You can enter `p view -i 1` to see the information of the first patient in the list.
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:80%">
-    </p>
-    <br>
+    * You can enter `p view -i 1` to see the information of the first patient in the list.
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -402,11 +404,11 @@ ___
   \
   &nbsp;
 * **Example:** `p clear`
-  * All patient records will be permanantly removed from the system
-    <p align="center">
-          <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:80%">
-    </p>
-    <br>
+    * All patient records will be permanantly removed from the system
+      <p align="center">
+            <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -444,16 +446,16 @@ ___
   \
   &nbsp;
 * **Example:**
-  * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:`d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dadd.png" style="zoom:80%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:80%">
-    </p>
-    <br>
+    * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:`d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dadd.png" style="zoom:80%">
+      </p>
+      <br>
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -468,21 +470,21 @@ ___
   \
   &nbsp;
 * **Example:**
-  * Suppose for some reason, you wish to delete Panadol, your command should look something like:`d delete -tn Panadol`
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/ddeletetn.png" style="zoom:80%">
-    </p>
-    <br>
-  * Drug to be Deleted:
-    <p align="center">
-        <img src="images/UIscreenshots/drugSS/dpanadol.png" style="zoom:25%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
-    </p>
-    <br>
+    * Suppose for some reason, you wish to delete Panadol, your command should look something like:`d delete -tn Panadol`
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/ddeletetn.png" style="zoom:80%">
+      </p>
+      <br>
+    * Drug to be Deleted:
+      <p align="center">
+          <img src="images/UIscreenshots/drugSS/dpanadol.png" style="zoom:25%">
+      </p>
+      <br>
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -497,21 +499,21 @@ ___
   \
   &nbsp;
 * **Example:**
-  * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like:`d delete -i 4`
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/ddeleteindex.png" style="zoom:80%">
-    </p>
-    <br>
-  * Drug to be Deleted:
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/d4.png" style="zoom:80%">
-    </p>
-    <br>
-  * A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
-    </p>
-    <br>
+    * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like:`d delete -i 4`
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/ddeleteindex.png" style="zoom:80%">
+      </p>
+      <br>
+    * Drug to be Deleted:
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/d4.png" style="zoom:80%">
+      </p>
+      <br>
+    * A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -524,25 +526,25 @@ ___
   \
   &nbsp;
 * **Format:** `d update TRADE_NAME -by +VALUE` OR `d update TRADE_NAME -by -VALUE`
-    \
-    &nbsp;
+  \
+  &nbsp;
 * **Examples:**
-  * If your clinic has prescribed 10 boxes of Panadol and you wish to reduce the storage of Panadol accordingly, your command should look something like: `d update Panadol -by -10`
-  * Drug to be Updated:
+    * If your clinic has prescribed 10 boxes of Panadol and you wish to reduce the storage of Panadol accordingly, your command should look something like: `d update Panadol -by -10`
+    * Drug to be Updated:
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/drugPrevCount.png" style="zoom:25%"> <br>
+
+      (The storage is currently 55 boxes.)
+      </p>
+      <br>
+    * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dUpdate.png" style="zoom:80%">
+      </p>
+      <br>
+      
+    * The storage of Panadol is now 45
     <p align="center">
-          <img src="images/UIscreenshots/drugSS/drugPrevCount.png" style="zoom:25%">
-    
-    (The storage is currently 55 boxes.) 
-    </p>
-    <br>
-  * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dUpdate.png" style="zoom:80%">
-    </p>
-    <br>
-    * ![](images/UIscreenshots/drugSS/dUpdate.png)
-  * The storage of Panadol is now 45
-  <p align="center">
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
     </p>
     <br>
@@ -557,20 +559,20 @@ ___
   \
   &nbsp;
 * **Format:** `d find TRADE_NAME`
-  * The search is case-insensitive. e.g panadol will match Panadol.
-    \
-    &nbsp;
+    * The search is case-insensitive. e.g panadol will match Panadol.
+      \
+      &nbsp;
 * **Examples:**
-  * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dfind.png" style="zoom:80%">
-    </p>
-    <br>
-  * You should see Panadol being shown on the drug list as well as the display window on the right
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:80%">
-    </p>
-    <br>
+    * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dfind.png" style="zoom:80%">
+      </p>
+      <br>
+    * You should see Panadol being shown on the drug list as well as the display window on the right
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -585,11 +587,11 @@ ___
   \
   &nbsp;
 * **Example:**
-  * Enter the command `d clear` and all drug information will be permanantly removed.
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:80%">
-    </p>
-    <br>
+    * Enter the command `d clear` and all drug information will be permanantly removed.
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -604,11 +606,11 @@ ___
   \
   &nbsp;
 * **Example:** `d list`
-  * Enter `d list` and all drug records will be shown on the screen.
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:80%">
-    </p>
-    <br>
+    * Enter `d list` and all drug records will be shown on the screen.
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -624,12 +626,12 @@ ___
   \
   &nbsp;
 * **Example:**
-  * If you wish to view details/all information of the drug at index 1, your commnad would be: `d view -i 1`
-  * Type in the command and hit `Enter`, detailed information of Panadol will be shown on the window at the right side.
-    <p align="center">
-          <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
-    </p>
-    <br>
+    * If you wish to view details/all information of the drug at index 1, your commnad would be: `d view -i 1`
+    * Type in the command and hit `Enter`, detailed information of Panadol will be shown on the window at the right side.
+      <p align="center">
+            <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
+      </p>
+      <br>
 
 [Back to top](#top)
 
@@ -718,4 +720,3 @@ The following commands are drug-related commands that are available in Careflow 
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
 
 [Back to top](#top)
-
