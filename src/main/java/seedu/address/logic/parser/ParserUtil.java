@@ -178,7 +178,8 @@ public class ParserUtil {
         requireNonNull(leaveCount);
         Optional<String> trimmedLeaveCount = leaveCount.map(s -> s.trim());
 
-        if (!LeaveCounter.isValidLeaveCount(trimmedLeaveCount.get())) {
+
+        if (!LeaveCounter.isValidLeaveCount(trimmedLeaveCount.orElse("0"))) {
             throw new ParseException(LeaveCounter.MESSAGE_CONSTRAINTS);
         }
         return trimmedLeaveCount.map(c -> new LeaveCounter(Integer.parseInt(c))).orElseGet(() -> new LeaveCounter());

@@ -11,34 +11,26 @@ import seedu.address.model.employee.Payroll;
  * Jackson-friendly version of {@link Payroll}.
  */
 public class JsonAdaptedPayroll {
-    private final String salaryStr;
-    private final String dateOfPaymentStr;
+    private final String payroll;
 
     /**
      * Constructs a {@code JsonAdaptedPayroll} with the given {@code payroll}.
      */
     @JsonCreator
-    public JsonAdaptedPayroll(String salaryStr, String dateOfPaymentStr) {
-        this.salaryStr = salaryStr;
-        this.dateOfPaymentStr = dateOfPaymentStr;
+    public JsonAdaptedPayroll(String payroll) {
+        this.payroll = payroll;
     }
 
     /**
      * Converts a given {@code Payroll} into this class for Jackson use.
      */
     public JsonAdaptedPayroll(Payroll source) {
-        this.salaryStr = String.valueOf(source.getSalary());
-        this.dateOfPaymentStr = String.valueOf(source.getDayOfPayment());
+        this.payroll = String.valueOf(source.getSalary()) + " " + String.valueOf(source.getDayOfPayment());
     }
 
     @JsonValue
-    public String getSalaryStr() {
-        return salaryStr;
-    }
-
-    @JsonValue
-    public String getDateOfPaymentStr() {
-        return dateOfPaymentStr;
+    public String getPayroll() {
+        return payroll;
     }
 
     /**
@@ -47,11 +39,9 @@ public class JsonAdaptedPayroll {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Payroll toModelType() throws IllegalValueException {
-        int salary = Integer.parseInt(this.salaryStr);
-        int dateOfPayment = Integer.parseInt(this.dateOfPaymentStr);
-        if (!Payroll.isValidPayroll(salaryStr + " " + dateOfPaymentStr)) {
+        if (!Payroll.isValidPayroll(payroll)) {
             throw new IllegalValueException(Payroll.MESSAGE_CONSTRAINTS);
         }
-        return new Payroll(salary, dateOfPayment);
+        return new Payroll(payroll);
     }
 }

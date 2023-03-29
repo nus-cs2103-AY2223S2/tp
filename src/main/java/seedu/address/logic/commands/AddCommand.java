@@ -41,7 +41,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_DEPARTMENT + "Marketing "
-            + PREFIX_TAG + "SoftwareEngineer ";
+            + PREFIX_PAYROLL + "1000 15 "
+            + PREFIX_TAG + "SoftwareEngineer ";;
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the database.";
 

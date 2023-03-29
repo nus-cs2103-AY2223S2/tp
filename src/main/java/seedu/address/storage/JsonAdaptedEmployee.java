@@ -155,10 +155,10 @@ class JsonAdaptedEmployee {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Payroll.class.getSimpleName()));
         }
-        if (!Payroll.isValidPayroll(payroll.getSalaryStr() + " " + payroll.getDateOfPaymentStr())) {
+        if (!Payroll.isValidPayroll(payroll.getPayroll())) {
             throw new IllegalValueException(Payroll.MESSAGE_CONSTRAINTS);
         }
-        final Payroll modelPayroll = new Payroll(payroll.getSalaryStr() + " " + payroll.getDateOfPaymentStr());
+        final Payroll modelPayroll = new Payroll(payroll.getPayroll());
 
         if (leaveCounter == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -168,9 +168,18 @@ class JsonAdaptedEmployee {
             throw new IllegalValueException(LeaveCounter.MESSAGE_CONSTRAINTS);
         }
         final LeaveCounter modelLeaveCounter = new LeaveCounter(leaveCounter.toModelType().getLeaveCount());
-        final Optional<LocalDate> modelDateOfBirth = Optional.ofNullable(LocalDate.parse(dateOfBirth));
-        final Optional<LocalDate> modelDateOfJoining = Optional.ofNullable(LocalDate.parse(dateOfJoining));
 
+        Optional<LocalDate> modelDateOfBirthTemp = Optional.empty();
+        if (dateOfBirth != "") {
+            modelDateOfBirthTemp = Optional.ofNullable(LocalDate.parse(dateOfBirth));
+        }
+        final Optional<LocalDate> modelDateOfBirth = modelDateOfBirthTemp;
+
+        Optional<LocalDate> modelDateOfJoiningTemp = Optional.empty();
+        if (dateOfJoining != "") {
+            modelDateOfJoiningTemp = Optional.ofNullable(LocalDate.parse(dateOfJoining));
+        }
+        final Optional<LocalDate> modelDateOfJoining = modelDateOfJoiningTemp;
         if (picturePath == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PicturePath.class.getSimpleName()));
