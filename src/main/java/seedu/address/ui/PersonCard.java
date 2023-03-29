@@ -29,10 +29,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final MainWindow mainWindow;
-    private final String attendingDoctor = "Attending Doctor: ";
-
     public final Person person;
-
+    private final String attendingDoctor = "Attending Doctor: ";
     @FXML
     private HBox cardPane;
     @FXML
