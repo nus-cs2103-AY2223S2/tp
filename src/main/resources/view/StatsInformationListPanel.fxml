@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="container" prefHeight="136.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <ListView fx:id="statsInformationListView" orientation="HORIZONTAL" prefHeight="400.0" prefWidth="1203.0" />
+   </children>
+</HBox>

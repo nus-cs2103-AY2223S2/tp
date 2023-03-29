@@ -2,20 +2,16 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InterviewDate;
+import seedu.address.model.StatsInformation;
 
 /**
  * An UI component that displays information of a {@code StatsInformation}.
  */
-public class StatsBox extends UiPart<Region> {
+public class StatsInformationCard extends UiPart<Region> {
 
-    private static final String FXML = "StatsBox.fxml";
+    private static final String FXML = "StatsInformationCard.fxml";
 
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,60 +21,30 @@ public class StatsBox extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final InternshipApplication application;
+    public final StatsInformation statsInformation;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label companyName;
+    private Label description;
     @FXML
-    private Label jobTitle;
-    @FXML
-    private VBox reviews;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
-    private Label internshipStatus;
-    @FXML
-    private Label interviewDate;
+    private Label stats;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StatsInformationCard} with the given {@code StatsInformation} to display.
      */
-    public ApplicationCard(InternshipApplication application, int displayedIndex) {
+    public StatsInformationCard(StatsInformation statsInformation) {
         super(FXML);
-        this.application = application;
-        id.setText(displayedIndex + ". ");
-        companyName.setText(application.getCompanyName().fullName);
-        jobTitle.setText(application.getJobTitle().fullName);
-        application.getReviews().stream()
-                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
-        internshipStatus.setText(application.getStatus().name());
-        Contact companyContact = application.getContact();
-        if (companyContact != null) {
-            email.setText(companyContact.getEmail().value);
-            phone.setText(companyContact.getPhone().value);
-            email.setVisible(true);
-            phone.setVisible(true);
-            email.setManaged(true);
-            phone.setManaged(true);
-        }
-        InterviewDate interviewDateStr = application.getInterviewDate();
-        if (interviewDateStr != null) {
-            interviewDate.setText(interviewDateStr.toString());
-            interviewDate.setVisible(true);
-            interviewDate.setManaged(true);
-        }
+        this.statsInformation = statsInformation;
+        description.setText(statsInformation.getDescription());
+        Number s = statsInformation.getStatsInformation();
+        stats.setText(s.toString());
+    }
+
+    public void updateStatsInformation() {
+        statsInformation.updateStatsInformation();
+        Number updatedStatsInformation = statsInformation.getStatsInformation();
+        stats.setText(updatedStatsInformation.toString());
     }
 
     @Override
@@ -89,14 +55,13 @@ public class StatsBox extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ApplicationCard)) {
+        if (!(other instanceof StatsInformationCard)) {
             return false;
         }
 
         // state check
-        ApplicationCard card = (ApplicationCard) other;
-        return id.getText().equals(card.id.getText())
-                && application.equals(card.application);
+        StatsInformationCard card = (StatsInformationCard) other;
+        return this.statsInformation.equals(card.statsInformation);
     }
 }
 

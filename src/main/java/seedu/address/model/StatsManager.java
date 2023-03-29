@@ -2,20 +2,21 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.InternshipStatus;
 
 public class StatsManager {
     private final Model model;
-    private List<StatsInformation> statsInformations;
+    private final ObservableList<StatsInformation> statsInformations;
 
     public StatsManager(Model model) {
         requireNonNull(model);
         this.model = model;
-        this.statsInformations = new ArrayList<>();
+        this.statsInformations = FXCollections.observableArrayList();
         this.initStatsInformation();
     }
 
@@ -34,7 +35,7 @@ public class StatsManager {
         }
     }
 
-    public List<StatsInformation> getStatsInformations() {
+    public ObservableList<StatsInformation> getStatsInformations() {
         return statsInformations;
     }
 }

@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private TodoListPanel todoListPanel;
     private NoteListPanel noteListPanel;
     private ViewContentPanel viewContentPanel;
-    private StatsPanel statsPanel;
+    private StatsInformationListPanel statsInformationListPanel;
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
 
@@ -57,7 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane viewContentPanelPlaceholder;
 
     @FXML
-    private StackPane summaryPanelPlaceholder;
+    private StackPane statsInformationListPanelPlaceholder;
 
     @FXML
     private StackPane quickAccessToolbarPlaceholder;
@@ -149,8 +149,8 @@ public class MainWindow extends UiPart<Stage> {
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
-        statsPanel = new StatsPanel();
-        summaryPanelPlaceholder.getChildren().add(statsPanel.getRoot());
+        statsInformationListPanel = new StatsInformationListPanel(logic.getStatsManager());
+        statsInformationListPanelPlaceholder.getChildren().add(statsInformationListPanel.getRoot());
 
         setHeightConstraints();
     }
@@ -165,9 +165,9 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
         viewContentPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
-        statsPanel.getContainer().maxHeightProperty().bind(
+        statsInformationListPanel.getContainer().maxHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
-        statsPanel.getContainer().prefHeightProperty().bind(
+        statsInformationListPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
@@ -247,6 +247,9 @@ public class MainWindow extends UiPart<Stage> {
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
+
+            // Update StatsInformationListPanel UI
+            statsInformationListPanel.updateDisplay();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

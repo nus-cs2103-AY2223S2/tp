@@ -1,158 +1,66 @@
-package seedu.address.model;
+package seedu.address.ui;
 
-package seedu.address.model.person;
+import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.Iterator;
-import java.util.List;
-
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.StatsInformation;
+import seedu.address.model.StatsManager;
 
 /**
- * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
- * An InternshipApplication is considered unique by comparing using
- * {@code InternshipApplication#isSameApplication(InternshipApplication)}. As such, adding and updating of
- * persons uses InternshipApplication#isSameApplication(InternshipApplication) for equality
- * so as to ensure that the person being added or updated is unique in terms of identity in the UniquePersonList.
- * However, the removal of a person uses InternshipApplication#equals(Object) so
- * as to ensure that the InternshipApplication with exactly the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
- * @see Person#isSamePerson(Person)
+ * Panel containing the list of statistics information.
  */
-public class StatsInformationList implements Iterable<StatsInformation> {
-    private final ObservableList<InternshipApplication> internalList = FXCollections.observableArrayList();
-    private final ObservableList<InternshipApplication> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+public class StatsInformationListPanel extends UiPart<Region> {
+    private static final String FXML = "StatsInformationListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
+
+    @FXML
+    private ListView<StatsInformation> statsInformationListView;
+
+    @FXML
+    private HBox container;
 
     /**
-     * Returns true if the list contains an equivalent application as the given argument.
+     * Creates a {@code ViewContentPanel} with the given {@code StatsManager}.
      */
-    public boolean contains(InternshipApplication toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameApplication);
+    public StatsInformationListPanel(StatsManager statsManager) {
+        super(FXML);
+        statsInformationListView.setItems(statsManager.getStatsInformations());
+        statsInformationListView.setCellFactory(listView -> new StatsInformationListViewCell());
     }
 
-    /**
-     * Adds an application to the list.
-     * The application must not already exist in the list.
-     */
-    public void add(InternshipApplication toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+    public HBox getContainer() {
+        return container;
+    }
+
+    public void updateDisplay() {
+        ObservableList<StatsInformation> l = statsInformationListView.getItems();
+        for (StatsInformation s: l) {
+            s.updateStatsInformation();
         }
-        internalList.add(toAdd);
     }
 
     /**
-     * Adds applications to the list.
-     * The application must not already exist in the list.
+     * Custom {@code ListCell} that displays the graphics of a {@code StatsInformation}
+     * using a {@code StatsInformationCard}.
      */
-    public void add(List<InternshipApplication> toAdds) {
-        requireNonNull(toAdds);
+    class StatsInformationListViewCell extends ListCell<StatsInformation> {
+        @Override
+        protected void updateItem(StatsInformation statsInformation, boolean empty) {
+            super.updateItem(statsInformation, empty);
 
-        for (InternshipApplication toAdd : toAdds) {
-            if (!contains(toAdd)) {
-                internalList.add(toAdd);
+            if (empty || statsInformation == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new StatsInformationCard(statsInformation).getRoot());
             }
         }
     }
 
-    /**
-     * Replaces the application {@code target} in the list with {@code editedApplication}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedApplication} must not be the same
-     * as another existing application in the list.
-     */
-    public void setApplication(InternshipApplication target, InternshipApplication editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PersonNotFoundException();
-        }
-
-        if (!target.isSameApplication(editedPerson) && contains(editedPerson)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.set(index, editedPerson);
-    }
-
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(InternshipApplication toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
-    }
-
-    public void setApplications(seedu.address.model.person.UniqueApplicationList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setApplications(List<InternshipApplication> applications) {
-        requireAllNonNull(applications);
-        if (!applicationsAreUnique(applications)) {
-            throw new DuplicatePersonException();
-        }
-
-        internalList.setAll(applications);
-    }
-
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<InternshipApplication> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
-    }
-
-    @Override
-    public Iterator<InternshipApplication> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.person.UniqueApplicationList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.person.UniqueApplicationList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code internships} contains only unique internships.
-     */
-    private boolean applicationsAreUnique(List<InternshipApplication> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameApplication(persons.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
-

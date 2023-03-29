@@ -75,6 +75,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public StatsManager getStatsManager() {
+        return statsManager;
+    }
+
+    @Override
     public ObservableList<InternshipApplication> getFilteredInternshipList() {
         return model.getFilteredInternshipList();
     }

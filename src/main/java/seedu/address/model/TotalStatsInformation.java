@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
 
 public class TotalStatsInformation extends StatsInformation {
     private final Model model;

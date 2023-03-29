@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <Label fx:id="stats" prefHeight="68.0" prefWidth="119.0" styleClass="cell_small_label" text="\$stats" textAlignment="CENTER">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+            <Label fx:id="description" prefHeight="20.0" prefWidth="113.0" styleClass="cell_small_label" text="\$description">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>
