@@ -16,7 +16,7 @@ Class HeaderBar
 
 Class GeneralExamsContent
 Class FilledExamsContent
-Class AllExamsListPanel
+Class PastExamsListPanel
 Class UpcomingExamsListPanel
 Class ExamCard
 }
@@ -38,16 +38,16 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down-> "1" DetailedInfoSection
 DetailedInfoSection *-down-> "1" HeaderBar
 DetailedInfoSection *-down-> "1" DetailedContent
-FilledExamsContent *-down-> "1" AllExamsListPanel
+FilledExamsContent *-down-> "1" PastExamsListPanel
 FilledExamsContent *-down-> "1" UpcomingExamsListPanel
-AllExamsListPanel -down-> "*" ExamCard
+PastExamsListPanel -down-> "*" ExamCard
 UpcomingExamsListPanel -down-> "*" ExamCard
 
 MainWindow -left-|> UiPart
 DetailedInfoSection --|> UiPart
 HeaderBar --|> UiPart
 DetailedContent --|> UiPart
-AllExamsListPanel --|> UiPart
+PastExamsListPanel --|> UiPart
 UpcomingExamsListPanel --|> UiPart
 ExamCard --|> UiPart
 
