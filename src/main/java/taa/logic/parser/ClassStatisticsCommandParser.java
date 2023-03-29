@@ -2,7 +2,7 @@ package taa.logic.parser;
 
 import taa.commons.core.Messages;
 import taa.logic.commands.ClassStatisticsCommand;
-import taa.logic.commands.enums.ClassStatisticField;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.parser.exceptions.ParseException;
 
 import java.util.stream.Stream;
@@ -32,24 +32,24 @@ public class ClassStatisticsCommandParser implements Parser<ClassStatisticsComma
                     ClassStatisticsCommand.MESSAGE_USAGE));
         }
 
-        String rawField = argMultimap.getValue(PREFIX_STAT_TYPE).get().toUpperCase();
-        if (!rawField.equals(ClassStatisticField.GRADES.toString())
-                && !rawField.equals(ClassStatisticField.ATTENDANCE.toString())) {
+        String rawField = "CLASS_" + argMultimap.getValue(PREFIX_STAT_TYPE).get().toUpperCase();
+        if (!rawField.equals(ChartType.CLASS_GRADES.toString())
+                && !rawField.equals(ChartType.CLASS_ATTENDANCE.toString())) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ClassStatisticsCommand.MESSAGE_UNKNOWN_FIELD));
         }
 
-        ClassStatisticField field = ClassStatisticField.valueOf(rawField);
+        ChartType field = ChartType.valueOf(rawField);
 
-        if (field == ClassStatisticField.GRADES
+        if (field == ChartType.CLASS_GRADES
                 && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_NAME)) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ClassStatisticsCommand.MESSAGE_MISSING_ASSIGNMENT_NAME));
         }
 
-        if (field == ClassStatisticField.ATTENDANCE) {
+        if (field == ChartType.CLASS_ATTENDANCE) {
             return new ClassStatisticsCommand(field);
         } else {
             String assignmentName = argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get();

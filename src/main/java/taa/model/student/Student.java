@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import taa.assignment.Submission;
+import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
@@ -142,6 +143,13 @@ public class Student {
             classes.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Updates the attendance counter for the entire class list.
+     */
+    public void updateAttendanceCounter(int[] counter) {
+        this.atd.updateAttendanceCounter(counter);
     }
 
 }

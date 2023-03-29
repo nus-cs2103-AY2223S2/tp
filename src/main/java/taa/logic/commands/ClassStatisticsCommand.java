@@ -3,12 +3,7 @@ package taa.logic.commands;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import taa.logic.commands.enums.ClassStatisticField;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 
@@ -29,8 +24,8 @@ public class ClassStatisticsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays statistics for the active class.\n\n"
             + "Parameters: " + PREFIX_STAT_TYPE + "FIELD [" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT_NAME]\n"
             + "where FIELD is either '"
-            + ClassStatisticField.ATTENDANCE.toString().toLowerCase() + "' or '"
-            + ClassStatisticField.GRADES.toString().toLowerCase() +"'. \n\n"
+            + ChartType.CLASS_ATTENDANCE.toString().toLowerCase() + "' or '"
+            + ChartType.CLASS_GRADES.toString().toLowerCase() +"'. \n\n"
             + EXAMPLE_USAGE;
     public static final String MESSAGE_UNKNOWN_FIELD = "The FIELD parameter passed in is not recognised. \n"
             + "Please enter only either 'attendance' or 'grades' for this parameter.\n"
@@ -42,20 +37,20 @@ public class ClassStatisticsCommand extends Command {
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "The assignment name you have entered does not exist.\n"
             + "Please check that the assignment with the speecified name exists for this active class list.\n"
             + EXAMPLE_USAGE;
-    private ClassStatisticField field;
+    private ChartType field;
     private String assignmentName;
 
     /**
      * Handles the case where no assignment name is passed in.
      */
-    public ClassStatisticsCommand(ClassStatisticField field) {
+    public ClassStatisticsCommand(ChartType field) {
         this.field = field;
     }
 
     /**
      * Handles the case where an assignment name is passed in.
      */
-    public ClassStatisticsCommand(ClassStatisticField field, String assignmentName) {
+    public ClassStatisticsCommand(ChartType field, String assignmentName) {
         this.field = field;
         this.assignmentName = assignmentName;
     }
@@ -65,23 +60,29 @@ public class ClassStatisticsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         requireNonNull(this.field);
-        if (this.field == ClassStatisticField.GRADES
+
+        if (this.field == ChartType.CLASS_GRADES
                 && model.hasAssignment(this.assignmentName)) {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
 
-        if (this.field == ClassStatisticField.ATTENDANCE) {
-            // display histogram of attendance over all 12 weeks
-            return new CommandResult(String.format(MESSAGE_SUCCESS, this.field.toString().toLowerCase(), ""));
-        } else if (this.field == ClassStatisticField.GRADES) {
-            // display bell curve
-            return new CommandResult(String.format(
+        CommandResult result;
+
+        if (this.field == ChartType.CLASS_ATTENDANCE) {
+            result = new CommandResult(String.format(MESSAGE_SUCCESS, this.field.toString().toLowerCase(), ""));
+        } else if (this.field == ChartType.CLASS_GRADES) {
+            result = new CommandResult(String.format(
                     MESSAGE_SUCCESS,
                     this.field.toString().toLowerCase(),
                     "(" + this.assignmentName + ")"));
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_FIELD);
         }
+
+        model.displayChart(this.field);
+
+        return result;
+
     }
 
     @Override

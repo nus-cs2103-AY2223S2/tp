@@ -17,12 +17,19 @@ import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Duration;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
@@ -294,6 +301,65 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displayChart() {
+    public void displayChart(ChartType chartType) {
+        String title;
+        JFreeChart chart;
+
+        switch (chartType) {
+        case CLASS_GRADES:
+            title = "Grade Distribution";
+            chart = generateGradeBarChart();
+            break;
+        case CLASS_ATTENDANCE:
+            title = "Attendance Distribution";
+            chart = generateAttendanceDistribution();
+            break;
+        default:
+            // this should be unreachable; any invalid ChartType should be handled before this is invoked!
+            assert false;
+            return;
+        }
+
+        ChartFrame frame = new ChartFrame(title, chart);
+        frame.pack();
+        frame.setVisible(true);
     }
+
+    private JFreeChart generateGradeBarChart() {
+        return null;
+    }
+
+    private JFreeChart generateAttendanceDistribution() {
+        DefaultCategoryDataset attendanceData = new DefaultCategoryDataset();
+        int[] studentAttendance = countStudentAttendance();
+
+        for (int i = 0; i < studentAttendance.length; i++) {
+            attendanceData.setValue(
+                    studentAttendance[i],
+                    "Present",
+                    String.format("W%d", i+1));
+        }
+
+        return ChartFactory.createBarChart(
+                "Attendance",     //Chart title
+                "Week",     //Domain axis label
+                "Number of Students",         //Range axis label
+                attendanceData,         //Chart Data
+                PlotOrientation.VERTICAL, // orientation
+                true,             // include legend?
+                true,             // include tooltips?
+                false             // include URLs?
+        );
+    }
+
+    private int[] countStudentAttendance() {
+        int[] result = new int[Attendance.NUM_WEEKS];
+
+        for (Student student : filteredStudents) {
+            student.updateAttendanceCounter(result);
+        }
+
+        return result;
+    }
+
 }

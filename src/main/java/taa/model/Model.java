@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Student;
 
@@ -129,5 +130,5 @@ public interface Model {
 
     void addAlarm(Alarm alarm) throws CommandException;
 
-    void displayChart();
+    void displayChart(ChartType chartType);
 }
