@@ -158,6 +158,12 @@ public class ModelManager implements Model {
         addressBook.setDoctor(target, editedDoctor);
     }
 
+    public Doctor getDoctor(int target) {
+        requireAllNonNull(target);
+
+        return addressBook.getDoctor(target);
+    }
+
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
