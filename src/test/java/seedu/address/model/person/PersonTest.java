@@ -8,6 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_RU;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2101_MON_8AM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2101_THU_8AM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.MA2104_FRI_12PM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.MA2104_TUE_12PM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BEN;
@@ -101,5 +107,17 @@ public class PersonTest {
                 ALBERT.getPhone(), ALBERT.getEmail(), ALBERT.getAddress(),
                 ALBERT.getTelegramHandle(), ALBERT.getGroupTags(),
                 ALBERT.getModuleTags()));
+    }
+
+    @Test
+    public void getCommitments_validModuleTags_success() {
+        Person person = new PersonBuilder()
+                .withModuleTags(CS2101_HA, MA2104_RU)
+                .build();
+
+        assertTrue(person.getCommitments().contains(CS2101_MON_8AM_2HR));
+        assertTrue(person.getCommitments().contains(CS2101_THU_8AM_2HR));
+        assertTrue(person.getCommitments().contains(MA2104_TUE_12PM_2HR));
+        assertTrue(person.getCommitments().contains(MA2104_FRI_12PM_2HR));
     }
 }

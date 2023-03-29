@@ -4,6 +4,8 @@ import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.TimePeriod;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
  * A meetup suggestion consisting of a location and time period.
  */
@@ -19,6 +21,7 @@ public class Recommendation implements Comparable<Recommendation> {
     public Recommendation(
             Location location, TimePeriod timePeriod,
             ContactIndex contactIndex, boolean isSaved) {
+        requireAllNonNull(location, timePeriod, contactIndex, isSaved);
         this.location = location;
         this.timePeriod = timePeriod;
         this.contactIndex = contactIndex;

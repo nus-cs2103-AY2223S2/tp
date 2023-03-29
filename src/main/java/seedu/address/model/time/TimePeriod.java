@@ -118,10 +118,10 @@ public abstract class TimePeriod {
 
     @Override
     public String toString() {
-        return String.format("[%s] %d - %d",
+        return String.format("[%s] %s - %s",
             getSchoolDay(),
-            getStartTime().getHourOfDay(),
-            getEndTime().getHourOfDay());
+            TimeUtil.formatLocalTime(getStartTime()),
+            TimeUtil.formatLocalTime(getEndTime()));
     }
 
     @Override
