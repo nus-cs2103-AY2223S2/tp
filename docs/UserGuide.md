@@ -26,7 +26,7 @@ CoDoc.**
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigation](#navigation)
-  - [Tutorial](#codoc-tutorial--your-first-steps)
+  - [Tutorial](#codoc-tutorial-your-first-steps)
     - [Adding a person](#1-adding-a-person)
     - [Viewing a person's modules](#2-viewing-a-person)
     - [Editing a person's modules](#3-editing-a-persons-details)
@@ -63,7 +63,7 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 **familiar** with CoDoc and to gain the most out of your experience.
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
-how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial--your-first-steps). 
+how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
 
