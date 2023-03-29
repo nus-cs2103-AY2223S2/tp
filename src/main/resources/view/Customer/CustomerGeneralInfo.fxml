@@ -39,5 +39,15 @@
             <Label fx:id="email" text="\$email" />
          </children>
       </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="4.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/points.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="points" text="\$points" />
+         </children>
+      </HBox>
    </children>
 </VBox>
