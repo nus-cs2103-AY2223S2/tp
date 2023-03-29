@@ -2,6 +2,7 @@ package seedu.dengue.model.person;
 
 import java.util.HashMap;
 
+//@@author valerietanhx
 /**
  * A mapping of postal sectors to locations.
  */
@@ -118,6 +119,7 @@ public class PostalLocationMapping {
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR80, Location.DIST28);
     }
 
+    //@@author axmszr
     /**
      * Maps the given {@code PostalSector} to its matching {@code Location}.
      *
