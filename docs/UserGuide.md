@@ -225,7 +225,7 @@ Format: `:d <task_index>`
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
 Example:
-<table style="width:1203px; border:none;">
+<table style="width:100%; border:none;">
 <tr>
 <td style="width:50%;">Before the command <code>:d 4</code></td>
 <td style="width:50%;">After the command <code>:d 4</code></td>
