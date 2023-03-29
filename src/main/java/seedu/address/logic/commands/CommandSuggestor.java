@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -88,7 +89,7 @@ public class CommandSuggestor {
 
         String[] splitArr = strippedLeadingInput.split(" ", 2);
         String commandWord = splitArr[0];
-        String commandBody = splitArr.length > 1 ? splitArr[1] : "";
+        String commandBody = splitArr.length > 1 ? " " + splitArr[1] : "";
 
         CommandException noSuchCommandException = new CommandException(
             String.format("No command starting with \"%s\" found.", commandWord));
@@ -152,9 +153,50 @@ public class CommandSuggestor {
             throws CommandException {
         ArrayList<Prefix> argPrefixes = commandArgPrefixes.get(command);
         assert argPrefixes != null;
-
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(new Prefix[] {}));
+                ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(Prefix[]::new));
+
+        if (commmandBody.isBlank()) {
+            String allArgs = argPrefixes.stream()
+                    .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
+                    .collect(Collectors.joining(" "));
+            String leadingPadding = commmandBody.isEmpty() ? " " : "";
+            return leadingPadding + allArgs;
+        }
+
+        boolean hasNoTrailingSpace = !commmandBody.endsWith(" ");
+        if (hasNoTrailingSpace) {
+            assert !commmandBody.isEmpty();
+            int lastSpaceIndex = commmandBody.lastIndexOf(" ");
+            String lastWord = lastSpaceIndex == -1
+                    ? commmandBody
+                    : commmandBody.substring(lastSpaceIndex + 1);
+            assert !lastWord.isBlank();
+            assert !lastWord.contains(" ");
+
+            // User is not filling the value of prefix.
+            // Example of filling the value: "add n/Sha" where user is halfway filling the name field.
+            // But it's false when: "add n/" where user is not filling it yet.
+            boolean isFillingPrefixValue = lastWord.contains("/") && !lastWord.endsWith("/");
+            if (isFillingPrefixValue) {
+                // Don't suggest anything if user is filling.
+                return "";
+            }
+
+            String matchingArgs = argPrefixes.stream()
+                    // Excludes prefix-less arguments like index/keywords.
+                    .filter(prefix -> !prefix.isPlaceholder())
+                    // Get only unfilled arguments.
+                    .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                    .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
+                    .filter(str -> str.startsWith(lastWord))
+                    .collect(Collectors.joining(" "));
+
+            return matchingArgs.isEmpty()
+                    ? ""
+                    : matchingArgs.substring(lastWord.length());
+        }
+
         String argumentSuggestion = "";
         String[] userInputArray = commmandBody.trim().split(" ");
         Prefix currPrefix = null;
@@ -164,7 +206,7 @@ public class CommandSuggestor {
 
         // Check if user input for index is valid (only if required)
         if (isIndexRequired) {
-            if (userInputArray[0].equals("")) {
+            if (userInputArray[0].isEmpty()) {
                 argumentSuggestion += " " + argPrefixes.get(0).getPlaceholderText();
             } else {
                 if (!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
@@ -175,7 +217,7 @@ public class CommandSuggestor {
 
         if (hasKeyword) {
             // Check if user input contains keyword
-            if (commmandBody.equals("")) {
+            if (commmandBody.isEmpty()) {
                 argumentSuggestion += " " + argPrefixes.get(0).getPlaceholderText();
             }
             argumentMultimap.put(PREFIX_KEYWORD, "");

@@ -31,6 +31,15 @@ public class Prefix {
     }
     //@@author
 
+    /**
+     * Returns true if this {@code Prefix} is just a placeholder for
+     * index/keywords arguments.
+     * @return Whether this is a placeholder.
+     */
+    public boolean isPlaceholder() {
+        return getPrefix().isEmpty();
+    }
+
     public String getPlaceholderText() {
         return placeholderText;
     }
