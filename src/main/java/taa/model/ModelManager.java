@@ -20,6 +20,8 @@ import javafx.util.Duration;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import taa.assignment.AssignmentList;
@@ -220,6 +222,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getClassListSize() {
+        return this.filteredStudents.size();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -330,6 +337,7 @@ public class ModelManager implements Model {
     }
 
     private JFreeChart generateAttendanceDistribution() {
+        JFreeChart result;
         DefaultCategoryDataset attendanceData = new DefaultCategoryDataset();
         int[] studentAttendance = countStudentAttendance();
 
@@ -340,7 +348,7 @@ public class ModelManager implements Model {
                     String.format("W%d", i+1));
         }
 
-        return ChartFactory.createBarChart(
+        result = ChartFactory.createBarChart(
                 "Attendance",     //Chart title
                 "Week",     //Domain axis label
                 "Number of Students",         //Range axis label
@@ -350,6 +358,11 @@ public class ModelManager implements Model {
                 true,             // include tooltips?
                 false             // include URLs?
         );
+        ValueAxis axis = result.getCategoryPlot().getRangeAxis();
+        axis.setRange(0, filteredStudents.size());
+        axis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+        return result;
     }
 
     private int[] countStudentAttendance() {

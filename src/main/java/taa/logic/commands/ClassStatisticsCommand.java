@@ -27,6 +27,7 @@ public class ClassStatisticsCommand extends Command {
             + ChartType.CLASS_ATTENDANCE.toString().toLowerCase() + "' or '"
             + ChartType.CLASS_GRADES.toString().toLowerCase() +"'. \n\n"
             + EXAMPLE_USAGE;
+    public static final String MESSAGE_EMPTY_CLASSLIST = "The class list cannot be empty!";
     public static final String MESSAGE_UNKNOWN_FIELD = "The FIELD parameter passed in is not recognised. \n"
             + "Please enter only either 'attendance' or 'grades' for this parameter.\n"
             + EXAMPLE_USAGE;
@@ -61,6 +62,10 @@ public class ClassStatisticsCommand extends Command {
         requireNonNull(model);
         requireNonNull(this.field);
 
+        if (model.getClassListSize() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_CLASSLIST);
+        }
+
         if (this.field == ChartType.CLASS_GRADES
                 && model.hasAssignment(this.assignmentName)) {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
@@ -69,11 +74,11 @@ public class ClassStatisticsCommand extends Command {
         CommandResult result;
 
         if (this.field == ChartType.CLASS_ATTENDANCE) {
-            result = new CommandResult(String.format(MESSAGE_SUCCESS, this.field.toString().toLowerCase(), ""));
+            result = new CommandResult(String.format(MESSAGE_SUCCESS, "attendance", ""));
         } else if (this.field == ChartType.CLASS_GRADES) {
             result = new CommandResult(String.format(
                     MESSAGE_SUCCESS,
-                    this.field.toString().toLowerCase(),
+                    "grades",
                     "(" + this.assignmentName + ")"));
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_FIELD);

@@ -64,6 +64,11 @@ public interface Model {
     boolean hasClassList(ClassList tocheck);
 
     /**
+     * Returns the number of students in the active class list.
+     */
+    int getClassListSize();
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
