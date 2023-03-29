@@ -136,9 +136,9 @@ Format: `find name/NAME`, `find nric/NRIC`, `find s/STATUS`
 
 Examples:
 
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find name/John` returns `john` and `John Smith`
+- `find name/john carlos` returns `John Smith`, `Carlos Lopez`<br>
+  ![result for 'find alex david'](images/findJohnCarlosResult.png)
 
 ### Deleting a patient from the system: `delete`
 
