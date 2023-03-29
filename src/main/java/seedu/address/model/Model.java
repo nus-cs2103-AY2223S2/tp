@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
@@ -126,7 +127,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param tutName The name of the tutorial that the student will be added into.
      */
-    void addStudentToTutorial(Index toAdd, String tutName);
+    void addStudentToTutorial(Index toAdd, String tutName) throws ParseException;
 
     /**
      * Deletes a student from an event
@@ -177,7 +178,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param labName The name of the lab session that the student will be added into.
      */
-    void addStudentToLab(Index toAdd, String labName);
+    void addStudentToLab(Index toAdd, String labName) throws ParseException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Lab> getFilteredLabList();
@@ -219,7 +220,7 @@ public interface Model {
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
      * @param consultationName The name of the consultation session that the student will be added into.
      */
-    void addStudentToConsultation(Index toAdd, String consultationName);
+    void addStudentToConsultation(Index toAdd, String consultationName) throws ParseException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Consultation> getFilteredConsultationList();

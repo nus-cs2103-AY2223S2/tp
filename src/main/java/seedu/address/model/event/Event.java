@@ -172,10 +172,19 @@ public abstract class Event {
 
     /**
      * Get the total number of students enrolled in the event
-     * @return
+     * @return size
      */
     public int countStudents() {
         return students.size();
+    }
+
+    /**
+     * Checks if student is already present in the event
+     * @param student
+     * @return boolean of whether event has student
+     */
+    public boolean hasStudent(Person student) {
+        return this.students.contains(student);
     }
 
     /* *************************************************************************

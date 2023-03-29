@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Lab;
@@ -85,13 +86,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param toAdd the student to be added.
      * @param name the name of the tutorial that the student will be added into.
      */
-    public void addStudentToTutorial(Person toAdd, String name) {
+    public void addStudentToTutorial(Person toAdd, String name) throws ParseException {
         Tutorial original = tutorials.get(0);
         for (int i = 0; i < tutorials.size(); i++) {
             if (tutorials.get(i).hasMatchByName(name)) {
                 original = tutorials.get(i);
                 break;
             }
+        }
+        if (original.hasStudent(toAdd)) {
+            throw new ParseException("Student already in event!");
         }
         original.addStudent(toAdd);
     }
@@ -146,7 +150,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param toAdd the student to be added.
      * @param name the name of the lab that the student will be added into.
      */
-    public void addStudentToLab(Person toAdd, String name) {
+    public void addStudentToLab(Person toAdd, String name) throws ParseException {
         Lab original = labs.get(0);
         for (int i = 0; i < labs.size(); i++) {
             if (labs.get(i).hasMatchByName(name)) {
@@ -155,6 +159,9 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         Lab added = original;
+        if (added.hasStudent(toAdd)) {
+            throw new ParseException("Student already in event!");
+        }
         added.addStudent(toAdd);
         labs.setLab(original, added);
     }
@@ -165,7 +172,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param toAdd the student to be added.
      * @param name the name of the consultation that the student will be added into.
      */
-    public void addStudentToConsultation(Person toAdd, String name) {
+    public void addStudentToConsultation(Person toAdd, String name) throws ParseException {
         Consultation original = consultations.get(0);
         for (int i = 0; i < consultations.size(); i++) {
             if (consultations.get(i).hasMatchByName(name)) {
@@ -174,6 +181,9 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         Consultation added = original;
+        if (added.hasStudent(toAdd)) {
+            throw new ParseException("Student already in event!");
+        }
         added.addStudent(toAdd);
         consultations.setConsultation(original, added);
     }
