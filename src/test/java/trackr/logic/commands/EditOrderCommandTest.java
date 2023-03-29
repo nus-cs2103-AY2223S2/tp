@@ -31,9 +31,6 @@ import trackr.logic.commands.supplier.EditSupplierCommand;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
-import trackr.model.OrderList;
-import trackr.model.SupplierList;
-import trackr.model.TaskList;
 import trackr.model.UserPrefs;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDescriptor;
@@ -217,6 +214,3 @@ public class EditOrderCommandTest {
                 new EditOrderCommand(INDEX_FIRST_OBJECT, DESC_CUPCAKE)));
     }
 }
-
-
-
