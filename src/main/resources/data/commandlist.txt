@@ -1,9 +1,9 @@
 Prefix:
-n/NAME 
-p/PHONE 
-a/ADDRESS 
-e/EMAIL 
-t/TELEGRAM 
+n/NAME
+p/PHONE
+a/ADDRESS
+e/EMAIL
+t/TELEGRAM
 g/[GROUP]...
 m/[MODULE]...
 
@@ -13,7 +13,7 @@ exit
 help
 
 add n/NAME
-add n/NAME p/PHONE a/ADDRESS e/EMAIL 
+add n/NAME p/PHONE a/ADDRESS e/EMAIL
 t/TELEGRAM [g/GROUP]... [m/MODULE]...
 
 edit INDEX [z/FIELD]...

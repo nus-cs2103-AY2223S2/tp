@@ -1,9 +1,9 @@
 
- 
 
- 
- 
- 
+
+
+
+
 Accepts multiple keywords
 Accepts multiple keywords
 
@@ -12,7 +12,7 @@ Exits the application
 
 Displays help window
 
-Adds a contact, name is compulsory	
+Adds a contact, name is compulsory
 
 
 
