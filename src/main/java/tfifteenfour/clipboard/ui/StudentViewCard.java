@@ -49,6 +49,8 @@ public class StudentViewCard extends UiPart<Region> {
     private ImageView displayPhoto;
     @FXML
     private Label remark;
+    @FXML
+    private HBox attendanceListPlaceholder;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} to display.
@@ -60,13 +62,6 @@ public class StudentViewCard extends UiPart<Region> {
         studentId.setText(viewedStudent.getStudentId().value);
         email.setText(viewedStudent.getEmail().value);
         remark.setText(viewedStudent.getRemark().value);
-        // viewedStudent.getModules().stream()
-        //         .sorted(Comparator.comparing(module -> module.courseCode))
-        //         .forEach(module -> modules.getChildren().add(new Label(module.courseCode)));
-        // viewedStudent.getTags().stream()
-        //         .sorted(Comparator.comparing(tag -> tag.tagName))
-        //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
         displayPhoto.setImage(new Image(this.getClass().getResourceAsStream("/images/studenticon.png")));
         try {
             String imageUrl = "data/" + viewedStudent.getStudentId().value + ".png";
@@ -81,6 +76,8 @@ public class StudentViewCard extends UiPart<Region> {
         } catch (Exception e) {
             logger.warning(e.getMessage());
         }
+
+        //attendanceListPlaceholder.getChildren().add(new AttendanceViewPanel(viewedStudent.getSessions()).getRoot());
     }
 
     @Override

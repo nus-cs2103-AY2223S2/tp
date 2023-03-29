@@ -59,6 +59,7 @@
             <Insets left="15.0" right="15.0" top="10.0" />
          </padding>
       </VBox>
+      <HBox fx:id="attendanceListPlaceholder" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" />
    </children>
    <padding>
       <Insets top="8.0" />
