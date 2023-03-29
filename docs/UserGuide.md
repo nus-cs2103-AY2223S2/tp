@@ -222,7 +222,7 @@ Examples:
 
 * `findBook 1984 kill` returns `1984`, `To Kill a Mockingbird`.<br>
 
-![result for 'findPerson 1984 kill'](images/find1984kill.png)
+![result for 'findBook 1984 kill'](images/find1984kill.png)
 
 ### Common Commands
 
