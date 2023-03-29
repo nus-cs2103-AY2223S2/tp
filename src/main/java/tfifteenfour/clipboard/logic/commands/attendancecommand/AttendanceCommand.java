@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic.commands.attendancecommand;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,6 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
-import tfifteenfour.clipboard.model.course.UniqueSessionsList;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 
@@ -50,8 +50,8 @@ public class AttendanceCommand extends Command {
             throw new CommandException("Please select a student to view his / her overall attendance.");
         } else if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE &&
                 currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
-            throw new CommandException("Wrong page. "
-                    + "Navigate to session page and select a session to view overall attendance of the session."
+            throw new CommandException("Wrong page! \n"
+                    + "Navigate to session page and select a session to view overall attendance of the session.\n"
                     + "Navigate to student page and select a student to view overall attendance of the student.");
         }
 
@@ -74,7 +74,7 @@ public class AttendanceCommand extends Command {
             List<Session> sessions = group.getUnmodifiableSessionList();
             int numOfTotalSession = sessions.size();
             int numOfAttendedSession = 0;
-            UniqueSessionsList sessionsWithAttendance = new UniqueSessionsList();
+            List<SessionWithAttendance> sessionsWithAttendance = new ArrayList<>();
 
             for (Session session : sessions) {
                 if (session.getAttendance().get(student) == 1) {
@@ -84,6 +84,8 @@ public class AttendanceCommand extends Command {
                     sessionsWithAttendance.add(new SessionWithAttendance(session, 0));
                 }
             }
+
+            student.setSessionAttendanceList(sessionsWithAttendance);
 
             return new CommandResult(this, String.format(
                     "Attendance for %s in %s %s:\n %d / %d",

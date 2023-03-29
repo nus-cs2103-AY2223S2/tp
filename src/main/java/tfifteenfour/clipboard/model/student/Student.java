@@ -2,7 +2,12 @@ package tfifteenfour.clipboard.model.student;
 
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Student in the address book.
@@ -18,6 +23,7 @@ public class Student {
     // Data fields
     private final Remark remark;
     private final StudentId studentId;
+    private List<SessionWithAttendance> sessionsWithAttendance = new ArrayList<>();
 
 
     /**
@@ -109,4 +115,15 @@ public class Student {
 
         return builder.toString();
     }
+
+    public void setSessionAttendanceList(List<SessionWithAttendance> sessions) {
+        this.sessionsWithAttendance = sessions;
+    }
+
+    public ObservableList<SessionWithAttendance> getObservableSessionList() {
+        ObservableList<SessionWithAttendance> observableSessionList = FXCollections.observableArrayList();
+        observableSessionList.addAll(sessionsWithAttendance);
+        return observableSessionList;
+    }
+
 }
