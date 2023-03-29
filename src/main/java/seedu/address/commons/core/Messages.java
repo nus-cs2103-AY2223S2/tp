@@ -55,6 +55,13 @@ public class Messages {
             + "\nPlease enter full name(s)";
     public static final String MESSAGE_NO_SUCH_STUDENT = "No student found: **%s**.\nPlease check the name entered";
 
+    public static final String MESSAGE_INVALID_LESSON_TIME = "Start time cannot be after end time";
+    public static final String MESSAGE_INVALID_LESSON_DURATION =
+        "The lesson duration is too short(< 30 min)/long(> 3 hours)";
+    public static final String MESSAGE_INVALID_EXAM_TIME = "Exam start time cannot be after exam end time";
+    public static final String MESSAGE_INVALID_EXAM_DURATION =
+        "The exam duration is too short(< 30 min)/long(> 3 hours)";
+
     public static final String MESSAGE_DEADLINE_IN_PAST = "Deadline cannot be in the past!";
     public static final String MESSAGE_ONLY_ONE_STUDENT = "Only one student name is allowed!";
     public static final String MESSAGE_EMPTY_STUDENT = "Student name cannot be empty!";
@@ -66,4 +73,5 @@ public class Messages {
     public static final String MESSAGE_EMPTY_DEADLINE = "Deadline cannot be empty!";
     public static final Object MESSAGE_MULTIPLE_STATUS = "Only one status is allowed!";
     public static final Object MESSAGE_EMPTY_STATUS = "Status cannot be empty!";
+
 }

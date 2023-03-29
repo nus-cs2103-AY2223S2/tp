@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.student.exceptions.DuplicateLessonException;
-import seedu.address.model.student.exceptions.EntryNotFoundException;
 import seedu.address.model.student.exceptions.LessonNotFoundException;
 
 /**
@@ -40,7 +39,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
      */
     public boolean contains(Lesson toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTimeLesson);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -49,7 +48,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
      *
      * @param toAdd the lesson to be added
      */
-    public void add(Lesson toAdd) {
+    public void add(Lesson toAdd) throws DuplicateLessonException, ConflictingLessonsException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateLessonException();
@@ -102,19 +101,24 @@ public class UniqueLessonsList implements Iterable<Lesson> {
         internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
-    public void setLesson(Lesson target, Lesson editedLesson) {
+    public boolean validLessons() {
+        return lessonsAreCompatible(internalList);
+    }
+
+    public void setLesson(Integer target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EntryNotFoundException();
+        if (target >= internalList.size()) {
+            throw new LessonNotFoundException();
         }
-
-        if (!target.isSameTimeLesson(editedLesson) && contains(editedLesson)) {
+        if (contains(editedLesson)) {
             throw new DuplicateEntryException();
         }
-
-        internalList.set(index, editedLesson);
+        Lesson originalLesson = internalList.get(target);
+        internalList.set(target, editedLesson);
+        if (!this.validLessons()) {
+            internalList.set(target, originalLesson);
+            throw new ConflictingLessonsException();
+        }
     }
 
     /**

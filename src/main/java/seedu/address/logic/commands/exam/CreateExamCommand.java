@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Exam;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
  * Adds an exam to a student.
@@ -95,6 +95,15 @@ public class CreateExamCommand extends Command {
             throw new CommandException("start time must be in the future.");
         }
 
+        if (startTime.isAfter(endTime)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_TIME);
+        }
+
+        if (Duration.between(startTime, endTime).toMinutes() < 30 || Duration.between(startTime,
+            endTime).toHours() > 3) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DURATION);
+        }
+
         //Todo: currently weightage is 0 for convenience, implement this where possible
         Exam exam = new Exam(examDescription, startTime, endTime, 0d, null);
 
@@ -102,7 +111,7 @@ public class CreateExamCommand extends Command {
             for (Student student : studentList) {
                 student.addExam(exam);
             }
-        } catch (DuplicateEntryException e) {
+        } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
 

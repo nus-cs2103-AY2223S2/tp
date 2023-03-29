@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -104,8 +105,21 @@ public class UpdateLessonCommand extends Command {
         String newLessonName = this.lessonName.orElse(lessonToUpdate.getTitle());
         LocalDateTime newStartTime = this.startTime.orElse(lessonToUpdate.getStartTime());
         LocalDateTime newEndTime = this.endTime.orElse(lessonToUpdate.getEndTime());
+        if (newStartTime.isAfter(newEndTime)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_TIME);
+        }
+
+        if (Duration.between(newStartTime, newEndTime).toMinutes() < 30 || Duration.between(newStartTime,
+            newEndTime).toHours() > 3) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DURATION);
+        }
+
         Lesson newLesson = new Lesson(newLessonName, newStartTime, newEndTime);
-        student.setLesson(lessonToUpdate, newLesson);
+        try {
+            student.setLesson(index.getZeroBased(), newLesson);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
 
         return new CommandResult(
             String.format(Messages.MESSAGE_LESSON_UPDATED_SUCCESS, index.getOneBased(),
