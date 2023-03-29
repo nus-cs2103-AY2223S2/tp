@@ -369,7 +369,7 @@ have a default value based on the commands. These are documented in the [Command
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The [Placeholder](#524-placeholders) section covers the restrictions for respective placeholders. For example, 
+The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
 the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
@@ -408,7 +408,7 @@ will be overridden by "97833468".
 
 However, note that the following executions are invalid:
 
-* `addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
+* `add n/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
 
   There must be spacings between the placeholders and flags.
 

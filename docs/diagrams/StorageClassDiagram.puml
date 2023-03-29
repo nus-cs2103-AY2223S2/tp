@@ -11,7 +11,7 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage1
+Class "<<interface>>\nStorage" as storage
 Class StorageManager
 
 package "HMHero Storage" #F4F6F6{
@@ -19,26 +19,25 @@ Class "<<interface>>\nHMHeroStorage" as HMHeroStorage
 Class JsonHMHeroStorage
 Class JsonSerializableHMHero
 Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdaptedNote
 }
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage1
+HiddenOutside ..> storage
 
-
-StorageManager .up.|> Storage1
+StorageManager .up.|> storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" HMHeroStorage
 
-Storage1 -left-|> UserPrefsStorage
-Storage1 -right-|> HMHeroStorage
+storage -left-|> UserPrefsStorage
+storage -right-|> HMHeroStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonHMHeroStorage .up.|> HMHeroStorage
 JsonHMHeroStorage ..> JsonSerializableHMHero
 JsonSerializableHMHero --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedNote
 
 @enduml

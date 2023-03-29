@@ -6,10 +6,12 @@ start
 if () then ([Name flag
 present])
     :Create Name Predicate;
+else([else])
 endif
 if () then ([Phone flag
 present])
     :Create Phone Predicate;
+else([else])
 endif
 
 if () then ([else])
