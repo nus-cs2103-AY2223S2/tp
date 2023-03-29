@@ -116,8 +116,8 @@ public class EditCommand extends Command {
         Dob updatedDob = editPatientDescriptor.getDob().orElse(patientToEdit.getDob());
         BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
 
-        Set<GroupName> updatedAllergies = patientToEdit.getAllergy();
-        Set<GroupName> updatedVaccines = patientToEdit.getVaccine();
+        HashSet<GroupName> updatedAllergies = new HashSet<>(patientToEdit.getAllergy());
+        HashSet<GroupName> updatedVaccines = new HashSet<>(patientToEdit.getVaccine());
 
         if (isSet) {
             editPatientDescriptor.getAllergies().ifPresent(allergies -> {
