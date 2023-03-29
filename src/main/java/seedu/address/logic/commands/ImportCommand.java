@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -27,9 +29,17 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_IMPORT_PERSON_SUCCESS = "Import Person: %1$s";
 
-    private final Path importPath = Path.of("data", "export.json");
+    private static final Path standardPath = Path.of("data", "export.json");
 
-    private Person personToAdd;
+    private final Importer importer;
+
+    public ImportCommand(Importer importer) {
+        this.importer = importer;
+    }
+
+    public ImportCommand() {
+        this.importer = new JsonImporter(standardPath);
+    }
 
     /**
      * Executes the command and returns the result message.
@@ -40,9 +50,9 @@ public class ImportCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
         requireNonNull(model);
 
-        Importer importer = new JsonImporter(importPath);
         ReadOnlyAddressBook importReadOnlyAddressBook;
 
         try {
@@ -65,6 +75,7 @@ public class ImportCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> allPersonList = model.getFilteredPersonList();
 
+        Person personToAdd;
         for (Person listPerson : allPersonList) {
             if (listPerson.isSamePerson(importedPerson)) {
                 personToAdd = createImportPerson(importedPerson, listPerson);
@@ -72,7 +83,7 @@ public class ImportCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_IMPORT_PERSON_SUCCESS, personToAdd));
             }
         }
-        personToAdd = importedPerson;
+        personToAdd = createNewImportPerson(importedPerson);
         model.addPerson(personToAdd);
         return new CommandResult(String.format(MESSAGE_IMPORT_PERSON_SUCCESS, personToAdd));
     }
@@ -84,6 +95,16 @@ public class ImportCommand extends Command {
                 importData.getAddress(),
                 existingData.getTags(), // Do not replace tags
                 existingData.getGroups(), // Do not replace groups
+                importData.getIsolatedEventList().getSet(),
+                importData.getRecurringEventList().getSet());
+    }
+    private static Person createNewImportPerson(Person importData) {
+        return new Person(importData.getName(),
+                importData.getPhone(),
+                importData.getEmail(),
+                importData.getAddress(),
+                new HashSet<>(),
+                new HashSet<>(),
                 importData.getIsolatedEventList().getSet(),
                 importData.getRecurringEventList().getSet());
     }
