@@ -2,9 +2,13 @@ package teambuilder.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import teambuilder.commons.exceptions.IllegalValueException;
 import teambuilder.model.person.Name;
 
+/**
+ * Jackson-friendly version of {@link Name}.
+ */
 public class JsonAdaptedName {
     private final String name;
 

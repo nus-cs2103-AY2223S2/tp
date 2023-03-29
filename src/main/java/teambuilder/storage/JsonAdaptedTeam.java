@@ -17,7 +17,9 @@ import teambuilder.model.team.Team;
 import teambuilder.model.team.TeamName;
 
 
-
+/**
+ * Jackson-friendly version of {@link Team}.
+ */
 public class JsonAdaptedTeam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Team's %s field is missing!";
 
@@ -26,6 +28,9 @@ public class JsonAdaptedTeam {
     private final List<JsonAdaptedTag> skills = new ArrayList<>();
     private final List<JsonAdaptedName> members = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedTeam} with the given team details.
+     */
     @JsonCreator
     public JsonAdaptedTeam(@JsonProperty("teamName") String teamName,
                            @JsonProperty("teamDesc") String teamDesc,
@@ -41,6 +46,9 @@ public class JsonAdaptedTeam {
         }
     }
 
+    /**
+     * Converts a given {@code Team} into this class for Jackson use.
+     */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getTeamName().toString();
         teamDesc = source.getTeamDesc().toString();
@@ -53,6 +61,11 @@ public class JsonAdaptedTeam {
 
     }
 
+    /**
+     * Converts this Jackson-friendly adapted team object into the model's {@code team} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted team.
+     */
     public Team toModelType() throws IllegalValueException {
         final List<Name> teamMembers = new ArrayList<>();
         for (JsonAdaptedName name : members) {
@@ -70,7 +83,7 @@ public class JsonAdaptedTeam {
             throw new IllegalValueException(TeamName.MESSAGE_CONSTRAINTS);
         }
         final TeamName modelName = new TeamName(teamName);
-
+        // TODO: check if person in team exists in team builder
         if (teamDesc == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Desc.class.getSimpleName()));

@@ -8,7 +8,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import teambuilder.commons.core.LogsCenter;
-import teambuilder.model.person.Person;
 import teambuilder.model.team.Team;
 
 /**
