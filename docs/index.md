@@ -12,7 +12,7 @@ title: BookFace
     * Add contacts along with the image of the person
     * Quickly import university related contacts
 * The project simulates an ongoing software project for a desktop application (called BookFace) used for managing
-  contact details.
+  contact details of NUS staff/students.
 * It is named BookFace because it is an address book organizer with photos of the contacts you save.
 
 * If you are interested in using BookFace, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
