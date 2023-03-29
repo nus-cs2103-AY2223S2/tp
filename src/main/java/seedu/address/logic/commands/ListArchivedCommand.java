@@ -16,7 +16,7 @@ public class ListArchivedCommand extends Command {
     public static final String COMMAND_WORD = "list_archived";
 
     public static final String MESSAGE_SUCCESS = "Listed all archived applications";
-    public static final String MESSAGE_NO_APPLICATIONS = "No applications at the moment";
+    public static final String MESSAGE_NO_APPLICATIONS = "No archived applications at the moment";
 
 
     @Override
