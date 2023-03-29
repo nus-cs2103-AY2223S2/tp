@@ -40,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
 
+    private ReminderWindow reminderWindow;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -75,6 +77,10 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         quickAccessToolbar = new QuickAccessToolbar(this::executeCommand);
         quickAccessToolbarPlaceholder.getChildren().add(quickAccessToolbar.getRoot());
+
+
+        setAccelerators();
+        reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication());
 
         helpWindow = new HelpWindow();
         headerGridPane.maxWidthProperty().bind(primaryStage.widthProperty());
@@ -161,6 +167,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the reminder window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleReminder() {
+        if (!reminderWindow.isShowing()) {
+            reminderWindow.show();
+        } else {
+            reminderWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -174,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        reminderWindow.hide();
         primaryStage.hide();
     }
 
@@ -225,6 +244,7 @@ public class MainWindow extends UiPart<Stage> {
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
+            reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -234,6 +254,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             quickAccessToolbar.focusHomeButton();
+
+            if (commandResult.isRemind()) {
+                handleReminder();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
