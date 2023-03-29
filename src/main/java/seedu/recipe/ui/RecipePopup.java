@@ -51,6 +51,9 @@ public class RecipePopup extends UiPart<Region> {
     @FXML
     private HBox tags;
 
+    @FXML
+    private HBox emptyTags;
+
     /**
      * Generates and returns the UI instance for this Recipe card.
      *
@@ -85,6 +88,10 @@ public class RecipePopup extends UiPart<Region> {
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (recipe.getTags().size() == 0) {
+            emptyTags.getChildren().add(new Label("No Tags were added. Add some!"));
+        }
+
     }
 
     private void createIngredientList(Recipe recipe) {

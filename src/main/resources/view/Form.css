@@ -9,15 +9,15 @@
 
 .root-layout {
     -fx-background-color: -fx-bg;
-    -fx-background-inset: 0;
-    -fx-border-inset: 0;
+    -fx-background-inset: 5;
+    -fx-border-inset: 5;
 
 }
 
 .root-box {
     -fx-background-color: -fx-bg;
-    -fx-background-inset: 0;
-    -fx-border-inset: 0;
+    -fx-background-inset: 5;
+    -fx-border-inset: 5;
 }
 
 .root-layout .label {
@@ -49,4 +49,12 @@
 
     -fx-border-radius: 4;
     -fx-background-radius: 4;
+}
+
+.button {
+    -fx-background-color: #d4d4d8;
+    -fx-font-family: "IBM Plex Sans Medium";
+    -fx-text-fill: -fx-bg;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }

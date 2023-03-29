@@ -21,6 +21,8 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -62,6 +64,9 @@ public class RecipeForm extends UiPart<Region> {
     private VBox stepsBox;
 
     @FXML
+    private Region buttonCtrLeft;
+
+    @FXML
     private Button saveButton;
 
     @FXML
@@ -95,7 +100,7 @@ public class RecipeForm extends UiPart<Region> {
         if (recipe != null) {
             populateFields();
         }
-        assert saveButton != null;
+        HBox.setHgrow(buttonCtrLeft, Priority.ALWAYS);
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
