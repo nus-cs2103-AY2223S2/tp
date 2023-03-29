@@ -117,7 +117,7 @@ public class EditRoutineCommand extends Command {
      */
     private void updateClientRoutine(Routine routineToEdit, Routine updatedRoutine, FitBookModel model) {
         List<Client> clientList = model.getFitBook().getClientList();
-        if (updatedRoutine.isSameRoutineName(routineToEdit)) {
+        if (!updatedRoutine.isSameRoutineName(routineToEdit)) {
             clientList.forEach(client -> client.changeRoutineIfRoutineNameMatch(routineToEdit, updatedRoutine));
         } else {
             clientList.forEach(client -> client.changeExerciseIfRoutineNameMatch(updatedRoutine));
