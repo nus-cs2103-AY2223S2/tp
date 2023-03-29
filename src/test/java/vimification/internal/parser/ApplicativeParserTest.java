@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import vimification.internal.parser.ApplicativeParser;
-import vimification.internal.parser.Pair;
-import vimification.internal.parser.ParserException;
 
 public class ApplicativeParserTest {
 

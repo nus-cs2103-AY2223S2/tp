@@ -16,9 +16,9 @@ public class VimificationParser {
             .takeNext(ApplicativeParser.untilEof().map(String::strip));
 
     private static final CommandParser<LogicCommand> COMMAND_PARSER =
-            CreateCommandParser.getInstance()
+            AddCommandParser.getInstance()
                     .<LogicCommand>cast()
-                    .or(DeleteCommandParser.getInstance())
+                    // .or(DeleteCommandParser.getInstance())
                     .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;

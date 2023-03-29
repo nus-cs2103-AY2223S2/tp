@@ -1,4 +1,4 @@
-package vimification.logic.parser;
+package vimification.internal.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
-import vimification.internal.parser.ParserException;
-import vimification.internal.parser.VimificationParser;
 
 public class VimificationParserTest {
 
@@ -18,22 +17,19 @@ public class VimificationParserTest {
 
     @Test
     public void unknownCommand_shouldThrow() {
-        String input = ". todo sleep";
-        ParserException ex = assertThrows(
-                EXPECTED_EXCEPTION_CLASS,
-                () -> PARSER.parse(input));
+        String input = ". sleep";
+        ParserException ex = assertThrows(EXPECTED_EXCEPTION_CLASS, () -> PARSER.parse(input));
         assertEquals("Unknown command", ex.getMessage());
-        String input1 = "i hello world";
-        ex = assertThrows(
-                EXPECTED_EXCEPTION_CLASS,
-                () -> PARSER.parse(input1));
-        assertEquals("Unable to parse input: " + input1, ex.getMessage());
+
+        String input1 = "_ hello";
+        ex = assertThrows(EXPECTED_EXCEPTION_CLASS, () -> PARSER.parse(input1));
+        assertEquals("Unknown command", ex.getMessage());
     }
 
     @Test
     public void validCommand_shouldSuccess() {
-        String input = "i todo 'play touhou 6'";
-        LogicCommand cmd = PARSER.parse(input);
+        String input = "a 'play touhou 6'";
+        Command cmd = PARSER.parse(input);
         assertTrue(cmd != null);
     }
 }

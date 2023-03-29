@@ -7,16 +7,16 @@ import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
-public class SearchByKeywordCommand extends SearchCommand {
+public class SearchByTag extends SearchCommand {
     public static final String COMMAND_WORD = "s -t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": search for tasks that has title matching with input keyword.\n"
-            + "Parameters: KEYWORD\n"
-            + "Conditions: Keyword cannot be empty.\n"
-            + "Example: " + COMMAND_WORD + " quiz";
-    public SearchByKeywordCommand(String keyword) {
-        super(task -> task.containsKeyword(keyword));
+            + ": search for tasks with tags matching the input tag.\n"
+            + "Parameters: TAG\n"
+            + "Example: " + COMMAND_WORD + " meeting";
+
+    public SearchByTag(String tag) {
+        super(task -> true); //task.containsTag(tag));
     }
 
     @Override
