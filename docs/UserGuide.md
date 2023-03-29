@@ -220,7 +220,7 @@ Clears all entries from the FitBook.
 
 Format: `clear`
 
-### Export Client details : `export`
+### Exporting Client details : `export`
 
 {% include information.html content="
 
@@ -240,7 +240,7 @@ Format: `export`
     * Gender of Client
 * Example generated CSV file when opened using Microsoft Excel:
 
-    [!CSV Sample File](images/CSV%20Sample.PNG)
+    ![CSV Sample File](images/CSV%20Sample.PNG)
 
 
 ### Adding a routine: `addRoutine`
@@ -395,7 +395,7 @@ Format: `exportRoutines`
 
 * Example generated CSV file when opened using Microsoft Excel:
 
-  [!CSV Sample File](images/CSVRoutineSample.png)
+  ![CSV Sample File](images/CSVRoutineSample.png)
 
 ### Adding new weight to a client: `addWeight`
 
