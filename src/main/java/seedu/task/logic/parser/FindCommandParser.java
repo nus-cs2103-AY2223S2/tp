@@ -2,13 +2,7 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_ALLMATCH;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
+import static seedu.task.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -29,6 +23,7 @@ import seedu.task.model.task.EventToContainsKeywordsPredicate;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.NameContainsAllKeywordsPredicate;
 import seedu.task.model.task.NameContainsKeywordsPredicate;
+import seedu.task.model.task.SameEffortPredicate;
 import seedu.task.model.task.TagsContainsAllKeywordsPredicate;
 import seedu.task.model.task.TagsContainsKeywordsPredicate;
 
@@ -46,9 +41,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_ALLMATCH,
-                    PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO);
+                    PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO, PREFIX_EFFORT);
 
-        if (areTooManyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)) {
+        if (areTooManyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -68,6 +63,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_TO).isPresent()) {
             return parseForFindCommand(PREFIX_TO, argMultimap);
+        }
+        if (argMultimap.getValue(PREFIX_EFFORT).isPresent()) {
+            return parseForFindCommand(PREFIX_EFFORT, argMultimap);
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
@@ -126,6 +124,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (prefix.equals(PREFIX_TO)) {
             String date = Date.parseFindDate(argMultimap.getValue(PREFIX_TO).get());
             return new FindCommand(new EventToContainsKeywordsPredicate(date));
+        } else if (prefix.equals(PREFIX_EFFORT)) {
+            String effort = argMultimap.getValue(PREFIX_EFFORT).get();
+            return new FindCommand(new SameEffortPredicate(ParserUtil.parseEffort(effort)));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
