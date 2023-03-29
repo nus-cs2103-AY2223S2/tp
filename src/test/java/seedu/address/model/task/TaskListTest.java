@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalScores.SCORE_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
 
@@ -158,6 +157,7 @@ public class TaskListTest {
     @Test
     public void get_invalidScoreIndex_throwsIndexOutofBoundsException() {
         taskList.add(VALID_TASK_1);
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> taskList.get(INDEX_SECOND_PERSON.getZeroBased()));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, ()
+                -> taskList.get(INDEX_SECOND_PERSON.getZeroBased()));
     }
 }
