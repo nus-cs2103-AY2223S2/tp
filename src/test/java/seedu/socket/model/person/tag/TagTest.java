@@ -6,8 +6,6 @@ import static seedu.socket.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.socket.model.person.tag.Tag;
-
 public class TagTest {
 
     @Test
