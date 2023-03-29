@@ -106,6 +106,14 @@ public class TaskCard extends UiPart<Region> {
                 circle1.setFill(Paint.valueOf("#fad02c"));
             }
         }
+
+        if (!task.isDone()) {
+            circle1.setFill(Paint.valueOf("#ffffff"));
+            circle2.setFill(Paint.valueOf("#ffffff"));
+            circle3.setFill(Paint.valueOf("#ffffff"));
+            circle4.setFill(Paint.valueOf("#ffffff"));
+            circle5.setFill(Paint.valueOf("#ffffff"));
+        }
     }
 
     @Override
