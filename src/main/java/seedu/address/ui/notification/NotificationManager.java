@@ -190,7 +190,7 @@ public class NotificationManager {
         Calendar now = Calendar.getInstance();
         int t = 60 - now.get(Calendar.SECOND);
         notif.hideAfter(Duration.seconds(t));
-        notif.showConfirm();
+        notif.showInformation();
     }
 
     /**
@@ -229,7 +229,7 @@ public class NotificationManager {
                 timetableWindow.run();
             }
         });
-        notif.showConfirm();
+        notif.showInformation();
     }
     private String nextSlotTime() {
         Calendar now = Calendar.getInstance();
