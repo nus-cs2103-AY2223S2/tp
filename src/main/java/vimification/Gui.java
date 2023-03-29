@@ -24,8 +24,8 @@ import vimification.storage.LogicTaskListStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
-import vimification.taskui.Ui;
-import vimification.taskui.UiManager;
+import vimification.ui.Ui;
+import vimification.ui.UiManager;
 
 /**
  * This class sets up the necessary code for the GUI to access the back-end.

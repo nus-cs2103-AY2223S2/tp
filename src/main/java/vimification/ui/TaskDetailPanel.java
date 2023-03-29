@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

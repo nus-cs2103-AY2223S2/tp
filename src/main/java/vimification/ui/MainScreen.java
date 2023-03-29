@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ReadOnlyDoubleProperty;
@@ -32,6 +32,7 @@ public class MainScreen extends UiPart<VBox> {
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
+    private TaskTabPanel taskTabPanel;
     private TaskCreationPanel taskCreationPanel;
     private CommandInput commandInput;
 
@@ -81,9 +82,8 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public void initializeTaskListPanel() {
-        taskListPanel = new TaskListPanel(logic.getViewTaskList());
-        taskListPanel.setMainScreen(this);
-        loadLeftComponent(taskListPanel);
+        taskTabPanel = new TaskTabPanel(this, logic);
+        loadLeftComponent(taskTabPanel);
     }
 
     private void intializeCommandInput() {
@@ -112,7 +112,7 @@ public class MainScreen extends UiPart<VBox> {
             break;
         case "j":
         case "k":
-            taskListPanel.requestFocus();
+            taskTabPanel.requestFocus();
             break;
         }
     }
@@ -155,7 +155,7 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
     }
 
-    private <T extends Pane> void loadRightComponent(UiPart<T> component) {
+    protected <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(topComponentHeight);

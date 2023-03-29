@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import java.util.List;
 
@@ -82,9 +82,13 @@ public class CommandInput extends UiPart<HBox> {
     private void executeCommand(String input) {
 
         String commandString = cleanCommandString(input);
-        System.out.println("Your command is " + input);
+        // System.out.println("Your command is " + input);
 
-        processUiCommand(commandString);
+        boolean isUiCommand = processUiCommand(commandString);
+
+        if (isUiCommand) {
+            return;
+        }
 
         try {
             CommandResult result = logic.execute(commandString);
@@ -106,14 +110,21 @@ public class CommandInput extends UiPart<HBox> {
         }
     }
 
-    private void processUiCommand(String commandString) {
+    private boolean processUiCommand(String commandString) {
         checkIsExitCommand(commandString);
 
         // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
         if (isNumeric(commandString)) {
             mainScreen.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(commandString));
-            return;
+            return true;
         }
+
+        if (commandString.equals("help")) {
+            mainScreen.loadRightComponent(new ManualPanel());
+            return true;
+        }
+
+        return false;
     }
 
     private void checkIsExitCommand(String commandString) {

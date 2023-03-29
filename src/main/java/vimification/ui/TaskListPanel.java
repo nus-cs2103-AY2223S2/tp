@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -35,7 +35,7 @@ public class TaskListPanel extends UiPart<VBox> {
     }
 
     public void requestFocus() {
-        this.taskListView.requestFocus();
+        taskListView.requestFocus();
     }
 
     /**
