@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.DrugInventoryBuilder;
+import seedu.careflow.testutil.PatientBuilder;
 import seedu.careflow.testutil.PatientRecordBuilder;
 
 public class CareFlowModelManagerTest {
@@ -73,7 +75,7 @@ public class CareFlowModelManagerTest {
 
     @Test
     public void setPatientRecordFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/patientpath");
+        Path path = Paths.get("careflowk/file/patientpath");
         modelManager.setPatientRecordFilePath(path);
         assertEquals(path, modelManager.getPatientRecordFilePath());
     }
@@ -85,25 +87,42 @@ public class CareFlowModelManagerTest {
 
     @Test
     public void getDrugInventoryFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/drugpath");
+        Path path = Paths.get("careflow/file/drugpath");
         modelManager.setDrugInventoryFilePath(path);
         assertEquals(path, modelManager.getDrugInventoryFilePath());
     }
 
     @Test
-    public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPatient(null));
+    public void hasSamePatientName_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSamePatientName(null));
     }
 
     @Test
-    public void hasPatient_patientNotInPatientRecord_returnsFalse() {
-        assertFalse(modelManager.hasPatient(ALICE));
+    public void hasSamePatientName_patientNotInPatientRecord_returnsFalse() {
+        assertFalse(modelManager.hasSamePatientName(ALICE));
     }
 
     @Test
-    public void hasPatient_patientInPatientRecord_returnsTrue() {
+    public void hasSamePatientName_patientInPatientRecord_returnsTrue() {
         modelManager.addPatient(ALICE);
-        assertTrue(modelManager.hasPatient(ALICE));
+        assertTrue(modelManager.hasSamePatientName(ALICE));
+    }
+
+    @Test
+    public void hasSamePatientIc_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSamePatientIc(null));
+    }
+
+    @Test
+    public void hasSamePatientIc_icNotInPatientRecord_returnsFalse() {
+        assertFalse(modelManager.hasSamePatientIc(ALICE));
+    }
+
+    @Test
+    public void hasSamePatientIc_icInPatientRecord_returnsTrue() {
+        modelManager.addPatient(ALICE);
+        Patient patient = new PatientBuilder().withIc(ALICE.getIc().value).build();
+        assertTrue(modelManager.hasSamePatientIc(ALICE));
     }
 
     @Test

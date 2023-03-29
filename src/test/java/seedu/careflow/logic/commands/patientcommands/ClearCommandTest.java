@@ -1,6 +1,6 @@
 package seedu.careflow.logic.commands.patientcommands;
 
-import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
