@@ -195,7 +195,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:memo: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the information fields (referred to as *parameters*) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -295,9 +295,11 @@ Format: `help [COMMAND]`
 
 If you are lost while using ConnectUS, simply use the `help` command! Using the `help` command alone will show a message explaining how to access this User Guide.
 
-![help message](images/helpMessage.png)
+![HelpMessage](images/helpMessage.png)
 
 If you want to know the usage instructions of a specific command, simply use `help [COMMAND]`, where `[COMMAND]` is the command that you need help with.
+
+![HelpMessageCommand](images/johndoe.png)
 
 Examples: `help`, `help add`, `help list`
 
@@ -325,6 +327,12 @@ ConnectUS comes with a set of default contacts. If you want to remove all defaul
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
 </div>
 
+**Example:**
+
+**Input in Command Box:** `clear`
+
+**Result:**<br>![ClearCommand](images/ClearCommand.png)
+
 ## 4.4 Adding a contact: `add`
 
 Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​ [r/REMARK]…​`
@@ -341,15 +349,19 @@ A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (includin
 
 **Input in Command Box:** `add n/James`
 
-**Result:**<br>![AddContactExample1](images/johndoe.png)
+**Result:**<br>![AddContactExample1](images/AddContactExample1.png)
 
 **Example 2:**
 
 **Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers r/Year 2 b/01/01/2000`
 
-**Result:**<br>![AddContactExample2](images/johndoe.png)
+**Result:**<br>![AddContactExample2](images/AddContactExample2.png)
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
+</div>
 
 [↑ Back to feature list](#4-features)
 
@@ -379,6 +391,10 @@ The `edit` command:
 **Result:**<br>![EditContactExample](images/johndoe.png)
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you edit an existing contact.
+</div>
 
 [↑ Back to feature list](#4-features)
 
