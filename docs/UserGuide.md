@@ -100,7 +100,7 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -138,7 +138,7 @@ Use this command to add him/her to your NeoBook.
 
 **Syntax:**
 
-`add {SPECIFIER}/{INPUT}...`
+`add n/NAME SPECIFIER/INPUT...`
 
 Here are all the specifiers that can be used:
 
@@ -228,7 +228,7 @@ Use this command to edit his/her details easily!
 
 **Syntax:**
 
-`edit INDEX {SPECIFIER}/{DATA}...`
+`edit INDEX SPECIFIER/DATA...`
 
 _Here are some important requirements for you to take note:_
 
@@ -275,7 +275,7 @@ Use this command to find contacts using keywords and fields you specify!
 
 **Syntax:**
 
-`find KEYWORD {SPECIFIER}/{KEYWORDS} ...`
+`find KEYWORD SPECIFIER/KEYWORDS...`
 
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
@@ -438,7 +438,7 @@ to the event using this command!
 
 **Syntax:**
 
-`tagpersonevent et/{EVENT INDEX} pt/{NAME}`
+`tagpersonevent et/EVENT INDEX pt/NAME`
 
 _Here are some important requirements for you to take note:_
 * The EVENT INDEX is the index of the event you want to tag the person to.
@@ -463,7 +463,7 @@ Untag their contacts from the event using this command!
 
 **Syntax:**
 
-`tagpersonevent et/{EVENT INDEX} pt/{NAME}`
+`tagpersonevent et/EVENT INDEX pt/NAME`
 
 _Here are some important requirements for you to take note:_
 * The EVENT INDEX is the index of the event you want to tag the person to.
