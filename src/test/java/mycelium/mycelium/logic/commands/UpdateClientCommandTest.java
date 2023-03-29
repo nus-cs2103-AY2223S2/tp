@@ -4,6 +4,7 @@ import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.RANTARO;
 import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -67,6 +68,7 @@ public class UpdateClientCommandTest {
         UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, desc);
         model.addClient(WEST);
         updateClientCommand.execute(model);
+        assertFalse(model.hasClient(WEST));
         assertTrue(model.hasClient(new ClientBuilder().withEmail(RANTARO.getEmail().value).build()));
     }
     @Test
