@@ -25,15 +25,15 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList(), );
     }
 
     @Test
     public void execute_newFish_success() {
         Fish validFish = new FishBuilder().build();
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList(), );
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         expectedModel.addFish(validFish);
 
         assertCommandSuccess(new AddCommand(validFish, Index.fromOneBased(1)), model,

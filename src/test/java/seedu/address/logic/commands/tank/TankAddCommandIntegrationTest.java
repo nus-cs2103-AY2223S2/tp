@@ -24,7 +24,7 @@ public class TankAddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList(), );
     }
 
     @Test
@@ -32,7 +32,7 @@ public class TankAddCommandIntegrationTest {
         Tank validTank = new TankBuilder().build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         expectedModel.addTank(validTank);
 
         assertCommandSuccess(new TankAddCommand(validTank), model,

@@ -27,9 +27,9 @@ import seedu.address.model.fish.NameContainsKeywordsPredicate;
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            getTypicalTankList());
+            getTypicalTankList(), );
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            getTypicalTankList());
+            getTypicalTankList(), );
 
     @Test
     public void equals() {

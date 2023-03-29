@@ -102,9 +102,9 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, getTypicalTaskList(), getTypicalTankList());
+        modelManager = new ModelManager(addressBook, userPrefs, getTypicalTaskList(), getTypicalTankList(), );
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,13 +118,13 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, getTypicalTaskList(),
-                getTypicalTankList())));
+                getTypicalTankList(), )));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredFishList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, getTypicalTaskList(),
-                getTypicalTankList())));
+                getTypicalTankList(), )));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
@@ -133,6 +133,6 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, getTypicalTaskList(),
-                getTypicalTankList())));
+                getTypicalTankList(), )));
     }
 }

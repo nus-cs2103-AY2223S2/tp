@@ -65,17 +65,17 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveTankList(ReadOnlyTankList tankList, Path filePath) throws IOException;
 
     // ================ Readings methods ==============================
-    Path getFullAmmoniaLevelsFilePath();
+    Path getFullReadingLevelsFilePath();
 
-    Optional<ReadOnlyReadingLevels> readFullAmmoniaLevels()
+    Optional<ReadOnlyReadingLevels> readFullReadingLevels()
             throws DataConversionException,
             IOException;
 
-    Optional<ReadOnlyReadingLevels> readFullAmmoniaLevels(Path filePath)
+    Optional<ReadOnlyReadingLevels> readFullReadingLevels(Path filePath)
             throws DataConversionException, IOException;
 
-    void saveFullAmmoniaLevels(ReadOnlyReadingLevels fullAmmoniaLevels) throws IOException;
+    void saveFullReadingLevels(ReadOnlyReadingLevels fullAmmoniaLevels) throws IOException;
 
-    void saveFullAmmoniaLevels(ReadOnlyReadingLevels fullAmmoniaLevels, Path filePath) throws IOException;
+    void saveFullReadingLevels(ReadOnlyReadingLevels fullAmmoniaLevels, Path filePath) throws IOException;
 
 }

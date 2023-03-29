@@ -44,11 +44,11 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(),
                 getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Fish editedFish = new FishBuilder().build();
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
@@ -65,11 +65,11 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(),
                 getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Index indexLastFish = Index.fromOneBased(expectedModel.getFilteredFishList().size());
         Fish lastFish = expectedModel.getFilteredFishList().get(indexLastFish.getZeroBased());
 
@@ -90,11 +90,11 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(),
                 getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Fish editedFish = new FishBuilder(expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased()))
                 .build();
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
@@ -111,11 +111,11 @@ public class EditCommandTest {
     @Test
     public void execute_filteredList_success() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(),
                 getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
 
         showFishAtIndex(model, INDEX_FIRST_FISH);
         Fish fishInFilteredList = expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
@@ -134,7 +134,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateFishUnfilteredList_failure() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Fish firstFish = model.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
         firstFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(firstFish).build();
@@ -146,7 +146,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateFishFilteredList_failure() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         showFishAtIndex(model, INDEX_FIRST_FISH);
 
         // edit fish in filtered list into a duplicate in address book
@@ -162,7 +162,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidFishIndexUnfilteredList_failure() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFishList().size() + 1);
         //The fish parameter of edit commands have tank attribute as an index.
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).withTank("1").build();
@@ -178,7 +178,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidFishIndexFilteredList_failure() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         showFishAtIndex(model, INDEX_FIRST_FISH);
         Index outOfBoundIndex = INDEX_SECOND_FISH;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -194,7 +194,7 @@ public class EditCommandTest {
     @Test
     public void equals() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_FISH, DESC_AMY);
 
         // same values -> returns true

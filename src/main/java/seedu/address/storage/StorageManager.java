@@ -157,31 +157,31 @@ public class StorageManager implements Storage {
 
     // ================ Readings methods ==============================
     @Override
-    public Path getFullAmmoniaLevelsFilePath() {
-        return tankListStorage.getTankListFilePath();
+    public Path getFullReadingLevelsFilePath() {
+        return fullReadingLevelsStorage.getFullReadingLevelsFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyReadingLevels> readFullAmmoniaLevels()
+    public Optional<ReadOnlyReadingLevels> readFullReadingLevels()
             throws DataConversionException,
             IOException {
-        return readFullAmmoniaLevels(fullReadingLevelsStorage.getFullReadingLevelsFilePath());
+        return readFullReadingLevels(fullReadingLevelsStorage.getFullReadingLevelsFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyReadingLevels> readFullAmmoniaLevels(Path filePath)
+    public Optional<ReadOnlyReadingLevels> readFullReadingLevels(Path filePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return fullReadingLevelsStorage.readFullReadingLevels(filePath);
     }
 
     @Override
-    public void saveFullAmmoniaLevels(ReadOnlyReadingLevels fullAmmoniaLevels) throws IOException {
-        saveFullAmmoniaLevels(fullAmmoniaLevels, fullReadingLevelsStorage.getFullReadingLevelsFilePath());
+    public void saveFullReadingLevels(ReadOnlyReadingLevels fullReadingLevels) throws IOException {
+        saveFullReadingLevels(fullReadingLevels, fullReadingLevelsStorage.getFullReadingLevelsFilePath());
     }
 
     @Override
-    public void saveFullAmmoniaLevels(ReadOnlyReadingLevels ammoniaLevels, Path filePath) throws IOException {
+    public void saveFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         fullReadingLevelsStorage.saveFullReadingLevels(ammoniaLevels, filePath);
     }

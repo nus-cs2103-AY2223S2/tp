@@ -17,7 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path taskListFilePath = Paths.get("data" , "tasklist.json");
     private Path tankListFilePath = Paths.get("data", "tanklist.json");
-    private Path fullAmmoniaLevelsPath = Paths.get("data", "ammonialevels.json");
+    private Path fullAmmoniaLevelsPath = Paths.get("data", "readings.json");
     /**
      * Creates a {@code UserPrefs} with default values.
      */

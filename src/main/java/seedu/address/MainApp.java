@@ -25,7 +25,10 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TankList;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleReadingsUtil;
 import seedu.address.model.util.SampleTankUtil;
 import seedu.address.model.util.SampleTaskUtil;
 import seedu.address.storage.Storage;
@@ -139,7 +142,23 @@ public class MainApp extends Application {
             initialTankList = new TankList();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList);
+        Optional<ReadOnlyReadingLevels> fullReadingsOptional;
+        ReadOnlyReadingLevels initialFullReadings;
+        try {
+            fullReadingsOptional = storage.readFullReadingLevels();
+            if (fullReadingsOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample Readings");
+            }
+            initialFullReadings = fullReadingsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
     }
 
     private void initLogging(Config config) {

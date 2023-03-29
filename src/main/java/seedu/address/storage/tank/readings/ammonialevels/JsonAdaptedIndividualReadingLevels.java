@@ -97,6 +97,12 @@ public class JsonAdaptedIndividualReadingLevels {
         String[] datesTemp = commaSeperatedDatesTemp.split(",");
         //create unique adapted indi list
         UniqueIndividualReadingLevels ret = new UniqueIndividualReadingLevels();
+        boolean noValuesPresent = valuesAmmonia[0] == "";
+        if (noValuesPresent) {
+            ret.setTank(tank);
+            return ret;
+        }
+
         //for loop, create ammonia levels, add to list
         for (int i = 0; i < valuesAmmonia.length; i++) {
             String curValueAmmonia = valuesAmmonia[i];

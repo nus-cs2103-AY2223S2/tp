@@ -14,7 +14,7 @@ public abstract class TankCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<tank command word>\n"
             + "Tank commands: add, "
             + "delete, "
-            + "view"
+            + "view, "
             + "addReadings";
 
     /**

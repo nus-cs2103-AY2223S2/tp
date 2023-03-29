@@ -14,7 +14,7 @@ import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 public class Tank {
     private final TankName name;
     private final AddressBook fishList;
-    private final UniqueIndividualReadingLevels readingLevels;
+    private UniqueIndividualReadingLevels readingLevels;
 
     /**
      * Creates a Tank.
@@ -40,6 +40,9 @@ public class Tank {
         return this.readingLevels;
     }
 
+    public void setIndividualReadingLeves(UniqueIndividualReadingLevels readings) {
+        this.readingLevels = readings;
+    }
     /**
      * Returns true if this tank has a fish fue to be feed today
      * @return true if this tank has a fish fue to be feed today

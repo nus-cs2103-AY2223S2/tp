@@ -30,7 +30,7 @@ public class ReadingsAddCommand extends TankCommand {
             + PREFIX_TANK + "1 "
             + PREFIX_AMMONIA_LEVEL + "1.2 ";
 
-    public static final String MESSAGE_SUCCESS = "New set of readings added: %1$s, %1$s, %1$s";
+    public static final String MESSAGE_SUCCESS = "New set of readings added: %1$s, %2$s, %3$s";
     public static final String MESSAGE_MISSING_TANK = "The tank index specified does not exist";
 
     private final AmmoniaLevel toAddAmmonia;

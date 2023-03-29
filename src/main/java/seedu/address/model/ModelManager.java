@@ -40,7 +40,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyTaskList taskList, ReadOnlyTankList tankList) {
+                        ReadOnlyTaskList taskList, ReadOnlyTankList tankList, ReadOnlyReadingLevels fullReadings) {
         requireAllNonNull(addressBook, userPrefs, taskList);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -53,15 +53,26 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
-        this.fullReadingLevels = new FullReadingLevels();
+        this.fullReadingLevels = new FullReadingLevels(fullReadings);
         filteredReadingLevels = new FilteredList<>(this.fullReadingLevels.getFullReadingLevels());
 
         updateTanksOfEachFishAndFishListOfEachTank();
         updateTankOfEachTask();
+        updateTankOfEachIndividualReadings();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList());
+        this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList(),
+                new FullReadingLevels());
+    }
+
+    public void updateTankOfEachIndividualReadings() {
+        for (UniqueIndividualReadingLevels r : fullReadingLevels.getFullReadingLevels()) {
+            Tank duplicateTank = r.getTank();
+            Tank realTankInstance = getTankListTankInstance(duplicateTank);
+            realTankInstance.setIndividualReadingLeves(r);
+            r.setTank(realTankInstance);
+        }
     }
 
     /**
