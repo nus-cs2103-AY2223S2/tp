@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;

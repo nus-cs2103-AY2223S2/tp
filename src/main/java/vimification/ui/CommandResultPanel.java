@@ -1,4 +1,4 @@
-package vimification.taskui;
+package vimification.ui;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
