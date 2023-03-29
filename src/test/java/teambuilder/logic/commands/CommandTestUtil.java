@@ -20,8 +20,8 @@ import teambuilder.commons.core.index.Index;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.TeamBuilder;
-import teambuilder.model.person.PersonContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
+import teambuilder.model.person.PersonContainsKeywordsPredicate;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 
 /**
