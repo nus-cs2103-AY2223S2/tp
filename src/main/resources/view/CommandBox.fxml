@@ -10,7 +10,7 @@
    <HBox prefHeight="0.0" prefWidth="200.0" spacing="20.0">
       <children>
          <Label id="context" fx:id="contextLabel" maxHeight="1.7976931348623157E308" styleClass="context_label" text="mods" HBox.hgrow="ALWAYS" />
-        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." HBox.hgrow="ALWAYS" />
+        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." HBox.hgrow="ALWAYS" onKeyPressed="#handleKeyPress"/>
       </children>
       <StackPane.margin>
          <Insets left="20.0" />

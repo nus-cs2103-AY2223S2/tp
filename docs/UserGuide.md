@@ -55,7 +55,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Type the command in the command box.
+2. Type the command in the command box. Use the `UP` and `DOWN` arrow to toggle through previous commands that you have executed.
 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -86,8 +86,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 - `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
 
 ### Mark/Unmark
-  - `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
-  - `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
+
+- `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
+- `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
 
 ### Delete
 
@@ -279,6 +280,7 @@ Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags
 - `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
+
 - `edit CS2040 /code CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 ### Edit a Lecture
