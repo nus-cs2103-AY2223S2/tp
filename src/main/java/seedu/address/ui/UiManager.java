@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -46,8 +48,10 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
-            NotificationManager notificationManager = new NotificationManager(logic);
+            List<Runnable> l = new ArrayList<>();
+            l.add(() -> mainWindow.handleReminderList());
+            l.add(() -> mainWindow.openTimetable());
+            NotificationManager notificationManager = new NotificationManager(logic, l);
             notificationManager.checkReminderList();
 
             Calendar now = Calendar.getInstance();
