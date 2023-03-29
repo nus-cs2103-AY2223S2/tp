@@ -50,19 +50,30 @@ public class MarkHomeworkAsDoneCommandParser implements Parser<MarkHomeworkAsDon
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one name is allowed for mark homework as done command."));
+                    "Only one student name is allowed."));
+        }
+        // name cannot be an empty string
+        if (nameKeywords.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Name cannot be empty."));
         }
 
+        // there should also be one index keyword
+        if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one index is allowed for mark homework as done command."));
+        }
+        // index cannot be an empty string
+        if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Index cannot be empty."));
+        }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         return new MarkHomeworkAsDoneCommand(names, new NamePredicate(nameKeywords), index);

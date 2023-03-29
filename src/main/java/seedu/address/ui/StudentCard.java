@@ -64,7 +64,7 @@ public class StudentCard extends UiPart<Region> {
         this.mainWindow = mainWindow;
 
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().getFirstName());
+        name.setText(student.getName().fullName);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
