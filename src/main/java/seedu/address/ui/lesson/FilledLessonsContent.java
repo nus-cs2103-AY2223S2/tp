@@ -14,12 +14,12 @@ import seedu.address.ui.homework.FilledHomeworkContent;
 import seedu.address.ui.homework.GeneralHomeworkContent;
 
 /**
- * An UI component that displays detailed information of a {@code Student}.
+ * A UI component that displays detailed information of a {@code Student}.
  */
 public class FilledLessonsContent extends GeneralHomeworkContent {
     private static final Logger logger = LogsCenter.getLogger(FilledHomeworkContent.class);
     private static final String FXML = "LessonsContent.fxml";
-    private static final String NAME_LABEL = "Name: %s";
+    private static final String NAME_LABEL = "First Name: %s";
     private static final String PAST_LESSONS_LIST_NAME = "Past Lessons: ";
     private static final String UPCOMING_LESSONS_LIST_NAME = "Upcoming Lessons: ";
 

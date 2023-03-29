@@ -42,7 +42,7 @@ public class FilledExamsContent extends GeneralExamsContent {
         super(FXML);
         studentName = student.getName();
 
-        name.setText(String.format("Full Name: %s", student.getName().getFirstName()));
+        name.setText(String.format("First Name: %s", student.getName().getFirstName()));
         examsListName.setText("All Exams: ");
 
         // Set the all exams list panel to display the all the exams of the student
