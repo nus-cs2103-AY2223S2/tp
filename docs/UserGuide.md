@@ -164,7 +164,6 @@ For commands that do not take in parameters (such as `help`, `list`, `exit` and 
 
 ## Features and commands
 
-&nbsp;&nbsp;
 ### Viewing help
 
 Shows a message explaning how to access the help page.
@@ -173,7 +172,6 @@ Shows a message explaning how to access the help page.
 
 Format: `:help`
 
-&nbsp;&nbsp;
 ### Adding task
 
 Adds a task to the current task list.
@@ -191,7 +189,6 @@ Example after the command, `:a Enhance CS2103T tp user guide`:
 
 <img style="float:centre" class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" width="1203" height="599" title="Add Task Command Demo">
 
-&nbsp;&nbsp;
 ### Adding task with deadline
 
 Adds a task with a deadline to the current task list.
@@ -210,7 +207,6 @@ Example after the command, `:a CS2130T v1.3 -d 2022-03-31`:
 
 <img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" width="1203" height="599" title="Add Deadline Command Demo">
 
-&nbsp;&nbsp;
 ### Deleting task
 
 Deletes a task from the current task list by specifying the task number.
@@ -237,7 +233,6 @@ Example:
 </tr>
 </table>
 
-&nbsp;&nbsp;
 ### Exiting the application
 
 Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
@@ -278,6 +273,8 @@ _Details coming soon ..._
 ---
 
 ## Flag summary
+
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 <!-- TODO: Complete this command summary box -->
 ## Command summary
