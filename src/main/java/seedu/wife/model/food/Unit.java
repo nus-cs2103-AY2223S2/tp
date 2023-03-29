@@ -2,6 +2,7 @@ package seedu.wife.model.food;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
+import static seedu.wife.commons.util.StringUtil.capitalizeString;
 
 /**
  * Represents the unit representation of the food item in WIFE
@@ -19,7 +20,7 @@ public class Unit {
     public Unit(String unit) {
         requireNonNull(unit);
         checkArgument(isValid(unit), MESSAGE_CONSTRAINTS);
-        this.unit = unit;
+        this.unit = capitalizeString(unit.toLowerCase());
     }
 
     /**

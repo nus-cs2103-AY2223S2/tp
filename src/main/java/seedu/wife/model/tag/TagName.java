@@ -30,7 +30,7 @@ public class TagName {
         checkArgument(isNamePresent(tagName), TAG_NAME_NOT_PRESENT);
         checkArgument(isNameNotLengthy(tagName), TAG_NAME_LENGTHY);
         checkArgument(isValidString(tagName), INVALID_TAG_NAME);
-        this.tagName = formatName(tagName);
+        this.tagName = capitalizeString(tagName.toLowerCase());
     }
 
     /**
