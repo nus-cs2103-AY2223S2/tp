@@ -4,6 +4,9 @@ import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.ViewCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
+/**
+ * Parses input arguments and creates a new ViewCommand object.
+ */
 public class ViewCommandParser {
 
     /**

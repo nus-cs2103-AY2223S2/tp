@@ -25,8 +25,9 @@ public class ModelManager implements Model {
     private final Tags tagList;
     private final UserPrefs userPrefs;
     private final FilteredList<Bookmark> filteredBookmarks;
-    public Bookmark selectedBookmark;
-    public int selectedIndex;
+    private int selectedIndex;
+    private Bookmark selectedBookmark;
+
 
     /**
      * Initializes a ModelManager with the given library and userPrefs, tagList.

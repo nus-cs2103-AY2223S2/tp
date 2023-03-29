@@ -10,6 +10,9 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
 
+/**
+ * Views a bookmark identified using it's displayed index from the library.
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";

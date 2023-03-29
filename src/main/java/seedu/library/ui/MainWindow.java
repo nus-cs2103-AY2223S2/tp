@@ -77,8 +77,8 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         // prevent from resizing smaller than specified width
-        primaryStage.widthProperty().addListener((o, oldValue, newValue)->{
-            if(newValue.intValue() < 1050) {
+        primaryStage.widthProperty().addListener((o, oldValue, newValue) -> {
+            if (newValue.intValue() < 1050) {
                 primaryStage.setResizable(false);
                 primaryStage.setWidth(1050);
                 primaryStage.setResizable(true);
@@ -273,9 +273,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isUpdate()) {
                 handleUpdate();
             }
-            int Index = logic.getSelectedIndex();
-            if (Index != -1) {
-                bookmarkListPanel.select(Index);
+            int index = logic.getSelectedIndex();
+            if (index != -1) {
+                bookmarkListPanel.select(index);
             }
             separateUpdate();
 
