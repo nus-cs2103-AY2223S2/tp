@@ -135,7 +135,7 @@ delete course <INDEX>
 
 
 Examples:
-- `delete course 1` will delete the 1st course listed in the course list.
+- `delete course 1` will delete the first course listed in the course list.
 
 
 
@@ -167,7 +167,7 @@ select <INDEX>
 - Selects course at index specified in `<INDEX>` and displays list of groups from that course.
 
 Examples:
-- `select 1` will display a list of groups from the 1st course.
+- `select 1` will display a list of groups from the first course.
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -204,7 +204,7 @@ delete group <INDEX>
 
 
 Examples:
-- `delete group 1` will delete 1st group listed in the group list panel of CLIpboard.
+- `delete group 1` will delete first group listed in the group list panel of CLIpboard.
 
 
 
@@ -236,7 +236,7 @@ select <INDEX>
 - Selects group at index specified in `<INDEX>` and displays list of students in that group.
 
 Examples:
-- `select 1` will return a list of students from the 1st group.
+- `select 1` will return a list of students from the first group.
 
 
 
@@ -251,7 +251,7 @@ session <INDEX>
 - Selects group at index specified in `<INDEX>` and displays list of sessions in that group.
 
 Examples:
-- `session 1` will return a list of sessions from the 1st group.
+- `session 1` will return a list of sessions from the first group.
 
 
 
@@ -266,7 +266,7 @@ task <INDEX>
 - Selects group at index specified in `<INDEX>` and displays list of tasks assigned to that group.
 
 Examples:
-- `task 1` will return a list of tasks for the 1st group.
+- `task 1` will return a list of tasks for the first group.
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -298,11 +298,11 @@ Deletes a student from the student roster.
 
 Format:
 ```
-delete <INDEX>
+delete student <INDEX>
 ```
 
 Examples:
-- `delete 1` will delete 1st student listed in the student list panel of CLIpboard.
+- `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
 
 
 
@@ -336,7 +336,7 @@ copy <INDEX>
 ```
 
 Examples:
-- `copy 1` will copy the email of the 1st student in the list to your clipboard.
+- `copy 1` will copy the email of the first student in the list to your clipboard.
 
 
 
@@ -466,7 +466,7 @@ delete session <INDEX>
 
 
 Examples:
-- `delete session 1` will delete the 1st session listed in the session list panel of CLIpboard.
+- `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
 
 
@@ -495,7 +495,7 @@ select <INDEX>
 - Selects session at specified index and displays list of students in that session.
 
 Examples:
-- `select 1` will return a list of students from the 1st session.
+- `select 1` will return a list of students from the first session.
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -512,7 +512,7 @@ mark <INDEX>, <INDEX>, ...
 ```
 
 Examples:
-- `mark 1` will mark the 1st student as present.
+- `mark 1` will mark the first student as present.
 - `mark 2,3,4` will mark the 2nd, 3rd and 4th students as present.
 
 
@@ -528,7 +528,7 @@ unmark <INDEX>, <INDEX>, ...
 ```
 
 Examples:
-- `unmark 1` will mark the 1st student as absent.
+- `unmark 1` will mark the first student as absent.
 - `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
 
@@ -576,7 +576,7 @@ delete task <INDEX>
 
 
 Examples:
-- `delete task 1` will delete the 1st task listed.
+- `delete task 1` will delete the first task listed.
 
 
 
