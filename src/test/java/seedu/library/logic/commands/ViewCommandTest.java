@@ -14,11 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.commons.core.Messages;
 import seedu.library.commons.core.index.Index;
-import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
 import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
+import seedu.library.model.bookmark.Bookmark;
+
 
 
 /**
