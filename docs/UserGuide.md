@@ -21,7 +21,7 @@ that your time spent managing your contacts and schedule is minimised!
 
 <div markdown="block" class="alert alert-info">
 
-**:light_bulb: Tip**<br>
+**:bulb: Tip**<br>
 For more details about QuickContacts' features, you may head over to the [Features](#features) section below!
 
 </div>
@@ -55,7 +55,7 @@ indicating the type of information present.
 
 <div markdown="block" class="alert alert-info">
 
-**:light_bulb: Tip**<br>
+**:bulb: Tip**<br>
 Tips empower you to make full use of QuickContacts.
 
 </div>
@@ -82,7 +82,7 @@ And that's it! You are good to go with QuickContacts.
 
 <div markdown="block" class="alert alert-info">
 
-**:light_bulb: Tip**<br>
+**:bulb: Tip**<br>
 QuickContacts is packaged with sample contacts and meetings. To delete the default data, simply execute the `clear`
 command.
 
