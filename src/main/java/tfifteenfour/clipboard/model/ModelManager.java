@@ -4,16 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.commands.Command;
-import tfifteenfour.clipboard.model.course.Course;
-import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,9 +18,6 @@ public class ModelManager implements Model {
 
     private final Roster roster;
     private final UserPrefs userPrefs;
-    private final FilteredList<Student> filteredStudents;
-    private final FilteredList<Student> viewedStudent;
-    private final FilteredList<Course> filteredCourses;
 
     private String commandTextExecuted;
     private Command commandExecuted;
@@ -40,12 +32,6 @@ public class ModelManager implements Model {
 
         this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.roster.getUnmodifiableStudentList());
-        viewedStudent = new FilteredList<>(this.roster.getUnmodifiableStudentList());
-
-        filteredCourses = new FilteredList<>(this.roster.getModifiableCourseList());
-
-        System.out.println("MODEL MANAGER CONTRUCTOR" + roster.getModifiableCourseList().size());
     }
 
     public ModelManager() {
@@ -63,11 +49,6 @@ public class ModelManager implements Model {
         this.roster = roster;
         this.userPrefs = userPrefs;
         this.commandTextExecuted = commandTextExecuted;
-        this.filteredStudents = new FilteredList<>(roster.getUnmodifiableStudentList());
-        viewedStudent = new FilteredList<>(roster.getUnmodifiableStudentList());
-
-        filteredCourses = new FilteredList<>(roster.getUnmodifiableCourseList());
-
     }
 
     @Override
@@ -133,80 +114,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyRoster getRoster() {
+    public Roster getRoster() {
         return roster;
-    }
-
-    @Override
-    public boolean hasStudent(Student student) {
-        requireNonNull(student);
-        return roster.hasStudent(student);
-    }
-
-    @Override
-    public boolean hasCourse(Course course) {
-        requireNonNull(course);
-        return roster.hasCourse(course);
-    }
-
-    @Override
-    public void deleteStudent(Student target) {
-        roster.removeStudent(target);
-    }
-
-    @Override
-    public void addStudent(Student student) {
-        roster.addStudent(student);
-        //updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void addCourse(Course course) {
-        roster.addCourse(course);
-    }
-
-    @Override
-    public void deleteCourse(Course course) {
-        roster.deleteCourse(course);
-    }
-
-    @Override
-    public void setStudent(Student target, Student editedStudent) {
-        requireAllNonNull(target, editedStudent);
-
-        roster.setStudent(target, editedStudent);
-    }
-
-    //=========== Filtered Student List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedRoster}
-     */
-    @Override
-    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
-        return filteredStudents;
-    }
-
-    @Override
-    public ObservableList<Student> getModifiableFilteredStudentList() {
-        return roster.getModifiableStudentList();
-    }
-
-    @Override
-    public ObservableList<Course> getModifiableFilteredCourseList() {
-        return roster.getModifiableCourseList();
-    }
-
-    @Override
-    public ObservableList<Course> getUnmodifiableFilteredCourseList() {
-        return filteredCourses;
-    }
-
-    @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
-        requireNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -229,20 +138,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return roster.equals(other.roster)
-                && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
-    }
-
-    //=========== Viewed Student Accessors =============================================================
-    @Override
-    public ObservableList<Student> getViewedStudent() {
-        return viewedStudent;
-    }
-
-    @Override
-    public void updateViewedStudent(Predicate<Student> predicate) {
-        requireNonNull(predicate);
-        viewedStudent.setPredicate(predicate);
+                && userPrefs.equals(other.userPrefs);
     }
 }
 

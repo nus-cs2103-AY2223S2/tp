@@ -23,8 +23,9 @@ import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
@@ -49,7 +50,8 @@ public class RosterParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Command parseCommand(String userInput, CurrentSelection currentSelection) throws ParseException {
+    public static Command parseCommand(String userInput, CurrentSelection currentSelection)
+            throws ParseException, CommandException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -64,7 +66,7 @@ public class RosterParser {
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
-            return new NewEditCommandParser().parse(arguments);
+            return new EditCommandParser(currentSelection).parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -73,16 +75,7 @@ public class RosterParser {
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        // case ModuleCommand.COMMAND_WORD:
-        //     return new ModuleCommandParser().parse(arguments);
-
-        // case ListCommand.COMMAND_WORD:
-        //     return new ListCommand();
-
-        // case ViewCommand.COMMAND_WORD:
-        //     return new ViewCommandParser().parse(arguments);
+            return new FindCommandParser(currentSelection).parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -91,7 +84,7 @@ public class RosterParser {
             return new HelpCommand();
 
         case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+            return new RemarkCommandParser(currentSelection).parse(arguments);
 
         case UploadCommand.COMMAND_WORD:
             return new UploadCommandParser().parse(arguments);

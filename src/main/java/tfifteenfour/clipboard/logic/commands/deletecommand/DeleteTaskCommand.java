@@ -54,7 +54,7 @@ public class DeleteTaskCommand extends DeleteCommand {
         }
 
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Task> lastShownList = selectedGroup.getUnmodifiableTaskList();
+        List<Task> lastShownList = selectedGroup.getUnmodifiableFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

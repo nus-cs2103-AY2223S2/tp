@@ -51,7 +51,7 @@ public class EditCourseCommand extends EditCommand {
             throw new CommandException("Wrong page. Navigate to course page to edit course");
         }
 
-        List<Course> lastShownList = model.getUnmodifiableFilteredCourseList();
+        List<Course> lastShownList = model.getRoster().getUnmodifiableFilteredCourseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
@@ -65,8 +65,7 @@ public class EditCourseCommand extends EditCommand {
             newCourse.addGroup(group);
         }
 
-        model.getModifiableFilteredCourseList().set(index.getZeroBased(), newCourse);
-
+        model.getRoster().setCourse(courseToEdit, newCourse);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, courseToEdit, newCourse), willModifyState);
     }
 

@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.logic.parser;
 
 import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**
@@ -12,5 +13,5 @@ public interface Parser<T extends Command> {
      * Parses {@code userInput} into a command and returns it.
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
-    T parse(String userInput) throws ParseException;
+    T parse(String userInput) throws ParseException, CommandException;
 }

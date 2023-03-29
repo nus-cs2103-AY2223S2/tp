@@ -56,7 +56,7 @@ public class TaskCommand extends Command {
         Group selectedGroup = handleSelectGroup(model, currentSelection);
         currentSelection.setCurrentPage(PageType.TASK_PAGE);
         return new CommandResult(this,
-                String.format("[TASK PAGE]\nViewing tasks of : %s", selectedGroup), willModifyState);
+                String.format("[TASK PAGE]\nViewing: tasks of group %s", selectedGroup), willModifyState);
     }
 
     /**
@@ -68,7 +68,7 @@ public class TaskCommand extends Command {
      * @throws CommandException if there is an error executing the command
      */
     private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
+        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableFilteredGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }

@@ -3,6 +3,7 @@ package tfifteenfour.clipboard.ui;
 import java.io.File;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -26,16 +27,20 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
@@ -55,6 +60,8 @@ import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static Image clippySuccess;
+    private static Image clippyFailure;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -109,6 +116,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private ImageView logoPlaceholder;
 
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -125,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        initClippy();
+
     }
 
     public Stage getPrimaryStage() {
@@ -165,11 +176,21 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void initClippy() {
+        String imageUrl = "docs/Images/CommandSuccess.GIF";
+        File file = new File(imageUrl);
+        clippySuccess = new Image(file.toURI().toString());
+
+        imageUrl = "docs/Images/CommandFail.GIF";
+        file = new File(imageUrl);
+        clippyFailure = new Image(file.toURI().toString());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableFilteredCourseList());
         leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -247,9 +268,6 @@ public class MainWindow extends UiPart<Stage> {
         closeSessionTab();
         closeTaskTab();
         closeNavigationBar();
-        logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
-        logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
-        logic.getCurrentSelection().navigateBackToCoursePage();
     }
 
     private void refreshNavigationBar() {
@@ -266,8 +284,11 @@ public class MainWindow extends UiPart<Stage> {
      * Displays currently viewed student in right pane.
      */
     public void refreshViewPane() {
-        studentViewCard = new StudentViewCard(logic.getCurrentSelection().getSelectedStudent());
-        rightPanelPlaceholder.getChildren().add(studentViewCard.getRoot());
+        rightPanelPlaceholder.getChildren().clear();
+        ObservableList<Student> viewedStudent =
+                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+        rightPanelPlaceholder.getChildren().add(new StudentViewCard(viewedStudent.get(0)).getRoot());
     }
 
     /**
@@ -287,7 +308,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows course pane.
      */
     private void showCoursePane() {
-        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableFilteredCourseList());
         leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
@@ -296,7 +317,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param course that groups belong to.
      */
     private void showGroupPane(Course course) {
-        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableGroupList());
+        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableFilteredGroupList());
         leftPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
     }
 
@@ -305,17 +326,17 @@ public class MainWindow extends UiPart<Stage> {
      * @param group that students belong to.
      */
     private void showStudentPane(Group group) {
-        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableStudentList());
+        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableFilteredStudentList());
         leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     private void showSessionPane(Group group) {
-        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableSessionList());
+        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableFilteredSessionList());
         leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
     private void showTaskPane(Group group) {
-        TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableTaskList());
+        TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableFilteredTaskList());
         leftPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
@@ -384,36 +405,42 @@ public class MainWindow extends UiPart<Stage> {
      * Handles UI for select command.
      */
     private void handleSelectCommand() {
-        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
 
+        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+
+        switch (currentPage) {
+        case COURSE_PAGE:
+            break;
+        case GROUP_PAGE:
             showGroupPane(logic.getCurrentSelection().getSelectedCourse());
             closeModuleTab();
             showGroupTab();
             refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
-                && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
-
-            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
-            refreshViewPane();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
-
-            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
-            showStudentTab();
-            refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {
+            break;
+        case STUDENT_PAGE:
+            if (logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+                showStudentTab();
+                refreshNavigationBar();
+            } else {
+                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+                refreshViewPane();
+            }
+            break;
+        case SESSION_STUDENT_PAGE:
             logic.getCurrentSelection().getSelectedSession().selectSession();
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
             refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_STUDENT_PAGE)) {
+            break;
+        case TASK_STUDENT_PAGE:
             logic.getCurrentSelection().getSelectedTask().selectTask();
             showTaskPane(logic.getCurrentSelection().getSelectedGroup());
             showGradePane(logic.getCurrentSelection().getSelectedTask());
             refreshNavigationBar();
+            break;
+        default:
+            break;
         }
     }
 
@@ -422,12 +449,16 @@ public class MainWindow extends UiPart<Stage> {
      * @param backCommand
      */
     private void handleBackCommand(BackCommand backCommand) {
-        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.COURSE_PAGE)) {
+        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+
+        switch (currentPage) {
+        case COURSE_PAGE:
             showCoursePane();
             showModuleTab();
             closeGroupTab();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            break;
+        case GROUP_PAGE:
             showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
             showGroupTab();
             closeViewPane();
@@ -435,18 +466,22 @@ public class MainWindow extends UiPart<Stage> {
             closeSessionTab();
             closeTaskTab();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            break;
+        case SESSION_PAGE:
             logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+            break;
+        case TASK_PAGE:
             logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
             showTaskPane(logic.getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
+            break;
+        default:
+            break;
         }
-
     }
 
     private void handleSessionCommand() {
@@ -489,8 +524,13 @@ public class MainWindow extends UiPart<Stage> {
                 || commandResult.getCommand() instanceof MarkPresentCommand) {
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
 
-        } else if (commandResult.getCommand()instanceof AssignCommand) {
+        } else if (commandResult.getCommand() instanceof AssignCommand) {
             showGradePane(logic.getCurrentSelection().getSelectedTask());
+
+        } else if (commandResult.getCommand() instanceof UploadCommand
+                || commandResult.getCommand() instanceof EditStudentCommand
+                || commandResult.getCommand() instanceof RemarkCommand) {
+            refreshViewPane();
         }
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {
@@ -498,17 +538,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showClippySuccess() {
-        String imageUrl = "docs/Images/CommandSuccess.GIF";
-        File file = new File(imageUrl);
-        Image newImage = new Image(file.toURI().toString());
-        logoPlaceholder.setImage(newImage);
+        logoPlaceholder.setImage(clippySuccess);
     }
 
     private void showClippyFailure() {
-        String imageUrl = "docs/Images/CommandFail.GIF";
-        File file = new File(imageUrl);
-        Image newImage = new Image(file.toURI().toString());
-        logoPlaceholder.setImage(newImage);
+        logoPlaceholder.setImage(clippyFailure);
     }
 
     /**
@@ -523,14 +557,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             handleSpecialCommandConsiderations(commandResult);
-            //showClippySuccess();
+            showClippySuccess();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
 
-            //showClippyFailure();
+            showClippyFailure();
             throw e;
         }
     }

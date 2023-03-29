@@ -3,12 +3,14 @@ package tfifteenfour.clipboard.logic.commands;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 
@@ -58,9 +60,18 @@ public class UploadCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+
+        if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+            throw new CommandException("Wrong page. Navigate to student page to upload a file.");
+        }
+
         try {
             Path sourcePath = this.sourcePath;
             Path destPath = this.destPath;
+            File toCopy = new File(String.valueOf(sourcePath));
+            if (!toCopy.isFile()) {
+                throw new CommandException("Please upload a valid file.");
+            }
             Files.copy(sourcePath, destPath.resolve(sourcePath.getFileName()), REPLACE_EXISTING);
             return new CommandResult(this, generateSuccessMessage(sourcePath), willModifyState);
         } catch (IOException e) {

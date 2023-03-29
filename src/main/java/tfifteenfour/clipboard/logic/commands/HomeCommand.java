@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.logic.commands;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 
 /**
@@ -17,6 +18,11 @@ public class HomeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) {
+        ShowAllListedPredicate.resetAllFilters(model, currentSelection);
+        currentSelection.getSelectedGroup().unMarkAllSessions();
+        currentSelection.getSelectedGroup().unMarkAllTasks();
+        currentSelection.navigateBackToCoursePage();
+
         return new CommandResult(this, MESSAGE_SUCCESS, willModifyState);
     }
 }

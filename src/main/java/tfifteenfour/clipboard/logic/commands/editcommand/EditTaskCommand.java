@@ -50,7 +50,7 @@ public class EditTaskCommand extends EditCommand {
         }
 
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Task> lastShownList = selectedGroup.getModifiableTaskList();
+        List<Task> lastShownList = selectedGroup.getUnmodifiableTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
@@ -61,7 +61,7 @@ public class EditTaskCommand extends EditCommand {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         newTask.setGrades(taskToEdit.getGrades());
 
-        lastShownList.set(index.getZeroBased(), newTask);
+        selectedGroup.setTask(taskToEdit, newTask);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, taskToEdit, newTask), willModifyState);
     }
 

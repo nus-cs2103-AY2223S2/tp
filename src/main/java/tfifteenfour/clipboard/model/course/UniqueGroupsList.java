@@ -6,8 +6,7 @@ import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNu
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import tfifteenfour.clipboard.model.UniqueList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 import tfifteenfour.clipboard.model.course.exceptions.GroupNotFoundException;
 
@@ -22,11 +21,7 @@ import tfifteenfour.clipboard.model.course.exceptions.GroupNotFoundException;
  *
  * @see Group#isSameGroup(Group)
  */
-public class UniqueGroupsList implements Iterable<Group> {
-
-    private final ObservableList<Group> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Group> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+public class UniqueGroupsList extends UniqueList<Group> {
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.
@@ -40,6 +35,7 @@ public class UniqueGroupsList implements Iterable<Group> {
      * Adds a student to the list.
      * The student must not already exist in the list.
      */
+    @Override
     public void add(Group toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -53,7 +49,8 @@ public class UniqueGroupsList implements Iterable<Group> {
      * {@code target} must exist in the list.
      * The student identity of {@code editedGroup} must not be the same as another existing student in the list.
      */
-    public void setGroup(Group target, Group editedGroup) {
+    @Override
+    public void set(Group target, Group editedGroup) {
         requireAllNonNull(target, editedGroup);
 
         int index = internalList.indexOf(target);
@@ -66,49 +63,6 @@ public class UniqueGroupsList implements Iterable<Group> {
         }
 
         internalList.set(index, editedGroup);
-    }
-
-    /**
-     * Removes the equivalent student from the list.
-     * The student must exist in the list.
-     */
-    public void remove(Group toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new GroupNotFoundException();
-        }
-    }
-
-    public void setGroups(UniqueGroupsList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code groups}.
-     * {@code groups} must not contain duplicate groups.
-     */
-    public void setGroups(List<Group> groups) {
-        requireAllNonNull(groups);
-        if (!groupsAreUnique(groups)) {
-            throw new DuplicateGroupException();
-        }
-
-        internalList.setAll(groups);
-    }
-
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Group> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
-    }
-
-    /**
-     * Returns the backing list as a modifiable {@code ObservableList}.
-     */
-    public ObservableList<Group> asModifiableObservableList() {
-        return internalList;
     }
 
     @Override
@@ -131,7 +85,7 @@ public class UniqueGroupsList implements Iterable<Group> {
     /**
      * Returns true if {@code groups} contains only unique groups.
      */
-    private boolean groupsAreUnique(List<Group> groups) {
+    protected boolean elementsAreUnique(List<Group> groups) {
         for (int i = 0; i < groups.size() - 1; i++) {
             for (int j = i + 1; j < groups.size(); j++) {
                 if (groups.get(i).isSameGroup(groups.get(j))) {
