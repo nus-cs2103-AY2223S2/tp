@@ -4,11 +4,16 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.wife.commons.core.GuiSettings;
 import seedu.wife.commons.core.LogsCenter;
@@ -42,13 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private Button enterButton;
+
+    @FXML
     private StackPane foodListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -112,15 +117,18 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        foodListPanelPlaceholder.setBackground(new Background(new BackgroundFill(
+                Color.valueOf("D9D9D9"), new CornerRadii(5), null)));
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getWifeFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        resultDisplayPlaceholder.setBackground(new Background(new BackgroundFill(
+                Color.valueOf("D9D9D9"), new CornerRadii(5), null)));
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxPlaceholder.setBackground(new Background(new BackgroundFill(
+                Color.valueOf("D9D9D9"), new CornerRadii(5), null)));
     }
 
     /**
@@ -142,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            helpWindow.getRoot().setAlwaysOnTop(true);
         } else {
             helpWindow.focus();
         }
@@ -179,6 +188,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
+                helpWindow.setHelpMessage(commandResult.getHelpMessage());
                 handleHelp();
             }
 

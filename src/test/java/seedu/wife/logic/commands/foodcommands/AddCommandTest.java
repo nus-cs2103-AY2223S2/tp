@@ -22,10 +22,12 @@ import seedu.wife.model.ReadOnlyUserPrefs;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
+import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandTest {
-
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New food added: %1$s";
+    private static final String EXPECTED_FAILURE_DUPLICATE_FOOD = "This food item already exists in WIFE";
     @Test
     public void constructor_nullFood_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
@@ -38,7 +40,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validFood).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFood), commandResult.getFeedbackToUser());
+        assertEquals(String.format(EXPECTED_SUCCESS_MESSAGE, validFood), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFood), modelStub.foodAdded);
     }
 
@@ -48,7 +50,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validFood);
         ModelStub modelStub = new ModelStubWithFood(validFood);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, EXPECTED_FAILURE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -78,7 +80,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    public static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -115,12 +117,47 @@ public class AddCommandTest {
         }
 
         @Override
+        public void createTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setWife(ReadOnlyWife newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyWife getWife() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTag(Tag target, Tag editedTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getFilteredTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTagList(Predicate<Tag> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,7 +182,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Food> getFoodList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredFoodList(Predicate<Food> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void viewFood(Food food) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -15,37 +15,70 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Tag food in WIFE with a specified tag.
+ * Command to tag food.
  */
 public class TagFoodCommand extends Command {
+    public static final String COMMAND_WORD = "tag";
+    public static final String MESSAGE_USAGE = "Tag a food with any of your tags in the list.\n"
+            + "Format:\n"
+            + "tag <index> n/<tag name>\n"
+            + "example: tag 1 n/Vege";
     private Tag tag;
-    private Index targetIndex;
+    private Index index;
 
     /**
-     * Constructor to create a Tag command.
-     * @param tag Tag you wish to add to the food item.
-     * @param index Index of the food item in the list you wish to tag.
+     * Constructor to create a new TagFoodCommand object.
      */
-    public TagFoodCommand(Tag tag, Index index) {
-        requireNonNull(tag);
+    public TagFoodCommand(String tagName, Index index) {
+        requireNonNull(tagName);
         requireNonNull(index);
-        this.tag = tag;
-        this.targetIndex = index;
+        this.tag = new Tag(tagName);
+        this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Food foodToTag = TagFoodCommand.getFoodToTag(model, tag, index);
+        Set<Tag> foodTags = foodToTag.getCurrentTags();
+
+        if (foodTags.contains(tag)) {
+            throw new CommandException(String.format(Messages.MESSAGE_DOUBLE_TAG,
+                    foodToTag.getName(), tag.getTagName()));
+        }
+
+        foodTags.add(tag);
+        Food editedFood = foodToTag.createNewFoodWithNewTags(foodToTag, foodTags);
+        model.setFood(foodToTag, editedFood);
+
+        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFUL_FOOD_TAG,
+                editedFood.getName(), tag.getTagName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagFoodCommand // instanceof handles nulls
+                && tag.equals(((TagFoodCommand) other).tag))
+                && index.equals(((TagFoodCommand) other).index); // state check
+    }
+
+    // Tag utils
+    public static Food getFoodToTag(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
+        requireNonNull(tag);
+        requireNonNull(index);
 
-        List<Food> lastShownList = model.getFilteredFoodList();
+        if (!model.hasTag(tag)) {
+            throw new CommandException(String.format(Messages.MESSAGE_TAG_NOT_FOUND, tag.getTagName()));
+        }
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        List<Food> foodList = model.getFilteredFoodList();
+
+        if (index.getZeroBased() >= foodList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
         }
 
-        Food foodToTag = lastShownList.get(targetIndex.getZeroBased());
-        Set<Tag> currFoodTags = foodToTag.getTags();
-        currFoodTags.add(this.tag);
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFUL_FOOD_TAG, foodToTag, tag));
+        return foodList.get(index.getZeroBased());
     }
+
 }

@@ -1,0 +1,12 @@
+{
+	"foods": [
+		{
+			"name": "Meiji",
+			"unit": "9482424",
+			"quantity": "-2",
+			"expiryDate": "13-11-2024",
+			"tagged": []
+		}
+	],
+	"tags": ["New", "Used", "Dairy", "Chocolate"]
+}

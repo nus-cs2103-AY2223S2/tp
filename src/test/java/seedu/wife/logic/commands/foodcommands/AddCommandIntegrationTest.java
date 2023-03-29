@@ -2,7 +2,7 @@ package seedu.wife.logic.commands.foodcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newFood_success() {
         Food validFood = new FoodBuilder().build();
 
         Model expectedModel = new ModelManager(model.getWife(), new UserPrefs());
@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateFood_throwsCommandException() {
         Food foodInList = model.getWife().getFoodList().get(0);
         assertCommandFailure(new AddCommand(foodInList), model, AddCommand.MESSAGE_DUPLICATE_FOOD);
     }

@@ -29,7 +29,7 @@ public class UniqueFoodList implements Iterable<Food> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent food as the given argument.
      */
     public boolean contains(Food toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueFoodList implements Iterable<Food> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a food item to the list.
+     * The food must not already exist in the list.
      */
     public void add(Food toAdd) {
         requireNonNull(toAdd);
@@ -53,19 +53,19 @@ public class UniqueFoodList implements Iterable<Food> {
      * {@code target} must exist in the list.
      * The food of {@code editedFood} must not be the same as another existing food in the list.
      */
-    public void setFood(Food target, Food editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setFood(Food target, Food editedFood) {
+        requireAllNonNull(target, editedFood);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new FoodNotFoundException();
         }
 
-        if (!target.isSameFood(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameFood(editedFood) && contains(editedFood)) {
             throw new DuplicateFoodException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedFood);
     }
 
     /**
@@ -75,6 +75,17 @@ public class UniqueFoodList implements Iterable<Food> {
     public void remove(Food toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
+            throw new FoodNotFoundException();
+        }
+    }
+
+    /**
+     * Views the equivalent food from the list.
+     * The food must exist in the list.
+     */
+    public void view(Food toView) {
+        requireNonNull(toView);
+        if (!internalList.contains(toView)) {
             throw new FoodNotFoundException();
         }
     }

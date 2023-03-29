@@ -8,7 +8,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.Wife;
 
 /**
- * Clears the address book.
+ * Clears WIFE.
  */
 public class ClearCommand extends Command {
 

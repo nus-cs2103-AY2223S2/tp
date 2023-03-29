@@ -2,7 +2,7 @@ package seedu.wife.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-//import static seedu.wife.testutil.TypicalFood.getTypicalWife;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import java.nio.file.Path;
 
@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.wife.commons.core.GuiSettings;
-//import seedu.wife.model.ReadOnlyWife;
-//import seedu.wife.model.Wife;
+import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.UserPrefs;
+import seedu.wife.model.Wife;
 
 public class StorageManagerTest {
 
@@ -48,18 +48,18 @@ public class StorageManagerTest {
     }
 
 
-    //    @Test
-    //    public void wifeReadSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonAddressBookStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-    //         */
-    //        Wife original = getTypicalWife();
-    //        storageManager.saveWife(original);
-    //        ReadOnlyWife retrieved = storageManager.readWife().get();
-    //        assertEquals(original, new Wife(retrieved));
-    //    }
+    @Test
+    public void wifeReadSave() throws Exception {
+        /*
+        * Note: This is an integration test that verifies the StorageManager is properly wired to the
+        * {@link JsonWifeStorage} class.
+        * More extensive testing of UserPref saving/reading is done in {@link JsonWifeStorageTest} class.
+        */
+        Wife original = getTypicalWife();
+        storageManager.saveWife(original);
+        ReadOnlyWife retrieved = storageManager.readWife().get();
+        assertEquals(original, new Wife(retrieved));
+    }
 
     @Test
     public void getWifeFilePath() {

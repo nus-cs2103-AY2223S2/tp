@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.commons.util.StringUtil;
@@ -14,6 +15,7 @@ import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
 import seedu.wife.model.tag.Tag;
+import seedu.wife.model.tag.TagName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -89,10 +91,11 @@ public class ParserUtil {
     public static ExpiryDate parseExpiryDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!ExpiryDate.isValid(trimmedDate)) {
-            throw new ParseException(ExpiryDate.FORMAT_MESSAGE_CONSTRAINTS);
+        try {
+            return new ExpiryDate(trimmedDate);
+        } catch (IllegalArgumentException ie) {
+            throw new ParseException(ie.getMessage());
         }
-        return new ExpiryDate(trimmedDate);
     }
 
     /**
@@ -104,10 +107,25 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!TagName.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static TagName parseTagName(String tagName) throws ParseException {
+        requireNonNull(tagName);
+        String trimmedTag = tagName.trim();
+        if (!TagName.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
+        }
+        return new TagName(trimmedTag);
     }
 
     /**
@@ -120,5 +138,12 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns true if none of the prefix contains empty value in the given {@code ArgumentMultiMap}
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

@@ -15,6 +15,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.model.tag.Tag;
 
 /**
@@ -34,9 +35,13 @@ class JsonAdaptedFood {
      * Constructs a {@code JsonAdaptedFood} with the given food details.
      */
     @JsonCreator
-    public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("unit") String unit,
-                             @JsonProperty("quantity") String quantity, @JsonProperty("expiryDate") String expiryDate,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedFood(
+        @JsonProperty("name") String name,
+        @JsonProperty("unit") String unit,
+        @JsonProperty("quantity") String quantity,
+        @JsonProperty("expiryDate") String expiryDate,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged
+    ) {
         this.name = name;
         this.unit = unit;
         this.quantity = quantity;
@@ -99,8 +104,8 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ExpiryDate.class.getSimpleName()));
         }
-        if (!ExpiryDate.isValid(expiryDate)) {
-            throw new IllegalValueException(ExpiryDate.FORMAT_MESSAGE_CONSTRAINTS);
+        if (!ExpiryDateValidator.isValidDateFormat(expiryDate)) {
+            throw new IllegalValueException(ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
         }
         final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 

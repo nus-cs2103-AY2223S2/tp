@@ -2,67 +2,66 @@ package seedu.wife.logic.parser.foodcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_DESC;
+import static seedu.wife.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.wife.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static seedu.wife.logic.commands.CommandTestUtil.INVALID_UNIT_DESC;
 import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.NAME_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.QUANTITY_DESC_MEIJI;
+import static seedu.wife.logic.commands.CommandTestUtil.TAG_DESC_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_CHOCOLATE;
+import static seedu.wife.logic.commands.CommandTestUtil.UNIT_DESC_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.wife.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.wife.testutil.TypicalFood.MEIJI;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.commands.foodcommands.AddCommand;
+import seedu.wife.model.food.Food;
+import seedu.wife.model.food.Name;
+import seedu.wife.model.food.Quantity;
+import seedu.wife.model.food.Unit;
+import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
+import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
-    /*
     @Test
     public void parse_allFieldsPresent_success() {
-        Food expectedFood = new FoodBuilder(MEIJI).withTags(VALID_TAG_DAIRY).build();
+        Food expectedFood = new FoodBuilder(MEIJI).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_MEIJI + UNIT_DESC_MEIJI
-                + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI + TAG_DESC_MEIJI, new AddCommand(expectedFood));
+        assertParseSuccess(parser, NAME_DESC_MEIJI + UNIT_DESC_MEIJI
+                + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI, new AddCommand(expectedFood));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_MEIJI + NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE
-                + QUANTITY_DESC_CHOCOLATE + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE,
+        assertParseSuccess(parser, NAME_DESC_CHOCOLATE + NAME_DESC_MEIJI + UNIT_DESC_MEIJI
+                + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI,
                 new AddCommand(expectedFood));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_CHOCOLATE + NAME_DESC_MEIJI + UNIT_DESC_CHOCOLATE
-                + QUANTITY_DESC_CHOCOLATE + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_MEIJI,
+        // multiple units - last unit accepted
+        assertParseSuccess(parser, NAME_DESC_MEIJI + UNIT_DESC_CHOCOLATE + UNIT_DESC_MEIJI
+                + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI,
                 new AddCommand(expectedFood));
 
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_MEIJI
-                + QUANTITY_DESC_CHOCOLATE + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_MEIJI, new AddCommand(expectedFood));
+        // multiple quantities - last quantity accepted
+        assertParseSuccess(parser, NAME_DESC_MEIJI + UNIT_DESC_MEIJI + QUANTITY_DESC_CHOCOLATE
+                + QUANTITY_DESC_MEIJI + EXPIRY_DATE_DESC_MEIJI, new AddCommand(expectedFood));
 
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
-                + EXPIRY_DATE_DESC_MEIJI + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_MEIJI, new AddCommand(expectedFood));
-
-        // multiple tags - all accepted
-        Food expectedFoodMultipleTags = new FoodBuilder(CHOCOLATE).withTags(VALID_TAG_DAIRY, VALID_TAG_CHOCOLATE)
-                .build();
-        assertParseSuccess(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
-                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_MEIJI,
-                new AddCommand(expectedFoodMultipleTags));
-    }
-    */
-
-    /*
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Food expectedFood = new FoodBuilder(MEIJI).withTags().build();
+        // multiple expiry dates - last expiry date accepted
         assertParseSuccess(parser, NAME_DESC_MEIJI + UNIT_DESC_MEIJI + QUANTITY_DESC_MEIJI
-                        + EXPIRY_DATE_DESC_CHOCOLATE, new AddCommand(expectedFood));
+                + EXPIRY_DATE_DESC_CHOCOLATE + EXPIRY_DATE_DESC_MEIJI, new AddCommand(expectedFood));
     }
-    */
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
@@ -72,15 +71,15 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
                         + EXPIRY_DATE_DESC_CHOCOLATE, expectedMessage);
 
-        // missing phone prefix
+        // missing unit prefix
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + VALID_UNIT_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
                         + EXPIRY_DATE_DESC_CHOCOLATE, expectedMessage);
 
-        // missing email prefix
+        // missing quantity prefix
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + VALID_QUANTITY_CHOCOLATE
                         + EXPIRY_DATE_DESC_CHOCOLATE, expectedMessage);
 
-        // missing address prefix
+        // missing expiry date prefix
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
                         + VALID_EXPIRY_DATE_CHOCOLATE, expectedMessage);
 
@@ -89,28 +88,24 @@ public class AddCommandParserTest {
                         + VALID_EXPIRY_DATE_CHOCOLATE, expectedMessage);
     }
 
-    /*
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
                 + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Name.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid unit
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + INVALID_UNIT_DESC + QUANTITY_DESC_CHOCOLATE
-                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Phone.MESSAGE_CONSTRAINTS);
+                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Unit.MESSAGE_CONSTRAINTS);
 
-        // invalid email
+        // invalid quantity
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + INVALID_QUANTITY_DESC
-                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Email.MESSAGE_CONSTRAINTS);
+                + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Quantity.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid expiry date
         assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
-                + INVALID_EXPIRY_DATE_DESC + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE, Address.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
-                + EXPIRY_DATE_DESC_CHOCOLATE + INVALID_TAG_DESC + VALID_TAG_CHOCOLATE, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_EXPIRY_DATE_DESC + TAG_DESC_CHOCOLATE + TAG_DESC_CHOCOLATE,
+                ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + UNIT_DESC_CHOCOLATE + QUANTITY_DESC_CHOCOLATE
@@ -118,8 +113,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_CHOCOLATE + UNIT_DESC_CHOCOLATE
-                        + QUANTITY_DESC_CHOCOLATE + EXPIRY_DATE_DESC_CHOCOLATE + TAG_DESC_MEIJI + TAG_DESC_CHOCOLATE,
+                        + QUANTITY_DESC_CHOCOLATE + EXPIRY_DATE_DESC_CHOCOLATE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-    */
 }

@@ -26,6 +26,8 @@ import seedu.wife.testutil.EditFoodDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final String VALID_TAG_NEW = "NEW";
+    public static final String VALID_TAG_USED = "USED";
     public static final String VALID_NAME_MEIJI = "MEIJI";
     public static final String VALID_UNIT_MEIJI = "Carton";
     public static final String VALID_QUANTITY_MEIJI = "2";
@@ -33,9 +35,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_DAIRY = "DAIRY";
     public static final String VALID_NAME_CHOCOLATE = "Chocolate";
     public static final String VALID_UNIT_CHOCOLATE = "Bar";
-    public static final String VALID_QUANTITY_CHOCOLATE = "2";
-    public static final String VALID_EXPIRY_DATE_CHOCOLATE = "13-11-2024";
+    public static final String VALID_QUANTITY_CHOCOLATE = "3";
+    public static final String VALID_EXPIRY_DATE_CHOCOLATE = "14-11-2024";
     public static final String VALID_TAG_CHOCOLATE = "CHOCOLATE";
+    public static final String VALID_QUANTITY_INCREASE = "10";
+    public static final String VALID_QUANTITY_DECREASE = "1";
     public static final String NAME_DESC_MEIJI = " " + PREFIX_NAME + VALID_NAME_MEIJI;
     public static final String UNIT_DESC_MEIJI = " " + PREFIX_UNIT + VALID_UNIT_MEIJI;
     public static final String QUANTITY_DESC_MEIJI = " " + PREFIX_QUANTITY + VALID_QUANTITY_MEIJI;
@@ -51,7 +55,12 @@ public class CommandTestUtil {
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-1"; // value < 0
     public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "13112024"; // date not formatted
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "dairy*"; // '*' not allowed in tags
-
+    public static final String VALID_FIRST_INDEX_ID = "1";
+    public static final String TAG_DESCRIPTION_DAIRY = PREFIX_NAME + VALID_TAG_DAIRY;
+    // test util for Tag\
+    public static final String INVALID_TAG_NAME_EMPTY_NAME = "";
+    public static final String INVALID_TAG_NAME_CONTAIN_SYMBOL = "Cre@m";
+    public static final String INVALID_TAG_NAME_TOO_LENGTHY = "VegetablesHealthy";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

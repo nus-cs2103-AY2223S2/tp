@@ -1,5 +1,6 @@
 package seedu.wife.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.testutil.Assert.assertThrows;
@@ -140,4 +141,13 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for capitalizeString --------------------------------------
+
+    @Test
+    public void capitalizeString() {
+        assertEquals("Testtest", StringUtil.capitalizeString("testtest"));
+        assertEquals("Test Test", StringUtil.capitalizeString("test test"));
+        assertEquals("Can Food", StringUtil.capitalizeString("can Food"));
+        assertEquals("Can Food", StringUtil.capitalizeString("Can food"));
+    }
 }

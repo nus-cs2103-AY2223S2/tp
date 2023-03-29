@@ -1,0 +1,19 @@
+{
+	"foods": [
+		{
+			"name": "Meiji",
+			"unit": "Carton",
+			"quantity": "2",
+			"expiryDate": "13-11-2024",
+			"tagged": ["Dairy"]
+		},
+		{
+			"name": "Meiji",
+			"unit": "Carton",
+			"quantity": "2",
+			"expiryDate": "13-11-2024",
+			"tagged": []
+		}
+	],
+	"tags": ["New", "Used", "Dairy", "Chocolate"]
+}

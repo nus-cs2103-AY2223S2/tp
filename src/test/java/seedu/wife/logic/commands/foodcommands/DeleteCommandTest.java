@@ -2,12 +2,13 @@ package seedu.wife.logic.commands.foodcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
-import static seedu.wife.testutil.TypicalFood.getTypicalWife;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_SECOND_FOOD;
+import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,6 @@ import seedu.wife.model.food.Food;
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-
     private Model model = new ModelManager(getTypicalWife(), new UserPrefs());
 
     @Test
@@ -44,7 +44,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFoodList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, MESSAGE_INVALID_FOOD_DISPLAYED_INDEX);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
         Index outOfBoundIndex = INDEX_SECOND_FOOD;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of wife list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWife().getFoodList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -94,16 +94,15 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different food -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no food.
      */
     private void showNoFood(Model model) {
         model.updateFilteredFoodList(p -> false);
-
         assertTrue(model.getFilteredFoodList().isEmpty());
     }
 }

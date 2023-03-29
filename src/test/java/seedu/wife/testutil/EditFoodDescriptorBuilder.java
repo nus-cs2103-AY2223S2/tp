@@ -40,7 +40,7 @@ public class EditFoodDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Food} of the {@code EditFoodDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditFoodDescriptor} that we are building.
      */
     public EditFoodDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -48,7 +48,7 @@ public class EditFoodDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Unit} of the {@code EditFoodDescriptor} that we are building.
      */
     public EditFoodDescriptorBuilder withUnit(String unit) {
         descriptor.setUnit(new Unit(unit));
@@ -56,7 +56,7 @@ public class EditFoodDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Quantity} of the {@code EditFoodDescriptor} that we are building.
      */
     public EditFoodDescriptorBuilder withQuantity(String quantity) {
         descriptor.setQuantity(new Quantity(quantity));
@@ -64,7 +64,7 @@ public class EditFoodDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Expiry Date} of the {@code EditFoodDescriptor} that we are building.
      */
     public EditFoodDescriptorBuilder withExpiryDate(String date) {
         descriptor.setExpiryDate(new ExpiryDate(date));
@@ -72,7 +72,7 @@ public class EditFoodDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFoodDescriptor}
      * that we are building.
      */
     public EditFoodDescriptorBuilder withTags(String... tags) {

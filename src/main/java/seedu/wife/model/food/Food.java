@@ -1,5 +1,6 @@
 package seedu.wife.model.food;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -59,6 +60,28 @@ public class Food {
     }
 
     /**
+     * Removes the specified element from tags if it is present (optional operation).
+     */
+    public boolean removeTag(Tag tag) {
+        return this.tags.remove(tag);
+    }
+
+    /**
+     * Returns a new tag set for edit, which throws {@code UnsupportedOperationException}
+     */
+    public Set<Tag> getCurrentTags() {
+        return new HashSet<Tag>(this.tags);
+    }
+
+    /**
+     * Creates a new food item with an updated tag list.
+     */
+    public Food createNewFoodWithNewTags(Food food, Set<Tag> tags) {
+        requireNonNull(tags);
+        return new Food(food.getName(), food.getUnit(), food.getQuantity(), food.getExpiryDate(), tags);
+    }
+
+    /**
      * Returns True if two food items are the same.
      * This uses a weaker equivalence relation as it checks only if two food items have the same name.
      */
@@ -67,7 +90,8 @@ public class Food {
             return true;
         }
         return otherFood != null
-                && foodName.equals(otherFood.getName());
+                && foodName.equals(otherFood.getName())
+                && expiryDate.equals(otherFood.getExpiryDate());
     }
 
     @Override
@@ -81,11 +105,14 @@ public class Food {
         }
 
         Food otherFood = (Food) other;
-        return otherFood.getName().equals(getName())
-                && otherFood.getUnit().equals((getUnit()))
-                && otherFood.getQuantity().equals((getQuantity()))
-                && otherFood.getExpiryDate().equals(getExpiryDate())
-                && otherFood.getTags().equals(getTags());
+
+        boolean equalsName = otherFood.getName().equals(getName());
+        boolean equalsUnit = otherFood.getUnit().equals((getUnit()));
+        boolean equalsQuantity = otherFood.getQuantity().equals((getQuantity()));
+        boolean equalsExpiryDate = otherFood.getExpiryDate().equals(getExpiryDate());
+        boolean equalsTags = otherFood.getTags().equals(getTags());
+
+        return equalsName && equalsUnit && equalsQuantity && equalsExpiryDate && equalsTags;
     }
 
     @Override
