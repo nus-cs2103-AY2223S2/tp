@@ -18,7 +18,7 @@ import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
 
 public class JsonAdaptedBookmarkTest {
-    private static final String INVALID_TITLE = "R@chel";
+    private static final String INVALID_TITLE = " ";
     private static final JsonAdaptedProgress INVALID_PROGRESS = new JsonAdaptedProgress("a", "b", "c");
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";

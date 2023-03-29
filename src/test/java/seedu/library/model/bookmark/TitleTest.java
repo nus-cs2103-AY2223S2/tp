@@ -27,8 +27,6 @@ public class TitleTest {
         // invalid title
         assertFalse(Title.isValidTitle("")); // empty string
         assertFalse(Title.isValidTitle(" ")); // spaces only
-        assertFalse(Title.isValidTitle("^")); // only non-alphanumeric characters
-        assertFalse(Title.isValidTitle("peter*")); // contains non-alphanumeric characters
 
         // valid title
         assertTrue(Title.isValidTitle("peter jack")); // alphabets only
@@ -36,5 +34,7 @@ public class TitleTest {
         assertTrue(Title.isValidTitle("peter the 2nd")); // alphanumeric characters
         assertTrue(Title.isValidTitle("Capital Tan")); // with capital letters
         assertTrue(Title.isValidTitle("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Title.isValidTitle("^")); // only non-alphanumeric characters
+        assertTrue(Title.isValidTitle("peter*")); // contains non-alphanumeric characters
     }
 }

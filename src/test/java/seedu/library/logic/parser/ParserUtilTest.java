@@ -21,7 +21,7 @@ import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_TITLE = "R@chel";
+    private static final String INVALID_TITLE = " ";
     private static final String INVALID_PROGRESS = "+651234";
     private static final String INVALID_AUTHOR = " ";
     private static final String INVALID_GENRE = " ";
