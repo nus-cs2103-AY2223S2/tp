@@ -307,6 +307,13 @@
 }
 
 /* Role View */
+.role-display-card {
+    -fx-background-color: transparent;
+    -fx-border-color: #112D4E;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
 .role-display-headers {
     -fx-font-weight: bold;
     -fx-font-size: 18pt;
@@ -317,7 +324,7 @@
 
 /* Role View */
 .role-display-body {
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: #112D4E;
     -fx-background-color: transparent;
     -fx-wrap-text: true;
