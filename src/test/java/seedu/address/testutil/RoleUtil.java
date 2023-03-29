@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
@@ -38,7 +38,7 @@ public class RoleUtil {
      */
     public static String getRoleDetails(Role role) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_ROLE + role.getName().fullName + " ");
+        sb.append(PREFIX_NAME + role.getName().fullName + " ");
         sb.append(PREFIX_CONTACT + role.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + role.getEmail().value + " ");
         sb.append(PREFIX_COMPANY + role.getCompany().value + " ");
@@ -58,7 +58,7 @@ public class RoleUtil {
      */
     public static String getEditRoleDescriptorDetails(EditRoleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_ROLE).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_CONTACT).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getCompany().ifPresent(address -> sb.append(PREFIX_COMPANY).append(address.value).append(" "));

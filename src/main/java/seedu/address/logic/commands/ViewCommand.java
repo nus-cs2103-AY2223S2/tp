@@ -19,11 +19,9 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View more details of the role "
-            + "by the index number used in the displayed role list. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the index number used in the displayed role list. \n \n"
+            + "Parameters: INDEX (must be a positive integer) \n \n"
             + "Example: " + COMMAND_WORD + " 1 ";
-
-    public static final String MESSAGE_VIEW_ROLE_SUCCESS = "Displayed details for: %1$s \n";
     private final Index index;
 
     /**

@@ -11,11 +11,12 @@ Designed for computing students and professionals, TechTrack helps you manage yo
       2. [Edit Role: `edit`](#editing-a-role-edit)
       3. [Delete Role: `delete`](#deleting-a-role-delete)
    2. [Viewing Role Info](#viewing-role-info)
-      1. [Find Role: `find`](#findrole)
-      2. [Sort by Salary: `salary`](#sorting-by-salary)
-      3. [Sort by Deadline: `deadline`](#sorting-by-deadline)
-      4. [Find by Companies: `company`](#findcompanies)
-      5. [View more details: `view`](#viewing-a-role)
+      1. [Find roles by name](#find-roles-by-name)
+      2. [Find roles by company](#find-roles-by-company)
+      3. [Find roles by tags](#find-roles-by-tags)
+      4. [Sorting a role by deadline](#sorting-by-deadline)
+      5. [Sorting a role by salary](#sorting-by-salary)
+      6. [Viewing a role](#viewing-a-role)
    3. [General Commands](#general-commands)
       1. [List all roles](#list-list)
       2. [Clear all roles](#clear-clear)
@@ -61,21 +62,21 @@ Adds a role to TechTrack.
 
 Format: `add {Prefix}/{Parameter}…​`
 
-Example: `add r/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
+Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
 
 **The prefixes and their respective parameters are as follows:**
 
-| Required | Prefix | Parameter           | Restrictions                                                        |
-|----------|--------|---------------------|---------------------------------------------------------------------|
-| `Yes`    | r      | ROLE                | Alphanumeric characters and spaces only.                            |
-| `Yes`    | c      | CONTACT             | Numbers only and at least 3 digits.                                 |
-| `Yes`    | e      | EMAIL               | Must follow a valid email format. See below for more information.   |
-| `Yes`    | coy    | COMPANY             | Follow company format                                               |
-| `Yes`    | jd     | JOB DESCRIPTION     | At least 1 alphanumeric character                                   |
-| `No`     | t      | TAGS                | -                                                                   |
-| `Yes`    | $      | SALARY              | Positive integers only.                                             |
+| Required | Prefix | Parameter            | Restrictions                                                        |
+|----------|--------|----------------------|---------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                            |
+| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                                 |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.   |
+| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                  |
+| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                  |
+| `No`     | t      | TAGS                 | -                                                                   |
+| `Yes`    | $      | SALARY               | Positive integers only.                                             |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
-| `Yes`    | x      | EXPERIENCE REQUIRED | At least 1 alphanumeric character                                   |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 alphanumeric character                                   |
 
 
 ### Editing a Role: `edit`:
@@ -83,13 +84,13 @@ Edit any parameters of a preexisting role.
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
-Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 
-e/johndoe@example.com jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`
+Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
+$/4000 d/2023-10-20 x/Javascript - 1 Year`
 
 ### Deleting a role `delete`:
 Deletes the role from the current list of roles. Uses a 1-based index.
 
-FORMAT: `delete {index}`
+Format: `delete {index}`
 
 Example: `delete 1`
 
@@ -97,29 +98,60 @@ Example: `delete 1`
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
 These commands are:
 
+* [Find roles by name](#find-roles-by-name)
+* [Find roles by company](#find-roles-by-company)
+* [Find roles by tags](#find-roles-by-tags)
 * [Sorting a role by deadline](#sorting-by-deadline)
 * [Sorting a role by salary](#sorting-by-salary)
-* [Viewing a role ](#viewing-a-role)
+* [Viewing a role](#viewing-a-role)
 
-### Sorting by Deadline
+### Find roles by name
+Searches for roles with the provided names.
 
-Sort the closest deadline first (e.g. deadline asc) 
+Format: `name {keywords}...`
 
-![Deadline](images/DeadlineCommand1.png)
+Example: `name analyst engineer data`
 
-Sort the latest deadline first (e.g. deadline desc)
+### Find roles by company
+Searches for roles with the provided companies.
 
-![Deadline](images/DeadlineCommand2.png)
+Format: `company {keywords}...`
+
+Example: `company Google`
+
+### Find roles by tags
+Searches for roles with the provided tags.
+
+Format: `tags {keywords}...`
+
+Example: `tags AWS Tech`
 
 ### Sorting by Salary
-...
+Sort roles based on salary, in ascending/descending order.
+
+Format: `salary asc/desc`
+
+Example 1: `salary asc`
+![Deadline](images/SalaryCommand1.png)
+
+Example 2: `salary desc`
+![Deadline](images/SalaryCommand2.png)
+
+### Sorting by Deadline
+Sort roles based on deadline, in ascending/descending order.
+
+Format: `deadline asc/desc`
+
+Example 1: `deadline asc`
+![Deadline](images/DeadlineCommand1.png)
+
+Example 2: `deadline desc`
+![Deadline](images/DeadlineCommand2.png)
 
 ### Viewing a role
 Displays more details about a particular role.
 
 Format: `view {index}`
-
-Example: `view 1`
 
 ## General Commands
 
@@ -135,10 +167,10 @@ Lists all roles available in TechTrack.
 Deletes all roles available in TechTrack.
 
 ### Help: `help`
-Displays link to a user guide.
+Display commands that are available in TechTrack and the proper format for usage. Also links to this user guide.
 
 ### Exit: `exit`
-Exits TechTrack
+Exits TechTrack.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
@@ -146,11 +178,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format, Examples                       |
-|----------|----------------------------------------|
-| add      | add roleID (e.g. add 221574)           |
-| delete   | delete roleID (e.g. delete 221574)     |
-| ~~list~~     | list                                   |
-| rank     | rank roleID LEVEL (e.g. rank 221574 4) |
-| exit     | bye                                    |
-| deadline | asc/desc (e.g. deadline asc)           |
+| Action   | Format, Examples                        |
+|----------|-----------------------------------------|
+| add      | add roleID (e.g. add 221574)            |
+| delete   | delete roleID (e.g. delete 221574)      |
+| view     | view roleID (e.g. view 221574)          |
+| list     | list                                    |
+| exit     | bye                                     |
+| salary   | salary asc/desc (e.g. salary asc)       |
+| deadline | deadline asc/desc (e.g. deadline asc)   |
+| company  | company {keyword} (e.g. company google) |
+| tags     | tags {keyword} (e.g. tags AWS tech)     |

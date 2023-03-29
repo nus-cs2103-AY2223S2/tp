@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEBSITE;
@@ -48,20 +48,22 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed role list. "
             + "Existing values will be overwritten by the input values.\n \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ROLE + "NAME] "
-            + "[" + PREFIX_CONTACT + "PHONE] "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_COMPANY + "ADDRESS] "
             + "[" + PREFIX_JOBDESCRIPTION + "JOBDESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_WEBSITE + "WEBSITE] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_TAG + "TAG]...\n \n"
+            + "[" + PREFIX_EXPERIENCE + "EXPERIENCE] \n \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_CONTACT + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street "
+            + PREFIX_JOBDESCRIPTION + "AWS Cloud Infrastructure team "
             + PREFIX_SALARY + "4000 "
             + PREFIX_DEADLINE + "2023-10-20 "
             + PREFIX_EXPERIENCE + "Javascript - 1 Year";

@@ -147,7 +147,8 @@ public class Role {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Role: ").append(getName())
+        builder.append("\n")
+                .append("Role: ").append(getName())
                 .append("\n")
                 .append("Company: ")
                 .append(getCompany())
@@ -158,7 +159,8 @@ public class Role {
             builder.append("Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("Salary: ").append(getSalary())
+        builder.append("\n")
+                .append("Salary: ").append(getSalary())
                 .append("\n")
                 .append("Deadline: ").append(getDeadline())
                 .append("\n")
