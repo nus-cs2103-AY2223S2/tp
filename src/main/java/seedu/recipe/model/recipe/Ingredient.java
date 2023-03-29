@@ -112,8 +112,8 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return this.name + " " + this.quantity
-                + " " + this.unitOfMeasurement + " " + this.pricePerUnit;
+        return this.name + "," + this.quantity
+                + "," + this.unitOfMeasurement + "," + this.pricePerUnit;
     }
 
     @Override
