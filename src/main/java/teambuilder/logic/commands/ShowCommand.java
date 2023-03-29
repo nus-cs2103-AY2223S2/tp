@@ -20,7 +20,7 @@ public class ShowCommand extends Command {
     /**
      * Initializes a ShowCommand with the given predicate.
      */
-    public ShowCommand(boolean isValid, TeamContainsKeywordsPredicate predicate) {
+    public ShowCommand(TeamContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
