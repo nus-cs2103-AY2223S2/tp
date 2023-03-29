@@ -66,12 +66,12 @@ public class Tank {
 
     /**
      * Sets the lastFedDate field of all fishes in this Tank's {@code fishList} list
-     * with new LastFedDate object with {@code newDate}.
+     * with new LastFedDate object with {@code newDateTime}.
      */
-    public void setLastFedDateFishes(String newDate) {
-        requireNonNull(newDate);
+    public void setLastFedDateTimeFishes(String newDateTime) {
+        requireNonNull(newDateTime);
 
-        fishList.setLastFedDateFishes(newDate);
+        fishList.setLastFedDateTimeFishes(newDateTime);
     }
 
     /**

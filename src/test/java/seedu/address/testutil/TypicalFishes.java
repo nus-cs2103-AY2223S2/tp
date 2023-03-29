@@ -29,30 +29,30 @@ public class TypicalFishes {
 
     public static final Fish ALICE = new FishBuilder().withName("Alice Pauline")
             .withFeedingInterval("1d1h").withSpecies("Guppy")
-            .withLastFedDate("06/06/2003")
+            .withLastFedDate("06/06/2003 00:00")
             .withTank(TYPICAL_TANK_1_STRING)
             .withTags("friends").build();
     public static final Fish BENSON = new FishBuilder().withName("Benson Meier")
             .withFeedingInterval("1d1h")
-            .withSpecies("Tetra").withLastFedDate("06/07/2003")
+            .withSpecies("Tetra").withLastFedDate("06/07/2003 00:00")
             .withTank(TYPICAL_TANK_1_STRING)
             .withTags("owesMoney", "friends").build();
-    public static final Fish CARL = new FishBuilder().withName("Carl Kurz").withLastFedDate("08/06/2003")
+    public static final Fish CARL = new FishBuilder().withName("Carl Kurz").withLastFedDate("08/06/2003 00:00")
             .withSpecies("Beta").withFeedingInterval("1d1h").withTank(TYPICAL_TANK_1_STRING).build();
-    public static final Fish DANIEL = new FishBuilder().withName("Daniel Meier").withLastFedDate("09/06/2003")
+    public static final Fish DANIEL = new FishBuilder().withName("Daniel Meier").withLastFedDate("09/06/2003 00:00")
             .withSpecies("Parrot").withFeedingInterval("1d1h").withTank(TYPICAL_TANK_1_STRING).withTags("friends")
             .build();
-    public static final Fish ELLE = new FishBuilder().withName("Elle Meyer").withLastFedDate("10/06/2003")
+    public static final Fish ELLE = new FishBuilder().withName("Elle Meyer").withLastFedDate("10/06/2003 00:00")
             .withSpecies("Arowana").withFeedingInterval("1d1h").withTank(TYPICAL_TANK_1_STRING).build();
-    public static final Fish FIONA = new FishBuilder().withName("Fiona Kunz").withLastFedDate("11/06/2003")
+    public static final Fish FIONA = new FishBuilder().withName("Fiona Kunz").withLastFedDate("11/06/2003 00:00")
             .withSpecies("Fighting").withFeedingInterval("1d1h").withTank(TYPICAL_TANK_1_STRING).build();
-    public static final Fish GEORGE = new FishBuilder().withName("George Best").withLastFedDate("12/06/2003")
+    public static final Fish GEORGE = new FishBuilder().withName("George Best").withLastFedDate("12/06/2003 00:00")
             .withSpecies("Beta").withFeedingInterval("1d1h").withTank(TYPICAL_TANK_1_STRING).build();
 
     // Manually added
-    public static final Fish HOON = new FishBuilder().withName("Hoon Meier").withLastFedDate("01/01/2000")
+    public static final Fish HOON = new FishBuilder().withName("Hoon Meier").withLastFedDate("01/01/2000 00:00")
             .withSpecies("Guppy").withFeedingInterval("0d19h").withTank(TYPICAL_TANK_1_STRING).build();
-    public static final Fish IDA = new FishBuilder().withName("Ida Mueller").withLastFedDate("01/01/2000")
+    public static final Fish IDA = new FishBuilder().withName("Ida Mueller").withLastFedDate("01/01/2000 00:00")
             .withSpecies("Tetra").withFeedingInterval("0d20h").withTank(TYPICAL_TANK_1_STRING).build();
 
     // Manually added - Fish's details found in {@code CommandTestUtil}

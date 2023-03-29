@@ -335,10 +335,10 @@ public class ModelManager implements Model {
      * with new LastFedDate object with {@code newDate}.
      */
     @Override
-    public void setLastFedDateFishes(Tank tankToFeed, String newDate) {
-        requireAllNonNull(tankToFeed, newDate);
+    public void setLastFedDateTimeFishes(Tank tankToFeed, String newDateTime) {
+        requireAllNonNull(tankToFeed, newDateTime);
 
-        tankToFeed.setLastFedDateFishes(newDate);
+        tankToFeed.setLastFedDateTimeFishes(newDateTime);
         updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
     }
 

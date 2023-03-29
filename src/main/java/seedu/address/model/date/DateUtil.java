@@ -1,10 +1,11 @@
 package seedu.address.model.date;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 
 /**
  * Encapsulates useful date time operations in Fish Ahoy!.
@@ -18,7 +19,8 @@ public class DateUtil {
     /**
      * Format of dates in Task descriptions.
      */
-    public static final String VALID_NAME_FORMAT = "dd LLL yyyy";
+    public static final String VALID_NAME_FORMAT_DATE = "dd-LLL-yyyy";
+    public static final String VALID_NAME_FORMAT_DATETIME = "dd-LLL-yyyy HH:mm";
 
     /**
      * Parses a string date  format in {@code DATE_FORMAT}
@@ -56,24 +58,35 @@ public class DateUtil {
 
     /**
      * Checks if a Fish needs to be Fed based on lastFedDate and FeedingInterval
-     * @param lfd LastFedDate of FIsh
+     * @param lfdt LastFedDate of FIsh
      * @param fi FeedingInterval of Fish
      * @return true if fish needs to be fed
      */
-    public static boolean checkFishNeedsToBeFed(LastFedDate lfd, FeedingInterval fi) {
-        LocalDate lfdLocalDate = lfd.localDate;
-        LocalDate nowLocalDate = LocalDate.now();
-        LocalDate feedingDate = lfdLocalDate.plusDays(Integer.valueOf(fi.days));
-        return feedingDate.isEqual(nowLocalDate) || feedingDate.isBefore(nowLocalDate);
+    public static boolean checkFishNeedsToBeFed(LastFedDateTime lfdt, FeedingInterval fi) {
+        LocalDateTime lfdLocalDateTime = lfdt.localDateTime;
+        LocalDateTime nowLocalDateTime = LocalDateTime.now();
+        LocalDateTime feedingDateTime = lfdLocalDateTime.plusDays(Integer.valueOf(fi.days))
+                .plusHours(Integer.valueOf(fi.hours));
+        return feedingDateTime.isEqual(nowLocalDateTime) || feedingDateTime.isBefore(nowLocalDateTime);
     }
 
     /**
      * Returns a String that is a valid Task description
-     * @param date LocalDate to be formated
+     * @param date LocalDateTime to be formated
      * @return Formatted string that is alphanumeric
      */
     public static String getTaskDescriptionDateFormat(LocalDate date) {
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT);
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT_DATE);
         return date.format(outputFormat);
+    }
+
+    /**
+     * Returns a String that is a valid Task description
+     * @param dateTime LocalDateTime to be formated
+     * @return Formatted string that is alphanumeric
+     */
+    public static String getTaskDescriptionDateTimeFormat(LocalDateTime dateTime) {
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT_DATETIME);
+        return dateTime.format(outputFormat);
     }
 }

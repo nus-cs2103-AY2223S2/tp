@@ -2,7 +2,7 @@ package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -50,11 +50,11 @@ public class TankFeedCommand extends TankCommand {
         Tank tankToFeed = lastShownList.get(targetIndex.getZeroBased());
         //FEED ALL FISHES IN THIS TANK
 
-        LocalDate today = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDate = today.format(formatter);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String formattedNow = now.format(formatter);
 
-        model.setLastFedDateFishes(tankToFeed, formattedDate);
+        model.setLastFedDateTimeFishes(tankToFeed, formattedNow);
 
         return new CommandResult(String.format(MESSAGE_FEED_TANK_SUCCESS, tankToFeed));
     }

@@ -15,20 +15,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_LAST_FED_DATE = "20 Mar 2023";
+    private static final String INVALID_LAST_FED_DATE = "20 Mar 2023 00:00";
     private static final String INVALID_FEEDING_INTERVAL = " ";
     private static final String INVALID_SPECIES = "asd123 @!";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_LAST_FED_DATE = "04/01/2022";
+    private static final String VALID_LAST_FED_DATE = "04/01/2022 00:00";
     private static final String VALID_FEEDING_INTERVAL = "5d0h";
     private static final String VALID_SPECIES = "Guppy";
     private static final String VALID_TAG_1 = "friend";
@@ -91,14 +91,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseLastFedDate_validValueWithoutWhitespace_returnsLastFedDate() throws Exception {
-        LastFedDate expectedLastFedDate = new LastFedDate(VALID_LAST_FED_DATE);
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
         assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(VALID_LAST_FED_DATE));
     }
 
     @Test
     public void parseLastFedDate_validValueWithWhitespace_returnsTrimmedLastFedDate() throws Exception {
         String lastFedDateWithWhitespace = WHITESPACE + VALID_LAST_FED_DATE + WHITESPACE;
-        LastFedDate expectedLastFedDate = new LastFedDate(VALID_LAST_FED_DATE);
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
         assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(lastFedDateWithWhitespace));
     }
 
