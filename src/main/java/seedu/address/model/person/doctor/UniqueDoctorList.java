@@ -1,5 +1,6 @@
 package seedu.address.model.person.doctor;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -66,6 +67,17 @@ public class UniqueDoctorList implements Iterable<Doctor> {
         }
 
         internalList.set(index, editedDoctor);
+    }
+
+    public Doctor getDoctor(int target) {
+        requireAllNonNull(target);
+        Doctor doctor = internalList.get(target);
+
+        if (isNull(doctor)) {
+            throw new PersonNotFoundException();
+        }
+
+        return doctor;
     }
 
     /**

@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.Specialty;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -19,6 +23,8 @@ public class CommandResult {
 
     /** This command interacts directly with the GUI */
     private final boolean hasGuiInteraction;
+    /** This command interacts directly with the GUI */
+    private final Optional<Doctor> selectedDoctor;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -28,6 +34,18 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.hasGuiInteraction = hasGuiInteraction;
+        this.selectedDoctor = Optional.empty();
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with selected doctor.
+     */
+    public CommandResult(String feedbackToUser, boolean hasGuiInteraction, Doctor selectedDoctor) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.hasGuiInteraction = hasGuiInteraction;
+        this.selectedDoctor = Optional.ofNullable(selectedDoctor);
     }
 
     /**
@@ -60,6 +78,9 @@ public class CommandResult {
 
     public boolean hasGuiInteraction() {
         return this.hasGuiInteraction;
+    }
+    public Optional<Doctor> getSelectedDoctor() {
+        return this.selectedDoctor;
     }
 
     @Override
