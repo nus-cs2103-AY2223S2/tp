@@ -33,7 +33,7 @@ public class PatientListPanel extends UiPart<Region> {
                             EnlargedPatientInfoCard enlargedPatientInfoCard,
                             EnlargedInfoCardDisplayController infoCardDisplayController) {
         super(FXML);
-        setPatients(patientList);
+        patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> {
             PatientListViewCell generatedCell = new PatientListViewCell();
             generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
