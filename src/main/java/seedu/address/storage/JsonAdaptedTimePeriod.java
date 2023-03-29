@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
@@ -54,14 +55,14 @@ public class JsonAdaptedTimePeriod {
         if (TimeUtil.isValidStartHour(startHour)) {
             System.out.println(startHour);
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
+                    String.format(ParserUtil.MESSAGE_INVALID_START_HOUR, LocalTime.class.getSimpleName()));
         }
 
         final LocalTime modelStartTime = new LocalTime(startHour);
 
         if (TimeUtil.isValidEndHour(endHour)) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
+                    String.format(ParserUtil.MESSAGE_INVALID_END_HOUR, LocalTime.class.getSimpleName()));
         }
 
         final LocalTime modelEndTime = new LocalTime(endHour);
