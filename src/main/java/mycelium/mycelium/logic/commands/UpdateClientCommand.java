@@ -108,7 +108,7 @@ public class UpdateClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
         model.setClient(uniqueClient.get(), updatedClient.get());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClient));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClient.get()));
     }
 
     /**
