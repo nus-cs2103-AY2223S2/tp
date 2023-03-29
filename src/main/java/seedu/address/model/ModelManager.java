@@ -123,7 +123,7 @@ public class ModelManager implements Model, Undoable {
         for (Person target: list) {
             addressBook.removePerson(target);
         }
-        undoManager.addToHistory(this.addressBook, String.format("Deleted list of people"));
+        undoManager.addToHistory(this.addressBook, "Deleted list of people");
     }
 
     @Override
@@ -139,6 +139,20 @@ public class ModelManager implements Model, Undoable {
 
         addressBook.setPerson(target, editedPerson);
         undoManager.addToHistory(this.addressBook, String.format("Edit %1$s", editedPerson));
+    }
+
+    @Override
+    public void combine(ReadOnlyAddressBook toBeCombined, String path) {
+        AddressBook newAddressBook = new AddressBook(toBeCombined);
+        for (Person p : newAddressBook.getPersonList()) {
+            if (addressBook.hasPerson(p)) {
+                //Future improvements can be made to specify whether to overwrite or keep persons with the same name
+                continue;
+            } else {
+                addressBook.addPerson(p);
+            }
+        }
+        undoManager.addToHistory(this.addressBook, String.format("Load contents of %s", path));
     }
 
     //=========== Filtered Person List Accessors =============================================================
