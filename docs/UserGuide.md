@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+<!---
+Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-t12-2.github.io/tp/UserGuide.html
+--->
+
 ## About QuickContacts
 
 QuickContacts is a **contacts and schedule management system** that enables you to track your contacts and manage your
@@ -15,9 +19,9 @@ schedule with many meetings with them. Perfect for individuals that are looking 
 used without having you to ever reach for your mouse. Complete with an **autocomplete assistance**, you can be assured
 that your time spent managing your contacts and schedule is minimised!
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-**:light_bulb: TIP**<br>
+**:light_bulb: Tip**<br>
 For more details about QuickContacts' features, you may head over to the [Features](#features) section below!
 
 </div>
@@ -37,32 +41,60 @@ this user guide has everything you need. Head over to the [Getting started](#get
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## Using this User Guide
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Welcome to QuickContacts!
 
-2. Download the latest `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases).
+If you have yet to install QuickContacts, head over to the [Installation](#installation) section to install
+QuickContacts.
 
-3. Copy the file to the folder you want to use as the _home folder_ for your `QuickContacts`.
+### Icon Coloured Boxes
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar quickcontacts.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+Throughout this user guide, you may observe coloured boxes that provide useful information with an icon on its top-left
+indicating the type of information present.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+<div markdown="block" class="alert alert-info">
 
-    * `list` : Lists all contacts.
+**:light_bulb: Tip**<br>
+Tips empower you to make full use of QuickContacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+</div>
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+<div markdown="block" class="alert alert-warning">
 
-    * `clear` : Deletes all contacts.
+**:warning: Caution**<br>
+Cautions are warnings for you to note when using QuickContacts.
 
-    * `exit` : Exits the app.
+</div>
 
-6. Refer to the [Features](#features) below for details of each command.
+## Installation
+
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) or above
+installed in your computer
+
+2. Download the latest version of `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases)
+
+3. Copy the file to an empty folder you want to use as the _home folder_ for QuickContacts
+
+4. Double-click on the downloaded `.jar` file to launch QuickContacts
+
+And that's it! You are good to go with QuickContacts.
+
+<div markdown="block" class="alert alert-info">
+
+**:light_bulb: Tip**<br>
+QuickContacts is packaged with sample contacts and meetings. To delete the default data, simply execute the `clear`
+command.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Caution**<br>
+QuickContacts will generate default files in the same directory it is installed in on its first launch. Avoid
+editing or deleting such files unless you know what you are doing!
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
