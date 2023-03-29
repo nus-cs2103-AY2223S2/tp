@@ -92,12 +92,12 @@ public class JsonRoleBookStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code roleBook} at the specified {@code filePath}.
      */
-    private void saveRoleBook(ReadOnlyRoleBook addressBook, String filePath) {
+    private void saveRoleBook(ReadOnlyRoleBook roleBook, String filePath) {
         try {
             new JsonRoleBookStorage(Paths.get(filePath))
-                    .saveRoleBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveRoleBook(roleBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

@@ -47,7 +47,7 @@ public class RoleBookTest {
         // Two roles with the same identity fields
         Role editedAlice = new RoleBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         List<Role> newRoles = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newRoles);
+        RoleBookStub newData = new RoleBookStub(newRoles);
 
         assertThrows(DuplicateRoleException.class, () -> roleBook.resetData(newData));
     }
@@ -58,18 +58,18 @@ public class RoleBookTest {
     }
 
     @Test
-    public void hasRole_roleNotInAddressBook_returnsFalse() {
+    public void hasRole_roleNotInRoleBook_returnsFalse() {
         assertFalse(roleBook.hasRole(ALICE));
     }
 
     @Test
-    public void hasRole_roleInAddressBook_returnsTrue() {
+    public void hasRole_roleInRoleBook_returnsTrue() {
         roleBook.addRole(ALICE);
         assertTrue(roleBook.hasRole(ALICE));
     }
 
     @Test
-    public void hasRole_roleWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasRole_roleWithSameIdentityFieldsInRoleBook_returnsTrue() {
         roleBook.addRole(ALICE);
         Role editedAlice = new RoleBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(roleBook.hasRole(editedAlice));
@@ -83,10 +83,10 @@ public class RoleBookTest {
     /**
      * A stub ReadOnlyRoleBook whose roles list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyRoleBook {
+    private static class RoleBookStub implements ReadOnlyRoleBook {
         private final ObservableList<Role> roles = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Role> roles) {
+        RoleBookStub(Collection<Role> roles) {
             this.roles.setAll(roles);
         }
 

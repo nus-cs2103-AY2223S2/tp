@@ -66,7 +66,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setRoleBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setRoleBookFilePath_validPath_setsroleBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setRoleBookFilePath(path);
         assertEquals(path, modelManager.getRoleBookFilePath());

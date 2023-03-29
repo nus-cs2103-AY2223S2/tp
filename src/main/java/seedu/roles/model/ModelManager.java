@@ -73,9 +73,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setRoleBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setRoleBookFilePath(addressBookFilePath);
+    public void setRoleBookFilePath(Path roleBookFilePath) {
+        requireNonNull(roleBookFilePath);
+        userPrefs.setRoleBookFilePath(roleBookFilePath);
     }
 
     //=========== AddressBook ================================================================================

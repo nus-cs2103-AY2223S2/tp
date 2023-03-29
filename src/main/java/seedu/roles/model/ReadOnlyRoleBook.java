@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.roles.model.job.Role;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an setRoleBookFilePath book
  */
 public interface ReadOnlyRoleBook {
 

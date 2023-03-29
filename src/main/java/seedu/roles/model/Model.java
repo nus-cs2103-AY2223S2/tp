@@ -43,7 +43,7 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setRoleBookFilePath(Path addressBookFilePath);
+    void setRoleBookFilePath(Path roleBookFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.

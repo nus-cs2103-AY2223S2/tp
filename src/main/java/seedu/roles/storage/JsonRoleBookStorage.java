@@ -60,8 +60,8 @@ public class JsonRoleBookStorage implements RoleBookStorage {
     }
 
     @Override
-    public void saveRoleBook(ReadOnlyRoleBook addressBook) throws IOException {
-        saveRoleBook(addressBook, filePath);
+    public void saveRoleBook(ReadOnlyRoleBook roleBook) throws IOException {
+        saveRoleBook(roleBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonRoleBookStorage implements RoleBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveRoleBook(ReadOnlyRoleBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveRoleBook(ReadOnlyRoleBook roleBook, Path filePath) throws IOException {
+        requireNonNull(roleBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableRoleBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableRoleBook(roleBook), filePath);
     }
 
 }

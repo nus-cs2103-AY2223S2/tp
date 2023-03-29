@@ -4,9 +4,9 @@ import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Role;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building RoleBook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new RoleBookBuilder().withRole("John", "Doe").build();}
+ *     {@code RoleBook ab = new RoleBookBuilder().withRole("John", "Doe").build();}
  */
 public class RoleBookBuilder {
 
@@ -16,12 +16,12 @@ public class RoleBookBuilder {
         roleBook = new RoleBook();
     }
 
-    public RoleBookBuilder(RoleBook addressBook) {
-        this.roleBook = addressBook;
+    public RoleBookBuilder(RoleBook roleBook) {
+        this.roleBook = roleBook;
     }
 
     /**
-     * Adds a new {@code Role} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Role} to the {@code RoleBook} that we are building.
      */
     public RoleBookBuilder withRole(Role role) {
         roleBook.addRole(role);

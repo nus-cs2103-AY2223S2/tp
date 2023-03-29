@@ -13,7 +13,7 @@ import seedu.roles.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyRoleBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyRoleBook_success() {
         Model model = new ModelManager(getTypicalRoleBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalRoleBook(), new UserPrefs());
         expectedModel.setRoleBook(new RoleBook());
