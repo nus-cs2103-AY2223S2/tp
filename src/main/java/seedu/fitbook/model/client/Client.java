@@ -124,6 +124,10 @@ public class Client {
         return appointments.isEmpty();
     }
 
+    public String getWeightValue() {
+        return weight.value;
+    }
+
     /**
      * Copies a routine set to this instance object's {@code routine}.
      */
