@@ -24,12 +24,12 @@ import seedu.address.model.task.NoteContent;
  */
 public class EditNoteContentCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit_c";
+    public static final String COMMAND_WORD = "edit_content";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the deadline of the specified todo from current available list.\n"
+            + ": Edits the note content of the specified todo from current available todo list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
-            + "[" + PREFIX_NOTE_CONTENT + "NOTE]\n"
+            + "[" + PREFIX_NOTE_CONTENT + "NOTE_CONTENT]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_CONTENT + "Change venue\n";
 
