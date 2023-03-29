@@ -9,7 +9,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 - [Quick start](#quick-start)
 
 - [Features](#features)
-- [Main Features](#main-features--tracking-applied-internships)
+- [Main Features](#main-features-tracking-applied-internships)
     - [View guide](#)
     - [Add an internship application](#)
         - [Add](#)
@@ -50,7 +50,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Clear all todo tasks : `clear_todo`](#clear-all-todo-application-entries--clear_todo)
     - [Note](#display-list-of-short-note--list_note)
         - [List current saved notes : `list_note`](#display-list-of-short-note--list_note)
-        - [Add a note : `add_note`](#add-a-note--add_note)
+        - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
 - [FAQ](#faq)        
