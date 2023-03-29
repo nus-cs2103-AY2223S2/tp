@@ -21,9 +21,8 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Mark delivery status for a person. "
             + "Parameters: INDEX (must be a positive integer) "
             + CliSyntax.PREFIX_STATUS + "STATUS (pending/otw/done/failed/return)";
-
     public static final String MESSAGE_RETURN_STATUS_CHANGED = "Cannot change status of a return delivery!";
-
+    public static final String MESSAGE_DONE_STATUS_CHANGED = "Cannot change status of a done delivery!";
     public static final String MESSAGE_SUCCESS = "Marked %1$s's delivery as: %2$s";
 
     private final Index targetIndex;
@@ -55,6 +54,8 @@ public class MarkCommand extends Command {
 
         if (personToMark.getDeliveryStatus() == DeliveryStatus.RETURN) {
             throw new CommandException(MESSAGE_RETURN_STATUS_CHANGED);
+        } else if (personToMark.getDeliveryStatus() == DeliveryStatus.DONE) {
+            throw new CommandException(MESSAGE_DONE_STATUS_CHANGED);
         }
 
         int noOfDeliveryAttemptsToSet = personToMark.getNoOfDeliveryAttempts();
