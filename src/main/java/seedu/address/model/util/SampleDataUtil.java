@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.PatientId;
@@ -67,10 +68,10 @@ public class SampleDataUtil {
         return new Appointment[] {
             new Appointment(new AppointmentId("001"), new Name("Alex Yeoh"),
                         new Timeslot("19032023 08:00,19032023 09:00"), new Description("First appointment"),
-                        getTagSet("first")),
+                        new Doctor("Xiao Lu")),
             new Appointment(new AppointmentId("002"), new Name("Bernice Yu"),
                         new Timeslot("26032023 11:00,26032023 13:00"), new Description("Important"),
-                        getTagSet("important")),
+                        new Doctor("Sidharth Rajesh")),
         };
     }
 

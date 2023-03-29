@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,14 +20,13 @@ public class AddAppointmentCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_TIMESLOT + "TIMESLOT "
-            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_DOCTOR + "DOCTOR\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_TIMESLOT + "01012023 00:00,01012023 01:00 "
             + PREFIX_DESCRIPTION + "Regular checkup "
-            + PREFIX_TAG + "routine "
-            + PREFIX_TAG + "noSymptoms";
+            + PREFIX_DOCTOR + "Xiao Lu";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This patient already exists";
