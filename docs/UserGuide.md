@@ -143,7 +143,7 @@ Examples:
 
 ### Deleting a patient from the system: `delete`
 
-Delete patient by NRIC.
+Deletes a patient by index.
 
 Format: `delete INDEX`
 
@@ -185,6 +185,18 @@ Examples:
 
 - `editward 1 w/A02` Edits the name of the first currently displayed ward to be `A02`.
 - `editward 5 c/35` Edits the capacity of the fifth currently displayed ward to be `35`.
+
+### Deleting a ward from the system: `deleteward`
+
+Deletes a ward by index.
+
+Format: `deleteward INDEX`
+
+- Deletes the ward at the specified index as of the currently displayed list.
+
+Examples:
+
+`deleteward 1`
 
 ### Exiting the program : `exit`
 
@@ -233,6 +245,7 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 | **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
 | **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
 | **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
+| **Edit Ward**   | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
 | **List**        | `list`                                                                                     |
 | **Help**        | `help`                                                                                     |
 | **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
