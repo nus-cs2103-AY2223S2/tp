@@ -55,6 +55,8 @@ import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static Image clippySuccess;
+    private static Image clippyFailure;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -109,6 +111,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private ImageView logoPlaceholder;
 
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -125,6 +128,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        initClippy();
+
     }
 
     public Stage getPrimaryStage() {
@@ -163,6 +169,16 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    private void initClippy() {
+        String imageUrl = "docs/Images/CommandSuccess.GIF";
+        File file = new File(imageUrl);
+        clippySuccess = new Image(file.toURI().toString());
+
+        imageUrl = "docs/Images/CommandFail.GIF";
+        file = new File(imageUrl);
+        clippyFailure = new Image(file.toURI().toString());
     }
 
     /**
@@ -384,7 +400,7 @@ public class MainWindow extends UiPart<Stage> {
 
         PageType currentPage = logic.getCurrentSelection().getCurrentPage();
 
-        switch(currentPage){
+        switch (currentPage) {
         case COURSE_PAGE:
             break;
         case GROUP_PAGE:
@@ -427,7 +443,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleBackCommand(BackCommand backCommand) {
         PageType currentPage = logic.getCurrentSelection().getCurrentPage();
 
-        switch(currentPage){
+        switch (currentPage) {
         case COURSE_PAGE:
             showCoursePane();
             showModuleTab();
@@ -509,17 +525,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showClippySuccess() {
-        String imageUrl = "docs/Images/CommandSuccess.GIF";
-        File file = new File(imageUrl);
-        Image newImage = new Image(file.toURI().toString());
-        logoPlaceholder.setImage(newImage);
+        logoPlaceholder.setImage(clippySuccess);
     }
 
     private void showClippyFailure() {
-        String imageUrl = "docs/Images/CommandFail.GIF";
-        File file = new File(imageUrl);
-        Image newImage = new Image(file.toURI().toString());
-        logoPlaceholder.setImage(newImage);
+        logoPlaceholder.setImage(clippyFailure);
     }
 
     /**
