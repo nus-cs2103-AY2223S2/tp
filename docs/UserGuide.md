@@ -46,7 +46,8 @@ CoDoc.**
 - [Command Summary](#command-summary)
 - [Additional Resources](#additional-resources)
   - [How To Check Java Version](#how-to-check-java-version)
-  - [How to Open CoDoc](#how-to-open-codoc)
+  - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
+  - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Guide
@@ -198,7 +199,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
      
    <br>
    
-   For a more detailed guide with examples, refer to [How to Open CoDoc](#how-to-open-codoc).
+   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac) and
 
 If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
 launched in its factory state as shown below.
@@ -522,7 +523,7 @@ Find all people that contain the given constraints. <br>
 > * n/NAME (e.g. n/Jo will load all people whose names contain Jo such as Jo, John, Joleen.
 > * y/YEAR (e.g. y/2 will load all persons who are in year 2)
 > * c/COURSE (e.g. c/Computer will load all people enrolled in Computer Engineering and Computer Science)
->   * [Why is it **find** c/COURSE and not c/COURSE_INDEX like **add** and **edit**?](#why-is-it-find-ccourse-and-not-ccourseindex-like-add-and-edit-)
+>   * Notes that this is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)
 > * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
 >   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
 >   * 💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want. <br> For example,  m/`cs1101 cs1231` `AY2223S1 cs2040` `AY2223S2 cs2090 cs3230` will load all person that have taken
@@ -683,7 +684,7 @@ _Details coming soon ..._
 | Clear all persons                | clear                                                                                                                                       |
 | Delete person at index 3         | delete 3                                                                                                                                    |
 | Edit contact in the right panel  | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
-| Find by attributes               | find n/David c/2 m/CS2109S s/java                                                                                                           |
+| Find by attributes               | find n/David c/Computer Science m/CS2109S s/java                                                                                            |
 | List the full list of contacts   | list                                                                                                                                        |
 | View contact                     | view 3                                                                                                                                      |
 | View tab                         | view c, view m, view s                                                                                                                      |
@@ -695,8 +696,36 @@ _Details coming soon ..._
 
 ## Additional Resources
 ### How To Check Java Version
+![mac_check_java](images/user-guide/mac_check_java.png)
+
+
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
-### How to Open CoDoc
+### How to Open CoDoc for Mac
+
+1. Create your home folder and place jar file into it. In this example, we created a new folder called CoDoc and placed codoc.jar into it. The folder CoDoc is now our home folder.
+   
+   ![mac_open_01](images/user-guide/mac_open_01.png)
+2. Create an empty text file and leave it open for now.
+   * <kbd>CMD</kbd> + <kbd>Space</kbd> > textEdit.app
+   * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> > to toggle to plain text.
+   * Your window should look like the image below.
+   ![mac_plain_text](images/user-guide/mac_plain_text.png)
+   
+3. Right-click on your home folder and naviagate to New Terminal at Folder.
+   ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
+4. Type pwd and press enter, copy your home folder path. leave this window open too.
+    ![mac_pwd](images/user-guide/mac_pwd.png)
+5. Paste your home folder path as well as java -jar codoc.jar and save it as a .command file
+   ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
+6. Place it into your home folder
+   ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
+7. Finally, on your opened terminal from step 4, type chmod 777 start.command
+   ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
+8. You can now double click on start.command to open CoDoc. It does not have to be in the home directory. Should you change where you folder, repreat from step 2.
+
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
+
+### How to Open CoDoc for Windows
 
 Batch file method for Windows users:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
