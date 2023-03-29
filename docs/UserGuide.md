@@ -213,7 +213,7 @@ MedInfo data are saved in the hard disk automatically after any command that cha
 MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, MedInfo will discard all data and start with an empty data file in the next run.
+If your changes to the data file make its format invalid, MedInfo will not be able to run.
 </div>
 
 ---
