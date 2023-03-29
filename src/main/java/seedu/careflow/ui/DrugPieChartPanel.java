@@ -58,7 +58,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
         DecimalFormat df = new DecimalFormat("#.##");
         drugPieChart.setData(pieChartData);
         drugPieChart.setLegendSide(Side.RIGHT);
-        drugPieChart.getData().forEach(data -> {    
+        drugPieChart.getData().forEach(data -> {
             data.setName(data.getName() + " ("
                     + df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
             data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<javafx.scene.input.MouseEvent>() {
@@ -66,7 +66,7 @@ public class DrugPieChartPanel extends UiPart<Region> {
                 public void handle(javafx.scene.input.MouseEvent event) {
                     Tooltip tooltip = new Tooltip();
                     tooltip.setShowDelay(Duration.seconds(0.1));
-                    String value = ((int)data.getPieValue())+ " currently in storage.";
+                    String value = ((int) data.getPieValue()) + " currently in storage.";
                     tooltip.setText(value);
                     Tooltip.install(data.getNode(), tooltip);
                 }

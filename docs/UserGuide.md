@@ -272,7 +272,7 @@ Table 1. Symbols and formats used in this User Guide.
 * Format: `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT`
 
 * Examples:
-  * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like: 
+  * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:
     * `d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
     * ![](images/UIscreenshots/drugSS/dadd.png)
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
@@ -286,7 +286,7 @@ Table 1. Symbols and formats used in this User Guide.
 * Format: `d delete -tn TRADE_NAME`
 
 * Examples:
-  * Suppose for some reason, you wish to delete Panadol, your command should look something like: 
+  * Suppose for some reason, you wish to delete Panadol, your command should look something like:
     * `d delete -tn Panadol`
     * ![](images/UIscreenshots/drugSS/ddeletetn.png)
   * Drug to be Deleted:
@@ -302,7 +302,7 @@ Table 1. Symbols and formats used in this User Guide.
 * Format: `d delete -i DRUG_INDEX`
 
 * Examples:
-  * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like: 
+  * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like:
     * `d delete -i 4`
     * ![](images/UIscreenshots/drugSS/ddeleteindex.png)
   * Drug to be Deleted:
@@ -321,11 +321,11 @@ Table 1. Symbols and formats used in this User Guide.
   * `d update TRADE_NAME -by -VALUE`
 
 * Examples:
-  * If your clinic has prescribed 10 boxes of Panadol and you wish to reduce the storage of Panadol accordingly, your command should look something like: 
+  * If your clinic has prescribed 10 boxes of Panadol and you wish to reduce the storage of Panadol accordingly, your command should look something like:
     * `d update Panadol -by -10`
   * Drug to be Updated:
     * <img src="images/UIscreenshots/drugSS/drugPrevCount.png" style="zoom: 25%">
-    * The storage is currently 55 boxes. 
+    * The storage is currently 55 boxes.
   * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
     * ![](images/UIscreenshots/drugSS/dUpdate.png)
   * The storage of Panadol is now 45
@@ -337,9 +337,9 @@ Table 1. Symbols and formats used in this User Guide.
 
 * Format: `d find TRADE_NAME`
   * The search is case-insensitive. e.g panadol will match Panadol.
-  
+
 * Examples:
-  * If you want to check the information of Panadol, your command should look something like: 
+  * If you want to check the information of Panadol, your command should look something like:
     * `d find Panadol`
     * ![](images/UIscreenshots/drugSS/dfind.png)
   * You should see Panadol being shown on the drug list as well as the display window on the right
@@ -377,7 +377,7 @@ Table 1. Symbols and formats used in this User Guide.
 * Format: `d view -i DRUG_INDEX`
 
 * Example:
-  * If you wish to view details/all information of the drug at index 1, your commnad would be: 
+  * If you wish to view details/all information of the drug at index 1, your commnad would be:
     * `d view -i 1`
   * Type in the command and hit `Enter`, detailed information of Panadol will be shown on the window at the right side.
     * ![](images/UIscreenshots/drugSS/dview.png)
@@ -442,7 +442,7 @@ The following commands are patient-related commands that are available in Carefl
 | **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1` | Shows the patient record located at the i-th position in the patient list.|
 | **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John` | Shows patient(s) record that match the patient name you have provided.|
 | **Clear all patient**         | `p clear` | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.| 
+| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.|
 
 ## 6.3 Drug Commands
 
