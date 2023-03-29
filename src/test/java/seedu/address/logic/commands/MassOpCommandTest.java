@@ -12,9 +12,7 @@ import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +20,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.FieldsMatchRegexPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -35,34 +32,18 @@ public class MassOpCommandTest {
 
     @Test
     public void equals() {
-        FieldsMatchRegexPredicate firstPredicate =
-                new FieldsMatchRegexPredicate(Collections.singletonList("name"),
-                        new ArrayList<>(),
-                        Collections.singletonList("email"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        Collections.singletonList("tag")
-                );
-        FieldsMatchRegexPredicate secondPredicate =
-                new FieldsMatchRegexPredicate(new ArrayList<>(),
-                        Collections.singletonList("phone"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        Arrays.asList("tag1", "tag2")
-                );
         Tag firstTag = new Tag("Test1");
         Tag secondTag = new Tag("Test2");
         boolean isDelete1 = true;
         boolean isDelete2 = false;
-        MassOpCommand firstCommand = new MassOpCommand(firstPredicate, firstTag, isDelete1);
-        MassOpCommand secondCommand = new MassOpCommand(secondPredicate, secondTag, isDelete2);
+        MassOpCommand firstCommand = new MassOpCommand(firstTag, isDelete1);
+        MassOpCommand secondCommand = new MassOpCommand(secondTag, isDelete2);
 
         // same object -> returns true
         assertEquals(firstCommand, firstCommand);
 
         // same values -> returns true
-        MassOpCommand firstCommandCopy = new MassOpCommand(firstPredicate, firstTag, isDelete1);
+        MassOpCommand firstCommandCopy = new MassOpCommand(firstTag, isDelete1);
         assertEquals(firstCommand, firstCommandCopy);
 
         // different types -> returns false
@@ -79,18 +60,11 @@ public class MassOpCommandTest {
     public void execute_zeroRegexes_allFiltered() {
         Model modelCopy = model.stateDetachedCopy();
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        FieldsMatchRegexPredicate predicate =
-                new FieldsMatchRegexPredicate(new ArrayList<>(),
-                    new ArrayList<>(),
-                    new ArrayList<>(),
-                    new ArrayList<>(),
-                    new ArrayList<>(),
-                    new ArrayList<>());
         Tag testTag = new Tag("Test");
         for (Person p: expectedModel.getFilteredPersonList()) {
             p.addTag(testTag);
         }
-        MassOpCommand command = new MassOpCommand(predicate, testTag, false);
+        MassOpCommand command = new MassOpCommand(testTag, false);
         assertCommandSuccess(command, modelCopy, expectedMessage, expectedModel);
         Person aliceWithTag = ALICE.deepCopy();
         aliceWithTag.addTag(testTag);
