@@ -9,11 +9,18 @@ public class HelpOrganisationCommand extends HelpCommand {
 
     public static final String COMMAND_WORD = "organisation";
 
-    public static final String ORGANISATION_SYNTAX = "Go to Students Tab: cd_student" + "\n"
-            + "Go to Events Tab: cd_event";
+    public static final String HEADER_1 = "----- Tab-leport Commands -----\n";
+
+    public static final String CD_STUDENT = "Go to Students tab: "
+            + "         cd_student\n";
+
+    public static final String CD_EVENT = "Go to Events tab: "
+            + "            cd_event\n";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(ORGANISATION_SYNTAX);
+        return new CommandResult(HEADER_1
+                + CD_STUDENT
+                + CD_EVENT);
     }
 }
