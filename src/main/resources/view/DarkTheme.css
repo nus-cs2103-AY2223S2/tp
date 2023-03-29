@@ -22,7 +22,7 @@
     -fx-text-fill: black;
 }
 
-.popup {
+.popupBox {
     -fx-background-color: #B5C89C;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
@@ -30,6 +30,7 @@
     -fx-padding: 2 10 2 10;
     -fx-max-width: 100;
 }
+
 
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);

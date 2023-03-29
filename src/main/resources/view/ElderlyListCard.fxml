@@ -44,11 +44,11 @@
                 </Label>
                 <FlowPane fx:id="region" alignment="CENTER_LEFT"/>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-            <ImageView fitHeight="15" pickOnBounds="true"  preserveRatio="true">
-                <Image url="@/images/home-address.png"/>
-            </ImageView>
-            <Label alignment="TOP_LEFT" fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+            <HBox alignment="CENTER_LEFT" spacing="5" fx:id="addressBox">
+                <ImageView fitHeight="15" pickOnBounds="true"  preserveRatio="true">
+                    <Image url="@/images/home-address.png"/>
+                </ImageView>
+                <Label alignment="TOP_LEFT" fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
             </HBox>
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity"

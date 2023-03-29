@@ -72,7 +72,7 @@ public class PairCard extends UiPart<Region> {
 
         elderlyCard.getRoot().setMaxWidth(400);
         volunteerCard.getRoot().setMaxWidth(400);
-        vbox.getStyleClass().add("popup");
+        vbox.getStyleClass().add("popupBox");
         elderlyLabel.setStyle(
                 "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
         );

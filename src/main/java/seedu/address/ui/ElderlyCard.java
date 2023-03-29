@@ -55,6 +55,8 @@ public class ElderlyCard extends UiPart<Region> {
     @FXML
     private HBox availableDatesBox;
     @FXML
+    private HBox addressBox;
+    @FXML
     private FlowPane availableDates;
 
     /**
@@ -92,6 +94,12 @@ public class ElderlyCard extends UiPart<Region> {
         }
         if (elderly.getAvailableDates().isEmpty()) {
             availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());
+        }
+        if (elderly.getAddress().toString().isEmpty()) {
+            addressBox.getChildren().removeAll(address);
+        }
+        if (elderly.getPhone().toString().isEmpty()) {
+            phone.setVisible(false);
         }
         if (displayedIndex == 0) {
             id.setVisible(false);
