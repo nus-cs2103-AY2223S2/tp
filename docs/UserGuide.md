@@ -28,8 +28,7 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 ## Quick start
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
-   - [How do I check my version of Java?]()
-   - If not, follow the instructions [here]()
+   - [How do I check my version of Java?](#checking-java-version)
 
 2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
    ![DownloadDocedex](images/DownloadDocedex.png)
@@ -264,12 +263,18 @@ java -jar [JAR file location]/docedex.jar
 ```
 3. Save the text file as `docedex.bat` (Windows) or `docedex.sh` (MacOS/Linux)
 4. Change the admin settings of the script to allow it to run as a program:
-   i. Windows: Right click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
+   i. Windows: Right-click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
    ii. MacOS/Linux: Open the terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press enter. (`chmod +x` changes permissions of the script to allow it to be executed.)
 5. Double-click on the script to launch Docedex
 6. Docedex should launch
 
 If you have any further issues, please raise an issue on our [GitHub page](https://github.com/AY2223S2-CS2103T-F12-1/tp/issues). We will attend to you as soon as we can.
+
+### Checking Java version
+**Q**: How can I check my Java version?<br>
+**A**: Open a command prompt and type `java -version`. If you do not have Java installed, you can download it [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+
+For Mac Users you may wish to follow the instructions listed [here](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html)
 
 ### Loading Data from another computer
 
