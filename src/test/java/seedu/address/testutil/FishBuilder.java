@@ -12,6 +12,7 @@ import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -40,7 +41,7 @@ public class FishBuilder {
         lastFedDate = new LastFedDateTime(DEFAULT_LAST_FED_DATE);
         species = new Species(DEFAULT_SPECIES);
         feedingInterval = new FeedingInterval(DEFAULT_FEEDING_INTERVAL);
-        tank = new Tank(new TankName(DEFAULT_TANK), new AddressBook());
+        tank = new Tank(new TankName(DEFAULT_TANK), new AddressBook(), new UniqueIndividualReadingLevels());
         tags = new HashSet<>();
     }
 
@@ -103,7 +104,7 @@ public class FishBuilder {
      * @return fishbuilder
      */
     public FishBuilder withTank(String tank) {
-        this.tank = new Tank(new TankName(tank), new AddressBook());
+        this.tank = new Tank(new TankName(tank), new AddressBook(), new UniqueIndividualReadingLevels());
         return this;
     }
 

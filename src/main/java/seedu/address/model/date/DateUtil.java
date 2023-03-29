@@ -16,6 +16,8 @@ public class DateUtil {
      */
     public static final String DATE_FORMAT = "dd/MM/yyyy";
 
+    public static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+
     /**
      * Format of dates in Task descriptions.
      */
@@ -78,6 +80,28 @@ public class DateUtil {
     public static String getTaskDescriptionDateFormat(LocalDate date) {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT_DATE);
         return date.format(outputFormat);
+    }
+
+    /**
+     * Returns the current date
+     * @return current date
+     */
+    public static String getCurrentDate() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        String formattedDate = today.format(formatter);
+        return formattedDate;
+    }
+
+    /**
+     * Returns the current date time
+     * @return current date time
+     */
+    public static String getCurrentDateTime() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+        String formattedNow = now.format(formatter);
+        return formattedNow;
     }
 
     /**

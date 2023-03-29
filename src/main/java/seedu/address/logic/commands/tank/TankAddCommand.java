@@ -41,8 +41,9 @@ public class TankAddCommand extends TankCommand {
         if (model.hasTank(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TANK);
         }
-
+        toAdd.getReadingLevels().setTank(toAdd);
         model.addTank(toAdd);
+        model.addIndividualReadingLevels(toAdd.getReadingLevels());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

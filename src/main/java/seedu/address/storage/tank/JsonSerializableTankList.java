@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.tank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import seedu.address.model.tank.Tank;
  * An Immutable {@code TankList} that is serializable to JSON format.
  */
 @JsonRootName(value = "tanklist")
-class JsonSerializableTankList {
+public class JsonSerializableTankList {
 
     public static final String MESSAGE_DUPLICATE_TANK = "tank List contains duplicate tank(s).";
 

@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * A utility class containing a list of {@code Fish} objects to be used in tests.
@@ -76,7 +77,8 @@ public class TypicalFishes {
         AddressBook ab = new AddressBook();
         for (Fish fish : getTypicalFishes()) {
             //For testing purposes, ensure the tanks of Typical Fish is not changed by other tests
-            fish.setTank(new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook()));
+            fish.setTank(new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook(),
+                    new UniqueIndividualReadingLevels()));
             ab.addFish(fish);
         }
         return ab;

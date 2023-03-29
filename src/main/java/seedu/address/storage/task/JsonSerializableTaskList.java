@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  * An Immutable {@code TaskList} that is serializable to JSON format.
  */
 @JsonRootName(value = "tasklist")
-class JsonSerializableTaskList {
+public class JsonSerializableTaskList {
 
     public static final String MESSAGE_DUPLICATE_TASK = "task List contains duplicate task(s).";
 

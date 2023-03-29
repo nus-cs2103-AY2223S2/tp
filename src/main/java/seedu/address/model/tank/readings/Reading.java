@@ -14,7 +14,7 @@ import seedu.address.model.tank.Tank;
 abstract class Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Last Fed Date is a date time in the format of dd/mm/yyyy";
+            "Reading dates should be in the format of dd/mm/yyyy";
     public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
     public final String dateString;
     public final LocalDate localDate;

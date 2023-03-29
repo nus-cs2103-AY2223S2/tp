@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showTankAtIndex;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TANK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TANK;
+import static seedu.address.testutil.TypicalReadings.getTypicalFullReadingLevels;
 import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -25,7 +26,7 @@ import seedu.address.model.UserPrefs;
 public class TankDeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            getTypicalTankList());
+            getTypicalTankList(), getTypicalFullReadingLevels());
 
     /* Test needs to be redone after tank delete changes
     @Test
@@ -36,7 +37,7 @@ public class TankDeleteCommandTest {
         String expectedMessage = String.format(TankDeleteCommand.MESSAGE_DELETE_TANK_SUCCESS, tankToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         expectedModel.deleteTank(tankToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -62,7 +63,7 @@ public class TankDeleteCommandTest {
         String expectedMessage = String.format(TankDeleteCommand.MESSAGE_DELETE_TANK_SUCCESS, tankToDelete);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), );
         expectedModel.deleteTank(tankToDelete);
         showNoTank(expectedModel);
 

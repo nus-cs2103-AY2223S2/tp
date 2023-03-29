@@ -98,7 +98,7 @@ public class UniqueFishList implements Iterable<Fish> {
     }
 
     /**
-     * Sets the lastFedDate field of all fishes in this {@code internalList} list
+     * Sets the lastFedDate field of all fishes in this {@code internalListAmmonia} list
      * with new LastFedDate object with {@code newDate}.
      */
     public void setLastFedDateTimeFishes(String newDateTime) {

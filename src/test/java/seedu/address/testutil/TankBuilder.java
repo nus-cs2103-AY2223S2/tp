@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * A utility class to help with building Tank objects.
@@ -35,7 +36,7 @@ public class TankBuilder {
     }
 
     public Tank build() {
-        return new Tank(tankName, new AddressBook());
+        return new Tank(tankName, new AddressBook(), new UniqueIndividualReadingLevels());
     }
 
 }

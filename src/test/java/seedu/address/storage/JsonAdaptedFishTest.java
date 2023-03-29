@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedFish.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.fish.JsonAdaptedFish.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.BENSON;
 
@@ -16,6 +16,8 @@ import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
+import seedu.address.storage.fish.JsonAdaptedFish;
+import seedu.address.storage.fish.JsonAdaptedTag;
 
 public class JsonAdaptedFishTest {
     private static final String INVALID_NAME = "R@chel";

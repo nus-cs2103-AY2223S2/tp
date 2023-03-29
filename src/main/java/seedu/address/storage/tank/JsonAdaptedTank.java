@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.tank;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,11 +7,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Jackson-friendly version of {@link Tank}.
  */
-class JsonAdaptedTank {
+public class JsonAdaptedTank {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tank's %s field is missing!";
 
@@ -46,6 +47,6 @@ class JsonAdaptedTank {
             throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
         }
         final TankName modelTankName = new TankName(tankName);
-        return new Tank(modelTankName, new AddressBook());
+        return new Tank(modelTankName, new AddressBook(), new UniqueIndividualReadingLevels());
     }
 }
