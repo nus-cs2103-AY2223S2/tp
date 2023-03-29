@@ -205,6 +205,7 @@ public class AddCommandTest {
         public void removeExercise(Routine routineToDelete, int zeroBased) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
