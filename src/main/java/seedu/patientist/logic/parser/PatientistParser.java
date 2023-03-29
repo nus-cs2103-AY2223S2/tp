@@ -12,6 +12,8 @@ import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.logic.commands.ClearCommand;
 import seedu.patientist.logic.commands.Command;
 import seedu.patientist.logic.commands.DeleteCommand;
+import seedu.patientist.logic.commands.DeletePatientCommand;
+import seedu.patientist.logic.commands.DeleteStaffCommand;
 import seedu.patientist.logic.commands.DeleteWardCommand;
 import seedu.patientist.logic.commands.EditCommand;
 import seedu.patientist.logic.commands.ExitCommand;
@@ -99,6 +101,12 @@ public class PatientistParser {
 
         case DeleteWardCommand.COMMAND_WORD:
             return new DeleteWardCommandParser().parse(arguments);
+
+        case DeletePatientCommand.COMMAND_WORD:
+            return new DeletePatientCommandParser().parse(arguments);
+
+        case DeleteStaffCommand.COMMAND_WORD:
+            return new DeleteStaffCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
