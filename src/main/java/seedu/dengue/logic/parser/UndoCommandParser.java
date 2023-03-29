@@ -1,5 +1,6 @@
 package seedu.dengue.logic.parser;
 
+import static seedu.dengue.commons.core.Messages.MESSAGE_INDICATE_POSITIVE;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.dengue.logic.commands.UndoCommand;
@@ -26,6 +27,16 @@ public class UndoCommandParser extends UndoRedoCommandParser implements Parser<U
         } catch (NumberFormatException err) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoCommand.MESSAGE_USAGE));
+        }
+    }
+
+    @Override
+    public void requirePositive(int number) throws ParseException {
+        if (number <= 0) {
+            throw new ParseException(
+                    String.format(
+                            MESSAGE_INVALID_COMMAND_FORMAT
+                                    + MESSAGE_INDICATE_POSITIVE, UndoCommand.MESSAGE_USAGE));
         }
     }
 }
