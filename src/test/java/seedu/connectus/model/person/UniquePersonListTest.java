@@ -7,7 +7,7 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_REMARK_HUSBAND;
 import static seedu.connectus.testutil.Assert.assertThrows;
 import static seedu.connectus.testutil.TypicalPersons.ALICE;
 import static seedu.connectus.testutil.TypicalPersons.BOB;
@@ -45,7 +45,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_ICS)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         assertTrue(uniquePersonList.contains(editedAlice));
@@ -89,7 +89,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_ICS)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         uniquePersonList.setPerson(ALICE, editedAlice);

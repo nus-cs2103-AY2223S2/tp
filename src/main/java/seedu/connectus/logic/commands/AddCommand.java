@@ -9,10 +9,10 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_MODULE + "MODULE]... "
             + "[" + PREFIX_CCA + "CCA]... "
             + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_REMARK + "REMARK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -55,8 +55,8 @@ public class AddCommand extends Command {
             + PREFIX_CCA + "ICS "
             + PREFIX_CCA_POSITION + "Director "
             + PREFIX_CCA_POSITION + "President "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_REMARK + "friends "
+            + PREFIX_REMARK + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ConnectUS";

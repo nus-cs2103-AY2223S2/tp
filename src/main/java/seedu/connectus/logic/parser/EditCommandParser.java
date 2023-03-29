@@ -10,10 +10,10 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.EditCommand;
@@ -35,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_MODULE,
-            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
+                PREFIX_ADDRESS, PREFIX_BIRTHDAY,
+            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
 
         Index index;
 
@@ -65,7 +65,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         {
             editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
-        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_REMARK))
+                .ifPresent(editPersonDescriptor::setRemarks);
         ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
                 .ifPresent(editPersonDescriptor::setModules);
         ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(editPersonDescriptor::setCcas);

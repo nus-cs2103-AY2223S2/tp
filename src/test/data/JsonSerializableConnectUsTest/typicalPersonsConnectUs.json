@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
+    "remarks" : [ "friends" ],
     "modules" : ["CS2101"],
     "ccas" : ["NES"],
     "ccaPositions" : ["President"]
@@ -14,7 +14,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
+    "remarks" : [ "owesMoney", "friends" ],
     "modules" : ["CS2103T"],
     "ccas" : ["ICS"],
     "ccaPositions" : ["President"]
@@ -23,13 +23,13 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "remarks" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ],
+    "remarks" : [ "friends" ],
     "ccas" : ["ICS"],
     "ccaPositions" : ["President"]
   }, {
@@ -37,18 +37,18 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "remarks" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "remarks" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "remarks" : [ ]
   } ]
 }

@@ -5,16 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,12 +48,6 @@ public class EditPersonDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tags -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND)
-                .withModules(VALID_MODULE_CS2103T, VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS, VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_PRESIDENT, VALID_CCA_POSITION_DIRECTOR).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

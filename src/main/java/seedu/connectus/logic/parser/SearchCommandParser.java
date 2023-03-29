@@ -59,7 +59,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         {
             predicate.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
-        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(predicate::setTags);
+        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(predicate::setRemarks);
         ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(predicate::setModules);
         ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(predicate::setCcas);
         ParserUtil.parseCcaPositionsOptional(argMultimap.getAllValues(PREFIX_CCA_POSITION))

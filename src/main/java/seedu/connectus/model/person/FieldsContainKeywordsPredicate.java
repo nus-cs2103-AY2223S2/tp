@@ -13,7 +13,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * Tests that a {@code Person}'s information fields matches any of the keywords given.
@@ -25,7 +25,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     private Email email;
     private Address address;
     private SocialMedia socialMedia;
-    private Set<Tag> tags;
+    private Set<Remark> remarks;
     private Birthday birthday;
     private Set<Module> modules;
     private Set<Cca> ccas;
@@ -45,7 +45,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setSocialMedia(toCopy.socialMedia);
-        setTags(toCopy.tags);
+        setRemarks(toCopy.remarks);
         setModules(toCopy.modules);
         setCcas(toCopy.ccas);
         setCcaPositions(toCopy.ccaPositions);
@@ -56,7 +56,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Returns true if at least one field is edited.
      */
     public boolean isFieldKeywordPresent() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags,
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, remarks,
                 birthday, modules, ccas, ccaPositions);
     }
 
@@ -121,8 +121,8 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+    public void setRemarks(Set<Remark> remarks) {
+        this.remarks = (remarks != null) ? new HashSet<>(remarks) : null;
     }
 
     /**
@@ -131,8 +131,8 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+    public Optional<Set<Remark>> getRemarks() {
+        return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
     }
 
 
@@ -210,7 +210,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags())
+                && getRemarks().equals(e.getRemarks())
                 && getModules().equals(e.getModules())
                 && getCcas().equals(e.getCcas())
                 && getCcaPositions().equals(e.getCcaPositions())
