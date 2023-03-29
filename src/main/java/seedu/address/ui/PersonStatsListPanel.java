@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.model.stats.PersonStats;
 import seedu.address.model.task.Task;
@@ -22,18 +24,25 @@ import seedu.address.model.task.Task;
 public class PersonStatsListPanel extends UiPart<Region> {
     private static final String FXML = "PersonStatsListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonStatsListPanel.class);
+    private final Logic logic;
 
     @FXML
     private ListView<PersonStats> personStatsListView;
 
+    private ObservableList<PersonStats> personStatsList;
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonStatsListPanel(ObservableList<Person> personList, ObservableList<Task> taskList) {
+    public PersonStatsListPanel(Logic logic) {
         super(FXML);
-        ObservableList<PersonStats> personStatsList = createPersonStatsList(personList, taskList);
+        this.logic = logic;
+        personStatsList = createPersonStatsList(logic.getFilteredPersonList(), logic.getFilteredTaskList());
         personStatsListView.setItems(personStatsList);
         personStatsListView.setCellFactory(listView -> new PersonStatsListViewCell());
+
+        logic.getFilteredPersonList().addListener((ListChangeListener<Person>) change -> updatePersonStatsList());
+        logic.getFilteredTaskList().addListener((ListChangeListener<Task>) change -> updatePersonStatsList());
     }
 
     /**
@@ -75,5 +84,10 @@ public class PersonStatsListPanel extends UiPart<Region> {
         }
     
         return FXCollections.observableArrayList(personStatsList);
+    }
+
+    private void updatePersonStatsList() {
+        personStatsList = createPersonStatsList(logic.getFilteredPersonList(), logic.getFilteredTaskList());
+        personStatsListView.setItems(personStatsList);
     }
 }

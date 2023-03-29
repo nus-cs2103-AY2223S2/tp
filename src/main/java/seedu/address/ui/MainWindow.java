@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.getFeedbackToUser().equals(ReviewCommand.MESSAGE_SUCCESS)) {
-                personStatsListPanel = new PersonStatsListPanel(logic.getFilteredPersonList(), logic.getFilteredTaskList());
+                personStatsListPanel = new PersonStatsListPanel(logic);
                 listPanelPlaceholder.getChildren().clear();
                 listPanelPlaceholder.getChildren().add(personStatsListPanel.getRoot());
                 StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
