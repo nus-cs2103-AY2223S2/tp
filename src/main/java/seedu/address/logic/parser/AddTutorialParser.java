@@ -59,8 +59,13 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
             tutorial.changeDate(date);
         }
 
-        if (ParserUtil.isBusy(new LocalDateTime[]{tutorial.getDate(), tutorial.getDate().plusHours(1)})) {
-            throw new ParseException("You are already busy during this period");
+        //Checks for date availability when no date prefix is stated
+        if (!argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            if (ParserUtil.isBusy(new LocalDateTime[]{tutorial.getDate(), tutorial.getDate().plusHours(1)})) {
+                throw new ParseException("You are already busy during this period");
+            } else {
+                ParserUtil.makeBusy(new LocalDateTime[]{tutorial.getDate(), tutorial.getDate().plusHours(1)});
+            }
         }
 
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
