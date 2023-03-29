@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="5" styleClass="pane-with-rounded-corner-accented, pt"
+<VBox fx:id="eventContainer" spacing="5" styleClass="pane-with-rounded-corner-accented, pv"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <HBox styleClass="ph">
         <VBox spacing="5" HBox.hgrow="ALWAYS">
@@ -23,10 +23,11 @@
             <Label fx:id="recurrence" text="\$recurrence" styleClass="label-p, tag-muted" />
         </VBox>
     </HBox>
-    <Separator />
-    <VBox spacing="5">
+    <VBox fx:id="attendeesCard" spacing="5">
+        <Separator />
         <Label text="Attendees" styleClass="label-p, ph" />
-        <ScrollPane vbarPolicy="NEVER" styleClass="pane-transparent, p0">
+        <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER"
+                    minHeight="-Infinity" styleClass="pane-transparent, p0">
             <HBox fx:id="attendees" spacing="5" styleClass="ph" />
         </ScrollPane>
     </VBox>

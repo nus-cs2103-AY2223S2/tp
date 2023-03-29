@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.fields.DateTime;
@@ -26,6 +28,8 @@ public class CalendarEventCard extends UiPart<Region> {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
 
     @FXML
+    private VBox eventContainer;
+    @FXML
     private Label description;
     @FXML
     private Label startDateTime;
@@ -37,6 +41,8 @@ public class CalendarEventCard extends UiPart<Region> {
     private Label indexTag;
     @FXML
     private HBox attendees;
+    @FXML
+    private VBox attendeesCard;
 
     /**
      * Creates a {@code CalendarEventCard} with the given {@code indexedEvent}.
@@ -65,10 +71,16 @@ public class CalendarEventCard extends UiPart<Region> {
                 new Person(new Name("Jeremy Oppenheimer Jeremy Oppenheimer Jeremy Oppenheimer Jeremy Oppenheimer")),
                 new Person(new Name("Johnny"))
         );
-        attendees.getChildren().addAll(people.stream()
-                .map(CalendarPersonTag::new)
-                .map(UiPart::getRoot)
-                .collect(Collectors.toList()));
+
+        if (people.isEmpty()) {
+            eventContainer.getChildren().remove(attendeesCard);
+        } else {
+            attendees.getChildren().addAll(people.stream()
+                    .map(CalendarPersonTag::new)
+                    .map(UiPart::getRoot)
+                    .collect(Collectors.toList()));
+            eventContainer.setPadding(new Insets(10, 0, 0, 0));
+        }
 
         if (effectiveEnd.getDateTime().isBefore(LocalDateTime.now())) {
             getRoot().setOpacity(0.5);
