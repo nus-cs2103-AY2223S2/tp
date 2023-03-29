@@ -351,7 +351,7 @@
     -fx-vgap: 3;
 }
 
-#tags .label {
+#tags .label.remark {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
@@ -359,3 +359,31 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#tags .label.module {
+    -fx-text-fill: white;
+    -fx-background-color: #ff7f50;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#tags .label.cca {
+    -fx-text-fill: white;
+    -fx-background-color: #773E4A;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#tags .label.ccaPosition {
+    -fx-text-fill: white;
+    -fx-background-color: #67773E;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
