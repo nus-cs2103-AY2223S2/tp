@@ -17,7 +17,7 @@ import seedu.address.model.task.InternshipTodo;
  */
 public class AddTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "todo";
+    public static final String COMMAND_WORD = "add_todo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interested internship todo.\n"
             + "Parameters: "

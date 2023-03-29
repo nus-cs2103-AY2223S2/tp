@@ -21,7 +21,7 @@ public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "delete_note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified note from the list of todo.\n"
+            + ": Deletes the specified note from the list of notes.\n"
             + "Deletes note at the specified INDEX.\n"
             + "The index refers to the index number shown in the displayed note list.\n"
             + "Parameters: INDEX (must be a positive integer 1, 2, 3, ...)\n"

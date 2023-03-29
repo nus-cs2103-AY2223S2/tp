@@ -1,59 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="450" minWidth="450" onCloseRequest="#handleExit" title="InternEase" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+          <URL value="@MainWindow.css" />
+        <!--<URL value="@DarkTheme.css" />-->
+        <!--<URL value="@Extensions.css" />-->
       </stylesheets>
+        <AnchorPane>
+      <VBox fx:id="mainBox" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" AnchorPane.topAnchor="0">
+              <GridPane fx:id="headerGridPane" maxHeight="80" minHeight="70" AnchorPane.rightAnchor="5" VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="33.33" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="33.33" />
+                    <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="33.33" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints percentHeight="10" vgrow="ALWAYS" />
+                  <RowConstraints percentHeight="90" vgrow="ALWAYS" />
+                </rowConstraints>
+                 <children>
+                    <Label fx:id="productLabel" alignment="CENTER" text="InternEase" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <StackPane fx:id="quickAccessToolbarPlaceholder" alignment="CENTER_RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                 </children>
+              </GridPane>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+        <StackPane fx:id="commandBoxPlaceholder" minHeight="50" style="-fx-padding: 10 0 10 0" styleClass="pane-with-border" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" VBox.vgrow="NEVER" />
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            <GridPane fx:id="mainGridPane" alignment="CENTER" hgap="20" AnchorPane.bottomAnchor="0">
+                <Separator orientation="VERTICAL" GridPane.columnIndex="1" />
+              <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="49.0" />
+                  <ColumnConstraints hgrow="NEVER" percentWidth="1.0" />
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="49.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints percentHeight="97" vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+             <StackPane fx:id="applicationListPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+             <VBox fx:id="mainContainer" spacing="20" styleClass="pane-with-border" GridPane.columnIndex="2">
+                     <children>
+                        <StackPane fx:id="viewContentPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="summaryPanelPlaceholder" alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+                     </children>
+             </VBox>
+               </children>
+            </GridPane>
       </VBox>
+        </AnchorPane>
     </Scene>
   </scene>
 </fx:root>
