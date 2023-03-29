@@ -73,7 +73,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <p align="center">
   <img src="images/ArchitectureDiagram.svg" width="280" />
-  <br>Figure 1: Architecture Diagram of Trackr</br>
+  <br>Figure 1: Architecture Diagram of Trackr
 </p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
@@ -102,7 +102,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <p align="center">
   <img src="images/ArchitectureSequenceDiagram.svg" width="650"/>
-  <br>Figure 2: Sequence Diagram (Deleting Person)</br>
+  <br>Figure 2: Sequence Diagram (Deleting Person)
 </p>
 
 Each of the four main components (also shown in the diagram above),
@@ -114,7 +114,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <p align="center">
   <img src="images/ComponentManagers.svg" width="300" />
-  <br>Figure 3: Logic Class Diagram</br>
+  <br>Figure 3: Logic Class Diagram
 </p>
 
 The sections below give more details of each component.
@@ -125,7 +125,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p align="center">
   <img src="images/UiClassDiagram.svg" />
-  <br>Figure 4: UI Class Diagram</br>
+  <br>Figure 4: UI Class Diagram
 </p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -147,7 +147,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <p align="center">
   <img src="images/LogicClassDiagram.svg" width="550"/>
-  <br>Figure 5: Logic Class Diagram</br>
+  <br>Figure 5: Logic Class Diagram
 </p>
 
 How the `Logic` component works:
@@ -167,7 +167,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <p align="center">
   <img src="images/ParserClasses.svg" width="600"/>
-  <br>Figure 6: Sequence Diagram (Deleting Order)</br>
+  <br>Figure 6: Sequence Diagram (Deleting Order)
 </p>
 
 How the parsing works:
@@ -181,6 +181,7 @@ How the parsing works:
 
 <p align="center">
   <img src="images/ModelClassDiagram.svg" width="450" />
+  <br>Figure 7: Model Class Diagram
 </p>
 
 The `Model` component,
@@ -195,6 +196,7 @@ Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
   <img src="images/ItemClassDiagram.svg" width="300" />
+  <br>Figure 8: Item Class Diagram
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
@@ -204,6 +206,7 @@ This is the class representation for the `Supplier` and `Customer` class.
 
 <p align="center">
   <img src="images/PersonClassDiagram.svg" width="500" />
+  <br>Figure 9: Person Class Diagram
 </p>
 
 Here is how `Supplier` and `Customer` works:
@@ -216,6 +219,7 @@ This is the class representation for the `Task` class.
 
 <p align="center">
   <img src="images/TaskClassDiagram.svg" width="450" />
+  <br>Figure 10: Task Class Diagram
 </p>
 
 Here is how `Task` works:
@@ -227,8 +231,9 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-   <img src="images/MenuClassDiagram.svg" width="450" />
- </p>
+  <img src="images/MenuClassDiagram.svg" width="450" />
+  <br>Figure 11: Menu Class Diagram
+</p>
 
 Here is how `Menu` works:
 
@@ -241,8 +246,9 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-   <img src="images/OrderClassDiagram.svg" width="550" />
- </p>
+  <img src="images/OrderClassDiagram.svg" width="550" />
+  <br>Figure 12: Order Class Diagram
+</p>
 
 Here is how `Order` works:
 
@@ -258,6 +264,7 @@ Here is how `Order` works:
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
+  <br>Figure 13: Storage Class Diagram
 </p>
 
 The `Storage` component,
