@@ -1,7 +1,6 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
@@ -37,35 +35,47 @@ public class CommandUtil {
             .sorted().collect(Collectors.toList());
     }
 
-    protected static Person launchWindow(Model model, Index targetIndex, Function<Person, String>[] platforms)
+    protected static Person launchWindow(Model model, Index index, Function<Person, String>[] platforms, int repeat)
             throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        var target = lastShownList.get(targetIndex.getZeroBased());
+        var target = lastShownList.get(index.getZeroBased());
 
         var desktop = Desktop.getDesktop();
-        for (var platform : platforms) {
-            if (platform == null) {
-                continue;
-            }
-            URI uri;
-            try {
-                var link = platform.apply(target);
-                if (link.isBlank()) {
-                    throw new CommandException(Messages.MESSAGE_PERSON_FIELD_NOT_PRESENT);
+        for (int i = 0; i <= repeat; i++){
+            for (var platform : platforms) {
+                if (platform == null) {
+                    continue;
                 }
-                uri = new URI(link);
-                desktop.browse(uri);
-            } catch (URISyntaxException | IOException e) {
+                URI uri;
+                try {
+                    var link = platform.apply(target);
+                    if (link.isBlank()) {
+                        throw new CommandException(Messages.MESSAGE_PERSON_FIELD_NOT_PRESENT);
+                    }
+                    uri = new URI(link);
+                    desktop.browse(uri);
+                } catch (URISyntaxException | IOException e) {
+                    throw new CommandException(e.getMessage());
+                }
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
                 throw new CommandException(e.getMessage());
             }
         }
 
         return target;
+    }
+
+    protected static Person launchWindow(Model model, Index index, Function<Person, String>[] platforms)
+        throws CommandException {
+        return launchWindow(model, index, platforms, 0);
     }
 }

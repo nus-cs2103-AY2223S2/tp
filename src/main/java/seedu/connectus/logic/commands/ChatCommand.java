@@ -44,6 +44,6 @@ public class ChatCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult(
-            String.format(MESSAGE_SUCCESS, CommandUtil.launchWindow(model, targetIndex, targetPlatforms), message));
+            String.format(MESSAGE_SUCCESS, CommandUtil.launchWindow(model, targetIndex, targetPlatforms, 1), message));
     }
 }

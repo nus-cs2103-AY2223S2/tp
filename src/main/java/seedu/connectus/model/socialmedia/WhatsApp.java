@@ -3,6 +3,8 @@ package seedu.connectus.model.socialmedia;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 
@@ -28,10 +30,6 @@ public class WhatsApp implements Openable, Chatable {
     public static WhatsApp of(String phone) {
         requireNonNull(phone);
         checkArgument(isValidWhatsApp(phone), MESSAGE_CONSTRAINTS);
-        if (phone.length() == 8) {
-            // Singaporean phone number?
-            phone = "65" + phone;
-        }
         return new WhatsApp(phone);
     }
 
@@ -48,7 +46,8 @@ public class WhatsApp implements Openable, Chatable {
 
     @Override
     public String getUserLink() {
-        return "whatsapp://send?phone=" + value;
+        // Singaporean phone number? add +65 prefix.
+        return "whatsapp://send?phone=" + ((value.length() == 8) ? "65" + value : value);
     }
 
     public static String getUserLink(Person user) {
@@ -57,7 +56,7 @@ public class WhatsApp implements Openable, Chatable {
 
     @Override
     public String getUserLinkWithPreparedMessage(String message) {
-        return getUserLink() + "&text=" + message;
+        return getUserLink() + "&text=" + URLEncoder.encode(message, StandardCharsets.UTF_8);
     }
 
     public static String getUserLinkWithPreparedMessage(Person user, String message) {
