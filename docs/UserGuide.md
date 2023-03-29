@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-Group: AY2223S2-CS2103T-T15-4
-
 ## Introduction
 
 CLIpboard is a desktop app that helps educators (like you!), especially those that tutor multiple classes, by managing their students’ particulars<strong> in an organised manner.</strong>
@@ -17,8 +15,11 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 
 ## Table of Contents
 
-* Table of Contents
-{:toc}
+- [Introduction](#introduction)
+- [Table of Contents](#table-of-contents)
+- [Quick Start](#quick-start)
+- [Navigation Guide](#navigation-guide)
+- [List of Commands](#commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -34,11 +35,22 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 5. Type the command in the command box and press Enter to execute it.
 <br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
-    1. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
-    2. `delete 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
-    3. `undo` : Returns to the state before the last command you entered.
-    4. `exit` : Exits the app.
+    1. `select 1` : Selects the first item in the list displayed in the list panel.
+    2. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
+    3. `delete 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
+    4. `undo` : Returns to the state before the last command you entered.
+    5. `exit` : Exits the app.
 6. Refer to the commands list below for a detailed description for each command.
+
+--------------------------------------------------------------------------------------------------------------
+
+## Navigation Guide
+
+Moving between pages is easy with our navigation tools.
+Simply use a combination of `select`, `back`, `session`, and `task` commands.
+If you need more information on how to use these commands, just refer to our handy navigation guide below.
+
+![image](./images/navigation.png)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -47,61 +59,52 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 List of commands:
 
 -  [Course Page Commands: ](#course-page-commands)
-    - [Adding a course: ](#adding-a-course--add-course) `add course`
-    - [Deleting a course: ](#deleting-a-course--delete-course) `delete course`
-    - [Editing a course: ](#editing-a-course--edit-course) `edit course`
-    - [Selecting a course to display its Group Page: ](#selecting-a-course--select) `select`
+    - [Adding a course: ](#adding-a-course-add-course) `add course`
+    - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
+    - [Editing a course: ](#editing-a-course-edit-course) `edit course`
+    - [Selecting a course to display its Group Page: ](#selecting-a-course-select) `select`
 - [Group Page Commands: ](#group-page-commands)
-    - [Adding a group: ](#adding-a-group--add-group) `add group`
-    - [Deleting a group: ](#deleting-a-group--delete-group) `delete group`
-    - [Editing a group: ](#editing-a-group--edit-group) `edit group`
-    - [Selecting a group to display its Student Page: ](#selecting-a-group--select) `select`
-    - [Displaying sessions of a group: ](#displaying-sessions-of-a-group--session) `session`
-    - [Displaying tasks of a group: ](#displaying-tasks-of-a-group--task) `task`
+    - [Adding a group: ](#adding-a-group-add-group) `add group`
+    - [Deleting a group: ](#deleting-a-group-delete-group) `delete group`
+    - [Editing a group: ](#editing-a-group-edit-group) `edit group`
+    - [Selecting a group to display its Student Page: ](#selecting-a-group-select) `select`
+    - [Displaying sessions of a group: ](#displaying-sessions-of-a-group-session) `session`
+    - [Displaying tasks of a group: ](#displaying-tasks-of-a-group-task) `task`
 - [Students Page Commands: ](#students-page-commands)
-    - [Adding a student: ](#adding-a-student--add-student) `add student`
-    - [Deleting a student: ](#deleting-a-student--delete-student) `delete student`
-    - [Editing a student: ](#editing-a-student--edit-student) `edit student`
-    - [Copying a student's email: ](#copying-a-students-email--copy) `copy`
-    - [Finding students by name: ](#finding-students-by-name--find) `find`
-    - [Displays a student's information:  ](#displays-a-students-information--select) `select`
-    - [Adding or deleting a remark: ](#adding-or-deleting-a-remark--remark) `remark`
-    - [Upload a student's photo: ](#uploading-a-students-photo--upload) `upload`
-    - [Sorting list of students: ](#sorting-list-of-students--sort) `sort`
+    - [Adding a student: ](#adding-a-student-add-student) `add student`
+    - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
+    - [Editing a student: ](#editing-a-student-edit-student) `edit student`
+    - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
+    - [Finding students by name: ](#finding-students-by-name-find) `find`
+    - [Displays a student's information:  ](#displays-a-students-information-select) `select`
+    - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
+    - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
+    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
 - [Session Page Commands: ](#session-page-commands)
-    - [Adding a session: ](#adding-a-session--add-session) `add session`
-    - [Deleting a session: ](#deleting-a-session--delete-session) `delete session`
-    - [Editing a session: ](#editing-a-session--edit-session) `edit session`
-    - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking--select) `select`
+    - [Adding a session: ](#adding-a-session-add-session) `add session`
+    - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
+    - [Editing a session: ](#editing-a-session-edit-session) `edit session`
+    - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking-select) `select`
 - [Attendance Page Commands: ](#attendance-page-commands)
-    - [Marking attendance of a selected students: ](#marking-attendance-of-a-selected-students--mark) `mark`
-    - [Unmarking attendance of a selected students: ](#unmarking-attendance-of-a-selected-students--unmark) `unmark`
-    - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session--attendance) `attendance`
+    - [Marking attendance of a selected students: ](#marking-selected-students-as-present-mark) `mark`
+    - [Unmarking attendance of a selected students: ](#marking-selected-students-as-absent-unmark) `unmark`
+    - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session-attendance) `attendance`
 - [Task Page Commands: ](#task-page-commands) 
-    - [Adding a task: ](#adding-a-task--add-task) `add task`
-    - [Deleting a task: ](#deleting-a-task--delete-task) `delete task`
-    - [Editing a task: ](#editing-a-task--edit-task) `edit task`
-    - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades--select) `select`
+    - [Adding a task: ](#adding-a-task-add-task) `add task`
+    - [Deleting a task: ](#deleting-a-task-delete-task) `delete task`
+    - [Editing a task: ](#editing-a-task-edit-task) `edit task`
+    - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
 - [Grades Page Commands: ](#grades-page-commands)
-    - [Assigning a grade: ](#assigning-a-grade--assign) `assign`
+    - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
 - [General Commands: ](#general-commands)
-    - [Displaying the home page (Course Page): ](#displaying-the-home-page--course-page---home) `home`
-    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at--back) `back`
-    - [Undoing the last command you did: ](#undoing-the-last-command-you-did--undo) `undo`
-    - [Opening help window: ](#opening-help-window--help) `help`
-    - [Scrolling through command history: ](#scrolling-through-command-history--up-or-down-arrow-key) `UP` or `DOWN` arrow key
-    - [Clearing all entries: ](#clearing-all-entries--clear) `clear`
-    - [Exiting the program: ](#exiting-the-program--exit) `exit`
+    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
+    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
+    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
+    - [Opening help window: ](#opening-help-window-help) `help`
+    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
+    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
+    - [Exiting the program: ](#exiting-the-program-exit) `exit`
 
-
---------------------------------------------------------------------------------------------------------------
-## Navigation Guide
-
-Welcome to CLIpboard! Moving between pages is easy with our navigation tools.
-Simply use a combination of `select`, `back`, `session`, and `task` commands.
-If you need more information on how to use these commands, just refer to our handy navigation guide located below.
-
-![image](./images/navigation.png)
 
 --------------------------------------------------------------------------------------------------------------
 ## Course Page Commands
