@@ -5,7 +5,7 @@ Greetings! Welcome to PowerConnect! <br>
 Looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
 
-PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our 
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
 features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Managment System (LMS)](#glossary) tools currently in the market. <br>
 
 We aim to make PowerConnect as simple as possible for you to use with a focus on command line interface where you don't
@@ -13,7 +13,7 @@ have to navigate complex user menus to access the features you need, especially 
 
 Without further ado, let's get started!
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ Without further ado, let's get started!
    1. [Command Summary for Student](#summarystudent)
    2. [Command Summary for Parent](#summaryparent)
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ Without further ado, let's get started!
 
 1. Absolute Path to Image: Location where the image is stored <br>
    By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
-2. Attributes: Information of a student / parent. <br> 
+2. Attributes: Information of a student / parent. <br>
    For example, name, phone number, email address etc <br><br>
 3. CLI: Command Line Interface <br><br>
 4. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
@@ -110,7 +110,7 @@ Without further ado, let's get started!
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +214,7 @@ This section aims to provide a brief overview of the features available in Power
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -275,7 +275,7 @@ Ensure that if you mark the same date for the same student as being present, it 
 
 Format : `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
 
-Examples: 
+Examples:
 * `student 3A attendance in/25 att/T`
 * `student 3A attendance in/25 att/25/02/2023
 
@@ -446,7 +446,7 @@ Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student 
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -470,7 +470,7 @@ Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOL
 
 ***Click [HERE](#images) to find out more on what to input for inserting image!!!***
 
-***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!*** 
+***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
@@ -499,7 +499,7 @@ Examples of Full Command:
 
 [Back to Table of Contents](#table-of-contents)
 
-<div style="page-break-after: always;"></div> 
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -542,7 +542,7 @@ Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert A
 ```
 Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
 ```
-**Note:** 
+**Note:**
 1. User *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -621,7 +621,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 <a name = "images"/>
 
-## Images 
+## Images
 
 In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
@@ -632,7 +632,7 @@ Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <
 Location of where images folder should be at. (Same directory of PowerConnect.jar)
 ![image message](images/images1.png)
 
-Inside the images folder, create a folder called `student` and `parent` if it does not exist. 
+Inside the images folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
 Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
