@@ -5,8 +5,8 @@ title: User Guide
 
 # Introduction
 
-Welcome to PowerCards, a **lightweight flashcards application** that aims to help students streamline their learning process, enabling for faster mastery of course materials.
-As a university student, you can capitalise on PowerCards' **powerful flashcards management system** and **minimalist interface** to create multiple decks of flashcards quickly to manage your course content and spend more time on learning instead.
+Welcome to PowerCards, a **lightweight flashcard application** that aims to help students streamline their learning process, enabling for faster mastery of course materials through the active recall advantage of flashcards _(which we will be referring as cards throughout the User Guide)_.
+As a university student, you can capitalise on PowerCards' **powerful cards management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
 
 This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
 
@@ -24,13 +24,17 @@ This user guide will help you use PowerCards with ease and integrate it into you
 * Have a **question** for us or require our **assistance**? Feel free to [contact us](##contact-us), and we will do our best to assist you!
 
 **:bulb: Tip:**<br>
-* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will help you understand how PowerCards works. Then, you can dive into the sections that interest you the most. 
-* To avoid overwhelming you with too much information at once, we've separated some details (like field constraints) into their own sections. We hope this approach will make it easier for you to digest the content.
+* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
+
+## Components of the User Interface of PowerCards
+
+
+
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
 
-2. Download the latest `powercards.jar` from [here]().
+2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PCs.
 
@@ -43,6 +47,8 @@ This user guide will help you use PowerCards with ease and integrate it into you
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## 
 
 # Features
 
