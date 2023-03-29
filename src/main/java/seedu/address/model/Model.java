@@ -164,4 +164,8 @@ public interface Model {
 
     /** Sets the tab to the one specified in {@code index} */
     void setSelectedTab(Index index);
+
+    ReadOnlyObjectProperty<Person> getSelectedPerson();
+    void setSelectedPerson(Index index);
+
 }

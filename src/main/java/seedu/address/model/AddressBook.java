@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.fields.Name;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +18,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final ReadOnlyObjectWrapper<Person> observableSelectedPerson =
+            new ReadOnlyObjectWrapper<>(new Person(new Name("Default"))); //figure what to replace with
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -93,6 +98,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+        return observableSelectedPerson.getReadOnlyProperty();
+    }
     /**
      * Finds the person with given {@code name}.
      */
@@ -109,6 +117,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    public void setSelectedPerson(Person person) {
+        observableSelectedPerson.set(person);
+    }
+
+    //// util methods
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LightModeCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UnTagEventCommand;
@@ -103,6 +104,10 @@ public class AddressBookParser {
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+
         case LightModeCommand.COMMAND_WORD:
             return new LightModeCommand();
         case DarkModeCommand.COMMAND_WORD:

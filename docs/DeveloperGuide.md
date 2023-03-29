@@ -151,8 +151,8 @@ Within the Model component holds the Person Class.
 Each field in Person inherits from either the Field abstract class or the SuperField abstract class.
 
 * The Field abstract class represents a field with a singular value. This is used for fields like e.g. Name, Gender
-and Major. 
-* The SuperField abstract class represents a field that has multiple values. This is used for fields like e.g. Modules 
+and Major.
+* The SuperField abstract class represents a field that has multiple values. This is used for fields like e.g. Modules
 and Tags. The SuperField class contains a set of values that are a subclass of Field.
 * The Field and SuperField abstract classes are used to abstract our common logic between the various fields in Person, while
   also allowing for polymorphism.
@@ -172,11 +172,11 @@ and Tags. The SuperField class contains a set of values that are a subclass of F
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data, user data and user preference data in json format, and read them back into 
+* can save both address book data, user data and user preference data in json format, and read them back into
 corresponding objects.
-* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one 
+* inherits from `UserDataStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one
 (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects 
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`). In particular, the changes to the following 5 classes will require a change in their
 respective classes in Storage.
   * Person
@@ -213,6 +213,34 @@ Consequently, the state of the selected tab needs to be shared between the two m
 
 > **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
 
+### Command for selecting
+
+The `select` feature allows user to select which contact's details to display on the person details panel.
+
+There is _selected person_ field in `AddressBook` that keep tracks of which person's details should be displayed.
+This field is initialised to null at the start when no person is selected yet.
+The `select` feature is facilitated through `SelectCommandParser` and `SelectCommand`.
+The `LogicManager` executes the `SelectCommand`, which communicates with the `ModelManager` and updates the _selected person_ field in `AddressBook`.
+
+The following sequence diagram illustrates the execution of a successful select command.
+Low-level details of the parsing of select command in logic is omitted as it has been described [above](#logic-component)
+
+![Sequence Diagram of successful `select`](images/SelectSequenceDiagram.png)
+
+Upon execution, the `selectedPerson` field of AddressBook would be updated, allowing the GUI to access it
+and display changes accordingly.
+
+#### Design considerations:
+
+There are two ways to select a contact:
+* **Method 1:** Click on the contact in the current displayed contact list
+* **Method 2:** Use the `select` command
+
+Consequently, the state of the selected person needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
+> **Example:**
+> - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already selected.
+> - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
+
 ### Command for Favourite Contacts
 
 For improved User Experience, we want users to be able to easily look up contacts they frequently contact.
@@ -232,12 +260,11 @@ The Unfavourited Contact will remove the Star Emoji displayed beside the Contact
 
 AddressBook Neo implements an Event Calendar Interface for users to track any notable events. There are 2 types of Events that can be added by the Users. Firstly, a One Time event that occurs only once on the specified date and time.
 Secondly, recurring events that occur periodically e.g. Weekly Lectures, Daily Reminders etc. There are multiple recurrences which can be specified by the users: Daily, Weekly, Monthly and Yearly.
-Users have can choose to input these 4 different type of Recurring Events into AddressBook Neo. 
+Users have can choose to input these 4 different type of Recurring Events into AddressBook Neo.
 
 The Add Event Command works by having the User entering the "addevent" command. The User will then specify the Description of the Event, Start Date and Time of the event,
 End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
 If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of AddressBook Neo.
-
 
 ### \[Proposed\] Undo/redo feature
 

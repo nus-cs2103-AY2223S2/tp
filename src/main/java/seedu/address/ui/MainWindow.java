@@ -81,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        this.setSelectedPerson();
     }
 
     public Stage getPrimaryStage() {
@@ -125,11 +126,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        bodyPanel = new BodyPanel(logic);
-        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        bodyPanel = new BodyPanel(logic, resultDisplay);
+        bodyPanelPlaceholder.getChildren().add(bodyPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -248,7 +249,15 @@ public class MainWindow extends UiPart<Stage> {
              * and update the UI accordingly, so it is reset instead to reduce the chance of bugs.
              */
             bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
-            bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
         }
+    }
+
+    /**
+     * Sets selected person's details in person detail panel.
+     */
+    private void setSelectedPerson() {
+        logic.getSelectedPerson().addListener((observable, oldValue, newValue) -> {
+            bodyPanel.setSelectedPerson(newValue);
+        });
     }
 }

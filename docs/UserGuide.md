@@ -35,7 +35,7 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
-   
+
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
@@ -156,7 +156,7 @@ Here are all the specifiers that can be used:
 | f         | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags and modules taken(including 0). 
+A person can have any number of tags and modules taken(including 0).
 
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
@@ -257,6 +257,19 @@ _Here are some important requirements for you to take note:_
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Selecting A Particular Contact To View: `select'
+
+Want to see the details of a particular contact?
+
+You can either use your cursor to click on the contact or use this command!
+
+> Command: `select INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -384,19 +397,20 @@ Use this command to exit the application!
 
 ### NeoBook Command Summary
 
-| Action     | Format, Examples                                                                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                  |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                      |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                            |
-| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
-| **List**   | `list`                                                                                                                                                                   |
-| **Help**   | `help`                                                                                                                                                                   |
-| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                            |
-| **Exit**   | `exit`                                                                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
+| **Select** | `select INDEX`<br> e.g., `select 2`                                                                                                                                   |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
+| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
 
