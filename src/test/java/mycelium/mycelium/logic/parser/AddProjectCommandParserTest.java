@@ -82,9 +82,7 @@ public class AddProjectCommandParserTest {
                 Pair.of(basic + "-dd 2020/01/01 12:00", Messages.MESSAGE_INVALID_DATE)),
 
             Map.entry("invalid source (empty)",
-                Pair.of(basic + "-src ", Messages.MESSAGE_EMPTY_STR)),
-            Map.entry("invalid description (empty)",
-                Pair.of(basic + "-d ", Messages.MESSAGE_EMPTY_STR)),
+                Pair.of(basic + "-src ", Messages.MESSAGE_EMPTY_SOURCE)),
 
             Map.entry("invalid status (empty)",
                 Pair.of(basic + "-s ", ProjectStatus.MESSAGE_CONSTRAINTS)),
@@ -104,9 +102,9 @@ public class AddProjectCommandParserTest {
         assertEquals(CliSyntax.PREFIX_PROJECT_NAME.getPrefix(), "-pn ");
         assertEquals(CliSyntax.PREFIX_CLIENT_EMAIL.getPrefix(), "-e ");
 
+        // We use these commands to compare against the parser's output.
         AddProjectCommand addBing = new AddProjectCommand(new ProjectBuilder().withName("Bing").build());
-        AddProjectCommand
-            addMicrosoftBing =
+        AddProjectCommand addMicrosoftBing =
             new AddProjectCommand(new ProjectBuilder().withName("Microsoft Bing").build());
 
         // For each of the following cases, we expect the parser to return the correct command.
@@ -127,6 +125,9 @@ public class AddProjectCommandParserTest {
                 Pair.of("-pn Bing -e jamar@hogriders.org -e jamal@hogriders.org", addBing)),
             Map.entry("multiple names and emails",
                 Pair.of("-pn Bing -pn Microsoft Bing -e jamar@hogriders.org -e jamal@hogriders.org", addMicrosoftBing)),
+
+            Map.entry("empty description",
+                Pair.of("-pn Bing -e jamal@hogriders.org -d ", addBing)),
 
             Map.entry("all arguments present",
                 Pair.of(

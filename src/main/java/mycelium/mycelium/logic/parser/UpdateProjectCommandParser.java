@@ -41,10 +41,10 @@ public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> 
         }
 
         // NOTE: the use of type inference here helps reduce visual clutter!!!
-        var newName = parseOptionalWith(argMultimap.getValue(PREFIX_NEW_PROJECT_NAME), ParserUtil::parseNonEmptyString);
+        var newName = parseOptionalWith(argMultimap.getValue(PREFIX_NEW_PROJECT_NAME), ParserUtil::parseProjectName);
         var status = parseOptionalWith(argMultimap.getValue(PREFIX_PROJECT_STATUS), ParserUtil::parseProjectStatus);
         var clientEmail = parseOptionalWith(argMultimap.getValue(PREFIX_CLIENT_EMAIL), ParserUtil::parseEmail);
-        var source = parseOptionalWith(argMultimap.getValue(PREFIX_SOURCE), ParserUtil::parseNonEmptyString);
+        var source = parseOptionalWith(argMultimap.getValue(PREFIX_SOURCE), ParserUtil::parseSource);
         var description = argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION);
         var acceptedOn = parseOptionalWith(argMultimap.getValue(PREFIX_ACCEPTED_DATE),
             s -> ParserUtil.parseLocalDate(s, Project.DATE_FMT));
@@ -60,7 +60,7 @@ public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> 
         desc.setAcceptedOn(acceptedOn);
         desc.setDeadline(deadline);
 
-        NonEmptyString currentName = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        NonEmptyString currentName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
 
         return new UpdateProjectCommand(currentName, desc);
     }

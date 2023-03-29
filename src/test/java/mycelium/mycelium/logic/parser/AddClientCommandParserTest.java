@@ -15,7 +15,6 @@ import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
-import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 
@@ -43,9 +42,8 @@ public class AddClientCommandParserTest {
             Map.entry("name and email not separated", "-cnBob-ehogrider@coc.org")
         );
         tests.forEach((desc, tt) -> {
-            // Don't know why the argument tokenizer is written in this way
-            // where it expects an initial whitespace. But this is why I added
-            // the " " in front.
+            // NOTE(jy): don't know why the argument tokenizer is written in this way where it expects an initial
+            // whitespace. But this is why I added the " " in front.
             String input = " " + tt;
             assertParseFailure(new AddClientCommandParser(), input, String.format(
                 Messages.MESSAGE_INVALID_COMMAND_FORMAT,
@@ -68,7 +66,7 @@ public class AddClientCommandParserTest {
             Map.entry("invalid mobile number",
                 Pair.of("-cn Jamal -e jamal@hogriders.org -mn hogridaaaa", Phone.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid source (empty)",
-                Pair.of("-cn Jamal -e jamal@hogriders.org -src ", NonEmptyString.MESSAGE_CONSTRAINTS)),
+                Pair.of("-cn Jamal -e jamal@hogriders.org -src ", Messages.MESSAGE_EMPTY_SOURCE)),
             Map.entry("invalid year of birth",
                 Pair.of("-cn Jamal -e jamal@hogriders.org -y 42069", YearOfBirth.MESSAGE_CONSTRAINTS))
         );
