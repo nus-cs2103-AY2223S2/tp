@@ -115,16 +115,15 @@ Applicants: Nicholas, Tom, Adele
 ```
 
 **Possible Error:**
-If the above format is not followed or a listing with the same title already exists, one of the error messages below will be displayed.
+
+If the above format is not followed, an error message will be displayed.
 ```ignorelang
 Invalid Command Format!
 add: Adds a listing to the listing book.
 Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
-```ignorelang
-This listing already exists in the listing book
-```
+
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Editing a job listing: `edit`
@@ -135,12 +134,12 @@ Edits the details of a job listing.
 
 **Tips:**
 
-- Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
-- Only the details included in the command will be edited. eg. if the command entered is:
+- Ensure that `NUMBER` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
+- Only the details included in the command will be edited. E.g. if the command entered is:
 
-     `edit 1 t/Chicken Rice Uncle d/Cooks tasty chicken rice`
+     `edit 1 t/TITLE d/DESCRIPTION`
 
-    then only the title and the description of task 1 will be edited (the applicants will remain unchanged)
+    then only the title and the description of listing 1 will be edited (the applicants will remain unchanged)
 
 **Examples:**
 
@@ -152,22 +151,24 @@ Edits the details of a job listing.
 You will see a confirmation message showing the edited job title, description and applicants (if any).
 An example is shown below:
 ```ignorelang
-Edited Listing: Noodle seller; JobDescription: Cooks tasty noodles; Applicants: Johnson
+Edited Listing: Noodle seller; 
+JobDescription: Cooks tasty noodles; 
+Applicants: Johnson
 ```
 
 **Possible Error:**
 
-An valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
+A valid index must be provided, and at least one field of the listing must be edited. Otherwise, one of the error
 messages shown below will be displayed.
 ```ignorelang
 Invalid command format!
-edit: Edits a listing in the listing book. by the index number used in the displayed listing book. Existing values will be overwritten by the input values.
+edit: Edits a listing in the listing book by the index number used in the displayed listing book. 
+      Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
-[a/APPLICANT (optional)]...
 Example: edit 1 t/Cool job title a/John a/Sam
 ```
 ```ignorelang
-The listing index provided is invalid
+The listing index provided is invalid!
 ```
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 

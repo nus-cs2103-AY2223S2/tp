@@ -27,14 +27,13 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a listing in the listing book. "
-            + "by the index number used in the displayed listing book. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a listing in the listing book "
+            + "by the index number used in the displayed listing book.\n"
+            + "\t  Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLICANT + "APPLICANT]...\n"
-            + "[" + PREFIX_APPLICANT + "APPLICANT (optional)]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_APPLICANT + "John "
