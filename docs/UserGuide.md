@@ -152,11 +152,12 @@ Commands in Mycelium take the general form of `command_name [arguments...]`.
 Arguments may be compulsory or optional. If you do not provide the optional
 arguments, Mycelium will use sensible defaults in their place.
 
-All arguments take the structure of `-arg_flag arg_data`. Some commands may
-take multiple arguments, in which case you may specify them in any order.
+All arguments take the structure of `-arg_flag arg_data`; the argument flag is
+always followed by a space. Some commands may also take multiple arguments, in
+which case you may specify them in any order, delimited by whitespace.
 Furthermore, if duplicate argument flags are provided, then only the *last one*
 is used. Finally, note that `arg_data` can consist of multiple whitespace
-separated tokens.
+separated tokens, but any leading or trailing whitespace will be trimmed.
 
 As an example, the command below creates a new project with the name *Mycelium
 Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
@@ -167,14 +168,31 @@ demonstrate the layout.)
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
-You will also discover that all command names in Mycelium are at most two
-characters long. This terseness is *intentional* to allow for faster
+<div markdown="span" class="alert alert-success">
+:bulb: You will also discover that all command names in Mycelium are at most
+two characters long. This terseness is *intentional* to allow for faster
 keystrokes. Also note that all commands and argument flags are case sensitive.
+</div>
 
 <div markdown="span" class="alert alert-info"> 
 :information_source: **A note on dates:** some arguments are in the form of
 dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+
+The range of valid years is from -9999 to 9999.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+:warning: Avoid having any argument flag appear literally in your argument's
+data. For example, any attempts to create a project named *Mycelium -pn
+Desktop* would fail.
+
+```bash
+p -pn Mycelium -pn Desktop -e spiderman@gmail.com
+```
+
+In the command above, *Desktop* is interpreted as another argument, actually
+overrides *Mycelium*. So we end up with a project named *Desktop*.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
