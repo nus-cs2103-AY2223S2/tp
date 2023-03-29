@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -41,9 +40,13 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
+    private Label companyAndPosition;
+    @FXML
     private VBox timelineContainer;
     @FXML
     private VBox cardContent;
+    @FXML
+    private Separator separator2;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -54,10 +57,19 @@ public class EventCard extends UiPart<Region> {
         setEventCardContent();
     }
 
+    /**
+     * Returns the appropriate {@code EventCard} based on the parameter {@code withTimeline}
+     *
+     * @param event The event for this EventCard to display
+     * @param withTimeline  A boolean value to indicate presence of a timeline
+     * @return An {@code EventCard}
+     */
     public static EventCard of(Event event, boolean withTimeline) {
         EventCard eventCard = new EventCard(event);
         if (withTimeline) {
-            eventCard.cardContent.setPadding(new Insets(10,0,10,0));
+            eventCard.cardContent.setPadding(new Insets(10, 0, 10, 0));
+            eventCard.separator2.setManaged(false);
+            eventCard.companyAndPosition.setManaged(false);
         } else {
             eventCard.circle.setManaged(false);
             eventCard.circle.setVisible(false);
@@ -67,6 +79,11 @@ public class EventCard extends UiPart<Region> {
                     "-fx-background-color: derive(#9bd2ec, 60%);" + "-fx-padding: 10 10 10 10;");
             eventCard.eventCard.setPrefWidth(300);
             eventCard.eventCard.setPrefHeight(200);
+            String companyAndPositionString = String.format("[%s, %s] ",
+                    event.getInternship().getCompany(),
+                    event.getInternship().getPosition());
+            eventCard.companyAndPosition.setText(companyAndPositionString);
+
         }
         return eventCard;
     }

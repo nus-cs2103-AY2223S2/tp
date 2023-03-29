@@ -13,6 +13,8 @@ public class CalendarCommand extends Command {
     public static final String COMMAND_WORD = "calendar";
 
     public static final String MESSAGE_SHOW_CALENDAR = "Showing calendar ...";
+    public static final String MESSAGE_CALENDAR_TIP = "Tip: If there are too many events in a day, you may use "
+            + "`event find` command with the date to list all events in that day!";
 
     @Override
     public CommandResult execute(Model model) {

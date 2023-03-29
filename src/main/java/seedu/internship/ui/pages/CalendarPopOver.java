@@ -1,17 +1,18 @@
 package seedu.internship.ui.pages;
 
-import com.calendarfx.view.popover.PopOverContentPane;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.event.Event;
 import seedu.internship.ui.UiPart;
 
-import java.util.logging.Logger;
-
+/**
+ * A custom pop-over component for {@code CalendarPage}.
+ * Popover refers to the dialog that appears when an {@code Entry} on the calendar is double-clicked.
+ */
 public class CalendarPopOver extends UiPart<Region> {
     private static final String FXML = "CalendarPopOver.fxml";
 
@@ -35,6 +36,10 @@ public class CalendarPopOver extends UiPart<Region> {
     @FXML
     private Label company;
 
+    /**
+     * Constructor for {@code CalendarPopOver}
+     * @param event The {@code Event} to display in this pop-over.
+     */
     public CalendarPopOver(Event event) {
         super(FXML);
         this.event = event;

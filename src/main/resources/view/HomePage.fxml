@@ -34,7 +34,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <ScrollPane fitToHeight="true" prefHeight="200.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToHeight="true" prefHeight="225.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                      <content>
                         <HBox fx:id="reminderBox" spacing="15.0">
                            <children>

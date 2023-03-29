@@ -24,6 +24,7 @@ public class ClashCommand extends Command {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
         HashMap<Event, List<Event>> hash = eventCatalogue.findClashEvents();
-        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
+//        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
+        return null;
     }
 }

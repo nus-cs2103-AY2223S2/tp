@@ -37,6 +37,9 @@ public abstract class Page extends UiPart<Region> {
         case CALENDAR:
             resultPage = new CalendarPage(commandResult.getEvents());
             break;
+        case FIND_EVENT:
+            resultPage = new FindEventResultsPage(commandResult.getEvents());
+            break;
         default:
             break;
         }

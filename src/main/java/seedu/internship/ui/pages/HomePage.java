@@ -1,5 +1,8 @@
 package seedu.internship.ui.pages;
 
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,8 +12,7 @@ import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.event.Event;
 
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
+
 
 /**
  * The Home page of TinS.
@@ -18,10 +20,10 @@ import java.util.stream.Collectors;
 public class HomePage extends Page {
 
     private static final String FXML = "HomePage.fxml";
-    private final Logger logger = LogsCenter.getLogger(HomePage.class);
-
     private static final String PAGE_TITLE = "Home";
     private static final String MESSAGE_WELCOME = "Welcome onboard.";
+
+    private final Logger logger = LogsCenter.getLogger(HomePage.class);
 
     private ObservableList<Event> reminderEvents;
 
