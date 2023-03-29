@@ -52,7 +52,7 @@ With Vimification, you can quickly and easily create new tasks, set due dates, p
 
 So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Purpose of this User Guide
 
@@ -64,7 +64,7 @@ Additionally, it will offer troubleshooting tips and solutions to common issues 
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
