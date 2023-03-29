@@ -106,8 +106,8 @@ public class JsonAdaptedRecurringExpenseManager {
 
         if (!endDate.equals("null")) {
             LocalDate modelEndDate = StorageUtility.parseDateFromJson(endDate);
-            RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount, toBeUsed, modelStartDate,
-                    modelEndDate, modelRecurringType);
+            RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount,
+                    toBeUsed, modelStartDate, modelEndDate, modelRecurringType);
             toReturn.setNextExpenseDate(modelNextExpenseDate);
             return toReturn;
         }

@@ -36,7 +36,8 @@ public class AddRecurringExpenseCommand extends Command {
             + PREFIX_DATE + "01/03/23 "
             + PREFIX_DATE + "01/03/24\n";
     public static final String MESSAGE_SUCCESS = "New recurring expense added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECURRING_EXPENSE = "This recurring expense already exists in FastTrack";
+    public static final String MESSAGE_DUPLICATE_RECURRING_EXPENSE =
+            "This recurring expense already exists in FastTrack";
 
     private final RecurringExpenseManager toAdd;
 

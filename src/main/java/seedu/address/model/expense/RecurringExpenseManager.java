@@ -3,11 +3,8 @@ package seedu.address.model.expense;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.AnalyticModelManager;
 import seedu.address.model.category.Category;
 
-import java.util.logging.Logger;
 /**
  * Represents a Recurring Expense in the Expense Tracker.
  */
@@ -21,7 +18,6 @@ public class RecurringExpenseManager {
     private LocalDate endDate = null;
     private RecurringExpenseType recurringExpenseType;
 
-    private static final Logger logger = LogsCenter.getLogger(RecurringExpenseManager.class);
 
     /**
      * The constructor for the RecurringExpenseManager class with a start and end date.
@@ -163,32 +159,26 @@ public class RecurringExpenseManager {
         RecurringExpenseManager recurringExpense = (RecurringExpenseManager) object;
 
         if (!recurringExpense.startDate.isEqual(this.startDate)) {
-            logger.info("1");
             return false;
         }
 
         if (recurringExpense.expenseAmount != this.expenseAmount) {
-            logger.info("2");
             return false;
         }
 
         if (!recurringExpense.nextExpenseDate.isEqual(this.nextExpenseDate)) {
-            logger.info("4");
             return false;
         }
 
         if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
-            logger.info("5");
             return false;
         }
 
         if (!recurringExpense.expenseCategory.equals(this.expenseCategory)) {
-            logger.info("6");
             return false;
         }
 
         if (!recurringExpense.expenseName.equals(this.expenseName)) {
-            logger.info("7");
             return false;
         }
 
@@ -197,7 +187,6 @@ public class RecurringExpenseManager {
         }
 
         if (!recurringExpense.endDate.isEqual(this.endDate)) {
-            logger.info("3");
             return false;
         }
         return true;

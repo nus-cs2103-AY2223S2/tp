@@ -36,7 +36,8 @@ public class AddRecurringExpenseParser implements Parser<AddRecurringExpenseComm
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_START_DATE, PREFIX_PRICE, PREFIX_TIMESPAN,
                 PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecurringExpenseCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddRecurringExpenseCommand.MESSAGE_USAGE));
         }
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
