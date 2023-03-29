@@ -14,4 +14,8 @@ public class QuickstartImages {
     public static final Image QUICKSTART_SIXTHPAGE = new Image("/images/quickstart-6.png");
     public static final Image QUICKSTART_SEVENTHPAGE = new Image("/images/quickstart-7.png");
     public static final Image QUICKSTART_EIGHTHPAGE = new Image("/images/quickstart-8.png");
+    public static final Image QUICKSTART_NINTHPAGE = new Image("/images/quickstart-9.png");
+    public static final Image QUICKSTART_TENTHPAGE = new Image("/images/quickstart-10.png");
+    public static final Image QUICKSTART_ELEVENTHPAGE = new Image("/images/quickstart-11.png");
+    public static final Image QUICKSTART_TWELFTHPAGE = new Image("/images/quickstart-12.png");
 }
