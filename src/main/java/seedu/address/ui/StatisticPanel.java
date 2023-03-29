@@ -62,15 +62,11 @@ public class StatisticPanel extends UiPart<Region> {
         int numOffered = statsMap.get(new Status("offered"));
         int numRejected = statsMap.get(new Status("rejected"));
 
-        totalNum.setText("Total No. of Applications: " + statistic.getTotalNum().toString());
-        interestedNum.setText("Interested Applications: "
-                + String.format("%d", numInterested));
-        appliedNum.setText("Applied Applications: "
-                + String.format("%d", numApplied));
-        offeredNum.setText("Offered Applications: "
-                + String.format("%d", numOffered));
-        rejectedNum.setText("Rejected Applications: "
-                + String.format("%d", numRejected));
+        totalNum.setText("Total Number of Internship Applications: " + statistic.getTotalNum().toString());
+        interestedNum.setText(String.format("%d", numInterested));
+        appliedNum.setText(String.format("%d", numApplied));
+        offeredNum.setText(String.format("%d", numOffered));
+        rejectedNum.setText(String.format("%d", numRejected));
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Interested", numInterested),
@@ -84,7 +80,7 @@ public class StatisticPanel extends UiPart<Region> {
         pieChart.setStartAngle(180);
         pieChart.setLegendVisible(false);
         pieChart.setLabelsVisible(false);
-        applyCustomColorSequence(pieChartData, "#FF00FF", "#800080", "#00FF00", "#FF0000");
+        applyCustomColorSequence(pieChartData, "#91d7ff", "#ffbd59", "#5bb288", "#ff8787");
     }
 
     private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
