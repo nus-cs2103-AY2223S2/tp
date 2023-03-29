@@ -284,7 +284,7 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 ### Uploading a csv file
 
-Uploads a valid csv file onto Trackr and parses each `Task`, `Order` and `Suppliers` and adds them to their respective lists. Below is an example of a valid csv file
+Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. Below is an example of a valid csv file
 ![Valid csv file](images/CsvFileFormat.png)
 
 ### Archiving data files `[coming in v1.3]`
