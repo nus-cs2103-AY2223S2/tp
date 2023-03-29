@@ -1,0 +1,53 @@
+{
+  "_comment": "feedingIntervalBook save file which contains the same Fish values as in TypicalFishes#getTypicalfeedingIntervalBook()",
+  "fishes" : [ {
+    "name" : "Alice Pauline",
+    "lastFedDateTime": "06/06/2003 00:00",
+    "species" : "Guppy",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Benson Meier",
+    "lastFedDateTime": "06/07/2003 00:00",
+    "species" : "Tetra",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Carl Kurz",
+    "lastFedDateTime": "08/06/2003 00:00",
+    "species" : "Beta",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "lastFedDateTime": "09/06/2003 00:00",
+    "species" : "Parrot",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ "friends" ]
+  }, {
+    "name" : "Elle Meyer",
+    "lastFedDateTime": "10/06/2003 00:00",
+    "species" : "Arowana",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "lastFedDateTime": "11/06/2003 00:00",
+    "species" : "Fighting",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ ]
+  }, {
+    "name" : "George Best",
+    "lastFedDateTime": "12/06/2003 00:00",
+    "species" : "Beta",
+    "feedingInterval" : "1d1h",
+    "tank" : "tank 1",
+    "tagged" : [ ]
+  } ]
+}

@@ -328,7 +328,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #FishListPanel, #FishWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -349,4 +349,10 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#alignment {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: transparent;
 }

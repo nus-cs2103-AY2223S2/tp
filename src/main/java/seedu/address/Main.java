@@ -2,6 +2,8 @@ package seedu.address;
 
 import javafx.application.Application;
 
+/*Hi all, let's have a good team project*/
+
 /**
  * The main entry point to the application.
  *

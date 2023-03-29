@@ -1,23 +1,27 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDateTime;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.UnassignedTank;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -31,22 +35,29 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_LAST_FED_DATE, PREFIX_SPECIES,
+                        PREFIX_FEEDING_INTERVAL, PREFIX_TANK,
+                        PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LAST_FED_DATE, PREFIX_SPECIES,
+                PREFIX_FEEDING_INTERVAL, PREFIX_TANK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        LastFedDateTime lastFedDate = ParserUtil.parseLastFedDate(argMultimap.getValue(PREFIX_LAST_FED_DATE).get());
+        Species species = ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get());
+        FeedingInterval feedingInterval = ParserUtil.parseFeedingInterval(argMultimap.getValue(PREFIX_FEEDING_INTERVAL)
+                .get());
+        // checks for tank Index
+        Index tankIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TANK).get());
+        Tank tempTank = new UnassignedTank(null, null);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Fish fish = new Fish(name, lastFedDate, species, feedingInterval, tempTank, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(fish, tankIndex);
     }
 
     /**

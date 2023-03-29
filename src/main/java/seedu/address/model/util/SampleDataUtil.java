@@ -1,49 +1,54 @@
 package seedu.address.model.util;
 
+import static seedu.address.model.util.SampleTankUtil.getSampleTanks;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.fish.FeedingInterval;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.fish.LastFedDateTime;
+import seedu.address.model.fish.Name;
+import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+    public static Fish[] getSampleFishes() {
+        Tank[] tanks = getSampleTanks();
+        return new Fish[] {
+            new Fish(new Name("Fish 1"), new LastFedDateTime("01/11/2023 12:00"), new Species("Guppy"),
+                new FeedingInterval("1d0h"), tanks[0],
+                    getTagSet("tempSpeciesA")),
+            new Fish(new Name("Fish 2"), new LastFedDateTime("01/11/2023 13:00"), new Species("Tetra"),
+                new FeedingInterval("0d5h"), tanks[0],
+                    getTagSet("tempSpeciesA", "anotherTag")),
+            new Fish(new Name("Fish 3"), new LastFedDateTime("01/11/2023 23:00"), new Species("Parrot Fish"),
+                new FeedingInterval("1d5h"), tanks[0],
+                    getTagSet("tempSpeciesB")),
+            new Fish(new Name("Fish 4"), new LastFedDateTime("01/11/2023 21:00"), new Species("Arowana"),
+                new FeedingInterval("2d0h"), tanks[1],
+                    getTagSet("tempSpeciesA")),
+            new Fish(new Name("Fish 5"), new LastFedDateTime("01/11/2023 07:30"), new Species("Flowerhorn"),
+                new FeedingInterval("1d12h"), tanks[1],
+                    getTagSet("tempSpeciesB")),
+            new Fish(new Name("Fish 6"), new LastFedDateTime("01/11/2023 12:30"), new Species("Beta Fish"),
+                new FeedingInterval("3d0h"), tanks[1],
+                    getTagSet("tempSpeciesC"))
         };
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        for (Fish sampleFish : getSampleFishes()) {
+            sampleAb.addFish(sampleFish);
         }
         return sampleAb;
     }

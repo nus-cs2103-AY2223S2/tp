@@ -1,60 +1,80 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.Tank;
 
 /**
- * Adds a person to the address book.
+ * Adds a fish to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fish to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_LAST_FED_DATE + "LAST FED DATE "
+            + PREFIX_SPECIES + "SPECIES "
+            + PREFIX_FEEDING_INTERVAL + "FEEDING INTERVAL "
+            + PREFIX_TANK + "TANK INDEX"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
+            + PREFIX_LAST_FED_DATE + "01/01/2023 "
+            + PREFIX_SPECIES + "Guppy "
+            + PREFIX_FEEDING_INTERVAL + "0d5h "
+            + PREFIX_TANK + "1 "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New fish added: %1$s";
+    public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book";
+    public static final String MESSAGE_MISSING_TANK = "The tank index specified does not exist";
 
-    private final Person toAdd;
+    private final Fish toAdd;
+    private final Index tankIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Fish}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Fish fish, Index tankIndex) {
+        requireNonNull(fish);
+        toAdd = fish;
+        this.tankIndex = tankIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasFish(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_FISH);
         }
 
-        model.addPerson(toAdd);
+        Tank tank;
+        try {
+            ObservableList<Tank> list = model.getFilteredTankList();
+            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_MISSING_TANK);
+        }
+        // check that tank is non-null
+        requireNonNull(tank);
+        // assigns fish to tank
+        toAdd.setTank(tank);
+
+        model.addFish(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

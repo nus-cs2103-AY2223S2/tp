@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,9 +33,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FishListPanel fishListPanel;
+    private FishListPanel sortedFishListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TaskListPanel taskListPanel;
+    private TankListPanel tankListPanel;
+    private MainContent mainContent;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane mainContentPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -84,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         menuItem.setAccelerator(keyCombination);
 
         /*
-         * TODO: the code below can be removed once the bug reported here
+         * task: the code below can be removed once the bug reported here
          * https://bugs.openjdk.java.net/browse/JDK-8131666
          * is fixed in later version of SDK.
          *
@@ -110,8 +116,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        fishListPanel = new FishListPanel(logic.getFilteredFishList());
+        sortedFishListPanel = new FishListPanel(logic.getSortedFishList());
+        tankListPanel = new TankListPanel(logic.getFilteredTankList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        mainContent = new MainContent(tankListPanel, fishListPanel, taskListPanel);
+        mainContentPlaceholder.getChildren().add(mainContent.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +173,35 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    /**
+     * Changes the GUI Mode.
+     */
+    private void handleGuiChange() {
+        GuiSettings.GuiMode newMode = logic.getGuiSettings().getGuiMode();
+        switch (newMode) {
+        case DISPLAY_FISHES:
+            mainContent.setMiddlePanel(fishListPanel);
+            break;
+        case DISPLAY_SORTED_FISHES:
+            mainContent.setMiddlePanel(sortedFishListPanel);
+            break;
+        default:
+            break; // just keep the current mode
+        }
+    }
+
+    /**
+     * Refreshes the UI to reflect changes
+     */
+    public void refreshPanes() {
+        tankListPanel.refresh();
+        taskListPanel.refresh();
+        fishListPanel.refresh();
+        sortedFishListPanel.refresh();
+    }
+
+    public FishListPanel getFishListPanel() {
+        return fishListPanel;
     }
 
     /**
@@ -186,11 +223,37 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isChangeGui()) {
+                handleGuiChange();
+            }
+
+            refreshPanes();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+    }
+
+    /**
+     * Executes automatic feeding reminder feature actions within
+     * main window
+     */
+    public void executeFeedingReminderInitMainWindow() {
+        ArrayList<TaskFeedingReminder> taskFeedingReminders = logic.getTaskFeedingReminderList();
+        for (TaskFeedingReminder t : taskFeedingReminders) {
+            try {
+                CommandResult commandResult = logic.executeFeedingReminderInitLogic(t);
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                if (commandResult.isChangeGui()) {
+                    handleGuiChange();
+                }
+            } catch (CommandException e) {
+                logger.info("Error executing feeding reminder init");
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
         }
     }
 }

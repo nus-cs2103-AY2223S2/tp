@@ -19,15 +19,30 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTankList;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TankList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.model.util.SampleReadingsUtil;
+import seedu.address.model.util.SampleTankUtil;
+import seedu.address.model.util.SampleTaskUtil;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.fish.AddressBookStorage;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.TankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.task.TaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
+import seedu.address.storage.userprefs.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +72,12 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
+        TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
+                .getFullAmmoniaLevelsPath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
+                ammoniaLevelsStorage);
 
         initLogging(config);
 
@@ -90,7 +110,55 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialTaskList;
+        try {
+            taskListOptional = storage.readTaskList();
+            if (taskListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TaskList");
+            }
+            initialTaskList = taskListOptional.orElseGet(SampleTaskUtil::getSampleTaskList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
+            initialTaskList = new TaskList();
+        }
+
+        Optional<ReadOnlyTankList> tankListOptional;
+        ReadOnlyTankList initialTankList;
+        try {
+            tankListOptional = storage.readTankList();
+            if (tankListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TankList");
+            }
+            initialTankList = tankListOptional.orElseGet(SampleTankUtil::getSampleTankList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TankList");
+            initialTankList = new TankList();
+        }
+
+        Optional<ReadOnlyReadingLevels> fullReadingsOptional;
+        ReadOnlyReadingLevels initialFullReadings;
+        try {
+            fullReadingsOptional = storage.readFullReadingLevels();
+            if (fullReadingsOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample Readings");
+            }
+            initialFullReadings = fullReadingsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
     }
 
     private void initLogging(Config config) {
@@ -165,10 +233,20 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    private void executeAutoInitActions() {
+        executeFeedingReminderFeature();
+    }
+
+    private void executeFeedingReminderFeature() {
+        ui.executeFeedingReminderInitUi();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        logger.info("Checking for feeding reminders " + MainApp.VERSION);
+        executeAutoInitActions();
     }
 
     @Override

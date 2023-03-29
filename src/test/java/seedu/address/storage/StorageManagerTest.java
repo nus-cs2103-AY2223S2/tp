@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -14,6 +14,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
 
 public class StorageManagerTest {
 
@@ -26,7 +32,12 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("tl"));
+        JsonTankListStorage tankListStorage = new JsonTankListStorage(getTempFilePath("tanklist"));
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(
+                getTempFilePath("ammonialevels"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
+                ammoniaLevelsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
