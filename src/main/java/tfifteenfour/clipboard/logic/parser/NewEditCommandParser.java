@@ -15,12 +15,14 @@ import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.CollectionUtil;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddTaskCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditTaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -29,6 +31,7 @@ import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.StudentId;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -56,7 +59,7 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             editCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Edit type missing! Please enter a valid edit command. \n"
-                    + "Available edit commands are: edit course, edit group, edit session, edit student");
+                    + "Available edit commands are: edit course, edit group, edit session, edit task, edit student");
         }
 
 
@@ -82,6 +85,10 @@ public class NewEditCommandParser implements Parser<EditCommand> {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
             }
             return new EditSessionCommand(index, newSession);
+        case TASK:
+            Task newTask = parseTaskInfo(args);
+            index = parseIndex(args);
+            return new EditTaskCommand(index, newTask);
         case STUDENT:
             EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
             index = parseIndex(args);
@@ -128,6 +135,18 @@ public class NewEditCommandParser implements Parser<EditCommand> {
 
         Session session = ParserUtil.parseSession(tokens[3]);
         return session;
+    }
+
+    private Task parseTaskInfo(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length < 4) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        String taskName = args.split(" ", 2)[1].split(" ", 2)[1].split(" ", 2)[1];
+
+        Task task = ParserUtil.parseTask(taskName);
+        return task;
     }
 
     private EditStudentDescriptor parseStudentInfo(String args) throws ParseException {
