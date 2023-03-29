@@ -201,7 +201,7 @@ Format: `list`
 
 Edits an existing employee in SudoHR.
 
-Format: `edit eid/ID [id/NEW_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit eid/EMPLOYEE_ID [id/NEW_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the employee identified by its employee ID. ID is the unique identifier for the employee. The employee must exist in SudoHR.
 * At least one of the optional fields must be provided.
@@ -239,7 +239,7 @@ Examples:
 
 Deletes the specified employee from SudoHR.
 
-Format: `delete eid/ID`
+Format: `delete eid/EMPLOYEE_ID`
 
 * Deletes the employee identified by its ID.
 * ID is the unique identifier for the employee. The employee must exist in SudoHR.
@@ -357,7 +357,7 @@ Examples:
 
 Add a person's leave on a specifc day for SudoHr to track.
 
-Format: `aetl eid/ID d/DATE`
+Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
 The employee shouldn't have taken leave on the date provided
@@ -372,7 +372,7 @@ Examples:
 
 Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date
 
-Format: `aelr eid/ID s/START_DATE e/END_DATE`
+Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
 The start date must be before the end date.
@@ -389,7 +389,7 @@ Examples:
 
 ### Deleting a leave: `defl`
 Delete a employee's leave on a specific day.
-Format: `defl eid/ID d/DATE`
+Format: `defl eid/EMPLOYEE_ID d/DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
 The employee shouldn't have taken leave on the specific day</div>
@@ -464,27 +464,27 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 ## 7.6. Command summary
 
-| Action                                              | Format                                                           |
-|-----------------------------------------------------|------------------------------------------------------------------|
-| **Add an employee**                                 | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`     |
-| **List all employees**                              | `list`                                                           |
-| **Edit an employee**                                | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  |
-| **Find employee by name**                           | `find KEYWORD [MORE_KEYWORDS]`                                   |
-| **Delete an employee**                              | `delete eid/ID`                                                  |
-| **Add a department**                                | `adep n/DEPARTMENT_NAME`                                         |
-| **List all departments**                            | `ldep`                                                           |
-| **Edit a department**                               | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                 |
-| **Find department by name**                         | `fdep KEYWORD [MORE_KEYWORDS]`                                   |
-| **Delete a department**                             | `ddep n/DEPARTMENT_NAME`                                         |
-| **Add employee to department**                      | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **Remove employee from department**                 | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **List an employee's department**                   | `led eid/EMPLOYEE_ID`                                            |
-| **List all employees in a department**              | `leid n/DEPARTMENT_NAME`                                         |
-| **Add employee to leave**                           | `aetl eid/ID d/DATE`                                             |
-| **Add employee to range of leaves**                 | `aelr eid/ID s/START_DATE e/END_DATE`                            |
-| **Remove an employee from leave**                   | `defl eid/ID d/DATE`                                             |
-| **Listing all employees on leave for a given date** | `leol d/DATE`                                       |
-| **Listing all days where employees are on leave**   | `llve`                                                |
+| Action                                              | Format                                                                            |
+|-----------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Add an employee**                                 | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                     |
+| **List all employees**                              | `list`                                                                            |
+| **Edit an employee**                                | `edit eid/EMPLOYEE_ID [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Find employee by name**                           | `find KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Delete an employee**                              | `delete eid/EMPLOYEE_ID`                                                          |
+| **Add a department**                                | `adep n/DEPARTMENT_NAME`                                                          |
+| **List all departments**                            | `ldep`                                                                            |
+| **Edit a department**                               | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                                  |
+| **Find department by name**                         | `fdep KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Delete a department**                             | `ddep n/DEPARTMENT_NAME`                                                          |
+| **Add employee to department**                      | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
+| **Remove employee from department**                 | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
+| **List an employee's department**                   | `led eid/EMPLOYEE_ID`                                                             |
+| **List all employees in a department**              | `leid n/DEPARTMENT_NAME`                                                          |
+| **Add employee to leave**                           | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
+| **Add employee to range of leaves**                 | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
+| **Remove an employee from leave**                   | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
+| **Listing all employees on leave for a given date** | `leol d/DATE`                                                                     |
+| **Listing all days where employees are on leave**   | `llve`                                                                            |
 
 [//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
 
