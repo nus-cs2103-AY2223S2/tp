@@ -33,22 +33,32 @@ public class CommandBox extends UiPart<Region> {
 
         //"ENTER" handler
         commandTextArea.setOnKeyPressed(event -> {
-            if (!(event.getCode() == KeyCode.ENTER)) {
-                return;
+            if (event.getCode() == KeyCode.BACK_SLASH) {
+                handleBackSlash();
+            } else if (event.getCode() == KeyCode.ENTER) {
+                handleEnterKey();
             }
-            //Remove newline
-            commandTextArea.textProperty().set(commandTextArea.getText().replace("\n", ""));
-            commandTextArea.positionCaret(commandTextArea.getText().length());
-            handleCommandEntered();
         });
+    }
+
+    private void handleBackSlash() {
+        String textValue = commandTextArea.getText();
+        commandTextArea.textProperty().set(textValue + "\n");
+        commandTextArea.positionCaret(commandTextArea.getText().length());
+    }
+
+    private void handleEnterKey() {
+        String textValue = commandTextArea.getText();
+        commandTextArea.textProperty().set(textValue.substring(0, textValue.length() - 1));
+        commandTextArea.positionCaret(textValue.length());
+        handleCommandEntered();
     }
 
     /**
      * Handles the Enter button pressed event.
      */
-    @FXML
     private void handleCommandEntered() {
-        String commandText = commandTextArea.getText();
+        String commandText = commandTextArea.getText().replace("\n\\", " ");
         if (commandText.equals("")) {
             return;
         }
