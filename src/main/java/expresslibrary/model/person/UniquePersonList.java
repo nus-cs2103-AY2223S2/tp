@@ -37,6 +37,20 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the book that matches the given argument, or null if no such book
+     * exists.
+     */
+    public Person get(Person person) {
+        requireNonNull(person);
+        for (Person p : internalList) {
+            if (p.isSamePerson(person)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
