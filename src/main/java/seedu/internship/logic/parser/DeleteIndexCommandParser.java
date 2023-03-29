@@ -17,8 +17,8 @@ import seedu.internship.logic.parser.exceptions.ParseException;
 public class DeleteIndexCommandParser implements Parser<DeleteIndexCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteIndexCommand
+     * and returns a DeleteIndexCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteIndexCommand parse(String args) throws ParseException {
