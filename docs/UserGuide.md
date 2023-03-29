@@ -65,6 +65,7 @@ Format:
 
 **Example(s) of usage**:
 * `add n/Honey Chicken Rice`
+![AddCommandUI](images/AddCommandUI.png)
 * `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
 * `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
   butter s/Serve`
@@ -105,21 +106,23 @@ Format:
 ### Finding a recipe by name: `find`
 
 Have a certain recipe at the back of your mind that you want to refer to?
-Or want to look up all recipes associated with a specific tag?
+Or want to look up all recipes associated with a specific tag or those containing a specific ingredient?
 
 `find` helps to save your time scrolling through your whole list of recipes by displaying
 only those that match any of your specified keywords straight away.
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
-* :bulb: Tip: Supported properties: `name`, `tag`
+* :bulb: Tip: Supported properties: `name`, `tag`, `ingredient`
 
-i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
+i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL KEYWORDS]...`, `find ingredient KEYWORD [ADDITIONAL KEYWORDS]...`
 
 Example of usage:
 * `find cheese` returns all recipes with the keyword `cheese` in their recipe name
-* `find name prawn tofu` returns all recipes with the keyword `prawn` and/or `tofu` in their names
+* `find name pancakes sandwich` returns all recipes with the keyword `pancakes` and/or `sandwich` in their names
+![FindCommandUI](images/FindCommandUI.png)
 * `find tag western` returns all recipes with the tag `western`
+* `find ingredient tofu` returns all recipes with the ingredient `tofu`
 
 > Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 >
@@ -189,7 +192,7 @@ Format:
 `help`
 
 > :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!
-
+![HelpCommandUI](images/HelpCommandUI.png)
 
 ### Exiting the program: `exit`
 
@@ -236,7 +239,7 @@ _Details coming soon ..._
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`                                                                                                                                                                                                                           |
+| **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag`, `ingredient` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`, `find ingredient tofu`                                                                                                                                                                                     |
 | **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                                   |
 | **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                             |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |
