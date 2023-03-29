@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddImageCommandParser" as AddImageCommandParser LOGIC_COLOR
 participant "command:AddImageCommand" as AddImageCommand LOGIC_COLOR
-participant "ImageUtil<< class >>" as ImageUtil LOGIC_COLOR
+participant "ImageUtil" as ImageUtil <<class>> LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1

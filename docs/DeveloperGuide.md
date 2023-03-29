@@ -217,6 +217,9 @@ Finally `AddImageCommand#execute` updates the model provided in the arguments.
 
 The following sequence diagram shows how the add-image operation works:<br>
 ![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
+> **Note**: The lifeline of the `AddImageCommandParser` and `AddImageCommand`
+> should end at the destroy marker (X) but due to the limitations of PlantUML, the
+> lifeline reaches the end of the diagram.
 
 The following activity diagram summarizes what happens when a user executes add-image command: <br>
 ![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
