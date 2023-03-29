@@ -188,8 +188,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeDoctor(Doctor key) {
         doctors.remove(key);
-        //TODO: For Patient::doctors in key.patients, remove references
+        // TODO: Low Prio - Replace current implementation with the following
+        // For Patient::doctors in key.patients, remove references
         // to this doctor as well.
+        patients.forEach((patient -> patient.removeDoctorIfAssigned(key)));
     }
 
     /**
@@ -198,7 +200,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePatient(Patient key) {
         patients.remove(key);
-        //TODO: Replace current implementation with the following
+        // TODO: Low Prio - Replace current implementation with the following
         // For Doctor::patients in key.doctors, remove references
         // to this patient as well.
         doctors.forEach((doctor -> doctor.removePatientIfAssigned(key)));

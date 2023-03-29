@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
@@ -75,19 +76,46 @@ public class ContactDisplay extends UiPart<Region> {
     }
 
     /**
+     * Updates the contact display based on user command.
+     *
+     * @param commandResult a command result.
+     */
+    public void setFeedbackToUser(CommandResult commandResult) {
+        // If command does not need GUI Interaction, function call ends.
+        if (!commandResult.hasGuiInteraction()) {
+            logger.info("Command did not result in GUI Interaction");
+            return;
+        }
+
+        /*
+        if (commandResult.hasSelectedDoctor) {
+            Doctor selectedDoctor = commandResult.getSelectedDoctor();
+            PatientFilter patientContainsDoctor =
+                        new PatientFilter(selectedDoctor);
+                Predicate<Patient> patientsOfDoctorPredicate =
+                        new PatientContainsKeywordsPredicate(patientContainsDoctor);
+                logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+        }
+
+        if (commandResult.hasSelectedPatient) {
+            Patient selectedPatient = commandResult.getSelectedPatient();
+            DoctorFilter doctorContainsPatient =
+                    new DoctorFilter(selectedPatient);
+            Predicate<Doctor> doctorsOfPatientPredicate =
+                    new DoctorContainsKeywordsPredicate(doctorContainsPatient);
+            logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+        }
+        */
+        updateEnlargedInfoCard();
+    }
+
+    /**
      * Updates the enlarged info card placeholder to show the
      * appropriate enlarged information.
      *
      * This information is either that of a doctor or a patient.
-     *
-     * @param hasGuiInteraction true if command entered is a GUI interaction.
      */
-    public void setFeedbackToUser(boolean hasGuiInteraction) {
-        // If command does not need GUI Interaction, function call ends.
-        if (!hasGuiInteraction) {
-            logger.info("Command did not result in GUI Interaction");
-            return;
-        }
+    public void updateEnlargedInfoCard() {
         // If app reaches here, then command should be select-doc or select-ptn
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
@@ -109,7 +137,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedDoctor(Doctor doctor) {
         enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(doctor));
         infoCardDisplayController.displayDoctor();
-        setFeedbackToUser(true);
+        updateEnlargedInfoCard();
     }
 
     /**
@@ -121,7 +149,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedPatient(Patient patient) {
         enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(patient));
         infoCardDisplayController.displayPatient();
-        setFeedbackToUser(true);
+        updateEnlargedInfoCard();
     }
 
     /**
