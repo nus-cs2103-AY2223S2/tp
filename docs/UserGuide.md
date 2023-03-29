@@ -3,15 +3,13 @@ layout: page
 title: User Guide
 toc: true
 ---
+* Table of Contents
+{:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 ***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching**
 features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
 **culinary rizz**.
-
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
