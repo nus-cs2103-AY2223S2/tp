@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane drugPieChartPanelPlaceholder;
 
     @FXML
-    private HBox resultDisplayPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane hospitalRecordPanelPlaceholder;

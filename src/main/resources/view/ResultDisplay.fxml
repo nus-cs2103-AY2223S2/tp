@@ -12,9 +12,11 @@
 <!--    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />-->
 <!--  </HBox>-->
 <!--</GridPane>-->
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
-    <ImageView fitHeight="100" fitWidth="100">
-      <Image url="@/images/careflow_bot.gif" />
-    </ImageView>
-    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />
-</HBox>
+<StackPane fx:id="placeHolder" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" styleClass="display-pane">
+    <HBox>
+        <ImageView fitHeight="150" fitWidth="150">
+            <Image url="@/images/careflow_bot.gif" />
+        </ImageView>
+        <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" HBox.hgrow="ALWAYS"/>
+    </HBox>
+</StackPane>

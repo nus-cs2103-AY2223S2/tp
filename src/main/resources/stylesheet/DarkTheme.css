@@ -146,10 +146,18 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#445568, 20%);
-     -fx-border-color: derive(#445568, 10%);
-     -fx-border-top-width: 1px;
+    -fx-padding: 10 0 0 0;
+    -fx-background-color: derive(#445568, 20%);
+    -fx-border-color: derive(#445568, 10%);
+    -fx-border-top-width: 1px;
 }
+
+.display-pane {
+    -fx-background-color: white;
+    -fx-border-top-width: 1px;
+    -fx-border-bottom-width: 1px;
+}
+
 
 /* TAB PANE RELATED*/
 .tab-pane:top *.tab-header-area {
@@ -203,6 +211,8 @@
     -fx-font-size: 13pt;
     -fx-text-fill: derive(#445568, 30%);
 }
+
+
 
 .result-display .label {
     -fx-text-fill: black !important;
