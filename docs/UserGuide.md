@@ -71,10 +71,26 @@ to help you get a feel for the application. Feel free to delete them later.
 <img src="images/OnStartupScreenshot.png" />
 
 At this point, we recommend that you jump over to the [Command
-Summary](#command-summary) and [HotKeys](#hotkeys) section to get an overview
-of the commands and hotkeys which are the bread and butter of Mycelium.
-Alternatively, you may continue reading for a guided look at how Mycelium
-works.
+Summary](#command-summary) and [HotKey Summary](#hotkey-summary) section to get
+an overview of the commands and hotkeys which are the bread and butter of
+Mycelium. You may visit the relevant sections later for more details on your
+preferred use case.
+
+**TODO: add internal links for para above**
+
+
+## Glossary
+
+* Graphical User Interface (GUI): A form of user interface that allows users to interact 
+with electronic devices through graphical icons
+
+* User Interface (UI): The point of human-computer interaction and communication in a device. 
+This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also 
+the way through which a user interacts with an application or a website.
+
+* Integrated Development Environment (IDE): A software application that helps programmers develop 
+software code efficiently. It increases developer productivity by combining capabilities such as 
+software editing, building, testing, and packaging in an easy-to-use application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -516,7 +532,7 @@ might wish to note:
 and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
 </div>
 
-HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
+HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
 ### (F1) Help
 
@@ -545,9 +561,9 @@ The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
-This shortcut allows you to quickly switch between the tabs of panel that is currently in focus.
-If the entity panel is in focus, then the tabs will be the projects and clients tabs.
-If the right statistic panel is in focus, then the tabs will be the overdued and due soon tabs.
+This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
+If the main panel is in focus, then the tabs will be the projects and clients tabs. 
+If the right statistic panel is in focus, then the tabs will be the overdue and due soon tabs.
 
 ### (CTRL+J) Select next
 
@@ -579,9 +595,19 @@ no searching can be done while in **command mode**.
 
 # Command summary
 
-Action | Format
---------|------------------
-**Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number <br> e.g., `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
-**Delete an existing client** | dc -e email <br> e.g., `dc -e alice_baker@bakers.com`
-**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
-**Delete a project** | dp -pn project_name <br> `e.g., dp -pn Mycelium`
+The table below summarizes the layout of all the commands in Mycelium. You may
+read the statement `q -a foo [-b bar]` like so:
+
+* `q` is the command,
+* `-a foo` indicates a compulsory argument,
+* `[-b bar]` indicates an optional argument.
+
+
+Action | Format | Example 
+--------|------------------|------
+[**Create new client**](#creating-a-client-contact--c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
+[**Delete an existing client** ](#deleting-a-client-contact--dc)| dc -e email | `dc -e alice_baker@bakers.com`
+[**Update an existing client**](#updating-a-client-uc) | uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email] | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
+[**Create a project**](#creating-a-project--p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
+[**Delete a project**](#deleting-a-project--dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
+[**Update an existing project**](#updating-a-project--up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
