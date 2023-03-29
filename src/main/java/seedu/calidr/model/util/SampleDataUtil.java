@@ -12,7 +12,7 @@ import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.person.Phone;
 import seedu.calidr.model.person.Remark;
-import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
