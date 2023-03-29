@@ -13,35 +13,46 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
     - [View guide](#)
     - [Add an internship application](#)
         - [Add](#)
-    - [List current available tasks](#)
+    - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
+    - [Manage company contact for an internship application](#add-contact-details--add_contact)
+        - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
+        - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
+        - [Delete a company contact : `delete_contact`](#delete-contact-details--delete_contact)
+    - [Edit the status of an internship application : `edit_status`](#edit-application-status--edit_status)
+    - [Manage documents for an internship application](#add-documents--add_docs)
+      - [Add documents : `add_docs`](#add-documents--add_docs)
+      - [Edit documents : `edit_docs`](#edit-documents--edit_docs)
+      - [Delete documents : `delete_docs`](#delete-documents--delete_docs)
+    - [Archive and unarchive an internship application](#archive-an-internship-application--archive)
+      - [Archive an application : `archive`](#archive-an-internship-application--archive)
+      - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
+      - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
-    - [Search](#)
+    - [Search](#search-for-an-application--find)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
-        - [Clear all internship applications : `clear`](#clear-all-internship-application-entries--clear)
-        - [Clear specific internship applications : `clear_by`](#clear-internship-application-entries-with-keyword-clear_by)
-    - [Revert delete or clear](#revert-recent-deleted-an-internship-application--revert)
-        - [Revert the most recent delete command : `revert`](#revert-recent-deleted-an-internship-application--revert)
-        - [Revert all delete and clear commands : `revert_all`](#revert-recent-deleted-or-cleared-internship-applications--revert_all)
+        - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
+        - [Clear specific internship applications : `clear_by`](#clear-internship-application-entries-with-keyword--clear_by)
+    - [Revert delete or clear](#revert-a-recent-deleted-internship-application--revert)
+        - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
+        - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
-  
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
         - [Find specific tasks : `find_task`](#search-for-a-task-todo-and-notes--find_task)
-    - [Todo](#display-a-list-of-todo-internship-applications-list_todo)
-        - [List current available todo internship applications : `list_todo`](#display-a-list-of-todo-internship-applications-list_todo)
-        - [Add a todo internship application : `add_todo`](#add-a-todo-application-add_todo)
+    - [Todo](#display-a-list-of-todo-internship-applications--list_todo)
+        - [List current available todo internship applications : `list_todo`](#display-a-list-of-todo-internship-applications--list_todo)
+        - [Add a todo internship application : `add_todo`](#add-a-todo-application--add_todo)
         - [Edit the deadline of a todo task : `edit_deadline`](#edit-todo-application-deadline--edit_deadline)
         - [Edit the note content of a todo task : `edit_content`](#edit-todo-note-content--edit_content)
         - [Delete a todo task : `delete_todo`](#delete-a-todo-application--delete_todo)
         - [Clear all todo tasks : `clear_todo`](#clear-all-todo-application-entries--clear_todo)
-    - [Note](#display-list-of-short-note-list_note)
-        - [List current saved notes : `list_note`](#display-list-of-short-note-list_note)
+    - [Note](#display-list-of-short-note--list_note)
+        - [List current saved notes : `list_note`](#display-list-of-short-note--list_note)
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-      
 - [FAQ](#faq)        
 - [Command Summary](#command-summary)
 
@@ -98,7 +109,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -118,16 +129,16 @@ Shows a user guide message on how to use the internship tracker
 
 Format: help
 
-### Display a list of internship applications :`list`
+### Display a list of ongoing internship applications : `list`
 
-Displays a list of applied internships
+Displays a list of applied internships which are ongoing
 
 Format: `list`
 
 Examples:
 
-* `list` shows all the internships that the user has applied for with 1 indexing.
-* If there are no internships applied for at the moment,
+* `list` shows all the ongoing internship applications for with 1 indexing.
+* If there are no ongoing internship applications at the moment,
   "No applications at the moment" will be shown.
 
 ### Adding an application : `add`
@@ -144,11 +155,47 @@ Examples:
 
 Adds the contact details of a company to a specified application.
 
-Format: `add_contact INDEX p/PHONE NUMBER e/EMAIL`
+Format: `add_contact INDEX p/PHONE_NUMBER e/EMAIL`
+
+- Adds contact details to the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
+- `EMAIL` should be a valid email of the format `username@domain.com`.
 
 Examples:
-* `add_contact INDEX p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the application specified by the `INDEX` in the list of applications.
-* `add_contact INDEX e/someemail@gmail.com` adds the email `someemail@gmail.com` to the application specified by the `INDEX` in the list of applications.
+* `add_contact 1 p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the 1st application in the list of applications.
+* `add_contact 2 e/someemail@gmail.com` adds the email `someemail@gmail.com` to the 2nd application in the list of applications.
+
+### Edit contact details : `edit_contact`
+
+Edits the contact details of a company previously added to a specified application.
+
+Format: `edit_contact INDEX p/PHONE_NUMBER e/EMAIL`
+
+- Edits contact details of the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
+- `EMAIL` should be a valid email of the format `username@domain.com`.
+
+Examples:
+* `edit_contact 1 p/87654321 e/abc@gmail.com` updates the contact number and email of the company to `87654321` and `abc@gmail.com` respectively for the 1st application in the list of applications.
+* `edit_contact 2 e/someemail@gmail.com` updates the email of the company to `someemail@gmail.com` for the 2nd application in the list of applications.
+* `edit_contact 3 p/12345678` updates the contact number of the company to `12345678` for the 3rd application in the list of applications.
+
+### Delete contact details : `delete_contact`
+
+Deletes the contact details of a company previously added to a specified application.
+
+Format: `delete_contact INDEX`
+
+- Deletes contact details to the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `delete_contact 1` deletes the contact number and email of the company for the 1st application in the list of applications.
 
 ### Edit application status : `edit_status`
 
@@ -168,6 +215,87 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+### Add documents : `add_docs`
+
+Adds documents including a resume link and a cover letter link to a specified application.
+
+Format: `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+- `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+
+Examples:
+* `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter` adds the resume link `https://www.example.com/resume`
+  and cover letter link `https://www.example.com/coverletter` to the 1st application in the list of applications.
+* `add_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter` adds the resume link `https://www.goodresume.com/myresume`
+  and cover letter link `https://www.goodcoverletter.com/mycoverletter` to the 2nd application in the list of applications.
+
+### Edit documents : `edit_docs`
+
+Edits the documents which include the resume link and cover letter link previously added to a specified application.
+
+Format: `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+- `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
+
+Examples:
+* `edit_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter` updates the resume link and cover letter link to `https://www.example.com/resume`
+  and `https://www.example.com/coverletter` respectively for the 1st application in the list of applications.
+* `edit_docs 2 rs/https://www.example.com/resume` updates the resume link to `https://www.example.com/resume` for the 2nd application in the list of applications.
+* `edit_docs 3 cl/https://www.example.com/coverletter` updates the cover letter link to `https://www.example.com/coverletter` for the 3rd application in the list of applications.
+
+### Delete documents : `delete_docs`
+
+Deletes the documents previously added to a specified application.
+
+Format: `delete_docs INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `delete_docs 1` deletes the documents for the 1st application in the list of applications.
+
+### Archive an internship application : `archive`
+
+Archives a specified application so that it would be hidden from the list of ongoing applications.
+
+Format: `archive INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `archive 1` archives the 1st application in the list of applications.
+
+### Unarchive an internship application : `unarchive`
+
+Unarchives a specified application that was previously archived so that it would be shown in the list of ongoing applications.
+
+Format: `unarchive INDEX`
+
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `unarchive 1` unarchives the 1st application in the list of applications.
+
+### Display a list of archived internship applications : `list_archived`
+
+Displays a list of archived applied internships
+
+Format: `list_archived`
+
+Examples:
+
+* `list_archived` shows all the archived internship applications with 1 indexing.
+* If there are no archived internship applications at the moment,
+  "No archived applications at the moment" will be shown.
 
 ### Delete an application of internship : `delete`
 
@@ -224,7 +352,7 @@ Format: `revert`
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
 2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
-** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+   ** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
 ### Revert all recently deleted or cleared internship applications : `revert_all`
 
@@ -393,14 +521,23 @@ Format: `clear_note`
 
 Action | Format, Examples
 --------|------------------
+**Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
+**Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Archive** | `archive INDEX`<br> e.g., `archive 2`
 **Clear**  | `clear`                             
 **Clear_by**  | `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
-**Delete** | `delete INDEX`<br> e.g., `delete 2`                              
+**Delete** | `delete INDEX`<br> e.g., `delete 2`
+**Delete Contact** | `delete_contact INDEX` <br> e.g., `delete_contact 2`
+**Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
+**Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
+**Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit` 
 **List** |`list`
+**List Archived Applications** |`list_archived`
 **Revert**   | `revert` 
 **Revert All**   | `revert_all` 
+**Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
 **Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
 **List Task** |`list_task`
 **Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
