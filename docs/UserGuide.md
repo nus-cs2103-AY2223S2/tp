@@ -501,11 +501,11 @@ At least one of the optional fields must be provided.
 > 
 > 
 > **Examples:**
-> - `edit` g/johndoeee e/johndoeee@example.com will edit the GitHub username and email address of the person to be johndoee and johndoe@example.com respectively.
+> - `edit` g/johndoeee e/johndoeee@example.com will edit the GitHub username and email address of the person to be johndoeee and johndoeeee@example.com respectively.
 > ![View Example](images/UiEditFields.png)
-> - `edit` s/java s+/python Clears resets the skill list to contain only java and ignores the python skill addition.
+> - `edit` s/java s+/python resets the skill list to contain only java and ignores the python skill addition.
 >![View Example](images/UiEditSkills.png)
-> - `edit` m-/ay2223s2 cs3230 Displays an error message as the module does not exist.
+> - `edit` m-/ay2223s2 cs3230 displays an error message as the module does not exist.
 > ![View Example](images/UiEditError.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
