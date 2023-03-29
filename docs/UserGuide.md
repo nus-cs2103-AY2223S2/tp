@@ -77,10 +77,15 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Main Mode
+
+Main mode will be started by default when the program is launched. 
+Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
+
 ### Components in Main Mode
 ![UiComponent](images/MainModeComponent.png)
 
-## Description of the components
+### Description of the components
 
 | Component         | Description                                                                                                |
 |-------------------|------------------------------------------------------------------------------------------------------------|
@@ -90,12 +95,6 @@ This user guide will help you use PowerCards with ease and integrate it into you
 | **Question**      |                                                                                                            |
 | **Answer**        |                                                                                                            |
 | **Tag**           |                                                                                                            |
-
-
-## Main Mode
-
-Main mode will be started by default when the program is launched. 
-Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
 
 ### Viewing help : `help`
 
