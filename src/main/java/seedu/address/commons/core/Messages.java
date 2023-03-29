@@ -12,4 +12,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "This task index provided is invalid";
 
     public static final String MESSAGE_INVALID_SCORE_DISPLAYED_INDEX = "The score index provided is invalid";
+    public static final String MESSAGE_INVALID_DIRECTORY = "Path to directory is invalid!";
 }

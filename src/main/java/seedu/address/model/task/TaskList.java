@@ -185,4 +185,11 @@ public class TaskList implements Iterable<Task> {
         }
         return true;
     }
+
+    public int size() {
+        return internalList.size();
+    }
+    public Task get(int index) {
+        return internalList.get(index);
+    }
 }
