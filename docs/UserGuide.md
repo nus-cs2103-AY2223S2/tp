@@ -357,16 +357,18 @@ Format: `list-tag`
 
 | Action             | Format, Examples                                                                                                              |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **Add Client**     | `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]​` <br> e.g., `add client name/Bob phone/12345678 email/bob@gmail.com` |
-| **Add Project**    | `add project name/NAME [deadline/DEADLINE]` <br> e.g., `add project name/Background Commission deadline/2023-05-05`           |
-| **Delete Client**  | `delete client <index>`<br> e.g., `delete client 1`                                                                           |
-| **Delete Project** | `delete project <index>`<br> e.g., `delete project 1`                                                                         |
-| **Edit Client**    | `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]​` <br> e.g.,`edit client 3 name/Alice Risa phone/1234`           |
-| **Edit Project**   | `edit project <index> [name/NAME] [deadline/DEADLINE]` <br> e.g., `edit project 2 name/The Starry Night`                      |
-| **Mark Project**   | `mark <index>` e.g. `mark 3`                                                                                                  |
-| **Unmark Project** | `unmark <index>` e.g. `unmark 3`                                                                                              |
-| **List Client**    | `list client`                                                                                                                 |
-| **List Project**   | `list project`                                                                                                                |
-| **Sort Client**    | `sort-client`                                                                                                                 |
-| **Sort Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                            |
+| **List Clients**    | `list-client` |
+| **Add a Client**     | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend` |
+| **Edit a Client**    | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate` |
+| **Delete a Client**  | `delete-client <index>`<br> e.g., `delete-client 1`|
+| **Finding a Client** | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend` |
+| **Sorting all Clients** | `sort-client` |
+| **List Projects**   | `list-project` |
+| **Add a Project**    | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
+| **Edit a Project**   | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night` |
+| **Mark a Project**   | `mark <index>` <br> e.g., `mark 3` |
+| **Unmark a Project** | `unmark <index>` <br> e.g., `unmark 3` |
+| **Delete a Project** | `delete-project <index>`<br> e.g., `delete-project 1` |
+| **Finding a Project** | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
+| **Sorting all Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name` |
 
