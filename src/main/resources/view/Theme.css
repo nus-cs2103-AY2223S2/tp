@@ -113,14 +113,14 @@
 #cardPane #question {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 /* id number of the cards */
 #cardPane #id {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 #personListView {
@@ -221,13 +221,13 @@
 #ReviewCardPane #question {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 #ReviewCardPane #id {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 /* ============ MODE TITLE ========== */
