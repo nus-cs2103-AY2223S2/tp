@@ -37,7 +37,7 @@ public class AddLabParser implements Parser<AddLabCommand> {
         //newArgs to trim first word when more commands added to switch-case in AddressBookParser
         String newArgs = args.trim().replaceFirst("Lab", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_LAB);
+                ArgumentTokenizer.tokenize(args, PREFIX_LAB, PREFIX_DATE, PREFIX_FILE, PREFIX_NOTE);
         //Make the user not create lab and students with the same command
         if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
