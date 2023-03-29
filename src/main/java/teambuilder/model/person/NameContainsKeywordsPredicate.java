@@ -17,10 +17,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))
-                || keywords.stream().anyMatch(keywords -> StringUtil.containsWordIgnoreCase(person
-                        .getMajor().majorStudy, keywords));
+        boolean isInName = keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        boolean isInMajor = keywords.stream()
+                .anyMatch(keywords -> StringUtil.containsWordIgnoreCase(person.getMajor().majorStudy, keywords));
+        boolean isInTag = keywords.stream()
+                .anyMatch(keyword -> person.getTags().stream()
+                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(keyword, tag.tagName)));
+        return isInName || isInMajor || isInTag;
     }
 
     @Override
