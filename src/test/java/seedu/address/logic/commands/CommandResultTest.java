@@ -18,7 +18,7 @@ public class CommandResultTest {
         assertTrue(commandResult.equals(new CommandResult("feedback")));
 
         assertTrue(commandResult.equals(
-                new CommandResult("feedback", false, false)));
+                new CommandResult("feedback", false, false, LightDarkMode.NO_CHANGE)));
 
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
                 LightDarkMode.NO_CHANGE)));
@@ -37,11 +37,11 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(
-                new CommandResult("feedback", true, false)));
+                new CommandResult("feedback", true, false, LightDarkMode.NO_CHANGE)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(
-                new CommandResult("feedback", false, true)));
+                new CommandResult("feedback", false, true, LightDarkMode.NO_CHANGE)));
 
         assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
                 LightDarkMode.NO_CHANGE)));

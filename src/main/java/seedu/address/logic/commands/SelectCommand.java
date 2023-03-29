@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
+import seedu.address.ui.enums.LightDarkMode;
 
 
 /**
@@ -50,10 +50,11 @@ public class SelectCommand extends Command {
         model.setSelectedPerson(index);
         Person currPerson = model.getSelectedPerson().get();
         if (Objects.equals(prevPerson, currPerson)) {
-            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false);
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false,
+                    LightDarkMode.NO_CHANGE);
         } else {
             return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson),
-                    false, false);
+                    false, false, LightDarkMode.NO_CHANGE);
         }
     }
 
