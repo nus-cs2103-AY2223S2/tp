@@ -1,6 +1,9 @@
 package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.wife.commons.core.Messages.MESSAGE_DOUBLE_TAG;
+import static seedu.wife.commons.core.Messages.MESSAGE_MAXIMUM_TAG_FOOD;
+import static seedu.wife.commons.core.Messages.MESSAGE_SUCCESSFUL_FOOD_TAG;
 
 import java.util.List;
 import java.util.Set;
@@ -41,8 +44,13 @@ public class TagFoodCommand extends Command {
         Food foodToTag = TagFoodCommand.getFoodToTag(model, tag, index);
         Set<Tag> foodTags = foodToTag.getCurrentTags();
 
+        if (foodTags.size() >= 4) {
+            throw new CommandException(String.format(MESSAGE_MAXIMUM_TAG_FOOD,
+                    foodToTag.getName(), tag.getTagName()));
+        }
+
         if (foodTags.contains(tag)) {
-            throw new CommandException(String.format(Messages.MESSAGE_DOUBLE_TAG,
+            throw new CommandException(String.format(MESSAGE_DOUBLE_TAG,
                     foodToTag.getName(), tag.getTagName()));
         }
 
@@ -50,7 +58,7 @@ public class TagFoodCommand extends Command {
         Food editedFood = foodToTag.createNewFoodWithNewTags(foodToTag, foodTags);
         model.setFood(foodToTag, editedFood);
 
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFUL_FOOD_TAG,
+        return new CommandResult(String.format(MESSAGE_SUCCESSFUL_FOOD_TAG,
                 editedFood.getName(), tag.getTagName()));
     }
 
