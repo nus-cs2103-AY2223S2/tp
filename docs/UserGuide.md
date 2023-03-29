@@ -87,7 +87,8 @@ Table 1. Symbols and formats used in this User Guide.
    <details>
     <summary> I. Installing Java 11 on Windows: </summary>
      
-   * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
+     * To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
+     
      * Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
        <p align="center">
        <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
