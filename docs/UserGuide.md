@@ -63,6 +63,7 @@ your contact management tasks done faster than traditional GUI apps.
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
+| Doctor               | ad/    |  
 | Email                | e/     |  
 | Address              | a/     | 
 | Tag                  | t/     |
@@ -149,11 +150,11 @@ Shows a list of all patients in the patient records.
 
 Format: `list`
 
-### Find patients by nric, name, address or tags: `find`
+### Find patients by nric, name, address, doctor or tags: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
 
 Format: `find attribute/keyword [MORE_KEYWORDS]`
 
@@ -172,6 +173,7 @@ Examples:
   or  `serangoon`
 * `find t/Diabetic` returns all persons with the tag `Diabetic`
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
+* `find ad/Shannon` returns all persons with attending doctor `Shannon`
 
 ### Backup patient records: `backup`
 
