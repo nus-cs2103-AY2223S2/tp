@@ -186,7 +186,11 @@ The Sequence Diagram that illustrates the interactions within the Logic componen
 
 
 
+### TotalAppointmentCommand Feature
 
+#### Current Implementation
+
+The `totalAppointmentCommand` feature mainly involves iterating through the appointment list and checking if the specified date falls on the same date as the appointment. The way that the validation check is done is by setting the previous day to be the start date and the next day to be the end date. Finally, we check if the current appointment is within the start and end date.
 
 
 
