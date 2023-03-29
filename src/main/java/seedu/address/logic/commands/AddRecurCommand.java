@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
@@ -72,12 +73,22 @@ public class AddRecurCommand extends Command {
 
         Event newEvent = toAdd.copy();
         for (int i = 0; i < count; i++) {
+            LocalDateTime[] range = new LocalDateTime[2];
             if (lab) {
                 model.addLab((Lab) newEvent);
+                range[0] = newEvent.getDate();
+                range[1] = newEvent.getDate().plusHours(2);
             } else if (tutorial) {
                 model.addTutorial((Tutorial) newEvent);
+                range[0] = newEvent.getDate();
+                range[1] = newEvent.getDate().plusHours(1);
             } else {
                 model.addConsultation((Consultation) newEvent);
+                range[0] = newEvent.getDate();
+                range[1] = newEvent.getDate().plusHours(1);
+            }
+            if (!ParserUtil.MASTER_TIME.contains(range)) {
+                ParserUtil.MASTER_TIME.add(range);
             }
             newEvent = newEvent.copy();
             LocalDateTime currDate = newEvent.getDate();

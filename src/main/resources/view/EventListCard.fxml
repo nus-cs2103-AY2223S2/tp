@@ -47,6 +47,11 @@
              <ImageView fx:id="attachmentLogo" />
              <ImageView fx:id="noteLogo" />
          </HBox>
+          <Line endX="400.0" stroke="#726f6f" strokeWidth="3.0" />
+          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students"/>
+          <HBox alignment="CENTER_LEFT" spacing="5">
+            <VBox fx:id="studentBox" />
+          </HBox>
          <Text fx:id="noteText" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
             <font>
                <Font name="Waseem Regular" size="13.0" />
