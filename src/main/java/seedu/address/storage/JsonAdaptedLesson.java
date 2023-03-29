@@ -48,8 +48,8 @@ public class JsonAdaptedLesson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
     public Lesson toModelType() throws IllegalValueException {
-        LocalTime parsedStartHour = ParserUtil.parseLocalTime(startHour.toString());
-        LocalTime parsedEndHour = ParserUtil.parseLocalTime(endHour.toString());
+        LocalTime parsedStartHour = ParserUtil.parseLocalTime(startHour.toString(), true);
+        LocalTime parsedEndHour = ParserUtil.parseLocalTime(endHour.toString(), false);
         Day parsedDay = ParserUtil.parseDay(day);
         TimeBlock timeBlock = new TimeBlock(parsedStartHour, parsedEndHour, parsedDay);
         return new Lesson(timeBlock);

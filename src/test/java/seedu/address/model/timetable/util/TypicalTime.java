@@ -21,4 +21,5 @@ public class TypicalTime {
     public static final LocalTime EIGHT_PM = new LocalTime(20, 0);
     public static final LocalTime NINE_PM = new LocalTime(21, 0);
     public static final LocalTime TEN_PM = new LocalTime(22, 0);
+    public static final LocalTime ELEVEN_PM = new LocalTime(23, 0);
 }

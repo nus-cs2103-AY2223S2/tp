@@ -81,70 +81,72 @@ public class UntagCommand extends Command {
     @Override
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person personToEdit = getPersonToEdit(model);
 
-        if (this.tagType == TagType.GROUP) {
-            personToEdit.removeGroupTags(this.groupTags);
-            if (personToEdit instanceof User) {
-                return new ViewCommandResult(String.format(MESSAGE_GROUP_UNTAG_USER_SUCCESS
-                            + "Name: " + personToEdit.getName().toString() + '\n'
-                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-            }
-            return new ViewCommandResult(String.format(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS
-                        + "Name: " + personToEdit.getName().toString() + '\n'
-                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
+        if (tagType == TagType.GROUP) {
+            return untagGroups(model);
         }
 
-        personToEdit.removeModuleTags(moduleTags);
-
-        if (personToEdit instanceof User) {
-            return setUserCommonModuleTags(model, (User) personToEdit);
-        }
-
-        return setPersonCommonModuleTags(model, personToEdit);
-    }
-
-    private Person getPersonToEdit(Model model) throws CommandException {
         if (index == null) {
-            return model.getUser();
+            return untagUserModules(model);
         }
 
-        IndexHandler indexHandler = new IndexHandler(model);
-        return indexHandler.getPersonByIndex(index).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        return untagPersonModules(model);
+
     }
 
-    /**
-     * Removes tags from person at given index.
-     * @param model {@code Model} which the command should operate on.
-     * @param personToEdit {@code Person} which has been edited.
-     * @return feedback message of the operation result for display.
-     */
-    public ViewCommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
+    private ViewCommandResult untagPersonModules(Model model) throws CommandException {
+        IndexHandler indexHandler = new IndexHandler(model);
+        Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        Person editedPerson = personToEdit.copy();
+
+        editedPerson.removeModuleTags(moduleTags);
+
+        // caches the common modules in each ModuleTagSet as running set
+        // intersection is expensive if we only use it in the compareTo method
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+        editedPerson.setCommonModules(userModuleTags);
+
+        model.setPerson(personToEdit, editedPerson);
+        model.updateObservablePersonList();
+
+        return new ViewCommandResult(MESSAGE_MODULE_UNTAG_PERSON_SUCCESS, editedPerson);
+    }
+
+    private ViewCommandResult untagGroups(Model model) throws CommandException {
+        Person personToEdit;
+        if (index == null) {
+            personToEdit = model.getUser();
+        } else {
+            IndexHandler indexHandler = new IndexHandler(model);
+            personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                    new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        }
+
+        personToEdit.removeGroupTags(this.groupTags);
+
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
+
+        return (personToEdit instanceof User)
+                ? new ViewCommandResult(MESSAGE_GROUP_UNTAG_USER_SUCCESS, personToEdit)
+                : new ViewCommandResult(MESSAGE_GROUP_UNTAG_PERSON_SUCCESS, personToEdit);
+    }
+    private ViewCommandResult untagUserModules(Model model) throws CommandException {
+        User userToEdit = model.getUser();
+        User editedUser = userToEdit.copy();
+
+        editedUser.removeModuleTags(moduleTags);
+        model.setUser(editedUser);
+
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
-        personToEdit.setCommonModules(userModuleTags);
-
-        return new ViewCommandResult(String.format(MESSAGE_MODULE_UNTAG_PERSON_SUCCESS
-                + "Name: " + personToEdit.getName().toString() + '\n'
-                + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
-                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()),
-                personToEdit);
-    }
-
-    /**
-     * Removes tags from the user.
-     * @param model {@code Model} which the command should operate on
-     * @param editedUser {@code User} which has been edited.
-     * @return feedback message of the operation result for display.
-     */
-    public ViewCommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
-                person.setCommonModules(editedUser.getImmutableModuleTags()));
+                person.setCommonModules(userModuleTags));
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
-        return new ViewCommandResult(String.format(MESSAGE_MODULE_UNTAG_USER_SUCCESS
-                + "Name: " + editedUser.getName().toString() + '\n'
-                + "Modules: " + editedUser.getImmutableModuleTags().toString()), editedUser);
+        return new ViewCommandResult(MESSAGE_MODULE_UNTAG_USER_SUCCESS, editedUser);
     }
 
     public ContactIndex getIndex() {
@@ -164,6 +166,7 @@ public class UntagCommand extends Command {
             UntagCommand otherCommand = (UntagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
+            // Currently wrong due to presence of Lessons in ModuleTag.
         }
         return false;
 

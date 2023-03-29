@@ -58,6 +58,7 @@ public class TagCommand extends Command {
 
         this.index = index;
         this.tagType = tagType;
+
         switch (tagType) {
         case MODULE:
             initializeModules(tagsToAdd);
@@ -91,77 +92,82 @@ public class TagCommand extends Command {
     @Override
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person personToEdit = getPersonToEdit(model);
-
         if (this.tagType == TagType.GROUP) {
-            personToEdit.addGroupTags(this.groupTags);
-            if (personToEdit instanceof User) {
-                return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_USER_SUCCESS
-                            + "Name: " + personToEdit.getName().toString() + '\n'
-                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-            }
-            return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_PERSON_SUCCESS
-                        + "Name: " + personToEdit.getName().toString() + '\n'
-                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
+            return tagGroups(model);
         }
 
-        List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
-
-        if (!personToEdit.canAddCommitments(lessons) || TimeUtil.hasAnyClash(timePeriods)) {
-            throw new CommandException("There is a clash in commitments!");
-        }
-
-        personToEdit.addModuleTags(moduleTags);
-
-        if (personToEdit instanceof User) {
-            return setUserCommonModuleTags(model, (User) personToEdit);
-        }
-
-        return setPersonCommonModuleTags(model, personToEdit);
-    }
-
-    private Person getPersonToEdit(Model model) throws CommandException {
         if (index == null) {
-            return model.getUser();
+            return tagUserModules(model);
         }
 
-        IndexHandler indexHandler = new IndexHandler(model);
-        return indexHandler.getPersonByIndex(index).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        return tagPersonModules(model);
     }
 
-    /**
-     * Add tags to person at given index.
-     * @return feedback message of the operation result for display
-     */
-    public ViewCommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
-        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+    private ViewCommandResult tagPersonModules(Model model) throws CommandException {
+        IndexHandler indexHandler = new IndexHandler(model);
+        Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        Person editedPerson = personToEdit.copy();
+
+        addModuleTags(editedPerson);
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
-        personToEdit.setCommonModules(userModuleTags);
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+        editedPerson.setCommonModules(userModuleTags);
 
-        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_PERSON_SUCCESS
-                + "Name: " + personToEdit.getName().toString() + '\n'
-                + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
-                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString() + '\n'
-                + "Lessons: " + personToEdit.getLessonsAsStr()), personToEdit);
+        model.setPerson(personToEdit, editedPerson);
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
+
+        return new ViewCommandResult(MESSAGE_MODULE_TAG_PERSON_SUCCESS, editedPerson);
     }
 
-    /**
-     * Adds modules to user.
-     * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display.
-     */
-    public ViewCommandResult setUserCommonModuleTags(Model model, User editedUser) {
+    private ViewCommandResult tagGroups(Model model) throws CommandException {
+        Person personToEdit;
+        if (index == null) {
+            personToEdit = model.getUser();
+        } else {
+            IndexHandler indexHandler = new IndexHandler(model);
+            personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                    new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        }
+
+        personToEdit.addGroupTags(this.groupTags);
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
+
+        return (personToEdit instanceof User)
+                ? new ViewCommandResult(MESSAGE_GROUP_TAG_USER_SUCCESS, personToEdit)
+                : new ViewCommandResult(MESSAGE_GROUP_TAG_PERSON_SUCCESS, personToEdit);
+    }
+
+    private ViewCommandResult tagUserModules(Model model) throws CommandException {
+        User userToEdit = model.getUser();
+        User editedUser = userToEdit.copy();
+
+        addModuleTags(editedUser);
+        model.setUser(editedUser);
+
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+
         model.getObservablePersonList().forEach(person ->
-                person.setCommonModules(editedUser.getImmutableModuleTags()));
+                person.setCommonModules(userModuleTags));
+        model.updateObservablePersonList();
 
-        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_USER_SUCCESS
-                + "Name: " + editedUser.getName().toString() + '\n'
-                + "Modules: " + editedUser.getImmutableModuleTags().toString() + '\n'
-                + "Lessons: " + editedUser.getLessonsAsStr()), editedUser);
+        return new ViewCommandResult(MESSAGE_MODULE_TAG_USER_SUCCESS, editedUser);
+    }
 
+    private void addModuleTags(Person editedPerson) throws CommandException {
+        List<TimePeriod> timePeriods = lessons.stream()
+                .map(Lesson::getTimePeriod)
+                .collect(Collectors.toList());
+
+        if (!editedPerson.canAddCommitments(lessons) || TimeUtil.hasAnyClash(timePeriods)) {
+            throw new CommandException("There is a clash in commitments!");
+        }
+
+        editedPerson.addModuleTags(moduleTags);
     }
 
     public ContactIndex getIndex() {
@@ -185,6 +191,7 @@ public class TagCommand extends Command {
             TagCommand otherCommand = (TagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
+            // Currently wrong due to presence of Lessons in ModuleTag.
         }
 
         return false;

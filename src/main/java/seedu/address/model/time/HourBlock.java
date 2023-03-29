@@ -115,7 +115,7 @@ public class HourBlock extends TimePeriod {
         return String.format("[%s, %s]\nClass: %s\n%s",
             TimeUtil.formatLocalTime(getStartTime()),
             TimeUtil.formatLocalTime(getEndTime()),
-            commitment.isPresent() ? commitment.get() : "NO COMMITMENT!", getSchoolDay());
+            commitment.isPresent() ? commitment.get() : "", getSchoolDay());
     }
 
     @Override
