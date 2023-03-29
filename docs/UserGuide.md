@@ -44,7 +44,11 @@ A GUI similar to the one below should appear in a few seconds.
 5. Type the command in the command box and press Enter to execute it. e.g. typing  **`help`**  and pressing Enter will open the help window.
 
 Some example commands you can try:
-    - add something here
+- `view`: Lists all listings.
+- `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Tom`: Adds a listing called `Chicken Rice Uncle` into the Listing Book.
+- `delete 1`: Deletes the 1st listing shown in the current list.
+- `exit`: Exits the app.
+
 6. Refer to the [Features](#features) below for details of each command.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
