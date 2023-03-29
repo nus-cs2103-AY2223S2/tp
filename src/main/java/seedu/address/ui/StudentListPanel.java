@@ -19,6 +19,8 @@ public class StudentListPanel extends UiPart<Region> {
 
     private Logic logic;
 
+    private ExportProgressWindow exportProgressWindow;
+
     @FXML
     private ListView<Student> studentListView;
 
@@ -30,6 +32,11 @@ public class StudentListPanel extends UiPart<Region> {
         this.logic = logic;
         studentListView.setItems(logic.getFilteredStudentList());
         studentListView.setCellFactory(listView -> new PersonListViewCell());
+        this.exportProgressWindow = new ExportProgressWindow(null, this.logic);
+    }
+
+    public void hideExportProgressWindow() {
+        this.exportProgressWindow.hide();
     }
 
     /**
@@ -44,7 +51,7 @@ public class StudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(student, getIndex() + 1, exportProgressWindow).getRoot());
             }
         }
     }

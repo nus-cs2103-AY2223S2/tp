@@ -226,4 +226,11 @@ public class UniqueScoreList implements Iterable<Score> {
         return true;
     }
 
+    public int size() {
+        return internalList.size();
+    }
+    public Score get(int index) {
+        return internalList.get(index);
+    }
+
 }

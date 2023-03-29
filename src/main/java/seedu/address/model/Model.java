@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -83,8 +84,12 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
+
+    void exportProgress(Student target, String completePath) throws IOException;
+
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.

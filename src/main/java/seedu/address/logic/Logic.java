@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -54,5 +55,9 @@ public interface Logic {
      *
      * @return the student being selected by the user.
      */
+
     Student findCheckedStudent();
+
+    void exportProgress(Student target, String completePath) throws IOException;
+
 }

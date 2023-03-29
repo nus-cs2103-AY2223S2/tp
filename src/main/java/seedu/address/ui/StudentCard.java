@@ -3,12 +3,15 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +30,10 @@ public class StudentCard extends UiPart<Region> {
      *      Mathutoring level 4</a>
      */
 
-    public final seedu.address.model.student.Student student;
+    public final Student student;
+
+    private ExportProgressWindow exportProgressWindow;
+    private Logic logic;
 
     @FXML
     private HBox cardPane;
@@ -55,12 +61,16 @@ public class StudentCard extends UiPart<Region> {
     private ImageView addressIcon;
     @FXML
     private ImageView emailIcon;
+    @FXML
+    private Button exportProgressButton;
 
 
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
      */
-    public StudentCard(seedu.address.model.student.Student student, int displayedIndex) {
+
+    public StudentCard(Student student, int displayedIndex, ExportProgressWindow exportProgressWindow) {
+
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
@@ -75,7 +85,10 @@ public class StudentCard extends UiPart<Region> {
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Email.png")));
         student.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
         personCardImage(student);
+        this.exportProgressWindow = exportProgressWindow;
+
     }
 
     /**
@@ -110,5 +123,17 @@ public class StudentCard extends UiPart<Region> {
         // state check
         StudentCard card = (StudentCard) other;
         return id.getText().equals(card.id.getText()) && student.equals(card.student);
+    }
+
+    /**
+     * Opens the export progress window or focuses on it if it's already opened.
+     */
+    public void exportProgress() {
+        this.exportProgressWindow.setCheckedPerson(this.student);
+        if (!this.exportProgressWindow.isShowing()) {
+            exportProgressWindow.show();
+        } else {
+            exportProgressWindow.focus();
+        }
     }
 }

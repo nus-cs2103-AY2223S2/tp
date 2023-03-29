@@ -2,10 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -214,6 +220,28 @@ public class ParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a file path.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given file path is invalid.
+     */
+    public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
+        String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
+        filePath = filePath.trim();
+        Path path;
+        try {
+            path = Paths.get(filePath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_DIRECTORY);
+        }
+        if (Files.isDirectory(path)) {
+            return path.toString();
+        } else {
+            throw new ParseException(Messages.MESSAGE_INVALID_DIRECTORY);
+        }
     }
 
 }

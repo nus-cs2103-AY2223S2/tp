@@ -3,9 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
 
+    private final PdfConverter pdfConverter;
+
     /**
      * Initializes a ModelManager with the given mathutoring and userPrefs.
      */
@@ -33,7 +38,9 @@ public class ModelManager implements Model {
 
         this.mathutoring = new Mathutoring(mathutoring);
         this.userPrefs = new UserPrefs(userPrefs);
+
         filteredStudents = new FilteredList<>(this.mathutoring.getStudentList());
+        this.pdfConverter = new PdfConverter();
     }
 
     public ModelManager() {
@@ -117,6 +124,14 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Student List Accessors =============================================================
+
+    @Override
+    public void exportProgress(Student target, String completePath) throws IOException {
+        requireAllNonNull(target, completePath);
+        PDDocument document = pdfConverter.exportProgress(target);
+        document.save(completePath);
+        document.close();
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of

@@ -3,6 +3,7 @@ package seedu.address.model.score;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
 
 import java.util.List;
@@ -74,5 +75,28 @@ public class UniqueScoreListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> uniqueScoreList.asUnmodifiableObservableList()
                 .remove(0));
+    }
+
+    @Test
+    public void add_score_increasesSize() {
+        int sizeBefore = uniqueScoreList.size();
+        uniqueScoreList.add(SCORE_1);
+        int sizeAfter = uniqueScoreList.size();
+        assertTrue(sizeBefore + 1 == sizeAfter);
+    }
+
+    @Test
+    public void remove_score_decreasesSize() {
+        uniqueScoreList.add(SCORE_1);
+        int sizeBefore = uniqueScoreList.size();
+        uniqueScoreList.remove(SCORE_1);
+        int sizeAfter = uniqueScoreList.size();
+        assertTrue(sizeBefore - 1 == sizeAfter);
+    }
+
+    @Test
+    public void get_invalidScoreIndex_throwsIndexOutofBoundsException() {
+        uniqueScoreList.add(SCORE_1);
+        assertThrows(IndexOutOfBoundsException.class, () -> uniqueScoreList.get(INDEX_SECOND_STUDENT.getZeroBased()));
     }
 }

@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "This task index provided is invalid";
     public static final String MESSAGE_INVALID_SCORE_DISPLAYED_INDEX = "This score index provided is invalid";
+    public static final String MESSAGE_INVALID_DIRECTORY = "Path to directory is invalid!";
 
 }

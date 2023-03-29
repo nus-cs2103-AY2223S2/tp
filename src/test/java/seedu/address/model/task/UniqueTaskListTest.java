@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
 
@@ -125,5 +127,36 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void add_task_increasesSize() {
+        int sizeBefore = uniqueTaskList.size();
+        uniqueTaskList.add(VALID_TASK_1);
+        int sizeAfter = uniqueTaskList.size();
+        assertTrue(sizeBefore + 1 == sizeAfter);
+    }
+
+    @Test
+    public void remove_task_decreasesSize() {
+        uniqueTaskList.add(VALID_TASK_1);
+        int sizeBefore = uniqueTaskList.size();
+        uniqueTaskList.remove(VALID_TASK_1);
+        int sizeAfter = uniqueTaskList.size();
+        assertTrue(sizeBefore - 1 == sizeAfter);
+    }
+
+    @Test
+    public void get_task_returnsTask() {
+        uniqueTaskList.add(VALID_TASK_1);
+        assertTrue(uniqueTaskList.get(INDEX_FIRST_STUDENT.getZeroBased())
+                .equals(uniqueTaskList.getInternalList().get(INDEX_FIRST_STUDENT.getZeroBased())));
+    }
+
+    @Test
+    public void get_invalidTaskIndex_throwsIndexOutofBoundsException() {
+        uniqueTaskList.add(VALID_TASK_1);
+        org.junit.jupiter.api.Assertions.assertThrows(IndexOutOfBoundsException.class, ()
+                -> uniqueTaskList.get(INDEX_SECOND_STUDENT.getZeroBased()));
     }
 }
