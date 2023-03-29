@@ -18,7 +18,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WEIGHT_BOB;
-import static seedu.address.testutil.TypicalDoctors.DANIEL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
