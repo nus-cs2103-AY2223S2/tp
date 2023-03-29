@@ -41,10 +41,10 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     public AddPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HEIGHT, PREFIX_WEIGHT,
-                        PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG);
+                        PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HEIGHT, PREFIX_WEIGHT,
-                PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK, PREFIX_TAG)
+                PREFIX_DIAGNOSIS, PREFIX_STATUS, PREFIX_REMARK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
