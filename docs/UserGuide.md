@@ -5,9 +5,22 @@ title: User Guide
 
 ## About QuickContacts
 
-QuickContacts is a **contacts and meetings management application** that enables you to manage your schedule and contacts with ease! It is designed for users who have a large number of contacts and meetings with those contacts.
+QuickContacts is a **contacts and schedule management system** that enables you to track your contacts and manage your
+schedule with ease! As a busy individual with a considerable number of contacts and meetings to attend, you can
+**seamlessly save contact and meeting information** with QuickContacts. QuickContacts provides you with a **bird's eye
+view of all your meetings**, making sure that you will never miss any of them again.
 
-QuickContacts is a **cross-platform application** that works on Windows, macOS and Linux. We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a schedule with many meetings with them. Designed for busy individuals, QuickContacts is built around a Command Line Interface (CLI) that empowers users to perform tasks in seconds. With fast fingers, you can be assured that your time spent managing your schedule is minimised!
+We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a
+schedule with many meetings with them. Perfect for individuals that are looking for efficiency, QuickContacts can be
+used without having you to ever reach for your mouse. Complete with an **autocomplete assistance**, you can be assured
+that your time spent managing your contacts and schedule is minimised!
+
+<div markdown="block" class="alert alert-primary">
+
+**:light_bulb: TIP**<br>
+For more details about QuickContacts' features, you may head over to the [Features](#features) section below!
+
+</div>
 
 QuickContacts is specially designed for:
 
@@ -15,7 +28,9 @@ QuickContacts is specially designed for:
 * Users who have a large number of contacts and meetings
 * Typists
 
-This user guide serves as an introduction on how to incorporate QuickContacts into your daily workflow. Head over to the [Getting started](#getting-started) section to get onboard!
+This user guide provides a detailed documentation on QuickContacts and serves as an introduction on how to incorporate
+QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
+this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
 - [Getting started](#getting-started)
