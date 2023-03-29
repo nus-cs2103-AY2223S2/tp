@@ -43,13 +43,8 @@ public class FilledExamsContent extends GeneralExamsContent {
         super(FXML);
         studentName = student.getName();
 
-<<<<<<< HEAD
         name.setText(String.format("First Name: %s", student.getName().getFirstName()));
-        examsListName.setText("All Exams: ");
-=======
-        name.setText(String.format("Full Name: %s", student.getName().getFirstName()));
-        pastExamListName.setText(PAST_EXAMS_LIST_NAME);
->>>>>>> ea4d45dd45fd08d75779afa7eb864e40b1d48014
+        pastExamListName.setText("All Exams: ");
 
         // Set the past exams list panel to display the past exams of the student
         ObservableList<Exam> pastExamsList = student.getPastExamsList();
