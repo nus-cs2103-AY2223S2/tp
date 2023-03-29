@@ -1,11 +1,11 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-
-import java.util.logging.Logger;
 
 /**
  * The UI component that is responsible for receiving remarks inputs.
@@ -54,6 +54,7 @@ public class RemarkWindow extends UiPart<Stage> {
     public String showAndGetText(String existingRemark) {
         logger.fine("Showing help page about the application.");
         textArea.setText(existingRemark);
+        textArea.positionCaret(existingRemark.length());
         getRoot().showAndWait();
         //getRoot().centerOnScreen();
         return textArea.getText();

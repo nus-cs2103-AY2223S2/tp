@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-//        personListPanel2 = new PersonListPanel(logic.getFilteredPersonList());
-//        personListPanelPlaceholder2.getChildren().add(personListPanel2.getRoot());
+        // personListPanel2 = new PersonListPanel(logic.getFilteredPersonList());
+        // personListPanelPlaceholder2.getChildren().add(personListPanel2.getRoot());
 
         resultPersonlistPanel = new ResultPersonListPanel(logic.getShowPerson());
         resultPersonListPlaceholder.getChildren().add(resultPersonlistPanel.getRoot());
@@ -207,8 +207,8 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isRemark()) {
                 // commandText = remark INDEX
-                return executeCommand(commandText + " r/" +
-                        getRemarksFromRemarkBox(commandResult.getRemark()));
+                return executeCommand(commandText + " "
+                        + getRemarksFromRemarkBox(commandResult.getRemark()));
             }
 
             return commandResult;
