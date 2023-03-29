@@ -12,23 +12,23 @@
    <children>
          <VBox minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
-            <Label id="name" fx:id="name" styleClass="cell_big_label" />
+            <Label id="name" fx:id="name" styleClass="cell_name_label" wrapText="true" />
                <HBox>
                   <children>
                      <Label fx:id="email111" prefWidth="106.0" styleClass="cell_small_label" text="NRIC" />
-                  <Label fx:id="nric" styleClass="cell_small_label" />
+                  <Label fx:id="nric" styleClass="cell_small_label" wrapText="true" />
                   </children>
                </HBox>
                <HBox>
                   <children>
                      <Label fx:id="email11" prefWidth="106.0" styleClass="cell_small_label" text="Phone number" />
-                  <Label fx:id="phone" styleClass="cell_small_label" />
+                  <Label fx:id="phone" styleClass="cell_small_label" wrapText="true" />
                   </children>
                </HBox>
                <HBox>
                   <children>
                      <Label fx:id="email1" maxHeight="Infinity" prefWidth="106.0" styleClass="cell_small_label" text="Email" />
-                  <Label fx:id="email" styleClass="cell_small_label">
+                  <Label fx:id="email" styleClass="cell_small_label" wrapText="true">
                         <padding>
                            <Insets right="10.0" />
                         </padding></Label>
@@ -40,7 +40,7 @@
                         <padding>
                            <Insets right="10.0" />
                         </padding></Label>
-                  <Label fx:id="address" styleClass="cell_small_label" />
+                  <Label fx:id="address" styleClass="cell_small_label" wrapText="true" />
                   </children>
                </HBox>
                <HBox />
