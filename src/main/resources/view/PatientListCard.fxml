@@ -29,7 +29,7 @@
       </HBox>
       <Label fx:id="nric" styleClass="cell_small_label" />
       <Label fx:id="ward" styleClass="cell_small_label" />
-      <Label fx:id="discharge" styleClass="cell_small_label" />
+      <Label fx:id="discharge" text="No discharge date set" styleClass="cell_small_label" />
     </VBox>
   </GridPane>
 </HBox>

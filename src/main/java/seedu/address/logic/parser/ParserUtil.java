@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortCommand.Field;
+import seedu.address.logic.commands.SortCommand.Order;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Discharge;
 import seedu.address.model.patient.Name;
@@ -125,5 +128,32 @@ public class ParserUtil {
             throw new ParseException(Discharge.MESSAGE_CONSTRAINTS);
         }
         return new Discharge(trimmedDischarge);
+    }
+
+
+    /**
+     * Parses {@code String arg} into a {@code Order}.
+     *
+     * @throws ParseException if the given {@code arg} is invalid.
+     */
+    public static Order parseSortOrder(String arg) throws ParseException {
+        try {
+            return Order.valueOf(arg.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
+        }
+    }
+
+    /**
+     * Parses {@code String arg} into a {@code Type}.
+     *
+     * @throws ParseException if the given {@code arg} is invalid.
+     */
+    public static Field parseSortType(String arg) throws ParseException {
+        try {
+            return Field.valueOf(arg.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
+        }
     }
 }

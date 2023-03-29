@@ -5,6 +5,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
+import seedu.address.model.ward.WardName;
 
 /**
  * A utility class to help with building Patient objects.
@@ -21,7 +22,7 @@ public class PatientBuilder {
     private Nric nric;
     private Name name;
     private Status status;
-    private String ward;
+    private WardName ward;
     private Discharge discharge;
 
     /**
@@ -31,7 +32,7 @@ public class PatientBuilder {
         nric = new Nric(DEFAULT_NRIC);
         name = new Name(DEFAULT_NAME);
         status = new Status(DEFAULT_STATUS);
-        ward = DEFAULT_WARD;
+        ward = new WardName(DEFAULT_WARD);
         discharge = new Discharge(DEFAULT_DISCHARGE);
     }
 
@@ -42,7 +43,7 @@ public class PatientBuilder {
         nric = patientToCopy.getNric();
         name = patientToCopy.getName();
         status = patientToCopy.getStatus();
-        ward = patientToCopy.getWardNameString();
+        ward = patientToCopy.getWardName();
         discharge = patientToCopy.getDischarge();
     }
 
@@ -74,7 +75,7 @@ public class PatientBuilder {
      * Sets the {@code Ward} of the {@code Patient} that we are building.
      */
     public PatientBuilder withWard(String ward) {
-        this.ward = ward;
+        this.ward = new WardName(ward);
         return this;
     }
 

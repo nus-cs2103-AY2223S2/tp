@@ -1,9 +1,9 @@
 package seedu.address.model.patient;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.ward.Ward.wardWithName;
+
+import java.util.Objects;
 
 import seedu.address.model.ward.Ward;
 import seedu.address.model.ward.WardName;
@@ -23,6 +23,7 @@ public class Patient {
     private Status status = new Status("GRAY");
     private WardName ward = new WardName("Waiting Room");
     private Discharge discharge = new Discharge("To Be Confirmed");
+    private final int INVERTER = -1;
 
     /**
      * Constructor for Patient taking in nric and name.
@@ -111,6 +112,10 @@ public class Patient {
         return name;
     }
 
+    public String getNameString() {
+        return name.fullName;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -129,6 +134,13 @@ public class Patient {
     }
     public Discharge getDischarge() {
         return discharge;
+    }
+
+    /**
+     * Returns the discharge date as String.
+     */
+    public String getDischargeString() {
+        return discharge.value;
     }
 
     public void setStatus(Status newStatus) {
@@ -166,6 +178,71 @@ public class Patient {
 
         return otherPatient != null
             && otherPatient.getNric().equals(this.getNric());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Name in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByNameAsc(Patient patient) {
+        return this.getNameString().compareTo(patient.getNameString());
+    }
+
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Name in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByNameDesc(Patient patient) {
+        return INVERTER * this.getNameString().compareTo(patient.getNameString());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Status in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByStatusAsc(Patient patient) {
+        return this.getStatus().getValue().compareTo(patient.getStatus().getValue());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Status in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByStatusDesc(Patient patient) {
+        return INVERTER * this.getStatus().getValue().compareTo(patient.getStatus().getValue());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Discharge in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByDischargeAsc(Patient patient) {
+        return this.getDischargeString().compareTo(patient.getDischargeString());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Discharge in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByDischargeDesc(Patient patient) {
+        return INVERTER * this.getDischargeString().compareTo(patient.getDischargeString());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Ward in ascending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByWardAsc(Patient patient) {
+        return this.getWardNameString().compareTo(patient.getWardNameString());
+    }
+
+    /**
+     * Returns compared result between {@code this} and the given {@code patient} by Ward in descending order.
+     * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
+     */
+    public int compareToByWardDesc(Patient patient) {
+        return INVERTER * this.getWardNameString().compareTo(patient.getWardNameString());
     }
 
     /**

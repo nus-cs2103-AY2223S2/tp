@@ -3,6 +3,8 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -118,6 +120,32 @@ public class UniquePatientList implements Iterable<Patient> {
         }
 
         internalList.setAll(patients);
+    }
+
+    /**
+     * Sorts the patient list with {@code comparator}.
+     * @param comparator
+     */
+    public void sortPatients(Comparator<Patient> comparator) {
+        requireNonNull(comparator);
+        ArrayList<Patient> sortedList = replaceSort(internalList, comparator);
+        internalList.setAll(sortedList);
+    }
+
+    /**
+     * Sorts the list of patients and replace the original list.
+     * @param observableList
+     * @param comparator
+     * @return
+     */
+    private static ArrayList<Patient> replaceSort(
+            ObservableList<Patient> observableList, Comparator<Patient> comparator) {
+        ArrayList<Patient> duplicatedList = new ArrayList<>();
+        for (int i = 0; i < observableList.size(); i++) {
+            duplicatedList.add(observableList.get(i));
+        }
+        duplicatedList.sort(comparator);
+        return duplicatedList;
     }
 
     /**
