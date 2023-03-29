@@ -14,11 +14,28 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
 public class AddVaxTypeParser extends VaxTypeBuilderParser {
     public static final String COMMAND_WORD = "add";
 
+    public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
+            + " - Adds a vaccination to the system\n"
+            + "Syntax: "
+            + "vaccination add VAX_NAME [--g ...GROUP...] [--lal MIN_AGE] [--ual MAX_AGE] "
+            + "[--a ...INGREDIENT...]... [--h HISTORY_REQ]...\n"
+            + "Example: "
+            + "vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --a ALC-0315, ALC-0159 --h NONE::ABC";
+
 
     @Override
     public AddVaxTypeCommand parse(ArgumentMultimap argsMap) throws ParseException {
-        GroupName name = ParserUtil.parseGroupName(argsMap.getPreamble());
-        VaxTypeBuilder builder = parseBuilderNoRename(argsMap);
-        return new AddVaxTypeCommand(name, builder);
+        try {
+            GroupName name;
+            try {
+                name = ParserUtil.parseGroupName(argsMap.getPreamble());
+            } catch (ParseException parseEx) {
+                throw new ParseException(String.format("VAX_NAME: %s", parseEx.getMessage()));
+            }
+            VaxTypeBuilder builder = parseBuilderNoRename(argsMap);
+            return new AddVaxTypeCommand(name, builder);
+        } catch (ParseException parseEx) {
+            throw new ParseException(String.format("%s\n\n%s", parseEx.getMessage(), MESSAGE_USAGE));
+        }
     }
 }
