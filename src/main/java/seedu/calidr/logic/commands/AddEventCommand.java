@@ -22,7 +22,7 @@ public class AddEventCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + " TITLE "
             + PREFIX_FROM + " START DATE-TIME "
-            + PREFIX_TO + " END DATE-TIME"
+            + PREFIX_TO + " END DATE-TIME "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " "

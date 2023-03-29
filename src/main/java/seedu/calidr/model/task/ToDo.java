@@ -34,7 +34,7 @@ public class ToDo extends Task {
         StringBuilder sb = new StringBuilder("[T]");
         String mark = isDone() ? "X" : " ";
         sb.append("{")
-                .append(getPriority().toString())
+                .append(getPriority().toString().toUpperCase())
                 .append("}[").append(mark).append("] ")
                 .append(getTitle())
                 .append(" (")

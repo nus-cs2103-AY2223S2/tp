@@ -8,7 +8,7 @@ public enum Priority {
     MEDIUM("medium"),
     HIGH("high");
 
-    public static final String MESSAGE_CONSTRAINTS = "Priority should be low/medium/high";
+    public static final String MESSAGE_CONSTRAINTS = "Priority should be low/ medium/ high";
 
     private final String string;
 
