@@ -25,19 +25,20 @@ import seedu.vms.model.appointment.predicates.StartTimePredicate;
 import seedu.vms.model.appointment.predicates.VaccineContainsKeywordsPredicate;
 
 /**
- * Finds and lists all patients in patient manager whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all appointments in appointment manager where any of the argument keywords match.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    public static final String COMMAND_GROUP = "patient";
+    public static final String COMMAND_GROUP = "appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Finds all patients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + ": Finds all appointments that matches the specified keywords (case-insensitive) "
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " Dose 1\n"
+            + "(List all appointments that uses \"Dose 1')\"";
 
     private final Optional<IndexPredicate> indexPredicate;
     private final Optional<StartTimePredicate> startTimePredicate;
@@ -46,20 +47,7 @@ public class FindCommand extends Command {
     private final Optional<Boolean> isCompletedPredicate;
 
     /**
-     * Existing FindCommand that was previously used to search using name only
-     *
-     * @param indexPredicate
-     */
-    public FindCommand(IndexPredicate indexPredicate) {
-        this.indexPredicate = Optional.of(indexPredicate);
-        this.startTimePredicate = Optional.empty();
-        this.endTimePredicate = Optional.empty();
-        this.vaccinePredicate = Optional.empty();
-        this.isCompletedPredicate = Optional.empty();
-    }
-
-    /**
-     * New FindCommand that contains more patient information that is given by the user.
+     * FindCommand that contains more appointment information that is given by the user.
      * Accepts different descriptors when applicable
      *
      * @param findAppointmentDescriptor
