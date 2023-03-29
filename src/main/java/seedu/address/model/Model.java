@@ -172,7 +172,7 @@ public interface Model {
 
     void updateFilteredTankList(Predicate<Tank> predicate);
 
-    void setLastFedDateFishes(Tank tankToFeed, String formattedDate);
+    void setLastFedDateTimeFishes(Tank tankToFeed, String formattedDate);
 
     /**
      * Executes the auto feeding reminder feature for Model

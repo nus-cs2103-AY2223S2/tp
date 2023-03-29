@@ -27,7 +27,7 @@ public class FishSortCommandParser implements Parser<FishSortCommand> {
             -> f.getName().toString());
     /* Compares last fed date and sorts them lexicographically from small to large */
     public static final Comparator<Fish> LAST_FED_COMPARATOR = Comparator.comparing(f
-            -> f.getLastFedDate().getLocalDate());
+            -> f.getLastFedDateTime().getLocalDateTime());
     /* Compares species and sorts them lexicographically from small to large */
     public static final Comparator<Fish> SPECIES_COMPARATOR = Comparator.comparing(f
             -> f.getSpecies().toString());

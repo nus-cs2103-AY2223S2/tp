@@ -255,7 +255,7 @@ public class AddCommandTest {
         public void updateFilteredTankList(Predicate<Tank> predicate) {}
 
         @Override
-        public void setLastFedDateFishes(Tank tankToFeed, String formattedDate) {
+        public void setLastFedDateTimeFishes(Tank tankToFeed, String formattedDate) {
             //TODO tests
         }
 

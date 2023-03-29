@@ -48,9 +48,9 @@ public class TankFeedCommand extends TankCommand {
 
         Tank tankToFeed = lastShownList.get(targetIndex.getZeroBased());
         //FEED ALL FISHES IN THIS TANK
-        String formattedDate = DateUtil.getCurrentDate();
+        String formattedNow = DateUtil.getCurrentDateTime();
 
-        model.setLastFedDateFishes(tankToFeed, formattedDate);
+        model.setLastFedDateTimeFishes(tankToFeed, formattedNow);
 
         return new CommandResult(String.format(MESSAGE_FEED_TANK_SUCCESS, tankToFeed));
     }

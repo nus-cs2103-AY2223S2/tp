@@ -11,7 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -65,13 +65,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code lastFedDate} is invalid.
      */
-    public static LastFedDate parseLastFedDate(String lastFedDate) throws ParseException {
+    public static LastFedDateTime parseLastFedDate(String lastFedDate) throws ParseException {
         requireNonNull(lastFedDate);
         String trimmedLastFedDate = lastFedDate.trim();
-        if (!LastFedDate.isValidLastFedDate(trimmedLastFedDate)) {
-            throw new ParseException(LastFedDate.MESSAGE_CONSTRAINTS);
+        System.out.println(trimmedLastFedDate);
+        if (!LastFedDateTime.isValidLastFedDateTime(trimmedLastFedDate)) {
+            throw new ParseException(LastFedDateTime.MESSAGE_CONSTRAINTS);
         }
-        return new LastFedDate(trimmedLastFedDate);
+        return new LastFedDateTime(trimmedLastFedDate);
     }
 
     /**

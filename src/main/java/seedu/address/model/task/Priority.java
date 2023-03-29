@@ -7,11 +7,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents the priority of a Task.
  * Guarantees: Non-null priority in valid form.
  */
+
 public class Priority {
+    enum PriorityLevel { LOW, MEDIUM, HIGH }
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should be of the form: 'low' / 'medium' / 'high', and it should not be blank";
 
-    public final String priority;
+    public final PriorityLevel priority;
 
     /**
      * Constructs a {@code Priority}.
@@ -21,7 +23,20 @@ public class Priority {
     public Priority(String priority) {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
-        this.priority = priority;
+        //this.priority = priority;
+        switch(priority) {
+        case "low":
+            this.priority = PriorityLevel.LOW;
+            break;
+        case "medium":
+            this.priority = PriorityLevel.MEDIUM;
+            break;
+        case "high":
+            this.priority = PriorityLevel.HIGH;
+            break;
+        default:
+            throw new IllegalArgumentException("Unexpected priority level");
+        }
     }
 
     /**
@@ -31,9 +46,22 @@ public class Priority {
         return test.equals("low") || test.equals("medium") || test.equals("high");
     }
 
+    public int compare(Priority p) {
+        return this.priority.compareTo(p.priority);
+    }
+
     @Override
     public String toString() {
-        return this.priority;
+        switch(this.priority) {
+        case LOW:
+            return "low";
+        case MEDIUM:
+            return "medium";
+        case HIGH:
+            return "high";
+        default:
+            throw new IllegalArgumentException("Unexpected priority level");
+        }
     }
 
     @Override
