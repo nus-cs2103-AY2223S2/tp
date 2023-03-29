@@ -165,14 +165,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Show the sorted task list.
-     */
-    @FXML
-    private void handleSortTask() {
-        tabPanel.showSortedTasks();
-    }
-
-    /**
      * Executes the command and returns the result.
      *
      * @see trackr.logic.Logic#execute(String)
@@ -182,10 +174,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.getFeedbackToUser().equals("Tasks sorted!")) {
-                handleSortTask();
-            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

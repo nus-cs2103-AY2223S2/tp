@@ -3,6 +3,8 @@ package trackr.model;
 import trackr.model.item.ItemList;
 import trackr.model.task.Task;
 
+import java.util.Comparator;
+
 /**
  * Wraps all data at the task-list level
  * Duplicates are not allowed (by .isSameItem comparison)

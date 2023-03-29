@@ -42,6 +42,7 @@ import trackr.logic.parser.task.AddTaskCommandParser;
 import trackr.logic.parser.task.DeleteTaskCommandParser;
 import trackr.logic.parser.task.EditTaskCommandParser;
 import trackr.logic.parser.task.FindTaskCommandParser;
+import trackr.logic.parser.task.SortTasksCommandParser;
 
 /**
  * Parses user input.
@@ -144,7 +145,7 @@ public class TrackrParser {
 
         case SortTasksCommand.COMMAND_WORD:
         case SortTasksCommand.COMMAND_WORD_SHORTCUT:
-            return new SortTasksCommand();
+            return new SortTasksCommandParser().parse(arguments);
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);

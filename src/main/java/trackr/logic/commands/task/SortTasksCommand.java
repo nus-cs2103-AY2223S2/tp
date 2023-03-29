@@ -22,7 +22,11 @@ public class SortTasksCommand extends Command {
             + "be displayed on the top.\n"
             + "Example: " + COMMAND_WORD;
 
-    private SortTasksComparator sortTasksComparator = new SortTasksComparator();
+    private SortTasksComparator sortTasksComparator;
+
+    public SortTasksCommand(SortTasksComparator sortTasksComparator) {
+        this.sortTasksComparator = sortTasksComparator;
+    }
 
     @Override
     public CommandResult execute(Model model) {

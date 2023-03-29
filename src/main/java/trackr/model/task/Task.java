@@ -2,6 +2,7 @@ package trackr.model.task;
 
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import trackr.model.ModelEnum;
@@ -17,6 +18,7 @@ public class Task extends Item {
     private final TaskName taskName;
     private final TaskDeadline taskDeadline;
     private final TaskStatus taskStatus;
+    private final LocalDateTime dateAdded;
 
     /**
      * Every field must be present and not null.
@@ -27,6 +29,7 @@ public class Task extends Item {
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;
         this.taskStatus = taskStatus;
+        dateAdded = LocalDateTime.now();
     }
 
     public TaskName getTaskName() {
@@ -42,6 +45,50 @@ public class Task extends Item {
     }
 
     /**
+     * Compares 2 tasks using their dates added.
+     * @param otherTask The task to compare with.
+     * @return -1 if this task was added earlier than the other task.
+     *         Returns 1 if this task was added later than the other task
+     *         Returns 0 if both tasks were added at the same time.
+     */
+    public int compareDateAdded(Task otherTask) {
+        return dateAdded.compareTo(otherTask.dateAdded);
+    }
+
+    /**
+     * Compares 2 tasks using their deadlines.
+     * @param otherTask The task to compare with.
+     * @return -1 if this task has an earlier deadline than the other task.
+     *         Returns 1 if this task has a later deadline than the other task
+     *         Returns 0 if both tasks have the same deadlines.
+     */
+    public int compareName(Task otherTask) {
+        return taskName.compare(otherTask.getTaskName());
+    }
+
+    /**
+     * Compares 2 tasks using their deadlines.
+     * @param otherTask The task to compare with.
+     * @return -1 if this task has an earlier deadline than the other task.
+     *         Returns 1 if this task has a later deadline than the other task
+     *         Returns 0 if both tasks have the same deadlines.
+     */
+    public int compareDeadline(Task otherTask) {
+        return taskDeadline.compare(otherTask.getTaskDeadline());
+    }
+
+    /**
+     * Compares 2 tasks using their statuses.
+     * @param otherTask The task to compare with.
+     * @return -1 if this task is not done while the other task is done,
+     *         Returns 1 if this task is done while the other task is not done,
+     *         Returns 0 if both tasks have the same statuses.
+     */
+    public int compareStatus(Task otherTask) {
+        return taskStatus.compare(otherTask.getTaskStatus());
+    }
+
+    /**
      * Compares 2 tasks using their statuses and deadlines.
      * @param otherTask The task to compare with.
      * @return -1 if this task is not done while the other task is done,
@@ -50,7 +97,7 @@ public class Task extends Item {
      *         or if both have the same status but this task has a later deadline.
      *         Returns 0 if both tasks have the same statuses and deadlines.
      */
-    public int compare(Task otherTask) {
+    public int compareStatusAndDeadline(Task otherTask) {
         int compareStatusResult = taskStatus.compare(otherTask.getTaskStatus());
 
         if (compareStatusResult != 0) {

@@ -137,6 +137,23 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     *
+     */
+    public static CriteriaEnum parseSortingCriteria(Optional<String> criteria) throws ParseException {
+        requireNonNull(criteria);
+        if (!criteria.isPresent()) {
+            return CriteriaEnum.STATUS_AND_DEADLINE;
+        }
+
+        String trimmedCriteria = criteria.get().trim().toUpperCase();
+        try {
+            return CriteriaEnum.valueOf(trimmedCriteria);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(CriteriaEnum.MESSAGE_CONSTRAINTS);
+        }
+    }
+
     //========================Parse those related to task==================================
 
     /**
