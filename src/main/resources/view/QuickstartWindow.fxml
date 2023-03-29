@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.stage.Stage?>
 
-<fx:root title="Quickstart Guide" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Quickstart Guide" type="javafx.stage.Stage" resizable="false"
+         xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/officeconnect.png" />
     </icons>
@@ -16,7 +17,7 @@
             <stylesheets>
                 <URL value="@../css/QuickstartWindow.css" />
             </stylesheets>
-            <AnchorPane id="quickAnchorPane" prefHeight="470.0" prefWidth="693.0">
+            <AnchorPane id="quickAnchorPane" prefHeight="470.0" prefWidth="693.0" maxHeight="470.0" maxWidth="693.0">
             <children>
                <Pagination fx:id="quickPagination" layoutX="11.0" layoutY="2.0"
                            maxPageIndicatorCount="12" pageCount="12" prefHeight="466.0" prefWidth="670.0" />
