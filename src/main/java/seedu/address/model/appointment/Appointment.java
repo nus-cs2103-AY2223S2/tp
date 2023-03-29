@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
+
 /**
  * Represents an Appointment in the address book.
  * Guarantees: details except description are present and not null, field values are validated, immutable.
@@ -67,7 +68,8 @@ public class Appointment {
      * @return If the given time occurs within the timeslot of the appointment
      */
     public boolean duringTime(ChronoLocalDateTime<?> time) {
-        return time.isAfter(timeslot.startingDateTime) && time.isBefore(timeslot.endingDateTime);
+        return (time.isAfter(timeslot.startingDateTime) || time.isEqual(timeslot.startingDateTime))
+            && (time.isBefore(timeslot.endingDateTime) || time.isEqual(timeslot.endingDateTime));
     }
 
     /**
@@ -80,7 +82,7 @@ public class Appointment {
         }
 
         return otherAppointment != null
-                && otherAppointment.getTimeslot().equals(getTimeslot());
+            && otherAppointment.getTimeslot().equals(getTimeslot());
     }
 
     /**
@@ -99,9 +101,9 @@ public class Appointment {
 
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.getPatientName().equals(getPatientName())
-                && otherAppointment.getTimeslot().equals(getTimeslot())
-                && otherAppointment.getDescription().equals(getDescription())
-                && otherAppointment.getDoctor().equals(getDoctor());
+            && otherAppointment.getTimeslot().equals(getTimeslot())
+            && otherAppointment.getDescription().equals(getDescription())
+            && otherAppointment.getDoctor().equals(getDoctor());
     }
 
     @Override
@@ -114,12 +116,12 @@ public class Appointment {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTimeslot())
-                .append("; Patient Name: ")
-                .append(getPatientName())
-                .append("; Description: ")
-                .append(getDescription())
-                .append("; Doctor: ")
-                .append(getDoctor());
+            .append("; Patient Name: ")
+            .append(getPatientName())
+            .append("; Description: ")
+            .append(getDescription())
+            .append("; Doctor: ")
+            .append(getDoctor());
 
         return builder.toString();
     }

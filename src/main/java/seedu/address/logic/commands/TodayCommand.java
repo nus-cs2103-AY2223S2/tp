@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDuringTimePredicate;
+import seedu.address.model.appointment.AppointmentHasOverlapPredicate;
 
 /**
  * Finds and lists all appointments that are happening on the current day.
@@ -19,7 +19,7 @@ public class TodayCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for today";
 
-    private final Predicate<Appointment> predicate = AppointmentDuringTimePredicate.todayPredicate();
+    private final Predicate<Appointment> predicate = AppointmentHasOverlapPredicate.todayPredicate();
 
     @Override
     public CommandResult execute(Model model) {

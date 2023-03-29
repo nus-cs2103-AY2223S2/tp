@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Tests that a {@code Appointment}'s {@code Name} matches any of the keywords given.
  */
-public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
+public class AppointmentHasOverlapPredicate implements Predicate<Appointment> {
     private final Timeslot timeslot;
 
     /**
@@ -23,7 +23,7 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AppointmentDuringTimePredicate(String timeStr) throws ParseException {
+    public AppointmentHasOverlapPredicate(String timeStr) throws ParseException {
         String[] splitTimeStr = timeStr.split(" ");
         String startTimeStr = splitTimeStr[0] + " " + splitTimeStr[1];
         String endTimeStr = splitTimeStr[2] + " " + splitTimeStr[3];
@@ -31,10 +31,18 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
-        this.timeslot = new Timeslot(startTimeStr + "," + endTimeStr);
+
+        Timeslot result;
+        try {
+            result = new Timeslot(startTimeStr + "," + endTimeStr);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
+        }
+        this.timeslot = result;
     }
 
-    private AppointmentDuringTimePredicate(Timeslot timeslot) {
+    private AppointmentHasOverlapPredicate(Timeslot timeslot) {
         this.timeslot = timeslot;
     }
 
@@ -43,7 +51,7 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
      *
      * @return Predicate with a timeslot covering the current day.
      */
-    public static AppointmentDuringTimePredicate todayPredicate() {
+    public static AppointmentHasOverlapPredicate todayPredicate() {
         // Adapted from
         // https://stackoverflow.com/questions/6850874/
         // how-to-create-a-java-date-object-of-midnight-today-and-midnight-tomorrow
@@ -51,7 +59,7 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
         LocalDate today = LocalDate.now(ZoneId.of("Europe/Berlin"));
         LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
         LocalDateTime tomorrowMidnight = todayMidnight.plusDays(1);
-        return new AppointmentDuringTimePredicate(new Timeslot(todayMidnight, tomorrowMidnight));
+        return new AppointmentHasOverlapPredicate(new Timeslot(todayMidnight, tomorrowMidnight));
     }
 
     @Override
@@ -62,8 +70,8 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AppointmentDuringTimePredicate // instanceof handles nulls
-            && timeslot.equals(((AppointmentDuringTimePredicate) other).timeslot)); // state check
+            || (other instanceof AppointmentHasOverlapPredicate // instanceof handles nulls
+            && timeslot.equals(((AppointmentHasOverlapPredicate) other).timeslot)); // state check
     }
 
 }
