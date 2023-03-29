@@ -27,11 +27,10 @@ public class DeleteTaskCommand extends DeleteCommand {
 
     // targetIndex is ZERO-BASED
     private final Index targetIndex;
-    private Task deletedTask;
+    private Task deletedTask = null;
 
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-        this.deletedTask = null;
     }
 
     @Override

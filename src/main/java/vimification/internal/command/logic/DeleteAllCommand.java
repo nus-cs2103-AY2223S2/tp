@@ -9,7 +9,7 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class DeleteAllCommand extends UndoableLogicCommand{
+public class DeleteAllCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "clear";
 
@@ -25,8 +25,7 @@ public class DeleteAllCommand extends UndoableLogicCommand{
 
     public DeleteAllCommand() {
         deletedTasks = null;
-    };
-
+    }
 
     @Override
     public CommandResult execute(LogicTaskList taskList)

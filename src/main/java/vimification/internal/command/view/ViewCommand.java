@@ -5,7 +5,7 @@ import vimification.internal.command.Command;
 import vimification.model.task.Task;
 
 
-public abstract class ViewCommand extends Command {
+public abstract class ViewCommand implements Command {
     private ObservableList<Task> viewTaskList;
 
     ViewCommand() {

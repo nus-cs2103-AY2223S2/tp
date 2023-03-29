@@ -2,9 +2,7 @@ package vimification.internal.parser;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
-import java.util.HashSet;
 
 /**
  * Stores mapping of flags to their respective arguments. Each flag may be associated with multiple
@@ -18,11 +16,11 @@ public class ArgumentCounter {
     /**
      * Flags mapped to their respective arguments.
      **/
-    private final Map<ArgumentFlag, Integer> args;
+    private final Map<ArgumentFlag, Integer> counter;
 
     public ArgumentCounter(ArgumentFlag... allowedFlags) {
         this.allowedFlags = Set.of(allowedFlags);
-        this.args = new HashMap<>();
+        this.counter = new HashMap<>();
     }
 
     private void throwIfNotAllowed(ArgumentFlag flag) {
@@ -42,30 +40,14 @@ public class ArgumentCounter {
      */
     public void add(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        long count = args.merge(flag, 1, Integer::sum);
+        long count = counter.merge(flag, 1, Integer::sum);
         if (count > flag.getMaxCount()) {
             throw new ParserException("Number of argument exceeded limit");
         }
     }
 
-    public Set<String> get(ArgumentFlag flag) {
+    public int get(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        // Set<String> result = args.get(flag);
-        // return result == null ? Set.of() : result;
-        return null;
+        return counter.getOrDefault(flag, 0);
     }
-
-    public Set<String> remove(ArgumentFlag flag) {
-        throwIfNotAllowed(flag);
-        // Set<String> result = args.remove(flag);
-        // return result == null ? Set.of() : result;
-        return null;
-    }
-
-    // public Optional<String> getFirst(ArgumentFlag flag) {
-    // throwIfNotAllowed(flag);
-    // return args.getOrDefault(flag, Set.of())
-    // .stream()
-    // .findFirst();
-    // }
 }

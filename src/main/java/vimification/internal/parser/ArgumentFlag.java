@@ -30,6 +30,12 @@ public class ArgumentFlag {
         return maxCount;
     }
 
+    public ArgumentFlag withMaxCount(int maxCount) {
+        return this.maxCount == maxCount
+                ? this
+                : new ArgumentFlag(shortForm, longForm, maxCount);
+    }
+
     @Override
     public String toString() {
         return String.format(
@@ -48,8 +54,7 @@ public class ArgumentFlag {
             return false;
         }
         ArgumentFlag otherFlag = (ArgumentFlag) other;
-        return maxCount == otherFlag.maxCount
-                && Objects.equals(shortForm, otherFlag.shortForm)
+        return Objects.equals(shortForm, otherFlag.shortForm)
                 && Objects.equals(longForm, otherFlag.longForm);
     }
 }

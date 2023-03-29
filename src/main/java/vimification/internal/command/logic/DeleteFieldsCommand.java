@@ -21,14 +21,12 @@ public class DeleteFieldsCommand extends DeleteCommand {
         int index = targetIndex.getZeroBased();
         Task oldTask = taskList.get(index);
         Task newTask = oldTask.clone();
-        if (request.deadline) {
-            // delete the deadline
+        this.oldTask = oldTask;
+        if (request.shouldDeleteDeadline()) {
             newTask.deleteDeadline();
         }
-        // delete the label
-        request.labels.forEach(newTask::removeLabel);
+        request.getDeletedLabels().forEach(newTask::removeLabel);
         taskList.set(index, newTask);
-        this.oldTask = oldTask;
         return null;
     }
 
