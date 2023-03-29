@@ -1,13 +1,18 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
@@ -93,6 +98,50 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new ParseException("Student already in event!");
         }
         original.addStudent(toAdd);
+    }
+
+    /**
+     * Deletes a student from an event.
+     *
+     * @param toDel the index of the student within the event's student list to be deleted.
+     * @param name the name of the event from which the student will be deleted.
+     * @param type the type of the event from which the student will be deleted.
+     */
+    public void deleteStudentFromEvent(Index toDel, String name, String type) {
+        Optional<Event> target = Optional.empty();
+        if (type.equals(PREFIX_TUTORIAL.getPrefix())) {
+            for (int i = 0; i < tutorials.size(); i++) {
+                if (tutorials.get(i).hasMatchByName(name)) {
+                    target = Optional.of(tutorials.get(i));
+                    break;
+                }
+            }
+        }
+
+        if (type.equals(PREFIX_LAB.getPrefix())) {
+            for (int i = 0; i < labs.size(); i++) {
+                if (labs.get(i).hasMatchByName(name)) {
+                    target = Optional.of(labs.get(i));
+                    break;
+                }
+            }
+        }
+
+        if (type.equals(PREFIX_CONSULTATION.getPrefix())) {
+            for (int i = 0; i < consultations.size(); i++) {
+                if (consultations.get(i).hasMatchByName(name)) {
+                    target = Optional.of(consultations.get(i));
+                    break;
+                }
+            }
+        }
+
+        if (target.isEmpty()) {
+            //todo: maybe add error message, but not really possible that the prefix is not present
+            return;
+        }
+
+        target.get().removeIndexStudent(toDel.getZeroBased());
     }
 
     /**

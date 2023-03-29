@@ -9,25 +9,25 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddStudentToEventCommand;
+import seedu.address.logic.commands.DeleteStudentFromEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments while checking for validity of the user input,
- * and creates a new AddStudentToEventCommand object.
+ * Parses input arguments while checking for validity of user inputs,
+ * and creates a new DeleteStudentFromEventCommand object.
  */
-public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
+public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddStudentToEventCommand
-     * and returns an AddStudentToEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteStudentFromEventCommand
+     * and returns a DeleteStudentFromEventCommand object for execution.
      *
      * @param args the given string arguments to be parsed.
-     * @return an AddStudentToEventCommand object for execution.
+     * @return a DeleteStudentFromEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public AddStudentToEventCommand parse(String args) throws ParseException {
+    public DeleteStudentFromEventCommand parse(String args) throws ParseException {
         Index index;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -42,15 +42,14 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
         String eventName = tutorialName.orElse(labName.orElse(consultationName.orElse("")));
-        //todo: remove magic literals
-        String eventType = "tutorial";
+        String eventType = PREFIX_TUTORIAL.getPrefix();
         if (!labName.isEmpty()) {
-            eventType = "lab";
+            eventType = PREFIX_LAB.getPrefix();
         }
         if (!consultationName.isEmpty()) {
-            eventType = "consultation";
+            eventType = PREFIX_CONSULTATION.getPrefix();
         }
 
-        return new AddStudentToEventCommand(index, eventName, eventType);
+        return new DeleteStudentFromEventCommand(index, eventName, eventType);
     }
 }
