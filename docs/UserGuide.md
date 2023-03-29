@@ -114,14 +114,14 @@ Displays window showing the list of commands and a clickable URL to access help 
 
 Format: `help`
 
+<div style="page-break-after: always;"></div>
+
 #### Undoing a change : `undo`
 
 Undoes the last change made to SOCket.
 
 Format: `undo`
 * A message is shown if no changes were made to SOCket.
-
-<div style="page-break-after: always;"></div>
 
 #### Redoing an undone change : `redo`
 
@@ -248,8 +248,6 @@ Example:
   </p>
 
 
-<div style="page-break-after: always;"></div>
-
 #### Deleting a contact : `delete`
 
 Deletes the specified contact from SOCket.
@@ -286,8 +284,6 @@ Examples:
   <br>
   </p>
 
-
-<div style="page-break-after: always;"></div>
 
 #### Clearing all contacts or tags : `clear`
 
@@ -535,6 +531,8 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
 
 ### Saving the data
 
