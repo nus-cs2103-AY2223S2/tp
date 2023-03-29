@@ -1,9 +1,0 @@
-{
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "postal": "948242",
-    "date": "2023-03-05",
-    "age": "23",
-    "variants": [ "DENV1" ]
-  } ]
-}

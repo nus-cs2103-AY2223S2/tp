@@ -1,4 +1,4 @@
-package seedu.dengue.model.person.csvutils;
+package seedu.dengue.model.person.csvutil;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,10 +12,13 @@ import seedu.dengue.logic.parser.ParserUtil;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.variant.Variant;
 
-public class variantsConverter extends AbstractBeanField {
+public class VariantsConverter extends AbstractBeanField {
 
     @Override
     protected Object convert(String value) throws CsvDataTypeMismatchException, CsvConstraintViolationException {
+        if (value.equals("[]")) {
+            return new HashSet<Variant>();
+        }
         String[] v = value.replaceAll("\\[|\\]", "").split(", ");
         Collection<String> variants = Arrays.asList(v);
         if (!variants.isEmpty()) {

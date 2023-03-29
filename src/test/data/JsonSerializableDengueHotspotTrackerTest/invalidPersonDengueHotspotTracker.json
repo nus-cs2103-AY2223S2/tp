@@ -1,9 +1,0 @@
-{
-  "persons": [ {
-    "name": "Hans Muster",
-    "postal": "948424a",
-    "date": "2022-11-02",
-    "age": "21",
-    "variants": [ "DENV1" ]
-  } ]
-}

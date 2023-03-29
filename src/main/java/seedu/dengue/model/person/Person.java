@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import com.opencsv.bean.CsvCustomBindByName;
 
 import seedu.dengue.model.variant.Variant;
-import seedu.dengue.model.person.csvutils.nameConverter;
-import seedu.dengue.model.person.csvutils.postalConverter;
-import seedu.dengue.model.person.csvutils.dateConverter;
-import seedu.dengue.model.person.csvutils.ageConverter;
-import seedu.dengue.model.person.csvutils.variantsConverter;
+import seedu.dengue.model.person.csvutil.NameConverter;
+import seedu.dengue.model.person.csvutil.PostalConverter;
+import seedu.dengue.model.person.csvutil.DateConverter;
+import seedu.dengue.model.person.csvutil.AgeConverter;
+import seedu.dengue.model.person.csvutil.VariantsConverter;
 
 /**
  * Represents a Person in the Dengue Hotspot Tracker.
@@ -25,16 +25,16 @@ import seedu.dengue.model.person.csvutils.variantsConverter;
 public class Person {
 
     // Identity fields
-    @CsvCustomBindByName(column = "Patient Name", converter = nameConverter.class)
+    @CsvCustomBindByName(column = "Patient Name", converter = NameConverter.class)
     private Name name;
-    @CsvCustomBindByName(column = "Postal Code", converter = postalConverter.class)
+    @CsvCustomBindByName(column = "Postal Code", converter = PostalConverter.class)
     private Postal postal;
-    @CsvCustomBindByName(column = "Date", converter = dateConverter.class)
+    @CsvCustomBindByName(column = "Date", converter = DateConverter.class)
     private Date date;
-    @CsvCustomBindByName(column = "Age", converter = ageConverter.class)
+    @CsvCustomBindByName(column = "Age", converter = AgeConverter.class)
 
     private Age age;
-    @CsvCustomBindByName(column = "Variants", converter = variantsConverter.class)
+    @CsvCustomBindByName(column = "Variants", converter = VariantsConverter.class)
     private Set<Variant> variants = new HashSet<>();
 
     public Person() {}
@@ -117,6 +117,11 @@ public class Person {
                 && otherPerson.getVariants().equals(getVariants());
     }
 
+    /**
+     * Returns an array of Strings representing the fields of this Person object formatted as a CSV string.
+     * The string array is generated in the following order: name, age, date, postal, and variants.
+     * @return A String[] representing the fields of this Person formatted as a CSV string
+     */
     public String[] toCsvString() {
         ArrayList<String> result = new ArrayList<String>();
         result.add(this.name.toString());

@@ -1,4 +1,4 @@
-package seedu.dengue.model.person.csvutils;
+package seedu.dengue.model.person.csvutil;
 
 import com.opencsv.bean.AbstractBeanField;
 import com.opencsv.exceptions.CsvConstraintViolationException;
@@ -8,7 +8,7 @@ import seedu.dengue.logic.parser.ParserUtil;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
-public class nameConverter extends AbstractBeanField {
+public class NameConverter extends AbstractBeanField {
 
     @Override
     protected Object convert(String value) throws CsvDataTypeMismatchException, CsvConstraintViolationException {

@@ -35,10 +35,10 @@ public class CsvUtil {
     private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
 
     /**
-     * Returns the Csv object from the given file or {@code Optional.empty()} object if the file is not found.
-     * If any values are missing from the file, default values will be used, as long as the file is a valid csv file.
+     * Returns the List of <T> from the given csv file or {@code Optional.empty()} object if the file is not found.
+     * If any values are missing from the file, it will throw an error, as long as the file is a valid csv file.
      * @param filePath cannot be null.
-     * @param classOfObjectToDeserialize Csv file has to correspond to the structure in the class given here.
+     * @param classOfObjectToDeserialize Csv file has to correspond to the class of <T> given.
      * @throws DataConversionException if the file format is not as expected.
      */
     public static <T> Optional<List<T>> readCsvFile(
@@ -68,9 +68,9 @@ public class CsvUtil {
     /**
      * Saves the Csv object to the specified file.
      * Overwrites existing file if it exists, creates a new file if it doesn't.
-     * @param data cannot be null
+     * @param data takes in a List of String arrays for the data
      * @param filePath cannot be null
-     * @parem mappingStrategy
+     * @parem header takes in the String array for the data header
      * @throws IOException if there was an error during writing to the file
      */
     public static <T> void saveCsvFile(List<String[]> data, Path filePath, String[] header)
@@ -81,6 +81,13 @@ public class CsvUtil {
         writeToCsvFile(filePath, header, data);
     }
 
+    /**
+     * Creates a new CSV reader with the specified input reader and target class.
+     * @param r the input reader for the CSV data
+     * @param instanceClass the target class for the CSV data
+     * @return a CsvToBean object configured to read CSV data from the specified reader
+     * and convert it to objects of the specified target class
+     */
     public static <T> CsvToBean<T> createCsvReader(Reader r, Class<T> instanceClass) {
         return new CsvToBeanBuilder(r)
                 .withType(instanceClass)
@@ -91,6 +98,13 @@ public class CsvUtil {
                 .build();
     }
 
+    /**
+     * Creates a new CSV writer with the specified output writer and mapping strategy.
+     * @param wr the output writer for the CSV data
+     * @param ms the mapping strategy for the CSV data
+     * @return a StatefulBeanToCsv object configured to write CSV data to the specified writer
+     * using the specified mapping strategy
+     */
     public static <T> StatefulBeanToCsv<T> createCsvWriter(Writer wr, ColumnPositionMappingStrategy<T> ms) {
         return new StatefulBeanToCsvBuilder(wr)
                 .withMappingStrategy(ms)
@@ -98,6 +112,9 @@ public class CsvUtil {
                 .build();
     }
 
+    /**
+     * Assumes Csv file exists
+     */
     public static Reader readFile(Path file) throws FileNotFoundException {
         return new BufferedReader(new FileReader(file.toString()));
     }
@@ -105,16 +122,25 @@ public class CsvUtil {
     /**
      * Assumes Csv file exists
      */
-    public static <T> List<T> readFromCsvFile(Path file, Class<T> instanceClass) throws IOException {
+    public static <T> List<T> readFromCsvFile(Path file, Class<T> instanceClass) throws IOException, DataConversionException {
         Reader reader = readFile(file);
         CsvToBean<T> csvReader = createCsvReader(reader, instanceClass);
         List<T> parsed = csvReader.parse();
+        if (parsed.isEmpty()) {
+            throw new DataConversionException(new Exception("Data is empty!"));
+        }
+        reader.close();
         return parsed;
     }
 
     /**
-     * Writes Java Beans to a Csv file.
-     * Will create the file if it does not exist yet.
+     * Writes the specified data to a CSV file at the given path using the provided header row.
+     * @param file the path to the CSV file to write to
+     * @param header the header row to include in the CSV file
+     * @param data the data to write to the CSV file
+     * @throws IOException if an I/O error occurs while writing to the CSV file
+     * @throws CsvDataTypeMismatchException if the data provided is of the wrong type for a CSV field
+     * @throws CsvRequiredFieldEmptyException if a required CSV field is empty
      */
     public static void writeToCsvFile(Path file, String[] header, List<String[]> data)
             throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {

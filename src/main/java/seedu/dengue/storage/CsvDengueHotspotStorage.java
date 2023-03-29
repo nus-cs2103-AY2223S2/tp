@@ -52,15 +52,18 @@ public class CsvDengueHotspotStorage implements DengueHotspotStorage {
     public Optional<ReadOnlyDengueHotspotTracker> readDengueHotspotTracker(Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
-
-        Optional<List<Person>> optionalList = CsvUtil.readCsvFile(
-                filePath, Person.class);
-        if (!optionalList.isPresent()) {
-            return Optional.empty();
+        try {
+            Optional<List<Person>> optionalList = CsvUtil.readCsvFile(
+                    filePath, Person.class);
+            if (!optionalList.isPresent()) {
+                return Optional.empty();
+            }
+            DengueHotspotTracker readOnly = new DengueHotspotTracker();
+            readOnly.setPersons(optionalList.get());
+            return Optional.of(readOnly);
+        } catch (DataConversionException e) {
+            throw e;
         }
-        DengueHotspotTracker readOnly = new DengueHotspotTracker();
-        readOnly.setPersons(optionalList.get());
-        return Optional.of(readOnly);
     }
 
     @Override
