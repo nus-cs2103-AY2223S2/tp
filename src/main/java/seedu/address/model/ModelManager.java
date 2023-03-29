@@ -157,7 +157,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
-        // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files#diff-7bd09b3a54ed83a93060f9d5e74302f5affc224dd83cb8ae73eafa10a999930d
+        // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files#diff-7bd09b3a54ed83a93060f9d5e74302f5af
+        // fc224dd83cb8ae73eafa10a999930d
         if (target.isSamePerson(displayedPerson)) {
             displayedPerson = editedPerson;
         }

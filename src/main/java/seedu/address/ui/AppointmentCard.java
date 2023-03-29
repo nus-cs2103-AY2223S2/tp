@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
 
+/**
+ * An UI component that displays appointment information of a {@code Person}.
+ */
 public class AppointmentCard extends UiPart<Region> {
     private static final String FXML = "AppointmentListCard.fxml";
 

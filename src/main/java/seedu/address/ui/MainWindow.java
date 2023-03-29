@@ -144,6 +144,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+    /**
+     * Displays the detailed person window.
+     */
     @FXML
     public void handleView() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonDisplay());

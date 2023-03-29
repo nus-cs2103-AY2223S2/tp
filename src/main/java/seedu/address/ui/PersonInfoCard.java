@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -9,8 +11,9 @@ import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
-import java.util.Comparator;
-
+/**
+ * An UI component that displays information of a {@code Person}.
+ */
 public class PersonInfoCard extends UiPart<Region> {
     private static final String FXML = "PersonInfoCard.fxml";
 

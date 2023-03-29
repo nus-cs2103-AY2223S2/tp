@@ -1,22 +1,22 @@
 package seedu.address.ui;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
-import java.util.logging.Logger;
-
 //code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+/**
+ * Panel containing the detailed info of person.
+ */
 public class PersonViewPanel extends UiPart<Region> {
     private static final String FXML = "PersonViewPanel.fxml";
 

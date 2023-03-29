@@ -1,17 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AppointmentCommand;
-import seedu.address.logic.commands.DisplayCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Nric;
-
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-public class DisplayCommandParser implements Parser<DisplayCommand>{
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.DisplayCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Nric;
+
+/**
+ * Parses input arguments and creates a new DisplayCommand object
+ */
+public class DisplayCommandParser implements Parser<DisplayCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the DisplayCommand
      * and returns a DisplayCommand object for execution.
