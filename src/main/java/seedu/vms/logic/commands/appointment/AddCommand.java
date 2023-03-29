@@ -50,7 +50,7 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_PATIENT + " 1 "
             + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330 "
             + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400 "
-            + DELIMITER + PREFIX_VACCINATION + " Dose 1 (Mordena)\n";
+            + DELIMITER + PREFIX_VACCINATION + " Dose 1 (Moderna)\n";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
