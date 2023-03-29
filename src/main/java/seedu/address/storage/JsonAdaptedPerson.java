@@ -80,6 +80,8 @@ class JsonAdaptedPerson {
         }
         if (nric != null) {
             this.nric = nric;
+        } else {
+            this.nric = "";
         }
     }
 

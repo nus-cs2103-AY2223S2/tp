@@ -144,7 +144,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidMedicalCond_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_AGE, VALID_TAGS, INVALID_MEDICALCOND);
-        String expectedMessage = Age.MESSAGE_CONSTRAINTS;
+        String expectedMessage = MedicalCondition.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
