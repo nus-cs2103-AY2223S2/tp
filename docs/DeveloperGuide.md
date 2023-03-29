@@ -360,9 +360,9 @@ The following activity diagram summarizes what happens when a TA executes an add
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Delete Operation for Students within Event
+### Delete Operation for Students within Event
 
-#### Proposed Implementation
+#### Current Implementation
 
 The proposed mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
 
@@ -381,7 +381,7 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 Step 1. The user launches the application. The user has already used the application before and has an `Event` established with a non-empty student list.
 
-Step 2. The user executes `delete student 1 Tutorial/tut` to delete the student at index 1 (1-based) of the student list in the `Tutorial` named tut.
+Step 2. The user executes `deleteStudent 1 Tutorial/tut` to delete the student at index 1 (1-based) of the student list in the `Tutorial` named tut.
 
 The following activity diagram summarizes what happens when a TA executes an delete student from event:
 
