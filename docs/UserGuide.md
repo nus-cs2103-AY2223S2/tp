@@ -123,8 +123,10 @@ Example: `company Google`
 Searches for roles with the provided tag.
 
 Format: `tag {keyword}`
+![Tag](images/startUp.png)
 
 Example: `tag Tech`
+![TagCommand](images/TagCommand.png)
 
 ### Sorting by Salary
 Sort roles based on salary, in ascending/descending order.
