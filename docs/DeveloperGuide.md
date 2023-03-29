@@ -13,13 +13,17 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Introduction**
 
-This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of the **SOCket** application, with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.3`.
+This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of **SOCket**, an application for managing contacts and projects, with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.3`.
 
 The Developer Guide is written to aid present and future developers of SOCket with understanding the architecture, design and non-trivial implementations of SOCket's features. In doing so, this guide imparts the knowledge required for developers to further modify and extend the features and functionality of SOCket beyond its current state.
 
-The code for SOCket is hosted on GitHub **[here](https://github.com/AY2223S2-CS2103T-T12-4/tp)**. Refer to the following section for how to **[set up and get started](#setting-up-getting-started)** with SOCket.
+The code for SOCket is hosted on GitHub **[here](https://github.com/AY2223S2-CS2103T-T12-4/tp)**.
+
+Refer to the following section for how to **[set up and get started](#setting-up-getting-started)** with SOCket.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,6 +32,8 @@ The code for SOCket is hosted on GitHub **[here](https://github.com/AY2223S2-CS2
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -62,7 +68,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -77,9 +83,13 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/ui/Ui.java)
+
+Shown below is the class diagram for the `UI` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -94,9 +104,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -123,11 +135,14 @@ How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
+
+Shown below is the class diagram for the `Model` component:
 
 <img src="images/ModelClassDiagram.png" width="800" />
-
 
 The `Model` component,
 
@@ -144,10 +159,13 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/storage/Storage.java)
+
+Shown below is the class diagram for the `Storage` component:
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -163,11 +181,15 @@ Classes used by multiple components are in the `seedu.socket.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Undo/Redo feature
+
+#### Implementation
 
 _This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)_
 
@@ -232,7 +254,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -245,7 +267,11 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+<div style="page-break-after: always;"></div>
+
 ### List Feature 
+
+#### Implementation
 
 The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
 The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
@@ -263,7 +289,7 @@ Otherwise, this list of Predicate classes include:
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
-### Design considerations:
+#### Design considerations
 
 **Aspect: Filtering by other fields** 
 
@@ -271,7 +297,11 @@ The Predicate classes works using an AND search, persons will be shown in the re
   * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
   * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
 
+<div style="page-break-after: always;"></div>
+
 ### Sort Feature
+
+#### Implementation
 
 The sort feature allows users to sort the list of persons and projects in the application. 
 The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
@@ -290,7 +320,11 @@ If the person or project does not have that field, they are sorted at the back. 
 The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Find Feature
+
+#### Implementation
 
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
@@ -315,7 +349,7 @@ The Predicate classes works using an OR search, as long as a keyword matches any
 
 If no argument is provided, an empty list will be shown.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: AND search or OR search**
 * An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
@@ -326,7 +360,12 @@ If no argument is provided, an empty list will be shown.
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
 
+<div style="page-break-after: always;"></div>
+
 ### Remove Feature
+
+#### Implementation
+
 The remove feature allows users to remove a given value in Person's and Project's respective fields.
 The feature is facilitated by the `RemoveCommand` class and `RemoveProjectCommand` classes.
 They extend `Command` and implement the following operations:
@@ -339,7 +378,7 @@ The respective classes verify that the user input is valid and create the comman
 
 If no argument is provided, an exception will be thrown. Otherwise, if only predicate is present, the corresponding field of the Person/Project will be emptied.
 
-#### Design considerations:
+#### Design considerations
 
 **Remove a specific field value**
 * While an edit feature that allows users to add or remove field values can be useful in certain contexts, it may not be appropriate or necessary in all situations:
@@ -347,6 +386,8 @@ If no argument is provided, an exception will be thrown. Otherwise, if only pred
     * Currently, edit feature for language field is cumulative, language will not be removed, so remove feature helps to resolve the issue on language removal.
 
 ### Project feature:
+
+#### Implementation
 
 This feature allows users to create and track ongoing projects. Details of each `Project` are recorded as attributes of the `Project`, which include `ProjectName`, `ProjectRepoHost`, `ProjectRepoName`, `ProjectDeadline`, `ProjectMeeting`, and a `Set<Person>`, which stores the `Person` objects involved with the `Project`. `Project` objects are stored in a `UniqueProjectList` in `Socket`.
 
@@ -395,6 +436,8 @@ When `JsonSerializableSocket#toModelType` is called to convert the stored data i
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Documentation**
 
 The [Documentation guide](Documentation.md) covers how documentation is managed for SOCket.
@@ -424,6 +467,8 @@ The [Configuration guide](Configuration.md) covers how certain properties of SOC
 The [DevOps guide](DevOps.md) covers build automation and steps to create releases for SOCket.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -470,6 +515,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | busy software engineering student                               | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
 | `* *`    | student constantly getting into new projects with other members | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
 | `* *`    | software engineering student with many peers                    | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -899,30 +946,31 @@ Similar to **UC04 Sort Contacts**, except,
 
       Use case ends.
 
-**Use case: UC20 Delete a project**
+**Use case: UC22 Delete a project**
 
 Similar to **UC03 Delete a contact**, except,
 * a list of projects is shown instead of contacts.
 * a project is deleted instead of a contact.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work on 64-bit environments.
-3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
 4.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **GitHub profiles**: GitHub username e.g. `chia-yh`
+* **GitHub profile**: GitHub username e.g. `chia-yh`
 * **GitHub repository**: repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -950,20 +998,117 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding a contact
 
-1. Deleting a person while all persons are being shown
+1. Adding a contact to the contact list
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Test case: `add n/John Doe p/98765432 g/johndoe l/Python`<br>
+       Expected: Adds a contact with the name `John Doe` and the provided phone, GitHub profile, and language details.
+
+    1. Test case: `add n/John Doe`<br>
+       Expected: Adds a contact with the name `John Doe` and no other details.
+
+    1. Test case: `add n/John Doe p/abc`<br>
+       Expected: No contact is added. An error message is shown as an invalid phone number was given. An error is logged in the console.
+
+    1. Other incorrect add commands to try: `add`, `add John Doe`
+       Expected: No contact is added. An error message is shown as an invalid command was given. An error is logged in the console.
+
+### Editing a contact
+
+1. Editing a contact while all contacts are being shown
+
+    1. Prerequisites: List all contacts using the `list` command. At least one contact in the list.
+
+    1. Test case: `edit 1 n/Dohn Joe`<br>
+       Expected: First contact in the list is edited with the name `Dohn Joe`
+
+    1. Test case: `edit 1 t/friend t/owesmoney`<br>
+       Expected: Existing tags of the first contact in the list are replaced with the tags `friend` and `owesmoney`
+
+    1. Test case: `edit 1 l/Python`<br>
+       Expected: The `Python` language is added to the existing languages of the first contact. An error is logged in the console.
+
+   1. Test case: `edit 1`<br>
+      Expected: No contact is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+
+   1. Test case: `edit 0`<br>
+      Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+
+    1. Other incorrect edit commands to try: `edit`, `edit John Doe`
+       Expected: No contact is edited. An error message is shown as an invalid command was given.
+
+### Removing a contact's field
+
+1. _{ more test cases …​ }_
+
+### Deleting a contact
+
+1. Deleting a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Clearing all contacts or tags
+
+1. _{ more test cases …​ }_
+
+### Sorting contacts
+
+1. _{ more test cases …​ }_
+
+### Viewing a contact's detailed information
+
+1. _{ more test cases …​ }_
+
+### Adding a project
+
+1. _{ more test cases …​ }_
+
+### Editing a project
+
+1. _{ more test cases …​ }_
+
+### Deleting a project
+
+1. Deleting a project while all projects are being shown
+
+    1. Prerequisites: At least one project in the shown list.
+
+    1. Test case: `deletepj 1`<br>
+       Expected: First project is deleted from the list. Details of the deleted project shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deletepj 0`<br>
+       Expected: No project is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deletepj`, `deletepj x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Removing a project's field
+
+1. _{ more test cases …​ }_
+
+### Clearing all projects
+
+1. _{ more test cases …​ }_
+
+### Sorting projects
+
+1. _{ more test cases …​ }_
+
+### Assigning a contact to a project
+
+1. _{ more test cases …​ }_
+
+### Unassigning a contact to a project
 
 1. _{ more test cases …​ }_
 
@@ -971,6 +1116,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: A `.json` data file containing some data
+   1. Test case: Corrupted `.json` file
 
-1. _{ more test cases …​ }_
+      Open the `.json` file with a text editor and change any field to an invalid value (e.g. change a `"phone"` field to `abc`). Launch SOCket.
+   
+      Expected: SOCket starts with no data. An error is logged in the console.
