@@ -4,14 +4,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<!--<GridPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">-->
-<!--  <HBox alignment="CENTER" prefWidth="1024.0">-->
-<!--    <ImageView preserveRatio="true">-->
-<!--      <Image url="@/images/careflow_bot.gif" />-->
-<!--    </ImageView>-->
-<!--    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" />-->
-<!--  </HBox>-->
-<!--</GridPane>-->
 <StackPane fx:id="placeHolder" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" styleClass="display-pane">
     <HBox>
         <ImageView fitHeight="150" fitWidth="150">
