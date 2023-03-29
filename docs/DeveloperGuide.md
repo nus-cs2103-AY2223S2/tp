@@ -447,8 +447,19 @@ objects which is then used elsewhere in the codebase.
 
 ### **Timetable**
 
+The `Timetable` represents the daily schedule of the user or contact.
+
+<img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+</div>
+
+For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each representing an hour starting from 8 AM - 9 AM and ending at 10 PM - 11 PM.
+
 ### **Utils**
 #### **Sample Data Util**
+
+{Hafeez please}
 
 ---
 
