@@ -2,6 +2,7 @@ package seedu.modtrek.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.CS2100;
@@ -32,42 +33,41 @@ class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
         String codesFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, codesToDelete);
-        String codesNotFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_NOT_FOUND, new HashSet<>());
-        String expectedMessage = codesFound + "\n" + codesNotFound;
 
         ModelManager expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, codesFound, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_success() {
+    public void execute_invalidIndexUnfilteredList_failure() {
         Set<Code> codesToDelete = new HashSet<>();
         codesToDelete.add(CS1101S.getCode());
         DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
-        String codesFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, new HashSet<>());
         String codesNotFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_NOT_FOUND, codesToDelete);
-        String expectedMessage = codesFound + "\n" + codesNotFound;
 
-        ModelManager expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteCommand, model, codesNotFound);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validAndInvalidIndexUnfilteredList_success() {
         Module moduleToDelete = model.getFilteredModuleList().get(0);
         Set<Code> codesToDelete = new HashSet<>();
         codesToDelete.add(CS2100.getCode());
+        codesToDelete.add(CS1101S.getCode());
         DeleteCommand deleteCommand = new DeleteCommand(false, codesToDelete);
 
+        codesToDelete.remove(CS1101S.getCode());
         String codesFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, codesToDelete);
-        String codesNotFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_NOT_FOUND, new HashSet<>());
+        codesToDelete.remove(CS2100.getCode());
+        codesToDelete.add(CS1101S.getCode());
+        String codesNotFound = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_NOT_FOUND, codesToDelete);
+        codesToDelete.add(CS2100.getCode());
         String expectedMessage = codesFound + "\n" + codesNotFound;
 
-        Model expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDegreeProgression(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

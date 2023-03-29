@@ -9,39 +9,67 @@ import java.util.Objects;
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
+    /**
+     * Boolean to switch between screens
+     */
+    public final boolean isDisplayAllModules;
+    /**
+     * The Is display filtered modules.
+     */
+    public final boolean isDisplayFilteredModules;
+    /**
+     * The Is display progress.
+     */
+    public final boolean isDisplayProgress;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final String feedbackToUser;
 
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     *
+     * @param feedbackToUser           the feedback to user
+     * @param isDisplayAllModules      the is display all modules
+     * @param isDisplayProgress        the is display progress
+     * @param isDisplayFilteredModules the is display filtered modules
+     * @param exit                     the exit
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isDisplayAllModules,
+            boolean isDisplayProgress, boolean isDisplayFilteredModules, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
+        this.isDisplayAllModules = isDisplayAllModules;
+        this.isDisplayProgress = isDisplayProgress;
+        this.isDisplayFilteredModules = isDisplayFilteredModules;
         this.exit = exit;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
+     *
+     * @param feedbackToUser the feedback to user
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, true, false, false,
+                false);
     }
 
+    /**
+     * Gets feedback to user.
+     *
+     * @return the feedback to user
+     */
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
+    /**
+     * Is exit boolean.
+     *
+     * @return the boolean
+     */
     public boolean isExit() {
         return exit;
     }
@@ -59,13 +87,15 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
+                && isDisplayAllModules == otherCommandResult.isDisplayAllModules
+                && isDisplayFilteredModules == otherCommandResult.isDisplayFilteredModules
+                && isDisplayProgress == otherCommandResult.isDisplayProgress
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, isDisplayAllModules, isDisplayFilteredModules, isDisplayProgress, exit);
     }
 
 }

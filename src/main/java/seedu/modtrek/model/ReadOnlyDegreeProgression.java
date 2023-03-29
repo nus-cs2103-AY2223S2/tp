@@ -1,5 +1,7 @@
 package seedu.modtrek.model;
 
+import java.util.TreeMap;
+
 import javafx.collections.ObservableList;
 import seedu.modtrek.model.module.Module;
 
@@ -21,4 +23,7 @@ public interface ReadOnlyDegreeProgression {
      */
     DegreeProgressionData getProgressionData();
 
+    TreeMap<Object, ObservableList<Module>> getModuleGroups();
+
+    String getSort();
 }

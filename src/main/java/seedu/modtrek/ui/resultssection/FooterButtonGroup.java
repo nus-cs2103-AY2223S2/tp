@@ -13,55 +13,84 @@ public class FooterButtonGroup extends UiPart<Region> {
     private static final String FXML = "resultssection/FooterButtonGroup.fxml";
 
     /**
-     * The list of buttons in the group.
+     * The 'display degree progress' button.
      */
-    private FooterButton[] buttons;
+    private FooterButton progressButton;
+
+    /**
+     * The 'display module list' button.
+     */
+    private FooterButton moduleListButton;
+
+    /**
+     * The 'module search' button.
+     */
+    private FooterButton moduleSearchButton;
 
     @FXML
     private HBox footerButtonGroup;
 
     /**
      * Creates a {@code FooterButtonGroup}.
-     * @param labels The labels for the group of buttons.
-     * @param handlers The corresponding functions to execute on clicking each button in the group.
+     * @param progressButtonLabel The text label of the progress button.
+     * @param moduleListButtonLabel The text label of the module-list button.
+     * @param progressButtonHandler The function to execute on clicking the progress button.
+     * @param moduleListButtonHandler The function to execute on clicking the module-list button.
      */
-    public FooterButtonGroup(String[] labels, Runnable[] handlers) {
+    public FooterButtonGroup(String progressButtonLabel, String moduleListButtonLabel, String moduleSearchButtonLabel,
+                             Runnable progressButtonHandler, Runnable moduleListButtonHandler,
+                             Runnable moduleSearchButtonHandler) {
         super(FXML);
 
-        assert labels.length == handlers.length
-                : "Number of footer button labels should be equal to number of handlers";
+        progressButton = new FooterButton(progressButtonLabel, progressButtonHandler);
+        moduleListButton = new FooterButton(moduleListButtonLabel, moduleListButtonHandler);
+        moduleSearchButton = new FooterButton(moduleSearchButtonLabel, moduleSearchButtonHandler);
 
-        buttons = new FooterButton[labels.length];
 
-        /* Add the buttons */
-        for (int i = 0; i < labels.length; i++) {
-            FooterButton button = new FooterButton(labels[i], handlers[i], i == 0, this);
-            footerButtonGroup.getChildren().add(button.getRoot());
-            buttons[i] = button;
-
-            if (i != labels.length - 1) {
-                addDeco();
-            }
-        }
+        footerButtonGroup.getChildren().addAll(progressButton.getRoot(), getDeco(),
+                moduleListButton.getRoot(), getDeco(), moduleSearchButton.getRoot());
     }
 
     /**
-     * Clears the selected style of all the buttons in the group.
+     * Updates the styles for all footer buttons for the case where progress button gets selected.
      */
-    public void clearButtonsSelectedStyle() {
-        for (int i = 0; i < buttons.length; i++) {
-            FooterButton button = buttons[i];
-            button.clearSelectedStyle();
-        }
+    public void selectProgressButton() {
+        progressButton.clearSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
+        progressButton.addSelectedStyle();
     }
 
     /**
-     * Adds a decoration (a circle) to separate each button in the group.
+     * Updates the styles for all footer buttons for the case where module-list button gets selected.
      */
-    private void addDeco() {
+    public void selectModuleListButton() {
+        progressButton.clearSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
+        moduleListButton.addSelectedStyle();
+    }
+
+    /**
+     * Updates the styles for uttonsall footer b for the case where module-search button gets selected.
+     */
+    public void selectModuleSearchButton() {
+        progressButton.clearSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
+        moduleSearchButton.addSelectedStyle();
+    }
+
+    /**
+     * Creates a decoration (a circle) to separate each button in the group.
+     */
+    private Circle getDeco() {
         Circle deco = new Circle();
         deco.setRadius(3);
         deco.getStyleClass().add("footer-buttons-deco");
-        footerButtonGroup.getChildren().add(deco);
+        return deco;
     }
 }

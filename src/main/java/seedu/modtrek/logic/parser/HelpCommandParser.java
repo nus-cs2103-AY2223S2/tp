@@ -1,5 +1,6 @@
 package seedu.modtrek.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.modtrek.logic.commands.AddCommand;
@@ -8,8 +9,9 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
-import seedu.modtrek.logic.commands.ListCommand;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.TagCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,6 +25,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public HelpCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             return new HelpCommand("");
@@ -36,12 +40,14 @@ public class HelpCommandParser implements Parser<HelpCommand> {
                 return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
             case "TAG":
                 return new HelpCommand(TagCommand.MESSAGE_USAGE);
-            case "LIST":
-                return new HelpCommand(ListCommand.MESSAGE_USAGE);
+            case "VIEW":
+                return new HelpCommand(ViewCommand.MESSAGE_USAGE);
             case "FIND":
                 return new HelpCommand(FindCommand.MESSAGE_USAGE);
             case "EXIT":
                 return new HelpCommand(ExitCommand.MESSAGE_USAGE);
+            case "SORT":
+                return new HelpCommand(SortCommand.MESSAGE_USAGE);
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

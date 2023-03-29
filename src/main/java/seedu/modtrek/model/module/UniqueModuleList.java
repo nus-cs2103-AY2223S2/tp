@@ -2,12 +2,15 @@ package seedu.modtrek.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 
@@ -19,12 +22,14 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private TreeMap<Object, ObservableList<Module>> moduleGroups = new TreeMap<>();
+    private SortCommand.Sort sort = DEFAULT_SORT;
 
 
     /**
      * Checks if the module is in this list.
      *
-     * @param toCheck
+     * @param toCheck the to check
      * @return boolean if module is in list
      */
     public boolean contains(Module toCheck) {
@@ -35,7 +40,7 @@ public class UniqueModuleList implements Iterable<Module> {
     /**
      * Adds module into the list. Module must not be null and must be unique.
      *
-     * @param toAdd
+     * @param toAdd the to add
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -43,13 +48,14 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
+        sortByObject(sort);
     }
 
     /**
      * Changes the module into the editedModule.
      *
-     * @param target
-     * @param editedModule
+     * @param target       the target
+     * @param editedModule the edited module
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -64,35 +70,39 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.set(index, editedModule);
+        sortByObject(sort);
     }
 
     /**
      * Removes the module from the list.
      *
-     * @param toRemove
+     * @param toRemove the to remove
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
+        sortByObject(sort);
     }
 
     /**
      * Sets modules based on the replacement list.
      *
-     * @param replacement
+     * @param replacement the replacement
      */
     // For resetting
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort = SortCommand.Sort.YEAR;
+        sortByObject(sort);
     }
 
     /**
      * Sets modules based on the list of modules.
      *
-     * @param modules
+     * @param modules the modules
      */
     // For resetting
     public void setModules(List<Module> modules) {
@@ -102,15 +112,56 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
+        sort = SortCommand.Sort.YEAR;
+        sortByObject(sort);
     }
 
     /**
      * Returns an unmodifiable list.
      *
-     * @return
+     * @return observable list
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns a sorted Map
+     * @param sort
+     * @return sorted Map
+     */
+    public TreeMap<Object, ObservableList<Module>> sortByObject(SortCommand.Sort sort) {
+        TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        this.sort = sort;
+        for (Module m : internalList) {
+            Object obj;
+            switch (sort) {
+            case GRADE:
+                obj = m.getGrade();
+                break;
+            case CREDITS:
+                obj = m.getCredit().toString();
+                break;
+            case TAG:
+                obj = m.getTags().toString();
+                break;
+            case CODE:
+                obj = m.getCodePrefix().toString();
+                break;
+            default:
+                obj = m.getSemYear();
+            }
+            ObservableList<Module> existingList = result.get(obj);
+            if (existingList == null) {
+                ObservableList<Module> newList = FXCollections.observableArrayList();
+                newList.add(m);
+                result.put(obj, newList);
+            } else {
+                existingList.add(m);
+            }
+        }
+        moduleGroups = result;
+        return result;
     }
 
     @Override
@@ -141,4 +192,16 @@ public class UniqueModuleList implements Iterable<Module> {
         return true;
     }
 
+    /**
+     * Gets module groups.
+     *
+     * @return the module groups
+     */
+    public TreeMap<Object, ObservableList<Module>> getModuleGroups() {
+        return moduleGroups;
+    }
+
+    public String getSort() {
+        return sort.name();
+    }
 }

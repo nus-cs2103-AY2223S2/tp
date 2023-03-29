@@ -53,6 +53,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> codePrefixes} into a {@code Set<String>}.
+     */
+    public static Set<String> parseCodePrefixes(Collection<String> codePrefixes) throws ParseException {
+        requireNonNull(codePrefixes);
+        final Set<String> codePrefixSet = new HashSet<>();
+        for (String codePrefixName : codePrefixes) {
+            codePrefixSet.add(parseCodePrefix(codePrefixName).toString());
+        }
+        return codePrefixSet;
+    }
+
+    /**
      * Parses a {@code String credit} into a {@code Credit}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -65,6 +77,18 @@ public class ParserUtil {
             throw new ParseException(Credit.MESSAGE_CONSTRAINTS);
         }
         return new Credit(trimmedCredit);
+    }
+
+    /**
+     * Parses {@code Collection<String> credits} into a {@code Set<Credit>}.
+     */
+    public static Set<Credit> parseCredits(Collection<String> credits) throws ParseException {
+        requireNonNull(credits);
+        final Set<Credit> creditSet = new HashSet<>();
+        for (String creditName : credits) {
+            creditSet.add(parseCredit(creditName));
+        }
+        return creditSet;
     }
 
     /**
@@ -83,6 +107,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> semYears} into a {@code Set<SemYear>}.
+     */
+    public static Set<SemYear> parseSemYears(Collection<String> semYears) throws ParseException {
+        requireNonNull(semYears);
+        final Set<SemYear> semYearSet = new HashSet<>();
+        for (String semYearName : semYears) {
+            semYearSet.add(parseSemYear(semYearName));
+        }
+        return semYearSet;
+    }
+
+    /**
      * Parses a {@code String grade} into an {@code Grade}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -95,6 +131,18 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return new Grade(trimmedGrade);
+    }
+
+    /**
+     * Parses {@code Collection<String> grades} into a {@code Set<Grade>}.
+     */
+    public static Set<Grade> parseGrades(Collection<String> grades) throws ParseException {
+        requireNonNull(grades);
+        final Set<Grade> gradeSet = new HashSet<>();
+        for (String gradeName : grades) {
+            gradeSet.add(parseGrade(gradeName));
+        }
+        return gradeSet;
     }
 
     /**

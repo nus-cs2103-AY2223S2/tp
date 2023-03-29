@@ -20,14 +20,23 @@ public class DegreeProgressionDataTest {
 
     @Test
     public void getPlannedCredit() {
-        assertEquals(33, data.getPlannedCredit());
+        assertEquals(13, data.getPlannedCredit());
+    }
+
+    @Test
+    public void getMeaningfulCredit() {
+        assertEquals(20, data.getMeaningfulCredit());
     }
 
     @Test
     public void getCompletedRequirementCredits() {
         Map<String, Integer> expected = Map.of(
-                "COMPUTER_SCIENCE_FOUNDATION", 16,
-                "MATHEMATICS_AND_SCIENCES", 12);
+                "CSF", 16,
+                "MS", 12,
+                "ITP", 0,
+                "CSBD", 0,
+                "ULR", 0,
+                "UE", 0);
         assertEquals(expected, data.getCompletedRequirementCredits());
     }
 

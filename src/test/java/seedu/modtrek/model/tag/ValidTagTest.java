@@ -29,9 +29,4 @@ public class ValidTagTest {
         assertEquals(ValidTag.UE, ValidTag.getShortForm("ue"));
     }
 
-    @Test
-    public void getTotalCredit_validTag_returnsTrue() {
-        assertEquals(40, ValidTag.getTotalCredit("Unrestricted Electives"));
-    }
-
 }

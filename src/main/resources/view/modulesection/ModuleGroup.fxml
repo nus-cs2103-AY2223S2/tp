@@ -7,11 +7,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox VBox.vgrow="ALWAYS" styleClass="module-group" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="moduleGroup" VBox.vgrow="ALWAYS" styleClass="module-group" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@module-group.css" />
     </stylesheets>
 
-    <Label fx:id="moduleGroupTitle" text="Y1S1" styleClass="module-group-title, h3" />
     <GridPane fx:id="moduleCardGroup" hgap="5" vgap="5" styleClass="module-card-group" />
 </VBox>

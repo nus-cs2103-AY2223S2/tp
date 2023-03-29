@@ -9,10 +9,12 @@ import java.util.Set;
 /**
  * Grade denotes the grading based on NUS system for each module.
  */
-public class Grade {
+public class Grade implements Comparable<Grade> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should be either one of [A+, A, A-, B+, B, B-, C+, C, D+, D, F, S, U]";
+            "Grade should be either one of [A+, A, A-, B+, B, B-, C+, C, D+, D, F, S, U].";
+
+    public static final String MESSAGE_MISSING_DETAIL = "Missing grade after /g.";
 
     private static Map<String, Double> gradeToPoints = Map.ofEntries(
         Map.entry("A+", 5.0),
@@ -69,6 +71,10 @@ public class Grade {
         return !value.equals("U");
     }
 
+    public boolean isSatisfactory() {
+        return value.equals("S");
+    }
+
     @Override
     public String toString() {
         return value;
@@ -86,4 +92,25 @@ public class Grade {
         return value.hashCode();
     }
 
+    /**
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     *      is less than, equal to, or greater than the specified object.
+     * @throws NullPointerException if the specified object is null
+     * @throws ClassCastException   if the specified object's type prevents it
+     *                              from being compared to this object.
+     */
+    @Override
+    public int compareTo(Grade o) {
+        if (o.toPoints() > this.toPoints()) {
+            return 1;
+        } else if (o.toPoints() < this.toPoints()) {
+            return -1;
+        }
+        return o.toString().compareTo(this.toString());
+    }
 }

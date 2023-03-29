@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane vbarPolicy="ALWAYS" hbarPolicy="NEVER" hvalue="1.0" vvalue="0.0" id="module-list-scroll-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@module-list.css" />
+    </stylesheets>
+    <content>
+        <VBox fx:id="moduleList" id="module-list" />
+    </content>
+</ScrollPane>

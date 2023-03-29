@@ -1,7 +1,7 @@
 .module-group-title {
     -fx-padding: 5 12;
 
-    -fx-font-family: 'Lexend Deca SemiBold';
+    -fx-font-family: 'Lexend Deca SemiBold', sans-serif;
     -fx-text-fill: -dark-grey;
 
     -fx-border-radius: 20;
@@ -11,4 +11,6 @@
 }
 .module-card-group {
     -fx-padding: 5 0;
+
+    -fx-max-width: 400;
 }

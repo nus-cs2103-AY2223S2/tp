@@ -1,12 +1,12 @@
 package seedu.modtrek.logic.commands;
 
+import static seedu.modtrek.commons.core.Messages.MESSAGE_MODULE_MISSING;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
 
-import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.module.Code;
@@ -26,28 +26,28 @@ public class TagCommand extends Command {
      * The constant MESSAGE_ARGUMENTS.
      */
     public static final String MESSAGE_ARGUMENTS = "Module Code: %1$d, Tag: %2$s";
+
     /**
      * The constant MESSAGE_USAGE.
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds tags to the module identified.\n"
-            + "Parameters: CODE (module code) include/remove\n"
-            + "Example: " + COMMAND_WORD + " CS1101S " + "include "
-            + "/t UNIVERSITY LEVEL REQUIREMENTS";
+            + ": Adds tags to the module identified.\n\n"
+            + "Parameters: <MODULE_CODE> include/remove /t <TAG>...\n\n"
+            + "Example 1: " + COMMAND_WORD + " CS1101S " + "include " + "/t ULR\n"
+            + "Example 2: " + COMMAND_WORD + " MA2001 " + "remove " + "/t CSF";
 
-    /**
-     * The constant MESSAGE_NOT_IMPLEMENTED_YET.
-     */
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Tag command not implemented yet";
     /**
      * The constant MESSAGE_ADD_TAG_SUCCESS.
      */
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Module: %1$s";
+
     /**
      * The constant MESSAGE_ADD_TAG_FAILURE.
      */
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
+
+    public static final String MESSAGE_MISSING_PREFIX = "Missing tag prefix /t.";
+    public static final String MESSAGE_TAG_MODULE_FAIL = "Module %1$s is not yet added.";
 
     private final Code code;
     private final boolean isInclude;
@@ -73,10 +73,10 @@ public class TagCommand extends Command {
         // possibly make module list a hash set instead of list
         Module moduleToEdit = new Module(code);
         int index = lastShownList.indexOf(moduleToEdit);
-        moduleToEdit = lastShownList.get(index);
-        if (!lastShownList.contains(moduleToEdit)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+        if (index < 0) {
+            throw new CommandException(String.format(MESSAGE_MODULE_MISSING, moduleToEdit.getCode()));
         }
+        moduleToEdit = lastShownList.get(index);
 
         Set<Tag> newTags = moduleToEdit.getModifiableTags();
         if (isInclude) {

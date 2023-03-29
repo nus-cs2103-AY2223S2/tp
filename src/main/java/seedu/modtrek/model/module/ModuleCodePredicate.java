@@ -1,6 +1,6 @@
 package seedu.modtrek.model.module;
 
-import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.modtrek.model.tag.Tag;
@@ -9,35 +9,60 @@ import seedu.modtrek.model.tag.Tag;
  * Tests that a {@code Module}'s {@code Name} matches module code.
  */
 public class ModuleCodePredicate implements Predicate<Module> {
+    private final boolean isCode;
     private final String moduleCode;
-    private final String credit;
-    private final String semYear;
-    private final String grade;
-    private final HashSet<Tag> tags;
+    private final Set<String> codePrefixes;
+    private final Set<Credit> credits;
+    private final Set<SemYear> semYears;
+    private final Set<Grade> grades;
+    private final Set<Tag> tags;
 
     /**
      * Instantiates a new ModulePredicate.
-     * @param moduleCode either the code prefix or the entire code
-     * @param credit     the credit
-     * @param semYear    the semester year
-     * @param grade      the grade
-     * @param tags       the tags
+     * @param isCode       whether to filter code or code prefix
+     * @param moduleCode   the entire module code
+     * @param codePrefixes the set of code prefixes
+     * @param credits      the set of credits
+     * @param semYears     the set semester-years
+     * @param grades       the set of grades
+     * @param tags         the set of tags
      */
-    public ModuleCodePredicate(String moduleCode, String credit, String semYear, String grade, HashSet<Tag> tags) {
+    public ModuleCodePredicate(boolean isCode, String moduleCode, Set<String> codePrefixes,
+                               Set<Credit> credits, Set<SemYear> semYears, Set<Grade> grades, Set<Tag> tags) {
+        this.isCode = isCode;
+        this.codePrefixes = codePrefixes;
         this.moduleCode = moduleCode;
-        this.credit = credit;
-        this.semYear = semYear;
-        this.grade = grade;
+        this.credits = credits;
+        this.semYears = semYears;
+        this.grades = grades;
         this.tags = tags;
     }
 
     @Override
     public boolean test(Module module) {
-        return (moduleCode.isEmpty() || module.getCode().toString().contains(moduleCode))
-                && (credit.isEmpty() || module.getCredit().equals(new Credit(credit)))
-                && (semYear.isEmpty() || module.getSemYear().equals(new SemYear(semYear)))
-                && (grade.isEmpty() || module.getGrade().equals(new Grade(grade)))
+        if (isCode) {
+            return module.getCode().toString().equals(moduleCode);
+        }
+        return (codePrefixes.isEmpty() || startsWithAnyPrefix(codePrefixes, module.getCode().toString()))
+                && (credits.isEmpty() || credits.contains(module.getCredit()))
+                && (semYears.isEmpty() || semYears.contains(module.getSemYear()))
+                && (grades.isEmpty() || grades.contains(module.getGrade()))
                 && (tags.isEmpty() || module.getTags().containsAll(tags));
+    }
+
+    /**
+     * Checks if each module code starts with any of the code prefixes in the set.
+     * @param codePrefixSet the set of code prefixes to be filtered
+     * @param moduleCode    the module code
+     * @return true if the module code starts with any of the code prefixes in the set, false otherwise
+     */
+    public boolean startsWithAnyPrefix(Set<String> codePrefixSet, String moduleCode) {
+        for (String prefix : codePrefixSet) {
+            if (moduleCode.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -45,9 +70,9 @@ public class ModuleCodePredicate implements Predicate<Module> {
         return other == this // short circuit if same object
                 || (other instanceof ModuleCodePredicate // instanceof handles nulls
                 && moduleCode.equals(((ModuleCodePredicate) other).moduleCode) // state check
-                && credit.equals(((ModuleCodePredicate) other).credit)
-                && semYear.equals(((ModuleCodePredicate) other).semYear)
-                && grade.equals(((ModuleCodePredicate) other).grade)
+                && credits.equals(((ModuleCodePredicate) other).credits)
+                && semYears.equals(((ModuleCodePredicate) other).semYears)
+                && grades.equals(((ModuleCodePredicate) other).grades)
                 && tags.equals(((ModuleCodePredicate) other).tags));
     }
 

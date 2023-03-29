@@ -18,6 +18,7 @@
 
 #results-section-header-title-container {
     -fx-padding: 0 20;
+    -fx-spacing: 5;
 }
 #results-section-header-title {
     -fx-text-fill: -teal;
@@ -28,4 +29,5 @@
 
 #results-section-body {
     -fx-padding: 10;
+    -fx-alignment: center;
 }

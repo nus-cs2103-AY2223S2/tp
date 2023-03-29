@@ -9,19 +9,23 @@ public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the usage of command(s).\n"
-            + "Parameters: COMMAND (Optional)\n"
-            + "Example: " + COMMAND_WORD + " add";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the usage of command(s).\n\n"
+            + "Parameters: (COMMAND)\n\n"
+            + "Example 1: " + COMMAND_WORD
+            + "\nExample 2: " + COMMAND_WORD + " add";
 
-    public static final String SHOWING_HELP_MESSAGE = "Here is a summary of all our commands:\n\n";
+    public static final String SHOWING_HELP_MESSAGE = "Here is a list of all our help commands. "
+            + "If you require more information, type in the command to find out more.\n";
 
-    public static final String SHOWING_ALL_MESSAGE_USAGE = SHOWING_HELP_MESSAGE + AddCommand.MESSAGE_USAGE
-            + "\n\n" + EditCommand.MESSAGE_USAGE
-            + "\n\n" + DeleteCommand.MESSAGE_USAGE
-            + "\n\n" + TagCommand.MESSAGE_USAGE
-            + "\n\n" + ListCommand.MESSAGE_USAGE
-            + "\n\n" + FindCommand.MESSAGE_USAGE
-            + "\n\n" + ExitCommand.MESSAGE_USAGE;
+    public static final String SHOWING_ALL_MESSAGE_USAGE = SHOWING_HELP_MESSAGE
+            + "\n" + COMMAND_WORD + " " + AddCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + EditCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + TagCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + ViewCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + FindCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + ExitCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + SortCommand.COMMAND_WORD;
 
     private final String selectedMessage;
 
@@ -37,9 +41,9 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (selectedMessage.isEmpty()) {
-            return new CommandResult(SHOWING_ALL_MESSAGE_USAGE);
+            return new CommandResult(SHOWING_ALL_MESSAGE_USAGE, false, false, false, false);
         }
-        return new CommandResult(selectedMessage);
+        return new CommandResult(selectedMessage, false, false, false, false);
     }
 
     @Override

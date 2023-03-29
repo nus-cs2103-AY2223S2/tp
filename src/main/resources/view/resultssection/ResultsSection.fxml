@@ -3,11 +3,10 @@
 <?import java.net.URL?>
 
 <?import javafx.scene.control.Label?>
-
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="sectionContainer" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" id="results-section" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="resultsSection" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" id="results-section" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@results-section.css" />
     </stylesheets>

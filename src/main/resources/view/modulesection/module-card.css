@@ -1,14 +1,24 @@
 .module-card {
     -fx-min-height: 100;
-    -fx-padding: 10 25;
+    -fx-padding: 10 0;
 
     -fx-border-radius: 10;
     -fx-background-radius: 10;
 
     -fx-background-color: -dark-grey;
 }
+.module-card:hover {
+    -fx-opacity: 1;
+}
+.module-card-incomplete {
+    -fx-opacity: 0.5;
+}
 .module-card-placeholder {
     visibility: hidden;
+}
+
+#module-card-info {
+    -fx-spacing: 12;
 }
 
 .module-card-tag {
@@ -18,6 +28,9 @@
 
     -fx-border-radius: 7;
     -fx-background-radius: 7;
+}
+.module-card-tag:hover {
+    -fx-opacity: 0.75;
 }
 
 .module-card-tag-red {
@@ -29,7 +42,7 @@
 }
 
 .module-card-tag-yellow {
-    -fx-background-color: -tag-orange;
+    -fx-background-color: -tag-yellow;
 }
 
 .module-card-tag-green {
