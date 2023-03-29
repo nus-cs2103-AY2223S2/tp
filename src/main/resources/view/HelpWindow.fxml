@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="680.0" maxWidth="350.0" minWidth="350.0" resizable="false" title="Help" type="javafx.stage.Stage"
+<fx:root maxHeight="680.0" maxWidth="700.0" resizable="false" title="Help" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png"/>
