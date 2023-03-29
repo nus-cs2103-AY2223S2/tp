@@ -34,6 +34,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateSortedBookmarkList(order);
+        model.updateSelectedIndex(-1);
         if (order.equals(RatingOrder.DESC)) {
             return new CommandResult(MESSAGE_SUCCESS_DESC);
         } else {

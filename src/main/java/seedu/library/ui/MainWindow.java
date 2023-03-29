@@ -74,12 +74,17 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        // prevent from resizing smaller than specified width
+        primaryStage.widthProperty().addListener((o, oldValue, newValue)->{
+            if(newValue.intValue() < 1050) {
+                primaryStage.setResizable(false);
+                primaryStage.setWidth(1050);
+                primaryStage.setResizable(true);
+            }
+        });
         setAccelerators();
-
         helpWindow = new HelpWindow();
 
     }
@@ -210,9 +215,24 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * updates view on right panel when interacted with CLI or text command
+     */
+    private void separateUpdate() {
+        Bookmark selectedBookmark = logic.getSelectedBookmark();
+        if (selectedBookmark != null) {
+            //Update with bookmark information
+            zoomView = new ZoomView(selectedBookmark);
+            zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
+        } else {
+            //Reset to original introduction information
+
+        }
+    }
+
 
     /**
-     * updates view on right panel
+     * updates view on right panel when interacted with mouse
      */
     private void handleUpdate() {
         Bookmark currentSelect = bookmarkListPanel.getSelectedItem();
@@ -237,7 +257,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+
             CommandResult commandResult = logic.execute(commandText);
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -251,6 +273,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isUpdate()) {
                 handleUpdate();
             }
+            int Index = logic.getSelectedIndex();
+            if (Index != -1) {
+                bookmarkListPanel.select(Index);
+            }
+            separateUpdate();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

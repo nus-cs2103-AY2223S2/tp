@@ -66,6 +66,15 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Bookmark getSelectedBookmark() {
+        return model.getSelectedBookmark();
+    }
+    @Override
+    public int getSelectedIndex() {
+        return model.getSelectedIndex();
+    }
+
+    @Override
     public Path getLibraryFilePath() {
         return model.getLibraryFilePath();
     }

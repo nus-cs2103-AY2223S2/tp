@@ -36,6 +36,7 @@ public class DeleteTagCommand extends Command {
         }
 
         model.deleteTag(tag);
+        model.updateSelectedIndex(-1);
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tag), false, false, true);
     }
 

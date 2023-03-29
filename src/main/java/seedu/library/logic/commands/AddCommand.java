@@ -78,6 +78,7 @@ public class AddCommand extends Command {
         }
 
         model.addBookmark(toAdd);
+        model.updateSelectedIndex(-1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

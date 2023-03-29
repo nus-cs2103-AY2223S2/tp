@@ -41,6 +41,7 @@ public class FindCommand extends Command {
             throw new CommandException(MESSAGE_ERROR_TAG);
         }
         model.updateFilteredBookmarkList(predicate);
+        model.updateSelectedIndex(-1);
         return new CommandResult(
                 String.format(Messages.MESSAGE_BOOKMARKS_LISTED_OVERVIEW,
                         model.getFilteredBookmarkList().size()), false, false, true);
