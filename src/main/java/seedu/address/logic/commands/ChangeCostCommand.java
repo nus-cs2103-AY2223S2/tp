@@ -17,6 +17,7 @@ import seedu.address.model.pet.Pet;
 public class ChangeCostCommand extends Command {
 
     public static final String COMMAND_WORD = "changecost";
+    public static final String SHORTCUT_WORD = "cc";
 
     public static final String MESSAGE_SUCCESS = "Changed cost calculation of pet!";
 

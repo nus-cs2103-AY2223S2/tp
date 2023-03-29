@@ -73,6 +73,18 @@ public class TypicalPets {
         return pp;
     }
 
+    public static PetPal getTypicalArchive() {
+        return new PetPal();
+    }
+
+    public static PetPal getFilledArchive() {
+        PetPal pp = new PetPal();
+        for (Pet pet : getTypicalPet()) {
+            pp.addPet(pet);
+        }
+        return pp;
+    }
+
     public static List<Pet> getTypicalPet() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
