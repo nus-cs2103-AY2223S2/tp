@@ -33,3 +33,11 @@
     -fx-text-fill: lightblue;
     -fx-font-size: 11pt;
 }
+
+#commandsContainer .label {
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
