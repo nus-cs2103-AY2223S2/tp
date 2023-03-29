@@ -2,10 +2,14 @@ package seedu.address.ui;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -32,6 +36,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+
+    private final HashMap<Label, ImageView> iconList = new HashMap<>();
 
     @FXML
     private HBox cardPane;
@@ -76,7 +82,7 @@ public class PersonCard extends UiPart<Region> {
 
         List<Label> labels = Arrays.asList(phone, address, email, remark);
         resizeLabels(labels);
-        resizeFlowPanes(tags);
+        resizeFlowPane(tags);
     }
 
     public Label setStyleEducationLabel(Label label) {
@@ -101,10 +107,16 @@ public class PersonCard extends UiPart<Region> {
         }
     }
 
-    public void resizeFlowPanes(FlowPane flowpane) {
+    public void resizeFlowPane(FlowPane flowpane) {
         if (flowpane.getChildren().isEmpty()) {
             flowpane.setVisible(false);
             flowpane.setManaged(false);
+        } else {
+            Image tagIcon = new Image(getClass().getResourceAsStream("/images/tag.png"));
+            ImageView tagIconView = new ImageView(tagIcon);
+            tagIconView.setFitWidth(16);
+            tagIconView.setFitHeight(16);
+            flowpane.getChildren().add(0, tagIconView);
         }
     }
 
