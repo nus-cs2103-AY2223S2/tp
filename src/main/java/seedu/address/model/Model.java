@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
-import seedu.address.model.tank.readings.*;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 

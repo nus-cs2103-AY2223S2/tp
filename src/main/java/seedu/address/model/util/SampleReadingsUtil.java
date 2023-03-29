@@ -13,8 +13,8 @@ public class SampleReadingsUtil {
         //There are 2 sample tanks, so 1 individual readings for each tank
         Tank[] sampleTanks = SampleTankUtil.getSampleTanks();
         UniqueIndividualReadingLevels[] ret = new UniqueIndividualReadingLevels[] {
-                new UniqueIndividualReadingLevels(),
-                new UniqueIndividualReadingLevels()
+            new UniqueIndividualReadingLevels(),
+            new UniqueIndividualReadingLevels()
         };
         ret[0].setTank(sampleTanks[0]);
         ret[1].setTank(sampleTanks[1]);

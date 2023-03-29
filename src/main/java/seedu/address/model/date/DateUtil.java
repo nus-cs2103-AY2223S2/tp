@@ -104,7 +104,8 @@ public class DateUtil {
         return formattedNow;
     }
 
-    /** Returns a String that is a valid Task description
+    /**
+     * Returns a String that is a valid Task description
      * @param dateTime LocalDateTime to be formated
      * @return Formatted string that is alphanumeric
      */

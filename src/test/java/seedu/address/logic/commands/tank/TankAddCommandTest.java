@@ -23,7 +23,10 @@ import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.PH;
 import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
@@ -243,6 +246,11 @@ public class TankAddCommandTest {
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
+        }
+
+        @Override
+        public void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH ph, Temperature temp, Tank t) {
+
         }
 
         @Override

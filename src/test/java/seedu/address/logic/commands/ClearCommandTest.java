@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReadings.getTypicalFullReadingLevels;
 import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -25,9 +26,9 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList(), );
+                getTypicalTankList(), getTypicalFullReadingLevels());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList(), );
+                getTypicalTankList(), getTypicalFullReadingLevels());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

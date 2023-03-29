@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalFishes.CARL;
 import static seedu.address.testutil.TypicalFishes.ELLE;
 import static seedu.address.testutil.TypicalFishes.FIONA;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReadings.getTypicalFullReadingLevels;
 import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -27,9 +28,9 @@ import seedu.address.model.fish.NameContainsKeywordsPredicate;
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            getTypicalTankList(), );
+            getTypicalTankList(), getTypicalFullReadingLevels());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            getTypicalTankList(), );
+            getTypicalTankList(), getTypicalFullReadingLevels());
 
     @Test
     public void equals() {

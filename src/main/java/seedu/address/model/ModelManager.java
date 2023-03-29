@@ -16,7 +16,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
-import seedu.address.model.tank.readings.*;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -36,6 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Tank> filteredTanks;
     private final FullReadingLevels fullReadingLevels;
     private final FilteredList<UniqueIndividualReadingLevels> filteredReadingLevels;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -61,11 +67,17 @@ public class ModelManager implements Model {
         updateTankOfEachIndividualReadings();
     }
 
+    /**
+     * Another constructor for model manager
+     */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList(),
                 new FullReadingLevels());
     }
 
+    /**
+     * Sets the Tank attribute of each tank's UniqueIndividualReadings to the correct real instance
+     */
     public void updateTankOfEachIndividualReadings() {
         for (UniqueIndividualReadingLevels r : fullReadingLevels.getFullReadingLevels()) {
             Tank duplicateTank = r.getTank();

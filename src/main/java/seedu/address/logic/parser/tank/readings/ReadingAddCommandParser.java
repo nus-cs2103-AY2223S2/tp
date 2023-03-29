@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tank.readings.ReadingsAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -18,13 +20,17 @@ import seedu.address.model.tank.readings.AmmoniaLevel;
 import seedu.address.model.tank.readings.PH;
 import seedu.address.model.tank.readings.Temperature;
 
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new ReadingAddCommand object
  */
 public class ReadingAddCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ReadingsAddCommand
+     * and returns an ReadingsAddCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ReadingsAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TANK, PREFIX_AMMONIA_LEVEL, PREFIX_PH,
                 PREFIX_TEMPERATURE);
