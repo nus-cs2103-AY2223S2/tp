@@ -26,7 +26,7 @@
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-opacity: 95%;
-    -fx-padding: 2 10 2 10;
+    -fx-padding: 2 10;
     -fx-max-width: 100;
 }
 
@@ -86,7 +86,7 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 1;
     -fx-background-color: transparent;
     -fx-border-color:
         transparent
@@ -280,7 +280,7 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
+    -fx-padding: 5 22;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
@@ -301,10 +301,10 @@
 }
 
 .button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
+    -fx-border-color: white;
+    -fx-border-width: 1;
     -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
+    -fx-border-radius: 0;
     -fx-border-insets: 1 1 1 1, 0;
 }
 
@@ -361,7 +361,7 @@
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
 }
 
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
@@ -369,12 +369,12 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 8;
     -fx-pref-width: 15px;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 8 1;
     -fx-pref-height: 15px;
 }
 
