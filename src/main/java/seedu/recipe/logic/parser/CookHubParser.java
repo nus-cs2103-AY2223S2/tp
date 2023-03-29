@@ -6,21 +6,7 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.recipe.logic.commands.AddCommand;
-import seedu.recipe.logic.commands.ClearCommand;
-import seedu.recipe.logic.commands.Command;
-import seedu.recipe.logic.commands.DeleteCommand;
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.ExitCommand;
-import seedu.recipe.logic.commands.FavoritesCommand;
-import seedu.recipe.logic.commands.FilterPriceCommand;
-import seedu.recipe.logic.commands.FindCommand;
-import seedu.recipe.logic.commands.HelpCommand;
-import seedu.recipe.logic.commands.ListCommand;
-import seedu.recipe.logic.commands.OnlyCommand;
-import seedu.recipe.logic.commands.SortCommand;
-import seedu.recipe.logic.commands.StarCommand;
-import seedu.recipe.logic.commands.UnstarCommand;
+import seedu.recipe.logic.commands.*;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 
 /**
@@ -91,6 +77,9 @@ public class CookHubParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case GroceriesCommand.COMMAND_WORD:
+            return new GroceriesCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
