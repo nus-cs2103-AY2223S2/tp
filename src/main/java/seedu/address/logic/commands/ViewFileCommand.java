@@ -47,6 +47,10 @@ public class ViewFileCommand extends Command {
         }
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(personToView);
+
+        if (number >= filesManager.getFileNames().size() || number < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FILE_INDEX);
+        }
         filesManager.readNthFile(number);
         return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToView));
     }

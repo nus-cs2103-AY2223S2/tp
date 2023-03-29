@@ -230,10 +230,6 @@ public class FilesManager {
         setFileNames();
     }
 
-    public Person getPerson() {
-        return this.person;
-    }
-
     private String getFileExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
     }
