@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * {@code InternshipBook} that keeps track of its own history.
- * Referenced from <a href="https://github.com/se-edu/addressbook-level4">AB4</a> with slight modifications
+ * Referenced from <a href="https://github.com/se-edu/addressbook-level4">AB4</a> with slight modifications.
  *
  * @author se-edu
  */
@@ -17,7 +17,7 @@ public class VersionedInternshipBook extends InternshipBook {
     /**
      * Constructs a new instance of VersionedInternshipBook.
      *
-     * @param initialState initial state of the internship book
+     * @param initialState initial state of the internship book.
      */
     public VersionedInternshipBook(ReadOnlyInternshipBook initialState) {
         super(initialState);

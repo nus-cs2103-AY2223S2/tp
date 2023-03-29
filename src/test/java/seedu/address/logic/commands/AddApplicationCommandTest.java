@@ -49,7 +49,7 @@ public class AddApplicationCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateApplication_throwsCommandException() {
         Application validApp = new ApplicationBuilder().build();
         AddApplicationCommand addCommand = new AddApplicationCommand(validApp);
         AddApplicationCommandTest.ModelStub modelStub = new AddApplicationCommandTest.ModelStubWithApp(validApp);
@@ -87,7 +87,7 @@ public class AddApplicationCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default application model stub that have all the methods failing.
      */
     private class ModelStub implements ApplicationModel {
         @Override
@@ -206,7 +206,7 @@ public class AddApplicationCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single application.
      */
     private class ModelStubWithApp extends AddApplicationCommandTest.ModelStub {
         private final Application app;
