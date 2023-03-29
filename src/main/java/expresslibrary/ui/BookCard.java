@@ -58,9 +58,9 @@ public class BookCard extends UiPart<Region> {
 
             dueDate.setText(String.format("Due date: %s", DateUtil.formatDate(book.getDueDate())));
             if (book.getDueDate().isBefore(LocalDate.now())) {
-                dueDate.setStyle("-fx-text-fill: red;");
-            } else if (book.getDueDate().isBefore(LocalDate.now().plusDays(3))) {
                 dueDate.setStyle("-fx-text-fill: orange;");
+            } else if (book.getDueDate().isBefore(LocalDate.now().plusDays(3))) {
+                dueDate.setStyle("-fx-text-fill: yellow;");
             }
 
             borrowerName.setVisible(true);
