@@ -12,6 +12,7 @@ import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -27,7 +28,7 @@ public class ExportProgressCommand extends Command {
             + "[" + PREFIX_FILEPATH + "FILE PATH]\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_FILEPATH + "C:\\Users\\John Doe\\Downloads\\MATHUTORING";
+            + PREFIX_FILEPATH + Paths.get("").toAbsolutePath();
 
     public static final String MESSAGE_SUCCESS = "%1$s's progress report exported in %2$s with filename %3$s";
 
@@ -39,6 +40,7 @@ public class ExportProgressCommand extends Command {
      * Creates an ExportProgressCommand to export the specified Person {@code Person}'s progress to a PDF file.
      */
     public ExportProgressCommand(Index targetIndex, String filePath) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.filePath = filePath;
     }
@@ -58,12 +60,15 @@ public class ExportProgressCommand extends Command {
         String fileName = studentName + "'s Progress Report.pdf";
 
         if (this.filePath.equals("")) {
-            this.filePath = System.getProperty("user.home");
+            this.filePath = "";
         }
         try {
             model.exportProgress(personToExport, String.valueOf(Paths.get(this.filePath, fileName)));
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
+        }
+        if (this.filePath.equals("")) {
+            this.filePath = Paths.get(this.filePath, fileName).toAbsolutePath().toString();
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToExport.getName().fullName,
                 this.filePath, fileName));
