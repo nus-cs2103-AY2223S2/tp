@@ -175,7 +175,7 @@ Creates a new client contact.
 **Compulsory Arguments**
 
 - `-cn client_name`
-    - The client’s name. Alphanumerical characters only. Case sensitive.
+    - The client’s name.
 - `-e email`
     - The client’s email. Must be unique in Mycelium. Case sensitive.
 
