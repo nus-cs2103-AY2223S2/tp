@@ -2,8 +2,7 @@ package seedu.wife.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
-
-import seedu.wife.commons.util.StringUtil;
+import static seedu.wife.commons.util.StringUtil.capitalizeString;
 
 /**
  * A class to store the name for every {@code Tag}
@@ -66,7 +65,7 @@ public class TagName {
      * Returns formatted tag name with the first character of each word in tag name capitalized."
      */
     public static String formatName(String tagName) {
-        return StringUtil.capitalizeString(tagName.toLowerCase());
+        return capitalizeString(tagName.toLowerCase());
     }
 
     @Override
