@@ -1,8 +1,6 @@
 package vimification.internal.parser;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import vimification.internal.command.logic.AddCommand;
 import vimification.model.task.Priority;
@@ -15,7 +13,6 @@ public class AddCommandParser implements CommandParser<AddCommand> {
             new ArgumentFlag("-l", "--label", Integer.MAX_VALUE);
 
     private static final ArgumentFlag PRIORITY_FLAG = new ArgumentFlag("-p", "--priority");
-
     private static final ArgumentFlag DEADLINE_FLAG = new ArgumentFlag("-d", "--deadline");
 
     private static final ApplicativeParser<ArgumentFlag> LABEL_FLAG_PARSER =
@@ -58,20 +55,23 @@ public class AddCommandParser implements CommandParser<AddCommand> {
 
     private static ApplicativeParser<Task> parseArguments(Task task) {
         ArgumentCounter counter = new ArgumentCounter(LABEL_FLAG, PRIORITY_FLAG, DEADLINE_FLAG);
-        return ApplicativeParser.choice(
-                LABEL_FLAG_PARSER.consume(counter::add)
-                        .takeNext(ApplicativeParser.skipWhitespaces1())
-                        .takeNext(LABEL_PARSER)
-                        .consume(task::addLabel),
-                PRIORITY_FLAG_PARSER.consume(counter::add)
-                        .takeNext(ApplicativeParser.skipWhitespaces1())
-                        .takeNext(PRIORITY_PARSER)
-                        .consume(task::setPriority),
-                DEADLINE_FLAG_PARSER.consume(counter::add)
-                        .takeNext(ApplicativeParser.skipWhitespaces1())
-                        .takeNext(DEADLINE_PARSER)
-                        .consume(task::setDeadline))
-                .sepBy(ApplicativeParser.skipWhitespaces1())
+        return ApplicativeParser
+                .skipWhitespaces1()
+                .takeNext(ApplicativeParser.choice(
+                        LABEL_FLAG_PARSER.consume(counter::add)
+                                .takeNext(ApplicativeParser.skipWhitespaces1())
+                                .takeNext(LABEL_PARSER)
+                                .consume(task::addLabel),
+                        PRIORITY_FLAG_PARSER.consume(counter::add)
+                                .takeNext(ApplicativeParser.skipWhitespaces1())
+                                .takeNext(PRIORITY_PARSER)
+                                .consume(task::setPriority),
+                        DEADLINE_FLAG_PARSER.consume(counter::add)
+                                .takeNext(ApplicativeParser.skipWhitespaces1())
+                                .takeNext(DEADLINE_PARSER)
+                                .consume(task::setDeadline))
+                        .sepBy1(ApplicativeParser.skipWhitespaces1()))
+                .optional()
                 .constMap(task);
     }
 
@@ -82,5 +82,13 @@ public class AddCommandParser implements CommandParser<AddCommand> {
     @Override
     public ApplicativeParser<ApplicativeParser<AddCommand>> getInternalParser() {
         return INTERNAL_PARSER;
+    }
+
+    public static void main(String[] args) {
+        String input = " -p 1 -l cry -l now";
+        var c = parseArguments(new Task("fd")).parsePartOf(input);
+
+        System.out.println(c);
+        // x.getSecond().parse(x.getFirst());
     }
 }
