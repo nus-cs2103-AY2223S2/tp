@@ -25,10 +25,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$name">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
+                <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
             <Region HBox.hgrow="ALWAYS" />
                <Label fx:id="date" alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="cell_big_label" text="\$date" textAlignment="RIGHT">
                <opaqueInsets>
