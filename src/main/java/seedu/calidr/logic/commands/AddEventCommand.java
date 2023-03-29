@@ -1,7 +1,9 @@
 package seedu.calidr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TO;
 
@@ -16,16 +18,19 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a to-do to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the task list. "
             + "Parameters: "
             + PREFIX_TITLE + " TITLE "
             + PREFIX_FROM + " START DATE-TIME "
-            + PREFIX_TO + " END DATE-TIME"
-            + "\n"
+            + PREFIX_TO + " END DATE-TIME "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + " Lecture "
+            + PREFIX_TITLE + " CS3230 Lecture "
             + PREFIX_FROM + " 05-04-2023 1400 "
-            + PREFIX_TO + " 05-04-2023 1600";
+            + PREFIX_TO + " 05-04-2023 1600 "
+            + PREFIX_DESCRIPTION + " Dynamic Programming "
+            + PREFIX_LOCATION + " i3 Aud";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the task list.";

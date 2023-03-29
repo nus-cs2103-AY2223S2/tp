@@ -34,7 +34,7 @@ public class ToDo extends Task {
         StringBuilder sb = new StringBuilder("[T]");
         String mark = isDone() ? "X" : " ";
         sb.append("{")
-                .append(getPriority().toString())
+                .append(getPriority().toString().toUpperCase())
                 .append("}[").append(mark).append("] ")
                 .append(getTitle())
                 .append(" (")
@@ -43,6 +43,10 @@ public class ToDo extends Task {
 
         if (getDescription().isPresent()) {
             sb.append(": \n").append(getDescription().get());
+        }
+
+        if (getLocation().isPresent()) {
+            sb.append("\n@ ").append(getLocation().get());
         }
 
         return sb.toString();
