@@ -90,7 +90,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void sortAddressBook() {
+    public void sortAddressBook_success() {
         addressBook.setPersons(getTypicalPersons());
         addressBook.sort();
         assertEquals(addressBook.getPersonList(), Arrays.asList(DANIEL, ELLE, FIONA, BENSON, CARL, ALICE, GEORGE));

@@ -269,6 +269,7 @@ The implementation of the sort feature involves the following steps:
 * **Alternative 2:** User specifies sorting criteria when typing the command
     * Pros: Gives the user higher functionality by allowing the user to sort the list of deliveries in various orderings.
     * Cons: Parsing the user specified sorting criteria is difficult to implement and unnecessarily complicates the logic.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

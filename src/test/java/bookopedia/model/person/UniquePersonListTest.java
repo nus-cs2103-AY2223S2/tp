@@ -173,7 +173,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    void sortPersons_list() {
+    void sortPersons_list_success() {
         uniquePersonList.setPersons(Arrays.asList(BENSON, ALICE, DANIEL, CARL));
         uniquePersonList.sort();
         UniquePersonList sortedPersonList = new UniquePersonList();
