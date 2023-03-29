@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,46 +26,35 @@ import seedu.address.logic.parser.Prefix;
  */
 public class CommandSuggestor {
 
-    private final ArrayList<String> commandList;
-    private final HashMap<String, ArrayList<Prefix>> commandArgPrefixes;
+    private final ArrayList<String> commandList = new ArrayList<>(List.of(
+            AddCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            RemarkCommand.COMMAND_WORD,
+            ShowRemarkCommand.COMMAND_WORD
+    ));
+    private final HashMap<String, ArrayList<Prefix>> commandArgPrefixes = new HashMap<>(Map.of(
+            AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES,
+            ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES,
+            DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES,
+            EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES,
+            ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES,
+            FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES,
+            HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES,
+            ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES,
+            RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES,
+            ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES
+    ));
 
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
     public CommandSuggestor() {
-        commandList = new ArrayList<>();
-        commandArgPrefixes = new HashMap<>();
-
-        commandList.add(AddCommand.COMMAND_WORD);
-        commandArgPrefixes.put(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(ClearCommand.COMMAND_WORD);
-        commandArgPrefixes.put(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(DeleteCommand.COMMAND_WORD);
-        commandArgPrefixes.put(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(EditCommand.COMMAND_WORD);
-        commandArgPrefixes.put(EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(ExitCommand.COMMAND_WORD);
-        commandArgPrefixes.put(ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(FindCommand.COMMAND_WORD);
-        commandArgPrefixes.put(FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(HelpCommand.COMMAND_WORD);
-        commandArgPrefixes.put(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(ListCommand.COMMAND_WORD);
-        commandArgPrefixes.put(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(RemarkCommand.COMMAND_WORD);
-        commandArgPrefixes.put(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(ShowRemarkCommand.COMMAND_WORD);
-        commandArgPrefixes.put(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES);
-
         // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
         assert commandList.stream().allMatch(commandArgPrefixes::containsKey);
         // and vice versa.
