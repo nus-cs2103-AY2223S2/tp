@@ -310,6 +310,9 @@ public class ParserUtil {
     }
 
     private static List<String> splitArgs(String arg, String delimiter) throws ParseException {
+        if (arg.isBlank()) {
+            throw new ParseException("Argument is blank");
+        }
         arg = " " + arg + " ";
         List<String> rawArgs = List.of(arg.split(delimiter));
         ArrayList<String> splitArgs = new ArrayList<>();

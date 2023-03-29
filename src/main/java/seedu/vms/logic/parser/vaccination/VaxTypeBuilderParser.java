@@ -21,7 +21,7 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
  * A command parser to parse commands that require {@link VaxTypeBuilder}.
  */
 public abstract class VaxTypeBuilderParser implements CommandParser {
-    private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
+    private static final String FIELD_NAME_VAX_NAME = "VAX_NAME";
     private static final String FIELD_NAME_GRP_SET = "GROUP";
     private static final String FIELD_NAME_MIN_AGE = "MIN_AGE";
     private static final String FIELD_NAME_MAX_AGE = "MAX_AGE";

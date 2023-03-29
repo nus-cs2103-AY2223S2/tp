@@ -18,7 +18,7 @@ public class AddVaxTypeParser extends VaxTypeBuilderParser {
             + ": Adds a vaccination to the system\n"
             + "Syntax: "
             + "vaccination add VAX_NAME [--g ...GROUP...] [--lal MIN_AGE] [--ual MAX_AGE] "
-            + "[--a ...INGREDIENT...]... [--h HISTORY_REQ]...\n"
+            + "[--i ...INGREDIENT...]... [--h HISTORY_REQ]...\n"
             + "Example: "
             + "vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --a ALC-0315, ALC-0159 --h NONE::ABC";
 
