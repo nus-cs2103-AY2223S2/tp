@@ -80,7 +80,12 @@ This User Guide provides brief documentation on how you can install the applicat
 
 ### Viewing help : `help`
 
+{% include information.html content="
+
 Shows a message explaning how to access the help page.
+
+" %}
+
 
 ![help message](images/helpImage.png)
 
