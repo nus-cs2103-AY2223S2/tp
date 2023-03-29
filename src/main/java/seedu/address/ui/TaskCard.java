@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import seedu.address.model.task.Task;
 
 /**
@@ -39,24 +37,6 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label personRole;
 
-    @FXML
-    private Label taskComment;
-
-    @FXML
-    private Circle circle1;
-
-    @FXML
-    private Circle circle2;
-
-    @FXML
-    private Circle circle3;
-
-    @FXML
-    private Circle circle4;
-
-    @FXML
-    private Circle circle5;
-
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
@@ -76,43 +56,6 @@ public class TaskCard extends UiPart<Region> {
             personRole.setText("None");
         } else {
             personRole.setText(task.getPersonAssignedRole());
-        }
-        if (task.getTaskComment() == null) {
-            taskComment.setText("None");
-        } else {
-            taskComment.setText(task.getTaskComment().toString());
-        }
-        if (task.isDone()) {
-            int score = task.getScore().getValue();
-            if (score == 5) {
-                circle1.setFill(Paint.valueOf("#fad02c"));
-                circle2.setFill(Paint.valueOf("#fad02c"));
-                circle3.setFill(Paint.valueOf("#fad02c"));
-                circle4.setFill(Paint.valueOf("#fad02c"));
-                circle5.setFill(Paint.valueOf("#fad02c"));
-            } else if (score == 4) {
-                circle1.setFill(Paint.valueOf("#fad02c"));
-                circle2.setFill(Paint.valueOf("#fad02c"));
-                circle3.setFill(Paint.valueOf("#fad02c"));
-                circle4.setFill(Paint.valueOf("#fad02c"));
-            } else if (score == 3) {
-                circle1.setFill(Paint.valueOf("#fad02c"));
-                circle2.setFill(Paint.valueOf("#fad02c"));
-                circle3.setFill(Paint.valueOf("#fad02c"));
-            } else if (score == 2) {
-                circle1.setFill(Paint.valueOf("#fad02c"));
-                circle2.setFill(Paint.valueOf("#fad02c"));
-            } else if (score == 1) {
-                circle1.setFill(Paint.valueOf("#fad02c"));
-            }
-        }
-
-        if (!task.isDone()) {
-            circle1.setFill(Paint.valueOf("#ffffff"));
-            circle2.setFill(Paint.valueOf("#ffffff"));
-            circle3.setFill(Paint.valueOf("#ffffff"));
-            circle4.setFill(Paint.valueOf("#ffffff"));
-            circle5.setFill(Paint.valueOf("#ffffff"));
         }
     }
 

@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
-import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -59,7 +58,6 @@ public class CommentCommand extends Command {
         String taskString = taskToComment.toString();
 
         taskBookModel.commentOnTask(toAddComment, taskToComment);
-        taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_COMMENT_SUCCESS, toAddComment, taskString));
     }
 
