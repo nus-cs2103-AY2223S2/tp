@@ -13,6 +13,14 @@ public class PersonStats {
     private int tasksCompleted;
     private double averageScore;
 
+    /**
+     * Constructs a {@code PersonStats}.
+     * 
+     * @param person Person in the address book.
+     * @param tasksAssigned Number of tasks assigned.
+     * @param tasksCompleted Number of tasks completed.
+     * @param averageScore Average score of the person.
+     */
     public PersonStats(Person person, int tasksAssigned, int tasksCompleted, double averageScore) {
         requireAllNonNull(person, tasksAssigned, tasksCompleted, averageScore);
         this.person = person;
