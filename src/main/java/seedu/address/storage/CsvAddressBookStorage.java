@@ -7,8 +7,8 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -78,6 +78,13 @@ public class CsvAddressBookStorage implements AddressBookStorage {
         saveAddressBook(filteredList, filePath);
     }
 
+    /**
+     * Saves a filtered list in a CSV file.
+     *
+     * @param filteredList The list containing only the filtered Persons.
+     * @param filePath File path selected by user to save at.
+     * @throws IOException
+     */
     public void saveAddressBook(ObservableList<Person> filteredList, Path filePath) throws IOException {
         requireNonNull(filteredList);
         requireNonNull(filePath);

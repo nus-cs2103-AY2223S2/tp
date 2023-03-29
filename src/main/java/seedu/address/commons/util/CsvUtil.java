@@ -118,15 +118,17 @@ public class CsvUtil {
                             // If it is not a special token that starts with '"', then comma must mean end of token
                             endIdx = i;
                             String token = line.substring(startIdx, endIdx);
-                            if (!token.isBlank())
+                            if (!token.isBlank()) {
                                 tokens.add(token);
+                            }
                             isBreakpoint = true;
                         } else if (trailingQuoteCount % 2 == 1) {
                             // Otherwise, odd number of trailing quotation marks implies it is end of token
                             endIdx = i - 1;
                             String token = line.substring(startIdx, endIdx).replaceAll("\"\"", "\"");
-                            if (!token.isBlank())
+                            if (!token.isBlank()) {
                                 tokens.add(token);
+                            }
                             isBreakpoint = true;
                         }
                         trailingQuoteCount = 0;

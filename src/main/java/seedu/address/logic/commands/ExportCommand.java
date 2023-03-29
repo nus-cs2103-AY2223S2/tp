@@ -11,8 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.CsvAddressBookStorage;
 
 /**
