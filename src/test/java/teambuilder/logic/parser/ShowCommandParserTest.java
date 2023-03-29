@@ -29,4 +29,5 @@ class ShowCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n TeamA \n \t TeamB  \t", expectedFindCommand);
     }
+
 }

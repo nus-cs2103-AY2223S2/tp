@@ -73,4 +73,5 @@ class TeamContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTeams("TeamA").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
+
 }

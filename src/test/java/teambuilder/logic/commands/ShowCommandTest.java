@@ -41,8 +41,8 @@ class ShowCommandTest {
         assertTrue(showFirstCommand.equals(showFirstCommand));
 
         // same values -> returns true
-        ShowCommand ShowFirstCommandCopy = new ShowCommand(firstPredicate);
-        assertTrue(showFirstCommand.equals(ShowFirstCommandCopy));
+        ShowCommand showFirstCommandCopy = new ShowCommand(firstPredicate);
+        assertTrue(showFirstCommand.equals(showFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(showFirstCommand.equals(1));
@@ -80,4 +80,5 @@ class ShowCommandTest {
     private TeamContainsKeywordsPredicate preparePredicate(String userInput) {
         return new TeamContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
 }

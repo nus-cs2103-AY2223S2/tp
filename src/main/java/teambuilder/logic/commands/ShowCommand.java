@@ -6,6 +6,10 @@ import teambuilder.commons.core.Messages;
 import teambuilder.model.Model;
 import teambuilder.model.person.TeamContainsKeywordsPredicate;
 
+/**
+ * Finds and lists all persons in the personList whose team tag contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
+ */
 public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";

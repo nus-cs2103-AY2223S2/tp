@@ -26,8 +26,8 @@ import teambuilder.logic.commands.ShowCommand;
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.person.NameContainsKeywordsPredicate;
-import teambuilder.model.person.TeamContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
+import teambuilder.model.person.TeamContainsKeywordsPredicate;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 import teambuilder.testutil.PersonBuilder;
 import teambuilder.testutil.PersonUtil;
@@ -117,4 +117,6 @@ public class TeamBuilderParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
 }
+
