@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents Total number of Pending jobs in Statistics Window.
  * Guarantees: details are present and not null.
  */
-public class TotalPending {
+public class TotalPending implements Statistic {
     public static final String MESSAGE_CONSTRAINTS = "TotalPending must be a non-negative integer";
     private static final String OUTPUT_MESSAGE = "Total number of Pending Jobs: ";
     private int numPending;

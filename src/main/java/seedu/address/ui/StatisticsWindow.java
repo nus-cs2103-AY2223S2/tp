@@ -14,10 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.stats.TotalCompleted;
-import seedu.address.model.stats.TotalEarnings;
-import seedu.address.model.stats.TotalJobs;
-import seedu.address.model.stats.TotalPending;
+import seedu.address.model.stats.*;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 
@@ -116,19 +113,31 @@ public class StatisticsWindow extends UiPart<Stage> {
         return deliveryJobListPanel;
     }
 
+    public String fillStats(ObservableList<DeliveryJob> list) {
+        TotalJobs totalJobs = new TotalJobs(list.size());
+        TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
+        TotalCompleted totalCompleted = new TotalCompleted(logic.getTotalCompleted(list));
+        TotalPending totalPending = new TotalPending(logic.getTotalPending(list));
+
+        StatisticItemList statisticItemList = new StatisticItemList();
+
+        statisticItemList.addStats((totalJobs));
+        statisticItemList.addStats(totalEarnings);
+        statisticItemList.addStats(totalCompleted);
+        statisticItemList.addStats(totalPending);
+
+        return statisticItemList.printStats();
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
-        TotalJobs totalJobs = new TotalJobs(list.size());
-        TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
-        TotalCompleted totalCompleted = new TotalCompleted(logic.getTotalCompleted(list));
-        TotalPending totalPending = new TotalPending(logic.getTotalPending(list));
         // new simple DeliveryJobListPanel constructor with no event handlers
         //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
         //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        totalJob.setText(totalJobs + totalEarnings.toString() + totalCompleted + totalPending);
+        totalJob.setText(fillStats(list));
 
         //resultDisplay = new ResultDisplay();
         //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

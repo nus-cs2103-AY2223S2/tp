@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents TotalEarnings in Statistics Window.
  * Guarantees: details are present and not null.
  */
-public class TotalEarnings {
+public class TotalEarnings implements Statistic {
     public static final String MESSAGE_CONSTRAINTS = "TotalEarnings must be a non-negative number";
     private static final String OUTPUT_MESSAGE = "Total Earnings: $";
     private double earnings;
