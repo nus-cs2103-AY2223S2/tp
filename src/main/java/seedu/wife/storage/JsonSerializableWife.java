@@ -30,8 +30,12 @@ class JsonSerializableWife {
      * Constructs a {@code JsonSerializableFood} with the given foods.
      */
     @JsonCreator
-    public JsonSerializableWife(@JsonProperty("foods") List<JsonAdaptedFood> foods) {
+    public JsonSerializableWife(
+        @JsonProperty("foods") List<JsonAdaptedFood> foods,
+        @JsonProperty("tags") List<JsonAdaptedTag> tags
+    ) {
         this.foods.addAll(foods);
+        this.tags.addAll(tags);
     }
 
     /**
