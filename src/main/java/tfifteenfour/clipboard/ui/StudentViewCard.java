@@ -77,7 +77,6 @@ public class StudentViewCard extends UiPart<Region> {
             logger.warning(e.getMessage());
         }
 
-        //attendanceListPlaceholder.getChildren().add(new AttendanceViewPanel(viewedStudent.getSessions()).getRoot());
     }
 
     @Override

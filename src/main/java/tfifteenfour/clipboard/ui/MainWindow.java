@@ -28,6 +28,7 @@ import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
@@ -496,6 +497,20 @@ public class MainWindow extends UiPart<Stage> {
         refreshNavigationBar();
     }
 
+    private void handleAttendanceCommand() {
+        if(logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+            showStudentAttendance();
+        }
+    }
+
+    private void showStudentAttendance() {
+        rightPanelPlaceholder.getChildren().clear();
+        ObservableList<Student> viewedStudent =
+                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+        //ObservableList<SessionWithAttendance> sessionList = ; to be implemented
+        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot);
+    }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
 
@@ -531,7 +546,11 @@ public class MainWindow extends UiPart<Stage> {
                 || commandResult.getCommand() instanceof EditStudentCommand
                 || commandResult.getCommand() instanceof RemarkCommand) {
             refreshViewPane();
+
+        } else if (commandResult.getCommand() instanceof AttendanceCommand) {
+            handleAttendanceCommand();
         }
+
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {
         //handleUndo();
