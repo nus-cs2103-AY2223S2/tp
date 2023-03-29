@@ -282,9 +282,9 @@ public class ParserUtil {
         String skillset;
         String level;
         try {
-            String[] trimmedList = medicalTag.trim().split(" ");
-            skillset = trimmedList[0];
-            level = trimmedList[1];
+            String[] trimmedList = medicalTag.trim().split(",");
+            skillset = trimmedList[0].trim();
+            level = trimmedList[1].trim();
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(MedicalQualificationTag.MESSAGE_CONSTRAINTS);
         }
