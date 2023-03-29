@@ -14,14 +14,14 @@ Given below are my contributions to the project.
 
 * **New Feature**:
 
-* **New Feature**: 
+* **New Feature**:
 
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
 
 * **Enhancements to existing features**:
-    
+
 * **Documentation**:
     * User Guide:
         * Drafted first iteration user guide for V1.2.

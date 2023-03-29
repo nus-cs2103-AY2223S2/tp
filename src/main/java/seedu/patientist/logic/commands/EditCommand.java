@@ -21,10 +21,11 @@ import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
-import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -37,6 +38,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "ID cannot be changed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -76,33 +78,60 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson;
+        if (personToEdit instanceof Patient) {
+            editedPerson = createEditedPatient((Patient) personToEdit, editPersonDescriptor);
+        } else if (personToEdit instanceof Staff) {
+            editedPerson = createEditedStaff((Staff) personToEdit, editPersonDescriptor);
+        } else {
+            throw new CommandException("Person that is being edited is neither a patient or a staff");
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        //model.setPerson(personToEdit, editedPerson); TODO: either setpatient or setstaff. refer to API.
+        if (editedPerson instanceof Patient) {
+            model.setPatient((Patient) personToEdit, (Patient) editedPerson);
+        } else if (editedPerson instanceof Staff) {
+            model.setStaff((Staff) personToEdit, (Staff) editedPerson);
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Person} with the details of {@code patientToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Person createEditedPatient(Patient patientToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert patientToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        IdNumber updatedIdNumber = editPersonDescriptor.getIdNumber().orElse(personToEdit.getIdNumber());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return null; //new Person(updatedName, updatedPhone, updatedEmail, updatedIdNumber, updatedAddress, updatedTags)
-        //TODO: instantiate patient or staff as appropriate, based on set staff or set patient
+        return new Patient(patientToEdit.getIdNumber(), updatedName, updatedPhone, updatedEmail, updatedAddress,
+                patientToEdit.getPatientStatusDetails(), updatedTags);
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code patientToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Person createEditedStaff(Staff staffToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert staffToEdit != null;
+
+        Name updatedName = editPersonDescriptor.getName().orElse(staffToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(staffToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(staffToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(staffToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(staffToEdit.getTags());
+
+        return new Staff(updatedName, updatedPhone, updatedEmail, staffToEdit.getIdNumber(), updatedAddress,
+                updatedTags);
     }
 
     @Override
@@ -131,7 +160,6 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private IdNumber idNumber;
         private Address address;
         private Set<Tag> tags;
 
@@ -145,7 +173,6 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setIdNumber(toCopy.idNumber);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -179,14 +206,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setIdNumber(IdNumber idNumber) {
-            this.idNumber = idNumber;
-        }
-
-        public Optional<IdNumber> getIdNumber() {
-            return Optional.ofNullable(idNumber);
         }
 
         public void setAddress(Address address) {
@@ -232,7 +251,6 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getIdNumber().equals(e.getIdNumber())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

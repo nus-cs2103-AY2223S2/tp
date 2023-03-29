@@ -10,6 +10,7 @@ import static seedu.patientist.testutil.TypicalWards.VALID_WARD_NAME;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -220,6 +221,11 @@ public class AddStaffCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public List<String> getWardNames() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -250,6 +256,22 @@ public class AddStaffCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
+        }
+
+        @Override
+        public boolean hasWard(Ward ward) {
+            requireNonNull(ward);
+            return true;
+        }
+
+        @Override
+        public Ward getWard(String wardName) {
+            return new Ward(wardName);
+        }
+
+        @Override
+        public void addStaff(Staff staff, Ward ward) {
+            staffAdded.add(staff);
         }
 
         @Override
