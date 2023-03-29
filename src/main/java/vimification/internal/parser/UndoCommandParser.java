@@ -21,5 +21,4 @@ public class UndoCommandParser implements CommandParser<UndoCommand> {
     public ApplicativeParser<ApplicativeParser<UndoCommand>> getInternalParser() {
         return INTERNAL_PARSER;
     }
-
 }
