@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.roles.commons.core.LogsCenter;
 import seedu.roles.commons.exceptions.DataConversionException;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.ReadOnlyUserPrefs;
 import seedu.roles.model.UserPrefs;
 
@@ -17,14 +17,14 @@ import seedu.roles.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private RoleBookStorage RoleBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code RoleBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(RoleBookStorage RoleBookStorage, UserPrefsStorage userPrefsStorage) {
+        this.RoleBookStorage = RoleBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getRoleBookFilePath() {
+        return RoleBookStorage.getRoleBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyRoleBook> readRoleBook() throws DataConversionException, IOException {
+        return readRoleBook(RoleBookStorage.getRoleBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyRoleBook> readRoleBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return RoleBookStorage.readRoleBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveRoleBook(ReadOnlyRoleBook addressBook) throws IOException {
+        saveRoleBook(addressBook, RoleBookStorage.getRoleBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveRoleBook(ReadOnlyRoleBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        RoleBookStorage.saveRoleBook(addressBook, filePath);
     }
 
 }

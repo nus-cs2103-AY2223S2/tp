@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.roles.model.AddressBook;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Company;
 import seedu.roles.model.job.Deadline;
 import seedu.roles.model.job.Email;
@@ -45,8 +45,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyRoleBook getSampleAddressBook() {
+        RoleBook sampleAb = new RoleBook();
         for (Role sampleRole : getSampleRoles()) {
             sampleAb.addRole(sampleRole);
         }

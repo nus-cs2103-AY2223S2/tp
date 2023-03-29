@@ -12,7 +12,7 @@ import seedu.roles.model.job.UniqueRoleList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameRole comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class RoleBook implements ReadOnlyRoleBook {
 
     private UniqueRoleList roles;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         roles = new UniqueRoleList();
     }
 
-    public AddressBook() {}
+    public RoleBook() {}
 
     /**
-     * Creates an AddressBook using the Roles in the {@code toBeCopied}
+     * Creates an RoleBook using the Roles in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public RoleBook(ReadOnlyRoleBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code RoleBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyRoleBook newData) {
         requireNonNull(newData);
 
         setRoles(newData.getRoleList());
@@ -86,7 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code RoleBook}.
      * {@code key} must exist in the address book.
      */
     public void removeRole(Role key) {
@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && roles.equals(((AddressBook) other).roles));
+                || (other instanceof RoleBook // instanceof handles nulls
+                && roles.equals(((RoleBook) other).roles));
     }
 
     @Override

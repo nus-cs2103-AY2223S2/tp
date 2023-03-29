@@ -6,7 +6,7 @@ import seedu.roles.model.job.Role;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyRoleBook {
 
     /**
      * Returns an unmodifiable view of the roles list.

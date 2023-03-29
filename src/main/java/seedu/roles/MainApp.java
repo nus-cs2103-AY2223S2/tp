@@ -15,15 +15,15 @@ import seedu.roles.commons.util.ConfigUtil;
 import seedu.roles.commons.util.StringUtil;
 import seedu.roles.logic.Logic;
 import seedu.roles.logic.LogicManager;
-import seedu.roles.model.AddressBook;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.ReadOnlyUserPrefs;
 import seedu.roles.model.UserPrefs;
 import seedu.roles.model.util.SampleDataUtil;
-import seedu.roles.storage.AddressBookStorage;
-import seedu.roles.storage.JsonAddressBookStorage;
+import seedu.roles.storage.RoleBookStorage;
+import seedu.roles.storage.JsonRoleBookStorage;
 import seedu.roles.storage.JsonUserPrefsStorage;
 import seedu.roles.storage.Storage;
 import seedu.roles.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        RoleBookStorage RoleBookStorage = new JsonRoleBookStorage(userPrefs.getRoleBookFilePath());
+        storage = new StorageManager(RoleBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +74,20 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyRoleBook> addressBookOptional;
+        ReadOnlyRoleBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readRoleBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new RoleBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new RoleBook();
         }
 
         return new ModelManager(initialData, userPrefs);
