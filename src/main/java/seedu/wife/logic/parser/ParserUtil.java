@@ -58,13 +58,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code unit} is invalid.
      */
-    public static Unit parseUnit(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedUnit = phone.trim();
-        if (!Unit.isValid(trimmedUnit)) {
-            throw new ParseException(Unit.MESSAGE_CONSTRAINTS);
+    public static Unit parseUnit(String unit) throws ParseException {
+        requireNonNull(unit);
+        String trimmedUnit = unit.trim();
+        try {
+            return new Unit(trimmedUnit);
+        } catch (IllegalArgumentException ie) {
+            throw new ParseException(ie.getMessage());
         }
-        return new Unit(trimmedUnit);
     }
 
     /**

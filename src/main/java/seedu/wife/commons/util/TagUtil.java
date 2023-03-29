@@ -26,8 +26,8 @@ public class TagUtil {
         String matchMessage,
         String noMatchMessage
     ) {
-        // Collects all unqiue tags in the filtered food list
-        Set<Tag> filteredFoodtags = foodlist
+        // Collects all unique tags in the filtered food list
+        Set<Tag> filteredFoodTags = foodlist
             .stream()
             .map(food -> food.getTags())
             .reduce((tagX, tagY) -> {
@@ -41,9 +41,9 @@ public class TagUtil {
         HashSet<Tag> matchTag = new HashSet<Tag>();
         HashSet<Tag> noMatchTag = new HashSet<Tag>();
         for (Tag tag : conditionTags) {
-            if (filteredFoodtags.contains(tag)) {
+            if (filteredFoodTags.contains(tag)) {
                 matchTag.add(tag);
-            } else if (!filteredFoodtags.contains(tag)) {
+            } else if (!filteredFoodTags.contains(tag)) {
                 noMatchTag.add(tag);
             }
         }
