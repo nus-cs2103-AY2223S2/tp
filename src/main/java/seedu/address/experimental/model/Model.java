@@ -56,14 +56,14 @@ public interface Model {
     ReadOnlyReroll getReroll();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code Reroll}.
      */
     void setReroll(ReadOnlyReroll reroll);
 
     Predicate<Entity> getClassificationPredicate(Classification classification);
 
     /**
-     * Returns true if a entity with the same identity as {@code entity} exists in Reroll.
+     * Returns true if a entity with the same identity as {@code entity} exists in the address book.
      */
     boolean hasEntity(Entity entity);
 
