@@ -116,7 +116,7 @@ Format: `help`
 
 Reverts the patient records to the state before the previous command was executed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
+<div markdown="span" class="alert alert-info">:information_source:**Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 
 Format: `undo`
@@ -125,11 +125,17 @@ Format: `undo`
 
 Reverts the patient records to the state before the previous undo was executed. 
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
+has run.
+
 Format: `redo`
 
 ### Adding patient record: `add`
 
 Adds a person to the patient records.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Do take note which patient details are 
+optional
 
 Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -145,7 +151,14 @@ Examples:
 
 Edits an existing patient in the patient records.
 
+<<<<<<< Updated upstream
 .Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+=======
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+patient detail you would like to edit.
+
+Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+>>>>>>> Stashed changes
 
 * You can remove all the patient’s tags/medicine by typing t/ or m/ respectively, without specifying any tags/medicine
   after it.
@@ -159,6 +172,9 @@ Examples:
 
 Deletes the specified patient from the patient records.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+patient detail you would like to edit.
+
 Format: `delete i/NRIC…​`
 
 Examples:
@@ -169,15 +185,23 @@ Examples:
 
 Shows a list of all patients in the patient records.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** List returns the entire current database
+that you have loaded.
+
 Format: `list`
 
 ### Find patients by nric, name, address or tags: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
+<<<<<<< Updated upstream
 Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`).
+=======
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
+substrings. You may only search for a few attributes.
+>>>>>>> Stashed changes
 
-Format: `find attribute/keyword [MORE_KEYWORDS]`
+Format: `find (a/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
 
 * The search will only be carried out for the given attribute.
 * Only one attribute can be searched at one time.
@@ -202,6 +226,9 @@ Examples (The following results are based of the sample data provided):
 
 Backs up the patient records to a specified slot represented by an index.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Backups need to access and are not 
+automatically loaded on launch of application.
+
 Format: `backup INDEX_NO`
 
 Examples:
@@ -213,6 +240,8 @@ Tip: INDEX_NO can only be an integer between 1 and 10 inclusive.
 ### Load data: `load`
 
 Loads the data from a specified slot represented by an index.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Allows access to a specific backup.
 
 Format: `load INDEX_NO`
 
@@ -230,6 +259,9 @@ Format: `viewbackup`
 
 Deletes the data from a specified slot represented by an index.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Deleted backups cannot be retrieved after 
+deletion.
+
 Format: `deletebackup INDEX_NO`
 
 Example:
@@ -239,6 +271,8 @@ Example:
 ### Clearing all data: `clear`
 
 Purges all data from the database.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Data cannot be retrieved after clearing.
 
 Format: `clear`
 
