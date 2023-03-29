@@ -54,4 +54,16 @@ public class Messages {
     public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s**."
             + "\nPlease enter full name(s)";
     public static final String MESSAGE_NO_SUCH_STUDENT = "No student found: **%s**.\nPlease check the name entered";
+
+    public static final String MESSAGE_DEADLINE_IN_PAST = "Deadline cannot be in the past!";
+    public static final String MESSAGE_ONLY_ONE_STUDENT = "Only one student name is allowed!";
+    public static final String MESSAGE_EMPTY_STUDENT = "Student name cannot be empty!";
+    public static final String MESSAGE_ONLY_ONE_HOMEWORK = "Only one homework name is allowed!";
+    public static final String MESSAGE_EMPTY_HOMEWORK = "Homework name cannot be empty!";
+    public static final String MESSAGE_ONLY_ONE_INDEX = "Only one index is allowed!";
+    public static final String MESSAGE_EMPTY_INDEX = "Index cannot be empty!";
+    public static final String MESSAGE_ONLY_ONE_DEADLINE = "Only one deadline is allowed!";
+    public static final String MESSAGE_EMPTY_DEADLINE = "Deadline cannot be empty!";
+    public static final Object MESSAGE_MULTIPLE_STATUS = "Only one status is allowed!";
+    public static final Object MESSAGE_EMPTY_STATUS = "Status cannot be empty!";
 }
