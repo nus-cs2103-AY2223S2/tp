@@ -219,6 +219,22 @@ When a `VaxType` record is deleted from the system, any associated `Appointment`
 
 On the other hand, `Patient` records are not deleted when a `VaxType` record is deleted from the system. This is because `Patient` records should not be modified if a `VaxType` is no longer offered. If a `VaxType` record is deleted, the associated `Appointment` records will be deleted, but any `Patient` records associated with those `VaxType` records will not be updated in the system. This is because the `Patient` records may still be relevant, even if the `VaxType` is no longer in the system.
 
+#### Cascading Change
+
+The cascading change feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is changed in the VMS, any related records should also be changed to ensure that the system remains consistent.
+
+##### Relationship between `Patient` and `Appointment` 
+
+When a `Patient` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `Appointment` records are directly linked to a specific `Patient`, and if the patient's information changes, it is important to update any related `appointment`s to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `VaxType` and `Patient` 
+
+When a `VaxType` record is updated in the system, any associated `Patient` records will be updated as well. This is because `VaxType` records contain information about the `VaxType`s that a `patient` has taken, and if the `VaxType` information changes, it is important to update any related `patient` records to reflect this change. The implementation can be found in [`PatientManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/PatientManager.java).
+
+##### Relationship between `VaxType` and `Appointment` 
+
+Additionally, when a `VaxType` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and if the `VaxType` information changes, it is important to update any related `appointment` records to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.vms.commons` package.
