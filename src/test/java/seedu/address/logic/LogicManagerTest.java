@@ -3,12 +3,12 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.AMY;
+import static seedu.address.testutil.TypicalModules.CS3230;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -79,9 +79,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + TYPE_DESC_AMY + TIMESLOT_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Module expectedModule = new ModuleBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_CS3230 + TYPE_DESC_CS3230 + TIMESLOT_DESC_CS3230
+                + ADDRESS_DESC_CS3230;
+        Module expectedModule = new ModuleBuilder(CS3230).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addModule(expectedModule);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

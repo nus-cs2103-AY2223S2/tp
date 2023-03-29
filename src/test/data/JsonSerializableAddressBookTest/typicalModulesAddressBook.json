@@ -1,45 +1,43 @@
 {
   "_comment": "AddressBook save file which contains the same Module values as in TypicalModules#getTypicalAddressBook()",
   "modules" : [ {
-    "name" : "Alice Pauline",
-    "type" : "94351253",
-    "timeSlot" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "name" : "CS2101",
+    "timeSlot" : "120323 12:00",
+    "address" : "COM1",
+    "tagged" : [ "Lecture" ]
   }, {
-    "name" : "Benson Meier",
-    "type" : "98765432",
-    "timeSlot" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "name" : "CS2103T",
+    "timeSlot" : "290323 10:00",
+    "address" : "COM1 0210",
+    "tagged" : [ "Tutorial" ]
   }, {
     "name" : "Carl Kurz",
     "type" : "95352563",
-    "timeSlot" : "heinz@example.com",
+    "timeSlot" : "300423 23:59",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ "Project" ]
   }, {
     "name" : "Daniel Meier",
     "type" : "87652533",
-    "timeSlot" : "cornelia@example.com",
+    "timeSlot" : "200523 12:00",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "type" : "9482224",
-    "timeSlot" : "werner@example.com",
+    "timeSlot" : "200523 12:00",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "type" : "9482427",
-    "timeSlot" : "lydia@example.com",
+    "timeSlot" : "280323 12:00",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "type" : "9482442",
-    "timeSlot" : "anna@example.com",
+    "timeSlot" : "300323 10:00",
     "address" : "4th street",
     "tagged" : [ ]
   } ]
