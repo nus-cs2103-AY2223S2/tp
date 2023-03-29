@@ -392,12 +392,32 @@ The `Model` component,
 </div>
 
 #### **Name**
+
+Represents the name of the user or the contact in `EduMate`.
+
 #### **Address**
+
+Represents the nearest MRT station to the user or contact's home.
+
 #### **Phone**
+
+Represents the contact number of the user or the contact.
+
 #### **Email**
+
+Represents the Email Address of the user or contact.
+
 #### **Telegram Handle**
+
+Represents the Telegram Handle of the user or contact.
+
 #### **Group Tag Set**
+
+Represents a collection of **unique** groups that the user or contact belong to.
+
 #### **Module Tag Set**
+
+Represents a collection of **unique** modules that the user or contact is enrolled into.
 
 ### **Tag**
 #### **Group Tag**
@@ -408,7 +428,7 @@ The `Model` component,
 We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
 objects which is then used elsewhere in the codebase.
 
-<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
 </div>
@@ -427,8 +447,20 @@ objects which is then used elsewhere in the codebase.
 
 ### **Timetable**
 
+The `Timetable` represents the daily schedule of the user or contact.
+
+<img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+</div>
+
+<br>
+For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each representing an hour starting from 8 AM - 9 AM and ending at 10 PM - 11 PM.
+
 ### **Utils**
 #### **Sample Data Util**
+
+{Hafeez please}
 
 ---
 
@@ -543,12 +575,6 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 * `editPersonDescriptor.getName().orElse(userToEdit.getName())`.
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning**:
-If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
-
-</div>
 
 In summary, the activity diagram is as such:
 
@@ -632,13 +658,13 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
@@ -824,7 +850,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 **API** : `Recommender.java` {to be filled in}
 
-<img src="images/RecommenderClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -847,7 +873,7 @@ The `TimingRecommender`'s role is to recommend timings in which the user and all
 The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
@@ -1327,7 +1353,13 @@ Expected Output in the PersonList: the third person has the `GroupTag` with `tag
 
 ### **Filter persons by keywords**
 
-{to be filled}
+`find n/Albert`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name.
+
+`find m/CS2103T`
+
+Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
@@ -1375,6 +1407,7 @@ Expected Output in Command Output Box: Suggestions on where and when to study.
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
+* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="281px" preserveAspectRatio="none" style="width:518px;height:281px;background:#FFFFFF;" version="1.1" viewBox="0 0 518 281" width="518px" zoomAndPan="magnify"><defs/><g><!--MD5=[908a037d2d39be02a0627077559acc8e]
+cluster Time--><g id="cluster_Time"><rect fill="none" height="195" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="301" x="7" y="80"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="37" x="139" y="95.5352">Time</text></g><!--MD5=[cff4d1dfabf1e80e04b31c5c669534b5]
+class Day--><g id="elem_Day"><rect codeLine="7" fill="#D42E12" height="42.1973" id="Day" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="118" x="23" y="115"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="112" x="26" y="133.1318">&lt;&lt;enumeration&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="69.5" y="149.2305">Day</text></g><!--MD5=[0d5dba44d4f4d2433157cdd6a25f0c7a]
+class TimePeriod--><g id="elem_TimePeriod"><rect codeLine="8" fill="#D42E12" height="42.1973" id="TimePeriod" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="79" x="212.5" y="115"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="221.5" y="133.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="73" x="215.5" y="149.2305">TimePeriod</text></g><!--MD5=[b22c4d9db343cab2da54871f588c4b5e]
+class HourBlock--><g id="elem_HourBlock"><rect codeLine="9" fill="#D42E12" height="26.0986" id="HourBlock" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="71" x="220.5" y="233"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="223.5" y="251.1318">HourBlock</text></g><!--MD5=[738c9bd480fe767d5a22669f343d517d]
+class TimeBlock--><g id="elem_TimeBlock"><rect codeLine="10" fill="#D42E12" height="26.0986" id="TimeBlock" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="72" x="60" y="233"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="66" x="63" y="251.1318">TimeBlock</text></g><!--MD5=[a53f52562f589408082301437dd9ab5b]
+class Timetable--><g id="elem_Timetable"><rect codeLine="13" fill="#D42E12" height="26.0986" id="Timetable" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="69" x="187.5" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="63" x="190.5" y="25.1318">Timetable</text></g><g id="elem_GMN15"><path d="M327,218 L327,242 L291.97,246 L327,250 L327,273.9316 A0,0 0 0 0 327,273.9316 L511,273.9316 A0,0 0 0 0 511,273.9316 L511,228 L501,218 L327,218 A0,0 0 0 0 327,218 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M501,218 L501,228 L511,228 L501,218 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="358.5" y="235.5684">Only consecutive,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="150" x="339.5" y="250.8789">disjoint HourBlocks can</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="163" x="333" y="266.1895">merge to form TimeBlock.</text></g><!--MD5=[c7efcc54c72ea71950f144388f4e9d2d]
+reverse link Timetable to HourBlock--><g id="link_Timetable_HourBlock"><path codeLine="15" d="M269.49,37.63 C284.88,45.53 300.23,56.69 309,72 C340.54,127.06 289.31,202.94 266.29,232.5 " fill="none" id="Timetable-backto-HourBlock" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#D42E12" points="258.08,32.37,261.8558,38.5136,268.979,37.3912,265.2032,31.2476,258.08,32.37" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#000000" points="322.9179,141.1546,326.0049,132.159,320.1279,132.0625,322.9179,141.1546" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70" x="332" y="141.0684">consists of</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="16" x="251.1344" y="222.3637">70</text></g><!--MD5=[5be53b367ebbc665f05eb8684fc81661]
+link Timetable to Day--><g id="link_Timetable_Day"><path codeLine="16" d="M206.75,33.42 C182.8,52.92 136.1,90.94 107.13,114.54 " fill="none" id="Timetable-Day" style="stroke:#D42E12;stroke-width:1.1;"/></g><!--MD5=[f08c818142ce3291850c16a930a80284]
+reverse link TimePeriod to HourBlock--><g id="link_TimePeriod_HourBlock"><path codeLine="17" d="M253.54,178.63 C254.26,197.89 255.05,219.36 255.54,232.53 " fill="none" id="TimePeriod-backto-HourBlock" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="none" points="246.55,179.07,252.81,158.83,260.54,178.55,246.55,179.07" style="stroke:#D42E12;stroke-width:1.1;"/></g><!--MD5=[adaf7ffd6664c3e1c60c3cbcbecfa28f]
+reverse link TimePeriod to TimeBlock--><g id="link_TimePeriod_TimeBlock"><path codeLine="18" d="M205.22,169.39 C174.54,190.62 136.15,217.2 114.02,232.53 " fill="none" id="TimePeriod-backto-TimeBlock" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="none" points="200.98,163.8,221.41,158.18,208.95,175.32,200.98,163.8" style="stroke:#D42E12;stroke-width:1.1;"/></g><!--MD5=[26414a5bf2904644716a0c8a2c90b53e]
+link TimeBlock to HourBlock--><g id="link_TimeBlock_HourBlock"><path codeLine="19" d="M132.31,246 C158.58,246 193.93,246 220.11,246 " fill="none" id="TimeBlock-HourBlock" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#000000" points="149.25,234.6553,158.2951,237.5942,158.2951,231.7163,149.25,234.6553" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="163.25" y="239.5684">merge</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="206.4535" y="242.1127">*</text></g><!--MD5=[1a312d6a29658f54d24a34fb303e3754]
+link Day to TimePeriod--><g id="link_Day_TimePeriod"><path codeLine="21" d="M141.46,136 C162.54,136 185.93,136 205.75,136 " fill="none" id="Day-to-TimePeriod" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#D42E12" points="210.54,136,201.54,132,205.54,136,201.54,140,210.54,136" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#000000" points="158.25,124.6553,167.2951,127.5942,167.2951,121.7163,158.25,124.6553" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="172.25" y="129.5684">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="149.1942" y="132.6612">1</text></g><!--MD5=[93aca1ddb7ff7683eaf7e76012c3cf70]
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Time <<Rectangle>> {
+    enum "<<enumeration>>\nDay" as Day
+    class "{abstract}\nTimePeriod" as TimePeriod
+    class HourBlock
+    class TimeBlock
+}
+
+Class Timetable
+
+Timetable *- - - "70" HourBlock : consists of >
+Timetable - - Day
+HourBlock -u-|> TimePeriod
+TimeBlock -u-|> TimePeriod
+TimeBlock - -right- - "*"HourBlock : < merge
+note left of HourBlock: Only consecutive,\ndisjoint HourBlocks can\nmerge to form TimeBlock.
+Day "1" -right- -> TimePeriod : has <
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #9900AA
+    Color #9900AA
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+skinparam sequenceReferenceBackgroundColor #C7CEC9
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #D42E12
+skinparam classBackgroundColor #D42E12
+
+Package Time <<Rectangle>> {
+    enum "<<enumeration>>\nDay" as Day
+    class "{abstract}\nTimePeriod" as TimePeriod
+    class HourBlock
+    class TimeBlock
+}
+
+Class Timetable
+
+Timetable *- - - "70" HourBlock : consists of >
+Timetable - - Day
+HourBlock -u-|> TimePeriod
+TimeBlock -u-|> TimePeriod
+TimeBlock - -right- - "*"HourBlock : < merge
+note left of HourBlock: Only consecutive,\ndisjoint HourBlocks can\nmerge to form TimeBlock.
+Day "1" -right- -> TimePeriod : has <
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>
