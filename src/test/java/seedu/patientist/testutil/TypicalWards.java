@@ -28,12 +28,16 @@ public class TypicalWards {
 
     public static Ward getBlockAWard1() {
         return new WardBuilder().withName("Block A Ward 1")
-                .withPatient(AMY).withPatient(CHARLIE).withStaff(CHARLES).build();
+                .withPatient(new PatientBuilder(AMY).build())
+                .withPatient(new PatientBuilder(CHARLIE).build())
+                .withStaff(new StaffBuilder(CHARLES).build()).build();
     }
 
     public static Ward getBlockAWard2() {
         return new WardBuilder().withName("Block A Ward 2")
-                .withPatient(ADAM).withPatient(BOB).withStaff(DACIA).build();
+                .withPatient(new PatientBuilder(ADAM).build())
+                .withPatient(new PatientBuilder(BOB).build())
+                .withStaff(new StaffBuilder(DACIA).build()).build();
     }
 
     /**

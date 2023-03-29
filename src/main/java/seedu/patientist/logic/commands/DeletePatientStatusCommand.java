@@ -1,7 +1,6 @@
 package seedu.patientist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -25,13 +24,13 @@ public class DeletePatientStatusCommand extends Command {
                                                + "DetailsPopup panel to the patient identified by the index number used"
                                                + " in the displayed person list.\n"
                                                + "Parameters: "
-                                               + PREFIX_INDEX + "INDEX OF PATIENT"
-                                               + PREFIX_INDEX + "INDEX OF STATUS\n"
+                                               + "INDEX OF PATIENT (must be a positive integer) "
+                                               + "INDEX OF STATUS (must be a positive integer)\n"
                                                + "Example: " + COMMAND_WORD + " "
-                                               + PREFIX_INDEX + "1 "
-                                               + PREFIX_INDEX + "1";
+                                               + "1 "
+                                               + "1";
 
-    public static final String MESSAGE_ADD_STATUS_SUCCESS = "Deleted Status %1$s from %2$s.";
+    public static final String MESSAGE_DELETE_STATUS_SUCCESS = "Deleted Status %1$s from %2$s.";
     public static final String MESSAGE_NOT_PATIENT = "Person selected is not a Patient.";
 
     private final Index targetIndex;
@@ -79,7 +78,7 @@ public class DeletePatientStatusCommand extends Command {
         patientist.removePerson(personToAdd);
         model.addPatient(patientToAdd, ward);
 
-        return new CommandResult(String.format(MESSAGE_ADD_STATUS_SUCCESS, targetStatusIndex.getOneBased(),
+        return new CommandResult(String.format(MESSAGE_DELETE_STATUS_SUCCESS, targetStatusIndex.getOneBased(),
                 patientToAdd));
     }
 

@@ -1,5 +1,6 @@
 package seedu.patientist.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -38,10 +39,10 @@ public class PatientBuilder extends PersonBuilder {
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
         idNumber = patientToCopy.getIdNumber();
-        status = patientToCopy.getPatientStatusDetails();
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
+        status = new ArrayList<>(patientToCopy.getPatientStatusDetails());
         tags = new HashSet<>(patientToCopy.getTags());
     }
     /**

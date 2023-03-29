@@ -1,7 +1,6 @@
 package seedu.patientist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
@@ -26,10 +25,10 @@ public class AddPatientStatusCommand extends Command {
                                                + ": Adds a status to the patient identified by the index number used in"
                                                + " the displayed person list.\n"
                                                + "Parameters: "
-                                               + PREFIX_INDEX + "INDEX (must be a positive integer)"
+                                               + "INDEX (must be a positive integer) "
                                                + PREFIX_STATUS + "STATUS\n"
                                                + "Example: " + COMMAND_WORD + " "
-                                               + PREFIX_INDEX + "1 "
+                                               + "1 "
                                                + PREFIX_STATUS + "Feeling fine";
 
     public static final String MESSAGE_ADD_STATUS_SUCCESS = "Added status %1$s to %2$s.";
@@ -66,6 +65,7 @@ public class AddPatientStatusCommand extends Command {
         for (String wardName : model.getWardNames()) {
             if (model.getWard(wardName).containsPatient((Patient) personToAdd)) {
                 ward = model.getWard(wardName);
+                break;
             }
         }
 
