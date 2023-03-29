@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+box Ui UI_COLOR_T0
+Participant ":DoctorListViewCell" as doctorListViewCell UI_COLOR
+Participant ":EnlargedInfoCardDisplayController" as enlargedInfoCardDisplayController LOGIC_COLOR
+Participant ":ContactDisplay" as contactDisplay MODEL_COLOR
+Participant ":StackPane" as enlargedPersonInfoCardPlaceholder STORAGE_COLOR
+Participant ":EnlargedDoctorInfoCard" as enlargedDoctorInfoCard LOGIC_COLOR_T2
+end box
+
+user -[USER_COLOR]> doctorListViewCell : MOUSE_CLICKED
+activate doctorListViewCell UI_COLOR
+
+doctorListViewCell -[UI_COLOR]> enlargedInfoCardDisplayController : displayDoctor()
+activate enlargedInfoCardDisplayController LOGIC_COLOR
+
+enlargedInfoCardDisplayController -[LOGIC_COLOR]> contactDisplay : setFeedbackToUser()
+activate contactDisplay MODEL_COLOR
+
+contactDisplay -[MODEL_COLOR]> enlargedPersonInfoCardPlaceholder : getChildren().clear()
+activate enlargedPersonInfoCardPlaceholder STORAGE_COLOR
+
+enlargedPersonInfoCardPlaceholder --[STORAGE_COLOR]> contactDisplay
+deactivate enlargedPersonInfoCardPlaceholder STORAGE_COLOR
+
+contactDisplay -[MODEL_COLOR]> enlargedDoctorInfoCard : getRoot()
+activate enlargedDoctorInfoCard LOGIC_COLOR_T2
+
+enlargedDoctorInfoCard --[LOGIC_COLOR_T2]> contactDisplay : rootOfInfoCard
+deactivate enlargedDoctorInfoCard LOGIC_COLOR_T2
+
+contactDisplay -[MODEL_COLOR]> enlargedPersonInfoCardPlaceholder : getChildren().add(rootOfInfoCard)
+activate enlargedPersonInfoCardPlaceholder STORAGE_COLOR
+
+enlargedPersonInfoCardPlaceholder --[STORAGE_COLOR]> contactDisplay
+deactivate enlargedPersonInfoCardPlaceholder STORAGE_COLOR
+
+contactDisplay -[MODEL_COLOR]-> enlargedInfoCardDisplayController
+deactivate contactDisplay
+
+enlargedInfoCardDisplayController --[LOGIC_COLOR]> doctorListViewCell
+deactivate enlargedInfoCardDisplayController
+
+doctorListViewCell--[UI_COLOR]> user
+deactivate doctorListViewCell
+@enduml

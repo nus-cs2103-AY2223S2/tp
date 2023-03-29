@@ -6,7 +6,7 @@
 
 
 ### What is Docedex?
-Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
+Docedex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
 
 ### For users
 To begin using the application, follow the steps under **Quick Start** in our **[Docedex User Guide](https://ay2223s2-cs2103t-f12-1.github.io/tp/UserGuide.html)**.

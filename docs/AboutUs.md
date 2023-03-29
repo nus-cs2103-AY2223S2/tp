@@ -3,57 +3,48 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are the Docedex team! We are undergraduates based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+**_Our contact information will be updated soon!_**
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Vigneshwar Hariharan
 
-<img src="images/vignesh.png" width="200px">
+<img src="images/vigonometry.png" width="200px">
 
 [[github](http://github.com/vigonometry)]
-[[portfolio](team/vignesh.md)]
+[[portfolio](team/vigonometry.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Code quality
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc.
 
 ### Amos Hung
 
-<img src="images/amos.png" width="200px">
+<img src="images/bobfree546.png" width="200px">
 
 [[github](http://github.com/Bobfree546)] [[portfolio](team/amos.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
 
 ### Krishnamoorthi Praveen
 
-<img src="images/praveen.png" width="200px">
+<img src="images/praveenkrishna0512.png" width="200px">
 
 [[github](http://github.com/praveenkrishna0512)]
-[[portfolio](team/praveen.md)]
+[[portfolio](team/praveenkrishna0512.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Documentation
+* Responsibilities: Responsible for the quality of various project documents.
 
 ### Owen Yap Yuhan
 
-<img src="images/owen.png" width="200px">
+<img src="images/owen-yap.png" width="200px">
 
 [[github](http://github.com/owen-yap)]
-[[portfolio](team/owen.md)]
+[[portfolio](team/owen-yap.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Project Manager
+* Responsibilities: Responsible for overall project coordination and in charge of defining, \
+assigning, and tracking project tasks.

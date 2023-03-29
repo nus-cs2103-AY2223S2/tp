@@ -8,27 +8,34 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "docedex")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_DOCTOR = "Doctors list contains duplicate doctors(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedDoctor> doctors = new ArrayList<>();
+    private final List<JsonAdaptedPatient> unassignedPatients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given doctors and patients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("doctors") List<JsonAdaptedDoctor> doctors,
+                                       @JsonProperty("unassignedPatients")
+                                               List<JsonAdaptedPatient> unassignedPatients) {
+        this.doctors.addAll(doctors);
+        this.unassignedPatients.addAll(unassignedPatients);
     }
 
     /**
@@ -37,7 +44,30 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        doctors.addAll(source.getDoctorList().stream()
+                .map(JsonSerializableAddressBook::convertToJsonAdaptedDoctor).collect(Collectors.toList()));
+        unassignedPatients.addAll(source.getUnassignedPatientList().stream()
+                .map(JsonSerializableAddressBook::convertToJsonAdaptedPatient).collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts a given {@code Doctor} into a JsonAdaptedDoctor.
+     *
+     * @param doctor a doctor object.
+     * @return a JsonAdaptedDoctor.
+     */
+    private static JsonAdaptedDoctor convertToJsonAdaptedDoctor(Doctor doctor) {
+        return new JsonAdaptedDoctor(doctor);
+    }
+
+    /**
+     * Converts a given {@code Patient} into a JsonAdaptedPatient.
+     *
+     * @param patient a patient object.
+     * @return a JsonAdaptedPatient.
+     */
+    private static JsonAdaptedPatient convertToJsonAdaptedPatient(Patient patient) {
+        return new JsonAdaptedPatient(patient);
     }
 
     /**
@@ -47,13 +77,43 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedDoctor jsonAdaptedDoctor : doctors) {
+            Doctor doctor = jsonAdaptedDoctor.toModelType();
+            if (addressBook.hasDoctor(doctor)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_DOCTOR);
             }
-            addressBook.addPerson(person);
+            addressBook.addDoctor(doctor);
+
+            for (Patient patient : doctor.getPatients()) {
+                if (!addressBook.hasPatient(patient)) {
+                    addressBook.addPatient(patient);
+                }
+            }
         }
+
+        // Assign patients to doctors
+        ObservableList<Patient> addressBookPatientList = addressBook.getPatientList();
+        ObservableList<Doctor> addressBookDoctorList = addressBook.getDoctorList();
+        for (Patient patient : addressBookPatientList) {
+            for (Doctor doctor : addressBookDoctorList) {
+                // Assign doctor to patient
+                // This is done here as doctorsAssigned is not stored
+                // within each patient json object
+                if (doctor.hasPatient(patient)) {
+                    patient.assignDoctor(doctor);
+                }
+            }
+        }
+
+        // Add unassigned patients
+        for (JsonAdaptedPatient jsonAdaptedPatient : unassignedPatients) {
+            Patient patient = jsonAdaptedPatient.toModelType();
+            if (addressBook.hasPatient(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
+            }
+            addressBook.addPatient(patient);
+        }
+
         return addressBook;
     }
 
