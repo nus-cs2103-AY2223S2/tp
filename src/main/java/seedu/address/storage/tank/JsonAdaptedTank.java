@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Jackson-friendly version of {@link Tank}.
@@ -46,6 +47,6 @@ public class JsonAdaptedTank {
             throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
         }
         final TankName modelTankName = new TankName(tankName);
-        return new Tank(modelTankName, new AddressBook(), );
+        return new Tank(modelTankName, new AddressBook(), new UniqueIndividualReadingLevels());
     }
 }

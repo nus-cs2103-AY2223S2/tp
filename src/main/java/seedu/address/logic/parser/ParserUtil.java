@@ -17,6 +17,7 @@ import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 
@@ -183,7 +184,7 @@ public class ParserUtil {
         if (!TankName.isValidTankName(trimmedTank)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Tank(new TankName(trimmedTank), new AddressBook(), );
-
+        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
+        return retTank;
     }
 }

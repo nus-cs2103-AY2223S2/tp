@@ -37,9 +37,15 @@ public class AmmoniaLevel extends Reading {
         this.value = Double.parseDouble(value);
     }
 
+    /**
+     * Returns true if the ammonia input is valid
+     * @param value value
+     * @param date date
+     * @return true if valid
+     */
     public static boolean isValidAmmoniaLevel(String value, String date) {
-        return value.matches(VALIDATION_REGEX_VALUE) &&
-                date.matches(VALIDATION_REGEX_DATE);
+        return value.matches(VALIDATION_REGEX_VALUE)
+                && date.matches(VALIDATION_REGEX_DATE);
     }
 
     public double getValue() {

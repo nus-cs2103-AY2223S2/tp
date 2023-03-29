@@ -30,6 +30,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.testutil.EditFishDescriptorBuilder;
 import seedu.address.testutil.FishBuilder;
 
@@ -52,7 +53,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
-        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), ));
+        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH, descriptor);
 
@@ -78,7 +79,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since new fish is in tank 2, hard coded 2 here
-        editedFish.setTank(new Tank(new TankName("2"), new AddressBook(), ));
+        editedFish.setTank(new Tank(new TankName("2"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
         EditCommand editCommand = new EditCommand(indexLastFish, descriptor);
         expectedModel.setFish(lastFish, editedFish);
@@ -99,7 +100,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
-        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), ));
+        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH, descriptor);
         expectedModel.setFish(expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased()), editedFish);
@@ -122,7 +123,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
-        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), ));
+        editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH,
                 new EditFishDescriptorBuilder(editedFish).build());
         expectedModel.setFish(expectedModel.getFilteredFishList().get(0), editedFish);
@@ -135,7 +136,7 @@ public class EditCommandTest {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
                 getTypicalTankList());
         Fish firstFish = model.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
-        firstFish.setTank(new Tank(new TankName("1"), new AddressBook(), ));
+        firstFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(firstFish).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_FISH, descriptor);
 
@@ -151,7 +152,7 @@ public class EditCommandTest {
         // edit fish in filtered list into a duplicate in address book
         Fish fishInList = model.getAddressBook().getFishList().get(INDEX_SECOND_FISH.getZeroBased());
         // user inputs tank attribute will be a number for edit commands
-        fishInList.setTank(new Tank(new TankName("1"), new AddressBook(), ));
+        fishInList.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH,
                 new EditFishDescriptorBuilder(fishInList).build());
 

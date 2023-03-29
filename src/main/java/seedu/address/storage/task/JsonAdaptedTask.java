@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -76,7 +77,7 @@ public class JsonAdaptedTask {
         Tank modelTank = null;
 
         if (this.tank != null) {
-            modelTank = new Tank(new TankName(this.tank), new AddressBook(), );
+            modelTank = new Tank(new TankName(this.tank), new AddressBook(), new UniqueIndividualReadingLevels());
         }
 
         Priority modelPriority = null;

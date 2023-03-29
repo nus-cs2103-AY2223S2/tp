@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.TankList;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * A utility class containing a list of {@code Tank} objects to be used in tests.
@@ -36,8 +37,10 @@ public class TypicalTanks {
     }
 
     public static List<Tank> getTypicalTanks() {
-        Tank tankOne = new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook(), );
-        Tank tankTwo = new Tank(new TankName(TYPICAL_TANK_2_STRING), new AddressBook(), );
+        Tank tankOne = new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook(),
+                new UniqueIndividualReadingLevels());
+        Tank tankTwo = new Tank(new TankName(TYPICAL_TANK_2_STRING), new AddressBook(),
+                new UniqueIndividualReadingLevels());
         return new ArrayList<>(Arrays.asList(tankOne, tankTwo));
     }
 

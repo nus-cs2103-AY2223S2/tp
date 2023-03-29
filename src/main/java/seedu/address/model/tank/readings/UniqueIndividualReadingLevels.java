@@ -17,17 +17,17 @@ import seedu.address.model.tank.readings.exceptions.ReadingNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class UniqueIndividualReadingLevels {
-    public final ObservableList<AmmoniaLevel> internalListAmmonia = FXCollections.observableArrayList();
+    private final ObservableList<AmmoniaLevel> internalListAmmonia = FXCollections.observableArrayList();
 
     private final ObservableList<AmmoniaLevel> internalUnmodifiableListAmmonia =
             FXCollections.unmodifiableObservableList(internalListAmmonia);
 
-    public final ObservableList<PH> internalListPH = FXCollections.observableArrayList();
+    private final ObservableList<PH> internalListPH = FXCollections.observableArrayList();
 
     private final ObservableList<PH> internalUnmodifiableListPH =
             FXCollections.unmodifiableObservableList(internalListPH);
 
-    public final ObservableList<Temperature> internalListTemp = FXCollections.observableArrayList();
+    private final ObservableList<Temperature> internalListTemp = FXCollections.observableArrayList();
 
     private final ObservableList<Temperature> internalUnmodifiableListTemp =
             FXCollections.unmodifiableObservableList(internalListTemp);
@@ -38,8 +38,8 @@ public class UniqueIndividualReadingLevels {
      * Constructor for an ammonia level list for a single tank
      * @param t Tank this list is associated to
      */
-    public UniqueIndividualReadingLevels(Tank t) {
-        this.tank = t;
+    public UniqueIndividualReadingLevels() {
+
     }
 
     /**
@@ -121,12 +121,12 @@ public class UniqueIndividualReadingLevels {
      * Replaces the contents of this list with {@code ammoniaLevels}.
      * {@code ammoniaLevels} must not contain duplicate ammoniaLevels.
      */
-    public void setReadings(List<AmmoniaLevel> ammoniaLevels, List<PH> PHs, List<Temperature> temperatures) {
-        requireAllNonNull(ammoniaLevels, PHs, temperatures);
+    public void setReadings(List<AmmoniaLevel> ammoniaLevels, List<PH> pHs, List<Temperature> temperatures) {
+        requireAllNonNull(ammoniaLevels, pHs, temperatures);
         if (!ammoniaLevelsAreUnique(ammoniaLevels)) {
             throw new DuplicateReadingException();
         }
-        if (!PHsAreUnique(PHs)) {
+        if (!pHsAreUnique(pHs)) {
             throw new DuplicateReadingException();
         }
         if (!temperaturesAreUnique(temperatures)) {
@@ -134,7 +134,7 @@ public class UniqueIndividualReadingLevels {
         }
 
         internalListAmmonia.setAll(ammoniaLevels);
-        internalListPH.setAll(PHs);
+        internalListPH.setAll(pHs);
         internalListTemp.setAll(temperatures);
     }
 
@@ -155,10 +155,10 @@ public class UniqueIndividualReadingLevels {
     /**
      * Returns true if {@code Readings} contains only unique Readings.
      */
-    private boolean PHsAreUnique(List<PH> PHs) {
-        for (int i = 0; i < PHs.size() - 1; i++) {
-            for (int j = i + 1; j < PHs.size(); j++) {
-                if (PHs.get(i).equals(PHs.get(j))) {
+    private boolean pHsAreUnique(List<PH> pHs) {
+        for (int i = 0; i < pHs.size() - 1; i++) {
+            for (int j = i + 1; j < pHs.size(); j++) {
+                if (pHs.get(i).equals(pHs.get(j))) {
                     return false;
                 }
             }
@@ -332,6 +332,10 @@ public class UniqueIndividualReadingLevels {
                 && tank.equals(((UniqueIndividualReadingLevels) other).tank));
     }
 
+    /**
+     * Returns size of each of the readings. The 3 types have the same number of total inputs
+     * @return size integer
+     */
     public int size() {
         //for now all 3 readings come and go together, have same size
         return internalListAmmonia.size();

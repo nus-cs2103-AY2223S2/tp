@@ -2,6 +2,7 @@ package seedu.address.storage.tank.readings.ammonialevels;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
@@ -86,7 +87,7 @@ public class JsonAdaptedIndividualReadingLevels {
             throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
         }
         final TankName modelTankName = new TankName(tankName);
-        Tank tank = new Tank(modelTankName, new AddressBook(), );
+        Tank tank = new Tank(modelTankName, new AddressBook(), new UniqueIndividualReadingLevels());
 
         String[] valuesAmmonia = commaSeperatedValuesAmmonia.split(",");
         String[] datesAmmonia = commaSeperatedDatesAmmonia.split(",");
@@ -95,7 +96,7 @@ public class JsonAdaptedIndividualReadingLevels {
         String[] valuesTemp = commaSeperatedValuesTemp.split(",");
         String[] datesTemp = commaSeperatedDatesTemp.split(",");
         //create unique adapted indi list
-        UniqueIndividualReadingLevels ret = new UniqueIndividualReadingLevels(tank);
+        UniqueIndividualReadingLevels ret = new UniqueIndividualReadingLevels();
         //for loop, create ammonia levels, add to list
         for (int i = 0; i < valuesAmmonia.length; i++) {
             String curValueAmmonia = valuesAmmonia[i];

@@ -1,24 +1,25 @@
 package seedu.address.storage.tank.readings.ammonialevels;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tank.readings.FullReadingLevels;
 import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * An Immutable {@code FullReadingLevels} that is serializable to JSON format.
  */
 @JsonRootName(value = "fullReadingLevels")
 public class JsonSerializableFullReadingLevels {
-    public static final String MESSAGE_DUPLICATE_TANK = "JsonSerializableFullReadingLevels contains " +
-            "duplicate tank(s).";
+    public static final String MESSAGE_DUPLICATE_TANK = "JsonSerializableFullReadingLevels contains "
+            + "duplicate tank(s).";
 
     private final List<JsonAdaptedIndividualReadingLevels> readingLevels = new ArrayList<>();
 

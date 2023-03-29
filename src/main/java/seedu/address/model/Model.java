@@ -181,20 +181,20 @@ public interface Model {
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel();
 
     //=========== FullReadingLevels  =============================================================
-    void setFullAmmoniaLevels(ReadOnlyReadingLevels ammoniaLevels);
+    void setFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels);
 
-    ReadOnlyReadingLevels getFullAmmoniaLevels();
+    ReadOnlyReadingLevels getFullReadingLevels();
 
-    boolean hasIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels);
+    boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
 
-    void deleteIndividualAmmoniaLevels(UniqueIndividualReadingLevels target);
+    void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target);
 
-    void addIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels);
+    void addIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
 
-    void setIndividualAmmoniaLevels(UniqueIndividualReadingLevels target,
+    void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
                                     UniqueIndividualReadingLevels editedList);
 
-    ObservableList<UniqueIndividualReadingLevels> getFilteredAmmoniaLevels();
+    ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels();
 
-    void updateFilteredAmmoniaLevels(Predicate<UniqueIndividualReadingLevels> predicate);
+    void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate);
 }

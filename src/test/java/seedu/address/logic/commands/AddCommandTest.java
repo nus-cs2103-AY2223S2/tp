@@ -29,6 +29,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TankList;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 import seedu.address.testutil.FishBuilder;
@@ -261,6 +263,46 @@ public class AddCommandTest {
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
+        }
+
+        @Override
+        public void setFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels) {
+
+        }
+
+        @Override
+        public ReadOnlyReadingLevels getFullReadingLevels() {
+            return null;
+        }
+
+        @Override
+        public boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+            return false;
+        }
+
+        @Override
+        public void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target) {
+
+        }
+
+        @Override
+        public void addIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+
+        }
+
+        @Override
+        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target, UniqueIndividualReadingLevels editedList) {
+
+        }
+
+        @Override
+        public ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
+
         }
     }
 

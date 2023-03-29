@@ -19,6 +19,7 @@ import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 
 /**
@@ -120,7 +121,8 @@ public class JsonAdaptedFish {
         }
         //TODO: explore if it is possible to use the real Tank object instead of making new ones with same name
         //final Tank modelTankUnassigned = new UnassignedTank(null, null);
-        final Tank modelTankUnassigned = new Tank(new TankName(tank), new AddressBook(), );
+        final Tank modelTankUnassigned = new Tank(new TankName(tank), new AddressBook(),
+                new UniqueIndividualReadingLevels());
 
         final Set<Tag> modelTags = new HashSet<>(fishTags);
         return new Fish(modelName, modelLastFedDate, modelSpecies, modelFeedingInterval, modelTankUnassigned,

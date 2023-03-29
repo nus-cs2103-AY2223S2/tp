@@ -1,6 +1,7 @@
 package seedu.address.model.tank;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Default tank to be assigned to a {@code Fish} when it is created in
@@ -10,7 +11,7 @@ import seedu.address.model.AddressBook;
  */
 public class UnassignedTank extends Tank {
     public UnassignedTank(TankName tankName, AddressBook fishList) {
-        super(tankName, fishList, );
+        super(tankName, fishList, new UniqueIndividualReadingLevels());
     }
 
     @Override

@@ -37,9 +37,15 @@ public class Temperature extends Reading {
         this.value = Double.parseDouble(value);
     }
 
+    /**
+     * Returns true if the temperature input is valid
+     * @param value value
+     * @param date date
+     * @return true if valid
+     */
     public static boolean isValidTemperature(String value, String date) {
-        return value.matches(VALIDATION_REGEX_VALUE) &&
-                date.matches(VALIDATION_REGEX_DATE);
+        return value.matches(VALIDATION_REGEX_VALUE)
+                && date.matches(VALIDATION_REGEX_DATE);
     }
 
     public double getValue() {

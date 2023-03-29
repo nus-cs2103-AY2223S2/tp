@@ -37,7 +37,7 @@ public class ModelManager implements Model {
     private final TankList tankList;
     private final FilteredList<Tank> filteredTanks;
     private final FullReadingLevels fullReadingLevels;
-    private final FilteredList<UniqueIndividualReadingLevels> filteredAmmoniaLevels;
+    private final FilteredList<UniqueIndividualReadingLevels> filteredReadingLevels;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -56,7 +56,7 @@ public class ModelManager implements Model {
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
         this.fullReadingLevels = new FullReadingLevels();
-        filteredAmmoniaLevels = new FilteredList<>(this.fullReadingLevels.getFullReadingLevels());
+        filteredReadingLevels = new FilteredList<>(this.fullReadingLevels.getFullReadingLevels());
 
         updateTanksOfEachFishAndFishListOfEachTank();
         updateTankOfEachTask();
@@ -376,33 +376,33 @@ public class ModelManager implements Model {
 
     //=========== FullReadingLevels  =============================================================
     @Override
-    public void setFullAmmoniaLevels(ReadOnlyReadingLevels ammoniaLevels) {
-        this.fullReadingLevels.resetData(ammoniaLevels);
+    public void setFullReadingLevels(ReadOnlyReadingLevels readingLevels) {
+        this.fullReadingLevels.resetData(readingLevels);
     }
 
     @Override
-    public ReadOnlyReadingLevels getFullAmmoniaLevels() {
+    public ReadOnlyReadingLevels getFullReadingLevels() {
         return fullReadingLevels;
     }
 
     @Override
-    public boolean hasIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
-        requireNonNull(ammoniaLevels);
-        return fullReadingLevels.hasIndividualReadingLevels(ammoniaLevels);
+    public boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels readingLevels) {
+        requireNonNull(readingLevels);
+        return fullReadingLevels.hasIndividualReadingLevels(readingLevels);
     }
 
     @Override
-    public void deleteIndividualAmmoniaLevels(UniqueIndividualReadingLevels target) {
+    public void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target) {
         fullReadingLevels.removeIndividualReadingLevel(target);
     }
 
     @Override
-    public void addIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
-        fullReadingLevels.addIndividualReadingLevel(ammoniaLevels);
+    public void addIndividualReadingLevels(UniqueIndividualReadingLevels readingLevels) {
+        fullReadingLevels.addIndividualReadingLevel(readingLevels);
     }
 
     @Override
-    public void setIndividualAmmoniaLevels(UniqueIndividualReadingLevels target,
+    public void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
                                            UniqueIndividualReadingLevels editedList) {
         requireAllNonNull(target, editedList);
         fullReadingLevels.setIndividualReadingLevel(target, editedList);
@@ -414,14 +414,14 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the {@code FullReadingLevels}.
      */
     @Override
-    public ObservableList<UniqueIndividualReadingLevels> getFilteredAmmoniaLevels() {
-        return filteredAmmoniaLevels;
+    public ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels() {
+        return filteredReadingLevels;
     }
 
     @Override
-    public void updateFilteredAmmoniaLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
+    public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
         requireNonNull(predicate);
-        filteredAmmoniaLevels.setPredicate(predicate);
+        filteredReadingLevels.setPredicate(predicate);
     }
 
 }

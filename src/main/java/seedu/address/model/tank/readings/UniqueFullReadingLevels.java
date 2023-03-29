@@ -77,7 +77,7 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
      */
     public void setReadingLevels(List<UniqueIndividualReadingLevels> uniqueIndividualReadingLevelsList) {
         requireAllNonNull(uniqueIndividualReadingLevelsList);
-        if (!ReadingLevelsAreUnique(uniqueIndividualReadingLevelsList)) {
+        if (!readingLevelsAreUnique(uniqueIndividualReadingLevelsList)) {
             throw new DuplicateReadingException();
         }
 
@@ -87,7 +87,7 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
     /**
      * Returns true if {@code Readings} contains only unique Readings.
      */
-    private boolean ReadingLevelsAreUnique(List<UniqueIndividualReadingLevels> readingLevelsList) {
+    private boolean readingLevelsAreUnique(List<UniqueIndividualReadingLevels> readingLevelsList) {
         for (int i = 0; i < readingLevelsList.size() - 1; i++) {
             for (int j = i + 1; j < readingLevelsList.size(); j++) {
                 if (readingLevelsList.get(i).equals(readingLevelsList.get(j))) {
