@@ -57,8 +57,10 @@ public class AssignPatientCommand extends Command {
         Doctor doctorToAssign = lastShownDoctorList.get(doctorIndex.getZeroBased());
 
         Doctor doctorWithAssign = createDoctorWithAssign(doctorToAssign, patientToAssign);
+        Patient patientWithAssign = createPatientWithAssign(doctorToAssign, patientToAssign);
 
         model.setDoctor(doctorToAssign, doctorWithAssign);
+        model.setPatient(patientToAssign, patientWithAssign);
         return new CommandResult(String.format(MESSAGE_ASSIGN_PATIENT_SUCCESS,
                 patientToAssign.getName().fullName,
                 doctorToAssign.getName().fullName));
@@ -78,6 +80,7 @@ public class AssignPatientCommand extends Command {
 
         patientsSet.add(patientToAssign);
 
+
         return new Doctor(doctorToAssign.getName(),
                 doctorToAssign.getPhone(),
                 doctorToAssign.getEmail(),
@@ -85,6 +88,32 @@ public class AssignPatientCommand extends Command {
                 doctorToAssign.getYoe(),
                 doctorToAssign.getTags(),
                 patientsSet);
+    }
+
+    private static Patient createPatientWithAssign(Doctor doctorToAssign, Patient patientToAssign)
+            throws CommandException {
+        assert doctorToAssign != null;
+        assert patientToAssign != null;
+        Set<Doctor> doctorsSet = patientToAssign.getDoctors();
+
+        if (doctorsSet.contains(doctorToAssign)) {
+            throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
+                    patientToAssign.getName().fullName,
+                    doctorToAssign.getName().fullName));
+        }
+
+        doctorsSet.add(doctorToAssign);
+
+        return new Patient(patientToAssign.getName(),
+                patientToAssign.getPhone(),
+                patientToAssign.getEmail(),
+                patientToAssign.getHeight(),
+                patientToAssign.getWeight(),
+                patientToAssign.getDiagnosis(),
+                patientToAssign.getStatus(),
+                patientToAssign.getRemark(),
+                patientToAssign.getTags(),
+                doctorsSet);
     }
 
     @Override

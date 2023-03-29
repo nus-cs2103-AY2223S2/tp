@@ -70,7 +70,7 @@ public class ContactDisplay extends UiPart<Region> {
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(),
-                enlargedDoctorInfoCard, infoCardDisplayController, patientListPanel);
+                enlargedDoctorInfoCard, infoCardDisplayController, logic);
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
     }
 
