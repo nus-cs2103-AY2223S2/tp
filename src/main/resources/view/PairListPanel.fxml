@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <VBox styleClass="listView" fx:id="pairListBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <Label styleClass="listLabel" VBox.vgrow="ALWAYS" prefWidth="248.0" text="Pair">
+   <Label styleClass="listLabel" minHeight="-Infinity" VBox.vgrow="ALWAYS" prefWidth="248.0" text="Pair">
       <font>
          <Font/>
       </font>
    </Label>
    <BorderPane style="-fx-border-color: whitesmoke; -fx-border-width: 1"/>
-   <HBox maxWidth="400">
-      <Label text="Elderly" minWidth="220" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
-      <Label text="Volunteer" minWidth="220" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
+   <HBox maxWidth="600" minHeight="-Infinity">
+      <Label text="Elderly" minWidth="200" HBox.hgrow="ALWAYS" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
+      <Label text="Volunteer" minWidth="200" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" style="-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"/>
    </HBox>
    <ListView fx:id="pairListView" VBox.vgrow="ALWAYS"/>
 </VBox>

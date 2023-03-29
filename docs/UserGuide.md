@@ -15,7 +15,15 @@ With its easy-to-use **text-based interface** and contact management features, s
 
 ## Before you Begin
 
-Please read this section before skipping to specific parts in the `Features` section
+Please read this section before skipping to specific parts in the `Features` section.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+
+The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%. 
+It is recommended that you switch to this resolution before proceeding with the rest of the user guide. UI bugs stemming 
+from other resolutions or different zoom levels is out of scope (impracticability due to lack of time).
+
+</div>
 
 ### Purpose of Guide
 
@@ -33,19 +41,19 @@ We suggest reading this guide in sequential order (or at least the whole of this
 
 You may see the following icons throughout our user guide, which are styled differently according to their purpose.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 This provides some additional information that you are recommended to know.
 </div>
 
 ##### Tip Box
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
 ##### Danger Box
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
 </div>
 
@@ -550,8 +558,9 @@ Example:
 * Typing `fi` will suggest `find`.
 
 For adding records, if the user has not input all the available fields for the new input elderly or volunteer, the
-auto-complete feature will automatically suggest all the remaining prefixes. No new suggestions will be given if all
-possible prefixes has at least one value provided.
+auto-complete feature will automatically recommend all remaining prefixes. No new suggestions will be given once all
+possible prefixes has at least one value provided. If the user continues to specify more attributes like `t/`, the recommendation
+will be done on a case-by-case basis.
 
 Example:
 
@@ -565,7 +574,7 @@ Example:
 
 **:information_source: Notes:**<br>
 
-* Input validation merely validates the set of possible fields. If the user specifies an field that is
+* Input validation validates the set of possible fields. If the user specifies a field that is
   not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
   error will be thrown when the user confirms the command.
 * There is a known UI bug when the text in `commandTextField` overflows. To improve user experience, the recommendation
@@ -582,6 +591,10 @@ Example:
 * `CTRL+V`: Paste the text into command box
 * `CTRL+Z`: Undo the previous command
 * `CTRL+X`: Cut the text
+* `ARROW_UP`: Navigate to the previous item on the list
+* `ARROW_DOWN`: Navigate to the next item on the list
+
+For more shortcuts, please refer [here](https://wiki.openjdk.org/display/OpenJFX/Keyboard+Navigation).
 
 ---------------------------------------------------
 
