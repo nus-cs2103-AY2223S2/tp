@@ -148,8 +148,7 @@ public class Employee {
 
         return otherEmployee != null
                 && otherEmployee.getName().equals(getName())
-                && otherEmployee.getPhone().equals(getPhone())
-                && otherEmployee.getEmail().equals(getEmail());
+                && otherEmployee.getPhone().equals(getPhone());
     }
 
     /**

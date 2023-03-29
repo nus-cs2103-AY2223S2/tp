@@ -68,7 +68,6 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
         return employees.asUnmodifiableObservableList().stream().anyMatch(existingEmployee ->
                 existingEmployee.getName().equals(employee.getName())
                         && existingEmployee.getPhone().equals(employee.getPhone())
-                        && existingEmployee.getEmail().equals(employee.getEmail())
         );
     }
 
