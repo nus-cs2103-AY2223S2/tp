@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
- * The UI component that is responsible for outputting the result of user requests.
+ * A UI component that is responsible for showing the result of user requests.
  */
 public class ResultDialog {
 
@@ -23,7 +23,7 @@ public class ResultDialog {
     private static Stage primaryStage;
 
     /**
-     * Creates a {@code ResultDialog} with the given {@code String}.
+     * Creates a {@code ResultDialog} with the given {@code String} in the given {@code Stage}.
      */
     public static void displayResultDialog(String resultMsg, Stage stage) {
         resultMessage = resultMsg;

@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Terminates the program.
+ * Terminates InternEase.
  */
 public class ExitCommand extends Command {
 

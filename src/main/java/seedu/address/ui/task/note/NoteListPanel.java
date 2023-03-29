@@ -32,8 +32,14 @@ public class NoteListPanel extends UiPart<Region> {
         super(FXML);
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+        logger.info("Note List updated.");
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }
