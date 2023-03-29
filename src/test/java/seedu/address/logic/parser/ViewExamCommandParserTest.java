@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ViewExamCommand;
-
+import seedu.address.logic.commands.exam.ViewExamCommand;
+import seedu.address.logic.parser.exam.ViewExamCommandParser;
 
 class ViewExamCommandParserTest {
     private ViewExamCommandParser parser = new ViewExamCommandParser();

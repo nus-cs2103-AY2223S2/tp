@@ -17,17 +17,18 @@ import seedu.address.ui.homework.FilledHomeworkContent;
  */
 public class FilledExamsContent extends GeneralExamsContent {
     private static final Logger logger = LogsCenter.getLogger(FilledHomeworkContent.class);
-
+    private static final String PAST_EXAMS_LIST_NAME = "Past Exams: ";
+    private static final String UPCOMING_EXAMS_LIST_NAME = "Upcoming Exams: ";
     private static final String FXML = "ExamsContent.fxml";
     private final Name studentName;
 
     @FXML
     private Label name;
     @FXML
-    private Label examsListName;
+    private Label pastExamListName;
 
     @FXML
-    private StackPane examsListPlaceholder;
+    private StackPane pastExamsListPlaceholder;
 
     @FXML
     private Label upcomingExamsListName;
@@ -42,15 +43,20 @@ public class FilledExamsContent extends GeneralExamsContent {
         super(FXML);
         studentName = student.getName();
 
+<<<<<<< HEAD
         name.setText(String.format("First Name: %s", student.getName().getFirstName()));
         examsListName.setText("All Exams: ");
+=======
+        name.setText(String.format("Full Name: %s", student.getName().getFirstName()));
+        pastExamListName.setText(PAST_EXAMS_LIST_NAME);
+>>>>>>> ea4d45dd45fd08d75779afa7eb864e40b1d48014
 
-        // Set the all exams list panel to display the all the exams of the student
-        ObservableList<Exam> examsList = student.getExamsList();
-        ExamsListPanel examsListPanel = new ExamsListPanel(examsList);
-        examsListPlaceholder.getChildren().add(examsListPanel.getRoot());
+        // Set the past exams list panel to display the past exams of the student
+        ObservableList<Exam> pastExamsList = student.getPastExamsList();
+        ExamsListPanel pastExamsListPanel = new ExamsListPanel(pastExamsList);
+        pastExamsListPlaceholder.getChildren().add(pastExamsListPanel.getRoot());
 
-        upcomingExamsListName.setText("Most recent upcoming Exams at a glance: ");
+        upcomingExamsListName.setText(UPCOMING_EXAMS_LIST_NAME);
 
         // Set the upcoming exams list panel to display the upcoming exams of the student
         ObservableList<Exam> upcomingExamsList = student.getUpcomingExamsList();
