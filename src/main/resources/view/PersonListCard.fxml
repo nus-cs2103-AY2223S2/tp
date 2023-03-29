@@ -68,6 +68,7 @@
              </children>
          </GridPane>
      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+     <Label fx:id="task" styleClass="cell_small_label" text="\$task" />
  </VBox>
     <VBox minHeight="40.0" HBox.hgrow="ALWAYS">
         <GridPane prefWidth="214.0">
