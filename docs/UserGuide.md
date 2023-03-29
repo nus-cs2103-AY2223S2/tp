@@ -175,14 +175,14 @@ Creates a new client contact.
 **Compulsory Arguments**
 
 - `-cn client_name`
-    - The client’s name.
+    - The client’s name. Alphanumerical characters only. Case sensitive.
 - `-e email`
     - The client’s email. Must be unique in Mycelium. Case sensitive.
 
 **Optional Arguments**
 
 - `-y year_of_birth`
-    - The client’s year of birth.
+    - The client’s year of birth. A valid year of birth is between 1900 and 2023, inclusive.
     - **Default**: *null*
 - `-src source`
     - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
@@ -204,6 +204,8 @@ You should see the following output if the client is created successfully.
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
 
+:information_source: **A note on names:** Mycelium supports names with `s/o` and `d/o` in them. For example, `Alice Baker s/o Bob Baker` is a valid name.
+
 ### Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
@@ -223,7 +225,7 @@ in Mycelium.
 
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
-Expected output:
+Once the client is deleted, you should see the following output.
 
 ```
 Deleted Client: Alice Baker (alice_baker@bakers.com)
