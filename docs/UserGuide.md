@@ -104,6 +104,22 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Assigning a patient to a doctor:
+- Command format: `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`
+- What it does: Assigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …
+- Examples:
+  - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Unassigning a patient to a doctor:
+- Command format: `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`
+- What it does: Unassigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
+- Examples:
+  - `unassign-ptn ptn/1 doc/1` unassigns the first patient to the first doctor.
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Editing a doctor : 
 - Command format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
 - What it does: Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
@@ -171,32 +187,33 @@ Examples:
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Finding a doctor
-- Command format: `find-doc KEYWORD`
-- What it does: Users can search up doctors that contain a specific text (KEYWORD) using this command.
-- Note to users:
-  - KEYWORD can contain multiple words.
-    >   e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD. 
-  - The search is case-insensitive.
-    > e.g. `hans` will match `Hans`. 
-  - All doctor entries that contain KEYWORD in their fields will be listed.
+- Command format: `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`
+- What it does: Users can search up doctors with specific fields using this command.
+- Note to user:
+    - Matches are case-insensitive.
+    - Fields are matched if they contain the search string (substring matched).
+    - At least one of the fields must be provided.
+    - More than one tag can be provided.
+    - Blank fields will be ignored.
 - Examples:
-  - `find-doc Gabriel`
+  - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
+  - `find-doc n/Gabriel t/friend t/expert` matches any doctor with the name containing the string `Gabriel` and has tags `friend` and `expert`.
+  - `find-doc y/3` matches any doctor that has the number 3 in their years of experience, i.e. `3`,`30`,`23` will be matched but `5` and `10` will not be matched.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Finding a patient
-
-Command format: `find-ptn KEYWORD`
-- Command format: `find-ptn KEYWORD`
-- What it does: Users can search up patients that contain a specific text (KEYWORD) using this command.
+- Command format: `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`
+- What it does: Users can search up patients with specific fields using this command.
 - Note to users:
-    - KEYWORD can contain multiple words.
-      >   e.g. The command `find-ptn Hans Bo` will use `Hans Bo` as the KEYWORD.
-    - The search is case-insensitive.
-      > e.g. `hans` will match `Hans`.
-    - All doctor entries that contain KEYWORD in their fields will be listed.
+    - Matches are case-insensitive.
+    - Fields are matched if they contain the search string (substring matched).
+    - At least one of the fields must be provided.
+    - More than one tag can be provided.
+    - Blank fields will be ignored.
 - Examples:
-  - `find-ptn Gabriel`
+  - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
+  - `find-ptn h/1` match any patient with the height containing the string `1`, i.e. `1.70` and `0.91` will be matched but `0.99` and `2.00` will not be matched.
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -289,14 +306,16 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 | Action             | Format, Examples                                                                                                                                                                                                                              |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Doctor**     | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
-| **Add Patient**    | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
+| **Add Doctor**     | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]…` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
+| **Add Patient**    | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
+| **Assign Patient**  | `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `assign-ptn ptn/1 doc/1`                                                                                                                                                                                                          |
+| **Unassign Patient** | `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `unassign-ptn ptn/1 doc/1`                                                                                                                                                                                                          |
 | **Delete Doctor**  | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                          |
 | **Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                          |
 | **Edit Doctor**    | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
 | **Edit Patient**   | `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-ptn 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
-| **Find Doctor**    | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`                                                                                                                                                                                                |
-| **Find Patient**   | `find-ptn KEYWORD`<br> E.g. `find-ptn Gabriel`                                                                                                                                                                                                |
+| **Find Doctor**    | `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`<br> E.g. `find-doc n/Gabriel`                                                                                                                                                                                                                                |
+| **Find Patient**   | `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`<br> E.g. `find-ptn n/Gabriel`                                                                                                                                                                                                                     |
 | **List Doctors**   | `list-doc`                                                                                                                                                                                                                                    |
 | **List Patients**  | `list-ptn`                                                                                                                                                                                                                                    |
 | **Help**           | `help`                                                                                                                                                                                                                                        |
