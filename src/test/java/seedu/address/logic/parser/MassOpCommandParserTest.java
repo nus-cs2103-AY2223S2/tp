@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -54,11 +53,11 @@ public class MassOpCommandParserTest {
 //                        new ArrayList<>(),
 //                        Arrays.asList(".*fri.*", ".*col.*")
 //                ), new Tag("friends"), true);
-//        assertParseSuccess(parser, "delete friends e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedMassOpCommand);
+//        assertParseSuccess(parser,
+//                "delete friends e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedMassOpCommand);
 //
 //        // multiple whitespaces between keywords
 //        assertParseSuccess(parser,
 //                "delete friends \n e/@ n/l \n\n p/95\n \t t/fri a/[0-9] n/Ge p/94 \n t/col \t",
 //                expectedMassOpCommand);
-//    }
 }
