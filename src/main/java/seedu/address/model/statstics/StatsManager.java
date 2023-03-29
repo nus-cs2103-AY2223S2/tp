@@ -43,6 +43,10 @@ public class StatsManager {
         filteredStatsInformations.setPredicate(p -> true);
     }
 
+    public ObservableList<StatsInformation> getStatsInformations() {
+        return statsInformations;
+    }
+
     public FilteredList<StatsInformation> getFilteredStatsInformations() {
         return filteredStatsInformations;
     }
