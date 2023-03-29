@@ -452,6 +452,9 @@ public class MainWindow extends UiPart<Stage> {
         addDeliveryJobWindow.fillInnerParts();
     }
 
+    /**
+     * Handles mass import job ui.
+     */
     @FXML
     private void handleDeliveryJobSystemImportAction() {
         FileChooser fileChooser = new FileChooser();

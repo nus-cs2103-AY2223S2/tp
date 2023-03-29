@@ -10,14 +10,18 @@ import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 
+/**
+ * Parses CSV file contents into separate jobs and job details
+ */
 public class ImportDeliveryJobCommandParser {
 
     public static final String MESSAGE_MISSING_ELEMENT_IN_IMPORT = "Missing element in import";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given CSV File in the context of the ImportCommand
      *
+     * @param file CSV file containing delivery jobs
+     * @return List of delivery jobs to be added
      * @throws ParseException if the user input does not conform the expected format
      */
     public static List<DeliveryJob> parse(File file) throws ParseException, FileNotFoundException {

@@ -1,5 +1,7 @@
 package seedu.address.ui.main;
 
+import java.io.FileNotFoundException;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -8,9 +10,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.UiPart;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

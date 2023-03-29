@@ -77,7 +77,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException, FileNotFoundException {
+    public CommandResult executeTimetableCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;

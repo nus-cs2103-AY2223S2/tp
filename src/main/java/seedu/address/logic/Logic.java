@@ -44,7 +44,8 @@ public interface Logic {
      */
     CommandResult execute(Command command) throws CommandException, ParseException, FileNotFoundException;
 
-    CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException, FileNotFoundException;
+    CommandResult executeTimetableCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException;
 
     // ADDRESS BOOK SYSTEM ===================================
 

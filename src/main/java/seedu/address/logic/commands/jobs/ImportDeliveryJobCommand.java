@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.jobs;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
@@ -10,10 +13,9 @@ import seedu.address.logic.parser.jobs.ImportDeliveryJobCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.List;
-
+/**
+ * Mass imports delivery jobs from CSV file to the delivery job system.
+ */
 public class ImportDeliveryJobCommand extends Command {
 
     public static final String COMMAND_WORD = "import_job";
@@ -22,6 +24,10 @@ public class ImportDeliveryJobCommand extends Command {
 
     private final File toAdd;
 
+    /**
+     * Creates an ImportDeliveryJobCommand to mass add delivery jobs
+     * from file.
+     */
     public ImportDeliveryJobCommand(File file) {
         requireNonNull(file);
         toAdd = file;
