@@ -1,11 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FORMAT_VIDEO_TIMESTAMP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RANGE_VIDEO_TIMESTAMP_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_VIDEO_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L2;
@@ -16,10 +20,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MULTI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
+import static seedu.address.logic.commands.CommandTestUtil.VIDEO_TIMESTAMP_DESC_1;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -41,6 +47,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
@@ -113,15 +120,21 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_addModuleFieldInvalidModuleCodeValue_failure() {
+    public void parse_addModuleFieldsInvalidModuleCodeValue_failure() {
         String userInput = INVALID_MODULE_CODE + MODULE_NAME_DESC_2103 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, ModuleCode.MESSAGE_CONSTRAINTS);
     }
 
     @Test
-    public void parse_addModuleFieldInvalidModuleNameValue_failure() {
+    public void parse_addModuleFieldsInvalidModuleNameValue_failure() {
         String userInput = VALID_MODULE_CODE_2103 + INVALID_MODULE_NAME_DESC + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, ModuleName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addModuleFieldsInvalidTagsValue_failure() {
+        String userInput = VALID_MODULE_CODE_2103 + MODULE_NAME_DESC_2103 + INVALID_TAG_DESC;
+        assertParseFailure(parser, userInput, String.format(Tag.MESSAGE_CONSTRAINTS, INVALID_TAG));
     }
 
     @Test
@@ -177,7 +190,14 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_addLectureFieldsInvalidLectureNameValue_failure() {
-        assertParseFailure(parser, INVALID_LECTURE_NAME + MODULE_CODE_DESC_2103, LectureName.MESSAGE_CONSTRAINTS);
+        String userInput = INVALID_LECTURE_NAME + MODULE_CODE_DESC_2103 + TAG_DESC_MULTI;
+        assertParseFailure(parser, userInput, LectureName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addLectureFieldsInvalidTagsValue_failure() {
+        String userInput = VALID_LECTURE_NAME_L1 + MODULE_CODE_DESC_2103 + INVALID_TAG_DESC;
+        assertParseFailure(parser, userInput, String.format(Tag.MESSAGE_CONSTRAINTS, INVALID_TAG));
     }
 
     @Test
@@ -209,6 +229,10 @@ public class AddCommandParserTest {
         userInput = noDuplicateUserInput.replaceFirst(toReplace, PREFIX_WATCH + " " + PREFIX_WATCH);
         assertParseSuccess(parser, userInput, command);
 
+        // multiple timestamps - last timestamp accepted
+        toReplace = PREFIX_TIMESTAMP + " " + video.getTimestamp().toString();
+        userInput = noDuplicateUserInput.replaceFirst(toReplace, VIDEO_TIMESTAMP_DESC_1 + " " + toReplace);
+
         // duplicate tags - duplicates ignored
         List<Tag> tagsWithDuplicates = new ArrayList<>();
         tagsWithDuplicates.addAll(video.getTags());
@@ -217,6 +241,21 @@ public class AddCommandParserTest {
         toReplace = PREFIX_TAG + " " + TagUtil.getTagsStr(video.getTags());
         userInput = noDuplicateUserInput.replaceFirst(
                 toReplace, PREFIX_TAG + " " + TagUtil.getTagsStr(tagsWithDuplicates));
+        assertParseSuccess(parser, userInput, command);
+    }
+
+    @Test
+    public void parse_addVideoFieldsMissingTimestampField_success() {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+
+        Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO)
+                .withTimestamp(VideoTimestamp.DEFAULT_TIMESTAMP).build();
+
+        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
+        String userInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video)
+                .replace(PREFIX_TIMESTAMP + " " + VideoTimestamp.DEFAULT_TIMESTAMP, "");
+
         assertParseSuccess(parser, userInput, command);
     }
 
@@ -238,7 +277,7 @@ public class AddCommandParserTest {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
 
-        Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).withHasWatched(false).build();
+        Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).withWatched(false).build();
 
         AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
         String userInput = VideoUtil.getVideoDetails(moduleCode, lectureName, video);
@@ -248,31 +287,55 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_addVideoFieldsMissingVideoNameField_failure() {
-        String userInput = MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1 + TAG_DESC_MULTI;
+        String userInput = MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1 + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_addVideoFieldsMissingModuleCodeField_failure() {
-        String userInput = VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + TAG_DESC_MULTI;
+        String userInput = VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_addVideoFieldsInvalidModuleCodeValue_failure() {
-        String userInput = VALID_VIDEO_NAME_V1 + INVALID_MODULE_CODE_DESC + LECTURE_NAME_DESC_L1 + TAG_DESC_MULTI;
+        String userInput = VALID_VIDEO_NAME_V1 + INVALID_MODULE_CODE_DESC + LECTURE_NAME_DESC_L1
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, ModuleCode.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_addVideoFieldsInvalidLectureNameValue_failure() {
-        String userInput = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC + TAG_DESC_MULTI;
+        String userInput = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, LectureName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_addVideoFieldsInvalidVideoNameValue_failure() {
-        String userInput = INVALID_VIDEO_NAME + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + TAG_DESC_MULTI;
+        String userInput = INVALID_VIDEO_NAME + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, userInput, VideoName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidFormatForVideoTimestampValue_failure() {
+        String userInput = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1
+                + INVALID_FORMAT_VIDEO_TIMESTAMP_DESC + TAG_DESC_MULTI;
+        assertParseFailure(parser, userInput, VideoTimestamp.MESSAGE_FORMAT_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidRangeForVideoTimestampValue_failure() {
+        String userInput = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1
+                + INVALID_RANGE_VIDEO_TIMESTAMP_DESC + TAG_DESC_MULTI;
+        assertParseFailure(parser, userInput, VideoTimestamp.MESSAGE_RANGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidTagsValue_failure() {
+        String userInput = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1
+                + VIDEO_TIMESTAMP_DESC_1 + INVALID_TAG_DESC;
+        assertParseFailure(parser, userInput, String.format(Tag.MESSAGE_CONSTRAINTS, INVALID_TAG));
     }
 }

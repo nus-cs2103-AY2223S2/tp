@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Parses input arguments and creates a new {@code AddCommand} object.
@@ -37,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TAG, PREFIX_WATCH);
+                args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TAG, PREFIX_WATCH, PREFIX_TIMESTAMP);
 
         if (isAddModule(argMultimap)) {
             return parseAddModuleCommand(argMultimap);
@@ -100,16 +102,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
         String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
         String videoNameStr = argMultimap.getPreamble();
+        String videoTimestampStr = argMultimap.getValue(PREFIX_TIMESTAMP).orElse(VideoTimestamp.DEFAULT_TIMESTAMP);
         String tagsStr = argMultimap.getValue(PREFIX_TAG).orElse("");
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
         VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
+        VideoTimestamp timestamp = ParserUtil.parseVideoTimestamp(videoTimestampStr);
         Set<Tag> tags = ParserUtil.parseMultiTags(tagsStr);
 
         boolean hasWatched = argMultimap.getValue(PREFIX_WATCH).isPresent();
 
-        Video video = new Video(videoName, hasWatched, tags);
+        Video video = new Video(videoName, hasWatched, timestamp, tags);
         return new AddVideoCommand(moduleCode, lectureName, video);
     }
 

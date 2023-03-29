@@ -17,10 +17,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_LECTURE_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_MODULE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EDIT_VIDEO_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_FORMAT_VIDEO_TIMESTAMP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RANGE_VIDEO_TIMESTAMP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_VIDEO_NAME;
@@ -32,6 +34,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MULTI;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
+import static seedu.address.logic.commands.CommandTestUtil.VIDEO_TIMESTAMP_DESC_1;
+import static seedu.address.logic.commands.CommandTestUtil.VIDEO_TIMESTAMP_DESC_2;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
@@ -57,6 +61,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditVideoDescriptorBuilder;
@@ -317,6 +322,11 @@ public class EditCommandParserTest {
         userInput = noDuplicateUserInput.replace(toReplace, LECTURE_NAME_DESC_L2 + toReplace);
         assertParseSuccess(parser, userInput, command);
 
+        // multiple timestamps - last timestamp accepted
+        toReplace = VIDEO_TIMESTAMP_DESC_2;
+        userInput = noDuplicateUserInput.replace(toReplace, VIDEO_TIMESTAMP_DESC_1 + toReplace);
+        assertParseSuccess(parser, userInput, command);
+
         // multiple watch flag - same behaviour as when only one watch flag is given
         toReplace = PREFIX_WATCH.toString();
         userInput = noDuplicateUserInput.replace(toReplace, PREFIX_WATCH + " " + PREFIX_WATCH);
@@ -375,6 +385,20 @@ public class EditCommandParserTest {
     }
 
     @Test
+    public void parse_editVideoFieldsMissingUpdatedTimestamp_success() {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+        VideoName videoName = new VideoName(VALID_VIDEO_NAME_V1);
+        EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V2)
+                .withTimestamp(null).build();
+
+        EditVideoCommand command = new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
+        String userInput = VideoUtil.getEditVideoDetails(moduleCode, lectureName, videoName, descriptor);
+
+        assertParseSuccess(parser, userInput, command);
+    }
+
+    @Test
     public void parse_editVideoFieldsMissingUpdatedWatched_success() {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
@@ -396,55 +420,71 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_editVideoFieldsMissingVideoName_failure() {
-        String input = MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2 + TAG_DESC_MULTI;
+        String input = MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_editVideoFieldsMissingModuleCode_failure() {
-        String input = VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2 + TAG_DESC_MULTI;
+        String input = VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_editVideoFieldsInvalidVideoName_failure() {
         String input = INVALID_VIDEO_NAME + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
-                + TAG_DESC_MULTI;
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, VideoName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_editVideoFieldsInvalidLectureName_failure() {
         String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC
-                + EDIT_VIDEO_NAME_DESC_V2 + TAG_DESC_MULTI;
+                + EDIT_VIDEO_NAME_DESC_V2 + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, LectureName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_editVideoFieldsInvalidModuleCode_failure() {
         String input = VALID_VIDEO_NAME_V1 + INVALID_MODULE_CODE_DESC + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
-                + TAG_DESC_MULTI;
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, ModuleCode.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_editVideoFieldsInvalidUpdatedName_failure() {
         String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1
-                + INVALID_EDIT_VIDEO_NAME_DESC + TAG_DESC_MULTI;
+                + INVALID_EDIT_VIDEO_NAME_DESC + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI;
         assertParseFailure(parser, input, VideoName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_editVideoFieldsInvalidFormatForUpdatedTimestamp_failure() {
+        String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
+                + INVALID_FORMAT_VIDEO_TIMESTAMP_DESC + TAG_DESC_MULTI;
+        assertParseFailure(parser, input, VideoTimestamp.MESSAGE_FORMAT_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_editVideoFieldsInvalidRangeForUpdatedTimestamp_failure() {
+        String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
+                + INVALID_RANGE_VIDEO_TIMESTAMP_DESC + TAG_DESC_MULTI;
+        assertParseFailure(parser, input, VideoTimestamp.MESSAGE_RANGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_editVideoFieldsInvalidUpdatedTags_failure() {
         String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
-                + INVALID_TAG_DESC;
+                + VIDEO_TIMESTAMP_DESC_1 + INVALID_TAG_DESC;
         assertParseFailure(parser, input, String.format(Tag.MESSAGE_CONSTRAINTS, INVALID_TAG));
     }
 
     @Test
     public void parse_editVideoFieldsWatchAndUnwatchFlagsSpecified_failure() {
         String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
-                + TAG_DESC_MULTI + " " + PREFIX_WATCH + " " + PREFIX_UNWATCH;
+                + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI + " " + PREFIX_WATCH + " " + PREFIX_UNWATCH;
         assertParseFailure(parser, input,
                 String.format(Messages.MESSAGE_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
     }

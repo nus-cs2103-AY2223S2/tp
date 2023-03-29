@@ -66,7 +66,7 @@ public class MarkAsWatchedCommand extends MarkCommand {
             throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED, targetVideoName, COMMAND_WORD));
         }
 
-        Video newVideo = new Video(targetVideoName, true, targetVideo.getTags());
+        Video newVideo = new Video(targetVideoName, true, targetVideo.getTimestamp(), targetVideo.getTags());
         model.setVideo(lecture, targetVideo, newVideo);
 
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD));

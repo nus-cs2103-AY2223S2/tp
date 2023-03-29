@@ -10,6 +10,7 @@ import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * A utility class to help with building {@code EditVideoDescriptor} objects.
@@ -69,6 +70,17 @@ public class EditVideoDescriptorBuilder {
      */
     public EditVideoDescriptorBuilder withWatched(Boolean hasWatched) {
         descriptor.setWatched(hasWatched);
+        return this;
+    }
+
+    /**
+     * Sets the {@code timestamp} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param timestamp The timestamp to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withTimestamp(String timestamp) {
+        descriptor.setTimestamp(timestamp == null ? null : new VideoTimestamp(timestamp));
         return this;
     }
 

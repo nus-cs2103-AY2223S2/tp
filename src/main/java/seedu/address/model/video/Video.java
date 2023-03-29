@@ -17,6 +17,7 @@ public class Video {
 
     private final VideoName name;
     private final boolean hasWatched;
+    private final VideoTimestamp timestamp;
 
     private final Set<Tag> tags = new HashSet<>();
 
@@ -26,12 +27,12 @@ public class Video {
      * @param name The name of the video.
      * @param tags The tags applied to the video.
      */
-    public Video(VideoName name, boolean hasWatched, Set<Tag> tags) {
+    public Video(VideoName name, boolean hasWatched, VideoTimestamp timestamp, Set<Tag> tags) {
         requireAllNonNull(name, hasWatched, tags);
 
         this.name = name;
         this.hasWatched = hasWatched;
-
+        this.timestamp = timestamp;
         this.tags.addAll(tags);
     }
 
@@ -41,6 +42,10 @@ public class Video {
 
     public boolean hasWatched() {
         return hasWatched;
+    }
+
+    public VideoTimestamp getTimestamp() {
+        return timestamp;
     }
 
     /**
@@ -89,13 +94,14 @@ public class Video {
         Video otherVideo = (Video) other;
         return otherVideo.getName().equals(getName())
                 && otherVideo.hasWatched() == hasWatched()
+                && otherVideo.getTimestamp().equals(getTimestamp())
                 && otherVideo.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, hasWatched, tags);
+        return Objects.hash(name, hasWatched, timestamp, tags);
     }
 
     @Override
@@ -103,7 +109,8 @@ public class Video {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
 
-        builder.append(String.format("; %s", hasWatched ? "Watched" : "Not Watched"));
+        builder.append("; " + (hasWatched ? "Watched" : "Not Watched"));
+        builder.append("; Timestamp: " + getTimestamp());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

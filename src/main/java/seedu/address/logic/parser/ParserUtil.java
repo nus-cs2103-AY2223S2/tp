@@ -15,6 +15,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -157,4 +158,21 @@ public class ParserUtil {
         return new VideoName(trimmedVideoName);
     }
 
+    /**
+     * Parses a {@code String videoTimestamp} into a {@code VideoTimestamp}.<p>
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code videoTimestamp} is invalid.
+     */
+    public static VideoTimestamp parseVideoTimestamp(String videoTimestamp) throws ParseException {
+        requireNonNull(videoTimestamp);
+        String trimmedVideoTimestamp = videoTimestamp.trim();
+        try {
+            VideoTimestamp.validateTimestamp(trimmedVideoTimestamp);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(iae.getMessage());
+        }
+
+        return new VideoTimestamp(trimmedVideoTimestamp);
+    }
 }
