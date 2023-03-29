@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">  <icons>
+<fx:root minHeight="500.0" minWidth="500.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">  <icons>
     <Image url="@/images/help_icon.png" />
 </icons>
    <scene>
       <Scene>
-         <ScrollPane fitToWidth="true" prefHeight="500.0">
+         <ScrollPane fitToWidth="true">
             <content>
-               <VBox fx:id="helpMessageContainer" alignment="CENTER_LEFT" spacing="5.0">
+               <VBox fx:id="helpMessageContainer" spacing="5.0">
                   <children>
                      <Label fx:id="helpMessageHeader" text="Header" underline="true" />
                      <Label fx:id="helpMessageGeneralSub" styleClass="label-sub-header" text="GENERAL COMMANDS" wrapText="true" />
