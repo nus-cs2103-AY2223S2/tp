@@ -75,11 +75,14 @@ Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
+
 * `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32`
 
 #### Deleting a person : `deletePerson`
@@ -93,6 +96,7 @@ Format: `deletePerson PERSON_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
+
 * `listPerson` followed by `deletePerson 2` deletes the 2nd person in the user records.
 
 #### Editing a person : `editPerson`
@@ -101,7 +105,6 @@ Edits an existing person in the ExpressLibrary.
 
 Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-[//]: # ()
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 
 * At least one of the optional fields must be provided.
@@ -216,12 +219,12 @@ Format: `findBook KEYWORD [MORE_KEYWORDS]`
   e.g. `Dune Great` will return `Dune`, `Great Gatsby`
 
 Examples:
-* `find The` returns `The Cat in the Hat` and `Call of the wild`
+* `find The` returns `The Cat in the Hat` and `Call of the Wild`
 * `find dune Cat` returns `Dune`, `The Cat in the Hat`
 
 [//]: # (add image later)
 
-### Common Functions
+### Common Commands
 
 #### Borrowing a book : `borrow`
 
@@ -257,7 +260,7 @@ Clears all entries from ExpressLibrary.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
@@ -267,16 +270,25 @@ Format: `exit`
 
 Shows a message explaining how to access the help page.
 
+![helpMessage](images/helpMessage.png)
+
 Format: `help`
+
+### Colour coded due dates
+
+Expresslibrary automatically changes the color of due dates to alert the librarian when a book’s due date is within 3 days of the current date or has passed.
+
+![colourDates](images/colourDates.png)
+
+As clearly seen in the image above, if the due date is within 3 days of the current date, the color of the due date will turn yellow. If the due date has passed, the color of the due date will turn orange.
 
 ### Saving the data
 
-ExpressLibrary data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ExpressLibrary data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved) for more details.
 
 ### Editing the data file
 
-
-ExpressLibrary data are saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
+ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -316,7 +328,7 @@ Action | Format, Examples
 **FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
-#### General
+#### Common
 
 Action | Format, Examples
 --------|------------------

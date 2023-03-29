@@ -68,7 +68,9 @@ public class BorrowCommand extends Command {
 
         // Checkout bookToBorrow (due date, borrower, borrowDate)
         assert bookToBorrow != null;
-        if (bookToBorrow.getIsBorrowed()) {
+
+        // check if book has been borrowed by someone else
+        if (bookToBorrow.getIsBorrowed() && !bookToBorrow.getBorrower().isSamePerson(personToEdit)) {
             throw new CommandException(Messages.MESSAGE_BOOK_BORROWED);
         }
 

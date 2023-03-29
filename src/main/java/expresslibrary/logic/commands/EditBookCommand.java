@@ -52,7 +52,7 @@ public class EditBookCommand extends Command {
     private final EditBookDescriptor editBookDescriptor;
 
     /**
-     * @param index              of the book in the filtered book list to edit
+     * @param index of the book in the filtered book list to edit
      * @param editBookDescriptor details to edit the book with
      */
     public EditBookCommand(Index index, EditBookDescriptor editBookDescriptor) {
