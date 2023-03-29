@@ -2,12 +2,18 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEACHER_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEACHER_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3230;
 
@@ -46,14 +52,18 @@ public class TypicalModules {
 
     // Manually added - Module's details found in {@code CommandTestUtil}
     public static final Module CS3230 = new ModuleBuilder().withName(VALID_NAME_CS3230)
-            .withResource(VALID_RESOURCE_CS3230)
             .withTimeSlot(VALID_TIMESLOT_CS3230)
             .withAddress(VALID_ADDRESS_CS3230)
+            .withResource(VALID_RESOURCE_CS3230)
+            .withDeadline(VALID_DEADLINE_CS3230)
+            .withTeacher(VALID_TEACHER_CS3230)
+            .withRemark(VALID_REMARK_CS3230)
             .withTags(VALID_TAG_TUTORIAL).build();
     public static final Module CS3219 = new ModuleBuilder().withName(VALID_NAME_CS3219)
             .withResource(VALID_RESOURCE_CS3219)
             .withTimeSlot(VALID_TIMESLOT_CS3219).withAddress(VALID_ADDRESS_CS3219)
-            .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL)
+            .withTags(VALID_TAG_LECTURE).withDeadline(VALID_DEADLINE_CS3219).withRemark(VALID_REMARK_CS3219)
+            .withTeacher(VALID_TEACHER_CS3219)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

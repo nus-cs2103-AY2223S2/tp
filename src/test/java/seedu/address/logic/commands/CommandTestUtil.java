@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -27,7 +30,7 @@ import seedu.address.testutil.EditModuleDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_CS3230 = "CS3230";
-    public static final String VALID_NAME_CS3219 = "Bob Choo";
+    public static final String VALID_NAME_CS3219 = "CS3219";
     public static final String VALID_RESOURCE_CS3230 = "11111111";
     public static final String VALID_RESOURCE_CS3219 = "22222222";
     public static final String VALID_TIMESLOT_CS3230 = "230223 18:00";
@@ -36,6 +39,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_CS3219 = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_LECTURE = "Lecture";
     public static final String VALID_TAG_TUTORIAL = "Tutorial";
+    public static final String VALID_DEADLINE_CS3219 = "270223 14:00";
+    public static final String VALID_DEADLINE_CS3230 = "300523 12:00";
+    public static final String VALID_REMARK_CS3219 = "Hybrid";
+    public static final String VALID_REMARK_CS3230 = "Zoom";
+    public static final String VALID_TEACHER_CS3219 = "Prof. Z";
+    public static final String VALID_TEACHER_CS3230 = "Prof. X";
 
     public static final String NAME_DESC_CS3230 = " " + PREFIX_NAME + VALID_NAME_CS3230;
     public static final String NAME_DESC_CS3219 = " " + PREFIX_NAME + VALID_NAME_CS3219;
@@ -45,8 +54,14 @@ public class CommandTestUtil {
     public static final String TIMESLOT_DESC_CS3219 = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_CS3219;
     public static final String ADDRESS_DESC_CS3230 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3230;
     public static final String ADDRESS_DESC_CS3219 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3219;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_LECTURE;
+    public static final String TAG_DESC_TUTORIAL = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
+    public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
+    public static final String DEADLINE_DESC_CS3219 = " " + PREFIX_DEADLINE + VALID_DEADLINE_CS3219;
+    public static final String DEADLINE_DESC_CS3230 = " " + PREFIX_DEADLINE + VALID_DEADLINE_CS3230;
+    public static final String REMARK_DESC_CS3219 = " " + PREFIX_REMARK + VALID_REMARK_CS3219;
+    public static final String REMARK_DESC_CS3230 = " " + PREFIX_REMARK + VALID_REMARK_CS3230;
+    public static final String TEACHER_DESC_CS3219 = " " + PREFIX_TEACHER + VALID_TEACHER_CS3219;
+    public static final String TEACHER_DESC_CS3230 = " " + PREFIX_TEACHER + VALID_TEACHER_CS3230;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TYPE_DESC = " " + PREFIX_RESOURCE + "911a"; // 'a' not allowed in types
