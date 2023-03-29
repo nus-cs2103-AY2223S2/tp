@@ -137,7 +137,7 @@ A tag is a generic description for a group of people.
 
 #### Code highlights
 
-*`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
+`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
 
 * Highlighted commands consists special characters or capitalisation, which have special meaning.
     * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
@@ -288,12 +288,13 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
 
-<div markdown="block" class="alert alert-info">:information_source: Notes pairing**<br>
-* A warning will be given when pairing if there are clashes in availability between the volunteer and elderly.
-</div>
-
-<div markdown="block" class="alert alert-info">:information_source: Notes pairing**<br>
-* A warning will be given when pairing if the volunteer and elderly lives in different regions.
+<div markdown="block" class="alert alert-info">
+   
+**:information_source: Warnings when pairing volunteer and elderly:**<br>
+* A warning will be given when:
+   * there are clashes in availability between the volunteer and elderly; or
+   * the volunteer and elderly lives in different regions
+   
 </div>
 
 Examples:
@@ -543,8 +544,7 @@ Example:
 * Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
   suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
   these fields have not been filled.
-*
-Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`
+* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`
 , FriendlyLink will not suggest anything as all possible fields have at least one value.
 
 <div markdown="block" class="alert alert-info">
