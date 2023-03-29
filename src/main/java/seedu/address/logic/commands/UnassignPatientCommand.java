@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 
 import java.util.List;
 import java.util.Set;
@@ -24,8 +26,8 @@ public class UnassignPatientCommand extends Command {
             + "patient identified by the patient index number used in the displayed patients list "
             + "with the doctor identified by the doctor index number used in the displayed doctor list.\n"
             + "Parameters: "
-            + "PATIENT_INDEX (must be a positive integer) "
-            + "DOCTOR_INDEX (must be a positive integer) ";
+            + PREFIX_PATIENT + "PATIENT_INDEX (must be a positive integer) "
+            + PREFIX_DOCTOR + "DOCTOR_INDEX (must be a positive integer) ";
     public static final String MESSAGE_UNASSIGN_PATIENT_SUCCESS = "Unassigned Patient %1s to Doctor %2s.";
     public static final String MESSAGE_PATIENT_NOT_ASSIGNED = "Patient %1s is not assigned to Doctor %2s.";
     private final Index patientIndex;
@@ -58,8 +60,11 @@ public class UnassignPatientCommand extends Command {
         Doctor doctorToUnassign = lastShownDoctorList.get(doctorIndex.getZeroBased());
 
         Doctor doctorWithoutAssign = createDoctorWithoutAssign(doctorToUnassign, patientToUnassign);
+        Patient patientWithoutAssign = createPatientWithoutAssign(doctorToUnassign, patientToUnassign);
 
         model.setDoctor(doctorToUnassign, doctorWithoutAssign);
+        model.setPatient(patientToUnassign, patientWithoutAssign);
+
         return new CommandResult(String.format(MESSAGE_UNASSIGN_PATIENT_SUCCESS,
                 patientToUnassign.getName().fullName,
                 doctorToUnassign.getName().fullName));
@@ -87,6 +92,32 @@ public class UnassignPatientCommand extends Command {
                 doctorToUnassign.getYoe(),
                 doctorToUnassign.getTags(),
                 patientsSet);
+    }
+    private static Patient createPatientWithoutAssign(Doctor doctorToUnassign, Patient patientToUnassign)
+            throws CommandException {
+        assert doctorToUnassign != null;
+        assert patientToUnassign != null;
+
+        Set<Doctor> doctorsSet = patientToUnassign.getDoctors();
+
+        if (!doctorsSet.contains(doctorToUnassign)) {
+            throw new CommandException(String.format(MESSAGE_PATIENT_NOT_ASSIGNED,
+                    patientToUnassign.getName().fullName,
+                    doctorToUnassign.getName().fullName));
+        }
+
+        doctorsSet.remove(doctorToUnassign);
+
+        return new Patient(patientToUnassign.getName(),
+                patientToUnassign.getPhone(),
+                patientToUnassign.getEmail(),
+                patientToUnassign.getHeight(),
+                patientToUnassign.getWeight(),
+                patientToUnassign.getDiagnosis(),
+                patientToUnassign.getStatus(),
+                patientToUnassign.getRemark(),
+                patientToUnassign.getTags(),
+                doctorsSet);
     }
 
     @Override
