@@ -639,7 +639,7 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                                                                                   | So that I can…​                                                             |
+| Priority | As a …​   | I want to …​                                                                                                    | So that I can…​                                                              |
 |----------|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | `* * *`  | tutor    | open the app                                                                                                   | begin using the app                                                         |
 | `* * *`  | tutor    | close the app                                                                                                  | leave the app                                                               |
@@ -657,18 +657,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tutor    | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
 | `* * *`  | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
 | `* * *`  | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
-| `* *`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
 | `* * *`  | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
 | `* * *`  | tutor    | edit the subjects I'm teaching a particular student                                                            | update or correct a student's records                                       |
 | `* * *`  | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
+| `* * *`  | tutor    | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| `* * *`  | tutor    | be able to ask for help                                                                                        | learn how to use the app                                                    |
+| `* *`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
 | `* *`    | tutor    | filter my students by subjects                                                                                 | view all the student's I'm teaching a particular subject to                 |
 | `* *`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
 | `* *`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
 | `* *`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
 | `* *`    | tutor    | sort my students by their names                                                                                | view my students in a systematic manner                                     |
-| `* *`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         | 
-| `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
-| `* * *`  | new user | be able to ask for help                                                                                        | learn how to use the app                                                    |
+| `* *`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         |
 
 [↑ Back to top](#table-of-contents)
 
