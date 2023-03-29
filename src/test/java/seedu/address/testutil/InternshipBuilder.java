@@ -27,7 +27,7 @@ public class InternshipBuilder {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
         reviews = new HashSet<>();
-        status = InternshipStatus.NA;
+        status = InternshipStatus.PENDING;
     }
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
