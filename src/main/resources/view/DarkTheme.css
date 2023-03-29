@@ -403,6 +403,10 @@
 }
 
 .left-column {
-    -fx-border-color: #999999; 
-    -fx-border-width: 0 2px 0 0;
+    -fx-border-color: -fx-ctr;
+    -fx-border-width: 0 0.5 0 0;
+}
+
+.main-recipe-card {
+    -fx-padding: 10 0 10 0;
 }
