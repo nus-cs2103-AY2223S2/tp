@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -12,7 +13,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 
 /**
  * The Contact Display displaying the list of doctors,
@@ -87,25 +92,28 @@ public class ContactDisplay extends UiPart<Region> {
             return;
         }
 
-        /*
-        if (commandResult.hasSelectedDoctor) {
-            Doctor selectedDoctor = commandResult.getSelectedDoctor();
+        if (commandResult.hasSelectedDoctor()) {
+            Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
             PatientFilter patientContainsDoctor =
-                        new PatientFilter(selectedDoctor);
-                Predicate<Patient> patientsOfDoctorPredicate =
-                        new PatientContainsKeywordsPredicate(patientContainsDoctor);
-                logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+                    new PatientFilter(selectedDoctor);
+            Predicate<Patient> patientsOfDoctorPredicate =
+                    new PatientContainsKeywordsPredicate(patientContainsDoctor);
+            logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+
+            enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
         }
 
-        if (commandResult.hasSelectedPatient) {
-            Patient selectedPatient = commandResult.getSelectedPatient();
+        if (commandResult.hasSelectedPatient()) {
+            Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
             DoctorFilter doctorContainsPatient =
                     new DoctorFilter(selectedPatient);
             Predicate<Doctor> doctorsOfPatientPredicate =
                     new DoctorContainsKeywordsPredicate(doctorContainsPatient);
             logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+
+            enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
         }
-        */
+
         updateEnlargedInfoCard();
     }
 
