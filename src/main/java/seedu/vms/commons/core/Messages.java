@@ -12,10 +12,9 @@ public class Messages {
             + "invalid";
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
+    public static final String MESSAGE_VACCINATION_LISTED_OVERVIEW = "%d vaccinations listed!";
     public static final String MESSAGE_INVALID_KEYWORD_DISPLAYED_INDEX = "The keyword index provided is invalid";
 
-    public static final String MESSAGE_VACCINATION_LISTED_OVERVIEW = "Filter(s) applied %d vaccinations listed";
-    public static final String MESSAGE_VACCINATION_FILTER_CLEAR = "Filter(s) cleared %d vaccinations listed";
 
     public static final String FORMAT_UNEXPECTED_APPOINTMENT_CHANGE = "Unexpected change detected!\n"
             + "The following appointments will become invalid if the change were to happen:%s";

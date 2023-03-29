@@ -16,6 +16,6 @@ public class ListVaxTypeCommand extends Command {
     public CommandMessage execute(Model model) throws CommandException {
         model.setVaccinationFilters(List.of());
         int numListed = model.getFilteredVaxTypeMap().size();
-        return new CommandMessage(String.format(Messages.MESSAGE_VACCINATION_FILTER_CLEAR, numListed));
+        return new CommandMessage(String.format(Messages.MESSAGE_VACCINATION_LISTED_OVERVIEW, numListed));
     }
 }
