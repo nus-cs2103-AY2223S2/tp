@@ -46,7 +46,8 @@ CoDoc.**
 - [Command Summary](#command-summary)
 - [Additional Resources](#additional-resources)
   - [How To Check Java Version](#how-to-check-java-version)
-  - [How to Open CoDoc](#how-to-open-codoc)
+  - [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac)
+  - [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Guide
@@ -198,7 +199,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
      
    <br>
    
-   For a more detailed guide with examples, refer to [How to Open CoDoc](#how-to-open-codoc).
+   For a more detailed guide with examples, refer to [How to Open CoDoc For Windows](#how-to-open-codoc-for-windows) or [How to Open CoDoc For Mac](#how-to-open-codoc-for-mac) and
 
 If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
 launched in its factory state as shown below.
@@ -696,9 +697,8 @@ _Details coming soon ..._
 ## Additional Resources
 ### How To Check Java Version
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
-### How to Open CoDoc
+### How to Open CoDoc for Mac
 
-Command file method for Mac users:
 1. Create your home folder and place jar file into it. In this example, we created a new folder called CoDoc and placed codoc.jar into it. The folder CoDoc is now our home folder.
    
    ![mac_open_01](images/user-guide/mac_open_01.png)
@@ -719,6 +719,10 @@ Command file method for Mac users:
 7. Finally, on your opened terminal from step 4, type chmod 777 start.command
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
 8. You can now double click on start.command to open CoDoc. It does not have to be in the home directory. Should you change where you folder, repreat from step 2.
+
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
+
+### How to Open CoDoc for Windows
 
 Batch file method for Windows users:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
