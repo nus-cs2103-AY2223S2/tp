@@ -52,7 +52,7 @@ public class Variant {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + variantName.toString() + ']';
+        return variantName.toString();
     }
 
 }

@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
@@ -20,7 +23,8 @@ public interface DengueHotspotStorage {
 
     /**
      * Returns DengueHotspotTracker data as a {@link ReadOnlyDengueHotspotTracker}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -37,11 +41,13 @@ public interface DengueHotspotStorage {
      * @param dengueHotspotTracker cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException;
+    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker)
+            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException;
 
     /**
      * @see #saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker)
      */
-    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath) throws IOException;
+    void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
+            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException;
 
 }

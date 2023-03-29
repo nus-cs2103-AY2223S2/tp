@@ -2,11 +2,20 @@ package seedu.dengue.model.person;
 
 import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.opencsv.bean.CsvCustomBindByName;
+
+import seedu.dengue.model.person.csvutil.AgeConverter;
+import seedu.dengue.model.person.csvutil.DateConverter;
+import seedu.dengue.model.person.csvutil.NameConverter;
+import seedu.dengue.model.person.csvutil.PostalConverter;
+import seedu.dengue.model.person.csvutil.VariantsConverter;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -16,14 +25,18 @@ import seedu.dengue.model.variant.Variant;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Postal postal;
-    private final Date date;
+    @CsvCustomBindByName(column = "Patient Name", converter = NameConverter.class)
+    private Name name;
+    @CsvCustomBindByName(column = "Postal Code", converter = PostalConverter.class)
+    private Postal postal;
+    @CsvCustomBindByName(column = "Date", converter = DateConverter.class)
+    private Date date;
+    @CsvCustomBindByName(column = "Age", converter = AgeConverter.class)
+    private Age age;
+    @CsvCustomBindByName(column = "Variants", converter = VariantsConverter.class)
+    private Set<Variant> variants = new HashSet<>();
 
-    // Data fields
-    private final Age age;
-    private final Set<Variant> variants = new HashSet<>();
-
+    public Person() {}
     /**
      * Every field must be present and not null.
      */
@@ -106,6 +119,30 @@ public class Person {
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getAge().equals(getAge())
                 && otherPerson.getVariants().equals(getVariants());
+    }
+
+    /**
+     * Returns an array of Strings representing the fields of this Person object formatted as a CSV string.
+     * The string array is generated in the following order: name, age, date, postal, and variants.
+     * @return A String[] representing the fields of this Person formatted as a CSV string
+     */
+    public String[] toCsvString() {
+        ArrayList<String> result = new ArrayList<String>();
+        result.add(this.name.toString());
+        result.add(this.age.toString());
+        result.add(this.date.toString());
+        result.add(this.postal.toString());
+        Set<Variant> variantSet = getVariants();
+        StringBuilder builder = new StringBuilder("[");
+        if (!variantSet.isEmpty()) {
+            builder.append(variantSet.stream()
+                    .map(Variant::toString)
+                    .collect(Collectors.joining(", ")));
+        }
+        builder.append("]");
+        result.add(builder.toString());
+        String[] csvString = new String[5];
+        return result.toArray(csvString);
     }
 
     @Override
