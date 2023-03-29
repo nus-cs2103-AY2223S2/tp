@@ -15,6 +15,7 @@ import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Template;
 import seedu.address.model.util.ComposedPredicate;
 
 /**
@@ -175,8 +176,6 @@ public class ModelManager implements Model {
         filteredActive.setPredicate(new ComposedPredicate<>(filteredActive.getPredicate(), predicate));
     }
 
-
-
     // Reset
     @Override
     public void resetFilteredEntityList() {
@@ -208,5 +207,10 @@ public class ModelManager implements Model {
         }
         requireNonNull(entities);
         return entities;
+    }
+
+    @Override
+    public ObservableList<Template> getTemplates() {
+        return reroll.getTemplates();
     }
 }
