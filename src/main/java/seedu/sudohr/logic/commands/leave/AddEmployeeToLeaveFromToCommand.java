@@ -48,7 +48,7 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
     private final Id employeeId;
 
     /**
-     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for a employee at a
+     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for an employee at a
      * specified
      * {@code employeeIndex} on the specified {@code date}
      */
