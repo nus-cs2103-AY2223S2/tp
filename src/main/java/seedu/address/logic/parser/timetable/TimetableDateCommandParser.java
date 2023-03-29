@@ -15,7 +15,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new TimetableDateCommand object
  */
 public class TimetableDateCommandParser implements Parser<TimetableDateCommand> {
 

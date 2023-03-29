@@ -36,7 +36,7 @@ public class DeliverySlot {
     }
 
     /**
-     * Returns true if a given string is a valid earning.
+     * Returns true if a given string is a valid slot.
      */
     public static boolean isValidDeliverySlot(String value) {
         return value.matches(VALIDATION_REGEX);

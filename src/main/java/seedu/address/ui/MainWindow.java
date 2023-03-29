@@ -53,7 +53,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    // private PersonListPanel personListPanel;
     private AddressBookWindow addressBookWindow;
     private AddDeliveryJobWindow addDeliveryJobWindow;
     private CompleteWindow completeWindow;
@@ -187,6 +186,9 @@ public class MainWindow extends UiPart<Stage> {
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
     }
 
+    /**
+     * Returns primary stage of Main Window
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -298,7 +300,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens Timetable window.
+     * Reloads and opens Timetable window.
      */
     @FXML
     private void handleTimetable() {
@@ -318,7 +320,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opends timetable window
+     * Opens timetable window
      */
     private void openTimetable() {
         if (!timetableWindow.isShowing()) {
@@ -331,7 +333,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opends unscheduled jobs window
+     * Reloads and opends unscheduled jobs window
      */
     @FXML
     private void handleUnscheduledTimetable() {
@@ -351,7 +353,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opends completed jobs window
+     * Reloads and opens completed jobs window
      */
     @FXML
     private void handleCompletedTimetable() {
@@ -416,6 +418,9 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Returns delivery job list panel
+     */
     public DeliveryJobListPanel getDeliveryJobListPanel() {
         return deliveryJobListPanel;
     }
@@ -430,6 +435,9 @@ public class MainWindow extends UiPart<Stage> {
         addDeliveryJobWindow.fillInnerParts();
     }
 
+    /**
+     * Shows main window
+     */
     void show() {
         primaryStage.show();
     }

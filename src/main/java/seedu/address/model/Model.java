@@ -67,6 +67,10 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    /**
+     * Returns person with specified ID
+     * @param id
+     */
     Optional<Person> getPersonById(String id);
 
     /**
@@ -159,7 +163,7 @@ public interface Model {
     ObservableList<DeliveryJob> getDeliveryJobList();
 
     /**
-     * Returns job list
+     * Returns job list sorted
      */
     ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator();
 
@@ -182,7 +186,7 @@ public interface Model {
     void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter);
 
     /**
-     * Updates sorted delivery job list by date
+     * Updates sorted delivery job list by date and earning
      */
     void updateSortedDeliveryJobListByDate();
 
@@ -250,7 +254,7 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered reminder list
      */
     ObservableList<Reminder> getReminderList();
 

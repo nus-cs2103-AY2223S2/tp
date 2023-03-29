@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 
 /**
- * AddDeliveryJobCommand.
+ * Adds a delivery job to the delivery job system.
  */
 public class AddDeliveryJobCommand extends Command {
 

@@ -43,7 +43,9 @@ public class DayJobListPanel extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
+     * Creates a {@code DayJobListPanel}
+     * @param logic logic
+     * @param jobListInDay observable list of jobs
      */
     public DayJobListPanel(Logic logic, DeliveryList jobListInDay) {
         super(FXML);
@@ -66,7 +68,7 @@ public class DayJobListPanel extends UiPart<Region> {
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code job} using a
-     * {@code PersonCard}.
+     * {@code DayDeliveryJobCard}.
      */
     class DayJobListViewCell extends ListCell<DeliveryJob> {
         @Override

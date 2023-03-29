@@ -23,7 +23,7 @@ import seedu.address.model.jobs.DeliverySlot;
 import seedu.address.model.jobs.Earning;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddDeliveryJobCommand object
  */
 public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand> {
 

@@ -31,6 +31,10 @@ public class DeliveryList {
         return jobList.size();
     }
 
+    /**
+     * Returns element of job list at specified index
+     * @param index
+     */
     public ArrayList<DeliveryJob> get(int index) {
         return jobList.get(index);
     }

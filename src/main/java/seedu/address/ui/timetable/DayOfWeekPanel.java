@@ -14,7 +14,7 @@ import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
 
 /**
- * Controller for a timetable page
+ * Panel containing day of week (Mon, Tue, Wed,..)
  */
 public class DayOfWeekPanel extends UiPart<Region> {
 
@@ -35,7 +35,7 @@ public class DayOfWeekPanel extends UiPart<Region> {
     private HBox dayOfWeekPanel;
 
     /**
-     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code DayofWeekPanel} with the given {@code Logic} and {@code Stage}.
      */
     public DayOfWeekPanel(Logic logic, Stage primaryStage) {
         super(FXML);
@@ -61,7 +61,7 @@ public class DayOfWeekPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets all text font to size
+     * Sets all text font to a specific size
      * @param fontSize
      */
     private void setAllFont(double fontSize) {
@@ -76,7 +76,7 @@ public class DayOfWeekPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets all text wrapping width
+     * Sets all text with a specific wrapping width
      * @param widthSize
      */
     private void setAllWrappingWidth(double widthSize) {
