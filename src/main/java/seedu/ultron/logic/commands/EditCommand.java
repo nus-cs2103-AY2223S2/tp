@@ -20,8 +20,8 @@ import seedu.ultron.commons.util.CollectionUtil;
 import seedu.ultron.logic.commands.exceptions.CommandException;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
 import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_KEYDATE + "DATE]...\n"
+            + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "Microsoft "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -99,9 +99,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editOpeningDescriptor.getEmail().orElse(openingToEdit.getEmail());
         Status updatedStatus = editOpeningDescriptor.getStatus().orElse(openingToEdit.getStatus());
         Remark updatedRemark = editOpeningDescriptor.getRemark().orElse(openingToEdit.getRemark());
-        Set<Date> updatedDates = editOpeningDescriptor.getDates().orElse(openingToEdit.getDates());
+        Set<Keydate> updatedKeydates = editOpeningDescriptor.getKeydates().orElse(openingToEdit.getKeydates());
 
-        return new Opening(updatedPosition, updatedCompany, updatedEmail, updatedStatus, updatedRemark, updatedDates);
+        return new Opening(updatedPosition, updatedCompany, updatedEmail,
+                updatedStatus, updatedRemark, updatedKeydates);
     }
 
     @Override
@@ -132,7 +133,7 @@ public class EditCommand extends Command {
         private Email email;
         private Status status;
         private Remark remark;
-        private Set<Date> keydates;
+        private Set<Keydate> keydates;
 
         public EditOpeningDescriptor() {}
 
@@ -146,7 +147,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setStatus(toCopy.status);
             setRemark(toCopy.remark);
-            setDates(toCopy.keydates);
+            setKeydates(toCopy.keydates);
         }
 
         /**
@@ -200,7 +201,7 @@ public class EditCommand extends Command {
          * Sets {@code keydates} to this object's {@code keydates}.
          * A defensive copy of {@code keydates} is used internally.
          */
-        public void setDates(Set<Date> keydates) {
+        public void setKeydates(Set<Keydate> keydates) {
             this.keydates = (keydates != null) ? new HashSet<>(keydates) : null;
         }
 
@@ -209,7 +210,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code keydates} is null.
          */
-        public Optional<Set<Date>> getDates() {
+        public Optional<Set<Keydate>> getKeydates() {
             return (keydates != null) ? Optional.of(Collections.unmodifiableSet(keydates)) : Optional.empty();
         }
 
@@ -232,7 +233,7 @@ public class EditCommand extends Command {
                     && getCompany().equals(e.getCompany())
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
-                    && getDates().equals(e.getDates());
+                    && getKeydates().equals(e.getKeydates());
         }
     }
 }

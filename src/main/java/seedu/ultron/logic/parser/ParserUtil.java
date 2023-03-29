@@ -10,8 +10,8 @@ import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.util.StringUtil;
 import seedu.ultron.logic.parser.exceptions.ParseException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
 import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
 import seedu.ultron.model.opening.Status;
@@ -103,30 +103,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into an {@code Date}.
+     * Parses a {@code String keydate} into an {@code Keydate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException
      */
-    public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        String[] dateArray = trimmedDate.split("@");
-        if (!Date.isValidDate(dateArray[1])) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+    public static Keydate parseKeydate(String keydate) throws ParseException {
+        requireNonNull(keydate);
+        String trimmedKeydate = keydate.trim();
+        String[] keydateArray = trimmedKeydate.split("@");
+        if (!Keydate.isValidKeydate(keydateArray[1])) {
+            throw new ParseException(Keydate.MESSAGE_CONSTRAINTS);
         }
-        return new Date(dateArray[0], dateArray[1]);
+        return new Keydate(keydateArray[0], keydateArray[1]);
     }
 
     /**
-     * Parses {@code Collection<String> dates} into a {@code Set<Date>}.
+     * Parses {@code Collection<String> keydates} into a {@code Set<Keydate>}.
      */
-    public static Set<Date> parseDates(Collection<String> dates) throws ParseException {
-        requireNonNull(dates);
-        final Set<Date> dateSet = new HashSet<>();
-        for (String date : dates) {
-            dateSet.add(parseDate(date));
+    public static Set<Keydate> parseKeydates(Collection<String> keydates) throws ParseException {
+        requireNonNull(keydates);
+        final Set<Keydate> keydateSet = new HashSet<>();
+        for (String keydate : keydates) {
+            keydateSet.add(parseKeydate(keydate));
         }
-        return dateSet;
+        return keydateSet;
     }
 }

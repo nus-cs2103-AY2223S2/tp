@@ -10,7 +10,7 @@ public class ContainsKeydatePredicate implements Predicate<Opening> {
 
     @Override
     public boolean test(Opening opening) {
-        return opening.getDates() != null && !opening.getDates().isEmpty();
+        return opening.getKeydates() != null && !opening.getKeydates().isEmpty();
     }
 
     @Override

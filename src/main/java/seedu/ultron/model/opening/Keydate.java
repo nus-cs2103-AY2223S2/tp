@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * Represents an Opening's date in the address book.
  */
-public class Date {
+public class Keydate {
     public static final String MESSAGE_CONSTRAINTS =
             "Keys should not be blank or only contain whitespaces. Keys and dates should be directly connected by '@'."
                     + " Dates should only be in the format YYYY-MM-DD e.g. Interview@2023-01-01";
@@ -23,10 +23,10 @@ public class Date {
      *
      * @param date A valid date.
      */
-    public Date(String name, String date) {
+    public Keydate(String name, String date) {
         requireNonNull(date);
         requireNonNull(name);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidKeydate(date), MESSAGE_CONSTRAINTS);
         fullDate = date;
         fullName = name;
     }
@@ -34,7 +34,7 @@ public class Date {
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidKeydate(String test) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
         try {
             dateFormat.parse(test);
@@ -53,9 +53,9 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && fullName.equals(((Date) other).fullName)
-                && fullDate.equals(((Date) other).fullDate)); // state check
+                || (other instanceof Keydate // instanceof handles nulls
+                && fullName.equals(((Keydate) other).fullName)
+                && fullDate.equals(((Keydate) other).fullDate)); // state check
     }
 
     @Override

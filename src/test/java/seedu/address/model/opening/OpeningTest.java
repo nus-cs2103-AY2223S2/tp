@@ -22,7 +22,7 @@ public class OpeningTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Opening opening = new OpeningBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> opening.getDates().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> opening.getKeydates().remove(0));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class OpeningTest {
 
         // same company and position, all other attributes different -> returns true
         Opening editedShopee = new OpeningBuilder(SHOPEE).withEmail(VALID_EMAIL_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
-                .withRemark(VALID_REMARK_GOOGLE).withDates(VALID_KEYDATE_FEB_OA).build();
+                .withRemark(VALID_REMARK_GOOGLE).withKeydates(VALID_KEYDATE_FEB_OA).build();
         assertTrue(SHOPEE.isSameOpening(editedShopee));
 
         // same company and different position, all other attributes same -> returns false
@@ -105,7 +105,7 @@ public class OpeningTest {
         assertFalse(SHOPEE.equals(editedShopee));
 
         // different keydates -> returns false
-        editedShopee = new OpeningBuilder(SHOPEE).withDates(VALID_KEYDATE_FEB_OA).build();
+        editedShopee = new OpeningBuilder(SHOPEE).withKeydates(VALID_KEYDATE_FEB_OA).build();
         assertFalse(SHOPEE.equals(editedShopee));
 
         // different remarks -> returns false

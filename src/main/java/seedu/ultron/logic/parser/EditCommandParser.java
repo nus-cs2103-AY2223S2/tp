@@ -17,7 +17,7 @@ import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.EditCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
 import seedu.ultron.logic.parser.exceptions.ParseException;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 
 
 /**
@@ -57,7 +57,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editOpeningDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
-        parseDatesForEdit(argMultimap.getAllValues(PREFIX_KEYDATE)).ifPresent(editOpeningDescriptor::setDates);
+        parseKeydatesForEdit(argMultimap.getAllValues(PREFIX_KEYDATE)).ifPresent(editOpeningDescriptor::setKeydates);
 
         if (!editOpeningDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -71,14 +71,15 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Date>> parseDatesForEdit(Collection<String> dates) throws ParseException {
-        assert dates != null;
+    private Optional<Set<Keydate>> parseKeydatesForEdit(Collection<String> keydates) throws ParseException {
+        assert keydates != null;
 
-        if (dates.isEmpty()) {
+        if (keydates.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> dateSet = dates.size() == 1 && dates.contains("") ? Collections.emptySet() : dates;
-        return Optional.of(ParserUtil.parseDates(dateSet));
+        Collection<String> keydateSet = keydates.size() == 1
+                && keydates.contains("") ? Collections.emptySet() : keydates;
+        return Optional.of(ParserUtil.parseKeydates(keydateSet));
     }
 
 }

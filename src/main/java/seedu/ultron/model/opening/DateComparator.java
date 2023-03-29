@@ -8,11 +8,11 @@ public class DateComparator implements Comparator<Opening> {
     @Override
     public int compare(Opening o1, Opening o2) {
 
-        if (o1.getDates().isEmpty() && o2.getDates().isEmpty()) {
+        if (o1.getKeydates().isEmpty() && o2.getKeydates().isEmpty()) {
             return 0;
-        } else if (o1.getDates().isEmpty()) {
+        } else if (o1.getKeydates().isEmpty()) {
             return 1;
-        } else if (o2.getDates().isEmpty()) {
+        } else if (o2.getKeydates().isEmpty()) {
             return -1;
         }
 
@@ -21,7 +21,7 @@ public class DateComparator implements Comparator<Opening> {
         LocalDate o2Smallest = null;
 
         // find smallest date >= today for o1
-        for (Date date : o1.getDates()) {
+        for (Keydate date : o1.getKeydates()) {
             LocalDate curr = LocalDate.parse(date.fullDate);
             if (curr.compareTo(today) >= 0) {
                 if (o1Smallest == null || curr.compareTo(o1Smallest) < 0) {
@@ -34,7 +34,7 @@ public class DateComparator implements Comparator<Opening> {
         }
 
         // find smallest date >= today for o2
-        for (Date date : o2.getDates()) {
+        for (Keydate date : o2.getKeydates()) {
             LocalDate curr = LocalDate.parse(date.fullDate);
             if (curr.compareTo(today) >= 0) {
                 if (o2Smallest == null || curr.compareTo(o2Smallest) < 0) {

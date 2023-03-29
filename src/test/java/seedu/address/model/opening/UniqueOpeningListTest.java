@@ -45,7 +45,7 @@ public class UniqueOpeningListTest {
     public void contains_openingWithSameIdentityFieldsInList_returnsTrue() {
         uniqueOpeningList.add(SHOPEE);
         Opening editedShopee = new OpeningBuilder(SHOPEE).withStatus(VALID_STATUS_GOOGLE)
-                .withDates(VALID_KEYDATE_FEB_OA).build();
+                .withKeydates(VALID_KEYDATE_FEB_OA).build();
         assertTrue(uniqueOpeningList.contains(editedShopee));
     }
 
@@ -88,7 +88,7 @@ public class UniqueOpeningListTest {
     public void setOpening_editedOpeningHasSameIdentity_success() {
         uniqueOpeningList.add(SHOPEE);
         Opening editedShopee = new OpeningBuilder(SHOPEE).withStatus(VALID_STATUS_GOOGLE)
-                .withDates(VALID_KEYDATE_FEB_OA).build();
+                .withKeydates(VALID_KEYDATE_FEB_OA).build();
         uniqueOpeningList.setOpening(SHOPEE, editedShopee);
         UniqueOpeningList expectedUniqueOpeningList = new UniqueOpeningList();
         expectedUniqueOpeningList.add(editedShopee);
