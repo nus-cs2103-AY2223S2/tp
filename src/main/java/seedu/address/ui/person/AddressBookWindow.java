@@ -83,7 +83,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     }
 
     /**
-     * Show main window.
+     * Show address book window.
      */
     public void show() {
         logger.fine("Showing address book page");
@@ -92,28 +92,28 @@ public class AddressBookWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the stats window is currently being shown.
+     * Returns true if the address book window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the stats window.
+     * Hides the address book window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the stats window.
+     * Focuses on the address book window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * fillInnerParts.
+     * Fills inner parts and contents in all placeholders in the window.
      */
     public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), (person) -> {
@@ -145,9 +145,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     }
 
     private void handleListJob() {
-        primaryStage.hide();
         dukeDriverWindow.focus();
-        dukeDriverWindow.handleShowJobList();
     }
 
     /**
@@ -181,4 +179,5 @@ public class AddressBookWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

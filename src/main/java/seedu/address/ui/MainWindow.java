@@ -314,21 +314,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Lists jobs and prompts to users that jobs are listed in Main Window
-     */
-    public void handleShowJobList() {
-        try {
-            CommandResult commandResult = logic.execute("list_job");
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-        } catch (CommandException | ParseException e) {
-            resultDisplay.setFeedbackToUser(e.getMessage());
-        } catch (FileNotFoundException e) {
-            resultDisplay.setFeedbackToUser(e.getMessage());
-        }
-    }
-
-
-    /**
      * Reloads and opens Timetable window.
      */
     @FXML
@@ -364,7 +349,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens unscheduled jobs window
+     * Opens updated unscheduled jobs window
      */
     @FXML
     private void handleUnscheduledTimetable() {
@@ -386,7 +371,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens completed jobs window
+     * Opens updated completed jobs window
      */
     @FXML
     private void handleCompletedTimetable() {
