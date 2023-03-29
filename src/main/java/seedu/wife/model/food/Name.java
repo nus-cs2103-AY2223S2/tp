@@ -2,6 +2,7 @@ package seedu.wife.model.food;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
+import static seedu.wife.commons.util.StringUtil.capitalizeString;
 
 /**
  * Represent a food's name stored in WIFE.
@@ -20,7 +21,7 @@ public class Name {
     public Name(String foodName) {
         requireNonNull(foodName);
         checkArgument(isValid(foodName), MESSAGE_CONSTRAINTS);
-        this.foodName = foodName;
+        this.foodName = capitalizeString(foodName);
     }
 
     public static boolean isValid(String foodName) {
