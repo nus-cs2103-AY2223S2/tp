@@ -9,7 +9,6 @@ import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
 import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.library.commons.core.Messages;
