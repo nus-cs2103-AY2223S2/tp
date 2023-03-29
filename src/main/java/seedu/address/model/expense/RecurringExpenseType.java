@@ -4,11 +4,25 @@ import java.time.LocalDate;
 /**
  * Enum for Recurring Expense Type.
  */
-enum RecurringExpenseType {
+public enum RecurringExpenseType {
     MONTHLY,
     WEEKLY,
     DAILY,
     YEARLY;
+
+//
+//    public static RecurringExpenseType fromType(String type) {
+//        if (type == "month") {
+//            return MONTHLY;
+//        } else if (type == "week") {
+//            return WEEKLY;
+//        } else if (type == "day") {
+//            return DAILY;
+//        } else if (type == "year") {
+//            return YEARLY;
+//        }
+//        throw new IllegalArgumentException("message");
+//    }
 
     /**
      * Returns the next expense date based on the recurring expense type.
@@ -36,4 +50,9 @@ enum RecurringExpenseType {
         }
         return currentDate;
     }
+
+//    @Override
+//    public String toString() {
+//        return type;
+//    }
 }
