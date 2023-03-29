@@ -1,9 +1,12 @@
 package seedu.address.model.person.patient;
 
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.doctor.Doctor;
 
 /**
  * Filter Class for passing to PatientContainsKeywordsPredicate
@@ -20,6 +23,36 @@ public class PatientFilter {
     private final String statusFilter;
     private final String remarkFilter;
     private final Set<String> tagsFilter;
+    private final Optional<Doctor> doctorFilter;
+
+    /**
+     * Constructs a {@code PatientFilter}.
+     *
+     * @param name name in string (can be empty string).
+     * @param phone phone in string (can be empty string).
+     * @param email email in string (can be empty string).
+     * @param height height in string (can be empty string).
+     * @param weight weight in string (can be empty string).
+     * @param diagnosis diagnosis in string (can be empty string).
+     * @param status status in string (can be empty string).
+     * @param remark remark in string (can be empty string).
+     * @param tags set of tags in string (can be empty list).
+     * @param doctor optional containing doctor object (OfNullable).
+     */
+    public PatientFilter(String name, String phone, String email, String height,
+                         String weight, String diagnosis, String status,
+                         String remark, Set<String> tags, Optional<Doctor> doctor) {
+        this.nameFilter = name;
+        this.phoneFilter = phone;
+        this.emailFilter = email;
+        this.heightFilter = height;
+        this.weightFilter = weight;
+        this.diagnosisFilter = diagnosis;
+        this.statusFilter = status;
+        this.remarkFilter = remark;
+        this.tagsFilter = tags;
+        this.doctorFilter = doctor;
+    }
 
     /**
      * Constructs a {@code PatientFilter}.
@@ -35,22 +68,25 @@ public class PatientFilter {
      * @param tags set of tags in string (can be empty list).
      */
     public PatientFilter(String name,
-                        String phone,
-                        String email,
-                        String height,
-                        String weight,
-                        String diagnosis,
-                        String status,
-                        String remark, Set<String> tags) {
-        this.nameFilter = name;
-        this.phoneFilter = phone;
-        this.emailFilter = email;
-        this.heightFilter = height;
-        this.weightFilter = weight;
-        this.diagnosisFilter = diagnosis;
-        this.statusFilter = status;
-        this.remarkFilter = remark;
-        this.tagsFilter = tags;
+                         String phone,
+                         String email,
+                         String height,
+                         String weight,
+                         String diagnosis,
+                         String status,
+                         String remark, Set<String> tags) {
+        this(name, phone, email, height, weight,
+                diagnosis, status, remark, tags, Optional.empty());
+    }
+
+    /**
+     * Constructs a {@code PatientFilter}.
+     *
+     * @param doctor optional containing doctor object (OfNullable).
+     */
+    public PatientFilter(Optional<Doctor> doctor) {
+        this("", "", "", "", "",
+                "", "", "", new HashSet<>(), doctor);
     }
 
     /**
@@ -80,6 +116,10 @@ public class PatientFilter {
                     .collect(Collectors.toSet()));
         }
 
+        if (doctorFilter.isPresent()) {
+            result = result && patient.hasDoctor(doctorFilter.get());
+        }
+
         return result;
     }
 
@@ -95,6 +135,7 @@ public class PatientFilter {
                 && this.diagnosisFilter.equals(((PatientFilter) other).diagnosisFilter)
                 && this.statusFilter.equals(((PatientFilter) other).statusFilter)
                 && this.remarkFilter.equals(((PatientFilter) other).remarkFilter)
-                && this.tagsFilter.equals(((PatientFilter) other).tagsFilter)); // state check
+                && this.tagsFilter.equals(((PatientFilter) other).tagsFilter))
+                && this.doctorFilter.equals(((PatientFilter) other).doctorFilter); // state check
     }
 }

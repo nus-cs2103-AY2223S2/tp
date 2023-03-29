@@ -66,11 +66,11 @@ public class ContactDisplay extends UiPart<Region> {
         enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
 
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList(),
-                enlargedPatientInfoCard, infoCardDisplayController);
+                enlargedPatientInfoCard, infoCardDisplayController, logic);
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(),
-                enlargedDoctorInfoCard, infoCardDisplayController, patientListPanel);
+                enlargedDoctorInfoCard, infoCardDisplayController, logic);
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
     }
 

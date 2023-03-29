@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -12,7 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 
 /**
  * Panel containing the list of doctors.
@@ -32,18 +37,18 @@ public class DoctorListPanel extends UiPart<Region> {
     public DoctorListPanel(ObservableList<Doctor> doctorList,
                            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
                            EnlargedInfoCardDisplayController infoCardDisplayController,
-                           PatientListPanel patientListPanel) {
+                           Logic logic) {
         super(FXML);
         doctorListView.setItems(doctorList);
         doctorListView.setCellFactory(listView -> {
-            DoctorListViewCell generatedCell = new DoctorListViewCell();
+            DoctorListViewCell generatedCell = new DoctorListViewCell(logic);
             generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 infoCardDisplayController.displayDoctor();
             });
             return generatedCell;
         });
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedDoctorInfoCard, patientListPanel);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard);
     }
 
     /**
@@ -68,17 +73,18 @@ public class DoctorListPanel extends UiPart<Region> {
     }
 
     /**
-     * Prompts {@code EnlargedDoctorInfoCard} to display the information of the {@code Doctor} selected by the user.
+     * Prompts {@code EnlargedDoctorInfoCard} to display the
+     * information of the {@code Doctor} selected by the user.
      * This is done by configuring a {@code ChangeListener} to listen to user selection.
      *
      * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
     private void showSelectedDoctorInfo(
-            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
-            PatientListPanel patientListPanel) {
+            EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
-            enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
+            enlargedDoctorInfoCard
+                    .updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
@@ -106,9 +112,25 @@ public class DoctorListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Doctor} using a {@code DoctorCard}.
      */
     class DoctorListViewCell extends ListCell<Doctor> {
+
+        private Optional<Doctor> doctor;
+
+        public DoctorListViewCell(Logic logic) {
+            super();
+            this.doctor = Optional.empty();
+            this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                PatientFilter patientContainsDoctor =
+                        new PatientFilter(this.doctor);
+                Predicate<Patient> patientsOfDoctorPredicate =
+                        new PatientContainsKeywordsPredicate(patientContainsDoctor);
+                logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+            });
+        }
+
         @Override
         protected void updateItem(Doctor doctor, boolean empty) {
             super.updateItem(doctor, empty);
+            this.doctor = Optional.ofNullable(doctor);
 
             if (empty || doctor == null) {
                 setGraphic(null);

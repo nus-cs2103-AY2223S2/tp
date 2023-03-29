@@ -1,8 +1,11 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -75,6 +78,18 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return model.getFilteredPatientList();
+    }
+
+    @Override
+    public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
+        requireNonNull(predicate);
+        model.updateFilteredDoctorList(predicate);
+    }
+
+    @Override
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
+        requireNonNull(predicate);
+        model.updateFilteredPatientList(predicate);
     }
 
     @Override
