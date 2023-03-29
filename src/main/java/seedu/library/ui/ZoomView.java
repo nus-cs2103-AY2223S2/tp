@@ -1,9 +1,18 @@
 package seedu.library.ui;
 
+import java.awt.Desktop;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
@@ -30,8 +39,31 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label zoomTag;
     @FXML
+    private ImageView avatar;
+    @FXML
+    private Hyperlink urlLink;
+    @FXML
     private Label urlView;
+    @FXML
+    private ImageView ratingStar;
+    @FXML
+    private Label labelHeader;
 
+    /**
+     * Constructs a ZoomView that is empty
+     *
+     */
+    public ZoomView() {
+        super(FXML);
+        try {
+            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
+            avatar.setImage(new Image(image));
+            hideFields();
+        } catch (IOException e) {
+            System.out.println("IO error");
+        }
+
+    }
 
     /**
      * Constructs a ZoomView that displays the details of the provided bookmark.
@@ -40,16 +72,87 @@ public class ZoomView extends UiPart<Region> {
      */
     public ZoomView(Bookmark bookmark) {
         super(FXML);
-        this.bookmark = bookmark;
-        viewTitle.setText("Title: " + bookmark.getTitle().value);
-        authorView.setText("Author: " + bookmark.getAuthor().value);
-        genreView.setText("Genre: " + bookmark.getGenre().value);
-        progressView.setText("Progress: " + bookmark.getProgress().toString());
-        urlView.setText("Url: " + bookmark.getUrl().value);
-        genreView.setText("Genre: " + bookmark.getGenre().value);
-        progressView.setText("Progress: " + bookmark.getProgress().toString());
-        bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+
+        try {
+            this.bookmark = bookmark;
+            viewTitle.setText("Title: " + bookmark.getTitle().value);
+            String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
+            authorView.setText("Author: " + authorString);
+            genreView.setText("Genre: " + bookmark.getGenre().value);
+            String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
+            progressView.setText("Progress: " + progressString);
+            urlLink.setText(bookmark.getUrl().value);
+            bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
+            avatar.setImage(new Image(image));
+            urlLink.setOnAction(e -> {
+                openLink(urlLink.getText());
+            });
+            rate(bookmark);
+        } catch (IOException e) {
+            throw new AssertionError(e);
+        }
+
+    }
+
+    /**
+     * Open url in default browser
+     * @param url url to open
+     */
+    public void openLink(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (IOException | URISyntaxException ex) {
+            throw new AssertionError(ex);
+        }
+    }
+
+    /**
+     * Helps set rating image in bookmarkcard
+     * @param bookmark book to get rating value from
+     */
+    public void rate(Bookmark bookmark) {
+        try {
+            InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
+            InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
+            InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
+            InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
+            InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
+            InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+
+            if (bookmark.getRating() == null) {
+                ratingStar.setImage(new Image(rating0));
+                ratingStar.setVisible(true);
+                return;
+            }
+
+            String rating = bookmark.getRating().toString();
+
+            if (rating.equals("1")) {
+                ratingStar.setImage(new Image(rating1));
+                ratingStar.setVisible(true);
+            } else if (rating.equals("2")) {
+                ratingStar.setImage(new Image(rating2));
+                ratingStar.setVisible(true);
+            } else if (rating.equals("3")) {
+                ratingStar.setImage(new Image(rating3));
+                ratingStar.setVisible(true);
+            } else if (rating.equals("4")) {
+                ratingStar.setImage(new Image(rating4));
+                ratingStar.setVisible(true);
+            } else if (rating.equals("5")) {
+                ratingStar.setImage(new Image(rating5));
+                ratingStar.setVisible(true);
+            } else {
+                ratingStar.setVisible(false);
+            }
+
+        }
+        catch (IOException e) {
+            throw new AssertionError(e);
+
+        }
 
     }
 
@@ -64,8 +167,12 @@ public class ZoomView extends UiPart<Region> {
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
+        urlLink.setVisible(false);
         urlView.setVisible(false);
+        ratingStar.setVisible(false);
+        labelHeader.setVisible(false);
 
     }
+
 
 }

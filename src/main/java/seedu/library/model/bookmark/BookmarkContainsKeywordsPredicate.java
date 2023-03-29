@@ -35,6 +35,10 @@ public class BookmarkContainsKeywordsPredicate implements Predicate<Bookmark> {
         return testTitle(bookmark) && testGenre(bookmark) && testTag(bookmark) && testAuthor(bookmark);
     }
 
+    public List<String> getTagKeywords() {
+        return tagKeywords;
+    }
+
     private boolean testTitle(Bookmark bookmark) {
         if (titleKeywords == null) {
             return true;

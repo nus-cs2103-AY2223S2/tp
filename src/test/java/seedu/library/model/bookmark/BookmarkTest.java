@@ -72,20 +72,8 @@ public class BookmarkTest {
         Bookmark editedAlice = new BookmarkBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different progress -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withProgress(VALID_PROGRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different email -> returns false
+        // different genre -> returns false
         editedAlice = new BookmarkBuilder(ALICE).withGenre(VALID_GENRE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withAuthor(VALID_AUTHOR_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new BookmarkBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

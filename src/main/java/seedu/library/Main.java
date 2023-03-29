@@ -2,6 +2,7 @@ package seedu.library;
 
 import javafx.application.Application;
 
+
 /**
  * The main entry point to the application.
  *

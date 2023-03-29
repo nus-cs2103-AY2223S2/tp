@@ -18,6 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setLibrary(new Library());
+        model.updateSelectedIndex(-1);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }

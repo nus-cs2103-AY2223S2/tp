@@ -99,7 +99,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         List<String> tagKeywords = Arrays.asList(
                 argMultimap.getValue(PREFIX_TAG).get().trim().split("\\s+"));
-        if (tagKeywords.stream().anyMatch(keyword -> !Tag.isValidTagName("[" + keyword + "]"))) {
+        if (tagKeywords.stream().anyMatch(keyword -> !Tag.isValidTagName(keyword))) {
             throw new ParseException(MESSAGE_INVALID_TAG);
         }
         return tagKeywords;

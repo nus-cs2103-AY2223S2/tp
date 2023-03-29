@@ -3,6 +3,7 @@ package seedu.library.model.bookmark;
 import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -103,6 +104,19 @@ public class UniqueBookmarkList implements Iterable<Bookmark> {
      */
     public ObservableList<Bookmark> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Sorts the bookmark list in either ascending or descending order.
+     * @param order Order to sort the list by.
+     */
+    public void sortBookmarks(String order) {
+        if (order.equals("asc")) {
+            Collections.sort(internalList);
+        }
+        if (order.equals("desc")) {
+            internalList.sort(Collections.reverseOrder());
+        }
     }
 
     @Override

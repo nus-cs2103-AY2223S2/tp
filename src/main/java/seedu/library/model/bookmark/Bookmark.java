@@ -13,7 +13,7 @@ import seedu.library.model.tag.Tag;
  * Represents a Bookmark in the library.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Bookmark {
+public class Bookmark implements Comparable<Bookmark> {
 
     // Identity fields
     private final Title title;
@@ -22,18 +22,20 @@ public class Bookmark {
 
     // Data fields
     private final Author author;
+    private final Rating rating;
     private final Url url;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Title, genre and tags must be present and not null.
      */
-    public Bookmark(Title title, Progress progress, Genre genre, Author author, Url url, Set<Tag> tags) {
-        requireAllNonNull(title, progress, genre, author, tags);
+    public Bookmark(Title title, Progress progress, Genre genre, Author author, Rating rating, Url url, Set<Tag> tags) {
+        requireAllNonNull(title, genre, tags);
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.rating = rating;
         this.url = url;
         this.tags.addAll(tags);
     }
@@ -53,6 +55,11 @@ public class Bookmark {
     public Author getAuthor() {
         return author;
     }
+
+    public Rating getRating() {
+        return rating;
+    }
+
     public Url getUrl() {
         return url;
     }
@@ -94,11 +101,17 @@ public class Bookmark {
 
         Bookmark otherBookmark = (Bookmark) other;
         return otherBookmark.getTitle().equals(getTitle())
-                && otherBookmark.getProgress().equals(getProgress())
-                && otherBookmark.getGenre().equals(getGenre())
-                && otherBookmark.getAuthor().equals(getAuthor())
+                //&& otherBookmark.getProgress().equals(getProgress())
+                && otherBookmark.getGenre().equals(getGenre());
+                //&& otherBookmark.getAuthor().equals(getAuthor())
+                //&& otherBookmark.getRating().equals(getRating())
                 //&& otherBookmark.getUrl().equals(getUrl())
-                && otherBookmark.getTags().equals(getTags());
+                //&& otherBookmark.getTags().equals(getTags());
+    }
+
+    @Override
+    public int compareTo(Bookmark other) {
+        return this.rating.compareTo(other.rating);
     }
 
     @Override
@@ -117,6 +130,8 @@ public class Bookmark {
                 .append(getGenre())
                 .append("; Author: ")
                 .append(getAuthor())
+                .append(" Rating: ")
+                .append(getRating())
                 .append(" Url: ")
                 .append(getUrl());
 

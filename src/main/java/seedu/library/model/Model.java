@@ -94,6 +94,39 @@ public interface Model {
     void updateFilteredBookmarkList(Predicate<Bookmark> predicate);
 
     /**
+     * Updates the filtered list to be sorted by rating.
+     */
+    public void updateSortedBookmarkList(String order);
+
+    /**
+     * Gets the Bookmark that is currently being selected for zoomview
+     *
+     * @return the currently selected bookmark
+     */
+    Bookmark getSelectedBookmark();
+
+    /**
+     * Gets the indek that is currently being selected for zoomview
+     *
+     * @return the currently selected bookmark
+     */
+    int getSelectedIndex();
+
+    /**
+     * Updates the Bookmark that is currently being selected for zoomview
+     *
+     * @param target The bookmark that is selected for viewing
+     */
+    void updateSelectedBookmark(Bookmark target);
+
+    /**
+     * Updates the index that is currently being selected for zoomview
+     *
+     * @param index The index that is selected for viewing
+     */
+    void updateSelectedIndex(int index);
+
+    /**
      * Returns true if any tag with the same identity as {@code tag} exists in the tag list.
      */
     boolean hasTag(Set<Tag> tag);
@@ -115,3 +148,4 @@ public interface Model {
      */
     void deleteTag(Tag target);
 }
+

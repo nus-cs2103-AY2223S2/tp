@@ -6,7 +6,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "alice@example.com",
+    "genre": "Action",
     "author": "123, Jurong West Ave 6, #08-111",
     "url": "",
     "tagged": [ {
@@ -19,7 +19,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "pauline@example.com",
+    "genre": "Others",
     "author": "4th street",
     "url": ""
   } ]

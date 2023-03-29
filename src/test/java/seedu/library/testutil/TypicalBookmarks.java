@@ -24,36 +24,36 @@ import seedu.library.model.bookmark.Bookmark;
 public class TypicalBookmarks {
 
     public static final Bookmark ALICE = new BookmarkBuilder().withTitle("Alice Pauline")
-            .withAuthor("123, Jurong West Ave 6, #08-111").withGenre("alice@example.com")
+            .withAuthor("123, Jurong West Ave 6, #08-111").withGenre("Action")
             .withProgress("1 2 ~").withUrl("https://www.abc.com")
-            .withTags("friends").build();
+            .withTags("MaleProtagonist").build();
     public static final Bookmark BENSON = new BookmarkBuilder().withTitle("Benson Meier")
             .withAuthor("311, Clementi Ave 2, #02-25")
-            .withGenre("johnd@example.com").withProgress("1 2 ~").withUrl("https://www.def.com")
-            .withTags("owesMoney", "friends").build();
+            .withGenre("Adventure").withProgress("1 2 ~").withUrl("https://www.def.com")
+            .withTags("MaleProtagonist", "FemaleProtagonist").build();
     public static final Bookmark CARL = new BookmarkBuilder().withTitle("Carl Kurz")
             .withProgress("1 2 ~")
-            .withGenre("heinz@example.com").withAuthor("wall street").build();
+            .withGenre("Comedy").withAuthor("wall street").build();
     public static final Bookmark DANIEL = new BookmarkBuilder().withTitle("Daniel Meier")
             .withProgress("1 2 ~")
-            .withGenre("cornelia@example.com").withAuthor("10th street").withTags("friends").build();
+            .withGenre("Drama").withAuthor("10th street").withTags("friends").build();
     public static final Bookmark ELLE = new BookmarkBuilder().withTitle("Elle Meyer")
             .withProgress("1 2 ~")
-            .withGenre("werner@example.com").withAuthor("michegan ave").build();
+            .withGenre("Fantasy").withAuthor("michegan ave").build();
     public static final Bookmark FIONA = new BookmarkBuilder().withTitle("Fiona Kunz")
             .withProgress("1 2 ~")
-            .withGenre("lydia@example.com").withAuthor("little tokyo").build();
+            .withGenre("Historical").withAuthor("little tokyo").build();
     public static final Bookmark GEORGE = new BookmarkBuilder().withTitle("George Best")
             .withProgress("1 2 ~")
-            .withGenre("anna@example.com").withAuthor("4th street").build();
+            .withGenre("Horror").withAuthor("4th street").build();
 
     // Manually added
     public static final Bookmark HOON = new BookmarkBuilder().withTitle("Hoon Meier")
             .withProgress("1 2 ~")
-            .withGenre("stefan@example.com").withAuthor("little india").build();
+            .withGenre("Martial Arts").withAuthor("little india").build();
     public static final Bookmark IDA = new BookmarkBuilder().withTitle("Ida Mueller")
             .withProgress("1 2 ~")
-            .withGenre("hans@example.com").withAuthor("chicago ave").build();
+            .withGenre("Others").withAuthor("chicago ave").build();
 
     // Manually added - Bookmark's details found in {@code CommandTestUtil}
     public static final Bookmark AMY = new BookmarkBuilder().withTitle(VALID_TITLE_AMY).withProgress(VALID_PROGRESS_AMY)

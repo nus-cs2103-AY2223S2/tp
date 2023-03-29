@@ -54,6 +54,17 @@ public class Progress {
         return true;
     }
 
+    public String getVolume() {
+        return volume;
+    }
+
+    public String getChapter() {
+        return chapter;
+    }
+    public String getPage() {
+        return page;
+    }
+
     @Override
     public String toString() {
         String accumulator = "";

@@ -25,6 +25,9 @@ public class ModelManager implements Model {
     private final Tags tagList;
     private final UserPrefs userPrefs;
     private final FilteredList<Bookmark> filteredBookmarks;
+    private int selectedIndex;
+    private Bookmark selectedBookmark;
+
 
     /**
      * Initializes a ModelManager with the given library and userPrefs, tagList.
@@ -40,6 +43,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.tagList = new Tags(tagList);
         filteredBookmarks = new FilteredList<>(this.library.getBookmarkList());
+        selectedBookmark = null;
+        selectedIndex = -1;
     }
 
     public ModelManager() {
@@ -166,6 +171,30 @@ public class ModelManager implements Model {
     public void updateFilteredBookmarkList(Predicate<Bookmark> predicate) {
         requireNonNull(predicate);
         filteredBookmarks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedBookmarkList(String order) {
+        requireNonNull(order);
+        library.sortBookmarks(order);
+    }
+
+    @Override
+    public Bookmark getSelectedBookmark() {
+        return this.selectedBookmark;
+    }
+    @Override
+    public int getSelectedIndex() {
+        return this.selectedIndex;
+    }
+
+    @Override
+    public void updateSelectedBookmark(Bookmark target) {
+        this.selectedBookmark = target;
+    }
+    @Override
+    public void updateSelectedIndex(int index) {
+        this.selectedIndex = index;
     }
 
     @Override

@@ -48,6 +48,7 @@ public class GoToCommand extends Command {
             throw new CommandException(URI_OPS_ERROR + ioe, ioe);
 
         }
+        model.updateSelectedIndex(-1);
         return new CommandResult(String.format(MESSAGE_GOTO_BOOKMARK_SUCCESS, bookmarkToGoto), false, false, false);
     }
 

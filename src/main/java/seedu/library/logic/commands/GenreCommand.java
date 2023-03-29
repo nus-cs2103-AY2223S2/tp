@@ -18,6 +18,7 @@ public class GenreCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<String> validGenres = getValidGenres();
         String genresString = String.join(", ", validGenres);
+        model.updateSelectedIndex(-1);
         return new CommandResult("Valid genres: " + genresString);
     }
 }

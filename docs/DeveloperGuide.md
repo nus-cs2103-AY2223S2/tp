@@ -264,7 +264,7 @@ is then created into a URI object when `GoToCommand` is executed
 
 The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
 
-* **Alternative 1 (current choice):** URI object to open site only created in `GoToCommand`.
+* **Alternative 1 (current choice):** url stored as string and URI object to open site only created in `GoToCommand`.
     * Pros: Easy to implement, easier storage
     * Cons: May have security due to parsing or encoding errors
 
@@ -365,20 +365,59 @@ A considered field to be included in `find` is the `progress` field. However, it
 bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
 unlikely to search for a bookmark using `progress`.
 
-### [Proposed] Rating Field
+### Tags Feature
+
 #### Implementation
-The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
-in the `Bookmark` class.
+The `ListTagsCommand` lists all tags in the tag list. The `AddTagCommand` allows you to add tags to the tag list. 
+The `DeleteTagCommand` allows you to delete tags from the tag list.
 
+For listing the tags, you can use the `tags` command. For adding a tag to the tag list, 
+you can use the `addtag` command followed by the tag prefix, `t/`. An example of a user input
+would be `addtag t/MaleProtagonist`. For deleting a tag from the tag list, you can use the 
+`dtag` command followed by the name of the tag name. An example of user input would be 
+`dtag MaleProtagnoist`.
 
+Some limitations of the user inputs include:
+1. For deleting tags, only one tag name can be specified
+    * You cannot delete more than one tag name in a single command
 
 #### Design considerations:
 
-##### Aspect: How should `Rating` be represented?
+**Aspect: How to store the tag list?:**
+The tag list is stored as a JSON file which will be saved to the user's local device.
+
+The main reason for this is due to the need for the user's tag list to be saved even after the user exist 
+the application. When the user starts the application in the future, the tag list must be how the user left it.
+
+### Rating Field
+#### Implementation
+The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
+in the `Bookmark` class. 
+
+`Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be 
+easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided, 
+no star logos would be displayed.
+
+#### Design considerations:
+
+##### Aspect: How should `Rating` be stored?
 The `Rating` field is represented by integer values from 1 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
+- **Alternative 1(current choice):** Representing it as an integer from 1 to 5 inclusive. 
+  - Pros: Simple to keep track of and store, easily map rating to star icons in UI.
+  - Cons: Might not be granular enough to represent all possible values.
+- **Alternative 2:** Representing it a decimal value from 0 to 5.
+  - Pros: Higher level of granularity
+  - Cons: Difficult to represent with visual symbols in the UI to accurately reflect difference in ratings.
 
+##### Aspect: How should `Rating` be displayed to users?
+- Alternative 1: Represented as a number for example "Rating: 4".
+  - Pros: Easy to implement in the UI
+  - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing
+- Alternative 2(current choice): Representing it with 5 star icons in the BookmarkList Panel
+  - Pros: User can view ratings of books without having to click on the Bookmark Card
+  - Cons: Harder to implement in the UI
 
 ### \[Proposed\] Data archiving
 

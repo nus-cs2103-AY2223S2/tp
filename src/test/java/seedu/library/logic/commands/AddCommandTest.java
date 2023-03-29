@@ -181,6 +181,28 @@ public class AddCommandTest {
         public void updateFilteredBookmarkList(Predicate<Bookmark> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSortedBookmarkList(String order) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Bookmark getSelectedBookmark() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedBookmark(Bookmark target) {
+            assert(true);
+        }
+        @Override
+        public int getSelectedIndex() {
+            throw new AssertionError("This method should not be called.");
+        };
+        @Override
+        public void updateSelectedIndex(int index) {
+            assert(true);
+        };
     }
 
     /**

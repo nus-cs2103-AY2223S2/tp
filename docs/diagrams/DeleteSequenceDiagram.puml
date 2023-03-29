@@ -63,17 +63,18 @@ deactivate Desktop
 
 GoToCommand -> Desktop : openUrl(url)
 activate Desktop
-
+Desktop --> GoToCommand
+deactivate Desktop
 
 
 create CommandResult
 GoToCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> GoToCommand
+
+CommandResult --> GoToCommand :result
 deactivate CommandResult
-Desktop --> GoToCommand
-deactivate Desktop
+
 
 GoToCommand --> LogicManager : result
 deactivate GoToCommand

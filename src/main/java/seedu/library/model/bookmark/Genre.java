@@ -38,7 +38,7 @@ public class Genre {
      */
     private static String getValidationRegex() {
         String validGenreOptions = String.join("|", VALID_GENRES);
-        return "\\b(" + validGenreOptions + ")\\b";
+        return "^(" + validGenreOptions + ")$";
     }
 
     public static List<String> getValidGenres() {

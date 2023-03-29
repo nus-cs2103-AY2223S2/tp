@@ -7,6 +7,7 @@ import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
@@ -19,7 +20,7 @@ public class BookmarkBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
     public static final String[] DEFAULT_PROGRESS = {"1", "50", "~"};
-    public static final String DEFAULT_GENRE = "amy@gmail.com";
+    public static final String DEFAULT_GENRE = "Fantasy";
     public static final String DEFAULT_AUTHOR = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_URL = "https://www.abc.com";
 
@@ -27,6 +28,7 @@ public class BookmarkBuilder {
     private Progress progress;
     private Genre genre;
     private Author author;
+    private Rating rating;
     private Url url;
     private Set<Tag> tags;
 
@@ -40,6 +42,7 @@ public class BookmarkBuilder {
         author = new Author(DEFAULT_AUTHOR);
         url = new Url(DEFAULT_URL);
         tags = new HashSet<>();
+        rating = null;
     }
 
     /**
@@ -103,7 +106,7 @@ public class BookmarkBuilder {
     }
 
     public Bookmark build() {
-        return new Bookmark(title, progress, genre, author, url, tags);
+        return new Bookmark(title, progress, genre, author, rating, url, tags);
     }
 
 }
