@@ -6,7 +6,6 @@ import java.util.Optional;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
-import mycelium.mycelium.model.util.Fuzzy;
 import mycelium.mycelium.model.util.FuzzyComparable;
 import mycelium.mycelium.model.util.IsSame;
 import mycelium.mycelium.model.util.NonEmptyString;
@@ -148,8 +147,7 @@ public class Client implements IsSame<Client>, FuzzyComparable<String> {
     }
 
     @Override
-    public double fuzzyCompareTo(String match) {
-        var ret = Fuzzy.ratio(name.toString().toLowerCase(), match.toLowerCase());
-        return ret;
+    public String getFuzzyField() {
+        return name.fullName;
     }
 }
