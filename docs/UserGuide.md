@@ -345,8 +345,8 @@ Example: `m/CS2107`
 ### Module with Lessons
 
 Description: The name of the module the person is taking, and a lesson associate with the module.<br>
-Pattern: `m/MODULE DAY START END`<br>
-Rules: `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START` and `END` should be valid hour in a day.<br>
+Pattern: `m/MODULE DAY START_TIME END_TIME`<br>
+Rules: `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
 Example: `m/CS1234 mon 12 13`
 
 ## Basic Commands
