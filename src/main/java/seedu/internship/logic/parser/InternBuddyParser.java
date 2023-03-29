@@ -17,6 +17,7 @@ import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.UpcomingCommand;
 import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -72,6 +73,9 @@ public class InternBuddyParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case CopyCommand.COMMAND_WORD:
+            return new CopyCommandParser().parse(arguments);
 
         case UpcomingCommand.COMMAND_WORD:
             return new UpcomingCommand();
