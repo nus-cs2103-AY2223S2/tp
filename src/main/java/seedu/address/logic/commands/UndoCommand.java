@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Model;
@@ -11,13 +13,14 @@ import seedu.address.model.StateHistory;
  * Undoes a number of the most recent prior {@code Command}s.
  */
 public class UndoCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("undo", "u"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"undo", "u"});
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Undoes the previous command, or a number of most "
+    public static final String MESSAGE_USAGE = commandWords + ": Undoes the previous command, or a number of most "
             + "recent commands. Ignores Undo, Redo, and Export commands; affects all other valid commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
-            + "Example: " + COMMAND_WORDS + " 5";
+            + "Example: " + commandWords + " 5";
 
     public static final String MESSAGE_SUCCESS = "Undone %1$d / %2$d commands";
 
