@@ -44,7 +44,9 @@ public class ViewDetailCommand extends Command {
         }
 
         Client clientToView = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView), clientToView, false, false, true, false);
+        //return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView), clientToView);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView),
+                clientToView, false, false, true, false, false);
     }
 
     @Override
