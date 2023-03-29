@@ -94,12 +94,19 @@ public class PersonCard extends UiPart<Region> {
             socialMediaContainer.setVisible(false);
             socialMediaContainer.managedProperty().bind(socialMediaContainer.visibleProperty());
         }
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        person.getRemarks().stream()
+                .sorted(Comparator.comparing(remark -> remark.tagName))
+                .forEach(remark -> tags.getChildren().add(new Label(remark.tagName)));
         person.getModules().stream()
                 .sorted(Comparator.comparing(module -> module.tagName))
                 .forEach(module -> tags.getChildren().add(new Label(module.tagName)));
+        person.getCcas().stream()
+                .sorted(Comparator.comparing(cca -> cca.tagName))
+                .forEach(cca -> tags.getChildren().add(new Label(cca.tagName)));
+        person.getCcaPositions().stream()
+                .sorted(Comparator.comparing(ccaPosition -> ccaPosition.tagName))
+                .forEach(ccaPosition -> tags.getChildren().add(new Label(ccaPosition.tagName)));
 
         if (person.getBirthday().isPresent()) {
             birthday.setText(person.getBirthday().get().toString());
