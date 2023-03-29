@@ -29,8 +29,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
-
-    private ApplicationWindow applicationWindow;
+    private LoginWindow loginWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -47,12 +46,9 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            // this is where the window/scenes will be changed
-
             //this.showMainWindow(primaryStage);
             //mainWindow = new MainWindow(primaryStage, logic);
-            //this.showApplicationWindow(primaryStage);
-            this.showWelcomePage(primaryStage);
+            this.showLoginWindow(primaryStage);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -71,33 +67,40 @@ public class UiManager implements Ui {
     }
 
     /**
-     * Shows the application window which is the container for the whole app
-     * @param primaryStage Primary stage of the whole application
-     */
-    public void showApplicationWindow(Stage primaryStage) {
-        applicationWindow = new ApplicationWindow(primaryStage, logic);
-        applicationWindow.show(); //This should be called before creating other UI parts
-    }
-
-    /**
      * Shows the welcome page
      * @param primaryStage Primary stage of the whole application
      * @throws IOException Input Output Exception
      */
-    public void showWelcomePage(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/WelcomePage.fxml"));
-        Scene scene = new Scene(root);
-        scene.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD, this::onProceedCreatePassword);
-        primaryStage.setScene(scene);
-        primaryStage.setMinWidth(1000);
-        primaryStage.setMinHeight(600);
-        primaryStage.show();
+    public void showLoginWindow(Stage primaryStage) {
+        try {
+            loginWindow = new LoginWindow(primaryStage, logic);
+            // Observer design pattern is used here to register events
+            primaryStage.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD,
+                    this::onProceedCreatePassword);
+            loginWindow.show();
+            loginWindow.fillWelcomeNewUserSection();
+        } catch (Throwable e) {
+            String error = e.getCause().getMessage();
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error when switching scenes", e);
+        }
     }
 
     /**
      * Switches the next scene to enter password page
      */
     private void onProceedCreatePassword(ProceedCreatePasswordEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/"));
+            Scene scene = new Scene(root);
+
+
+
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error when switching scenes", e);
+        }
+
 
     }
 

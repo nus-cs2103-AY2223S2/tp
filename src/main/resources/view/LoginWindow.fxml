@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="ModCheck login">
+    <scene>
+        <Scene>
+            <!-- Vbox will be the main container for login window -->
+            <VBox fx:id="container" alignment="CENTER" stylesheets="/view/WelcomePage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>
+
