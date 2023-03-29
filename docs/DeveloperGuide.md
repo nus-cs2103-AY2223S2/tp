@@ -521,10 +521,10 @@ three-step process.
 
 #### `CommandBox` state
 
-The section on the [`Command Box`](#command-box) introduced the role of this
-class in managing state between `SearchMode` and `CommandMode`. We can now
-contextualize the differences between these two modes in relation to fuzzy
-searching. This is illustrated in the activity diagram below.
+The section on the [changing Command Box modes](#changing-modes) introduced the
+role of this class in managing state between `SearchMode` and `CommandMode`. We
+can now contextualize the differences between these two modes in relation to
+fuzzy searching. This is illustrated in the activity diagram below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
