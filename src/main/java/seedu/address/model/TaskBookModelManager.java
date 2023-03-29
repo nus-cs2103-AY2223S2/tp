@@ -99,13 +99,6 @@ public class TaskBookModelManager implements TaskBookModel {
     }
 
     @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        taskBook.setTask(target, editedTask);
-    }
-
-    @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
     }

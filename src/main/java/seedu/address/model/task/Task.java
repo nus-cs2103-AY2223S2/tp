@@ -223,19 +223,6 @@ public class Task {
     }
 
     /**
-     * Returns true if the input task type is valid.
-     * Task type is valid if it's equal to "T", "D" or "E".
-     * @param taskType Task type input by user.
-     * @return Boolean value of whether task type matches "T", "D" or "E".
-     */
-    public static boolean isValidTaskType(String taskType) {
-        if ((taskType.equals("T")) || (taskType.equals("D")) || (taskType.equals("E"))) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Returns true if both tasks have the same identity and data fields.
      */
     @Override
@@ -255,4 +242,6 @@ public class Task {
 
         return false;
     }
+
+
 }

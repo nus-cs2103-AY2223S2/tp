@@ -221,12 +221,6 @@ public class EventCommandTest {
         }
 
         @Override
-        public void setTask(Task target, Task editedTask) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setTask'");
-        }
-
-        @Override
         public void deleteTask(Task target) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteTask'");
