@@ -17,7 +17,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## How to use the User Guide
 
-* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##Quick Start) section.
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##quick-start) section.
 * To **understand the terms** we use in PowerCards, you can visit the [Glossary](##glossary) section.
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](##features) section.
 * Having **issues**? Check out the [FAQ](##faq) section and see if you can find your solutions there!
