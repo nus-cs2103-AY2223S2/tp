@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
@@ -123,6 +124,7 @@ public class EditModeParser {
             break;
         case "inventory":
             // Check if add or delete
+            outData.setInventory(new Inventory(toEdit.getInventory().getItems()));
             final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(value);
             if (!matcher.matches()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -239,4 +241,5 @@ public class EditModeParser {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
+
 }
