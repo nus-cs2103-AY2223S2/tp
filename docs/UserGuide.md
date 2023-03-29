@@ -228,19 +228,15 @@ Use this command to edit his/her details easily!
 
 **Syntax:**
 
-`edit INDEX [{SPECIFIER}/{DATA}]`
+`edit INDEX {SPECIFIER}/{DATA}...`
 
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
-
-  _[i.e  adding of tags and mods taken are not cumulative]_
-  * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
-* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
-
+* For the following fields, they are considered a `SuperField`
+  
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
 | n         | name                            | No        |
@@ -269,27 +265,46 @@ Use this command to find contacts whose names contain any of the given keywords!
 
 **Syntax:**
 
-`find KEYWORD [MORE_KEYWORDS]`
+`find KEYWORD {SPECIFIER}/{KEYWORDS} ...`
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
-* Only the name is searched.
-* The search is **case-insensitive**.
+* The keywords are case-insensitive.
+  * i.e. `find n/Abigail' can return people with names of 'Abigail`, 
+'aBiGail', 'abigail', 'ABIGAIL'.
 
-    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
-* The order of the keywords does not matter.
 
-    _[e.g. `Hans Bo` will match `Bo Hans`]_
+* For each field specified, as long as one of the keywords is contained
+in that field, then the person will be returned.
+  * i.e. `find n/John n/Peter James`
+    * Can return:
+      * people with names of 'John', 'Peter James', 'Peter James John'
+    * Cannot return:
+      * A person with name of 'Peter'.
 
-* Only full words will be matched
+* All fields specified must have at least one keyword contained within that
+field for that person to be returned.
+  * i.e. `find n/Caleb p/9123 p/456`
+    * Can return: 
+      * A person with a name of 'Caleb' who
+has a phone number of '91234567', 
+    * Cannot return:
+      * A person whose name is 'Caleb' but has
+a phone number of '98765432'
+      * A person whose name is 'Joshua' even though
+his phone number is '91234567'
 
-    _[e.g. `Han` will not match `Hans`]_
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
-
-    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
-
-_Examples:_
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
