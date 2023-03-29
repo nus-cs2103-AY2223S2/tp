@@ -137,16 +137,14 @@ Adds a new contact.
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
-### Clear all Events: `clear` <a id = "clear-all-events"></a>
+### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
-Clears all events in Paidlancers.
+Clears all events and contacts.
 
 **Format**: `clear`
 
-- Clears all events in the event book.
-
 <div markdown="span" class="alert alert-warning">:exclamation: Caution:
-This is a destructive command. Once you clear all events, there is no way to recover them!
+This is a destructive command. Once you clear all events and contacts, there is no way to recover them!
 Please be careful when using this command.
 </div>
 
@@ -208,7 +206,7 @@ Closes Paidlancers.
 
 **Format**: `exit`
 
-- Close the application.
+- Closes the application.
 
 ### Find Event: `find` <a id = "find-event"></a>
 
@@ -246,11 +244,9 @@ Links client contact to an event.
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
-Shows a list of all events in Paidlancers
+Displays all events.
 
 **Format**: `list`
-
-- List down the events in the event book.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
@@ -286,8 +282,6 @@ Unmarks a specified event in Paidlancers.
 Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
-
-- Displays the total revenue.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
