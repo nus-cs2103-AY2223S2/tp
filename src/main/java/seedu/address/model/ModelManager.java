@@ -131,7 +131,7 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
+        this.editPersonForAllEvents(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -183,6 +183,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.userData.editPersonForAllEvents(personToEdit, editedPerson);
+    }
+
+    @Override
     public void tagPersonToEvent(Index index, Person p) {
         this.userData.tagPersonToEvent(index, p);
     }
@@ -196,6 +201,7 @@ public class ModelManager implements Model {
     public boolean isPersonTaggedToEvent(Index index, Person p) {
         return this.userData.isPersonTaggedToEvent(index, p);
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
@@ -19,19 +20,20 @@ public abstract class Event {
     protected final DateTime startDateTime;
     protected final DateTime endDateTime;
     protected final Recurrence recurrence;
-    protected final Set<Person> taggedPeople;
+    protected Set<Person> taggedPeople = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      * One Time Events will be handled by a None Recurrence Enum.
      */
-    public Event(Description description, DateTime startDateTime, DateTime endDateTime, Recurrence recurrence) {
-        requireAllNonNull(description, startDateTime, endDateTime, recurrence);
+    public Event(Description description, DateTime startDateTime, DateTime endDateTime, Recurrence recurrence,
+                 Set<Person> taggedPeople) {
+        requireAllNonNull(description, startDateTime, endDateTime, recurrence, taggedPeople);
         this.description = description;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.recurrence = recurrence;
-        this.taggedPeople = new HashSet<>();
+        this.taggedPeople.addAll(taggedPeople);
     }
 
     public Description getDescription() {
@@ -55,11 +57,27 @@ public abstract class Event {
     }
 
     public void deleteTaggedPerson(Person p) {
-        this.taggedPeople.remove(p);
+        this.taggedPeople.removeIf(p2 -> p2.equals(p));
     }
 
+    /**
+     * Edits {@code personToEdit} into {@code editedPerson} if {@code personToEdit} exists.
+     */
+    public void editTaggedPerson(Person personToEdit, Person editedPerson) {
+        this.taggedPeople = this.taggedPeople.stream().map(
+                person -> person.equals(personToEdit) ? editedPerson : person).collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns true if there is a person in the addressbook that is equal to the person {@code p}.
+     */
     public boolean hasTaggedPerson(Person p) {
-        return this.taggedPeople.contains(p);
+        for (Person p2: this.taggedPeople) {
+            if (p.equals(p2)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Set<Person> getTaggedPeople() {

@@ -54,6 +54,7 @@ public class UnfavoriteCommand extends Command {
         Person unfavoritedPerson = personToUnfav.unfavorite();
 
         model.setPerson(personToUnfav, unfavoritedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritedPerson));
     }
