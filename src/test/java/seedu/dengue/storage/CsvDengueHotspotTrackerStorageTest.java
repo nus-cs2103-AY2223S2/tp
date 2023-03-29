@@ -13,15 +13,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import seedu.dengue.commons.exceptions.DataConversionException;
-import seedu.dengue.commons.util.CsvUtil;
 import seedu.dengue.model.DengueHotspotTracker;
-import seedu.dengue.model.person.Person;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.testutil.TypicalPersons;
 
@@ -53,9 +52,9 @@ public class CsvDengueHotspotTrackerStorageTest {
 
     @Test
     public void readDengueHotspotTracker_typicalPersonsFile_success() throws Exception {
-        Optional<ReadOnlyDengueHotspotTracker> dataFromFile
-                = readDengueHotspotTracker(TYPICAL_PERSONS_FILE);
-        if (dataFromFile.isPresent()){
+        Optional<ReadOnlyDengueHotspotTracker> dataFromFile =
+                readDengueHotspotTracker(TYPICAL_PERSONS_FILE);
+        if (dataFromFile.isPresent()) {
             ReadOnlyDengueHotspotTracker dengueHotspotTrackerFromFile = dataFromFile.get();
             DengueHotspotTracker typicalPersonsDengueHotspotTracker = TypicalPersons.getTypicalDengueHotspotTracker();
             assertEquals(dengueHotspotTrackerFromFile, typicalPersonsDengueHotspotTracker);

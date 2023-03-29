@@ -2,25 +2,25 @@ package seedu.dengue.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileNotFoundException;
-import java.io.Reader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Writer;
 import java.io.FileWriter;
-import java.util.List;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.bean.CsvToBean;
+import com.opencsv.CSVWriter;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
@@ -35,10 +35,10 @@ public class CsvUtil {
     private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
 
     /**
-     * Returns the List of <T> from the given csv file or {@code Optional.empty()} object if the file is not found.
+     * Returns the List of T from the given csv file or {@code Optional.empty()} object if the file is not found.
      * If any values are missing from the file, it will throw an error, as long as the file is a valid csv file.
      * @param filePath cannot be null.
-     * @param classOfObjectToDeserialize Csv file has to correspond to the class of <T> given.
+     * @param classOfObjectToDeserialize Csv file has to correspond to the class of T given.
      * @throws DataConversionException if the file format is not as expected.
      */
     public static <T> Optional<List<T>> readCsvFile(
@@ -70,7 +70,7 @@ public class CsvUtil {
      * Overwrites existing file if it exists, creates a new file if it doesn't.
      * @param data takes in a List of String arrays for the data
      * @param filePath cannot be null
-     * @parem header takes in the String array for the data header
+     * @param header takes in the String array for the data header
      * @throws IOException if there was an error during writing to the file
      */
     public static <T> void saveCsvFile(List<String[]> data, Path filePath, String[] header)
@@ -86,30 +86,30 @@ public class CsvUtil {
      * @param r the input reader for the CSV data
      * @param instanceClass the target class for the CSV data
      * @return a CsvToBean object configured to read CSV data from the specified reader
-     * and convert it to objects of the specified target class
      */
     public static <T> CsvToBean<T> createCsvReader(Reader r, Class<T> instanceClass) {
-        return new CsvToBeanBuilder(r)
+        CsvToBean csvToBean = new CsvToBeanBuilder(r)
                 .withType(instanceClass)
                 .withSeparator(',')
                 .withQuoteChar(CSVWriter.NO_QUOTE_CHARACTER)
                 .withIgnoreLeadingWhiteSpace(true)
                 .withIgnoreEmptyLine(true)
                 .build();
+        return csvToBean;
     }
 
     /**
      * Creates a new CSV writer with the specified output writer and mapping strategy.
      * @param wr the output writer for the CSV data
      * @param ms the mapping strategy for the CSV data
-     * @return a StatefulBeanToCsv object configured to write CSV data to the specified writer
-     * using the specified mapping strategy
+     * @return StatefulBeanToCsv object configured to write CSV data to the specified writer
      */
     public static <T> StatefulBeanToCsv<T> createCsvWriter(Writer wr, ColumnPositionMappingStrategy<T> ms) {
-        return new StatefulBeanToCsvBuilder(wr)
+        StatefulBeanToCsv csvWriter = new StatefulBeanToCsvBuilder(wr)
                 .withMappingStrategy(ms)
                 .withSeparator(',')
                 .build();
+        return csvWriter;
     }
 
     /**
@@ -122,7 +122,8 @@ public class CsvUtil {
     /**
      * Assumes Csv file exists
      */
-    public static <T> List<T> readFromCsvFile(Path file, Class<T> instanceClass) throws IOException, DataConversionException {
+    public static <T> List<T> readFromCsvFile(Path file, Class<T> instanceClass)
+            throws IOException, DataConversionException {
         Reader reader = readFile(file);
         CsvToBean<T> csvReader = createCsvReader(reader, instanceClass);
         List<T> parsed = csvReader.parse();

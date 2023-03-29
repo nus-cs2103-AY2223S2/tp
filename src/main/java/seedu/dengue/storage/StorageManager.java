@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;

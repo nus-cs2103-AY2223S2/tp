@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -12,10 +11,11 @@ import java.util.stream.Collectors;
 
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
-import seedu.dengue.commons.util.FileUtil;
 import seedu.dengue.commons.util.CsvUtil;
+import seedu.dengue.commons.util.FileUtil;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.model.person.Person;
@@ -67,7 +67,8 @@ public class CsvDengueHotspotStorage implements DengueHotspotStorage {
     }
 
     @Override
-    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker)
+            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         saveDengueHotspotTracker(dengueHotspotTracker, filePath);
     }
 

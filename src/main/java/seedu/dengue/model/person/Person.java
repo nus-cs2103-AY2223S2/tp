@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 import com.opencsv.bean.CsvCustomBindByName;
 
-import seedu.dengue.model.variant.Variant;
+import seedu.dengue.model.person.csvutil.AgeConverter;
+import seedu.dengue.model.person.csvutil.DateConverter;
 import seedu.dengue.model.person.csvutil.NameConverter;
 import seedu.dengue.model.person.csvutil.PostalConverter;
-import seedu.dengue.model.person.csvutil.DateConverter;
-import seedu.dengue.model.person.csvutil.AgeConverter;
 import seedu.dengue.model.person.csvutil.VariantsConverter;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * Represents a Person in the Dengue Hotspot Tracker.
@@ -136,7 +136,7 @@ public class Person {
         Set<Variant> variantSet = getVariants();
         StringBuilder builder = new StringBuilder("[");
         if (!variantSet.isEmpty()) {
-            builder.append( variantSet.stream()
+            builder.append(variantSet.stream()
                     .map(Variant::toString)
                     .collect(Collectors.joining(", ")));
         }
