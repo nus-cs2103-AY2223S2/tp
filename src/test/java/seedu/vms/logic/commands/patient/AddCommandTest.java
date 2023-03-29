@@ -260,6 +260,11 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setVaccinationFilters'");
         }
+        @Override
+        public void setAppointmentFilters(Collection<Predicate<Appointment>> filters) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentFilters'");
+        }
 
         @Override
         public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {

@@ -123,6 +123,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void setAppointmentFilters(Collection<Predicate<Appointment>> filters) {
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointmentFilters'");
+    }
+
+    @Override
     public VaxTypeManager getVaxTypeManager() {
         throw new UnsupportedOperationException("Unimplemented method 'getVaxTypeManager'");
     }
