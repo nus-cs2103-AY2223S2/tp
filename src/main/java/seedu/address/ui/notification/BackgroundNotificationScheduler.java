@@ -19,17 +19,40 @@ public class BackgroundNotificationScheduler extends Timer {
 
     /**
      * Create a scheduled task with {@code Timer}.
+     * A {@code BackgroundReminderTask} is scheduled to check every minute
+     */
+    public void backgroundReminder() {
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.MINUTE, 1);
+        now.set(Calendar.SECOND, 0);
+
+        new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000 * 60);
+    }
+
+    /**
+     * Create a scheduled task with {@code Timer}.
+     * A {@code } is scheduled 20 minutes before the closet upcoming hour, and
+     * every subsequent hour
+     */
+    public void backgroundSchedule() {
+        Calendar now = Calendar.getInstance();
+        if (now.get(Calendar.MINUTE) >= 40) {
+            now.add(Calendar.HOUR_OF_DAY, 1);
+        }
+        now.set(Calendar.MINUTE, 40);
+        now.set(Calendar.SECOND, 0);
+
+        new Timer().schedule(new BackgroundScheduleTask(notificationManager), now.getTime(), 1000 * 60 * 60);
+    }
+
+    /**
+     * Create a scheduled task with {@code Timer}.
      * A {@code BackgroundReminderTask} is scheduled from the closet upcoming hour, and
      * every subsequent hour
      */
     public void run() {
-        Calendar now = Calendar.getInstance();
-        now.set(Calendar.MINUTE, 0);
-        now.set(Calendar.SECOND, 0);
-        now.add(Calendar.HOUR, 1);
-        new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000 * 60 * 60);
-        //new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000*5);
-        //add new BackgroundTimetableTask
+        backgroundReminder();
+        backgroundSchedule();
     }
 
 }

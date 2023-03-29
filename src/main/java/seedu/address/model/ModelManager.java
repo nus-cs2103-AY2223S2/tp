@@ -18,11 +18,12 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
-import seedu.address.model.jobs.sorters.SortbyTime;
+import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -30,7 +31,7 @@ import seedu.address.model.reminder.Reminder;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    public static final SortbyTime SORTER_BY_DATE = new SortbyTime();
+    public static final SortbyTimeAndEarn SORTER_BY_DATE = new SortbyTimeAndEarn();
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
+    private final SortedList<DeliveryJob> sortedDeliveryJobsList;
     private final ObservableList<Reminder> reminderList;
     private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
     private List<DeliveryJob> sortedDeliveryJobs;
@@ -62,9 +64,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.deliveryJobSystem = new DeliveryJobSystem(deliveryJobSystem);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        this.filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
+        this.filteredDeliveryJobs = new FilteredList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
+        this.sortedDeliveryJobsList = new SortedList<DeliveryJob>(filteredDeliveryJobs);
         //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.weekJobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
@@ -225,6 +228,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<DeliveryJob> getDeliveryJobList() {
+        updateFilteredDeliveryJobList(PREDICATE_SHOW_ALL_DELIVERY_JOBS);
         return filteredDeliveryJobs;
     }
 
@@ -241,8 +245,18 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
-        sortedDeliveryJobs = new ArrayList<DeliveryJob>(deliveryJobSystem.getDeliveryJobList());
+        sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         Collections.sort(sortedDeliveryJobs, sorter);
+    }
+
+    @Override
+    public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+        sortedDeliveryJobsList.setComparator(sorter);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
+        return sortedDeliveryJobsList;
     }
 
     @Override
@@ -267,11 +281,19 @@ public class ModelManager implements Model {
                     if (jobsInCurrentSlot.size() == 0) {
                         jobsInCurrentSlot = createEmptyDayJobList();
                     }
-                    jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                    if (slotIndex > 4) {
+                        jobsInCurrentSlot.get(5).add(toAdd);
+                    } else {
+                        jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                    }
                     jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
                 } else {
                     DeliveryList newDateJobList = createEmptyDayJobList();
-                    newDateJobList.get(slotIndex).add(toAdd);
+                    if (slotIndex > 4) {
+                        newDateJobList.get(5).add(toAdd);
+                    } else {
+                        newDateJobList.get(slotIndex).add(toAdd);
+                    }
                     jobListGroupedByDate.put(jobDate, newDateJobList);
                 }
             }
@@ -317,7 +339,7 @@ public class ModelManager implements Model {
 
     private DeliveryList createEmptyDayJobList() {
         ArrayList<ArrayList<DeliveryJob>> newEmptyArr = new ArrayList<ArrayList<DeliveryJob>>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             newEmptyArr.add(new ArrayList<DeliveryJob>());
         }
         return new DeliveryList(newEmptyArr);
@@ -342,8 +364,19 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
-        FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
-        unscheduledJobList.setPredicate(job -> ((!job.isScheduled()) && (job.getDeliveredStatus())));
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        FilteredList<DeliveryJob> unscheduledJobList =
+                new FilteredList<>(FXCollections.observableArrayList(sortedDeliveryJobs));
+        unscheduledJobList.setPredicate(job -> (!job.isValidScheduled()));
+        return FXCollections.observableArrayList(unscheduledJobList);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getCompletedDeliveryJobList() {
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        FilteredList<DeliveryJob> unscheduledJobList =
+                new FilteredList<>(FXCollections.observableArrayList(sortedDeliveryJobs));
+        unscheduledJobList.setPredicate(job -> (job.getDeliveredStatus()));
         return FXCollections.observableArrayList(unscheduledJobList);
     }
 
@@ -371,6 +404,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Reminder> getReminderList() {
         return reminderList;
+    }
+
+    @Override
+    public void setHasShown(int i, boolean b) {
+        reminderList.get(i).setHasShown(b);
     }
 
     @Override

@@ -11,7 +11,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code DeliveryJobCard}.
  */
 public class DeliveryJobCard extends UiPart<Region> {
 
@@ -51,7 +51,8 @@ public class DeliveryJobCard extends UiPart<Region> {
     private ImageView checkmarkIcon;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DeliveryJobCard} with the given {@code DeliveryJob}, index to display
+     * and {@code Consumer<DeliveryJob>}.
      */
     public DeliveryJobCard(DeliveryJob job, int displayedIndex, Consumer<DeliveryJob> onCheckHandler) {
         super(FXML);

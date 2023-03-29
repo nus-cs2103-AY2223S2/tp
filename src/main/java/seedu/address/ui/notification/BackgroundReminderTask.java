@@ -18,6 +18,10 @@ public class BackgroundReminderTask extends TimerTask {
         this.notificationManager = notificationManager;
     }
 
+    /**
+     * Changes the focus of the app to allow the notification to pop up even when the app is running in the
+     * background
+     */
     @Override
     public void run() {
         Platform.runLater(new Runnable() {
@@ -26,6 +30,5 @@ public class BackgroundReminderTask extends TimerTask {
                 notificationManager.checkReminderList();
             }
         });
-
     }
 }

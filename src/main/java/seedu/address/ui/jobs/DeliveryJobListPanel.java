@@ -1,6 +1,8 @@
 package seedu.address.ui.jobs;
 
+import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -8,8 +10,12 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
@@ -17,10 +23,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.sorters.DeliveryFilterOption;
+import seedu.address.model.jobs.sorters.DeliverySortOption;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of jobs.
  */
 public class DeliveryJobListPanel extends UiPart<Region> {
     private static final String FXML = "DeliveryJobListPanel.fxml";
@@ -28,9 +36,26 @@ public class DeliveryJobListPanel extends UiPart<Region> {
 
     private BiConsumer<Integer, DeliveryJob> onSelectHandler;
     private Consumer<DeliveryJob> onCheckHandler;
+    private Optional<BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>>> sortHandler;
+
+    private boolean sortOrder = false;
 
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
+    @FXML
+    private Menu orderOption;
+    @FXML
+    private Menu filterOption;
+    @FXML
+    private Label orderIndicator;
+    @FXML
+    private RadioMenuItem filterAll;
+    @FXML
+    private RadioMenuItem filterDelivered;
+    @FXML
+    private RadioMenuItem filterPending;
+    @FXML
+    private ToggleGroup toggleGroup;
 
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
@@ -148,5 +173,75 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      */
     public void refresh() {
         selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+    }
+
+    /**
+     * Sets the order event handlers.
+     *
+     * @param handler
+     */
+    public void setOrderByHandler(BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> handler) {
+        // orderOption = Optional.of(handler);
+        sortHandler = Optional.of(handler);
+        orderOption.setVisible(true);
+    }
+
+    /**
+     * Sets handler to filter
+     */
+    public void setFilterHandler(Consumer<DeliveryFilterOption> con) {
+        filterOption.setVisible(true);
+        filterDelivered.setToggleGroup(toggleGroup);
+        filterPending.setToggleGroup(toggleGroup);
+        filterAll.setToggleGroup(toggleGroup);
+        toggleGroup.selectedToggleProperty().addListener((observable, oldVal, newVal) -> {
+            switch (((RadioMenuItem) newVal).getText()) {
+            case "Delivered":
+                con.accept(DeliveryFilterOption.COM);
+                break;
+            case "Pending":
+                con.accept(DeliveryFilterOption.PEN);
+                break;
+            default:
+                con.accept(DeliveryFilterOption.ALL);
+                break;
+            }
+        });
+    }
+
+    private void toggleOrder() {
+        sortOrder = !sortOrder;
+        if (sortOrder) {
+            orderIndicator.setRotate(0);
+        } else {
+            orderIndicator.setRotate(180);
+        }
+    }
+
+    @FXML
+    void handleOrderByDelivered() {
+        logger.info("[handleOrderByDelivered]");
+        sortHandler.ifPresent(fun -> {
+            toggleOrder();
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.COM, sortOrder));
+        });
+    }
+
+    @FXML
+    void handleOrderByEarning() {
+        logger.info("[handleOrderByEarning]");
+        sortHandler.ifPresent(fun -> {
+            toggleOrder();
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.EARN, sortOrder));
+        });
+    }
+
+    @FXML
+    void handleOrderBySchedule() {
+        logger.info("[handleOrderBySchedule]");
+        sortHandler.ifPresent(fun -> {
+            toggleOrder();
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.DATE, sortOrder));
+        });
     }
 }

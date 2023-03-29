@@ -39,7 +39,7 @@ public class ImportDeliveryJobCommand extends Command {
         listOfAddDeliveryJob = ImportDeliveryJobCommandParser.parse(toAdd);
 
         for (int i = 0; i < listOfAddDeliveryJob.size(); i++) {
-            model.addDeliveryJob(listOfAddDeliveryJob.get(i));
+            new AddDeliveryJobCommand(listOfAddDeliveryJob.get(i));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
