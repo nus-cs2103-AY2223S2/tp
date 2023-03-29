@@ -165,7 +165,7 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#ffffff 30%);
+    -fx-background-color: derive(#ffffff, 30%);
     -fx-border-color: derive(#ffffff, 25%);
     -fx-border-width: 1px;
 }
@@ -185,7 +185,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#ffffff 50%);
+    -fx-background-color: derive(#ffffff, 50%);
 }
 
 .context-menu .label {
