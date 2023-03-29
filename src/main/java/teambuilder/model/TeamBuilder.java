@@ -31,19 +31,6 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         teams = new UniqueTeamList();
     }
 
-    private final UniqueTeamList teams;
-
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        teams = new UniqueTeamList();
-    }
-
     public TeamBuilder() {}
 
     /**
@@ -106,10 +93,6 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         persons.setPerson(target, editedPerson);
     }
 
-    public void addTeam(Team t) {
-        teams.add(t);
-    }
-
     /**
      * Returns true if a team with the same identity as {@code team} exists in the address book.
      */
@@ -131,6 +114,18 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         persons.remove(key);
     }
 
+    /**
+     * Adds a team to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addTeam(Team team) {
+        teams.add(team);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
     public void removeTeam(Team key) {
         teams.remove(key);
     }

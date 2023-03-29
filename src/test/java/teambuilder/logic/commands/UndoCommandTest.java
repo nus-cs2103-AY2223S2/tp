@@ -175,26 +175,16 @@ public class UndoCommandTest {
 
         @Override
         public boolean hasTeam(Team team) {
-<<<<<<< HEAD
             throw new AssertionError("Unimplemented method 'hasTeam'");
         }
 
         @Override
         public void deleteTeam(Team target) {
             throw new AssertionError("Unimplemented method 'deleteTeam'");
-=======
-            throw new UnsupportedOperationException("Unimplemented method 'hasTeam'");
-        }
-
-        @Override
-        public void deleteTeam(Team team) {
-            throw new UnsupportedOperationException("Unimplemented method 'deleteTeam'");
->>>>>>> Unique-Team-list
         }
 
         @Override
         public void addTeam(Team team) {
-<<<<<<< HEAD
             throw new AssertionError("Unimplemented method 'addTeam'");
         }
 
@@ -206,8 +196,6 @@ public class UndoCommandTest {
         @Override
         public void removeFromAllTeams(Person person) {
             throw new AssertionError("Unimplemented method 'removeFromAllTeams'");
-=======
-            throw new UnsupportedOperationException("Unimplemented method 'addTeam'");
         }
 
         @Override
@@ -218,7 +206,6 @@ public class UndoCommandTest {
         @Override
         public ObservableList<Team> getSortedTeamList() {
             throw new UnsupportedOperationException("Unimplemented method 'getSortedTeamList'");
->>>>>>> Unique-Team-list
         }
 
         @Override
@@ -239,22 +226,18 @@ public class UndoCommandTest {
 
         @Override
         public void updateSortPerson(Comparator<Person> comparator) {
-            throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortPerson'");
         }
 
         @Override
-<<<<<<< HEAD
+        public void updateSortTeam(Comparator<Team> comparator) {
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortTeam'");
+        }
+
+        @Override
         public ObservableList<Team> getTeamList() {
             throw new AssertionError("Unimplemented method 'getTeamList'");
         }
-
-=======
-        public void updateSortTeam(Comparator<Team> comparator) {
-
-        }
-
-
->>>>>>> Unique-Team-list
     }
 
     private class EmptyMomentoStub implements Memento {

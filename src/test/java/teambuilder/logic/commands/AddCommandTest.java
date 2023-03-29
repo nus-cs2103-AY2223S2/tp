@@ -153,18 +153,9 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean hasTeam(Team team) {
-            throw new AssertionError("This method shoudl not be called.");
-        }
 
         @Override
         public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTeam(Team target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -174,18 +165,12 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public boolean hasTeam(Team team) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteTeam(Team target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTeam(Team team) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,9 +181,10 @@ public class AddCommandTest {
 
         @Override
         public void removeFromAllTeams(Person person) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void setTeam(Team target, Team editedPerson) {
->>>>>>> Unique-Team-list
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,18 +194,16 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public ObservableList<Team> getTeamList() {
             return new FilteredList<>(FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
         }
-=======
+
         public ObservableList<Team> getSortedTeamList() {
             throw new AssertionError("This method should not be called.");
         }
 
->>>>>>> Unique-Team-list
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate <Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,12 +213,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateSortPerson(Comparator<Person> comparator) {
+        public void updateSortPerson(Comparator <Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSortTeam(Comparator<Team> comparator) {
+        public void updateSortTeam(Comparator <Team> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

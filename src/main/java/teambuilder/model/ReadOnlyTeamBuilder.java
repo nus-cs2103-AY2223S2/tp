@@ -14,7 +14,6 @@ public interface ReadOnlyTeamBuilder {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
-    ObservableList<Team> getTeamList();
 
     /**
      * Returns an unmodifiable view of the teams list.

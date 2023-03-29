@@ -169,7 +169,6 @@ public class RedoCommandIntegrationTest {
         public boolean hasTeam(Team team) {
             throw new UnsupportedOperationException("Unimplemented method 'hasTeam'");
         }
-<<<<<<< HEAD
 
         @Override
         public void deleteTeam(Team target) {
@@ -193,17 +192,7 @@ public class RedoCommandIntegrationTest {
 
         @Override
         public ObservableList<Person> getSortedPersonList() {
-=======
->>>>>>> Unique-Team-list
-
-        @Override
-        public void deleteTeam(Team team) {
-            throw new UnsupportedOperationException("Unimplemented method 'deleteTeam'");
-        }
-
-        @Override
-        public void addTeam(Team team) {
-            throw new UnsupportedOperationException("Unimplemented method 'addTeam'");
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
         }
 
         @Override
@@ -214,11 +203,6 @@ public class RedoCommandIntegrationTest {
         @Override
         public ObservableList<Team> getSortedTeamList() {
             throw new UnsupportedOperationException("Unimplemented method 'getSortedTeamList'");
-        }
-
-        @Override
-        public ObservableList<Person> getSortedPersonList() {
-            throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
         }
 
         @Override

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import teambuilder.model.person.Person;
+import teambuilder.model.tag.Tag;
 import teambuilder.model.team.exceptions.DuplicateTeamException;
 import teambuilder.model.team.exceptions.TeamNotFoundException;
 
@@ -72,8 +74,42 @@ public class UniqueTeamList implements Iterable<Team> {
     }
 
     /**
-     * Sets persons.
+     * Add or delete person from TeamList depending on presence or absence of team tag respectively.
      */
+    public void updatePersonInTeams(Person person) {
+        requireNonNull(person);
+        Object[] allTeamTags = person.getTeams().toArray();
+
+        for (Team team : internalList) {
+            boolean isPresent = false;
+            for (Object tag : allTeamTags) {
+                Tag castedTag = (Tag) tag;
+                if (castedTag.getName().equals(team.toString())) {
+                    team.addPerson(person.getName());
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent) {
+                team.removePerson(person.getName());
+            }
+        }
+
+
+    }
+
+    /**
+     * delete person from all teams in TeamList.
+     */
+    public void removeFromAllTeams(Person person) {
+        requireNonNull(person);
+
+        for (Team team : internalList) {
+            team.removePerson(person.getName());
+        }
+
+    }
+
     public void setTeams(UniqueTeamList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

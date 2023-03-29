@@ -66,6 +66,7 @@ public class AddCommand extends Command {
         }
 
         // throw exception if team tags not from existing teams
+        // TODO: fix teams checking. toAdd.getTeams() returns a list of teams
         List<Team> teamList = model.getTeamList();
         Object[] teamTags = toAdd.getTeams().toArray();
         for (Object tag : teamTags) {

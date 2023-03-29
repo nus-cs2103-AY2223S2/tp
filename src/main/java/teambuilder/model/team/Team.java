@@ -42,19 +42,6 @@ public class Team {
         return this.teamName;
     }
 
-    /**
-     * Returns true if both teams have the same name.
-     * This defines a weaker notion of equality between two teams.
-     */
-    public boolean isSameTeam(Team otherTeam) {
-        if (otherTeam == this) {
-            return true;
-        }
-
-        return otherTeam != null
-                && otherTeam.getName().equals(getName());
-    }
-
     public void addPerson(Name name) {
         members.add(name);
     }

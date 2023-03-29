@@ -103,7 +103,6 @@ public class TeamBuilderTest {
         @Override
         public ObservableList<Team> getTeamList() {
             throw new AssertionError("This method should not be called.");
-
         }
     }
 

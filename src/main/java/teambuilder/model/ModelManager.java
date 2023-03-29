@@ -28,10 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
     private final FilteredList<Team> filteredTeams;
-<<<<<<< HEAD
-=======
     private final SortedList<Team> sortedTeams;
->>>>>>> Unique-Team-list
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,8 +44,8 @@ public class ModelManager implements Model {
         sortedPersons = new SortedList<>(filteredPersons);
         filteredTeams = new FilteredList<>(this.teamBuilder.getTeamList());
         sortedTeams = new SortedList<>(filteredTeams);
-
     }
+
 
     public ModelManager() {
         this(new TeamBuilder(), new UserPrefs());
@@ -153,34 +150,6 @@ public class ModelManager implements Model {
 
         teamBuilder.setTeam(target, editedTeam);
     }
-
-    @Override
-    public boolean hasTeam(Team team) {
-        requireNonNull(team);
-        return addressBook.hasTeam(team);
-    }
-
-    @Override
-    public void addTeam(Team team) {
-        addressBook.addTeam(team);
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void deleteTeam(Team target) {
-        addressBook.removeTeam(target);
-    }
-
-    @Override
-    public void updatePersonInTeams(Person person) {
-        addressBook.updatePersonInTeams(person);
-    }
-
-    @Override
-    public void removeFromAllTeams(Person person) {
-        addressBook.removeFromAllTeams(person);
-    }
-
     //=========== Filtered Team List Accessors ===============================================================
 
     /**
@@ -208,6 +177,11 @@ public class ModelManager implements Model {
         return sortedTeams;
     }
 
+    @Override
+    public void removeFromAllTeams(Person person) {
+        teamBuilder.removeFromAllTeams(person);
+    }
+
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -231,6 +205,11 @@ public class ModelManager implements Model {
     public void updateSortTeam(Comparator<Team> comparator) {
         requireNonNull(comparator);
         sortedTeams.setComparator(comparator);
+    }
+
+    @Override
+    public void updatePersonInTeams(Person person) {
+        teamBuilder.updatePersonInTeams(person);
     }
 
     @Override

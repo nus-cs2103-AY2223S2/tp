@@ -79,12 +79,12 @@ public interface Model extends Originator {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
-
     /**
      * Returns true if a team with the same identity as {@code team} exists in the address book.
      */
     boolean hasTeam(Team team);
 
+    void setTeam(Team team, Team editedTeam);
     /**
      * Deletes the given team.
      * The team must exist in the address book.
@@ -106,6 +106,8 @@ public interface Model extends Originator {
      * Removes person from all teams
      */
     void removeFromAllTeams(Person person);
+
+    ObservableList<Team> getSortedTeamList();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getSortedPersonList();
