@@ -203,8 +203,9 @@ You should see the following output if the client is created successfully.
 ```
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
-
+<div markdown="span" class="alert alert-info">
 :information_source: **A note on names:** Mycelium supports names with `s/o` and `d/o` in them. For example, `Alice Baker s/o Bob Baker` is a valid name.
+</div>
 
 ### Deleting a client contact: `dc`
 
