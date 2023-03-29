@@ -109,8 +109,9 @@ Adds a listing to the listing book.
 **Expected Output:**
 You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
 ```ignorelang
-New listing added: Chicken Rice Uncle;
-JobDescription: Cooks tasty chicken rice;
+Added new listing:
+Job Title: Chicken Rice Uncle
+JobDescription: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
 ```
 
@@ -151,8 +152,9 @@ Edits the details of a job listing.
 You will see a confirmation message showing the edited job title, description and applicants (if any).
 An example is shown below:
 ```ignorelang
-Edited Listing: Noodle seller; 
-JobDescription: Cooks tasty noodles; 
+Edited listing: 
+Job Title: Noodle seller
+JobDescription: Cooks tasty noodles
 Applicants: Johnson
 ```
 
@@ -162,7 +164,7 @@ A valid index must be provided, and at least one field of the listing must be ed
 messages shown below will be displayed.
 ```ignorelang
 Invalid command format!
-edit: Edits a listing in the listing book by the index number used in the displayed listing book. 
+edit: Edits a listing identified by the index used in the displayed listing book. 
       Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
 Example: edit 1 t/Cool job title a/John a/Sam
@@ -190,14 +192,17 @@ Deletes a job listing from the listing book.
 
 A confirmation message will show, along with the details of the listing. An example message is shown below:
 ```ignorelang
-Listing: Chicken farmer; JobDescription: farms chickens; Applicants: topsy mcddaddy, column verctoa has been deleted!
+Deleted listing:
+Job Title: Chicken farmer
+Job Description: farms chickens
+Applicants: topsy mcddaddy, column verctoa
 ```
 
 **Possible Error:**
 If an index is invalid or absent, an error message such as the one below will be displayed.
 ```ignorelang
 Invalid command format!
-delete: Deletes the listing identified by the index number used in the displayed listing book.
+delete: Deletes the listing identified by the index used in the displayed listing book.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
 ```

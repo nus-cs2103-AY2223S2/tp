@@ -27,7 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_APPLICANT + "John "
             + PREFIX_APPLICANT + "Sam";
 
-    public static final String MESSAGE_SUCCESS = "New listing added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Added new listing:%1$s";
     public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the listing book";
 
     private final Listing listingToAdd;
