@@ -41,7 +41,9 @@ public class UiManager implements Ui {
             primaryStage.setHeight(500);
             primaryStage.setWidth(1000);
 
-            MainScreen mainScreen = new MainScreen(logic, primaryStage);
+            MainScreen mainScreen = new MainScreen(logic);
+            mainScreen.getRoot().prefWidthProperty().bind(primaryStage.widthProperty());
+            mainScreen.getRoot().prefHeightProperty().bind(primaryStage.heightProperty());
             Scene scene = new Scene(mainScreen.getRoot());
             scene.getRoot().requestFocus();
             primaryStage.setScene(scene); // Setting the stage to show our screen

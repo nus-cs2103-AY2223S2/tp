@@ -29,7 +29,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label fx:id="descriptionText" prefHeight="100.0" prefWidth="520.0" />
+            <Label fx:id="descriptionField" prefHeight="100.0" prefWidth="520.0" />
          </children>
       </HBox>
 
@@ -78,24 +78,11 @@
             <HBox fx:id="tagList" prefHeight="100.0" prefWidth="520.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" fx:id="durationComponent">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0" fx:id="durationComponent" visible="false">
          <children>
-            <HBox fillHeight="false" prefHeight="100.0" prefWidth="300.0">
-               <children>
-                  <Label prefHeight="51.0" prefWidth="80.0" text="From">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <DatePicker prefHeight="52.0" prefWidth="220.0" />
-               </children>
-            </HBox>
             <HBox prefHeight="100.0" prefWidth="300.0">
                <children>
-                  <Label prefHeight="52.0" prefWidth="80.0" text="To">
+                  <Label prefHeight="52.0" prefWidth="80.0" text="Deadline">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

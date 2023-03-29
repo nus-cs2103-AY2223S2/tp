@@ -5,18 +5,24 @@ import javafx.collections.ObservableList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
+import vimification.model.task.Priority;
 import vimification.model.task.Task;
 
-public class SearchByKeywordCommand extends SearchCommand {
-    public static final String COMMAND_WORD = "s -t";
+public class SearchByPriorityCommand extends SearchCommand {
+
+    public static final String COMMAND_WORD = "s -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": search for tasks that has title matching with input keyword.\n"
-            + "Parameters: KEYWORD\n"
-            + "Conditions: Keyword cannot be empty.\n"
-            + "Example: " + COMMAND_WORD + " quiz";
-    public SearchByKeywordCommand(String keyword) {
-        super(task -> task.containsKeyword(keyword));
+            + ": search for tasks that has the same priority as the input priority.\n"
+            + "Parameters: PRIORITY (high, med or low)\n"
+            + "Example: " + COMMAND_WORD + " high";
+
+    public SearchByPriorityCommand(int level) {
+        super(task -> task.isSamePriority(level));
+    }
+
+    public SearchByPriorityCommand(Priority priority) {
+        super(task -> task.isSamePriority(priority));
     }
 
     @Override
