@@ -1,8 +1,10 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,7 +17,9 @@ import seedu.address.model.employee.Department;
 import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.EmployeeId;
+import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Payroll;
 import seedu.address.model.employee.Phone;
 import seedu.address.model.employee.PicturePath;
 import seedu.address.model.tag.Tag;
@@ -33,6 +37,10 @@ class JsonAdaptedEmployee {
     private final String email;
     private final String address;
     private final String department;
+    private final JsonAdaptedPayroll payroll;
+    private final JsonAdaptedLeaveCounter leaveCounter;
+    private final String dateOfBirth;
+    private final String dateOfJoining;
     private String picturePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -40,6 +48,10 @@ class JsonAdaptedEmployee {
     public JsonAdaptedEmployee(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address, @JsonProperty("department") String department,
+                               @JsonProperty("payroll") JsonAdaptedPayroll payroll,
+                               @JsonProperty("leaveCounter") JsonAdaptedLeaveCounter leaveCounter,
+                               @JsonProperty("dateOfBirth") String dateOfBirth,
+                               @JsonProperty("dateOfJoining") String dateOfJoining,
                                @JsonProperty("picturePath") String picturePath,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -48,6 +60,10 @@ class JsonAdaptedEmployee {
         this.email = email;
         this.address = address;
         this.department = department;
+        this.payroll = payroll;
+        this.leaveCounter = leaveCounter;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfJoining = dateOfJoining;
         this.picturePath = picturePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -64,6 +80,10 @@ class JsonAdaptedEmployee {
         email = source.getEmail().value;
         address = source.getAddress().value;
         department = source.getDepartment().value;
+        payroll = new JsonAdaptedPayroll(source.getPayroll());
+        leaveCounter = new JsonAdaptedLeaveCounter(source.getLeaveCounter());
+        dateOfBirth = source.getDateOfBirth();
+        dateOfJoining = source.getDateOfJoining();
         picturePath = source.getPicturePath().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -131,6 +151,35 @@ class JsonAdaptedEmployee {
         }
         final Department modelDepartment = new Department(department);
 
+        if (payroll == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Payroll.class.getSimpleName()));
+        }
+        if (!Payroll.isValidPayroll(payroll.getPayroll())) {
+            throw new IllegalValueException(Payroll.MESSAGE_CONSTRAINTS);
+        }
+        final Payroll modelPayroll = new Payroll(payroll.getPayroll());
+
+        if (leaveCounter == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LeaveCounter.class.getSimpleName()));
+        }
+        if (!LeaveCounter.isValidLeaveCount(leaveCounter.getLeaveCount())) {
+            throw new IllegalValueException(LeaveCounter.MESSAGE_CONSTRAINTS);
+        }
+        final LeaveCounter modelLeaveCounter = new LeaveCounter(leaveCounter.toModelType().getLeaveCount());
+
+        Optional<LocalDate> modelDateOfBirthTemp = Optional.empty();
+        if (dateOfBirth != "") {
+            modelDateOfBirthTemp = Optional.ofNullable(LocalDate.parse(dateOfBirth));
+        }
+        final Optional<LocalDate> modelDateOfBirth = modelDateOfBirthTemp;
+
+        Optional<LocalDate> modelDateOfJoiningTemp = Optional.empty();
+        if (dateOfJoining != "") {
+            modelDateOfJoiningTemp = Optional.ofNullable(LocalDate.parse(dateOfJoining));
+        }
+        final Optional<LocalDate> modelDateOfJoining = modelDateOfJoiningTemp;
         if (picturePath == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PicturePath.class.getSimpleName()));
@@ -138,11 +187,11 @@ class JsonAdaptedEmployee {
         if (!PicturePath.isValidPicturePath(picturePath)) {
             throw new IllegalValueException(PicturePath.MESSAGE_CONSTRAINTS);
         }
-        final PicturePath modelPicturePath = new PicturePath(picturePath);
+        final Optional<PicturePath> modelPicturePath = Optional.of(new PicturePath(picturePath));
 
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail,
-                modelAddress, modelDepartment, modelPicturePath, modelTags);
+        return new Employee(modelName, modelEmployeeId, modelPhone, modelEmail, modelAddress, modelDepartment,
+                modelPayroll, modelLeaveCounter, modelDateOfBirth, modelDateOfJoining, modelPicturePath, modelTags);
     }
 
 }

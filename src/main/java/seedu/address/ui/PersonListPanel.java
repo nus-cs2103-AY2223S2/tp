@@ -51,6 +51,16 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private Label department;
     @FXML
+    private Label salary;
+    @FXML
+    private Label dayOfPayment;
+    @FXML
+    private Label leaveCount;
+    @FXML
+    private Label dateOfBirth;
+    @FXML
+    private Label dateOfJoining;
+    @FXML
     private ImageView imageView;
     @FXML
     private FlowPane tags;
@@ -86,6 +96,11 @@ public class PersonListPanel extends UiPart<Region> {
         address.setText("Address: " + employee.getAddress().value);
         email.setText("Email: " + employee.getEmail().value);
         department.setText("Department: " + employee.getDepartment().value);
+        salary.setText("Salary: " + "$" + employee.getPayroll().getSalary());
+        dayOfPayment.setText("Day of Payment: " + employee.getPayroll().getDayOfPayment());
+        leaveCount.setText("Remaining Leave: " + employee.getLeaveCount());
+        dateOfBirth.setText("Date of Birth: " + employee.getDateOfBirth());
+        dateOfJoining.setText("Date of Joining: " + employee.getDateOfJoining());
 
         File img = new File(employee.getPicturePath().value);
 

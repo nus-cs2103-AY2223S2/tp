@@ -34,6 +34,11 @@
       <Label fx:id="address" styleClass="scroll-pane-small-label"  />
       <Label fx:id="email" styleClass="scroll-pane-small-label"  />
       <Label fx:id="department" styleClass="scroll-pane-small-label"/>
+      <Label fx:id="salary" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dayOfPayment" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="leaveCount" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dateOfBirth" styleClass="scroll-pane-small-label"  />
+      <Label fx:id="dateOfJoining" styleClass="scroll-pane-small-label"/>
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
     </VBox>
   </ScrollPane>
