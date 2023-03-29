@@ -26,14 +26,10 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
    Some example commands you can try:
 
    * `listPerson` : Lists all contacts.
-
-   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com a/ 313, Jurong East Street 32`: 
+   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com a/ 313, Jurong East Street 32`:
    Adds a contact named `Bob Tan` to records
-
    * `deletePerson 3` : Deletes the 3rd user shown in the current list.
-
    * `clear` : Clears all persons and books in the ExpressLibrary.
-
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -47,21 +43,15 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addPerson n/NAME`, `NAME` is a parameter which can be used as 
-`addPerson n/John Doe`.
-
+  e.g. in `addPerson n/NAME`, `NAME` is a parameter which can be used as `addPerson n/John Doe`.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listPerson`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -106,23 +96,16 @@ Edits an existing person in the ExpressLibrary.
 Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-
 * At least one of the optional fields must be provided.
-
 * Existing values will be updated to the input values.
-
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-
 * You can remove all the person’s tags by typing `t/` without
  specifying any tags after it.
 
-
 Examples:
 
-*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-
-*  `editPerson 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
+* `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `editPerson 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 #### Listing all users : `listPerson`
 
@@ -137,13 +120,8 @@ Finds persons whose names contain any of the given keywords.
 Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-
 * Only the name is searched.
-
-[//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
-
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
 
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -151,7 +129,6 @@ Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `findPerson John` returns `john` , `John Doe` and `johnston`.
-
 * `findPerson Alex Bernice` returns `Alex Yeoh`, `Bernice Yu`.<br>
 
 ![result for 'findPerson Alex Bernice'](images/findAlexBernice.png)
@@ -165,6 +142,7 @@ Adds a book to the book records.
 Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
 
 Examples:
+
 * `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 
 #### Deleting a book : `deleteBook`
@@ -178,6 +156,7 @@ Format: `deleteBook BOOK_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
+
 * `listBook` followed by `deleteBook 2` deletes the 2nd book in the user records.
 
 #### Editing a book : `editBook`
@@ -187,16 +166,13 @@ Edits an existing book in the book records.
 Format: `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`
 
 * Edits the book at the specified `BOOK_INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
-
 * At least one of the optional fields must be provided.
-
 * Existing values will be updated to the input values.
 
 Examples:
 
-*  `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
-
-*  `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
+* `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+* `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
 #### Listing all books : `listBook`
 
@@ -217,9 +193,9 @@ Format: `findBook KEYWORD [MORE_KEYWORDS]`
   e.g. `Dune Great` will return `Dune`, `Great Gatsby`.
 
 Examples:
+
 * `findBook The` returns `The Cat in the Hat` and `Call of the Wild`
 * `findBook dune Cat` returns `Dune`, `The Cat in the Hat`
-
 * `findBook 1984 kill` returns `1984`, `To Kill a Mockingbird`.<br>
 
 ![result for 'findBook 1984 kill'](images/find1984kill.png)
@@ -238,6 +214,7 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 * The indexes must be positive integers 1, 2, 3, …​
 
 Examples:
+
 * `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
 
 #### Returning a book : `return`
@@ -252,6 +229,7 @@ Format: `return PERSON_INDEX b/BOOK_INDEX`
 * The indexes must be positive integers 1, 2, 3, …​
 
 Examples:
+
 * `listBook/listPerson` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
 
 #### Clearing all entries : `clear`
@@ -308,7 +286,7 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 
 ## Command summary
 
-#### Person
+### Person
 
 Action | Format, Examples
 --------|------------------
@@ -318,7 +296,7 @@ Action | Format, Examples
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
 
-#### Book
+### Book
 
 Action | Format, Examples
 --------|------------------
@@ -328,7 +306,7 @@ Action | Format, Examples
 **FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
-#### Common
+### Common
 
 Action | Format, Examples
 --------|------------------
