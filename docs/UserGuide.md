@@ -126,7 +126,7 @@ Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as w
 
 <p>Similar to Vim, you can access command mode by pressing the `:` key on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</p>
 Example:
-<img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" width="1203" height="599" title="How to bring up the command input">
+<img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
@@ -187,7 +187,7 @@ Format: `:a <title> [-l <label>]... [-p <priority>]`
 
 Example after the command, `:a Enhance CS2103T tp user guide`:
 
-<img style="float:centre" class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" title="Add Task Command Demo">
+<img class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" title="Add Task Command Demo">
 
 ### Adding task with deadline
 
@@ -205,7 +205,7 @@ Format: `:a <title> -d <deadline>`
 
 Example after the command, `:a CS2130T v1.3 -d 2022-03-31`:
 
-<img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" width="1203" height="599" title="Add Deadline Command Demo">
+<img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" title="Add Deadline Command Demo">
 
 ### Deleting task
 
@@ -228,8 +228,8 @@ Example:
 <td style="width:50%;">After the command <code>:d 4</code></td>
 </tr>
 <tr>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" width="601.5" height="299.5" title="Before Delete Command"></td>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" width="601.5" height="299.5" title="After Delete Command"></td>
+<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" title="Before Delete Command"></td>
+<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" title="After Delete Command"></td>
 </tr>
 </table>
 
@@ -241,7 +241,7 @@ Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
 Example:
 
-<img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" width="1203" height="599" title="Quit Example 1">
+<img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" title="Quit Example 1">
 
 ### Saving the task list data
 
