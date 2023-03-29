@@ -4,8 +4,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,7 +17,8 @@ import seedu.address.logic.parser.Prefix;
 
 //@@author EvitanRelta-reused
 // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
-// with major refactoring and bugfixing.
+// with almost complete overhauling, including refactoring, bug-fixing, adding 
+// of asserts, and changing the behaviour of the feature to suit our needs.
 /**
  * Suggests a command based on the user input.
  */
@@ -136,25 +139,15 @@ public class CommandSuggestor {
      */
     public String autocompleteCommand(String userInput, String commandSuggestion) {
         // Command suggested but not yet entered by user
-        String suggestedCommand = commandSuggestion.substring(userInput.length());
-        boolean isCommandComplete = userInput.contains(" ");
-        int autocompleteUptoIndex;
-        if (isCommandComplete) {
-            autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
-        } else {
-            return getLongestMatchingPrefixSuggestion(userInput);
-        }
-
-        // If command has no prefix arguments
-        if (autocompleteUptoIndex == 0) {
-            autocompleteUptoIndex = suggestedCommand.length();
-        }
-
-        String autocompletedCommand = suggestedCommand.substring(0, autocompleteUptoIndex);
-        if (!autocompletedCommand.contains("<")) {
-            userInput = userInput + autocompletedCommand;
-        }
-        return userInput;
+        String remainingSuggestion = commandSuggestion.substring(userInput.length());
+        Pattern nextAutocompleteRegex = Pattern.compile("^ *[a-z0-9_]*\\/*", Pattern.CASE_INSENSITIVE);
+        String nextAutocomplete = Optional.of(nextAutocompleteRegex.matcher(remainingSuggestion))
+                .filter(Matcher::find)
+                .map(Matcher::group)
+                .filter(match -> !match.trim().equals(PREFIX_INDEX.getPlaceholderText()))
+                .filter(match -> !match.trim().equals(PREFIX_KEYWORD.getPlaceholderText()))
+                .orElse("");
+        return userInput + nextAutocomplete;
     }
 
     /**
@@ -243,64 +236,6 @@ public class CommandSuggestor {
                 .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
                 .collect(Collectors.joining(" "));
         return remainingArgs;
-    }
-
-    /**
-     * Gets the longest matching prefix from all possible command suggestions depending on the user
-     * input.
-     *
-     * @param userInput User input.
-     * @return Longest matching prefix.
-     * @throws CommandException If the user input is invalid.
-     */
-    private String getLongestMatchingPrefixSuggestion(String userInput) {
-        assert userInput != null && !userInput.isEmpty();
-        String[] userInputArray = userInput.split(" ", 2);
-        String commandWord = userInputArray[0];
-        boolean isCommandComplete = userInput.contains(" ");
-        ArrayList<String> matchingCommands = new ArrayList<>();
-
-        for (String command : commandList) {
-            if (command.startsWith(commandWord)) {
-                if (isCommandComplete && !command.equals(commandWord)) {
-                    continue;
-                }
-                matchingCommands.add(command + " ");
-            }
-        }
-        return getLongestMatchingPrefix(matchingCommands);
-    }
-
-    /**
-     * Gets longest matching prefix from list of strings.
-     *
-     * @param matchingCommands List of strings.
-     * @return Longest matching prefix.
-     */
-    private String getLongestMatchingPrefix(ArrayList<String> matchingCommands) {
-        Collections.sort(matchingCommands);
-        int size = matchingCommands.size();
-        if (size == 0) {
-            return "";
-        }
-
-        if (size == 1) {
-            return matchingCommands.get(0);
-        }
-
-        // find the minimum length from first and last string
-        int end =
-                Math.min(matchingCommands.get(0).length(), matchingCommands.get(size - 1).length());
-
-        // find the common prefix between the first and last string
-        int i = 0;
-        while (i < end
-                && matchingCommands.get(0).charAt(i) == matchingCommands.get(size - 1).charAt(i)) {
-            i++;
-        }
-
-        String prefix = matchingCommands.get(0).substring(0, i);
-        return prefix;
     }
 }
 //@@author
