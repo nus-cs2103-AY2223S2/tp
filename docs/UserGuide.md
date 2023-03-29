@@ -13,25 +13,37 @@ improving the efficiency of grocery shopping.
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
 2. Download the latest `wife.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-1/tp/releases/tag/v1.3(trial)).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
+3. Double-click on the application to run WIFE!
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds.<br>
-   ![Ui](images/Ui.png)
+If double-clicking the application does not work:
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+3a. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
 
-    *WIP*
+3b. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
+   
+A GUI similar to the below should appear in a few seconds.<br>
+   ![Ui](images/UG/Ui_current.png)
+--------------------------------------------------------------------------------------------------------------------
+## Trying out your first command!
+Not sure how to start? Don't worry, let's start out with a simple command as an example using the sample data
+provided WIFE when you first start up. 
 
-1. Refer to the [Features](#features) below for details of each command.
+* Type the following command in the rectangular command box at the bottom of WIFE and press 'Enter' on your keyboard
+to execute it.
+  
+  `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` </br>
+You should see your food list be updated as such!
+
+  ![Ui_updated](images/UG/Ui_updated.png)
+Congratulations, you just added your first item!
+
+To see what the command format means, you can refer to the [Features](#features) below for details of each command to maximise your productivity with WIFE.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,7 +88,6 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * inc
   * dec
   * find
-  * inc
   * list
   * listbytag
   * view
@@ -96,12 +107,9 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
 
 Example 1:
 `help` displays a general help message
-```
-Type 'help COMMAND' to see specific help for a command.
-Commands Available: add, delete, edit, find, list, view, tag, clear, exit
 
-For more information refer to the user guide: https://ay2223s2-cs2103t-t11-1.github.io/tp/UserGuide.html
-```
+![AddFood](images/UG/Helpbox.png)
+
 Example 2:
 `help add` displays the command format and example usages specific to the `add` command
 ```
@@ -112,16 +120,18 @@ Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033 t/VEGETABLES t/HEALTHY
 ## Food-related Commands
 
 ### Adding a food: `add`
+Add a new food into your fridge. (This is the command when you tried out your first command!)
 
-Add a new food into your fridge.
+Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...`
 
-Keyword: `add`
+*All parameters must be present in the command, except the 'tag' parameter which is surrounded by square brackets.
 
-Examples:
-* `add n/Meiji Milk u/carton q/2 e/13-11-2025`
+Example:
 
-Result: <br/>
-`add n/Meiji Milk u/carton q/2 e/13-11-2025` displays
+`add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` returns
+```markdown
+New foood added: Coca Cola (expires on: 01-01-2099)
+```
 
 ![AddFood](images/UG/AddFood.png)
 
@@ -141,15 +151,17 @@ Example:
 ### Editing a food item : `edit`
 
 Edit food items in your fridge.
+
 Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...`
 
 * Index must be a valid integer that refers to an an item currently in the fridge
 
 Example: <br/>
-`edit 1 n/Broccoli q/2` returns
+`edit 1 n/Cauliflower q/20` returns
 ```markdown
-Edited food item: Broccoli (expires on: 03-03-2033)
+Edited food item: Cauliflower (expires on: 03-04-2033)
 ```
+![EditFood](images/UG/EditFood.png)
 
 ### Increasing a quantity of a food item : `inc`
 
@@ -165,14 +177,16 @@ Format: `inc INDEX [q/QUANTITY]`
 
 Examples:
 
-`inc 1` returns
+`inc 2` returns
 ```markdown
-  Increased Food: Broccoli (expires on: 03-03-2033) by 1
+  Increased Food: Kai Lan (expires on: 03-03-2033) by 1
 ```
+![IncreaseFood](images/UG/IncreaseFood.png)
+
 `inc 1 q/100` returns
 
 ```markdown
-  Increased Food: Broccoli (expires on: 03-03-2033) by 100
+  Increased Food: Kai Lan (expires on: 03-03-2033) by 100
 ```
 
 ### Decreasing the quantity of a food item : `dec`
@@ -193,9 +207,9 @@ Format: `delete INDEX`
 
 Result:
 
-`delete 1` returns
+`delete 3` returns
 ```shell
-Deleted Food: Meiji Milk (expires on 13-11-2025)
+Deleted Food: MEIJI MILK (expires on 05-04-2023)
 ```
 
 ![DeleteFood](images/UG/DeleteFood.png)
@@ -206,11 +220,11 @@ Deleted Food: Meiji Milk (expires on 13-11-2025)
 
 Creates a new pre-defined tag in WIFE.
 
-Format: `createtag n/<tag Name>`
-- Creates new `Tag` with `Tag Name`
+Format: `createtag n/TAG NAME [n/TAG NAME]...`
+* Creates new `Tag` with `Tag Name`
 
 Example:
-`createtag n/dairy` displays
+`createtag n/Dairy` displays
 ```
 Tag(s) successfully created:
 Dairy
@@ -221,15 +235,16 @@ Dairy
 Tag the specified food item in your fridge with our pre-defined tags.
 
 Pre-Defined Tags:
-- Status - `USED`, `UNUSED`
-- Categories - `MEAT`, `DAIRY`, `VEGETABLES`
+* Status - `USED`, `UNUSED`
+* Categories - `MEAT`, `DAIRY`, `VEGETABLES`
 
-Format: `tag <Index> n/ <Tag Name>`
-- Tag the food item of index `Index` with `Tag Name`
-- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+Format: `tag INDEX n/TAG NAME`
+* Tag the food item of `INDEX` with `TAG NAME`
+* Only one tag can be tagged to a food item per command
+* Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example: <br/>
-`tag 1 n/dairy` returns
+`tag 1 n/Dairy` returns
 
 ![TagFood](images/UG/TagFood.png)
 
@@ -237,9 +252,10 @@ Example: <br/>
 
 Remove a tag from a specified food item in your fridge.
 
-Format: `untag <index> n/<tag name>`
-- Remove `Tag Name` from the food item with index `Index`
-- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+Format: `untag INDEX n/TAG NAME`
+* Remove `Tag Name` from the food item with index `Index`
+* Only one tag can be from a food item per command
+* Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example:
 `untag 1 n/vegetables` displays
@@ -266,7 +282,7 @@ Vegetables
 ### Listing all food items by their tag(s) : `listbytag`
 Shows a list of all food item in WIFE by specified tag(s).
 
-Format: `listbytag n/TAG NAME...`
+Format: `listbytag n/TAG NAME [n/TAG NAME]...`
 
 Example:
 
@@ -280,9 +296,9 @@ Listed all food with the following tags:
 
 ### Deleting a food item by their tag(s) : `delbytag`
 
-Deletes food item from WIFE by specified tag(s).
+Delete food items from WIFE by their specified tag(s).
 
-Format: `delbytag n/TAG NAME...`
+Format: `delbytag n/TAG NAME [n/TAG NAME]...`
 
 Examples:
 
@@ -318,19 +334,16 @@ Format: `exit`
 
 ### Saving the data
 
-*To be included in future iterations*
+Your data is automatically saved after any executed commands. But to be safe, we will suggest to always exit the application
+by the `exit` command o prevent any corruption of the file.
 
 ### Editing the data file
 
-Wife data are saved as a JSON file `(file name placeholder)`. Advanced users are welcome to update data directly by editing that data file.
+Wife data are saved as a JSON file `wife.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, WIFE will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -351,4 +364,39 @@ There is no support for mobile devices yet.
 
 ## Command summary
 
-*coming soon...(table of commands summary)*
+### Food Commands
+| Feature  | Action                                | Command Format                                                         | Example                                                           |
+|----------|---------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
+| List     | Lists all food items                  | `list`                                                                 | `list`                                                            |
+| Find     | Finds a food item                     | `find n/NAME`                                                          | `find Broccoli`                                                   |
+| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
+| Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                               | `inc 1 q/100`                                                     |
+| Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                               | `dec 1 q/100`                                                     |
+| Delete   | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
+
+### Tag Commands
+| Feature        | Action                                                                              | Command Format                         | Example                            |
+|----------------|-------------------------------------------------------------------------------------|----------------------------------------|------------------------------------|
+| Create Tag     | Creates a new pre-defined tag in WIFE                                               | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
+| Tag            | Tags a food item with a pre-defined tag <br/>                                       | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
+| Untag          | Remove a tag from a food item                                                       | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
+| List tags      | List all the tags created                                                           | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
+| Delete by tags | Delete food items by their tags                                                     | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
+| Delete tags    | Delete specified tags. Removes tag from food items that originally contain that tag | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
+
+
+### General Commands
+| Feature  | Action                                                | Command Format | Example    |
+|----------|-------------------------------------------------------|----------------|------------|
+| Help     | Shows a help message                                  | `help`         | `help add` |
+| Clear    | Resets all food items <br/>(**Destructive command!**) | `clear`        | `clear`    |
+| Exit     | Exits WIFE                                            | `exit`         | `exit      |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **GUI:** Graphical User Interface - It is the view of the application that you see!
+* **Destructive Command** It will wipe out all current data in WIFE.
