@@ -23,7 +23,7 @@ their patient management tasks and improve overall efficiency.
 # Table of Contents:
 
 - [Setup](#setup)
-- [GUI Information](#setup)
+- [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
     - [Help](#viewing-help--help) `help`
@@ -80,6 +80,7 @@ ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
+| Doctor               | ad/    | 
 | Email                | e/     |  
 | Address              | a/     | 
 | Tag                  | t/     |
@@ -98,12 +99,12 @@ ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 - Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Items with `…` after them can be used multiple times, including zero. e.g. [t/TAG] …​ can be used
+- Items with `…` after them can be used multiple times, including zero. e.g., [t/TAG] …​ can be used
 (i.e. 0 or more times), t/friend t/family etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is
   also acceptable.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
-  be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 ### Viewing help : `help`
 
@@ -133,7 +134,7 @@ Adds a person to the patient records.
 Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
 **Tip**:
-A patient can have any number of tags and medicine (including 0)
+A patient can have any number of tags and medicine (including 0).
 
 Examples:
 
@@ -144,15 +145,15 @@ Examples:
 
 Edits an existing patient in the patient records.
 
-Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+.Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
 * You can remove all the patient’s tags/medicine by typing t/ or m/ respectively, without specifying any tags/medicine
   after it.
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be  
-  91234567 and johndoe@example.com respectively
+* `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be 
+91234567 and johndoe@example.com respectively.
 
 ### Deleting a patient record: `delete`
 
@@ -162,7 +163,7 @@ Format: `delete i/NRIC…​`
 
 Examples:
 
-* `delete i/T0012345A` deletes the patient with NRIC T0012345A from patient records system
+* `delete i/T0012345A` deletes the patient with NRIC T0012345A from patient records system.
 
 ### Listing all patients: `list`
 
@@ -174,57 +175,60 @@ Format: `list`
 
 Find patients according to a particular attribute stated followed by the change.
 
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`).
 
 Format: `find attribute/keyword [MORE_KEYWORDS]`
 
-* The search will only be carried out for the given attribute
-* Only one attribute can be searched at one time
-* The search is case-insensitive. e.g panadol will match pANAdol
-* The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
-* Can input multiple keywords for a given attribute and all matching persons will be returned
+* The search will only be carried out for the given attribute.
+* Only one attribute can be searched at one time.
+* The search is case-insensitive. e.g panadol will match pANAdol.
+* The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
+* Multiple keywords for a given attribute can be inputted. All matching persons will be returned.
+  * e.g., `find n/David Alex Jon` will return persons with name containing `David` or `Alex` or `Jon` or any
+  combination of the three.
 
-Examples:
+Examples (The following results are based of the sample data provided):
 
-* `find n/john` returns `John Lim` and `John Doe` who both contain the name `John` in their names
-* `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
-* `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
+* `find n/john` returns `John Lim` and `John Doe` who both contain the name `John` in their names.
+* `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`.
+* `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`.
 * `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio`  
-  or  `serangoon`
-* `find t/Diabetic` returns all persons with the tag `Diabetic`
+  or  `serangoon`.
+* `find t/Diabetic` returns all persons with the tag `Diabetic`.
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
+* `find ad/Alex` returns all persons with attending doctor 'Alex'.
 
 ### Backup patient records: `backup`
 
-Backs up the patient records to a specified slot represented by an index
+Backs up the patient records to a specified slot represented by an index.
 
 Format: `backup INDEX_NO`
 
 Examples:
 
-* `backup 3` backups the data to the 3rd slot
+* `backup 3` backups the data to the 3rd slot.
 
-Tip: INDEX_NO can only be an integer between 1 and 10
+Tip: INDEX_NO can only be an integer between 1 and 10 inclusive.
 
 ### Load data: `load`
 
-Loads the data from a specified slot represented by an index
+Loads the data from a specified slot represented by an index.
 
 Format: `load INDEX_NO`
 
 Example:
 
-* `load 3` loads the data from the 3rd slot
+* `load 3` loads the data from the 3rd slot.
 
 ### View backup data: `viewbackup`
 
-Shows all the backups available
+Shows all the backups available.
 
 Format: `viewbackup`
 
 ### Delete backup data: `deletebackup`
 
-Deletes the data from a specified slot represented by an index
+Deletes the data from a specified slot represented by an index.
 
 Format: `deletebackup INDEX_NO`
 
@@ -234,19 +238,19 @@ Example:
 
 ### Clearing all data: `clear`
 
-Purges all data from the database
+Purges all data from the database.
 
 Format: `clear`
 
 ### Switch to light mode: `light`
 
-Switch to light mode.
+Switches the GUI to light mode.
 
 Format: `light`
 
 ### Switch to dark mode: `dark`
 
-Switch to dark mode.
+Switches the GUI to dark mode.
 
 Format: `dark`
   
@@ -255,31 +259,34 @@ Format: `dark`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>  
-**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains  
-the data of your previous HospiSearch home folder.
+**Q**: How do I transfer my data to another Computer? <br>
+**A**: Install the app on the other computer and overwrite all files in the `data` directory it creates with the files 
+from your previous HospiSearch `data` directory.
+
+**Q**: Where is my HospiSearch `data` directory? <br>
+**A**: The `data` directory is created in the same folder your HospiSearch Jar file is opened in.
   
 --------------------------------------------------------------------------------------------------------------------  
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## Command summary
 
-|    Action          | Format, Examples                                                                                                                                                                                              |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
-| **Help**           | `help`                                                                                                                                                                                                        |  
-| **Undo**           | `undo`                                                                                                                                                                                                        |  
-| **Redo**           | `redo`                                                                                                                                                                                                        |  
-| **Add**            | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA | 
-| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                        |  
-| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                               |  
-| **List**           | `list`                                                                                                                                                                                                        |  
-| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                   |  
-| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                         |  
-| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                             |  
-| **View backups**   | `viewbackups`                                                                                                                                                                                                 |  
-| **Delete backups** | `deletebackups INDEX_NO` <br/> e.g. deletebackups 3                                                                                                                                                           |  
-| **Clear all**      | `clear`                                                                                                                                                                                                       |  
-| **Light**          | `light`                                                                                                                                                                                                       |  
-| **Dark**           | `dark`                                                                                                                                                                                                        |
+|    Action          | Format, Examples                                                                                                                                                                                                                  |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| **Help**           | `help`                                                                                                                                                                                                                            |  
+| **Undo**           | `undo`                                                                                                                                                                                                                            |  
+| **Redo**           | `redo`                                                                                                                                                                                                                            |  
+| **Add**            | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male ad/Alex d/NKDA | 
+| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                |  
+| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                   |  
+| **List**           | `list`                                                                                                                                                                                                                            |  
+| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                       |  
+| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                             |  
+| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                 |  
+| **View backups**   | `viewbackups`                                                                                                                                                                                                                     |  
+| **Delete backups** | `deletebackups INDEX_NO` <br/> e.g. deletebackups 3                                                                                                                                                                               |  
+| **Clear all**      | `clear`                                                                                                                                                                                                                           |  
+| **Light**          | `light`                                                                                                                                                                                                                           |  
+| **Dark**           | `dark`                                                                                                                                                                                                                            |
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
