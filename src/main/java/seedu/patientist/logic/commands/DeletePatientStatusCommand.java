@@ -39,9 +39,9 @@ public class DeletePatientStatusCommand extends Command {
     /**
      * Creates an AddPatientStatusCommand to add the specified {@code PatientStatusDeatils} into the target Patient.
      */
-    public DeletePatientStatusCommand(Index targetIndex, Index statusDetails) {
+    public DeletePatientStatusCommand(Index targetIndex, Index targetStatusIndex) {
         this.targetIndex = targetIndex;
-        this.targetStatusIndex = statusDetails;
+        this.targetStatusIndex = targetStatusIndex;
     }
 
     @Override

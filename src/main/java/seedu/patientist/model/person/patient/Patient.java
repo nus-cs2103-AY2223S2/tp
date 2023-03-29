@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.patientist.commons.core.index.Index;
+import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.IdNumber;
@@ -50,7 +51,10 @@ public class Patient extends Person {
     /**
      * Deletes the <code>PatientStatusDetails</code> specified by the index into the <code>details</code> field.
      */
-    public void deletePatientStatusDetails(Index index) {
+    public void deletePatientStatusDetails(Index index) throws CommandException {
+        if (!checkStatusDetailsIndexInRange(index)) {
+            throw new CommandException("Status index not in range.");
+        }
         this.details.remove(index.getZeroBased());
     }
 
@@ -60,6 +64,10 @@ public class Patient extends Person {
      */
     public List<PatientStatusDetails> getPatientStatusDetails() {
         return Collections.unmodifiableList(this.details);
+    }
+
+    private boolean checkStatusDetailsIndexInRange(Index index) {
+        return (index.getZeroBased() < details.size() && index.getZeroBased() >= 0);
     }
 
     @Override

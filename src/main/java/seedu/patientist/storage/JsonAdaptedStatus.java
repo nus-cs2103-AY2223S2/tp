@@ -13,7 +13,7 @@ public class JsonAdaptedStatus {
     private final String statusDescription;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code statusDescription}.
+     * Constructs a {@code JsonAdaptedStatus} with the given {@code statusDescription}.
      */
     @JsonCreator
     public JsonAdaptedStatus(String statusDescription) {
@@ -21,7 +21,7 @@ public class JsonAdaptedStatus {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code PatientStatusDetails} into this class for Jackson use.
      */
     public JsonAdaptedStatus(PatientStatusDetails source) {
         statusDescription = source.getDetails();
@@ -33,7 +33,7 @@ public class JsonAdaptedStatus {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted tag object into the model's {@code PatientStatusDetails} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
