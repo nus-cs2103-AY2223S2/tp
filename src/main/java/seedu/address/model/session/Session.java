@@ -32,7 +32,7 @@ public class Session implements Comparable<Session> {
     private final SessionName name;
     private final int id;
     private final Location location;
-    private HashMap<String, Boolean> attendanceMap;
+    private HashMap<String, Boolean> attendanceMap = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -47,7 +47,6 @@ public class Session implements Comparable<Session> {
         this.name = name;
         this.location = location;
         this.id = name.hashCode();
-        this.attendanceMap = new HashMap<>();
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
@@ -71,7 +70,6 @@ public class Session implements Comparable<Session> {
         this.name = name;
         this.location = location;
         this.id = id;
-        this.attendanceMap = new HashMap<>();
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
