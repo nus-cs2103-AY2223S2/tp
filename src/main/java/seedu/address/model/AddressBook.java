@@ -126,11 +126,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Marks the given task {@code task} as done.
-     * @param task
-     * @param score
+     * @param taskToMark
+     * @param markedTask
+     *  @param taskIndex
      */
-    public void markTask(Task task, Task markedTask, Index taskIndex) {
-        tasks.markTask(task, markedTask, taskIndex);
+    public void markTask(Task taskToMark, Task markedTask, Index taskIndex) {
+        tasks.markTask(taskToMark, markedTask, taskIndex);
     }
 
     /**
@@ -189,7 +190,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
     }
 
     @Override

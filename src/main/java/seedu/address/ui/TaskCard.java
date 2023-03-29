@@ -85,7 +85,7 @@ public class TaskCard extends UiPart<Region> {
         }
         if (task.isDone()) {
             Score score = task.getScore();
-            if(score == null) {
+            if (score == null) {
                 circle1.setFill(Paint.valueOf("#ffffff"));
                 circle2.setFill(Paint.valueOf("#ffffff"));
                 circle3.setFill(Paint.valueOf("#ffffff"));

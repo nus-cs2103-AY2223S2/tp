@@ -91,8 +91,10 @@ public interface TaskBookModel {
 
     /**
      * Adds the given comment to the specified task.
-     *  @param comment Comment by user
-     * @param task specified task to receive comment
+     * {@code task} must exist in the address book.
+     * @param taskToComment
+     * @param commentedTask
+     * @param taskIndex
      */
     void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex);
 
