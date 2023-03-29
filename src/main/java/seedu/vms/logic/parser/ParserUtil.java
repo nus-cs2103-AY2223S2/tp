@@ -32,6 +32,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
     public static final String MESSAGE_BLANK_ELEMENT = "Trailing or leading delimiters are not allowed";
+    public static final String MESSAGE_BLANK_ARGUMENT = "Argument is blank";
 
     public static final String KEYWORD_EMPTY_LIST = "<EMPTY>";
 
@@ -311,7 +312,7 @@ public class ParserUtil {
 
     private static List<String> splitArgs(String arg, String delimiter) throws ParseException {
         if (arg.isBlank()) {
-            throw new ParseException("Argument is blank");
+            throw new ParseException(MESSAGE_BLANK_ARGUMENT);
         }
         arg = " " + arg + " ";
         List<String> rawArgs = List.of(arg.split(delimiter));
