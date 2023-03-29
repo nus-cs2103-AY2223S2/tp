@@ -46,10 +46,11 @@ public class AttendanceCommand extends Command {
 
         if (currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
             throw new CommandException("Please select a session to view overall attendance.");
-        } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE && currentSelection.getSelectedStudent() == CurrentSelection.NON_EXISTENT_STUDENT) {
+        } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE
+                && currentSelection.getSelectedStudent() == CurrentSelection.NON_EXISTENT_STUDENT) {
             throw new CommandException("Please select a student to view his / her overall attendance.");
-        } else if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE &&
-                currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+        } else if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE
+                && currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page! \n"
                     + "Navigate to session page and select a session to view overall attendance of the session.\n"
                     + "Navigate to student page and select a student to view overall attendance of the student.");
