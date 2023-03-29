@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <TabPane fx:id="taskTabPane">
+  <TabPane fx:id="taskTabPane" tabClosingPolicy="UNAVAILABLE">
     <tabs>
       <Tab text="Tasks">
         <VBox fx:id="ongoingTaskListComponent"></VBox>

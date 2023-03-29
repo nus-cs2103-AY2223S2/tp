@@ -2,7 +2,6 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
 
@@ -27,7 +26,6 @@ public class TaskTabPanel extends UiPart<VBox> {
         this.mainScreen = mainScreen;
         this.logic = logic;
         loadTaskListPanel();
-        taskTabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
     }
 
     // TODO: Refactor this.

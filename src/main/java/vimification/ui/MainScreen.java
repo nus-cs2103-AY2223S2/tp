@@ -155,7 +155,7 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
     }
 
-    private <T extends Pane> void loadRightComponent(UiPart<T> component) {
+    protected <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
