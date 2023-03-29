@@ -11,11 +11,11 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
 
 /**
- * An UI component that displays information of a {@code InternshipApplication}.
+ * An UI component that displays information of a {@code StatsInformation}.
  */
-public class ApplicationCard extends UiPart<Region> {
+public class StatsBox extends UiPart<Region> {
 
-    private static final String FXML = "ApplicationListCard.fxml";
+    private static final String FXML = "StatsBox.fxml";
 
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -53,7 +53,7 @@ public class ApplicationCard extends UiPart<Region> {
     private Label interviewDate;
 
     /**
-     * Creates a {@code InternshipApplicationCode} with the given {@code InternshipApplication} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public ApplicationCard(InternshipApplication application, int displayedIndex) {
         super(FXML);
@@ -99,3 +99,4 @@ public class ApplicationCard extends UiPart<Region> {
                 && application.equals(card.application);
     }
 }
+

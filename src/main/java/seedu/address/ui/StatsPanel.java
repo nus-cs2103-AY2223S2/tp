@@ -2,27 +2,29 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- * Panel containing the list of applications.
+ * Panel containing the list of persons.
  */
-public class ApplicationListPanel extends UiPart<Region> {
-    private static final String FXML = "ApplicationListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
+public class StatsPanel extends UiPart<Region> {
+    private static final String FXML = "StatsPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(StatsPanel.class);
 
     @FXML
-    private ListView<InternshipApplication> applicationListView;
+    private ListView<SimpleIntegerProperty> statsBoxesView;
 
     @FXML
-    private VBox container;
+    private HBox container;
 
     /**
      * Creates a {@code ViewContentPanel} with the given {@code ObservableList}.

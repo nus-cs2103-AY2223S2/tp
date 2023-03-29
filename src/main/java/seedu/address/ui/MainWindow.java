@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private TodoListPanel todoListPanel;
     private NoteListPanel noteListPanel;
     private ViewContentPanel viewContentPanel;
-    private SummaryPanel summaryPanel;
+    private StatsPanel statsPanel;
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
 
@@ -149,8 +149,8 @@ public class MainWindow extends UiPart<Stage> {
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
-        summaryPanel = new SummaryPanel();
-        summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
+        statsPanel = new StatsPanel();
+        summaryPanelPlaceholder.getChildren().add(statsPanel.getRoot());
 
         setHeightConstraints();
     }
@@ -165,9 +165,9 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
         viewContentPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
-        summaryPanel.getContainer().maxHeightProperty().bind(
+        statsPanel.getContainer().maxHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
-        summaryPanel.getContainer().prefHeightProperty().bind(
+        statsPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
@@ -243,6 +243,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);

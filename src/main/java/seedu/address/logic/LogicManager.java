@@ -16,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
-import seedu.address.model.statistics.StatsManager;
 import seedu.address.model.tag.TodoType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -49,7 +48,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        StatsManager
+        // StatsManager
 
         try {
             if (commandResult.getType() == TodoType.NONE) {
