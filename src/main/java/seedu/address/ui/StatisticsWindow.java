@@ -117,6 +117,11 @@ public class StatisticsWindow extends UiPart<Stage> {
         return deliveryJobListPanel;
     }
 
+    /**
+     * Returns a String that represents the statistics to be displayed
+     *
+     * @param list List of delivery jobs to generate statistic from
+     */
     public String fillStats(ObservableList<DeliveryJob> list) {
         TotalJobs totalJobs = new TotalJobs(list.size());
         TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
