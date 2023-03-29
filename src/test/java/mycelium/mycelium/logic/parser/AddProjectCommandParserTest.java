@@ -65,7 +65,6 @@ public class AddProjectCommandParserTest {
                 Pair.of("-pn Bing -e ", Email.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid email",
                 Pair.of("-pn Bing -e foobar", Email.MESSAGE_CONSTRAINTS)),
-            // NOTE: no restrictions on project name (except being non-empty), so no test case for that
 
             Map.entry("invalid acceptedOn (not even a date)",
                 Pair.of(basic + "-ad notadate", Messages.MESSAGE_INVALID_DATE)),
@@ -73,6 +72,8 @@ public class AddProjectCommandParserTest {
                 Pair.of(basic + "-ad 2020-01-01", Messages.MESSAGE_INVALID_DATE)),
             Map.entry("invalid acceptedOn (date but with time)",
                 Pair.of(basic + "-ad 2020-01-01 12:00", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid acceptedOn (30th Feb)" ,
+                Pair.of(basic + "-ad 30/02/2000", Messages.MESSAGE_INVALID_DATE)),
 
             Map.entry("invalid deadline (not even a date)",
                 Pair.of(basic + "-dd notadate", Messages.MESSAGE_INVALID_DATE)),
@@ -80,6 +81,8 @@ public class AddProjectCommandParserTest {
                 Pair.of(basic + "-dd 2020-01-01", Messages.MESSAGE_INVALID_DATE)),
             Map.entry("invalid deadline (date but with time)",
                 Pair.of(basic + "-dd 2020/01/01 12:00", Messages.MESSAGE_INVALID_DATE)),
+            Map.entry("invalid deadline (30th Feb)" ,
+                Pair.of(basic + "-dd 30/02/2000", Messages.MESSAGE_INVALID_DATE)),
 
             Map.entry("invalid source (empty)",
                 Pair.of(basic + "-src ", Messages.MESSAGE_EMPTY_STR)),
