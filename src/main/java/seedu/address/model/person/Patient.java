@@ -102,15 +102,24 @@ public class Patient extends Person {
     }
 
     /**
+     * Deletes an appointment for the Patient.
+     */
+    public Appointment deletePatientAppointment(int index) {
+        return patientAppointments.remove(index);
+    }
+
+    /**
      * Get the patient's appointments as a String in list form.
      * @return list of patient's appointment bookings in String
      */
     public String patientAppointmentstoString() {
         ArrayList<Appointment> patientAppointments = getPatientAppointments();
         String string = "";
+        int count = 1;
         for (Appointment appointment : patientAppointments) {
             String appointmentBooking = appointment.getBooking().toString();
-            string += appointmentBooking + "\n";
+            string += count + ". " + appointmentBooking + "; " + appointment.getDrNric().toString() + "\n";
+            count++;
         }
         return string;
     }

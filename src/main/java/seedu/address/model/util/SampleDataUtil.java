@@ -57,6 +57,9 @@ public class SampleDataUtil {
                     getTagSet("colleagues"), new ArrayList<>(), new Role("Patient")),
             new Doctor(new Name("Jane Chew"), new Phone("93424232"), new Email("janec@example.com"),
                     new Nric("S3523567R"), new Address("Blk 11 Eunos Street 1, #14-09"),
+                    getTagSet("colleagues"), new ArrayList<>(), new Role("Doctor")),
+            new Doctor(new Name("Joseph Law"), new Phone("93424232"), new Email("joseph@example.com"),
+                    new Nric("S7654321R"), new Address("Blk 11 Yishun Street 1, #14-09"),
                     getTagSet("colleagues"), new ArrayList<>(), new Role("Doctor"))
         };
     }
@@ -96,7 +99,8 @@ public class SampleDataUtil {
     }
 
     public static Appointment getAppointment(String... strings) {
-        return new Appointment(new Nric(strings[0]), new Booking(strings[1]));
+        return new Appointment(new Nric(strings[0]), new Booking(strings[1]),
+                new Nric(strings[0]));
     }
 
 }

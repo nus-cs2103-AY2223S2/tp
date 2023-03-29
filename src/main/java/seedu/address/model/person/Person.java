@@ -203,4 +203,12 @@ public class Person {
     public void addPatientAppointment(Appointment appointment) {
         patientAppointments.add(appointment);
     }
+
+    /**
+     * Gets size of appointment list.
+     * @return appointment size
+     */
+    public int getAppointmentSize() {
+        return this.patientAppointments.size();
+    }
 }

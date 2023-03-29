@@ -92,12 +92,7 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
         }
-
         role = source.getRole().role;
-
-        if (source.isDoctor()) {
-            Doctor sourceDoctor = (Doctor) source;
-        }
 
     }
 
@@ -176,7 +171,11 @@ class JsonAdaptedPerson {
             return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelPrescriptions,
                     modelTags, modelAppointments, modelRole);
         } else {
-            final ArrayList<Appointment> modelAppointments = new ArrayList<>();
+            final ArrayList<Appointment> appointments = new ArrayList<>();
+            for (JsonAdaptedAppointment appointment : patientAppointments) {
+                appointments.add(appointment.toModelType());
+            }
+            final ArrayList<Appointment> modelAppointments = new ArrayList<>(appointments);
             return new Doctor(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags, modelAppointments,
                     modelRole);
         }
