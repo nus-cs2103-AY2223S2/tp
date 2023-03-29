@@ -9,7 +9,13 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 
-MyLib is a **desktop app for managing bookmarks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).If you are a fast typer who is seeking for a one-stop platform to organise your bookmarks, then MyLib is the assistant you can ask for.
+MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read!
+
+With MyLib, you have the ability to easily organise all your reading materials in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
+
+MyLib is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks.
+
+If you are a fast typer who is seeking a one-stop platform to organise and track your readings (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -17,9 +23,9 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
 ### Objectives of the User Guide
 
-This User Guide provides an in-depth documentation, so you can easily use and integrate MyLib into your everyday bookmarking tasks. It covers how to launch MyLib, core  features and commands used.
+This User Guide provides an easy to understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
 
-### How to use User Guide
+### How to use the User Guide
 
 The user guide contains certain visuals to aid in conveying information more effectively
 
@@ -29,8 +35,9 @@ The user guide contains certain visuals to aid in conveying information more eff
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
-### Get Started
-Head over to [Quick start](#quick-start) to get started!
+### Getting Started
+Head on over to the [Quick start](#quick-start) section to get started with MyLib!
+
 If you are an experienced user, you can refer to [Command Summary](#command-summary) for a quick overview of MyLib's commands.
 
 --------------------------------------------------------------------------------------------------------------------
