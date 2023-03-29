@@ -1,30 +1,55 @@
 package tfifteenfour.clipboard.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Optional;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
+import tfifteenfour.clipboard.commons.util.CollectionUtil;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.Email;
+import tfifteenfour.clipboard.model.student.Name;
+import tfifteenfour.clipboard.model.student.Phone;
+import tfifteenfour.clipboard.model.student.StudentId;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
 public class NewEditCommandParser implements Parser<EditCommand> {
+    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
+    private final CurrentSelection currentSelection;
+
+
+    public NewEditCommandParser(CurrentSelection currentSelection) {
+        this.currentSelection = currentSelection;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args) throws ParseException, CommandException {
         Index index;
         CommandTargetType editCommandType;
         try {
@@ -39,22 +64,31 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         case MODULE:
             Course newCourse = parseCourseInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
+            }
             return new EditCourseCommand(index, newCourse);
         case GROUP:
             Group newGroup = parseGroupInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
+            }
             return new EditGroupCommand(index, newGroup);
         case SESSION:
             Session newSession = parseSessionInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
+            }
             return new EditSessionCommand(index, newSession);
         case STUDENT:
-            /*  Note: Parsing of student info is done in EditStudentCommand::execute to catch error when user is not
-                on STUDENT_PAGE, therefore we need to catch ArrayIndexOutOfBoundsException separately in
-                parseStudentIndex. (Others are handled in their parseInfo methods)
-             */
-            index = parseStudentIndex(args);
-            return new EditStudentCommand(index, args);
+            EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
+            index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+            }
+            return new EditStudentCommand(index, editStudentDescriptor);
         default:
             throw new ParseException("Invalid type for edit command");
         }
@@ -96,97 +130,120 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         return session;
     }
 
-    private Index parseStudentIndex(String args) throws ParseException {
-        String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        if (tokens.length < 4) {
+    private EditStudentDescriptor parseStudentInfo(String args) throws ParseException {
+        requireNonNull(args);
+        if (args.split(" ").length < 4) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE));
         }
-        return parseIndex(args);
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
+                        PREFIX_COURSE, PREFIX_TAG);
+
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
+            editStudentDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
+        }
+
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(MESSAGE_NOT_EDITED);
+        }
+
+        return editStudentDescriptor;
     }
 
 
-//    /**
-//     * Stores the details to edit the student with. Each non-empty field value will replace the
-//     * corresponding field value of the student.
-//     */
-//    public static class EditStudentDescriptor {
-//        private Name name;
-//        private Phone phone;
-//        private Email email;
-//        private StudentId studentId;
-//
-//        public EditStudentDescriptor() {}
-//
-//        /**
-//         * Copy constructor.
-//         * A defensive copy of {@code tags} is used internally.
-//         */
-//        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
-//            setName(toCopy.name);
-//            setPhone(toCopy.phone);
-//            setEmail(toCopy.email);
-//            setStudentId(toCopy.studentId);
-//        }
-//
-//        /**
-//         * Returns true if at least one field is edited.
-//         */
-//        public boolean isAnyFieldEdited() {
-//            return CollectionUtil.isAnyNonNull(name, phone, email, studentId);
-//        }
-//
-//        public void setName(Name name) {
-//            this.name = name;
-//        }
-//
-//        public Optional<Name> getName() {
-//            return Optional.ofNullable(name);
-//        }
-//
-//        public void setPhone(Phone phone) {
-//            this.phone = phone;
-//        }
-//
-//        public Optional<Phone> getPhone() {
-//            return Optional.ofNullable(phone);
-//        }
-//
-//        public void setEmail(Email email) {
-//            this.email = email;
-//        }
-//
-//        public Optional<Email> getEmail() {
-//            return Optional.ofNullable(email);
-//        }
-//
-//        public void setStudentId(StudentId studentId) {
-//            this.studentId = studentId;
-//        }
-//
-//        public Optional<StudentId> getStudentId() {
-//            return Optional.ofNullable(studentId);
-//        }
-//
-//
-//        @Override
-//        public boolean equals(Object other) {
-//            // short circuit if same object
-//            if (other == this) {
-//                return true;
-//            }
-//
-//            // instanceof handles nulls
-//            if (!(other instanceof EditStudentDescriptor)) {
-//                return false;
-//            }
-//
-//            // state check
-//            EditStudentDescriptor e = (EditStudentDescriptor) other;
-//
-//            return getName().equals(e.getName())
-//                    && getPhone().equals(e.getPhone())
-//                    && getEmail().equals(e.getEmail())
-//                    && getStudentId().equals(e.getStudentId());
-//        }
-//    }
+    /**
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
+     */
+    public static class EditStudentDescriptor {
+        private Name name;
+        private Phone phone;
+        private Email email;
+        private StudentId studentId;
+
+        public EditStudentDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
+            setName(toCopy.name);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
+            setStudentId(toCopy.studentId);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name, phone, email, studentId);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public void setStudentId(StudentId studentId) {
+            this.studentId = studentId;
+        }
+
+        public Optional<StudentId> getStudentId() {
+            return Optional.ofNullable(studentId);
+        }
+
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditStudentDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
+
+            return getName().equals(e.getName())
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getStudentId().equals(e.getStudentId());
+        }
+    }
 }
