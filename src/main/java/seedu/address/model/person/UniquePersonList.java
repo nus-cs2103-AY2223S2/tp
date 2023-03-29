@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -146,5 +147,24 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
+    public boolean containsDrByNric(Nric toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(person -> person instanceof Doctor
+                && person.isSamePersonByNric(toCheck));
+    }
+
+    public Name getNameByNric(Nric nric) {
+        requireNonNull(nric);
+        Optional<Person> optionalPerson = internalList.stream()
+                .filter(person -> person.getNric().equals(nric))
+                .findFirst();
+        return optionalPerson.map(Person::getName).orElse(null);
     }
 }

@@ -104,6 +104,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDrByNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasDrByNric(nric);
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return addressBook.hasPatient(patient);
@@ -206,5 +212,4 @@ public class ModelManager implements Model {
         addressBook.bookAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
-
 }
