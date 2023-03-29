@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.timeSlot.TimeMask;
+import seedu.address.model.timeslot.TimeMask;
 
 /**
  * Represents a Person in the address book.
@@ -100,6 +101,10 @@ public class Person {
         return isolatedEventList;
     }
 
+    /**
+     * Add the recurring event into the person's recurring event list.
+     * @param event
+     */
     public void addRecurringEvent(RecurringEvent event) {
         // TODO: Should standardise Add/Delete in EventList or in Person
         recurringEventList.insert(event);
@@ -141,6 +146,21 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Remove the expired isolated events from the person's isolated event list.
+     */
+    public void removeExpiredEvent() {
+        int len = isolatedEventList.getSize();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (int i = 0; i < len; i++) {
+            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
+            if (event.getStartDate().isBefore(now)) {
+                isolatedEventList.deleteIsolatedEvent(event);
+            }
+        }
     }
 
     /**

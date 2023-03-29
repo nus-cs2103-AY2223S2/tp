@@ -241,5 +241,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
 
-
+    /**
+     * To delete the isolated events automatically whenever the app is launched.
+     */
+    public void deleteExpiredEvent() {
+        for (Person p : persons) {
+            p.removeExpiredEvent();
+        }
+    }
 }

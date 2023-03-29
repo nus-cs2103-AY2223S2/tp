@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -16,10 +15,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.model.timeSlot.TimeMask;
+import seedu.address.model.timeslot.TimeMask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,6 +112,10 @@ public class ModelManager implements Model {
         addressBook.removePerson(target);
     }
 
+    public void deleteExpiredEvent() {
+        addressBook.deleteExpiredEvent();
+    }
+
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
@@ -127,7 +131,6 @@ public class ModelManager implements Model {
     public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
         requireAllNonNull(person, originalEvent, editedEvent);
         addressBook.setIsolatedEvent(person, originalEvent, editedEvent);
-
     }
 
     @Override
@@ -242,7 +245,13 @@ public class ModelManager implements Model {
         TimeMask baseMask = new TimeMask();
         for (Person person: persons) {
             baseMask.mergeMask(person.getRecurringMask());
+            IsolatedEventList isolatedEventList = person.getIsolatedEventList();
+            if (isolatedEventList == null) {
+                continue;
+            }
+            baseMask.mergeIsolatedEvents(isolatedEventList);
         }
+
         // TODO: Potential bugs
         ObservableList<String> timetable = TimeMask.getTimetable(date.getDayOfWeek(), baseMask);
         System.out.println(timetable);

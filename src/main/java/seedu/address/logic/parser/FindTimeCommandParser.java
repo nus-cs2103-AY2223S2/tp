@@ -2,20 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 import static seedu.address.logic.parser.ParserUtil.parseDate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FindTimeCommand;
-import seedu.address.logic.commands.group.GroupCreateCommand;
-import seedu.address.logic.commands.group.GroupDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
 
+/**
+ * Parser class for the FindTimeCommand.
+ */
 public class FindTimeCommandParser implements Parser<FindTimeCommand> {
 
     /**

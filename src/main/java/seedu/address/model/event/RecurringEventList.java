@@ -8,7 +8,7 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.timeSlot.TimeMask;
+import seedu.address.model.timeslot.TimeMask;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -16,11 +16,12 @@ import seedu.address.model.timeSlot.TimeMask;
 public class RecurringEventList {
     private final TreeSet<RecurringEvent> recurringEvents = new TreeSet<>();
 
+    private final TimeMask recurringMask = new TimeMask();
+
     public TreeSet<RecurringEvent> getRecurringEvents() {
         return recurringEvents;
     }
 
-    private final TimeMask recurringMask = new TimeMask();
 
     /**
      * Gets the total number of event in the recurringEvents
@@ -134,12 +135,18 @@ public class RecurringEventList {
         }
     }
 
+    /**
+     * Add all the recurring events into the person's recurring event list and update the recurring event list's time
+     * mask.
+     * @param recurringEvents
+     */
     public void addAll(Set<RecurringEvent> recurringEvents) {
         this.recurringEvents.addAll(recurringEvents);
         for (RecurringEvent recurringEvent: recurringEvents) {
             recurringMask.modifyOccupancy(recurringEvent, true);
         }
     }
+
     public ArrayList<RecurringEvent> getList() {
         return new ArrayList<>(this.recurringEvents);
     }
@@ -163,6 +170,11 @@ public class RecurringEventList {
         return output.toString();
     }
 
+    /**
+     * Delete the recurring event from the person's recurring event list and update the time mask of the recurring
+     * event list.
+     * @param event
+     */
     public void deleteRecurringEvent(RecurringEvent event) {
         recurringEvents.remove(event);
         recurringMask.modifyOccupancy(event, false);
