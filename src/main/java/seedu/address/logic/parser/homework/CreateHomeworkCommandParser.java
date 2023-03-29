@@ -75,17 +75,18 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one name is allowed for mark homework as done command."));
+                    "Only one student name is allowed."));
+        }
+        // name cannot be an empty string
+        if (nameKeywords.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Name cannot be empty."));
         }
 
         return new CreateHomeworkCommand(names, new NamePredicate(nameKeywords),

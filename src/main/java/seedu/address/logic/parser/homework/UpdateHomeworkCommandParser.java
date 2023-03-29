@@ -54,34 +54,50 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
-            //            int spaceIndex = name.indexOf(" ");
-            //            if (spaceIndex != -1) {
-            //                name = name.substring(0, spaceIndex);
-            //            }
             nameKeywords.set(i, name);
         }
         names = nameKeywords;
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one name is allowed for update homework command."));
+                    "Only one student one be updated at a time."));
+        }
+        // name cannot be an empty string
+        if (nameKeywords.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Name cannot be empty."));
         }
 
         if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     "Only one index is allowed for update homework command."));
         }
+        // index cannot be an empty string
+        if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Index cannot be empty."));
+        }
 
         // if homework name is not present, set it to null, else parse it
         Optional<String> homeworkName = Optional.empty();
         if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
             homeworkName = Optional.of(argMultimap.getValue(PREFIX_HOMEWORK).get());
+            // homework name cannot be an empty string
+            if (homeworkName.get().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        "Homework name cannot be empty."));
+            }
         }
 
         // if deadline is not present, set it to null, else parse it
         Optional<LocalDateTime> deadline = Optional.empty();
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+            // deadline cannot be an empty string
+            if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        "Deadline cannot be empty."));
+            }
 
             // deadline must be in the future
             if (deadline.get().isBefore(LocalDateTime.now())) {

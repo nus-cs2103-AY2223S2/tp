@@ -25,6 +25,22 @@ import seedu.address.model.student.Student;
  */
 public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
     private List<String> names = new ArrayList<>();
+
+    /**
+     * Checks if the list of strings contains an empty string.
+     *
+     * @param list the list of strings to be checked.
+     * @return true if the list does not contain an empty string, false otherwise.
+     */
+    private boolean checkEmptyString(List<String> list) {
+        for (String s : list) {
+            if (s.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the ViewHomeworkCommand
      * and returns a ViewHomeworkCommand object for execution.
@@ -53,13 +69,14 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             for (int i = 0; i < nameKeywords.size(); i++) {
                 String name = nameKeywords.get(i);
                 name = name.trim();
-                //                int spaceIndex = name.indexOf(" ");
-                //                if (spaceIndex != -1) {
-                //                    name = name.substring(0, spaceIndex);
-                //                }
                 nameKeywords.set(i, name);
             }
             names = nameKeywords;
+
+            // it cannot be an empty string
+            if (!checkEmptyString(nameKeywords)) {
+                throw new ParseException("Name cannot be empty.");
+            }
 
             namePredicate = new NamePredicate(nameKeywords);
             defaultPredicateFlag = false;
@@ -70,6 +87,15 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
 
         // If status is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            // there can only be one status prefix
+            if (argMultimap.getAllValues(PREFIX_STATUS).size() > 1) {
+                throw new ParseException("Only one status prefix allowed.");
+            }
+            // it cannot be an empty string
+            if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
+                throw new ParseException("Status cannot be empty.");
+            }
+
             String status = argMultimap.getValue(PREFIX_STATUS).get();
             boolean isCompleted = ParserUtil.parseStatus(status);
             HomeworkIsCompletePredicate statusPredicate = new HomeworkIsCompletePredicate(isCompleted);
