@@ -20,7 +20,6 @@ import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
