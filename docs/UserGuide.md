@@ -33,7 +33,7 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `clear` : Deletes all Bookmarks.
    
-   * `goto 1` : Goto url of the 1st Bookmark shown in the current list.
+   * `clear` : Goto url of Bookmark.
    
    * `exit` : Exits the app.
 
@@ -125,7 +125,7 @@ want to filter out certain bookmarks from your large list of bookmarks. `find` a
 using the title, author, genre and/or tags of a bookmark.
 >>>>>>> Stashed changes
 
-Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
+Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]`
 
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
@@ -153,7 +153,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
-* `find n/ Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+* `find Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
 ### Going to a url : `goto
 
@@ -167,7 +167,7 @@ Format: 'goto INDEX'
 
 * Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
-* `find n/ Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
+* `find Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
@@ -215,7 +215,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
-**Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chainsaw Man`
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
 **Help** | `help`
