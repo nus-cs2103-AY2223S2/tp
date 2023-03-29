@@ -16,7 +16,7 @@ import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.overview.PostalOverview;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.storage.temporary.UndoMemory;
+import seedu.dengue.storage.temporary.UndoSpecialisedMemory;
 
 /**
  * Represents the in-memory model of the Dengue Hotspot Tracker data.
@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final DengueHotspotTracker dengueHotspotTracker;
-    private UndoMemory memory;
+    private UndoSpecialisedMemory memory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private Overview overview;
@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.dengueHotspotTracker.getPersonList());
         this.overview = new PostalOverview();
-        this.memory = new UndoMemory(this.dengueHotspotTracker);
+        this.memory = new UndoSpecialisedMemory(this.dengueHotspotTracker);
     }
 
     public ModelManager() {
@@ -105,15 +105,12 @@ public class ModelManager implements Model {
         } catch (NullPointerException err) {
             throw new CommandException("Cannot undo any further!");
         }
-
-
     }
     @Override
     public void redo() throws CommandException {
         memory.redo();
         updateFromMemoryStack();
     }
-
 
     @Override
     public void setDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) {
