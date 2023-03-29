@@ -6,8 +6,10 @@ import java.util.Set;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Review;
+
 /**
  * A utility class to help with building InternshipApplication objects.
  */
@@ -19,6 +21,7 @@ public class InternshipBuilder {
     private JobTitle jobTitle;
     private Set<Review> reviews;
     private Documents documents;
+    private InternshipStatus status;
 
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
@@ -27,6 +30,7 @@ public class InternshipBuilder {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
         reviews = new HashSet<>();
+        status = InternshipStatus.NA;
     }
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
@@ -36,6 +40,7 @@ public class InternshipBuilder {
         jobTitle = internshipToCopy.getJobTitle();
         reviews = new HashSet<>(internshipToCopy.getReviews());
         documents = internshipToCopy.getDocuments();
+        status = internshipToCopy.getStatus();
     }
 
     /**
@@ -62,7 +67,15 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Status} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withStatus(InternshipStatus status) {
+        this.status = status;
+        return this;
+    }
+
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle, reviews, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, status, documents);
     }
 }

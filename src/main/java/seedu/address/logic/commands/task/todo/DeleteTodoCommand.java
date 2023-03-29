@@ -10,11 +10,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 
 /**
- * Deletes a todo identified using it's displayed index from the todo list.
+ * Deletes a todo identified by its displayed index from the todo list.
  */
 public class DeleteTodoCommand extends Command {
 
@@ -29,12 +29,12 @@ public class DeleteTodoCommand extends Command {
 
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted todo: %1$s";
 
-    private static final TodoType type = TodoType.TODO;
+    private static final TaskType type = TaskType.TODO;
 
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@code targetIndex} todo
+     * Creates a DeleteTodoCommand to delete a todo task at the specified {@code targetIndex}.
      */
     public DeleteTodoCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -46,7 +46,7 @@ public class DeleteTodoCommand extends Command {
         List<InternshipTodo> lastShownList = model.getFilteredTodoList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
         InternshipTodo todoToDelete = lastShownList.get(targetIndex.getZeroBased());

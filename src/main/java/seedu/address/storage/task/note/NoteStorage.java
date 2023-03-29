@@ -5,11 +5,10 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyNote;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link seedu.address.model.NoteList}.
  */
 public interface NoteStorage {
 
@@ -19,8 +18,9 @@ public interface NoteStorage {
     Path getNoteListFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns AddressBook data as a {@link ReadOnlyNote}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -32,7 +32,8 @@ public interface NoteStorage {
     Optional<ReadOnlyNote> readNoteList(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyNote} to the storage.
+     *
      * @param noteList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

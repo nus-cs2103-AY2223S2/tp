@@ -6,13 +6,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Jackson-friendly version of {@link InternshipApplication}.
+ * Jackson-friendly version of {@link Note}.
  */
 public class JsonAdaptedNote {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Note 's %s field is missing!";
@@ -22,7 +21,7 @@ public class JsonAdaptedNote {
     private final String note;
 
     /**
-     * Constructs a {@code JsonAdaptedInternshipApplication} with the given Note details.
+     * Constructs a {@code JsonAdaptedNote} with the given Note details.
      */
     @JsonCreator
     public JsonAdaptedNote(@JsonProperty("type") String type,
@@ -34,7 +33,7 @@ public class JsonAdaptedNote {
     }
 
     /**
-     * Converts a given {@code InternshipApplication} into this class for Jackson use.
+     * Converts a given {@code Note} into this class for Jackson use.
      */
     public JsonAdaptedNote(Note source) {
         type = source.getType().toString();
@@ -43,20 +42,20 @@ public class JsonAdaptedNote {
     }
 
     /**
-     * Converts this Jackson-friendly adapted InternshipApplication object
-     * into the model's {@code InternshipApplication} object.
+     * Converts this Jackson-friendly adapted Note object
+     * into the model's {@code Note} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted InternshipApplication.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Note.
      */
     public Note toModelType() throws IllegalValueException {
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            TodoType.class.getSimpleName()));
+                                                            TaskType.class.getSimpleName()));
         }
-        if (!TodoType.isValidNote(type)) {
-            throw new IllegalValueException(String.format(TodoType.MESSAGE_CONSTRAINTS, type));
+        if (!TaskType.isValidNote(type)) {
+            throw new IllegalValueException(String.format(TaskType.MESSAGE_CONSTRAINTS, type));
         }
-        final TodoType type = TodoType.NOTE;
+        final TaskType type = TaskType.NOTE;
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date created"));

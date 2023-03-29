@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- * Clears the address book.
+ * Clears the internship applications list.
  */
 public class ClearCommand extends Command {
 

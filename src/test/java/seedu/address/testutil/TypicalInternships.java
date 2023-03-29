@@ -11,6 +11,7 @@ import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 
 /**
  * A utility class containing a list of {@code InternshipApplication} objects to be used in tests.
@@ -21,7 +22,7 @@ public class TypicalInternships {
     public static final InternshipApplication BENSON = new InternshipBuilder().withCompanyName("Benson Meier")
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication CARL = new InternshipBuilder().withCompanyName("Carl Kurz")
-        .withJobTitle("Software Engineer").build();
+        .withJobTitle("Web Developer").withStatus(InternshipStatus.PENDING).build();
     public static final InternshipApplication GOOGLE = new InternshipBuilder()
             .withCompanyName("Google").withJobTitle("Product Manager").build();
     public static final InternshipApplication NETFLIX = new InternshipBuilder()
@@ -32,16 +33,22 @@ public class TypicalInternships {
     public static final InternshipApplication DANIEL = new InternshipBuilder().withCompanyName("Daniel Meier")
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication ELLE = new InternshipBuilder().withCompanyName("Elle Meyer")
-        .withJobTitle("Software Engineer").build();
+        .withJobTitle("Web Developer").withStatus(InternshipStatus.PENDING).build();
     public static final InternshipApplication FIONA = new InternshipBuilder().withCompanyName("Fiona Kunz")
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication GEORGE = new InternshipBuilder().withCompanyName("George Best")
-        .withJobTitle("Software Engineer").build();
+        .withJobTitle("Software Engineer").withStatus(InternshipStatus.PENDING).build();
     public static final InternshipApplication ORACLE = new InternshipBuilder()
             .withCompanyName("Oracle")
             .withJobTitle("Data Engineer")
             .withDocuments(new Documents(new ResumeLink("https://drive.example.com/resume_oracle"),
                     new CoverLetterLink("https://drive.example.com/coverletter_oracle"))).build();
+    public static final InternshipApplication HARRY = new InternshipBuilder().withCompanyName("Harry Better")
+            .withJobTitle("Web Developer").withStatus(InternshipStatus.PENDING).build();
+    public static final InternshipApplication IAN = new InternshipBuilder().withCompanyName("Ian Hande")
+            .withJobTitle("Web Developer").withStatus(InternshipStatus.REJECTED).build();
+    public static final InternshipApplication JAMES = new InternshipBuilder().withCompanyName("Fiona K")
+            .withJobTitle("Software Engineer").build();
 
 
     private TypicalInternships() {} // prevents instantiation
@@ -59,7 +66,7 @@ public class TypicalInternships {
 
     public static List<InternshipApplication> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, GOOGLE, NETFLIX, DANIEL, ELLE, FIONA, GEORGE,
-                ORACLE));
+                HARRY, IAN, JAMES, ORACLE));
     }
 
     public static NoteList getTypicalNoteList() {
