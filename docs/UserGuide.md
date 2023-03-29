@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: Vimificattion User Guide
 ---
 
 <!---
@@ -38,31 +38,6 @@ Command summary
 ## Table of Contents
 * Table of Contents
 {:toc}
-<!-- DEPRECATED -->
-<!-- ## Table of Contents
-- [Vimification User Guide](#vimification-user-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Purpose of User Guide](#purpose-of-user-guide)
-  - [Quick Start](#quick-start)
-    - [Installation](#installation)
-    - [For Windows](#for-windows)
-    - [For Mac (M1 Chip)](#for-mac-m1-chip)
-    - [Trying out the commands](#trying-out-the-commands)
-  - [Navigating Vimification](#navigating-vimification)
-  - [Using the commands](#using-the-commands)
-  - [Information on commands' parameters](#information-on-commands-parameters)
-  - [Features](#features)
-    - [Viewing help](#viewing-help)
-    - [Adding a todo task](#adding-a-todo-task)
-    - [Adding a task with deadline](#adding-a-task-with-deadline)
-    - [Deleting a task](#deleting-a-task)
-    - [Exiting the application](#exiting-the-application)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
-  - [FAQ](#faq)
-  - [Command summary](#command-summary) -->
 
 ## Introduction
 
@@ -273,12 +248,10 @@ Example:
 
 <img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" width="1203" height="599" title="Quit Example 1">
 
-&nbsp;&nbsp;
 ### Saving the task list data
 
 The task list data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-&nbsp;&nbsp;
 ### Editing existing task list data
 
 Existing task list data is saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -287,7 +260,6 @@ Existing task list data is saved as a JSON file `[JAR file location]/data/taskli
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 </div>
 
-&nbsp;&nbsp;
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
