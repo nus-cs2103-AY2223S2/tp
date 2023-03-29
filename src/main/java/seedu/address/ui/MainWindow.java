@@ -51,6 +51,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane calendarPlaceholder;
+    @FXML
     private StackPane statusbarPlaceholder;
 
     /**
@@ -119,8 +121,11 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(), logic.getAddressBook());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        CalendarCard.addAppointmentsToCalendar(logic.getAppointmentList());
+        CalendarCard calendarCard = new CalendarCard();
+        calendarPlaceholder.getChildren().add(calendarCard.getRoot());
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
