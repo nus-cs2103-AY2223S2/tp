@@ -10,6 +10,8 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.regex.Pattern;
 
+import seedu.dengue.model.range.DateComparator;
+
 /**
  * Represents a Person's dengue case date in the Dengue Hotspot Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -28,6 +30,8 @@ public class Date {
             + " - dd should be within the valid range for the MM given.\n"
             + "Example Dates: Jan-23-2000";
 
+    protected static final DateComparator DATE_COMPARATOR = new DateComparator();
+
     private static final DateFormat NUM_FORMATS =
             new DateFormat("uuuu", "MM", "dd");
     private static final DateFormat LONG_FORMATS =
@@ -41,7 +45,7 @@ public class Date {
     public final String value;
 
     /**
-     * Constructs an {@code Date}.
+     * Constructs a {@code Date}.
      *
      * @param date A Date.
      */

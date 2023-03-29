@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Person;
@@ -21,10 +22,17 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
+        List<Person> fullList = model
+                .getDengueHotspotTracker()
+                .getPersonList();
+
+        List<Person> remainingPersons = fullList
+                .stream()
+                .filter(p -> !referenceCopy.contains(p))
+                .collect(Collectors.toList());
+
         int listSize = lastShownList.size();
-        for (Person person : referenceCopy) {
-            model.deletePerson(person);
-        }
+        model.setPersons(remainingPersons);
         return new CommandResult(String.format(MESSAGE_SUCCESS, listSize));
     }
 }

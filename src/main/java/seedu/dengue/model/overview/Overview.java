@@ -12,8 +12,8 @@ import seedu.dengue.model.person.Person;
  * The API of the Overview list.
  */
 public abstract class Overview {
-    protected static final int MAX_INDEX_LEN = 4; // _12.
-    protected static final String GAP = "     "; // whitespace of length 3
+    protected static final int MAX_INDEX_LEN = 4; // Length of " 28."
+    protected static final String GAP = "     ";
 
     /**
      * Returns the title {@code String} of the overview.

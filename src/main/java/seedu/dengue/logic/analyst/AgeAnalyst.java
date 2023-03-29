@@ -10,7 +10,8 @@ import seedu.dengue.model.person.Person;
  * An {@code Analyst} that groups {@code Person} instances by {@code Age}.
  */
 public class AgeAnalyst extends Analyst {
-    private static final int NUM_AGE_GROUPS = 20; // number of age groups, 0-9 to 190-199
+    private static final int NUM_AGE_GROUPS = 20; // Number of age groups, 0-9 to 190-199
+    private static final int AGE_BIN_SIZE = 10;
 
     private final int total;
     private final ArrayList<DataBin> bins;
@@ -28,10 +29,10 @@ public class AgeAnalyst extends Analyst {
         IntStream.iterate(0, i -> i + 1).limit(NUM_AGE_GROUPS)
                         .forEach(i -> bins.add(new DataBin(
                                 String.format("%d - %d",
-                                        i * 10, i * 10 + 9))));
+                                        i * AGE_BIN_SIZE, (i + 1) * AGE_BIN_SIZE - 1))));
 
         persons.forEach(person -> {
-            int decade = Integer.parseInt(person.getAge().value) / 10;
+            int decade = Integer.parseInt(person.getAge().value) / AGE_BIN_SIZE;
             bins.get(decade).addPerson(person);
         });
     }

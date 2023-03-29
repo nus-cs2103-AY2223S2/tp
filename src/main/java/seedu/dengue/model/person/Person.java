@@ -66,6 +66,11 @@ public class Person {
         return age;
     }
 
+
+    public Person getCopy() {
+        return new Person(this.name, this.postal, this.date, this.age, this.variants);
+    }
+
     /**
      * Returns an immutable variant set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
