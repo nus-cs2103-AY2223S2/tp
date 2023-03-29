@@ -22,7 +22,6 @@ This user guide will help you get up to speed in no time!
 - [Quick Start](#quick-start)
 - [Features](#features)
     * [Add a Contact](#add-a-contact)
-  <!-- * [View Contact List](#list-all-contacts) -->
     * [Link Contact to Event](#link-contact-to-event)
     * [View Rate](#view-rate)
     * [Tag Rate](#tag-rate)
