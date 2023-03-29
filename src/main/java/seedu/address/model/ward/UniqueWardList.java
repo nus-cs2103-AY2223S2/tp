@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.model.ward.exceptions.DuplicateWardException;
+import seedu.address.model.ward.exceptions.EditedWardInsufficientCapacityException;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
@@ -120,6 +121,10 @@ public class UniqueWardList implements Iterable<Ward> {
 
         if (!target.isSameWard(editedWard) && contains(editedWard)) {
             throw new DuplicatePatientException();
+        }
+
+        if (editedWard.getCapacity().getValue() < target.getOccupancy()) {
+            throw new EditedWardInsufficientCapacityException();
         }
 
         ObservableList<Patient> patients = target.getPatientList();

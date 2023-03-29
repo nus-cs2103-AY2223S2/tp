@@ -35,6 +35,7 @@ public class EditWardCommand extends Command {
   public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Ward: %1$s";
   public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
   public static final String MESSAGE_DUPLICATE_WARD = "This ward already exists in MedInfo.";
+  public static final String MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY = "The given capacity is insufficient for this ward.";
 
   private final Index index;
   private final EditWardDescriptor editWardDescriptor;
@@ -66,6 +67,10 @@ public class EditWardCommand extends Command {
 
     if (!wardToEdit.isSameWard(editedWard) && model.hasWard(editedWard)) {
       throw new CommandException(MESSAGE_DUPLICATE_WARD);
+    }
+
+    if (wardToEdit.getOccupancy() > editedWard.getCapacity().getValue()) {
+      throw new CommandException(MESSAGE_EDITED_WARD_INSUFFICIENT_CAPACITY);
     }
 
     model.setWard(wardToEdit, editedWard);
