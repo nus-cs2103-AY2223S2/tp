@@ -329,6 +329,8 @@ public class ParserUtil {
         return priority;
     }
 
+    //@@author vaidyanaath-reused
+    // Reused from AB3 code.
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */

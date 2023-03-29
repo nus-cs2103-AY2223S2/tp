@@ -19,7 +19,7 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the task list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the task list.\n"
             + "Parameters: "
             + PREFIX_TITLE + " TITLE "
             + PREFIX_FROM + " START DATE-TIME "
