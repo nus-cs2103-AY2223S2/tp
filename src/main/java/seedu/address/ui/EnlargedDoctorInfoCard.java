@@ -93,7 +93,7 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
      * Clears the information shown on the {@code EnlargedDoctorInfoCard}.
      */
     public void clearDisplay() {
-        name.setText("No Doctor Selected");
+        name.setText("Nobody Selected");
         phone.setText("");
         email.setText("");
         specialty.setText("");
