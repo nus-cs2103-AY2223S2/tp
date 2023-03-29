@@ -2,8 +2,8 @@ package seedu.vms.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_COMPLETED;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
@@ -45,7 +45,8 @@ public class FindCommandParser implements CommandParser {
         }
         if (argsMap.getValue(PREFIX_STARTTIME).isPresent()) {
             flagsPresent = true;
-            findAppointmentDescriptor.setAppointmentTime(ParserUtil.parseDate(argsMap.getValue(PREFIX_STARTTIME).get()));
+            findAppointmentDescriptor
+                    .setAppointmentTime(ParserUtil.parseDate(argsMap.getValue(PREFIX_STARTTIME).get()));
         }
         if (argsMap.getValue(PREFIX_ENDTIME).isPresent()) {
             flagsPresent = true;
