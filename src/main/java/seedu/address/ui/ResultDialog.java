@@ -47,8 +47,10 @@ public class ResultDialog {
 
         result.setTitle("Notification");
         result.setHeaderText(null);
-        result.setX(primaryStage.getX() + primaryStage.getWidth() - 1.35 * result.getDialogPane().getWidth());
-        result.setY(0.2 * primaryStage.getHeight());
+        result.setX(primaryStage.getX() + 0.35 * primaryStage.getWidth());
+        result.setY(0.78 * primaryStage.getHeight());
+        result.setWidth(600);
+        result.setHeight(140);
         result.setGraphic(warningImgPath);
         result.setContentText(resultMessage);
 
@@ -58,7 +60,7 @@ public class ResultDialog {
     }
 
     private static void displayDialog(Alert result) {
-        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2.5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 result.setResult(ButtonType.OK);
