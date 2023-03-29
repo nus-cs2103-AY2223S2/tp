@@ -25,7 +25,7 @@ public class StartAge implements Start<Age> {
     /**
      * Checks for whether the start value of the age range is before the age of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isBefore(Person p) {
         if (!age.isPresent()) {
@@ -39,7 +39,7 @@ public class StartAge implements Start<Age> {
     /**
      * Checks for whether the start value of the age range is before the given end age.
      *
-     * @param end
+     * @param end An EndAge.
      */
     public boolean isBefore(EndAge end) {
         if (!age.isPresent()) {

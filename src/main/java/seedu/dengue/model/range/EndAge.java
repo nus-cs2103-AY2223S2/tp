@@ -26,7 +26,7 @@ public class EndAge implements End<Age> {
     /**
      * Checks for whether the end value of the age range is after the age of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isAfter(Person p) {
         if (!age.isPresent()) {
@@ -38,7 +38,7 @@ public class EndAge implements End<Age> {
     /**
      * Checks for whether the start value of the age range is before the given end age.
      *
-     * @param start
+     * @param start A StartAge.
      */
     public boolean isAfter(StartAge start) {
         if (!age.isPresent()) {

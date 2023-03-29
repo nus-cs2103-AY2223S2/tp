@@ -25,7 +25,7 @@ public class StartDate implements Start<Date> {
     /**
      * Checks for whether the start value of the date range is before the date of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isBefore(Person p) {
         if (!date.isPresent()) {
@@ -39,7 +39,7 @@ public class StartDate implements Start<Date> {
     /**
      * Checks for whether the start value of the date range is before the given end date.
      *
-     * @param end
+     * @param end An EndDate.
      */
     public boolean isBefore(EndDate end) {
         if (!date.isPresent()) {

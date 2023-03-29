@@ -27,7 +27,7 @@ public class EndDate implements End<Date> {
     /**
      * Checks for whether the end value of the date range is after the age of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isAfter(Person p) {
         if (!date.isPresent()) {
@@ -39,7 +39,7 @@ public class EndDate implements End<Date> {
     /**
      * Checks for whether the start value of the date range is before the given end date.
      *
-     * @param start
+     * @param start A StartDate.
      */
     public boolean isAfter(StartDate start) {
         if (!date.isPresent()) {
