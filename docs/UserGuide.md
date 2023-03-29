@@ -144,9 +144,12 @@ Examples:
 
 ### Adding a ward to the system: `addward`
 
-Adds the patient (NRIC, name and condition).
+Adds the ward (name and capacity).
 
 Format: `addward name/NAME [c/CAPACITY]​`
+
+- The ward name is represented as an uppercase alphabet followed by 2 digits. E.g `A01`.
+- The capacity is a positive integer. E.g `50`.
 
 <!-- EXAMPLE OF TIP -->
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -155,7 +158,7 @@ The default capacity is set to 10.
 
 Examples:
 
-- `addward name/S1234567A c/25`
+- `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
 ### Exiting the program : `exit`
 
