@@ -27,7 +27,7 @@ public class ImportDeliveryJobCommandParser {
 
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            String[] arrOfStr = line.split("//,");
+            String[] arrOfStr = line.split(",");
 
             if (arrOfStr.length != 5) {
                 throw new ParseException(
@@ -48,3 +48,4 @@ public class ImportDeliveryJobCommandParser {
         return listOfAddDeliveryJob;
     }
 }
+

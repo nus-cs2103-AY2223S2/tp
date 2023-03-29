@@ -106,7 +106,7 @@ public class AddressBookWindow extends UiPart<Stage> {
             } catch (ParseException | CommandException e) {
                 logger.warning(e.getMessage());
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                logger.warning(e.getMessage());
             }
         });
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -131,7 +131,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, FileNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -147,7 +147,9 @@ public class AddressBookWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            logger.info("File not found: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 }

@@ -241,6 +241,8 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             getRoot().close();
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] editDeliveryJob" + e.getMessage());
+        } catch (FileNotFoundException e) {
+            logger.warning("[Event] editDeliveryJob" + e.getMessage());
         }
     }
 

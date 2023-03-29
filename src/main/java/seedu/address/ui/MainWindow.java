@@ -99,7 +99,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            logger.warning(e.getMessage());
         }
     };
 
@@ -319,6 +319,8 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } catch (CommandException | ParseException e) {
                 resultDisplay.setFeedbackToUser(e.getMessage());
+            } catch (FileNotFoundException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
             }
             timetableWindow.show();
             timetableWindow.fillInnerParts();
@@ -352,6 +354,8 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } catch (CommandException | ParseException e) {
                 resultDisplay.setFeedbackToUser(e.getMessage());
+            } catch (FileNotFoundException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
             }
             unscheduleWindow.show();
             unscheduleWindow.fillInnerParts();
@@ -371,6 +375,8 @@ public class MainWindow extends UiPart<Stage> {
                 CommandResult commandResult = logic.execute("timetable_completed");
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } catch (CommandException | ParseException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            } catch (FileNotFoundException e) {
                 resultDisplay.setFeedbackToUser(e.getMessage());
             }
             completeWindow.show();
@@ -492,7 +498,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, FileNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -536,7 +543,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            logger.info("File not found: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 }
