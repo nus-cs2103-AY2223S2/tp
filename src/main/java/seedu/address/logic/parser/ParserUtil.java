@@ -99,10 +99,11 @@ public class ParserUtil {
      */
     public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
         requireNonNull(businessSize);
-        if (!BusinessSize.isValidBusinessSize(businessSize)) {
+        String trimmedBusinessSize = businessSize.trim();
+        if (!BusinessSize.isValidBusinessSize(trimmedBusinessSize)) {
             throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
         }
-        return new BusinessSize(businessSize);
+        return new BusinessSize(trimmedBusinessSize);
     }
 
     /**
@@ -125,10 +126,11 @@ public class ParserUtil {
      */
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
-        if (!Priority.isValidPriority(priority)) {
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Priority(priority);
+        return new Priority(trimmedPriority);
     }
 
     /**
@@ -138,10 +140,11 @@ public class ParserUtil {
      */
     public static TransactionCount parseTransactionCount(String transactionCount) throws ParseException {
         requireNonNull(transactionCount);
-        if (!TransactionCount.isValidTransactionCount(transactionCount)) {
+        String trimmedTransactionCount = transactionCount.trim();
+        if (!TransactionCount.isValidTransactionCount(trimmedTransactionCount)) {
             throw new ParseException(TransactionCount.MESSAGE_CONSTRAINTS);
         }
-        return new TransactionCount(transactionCount);
+        return new TransactionCount(trimmedTransactionCount);
     }
 
     /**
@@ -149,10 +152,11 @@ public class ParserUtil {
      */
     public static Mark parseMark(String mark) throws ParseException {
         requireNonNull(mark);
-        if (!Mark.isValidMark(mark)){
+        String trimmedMark = mark.trim();
+        if (!Mark.isValidMark(trimmedMark)){
             throw new ParseException(Mark.MESSAGE_CONSTRAINTS);
         }
-        return new Mark(mark);
+        return new Mark(trimmedMark);
     }
 
 

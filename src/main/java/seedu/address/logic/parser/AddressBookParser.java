@@ -64,14 +64,8 @@ public class AddressBookParser {
             case HelpCommand.COMMAND_WORD:
                 return new HelpCommand();
 
-            case SortAscCommand.COMMAND_WORD:
-                return new SortAscCommand();
-
-            case SortDescCommand.COMMAND_WORD:
-                return new SortDescCommand();
-
-            case SortNameCommand.COMMAND_WORD:
-                return new SortNameCommand();
+            case SortCommand.COMMAND_WORD:
+                return new SortCommandParser().parse(arguments);
 
             case SummaryCommand.COMMAND_WORD:
                 return new SummaryCommand();

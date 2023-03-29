@@ -57,26 +57,57 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
     }
 
+
     /**
      * Sets current list to be sorted list of its current data
-     * Sorting is done by comparing business sizes, larger business sizes near the top
+     * Sorting is done by comparing business sizes, ascending or descending depends on input
      */
-    public void sortPersonsDescending() {
-        List<Person> sortedOldList = this.getPersonList().sorted();
+    public void sortPersonsBusinessSize(boolean ascending) {
+        List<Person> sortedOldList;
+        if (ascending) {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getBusinessSizeInt));
+        } else {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getBusinessSizeInt).reversed());
+        }
         this.setPersons(sortedOldList);
     }
 
     /**
      * Sets current list to be sorted list of its current data
-     * Sorting is done by comparing business sizes, larger business sizes near the bottom
+     * Sorting is done by comparing Priority
+     * ascending or descending depends on input
      */
-    public void sortPersonsAscending() {
-        List<Person> sortedOldList = this.getPersonList()
-                .sorted(Comparator.comparing(Person::getBusinessSizeInt));
+    public void sortPersonsPriority(boolean ascending) {
+        List<Person> sortedOldList;
+        if (ascending) {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getPriorityInt));
+        } else {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getPriorityInt).reversed());
+        }
+        this.setPersons(sortedOldList);
+    }
+
+    /**
+     * Sets current list to be sorted list of its current data
+     * Sorting is done by comparing Transaction Counts
+     * ascending or descending depends on input
+     */
+    public void sortPersonsTransactionCount(boolean ascending) {
+        List<Person> sortedOldList;
+        if (ascending) {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getTransactionCountInt));
+        } else {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getTransactionCountInt).reversed());
+        }
         this.setPersons(sortedOldList);
     }
 
@@ -84,9 +115,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sets current list to be sorted list of its current data
      * Sorting is done by comparing Names in alphabetical order
      */
-    public void sortPersonsName() {
-        List<Person> sortedOldList = this.getPersonList()
-                .sorted(Comparator.comparing(Person::getNameString));
+    public void sortPersonsName(boolean ascending) {
+        List<Person> sortedOldList;
+        if (ascending) {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getNameString));
+        } else {
+            sortedOldList = this.getPersonList()
+                    .sorted(Comparator.comparing(Person::getNameString).reversed());
+        }
         this.setPersons(sortedOldList);
     }
 

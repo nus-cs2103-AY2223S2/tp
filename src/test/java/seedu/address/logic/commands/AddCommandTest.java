@@ -152,9 +152,12 @@ public class AddCommandTest {
 
         /**
          * Returns an unmodifiable view of the person list, sorted by business size
+         *
+         * @param type
+         * @param ascending
          */
         @Override
-        public void sortPersonList(String type) {
+        public void sortPersonList(String type, boolean ascending) {
             throw new AssertionError("This method should not be called.");
         }
 

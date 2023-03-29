@@ -22,7 +22,7 @@ public class BusinessSize {
     }
 
     public int getNumericValue() {
-        return Integer.valueOf(this.value);
+        return Integer.parseInt(this.value);
     }
 
     public static boolean isValidBusinessSize(String test) {

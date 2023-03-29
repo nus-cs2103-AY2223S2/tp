@@ -142,21 +142,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortPersonList(String type) {
-        assert Objects.equals(type, "asc")
-                || Objects.equals(type, "des")
-                || Objects.equals(type, "name");
+    public void sortPersonList(String type, boolean ascending) {
+//        assert Objects.equals(type, "asc")
+//                || Objects.equals(type, "desc")
+//                || Objects.equals(type, "priority")
+//                || Objects.equals(type, "trans")
+//                || Objects.equals(type, "name");
         switch (type) {
-            case "asc":
-                addressBook.sortPersonsAscending();
-                break;
-            case "des":
-                addressBook.sortPersonsDescending();
-                break;
+            case "size":
+                addressBook.sortPersonsBusinessSize(ascending);
             case "name":
-                addressBook.sortPersonsName();
+                addressBook.sortPersonsName(ascending);
+                break;
+            case "priority":
+                addressBook.sortPersonsPriority(ascending);
+                break;
+            case "trans":
+                addressBook.sortPersonsTransactionCount(ascending);
+                break;
             default:
-                addressBook.sortPersonsName();
+                addressBook.sortPersonsName(ascending);
         }
 
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
