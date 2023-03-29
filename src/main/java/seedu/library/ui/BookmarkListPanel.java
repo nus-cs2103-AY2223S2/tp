@@ -74,6 +74,13 @@ public class BookmarkListPanel extends UiPart<Region> {
     }
 
     /**
+     * selects the item in bookmarklistpanel
+     */
+    public void select(int index) {
+        bookmarkListView.getSelectionModel().select(index);
+    }
+
+    /**
      * Return the flag which indicates if item selected has changed
      */
     public boolean isChangedSelect() {

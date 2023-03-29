@@ -21,6 +21,7 @@ import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
 import seedu.library.logic.commands.ListTagsCommand;
 import seedu.library.logic.commands.SortCommand;
+import seedu.library.logic.commands.ViewCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,6 +83,9 @@ public class LibraryParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

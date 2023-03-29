@@ -33,6 +33,13 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of bookmarks */
     ObservableList<Bookmark> getFilteredBookmarkList();
 
+    /** Returns selected bookmark */
+    Bookmark getSelectedBookmark();
+
+    /** Returns selected indexx */
+    int getSelectedIndex();
+
+
     /**
      * Returns the user prefs' library file path.
      */

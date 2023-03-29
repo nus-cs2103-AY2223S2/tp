@@ -18,6 +18,7 @@ public class ListTagsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         String test = model.tagListToString();
+        model.updateSelectedIndex(-1);
         return new CommandResult(MESSAGE_SUCCESS + test);
     }
 }
