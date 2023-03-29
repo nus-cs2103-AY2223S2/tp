@@ -10,7 +10,7 @@ import vimification.model.task.Task;
 import java.time.LocalDateTime;
 
 public class SearchByDateBetween extends SearchCommand {
-    public static final String COMMAND_WORD = "s -d -between";
+    public static final String COMMAND_WORD = "s --between";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": search for tasks that have deadline between (inclusive) the input dates.\n"
@@ -22,13 +22,13 @@ public class SearchByDateBetween extends SearchCommand {
         super(task -> task.isDateAfter(startDate) && task.isDateBefore(endDate));
     }
 
-    @Override
-    public CommandResult execute(LogicTaskList taskList) throws CommandException {
-        ObservableList<Task> viewTaskList =
-                FXCollections.observableList(taskList.filter(getPredicate()));
-        setViewTaskList(viewTaskList);
-        return new CommandResult(SUCCESS_MESSAGE_FORMAT);
-    }
+    // @Override
+    // public CommandResult execute(LogicTaskList taskList) {
+    // ObservableList<Task> viewTaskList =
+    // FXCollections.observableList(taskList.filter(getPredicate()));
+    // setViewTaskList(viewTaskList);
+    // return new CommandResult(SUCCESS_MESSAGE_FORMAT);
+    // }
 
 }
 

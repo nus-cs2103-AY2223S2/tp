@@ -1,15 +1,18 @@
 package vimification.internal;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.collections.transformation.FilteredList;
 import vimification.commons.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
+import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.command.view.ViewCommand;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
 import vimification.model.CommandStack;
@@ -33,7 +36,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
 
     private final VimificationParser vimificationParser;
-    private final ObservableList<Task> viewTaskList;
+    private final FilteredList<Task> viewTaskList;
 
 
     /**
@@ -44,12 +47,16 @@ public class LogicManager implements Logic {
             MacroMap macroMap,
             CommandStack commandStack,
             Storage storage) {
+
+        List<Task> taskList = logicTaskList.getInternalList();
+        ObservableList<Task> observableTaskList = FXCollections.observableList(taskList);
+        logicTaskList.setInternalList(observableTaskList);
         this.logicTaskList = logicTaskList;
         this.macroMap = macroMap;
         this.commandStack = commandStack;
         this.storage = storage;
 
-        this.viewTaskList = FXCollections.observableList(logicTaskList.getInternalList());
+        this.viewTaskList = new FilteredList<>(observableTaskList);
         this.vimificationParser = VimificationParser.getInstance(macroMap);
     }
 
@@ -58,8 +65,25 @@ public class LogicManager implements Logic {
         LOGGER.info("[USER COMMAND] " + commandText);
 
         Command command = vimificationParser.parse(commandText);
-        CommandResult result = command.execute(logicTaskList);
-        updateViewTaskList(command);
+        CommandResult result = null;
+        if (command instanceof LogicCommand) {
+            try {
+                LogicCommand logicCommand = (LogicCommand) command;
+                result = logicCommand.execute(logicTaskList, commandStack);
+                storage.saveLogicTaskList(logicTaskList);
+            } catch (RuntimeException ex) {
+                throw new CommandException(ex.getMessage(), ex);
+            } catch (IOException ex) {
+                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
+            }
+        } else if (command instanceof ViewCommand) {
+            ViewCommand viewCommand = (ViewCommand) command;
+            result = viewCommand.execute(viewTaskList);
+        } else {
+
+        }
+        // CommandResult result = command.execute(logicTaskList);
+        // updateViewTaskList(command);
 
         // if command is related to logic task list and command stack, pass these 2
         // if command is related to macro, pass the macro map
@@ -67,19 +91,14 @@ public class LogicManager implements Logic {
 
         // TODO: Fix this later
         // Only save when the result indicates that the task list should be saved
-        try {
-            storage.saveLogicTaskList(logicTaskList);
-        } catch (IOException ex) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
-        }
         return result;
     }
 
     private void updateViewTaskList(Command command) {
-        ObservableList<Task> newViewTaskList = command.getViewTaskList();
-        if (newViewTaskList != null) {
-            viewTaskList.setAll(newViewTaskList);
-        }
+        // ObservableList<Task> newViewTaskList = command.getViewTaskList();
+        // if (newViewTaskList != null) {
+        // viewTaskList.setAll(newViewTaskList);
+        // }
     }
 
     // @Override

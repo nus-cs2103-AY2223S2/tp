@@ -1,13 +1,13 @@
 package vimification.internal.command.logic;
 
-import vimification.internal.command.CommandException;
-import vimification.internal.command.CommandResult;
-import vimification.model.LogicTaskList;
-import vimification.model.task.Task;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import vimification.internal.command.CommandResult;
+import vimification.model.CommandStack;
+import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 public class DeleteAllCommand extends UndoableLogicCommand {
 
@@ -28,8 +28,7 @@ public class DeleteAllCommand extends UndoableLogicCommand {
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList)
-            throws IndexOutOfBoundsException, CommandException {
+    public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         requireNonNull(taskList);
         deletedTasks = taskList.getInternalList();
         taskList.clear();
@@ -37,7 +36,7 @@ public class DeleteAllCommand extends UndoableLogicCommand {
     }
 
     @Override
-    public CommandResult undo(LogicTaskList taskList) throws CommandException {
+    public CommandResult undo(LogicTaskList taskList) {
         requireNonNull(taskList);
         taskList.addAll(deletedTasks);
         return new CommandResult(String.format(UNDO_MESSAGE));
