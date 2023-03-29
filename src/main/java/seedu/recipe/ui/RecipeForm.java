@@ -14,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
@@ -35,6 +38,7 @@ import seedu.recipe.ui.CommandBox.CommandExecutor;
  */
 public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
+    private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
 
     @FXML
     private TextField nameField;
@@ -90,11 +94,6 @@ public class RecipeForm extends UiPart<Region> {
         this.displayedIndex = displayedIndex;
         if (recipe != null) {
             populateFields();
-        } else {
-            TextField emptyIngredientField = createDynamicTextField("");
-            ingredientsBox.getChildren().add(emptyIngredientField);
-            TextField emptyStepField = createDynamicTextField("");
-            stepsBox.getChildren().add(emptyStepField);
         }
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
@@ -126,12 +125,12 @@ public class RecipeForm extends UiPart<Region> {
                 break;
             case "ingredients":
                 currentValue = ingredientsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
+                    .map(node -> ((TextArea) node).getText())
                     .collect(Collectors.joining(", "));
                 break;
             case "steps":
                 currentValue = stepsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
+                    .map(node -> ((TextArea) node).getText())
                     .collect(Collectors.joining(", "));
                 break;
             case "tags":
@@ -180,9 +179,10 @@ public class RecipeForm extends UiPart<Region> {
         //Set dimensions, scene graph
         window.setMinWidth(500);
         window.setMinHeight(700);
-        VBox vbox = new VBox(getRoot());
-        vbox.setStyle("-fx-background-color: #3f3f46");
-        Scene scene = new Scene(vbox);
+        window.setResizable(false);
+        ScrollPane pane = new ScrollPane(getRoot());
+        pane.setStyle("-fx-background-color: #3f3f46");
+        Scene scene = new Scene(pane);
 
         //Event handler for Escape Key
         scene.setOnKeyPressed(event -> {
@@ -209,11 +209,11 @@ public class RecipeForm extends UiPart<Region> {
         initialValues.put("duration", durationField.getText());
         initialValues.put("portion", portionField.getText());
         initialValues.put("ingredients", ingredientsBox.getChildren().stream()
-            .map(node -> ((TextField) node).getText())
+            .map(node -> ((TextArea) node).getText())
             .collect(Collectors.joining(", ")));
 
         initialValues.put("steps", stepsBox.getChildren().stream()
-            .map(node -> ((TextField) node).getText())
+            .map(node -> ((TextArea) node).getText())
             .collect(Collectors.joining(", ")));
 
         initialValues.put("tags", tagsField.getText());
@@ -229,35 +229,39 @@ public class RecipeForm extends UiPart<Region> {
         durationField.setText(
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
-                .orElse("Duration was not added.")
+                .orElse("")
         );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
-                .orElse("Portion was not added.")
+                .orElse("")
         );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
             recipe.getIngredients().forEach((ingredient, information) -> {
-                TextField ingredientField = new TextField(ingredient.toString());
+                TextArea ingredientField = createDynamicTextArea(ingredient.toString());
+                ingredientField.setWrapText(true);
                 ingredientsBox.getChildren().add(ingredientField);
             });
         } else {
-            TextField ingredientField = createDynamicTextField("Field is not added.");
-            ingredientsBox.getChildren().add(ingredientField);
+            TextArea emptyIngredientField = createDynamicTextArea("");
+            emptyIngredientField.setPromptText("Add an ingredient " + INGREDIENT_PROMPT);
+            ingredientsBox.getChildren().add(emptyIngredientField);
         }
 
         //Steps
         if (!recipe.getSteps().isEmpty()) {
             recipe.getSteps().forEach(step -> {
-                TextField stepField = createDynamicTextField(step.toString());
+                TextArea stepField = createDynamicTextArea(step.toString());
+                stepField.setWrapText(true);
                 stepsBox.getChildren().add(stepField);
             });
         } else {
-            TextField stepField = createDynamicTextField("Field is not added.");
-            stepsBox.getChildren().add(stepField);
+            TextArea emptyStepField = createDynamicTextArea("");
+            emptyStepField.setPromptText("Add a step");
+            stepsBox.getChildren().add(emptyStepField);
         }
 
         //Tags
@@ -267,7 +271,7 @@ public class RecipeForm extends UiPart<Region> {
                 .map(tag -> tag.tagName)
                 .collect(Collectors.joining(", ")));
         } else {
-            tagsField.setText("Field is not added.");
+            tagsField.setText("");
         }
 
         storeInitialValues();
@@ -364,20 +368,20 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Returns the next TextField below the current TextField within the same parent VBox, if any.
+     * Returns the next TextArea below the current TextArea within the same parent VBox, if any.
      *
-     * @param currentTextField The current TextField.
-     * @return The next TextField below the current TextField or null if there's no TextField below it.
+     * @param currentTextArea The current TextArea.
+     * @return The next TextArea below the current TextArea or null if there's no TextArea below it.
      */
-    private TextField getNextTextField(TextField currentTextField) {
-        VBox parentBox = (VBox) currentTextField.getParent();
-        int currentIndex = parentBox.getChildren().indexOf(currentTextField);
+    private TextArea getNextTextArea(TextArea currentTextArea) {
+        VBox parentBox = (VBox) currentTextArea.getParent();
+        int currentIndex = parentBox.getChildren().indexOf(currentTextArea);
         int lastIndex = parentBox.getChildren().size() - 1;
 
         if (currentIndex < lastIndex) {
             Node nextNode = parentBox.getChildren().get(currentIndex + 1);
-            if (nextNode instanceof TextField) {
-                return (TextField) nextNode;
+            if (nextNode instanceof TextArea) {
+                return (TextArea) nextNode;
             }
         }
 
@@ -385,31 +389,35 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Creates a dynamic TextField with the specified initial text.
-     * The TextField will support UP, DOWN, and TAB navigation.
-     * If the TextField is the last in the VBox and gains focus, a new empty TextField will be added below it.
-     * If the TextField loses focus and is the last in the VBox and empty, it will be removed.
+     * Creates a dynamic TextArea with the specified initial text.
+     * The TextArea will support UP, DOWN, and TAB navigation.
+     * If the TextArea is the last in the VBox and gains focus, a new empty TextArea will be added below it.
+     * If the TextArea loses focus and is the last in the VBox and empty, it will be removed.
      *
-     * @param text The initial text for the TextField.
-     * @return The created dynamic TextField.
+     * @param text The initial text for the TextArea.
+     * @return The created dynamic TextArea.
      */
-    private TextField createDynamicTextField(String text) {
-        TextField textField = new TextField(text);
+    private TextArea createDynamicTextArea(String text) {
+        //Styling
+        TextArea textArea = new TextArea(text);
+        textArea.setWrapText(true);
+        textArea.setMaxHeight(5.0);
+        textArea.setPrefHeight(5.0);
 
         //Keyboard listener for navigation
-        textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            int currentIndex = ((VBox) textField.getParent()).getChildren().indexOf(textField);
+        textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            int currentIndex = ((VBox) textArea.getParent()).getChildren().indexOf(textArea);
 
             if (event.getCode() == KeyCode.UP) {
                 // Condition 1: UP key pressed
                 if (currentIndex > 0) {
-                    TextField prevField = (TextField) ((VBox) textField.getParent())
+                    TextInputControl prevField = (TextInputControl) ((VBox) textArea.getParent())
                                                                        .getChildren()
                                                                        .get(currentIndex - 1);
                     prevField.requestFocus();
                 }
             } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
-                TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
+                TextArea nextField = (TextArea) ((VBox) textArea.getParent()).getChildren().get(currentIndex + 1);
 
                 // >>> Should be removed - arrow keys are for navigation WITHIN text field
                 // Condition 2.1: DOWN key pressed
@@ -418,22 +426,22 @@ public class RecipeForm extends UiPart<Region> {
 
                 // Condition 2.2: Purely TAB key pressed
                 } else if (event.getCode() == KeyCode.TAB && !event.isShiftDown()) {
-                    // If it is a new placeholder row and there's another TextField after it, skip to the field after
+                    // If it is a new placeholder row and there's another TextArea after it, skip to the field after
                     if (nextField.getText().isEmpty()
                             && currentIndex + 2
-                                < ((VBox) textField.getParent()).getChildren().size()) {
-                        nextField = (TextField) ((VBox) textField.getParent())
+                                < ((VBox) textArea.getParent()).getChildren().size()) {
+                        nextField = (TextArea) ((VBox) textArea.getParent())
                                 .getChildren()
                                 .get(currentIndex + 2);
                     }
                     nextField.requestFocus();
                 // Shift + TAB
                 } else if (event.getCode() == KeyCode.TAB) {
-                    ObservableList<Node> childList = ((VBox) textField.getParent()).getChildren();
-                    if (textField.getText().isEmpty()) {
-                        childList.remove(textField);
+                    ObservableList<Node> childList = ((VBox) textArea.getParent()).getChildren();
+                    if (textArea.getText().isEmpty()) {
+                        childList.remove(textArea);
                     } else {
-                        int index = childList.indexOf(textField);
+                        int index = childList.indexOf(textArea);
                         if (index > 0) {
                             childList.get(index - 1).requestFocus();
                         }
@@ -444,31 +452,31 @@ public class RecipeForm extends UiPart<Region> {
         });
 
         //Text field listener for automatically adding/removing new input rows
-        textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            VBox parentBox = (VBox) textField.getParent();
+        textArea.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            VBox parentBox = (VBox) textArea.getParent();
             if (parentBox == null) {
                 return;
             }
             int lastIndex = parentBox.getChildren().size() - 1;
 
-            // Check if the TextField has gained focus
+            // Check if the TextArea has gained focus
             if (newValue) {
-                // Check if it's the last TextField in the VBox
-                if (parentBox.getChildren().indexOf(textField) == lastIndex) {
-                    TextField newField = createDynamicTextField("");
+                // Check if it's the last TextArea in the VBox
+                if (parentBox.getChildren().indexOf(textArea) == lastIndex) {
+                    TextArea newField = createDynamicTextArea("");
                     parentBox.getChildren().add(newField);
                 }
             } else {
-                // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
-                if (getNextTextField(textField) != null
-                        && getNextTextField(textField).getText().isEmpty()
-                        && textField.getText().isEmpty()) {
-                    parentBox.getChildren().remove(getNextTextField(textField));
+                // Check if it's the last TextArea, it's empty, and the focus is not in the same VBox, then remove it
+                if (getNextTextArea(textArea) != null
+                        && getNextTextArea(textArea).getText().isEmpty()
+                        && textArea.getText().isEmpty()) {
+                    parentBox.getChildren().remove(getNextTextArea(textArea));
                 }
             }
         });
 
-        return textField;
+        return textArea;
     }
 
     /**

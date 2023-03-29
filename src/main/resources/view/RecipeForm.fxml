@@ -8,7 +8,11 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-layout">
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane styleClass="root-layout" hbarPolicy="NEVER">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="root-box">
     <stylesheets>
         <URL value="@Form.css"/>
     </stylesheets>
@@ -16,18 +20,24 @@
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
     <Label text="Name:" />
-    <TextField fx:id="nameField" />
+    <TextField fx:id="nameField" promptText="Add a recipe name"/>
     <Label text="Duration:" />
-    <TextField fx:id="durationField" />
+    <TextField fx:id="durationField" promptText="Add a recipe duration (i.e. `15 minutes`)"/>
     <Label text="Portion:" />
-    <TextField fx:id="portionField" />
+    <TextField fx:id="portionField" promptText="Add a recipe portion (i.e. `1 - 2 servings`)"/>
     <Label text="Ingredients:" />
     <VBox fx:id="ingredientsBox" spacing="5" />
     <Label text="Steps:" />
     <VBox fx:id="stepsBox" spacing="5" />
     <Label text="Tags:" />
-    <TextField fx:id="tagsField" />
+    <TextField fx:id="tagsField" promptText="Add a recipe tag"/>
     <FlowPane fx:id="tags" />
-    <Button fx:id="saveButton" text="Save" />
-    <Button fx:id="cancelButton" text="Cancel" />
+    <HBox>
+        <padding>
+            <Insets top="10"/>
+        </padding>
+        <Button fx:id="saveButton" text="Save" />
+        <Button fx:id="cancelButton" text="Cancel" />
+    </HBox>
 </VBox>
+</ScrollPane>

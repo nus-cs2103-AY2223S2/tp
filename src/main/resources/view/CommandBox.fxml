@@ -9,7 +9,7 @@
         <URL value="@CommandBox.css"/>
     </stylesheets>
     <TextArea fx:id="commandTextArea" promptText="Enter command here..."
-        prefHeight="50" wrapText="true"
+        prefHeight="75" wrapText="true"
     />
 </StackPane>
 
