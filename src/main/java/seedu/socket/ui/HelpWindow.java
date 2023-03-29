@@ -20,18 +20,16 @@ public class HelpWindow extends UiPart<Stage> {
 
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t12-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "COMMAND LIST\n\n"
-            + "GENERAL COMMANDS\n\n"
-            + "1. Viewing help\n"
+    public static final String HELP_MESSAGE_HEADER = "COMMAND LIST\n\n";
+    public static final String HELP_MESSAGE_GENERAL = "\n1. Viewing help\n"
             + "Format: help\n\n"
             + "2. Undo a change\n"
             + "Format: undo\n\n"
             + "3. Redo an undone change\n"
             + "Format: redo\n\n"
             + "4. Exit the program\n"
-            + "Format: exit\n\n"
-            + "PERSON COMMANDS\n\n"
-            + "1. Adding a person: add\n"
+            + "Format: exit\n\n";
+    public static final String HELP_MESSAGE_PERSON = "\n1. Adding a person: add\n"
             + "Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "2. Listing all persons\n"
@@ -40,7 +38,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "4. Removing a person's field: remove\n"
-            + "Format: remove INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] \n\n"
+            + "Format: remove INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "5. Clearing groups of person: clear\n"
             + "Format: clear [t/TAG]...\n\n"
@@ -51,15 +49,14 @@ public class HelpWindow extends UiPart<Stage> {
             + "8. Sorting persons (by other fields): sort\n"
             + "Format: sort [CATEGORY]\n\n"
             + "9. Viewing a person's detail: view\n"
-            + "Format: view INDEX\n\n"
-            + "PROJECT COMMANDS\n\n"
-            + "1. Adding a project: addpj\n"
+            + "Format: view INDEX\n\n";
+    public static final String HELP_MESSAGE_PROJECT = "\n1. Adding a project: addpj\n"
             + "Format: addpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
-            + "2. Editing a project: editpj\n\n"
-            + "Format: editpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n"
+            + "2. Editing a project: editpj\n"
+            + "Format: editpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
             + "3. Deleting a project: deletepj\n"
             + "Format: deletepj INDEX\n\n"
-            + "4. Removing a project's field(s): removepj"
+            + "4. Removing a project's field(s): removepj\n"
             + "Format: removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
             + "5. Clearing all projects: clearpj\n"
             + "Format: clearpj\n\n"
@@ -68,9 +65,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "7. Assign a person to a project: assign\n"
             + "Format: assign INDEX n/name\n\n"
             + "8. Unassign a person from a project: unassign\n"
-            + "Format: unassign INDEX n/name\n\n"
-            + "For more info:";
-
+            + "Format: unassign INDEX n/name\n\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -80,6 +75,13 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
     @FXML
     private Label helpMessage;
+    @FXML
+    private Label helpMessageHeader;
+    @FXML
+    private Label helpMessage1;
+    @FXML
+    private Label helpMessage2;
+
     @FXML
     private Hyperlink userGuideLink;
 
@@ -91,7 +93,11 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        root.setHeight(500);
+        helpMessageHeader.setText(HELP_MESSAGE_HEADER);
+        helpMessage.setText(HELP_MESSAGE_GENERAL);
+        helpMessage1.setText(HELP_MESSAGE_PERSON);
+        helpMessage2.setText(HELP_MESSAGE_PROJECT);
         userGuideLink.setText(USERGUIDE_URL);
     }
 
