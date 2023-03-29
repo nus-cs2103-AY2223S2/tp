@@ -23,8 +23,6 @@ public class CommandResult {
     /** Reminder should be shown to user. */
     private final boolean showReminder;
 
-    private TodoType type = TodoType.NONE;
-    
     private TaskType type = TaskType.NONE;
 
 
