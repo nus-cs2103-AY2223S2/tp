@@ -109,7 +109,7 @@ public class PdfConverter {
         return this.document;
     }
 
-    private void createTaskTable(TaskList tasks) throws IOException {
+    public void createTaskTable(TaskList tasks) throws IOException {
         if (tasks.size() == 0) {
             wrapText("No task found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -124,7 +124,7 @@ public class PdfConverter {
         createTableContentForTask(tasks, maxContentWidthString, this.font, this.fontTableContentSize);
     }
 
-    private void createScoreTable(ScoreList scores) throws IOException {
+    public void createScoreTable(ScoreList scores) throws IOException {
         if (scores.size() == 0) {
             wrapText("No score history found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
             return;
@@ -139,10 +139,10 @@ public class PdfConverter {
         createTableContentForScore(scores, maxContentWidthString, this.font, this.fontTableContentSize);
     }
 
-    private void createHorizontalLine(float y) throws IOException {
+    public void createHorizontalLine(float y) throws IOException {
         this.contentStream.drawLine(90, y, 522, y);
     }
-    private void createTableRow(List<String> headers, List<String> maxContentWidthString, PDFont font, int fontSize)
+    public void createTableRow(List<String> headers, List<String> maxContentWidthString, PDFont font, int fontSize)
             throws IOException {
         float yFinal = this.y;
         boolean isDoneDrawLine = false;
@@ -176,7 +176,7 @@ public class PdfConverter {
         this.y = yFinal;
     }
 
-    private String convertStatusString(String input) {
+    public String convertStatusString(String input) {
         String statement = input;
         String converted = "";
         switch(statement) {
@@ -196,7 +196,7 @@ public class PdfConverter {
         return converted;
     }
 
-    private void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
+    public void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
                                            int fontSize)
             throws IOException {
         float yFinal = this.y;
@@ -220,7 +220,7 @@ public class PdfConverter {
         this.yInitTable = -1;
     }
 
-    private void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
+    public void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
                                             int fontSize) throws IOException {
         float yFinal = this.y;
         ObservableList<Score> sortedScoreList = scores.getSortedScoreList();
@@ -248,21 +248,21 @@ public class PdfConverter {
         createHorizontalLine(yFinal);
         this.yInitTable = -1;
     }
-    private void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
+    public void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
         this.contentStream.beginText();
         this.contentStream.setFont(font, fontSize);
         this.contentStream.moveTextPositionByAmount(x, y);
     }
 
-    private float textHeight(PDFont font, int fontSize, float margin) {
+    public float textHeight(PDFont font, int fontSize, float margin) {
         return (font.getFontDescriptor().getCapHeight() / 1000 * fontSize) + 2 * margin;
     }
 
-    private float textLength(String curString, PDFont font, int fontSize) throws IOException {
+    public float textLength(String curString, PDFont font, int fontSize) throws IOException {
         return font.getStringWidth(curString) / 1000 * fontSize;
     }
 
-    private int getNumberOfCharsPossible(String curString, PDFont font, int fontSize, float wrap) throws IOException {
+    public int getNumberOfCharsPossible(String curString, PDFont font, int fontSize, float wrap) throws IOException {
         float len = textLength("-", font, fontSize);
         int count = 0;
         for (int i = 0; i < curString.length(); i++) {
@@ -276,7 +276,7 @@ public class PdfConverter {
         return count;
     }
 
-    private void createVerticalLines(float yFinal, List<String> maxContentWidthString) throws IOException {
+    public void createVerticalLines(float yFinal, List<String> maxContentWidthString) throws IOException {
         contentStream.drawLine(this.leftMarginPosition, this.yInitTable, this.leftMarginPosition, yFinal);
         contentStream.drawLine(this.rightMarginPosition, this.yInitTable, this.rightMarginPosition, yFinal);
         float xPos = this.leftMarginPosition;
@@ -288,7 +288,7 @@ public class PdfConverter {
         }
     }
 
-    private PDPageContentStream handleNextPage(float yFinal, List<String> maxContentWidthString, float margin,
+    public PDPageContentStream handleNextPage(float yFinal, List<String> maxContentWidthString, float margin,
                                                PDFont font, int fontSize)
             throws IOException {
         if (this.yInitTable != -1 && this.yInitTable - 90 >= textHeight(font, fontSize, 0) + 2 * margin) {
@@ -306,7 +306,7 @@ public class PdfConverter {
         return contentStream;
     }
 
-    private void wrapText(String text, float wrap, PDFont font, int fontSize, List<String> maxContentWidthString)
+    public void wrapText(String text, float wrap, PDFont font, int fontSize, List<String> maxContentWidthString)
             throws IOException {
         String[] textSplit = text.split(" ");
         float lengthUsed = 0;
