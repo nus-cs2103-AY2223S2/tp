@@ -64,8 +64,7 @@ List of commands:
     - [Editing a student: ](#editing-a-student--edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email--copy) `copy`
     - [Finding students by name: ](#finding-students-by-name--find) `find`
-    - [View a student's information: ](#view-a-students-information--view) `view`
-    - [Displays a student's information:  ](#displays-a-students-information--view) `select`
+    - [Displays a student's information:  ](#displays-a-students-information--select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark--remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo--upload) `upload`
     - [Sorting list of students: ](#sorting-list-of-students--sort) `sort`
@@ -85,7 +84,6 @@ List of commands:
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades--select) `select`
 - [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade--assign) `assign`
-- [Students by Task Commands: ](#students-by-task-commands)
 - [General Commands: ](#general-commands)
     - [Displaying the home page (Course Page): ](#displaying-the-home-page--course-page---home) `home`
     - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at--back) `back`
@@ -306,7 +304,7 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
 - Adding a student with the same student ID is not allowed.
-    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add n/Tom p/99887766 e/tom@example.com sid/A0123456X m/CS2105` will display an error message.
+    - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
 
 Examples:
 - `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`
