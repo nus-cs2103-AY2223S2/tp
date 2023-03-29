@@ -11,56 +11,51 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="680.0" maxWidth="1400.0" resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/help_icon.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@HelpWindow.css" />
-      </stylesheets>
-      <VBox>
-        <HBox fx:id="helpMessageContainer" alignment="CENTER">
-          <children>
-            <Label fx:id="helpMessage" text="Label">
-              <HBox.margin>
-                <Insets right="5.0" />
-              </HBox.margin>
-            </Label>
-            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-              <HBox.margin>
-                <Insets left="5.0" />
-              </HBox.margin>
-            </Button>
-          </children>
-          <opaqueInsets>
-            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-          </opaqueInsets>
-          <padding>
-            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-          </padding>
-        </HBox>
-        <ScrollPane maxHeight="500.0" fitToWidth="true">
-          <HBox alignment="CENTER" fx:id="commandSummary">
-            <VBox fx:id="commandListPlaceHolder" alignment="CENTER">
-              <padding>
-                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-              </padding>
-              <Label fx:id="commandList" />
+<fx:root maxHeight="680.0" maxWidth="350.0" minWidth="350.0" resizable="false" title="Help" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/help_icon.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@HelpWindow.css"/>
+            </stylesheets>
+            <VBox>
+                <HBox fx:id="helpMessageContainer" alignment="CENTER">
+                    <children>
+                        <Label fx:id="helpMessage" text="Label">
+                            <HBox.margin>
+                                <Insets right="5.0"/>
+                            </HBox.margin>
+                        </Label>
+                        <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </opaqueInsets>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+                <ScrollPane maxHeight="500.0" fitToWidth="true">
+                    <HBox alignment="CENTER" fx:id="commandSummary">
+                        <VBox fx:id="commandListPlaceHolder" alignment="CENTER">
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0"/>
+                            </padding>
+                            <Label fx:id="commandList"/>
+                        </VBox>
+                    </HBox>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </ScrollPane>
             </VBox>
-            <VBox fx:id="descriptionListPlaceHolder" alignment="CENTER">
-              <padding>
-                <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
-              </padding>
-              <Label fx:id="descriptionList" />
-            </VBox>
-          </HBox>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-        </ScrollPane>
-      </VBox>
-    </Scene>
-  </scene>
+        </Scene>
+    </scene>
 </fx:root>
