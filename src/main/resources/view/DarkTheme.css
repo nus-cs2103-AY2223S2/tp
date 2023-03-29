@@ -1,32 +1,54 @@
-.background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+@font-face {
+    font-family: "Nunito Sans Regular";
+    src: url('../fonts/NunitoSans_Regular.ttf');
+}
+
+@font-face {
+    font-family: "Nunito Sans Bold";
+    src: url('../fonts/NunitoSans_Bold.ttf');
+}
+
+@font-face {
+    font-family: "Nunito Sans SemiBold Italic";
+    src: url('../fonts/NunitoSans_SemiBoldItalic.ttf');
+}
+
+.anchor-pane {
+    -fx-background-color: #292929;
+    -fx-background-radius: 10;
+}
+
+.contentBox {
+    -fx-background-color: #1E1E1E;
+    background-color: #1E1E1E; /* Used in the default.html file */
+    -fx-border-width: 0;
+    -fx-padding: 0;
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Nunito Sans Regular";
 }
 
 .tab-pane {
@@ -37,6 +59,34 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+}
+
+.tab {
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 10;
+    -fx-padding: 3 15 2 10;
+    -fx-background-insets: 0 5 0 0;
+    -fx-font-size: 14px;
+    -fx-font-family: "Nunito Sans Regular";
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab:selected {
+    -fx-background-color: #292929;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-font-family: "Nunito Sans Bold";
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #D8D8D8;
+}
+
+.tab-label {
+    -fx-text-fill: #D8D8D8;
 }
 
 .table-view {
@@ -66,7 +116,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -77,42 +127,47 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #1E1E1E;
 }
 
 .split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
+    -fx-border-color: #1E1E1E;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #292929;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #292929;
+}
+
+.list-cell:filled {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #FFFFFF;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #292929;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #292929;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #4d425f;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #5c3e91;
     -fx-border-width: 1;
 }
 
@@ -121,44 +176,64 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 0.5;
+    -fx-border-color: #fff;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #1E1E1E;
+     /*-fx-border-color: derive(#1d1d1d, 10%);*/
+     /*-fx-border-top-width: 1px;*/
+}
+.pane-with-top-border {
+     -fx-background-color: #1E1E1E;
+     -fx-border-color: #7C7C7C;
+     -fx-border-width: 1 0 0 0;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #292929;
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-background-color: #292929;
+    -fx-font-family: "Nunito Sans Regular";
+    -fx-font-size: 14pt;
     -fx-text-fill: white;
+    -fx-padding: 10px 22px;
+}
+
+.text {
+    -fx-fill: white;
 }
 
 .result-display .label {
     -fx-text-fill: black !important;
 }
 
+.welcome-text {
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-font-size: 14pt;
+    -fx-fill: #62DDEB;
+}
+
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -175,13 +250,13 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #1E1E1E;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1E1E1E;
 }
 
 .context-menu {
@@ -193,18 +268,43 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #1E1E1E;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Nunito Sans Regular";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.details-heading {
+    -fx-font-family: "Nunito Sans SemiBold Italic";
+    -fx-font-size: 12pt;
+}
+
+.details-id {
+    -fx-font-family: "Nunito Sans Regular";
+    -fx-font-size: 10pt;
+}
+
+.details-title {
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-font-size: 16pt;
+}
+
+.details-info-label {
+    -fx-font-family: "Nunito Sans Bold";
+    -fx-font-size: 10pt;
+}
+
+.details-info {
+    -fx-font-family: "Nunito Sans Regular";
+    -fx-font-size: 10pt;
 }
 
 /*
@@ -218,7 +318,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Nunito Sans Regular", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -281,6 +381,10 @@
     -fx-text-fill: white;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
 .scroll-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
@@ -320,10 +424,10 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    /*-fx-border-color: #383838 #383838 #ffffff #383838;*/
+    /*-fx-border-insets: 0;*/
+    /*-fx-border-width: 1;*/
+    -fx-font-family: "Nunito Sans Regular";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -333,7 +437,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #292929;
     -fx-background-radius: 0;
 }
 
@@ -343,36 +447,37 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-text-fill: black;
+    -fx-background-color: #B47BF7;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-margin: 5 0 0 0;
 }
 
-#vehicles {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#vehicles .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+.customerVehicle {
+    -fx-text-fill: black;
+    -fx-background-color: #41a8b4;
     -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 12;
+    -fx-margin: 5 0 0 0;
 }
 
 #plateNumber, #vehiclePlateNumber {
     -fx-hgap: 7;
     -fx-vgap: 3;
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #a96cf1;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-border-color: white;
     -fx-border-width: 1;
+}
+
+.details-box {
+    -fx-background-color: #292929;
 }

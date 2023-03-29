@@ -76,8 +76,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return model.getShopFilePath();
     }
 
     @Override
@@ -118,5 +118,19 @@ public class LogicManager implements Logic {
     @Override
     public ServiceDataMap getServiceDataMap() {
         return model.getServiceDataMap();
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return model.getSelectedCustomer();
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return model.getSelectedVehicle();
+    }
+    @Override
+    public Service getSelectedService() {
+        return model.getSelectedService();
     }
 }

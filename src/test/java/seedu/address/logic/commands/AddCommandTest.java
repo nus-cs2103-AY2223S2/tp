@@ -9,13 +9,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyShop;
@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -99,8 +100,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
+        public Path getShopFilePath() {
+            return null;
+        }
+
+        @Override
+        public void setShopFilePath(Path shopFilePath) {
+
         }
 
         @Override
@@ -115,6 +121,11 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShop(ReadOnlyShop shop) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -254,6 +265,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPart(String partName) {
             throw new AssertionError("This method should not be called.");
         }
@@ -323,6 +344,36 @@ public class AddCommandTest {
         }
 
         @Override
+        public void selectCustomer(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Customer getSelectedCustomer() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectVehicle(Vehicle vehicle) {
+
+        }
+
+        @Override
+        public Vehicle getSelectedVehicle() {
+            return null;
+        }
+
+        @Override
+        public void selectService(Service service) {
+
+        }
+
+        @Override
+        public Service getSelectedService() {
+            return null;
+        }
+
+        @Override
         public ReadOnlyShop getShop() {
             throw new AssertionError("This method should not be called.");
         }
@@ -365,10 +416,9 @@ public class AddCommandTest {
             requireNonNull(person);
             personsAdded.add(person);
         }
-
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyShop getShop() {
+            return new Shop();
         }
     }
 

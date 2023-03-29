@@ -3,8 +3,11 @@ package seedu.address.storage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +32,8 @@ class JsonAdaptedService {
     private final String estimatedFinishDate;
     private final String status;
     private final List<JsonAdaptedPart> parts = new ArrayList<>();
+    private final List<Integer> assignedToIds = new ArrayList<>();
+
 
 
     /**
@@ -40,7 +45,8 @@ class JsonAdaptedService {
                               @JsonProperty("description") String description,
                               @JsonProperty("estimatedFinishDate") String estimatedFinishDate,
                               @JsonProperty("status") String status,
-                              @JsonProperty("parts") List<JsonAdaptedPart> parts) {
+                              @JsonProperty("parts") List<JsonAdaptedPart> parts,
+                              @JsonProperty("assignedToIds") List<Integer> assignedToIds) {
         this.id = id;
         this.vehicleId = vehicleId;
         this.entryDate = entryDate;
@@ -49,6 +55,9 @@ class JsonAdaptedService {
         this.status = status;
         if (parts != null) {
             this.parts.addAll(parts);
+        }
+        if (assignedToIds != null) {
+            this.assignedToIds.addAll(assignedToIds);
         }
     }
 
@@ -66,6 +75,9 @@ class JsonAdaptedService {
         for (Map.Entry<String, Integer> e : sourceRequiredParts.getEntrySet()) {
             parts.add(new JsonAdaptedPart(e.getKey(), e.getValue()));
         }
+        assignedToIds.addAll(source.getAssignedToIds().stream()
+                .map(Integer::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -94,6 +106,10 @@ class JsonAdaptedService {
         for (JsonAdaptedPart part : parts) {
             Map.Entry<String, Integer> partEntry = part.toModelType();
             modelParts.addPart(partEntry.getKey(), partEntry.getValue());
+        }
+        final List<Integer> serviceAssignedToIds = new ArrayList<>();
+        for (Integer id : assignedToIds) {
+            serviceAssignedToIds.add(id);
         }
 
         if (id <= 0) {
@@ -125,8 +141,9 @@ class JsonAdaptedService {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status"));
         }
         final ServiceStatus modelStatus = getServiceStatus(status);
+        final Set<Integer> modelAssignedToIds = new HashSet<>(serviceAssignedToIds);
         return new Service(modelId, modelVehicleId, modelEntryDate, modelParts, modelDescription,
-                modelEstimatedFinishDate, modelStatus);
+                modelEstimatedFinishDate, modelStatus, modelAssignedToIds);
     }
 
 

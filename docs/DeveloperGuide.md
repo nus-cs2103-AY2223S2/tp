@@ -54,11 +54,11 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user attempts to delete a customer/service/appointment/part/technician who has the id of 1  (i.e. `deletecustomer 1`).
 
-This diagram is applicable also for other commands such as the add equivalent. 
+This diagram is applicable also for other commands such as the add equivalent.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Omitted from this image is that the `XCommand`, being an  instance of `RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below. 
+Omitted from this image is that the `XCommand`, being an  instance of`RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below. 
 
 Each of the four main components (also shown in the diagram above),
 
@@ -134,7 +134,7 @@ The `Model` component,
 * stores the address book data i.e., all `X` objects (which are contained in a `UniqueXList` object) where X are Customer/Service/Appointments/Vehicles/Technicians, and all `Part` objects (which are contained in a `partMap` object).
 * in the case of X, stores the currently 'selected' `X` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<X>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * in the case of Part, stores the currently 'selected' `Part` objects (e.g., results of a search query) as a separate hashmap.
-* in the case of ServiceList, it acts functionally the same as an `UniqueXList` except that the entry can be non-unique. 
+* in the case of ServiceList, it acts functionally the same as an `UniqueXList` except that the entry can be non-unique.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -159,6 +159,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+### Current Implementation
+The add function is facilitated by `AddXCommand` (`X` is a placeholder for the specific entity to be added e.g. `AddCustomerCommand`)
+
+Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call.
+
+<img src="images/AddXSequenceDiagram.png"/>
+
+The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
+
 ### View Feature
 
 ### Current Implementation
@@ -171,9 +184,9 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
 
 <img src="images/ViewSequenceDiagram.png"/>
 
-This feature is implemented this way to best match how existing list and find function is done. 
+This feature is implemented this way to best match how existing list and find function is done.
 
-This is done this way so that the code is easily maintainable and readable if once the developer understands how `listX` functions works. 
+This is done this way so that the code is easily maintainable and readable if once the developer understands how `listX` functions works.
 
 However, as you may have noticed, `ViewPartCommand`'s diagram differs slightly.
 
@@ -244,7 +257,7 @@ The following sequence diagram shows how the undo operation works:
 
 > <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
 
-Step 5. The user executes listcustomers. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` 
+Step 5. The user executes listcustomers. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack`
 to be cleared.  Commands that are not undoable are not added into the `undoStack`.
 
 ![UndoRedo0](images/UndoRedo7.png)
@@ -283,13 +296,13 @@ Users will be able to update the priority of a Service via 2 different commands:
 
 When the user uses this feature, the XCommandParser parses the service integer id input of the user and creates a XServiceCommand object with the id passed in as a parameter. The XServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the XServiceCommand would then create a new `Service` that has an updated priority according to the given Command to increase (`prioritise`) or decrease (`deprioritise`) the level by 1.
 
-Given below is an example usage scenario and the description of how the XServiceCommand executes. 
+Given below is an example usage scenario and the description of how the XServiceCommand executes.
 
 Step 1. The user launches the application and enters "listservices" which executes the command to list all services.
 
-Step 2. In the list of services, service with id 1 has a priority of low. The user enters the "prioritise 1" command to increase the priority of the service with id 1. 
+Step 2. In the list of services, service with id 1 has a priority of low. The user enters the "prioritise 1" command to increase the priority of the service with id 1.
 
-Step 3. The PrioritiseServiceCommandParser parses the service integer id input of the user and creates a PrioritiseServiceCommand object with the id passed in as a parameter. 
+Step 3. The PrioritiseServiceCommandParser parses the service integer id input of the user and creates a PrioritiseServiceCommand object with the id passed in as a parameter.
 
 Step 4. The PrioritiseServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the PrioritiseServiceCommand would then create a new `Service` that has an updated priority of medium, which is then updated in the `Model` with the `setService()` method.
 

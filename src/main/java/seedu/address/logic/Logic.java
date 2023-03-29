@@ -40,9 +40,9 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -74,4 +74,13 @@ public interface Logic {
 
     /** Returns maps of services and their respective vehicle or technicians */
     ServiceDataMap getServiceDataMap();
+
+    /** Returns currently selected customer*/
+    Customer getSelectedCustomer();
+
+    /** Returns currently selected vehicle*/
+    Vehicle getSelectedVehicle();
+
+    /** Returns currently selected service*/
+    Service getSelectedService();
 }

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -53,9 +54,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
+
+    /**
+     * Sets the user prefs' shop file path.
+     */
+    void setShopFilePath(Path shopFilePath);
 
     /**
      * Sets the user prefs' address book file path.
@@ -66,6 +72,10 @@ public interface Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setShop(ReadOnlyShop shop);
 
     /**
      * Returns the AddressBook
@@ -221,6 +231,24 @@ public interface Model {
     void addPart(String partName, int quantity);
 
     /**
+     * Adds part to service
+     *
+     * @param serviceId ID of service
+     * @param partName Name of part
+     * @param quantity Quantity of part
+     * @throws NoSuchElementException If service not in system
+     */
+    void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
+
+    /**
+     * Assigns existing technician to existing service
+     * @param serviceId ID of service
+     * @param techId ID of technician
+     * @throws NoSuchElementException If technician or service not in system
+     */
+    void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of the part to check against
@@ -258,4 +286,34 @@ public interface Model {
     VehicleDataMap getVehicleDataMap();
 
     ServiceDataMap getServiceDataMap();
+
+    /**
+     * Sets currently selected customer
+     */
+    void selectCustomer(Customer customer);
+
+    /**
+     * Returns currently selected customer
+     */
+    Customer getSelectedCustomer();
+
+    /**
+     * Sets currently selected vehicle
+     */
+    void selectVehicle(Vehicle vehicle);
+
+    /**
+     * Returns currently selected vehicle
+     */
+    Vehicle getSelectedVehicle();
+
+    /**
+     * Sets currently selected service
+     */
+    void selectService(Service service);
+
+    /**
+     * Returns currently selected service
+     */
+    Service getSelectedService();
 }

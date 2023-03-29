@@ -4,16 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyShop;
+import seedu.address.model.entity.shop.Shop;
 
 /**
  * This class enables command to be able to undo / redo
  */
 public abstract class RedoableCommand extends Command {
 
-    private ReadOnlyAddressBook previousAddressBook;
+    private ReadOnlyShop previousShop;
     private String saveSuccessMessage = "";
 
     protected abstract CommandResult executeUndoableCommand(Model model) throws CommandException;
@@ -21,20 +21,20 @@ public abstract class RedoableCommand extends Command {
     /**
      * Stores the current state of {@code model#addressBook}.
      */
-    private void saveAddressBookSnapshot(Model model) {
+    private void saveShopSnapshot(Model model) {
         requireNonNull(model);
-        this.previousAddressBook = new AddressBook(model.getAddressBook());
+        this.previousShop = new Shop(model.getShop());
     }
 
     /**
-     * Reverts the AddressBook to the state before this command
+     * Reverts the Shop to the state before this command
      * was executed and updates the filtered person list to
      * show all persons.
      */
     protected final void undo(Model model) {
-        requireAllNonNull(model, this.previousAddressBook);
+        requireAllNonNull(model, this.previousShop);
 
-        model.setAddressBook(this.previousAddressBook);
+        model.setShop(this.previousShop);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -56,7 +56,7 @@ public abstract class RedoableCommand extends Command {
 
     @Override
     public final CommandResult execute(Model model) throws CommandException {
-        saveAddressBookSnapshot(model);
+        saveShopSnapshot(model);
         return executeUndoableCommand(model);
     }
 

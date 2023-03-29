@@ -12,13 +12,13 @@ public class ListServicesCommand extends Command {
 
     public static final String COMMAND_WORD = "listservices";
 
-    public static final String MESSAGE_SUCCESS = "Listed all services.";
+    public static final String MESSAGE_SUCCESS = "Currently listing all services.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.LISTED_SERVICES);
+        return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
     }
 }
 
