@@ -14,7 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments, checks for validity of student added to event,
+ * Parses input arguments while checking for validity of the user input,
  * and creates a new AddStudentToEventCommand object.
  */
 public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
@@ -42,7 +42,8 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
         //todo: test
-        String eventName = tutorialName.orElse(labName.orElse(consultationName.get()));
+        String eventName = "";
+        eventName = tutorialName.orElse(labName.orElse(consultationName.orElse("")));
         String eventType = "tutorial";
         if (!labName.isEmpty()) {
             eventType = "lab";
