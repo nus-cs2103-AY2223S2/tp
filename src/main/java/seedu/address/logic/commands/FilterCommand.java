@@ -7,14 +7,14 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
- * Filters and list all persons in address book that has tag/s which contains the
+ * Filters and list all persons in math tutoring that has tag/s which contains the
  * filter keywords as a prefix.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any prefix tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose has any prefix tag "
             + "that matches with the filter condition (case-insensitive) and displays the "
             + " filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
@@ -30,9 +30,9 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override
