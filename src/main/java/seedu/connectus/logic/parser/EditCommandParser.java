@@ -65,7 +65,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         {
             editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
-        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_REMARK))
+        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK))
                 .ifPresent(editPersonDescriptor::setRemarks);
         ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
                 .ifPresent(editPersonDescriptor::setModules);

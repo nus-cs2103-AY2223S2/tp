@@ -11,7 +11,7 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
     public SearchCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_MODULE, PREFIX_SOCMED_INSTAGRAM,
+                PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_BIRTHDAY, PREFIX_MODULE, PREFIX_SOCMED_INSTAGRAM,
                 PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
 
         FieldsContainKeywordsPredicate predicate = new FieldsContainKeywordsPredicate();
@@ -59,7 +59,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         {
             predicate.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
-        ParserUtil.parseTagsOptional(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(predicate::setRemarks);
+        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK)).ifPresent(predicate::setRemarks);
         ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(predicate::setModules);
         ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(predicate::setCcas);
         ParserUtil.parseCcaPositionsOptional(argMultimap.getAllValues(PREFIX_CCA_POSITION))

@@ -316,7 +316,7 @@ public class ParserUtil {
      * parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    public static Optional<Set<Remark>> parseTagsOptional(Collection<String> tags) throws ParseException {
+    public static Optional<Set<Remark>> parseRemarksOptional(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {
