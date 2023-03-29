@@ -54,6 +54,10 @@ public class CreateCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        if (this.days < 0 || this.days > 60) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DAY_INDEX);
+        }
+
         Person persontoGenerate = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(persontoGenerate);
         filesManager.generateMc(doctorName, description, days);
