@@ -15,5 +15,9 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: rgb(227, 211, 238, 0.3);
+    -fx-background-color: rgba(186, 156, 218, 0.3);
+}
+
+#commandSummary {
+    -fx-background-color: rgba(238, 225, 246, 0.3);
 }
