@@ -110,9 +110,9 @@ Shows the next upcoming event(s).
 
 Format: `next <count>`
 
-Parameter:\
-`<count>`: Number of upcoming events to show. Optional. 
-If not indicated, only the next one event is shown
+Parameter:  
+`<count>`: Number of upcoming events to show.
+           Optional. If not indicated, only the next one event is shown
 
 Example: `next` or `next 2`
 
