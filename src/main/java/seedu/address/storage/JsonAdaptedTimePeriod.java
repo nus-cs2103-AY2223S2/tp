@@ -11,16 +11,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
-import seedu.address.model.timetable.Timetable;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Jackson-friendly version of {@link TimePeriod}.
  */
 public class JsonAdaptedTimePeriod {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "TimePeriod's %s field is missing!";
-    private static final Integer[] START_TIMINGS = Timetable.START_TIMINGS;
-    private static final int EARLIEST_TIMING = START_TIMINGS[0];
-    private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
     protected final int startHour;
     protected final int endHour;
     protected final String day;
@@ -54,7 +51,7 @@ public class JsonAdaptedTimePeriod {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TimePeriod toModelType() throws IllegalValueException {
-        if (startHour < 0 || startHour > 23) {
+        if (TimeUtil.isValidStartHour(startHour)) {
             System.out.println(startHour);
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
@@ -62,7 +59,7 @@ public class JsonAdaptedTimePeriod {
 
         final LocalTime modelStartTime = new LocalTime(startHour);
 
-        if (endHour < 0 || endHour > 23) {
+        if (TimeUtil.isValidEndHour(endHour)) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
         }
