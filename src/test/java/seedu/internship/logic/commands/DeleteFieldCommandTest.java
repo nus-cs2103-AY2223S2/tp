@@ -2,8 +2,8 @@ package seedu.internship.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_FIELD_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.COMPLEX_PREDICATE;
+import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_FIELD_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.ONE_FIELD_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
