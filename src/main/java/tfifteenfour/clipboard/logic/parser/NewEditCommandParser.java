@@ -9,14 +9,12 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.CollectionUtil;
+import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddTaskCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
@@ -24,6 +22,7 @@ import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditTaskCommand;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -32,7 +31,6 @@ import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.StudentId;
-import tfifteenfour.clipboard.model.tag.Tag;
 import tfifteenfour.clipboard.model.task.Task;
 
 /**
@@ -40,13 +38,21 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class NewEditCommandParser implements Parser<EditCommand> {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
 
+    private final CurrentSelection currentSelection;
+
+
+    public NewEditCommandParser(CurrentSelection currentSelection) {
+        this.currentSelection = currentSelection;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args) throws ParseException, CommandException {
         Index index;
         CommandTargetType editCommandType;
         try {
@@ -56,18 +62,28 @@ public class NewEditCommandParser implements Parser<EditCommand> {
                     + "Available edit commands are: edit course, edit group, edit session, edit task, edit student");
         }
 
+
         switch (editCommandType) {
         case MODULE:
             Course newCourse = parseCourseInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
+            }
             return new EditCourseCommand(index, newCourse);
         case GROUP:
             Group newGroup = parseGroupInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
+            }
             return new EditGroupCommand(index, newGroup);
         case SESSION:
             Session newSession = parseSessionInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
+            }
             return new EditSessionCommand(index, newSession);
         case TASK:
             Task newTask = parseTaskInfo(args);
@@ -76,6 +92,9 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         case STUDENT:
             EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
             index = parseIndex(args);
+            if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+            }
             return new EditStudentCommand(index, editStudentDescriptor);
         default:
             throw new ParseException("Invalid type for edit command");
@@ -132,6 +151,10 @@ public class NewEditCommandParser implements Parser<EditCommand> {
 
     private EditStudentDescriptor parseStudentInfo(String args) throws ParseException {
         requireNonNull(args);
+        if (args.split(" ").length < 4) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE));
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenizePrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTID,
                         PREFIX_COURSE, PREFIX_TAG);
@@ -149,10 +172,6 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENTID).isPresent()) {
             editStudentDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get()));
         }
-        if (argMultimap.getValue(PREFIX_COURSE).isPresent()) {
-            parseModulesForEdit(argMultimap.getAllValues(PREFIX_COURSE)).ifPresent(editStudentDescriptor::setModules);
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(MESSAGE_NOT_EDITED);
@@ -161,29 +180,6 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         return editStudentDescriptor;
     }
 
-    /**
-     * Parses {@code Collection<String> modules} into a {@code Set<ModuleCode>} if {@code modules} is non-empty.
-     * @throws ParseException if {@code modules} contain only one element which is an empty string
-     */
-    private Optional<Set<Course>> parseModulesForEdit(Collection<String> modules) throws ParseException {
-        Collection<String> moduleSet = modules;
-        return Optional.of(ParserUtil.parseModules(moduleSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
 
     /**
      * Stores the details to edit the student with. Each non-empty field value will replace the
@@ -194,8 +190,6 @@ public class NewEditCommandParser implements Parser<EditCommand> {
         private Phone phone;
         private Email email;
         private StudentId studentId;
-        private Set<Course> modules;
-        private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
 
@@ -208,15 +202,13 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStudentId(toCopy.studentId);
-            setModules(toCopy.modules);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, studentId, modules, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, studentId);
         }
 
         public void setName(Name name) {
@@ -251,39 +243,6 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             return Optional.ofNullable(studentId);
         }
 
-        /**
-         * Sets {@code modules} to this object's {@code modules}.
-         * A defensive copy of {@code modules} is used internally.
-         */
-        public void setModules(Set<Course> modules) {
-            this.modules = (modules != null) ? new HashSet<>(modules) : null;
-        }
-
-        /**
-         * Returns an unmodifiable modules set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code modules} is null.
-         */
-        public Optional<Set<Course>> getModules() {
-            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -303,9 +262,7 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getStudentId().equals(e.getStudentId())
-                    && getModules().equals(e.getModules())
-                    && getTags().equals(e.getTags());
+                    && getStudentId().equals(e.getStudentId());
         }
     }
 }

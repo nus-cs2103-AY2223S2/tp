@@ -1,21 +1,21 @@
 package tfifteenfour.clipboard.logic.commands.editcommand;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_COURSE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
 import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.NewEditCommandParser.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
@@ -33,7 +33,8 @@ import tfifteenfour.clipboard.model.task.Task;
 public class EditStudentCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + COMMAND_TYPE_WORD
+            + ": Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -41,41 +42,43 @@ public class EditStudentCommand extends EditCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "[" + PREFIX_COURSE + "MODULE]..."
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
-    public static final Remark DEFAULT_REMARK = new Remark("");
+
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
 
-
     /**
-     * @param index of the student in the filtered student list to edit
-     * @param editStudentDescriptor details to edit the student with
+     * Constructor for EditStudentCommand.
+     * @param index Index of the student in the displayed list to be edited.
+     * @param editStudentDescriptor Descriptor containing the new student's details.
      */
     public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
+        this.editStudentDescriptor = editStudentDescriptor;
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model, CurrentSelection currentSelection)
+            throws CommandException, ParseException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
         List<Student> lastShownList = selectedGroup.getModifiableStudentlist();
         List<Session> sessions = selectedGroup.getModifiableSessionList();
         List<Task> tasks = selectedGroup.getModifiableTaskList();
+
+        if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+            throw new CommandException("Wrong page. Navigate to student page to edit a student.");
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -98,7 +101,9 @@ public class EditStudentCommand extends EditCommand {
         }
 
         lastShownList.set(index.getZeroBased(), editedStudent);
-        return new CommandResult(this, String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), willModifyState);
+        return new CommandResult(this,
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
+                willModifyState);
     }
 
     /**
