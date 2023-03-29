@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.ui.enums.LightDarkMode;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();
@@ -16,6 +17,8 @@ public class ExitCommandTest {
     public void execute_exit_success() {
         CommandResult expectedCommandResult =
                 new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true,
+                LightDarkMode.NO_CHANGE);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

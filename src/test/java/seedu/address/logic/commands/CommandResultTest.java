@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.ui.enums.LightDarkMode;
+
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -14,8 +16,12 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
+
         assertTrue(commandResult.equals(
                 new CommandResult("feedback", false, false)));
+
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
+                LightDarkMode.NO_CHANGE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -36,6 +42,13 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(
                 new CommandResult("feedback", false, true)));
+
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false,
+                LightDarkMode.NO_CHANGE)));
+
+        // different exit value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true,
+                LightDarkMode.NO_CHANGE)));
     }
 
     @Test
@@ -49,9 +62,11 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false,
+                LightDarkMode.NO_CHANGE).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true,
+                LightDarkMode.NO_CHANGE).hashCode());
     }
 }

@@ -17,7 +17,7 @@ public class UnfavoriteCommand extends Command {
     public static final String COMMAND_WORD = "unfav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unfavourites the person "
-            + "according to the Contact ID provided by user input.\n "
+            + "according to the Contact ID provided by user input.\n"
             + "Parameters: INDEX (must be positive integer).\n"
             + "Example: " + COMMAND_WORD + "1";
 
