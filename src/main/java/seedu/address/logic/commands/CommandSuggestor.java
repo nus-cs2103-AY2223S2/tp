@@ -26,7 +26,7 @@ import seedu.address.logic.parser.Prefix;
  */
 public class CommandSuggestor {
 
-    private final ArrayList<String> commandList = new ArrayList<>(List.of(
+    private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
             AddCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
@@ -38,7 +38,7 @@ public class CommandSuggestor {
             RemarkCommand.COMMAND_WORD,
             ShowRemarkCommand.COMMAND_WORD
     ));
-    private final HashMap<String, ArrayList<Prefix>> commandArgPrefixes = new HashMap<>(Map.of(
+    private static final HashMap<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = new HashMap<>(Map.of(
             AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES,
             ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES,
             DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES,
@@ -56,24 +56,24 @@ public class CommandSuggestor {
      */
     public CommandSuggestor() {
         // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
-        assert commandList.stream().allMatch(commandArgPrefixes::containsKey);
+        assert COMMAND_LIST.stream().allMatch(ARGUMENT_PREFIX_MAP::containsKey);
         // and vice versa.
-        assert commandArgPrefixes.keySet().stream().allMatch(commandList::contains);
+        assert ARGUMENT_PREFIX_MAP.keySet().stream().allMatch(COMMAND_LIST::contains);
         // Assert that they both contains only the same values and nothing else, with no duplicates.
-        assert commandArgPrefixes.keySet().size() == commandList.size();
+        assert ARGUMENT_PREFIX_MAP.keySet().size() == COMMAND_LIST.size();
 
         // For commands with index arguments, the index must be the first argument.
-        assert commandArgPrefixes.values().stream()
+        assert ARGUMENT_PREFIX_MAP.values().stream()
                 .filter(argPrefix -> argPrefix.contains(PREFIX_INDEX))
                 .allMatch(argPrefix -> argPrefix.get(0).equals(PREFIX_INDEX));
         
         // For commands with keyword arguments, the keyword is assumed to be the only argument.
-        assert commandArgPrefixes.values().stream()
+        assert ARGUMENT_PREFIX_MAP.values().stream()
                 .filter(argPrefix -> argPrefix.contains(PREFIX_KEYWORD))
                 .allMatch(argPrefix -> argPrefix.size() == 1);
         
         // All commands are assume to only have at most 1 prefix-less arguments (eg. index/keywords).
-        assert commandArgPrefixes.values().stream()
+        assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .filter(Prefix::isPlaceholder)
                         .count() <= 1);
@@ -106,14 +106,14 @@ public class CommandSuggestor {
 
         boolean isCommandComplete = strippedLeadingInput.contains(" ");
         if (!isCommandComplete) {
-            String suggestedCommand = commandList.stream()
+            String suggestedCommand = COMMAND_LIST.stream()
                     .filter(command -> command.startsWith(commandWord))
                     .findFirst()
                     .orElseThrow(() -> noSuchCommandException);
             return inputLeadingSpaces + suggestedCommand + suggestArguments(suggestedCommand, commandBody);
         }
 
-        boolean isInvalidCommand = !commandList.contains(commandWord);
+        boolean isInvalidCommand = !COMMAND_LIST.contains(commandWord);
         if (isInvalidCommand) {
             throw noSuchCommandException;
         }
@@ -151,7 +151,7 @@ public class CommandSuggestor {
      */
     private String suggestArguments(String command, String commmandBody)
             throws CommandException {
-        ArrayList<Prefix> argPrefixes = commandArgPrefixes.get(command);
+        ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(Prefix[]::new));
