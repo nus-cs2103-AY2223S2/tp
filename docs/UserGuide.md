@@ -78,7 +78,6 @@ it, you can refer to <a href="#appendix-a-installing-java-11">Appendix A</a>.
 
 </div>
 
-
 2. Download the latest `internbuddy.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
 
 3. Copy the file `internbuddy.jar` to the folder you want to use as the _home folder_ for InternBuddy.
@@ -618,6 +617,4 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
-
---------------------------------------------------------------------------------------------------------------------
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) (Primarily for the purpose of GUI testing).

@@ -3,28 +3,46 @@
 
 ![Logo](docs/images/internbuddy-logo.png)
 ## About InternBuddy
-InternBuddy provides a 1-stop platform for **Computing undergraduates** to manage and track their internship applications.
-It is optimized for **typing** which Computing undergraduates are comfortable and proficient in, allowing them to fully and
-efficiently exploit the application’s organisational capabilities.
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications. It is
+optimized for typing where it allows you to complete internship management tasks much more efficiently via
+the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast
+typist who is seeking for a one-stop platform to systematically organise your internship applications,
+then InternBuddy is the perfect buddy to accompany you during your internship hunt.
+
+InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
 
 ## Core Features
-1. Add and delete internship entries
-2. Keep track of internship status
-3. Associate tags with each internship
-4. Search internships by names, roles and tags
-5. Saving of internship entries to a local data file (auto-saving included!)
+1. List all internships
+2. Add an internship
+3. Edit an internship
+4. View an internship
+5. Copy an internship to clipboard
+6. Find internships
+7. Get upcoming events and deadlines
+8. Delete internships by index
+9. Delete internships by fields
+10. Clear all internships
+11. Get help
+12. Exit
+
+In InternBuddy, internship data is auto-saved whenever changes are made.
 
 ## Getting Started
-1. Ensure that your computer has **Java 11** or above installed. Otherwise, you can download it
+1. Ensure you have Java 11 or above installed in your computer. Otherwise, you can download it
    [here](https://www.oracle.com/java/technologies/downloads/#java11).
 2. Download the latest release of InternBuddy [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
-3. Copy the downloaded release to a folder that you want as the _home folder_ for InternBuddy.
-4. Open a command terminal and change directory into the folder you chose in step 3 using the `cd` command.
-5. Run the command `java -jar internbuddy.jar`. InternBuddy would then run, where you would see a window
-   like this:
+3. Copy the file `internbuddy.jar` to the folder that you want to use as the home folder for InternBuddy.
+4. Double-click on the file internbuddy.jar to launch InternBuddy. A GUI similar to the diagram below should appear in
+   a few seconds. Note how the app contains some sample data.
 
    ![Ui](docs/images/Ui.png)
-6. Enjoy tracking your internships using InternBuddy!
+
+5. You can interact with InternBuddy by typing into the box with the text `Enter command here...`, then pressing `Enter`
+to execute your command. For example, typing `help` and pressing Enter will open the help window.
+6. Enjoy tracking your internships with InternBuddy!
+
+
 ## Additional Information
 
 - If you are a user who is interested in learning more about what InternBuddy offers, do visit the
@@ -35,6 +53,10 @@ out the [InternBuddy Developer Guide](https://ay2223s2-cs2103t-t14-3.github.io/t
 
 
 ## Acknowledgements
-InternBuddy is created using **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
-[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries.
-Also, it is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* InternBuddy is written in **Java 11**.
+* It is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
+  the [SE-EDU initiative](https://se-education.org).
+* Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
+* Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) (Primarily for the purpose of GUI testing).
