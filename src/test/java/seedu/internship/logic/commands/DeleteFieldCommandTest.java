@@ -2,6 +2,8 @@ package seedu.internship.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_FIELD_PREDICATE;
+import static seedu.internship.logic.commands.CommandTestUtil.COMPLEX_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.ONE_FIELD_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -68,6 +70,113 @@ public class DeleteFieldCommandTest {
     }
 
     @Test
+    public void execute_multipleFieldPredicateUnfilteredList_success() {
+        List<Internship> internshipsToDelete = model.getFilteredInternshipList().stream()
+                .filter(MULTIPLE_FIELD_PREDICATE)
+                .collect(Collectors.toList());
+
+        DeleteFieldCommand deleteCommand = new DeleteFieldCommand(MULTIPLE_FIELD_PREDICATE);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        ModelManager expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+
+        for (Internship internshipToDelete: internshipsToDelete) {
+            expectedModel.deleteInternship(internshipToDelete);
+        }
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_complexFieldPredicateUnfilteredList_success() {
+        List<Internship> internshipsToDelete = model.getFilteredInternshipList().stream()
+                .filter(COMPLEX_PREDICATE)
+                .collect(Collectors.toList());
+
+        DeleteFieldCommand deleteCommand = new DeleteFieldCommand(COMPLEX_PREDICATE);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        ModelManager expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+
+        for (Internship internshipToDelete: internshipsToDelete) {
+            expectedModel.deleteInternship(internshipToDelete);
+        }
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_multipleFieldFilteredList_success() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
+
+        List<Internship> internshipsToDelete = model.getFilteredInternshipList().stream()
+                .filter(MULTIPLE_FIELD_PREDICATE)
+                .collect(Collectors.toList());
+
+        DeleteFieldCommand deleteCommand = new DeleteFieldCommand(MULTIPLE_FIELD_PREDICATE);
+
+        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        Model expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+
+        for (Internship internshipToDelete: internshipsToDelete) {
+            expectedModel.deleteInternship(internshipToDelete);
+        }
+
+        showNoInternship(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_complexFieldFilteredList_success() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
+
+        List<Internship> internshipsToDelete = model.getFilteredInternshipList().stream()
+                .filter(COMPLEX_PREDICATE)
+                .collect(Collectors.toList());
+
+        DeleteFieldCommand deleteCommand = new DeleteFieldCommand(COMPLEX_PREDICATE);
+
+        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        Model expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+
+        for (Internship internshipToDelete: internshipsToDelete) {
+            expectedModel.deleteInternship(internshipToDelete);
+        }
+
+        showNoInternship(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_oneFieldPredicateFilteredList_success() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
+
+        List<Internship> internshipsToDelete = model.getFilteredInternshipList().stream()
+                .filter(ONE_FIELD_PREDICATE)
+                .collect(Collectors.toList());
+
+        DeleteFieldCommand deleteCommand = new DeleteFieldCommand(ONE_FIELD_PREDICATE);
+
+        String expectedMessage = String.format(DeleteFieldCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        Model expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+
+        for (Internship internshipToDelete: internshipsToDelete) {
+            expectedModel.deleteInternship(internshipToDelete);
+        }
+
+        showNoInternship(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_simplePredicateFilteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
@@ -89,6 +198,7 @@ public class DeleteFieldCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
+
 
 
     @Test
