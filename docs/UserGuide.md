@@ -5,9 +5,36 @@ title: User Guide
 
 Trackr is a **desktop app for managing deliveries for your business, optimised for the use of Command Line Interface**, while still having the benefits of a Graphical User Interface (GUI). If you are a busy home business owner who hates excel or is on a time crunch, this is for you.
 
+This guide shows you the relevant information for setting up and using Trackr.
 
-* Table of Contents
-{:toc}
+You can click on any of the links below to navigate to the respective sections for more information.
+
+
+**Table of Contents**
+
+<!-- TOC -->
+  * [Quick start](#quick-start)
+  * [Features](#features)
+    * [Viewing help : `help`](#viewing-help--help)
+    * [Adding a supplier: `add_supplier` or `add_s`](#adding-a-supplier-addsupplier-or-adds)
+    * [Adding an order: `add_order` or `add_o`](#adding-an-order-addorder-or-addo)
+    * [Adding a task: `add_task` or `add_t`](#adding-a-task-addtask-or-addt)
+    * [Editing a supplier: `edit_supplier` or `edit_s`](#editing-a-supplier-editsupplier-or-edits)
+    * [Editing an order : `edit_order` or `edit_o`](#editing-an-order--editorder-or-edito)
+    * [Editing a task : `edit_task` or `edit_t`](#editing-a-task--edittask-or-editt)
+    * [Finding a supplier : `find_supplier` or `find_s`](#finding-a-supplier--findsupplier-or-finds)
+    * [Finding a task : `find_task` or `find_t`](#finding-a-task--findtask-or-findt)
+    * [Deleting a supplier: `delete_supplier` or `delete_s`](#deleting-a-supplier-deletesupplier-or-deletes)
+    * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
+    * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
+    * [Switching tabs: `tab`](#switching-tabs-tab)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
+  * [FAQ](#faq)
+  * [Command summary](#command-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +98,7 @@ Shows a message explaining how to access the help page.
 
 Syntax: `help`
 
-### Adding a supplier: `add_supplier` / `add_s`
+### Adding a supplier: `add_supplier` or `add_s`
 
 Adds a supplier to the list of suppliers.
 
@@ -84,7 +111,7 @@ Examples:
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
 
 
-### Adding an order: `add_order` / `add_o`
+### Adding an order: `add_order` or `add_o`
 
 Adds an order into the list of orders.
 
@@ -99,7 +126,7 @@ Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
 * `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
 
-### Adding a task: `add_task` / `add_t`
+### Adding a task: `add_task` or `add_t`
 
 Adds a task to the list of tasks.
 
@@ -112,22 +139,7 @@ Examples:
 * `add_task n/Buy cookie cutter d/2022-12-22`
 * `add_t n/Buy a card d/2023-12-23 s/D`
 
-### Adding tags to a supplier: `tag_supplier` / `tag_s`
-
-Add tags to an existing supplier entry.
-
-Syntax: `tag_supplier INDEX t/TAG`
-
-* Tags the supplier at the specified `INDEX`.
-* The index refers to the number shown in the suppliers list displayed.
-* The index **must be a positive integer** 1, 2, 3, …​
-* More than one tag can be given, but at least one tag must be given.
-
-Examples:
-`tag_supplier 1 t/Supplies Sugar t/100kg per order` adds the tags `Supplies Sugar` and `100kg per order` onto of the existing tags for the 1st supplier
-`tag_s 4 t/Minimum 10kg per order` adds the tag `Minimum 10kg per order` onto of the existing tags of the 4th supplier
-
-### Editing a supplier: `edit_supplier` / `edit_s`
+### Editing a supplier: `edit_supplier` or `edit_s`
 
 Edit an existing supplier’s information.
 
@@ -142,11 +154,12 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Typing `t/` without any input will remove all the existing tags.
 
 Examples:
-`edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
-`edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
+
+* `edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
+* `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
 
-### Editing an order : `edit_order` / `edit_o`
+### Editing an order : `edit_order` or `edit_o`
 
 Edits an order that is present in the order list.
 
@@ -162,7 +175,7 @@ Examples:
 *  `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 *  `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
-### Editing a task : `edit_task` / `edit_t`
+### Editing a task : `edit_task` or `edit_t`
 
 Edits a task present in the task list.
 
@@ -177,7 +190,7 @@ Examples:
 * `edit_task 1 n/Get creamer` edits the 1st task description to be get creamer
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
-### Finding a supplier : `find_supplier` / `find_s`
+### Finding a supplier : `find_supplier` or `find_s`
 
 Find suppliers whose information matches with any of the given parameters.
 
@@ -195,7 +208,7 @@ Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
-### Finding a task : `find_task` / `find_t`
+### Finding a task : `find_task` or `find_t`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -213,7 +226,7 @@ Examples:
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
 * `find_t s/N` returns all tasks not done
 
-### Deleting a supplier: `delete_supplier` / `delete_s`
+### Deleting a supplier: `delete_supplier` or `delete_s`
 
 Deletes the specified supplier from the contact list.
 
@@ -224,10 +237,10 @@ Syntax: `delete_supplier INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete_supplier 2` deletes the first supplier
+* `delete_supplier 2` deletes the second supplier
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
 
-### Deleting an order: `delete_order` / `delete_o`
+### Deleting an order: `delete_order` or `delete_o`
 
 Syntax: `delete_order INDEX`
 
@@ -239,7 +252,7 @@ Examples:
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
 * `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
 
-### Deleting a task: `delete_task` / `delete_t`
+### Deleting a task: `delete_task` or `delete_t`
 
 Deletes the specified task from the task list.
 
@@ -282,7 +295,7 @@ Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Adv
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v1.3]`
+### Upcoming features `[coming soon]`
 
 * Different tabs for `Orders`, `Suppliers`
 * Sort orders by date to keep track of orders.
@@ -303,10 +316,10 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed`
-**Edit** | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`
-**Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`
-**Find** | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`
+**Add** | `add_supplier` or `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order` or `add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task` or `add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed`
+**Edit** | `edit_supplier` or `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` or `edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task` or `edit_t` <br> e.g., `edit_t 1 s/`
+**Delete** | `delete_supplier` or `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` or `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` or `delete_t` <br> e.g., `delete_t 4`
+**Find** | `find_supplier` or `find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order` or `find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task` or `find_t` <br> e.g., `find_t s/N`
 **Tab** | `tab` <br> e.g., `tab Home`
 **Help** | `help`
 **Exit** | `exit`
