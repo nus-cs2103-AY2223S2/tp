@@ -4,8 +4,20 @@ title: User Guide
 ---
 
 GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
-* Table of Contents
-  {:toc}
+### Table of Contents
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Viewing help: `help`](#viewing-help-help)
+  * [Viewing all job listings: `view`](#viewing-all-job-listings-view)
+  * [Adding a job listing: `add`](#adding-a-job-listing-add)
+  * [Editing a job listing: `edit`](#editing-a-job-listing-edit)
+  * [Deleting a job listing: `delete`](#deleting-a-job-listing-delete)
+  * [Locating job listings by title: `find`](#locating-job-listings-by-title-find)
+  * [Sorting job listings: `sort`](#sorting-job-listings-sort)
+  * [Filtering job listings `[coming in v2.0]`](#filtering-job-listings-coming-soon)
+  * [Tagging a job listing `[coming in v2.0]`](#tagging-a-job-listing-coming-soon)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 # Quick Start
@@ -24,7 +36,7 @@ A GUI similar to the one below should appear in a few seconds.
 
 Some example commands you can try:
     - add something here
-6. Refer to the [Features](https://www.notion.so/User-Guide-23950683b3cc4950a36706df6ae00bf4) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 # Features
 
@@ -242,7 +254,7 @@ Example: sort f/applicants
 ```
 ###
 
-## Filtering job listings: `filter` [coming soon!]
+## Filtering job listings [coming soon!]
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
