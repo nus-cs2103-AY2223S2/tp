@@ -35,7 +35,7 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
-   
+
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.

@@ -262,7 +262,6 @@ public class AddCommandTest {
         public void setSelectedPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
