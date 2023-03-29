@@ -246,7 +246,7 @@ Format: `backup INDEX_NO`
 
 Examples:
 
-* `backup 1` backups the data to the 3rd slot
+* `backup 1` backups the data to the 1st slot
 
 Tip: INDEX_NO can only be an integer between 1 and 10
 
@@ -266,7 +266,7 @@ Example:
 
 ![Load](images/command_result/Load.png)
 
-Above is teh execution result of input `load 1`.
+Above is the execution result of input `load 1`.
 
 ### View backup data: `viewbackup`
 
@@ -296,7 +296,7 @@ Format: `clear`
 
 ![Clear](images/command_result/Clear.png)
 
-Above is the running result after inputting `clear`.
+Above is the execution result of input `clear`.
 
 ### Switch to light mode: `light`
 
@@ -306,7 +306,7 @@ Format: `light`
 
 ![Light](images/command_result/Light.png)
 
-Above is the application view after running `light`.
+Above is the execution result of input `light`.
 
 ### Switch to dark mode: `dark`
 
@@ -316,7 +316,7 @@ Format: `dark`
 
 ![Dark](images/command_result/Dark.png)
 
-Above is the application view after running `dark`.
+Above is the execution result of input `dark`.
   
 --------------------------------------------------------------------------------------------------------------------  
 <sub>[return to table of contents](#table-of-contents-)</sub>
