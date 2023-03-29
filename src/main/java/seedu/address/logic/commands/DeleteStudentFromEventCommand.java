@@ -42,8 +42,8 @@ public class DeleteStudentFromEventCommand extends Command {
         requireNonNull(model);
 
         if (!this.eventType.equals(TUTORIAL_STRING)
-        && !this.eventType.equals(LAB_STRING)
-        && !this.eventType.equals(CONSULTATION_STRING)) {
+                && !this.eventType.equals(LAB_STRING)
+                && !this.eventType.equals(CONSULTATION_STRING)) {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
 
