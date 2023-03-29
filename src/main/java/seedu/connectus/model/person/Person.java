@@ -10,8 +10,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * Represents a Person in the ConnectUS.
@@ -27,8 +29,10 @@ public class Person {
 
     // Data fields
     private Optional<Address> address;
-    private final Set<Tag> tags = new HashSet<>();
-    private final Set<Module> modules = new HashSet<>();
+    private Set<Module> modules = new HashSet<>();
+    private Set<Remark> remarks = new HashSet<>();
+    private Set<Cca> ccas = new HashSet<>();
+    private Set<CcaPosition> ccaPositions = new HashSet<>();
     private Optional<Birthday> birthday;
 
     // Social media fields
@@ -37,30 +41,32 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Set<Tag> tags, Set<Module> modules) {
-        requireAllNonNull(name, tags, modules);
+    public Person(Name name) {
+        requireAllNonNull(name, remarks, modules, ccas, ccaPositions);
         this.name = name;
         this.phone = Optional.empty();
         this.email = Optional.empty();
         this.address = Optional.empty();
         this.socialMedia = Optional.empty();
-        this.tags.addAll(tags);
         this.birthday = Optional.empty();
         this.modules.addAll(modules);
+        this.remarks.addAll(remarks);
+        this.ccas.addAll(ccas);
+        this.ccaPositions.addAll(ccaPositions);
     }
 
     /**
      * Copy constructor allowing modifications to tag list.
      */
-    public Person(Person toCopy, Set<Tag> tags, Set<Module> modules) {
+    public Person(Person toCopy, Set<Remark> remarks, Set<Module> modules) {
         requireNonNull(toCopy);
         this.name = toCopy.name;
         this.phone = toCopy.phone;
         this.email = toCopy.email;
         this.address = toCopy.address;
         this.socialMedia = toCopy.socialMedia;
-        this.tags.addAll(tags);
         this.birthday = toCopy.birthday;
+        this.remarks.addAll(remarks);
         this.modules.addAll(modules);
     }
 
@@ -82,6 +88,22 @@ public class Person {
 
     public void setBirthday(Birthday birthday) {
         this.birthday = Optional.ofNullable(birthday);
+    }
+
+    public void setRemarks(Set<Remark> remarks) {
+        this.remarks = remarks;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
+    }
+
+    public void setCcas(Set<Cca> ccas) {
+        this.ccas = ccas;
+    }
+
+    public void setCcaPositions(Set<CcaPosition> ccaPositions) {
+        this.ccaPositions = ccaPositions;
     }
 
     public Name getName() {
@@ -110,16 +132,16 @@ public class Person {
 
     public String getAllFieldsAsString() {
         return String.format("%s %s %s %s %s %s %s %s",
-                name, phone, email, address, birthday, socialMedia, tags, modules);
+                name, phone, email, address, birthday, socialMedia, remarks, modules);
     }
 
     /**
-     * Returns an immutable tag set, which throws
+     * Returns an immutable remark set, which throws
      * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Remark> getRemarks() {
+        return Collections.unmodifiableSet(remarks);
     }
 
     /**
@@ -129,6 +151,24 @@ public class Person {
      */
     public Set<Module> getModules() {
         return Collections.unmodifiableSet(modules);
+    }
+
+    /**
+     * Returns an immutable cca set, which throws
+     * {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Cca> getCcas() {
+        return Collections.unmodifiableSet(ccas);
+    }
+
+    /**
+     * Returns an immutable ccaPosition set, which throws
+     * {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CcaPosition> getCcaPositions() {
+        return Collections.unmodifiableSet(ccaPositions);
     }
 
     /**
@@ -163,14 +203,16 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getModules().equals(getModules());
+                && otherPerson.getRemarks().equals(getRemarks())
+                && otherPerson.getModules().equals(getModules())
+                && otherPerson.getCcas().equals(getCcas())
+                && otherPerson.getCcaPositions().equals(getCcaPositions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, modules);
+        return Objects.hash(name, phone, email, address, remarks, modules, ccas, ccaPositions);
     }
 
     @Override
@@ -188,15 +230,25 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Remark> remarks = getRemarks();
+        if (!remarks.isEmpty()) {
+            builder.append("; Remarks: ");
+            remarks.forEach(builder::append);
         }
         Set<Module> modules = getModules();
         if (!modules.isEmpty()) {
             builder.append("; Modules: ");
             modules.forEach(builder::append);
+        }
+        Set<Cca> ccas = getCcas();
+        if (!ccas.isEmpty()) {
+            builder.append("; Ccas: ");
+            ccas.forEach(builder::append);
+        }
+        Set<CcaPosition> ccaPositions = getCcaPositions();
+        if (!ccaPositions.isEmpty()) {
+            builder.append("; CcaPositions: ");
+            ccaPositions.forEach(builder::append);
         }
         return builder.toString();
     }

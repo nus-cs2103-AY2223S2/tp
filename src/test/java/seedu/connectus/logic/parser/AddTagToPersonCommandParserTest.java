@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 public class AddTagToPersonCommandParserTest {
 
@@ -19,12 +19,13 @@ public class AddTagToPersonCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsCommand() {
-        var tags = new HashSet<Tag>();
-        tags.add(new Tag("tagg"));
+        var remarks = new HashSet<Remark>();
+        remarks.add(new Remark("remarkss"));
         var modules = new HashSet<Module>();
         modules.add(new Module("MOD1234"));
-        assertParseSuccess(parser, "1 t/tagg mod/MOD1234",
-            new AddTagToPersonCommand(INDEX_FIRST_PERSON, new AddTagToPersonCommand.AddTagDescriptor(tags, modules)));
+        assertParseSuccess(parser, "1 r/remarkss mod/MOD1234",
+            new AddTagToPersonCommand(INDEX_FIRST_PERSON,
+                    new AddTagToPersonCommand.AddTagDescriptor(remarks, modules)));
     }
 
     @Test
@@ -34,12 +35,12 @@ public class AddTagToPersonCommandParserTest {
     }
 
     @Test
-    public void parse_noTagSpecified_throwsParseException() {
-        assertParseFailure(parser, "1 t/",
+    public void parse_noRemarkSpecified_throwsParseException() {
+        assertParseFailure(parser, "1 r/",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 t/ ",
+        assertParseFailure(parser, "1 r/ ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 t/\t",
+        assertParseFailure(parser, "1 r/\t",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
     }
 
@@ -55,11 +56,11 @@ public class AddTagToPersonCommandParserTest {
 
     @Test
     public void parse_nothingSpecified_throwsParseException() {
-        assertParseFailure(parser, "1 mod/ t/",
+        assertParseFailure(parser, "1 mod/ r/",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 mod/  t/ ",
+        assertParseFailure(parser, "1 mod/  r/ ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "1 mod/\t t/\t",
+        assertParseFailure(parser, "1 mod/\t r/\t",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
     }
 }
