@@ -12,11 +12,17 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    private final boolean isModifying = false;
+
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    @Override
+    public boolean checkModifiable() {
+        return isModifying;
+    }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);

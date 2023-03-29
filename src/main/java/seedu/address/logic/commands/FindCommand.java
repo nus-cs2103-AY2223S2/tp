@@ -19,6 +19,8 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    private final boolean isModifying = false;
+
     private final ContainsKeywordsPredicate predicate;
 
     public FindCommand(ContainsKeywordsPredicate predicate) {
@@ -26,7 +28,12 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(

@@ -88,4 +88,15 @@ public interface Model {
     void updateShowPerson(Predicate<Person> predicate);
 
     ObservableList<Person> getShowPerson();
+
+    boolean checkUndoable();
+
+    boolean checkRedoable();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+
+    void commitAddressBook();
+
 }
