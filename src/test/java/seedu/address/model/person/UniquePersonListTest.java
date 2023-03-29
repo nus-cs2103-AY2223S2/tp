@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -176,18 +175,18 @@ public class UniquePersonListTest {
 
     @Test
     public void getAllMeetingAsUnmodifiableObservableList_validList_ReturnsCorrectList() {
-        Person p1 = new Person(new Name("bobb"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<Tag>());
+        Person p1 = new Person(new Name("bobb"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<PolicyTag>());
         ArrayList<Meeting> p1Meetings = p1.getMeetings();
         p1Meetings.add(new Meeting());
         p1Meetings.add(new Meeting());
         p1Meetings.add(new Meeting());
 
-        Person p2 = new Person(new Name("bobby2"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<Tag>());
+        Person p2 = new Person(new Name("bobby2"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<PolicyTag>());
         ArrayList<Meeting> p2Meetings = p2.getMeetings();
         p2Meetings.add(new Meeting());
         p2Meetings.add(new Meeting());
 
-        Person p3 = new Person(new Name("bobby333"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<Tag>());
+        Person p3 = new Person(new Name("bobby333"), new Phone("12345678"), new Email("sex@sex.com"), new Address("ass house"), new HashSet<PolicyTag>());
         ArrayList<Meeting> p3Meetings = p3.getMeetings();
         p3Meetings.add(new Meeting());
 
