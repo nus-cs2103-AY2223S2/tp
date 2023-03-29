@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+participant "p:PlanCommand" as PlanCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("schedule D/2023-06-28 E/50")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("schedule D/2023-06-28 E/50")
+activate TaskBookParser
+
+create ScheduleCommandParser
+TaskBookParser -> ScheduleCommandParser : ScheduleCommandParser()
+activate ScheduleCommandParser
+
+ScheduleCommandParser --> TaskBookParser
+deactivate ScheduleCommandParser
+
+TaskBookParser -> ScheduleCommandParser : parse("D/2023-06-28 E/50")
+activate ScheduleCommandParser
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand : ScheduleCommand(date, effort)
+activate ScheduleCommand
+
+ScheduleCommand --> ScheduleCommandParser : s
+deactivate ScheduleCommand
+
+ScheduleCommandParser --> TaskBookParser : s
+deactivate ScheduleCommandParser
+
+TaskBookParser --> LogicManager : d
+deactivate TaskBookParser
+
+LogicManager -> ScheduleCommand : execute(model)
+activate ScheduleCommand
+
+create PlanCommand
+ScheduleCommand -> PlanCommand : PlanCommand(effort)
+activate PlanCommand
+
+PlanCommand --> ScheduleCommand
+deactivate PlanCommand
+
+ScheduleCommand -> PlanCommand : execute(model)
+activate PlanCommand
+
+PlanCommand -> Model : plan(workload)
+activate Model
+
+Model --> PlanCommand
+deactivate Model
+
+PlanCommand --> ScheduleCommand
+deactivate PlanCommand
+
+ScheduleCommand -> Model : schedule(date)
+activate Model
+
+Model --> ScheduleCommand
+deactivate Model
+
+create CommandResult
+ScheduleCommand -> CommandResult : CommandResult(successMessage)
+activate CommandResult
+
+CommandResult --> ScheduleCommand : result
+deactivate CommandResult
+
+ScheduleCommand --> LogicManager : result
+deactivate LogicManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -151,6 +151,7 @@ public class EditCommand extends Command {
         private Date to;
 
 
+
         public EditTaskDescriptor() {}
 
         /**

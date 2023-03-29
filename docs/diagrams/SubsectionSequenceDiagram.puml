@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":AddSubtaskParser" as AddSubtaskParser LOGIC_COLOR
+participant "a:AddSubtaskCommand" as AddSubtaskCommand LOGIC_COLOR
+participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
+participant "l:Deadline" as Deadline LOGIC_COLOR
+participant "v:Event" as Event LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Subsection 1 n/CS2100 d/Lab 1")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("Subsection 1 n/homework d/Lab 1")
+activate TaskBookParser
+
+create AddSubtaskParser
+TaskBookParser -> AddSubtaskParser
+activate AddSubtaskParser
+
+AddSubtaskParser --> TaskBookParser
+deactivate AddSubtaskParser
+
+TaskBookParser -> AddSubtaskParser : parse("1 n/CS2100 d/Lab 1")
+activate AddSubtaskParser
+
+create AddSubtaskCommand
+AddSubtaskParser -> AddSubtaskCommand : (1, newTask)
+activate AddSubtaskCommand
+
+AddSubtaskCommand --> AddSubtaskParser : a
+deactivate AddSubtaskCommand
+
+AddSubtaskParser --> TaskBookParser : a
+deactivate AddSubtaskParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddSubtaskParser -[hidden]-> TaskBookParser
+destroy AddSubtaskParser
+
+TaskBookParser --> LogicManager : a
+deactivate TaskBookParser
+
+LogicManager -> AddSubtaskCommand : execute()
+activate AddSubtaskCommand
+
+alt old task is SimpleTask
+
+    AddSubtaskCommand -> SimpleTask
+    activate SimpleTask
+
+    SimpleTask --> AddSubtaskCommand : t (new task)
+    deactivate SimpleTask
+
+else old task is Deadline
+    AddSubtaskCommand -> Deadline
+    activate Deadline
+
+    Deadline --> AddSubtaskCommand : l (new task)
+    deactivate Deadline
+
+else old task is Event
+    AddSubtaskCommand -> Event
+    activate Event
+
+    Event --> AddSubtaskCommand : v (new task)
+    deactivate Event
+end
+
+AddSubtaskCommand -> Model : setTask()
+activate Model
+
+Model --> AddSubtaskCommand
+deactivate Model
+
+create CommandResult
+AddSubtaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddSubtaskCommand
+deactivate CommandResult
+
+AddSubtaskCommand --> LogicManager : result
+deactivate AddSubtaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

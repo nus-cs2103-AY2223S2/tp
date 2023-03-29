@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("Add n/CS210ST n/CS2109S d/homework")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("Add n/CS210ST n/CS2109S d/homework")
-activate AddressBookParser
+LogicManager -> TaskBookParser : parseCommand("Add n/CS210ST n/CS2109S d/homework")
+activate TaskBookParser
 
 create AddCommandParser
-AddressBookParser ->AddCommandParser
+TaskBookParser ->AddCommandParser
 activate AddCommandParser
 
-AddCommandParser --> AddressBookParser
+AddCommandParser --> TaskBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse(n/CS210ST n/CS2109S d/homework)
+TaskBookParser -> AddCommandParser : parse(n/CS210ST n/CS2109S d/homework)
 activate AddCommandParser
 
 create TaskList
@@ -45,16 +45,16 @@ activate AddCommand
 AddCommand --> AddCommandParser : a
 deactivate AddCommand
 
-AddCommandParser --> AddressBookParser : a
+AddCommandParser --> TaskBookParser : a
 deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> AddressBookParser
+AddCommandParser -[hidden]-> TaskBookParser
 destroy AddCommandParser
 
 
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+TaskBookParser --> LogicManager : a
+deactivate TaskBookParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand

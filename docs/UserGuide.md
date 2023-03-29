@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Clock-Work User Guide
+title: User Guide
 ---
 
 :alarm_clock: Tick-tock. Tick-tock. Time is ticking. :alarm_clock:
@@ -17,13 +17,12 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 **Get started with Clock-Work with this guide!**
 
-This guide is meant for the average Computer Science student, who is interested in using Clock-Work. 
+This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
-If you like our product and want to contribute to it, consider looking at the [Developer Guide](UserGuide.md) instead.
+If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
 * Table of Contents
   * [1. Quick start](#1-quick-start)
-
   * [2. Features and commands](#2-features-and-commands)
     * [2.1 add](#21-adding-a-task--add)
     * [2.2 edit](#22-editing-a-task--edit)
@@ -40,13 +39,10 @@ If you like our product and want to contribute to it, consider looking at the [D
     * [2.11 help](#211-viewing-help--help)
     * [2.12 clear](#212-clearing-all-entries--clear)
     * [2.13 exit](#213-exiting-the-program--exit)
-
   * [3. Storage](#3-storage)
     * [3.1 saving the data](#31-saving-the-data)
     * [3.2 editing the data](#32-editing-the-data-file)
-
   * [4. FAQ](#4-faq)
-  
   * [5. Command summary](#5-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -100,31 +96,31 @@ For easy reference and understanding, this guide utilizes some special formattin
 | --- | --- |
 | `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. |
 | `UPPERCASEWORD` | Compulsory inputs which must be supplied in order for the command to work. |
-| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. | 
+| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. |
 
 ### Inputs into Clock-Work
 
 Clock-Work provides some flexibility regarding the types of inputs it accepts. These are some information about inputting commands you may find useful.
 
 1. First word is assumed to be a command word (add/delete/list/find).
- 
-2. Words in ≈ are the parameters to be supplied by the user.<br>
+
+2. Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 3. Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/important`, `t/important t/urgent` etc.
 
 4. Parameters can be in any order.<br>
-  e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
+  e.g. if the command specifies `n/Task A d/A's sample description`, `d/A's sample description n/Task A` is also acceptable.
 
-5. If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+5. If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
 
 6. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Basic Infomation about Tasks
+### Basic Information about Tasks
 * A Task can be:
-    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
+    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a LongDate?](#q2-what-is-a-valid-Longdate))
     * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
     * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
 
@@ -141,10 +137,10 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 :man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
 
-Adds a task to the address book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
-For `Deadline` and `Event` `Date` field(s) are required.
+Adds a task to the task book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
+For `Deadline` and `Event` `LongDate` field(s) are required.
 
-`Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
+`LongDate` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid LongDate?](#q2-what-is-a-valid-Longdate))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -152,11 +148,11 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
@@ -164,19 +160,21 @@ Examples:
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
-:bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
+:bulb: **PRO TIP**: You can add multiple <span style="color:#FBBC05">Events</span> and <span style="color:#34A853">Deadlines</span> as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
-:bulb: **PRO TIP**: A task can have any number of tags (including 0)
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q5-why-does-two-different-tags-have-the-same-tag-color)
 
-:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, Deadline, Event) of the same name.
+:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
-:warning: Adding multiple tags of the same tag name will only result in one tag!
+:warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
-:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`, `D/`. Input fields will have unexpected behaviour when it contains these characters.
+:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
+
+:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`. Input fields will have unexpected behaviour when it contains these characters.
 
 e.g. `add n/Sample d/Why can't I add n/?`
 
@@ -185,7 +183,7 @@ e.g. `add n/Sample d/Why can't I add n/?`
 
 :man_technologist: Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.
 
-Edits an existing task in the address book.
+Edits an existing task in the task book.
 
 Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 
@@ -209,9 +207,9 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 :man_technologist: Congratulations! You have completed a task. Now, you can remove it by using this command.
 
-Deletes the specified task from the address book.
+Deletes the specified task from the task  book.
 
-Format: `delete INDEX(S)`
+Format: `delete INDEX [INDEX]…​`
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
@@ -220,7 +218,7 @@ Format: `delete INDEX(S)`
 * The command will reject all specified indices if one of them is invalid.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the address book.
+* `list` followed by `delete 2` deletes the 2nd task in the task book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
 
@@ -228,7 +226,7 @@ Examples:
 
 :man_technologist: Want to have an overview of all your tasks? Try this!
 
-Shows a list of all tasks in the address book.
+Shows a list of all tasks in the task book.
 
 Format: `list`
 
@@ -266,30 +264,32 @@ Format: `sort`
 
 :man_technologist: Oops! Are you unable to locate a task? Try find.
 
-Find tasks whose attribute best match the user input string.
+Find **Tasks** whose attribute best match the user input string.
 
 Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
-* The search is case-insensitive. e.g `book` will match `Book`
-* Substrings will be matched e.g. `book` will match `Books`
+* The search is **case-insensitive**. e.g `book` will match `Book`
+* **Substrings** will be matched e.g. `book` will match `Books`
+* For <span style="color:#34A853">Deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+    * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
+* For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+    * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
+    * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
+
+Examples:
+* `find n/book` finds **Tasks** with name `read book` and `return books`
+
+:bulb: Here are some **PRO TIPS**:
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
     * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
     * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
-* For <span style="color:#34A853">deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
-    * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
-* For <span style="color:#FBBC05">event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
-    * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
-    * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
-Examples:
-* `find n/book` returns `read book` and `return books`
+:warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 
-:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
-
-e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task.
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return a list with only the latter task.
 
 
 ### 2.7 Getting statistics : `stats`
@@ -306,7 +306,7 @@ Format: `stats`
 :man_technologist: Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!
 
 Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
-On opening of app, the alert window will open to show tasks which have deadlines within the latest window specified.
+On opening of app, the **alert window** will open to show **Tasks** which have deadlines within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
@@ -318,9 +318,11 @@ Examples:
 
 :man_technologist: Wouldn't it be great if you can have your life planned out for you? Schedule can help!
 
+`schedule` displays a planned daily schedule according to the tasks currently stored.
+
 #### 2.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
-Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan.
+Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-date-and-a-shortdate-)
 
 #### 2.9.2 Generating a New Plan
 When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
@@ -328,19 +330,26 @@ As much as possible, tasks allocated to a day should not exceed the intended `E/
 However, if the need arises (as specified below), the algorithm allows the effort required for a particular day to exceed the user preferred `E/EFFORT` level.
 
 The algorithm allocates tasks as such:
-1. Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+1. Allocate all events to the day(s) it is supposed to be happening.
 
-2. Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+2. Allocate all deadlines to the first free day before it is due (exclusive of due date). Otherwise, allocate task to a day before deadline with the least amount of work allocated (in terms of effort).
 
-3. Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+3. Allocates each SimpleTask to the most busy free day (greedy approach). If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
 
-#### 2.9.3 Displaying Daily Plan
+<details>
+
+<summary>Need more help?</summary>
+
+#### Displaying Daily Plan
 Daily Plans can be viewed by entering `schedule D/SHORTDATE` or `schedule D/SHORTDATE E/EFFORT`, with the former showing an old plan, and the latter showing a newly generated plan.
 As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an `E/EFFORT` flag if they do not remember when they last generated their plan.
 If no tasks are shown, it means that there are no tasks planned for that day.
 An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
 
-:construction: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
+</details>
+
+
+:warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
 
 Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
@@ -381,7 +390,7 @@ Format: `help`
 
 :man_technologist: Think twice before using this. This action is not reversible.
 
-Clears all entries from the address book.
+Clears all entries from the task book.
 
 Format: `clear`
 
@@ -416,10 +425,10 @@ _Details coming soon ..._
 ## 4. FAQ
 
 ### Q1 How do I transfer my data to another Computer?
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
-### Q2 What is a valid Date?
-**A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
+### Q2 What is a valid LongDate?
+**A**: A valid LongDate must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid LongDate must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
 ### Q3 What is an effort level?
@@ -428,28 +437,33 @@ _Details coming soon ..._
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
 
+### Q5 Why does two different tags have the same tag color??
+**A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
+
+### Q6 What is the difference between a `LongDate` and a `ShortDate`?
+**A**: A `ShortDate` omits the `HHMM` component of a `LongDate`. 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
 
-| Action     | Format, Examples                                                                                                   |
-|------------|--------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**  | `clear`                                                                                                            |
-| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                             |
-| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                 |
-| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                 |
-| **List**   | `list`                                                                                                             |
-| **Help**   | `help`                                                                                                             |
-| **Stats**  | `stats`                                                                                                            |
-| **sort**   | `sort`                                                                                                             |
-| **alert**  | `alert ALERT_WINDOW`                                                                                               |
-| **plan**   | `plan EFFORT`                                                                                                      |
+| Action       | Format, Examples                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**    | `clear`                                                                                                               |
+| **Delete**   | `delete INDEX [INDEX]…​ `<br> e.g., `delete 3`                                                                        |
+| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                    |
+| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                    |
+| **List**     | `list`                                                                                                                |
+| **Help**     | `help`                                                                                                                |
+| **Stats**    | `stats`                                                                                                               |
+| **sort**     | `sort`                                                                                                                |
+| **alert**    | `alert [ALERT_WINDOW]`                                                                                                |
+| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 ## 6. Glossary
 1. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
 2. Free day: Allocating a task to this day will not result in overloading.
-3. Short date: YYYY-MM-DD
-4. Date: YYYY-MM-DD HHMM
+3. ShortDate: YYYY-MM-DD
+4. LongDate: YYYY-MM-DD HHMM

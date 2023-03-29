@@ -1,0 +1,105 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
+participant "l:Deadline" as Deadline LOGIC_COLOR
+participant "v:Event" as Event LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/homework")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("edit 1 n/homework")
+activate TaskBookParser
+
+create EditCommandParser
+TaskBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> TaskBookParser
+deactivate EditCommandParser
+
+TaskBookParser -> EditCommandParser : parse("1 n/homework")
+activate EditCommandParser
+
+create EditTaskDescriptor
+EditCommandParser -> EditTaskDescriptor
+activate EditTaskDescriptor
+
+EditTaskDescriptor --> EditCommandParser : d
+deactivate EditTaskDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : (1, d)
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> TaskBookParser : e
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> TaskBookParser
+destroy EditCommandParser
+
+TaskBookParser --> LogicManager : e
+deactivate TaskBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+alt old task is SimpleTask
+
+    EditCommand -> SimpleTask
+    activate SimpleTask
+
+    SimpleTask --> EditCommand : t (new task)
+    deactivate SimpleTask
+
+else old task is Deadline
+    EditCommand -> Deadline
+    activate Deadline
+
+    Deadline --> EditCommand : l (new task)
+    deactivate Deadline
+
+else old task is Event
+    EditCommand -> Event
+    activate Event
+
+    Event --> EditCommand : v (new task)
+    deactivate Event
+end
+
+EditCommand -> Model : setTask()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

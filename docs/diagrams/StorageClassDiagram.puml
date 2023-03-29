@@ -43,6 +43,7 @@ Storage -left-|> UserPrefsStorage
 Storage -right-|> TaskBookStorage
 Storage -right-|> PlannerStorage
 
+
 UserPrefsStorage -[hidden]down|>StorageManager
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskBookStorage .up.|> TaskBookStorage

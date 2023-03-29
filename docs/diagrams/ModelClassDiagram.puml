@@ -5,46 +5,48 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "{abstract}\nTask" as Task
+Class TaskBook
 Class ModelManager
 Class UserPrefs
 
 Class UniqueTaskList
-Class Task
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueSubtaskList
+Class Subtask
+Class SimpleTask
+Class Deadline
+Class Event
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaskBook .up.|> ReadOnlyTaskBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaskBook
+ModelManager -left-> "1" TaskBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniqueTaskList
+TaskBook *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
-Task *--> Name
-Task *--> Phone
-Task *--> Email
-Task *--> Address
-Task *--> "*" Tag
+Task *--> "1" UniqueSubtaskList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+
+Deadline -right|> Task
+Event -left|> Task
+SimpleTask -up-|> Task
+
+
+
+UniqueSubtaskList --> "~* all" Subtask
+
 
 ModelManager -->"~* filtered" Task
 @enduml

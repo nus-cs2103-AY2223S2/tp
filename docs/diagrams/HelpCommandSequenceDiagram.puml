@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant "h:HelpCommand" as HelpCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("Help")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("Help")
+activate TaskBookParser
+
+create HelpCommand
+TaskBookParser -> HelpCommand
+activate HelpCommand
+
+HelpCommand --> TaskBookParser : h
+deactivate HelpCommand
+
+TaskBookParser --> LogicManager : h
+deactivate TaskBookParser
+
+LogicManager -> HelpCommand : execute(model)
+activate HelpCommand
+
+create CommandResult
+HelpCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> HelpCommand : result
+deactivate CommandResult
+
+HelpCommand --> LogicManager : result
+deactivate HelpCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
