@@ -137,7 +137,7 @@ Adds a person to the patient records.
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Do take note which patient details are 
 optional
 
-Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
+Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
 **Tip**:
 
@@ -153,14 +153,12 @@ Examples:
 
 Edits an existing patient in the patient records.
 
-<<<<<<< Updated upstream
-.Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
-=======
+
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
 
-Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
->>>>>>> Stashed changes
+Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+
 
 * You can remove all the patient’s tags/medicine by typing t/ or m/ respectively, without specifying any tags/medicine
   after it.
@@ -196,14 +194,11 @@ Format: `list`
 
 Find patients according to a particular attribute stated followed by the change.
 
-<<<<<<< Updated upstream
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`).
-=======
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
 substrings. You may only search for a few attributes.
->>>>>>> Stashed changes
 
-Format: `find (a/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
+
+Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
 
 * The search will only be carried out for the given attribute.
 * Only one attribute can be searched at one time.
