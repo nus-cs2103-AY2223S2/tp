@@ -391,6 +391,9 @@ Purpose: Provides users with a bird's eye view of the various methods usable in 
 
 #### 3.7.1 Implementation
 
+This window was made by the `HelpWindow` class, which ties in its respective `fxml` and `css` files to display the relevant UI to the user.
+To provide the instructions to the user, a `HelpStrings` class is maintained to give instructions stored in lengthy strings.
+
 A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
 information, the user can choose to view the comprehensive User Guide instead.
@@ -480,6 +483,16 @@ Below is an activity diagram that illustrates how a user finds all persons with 
 * **Alternative 2:** Allow multiple tags
   * Pros: Allows users to search for more than one tag at once, which increases convenience and flexibility.
   * Cons: Could produce many search results which may clutter up the GUI (as opposed to searching for only one task). More prone to bugs.
+
+### 3.11 Quickstart Window
+Syntax: `quickstart`  
+Purpose: Allows new users to better understand how OfficeConnect works.
+
+#### 3.11.1 Implementation
+Similar to Help Window in section 3.7, this window is maintained by `QuickstartWindow` class, which also maintains 
+similarly named `fxml` and `css` to display the relevant quickstart information.
+
+Users will be shown a guide 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Documentation, logging, testing, configuration, dev-ops
@@ -747,7 +760,7 @@ feature would work in practice.
 
 4. OfficeConnect presents information on said command to user.
 
-5. User reads closes window after getting required info.
+5. User reads closes window after retrieving required info.
 
    Use case ends.
 
