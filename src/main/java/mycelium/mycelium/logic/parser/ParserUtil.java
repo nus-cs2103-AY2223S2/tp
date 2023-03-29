@@ -160,7 +160,7 @@ public class ParserUtil {
     /**
      * Parses a string by asserting that it is non-empty after trimming. Note that this
      */
-    private static NonEmptyString parseNonEmptyString(String source) throws ParseException {
+    public static NonEmptyString parseNonEmptyString(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
         if (!NonEmptyString.isValid(trimmedSource)) {
