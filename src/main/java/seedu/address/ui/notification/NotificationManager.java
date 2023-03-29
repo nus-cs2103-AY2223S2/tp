@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import org.controlsfx.control.Notifications;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 import seedu.address.logic.Logic;
@@ -44,7 +44,7 @@ public class NotificationManager {
      * Constructor to create a Notification from data stored in Logic. Used for notifying reminders
      * @param logic
      */
-    public NotificationManager(Logic logic, List<Runnable> runnableList ) {
+    public NotificationManager(Logic logic, List<Runnable> runnableList) {
         this.logic = logic;
         this.model = logic.getModel();
         this.reminderWindow = runnableList.get(0);
@@ -172,20 +172,9 @@ public class NotificationManager {
     }
 
     /**
-     * Method to show the Notification on particular side of screen.
-     * @param title
-     * @param text
+     * Displays notification that shows users how many reminders that have at the moment
+     * @param i Number of active reminders
      */
-    public void show(String title, String text, Pos pos) {
-        //show notifications
-        Notifications notificationBuilder = Notifications.create()
-                .title(title)
-                .text(text)
-                .hideAfter(duration)
-                .position(pos);
-        notificationBuilder.showConfirm();
-    }
-
     public void showReminderNotification(int i) {
         Notifications notif = Notifications.create()
                 .title("You have " + i + " reminder(s)!")
@@ -204,6 +193,12 @@ public class NotificationManager {
         notif.showConfirm();
     }
 
+    /**
+     * Displays notification that shows users how many scheduled jobs they have at the moment or in the next timetable
+     * slot.
+     * @param i Number of jobs
+     * @param when indicates what string to show, depending on looking a current or next timetable slot
+     */
     public void showScheduleNotification(int i, String when) {
         Calendar now = Calendar.getInstance();
         Notifications notif = Notifications.create();
@@ -216,11 +211,13 @@ public class NotificationManager {
             notif.title("You have " + i + " upcoming job(s) from " + nextSlotTime());
             double d;
             if (now.get(Calendar.MINUTE) >= 40) {
-                 d = 40 + (60 - now.get(Calendar.MINUTE));
+                d = 40 + (60 - now.get(Calendar.MINUTE));
             } else {
                 d = 40 - now.get(Calendar.MINUTE);
             }
             notif.hideAfter(Duration.minutes(d));
+            break;
+        default:
             break;
         }
         notif.text("Click here to view more")
@@ -234,8 +231,7 @@ public class NotificationManager {
         });
         notif.showConfirm();
     }
-
-    public String nextSlotTime() {
+    private String nextSlotTime() {
         Calendar now = Calendar.getInstance();
         int hour = now.get(Calendar.HOUR_OF_DAY);
         if (hour < 10) {
