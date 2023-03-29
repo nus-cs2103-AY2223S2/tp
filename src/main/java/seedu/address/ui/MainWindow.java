@@ -1,10 +1,12 @@
 package seedu.address.ui;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,6 +24,11 @@ import seedu.address.logic.commands.jobs.CompleteDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.sorters.DeliveryFilterOption;
+import seedu.address.model.jobs.sorters.DeliverySortOption;
+import seedu.address.model.jobs.sorters.SortbyDate;
+import seedu.address.model.jobs.sorters.SortbyDelivered;
+import seedu.address.model.jobs.sorters.SortbyEarning;
 import seedu.address.ui.jobs.AddDeliveryJobWindow;
 import seedu.address.ui.jobs.DeliveryJobDetailPane;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
@@ -92,6 +99,9 @@ public class MainWindow extends UiPart<Stage> {
     };
 
     private Consumer<DeliveryJob> eidtDeliveryJobHandler = (job) -> {
+        if (addDeliveryJobWindow != null) {
+            addDeliveryJobWindow.getRoot().close();
+        }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, () -> {
             refreshDeliveryJobDetailPane();
         });
@@ -121,6 +131,35 @@ public class MainWindow extends UiPart<Stage> {
             logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
+        }
+    };
+
+    private BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> sortDeliveryJobHandler = (by, asc) -> {
+        switch (by) {
+        case COM:
+            logic.updateSortedDeliveryJobListByComparator(new SortbyDelivered(asc));
+            break;
+        case EARN:
+            logic.updateSortedDeliveryJobListByComparator(new SortbyEarning(asc));
+            break;
+        default:
+            logic.updateSortedDeliveryJobListByComparator(new SortbyDate(asc));
+            break;
+        }
+        return logic.getSortedDeliveryJobList();
+    };
+
+    private Consumer<DeliveryFilterOption> filterDeliveryJobHandler = by -> {
+        switch (by) {
+        case COM:
+            logic.updateFilteredDeliveryJobList(job -> job.getDeliveredStatus());
+            break;
+        case PEN:
+            logic.updateFilteredDeliveryJobList(job -> !job.getDeliveredStatus());
+            break;
+        default:
+            logic.updateFilteredDeliveryJobList(job -> true);
+            break;
         }
     };
 
@@ -210,7 +249,8 @@ public class MainWindow extends UiPart<Stage> {
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), selectDeliveryJobHandler,
                 completeDeliveryJobHandler,
                 deleteDeliveryJobHandler);
-
+        deliveryJobListPanel.setOrderByHandler(sortDeliveryJobHandler);
+        deliveryJobListPanel.setFilterHandler(filterDeliveryJobHandler);
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
         deliveryJobListPanel.selectItem(0);
 
@@ -363,6 +403,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleAddressBook() {
+        if (addDeliveryJobWindow != null) {
+            addDeliveryJobWindow.getRoot().close();
+        }
+
         if (!addressBookWindow.isShowing()) {
             addressBookWindow.show();
             addressBookWindow.fillInnerParts();

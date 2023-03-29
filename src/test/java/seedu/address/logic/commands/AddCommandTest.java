@@ -301,6 +301,18 @@ public class AddCommandTest {
             throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
         }
 
+        @Override
+        public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortedDeliveryJobListByComparator'");
+        }
+
+        @Override
+        public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedDeliveryJobListByComparator'");
+        }
+
     }
 
     /**

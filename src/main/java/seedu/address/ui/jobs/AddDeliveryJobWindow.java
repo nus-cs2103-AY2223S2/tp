@@ -104,10 +104,12 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     // https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
     private UnaryOperator<Change> earningValidator = change -> {
         String text = change.getText();
-        if (text.isEmpty() || text.equals(".")) {
+        String fullText = inputEarning.getText();
+        if (text.equals(".") && fullText.split("\\d+").length < 2) {
+            System.out.println("length: " + fullText.split("\\d+").length);
             return change;
         }
-        if (text.matches(Earning.VALIDATION_REGEX) || text.matches(Earning.VALIDATION_REGEX_DECI)) {
+        if (text.isEmpty() || text.matches(Earning.VALIDATION_REGEX) || text.matches(Earning.VALIDATION_REGEX_DECI)) {
             return change;
         }
         return null;
@@ -200,7 +202,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         }
         addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
             inputSender.setText(person.getPersonId());
+            addressBookWindow.getRoot().close();
         });
+        addressBookWindow.getRoot().setTitle("Select sender");
         addressBookWindow.fillInnerParts();
         addressBookWindow.show();
     }
@@ -213,7 +217,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         }
         addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
             inputRecipient.setText(person.getPersonId());
+            addressBookWindow.getRoot().close();
         });
+        addressBookWindow.getRoot().setTitle("Select recipient");
         addressBookWindow.fillInnerParts();
         addressBookWindow.show();
     }

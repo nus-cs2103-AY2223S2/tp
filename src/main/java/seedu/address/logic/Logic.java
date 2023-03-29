@@ -2,7 +2,9 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -61,6 +63,11 @@ public interface Logic {
     ObservableList<DeliveryJob> getFilteredDeliveryJobList();
 
     /**
+     * Returns an unmodifiable view of the sorted list of delivery jobs
+     */
+    ObservableList<DeliveryJob> getSortedDeliveryJobList();
+
+    /**
      * Returns an unmodifiable view of the filtered list of persons
      */
     ObservableList<Reminder> getReminderList();
@@ -113,6 +120,24 @@ public interface Logic {
      * @param focusDate
      */
     void setWeekDeliveryJobList(LocalDate focusDate);
+
+    /**
+     * Updates filter delivery job list
+     * @return
+     */
+    void updateFilteredDeliveryJobList(Predicate<DeliveryJob> pre);
+
+    /**
+     * Updates sorted delivery job list
+     * @return
+     */
+    void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
+
+    /**
+     * Updates sorted delivery job list
+     * @return
+     */
+    void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter);
 
     /**
      * Updates sorted delivery job list by date

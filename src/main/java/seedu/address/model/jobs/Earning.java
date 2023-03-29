@@ -70,6 +70,15 @@ public class Earning implements Comparable<Earning> {
         return value.hashCode();
     }
 
+    /**
+     * Parses string value to double.
+     *
+     * @return
+     */
+    public double toDouble() {
+        return Double.parseDouble(value);
+    }
+
     @Override
     public int compareTo(Earning other) {
         if (this.getEarning() - other.getEarning() < 0) {
@@ -79,5 +88,4 @@ public class Earning implements Comparable<Earning> {
         }
         return 0;
     }
-
 }
