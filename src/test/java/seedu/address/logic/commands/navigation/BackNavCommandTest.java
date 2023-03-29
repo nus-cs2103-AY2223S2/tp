@@ -11,16 +11,14 @@ import seedu.address.model.Navigation;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
-
 
 public class BackNavCommandTest {
 
     @Test
     void execute_backFromModule_navToRoot() throws CommandException {
-        Module mod = TypicalModules.CS2040S;
+        Module mod = TypicalModules.getCs2040s();
 
         Navigation nav = new Navigation();
         nav.navigateTo(mod.getCode());
@@ -35,8 +33,8 @@ public class BackNavCommandTest {
 
     @Test
     void execute_backFromLecture_navToMod() throws CommandException {
-        Module mod = TypicalModules.CS2040S;
-        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+        Module mod = TypicalModules.getCs2040s();
+        Lecture lec = TypicalLectures.getCs2040sWeek1();
 
         Navigation nav = new Navigation();
         nav.navigateTo(mod.getCode(), lec.getName());
@@ -60,23 +58,5 @@ public class BackNavCommandTest {
 
         assertEquals(NavCommand.getSuccessfulNavMessage(new NavigationContext()),
                 result.getFeedbackToUser());
-    }
-
-    private class ModelStubWithNavigation extends ModelStub {
-        private Navigation nav;
-
-        public ModelStubWithNavigation(Navigation nav) {
-            this.nav = nav;
-        }
-
-        @Override
-        public void navigateBack() {
-            nav.back();
-        }
-
-        @Override
-        public NavigationContext getCurrentNavContext() {
-            return nav.getCurrentContext();
-        }
     }
 }

@@ -295,7 +295,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture) {
+    public void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture) {
         requireNonNull(predicate);
         filteredVideos = new FilteredList<>(lecture.getVideoList());
         filteredVideos.setPredicate(predicate);

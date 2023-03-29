@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -134,10 +133,8 @@ public class TagCommand extends Command {
         newTags.addAll(this.tags);
         newTags.addAll(currentTags);
 
-        List<Lecture> currentLectureList = (List<Lecture>) taggingModule.getLectureList();
-
         Module taggedModule = new Module(taggingModule.getCode(),
-                taggingModule.getName(), newTags, currentLectureList);
+                taggingModule.getName(), newTags, taggingModule.getLectureList());
         model.setModule(taggingModule, taggedModule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
     }

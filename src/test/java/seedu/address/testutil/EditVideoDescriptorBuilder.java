@@ -2,7 +2,12 @@ package seedu.address.testutil;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
@@ -41,6 +46,8 @@ public class EditVideoDescriptorBuilder {
 
         descriptor = new EditVideoDescriptor();
         descriptor.setName(video.getName());
+        descriptor.setWatched(video.hasWatched());
+        descriptor.setTags(video.getTags());
     }
 
     /**
@@ -50,7 +57,39 @@ public class EditVideoDescriptorBuilder {
      * @return This {@code EditVideoDescriptorBuilder}.
      */
     public EditVideoDescriptorBuilder withName(String name) {
-        descriptor.setName(new VideoName(name));
+        descriptor.setName(name == null ? null : new VideoName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code hasWatched} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param hasWatched The watch status to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withWatched(Boolean hasWatched) {
+        descriptor.setWatched(hasWatched);
+        return this;
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withTags(String... tags) {
+        return withTags(Arrays.asList(tags));
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withTags(Collection<String> tags) {
+        descriptor.setTags(tags == null ? null : tags.stream().map(Tag::new).collect(Collectors.toSet()));
         return this;
     }
 

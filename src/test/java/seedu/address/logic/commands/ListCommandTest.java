@@ -61,7 +61,7 @@ public class ListCommandTest {
     public void execute_listIsFiltered_moduleLectureFoundShowVideos() {
         listCommand = new ListCommand(existingModuleCode, existingLectureName);
         String expectedString = String.format(
-            ListCommand.MESSAGE_SUCCESS_VIDEOS, existingModuleCode, existingLectureName);
+                ListCommand.MESSAGE_SUCCESS_VIDEOS, existingModuleCode, existingLectureName);
         expectedModel.updateFilteredVideoList(new VideoPredicate(existingLecture), existingLecture);
         assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }

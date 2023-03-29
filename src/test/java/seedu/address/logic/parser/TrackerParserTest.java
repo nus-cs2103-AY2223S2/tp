@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_KNOWN_COMMANDS;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2040;
@@ -53,6 +54,9 @@ import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
+import seedu.address.testutil.TypicalLectures;
+import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalVideos;
 import seedu.address.testutil.VideoBuilder;
 import seedu.address.testutil.VideoUtil;
 
@@ -97,24 +101,48 @@ public class TrackerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+
+        // delete module
         assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD + " " + VALID_MODULE_CODE_2040)
                 instanceof DeleteCommand);
+
+        // delete multiple modules
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                        + " " + VALID_MODULE_CODE_2040
+                        + ", " + VALID_MODULE_CODE_2103
+                ) instanceof DeleteCommand);
+
+        // delete lecture
         assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
                         + " " + VALID_LECTURE_NAME_L1
-                        + MODULE_CODE_DESC_2040)
-                instanceof DeleteCommand);
+                        + MODULE_CODE_DESC_2040
+                ) instanceof DeleteCommand);
+
+        // delete multiple lectures
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                        + " " + VALID_LECTURE_NAME_L1
+                        + ", " + VALID_LECTURE_NAME_L2
+                        + MODULE_CODE_DESC_2040
+                ) instanceof DeleteCommand);
+
+        // delete video
         assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
                         + " " + VALID_VIDEO_NAME_V1
-                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
-                instanceof DeleteCommand);
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1
+                ) instanceof DeleteCommand);
 
+        // delete multiple videos
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                        + " " + VALID_VIDEO_NAME_V1
+                        + ", " + VALID_VIDEO_NAME_V2
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1
+                ) instanceof DeleteCommand);
     }
 
     @Test
     public void parseCommand_editModule() throws Exception {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
-        Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2040)
-                .withName(VALID_MODULE_NAME_2040).build();
+        Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(ModuleUtil.getEditCommand(moduleCode, descriptor));
@@ -126,7 +154,7 @@ public class TrackerParserTest {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
 
-        Lecture lecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L2).build();
+        Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(lecture).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(
@@ -140,7 +168,7 @@ public class TrackerParserTest {
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
         VideoName videoName = new VideoName(VALID_VIDEO_NAME_V1);
 
-        Video video = new VideoBuilder().withName(VALID_VIDEO_NAME_V2).build();
+        Video video = new VideoBuilder(TypicalVideos.CONTENT_VIDEO).build();
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(video).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(
@@ -158,8 +186,8 @@ public class TrackerParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(keywords), command);
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(",")));
+        assertEquals(new FindCommand(keywords, false), command);
     }
 
     @Test
@@ -187,11 +215,12 @@ public class TrackerParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND + MESSAGE_KNOWN_COMMANDS, () -> parser.parseCommand("unknownCommand"));
     }
 }

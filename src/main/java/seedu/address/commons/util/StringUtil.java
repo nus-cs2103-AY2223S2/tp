@@ -5,7 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -13,12 +18,13 @@ import java.util.Arrays;
 public class StringUtil {
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
-     *   Ignores case, but a full word match is required.
+     * Returns true if the {@code word} is a substring of any word
+     *   in the {@code sentence} Ignores case.
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       containsWordIgnoreCase("ABc def", "AB") == true
+     *       containsWordIgnoreCase("ABc def", "Ac") == false
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
@@ -35,7 +41,7 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(s -> s.toLowerCase().startsWith(preppedWord.toLowerCase()));
     }
 
     /**
@@ -64,5 +70,36 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Combine a set of tag and form it as a string.
+     * @param tags
+     * @return A sentence of each tags separated by a space.
+     */
+    public static String joinTagsAsString(Set<Tag> tags) {
+        List<String> tagList = new ArrayList<>();
+        for (Tag t: tags) {
+            tagList.add(t.getTagName());
+        }
+        return String.join(" ", tagList);
+    }
+
+    /**
+     * Split a string delimited by space to form a list
+     * @param str
+     * @return A list of String splitted with comma
+     */
+    public static List<String> commaDelimitedStringsToList(String str) {
+        return Arrays.asList(str.split("\\s*,\\s*"));
+    }
+
+    /**
+     * Remove spaces in a sentence
+     * @param str
+     * @return A String of word
+     */
+    public static String joinSentenceToWord(String str) {
+        return String.join("", str.split("\\s+"));
     }
 }

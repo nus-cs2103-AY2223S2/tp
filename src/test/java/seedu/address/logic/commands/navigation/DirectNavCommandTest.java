@@ -16,13 +16,12 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
 public class DirectNavCommandTest {
-    private Module mod = TypicalModules.CS2040S;
-    private Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+    private Module mod = TypicalModules.getCs2040s();
+    private Lecture lec = TypicalLectures.getCs2040sWeek1();
 
     @Test
     void execute_fromRootToMod_success() throws CommandException {
@@ -74,7 +73,7 @@ public class DirectNavCommandTest {
     void execute_missingModule_throwsCommandException() throws CommandException {
         Navigation nav = new Navigation();
         Model model = new ModelStubWithNavigation(nav);
-        Optional<ModuleCode> modOpt = Optional.of(TypicalModules.CS2107.getCode());
+        Optional<ModuleCode> modOpt = Optional.of(TypicalModules.getCs2107().getCode());
         Optional<LectureName> lecOpt = Optional.empty();
 
         DirectNavCommand cmd = new DirectNavCommand(modOpt, lecOpt);
@@ -85,45 +84,10 @@ public class DirectNavCommandTest {
     void execute_missingLecture_throwsCommandException() throws CommandException {
         Navigation nav = new Navigation();
         Model model = new ModelStubWithNavigation(nav);
-        Optional<ModuleCode> modOpt = Optional.of(TypicalModules.CS2040S.getCode());
-        Optional<LectureName> lecOpt = Optional.of(TypicalLectures.CS2040S_WEEK_2.getName());
+        Optional<ModuleCode> modOpt = Optional.of(TypicalModules.getCs2040s().getCode());
+        Optional<LectureName> lecOpt = Optional.of(TypicalLectures.getCs2040sWeek2().getName());
 
         DirectNavCommand cmd = new DirectNavCommand(modOpt, lecOpt);
         assertThrows(CommandException.class, () -> cmd.execute(model));
-    }
-
-    private class ModelStubWithNavigation extends ModelStub {
-        private Navigation nav;
-        private Module mod = TypicalModules.CS2040S;
-        private Lecture lec = TypicalLectures.CS2040S_WEEK_1;
-
-        public ModelStubWithNavigation(Navigation nav) {
-            this.nav = nav;
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode moduleCode) {
-            return moduleCode.equals(mod.getCode());
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-            return lectureName.equals(lec.getName());
-        }
-
-        @Override
-        public void navigateTo(ModuleCode moduleCode) {
-            nav.navigateTo(moduleCode);
-        }
-
-        @Override
-        public void navigateTo(ModuleCode moduleCode, LectureName lectureName) {
-            nav.navigateTo(moduleCode, lectureName);
-        }
-
-        @Override
-        public NavigationContext getCurrentNavContext() {
-            return nav.getCurrentContext();
-        }
     }
 }

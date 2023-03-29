@@ -144,10 +144,8 @@ public class UntagCommand extends Command {
         newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
                 .collect(Collectors.toSet());
 
-        List<Lecture> currentLectureList = (List<Lecture>) untaggingModule.getLectureList();
-
         Module untaggedModule = new Module(untaggingModule.getCode(),
-                untaggingModule.getName(), newTags, currentLectureList);
+                untaggingModule.getName(), newTags, untaggingModule.getLectureList());
         model.setModule(untaggingModule, untaggedModule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
     }

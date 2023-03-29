@@ -23,20 +23,17 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalTags;
 import seedu.address.testutil.TypicalVideos;
-import seedu.address.testutil.VideoBuilder;
 
 public class UntagCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
         UntagCommand command = new UntagCommand(tagSet, moduleCode);
         assertThrows(NullPointerException.class, () -> command.execute(null));
@@ -44,12 +41,12 @@ public class UntagCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode firstModuleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode firstModuleCode = TypicalModules.getCs2040s().getCode();
         Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
 
-        ModuleCode secondModuleCode = TypicalModules.CS2107.getCode();
-        LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
+        ModuleCode secondModuleCode = TypicalModules.getCs2107().getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
         Set<Tag> secondTagSet = new HashSet<>(List.of(TypicalTags.CS2107_LECTURE_1));
 
         UntagCommand untagModule = new UntagCommand(firstTagSet, firstModuleCode);
@@ -67,8 +64,8 @@ public class UntagCommandTest {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>();
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommandModule = new UntagCommand(tagSet, moduleCode);
         UntagCommand untagCommandLecture = new UntagCommand(tagSet, moduleCode, lectureName);
         UntagCommand untagCommandVideo = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
@@ -79,61 +76,61 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagModule_moduleNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2107());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagModule_tagNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2107_1, TypicalTags.CS2107_2,
                 TypicalTags.CS2040S_3));
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagLecture_moduleNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2107());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagLecture_lectureNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagLecture_tagNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG, TypicalTags.CS2107_LECTURE_1,
                 TypicalTags.CS2040S_3));
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagVideo_moduleNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2107());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         VideoName videoName = new VideoName("Probability");
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
@@ -141,10 +138,10 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagVideo_lectureNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         VideoName videoName = new VideoName("Probability");
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
@@ -152,10 +149,10 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagVideo_videoNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         VideoName videoName = new VideoName("Probability");
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
@@ -163,18 +160,18 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagVideo_tagNotFound() {
-        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.VIDEO_TAG_1, TypicalTags.VIDEO_TAG_2));
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));
     }
 
     @Test
     public void execute_untagModule_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module testModule = TypicalModules.getCs2040s();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
@@ -191,8 +188,8 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagLecture_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -210,9 +207,9 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagVideo_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
-        Video testVideo = new VideoBuilder(TypicalVideos.INTRO_VIDEO).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
+        Video testVideo = TypicalVideos.INTRO_VIDEO;
 
         ModelStubAcceptingUntaggedVideo moduleStub = new ModelStubAcceptingUntaggedVideo(testVideo);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.INTRO_VIDEO));
@@ -275,8 +272,7 @@ public class UntagCommandTest {
     }
 
     private class ModelStubAcceptingUntaggedVideo extends ModelStub {
-        private Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
-        private Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
+        private Module module = TypicalModules.getCs2040s();
         private Video video;
 
         public ModelStubAcceptingUntaggedVideo(Video video) {

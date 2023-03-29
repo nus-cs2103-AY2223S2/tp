@@ -14,6 +14,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.Tracker;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.TypicalModules;
 
 public class JsonTrackerStorageTest {
@@ -69,18 +70,20 @@ public class JsonTrackerStorageTest {
         assertEquals(original, new Tracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addModule(TypicalModules.getCs2107());
-        original.removeModule(TypicalModules.getSt2334());
+        Module moduleToAdd = TypicalModules.getCs2107();
+        Module moduleToRemove = TypicalModules.getSt2334();
+
+        original.addModule(moduleToAdd);
+        original.removeModule(moduleToRemove);
         jsonTrackerStorage.saveTracker(original, filePath);
         readBack = jsonTrackerStorage.readTracker(filePath).get();
         assertEquals(original, new Tracker(readBack));
 
         // Save and read without specifying file path
-        original.addModule(TypicalModules.getSt2334());
+        original.addModule(moduleToRemove); // some modification to make sure that a write did occur
         jsonTrackerStorage.saveTracker(original); // file path not specified
         readBack = jsonTrackerStorage.readTracker().get(); // file path not specified
         assertEquals(original, new Tracker(readBack));
-
     }
 
     @Test

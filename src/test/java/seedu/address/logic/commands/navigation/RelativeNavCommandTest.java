@@ -10,17 +10,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Navigation;
 import seedu.address.model.lecture.Lecture;
-import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 
 public class RelativeNavCommandTest {
-    private Module mod = TypicalModules.CS2040S;
-    private Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+    private Module mod = TypicalModules.getCs2040s();
+    private Lecture lec = TypicalLectures.getCs2040sWeek1();
 
     @Test
     void execute_fromRootToLec_success() throws CommandException {
@@ -51,7 +48,7 @@ public class RelativeNavCommandTest {
         Navigation nav = new Navigation();
         Model model = new ModelStubWithNavigation(nav);
 
-        String missingMod = TypicalModules.CS2107.getCode().toString();
+        String missingMod = TypicalModules.getCs2107().getCode().toString();
         RelativeNavCommand cmd = new RelativeNavCommand(missingMod);
 
         assertThrows(CommandException.class, () -> cmd.execute(model));
@@ -74,7 +71,7 @@ public class RelativeNavCommandTest {
         Model model = new ModelStubWithNavigation(nav);
         nav.navigateTo(mod.getCode());
 
-        String missingLec = TypicalLectures.CS2040S_WEEK_2.getName().toString();
+        String missingLec = TypicalLectures.getCs2040sWeek2().getName().toString();
 
         RelativeNavCommand cmd = new RelativeNavCommand(missingLec);
 
@@ -91,41 +88,5 @@ public class RelativeNavCommandTest {
         RelativeNavCommand cmd = new RelativeNavCommand("invalid");
 
         assertThrows(CommandException.class, () -> cmd.execute(model));
-    }
-
-
-    private class ModelStubWithNavigation extends ModelStub {
-        private Navigation nav;
-        private Module mod = TypicalModules.CS2040S;
-        private Lecture lec = TypicalLectures.CS2040S_WEEK_1;
-
-        public ModelStubWithNavigation(Navigation nav) {
-            this.nav = nav;
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode moduleCode) {
-            return moduleCode.equals(mod.getCode());
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-            return lectureName.equals(lec.getName());
-        }
-
-        @Override
-        public void navigateToModFromRoot(ModuleCode code) {
-            nav.navigateToModFromRoot(code);
-        }
-
-        @Override
-        public void navigateToLecFromMod(LectureName lectureName) {
-            nav.navigateToLecFromMod(lectureName);
-        }
-
-        @Override
-        public NavigationContext getCurrentNavContext() {
-            return nav.getCurrentContext();
-        }
     }
 }

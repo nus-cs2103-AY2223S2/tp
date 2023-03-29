@@ -23,14 +23,11 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalTags;
 import seedu.address.testutil.TypicalVideos;
-import seedu.address.testutil.VideoBuilder;
 
 public class TagCommandTest {
     private static final String VALID_TAG_1 = "cool";
@@ -38,7 +35,7 @@ public class TagCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
         TagCommand command = new TagCommand(tagSet, moduleCode);
         assertThrows(NullPointerException.class, () -> command.execute(null));
@@ -46,12 +43,12 @@ public class TagCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode firstModuleCode = TypicalModules.CS2040S.getCode();
+        ModuleCode firstModuleCode = TypicalModules.getCs2040s().getCode();
         Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
 
-        ModuleCode secondModuleCode = TypicalModules.CS2107.getCode();
-        LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
+        ModuleCode secondModuleCode = TypicalModules.getCs2107().getCode();
+        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
         Set<Tag> secondTagSet = new HashSet<>(List.of(TypicalTags.CS2107_LECTURE_1));
 
         TagCommand tagModule = new TagCommand(firstTagSet, firstModuleCode);
@@ -69,8 +66,8 @@ public class TagCommandTest {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>();
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         TagCommand tagCommandModule = new TagCommand(tagSet, moduleCode);
         TagCommand tagCommandLecture = new TagCommand(tagSet, moduleCode, lectureName);
         TagCommand tagCommandVideo = new TagCommand(tagSet, moduleCode, lectureName, videoName);
@@ -81,8 +78,8 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagModule_moduleNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2107).build();
-        Module unfoundModule = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module testModule = TypicalModules.getCs2107();
+        Module unfoundModule = TypicalModules.getCs2040s();
 
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
@@ -95,10 +92,10 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagLecture_moduleNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2107).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Module testModule = TypicalModules.getCs2107();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
 
-        Module unfoundModule = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module unfoundModule = TypicalModules.getCs2040s();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -109,8 +106,8 @@ public class TagCommandTest {
     }
     @Test
     public void execute_tagLecture_lectureNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2107).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Module testModule = TypicalModules.getCs2107();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -122,9 +119,9 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagVideo_moduleNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2107).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
-        Module unfoundModule = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module testModule = TypicalModules.getCs2107();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
+        Module unfoundModule = TypicalModules.getCs2040s();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -136,8 +133,8 @@ public class TagCommandTest {
     }
     @Test
     public void execute_tagVideo_lectureNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2107_LECTURE_2).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2107Lecture2();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -150,8 +147,8 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagVideo_videoNotFound() {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
@@ -164,7 +161,7 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagModule_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module testModule = TypicalModules.getCs2040s();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
 
@@ -185,8 +182,8 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagLecture_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
 
         ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
 
@@ -208,9 +205,9 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagVideo_success() throws CommandException {
-        Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
-        Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
-        Video testVideo = new VideoBuilder(TypicalVideos.INTRO_VIDEO).build();
+        Module testModule = TypicalModules.getCs2040s();
+        Lecture testLecture = TypicalLectures.getCs2040sWeek1();
+        Video testVideo = TypicalVideos.INTRO_VIDEO;
 
         ModelStubAcceptingTaggedVideo moduleStub = new ModelStubAcceptingTaggedVideo(testVideo);
 
@@ -277,8 +274,7 @@ public class TagCommandTest {
     }
 
     private class ModelStubAcceptingTaggedVideo extends ModelStub {
-        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
-        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        private Module module = TypicalModules.getCs2040s();
         private Video video;
 
         public ModelStubAcceptingTaggedVideo(Video video) {

@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
@@ -36,7 +37,11 @@ public class LectureUtil {
     public static String getLectureDetails(ModuleCode moduleCode, Lecture lecture) {
         StringBuilder sb = new StringBuilder();
         sb.append(lecture.getName() + " ");
-        sb.append(PREFIX_MODULE + moduleCode.toString());
+        sb.append(PREFIX_MODULE + " " + moduleCode.toString() + " ");
+
+        if (!lecture.getTags().isEmpty()) {
+            sb.append(PREFIX_TAG + " " + TagUtil.getTagsStr(lecture.getTags()) + " ");
+        }
 
         return sb.toString();
     }
@@ -54,7 +59,21 @@ public class LectureUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName,
             EditLectureDescriptor descriptor) {
 
-        return EditLectureCommand.COMMAND_WORD + " " + lectureName.toString() + " "
+        return EditLectureCommand.COMMAND_WORD + " " + getEditLectureDetails(moduleCode, lectureName, descriptor);
+    }
+
+    /**
+     * Returns the part of the command string which excludes the edit command word.
+     *
+     * @param moduleCode The code of the module containing the lecture to be edited.
+     * @param lectureName The name of the lecture to be edited.
+     * @param descriptor The details on how to edit the lecture.
+     * @return The part of the command string which excludes the edit command word.
+     */
+    public static String getEditLectureDetails(ModuleCode moduleCode, LectureName lectureName,
+            EditLectureDescriptor descriptor) {
+
+        return lectureName.toString() + " "
                 + PREFIX_MODULE + " " + moduleCode.toString() + " "
                 + getEditLectureDescriptorDetails(descriptor);
     }
@@ -68,6 +87,8 @@ public class LectureUtil {
     public static String getEditLectureDescriptorDetails(EditLectureDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
+                .append(" "));
         return sb.toString();
     }
 

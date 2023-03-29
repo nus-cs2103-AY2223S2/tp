@@ -24,7 +24,7 @@ import seedu.address.testutil.TypicalModules;
 public class NavCommandParserTest {
 
     private NavCommandParser parser = new NavCommandParser();
-    private ModuleCode modCode = TypicalModules.CS2040S.getCode();
+    private ModuleCode modCode = TypicalModules.getCs2040s().getCode();
     private LectureName lecName = new LectureName(VALID_LECTURE_NAME_L1);
 
     @Test

@@ -7,12 +7,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.lecture.ReadOnlyLecture;
 
 /**
- * Tests that a {@code Lecture}'s {@code name} matches any of the keywords given.
+ * Tests that a {@code Lecture}'s {@code tags} matches any of the keywords given.
  */
-public class LectureNameContainsKeywordsPredicate implements Predicate<ReadOnlyLecture> {
+public class LectureTagContainsKeywordsPredicate implements Predicate<ReadOnlyLecture> {
     private final List<String> keywords;
 
-    public LectureNameContainsKeywordsPredicate(List<String> keywords) {
+    public LectureTagContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -21,15 +21,15 @@ public class LectureNameContainsKeywordsPredicate implements Predicate<ReadOnlyL
         return keywords.stream()
                 .anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(
-                        StringUtil.joinSentenceToWord(lecture.getName().name),
+                        StringUtil.joinTagsAsString(lecture.getTags()),
                             StringUtil.joinSentenceToWord(keyword)));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LectureNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((LectureNameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof LectureTagContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((LectureTagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

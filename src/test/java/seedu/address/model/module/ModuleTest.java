@@ -19,7 +19,7 @@ import seedu.address.testutil.TypicalModules;
 
 public class ModuleTest {
 
-    private final Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
+    private final Module module = TypicalModules.getCs2040s();
 
     @Test
     public void getTags_modifySet_throwsUnsupportedOperationException() {
@@ -121,7 +121,7 @@ public class ModuleTest {
     @Test
     public void setLecture_targetNotInModule_throwsLectureNotFoundException() {
         assertThrows(LectureNotFoundException.class, () ->
-                module.setLecture(TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic1()));
+                module.setLecture(TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic2()));
     }
 
     @Test

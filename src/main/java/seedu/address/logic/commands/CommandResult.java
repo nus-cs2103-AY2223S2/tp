@@ -19,17 +19,21 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final String currentContext;
+
     /** The level list to be displayed */
     private Level level;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Level level) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Level level, String context) {
+
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.level = level;
+        this.currentContext = context;
     }
 
     /**
@@ -39,6 +43,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.currentContext = "";
     }
 
     /**
@@ -46,7 +51,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Level level) {
-        this(feedbackToUser, false, false, level);
+        this(feedbackToUser, false, false, level, "");
+    }
+
+    public CommandResult(String feedbackToUser, String context) {
+        this(feedbackToUser, false, false, null, context);
     }
 
     /**
@@ -63,6 +72,10 @@ public class CommandResult {
 
     public Level getLevel() {
         return level;
+    }
+
+    public String getCurrentContext() {
+        return this.currentContext;
     }
 
     public boolean isShowHelp() {
@@ -86,6 +99,7 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && currentContext.equals(otherCommandResult.currentContext)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }

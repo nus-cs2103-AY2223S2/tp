@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -84,11 +86,11 @@ public class EditModuleCommand extends EditCommand {
 
         ModuleCode updatedCode = editModuleDescriptor.getCode().orElse(moduleToEdit.getCode());
         ModuleName updateName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
+        Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
 
-        Set<Tag> tags = moduleToEdit.getTags();
         List<? extends ReadOnlyLecture> lectures = moduleToEdit.getLectureList();
 
-        return new Module(updatedCode, updateName, tags, lectures);
+        return new Module(updatedCode, updateName, updatedTags, lectures);
     }
 
     /**
@@ -98,6 +100,7 @@ public class EditModuleCommand extends EditCommand {
     public static class EditModuleDescriptor {
         private ModuleCode code;
         private ModuleName name;
+        private Set<Tag> tags;
 
         public EditModuleDescriptor() {}
 
@@ -111,6 +114,7 @@ public class EditModuleCommand extends EditCommand {
 
             setCode(toCopy.code);
             setName(toCopy.name);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -119,7 +123,7 @@ public class EditModuleCommand extends EditCommand {
          * @return True if at least one field is edited. Otherwise, false.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(code, name);
+            return CollectionUtil.isAnyNonNull(code, name, tags);
         }
 
         public Optional<ModuleCode> getCode() {
@@ -138,6 +142,28 @@ public class EditModuleCommand extends EditCommand {
             this.name = name;
         }
 
+        /**
+         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.<p>
+         *
+         * Else, returns an {@code Optional#empty()}.
+         *
+         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
+         *         {@code Optional#empty()}.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
+        }
+
+        /**
+         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
+         *
+         * @param newTags The new tags.
+         */
+        public void setTags(Set<Tag> newTags) {
+            this.tags = newTags == null ? null : new HashSet<>(newTags);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -151,7 +177,8 @@ public class EditModuleCommand extends EditCommand {
             EditModuleDescriptor descriptor = (EditModuleDescriptor) other;
 
             return getName().equals(descriptor.getName())
-                    && getCode().equals(descriptor.getCode());
+                    && getCode().equals(descriptor.getCode())
+                    && getTags().equals(descriptor.getTags());
         }
     }
 

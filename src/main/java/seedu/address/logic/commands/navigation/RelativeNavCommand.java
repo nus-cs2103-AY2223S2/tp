@@ -8,6 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
+import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 /**
  * Navigates to a target which can be a module or lecture depending on current context.
@@ -27,18 +28,10 @@ public class RelativeNavCommand extends NavCommand {
         NavigationContext navContext = model.getCurrentNavContext();
 
         try {
-            if (navContext.getModuleCode() == null) {
-                ModuleCode moduleCode = new ModuleCode(target);
-                if (!model.hasModule(moduleCode)) {
-                    throw new CommandException("The module code provided is invalid!");
-                }
-                model.navigateToModFromRoot(moduleCode);
-            } else if (navContext.getLectureName() == null) {
-                LectureName lectureName = new LectureName(target);
-                if (!model.hasLecture(navContext.getModuleCode(), lectureName)) {
-                    throw new CommandException("The lecture name provided is invalid!");
-                }
-                model.navigateToLecFromMod(lectureName);
+            if (navContext.getLayer() == NavLayer.ROOT) {
+                navigateToModFromRoot(model);
+            } else if (navContext.getLayer() == NavLayer.MODULE) {
+                navigateToLecFromMod(model, navContext);
             } else {
                 throw new CommandException("Nothing to navigate to!");
             }
@@ -46,8 +39,32 @@ public class RelativeNavCommand extends NavCommand {
             throw new CommandException(e.getMessage());
         }
 
-        return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
+        return getSuccessfulCommandResult(model.getCurrentNavContext(), model);
     }
+
+    private void navigateToModFromRoot(Model model) throws CommandException {
+        ModuleCode moduleCode = new ModuleCode(target);
+
+        if (!model.hasModule(moduleCode)) {
+            throw new CommandException("The module code provided is invalid!");
+        }
+
+        model.navigateToModFromRoot(moduleCode);
+        listAtModule(moduleCode, model);
+    }
+
+    private void navigateToLecFromMod(Model model, NavigationContext navContext) throws CommandException {
+        ModuleCode moduleCode = navContext.getModuleCode();
+        LectureName lectureName = new LectureName(target);
+
+        if (!model.hasLecture(moduleCode, lectureName)) {
+            throw new CommandException("The lecture name provided is invalid!");
+        }
+
+        model.navigateToLecFromMod(lectureName);
+        listAtLecture(moduleCode, lectureName, model);
+    }
+
 
     @Override
     public boolean equals(Object other) {

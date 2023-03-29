@@ -179,7 +179,7 @@ public class Module implements ReadOnlyModule {
 
         if (!name.isEmpty()) {
             builder.append("; Name: ")
-                .append(getName());
+                    .append(getName());
         }
 
         Set<Tag> tags = getTags();

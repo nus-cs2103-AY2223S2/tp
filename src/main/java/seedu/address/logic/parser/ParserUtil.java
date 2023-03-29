@@ -156,4 +156,5 @@ public class ParserUtil {
         }
         return new VideoName(trimmedVideoName);
     }
+
 }

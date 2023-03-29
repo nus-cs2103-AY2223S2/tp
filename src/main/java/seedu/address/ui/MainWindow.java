@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+
+    private CommandBox commandBox;
     private ModuleListPanel moduleListPanel;
     private LectureListPanel lectureListPanel;
     private VideoListPanel videoListPanel;
@@ -124,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -210,6 +212,10 @@ public class MainWindow extends UiPart<Stage> {
             setListPanelPlaceholder(listLevel);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getCurrentContext() != "") {
+                commandBox.setContextLabel(commandResult.getCurrentContext());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

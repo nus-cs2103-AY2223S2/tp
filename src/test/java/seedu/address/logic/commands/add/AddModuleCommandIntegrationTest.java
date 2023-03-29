@@ -3,7 +3,6 @@ package seedu.address.logic.commands.add;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -17,12 +16,7 @@ import seedu.address.testutil.TypicalModules;
  */
 public class AddModuleCommandIntegrationTest {
 
-    private Model model;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
-    }
+    private final Model model = new ModelManager(TypicalModules.getTypicalTracker(), new UserPrefs());
 
     @Test
     public void execute_newModule_success() {
