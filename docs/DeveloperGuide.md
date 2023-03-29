@@ -45,6 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/java/expresslibrary/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/java/expresslibrary/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -57,16 +58,15 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePerson 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `deletePerson 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its _API_ in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -101,6 +101,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `ExpressLibraryParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
@@ -118,14 +119,15 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `ExpressLibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `ExpressLibraryParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/java/expresslibrary/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -150,6 +152,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
+
 * can save both express library data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `ExpressLibraryStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
@@ -240,11 +243,11 @@ Step 3. `FindBookCommand#execute` will call `Model#updateFilteredBookList` to up
 
 Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `LogicManager#execute`, which then passes control back to the UI component.
 
-[//]: # (Step 5. `MainWindow#executeCommand` then uses the `CommandResult` to display feedback to the user on the UI which states: “{Number of books that match keyword} books found!”)
+Step 5. `MainWindow#executeCommand` then uses the `CommandResult` to display feedback to the user on the UI which states: “{Number of books that match keyword} books found!”
 
 The following sequence diagram shows how the findBook operation works:
-
 ![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -278,15 +281,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​       | I want to …​                                      | So that I can…​                                                    |
 |----------|---------------|---------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | librarian          | add a new book that has not been added in the app | track the status of the new book                                   
+| `* * *`  | librarian          | add a new book that has not been added in the app | track the status of the new book
 | `* * *`  | librarian          | edit the details of a specific book               | track any changes to the book                         |
-| `* * *`  | librarian           | delete a book                                     | not track it if the book is no longer in the library                            |                     
+| `* * *`  | librarian           | delete a book                                     | not track it if the book is no longer in the library                            |
 | `* * *`  | librarian          | have the data automatically saved in hard drive    | refer to the data in the future                                    |
 | `* *`    | librarian           | be able to keep a record of all the people who have borrowed books | better manage the library                                          |
 | `* *`    | librarian           | add the book to the contact details of the person who borrowed them | rent the book out while keeping track of the book and the due date |
 | `* *`    | librarian           | remove a book from a patron if the patron has returned the book | allow the book to be borrowed by other patrons                    |
 | `*`      | advanced librarian  | edit the data file                                | adjust the data to suit my needs                                   |
-
 
 ### Use cases
 
@@ -307,10 +309,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons.
-2.  ExpressLibrary shows a list of persons.
-3.  User requests to add a book to a specific person in the list.
-4.  ExpressLibrary adds a book field to the person.
+1. User requests to list persons.
+2. ExpressLibrary shows a list of persons.
+3. User requests to add a book to a specific person in the list.
+4. ExpressLibrary adds a book field to the person.
 
     Use case ends.
 
@@ -322,17 +324,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. ExpressLibrary shows an error message.
+  * 3a1. ExpressLibrary shows an error message.
 
       Use case resumes at step 2.
 
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be able to load the application within 2 seconds.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be able to load the application within 2 seconds.
 
 ### Glossary
 
@@ -348,7 +349,7 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers are expected to do more _exploratory_ testing.
 
 </div>
 
@@ -429,8 +430,8 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing data files.
-   1. Delete `[JAR file location]/data/expresslibrary.json` if it exists. 
-   
+   1. Delete `[JAR file location]/data/expresslibrary.json` if it exists.
+
    Expected: Launch ExpressLibrary and you should be able to see sample data with people and books.
 
 2. Dealing with corrupted data files.
