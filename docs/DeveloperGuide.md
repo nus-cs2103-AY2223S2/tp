@@ -15,6 +15,8 @@ title: Developer Guide
     * [2.6 Common Classes](#26-common-classes)
   * [3. Implementation](#3-implementation)
     * [3.1 Add Feature](#31-add-feature)
+      * [3.1.1 Add a subsection](#311-add-a-subsection)
+      * [3.1.2 Delete a subsection](#312-delete-a-subsection)
     * [3.2 Clear Feature](#32-clear-feature)
     * [3.3 Delete Feature](#33-delete-feature)
     * [3.4 Edit Feature](#34-edit-feature)
@@ -24,7 +26,10 @@ title: Developer Guide
     * [3.8 Stats Feature](#38-stats-feature)
     * [3.9 Sort Feature](#39-sort-feature)
     * [3.10 Alert Feature](#310-alert-feature)
-    * [3.11 Plan Feature](#311-plan-feature)
+    * [3.11 Schedule Feature](#311-schedule-feature)
+      * [3.11.1 How it works](#3111-how-it-works) 
+      * [3.11.2 Generating a new plan](#3112-generating-a-new-plan)
+    * [3.12 Tag Color Codes](#312-tag-color-codes)
   * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
   * [5. Appendix: Requirements](#5-appendix-requirements)
   * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
@@ -63,7 +68,7 @@ A good understanding of the content in this section is useful in understanding h
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W13-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### 2.1 Architecture
@@ -76,18 +81,18 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -109,13 +114,13 @@ The sections below give more details of each component.
 
 ### 2.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -126,7 +131,7 @@ The `UI` component,
 
 ### 2.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -150,24 +155,24 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
+* stores the task book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * * stores the generated plan, i.e. all `DailyPlan` objects (which are contained within a `MonthlyPlan` object)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Task` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Task` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -176,13 +181,13 @@ The `Model` component,
 
 ### 2.5 Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/task/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data, user preference data, and planner data in json format, and read them back into corresponding objects.
-* inherits from `AddressBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both task book data, user preference data, and planner data in json format, and read them back into corresponding objects.
+* inherits from `TaskBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### 2.6 Common classes
@@ -199,16 +204,16 @@ Classes used by multiple components are in the `seedu.task.commons` package.
 
 ### 3.1 Add Feature
 
-The add feature now supports three types of additions: simple tasks, events and deadlines. The AddCommandParser will handle the multiple prefixes in the input before the AddCommand adds a list of tasks into the taskbook.
+The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the multiple prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
 Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
 
-You can find the specific implementation in the 'AddCommandParser' class and the 'AddCommand' class
+You can find the specific implementation in the `AddCommandParser` class and the `AddCommand` class
 
 Given below is a scenario of how the add command is used and behaves.
 
 Step 1. The user inputs an `add` Command with parameters `n/CS2109S n/CS2103T n/homework`.
 
-Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
+Step 2. The `AddCommandParser` recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
 
 Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
 
@@ -222,7 +227,57 @@ The following diagram summarises the sequence of events happening during the exe
 ![AddCommandSequenceDiagram](images/AddCommand.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
-![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+![AddCommandActivityDiagram](images/AddActivityDiagram.png)
+
+#### 3.1.1 Add a Subsection
+Our app supports adding a subsection to a parent task. The command word is `subsection` and the parameters are `index`, `n/name` and `d/description`. Note that the description here is optional.
+A user may wish to add a subsection to a task named "Do homework" with index 1 in the list currently shown to the user, and the user can do so by entering `subsection 1 n/CS2100 d/Lab 1`.
+Note that subsection only contains a name and description, unlike the parent task that contains more fields.
+
+Given below is an example usage scenario and how `subsection` is executed.
+
+Step 1. The user inputs a `subsection` command with parameter `1 n/CS2100 d/Lab 1`. The parser recognises the command word and calls AddSubtaskParser.
+
+Step 2. The `AddSubtaskParser` interprets the index and create a new subtask class with input name and description.
+
+Step 3. `AddSubtaskParser` calls `AddSubtaskCommand`.
+
+Step 4. `AddSubtaskCommand` is executed and a new parent task with the new subtask added to the `subtaskList` is created.
+
+Step 5. The new parent task replaces the old parent task.
+
+Step 6. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution.
+![SubsectionSequenceDiagram](images/SubsectionSequenceDiagram.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![SubsectionActivityDiagram](images/SubsectionActivityDiagram.png)
+
+#### 3.1.2 Delete a Subsection
+The user can delete a subsection from a parent task by entering `remove-subsection` command.
+A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of 
+the parent task, and the index after the `I` parameter refers to the index of the subsection in the parent task.
+
+Given below is an example usage scenario and how `subsection` is executed.
+
+Step 1. The user inputs a `remove-subsection` command with parameter `1 I/1`. The parser recognises the command word and calls DeleteSubtaskParser.
+
+Step 2. The `DeleteSubtaskParser` interprets the indexes.
+
+Step 3. `DeleteSubtaskParser` calls `DeleteSubtaskCommand` and passes the two indexes to the command.
+
+Step 4. `DeleteSubtaskCommand` is executed and a new parent task with the updated `subtaskList` after deleting the subtask at index 1 is created.
+
+Step 5. The new parent task replaces the old parent task.
+
+Step 6. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution.
+![RemoveSubsectionCommandSequenceDiagram](images/RemoveSubsectionSequenceDiagram.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![RemoveSubsectionCommandActivityDiagram](images/RemoveSubsectionActivityDiagram.png)
 
 ### 3.2 Clear Feature
 
@@ -243,7 +298,7 @@ The following diagram summarises the sequence of events happening during the exe
 Deletes a task based on index(es) of tasks from the list currently being shown to users.
 
 Previously in AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
-Input index(es) is checked for validity (has a task at supposed index and is entered in ascending order) within _DeleteCommandParser_, and an error prompt will be displayed to users should the input be invalid.
+Input index(es) is checked for validity (has a task at supposed index and is entered in ascending order) within `DeleteCommandParser`, and an error prompt will be displayed to users should the input be invalid.
 
 Multiple deletions within a single command must be done in the following manner:
 1. Indices must be separated by whitespace, such as `delete 1 2 3`
@@ -256,11 +311,11 @@ Given below is an example usage scenario and how `delete` is executed.
 
 Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls _DeleteCommandParser_.
 
-Step 2. The _DeleteCommandParser_ interprets the indices and saves it as an IndexList.
+Step 2. The `DeleteCommandParser` interprets the indices and saves it as an IndexList.
 
-Step 3. _DeleteCommandParser_ calls _DeleteCommand_.
+Step 3. `DeleteCommandParser` calls `DeleteCommand`.
 
-Step 4. _DeleteCommand_ is executed and all relevant tasks are removed from TaskBook.
+Step 4. `DeleteCommandParser` is executed and all relevant tasks are removed from TaskBook.
 
 Step 5. Results are shown immediately on UI.
 
@@ -288,6 +343,33 @@ Option 1 is chosen as a more experienced user will know what types of input are 
 
 ### 3.4 Edit Feature
 
+The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with 
+prefixes after it, such as `n/homework` will change the name of the original task to homework.
+
+You can find the specific implementation in the `EditCommandParser` and `EditCommand` class.
+
+Given below is an example usage scenario and how the edit mechanism behaves.
+
+Step 1. The user inputs a `edit` command with parameter `1 n/homework`. The parser recognises the command word and calls the EditCommandParser.
+
+Step 2. The `EditCommandParser` recognises that the parameter being changed is the name field and the index of the task is 1.
+
+Step 3. The `EditCommandParser` creates an `EditTaskDescriptor` that stores the changed parameter value, which is `homework` in this case.
+
+Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`. 
+
+Step 5. The `EditCommand` is executed and a new task is created, with the name parameter changed to "homework". The new task replaces the original task in the task list.
+
+Step 6. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
 ### 3.5 Find Feature
 
 Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field.
@@ -309,11 +391,11 @@ Step 5. The result of the filtered list is passed back to the UI.
 
 The following sequence diagram summarizes what happens in this example usage scenario:
 
-![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new `find` command:
 
-![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 #### 3.5.1 Design Consideration
 
