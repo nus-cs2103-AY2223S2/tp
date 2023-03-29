@@ -35,8 +35,7 @@ Flag summary
 Command summary
 -->
 
-# Vimification User Guide
-
+## Table of Contents
 * Table of Contents
 {:toc}
 <!-- DEPRECATED -->
@@ -78,7 +77,7 @@ With Vimification, you can quickly and easily create new tasks, set due dates, p
 
 So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ## Purpose of this User Guide
 
@@ -90,7 +89,7 @@ Additionally, it will offer troubleshooting tips and solutions to common issues 
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ---
 
@@ -136,7 +135,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 2. Refer to the [Features](#features) below for details of each command.
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ---
 
@@ -146,7 +145,7 @@ Vimification is designed to mimic Vim as closely as possible. Navigate Vimificat
 
 Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ## Using the commands
 
@@ -154,16 +153,14 @@ Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as w
 Example:
 <img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" width="1203" height="599" title="How to bring up the command input">
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ## Information on commands' parameters
 
 <div markdown="block" class="alert alert-info">
 
 <!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
-*:information-source: Take note of how the command format is being interpretted, to know what parameters it requires.*
-
-<br>
+*Take note of how the command format is being interpretted, to know what parameters it requires.*
 
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
   - e.g. `:a <title> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
@@ -186,7 +183,7 @@ For commands that do not take in parameters (such as `help`, `list`, `exit` and 
 
 </div>
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ---
 
@@ -295,7 +292,7 @@ If your changes to the data file makes its format invalid, Vimification will dis
 
 _Details coming soon ..._
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ---
 
@@ -304,7 +301,7 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
-<p class="back-to-top" style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
 
 ---
 
@@ -324,4 +321,4 @@ _Details coming soon ..._
 | Edit existing data     |                                                                                          |                                                    |
 
 
-<p style="text-align: right"><a href="#vimification-user-guide">Back to Top &#8593;</a></p>
+<p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
