@@ -676,7 +676,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case UC1: Add a student**
+#### Use case UC1: Add a student
+{:.no_toc}
 
 **MSS**
 
@@ -708,7 +709,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
       Use case ends
 
 
-**Use case UC2: Find a student**
+#### Use case UC2: Find a student
+{:.no_toc}
 
 **MSS**
 
@@ -735,7 +737,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
     Use case resumes from step 1
 
-**Use case UC3: Delete a student**
+#### Use case UC3: Delete a student
+{:.no_toc}
 
 **MSS**
 
@@ -764,7 +767,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
     
     Use case resumes at step 2
 
-**Use case UC4: List student(s)**
+#### Use case UC4: List student(s)
+{:.no_toc}
 
 **MSS**
 
@@ -780,7 +784,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
     
     Use case ends.
 
-**Use case UC5: Update remarks**
+#### Use case UC5: Update remarks
+{:.no_toc}
 
 **MSS**
 
@@ -805,7 +810,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
     
     Use case resumes at step 2
 
-**Use case UC6: Edit particulars**
+#### Use case UC6: Edit particulars
+{:.no_toc}
 
 **MSS**
 
@@ -831,7 +837,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
     
     Use case ends
 
-**Use case UC7: Exiting the application**
+#### Use case UC7: Exiting the application
+{:.no_toc}
 
 **MSS**
 
