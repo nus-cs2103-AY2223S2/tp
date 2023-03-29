@@ -101,7 +101,7 @@ public class UpdateCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT_NAME);
         }
 
-        if ( !patientToEdit.isSameIc(editedPatient) && careFlowModel.hasSamePatientIc(editedPatient)) {
+        if (!patientToEdit.isSameIc(editedPatient) && careFlowModel.hasSamePatientIc(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT_IC);
         }
 

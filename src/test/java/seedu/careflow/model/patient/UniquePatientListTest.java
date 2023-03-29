@@ -210,7 +210,8 @@ public class UniquePatientListTest {
     public void setPatients_listWithDuplicatePatientsIc_throwsDuplicatePersonException() {
         Patient editedBob = new PatientBuilder(BOB).withIc(VALID_IC_AMY).build();
         List<Patient> listWithDuplicatePatientsIc = Arrays.asList(AMY, editedBob);
-        assertThrows(DuplicatePatientIcException.class, () -> uniquePatientList.setPatients(listWithDuplicatePatientsIc));
+        assertThrows(
+                DuplicatePatientIcException.class, () -> uniquePatientList.setPatients(listWithDuplicatePatientsIc));
     }
 
     @Test
