@@ -292,7 +292,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### \[Proposed\] Company Command Feature
+### Company Command Feature
 
 The proposed CompanyCommand feature allows the user to filter companies based on a given keyword. The idea is that the
 user can filter the job list by company which shows all roles pertaining to a certain company.
@@ -302,7 +302,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/SalaryCommand0.png" width="800" />
+   current address book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
@@ -321,6 +321,40 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How Company Command executes:**
 
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
+    * Pros: Easy to implement.
+    * Cons: More CLI needs to be added if more attributes are needed to sort.
+
+_{more aspects and alternatives to be added}_
+
+### Tag Command Feature
+
+The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
+user can filter the job list by tag which shows all roles pertaining to a certain tag.
+
+The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
+
+Given below is an example usage of how TagCommand is being used in the following steps.
+
+1. The user launches the application for the first time. The `AddressBook` will be initialized with the
+   current address book. <img src="images/startUp.png" width="800" />
+
+2. The user can choose to use the `Tag Command` to filter tags.
+    - The user executes `tag <keyword>` command to filter roles by their tag.
+      <img src="images/TagCommand.png" width="800" />
+
+The following sequence diagram shows how the Tag Command is being done:
+
+<img src="images/TagCommandSequenceDiagram.png" width="800" />
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="300" />
+
+#### Design considerations:
+
+**Aspect: How Tag Command executes:**
+
+* **Alternative 1 (current choice):** Filter roles that contain the keyword in the tag field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
