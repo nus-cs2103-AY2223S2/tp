@@ -45,6 +45,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of notes */
     ObservableList<Note> getFilteredNoteList();
 
+    /** Returns the InternshipApplication with the most imminent interview*/
+    InternshipApplication getReminderApplication();
+
     /**
      * Returns the user prefs' address book file path.
      */

@@ -91,6 +91,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public InternshipApplication getReminderApplication() {
+        model.updateReminder();
+        return model.getReminder();
+    }
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

@@ -60,8 +60,7 @@ public class QuickAccessToolbar extends UiPart<Region> {
     @FXML
     private void redirectToReminder() {
         try {
-            //todo: replace with command that shows reminder
-            commandExecutor.execute("list_reminder");
+            commandExecutor.execute("remind");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(notificationButton);
         }
