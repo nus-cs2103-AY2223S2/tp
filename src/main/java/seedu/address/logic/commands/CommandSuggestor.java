@@ -67,6 +67,22 @@ public class CommandSuggestor {
         assert commandArgPrefixes.keySet().stream().allMatch(commandList::contains);
         // Assert that they both contains only the same values and nothing else, with no duplicates.
         assert commandArgPrefixes.keySet().size() == commandList.size();
+
+        // For commands with index arguments, the index must be the first argument.
+        assert commandArgPrefixes.values().stream()
+                .filter(argPrefix -> argPrefix.contains(PREFIX_INDEX))
+                .allMatch(argPrefix -> argPrefix.get(0).equals(PREFIX_INDEX));
+        
+        // For commands with keyword arguments, the keyword is assumed to be the only argument.
+        assert commandArgPrefixes.values().stream()
+                .filter(argPrefix -> argPrefix.contains(PREFIX_KEYWORD))
+                .allMatch(argPrefix -> argPrefix.size() == 1);
+        
+        // All commands are assume to only have at most 1 prefix-less arguments (eg. index/keywords).
+        assert commandArgPrefixes.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .filter(Prefix::isPlaceholder)
+                        .count() <= 1);
     }
 
     /**
@@ -211,36 +227,22 @@ public class CommandSuggestor {
                     : matchingArgs.substring(lastWord.length());
         }
 
-        String argumentSuggestion = "";
-        String[] userInputArray = commmandBody.trim().split(" ");
-        Prefix currPrefix = null;
-        boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
-        boolean hasPrefix = (!commmandBody.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
-
-        if (hasKeyword) {
-            // Check if user input contains keyword
-            if (commmandBody.isEmpty()) {
-                argumentSuggestion += " " + argPrefixes.get(0).getPlaceholderText();
-            }
-            argumentMultimap.put(PREFIX_KEYWORD, "");
-        } else if (hasPrefix && !userInputArray[userInputArray.length - 1].contains("/")) {
-            // Check if user is trying to autocomplete a prefix
-            currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
-            argumentMultimap.put(currPrefix, "");
-
-            if (argPrefixes.contains(currPrefix)) {
-                argumentSuggestion += "/ ";
-            } else if (!commmandBody.contains("/")) {
-                throw new CommandException("Invalid prefix");
-            }
+        boolean isKeywordRequired = argPrefixes.contains(PREFIX_KEYWORD);
+        if (isKeywordRequired) {
+            // Commands with keyword argument are assumed to only require that keyword as argument.
+            // If the keyword isn't the only arg., then more checks/parsing needs to be done when
+            // gettingt he suggestions.
+            assert argPrefixes.size() == 1;
         }
 
-        for (Prefix prefix : argPrefixes) {
-            if (argumentMultimap.getValue(prefix).isEmpty()) {
-                argumentSuggestion += " " + prefix + prefix.getPlaceholderText();
-            }
-        }
-        return argumentSuggestion;
+        String remainingArgs = argPrefixes.stream()
+                // Excludes prefix-less arguments like index/keywords.
+                .filter(prefix -> !prefix.isPlaceholder())
+                // Get only unfilled arguments.
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
+                .collect(Collectors.joining(" "));
+        return remainingArgs;
     }
 
     /**
