@@ -75,7 +75,7 @@ saving time in the long run over the usage of FastTrack.
 The **Command Line Interface (CLI)** is interacted primarily through single-line text commands. This means that any expense
 can be added with just one line.
 
-Commands are in the form 
+Commands are in the form
 ```
 command [tag][parameter for tag] [tag2][parameter] ...
 ```
@@ -379,7 +379,7 @@ _Details coming soon ..._
 ## Command summary
 
 
-### Category Commands 
+### Category Commands
 
 | Action                                             | Format                                     | Examples                          |
 |----------------------------------------------------|--------------------------------------------|-----------------------------------|
@@ -388,7 +388,7 @@ _Details coming soon ..._
 | [**Edit Category**](#editing-a-category--ecat)     | `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `ecat 1 c/New Name s/New Summary` |
 | [**List Categories**](#listing-categories-lcat)    | `lcat`                                     | `lcat`                            |
 
-### Expense Commands 
+### Expense Commands
 | Action                                                  | Format                                                             | Examples                         |
 |---------------------------------------------------------|--------------------------------------------------------------------|----------------------------------|
 | [**Add Expense**](#adding-an-expense-add)| `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`| `add c/Food p/20 n/Mac d/14/2/23`|
