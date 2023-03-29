@@ -688,6 +688,8 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
+<div style="page-break-after: always"></div>
+
 ## 5.3 Email: `e/`
 >Email refers to a contact's email address.
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
@@ -732,6 +734,8 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
     * The username should contain at least 5 characters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
 
 ## 5.7 WhatsApp: `wa/`
 >WhatsApp refers to a contact's WhatsApp phone number.
@@ -781,6 +785,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 * A contact can have any number of CCAs assigned to it.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
+
 
 ### 5.9.3 CCA Position Tags: `ccapos/`
 >CCA Position tags refer to CCA Positions that you can assign to a contact to keep track of the positions that the contact holds in their various CCAs.
