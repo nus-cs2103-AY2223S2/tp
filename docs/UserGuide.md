@@ -4,7 +4,7 @@ title: User Guide
 ---
 <img src="images/FitBookBanner.png" width="1200" />
 
-<h2><div markdown="span" style="color:#f9963f">About FitBook</div></h2>
+##About FitBook
 
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
 
