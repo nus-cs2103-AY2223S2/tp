@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Description;
 import seedu.internship.model.internship.Internship;
@@ -84,7 +87,11 @@ public class EditCommand extends Command {
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
+        model.updateSelectedInternship(editedInternship);
+
+        model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
+        ObservableList<Event> events = model.getFilteredEventList();
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship), ResultType.SHOW_INFO, editedInternship, events);
     }
 
     /**

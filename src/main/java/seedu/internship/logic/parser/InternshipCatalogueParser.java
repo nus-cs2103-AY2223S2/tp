@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.CalendarCommand;
 import seedu.internship.logic.commands.ClashCommand;
-import seedu.internship.logic.commands.ClearCommand;
+import seedu.internship.logic.commands.DeleteAllCommand;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.EditCommand;
@@ -59,7 +59,7 @@ public class InternshipCatalogueParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case SelectCommand.COMMAND_WORD:
-            return new ViewCommandParser().parse(arguments);
+            return new SelectCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
@@ -72,8 +72,8 @@ public class InternshipCatalogueParser {
             return new HomeCommand();
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case DeleteAllCommand.COMMAND_WORD:
+            return new DeleteAllCommandParser().parse(arguments);
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
         case ClashCommand.COMMAND_WORD:

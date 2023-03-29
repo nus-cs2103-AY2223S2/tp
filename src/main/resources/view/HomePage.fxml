@@ -57,7 +57,8 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <VBox fx:id="commandSummary" />
+                  <Separator prefWidth="200.0" />
+                  <Label fx:id="commands" text="commands" wrapText="true" />
                </children>
                <VBox.margin>
                   <Insets left="10.0" />

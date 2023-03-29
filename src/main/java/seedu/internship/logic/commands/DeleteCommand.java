@@ -46,7 +46,7 @@ public class DeleteCommand extends Command {
             model.clearSelectedInternship();
         }
         model.deleteInternship(internshipToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
     }
 
     @Override

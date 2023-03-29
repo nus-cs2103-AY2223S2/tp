@@ -21,7 +21,8 @@ public class StatsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Statistics statistics = new Statistics(model.getInternshipCatalogue().getInternshipList());
+        Statistics statistics = new Statistics(model.getInternshipCatalogue().getInternshipList(),
+                model.getEventCatalogue().getEventList());
 
         return new CommandResult(SHOWING_STATS_MESSAGE, ResultType.STATS, statistics);
     }
