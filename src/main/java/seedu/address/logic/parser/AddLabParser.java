@@ -70,7 +70,7 @@ public class AddLabParser implements Parser<AddLabCommand> {
                 ParserUtil.makeBusy(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(2)});
             }
         }
-        
+
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
             file = ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get());
             lab.addAttachment(file);

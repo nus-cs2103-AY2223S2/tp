@@ -16,31 +16,31 @@ public class HelpLabCommand extends HelpCommand {
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
     public static final String ADD_LAB = "Add:                         "
-            +"vim Lab/LAB_NAME";
+            + "vim Lab/LAB_NAME";
 
     public static final String ADD_RECUR = "Add Multiple:            "
-            +"schedule Recur/Lab/LAB_NAME -n REPETITIONS";
+            + "schedule Recur/Lab/LAB_NAME -n REPETITIONS";
 
     public static final String DELETE_LAB = "Delete:                     "
-            +"delete Lab/INDEX";
+            + "delete Lab/INDEX";
 
     public static final String EDIT_LAB = "Edit:                         "
-            +"editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
+            + "editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
 
     public static final String ADD_STUDENT = "Add Student:            "
-            +"addStudent INDEX Lab/LAB_NAME";
+            + "addStudent INDEX Lab/LAB_NAME";
 
     public static final String DELETE_STUDENT = "Delete Student:        "
-            +"deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_NAME";
+            + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_NAME";
 
     public static final String ADD_NOTE = "Add Note:         "
-            +"add-note -content NOTE ?????";
+            + "add-note -content NOTE ?????";
 
     public static final String EDIT_NOTE = "Edit Note:          "
-            +"edit-note -content NOTE ?????";
+            + "edit-note -content NOTE ?????";
 
     public static final String DELETE_NOTE = "Delete Note:      "
-            +"rm-note -type Lab -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
+            + "rm-note -type Lab -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
 
     @Override
     public CommandResult execute(Model model) {
