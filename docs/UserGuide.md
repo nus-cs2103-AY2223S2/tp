@@ -950,6 +950,8 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 > **Special Characters:**
 > Characters that are not alphabetic or numeric.
 
+<div style="page-break-after: always"></div>
+
 ### U
 > **UTown Residence:**
 > Also known as UTR. On-campus accommodation for students at the National University of Singapore.
