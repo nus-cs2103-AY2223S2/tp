@@ -2,8 +2,10 @@ package seedu.modtrek.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_MODULE_MISSING;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
+import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.ST2334;
@@ -27,6 +29,18 @@ import seedu.modtrek.testutil.ModuleUtil;
 class TagCommandTest {
     private Model model = new ModelManager(getTypicalDegreeProgression(),
             new UserPrefs());
+
+    @Test
+    public void execute_invalidModuleIndexUnfilteredList_failure() throws ParseException {
+        TagCommand tagCommandInclude = new TagCommand(CS2100.getCode(),
+                true, ParserUtil.parseTags(new HashSet<>()));
+        TagCommand tagCommandRemove = new TagCommand(CS2100.getCode(),
+                false, ParserUtil.parseTags(new HashSet<>()));
+        assertCommandFailure(tagCommandInclude, new ModelManager(),
+                String.format(MESSAGE_MODULE_MISSING, CS2100.getCode()));
+        assertCommandFailure(tagCommandRemove, new ModelManager(),
+                String.format(MESSAGE_MODULE_MISSING, CS2100.getCode()));
+    }
 
     @Test
     public void execute_addOneTag_success() throws ParseException {
