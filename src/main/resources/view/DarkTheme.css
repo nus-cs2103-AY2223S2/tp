@@ -369,11 +369,3 @@
     -fx-background-radius: 2;
     -fx-font-size: 13;
 }
-
-.gender {
-     -fx-background-color: #AC8E60;
-     -fx-padding: 1 2 1 2;
-     -fx-border-radius: 1;
-     -fx-background-radius: 1;
-     -fx-font-size: 13;
- }
