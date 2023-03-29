@@ -57,12 +57,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX_FORMAT)
-                    || pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-            } else {
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
                 throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
             }
+//            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX_FORMAT)
+//                    || pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX)) {
+//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+//            } else {
+//                throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+//            }
         }
 
         EditInternshipDescriptor editInternshipDescriptor = new EditCommand.EditInternshipDescriptor();
