@@ -44,6 +44,7 @@ public class EditModeParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<fieldWord>\\S+)(?<arguments>.*)");
+    private static final Pattern INVENTORY_COMMAND_FORMAT = Pattern.compile("(?<actionWord>\\S+)(?<name>.*)");
 
     private final Model model;
 
@@ -65,12 +66,13 @@ public class EditModeParser {
         }
 
         final String fieldWord = matcher.group("fieldWord");
-        final String arguments = matcher.group("arguments").trim();
+        final String arguments; arguments = matcher.group("arguments").trim();
 
         if (fieldWord.equalsIgnoreCase("back")
                 || fieldWord.equalsIgnoreCase("b")) {
             return new BackCommand();
         }
+
 
         EditEntityDescriptor editData = new EditEntityDescriptor();
         Entity toEdit = model.getCurrentSelectedEntity();
@@ -88,6 +90,7 @@ public class EditModeParser {
 
     private EditCharacterDescriptor generateCharacterData(Character toEdit,
             String fieldWord, String value) throws ParseException, NumberFormatException {
+        // Where all the edits are stored and sent over to the EditValueCommand
         EditCharacterDescriptor outData = new EditCharacterDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
@@ -118,6 +121,22 @@ public class EditModeParser {
         case "exp":
             outData.setXp(Integer.valueOf(value));
             break;
+        case "inventory":
+            // Check if add or delete
+            final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(value);
+            if (!matcher.matches()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            }
+            final String actionWord = matcher.group("actionWord");
+            final String itemName = matcher.group("name");
+            final Item item = (Item) model.getReroll().getItems().getEntityWithName(itemName);
+            if (actionWord.equalsIgnoreCase("add")) {
+                outData.addItemToInventory(item);
+                break;
+            } else if (actionWord.equalsIgnoreCase("remove")) {
+                outData.removeItemFromInventory(item);
+                break;
+            }
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
@@ -157,6 +176,22 @@ public class EditModeParser {
         case "l":
             outData.setIsLegendary(Boolean.valueOf(value));
             break;
+        case "inventory":
+            // Check if add or delete
+            final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(value);
+            if (!matcher.matches()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            }
+            final String actionWord = matcher.group("actionWord");
+            final String itemName = matcher.group("name");
+            final Item item = (Item) model.getReroll().getItems().getEntityWithName(itemName);
+            if (actionWord.equalsIgnoreCase("add")) {
+                outData.addItemToInventory(item);
+                break;
+            } else if (actionWord.equalsIgnoreCase("remove")) {
+                outData.removeItemFromInventory(item);
+                break;
+            }
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }

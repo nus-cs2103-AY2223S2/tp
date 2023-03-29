@@ -13,4 +13,6 @@ public interface ReadOnlyEntities {
      * The list will not contain duplicate items.
      */
     ObservableList<Entity> getEntityList();
+
+    Entity getEntityWithName(String name);
 }
