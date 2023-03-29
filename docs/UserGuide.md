@@ -3,9 +3,20 @@ layout: page
 title: User Guide
 ---
 
-MedInfo is a **desktop app for managing patients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
+MedInfo is a **desktop app for managing patients and wards for private hospitals, 
+optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
 
-- Table of Contents
+This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
+with its features and using it. You might be a **hospital staff member** learning the ropes of 
+MedInfo or **potential customer**.
+
+Navigating this User Guide is simple with the Table of Contents with hyperlinks to every segment below, and a hyperlink
+on every page to take you back to the Table of Contents. To further augment your navigation, press
+<kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
+
+* Table of Contents
   {:toc}
 
 ---
