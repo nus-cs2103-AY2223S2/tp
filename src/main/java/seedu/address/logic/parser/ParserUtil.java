@@ -100,7 +100,7 @@ public class ParserUtil {
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
      *      not the String "none").
      */
-    public static int parseNumCardsPerReview(String userInput) throws ParseException {
+    public static int parseReviewLimit(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.equalsIgnoreCase("none")) {
             return -1;
