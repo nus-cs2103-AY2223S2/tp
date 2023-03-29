@@ -17,6 +17,7 @@ import seedu.address.files.FilesManager;
 public class AddMcInfo extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AddAppointmentWindow.class);
     private static final String FXML = "GenerateMC.fxml";
+    private static int counter = 0;
     private final ErrorMessageDisplay errorMessageDisplay;
     private Stage mcStage;
     private FilesManager filesManager;
@@ -44,6 +45,7 @@ public class AddMcInfo extends UiPart<Stage> {
         this.mcStage = mcStage;
         this.filesManager = filesManager;
         this.errorMessageDisplay = new ErrorMessageDisplay(errorMessagePlaceholder);
+        this.counter++;
     }
 
     /**
@@ -129,6 +131,12 @@ public class AddMcInfo extends UiPart<Stage> {
                 throw new DurationException("Duration should be 1-60 days");
             }
             filesManager.generateMc(doctorName, medical, duration);
+
+            if (filesManager.isHasError()) {
+                medicalCondition.setText(filesManager.getErrorMessage());
+                return;
+            }
+            counter = 0;
             closeAddAppointmentWindow();
             mcStage.close();
         } catch (NumberFormatException e) {
@@ -136,6 +144,9 @@ public class AddMcInfo extends UiPart<Stage> {
         } catch (DurationException e) {
             errorMessageDisplay.setError(e.getMessage());
         }
+    }
+    public int getCounter() {
+        return counter;
     }
 
     /**
