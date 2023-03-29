@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-### Welcome to Docedex, your solution to doctor and patient management
+### Welcome to Docedex, your solution to doctor and patient management <!-- omit in toc -->
 
 Docedex is a **desktop application** is built for **administrative assistants** to manage patients within clinics.
 
@@ -19,10 +19,9 @@ With Docedex, taking control of patient management is just a few keystrokes away
 For **new users** visit our [quick start](#quick-start) to get you started .
 
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 * Table of Contents
 {:toc}
-* 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -59,6 +58,7 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 --------------------------------------------------------------------------------------------------------------------
 
 ## Notes about the command format
+
 | Notes                                                                                                       | Explanation                                                        | Examples                                                                                          |
 |-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
 | Words in `UPPER_CASE`                                                                                       | These are parameters that are supplied by the user                 | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
@@ -84,7 +84,7 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - Command format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
 - What it does: Adds a doctor to the address book.
 
-![add-doc](images/AddDoc.png)
+![AddDoc](images/AddDoc.png)
 
 - Examples:
   - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
@@ -96,7 +96,7 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
 - What it does: Adds a patient to the address book.
 
-![add-ptn](images/AddPtn.png)
+![AddPtn](images/AddPtn.png)
 
 - Examples:
   - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
@@ -110,6 +110,8 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - Examples:
   - `assign-ptn ptn/1 doc/1` assigns the first patient to the first doctor.
 
+![AssignPtn](images/AssignPtn.png)
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Unassigning a patient to a doctor:
@@ -117,6 +119,8 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - What it does: Unassigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
 - Examples:
   - `unassign-ptn ptn/1 doc/1` unassigns the first patient to the first doctor.
+
+![UnassignPtn](images/Unassign.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -195,6 +199,9 @@ Examples:
     - At least one of the fields must be provided.
     - More than one tag can be provided.
     - Blank fields will be ignored.
+
+![FindDoc](images/FindDoc.png)
+
 - Examples:
   - `find-doc n/Gabriel` matches any doctor with the name containing the string `Gabriel`.
   - `find-doc n/Gabriel t/friend t/expert` matches any doctor with the name containing the string `Gabriel` and has tags `friend` and `expert`.
@@ -211,6 +218,9 @@ Examples:
     - At least one of the fields must be provided.
     - More than one tag can be provided.
     - Blank fields will be ignored.
+
+![FindPtn](images/FindPtn.png)
+
 - Examples:
   - `find-ptn n/Alice` matches any patient with the name containing the string `Alice`.
   - `find-ptn h/1` match any patient with the height containing the string `1`, i.e. `1.70` and `0.91` will be matched but `0.99` and `2.00` will not be matched.
@@ -221,11 +231,15 @@ Examples:
 - Command format: `list-doc`
 - What it does: This command will list all doctors saved in Docedex together with their information.
 
+![ListDoc](images/ListDoc.png)
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 ### Listing all patients
 - Command format: `list-ptn`
 - What it does: This command will list all patients saved in Docedex together with their information.
+
+![ListPtn](images/ListPtn.png)
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -238,7 +252,7 @@ Examples:
 ### Clearing all data
 - Command format: `clear`
 - What it does: This command will clear all data in Docedex.
-- 🚨 **Warning** 🚨:
+- **Warning** :
   - This command will clear all data in Docedex. This includes all doctors and patients.
   - This command **cannot be undone**.
 
@@ -280,8 +294,8 @@ java -jar [JAR file location]/docedex.jar
 ```
 3. Save the text file as `docedex.bat` (Windows) or `docedex.sh` (MacOS/Linux)
 4. Change the admin settings of the script to allow it to run as a program:
-   i. Windows: Right-click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
-   ii. MacOS/Linux: Open the terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press enter. (`chmod +x` changes permissions of the script to allow it to be executed.)
+   1. Windows: Right-click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
+   2. MacOS/Linux: Open the terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press enter. (`chmod +x` changes permissions of the script to allow it to be executed.)
 5. Double-click on the script to launch Docedex
 6. Docedex should launch
 
