@@ -1,6 +1,7 @@
 package seedu.address.model.meetup;
 
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Person;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,34 +13,45 @@ import java.util.Set;
  */
 public class Participants {
 
-    Set<ContactIndex> participants;
+    private List<Person> participants;
+    private final Set<ContactIndex> contactIndices;
 
     /**
      * Constructor for {@code Participants} object.
-     * @param participantIndexList The set of participant indexes.
+     * @param participants The set of participant indexes.
      */
-    public Participants(Set<ContactIndex> participantIndexList) {
-        participants = participantIndexList;
+    public Participants(List<Person> participants) {
+
+        this.participants = new ArrayList<>();
+        //to remove the use
+        for (Person person : participants) {
+            if (person.getContactIndex().getContactIndex() != 0) {
+                this.participants.add(person);
+            }
+        }
+        this.contactIndices = new HashSet<>();
     }
 
     public Participants() {
-        participants = new HashSet<>();
+        this.participants = new ArrayList<>();
+        this.contactIndices = new HashSet<>();
     }
 
-    public Participants(List<Integer> participantIndexList) {
-        List<ContactIndex> contactIndices = new ArrayList<>();
-        for (Integer i : participantIndexList) {
-            contactIndices.add(new ContactIndex(i));
-        }
-        participants = new HashSet<>(contactIndices);
+    public Participants(Set<ContactIndex> indices) {
+        this.participants = new ArrayList<>();
+        this.contactIndices = indices;
     }
 
-    public Set<ContactIndex> getParticipants() {
+    public void setParticipants(List<Person> participants) {
+        this.participants = participants;
+    }
+
+    public Set<ContactIndex> getContactIndices() {
+        return this.contactIndices;
+    }
+
+    public List<Person> getParticipants() {
         return this.participants;
     }
 
-    @Override
-    public String toString() {
-        return participants.toString();
-    }
 }

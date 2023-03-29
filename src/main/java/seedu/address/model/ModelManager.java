@@ -220,6 +220,11 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedEduMate}
      */
+
+    @Override
+    public Optional<Person> getPersonByIndex(ContactIndex index) {
+        return indexHandler.getPersonByIndex(index);
+    }
     @Override
     public ObservableList<Person> getObservablePersonList() {
         return observablePersons;
@@ -317,7 +322,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setParticipants(Set<ContactIndex> participants) {
-        eduMate.setParticipants(new Participants(participants));
+        List<Person> people = new ArrayList<>();
+        for (ContactIndex i : participants) {
+            Optional<Person> person = indexHandler.getPersonByIndex(i);
+            person.ifPresent(people::add);
+        }
+        eduMate.setParticipants(new Participants(people));
     }
 
     @Override

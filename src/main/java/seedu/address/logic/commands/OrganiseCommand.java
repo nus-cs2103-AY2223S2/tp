@@ -11,10 +11,16 @@ import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Adds a meeting to the address book
@@ -26,25 +32,27 @@ public class OrganiseCommand extends Command {
     public static final String MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS = "Added a new meeting from recommendations";
     public static final String MESSAGE_NO_SUCH_RECOMMENDATION = "No recommendation with this index";
     public static final String MESSAGE_DUPLICATE_MEETING = "This is a duplicate meeting";
+    public static final String MESSAGE_NO_SUCH_PERSON = "%s no longer exists in your contacts.";
+    public static final String MESSAGE_NO_SUCH_PERSON_ID = "Person with index %s does not exist";
 
     private final ContactIndex index;
     private final TimePeriod timePeriod;
     private final Location location;
-    private final Participants indices;
+    private final Participants participants;
 
 
     public OrganiseCommand(ContactIndex index) {
         this.index = index;
         this.timePeriod = null;
         this.location = null;
-        this.indices = null;
+        this.participants = null;
     }
 
-    public OrganiseCommand(Day day, LocalTime startTime, LocalTime endTime, Location location, Participants indices) {
+    public OrganiseCommand(Day day, LocalTime startTime, LocalTime endTime, Location location, Participants participants) {
         this.index = null;
         this.timePeriod = new TimeBlock(startTime, endTime, day);
         this.location = location;
-        this.indices = indices;
+        this.participants = participants;
     }
 
     @Override
@@ -58,6 +66,16 @@ public class OrganiseCommand extends Command {
             }
             Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
             Participants participants = model.getParticipants();
+
+            for (Person person : participants.getParticipants()) {
+                if (person.getContactIndex().getContactIndex() == 0) {
+                    continue;
+                }
+                if (!model.hasPerson(person)) { //meet -> delete someone -> organise
+                    throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, person.getName()));
+                }
+            }
+
             ContactIndex newIndex = model.getMeetUpIndex();
             MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
             model.addMeetUp(meetUp);
@@ -67,7 +85,23 @@ public class OrganiseCommand extends Command {
 
         //for customised new meetings
         ContactIndex newIndex = model.getMeetUpIndex();
-        MeetUp meetUp = new MeetUp(timePeriod, location, indices, newIndex);
+
+        List<Person> people = new ArrayList<>();
+        assert participants != null;
+        for (ContactIndex contactIndex : participants.getContactIndices()) {
+            if (contactIndex.getContactIndex() == 0) {
+                continue;
+            }
+            Optional<Person> person = model.getPersonByIndex(contactIndex);
+            if (person.isEmpty()) {
+                throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON_ID, contactIndex.toString()));
+            }
+            people.add(person.get());
+        }
+        participants.setParticipants(people);
+
+        MeetUp meetUp = new MeetUp(timePeriod, location, participants, newIndex);
+
         try {
             model.addMeetUp(meetUp);
         } catch (DuplicateMeetUpException dm) {
@@ -82,7 +116,7 @@ public class OrganiseCommand extends Command {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof OrganiseCommand
-                && indices.equals(((OrganiseCommand) other).indices)
+                && participants.equals(((OrganiseCommand) other).participants)
                 && location.equals(((OrganiseCommand) other).location)
                 && timePeriod == ((OrganiseCommand) other).timePeriod);
     }

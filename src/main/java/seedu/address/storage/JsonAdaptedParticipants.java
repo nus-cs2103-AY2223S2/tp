@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,13 @@ import java.util.List;
 public class JsonAdaptedParticipants {
 
     private static final String MISSING_PARTICIPANTS = "Participants list is missing";
-    protected final List<Integer> participants;
+    protected final List<JsonAdaptedPerson> participants;
 
     /**
      * Constructs a {@code JsonAdaptedParticipants} with the given participants indexes.
      */
     @JsonCreator
-    public JsonAdaptedParticipants(@JsonProperty("participants") List<Integer> participants) {
+    public JsonAdaptedParticipants(@JsonProperty("participants") List<JsonAdaptedPerson> participants) {
         this.participants = participants;
     }
 
@@ -31,10 +32,9 @@ public class JsonAdaptedParticipants {
     public JsonAdaptedParticipants(Participants participantsList) {
         this.participants = new ArrayList<>();
         assert (participantsList != null);
-        for (ContactIndex contactIndex : participantsList.getParticipants()) {
-            this.participants.add(contactIndex.getContactIndex());
+        for (Person participant : participantsList.getParticipants()) {
+            this.participants.add(new JsonAdaptedPerson(participant));
         }
-
     }
 
     /**
@@ -46,7 +46,12 @@ public class JsonAdaptedParticipants {
         if (participants == null) {
             throw new IllegalValueException(MISSING_PARTICIPANTS);
         }
-        final Participants modelParticipants = new Participants(participants);
+        List<Person> people = new ArrayList<>();
+        for (JsonAdaptedPerson person : participants) {
+            people.add(person.toModelType());
+        }
+
+        final Participants modelParticipants = new Participants(people);
         return modelParticipants;
     }
 }

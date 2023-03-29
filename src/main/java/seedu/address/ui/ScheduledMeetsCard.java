@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meetup.MeetUp;
@@ -12,6 +14,8 @@ import seedu.address.model.meetup.MeetUp;
 public class ScheduledMeetsCard extends UiPart<Region> {
 
     private static final String FXML = "ScheduledMeetsListCard.fxml";
+    private static final String NAME_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,10 +37,10 @@ public class ScheduledMeetsCard extends UiPart<Region> {
     private Label id;
 
     @FXML
-    private Label participants;
+    private Label time;
 
     @FXML
-    private Label time;
+    private FlowPane names;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,7 +51,14 @@ public class ScheduledMeetsCard extends UiPart<Region> {
         id.setText(meetUp.getMeetUpIndex() + ". ");
         loc.setText(meetUp.getLocation().getName());
         time.setText(meetUp.getTimePeriod().getUiDisplay());
-        participants.setText(meetUp.getParticipants().toString());
+        meetUp.getParticipants().getParticipants().stream().forEach(person -> {
+            Button temp = new Button(person.getName().getValue());
+            temp.setStyle(NAME_STYLE);
+            names.getChildren().add(temp);
+        });
+
+        names.setVgap(4.0);
+        names.setHgap(4.0);
     }
 
     @Override

@@ -155,6 +155,8 @@ public interface Model {
      */
     void setUser(User user);
 
+    Optional<Person> getPersonByIndex(ContactIndex index);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getObservablePersonList();
 
