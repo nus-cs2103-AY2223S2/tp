@@ -181,6 +181,7 @@ public class RecipeForm extends UiPart<Region> {
         window.setMinWidth(500);
         window.setMinHeight(700);
         VBox vbox = new VBox(getRoot());
+        vbox.setStyle("-fx-background-color: #3f3f46");
         Scene scene = new Scene(vbox);
 
         //Event handler for Escape Key

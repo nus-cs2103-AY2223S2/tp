@@ -2,7 +2,14 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TextArea?>
+<?import java.net.URL?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8">
-    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+    <stylesheets>
+        <URL value="@CommandBox.css"/>
+    </stylesheets>
+    <TextArea fx:id="commandTextArea" promptText="Enter command here..."
+        prefHeight="50" wrapText="true"
+    />
 </StackPane>
 
