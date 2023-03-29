@@ -16,6 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FreezeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnfreezeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.ShortcutCommandUtil;
 
@@ -68,6 +70,10 @@ public class AddressBookParser {
             return new ClearCommand();
         } else if (FilterCommand.commandWords.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
+        } else if (FreezeCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new FreezeCommand();
+        } else if (UnfreezeCommand.COMMAND_WORDS.contains(commandWord)) {
+            return new UnfreezeCommand();
         } else if (UndoCommand.commandWords.contains(commandWord)) {
             return new UndoCommandParser().parse(arguments);
         } else if (RedoCommand.commandWords.contains(commandWord)) {

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -158,6 +160,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<? super Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void freezeFilteredPersonList() throws ModifyFrozenStateException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void unfreezeFilteredPersonList() throws ModifyFrozenStateException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void freezeWith(List<Person> frozenPersons) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean isFrozen() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
