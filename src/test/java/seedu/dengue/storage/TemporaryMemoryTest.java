@@ -50,7 +50,7 @@ public class TemporaryMemoryTest {
     }
 
     @Test
-    public void undoTwiceRedoThrice_randomNumberOfRandomFiles_loadsCorrectFile()
+    public void saveMultipleandUndoLessTimes_randomNumberOfRandomFiles_loadsCorrectFile()
             throws CommandException {
         Random random = new Random();
         int numFiles = random.nextInt(10) + 3;
