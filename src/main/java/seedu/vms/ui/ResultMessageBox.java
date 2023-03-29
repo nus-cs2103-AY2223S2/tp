@@ -46,7 +46,7 @@ public class ResultMessageBox extends UiPart<Region> {
                 text.setFont(messageArea.getFont());
                 double height = text.getLayoutBounds().getHeight()
                         + messageArea.getPadding().getTop() + messageArea.getPadding().getBottom()
-                        + 16D;
+                        + 18D;
                 messageArea.setPrefHeight(height);
             });
         });
