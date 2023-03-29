@@ -451,6 +451,6 @@ of the student's scores. In future implementation, a student's performance will 
 
 ### Launch and shutdown
 
-### Deleting a person
+### Deleting a student
 
 ### Saving data

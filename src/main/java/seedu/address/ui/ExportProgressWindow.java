@@ -13,7 +13,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Controller for an export student's progress page
@@ -24,7 +24,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(ExportProgressWindow.class);
     private static final String FXML = "ExportProgressWindow.fxml";
 
-    private Person person;
+    private Student student;
 
     private Stage root;
     private Logic logic;
@@ -44,14 +44,14 @@ public class ExportProgressWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the ExportProgressWindow.
      */
-    public ExportProgressWindow(Stage root, Person person, Logic logic) {
+    public ExportProgressWindow(Stage root, Student student, Logic logic) {
         super(FXML, root);
         this.root = root;
-        this.person = person;
+        this.student = student;
         this.logic = logic;
         this.exportImage.setImage(new Image(this.getClass().getResourceAsStream("/images/export.png")));
-        if (this.person != null) {
-            resultDisplay.setText("Export " + this.person.getName().fullName + "'s progress");
+        if (this.student != null) {
+            resultDisplay.setText("Export " + this.student.getName().fullName + "'s progress");
             saveAsButton.setDisable(false);
         }
     }
@@ -59,8 +59,8 @@ public class ExportProgressWindow extends UiPart<Stage> {
     /**
      * Creates a new ExportProgressWindow.
      */
-    public ExportProgressWindow(Person person, Logic logic) {
-        this(new Stage(), person, logic);
+    public ExportProgressWindow(Student student, Logic logic) {
+        this(new Stage(), student, logic);
     }
 
     /**
@@ -108,9 +108,9 @@ public class ExportProgressWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    public ExportProgressWindow setCheckedPerson(Person person) {
-        this.person = person;
-        resultDisplay.setText("Export " + person.getName().fullName + "'s progress");
+    public ExportProgressWindow setCheckedPerson(Student student) {
+        this.student = student;
+        resultDisplay.setText("Export " + student.getName().fullName + "'s progress");
         saveAsButton.setDisable(false);
         return this;
     }
@@ -122,7 +122,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
     private void saveAs() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setInitialFileName(this.person.getName().fullName + "'s Progress Report");
+        fileChooser.setInitialFileName(this.student.getName().fullName + "'s Progress Report");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
         File selectedFile = fileChooser.showSaveDialog(this.root);
@@ -130,8 +130,8 @@ public class ExportProgressWindow extends UiPart<Stage> {
         if (selectedFile != null) {
             saveAsButton.setDisable(true);
             try {
-                logic.exportProgress(this.person, selectedFile.getPath());
-                String commandResult = String.format(MESSAGE_SUCCESS, this.person.getName().fullName,
+                logic.exportProgress(this.student, selectedFile.getPath());
+                String commandResult = String.format(MESSAGE_SUCCESS, this.student.getName().fullName,
                         selectedFile.getPath());
                 logger.info("Result: " + commandResult);
                 resultDisplay.setText(commandResult);

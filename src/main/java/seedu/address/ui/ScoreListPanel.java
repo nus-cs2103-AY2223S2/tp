@@ -28,9 +28,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
-import seedu.address.model.score.ScoreList.ScoreSummary;
+import seedu.address.model.score.UniqueScoreList.ScoreSummary;
+import seedu.address.model.student.Student;
+
 
 /**
  * Panel containing the list of scores.
@@ -73,13 +74,18 @@ public class ScoreListPanel extends UiPart<Region> {
     @FXML
     private TableColumn<ScoreSummary, Double> percentage;
 
+    private final Color green = Color.rgb(126, 190, 97);
+    private final Color yellow = Color.rgb(244, 181, 55);
+    private final Color red = Color.rgb(194, 47, 40);
+
+
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      *
-     * @param person Selected student's scores.
+     * @param student Selected student's scores.
      * @param tabNumber Which tab is being selected.
      */
-    public ScoreListPanel(Person person, int tabNumber, Consumer<Integer> callBack) {
+    public ScoreListPanel(Student student, int tabNumber, Consumer<Integer> callBack) {
         super(FXML);
 
         name.setText("No student being checked now");
@@ -89,18 +95,19 @@ public class ScoreListPanel extends UiPart<Region> {
 
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
 
-        if (person != null) {
-            scoreListView.setItems(person.getSortedScoreList());
-            if (person.getSortedScoreList().size() != 0) {
-                newChart(person);
-                statisticTable(person);
+
+        if (student != null) {
+            scoreListView.setItems(student.getSortedScoreList());
+            if (student.getSortedScoreList().size() != 0) {
+                newChart(student);
+                statisticTable(student);
                 scoreScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
             } else {
-                name.setText("No score history found for " + person.getName().fullName);
-                nameChart.setText("No score chart for " + person.getName().fullName);
-                if (person.getName().fullName.length() >= 30) {
-                    name.setText("No score history found for " + person.getName().fullName.substring(0, 29) + "...");
-                    nameChart.setText("No score chart for " + person.getName().fullName.substring(0, 29) + "...");
+                name.setText("No score history found for " + student.getName().fullName);
+                nameChart.setText("No score chart for " + student.getName().fullName);
+                if (student.getName().fullName.length() >= 30) {
+                    name.setText("No score history found for " + student.getName().fullName.substring(0, 29) + "...");
+                    nameChart.setText("No score chart for " + student.getName().fullName.substring(0, 29) + "...");
                 }
             }
         }
@@ -127,7 +134,7 @@ public class ScoreListPanel extends UiPart<Region> {
 
     }
 
-    private void statisticTable(Person person) {
+    private void statisticTable(Student student) {
 
         scoreStatistic.setVisible(true);
 
@@ -151,13 +158,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -175,13 +182,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -199,13 +206,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -223,10 +230,10 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (percentage >= 0) {
                                 setText(String.valueOf(percentage));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else {
                                 setText(String.valueOf(percentage));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -234,20 +241,22 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         });
 
-        scoreStatistic.setItems(person.getScoreSummary());
+        scoreStatistic.setItems(student.getScoreSummary());
+
     }
 
     /**
      * Generates chart for a specific student.
      *
-     * @param person Selected student.
+     * @param student Selected student.
      */
-    private void newChart(Person person) {
-        name.setText("Score history for " + person.getName().fullName);
-        nameChart.setText("Recent scores for " + person.getName().fullName + " (at most 5)");
-        if (person.getName().fullName.length() >= 30) {
-            name.setText("Score history for " + person.getName().fullName.substring(0, 29) + "...");
-            nameChart.setText("Recent scores for " + person.getName().fullName.substring(0, 29) + "..."
+
+    private void newChart(Student student) {
+        name.setText("Score history for " + student.getName().fullName);
+        nameChart.setText("Recent 5 scores for " + student.getName().fullName + " (at most 5)");
+        if (student.getName().fullName.length() >= 30) {
+            name.setText("Score history for " + student.getName().fullName.substring(0, 29) + "...");
+            nameChart.setText("Recent scores for " + student.getName().fullName.substring(0, 29) + "..."
                     + " (at most 5)");
         }
         scoreChart.setVisible(true);
@@ -263,10 +272,10 @@ public class ScoreListPanel extends UiPart<Region> {
             }
         }
 
-        for (int i = 0; i < person.getRecentScoreList().size() && i < 5; i++) {
-            String date = person.getRecentScoreList().get(i).getDate().toString();
-            Double value = person.getRecentScoreList().get(i).getValue().value;
-            String label = person.getRecentScoreList().get(i).getLabel().toString();
+        for (int i = 0; i < student.getRecentScoreList().size() && i < 5; i++) {
+            String date = student.getRecentScoreList().get(i).getDate().toString();
+            Double value = student.getRecentScoreList().get(i).getValue().value;
+            String label = student.getRecentScoreList().get(i).getLabel().toString();
             XYChart.Data<String, Double> data = new XYChart.Data<>(date, value);
             data.setNode(new HoveredThresholdNode(data.getYValue(), label));
             series.getData().add(data);
@@ -311,11 +320,11 @@ public class ScoreListPanel extends UiPart<Region> {
                     + "-fx-border-color: #FF94B4; -fx-border-width: 2; -fx-alignment: center");
 
             if (scoreValue >= 80) {
-                label.setTextFill(Color.rgb(126, 190, 97));
+                label.setTextFill(green);
             } else if (50 <= scoreValue && scoreValue < 80) {
-                label.setTextFill(Color.rgb(244, 181, 55));
+                label.setTextFill(yellow);
             } else {
-                label.setTextFill(Color.rgb(194, 47, 40));
+                label.setTextFill(red);
             }
 
             if (examLabel.length() >= 12) {

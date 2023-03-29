@@ -15,21 +15,23 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Mathutoring;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMathutoring;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMathutoringStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MathutoringStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
+
 
 /**
  * Runs the application.
@@ -56,8 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        MathutoringStorage mathutoringStorage = new JsonMathutoringStorage(userPrefs.getMathutoringFilePath());
+        storage = new StorageManager(mathutoringStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +71,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample math tutoring will be used instead if {@code storage}'s math tutoring is not found,
-     * or an empty math tutoring will be used instead if errors occur when reading {@code storage}'s math tutoring.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s mathutoring and {@code userPrefs}. <br>
+     * The data from the sample mathutoring will be used instead if {@code storage}'s mathutoring is not found,
+     * or an empty mathutoring will be used instead if errors occur when reading {@code storage}'s mathutoring.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMathutoring> mathutoringOptional;
+        ReadOnlyMathutoring initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            mathutoringOptional = storage.readMathutoring();
+            if (!mathutoringOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MATHTUTORING");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = mathutoringOptional.orElseGet(SampleDataUtil::getSampleMathutoring);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty MATHTUTORING");
-            initialData = new AddressBook();
+            initialData = new Mathutoring();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty MATHTUTORING");
-            initialData = new AddressBook();
+            initialData = new Mathutoring();
         }
 
         return new ModelManager(initialData, userPrefs);
