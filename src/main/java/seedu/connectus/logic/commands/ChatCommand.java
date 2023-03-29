@@ -19,7 +19,10 @@ public class ChatCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the chat window of the specified platform "
             + "with prefilled message to the specified person. "
-            + "Due to platform constraints, only WhatsApp is supported.\n"
+            + "Due to platform constraints, only WhatsApp is supported. "
+            + "If stored WhatsApp handle is an 8-digit number, Singapore country code \"65\" will be "
+            + "automatically added when generating the link. "
+            + "To ensure WhatsApp response, the link would be triggered twice: immediately and 2 seconds later.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_SOCMED_WHATSAPP + " "
             + PREFIX_MESSAGE + "MESSAGE\n"

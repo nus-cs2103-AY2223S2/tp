@@ -1,6 +1,7 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
@@ -47,7 +49,7 @@ public class CommandUtil {
         var target = lastShownList.get(index.getZeroBased());
 
         var desktop = Desktop.getDesktop();
-        for (int i = 0; i <= repeat; i++){
+        for (int i = 0; i <= repeat; i++) {
             for (var platform : platforms) {
                 if (platform == null) {
                     continue;
@@ -75,7 +77,7 @@ public class CommandUtil {
     }
 
     protected static Person launchWindow(Model model, Index index, Function<Person, String>[] platforms)
-        throws CommandException {
+            throws CommandException {
         return launchWindow(model, index, platforms, 0);
     }
 }

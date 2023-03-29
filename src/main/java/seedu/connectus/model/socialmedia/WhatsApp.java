@@ -5,6 +5,7 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 
