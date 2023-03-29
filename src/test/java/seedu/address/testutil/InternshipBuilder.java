@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -64,6 +67,5 @@ public class InternshipBuilder {
 
     public InternshipApplication build() {
         return new InternshipApplication(companyName, jobTitle);
-        return new InternshipApplication(companyName, jobTitle, reviews, null, status, null);
     }
 }

@@ -78,8 +78,6 @@ public class MainWindow extends UiPart<Stage> {
         quickAccessToolbar = new QuickAccessToolbar(this::executeCommand);
         quickAccessToolbarPlaceholder.getChildren().add(quickAccessToolbar.getRoot());
 
-
-        setAccelerators();
         reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication());
 
         helpWindow = new HelpWindow();
