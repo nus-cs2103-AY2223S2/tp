@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
 
 public class TaskTabPanel extends UiPart<VBox> {
-    private static final String FXML = "Tab.fxml";
+    private static final String FXML = "TaskTabPanel.fxml";
 
     @FXML
     private TabPane taskTabPane;
