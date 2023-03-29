@@ -2,8 +2,6 @@ package trackr.ui.dashboard;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -59,16 +57,5 @@ public class HomeView extends UiPart<Region> {
         // Add summarised orders
         summarisedOrderListPanel = new SummarisedOrderListPanel(logic.getFilteredOrderList());
         ordersPlaceholder.getChildren().add(summarisedOrderListPanel.getRoot());
-    }
-
-    private HBox createDashboard() {
-        HBox dashboard = new HBox(10);
-        dashboard.setPrefHeight(15.0);
-        Text dummy = new Text("Profit");
-        Text dummy2 = new Text("Revenue");
-        HBox.setHgrow(dummy, Priority.ALWAYS);
-        HBox.setHgrow(dummy2, Priority.ALWAYS);
-        dashboard.getChildren().addAll(dummy, dummy2);
-        return dashboard;
     }
 }

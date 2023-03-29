@@ -6,7 +6,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
 import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
