@@ -21,9 +21,11 @@ import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MassOpCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.ShortcutCommandUtil;
 
 /**
  * Parses user input.
@@ -51,38 +53,42 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+        ShortcutCommandUtil.loadShortcuts();
+
         // if the user's command fits a keyword for a command, create a parser
-        if (AddCommand.COMMAND_WORDS.contains(commandWord)) {
+        if (AddCommand.commandWords.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
-        } else if (EditCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (EditCommand.commandWords.contains(commandWord)) {
             return new EditCommandParser().parse(arguments);
-        } else if (DeleteCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (DeleteCommand.commandWords.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
-        } else if (DeleteTagCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (DeleteTagCommand.commandWords.contains(commandWord)) {
             return new DeleteTagCommandParser().parse(arguments);
-        } else if (ClearCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (ClearCommand.commandWords.contains(commandWord)) {
             return new ClearCommand();
-        } else if (FilterCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (FilterCommand.commandWords.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
-        } else if (UndoCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (UndoCommand.commandWords.contains(commandWord)) {
             return new UndoCommandParser().parse(arguments);
-        } else if (RedoCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (RedoCommand.commandWords.contains(commandWord)) {
             return new RedoCommandParser().parse(arguments);
-        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
+        } else if (FindCommand.commandWords.contains(commandWord)) {
             return new FindCommandParser().parse(arguments);
-        } else if (ListCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (ListCommand.commandWords.contains(commandWord)) {
             return new ListCommand();
-        } else if (ExitCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (ExitCommand.commandWords.contains(commandWord)) {
             return new ExitCommand();
-        } else if (HelpCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (HelpCommand.commandWords.contains(commandWord)) {
             return new HelpCommand();
-        } else if (TagCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (TagCommand.commandWords.contains(commandWord)) {
             return new TagCommandParser().parse(arguments);
-        } else if (ExportCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (ExportCommand.commandWords.contains(commandWord)) {
             return new ExportCommand();
-        } else if (ImportCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (ShortcutCommand.commandWords.contains(commandWord)) {
+            return new ShortcutCommandParser().parse(arguments);
+        } else if (ImportCommand.commandWords.contains(commandWord)) {
             return new ImportCommand();
-        } else if (MassOpCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (MassOpCommand.commandWords.contains(commandWord)) {
             return new MassOpCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

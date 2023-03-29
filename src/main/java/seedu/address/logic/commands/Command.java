@@ -9,6 +9,12 @@ import seedu.address.model.StateHistory;
  */
 public abstract class Command {
 
+    public static void saveToFile() {
+    }
+
+    public static void addWord(String shortForm) {
+    }
+
     /**
      * Sets the StateHistory for this command to refer to.
      *
@@ -26,5 +32,6 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
 
 }

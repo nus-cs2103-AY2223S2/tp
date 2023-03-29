@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -16,12 +18,14 @@ import seedu.address.model.tag.Tag;
  */
 public class MassOpCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"mass", "Mass"});
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("mass", "m", "Mass"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
+    public static final String MESSAGE_USAGE = commandWords
             + ":Tag or delete Tags people who are filtered by the filter in the person list.\n"
             + "Parameters:  \n"
-            + "Example: " + COMMAND_WORDS + "tag/delete <TagName> <filter command>";
+            + "Example: " + commandWords + "tag/delete <TagName> <filter command>";
 
     public static final String MESSAGE_SUCCESS = "Tags added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
@@ -29,11 +33,13 @@ public class MassOpCommand extends Command {
     private final FieldsMatchRegexPredicate predicate;
     private Tag toAddOrDelete;
     private boolean isDelete;
+
     /**
-     * Creates a TagCommand to add a specified tag to the person at a supplied index.
+     * Creates a MassOpCommand object to perform mass operations
      *
-     * @param index The index of the person to add the tag to
-     * @param tag The tag to add
+     * @param predicate The predicate when filtering
+     * @param toAddOrDelete The tag to add
+     * @param isDelete Whether the command is deletion
      */
     public MassOpCommand(FieldsMatchRegexPredicate predicate, Tag toAddOrDelete, boolean isDelete) {
         this.predicate = predicate;

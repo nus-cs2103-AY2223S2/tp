@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Model;
@@ -11,13 +13,13 @@ import seedu.address.model.StateHistory;
  * Redoes a number of the recently undone {@code Command}s.
  */
 public class RedoCommand extends Command {
-
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"redo", "r", "heal"});
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Redoes the last undone command,"
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("redo", "r", "heal"));
+    //CHECKSTYLE.ON: VisibilityModifier
+    public static final String MESSAGE_USAGE = commandWords + ": Redoes the last undone command,"
             + "or a number of the most recently undone commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
-            + "Example: " + COMMAND_WORDS + " 5";
+            + "Example: " + commandWords + " 5";
 
     public static final String MESSAGE_SUCCESS = "Redone %1$d / %2$d commands";
 

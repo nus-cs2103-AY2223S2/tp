@@ -32,7 +32,7 @@ import seedu.address.model.Model;
  */
 public class RemarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORDS = "remark";
 
     @Override
     public CommandResult execute(Model model) {
@@ -64,13 +64,13 @@ Following the convention in other commands, we add relevant messages as constant
 **`RemarkCommand.java`:**
 
 ``` java
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORDS + " 1 "
             + "r/ Likes to swim.";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
