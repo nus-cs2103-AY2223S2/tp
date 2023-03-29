@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -69,8 +70,12 @@ public class UntagCommandTest {
     void execute_removeExistent_success() {
         Set<ModuleTag> toRemove = Set.of(CS2108_HA);
 
+<<<<<<< HEAD
         Person personToUpdate = getPersonFromIndexHandler(indexHandler, HALF);
         ContactIndex index = getContactIndexOfPerson(HALF);
+=======
+        assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
+>>>>>>> master
 
         assertTrue(personToUpdate.getImmutableModuleTags().contains(CS2108_HA));
 
@@ -103,6 +108,7 @@ public class UntagCommandTest {
         assertFalse(updatedPerson.getImmutableModuleTags().contains(CS2103T_SE));
     }
 
+<<<<<<< HEAD
     @Test
     void execute_removeLesson_success() {
         ModuleTag partialLesson = new ModuleTagBuilder()
@@ -133,6 +139,9 @@ public class UntagCommandTest {
         assertTrue(updatedPerson.getModuleTags().canRemove(shouldRemain));
         assertTrue(updatedPerson.getModuleTags().containsKey("CS2101"));
     }
+=======
+        assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
+>>>>>>> master
 
     @Test
     void execute_removeMultipleLessons_success() {
@@ -197,10 +206,14 @@ public class UntagCommandTest {
 
         Person updatedPerson = getPersonFromIndexHandler(indexHandler, JINYONG);
 
+<<<<<<< HEAD
         assertFalse(updatedPerson.getModuleTags().canRemove(tagToRemove));
         assertFalse(updatedPerson.getModuleTags().containsKey("CS2105"));
         assertFalse(updatedPerson.getImmutableModuleTags().contains(tagToRemove));
     }
+=======
+        assertEquals(userAct.getImmutableModuleTags(), tags);
+>>>>>>> master
 
     @Test
     void execute_removeBasicTagAndRegular_success() {
@@ -320,7 +333,7 @@ public class UntagCommandTest {
                 add(new GroupTag("TA"));
             }};
 
-        //        assertEquals(person.getImmutableGroupTags(), groups);
+        assertEquals(person.getImmutableGroupTags(), groups);
 
         TagCommand tag = new TagCommand(index, groupToRemove, TagType.GROUP);
         tag.execute(model);

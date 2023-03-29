@@ -92,27 +92,18 @@ public class TagCommand extends Command {
     @Override
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        //        if (this.tagType == TagType.GROUP) {
-        //            personToEdit.addGroupTags(this.groupTags);
-        //            if (personToEdit instanceof User) {
-        //                return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_USER_SUCCESS
-        //                        + "Name: " + personToEdit.getName().toString() + '\n'
-        //                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-        //            }
-        //            return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_PERSON_SUCCESS
-        //                    + "Name: " + personToEdit.getName().toString() + '\n'
-        //                    + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
-        //        }
-
-        if (index == null) {
-            return tagUser(model);
+        if (this.tagType == TagType.GROUP) {
+            return tagGroups(model);
         }
 
-        return tagPerson(model);
+        if (index == null) {
+            return tagUserModules(model);
+        }
+
+        return tagPersonModules(model);
     }
 
-    private ViewCommandResult tagPerson(Model model) throws CommandException {
+    private ViewCommandResult tagPersonModules(Model model) throws CommandException {
         IndexHandler indexHandler = new IndexHandler(model);
         Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
@@ -132,7 +123,26 @@ public class TagCommand extends Command {
         return new ViewCommandResult(MESSAGE_MODULE_TAG_PERSON_SUCCESS, editedPerson);
     }
 
-    private ViewCommandResult tagUser(Model model) throws CommandException {
+    private ViewCommandResult tagGroups(Model model) throws CommandException {
+        Person personToEdit;
+        if (index == null) {
+            personToEdit = model.getUser();
+        } else {
+            IndexHandler indexHandler = new IndexHandler(model);
+            personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                    new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        }
+
+        personToEdit.addGroupTags(this.groupTags);
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
+
+        return (personToEdit instanceof User)
+                ? new ViewCommandResult(MESSAGE_GROUP_TAG_USER_SUCCESS, personToEdit)
+                : new ViewCommandResult(MESSAGE_GROUP_TAG_PERSON_SUCCESS, personToEdit);
+    }
+
+    private ViewCommandResult tagUserModules(Model model) throws CommandException {
         User userToEdit = model.getUser();
         User editedUser = userToEdit.copy();
 
@@ -182,6 +192,7 @@ public class TagCommand extends Command {
             TagCommand otherCommand = (TagCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getModules().equals(getModules());
+            // Currently wrong due to presence of Lessons in ModuleTag.
         }
 
         return false;
