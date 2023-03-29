@@ -14,7 +14,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Quick start</span></h2>
+##Quick start
 
 1. Ensure you have **Java** `11` or above installed in your Computer.
 
@@ -50,7 +50,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Features</span></h2>
+##Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,17 +77,15 @@ This User Guide provides brief documentation on how you can install the applicat
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
 </div>
 
-<h3><span style="color:#faac69">Viewing help : `help`</span></h3>
+###Viewing help : `help`
 
-<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpImage.png)
 
 Format: `help`
-</div>
 
-<h3><span style="color:#faac69">Adding a client: `add`</span></h3>
+###Adding a client: `add`
 
 Adds a client to the FitBook.
 
@@ -108,7 +106,7 @@ Examples:
 Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio` in the command input box will look like this:
 <img src="images/AddClientUG.png"/>
 
-<h3><span style="color:#faac69">Listing all clients : `listClients`</span></h3>
+###Listing all clients : `listClients`
 
 Displays a list of all clients in the FitBook under the Client panel.
 
@@ -119,7 +117,7 @@ Format: `listClients`
 * Initiate the command with 'listClients'
 * All clients in FitBook has been listed once again!
 
-<h3><span style="color:#faac69">Editing a client : `edit`</span></h2>
+###Editing a client : `edit`
 
 Edits an existing client in the FitBook.
 
@@ -144,7 +142,7 @@ Examples:
 Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will look like this:
 <img src="images/EditClientUG.png"/>
 
-<h3><span style="color:#faac69">Locating clients by fields: `find`</span></h3>
+###Locating clients by fields: `find`
 
 Finds Clients in FitBook whose details contain any of the given keywords.
 
@@ -172,7 +170,7 @@ Examples:
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
 '91234567'
 
-<h3><span style="color:#faac69">Deleting a client : `delete`</span></h3>
+###Deleting a client : `delete`
 
 Deletes the specified client from the FitBook.
 
@@ -186,19 +184,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-<h3><span style="color:#faac69">Clearing all entries : `clear`</span></h3>
+###Clearing all entries : `clear`
 
 Clears all entries from the FitBook.
 
 Format: `clear`
 
-<h3><span style="color:#faac69">Export Client details : `export`</span></h3>
+###Export Client details : `export`
 
 Exports the client details locally into a csv file.
 
 Format: `export`
 
-<h3><span style="color:#faac69">Adding a routine: `addRoutine`</span></h3>
+###Adding a routine: `addRoutine`</span></h3>
 
 Adds a routine to the FitBook.
 
@@ -210,7 +208,7 @@ Examples:
 * `addRoutine r/Cardio`
 * `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
-<h3><span style="color:#faac69">Editing a routine : `editRoutine`</span></h3>
+###Editing a routine : `editRoutine`
 
 Edits an existing routine in the FitBook.
 
@@ -224,7 +222,7 @@ Examples:
 *  `editRoutine 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
 *  `editRoutine 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 
-<h3><span style="color:#faac69">Listing all Routines in FitBook : `listRoutines`</span></h3>
+###Listing all Routines in FitBook : `listRoutines`
 
 List all Routines in FitBook under Exercise tab.
 
@@ -233,7 +231,7 @@ Format: `listRoutines`
 * Initiate the command with 'listRoutines'
 * All Routines in FitBook has been listed once again!
 
-<h3><span style="color:#faac69">Locating Routines by name: `findRoutine`</span></h3>
+###Locating Routines by name: `findRoutine`
 
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
 
@@ -245,13 +243,13 @@ Format: `findRoutine KEYWORD`
 Examples:
 * `findRoutine Cardio`
 
-<h3><span style="color:#faac69">Clearing all Routine entries : `clearRoutines`</span></h3>
+###Clearing all Routine entries : `clearRoutines`
 
 Clears all Routine entries in FitBook under the `Exercise` Tab.
 
 Format: `clearRoutines`
 
-<h3><span style="color:#faac69">Deleting a routine : `deleteRoutine`</span></h3>
+###Deleting a routine : `deleteRoutine`
 
 Deletes the specified Routine from the FitBook.
 
@@ -265,7 +263,7 @@ Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
 
-<h3><span style="color:#faac69">Adding an Exercise : `addExercise`</span></h3>
+###Adding an Exercise : `addExercise`
 
 Adds an exercise to a current Routine in FitBook.
 
@@ -278,7 +276,7 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
 
-<h3><span style="color:#faac69">Deleting an Exercise : `deleteExercise`</span></h3>
+###Deleting an Exercise : `deleteExercise`
 
 Deletes an exercise from a Routine in FitBook.
 
@@ -293,23 +291,23 @@ Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
 
-<h3><span style="color:#faac69">Export Routine details : `exportRoutines`</span></h3>
+###Export Routine details : `exportRoutines`
 
 Exports the routine details locally into a csv file.
 
 Format: `exportRoutines`
 
-<h3><span style="color:#faac69">Exiting the program : `exit`</span></h3>
+###Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-<h3><span style="color:#faac69">Saving the data</span></h3>
+###Saving the data
 
 FitBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-<h3><span style="color:#faac69">Editing the data file</span></h3>
+###Editing the data file
 
 FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -317,7 +315,7 @@ FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. A
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
 
-<h3><span style="color:#faac69">Archiving data files `[coming in v2.0]`</span></h3>
+###Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 ///PLACE HOLDER OUR ACTUAL FEATURE LIST////
@@ -431,7 +429,7 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">FAQ</span></h2>
+##FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
@@ -443,7 +441,7 @@ Example:
 **A**: The exercise routine is probably not inside the list of routines or the routine name is wrong. The routine name is case-sensitive.
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Command summary</span></h2>
+##Command summary
 
 | Action                           | Format, Examples                                                                                                                                                                                                                                                                                 |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
