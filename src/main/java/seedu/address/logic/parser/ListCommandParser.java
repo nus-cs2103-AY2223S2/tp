@@ -21,7 +21,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand();
         }
 
-        boolean isValidCommand = Pattern.matches("^(char|item|mob)", args.trim());
+        boolean isValidCommand = Pattern.matches("^(char|item|mob|template)", args.trim());
         if (!isValidCommand) {
             throw new ParseException("Invalid command!");
         }

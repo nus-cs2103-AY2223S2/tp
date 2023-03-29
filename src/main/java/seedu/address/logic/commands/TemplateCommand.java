@@ -39,7 +39,7 @@ public class TemplateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entity> templates = model.getTemplates();
+        List<Entity> templates = model.getListByClassification("template");
         // TODO: Look into removing casting
         Template templateToUse = (Template) templates.stream()
                 .filter(t -> t.getName().equals(templateName))

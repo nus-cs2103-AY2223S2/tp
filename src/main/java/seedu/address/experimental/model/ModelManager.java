@@ -203,12 +203,19 @@ public class ModelManager implements Model {
     public ObservableList<Entity> getListByClassification(String classification) {
         requireNonNull(classification);
         ObservableList<Entity> entities = null;
-        if (classification.equals("char")) {
+        switch (classification) {
+        case "char":
             entities = this.reroll.getCharList();
-        } else if (classification.equals("mob")) {
+            break;
+        case "mob":
             entities = this.reroll.getMobList();
-        } else if (classification.equals("item")) {
+            break;
+        case "item":
             entities = this.reroll.getItemList();
+            break;
+        case "template":
+            entities = this.reroll.getTemplateList();
+            break;
         }
         requireNonNull(entities);
         return entities;
