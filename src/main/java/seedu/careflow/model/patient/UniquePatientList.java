@@ -45,7 +45,8 @@ public class UniquePatientList implements Iterable<Patient> {
     }
 
     /**
-     * Returns true if the list contains an equivalent patient's NRIC as the given argument.
+     * Check every patient in the list(except "except") contains equivalent patient's NRIC as the given argument, i.e.
+     * toCheck.
      */
     private boolean containIc(Patient except, Patient toCheck) {
         requireAllNonNull(except, toCheck);

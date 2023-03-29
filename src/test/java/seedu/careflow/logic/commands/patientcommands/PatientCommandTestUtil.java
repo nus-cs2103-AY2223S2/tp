@@ -52,8 +52,8 @@ public class PatientCommandTestUtil {
     public static final String VALID_IC_BOB = "A7654321C";
     public static final String VALID_DRUG_ALLERGY_AMY = "penicillin";
     public static final String VALID_DRUG_ALLERGY_BOB = "panadol";
-    public static final String VALID_EMERGENCY_CONTACT_AMY = "+(65)-1234 5677";
-    public static final String VALID_EMERGENCY_CONTACT_BOB = "+(65)-1223 3455";
+    public static final String VALID_EMERGENCY_CONTACT_AMY = "88888888";
+    public static final String VALID_EMERGENCY_CONTACT_BOB = "77777777";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -63,9 +63,8 @@ public class PatientCommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-
-    public static final String DOB_DESC_AMY = " " + PREFIX_DOB + VALID_BIRTHDATE_AMY;
-    public static final String DOB_DESC_BOB = " " + PREFIX_DOB + VALID_BIRTHDATE_BOB;
+    public static final String BIRTHDATE_DESC_AMY = " " + PREFIX_DOB + VALID_BIRTHDATE_AMY;
+    public static final String BIRTHDATE_DESC_BOB = " " + PREFIX_DOB + VALID_BIRTHDATE_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String IC_DESC_AMY = " " + PREFIX_IC + VALID_IC_AMY;
@@ -159,7 +158,7 @@ public class PatientCommandTestUtil {
         List<Patient> expectedFilteredList = new ArrayList<>(actualCareFlowModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualCareFlowModel));
-        // made some amendment to comparing expectedCareFlow and actualCareFlowModel
+        // made some amendment to comparing expectedCareflow and actualCareFlowModel
         assertEquals(expectedCareFlow.getPatientRecord(), actualCareFlowModel.getPatientRecord());
         assertEquals(expectedCareFlow.getDrugInventory(), actualCareFlowModel.getDrugInventory());
         assertEquals(expectedCareFlow.getHospitalRecords(), actualCareFlowModel.getHospitalRecords());
@@ -179,5 +178,4 @@ public class PatientCommandTestUtil {
 
         assertEquals(1, model.getFilteredPatientList().size());
     }
-
 }

@@ -1,8 +1,5 @@
 package seedu.careflow.storage;
 
-import static seedu.careflow.logic.commands.patientcommands.AddCommand.MESSAGE_DUPLICATE_PATIENT_IC;
-import static seedu.careflow.logic.commands.patientcommands.AddCommand.MESSAGE_DUPLICATE_PATIENT_NAME;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +18,8 @@ import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
  */
 @JsonRootName(value = "patientrecord")
 public class JsonSerializablePatientRecord {
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Patient list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT_NAME = "Patient list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT_IC = "Patient list contains duplicate IC(s).";
 
     private final List<JsonAdaptedPatient> patients;
 

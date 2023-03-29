@@ -18,7 +18,7 @@ class ClearCommandTest {
         CareFlowModel model = new CareFlowModelManager();
         CareFlowModel expectedModel = new CareFlowModelManager();
 
-        DrugCommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

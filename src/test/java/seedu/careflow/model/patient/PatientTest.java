@@ -111,7 +111,7 @@ public class PatientTest {
     }
 
 
-        @Test
+    @Test
     public void equals() {
         // same values -> returns true
         Patient aliceCopy = new PatientBuilder(ALICE).build();

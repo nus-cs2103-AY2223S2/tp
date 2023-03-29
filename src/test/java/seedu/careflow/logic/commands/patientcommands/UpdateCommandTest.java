@@ -15,7 +15,6 @@ import static seedu.careflow.logic.commands.patientcommands.UpdateCommand.MESSAG
 import static seedu.careflow.logic.commands.patientcommands.UpdateCommand.MESSAGE_DUPLICATE_PATIENT_NAME;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 import org.junit.jupiter.api.Test;

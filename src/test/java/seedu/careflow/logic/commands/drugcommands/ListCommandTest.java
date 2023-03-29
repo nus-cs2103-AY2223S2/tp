@@ -28,7 +28,7 @@ class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        DrugCommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

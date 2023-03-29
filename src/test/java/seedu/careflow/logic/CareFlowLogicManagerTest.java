@@ -5,7 +5,7 @@ import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.DOB_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.BIRTHDATE_DESC_AMY;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.DRUG_ALLERGY_DESC_AMY;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.EMERGENCY_CONTACT_DESC_AMY;
@@ -100,7 +100,7 @@ class CareFlowLogicManagerTest {
 
         // Execute add command
         String addCommand = "p " + AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + DOB_DESC_AMY + GENDER_DESC_AMY + IC_DESC_AMY + DRUG_ALLERGY_DESC_AMY
+                + ADDRESS_DESC_AMY + BIRTHDATE_DESC_AMY + GENDER_DESC_AMY + IC_DESC_AMY + DRUG_ALLERGY_DESC_AMY
                 + EMERGENCY_CONTACT_DESC_AMY;
         Patient expectedPatient = new PatientBuilder(AMY).build();
         CareFlowModelManager expectedModel = new CareFlowModelManager();

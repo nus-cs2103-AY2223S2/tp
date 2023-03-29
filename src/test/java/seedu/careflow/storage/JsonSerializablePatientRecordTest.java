@@ -1,6 +1,8 @@
 package seedu.careflow.storage;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.careflow.storage.JsonSerializablePatientRecord.MESSAGE_DUPLICATE_PATIENT_IC;
+import static seedu.careflow.storage.JsonSerializablePatientRecord.MESSAGE_DUPLICATE_PATIENT_NAME;
 import static seedu.careflow.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -18,6 +20,8 @@ class JsonSerializablePatientRecordTest {
     private static final Path TYPICAL_PATIENTS_FILE = TEST_DATA_FOLDER.resolve("typicalPatientsPatientRecord.json");
     private static final Path INVALID_PATIENT_FILE = TEST_DATA_FOLDER.resolve("invalidPatientPatientRecord.json");
     private static final Path DUPLICATE_PATIENT_FILE = TEST_DATA_FOLDER.resolve("duplicatePatientPatientRecord.json");
+    private static final Path DUPLICATE_PATIENT_IC_FILE =
+            TEST_DATA_FOLDER.resolve("duplicatePatientIcPatientRecord.json");
 
     @Test
     public void toModelType_typicalPatientFile_fail() throws Exception {
@@ -37,7 +41,15 @@ class JsonSerializablePatientRecordTest {
     public void toModelType_duplicatePatients_throwsIllegalValueException() throws Exception {
         JsonSerializablePatientRecord dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PATIENT_FILE,
                 JsonSerializablePatientRecord.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializablePatientRecord.MESSAGE_DUPLICATE_PATIENT,
+        assertThrows(IllegalValueException.class, MESSAGE_DUPLICATE_PATIENT_NAME,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicatePatientsIc_throwsIllegalValueException() throws Exception {
+        JsonSerializablePatientRecord dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PATIENT_IC_FILE,
+                JsonSerializablePatientRecord.class).get();
+        assertThrows(IllegalValueException.class, MESSAGE_DUPLICATE_PATIENT_IC,
                 dataFromFile::toModelType);
     }
 }

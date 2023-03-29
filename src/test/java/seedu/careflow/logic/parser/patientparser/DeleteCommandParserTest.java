@@ -1,6 +1,5 @@
 package seedu.careflow.logic.parser.patientparser;
 
-import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.careflow.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;

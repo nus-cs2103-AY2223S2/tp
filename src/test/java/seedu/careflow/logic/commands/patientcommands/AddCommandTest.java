@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_AMY;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_BOB;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalPatients.AMY;
 import static seedu.careflow.testutil.TypicalPatients.BOB;
@@ -54,7 +53,6 @@ class AddCommandTest {
         Patient validPatient = new PatientBuilder().build();
         AddCommand addCommand = new AddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPatient(validPatient);
-
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_PATIENT_NAME, () -> addCommand.execute(modelStub));
     }

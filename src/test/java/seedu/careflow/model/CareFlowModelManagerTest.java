@@ -75,7 +75,7 @@ public class CareFlowModelManagerTest {
 
     @Test
     public void setPatientRecordFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("careflowk/file/patientpath");
+        Path path = Paths.get("careflow/file/patientpath");
         modelManager.setPatientRecordFilePath(path);
         assertEquals(path, modelManager.getPatientRecordFilePath());
     }
@@ -109,7 +109,7 @@ public class CareFlowModelManagerTest {
     }
 
     @Test
-    public void hasSamePatientIc_nullPatient_throwsNullPointerException() {
+    public void hasSamePatientIc_nullIc_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasSamePatientIc(null));
     }
 
