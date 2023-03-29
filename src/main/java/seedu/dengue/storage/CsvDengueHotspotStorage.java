@@ -4,26 +4,33 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
-import seedu.dengue.commons.exceptions.IllegalValueException;
 import seedu.dengue.commons.util.FileUtil;
-import seedu.dengue.commons.util.JsonUtil;
+import seedu.dengue.commons.util.CsvUtil;
+import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
+import seedu.dengue.model.person.Person;
 
 /**
- * A class to access DengueHotspotTracker data stored as a json file on the hard disk.
+ * A class to access DengueHotspotTracker data stored as a csv file on the hard disk.
  */
-public class JsonDengueHotspotStorage implements DengueHotspotStorage {
+public class CsvDengueHotspotStorage implements DengueHotspotStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonDengueHotspotStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(CsvDengueHotspotStorage.class);
 
+    private static String[] headers = new String[]{"Patient Name", "Age", "Date", "Postal Code", "Variants"};
     private Path filePath;
 
-    public JsonDengueHotspotStorage(Path filePath) {
+    public CsvDengueHotspotStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -46,22 +53,18 @@ public class JsonDengueHotspotStorage implements DengueHotspotStorage {
             throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDengueHotspotTracker> jsonDengueHotspotTracker = JsonUtil.readJsonFile(
-                filePath, JsonSerializableDengueHotspotTracker.class);
-        if (!jsonDengueHotspotTracker.isPresent()) {
+        Optional<List<Person>> optionalList = CsvUtil.readCsvFile(
+                filePath, Person.class);
+        if (!optionalList.isPresent()) {
             return Optional.empty();
         }
-
-        try {
-            return Optional.of(jsonDengueHotspotTracker.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
-        }
+        DengueHotspotTracker readOnly = new DengueHotspotTracker();
+        readOnly.setPersons(optionalList.get());
+        return Optional.of(readOnly);
     }
 
     @Override
-    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException {
+    public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         saveDengueHotspotTracker(dengueHotspotTracker, filePath);
     }
 
@@ -71,12 +74,14 @@ public class JsonDengueHotspotStorage implements DengueHotspotStorage {
      * @param filePath location of the data. Cannot be null.
      */
     public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
-            throws IOException {
+            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
         requireNonNull(dengueHotspotTracker);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDengueHotspotTracker(dengueHotspotTracker), filePath);
+        CsvUtil.saveCsvFile(dengueHotspotTracker.getPersonList()
+                                    .stream()
+                                    .map(Person::toCsvString)
+                                    .collect(Collectors.toList()), filePath, headers);
     }
-
 }

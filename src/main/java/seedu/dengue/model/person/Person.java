@@ -2,12 +2,21 @@ package seedu.dengue.model.person;
 
 import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.opencsv.bean.CsvCustomBindByName;
 
 import seedu.dengue.model.variant.Variant;
+import seedu.dengue.model.person.csvutils.nameConverter;
+import seedu.dengue.model.person.csvutils.postalConverter;
+import seedu.dengue.model.person.csvutils.dateConverter;
+import seedu.dengue.model.person.csvutils.ageConverter;
+import seedu.dengue.model.person.csvutils.variantsConverter;
 
 /**
  * Represents a Person in the Dengue Hotspot Tracker.
@@ -16,14 +25,19 @@ import seedu.dengue.model.variant.Variant;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Postal postal;
-    private final Date date;
+    @CsvCustomBindByName(column = "Patient Name", converter = nameConverter.class)
+    private Name name;
+    @CsvCustomBindByName(column = "Postal Code", converter = postalConverter.class)
+    private Postal postal;
+    @CsvCustomBindByName(column = "Date", converter = dateConverter.class)
+    private Date date;
+    @CsvCustomBindByName(column = "Age", converter = ageConverter.class)
 
-    // Data fields
-    private final Age age;
-    private final Set<Variant> variants = new HashSet<>();
+    private Age age;
+    @CsvCustomBindByName(column = "Variants", converter = variantsConverter.class)
+    private Set<Variant> variants = new HashSet<>();
 
+    public Person() {}
     /**
      * Every field must be present and not null.
      */
@@ -101,6 +115,25 @@ public class Person {
                 && otherPerson.getDate().equals(getDate())
                 && otherPerson.getAge().equals(getAge())
                 && otherPerson.getVariants().equals(getVariants());
+    }
+
+    public String[] toCsvString() {
+        ArrayList<String> result = new ArrayList<String>();
+        result.add(this.name.toString());
+        result.add(this.age.toString());
+        result.add(this.date.toString());
+        result.add(this.postal.toString());
+        Set<Variant> variantSet = getVariants();
+        StringBuilder builder = new StringBuilder("[");
+        if (!variantSet.isEmpty()) {
+            builder.append( variantSet.stream()
+                    .map(Variant::toString)
+                    .collect(Collectors.joining(", ")));
+        }
+        builder.append("]");
+        result.add(builder.toString());
+        String[] csvString = new String[5];
+        return result.toArray(csvString);
     }
 
     @Override
