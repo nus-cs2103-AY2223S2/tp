@@ -43,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     private final CurrentSelection currentSelection;
 
 
-    public NewEditCommandParser(CurrentSelection currentSelection) {
+    public EditCommandParser(CurrentSelection currentSelection) {
         this.currentSelection = currentSelection;
     }
     /**
