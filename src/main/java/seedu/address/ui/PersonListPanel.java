@@ -88,6 +88,7 @@ public class PersonListPanel extends UiPart<Region> {
         department.setText("Department: " + employee.getDepartment().value);
 
         File img = new File(employee.getPicturePath().value);
+
         try {
             InputStream isImage = (InputStream) new FileInputStream(img);
             imageView.setImage(new Image(isImage));
