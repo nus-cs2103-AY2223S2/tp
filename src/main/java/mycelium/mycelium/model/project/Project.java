@@ -193,8 +193,8 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
     }
 
     @Override
-    public double fuzzyCompareTo(String match) {
-        return Fuzzy.ratio(name.toString().toLowerCase(), match.toLowerCase());
+    public String getFuzzyField() {
+        return name.getValue();
     }
 }
 

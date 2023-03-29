@@ -10,43 +10,53 @@ class FuzzyTest {
      * A test case for the delta function.
      */
     private static class TestCase {
-        public final String s1;
-        public final String s2;
-        public final int expectedDelta;
-        public final double expectedRatio;
+        public final String query;
+        public final String target;
+        public final double expectedDelta;
 
-        TestCase(String s1, String s2, int expectedDelta, double expectedRatio) {
-            this.s1 = s1;
-            this.s2 = s2;
+        TestCase(String query, String target, double expectedDelta) {
+            this.query = query;
+            this.target = target;
             this.expectedDelta = expectedDelta;
-            this.expectedRatio = expectedRatio;
         }
     }
-
-    private static final TestCase[] testCases = {
-        new TestCase("uwu", "owo", 2, 1 / (double) 3),
-        new TestCase("horse", "ros", 3, 2 / (double) 5),
-        new TestCase("intention", "execution", 5, 4 / (double) 9),
-        new TestCase("uwu", "", 3, 0),
-        new TestCase("", "uwu", 3, 0),
-        new TestCase("   ", "uwu", 3, 0),
-        new TestCase("foo", "baz bat", 7, 0),
-        new TestCase("uwu", "uwu", 0, 1)
-    };
 
     @Test
     void delta() {
+        TestCase[] testCases = {
+            new TestCase("foo", "bar", 0), // completely no match
+            new TestCase("foo", "foo", 1), // exact match
+            new TestCase("", "foo", 0), // empty query
+            new TestCase("foo", "", 0), // empty target
+            new TestCase("foobar", "", 0), // query longer than target
+            new TestCase("foo", "barfoo", 1 / (double) (3 + 1)), // leading fluff
+            new TestCase("foo", "foobar", 1 / (double) (3 + 1)), // trailing fluff
+            new TestCase("foo", "barfoobar", 1 / (double) (6 + 1)), // leading and trailing fluff
+            new TestCase("foo", "fooooo", 1 / (double) (3 + 1)), // repeated characters
+            new TestCase("foo", "fxoxxo", 1 / (double) (2 + 4 + 1)), // interleaved characters
+        };
         for (TestCase test : testCases) {
-            int actual = Fuzzy.delta(test.s1, test.s2);
-            assertEquals(test.expectedDelta, actual, "While testing case: " + test.s1 + ", " + test.s2);
+            double actual = Fuzzy.delta(test.query, test.target);
+            assertEquals(test.expectedDelta, actual, 0.0001, "While testing case: " + test.query + ", " + test.target);
         }
     }
 
     @Test
-    void ratio() {
+    void levenshtein() {
+        TestCase[] testCases = {
+            new TestCase("uwu", "owo", 1 / (double) 3),
+            new TestCase("horse", "ros", 2 / (double) 5),
+            new TestCase("intention", "execution", 4 / (double) 9),
+            new TestCase("uwu", "", 0),
+            new TestCase("", "uwu", 0),
+            new TestCase("   ", "uwu", 0),
+            new TestCase("foo", "baz bat", 0),
+            new TestCase("uwu", "uwu", 1)
+        };
+
         for (TestCase test : testCases) {
-            double actual = Fuzzy.ratio(test.s1, test.s2);
-            assertEquals(test.expectedRatio, actual, 0.0001, "While testing case: " + test.s1 + ", " + test.s2);
+            double actual = Fuzzy.levenshtein(test.query, test.target);
+            assertEquals(test.expectedDelta, actual, 0.0001, "While testing case: " + test.query + ", " + test.target);
         }
     }
 }
