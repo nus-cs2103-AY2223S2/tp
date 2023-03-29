@@ -122,9 +122,10 @@ public class EditApplicantCommand extends Command {
         listing.getApplicants().forEach(applicant -> {
             if (applicant != oldApplicant) {
                 finalApplicants.add(applicant);
+            } else {
+                finalApplicants.add(newApplicant);
             }
         });
-        finalApplicants.add(newApplicant);
 
         Listing editedListing = new Listing(listing.getTitle(),
                 listing.getDescription(), finalApplicants);
