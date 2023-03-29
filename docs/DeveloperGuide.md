@@ -269,7 +269,7 @@ Given below is an example usage of how Salary Command is being used in the follo
     - The user executes `deadline desc` command to sort the salary of the roles in the descending
       order. <img src="images/DeadlineCommand2.png" width="800" />
 
-The following sequence diagram shows how the Deadline Command is being done:
+The following sequence diagram shows how the Deadline Command is being done and used:
 
 <img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
