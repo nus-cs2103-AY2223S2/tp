@@ -30,16 +30,13 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label label;
+    private Label jobID;
     @FXML
     private Label id;
     @FXML
     private Label receipient;
     @FXML
     private Label address;
-
-    @FXML
-    private Label earning;
 
     /**
      * Creates a {@code DayDeliveryJobCard} with the given {@code Logic},
@@ -52,23 +49,28 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         ReadOnlyAddressBook addressBook = logic.getAddressBook();
 
         id.setText(displayedIndex + ". ");
-        label.setText(job.getJobId());
+        jobID.setText(job.getJobId());
+
+        String receipientInfo = "";
         if (job.getRecipientId() != null) {
-            receipient.setText("To: " + job.getRecipientId());
+            receipientInfo = "To: " + job.getRecipientId();
         } else {
-            receipient.setText("To: N.A.");
+            receipientInfo = "To: N.A.";
         }
+
         addressBook.getPersonById(job.getRecipientId()).ifPresentOrElse(per -> {
             address.setText("@" + per.getAddress().toString());
         }, () -> {
             address.setText("Dest: N.A.");
         });
 
-        job.getEarning().ifPresentOrElse(val -> {
-            earning.setText("Earning: $" + val.value);
-        }, () -> {
-            earning.setText("Earning: N.A");
-        });
+        if (job.getEarning().isPresent()) {
+            receipientInfo += " +$" + job.getEarning().get();
+        } else {
+            receipientInfo += " +$0.0";
+        }
+
+        receipient.setText(receipientInfo);
 
     }
 

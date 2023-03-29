@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -60,7 +61,9 @@ public class TimetableDetailPanel extends UiPart<Region> {
         Text year = new Text(String.valueOf(focusDate.getYear()));
         Text month = new Text(String.valueOf(focusDate.getMonth()));
         year.setFont(new Font(24));
+        year.setFill(Color.WHITE);
         month.setFont(new Font(24));
+        month.setFill(Color.WHITE);
 
         year.setText(String.valueOf(focusDate.getYear()));
         month.setText(String.valueOf(focusDate.getMonth()));
@@ -74,7 +77,7 @@ public class TimetableDetailPanel extends UiPart<Region> {
 
         logic.updateSortedDeliveryJobListByDate();
         logic.setWeekDeliveryJobList(focusDate);
-        logger.info("Filled in timetable detail with focus date as " + focusDate.toString());
+        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
 
     }
 }
