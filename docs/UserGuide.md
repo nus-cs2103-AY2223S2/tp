@@ -462,6 +462,8 @@ Examples:
 * `delete-field n/Google n/Apple s/Applied s/New` Delete internship entries that have company names
   of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
 
+:warning: **Warning:**  If you use an unknown prefix or a prefix not specific to this command, it will be interpreted as a string. For example, `delete-field s/Applied c/hello` will try to find internships whose status equals `"Applied c/hello"`.
+
 ### Clearing all Internships : `clear`
 The `clear` command deletes all entries permanently from InternBuddy.
 
