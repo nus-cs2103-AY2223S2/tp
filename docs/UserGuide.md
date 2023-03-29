@@ -2,25 +2,53 @@
 layout: page
 title: User Guide
 
-## Table of Contents
-* [What is MediMeet](#what-is-medimeet)
-* [Quick start](#quick-start)
-* [Features](#features)
-  * [Viewing help : `help`](#viewing-help--help)
-* [FAQ](#faq)
-* [Command summary](#command-summary)
+## What is MediMeet?
+
+**MediMeet** is a patient appointment management system for individual practitioners and small clinics. With MediMeet, you can efficiently manage patient information and appointment information in one place, saving you both time and money. <br>
+MediMeet combines the visual appeal of a GUI (graphical user interface) with the speed and convenience of a command-line interface. Our easy-to-use commands make it easy to add, edit patient information, appointments and so much more! <br>
 
 --------------------------------------------------------------------------------------------------------------------
-## What is MediMeet
+## How to (best) use this guide
 
-**MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. It helps them manage their own appointments and mitigates the need for a personal assistant or appointment manager, while also saving costs in the process.
+This user guide is designed to be used by anyone who has never used MediMeet before. If you are an experienced user, you can jump straight to the [Command summary](#command-summary) section to see a list of all MediMeet’s commands.
+The following table shows the different sections and what they contain. To jump to a particular section, click on the link in the table of contents above.
 
+| Section                                                     | Description                                                                |
+|-------------------------------------------------------------|----------------------------------------------------------------------------|
+| [Quick start](#quick-start)                                 | Contains a step-by-step guide on how to download and start using MediMeet. |
+| [Features](#features)                                       | Contains a detailed description of all MediMeet’s functionality.           |
+| [FAQ](#faq)                                                 | Contains answers to frequently asked questions.                            |
+| [Command summary](#command-summary)                         | Contains a summary of all MediMeet’s commands.                             |
+| [Glossary of technical terms](#glossary-of-technical-terms) | Contains descriptions of technical terms used in this guide.               |
 
+--------------------------------------------------------------------------------------------------------------------
+Below are some common terms you will come across in the guide, and their explanations.
+
+| Term            | Meaning                                      |
+|-----------------|----------------------------------------------|
+| **Patient**     | A person who is registered in MediMeet       |
+| **Appointment** | A meeting between a doctor and a patient     |
+| **Timeslot**    | A time period in which an appointment occurs |
+| **Remark**      | A note about a patient                       |
+| **Tag**         | A label that can be added to a patient       |
+| **MediMeet**    | The application MediMeet                     |
+
+We also use symbols to indicate useful information. The following table shows what each symbol means.
+
+| Symbol               | Description                                                 |
+|----------------------|-------------------------------------------------------------|
+| :bulb:               | Contains a tip that may be useful when using MediMeet.      |
+| :information_source: | Contains important information that you should be aware of. |
+| :exclamation:        | Warning that you should take note of.                       |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use the glossary to quickly look up the meaning of any unfamiliar technical term. Just click on the term you want to look up!
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. <br> <div markdown="block" class="alert alert-info"> **:information_source: Finding your java version**: To check the default java version on your device, run `java -version` on your terminal. You should see a string with `11.x.x`. For more information, refer to [this guide](https://www.java.com/en/download/help/version_manual.html#cmdline).</div>
 
 2. Download the latest `medimeet.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-4/tp/releases/download/v1.2/medimeet.jar).
 
@@ -75,7 +103,7 @@ title: User Guide
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -287,3 +315,28 @@ _Details coming soon ..._
 | **List appointments**       | `list_appt`                                                                                                                                                           |
 | **Help**                    | `help`                                                                                                                                                                |
 | **Add patient notes**       | `remark INDEX [r/REMARK]` <br> e.g., `remark 3 r/Immunocompromised`                                                                                                   |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary of technical terms
+
+| Term              | Description                                                                                                                                                                              |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**           | Command Line Interface. MediMeet is a CLI application.                                                                                                                                   |
+| **GUI**           | Graphical User Interface. MediMeet has a GUI created with JavaFX.                                                                                                                        |
+| **JAR**           | Java Archive (JAR) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution. |
+| **JSON**          | JavaScript Object Notation (JSON) is a lightweight data-interchange format.                                                                                                              |
+| **Mainstream OS** | Mainstream OS are the operating systems that are supported by MediMeet.                                                                                                                  |
+| **Java**          | Java is a popular programming language that MediMeet is written in.                                                                                                                      |
+| **Gradle**        | Gradle is a build tool that MediMeet uses.                                                                                                                                               |
+| **IntelliJ**      | IntelliJ is an Integrated Development Environment (IDE) that MediMeet uses.                                                                                                              |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Acknowledgements
+
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project uses the [JavaFx](https://openjfx.io/) library.
+* This project uses the [JUnit](https://junit.org/junit5/) library.
+* This project uses the [Java Faker](
