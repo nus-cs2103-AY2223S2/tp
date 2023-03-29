@@ -38,6 +38,15 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} checks if validity of the index.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidIndex(String oneBasedIndex) {
+        String trimmedIndex = oneBasedIndex.trim();
+        return StringUtil.isNonZeroUnsignedInteger(trimmedIndex);
+    }
+
+    /**
      * Parses {@code indexes} into an {@code listOfIndexes} and returns it. Leading and trailing whitespaces will be
      * trimmed. String of indexes will be split by ",".
      * @param indexes String of indexes.
@@ -73,6 +82,15 @@ public class ParserUtil {
         return new Name(trimmedName);
     }
 
+    /**
+     * Parses {@code name} and checks the validity of the name.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return Name.isValidName(trimmedName);
+    }
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.

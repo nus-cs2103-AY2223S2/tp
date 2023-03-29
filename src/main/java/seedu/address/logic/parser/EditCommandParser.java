@@ -41,6 +41,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_MODULE_TAG);
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -63,15 +66,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         try {
-            if (args.isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            if (ParserUtil.isValidIndex(argMultimap.getPreamble())) {
+                Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+                return new EditByIndexCommand(index, editPersonDescriptor);
+            } else {
+                String trimmedArgs = args.trim();
+                String[] nameKeywords = trimmedArgs.split("\\s+");
+                return new EditByNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                        editPersonDescriptor);
             }
-            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditByIndexCommand(index, editPersonDescriptor);
         } catch (ParseException pe) {
-            String trimmedArgs = args.trim();
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new EditByNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)), editPersonDescriptor);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
     }
 
