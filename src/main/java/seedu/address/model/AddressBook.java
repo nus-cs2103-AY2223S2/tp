@@ -1,12 +1,12 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-import java.util.Optional;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+
+import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -100,17 +100,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to a specific tutorial.
-     *
-     * @param toAdd the student to be added.
-     * @param name the name of the tutorial that the student will be added into.
-     */
-    /**
      * Deletes a student from an event.
      *
-     * @param toDel the student to be
-     * @param name
-     * @param type
+     * @param toDel the index of the student within the event's student list to be deleted.
+     * @param name the name of the event from which the student will be deleted.
+     * @param type the type of the event from which the student will be deleted.
      */
     public void deleteStudentFromEvent(Index toDel, String name, String type) {
         Optional<Event> target = Optional.empty();
