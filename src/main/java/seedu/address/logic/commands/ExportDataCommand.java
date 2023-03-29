@@ -21,11 +21,11 @@ public class ExportDataCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export data from a JSON file. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export data to a Directory. "
             + "Parameters: "
-            + PREFIX_FILEPATH + "FILE_PATH\n"
+            + PREFIX_FILEPATH + "FILE_PATH [Optional] \n"
             + "Example: " + COMMAND_WORD + " "
-            + "C:\\Users\\User\\Desktop\\data.json";
+            + "p/C:\\Users\\User\\Desktop\\";
 
     public static final String MESSAGE_SUCCESS = "Data exported successfully.";
 
@@ -36,7 +36,6 @@ public class ExportDataCommand extends Command {
      */
     public ExportDataCommand(String filePath) {
         requireNonNull(filePath);
-
         this.filePath = Paths.get(filePath, "data.json");
     }
 
@@ -47,13 +46,11 @@ public class ExportDataCommand extends Command {
 
         try {
             ReadOnlyAddressBook data = model.getAddressBook();
-
             FileUtil.createIfMissing(filePath);
             JsonUtil.saveJsonFile(new JsonSerializableAddressBook(data), filePath);
         } catch (IOException e) {
-            throw new CommandException("Error importing data");
+            throw new CommandException("Error!\n" + e.getMessage());
         }
-
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

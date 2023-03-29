@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import seedu.address.logic.commands.ExportDataCommand;
@@ -13,22 +12,11 @@ public class ExportDataCommandParser implements Parser<ExportDataCommand> {
 
     @Override
     public ExportDataCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
+        String filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_FILEPATH));
 
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportDataCommand.MESSAGE_USAGE));
-        }
-
-        if (!argMultimap.getValue(PREFIX_FILEPATH).isPresent()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportDataCommand.MESSAGE_USAGE));
-        }
-
-        return new ExportDataCommand(argMultimap.getValue(PREFIX_FILEPATH).get());
+        return new ExportDataCommand(filePath);
     }
 
 }

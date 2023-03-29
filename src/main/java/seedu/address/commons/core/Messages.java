@@ -13,4 +13,7 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_SCORE_DISPLAYED_INDEX = "The score index provided is invalid";
     public static final String MESSAGE_INVALID_DIRECTORY = "Path to directory is invalid!";
+    public static final String MESSAGE_BAD_FILE_INPUT = "Bad file input!";
+    public static final String MESSAGE_MISSING_FILE = "File does not exist in the path!";
+    public static final String MESSAGE_INVALID_FILE = "Path to file is invalid!";
 }
