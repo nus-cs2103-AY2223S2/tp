@@ -111,6 +111,10 @@ Lists out all the commands available, along with a brief description.
 
 Format: `help`
 
+![Help](images/command_result/Help.png)
+
+Above is the view of help window after inputting `help`.
+
 ### Undoing previous command: `undo`
 
 Reverts the patient records to the state before the previous command was executed.
@@ -120,12 +124,19 @@ launch of HospiSearch application. Undo can be executed up to the initial starti
 
 Format: `undo`
 
+![Undo](images/command_result/Undo.png)
+
+Above is the execution result of input `undo` (the list has been cleared).
+
 ### Redoing previous undo: `redo`
 
 Reverts the patient records to the state before the previous undo was executed. 
 
 Format: `redo`
 
+![Redo](images/command_result/Redo.png)
+
+Above is the execution result of input `redo` (the list is cleared again).
 ### Adding patient record: `add`
 
 Adds a person to the patient records.
@@ -139,6 +150,10 @@ Examples:
 
 * `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex e/johnd@example.com t/Diabetic m/Lantus`
 * `add i/T0012345B n/Betsy Crowe p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
+
+![Add](images/command_result/Add.png)
+
+Above is the execution result of input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
 ### Editing a patient record: `edit`
 
@@ -154,6 +169,23 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be  
   91234567 and johndoe@example.com respectively
 
+![Edit](images/command_result/Edit.png)
+
+Above is the execution result of input `edit 2 i/G3787219P`
+
+### Viewing a patient detailed particulars: `view`
+
+Views a patient detailed particulars.
+
+Format : `view i/NRIC`
+
+Examples:
+* `view i/S1234567H` shows detailed information about the patient on the view pane.
+
+![View](images/command_result/View.png)
+
+Above is the execution result of input `view i/S1234567H`.
+
 ### Deleting a patient record: `delete`
 
 Deletes the specified patient from the patient records.
@@ -162,13 +194,21 @@ Format: `delete i/NRIC…​`
 
 Examples:
 
-* `delete i/T0012345A` deletes the patient with NRIC T0012345A from patient records system
+* `delete i/S1234567A` deletes the patient with NRIC T0012345A from patient records system.
+
+![Delete](images/command_result/Delete.png)
+
+Above is the execution result of input `delete i/S1234567A`.
 
 ### Listing all patients: `list`
 
 Shows a list of all patients in the patient records.
 
 Format: `list`
+
+![List](images/command_result/List.png)
+
+Above is the execution result of input `list`.
 
 ### Find patients by nric, name, address or tags: `find`
 
@@ -194,6 +234,10 @@ Examples:
 * `find t/Diabetic` returns all persons with the tag `Diabetic`
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 
+![Find](images/command_result/Find.png)
+
+Above is the execution result of input `find i/S1234567A`.
+
 ### Backup patient records: `backup`
 
 Backs up the patient records to a specified slot represented by an index
@@ -202,9 +246,13 @@ Format: `backup INDEX_NO`
 
 Examples:
 
-* `backup 3` backups the data to the 3rd slot
+* `backup 1` backups the data to the 3rd slot
 
 Tip: INDEX_NO can only be an integer between 1 and 10
+
+![Backup](images/command_result/Backup.png)
+
+Above is the execution result of input `backup 1`.
 
 ### Load data: `load`
 
@@ -214,7 +262,11 @@ Format: `load INDEX_NO`
 
 Example:
 
-* `load 3` loads the data from the 3rd slot
+* `load 3` loads the data from the 3rd slot.
+
+![Load](images/command_result/Load.png)
+
+Above is teh execution result of input `load 1`.
 
 ### View backup data: `viewbackup`
 
@@ -232,11 +284,19 @@ Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
 
+![DeleteBackUp](images/command_result/DeleteBackUp.jpg)
+
+Above is the execution result of input `deletebackup 1`
+
 ### Clearing all data: `clear`
 
 Purges all data from the database
 
 Format: `clear`
+
+![Clear](images/command_result/Clear.png)
+
+Above is the running result after inputting `clear`.
 
 ### Switch to light mode: `light`
 
@@ -244,11 +304,19 @@ Switch to light mode.
 
 Format: `light`
 
+![Light](images/command_result/Light.png)
+
+Above is the application view after running `light`.
+
 ### Switch to dark mode: `dark`
 
 Switch to dark mode.
 
 Format: `dark`
+
+![Dark](images/command_result/Dark.png)
+
+Above is the application view after running `dark`.
   
 --------------------------------------------------------------------------------------------------------------------  
 <sub>[return to table of contents](#table-of-contents-)</sub>
