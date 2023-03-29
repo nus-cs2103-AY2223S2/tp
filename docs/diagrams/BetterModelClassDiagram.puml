@@ -14,8 +14,10 @@ UniquePatientList -right-> Patient
 
 Patient -up-> "*" Tag
 
+Patient *--> Id
 Patient *--> Name
 Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
+Patient *--> Remark
 @enduml
