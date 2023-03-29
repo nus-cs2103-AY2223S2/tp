@@ -149,8 +149,35 @@
     -fx-background-color: #e6eaeb;
 }
 
+#deckNameView .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+}
+
 #rightPanelTitlePlaceholder {
     -fx-padding: 0 0 0 0;
+}
+
+#ReviewCardPane {
+    -fx-background-color: #524cd1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#ReviewCardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#ReviewCardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#ReviewCardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
 }
 
 /* ============ TAGS ========== */
@@ -177,7 +204,7 @@
     /* this is the same grey colour for deck pane, and the background of output and card panel */
 }
 
-#deckPane .label{
+#deckPane .label {
     -fx-font-size: 20px;
     -fx-text-fill: black;
 }
@@ -205,29 +232,6 @@
 #reviewStatsPane #description {
     -fx-text-fill: black;
     -fx-font-size: 20px;
-}
-
-#ReviewCardPane {
-    -fx-background-color: #524cd1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-#ReviewCardPane .label{
-    -fx-font-size: 20px;
-    -fx-text-fill: white;
-    -fx-padding: 5;
-}
-
-#ReviewCardPane #question {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-}
-
-#ReviewCardPane #id {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
 }
 
 /* ============ MODE TITLE ========== */
