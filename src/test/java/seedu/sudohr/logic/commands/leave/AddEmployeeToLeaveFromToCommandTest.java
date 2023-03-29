@@ -127,7 +127,10 @@ public class AddEmployeeToLeaveFromToCommandTest {
                 new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE))).execute(modelStub);
 
         assertThrows(CommandException.class,
-                AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                String.format(
+                        AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, TypicalEmployees.ALICE, new Leave(
+                                new LeaveDate(LocalDate.parse(
+                                        VALID_THIRD_DAY_LEAVE_DATE)))), () ->
                 new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
 
         assertFalse(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(
