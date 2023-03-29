@@ -3,7 +3,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+           xmlns:fx="http://javafx.com/fxml/1">
+  <HBox styleClass="result-display">
+    <ImageView >
+      <Image url="@/images/careflow_bot.gif"/>
+    </ImageView>
+    <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+  </HBox>
 </StackPane>
