@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import seedu.address.logic.commands.MassOpCommand;
-import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 import seedu.address.model.tag.Tag;
@@ -72,6 +71,12 @@ public class MassOpCommandParser implements Parser<MassOpCommand> {
         }
 
         String[] preamble = argMultimap.getPreamble().split(" ");
+        int noOfIndexes = 2;
+
+        if (preamble.length != noOfIndexes) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE));
+        }
+
         String tagName = preamble[tagNameIndex];
         Tag tagToAddOrDelete = new Tag(tagName);
 

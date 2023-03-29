@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
@@ -51,18 +52,20 @@ public class MassOpCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         List<Person> lastShownList = model.getFilteredPersonList();
-        for (int i = 0; i < lastShownList.size(); i++) {
+        int end = lastShownList.size() - 1;
+        // lastShownList gets updated every iteration
+        for (int i = end; i >= 0; i--) {
             Person personToTag = lastShownList.get(i);
             if (isDelete) {
                 model.deleteTag(personToTag, toAddOrDelete);
             } else {
-                System.out.println(isDelete);
                 model.addTag(personToTag, toAddOrDelete);
             }
         }
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredPersonList()),
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size()),
                 true, true);
     }
 

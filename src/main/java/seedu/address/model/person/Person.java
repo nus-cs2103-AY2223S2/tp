@@ -97,7 +97,12 @@ public class Person implements DeepCopyable<Person> {
                 && otherPerson.getName().equals(getName());
     }
 
+    /**
+     * Deep copies the current person.
+     */
     public Person deepCopy() {
+        Set<Tag> copy = new HashSet<>();
+        copy.addAll(tags);
         return new Person(name, phone, email, address, income, tags);
     }
 

@@ -74,12 +74,12 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            ab.addPerson(person.deepCopy());
         }
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
+    private static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
