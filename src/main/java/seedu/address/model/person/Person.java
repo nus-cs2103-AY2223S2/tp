@@ -49,6 +49,7 @@ public class Person {
         this.tags.addAll(tags);
         this.medicalCondition = new MedicalCondition("");
         this.age = new Age("");
+        this.nric = new Nric("");
     }
 
     /**
@@ -68,6 +69,7 @@ public class Person {
         this.tags.addAll(tags);
         this.age = age;
         this.medicalCondition = new MedicalCondition("");
+        this.nric = new Nric("");
     }
 
     /**
