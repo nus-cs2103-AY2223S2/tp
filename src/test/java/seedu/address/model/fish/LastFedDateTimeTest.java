@@ -28,13 +28,13 @@ public class LastFedDateTimeTest {
         assertFalse(LastFedDateTime.isValidLastFedDateTime("")); // empty string
         assertFalse(LastFedDateTime.isValidLastFedDateTime(" ")); // spaces only
         assertFalse(LastFedDateTime.isValidLastFedDateTime("91")); // less than 3 numbers
-        assertFalse(LastFedDateTime.isValidLastFedDateTime("01.01.2000")); // format is dd/mm/yyyy
-        assertFalse(LastFedDateTime.isValidLastFedDateTime("1a/05/2000")); // alphabets within digits
-        assertFalse(LastFedDateTime.isValidLastFedDateTime("32/01/2023")); // invalid date
+        assertFalse(LastFedDateTime.isValidLastFedDateTime("01.01.2000 00:00")); // format is dd/mm/yyyy
+        assertFalse(LastFedDateTime.isValidLastFedDateTime("1a/05/2000 00:00")); // alphabets within digits
+        assertFalse(LastFedDateTime.isValidLastFedDateTime("32/01/2023 00:00")); // invalid date
 
         // valid dates
-        assertTrue(LastFedDateTime.isValidLastFedDateTime("12/12/2000")); // exactly 3 numbers
-        assertTrue(LastFedDateTime.isValidLastFedDateTime("05/05/2022"));
-        assertTrue(LastFedDateTime.isValidLastFedDateTime("06/05/2021"));
+        assertTrue(LastFedDateTime.isValidLastFedDateTime("12/12/2000 00:00")); // exactly 3 numbers
+        assertTrue(LastFedDateTime.isValidLastFedDateTime("05/05/2022 00:00"));
+        assertTrue(LastFedDateTime.isValidLastFedDateTime("06/05/2021 00:00"));
     }
 }

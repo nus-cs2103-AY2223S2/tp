@@ -20,7 +20,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class FishBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_LAST_FED_DATE = "01/01/2000";
+    public static final String DEFAULT_LAST_FED_DATE = "01/01/2000 00:00";
     public static final String DEFAULT_SPECIES = "Guppy";
     public static final String DEFAULT_FEEDING_INTERVAL = "0d15h";
     public static final String DEFAULT_TANK = "Saltwater Tank 1";

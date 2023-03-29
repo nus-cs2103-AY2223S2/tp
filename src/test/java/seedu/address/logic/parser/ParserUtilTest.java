@@ -22,13 +22,13 @@ import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_LAST_FED_DATE = "20 Mar 2023";
+    private static final String INVALID_LAST_FED_DATE = "20 Mar 2023 00:00";
     private static final String INVALID_FEEDING_INTERVAL = " ";
     private static final String INVALID_SPECIES = "asd123 @!";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_LAST_FED_DATE = "04/01/2022";
+    private static final String VALID_LAST_FED_DATE = "04/01/2022 00:00";
     private static final String VALID_FEEDING_INTERVAL = "5d0h";
     private static final String VALID_SPECIES = "Guppy";
     private static final String VALID_TAG_1 = "friend";
