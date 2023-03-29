@@ -17,9 +17,9 @@ to [Quick Start](#quick-start), which will guide you through the installation
 process and basic usage.
 
 Alternatively, you may wish to use this guide as a reference for commands and
-hotkeys. The three main parts of this guide contain descriptions on how to use
+HotKeys. The three main parts of this guide contain descriptions on how to use
 commands for managing [clients](#managing-clients) and
-[projects](#managing-projects), as well as the available [hotkeys](#hotkeys).
+[projects](#managing-projects), as well as the available [HotKeys](#hotkeys).
 
 ### Icons and conventions
 
@@ -39,6 +39,8 @@ The following typographical conventions are used in this guide.
 <div markdown="span" class="alert alert-danger">
 :warning: This box indicates a warning or caution.
 </div>
+
+## Table of Contents
 
 * Table of Contents
 {:toc}
@@ -60,7 +62,7 @@ Once you have Java 11, we can get started with our first steps using Mycelium.
 1. Place the `.jar` file in an *empty directory* of your choice
 1. In a terminal, navigate to the directory, and run the following command
 
-```
+```bash
 java -jar mycelium.jar
 ```
 
@@ -70,14 +72,11 @@ to help you get a feel for the application. Feel free to delete them later.
 
 <img src="images/OnStartupScreenshot.png" />
 
-At this point, we recommend that you jump over to the [Command
-Summary](#command-summary) and [HotKey Summary](#hotkey-summary) section to get
-an overview of the commands and hotkeys which are the bread and butter of
-Mycelium. You may visit the relevant sections later for more details on your
-preferred use case.
-
-**TODO: add internal links for para above**
-
+You may resize the window to your liking. At this point, we recommend that you
+jump over to the [Main View](#main-view) or [Command Summary](#command-summary)
+sections to get an overview of the commands which are the bread and butter of
+Mycelium. Alternatively, you may continue reading the guide for a guided tour
+of how Mycelium is intended to be used.
 
 ## Glossary
 
@@ -175,24 +174,24 @@ Creates a new client contact.
 
 **Compulsory Arguments**
 
-- **`-cn client_name`**
+- `-cn client_name`
     - The client’s name.
-- **`-e email`**
+- `-e email`
     - The client’s email. Must be unique in Mycelium. Case sensitive.
 
 **Optional Arguments**
 
-- **`-y year_of_birth`**
+- `-y year_of_birth`
     - The client’s year of birth.
     - **Default**: *null*
-- **`-src source`**
+- `-src source`
     - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
     - **Default:** *null*
-- **`-mn mobile_number`**
+- `-mn mobile_number`
     - The client’s mobile number.
     - **Default:** *null*
 
-**Examples**
+**Example**
 
 The following command creates a new client with name *Alice Baker*, whose email is *alice_baker@bakers.com*, born in the year *2000*.
 
@@ -201,7 +200,7 @@ c -cn Alice Baker -e alice_baker@bakers.com -y 2000
 ```
 You should see the following output if the client is created successfully.
 
-```bash
+```
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
 
@@ -217,15 +216,16 @@ in Mycelium.
 
 **Compulsory Arguments**
 
-- **`-e email`**
+- `-e email`
     - Email of the client to delete.
 
-**Examples**
+**Example**
 
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 Expected output:
-```bash
+
+```
 Deleted Client: Alice Baker (alice_baker@bakers.com)
 ```
 
@@ -234,34 +234,35 @@ Deleted Client: Alice Baker (alice_baker@bakers.com)
 Updates an *existing* client contact.
 
 **Compulsory Arguments**
-- **`-e email`**
+- `-e email`
   - Email of the client to update.
 
 **Optional Arguments**
 
 At least one of the following arguments must be provided:
-- **`-cn client_name`**
+- `-cn client_name`
   - The client’s new name.
   - **Default:** *null*
-- **`-e2 new email`**
-  - THe client's new email. Must be unique in Mycelium. Case sensitive.
+- `-e2 new email`
+  - The client's new email. Must be unique in Mycelium. Case sensitive.
   - **Default:** *null*
-- **`-y year_of_birth`**
+- `-y year_of_birth`
   - The client’s new year of birth.
   - **Default:** *null*
-- **`-src source`**
+- `-src source`
   - The client’s new digital service platform, e.g. Fiverr.
   - **Default:** *null*
-- **`-mn mobile_number`**
+- `-mn mobile_number`
   - The client’s new mobile number.
   - **Default:** *null*
 
-**Examples**
+**Example**
 
 The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the client with email *alice_bakers@bakers.com* to have the name *Bobby Baker*.
 
 **Expected output:**
-```bash
+
+```
 Updated Client: Bobby Baker (alice_baker@bakers.com)
 ```
 --------------------------------------------------------------------------------------------------------------------
@@ -306,7 +307,7 @@ The following command creates a new project whose name is *Mycelium Desktop*,
 submitted from the client *spiderman@gmail.com* and sourced from *fiverr.com*,
 with a deadline on *30 February, 2075*.
 
-```
+```bash
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
 
@@ -317,7 +318,7 @@ the output box:
 New project added: Mycelium Desktop from client spiderman@gmail.com
 ```
 
-<div markdown="span" class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
 :bulb: The project's status is not case sensitive. Meaning you may key in
 `not_started` as `NOT_STARTED` or `nOT_sTArtED`.
 </div>
@@ -345,7 +346,7 @@ Deletes an existing project.
 
 The following command deletes a project with name *Mycelium Desktop*.
 
-```
+```bash
 dp -pn Mycelium Desktop
 ```
 
@@ -403,7 +404,7 @@ Performs partial updates an existing project.
 Each of these arguments, if specified, will be used to (paritially) update the
 target project.
 
-<div markdown="span" class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
 :bulb: Notice that the arguments here are similar to that of creating a
 project. You may refer to the section above on [creating a
 project](#creating-a-project:-p) for more details on what each argument means.
@@ -418,7 +419,7 @@ Suppose we have a project named *Mycelium Desktop*, and wish to update
 
 The following command will do the trick.
 
-```
+```bash
 up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
 ```
 
@@ -537,7 +538,7 @@ might wish to note:
 
 ## HotKeys
 
-HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
+HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported HotKeys:
 
 ### (F1) Help
 
