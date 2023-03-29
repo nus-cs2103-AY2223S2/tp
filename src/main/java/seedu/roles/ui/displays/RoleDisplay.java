@@ -77,7 +77,7 @@ public final class RoleDisplay {
         jobDesc.getStyleClass().add("role-display-body");
 
         // Second card
-        ImageView contactView = new ImageView(detailsIcon);
+        ImageView contactView = new ImageView(contactsIcon);
         contactView.setFitWidth(32);
         contactView.setFitHeight(32);
         Label contactHeader = new Label("Contacts:");
