@@ -28,7 +28,7 @@ public class TaskCard extends UiPart<HBox> {
         super(FXML);
         // this.task = task;
         id.setText(displayedIndex + ". ");
-        description.setText(task.getDescription());
+        description.setText(task.getTitle());
     }
 
 }

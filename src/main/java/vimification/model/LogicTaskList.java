@@ -2,6 +2,7 @@ package vimification.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import vimification.commons.core.Index;
 import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
@@ -108,17 +111,24 @@ public class LogicTaskList {
     /**
      * Marks the task with the specified index as done.
      */
+    /**
     public void mark(int index) {
         tasks.get(index).mark();
     }
+     **/
 
     /**
      * Unmarks the task with the specified index as not done.
      */
+    /**
     public void unmark(int index) {
         tasks.get(index).unmark();
     }
+     **/
 
+    public Priority getPriority(int index) {
+        return tasks.get(index).getPriority();
+    }
     public void setPriority(int index, int newLevel) {
         tasks.get(index).setPriority(newLevel);
     }
@@ -127,8 +137,51 @@ public class LogicTaskList {
         tasks.get(index).setPriority(newPriority);
     }
 
-    public Priority getPriority(int index) {
-        return tasks.get(index).getPriority();
+    public String getTitle(int index) {
+        return tasks.get(index).getTitle();
+    }
+
+    public void setTitle(int index, String newDescription) {
+        tasks.get(index).setTitle(newDescription);
+    }
+
+    public Status getStatus(int index) {
+        return tasks.get(index).getStatus();
+    }
+
+    public void setStatus(int index, Status newStatue) {
+        tasks.get(index).setStatus(newStatue);
+    }
+
+    public LocalDateTime getDeadline(int index) {
+        return tasks.get(index).getDeadline();
+    }
+
+    public void setDeadline(int index, LocalDateTime newDate) {
+        tasks.get(index).setDeadline(newDate);
+    }
+
+    public void deleteDeadline(int index) {
+        tasks.get(index).deleteDeadline();
+    }
+
+    /**
+    public List<Task> removeAllDone() {
+        Predicate<Task> pred = Task::isDone;
+        List<Task> tasksDone = stream()
+                .filter(pred)
+                .collect(Collectors.toCollection(ArrayList::new));
+        tasks.removeAll(tasksDone);
+        return tasksDone;
+    }
+     */
+
+    public void addAll(List<Task> tasks) {
+        this.tasks.addAll(tasks);
+    }
+
+    public void clear() {
+        this.tasks.clear();
     }
 
     //// util methods
