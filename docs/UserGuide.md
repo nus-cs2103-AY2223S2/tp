@@ -109,7 +109,7 @@ Some special notations are used throughout this guide:
 
 # 2. Installation
 
-ConnectUS works on any mainstream OS as long as <u>Java `11`</u> installed.
+ConnectUS works on any mainstream OS as long as <u>Java <code>11</code></u> installed.
 
 If you have yet to install ConnectUS, simply follow these steps to set it up:
 
