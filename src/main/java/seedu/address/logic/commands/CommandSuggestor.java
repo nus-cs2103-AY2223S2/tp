@@ -164,16 +164,30 @@ public class CommandSuggestor {
             return leadingPadding + allArgs;
         }
 
+        String[] splitArr = commmandBody.trim().split(" ");
+        assert splitArr.length > 0;
+        String firstWord = splitArr[0];
+        String lastWord = splitArr[splitArr.length - 1];
+        assert !firstWord.isBlank();
+        assert !firstWord.contains(" ");
+        assert !lastWord.isBlank();
+        assert !lastWord.contains(" ");
+
+        boolean isIndexRequired = argPrefixes.contains(PREFIX_INDEX);
+        if (isIndexRequired) {
+            // Index is assumed to always be the first arg.
+            assert argPrefixes.get(0) == PREFIX_INDEX;
+
+            //TODO to remove when commands are dry-run to see if they're valid,
+            //where an error should be thrown should the first word not be a integer.
+            boolean hasIntAsFirstWord = firstWord.matches("\\d+");
+            if (!hasIntAsFirstWord) {
+                throw new CommandException("Invalid index.");
+            }
+        }
+
         boolean hasNoTrailingSpace = !commmandBody.endsWith(" ");
         if (hasNoTrailingSpace) {
-            assert !commmandBody.isEmpty();
-            int lastSpaceIndex = commmandBody.lastIndexOf(" ");
-            String lastWord = lastSpaceIndex == -1
-                    ? commmandBody
-                    : commmandBody.substring(lastSpaceIndex + 1);
-            assert !lastWord.isBlank();
-            assert !lastWord.contains(" ");
-
             // User is not filling the value of prefix.
             // Example of filling the value: "add n/Sha" where user is halfway filling the name field.
             // But it's false when: "add n/" where user is not filling it yet.
@@ -200,20 +214,8 @@ public class CommandSuggestor {
         String argumentSuggestion = "";
         String[] userInputArray = commmandBody.trim().split(" ");
         Prefix currPrefix = null;
-        boolean isIndexRequired = argPrefixes.contains(PREFIX_INDEX);
         boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
         boolean hasPrefix = (!commmandBody.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
-
-        // Check if user input for index is valid (only if required)
-        if (isIndexRequired) {
-            if (userInputArray[0].isEmpty()) {
-                argumentSuggestion += " " + argPrefixes.get(0).getPlaceholderText();
-            } else {
-                if (!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
-                    throw new CommandException("Invalid index");
-                }
-            }
-        }
 
         if (hasKeyword) {
             // Check if user input contains keyword
