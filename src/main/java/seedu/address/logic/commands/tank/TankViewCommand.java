@@ -2,6 +2,7 @@ package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.SHOW_FISHES_IN_TANK;
+import static seedu.address.model.Model.SHOW_TANK_TASKS;
 
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class TankViewCommand extends TankCommand {
 
         Tank tankToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateFilteredFishList(SHOW_FISHES_IN_TANK.apply(tankToView));
+        model.updateFilteredTaskList(SHOW_TANK_TASKS.apply(tankToView));
         model.setGuiMode(GuiMode.DISPLAY_FISHES);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TANK_SUCCESS, tankToView), false, false, true);
