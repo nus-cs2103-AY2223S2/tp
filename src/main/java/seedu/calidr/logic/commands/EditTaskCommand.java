@@ -2,7 +2,9 @@ package seedu.calidr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_BY;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_FROM;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.calidr.model.Model.PREDICATE_SHOW_ALL_TASKS;
@@ -34,16 +36,20 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed task list. "
+            + "by the index number used in the displayed task list. \n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_BY + "BY] (only for todos)"
-            + "[" + PREFIX_FROM + "FROM] (only for events)"
+            + "[" + PREFIX_FROM + "FROM] (only for events) "
             + "[" + PREFIX_TO + "TO] (only for events)\n"
+            + "[" + PREFIX_BY + "BY] (only for todos) "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "Science Homework "
-            + PREFIX_BY + "03-11-2024 2359";
+            + PREFIX_BY + "03-11-2024 2359 "
+            + PREFIX_DESCRIPTION + "Finish Lab Report "
+            + PREFIX_LOCATION + "S17";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

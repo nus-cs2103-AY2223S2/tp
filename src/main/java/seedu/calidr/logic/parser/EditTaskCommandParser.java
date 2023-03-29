@@ -66,7 +66,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditTaskCommand(index, editTaskDescriptor);
