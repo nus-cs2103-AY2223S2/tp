@@ -19,7 +19,7 @@ layout: page title: Developer Guide
     - [Add patient feature](#add-patient-feature)
     - [Edit patient feature](#edit-patient-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
-    - [Filter patients feature](#find-patient-record-by-nric-health-conditions-medicine-feature)
+    - [Find patients feature](#find-patient-record-by-nric-health-conditions-medicine-feature)
     - [Light/Dark theme](#light--dark-theme)
     - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
@@ -428,7 +428,7 @@ The following sequence diagram shows how the delete command works:
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
-### Find patient record by NRIC, Health conditions, Medicine feature
+### Find patient record by NRIC, Name, Health conditions, Medicine feature
 
 #### Implementation
 
@@ -457,7 +457,7 @@ The following sequence diagram shows how the delete command works:
 
 **Aspect: Filter criteria**
 
-* **Alternative 1 (current choice):** Find by `NRIC`, `Health Conditions`, `Medicine`.
+* **Alternative 1 (current choice):** Find by `NRIC`, `Name`, `Health Conditions`, `Medicine`.
     * Pros:
         * Very efficient as program will search for the record with specified `NRIC` and return the filtered person list
         * Allows clinical administrator to filter for frequently used `Medicine` and stock up relevant supplies

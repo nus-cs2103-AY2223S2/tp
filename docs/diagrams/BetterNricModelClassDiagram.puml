@@ -14,10 +14,12 @@ Person -up-> "*" Tag
 
 Person *--> Nric
 Person *--> Name
+Person *--> DateOfBirth
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> DrugAllergy
 Person *--> Gender
+Person *--> Medicine
 Person *--> Doctor
 @enduml
