@@ -1,0 +1,6 @@
+@startuml
+start
+:User executes list command;
+:HMHero shows all applicants;
+stop
+@enduml
