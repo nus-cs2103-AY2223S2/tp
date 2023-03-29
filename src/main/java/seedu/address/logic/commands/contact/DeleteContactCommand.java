@@ -17,7 +17,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Delete the contact details of an application identified using it's displayed index
@@ -82,10 +89,18 @@ public class DeleteContactCommand extends Command {
         CompanyName companyName = internshipToDeleteContact.getCompanyName();
         JobTitle jobTitle = internshipToDeleteContact.getJobTitle();
         Set<Review> reviews = internshipToDeleteContact.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToDeleteContact.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToDeleteContact.getQualifications();
+        Location location = internshipToDeleteContact.getLocation();
+        Salary salary = internshipToDeleteContact.getSalary();
+        Set<Note> notes = internshipToDeleteContact.getNotes();
+        Rating rating = internshipToDeleteContact.getRating();
+        Set<Reflection> reflections = internshipToDeleteContact.getReflections();
         InternshipStatus status = internshipToDeleteContact.getStatus();
         InterviewDate interviewDate = internshipToDeleteContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, null, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, null, status, interviewDate);
     }
 
     @Override

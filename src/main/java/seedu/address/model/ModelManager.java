@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<InternshipTodo> filteredTodo;
     private final FilteredList<Note> filteredNote;
     private final FilteredList<Person> filteredPersons;
+    private Reminder reminder;
     private List<InternshipApplication> cachedInternshipList;
 
     /**
@@ -51,6 +52,7 @@ public class ModelManager implements Model {
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
+        this.reminder = new Reminder(filteredInternships);
         cachedInternshipList = new ArrayList<>();
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
@@ -123,6 +125,16 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyNote getNoteList() {
         return noteList;
+    }
+
+    @Override
+    public void updateReminder() {
+        reminder.setClosestUpcomingInterview();
+    }
+
+    @Override
+    public InternshipApplication getReminder() {
+        return reminder.getClosestUpcomingInterview();
     }
 
     @Override

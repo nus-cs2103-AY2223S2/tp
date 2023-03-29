@@ -24,7 +24,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Edits the contact details of an existing application in the list of internship applications.
@@ -94,6 +101,13 @@ public class EditContactCommand extends Command {
         CompanyName companyName = internshipToUpdateContact.getCompanyName();
         JobTitle jobTitle = internshipToUpdateContact.getJobTitle();
         Set<Review> reviews = internshipToUpdateContact.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToUpdateContact.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToUpdateContact.getQualifications();
+        Location location = internshipToUpdateContact.getLocation();
+        Salary salary = internshipToUpdateContact.getSalary();
+        Set<Note> notes = internshipToUpdateContact.getNotes();
+        Rating rating = internshipToUpdateContact.getRating();
+        Set<Reflection> reflections = internshipToUpdateContact.getReflections();
         Phone phone = editContactDescriptor.getPhone()
                 .orElse(internshipToUpdateContact.getContact().getPhone());
         Email email = editContactDescriptor.getEmail()
@@ -102,7 +116,8 @@ public class EditContactCommand extends Command {
         InternshipStatus status = internshipToUpdateContact.getStatus();
         InterviewDate interviewDate = internshipToUpdateContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, newContact, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, newContact, status, interviewDate);
     }
 
     @Override

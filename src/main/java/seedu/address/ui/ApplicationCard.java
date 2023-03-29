@@ -81,6 +81,34 @@ public class ApplicationCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
+     */
+    public ApplicationCard(InternshipApplication application) {
+        super(FXML);
+        this.application = application;
+        companyName.setText(application.getCompanyName().fullName);
+        jobTitle.setText(application.getJobTitle().fullName);
+        application.getReviews().stream()
+                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
+        internshipStatus.setText(application.getStatus().name());
+        Contact companyContact = application.getContact();
+        if (companyContact != null) {
+            email.setText(companyContact.getEmail().value);
+            phone.setText(companyContact.getPhone().value);
+            email.setVisible(true);
+            phone.setVisible(true);
+            email.setManaged(true);
+            phone.setManaged(true);
+        }
+        InterviewDate interviewDateStr = application.getInterviewDate();
+        if (interviewDateStr != null) {
+            interviewDate.setText(interviewDateStr.toString());
+            interviewDate.setVisible(true);
+            interviewDate.setManaged(true);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

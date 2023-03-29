@@ -32,6 +32,7 @@ public class InternshipBuilder {
         reviews = new HashSet<>();
         status = InternshipStatus.NA;
     }
+
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
      */
