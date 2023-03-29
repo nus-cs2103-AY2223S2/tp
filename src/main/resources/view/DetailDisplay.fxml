@@ -63,7 +63,7 @@
       </Label>
       <HBox alignment="BOTTOM_CENTER" prefHeight="44.0" prefWidth="420.0">
          <children>
-            <Button fx:id="generateButton" mnemonicParsing="false" text="generate" />
+            <Button fx:id="generateButton" mnemonicParsing="false" text="create" />
             <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#showAddAppointmentWindow" text="Appointment" />
             <Button fx:id="uploadButton" mnemonicParsing="false" text="upload" />
          </children>
