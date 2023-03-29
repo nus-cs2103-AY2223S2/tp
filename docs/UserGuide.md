@@ -3,11 +3,28 @@ layout: page
 title: User Guide
 ---
 
+<!---
+Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-t12-2.github.io/tp/UserGuide.html
+--->
+
 ## About QuickContacts
 
-QuickContacts is a **contacts and meetings management application** that enables you to manage your schedule and contacts with ease! It is designed for users who have a large number of contacts and meetings with those contacts.
+QuickContacts is a **contacts and schedule management system** that enables you to track your contacts and manage your
+schedule with ease! As a busy individual with a considerable number of contacts and meetings to attend, you can
+**seamlessly save contact and meeting information** with QuickContacts. QuickContacts provides you with a **bird's eye
+view of all your meetings**, making sure that you will never miss any of them again.
 
-QuickContacts is a **cross-platform application** that works on Windows, macOS and Linux. We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a schedule with many meetings with them. Designed for busy individuals, QuickContacts is built around a Command Line Interface (CLI) that empowers users to perform tasks in seconds. With fast fingers, you can be assured that your time spent managing your schedule is minimised!
+We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a
+schedule with many meetings with them. Perfect for individuals that are looking for efficiency, QuickContacts can be
+used without having you to ever reach for your mouse. Complete with an **autocomplete assistance**, you can be assured
+that your time spent managing your contacts and schedule is minimised!
+
+<div markdown="block" class="alert alert-info">
+
+**:light_bulb: Tip**<br>
+For more details about QuickContacts' features, you may head over to the [Features](#features) section below!
+
+</div>
 
 QuickContacts is specially designed for:
 
@@ -15,59 +32,69 @@ QuickContacts is specially designed for:
 * Users who have a large number of contacts and meetings
 * Typists
 
-This user guide serves as an introduction on how to incorporate QuickContacts into your daily workflow. Head over to the [Getting started](#getting-started) section to get onboard!
+This user guide provides a detailed documentation on QuickContacts and serves as an introduction on how to incorporate
+QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
+this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
-- [Getting started](#getting-started)
-- [Features](#features)
-    - [`help`](#viewing-help--help)
-    - [`add`](#adding-a-person--add)
-    - [`list`](#listing-all-persons--list)
-    - [`edit`](#editing-a-person--edit)
-    - [`find`](#locating-persons-by-name--find)
-    - [`delete`](#deleting-a-person--delete)
-    - [`clear`](#clearing-all-entries--clear)
-    - [`exit`](#exiting-the-program--exit)
-    - [`addm`](#adding-a-meeting--addm)
-    - [`findm`](#finding-meetings-by-name--findm)
-    - [`export`](#exporting-of-contact--export)
-    - [`import`](#importing-of-contacts--import)
-    - [`exportm`](#export-meetings--exportm)
-    - [`importm`](#import-meetings--importm)
-    - [Saving of data](#saving-the-data)
-    - [Editing of data](#editing-the-data-file)
-    - [Archiving of data](#archiving-data-files-coming-in-v20)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## Using this User Guide
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Welcome to QuickContacts!
 
-2. Download the latest `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases).
+If you have yet to install QuickContacts, head over to the [Installation](#installation) section to install
+QuickContacts.
 
-3. Copy the file to the folder you want to use as the _home folder_ for your `QuickContacts`.
+### Icon Coloured Boxes
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar quickcontacts.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+Throughout this user guide, you may observe coloured boxes that provide useful information with an icon on its top-left
+indicating the type of information present.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+<div markdown="block" class="alert alert-info">
 
-    * `list` : Lists all contacts.
+**:light_bulb: Tip**<br>
+Tips empower you to make full use of QuickContacts.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+</div>
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+<div markdown="block" class="alert alert-warning">
 
-    * `clear` : Deletes all contacts.
+**:warning: Caution**<br>
+Cautions are warnings for you to note when using QuickContacts.
 
-    * `exit` : Exits the app.
+</div>
 
-6. Refer to the [Features](#features) below for details of each command.
+## Installation
+
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) or above
+installed in your computer
+
+2. Download the latest version of `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases)
+
+3. Copy the file to an empty folder you want to use as the _home folder_ for QuickContacts
+
+4. Double-click on the downloaded `.jar` file to launch QuickContacts
+
+And that's it! You are good to go with QuickContacts.
+
+<div markdown="block" class="alert alert-info">
+
+**:light_bulb: Tip**<br>
+QuickContacts is packaged with sample contacts and meetings. To delete the default data, simply execute the `clear`
+command.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Caution**<br>
+QuickContacts will generate default files in the same directory it is installed in on its first launch. Avoid
+editing or deleting such files unless you know what you are doing!
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
