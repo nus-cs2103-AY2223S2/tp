@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
-import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.Model;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.recommendation.Recommendation;
@@ -49,6 +49,10 @@ public class IndexHandler {
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
 
+    /**
+     * Assigns a contact index for a MeetUp.
+     * @return new Contact Index for new MeetUp.
+     */
     public ContactIndex assignMeetUpIndex() {
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
         if (meetUpList.isEmpty()) {
@@ -92,10 +96,10 @@ public class IndexHandler {
      * Returns the recommendation at the given index.
      */
     public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
-            List<Recommendation> recommendationList = model.getObservableRecommendationList();
-            return recommendationList.stream()
-                    .filter(recommendation -> recommendation.getContactIndex().equals(index))
-                    .findFirst();
-        }
+        List<Recommendation> recommendationList = model.getObservableRecommendationList();
+        return recommendationList.stream()
+                .filter(recommendation -> recommendation.getContactIndex().equals(index))
+                .findFirst();
+    }
 
 }

@@ -67,7 +67,15 @@ public class MeetUp implements Comparable<MeetUp> {
         return meetUpIndex.compareTo(other.meetUpIndex);
     }
 
+
+    /**
+     * Compares two meet ups to check whether the time and location and participants are the same.
+     * @param other The other meet up.
+     * @return True if both meet ups are the same.
+     */
     public boolean isSameMeetUp(MeetUp other) {
-        return this.timePeriod.equals(other.timePeriod) && this.location.equals(other.location) && this.participants.equals(other.participants);
+        return this.timePeriod.equals(other.timePeriod)
+                && this.location.equals(other.location)
+                && this.participants.equals(other.participants);
     }
 }

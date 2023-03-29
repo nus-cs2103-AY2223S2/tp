@@ -1,12 +1,11 @@
 package seedu.address.model.meetup;
-
-import seedu.address.model.person.ContactIndex;
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a group of participants in a meetup by their indexes.
@@ -32,11 +31,17 @@ public class Participants {
         this.contactIndices = new HashSet<>();
     }
 
+    /**
+     * Constructor for {@code Participants} object.
+     */
     public Participants() {
         this.participants = new ArrayList<>();
         this.contactIndices = new HashSet<>();
     }
 
+    /**
+     * Constructor for {@code Participants} object.
+     */
     public Participants(Set<ContactIndex> indices) {
         this.participants = new ArrayList<>();
         this.contactIndices = indices;

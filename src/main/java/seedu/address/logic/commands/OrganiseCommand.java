@@ -2,13 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.joda.time.LocalTime;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.meetup.Participants;
-import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
@@ -16,10 +21,6 @@ import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Adds a meeting to the address book
@@ -40,6 +41,10 @@ public class OrganiseCommand extends Command {
     private final Participants participants;
 
 
+    /**
+     * Constructor for a {@code OrganiseCommand}.
+     * @param index A recommendation's index.
+     */
     public OrganiseCommand(ContactIndex index) {
         this.index = index;
         this.timePeriod = null;
@@ -47,7 +52,16 @@ public class OrganiseCommand extends Command {
         this.participants = null;
     }
 
-    public OrganiseCommand(Day day, LocalTime startTime, LocalTime endTime, Location location, Participants participants) {
+    /**
+     * Constructor for a {@code OrganiseCommand}.
+     * @param day The day of the meeting.
+     * @param startTime The starting time of the meeting.
+     * @param endTime The ending time of the meeting.
+     * @param location The location of the meeting.
+     * @param participants The participants of the meeting.
+     */
+    public OrganiseCommand(Day day, LocalTime startTime, LocalTime endTime, Location location,
+                           Participants participants) {
         this.index = null;
         this.timePeriod = new TimeBlock(startTime, endTime, day);
         this.location = location;
@@ -107,8 +121,7 @@ public class OrganiseCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof OrganiseCommand
+        return other == this || (other instanceof OrganiseCommand
                 && participants.equals(((OrganiseCommand) other).participants)
                 && location.equals(((OrganiseCommand) other).location)
                 && timePeriod == ((OrganiseCommand) other).timePeriod);

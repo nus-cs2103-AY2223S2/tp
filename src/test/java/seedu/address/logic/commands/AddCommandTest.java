@@ -9,7 +9,12 @@ import static seedu.address.testutil.TypicalPersons.ALEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +25,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
-import seedu.address.model.*;
+import seedu.address.model.EduMate;
+import seedu.address.model.EduMateHistory;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.ReadOnlyEduMateHistory;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
@@ -202,8 +214,7 @@ public class AddCommandTest {
 
         @Override
         public void deleteRecommendation(Recommendation target) {
-            throw new AssertionError("This method should not be called.")
-                    ;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -234,6 +245,11 @@ public class AddCommandTest {
         @Override
         public void setUser(User user) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> getPersonByIndex(ContactIndex index) {
+            return Optional.empty();
         }
 
         @Override
@@ -273,7 +289,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<MeetUp> getObservableMeetUpList() {
+        public ObservableList<MeetUp> getObservableMeetUpList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -299,12 +315,17 @@ public class AddCommandTest {
 
         @Override
         public Participants getParticipants() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateObservableMeetUpList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void setParticipants(Set<ContactIndex> indices) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

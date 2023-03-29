@@ -5,11 +5,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.meetup.exceptions.MeetUpNotFoundException;
 
+
+/**
+ * A list of meet ups that enforces uniqueness between its elements and does not allow nulls.
+ */
 public class UniqueMeetUpList implements Iterable<MeetUp> {
 
     private final ObservableList<MeetUp> internalList = FXCollections.observableArrayList();

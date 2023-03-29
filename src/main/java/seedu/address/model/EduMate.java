@@ -27,9 +27,9 @@ public class EduMate implements ReadOnlyEduMate {
 
     private static final Logger logger = LogsCenter.getLogger(EduMate.class);
 
+    protected Participants participants;
     private final UniquePersonList persons;
     private final UniqueMeetUpList meets;
-    protected Participants participants;
     private User user;
     private final UniqueRecommendationList recommendations;
 

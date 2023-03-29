@@ -29,7 +29,6 @@ public interface ReadOnlyEduMate {
      * This will always be non-null.
      */
     User getUser();
-    
     /**
      * Returns an unmodifiable view of the meet ups lists.
      */

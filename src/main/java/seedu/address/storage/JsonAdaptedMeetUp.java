@@ -2,10 +2,11 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.meetup.Participants;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.TimePeriod;
 
@@ -69,6 +70,6 @@ public class JsonAdaptedMeetUp {
 
         final Participants modelParticipants = participants.toModelType();
 
-        return new MeetUp(modelTimePeriod, modelLocation, modelParticipants,modelContactIndex);
+        return new MeetUp(modelTimePeriod, modelLocation, modelParticipants, modelContactIndex);
     }
 }
