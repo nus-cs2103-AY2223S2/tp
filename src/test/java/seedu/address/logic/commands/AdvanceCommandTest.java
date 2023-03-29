@@ -132,9 +132,9 @@ public class AdvanceCommandTest {
 
         Person personToAdvance = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         PersonBuilder personInList = new PersonBuilder(personToAdvance);
-        InterviewDateTime dateTime = new InterviewDateTime("01-01-2023 13:00");
+        InterviewDateTime dateTime = new InterviewDateTime("01-01-2025 13:00");
         Person advancedPerson = personInList.withStatus("SHORTLISTED")
-                .withInterviewDateTime("01-01-2023 13:00").build();
+                .withInterviewDateTime("01-01-2025 13:00").build();
 
         NamePhoneNumberPredicate namePhonePredicate =
                 new NamePhoneNumberPredicate(advancedPerson.getName(), advancedPerson.getPhone());

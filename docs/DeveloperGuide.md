@@ -7,6 +7,27 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction to HMHero**
+
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, 
+and recruiters who want to streamline the recruitment process and make it more efficient, 
+helping their organizations manage job applications and hiring processes more effectively.
+
+This Developer Guide is a detailed documentation on HMHero's design and implementation, describing the architecture, 
+an outline of all parts of HMHero and how they work together, and specifications on
+feature implementation and considerations.
+
+This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
+
+--------------------------------------------------------------------------------------------------------------------
+## **How to use this Developer Guide**
+
+#### Person in place of Applicant
+
+In this Developer Guide, `Person` is used in place of Applicant. Take note that when mentioning `Person`, we are
+always talking about an Applicant in HMHero.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -29,6 +50,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.1</b> Architecture diagram for high-design of the App
+</div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -55,6 +79,11 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete n/Alex p/91234567`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
+</div>
+<br>
+
 
 Each of the four main components (also shown in the diagram above),
 
@@ -64,18 +93,31 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.3</b> Class Diagram for Component Managers
+</div>
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.2.1</b> Class Diagram for UI Components
+</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. 
+
+Steps to start making changes to the UI:
+1. The layout of these UI parts are defined in matching `.fxml` files that are in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/resources/view) folder.
+2. The managing classes of these UI parts are defined in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/java/seedu/address/ui) folder.
+3. The stylesheets for these UI parts can be found in `Extensions.css`, `HMHero.css`, and `Mainwindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/resources/view) folder.
+4. For instance, the layout of the `HelpWindow` is specified in [`HelpWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/resources/view/HelpWindow.fxml) with managing class at [`HelpWindow.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java) and CSS file at [`HelpWindow.css`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/resources/view/HelpWindow.css).
+ 
 
 The `UI` component,
 
@@ -91,16 +133,22 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.1</b> Class diagram for Logic Components
+</div>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HMHeroParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/John p/91234567")` API call.
 
 ![Interactions Inside the Logic Component for the `delete n/John p/91234567` Command](images/DeleteSequenceDiagram.png)
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -108,6 +156,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.3</b> Class diagram for Parser Components
+</div>
 
 How the parsing works:
 * When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
@@ -117,7 +168,9 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.4.1</b> Class diagram for Model Component
+</div>
 
 The `Model` component,
 
@@ -129,15 +182,21 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.4.2</b> Class diagram for Model Components
+</div>
 
 </div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.5.1</b> Class diagram for Storage Components
+</div>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -159,6 +218,13 @@ This section describes some noteworthy details on how certain features are imple
 #### Overview
 
 The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
+
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong> 
+`add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
 
 The activity diagram is as such:
 
@@ -193,8 +259,14 @@ could introduce confusion to how `add` command is used.
 
 ##### Overview
 
-The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
+The `advance` command advances an `Person` in HMHero, which advances the `status` of a `Person`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`advance n/NAME p/PHONE [d/INTERVIEWDATETIME]` <br>
+Refer to [Glossary](#glossary) for more information on Command format and applicant status.
+</div>
 
 The activity diagram is as such:
 
@@ -204,64 +276,63 @@ Here is the activity diagram showing the process of the `advance` command:
 [Add in later]()
 
 ##### Feature Details
-1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
-1. If the name and phone is not provided, an error is thrown and the user is prompted to 
+1. The user specifies an applicant name and phone that represents a `Person` to be advanced.
+2. If the name and phone is not provided, an error is thrown and the user is prompted to 
 enter the command correctly via an error message.
-1. The applicant is cross-referenced in the `Model` to check if it exists.
-      If it does not, then an error is raised to inform the user.
-1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
-1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
+3. The name and phone are cross-referenced in the `Model` to check if 
+an applicant with the corresponding name and phone exists. If it does not, then an error is raised to inform the user.
+4. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
+5. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
 correctly via an error message.
-1. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
+6. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
 correctly via an error message.
-1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
+7. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
 correctly via an error message.
-1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
-the user is prompted to enter the command correctly via an error message.
+8. If step 7 is reached without any error message, HMHero advances the specified `Person`'s `status`.
 
 ##### Feature Considerations
 
-It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in Accepted or
-Rejected status. This presents confusingly to the user, applicants ideally cannot be advanced with a rejected or 
-accepted status. For example, if an `Person` with the status `Accepted` or `Rejected`, then you cannot advance 
-an existing `Person` any further.
-
-When implementing this feature, we realised that it is common to advance just by one stage. We thus decided to provide
-a default behaviour when advancing an applicant's status.
+When implementing this feature, we realised that we could model HMHero to track hiring process in the real world 
+more effectively by enforcing the rule that the user can only advance applicants one stage at a time. 
+We thus decided to provide a default behaviour when advancing an applicant's status.
 
 
 #### Rejecting an Applicant
 
 ##### Overview
 
-The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
+The `reject` command rejects a `Person` in HMHero, which changes the `status` of a `Person` to `REJECTED`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`reject n/NAME p/PHONE` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
 
 The activity diagram is as such:
 [Add in later]()
 
-Here is the activity diagram showing the process of the `advance` command:
+Here is the activity diagram showing the process of the `reject` command:
 [Add in later]()
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
 2. If the name and phone is not provided, an error is thrown and the user is prompted to
 enter the command correctly via an error message.
-3. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
-4. The applicant is cross-referenced in the `Model` to check if it exists.
-If it does not, then an error is raised to inform the user.
-5. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
-the user is prompted to enter the command correctly via an error message.
-6. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
+3. The name and phone are cross-referenced in the `Model` to check if
+    an applicant with the corresponding name and phone exists.
+    If it does not, then an error is raised to inform the user.
+4. HMHero confirms that the applicant's status is not already `REJECTED`. Else, an error is raised to inform the user.
+5. If step 4 completes without any exceptions, then the `Person` is successfully rejected.
 
 ##### Feature Considerations
 
-It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in 
-Rejected status. This presents confusingly to the user, applicants ideally cannot be rejected with a rejected
-status. For example, if an `Person` with the status `Rejected`, then you cannot reject an existing `Person` any further.
-
-When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
-a default behaviour when rejecting an applicant's status.
+It is feasible to implement the reject feature to successfully executes when `reject` command executes on 
+applicants with `REJECTED` status. However, an absence of the error message provides little value to the user and 
+may present confusingly to the user. <br>
+Additionally, we realised that it is common for hiring managers to reject applicants without removing them. Thus, the
+`reject` command does not perform the same functionality as the `delete` command.
 
 #### Finding an Applicant
 
@@ -269,6 +340,14 @@ a default behaviour when rejecting an applicant's status.
 
 The `find` command filters applicants based on fields specified by the user. 
 Fields have to be denoted by flags. Allowed fields for filtering are `name` and `phone`.
+
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`find [n/NAME] [p/PHONE]` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 
 The activity diagram is as such:
 
@@ -284,7 +363,7 @@ The UI displays a `FilteredList` obtained from an immutable applicant list.
 The `FindCommandParser` creates the `Predicate` used to filter the applicant list. When the `FindCommand` is executed,
 the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI shows the new `FilteredList`.
 
-Applicant fields required as an input is mandatory to reduce user confusion 
+Applicant fields are required as an input as it is helpful to reduce user confusion 
 and facilitate finding applicants based on multiple fields.
 
 
@@ -295,6 +374,13 @@ and facilitate finding applicants based on multiple fields.
 The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
 one-indexed `personList` presented to the user.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 The activity diagram is as such:
 [add in later]()
 
@@ -304,16 +390,17 @@ Here is the activity diagram showing the process of the `edit` command:
 
 ##### Feature Details
 
-1. The user specifies an item index that represents an `Person` to be edited.
-1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly 
-via an error message.
-1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
+1. The user can perform commands that modify the shown applicant list. (Eg. `find` and `interview` commands)
+2. The user specifies an index that represents a `Person` to be edited.
+3. If a non-zero unsigned integer index is not provided, an error is thrown and the user is prompted 
+    to enter the command correctly via an error message.
+4. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
 command correctly via an error message.
-1. The applicant is cross-referenced in the `Model` to check if it already exists. If it already does, 
-then an error is raised to inform the user.
-1. Finally, if an index that is not in the valid range of the Person List is provided, an error is thrown 
-and the user is prompted to enter the command correctly via an error message.
-1. If step 4 completes without any exceptions, then the new `Person` is successfully edited.
+5. If an index that is not in the valid range of the list is provided, an error is thrown 
+    and the user is prompted to enter the command correctly via an error message.
+6. The `edit` command creates a new applicant based on the given fields. The created applicant is cross-referenced 
+    in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+7. If step 6 completes without any exceptions, then the `Person` at the specified index is successfully edited.
 
 ##### Feature Considerations
 
@@ -338,7 +425,7 @@ The `list` command displays the full list by HMHero.
 
 ##### Feature Considerations
 
-The five statistics were chosen as a baseline and they are a good starting point for users to help 
+The five statistics were chosen as a baseline, and they are a good starting point for users to help 
 track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
 the total numbers of applicants for each status.
 

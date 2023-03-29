@@ -21,64 +21,166 @@ title: <Foo Dun Liang> Project Portfolio Page
 
 (**Summary of Contributions**)
 
-- Implemented `delete` feature to remove applicants that should no longer be tracked in HMHero
+(**Code contributions**)
 
-Example Input: `delete 1`
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dunliang0513&breakdown=true)
 
-> Original List:
+- **Project Management**
+
+(**Enhancements implemented**)
+
+- **Features implemented**
+
+1. Implemented Find Command
+  - Can use applicant's name or phone or both as a keyword
+
+Example Input: `find n/Pauline`
+
+> Original List 1:
 
 ```
-Here are the list of all applicants:
-1. John Doe (Applied)
-2. Jane Doe (Shortlisted)
-3. Joe Doe (Accepted)
+Listed all applicants
+Total Applicants: 3
+Applied: 2
+Shortlisted: 1
+
+1. Alice Pauline 91234567 (Applied)
+2. Alex Pauline 94351253 (Shortlisted)
+3. Joe Doe 92849104 (Applied)
 ```
 
 Example Output:
 
 ```
-John Doe is deleted from HRHero.
+2 persons listed!
 
-Here are the list of all applicants:
-1. Jane Doe (Shortlisted)
-2. Joe Doe (Accepted)
+1. Alice Pauline 91234567 (Applied)
+2. Alex Pauline 94351253 (Shortlisted)
 ```
 
-(**This part can change according to your contributions**)
+Example Input: `find p/91234567`
 
-Example
+> Original List 2:
 
-- to be added soon
+```
+Listed all applicants
+Total Applicants: 3
+Applied: 2
+Shortlisted: 1
 
-(**Code contributions**)
+1. Alice Pauline 91234567 (Applied)
+2. Alex Pauline 94351253 (Shortlisted)
+3. Joe Doe 92849104 (Applied)
+```
 
-Example
+Example Output:
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=merrickneo&breakdown=true)
+```
+1 persons listed!
 
-- **Project management**:
+1. Alice Pauline 91234567 (Applied)
+```
 
-  - to be added soon
+2. Implemented Remind Command
+  - Remind the Hiring Manager when there is any applicant going to have interview within three days.
 
-(**Enhancements implemented**)
+Assume current time is 22-03-2023 18:00
 
-- **Enhancements to existing features**:
+Example Input: `remind`
 
-  - to be added soon
+> Original List 1:
+
+```
+Listed all applicants
+Total Applicants: 3
+Applied: 2
+Shortlisted: 1
+
+1. Alice Pauline (Applied)
+2. Alex Pauline (Shortlisted) 24-03-2023 18:00
+3. Joe Doe (Applied)
+```
+
+Example Output:
+
+```
+Listed all applicants that going to have interview within three days!
+
+1. Alex Pauline (Shortlisted) 24-03-2023 18:00
+```
+
+> Original List 2:
+
+```
+Listed all applicants
+Total Applicants: 3
+Applied: 2
+Shortlisted: 1
+
+1. Alice Pauline (Applied)
+2. Alex Pauline (Shortlisted) 26-03-2023 18:00
+3. Joe Doe (Applied)
+```
+
+Example Output 2:
+
+```
+There is no applicant having interview within three days.
+```
+
+3. Implement Skill Command
+   - Allow hiring manager to filter the applicant using specific keywords about the skill set they are looking for.
+   - Help hiring manager better identify candidates who are most qualified for the job.
+     
+Example Input: `skill Python`
+
+> Original List:
+
+```
+Listed all applicants
+Total Applicants: 3
+Applied: 2
+Shortlisted: 1
+
+1. Alice Pauline 91234567 (Applied) [Python, Java]
+2. Alex Tan 94351253 (Shortlisted) [Python, C++]
+3. Joe Doe 92849104 (Applied) [Communication skill, ReactJS]
+```
+
+Example Output:
+
+```
+2 persons listed!
+
+1. Alice Pauline 91234567 (Applied) [Python, Java]
+2. Alex Tan 94351253 (Shortlisted) [Python, C++]
+```
+
+
+- **Test Cases**:
+
+1. Wrote test cases for RemindCommand
+  - Test cases that cover possible paths taken by `execute(Model)` in `RemindCommand` class
 
 - **Documentation**:
 
   - User Guide
-    - Added documentation for the feature `add`
+
+    - Created the template of our team User Guide
+    - Added documentation for the Troubleshooting
+    - Added documentation for the FAQ
+    - Added documentation for the Glossary
+
   - Developer Guide
-    - Added non-functional requirements for the project.
+    - Added documentation and diagram for Architecture
+    - Added documentation and diagram for Ui
+    - Added documentation and diagram for Storage
+    - Added documentation and diagram for Design
 
 - **Community**:
 
-  - to be added soon
+  - Reviewed Pull Requests (PRs) made by team members
 
 - **Tools**:
 
   - to be added soon
-
-- _{you can add/remove categories in the list above}_

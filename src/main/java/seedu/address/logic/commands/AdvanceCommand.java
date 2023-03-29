@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -109,6 +110,17 @@ public class AdvanceCommand extends Command {
     }
 
     /**
+     * Checks whether applicant's interviewDateTIme is after applicationDateTime
+     * @param personToAdvance Applicant that user wants to advance to the next stage in application cycle
+     * @param interviewDateTime date and time of the interview for the applicant
+     * @return true if interviewDateTime is after applicationDateTime
+     */
+    private boolean isAfterApplicationDateTime(Person personToAdvance, InterviewDateTime interviewDateTime) {
+        LocalDateTime applicationDateTime = personToAdvance.getApplicationDateTime().getApplicationDateTime();
+        return interviewDateTime.getDateTime().isAfter(applicationDateTime);
+    }
+
+    /**
      * Checks whether applicant that user wants to advance is of status {@code APPLIED}
      * Checks whether the interview date time has any clashes with current applicants who have the
      * status {@code SHORTLISTED}
@@ -119,8 +131,8 @@ public class AdvanceCommand extends Command {
      */
     private boolean isValidForAdvanceWithDateTime(Model model, Person personToAdvance,
             InterviewDateTime interviewDateTime) throws CommandException {
-        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model,
-                personToAdvance, interviewDateTime);
+        return personToAdvance.getStatus() == Status.APPLIED
+                && !isDuplicateDateTime(model, personToAdvance, interviewDateTime);
     }
 
 
