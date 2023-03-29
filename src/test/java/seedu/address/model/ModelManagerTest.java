@@ -89,8 +89,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    public void getDisplayedModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDisplayedModuleList().remove(0));
     }
 
     @Test

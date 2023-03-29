@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.model.util.SampleDataUtil.EMPTY_INPUT;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -49,12 +50,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         // Optional fields. Hence, we use the Optional.orElse() to handle the case when the field does not have a value.
-        Teacher teacher = ParserUtil.parseTeacher(argMultimap.getValue(PREFIX_TEACHER).orElse("None."));
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse("None."));
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse("None."));
-        Resource resource = ParserUtil.parseResource(argMultimap.getValue(PREFIX_RESOURCE).orElse("None."));
-        TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).orElse("None."));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse("None."));
+        Teacher teacher = ParserUtil.parseTeacher(argMultimap.getValue(PREFIX_TEACHER).orElse(EMPTY_INPUT));
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(EMPTY_INPUT));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(EMPTY_INPUT));
+        Resource resource = ParserUtil.parseResource(argMultimap.getValue(PREFIX_RESOURCE).orElse(EMPTY_INPUT));
+        TimeSlot timeSlot = ParserUtil.parseTimeSlot(argMultimap.getValue(PREFIX_TIMESLOT).orElse(EMPTY_INPUT));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(EMPTY_INPUT));
 
         Module module = new Module(name, resource, timeSlot, address, tagList, remark, deadline, teacher);
 
