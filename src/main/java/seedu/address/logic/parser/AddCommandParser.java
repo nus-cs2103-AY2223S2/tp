@@ -50,7 +50,6 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_DEPARTMENT, PREFIX_PAYROLL)
-
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -62,18 +61,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
-
-
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
-
         Payroll payroll = ParserUtil.parsePayroll(argMultimap.getValue(PREFIX_PAYROLL).get());
         LeaveCounter leaveCount = ParserUtil.parseLeaveCount(argMultimap.getValue(PREFIX_LEAVE_COUNT));
         Optional<LocalDate> dateOfBirth = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATE_OF_BIRTH));
         Optional<LocalDate> dateOfJoining = ParserUtil.parseDateOfJoining(argMultimap.getValue(PREFIX_DATE_OF_JOINING));
-
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         EmployeeId employeeId = new EmployeeId();
         Employee employee = new Employee(name, employeeId, phone, email, address, department, payroll, leaveCount,
                 dateOfBirth, dateOfJoining, Optional.empty(), tagList);
