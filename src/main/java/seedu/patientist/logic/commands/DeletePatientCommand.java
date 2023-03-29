@@ -60,6 +60,6 @@ public class DeletePatientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same instance
                 || (other instanceof DeletePatientCommand)
-                && this.idNumber == ((DeletePatientCommand) other).idNumber;
+                && this.idNumber.equals(((DeletePatientCommand) other).idNumber);
     }
 }
