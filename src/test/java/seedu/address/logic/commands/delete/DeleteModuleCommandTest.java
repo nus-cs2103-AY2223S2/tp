@@ -34,13 +34,13 @@ public class DeleteModuleCommandTest {
         expectedModel.deleteModule(expectedModel.getModule(validModCode));
 
         // tests string output
-        assertEquals(actual,
-                new CommandResult(String.format(
+        assertEquals(new CommandResult(String.format(
                         DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
-                        TypicalModules.getCs2040s().getCode())));
+                        TypicalModules.getCs2040s().getCode())),
+                actual);
         // tests model
-        assertEquals(model.getTracker().getModuleList(),
-                expectedModel.getTracker().getModuleList());
+        assertEquals(expectedModel.getTracker().getModuleList(),
+                model.getTracker().getModuleList());
     }
 
     @Test
