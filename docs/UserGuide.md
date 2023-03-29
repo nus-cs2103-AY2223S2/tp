@@ -28,9 +28,19 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## Components of the User Interface of PowerCards
 
+### Locations of the components
 
+### Locations of the components
+![UiComponent](images/UiComponent.png)
 
-## Quick start
+## Use of the components
+
+| Component                              | Use                                                                                                                                                               |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Box**                        | This is where you enter your **commands**.                                                                                                                             |
+| **Result Display**                     | This is where the **results** of your commands will be shown.                                                                                            |
+| **Left Panel**                         | This is where all the **guest information** of a guest will be shown.                                                                                             |
+| **Right Panel**                         | This shows the location of your **save file**.                                                                     
 
 1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
 
