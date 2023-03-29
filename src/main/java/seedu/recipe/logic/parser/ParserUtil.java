@@ -228,4 +228,22 @@ public class ParserUtil {
 
         return new SatisfyPriceConditionPredicate(filter, price);
     }
+
+    /**
+     * Parses {@code String isAsc} into a {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String isAsc} is invalid.
+     */
+    public static boolean parseAsc(String isAsc) throws ParseException {
+        requireNonNull(isAsc);
+        String trimmedIsAsc = isAsc.trim();
+        if (trimmedIsAsc.equals("asc")) {
+            return true;
+        } else if (trimmedIsAsc.equals("desc")) {
+            return false;
+        } else {
+            throw new ParseException("Neither ascending nor descending order!");
+        }
+    }
 }
