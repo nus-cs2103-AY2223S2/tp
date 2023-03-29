@@ -371,6 +371,8 @@ Add tags to a job listing for easy reference.
 
 ## **Command summary**
 
+<div class="table-wrapper" markdown="block">
+
 | Action     | Format, Examples                                                                                                                     |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | **add**    | `add t/TITLE d/DESCRIPTION [a/APPLICANTS]` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele` |
@@ -379,5 +381,7 @@ Add tags to a job listing for easy reference.
 | **find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                       |
 | **view**   | `view`                                                                                                                               |
 | **help**   | `help`                                                                                                                               |
+
+</div>
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
