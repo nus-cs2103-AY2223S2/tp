@@ -42,7 +42,7 @@
         <GridPane fx:id="contentSection" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="550.0" prefWidth="1200.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="400.0" prefWidth="1000.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="350.0" prefWidth="1000.0" />
             <ColumnConstraints />
             <ColumnConstraints />
           </columnConstraints>
@@ -79,7 +79,7 @@
             </padding>
             <StackPane fx:id="detailedInfoRegionPlaceholder" VBox.vgrow="ALWAYS"
                        minHeight="100" prefHeight="2000" maxHeight="Infinity"
-                       minWidth="325" prefWidth="600" maxWidth="Infinity">
+                       minWidth="325" prefWidth="500" maxWidth="Infinity">
             </StackPane>
           </VBox>
 

@@ -39,10 +39,18 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_HOMEWORK, PREFIX_DEADLINE);
 
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_HOMEWORK, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreateHomeworkCommand.MESSAGE_USAGE));
+        }
+
+        // all homework name cannot be empty
+        for (String homeworkName : argMultimap.getAllValues(PREFIX_HOMEWORK)) {
+            if (homeworkName.isEmpty()) {
+                throw new ParseException("Homework name cannot be empty");
+            }
         }
 
         String homeworkName = argMultimap.getValue(PREFIX_HOMEWORK).get();
