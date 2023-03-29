@@ -8,7 +8,12 @@ participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
 
 [-> UiEventManager : catchAndExecute(event)
 activate UiEventManager
-alt ef "F1"
+alt event is to be ignored
+    UiEventManager -> Event : consume()
+    activate Event
+    Event --> UiEventManager
+    deactivate Event
+else ef "F1"
     refOver show help
 else ef "CTRL-F"
     refOver toggle mode
