@@ -132,7 +132,8 @@ public class PatientListPanel extends UiPart<Region> {
         drugAllergyField.setText("Drug Allergy");
         emergencyContactField.setText("Emergency Contact");
         for (Label field: fields) {
-            field.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(4),
+            field.setBackground(new Background(new BackgroundFill(Color.rgb(117, 142, 155), new CornerRadii(4),
+
                     new Insets(-3, -10, -3, -10))));
             VBox parent = (VBox) field.getParent();
             parent.setMargin(field, new Insets(0, 0, 10, 0));
