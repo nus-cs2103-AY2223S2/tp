@@ -325,47 +325,60 @@ Examples:
 
 ## 7.3. Leave Commands
 
-### Adding a leave: `andre`
+### Adding a leave: `aetl`
 
-Tracks a person's leave.
+Add a person's leave on a specifc day for SudoHr to track.
 
-Format: `add_leave n/NAME d/DATE`
+Format: `aetl eid/ID d/DATE`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The employee shouldn't have taken leave on the date provided
 </div>
 
 Examples:
-* `add_leave n/John Doe d/2023-03-05`
-* `add_leave n/Betsy Crowe d/2023-03-05~2023-03-10`
+* `aetl eid/1 d/2023-03-05`
+* `aetl eid/2 d/2023-03-05`
 
-### Updating a leave: `andre`
 
-TBC. Seemingly only relevant if we introduce half-day leaves.
+### Adding all leaves in range : `aelr`
 
-Format: `TBC`
+Add a person's leave for a maximum range of 1 week from a start date till an end date for SudoHr to track.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Format: `aelr eid/ID s/START_DATE e/END_DATE`
+
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The start date must be before the end date.
+</div>
+
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The end date cannot be more than 6 days away from the start date.
 </div>
 
 Examples:
-* `TBC`
-* `TBC`
+* `aelr eid/1 s/2023-03-05 e/2023-03-08`
+* `aelr eid/2 s/2023-03-05 e/2023-03-06`
 
-### Deleting a leave: `andre`
 
-Removes leave dates that are now cancelled.
+### Deleting a leave: `defl`
+Delete a employee's leave on a specific day.
+Format: `defl eid/ID d/DATE`
 
-Format: `del_leave n/NAME d/DATE`
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The employee shouldn't have taken leave on the specific day</div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+
+### Listing all employees on leave for a given date: `leol`
+
+Lists all employees that are on leave on a given date.
+
+Format: `leol d/DATE`
+
+<div markdown="span" class="alert alert-warning">**NOTE:**
+No employee information will be shown if no employees take leave on the specific day</div>
 
 Examples:
-* `del_leave n/John Doe d/2023-03-05`
-* `del_leave n/Betsy Crowe d/2023-03-06~2023-03-08`
+* `leol d/2023-03-05`
+* `leol d/2023-03-08`
 
 ### Listing all leaves for a person: `andre`
 
@@ -373,27 +386,10 @@ Lists all the leave date(s) of an employee.
 
 Format: `ls_leave n/NAME`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
 
 Examples:
 * `ls_leave n/John Doe `
 * `ls_leave n/Betsy Crowe`
-
-### Listing all users on leave for a given date: `andre`
-
-Lists all personnel that are on leave for a given date(s).
-
-Format: `ls_on_leave d/DATE`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `ls_on_leave d/2023-03-05`
-* `ls_on_leave d/2023-03-05~2023-05-7`
 
 ## 7.4. General Commands
 
@@ -435,9 +431,9 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 | Action                                 | Format                                                           |
 |----------------------------------------|------------------------------------------------------------------|
-| **Add an employee**                    | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`    |
+| **Add an employee**                    | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`     |
 | **List all employees**                 | `list`                                                           |
-| **Edit an employee**                   | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Edit an employee**                   | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  |
 | **Find employee by name**              | `find KEYWORD [MORE_KEYWORDS]`                                   |
 | **Delete an employee**                 | `delete eid/ID`                                                  |
 | **Add a department**                   | `adep n/DEPARTMENT_NAME`                                         |
@@ -449,6 +445,10 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **Remove employee from department**    | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
 | **List an employee's department**      | `led eid/EMPLOYEE_ID`                                            |
 | **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                         |
+| **Adding a leave**                     | `aetl eid/ID d/DATE`                                             |
+| **Adding all leaves in range**         | `aelr eid/ID s/START_DATE e/END_DATE`                            |
+| **Deleting a leave**                   | `defl eid/ID d/DATE`                                             |
+| **Listing all employees on leave for a given date** | `leol d/DATE`                                       |
 
 [//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
 
