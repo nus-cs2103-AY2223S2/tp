@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents Total number of Completed jobs in Statistics Window.
  * Guarantees: details are present and not null.
  */
-public class TotalCompleted {
+public class TotalCompleted implements Statistic {
     public static final String MESSAGE_CONSTRAINTS = "TotalCompleted must be a non-negative integer";
     private static final String OUTPUT_MESSAGE = "Total number of Completed Jobs: ";
     private int numCompleted;
