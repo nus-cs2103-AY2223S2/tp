@@ -63,7 +63,7 @@ and want to classify it by ingredients? Simply run the `add` command, and follow
 Format:
 `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
 
-**Example(s) of usage**:
+Example(s) of usage:
 * `add n/Honey Chicken Rice`
 ![AddCommandUI](images/AddCommandUI.png)
 * `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
@@ -78,9 +78,9 @@ Format:
 >
 > Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 >
-> If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2).
+> If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e. `s/Step1 s/step2`).
 >
-> Similar to parameters, ingredient fields do not have to be input in order (-a can come before -n etc.).
+> Similar to parameters, ingredient fields do not have to be input in order (`-a` can come before `-n` etc.).
 >
 > However, for steps, please input the steps in the order that they are intended to be performed.
 
@@ -98,7 +98,7 @@ Format:
 >
 > :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
 >
-> In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe
+> In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
 
 <div style="page-break-after: always;"></div>
 
@@ -112,11 +112,11 @@ only those that match any of your specified keywords straight away.
 
 Format:
 `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
-* :bulb: Tip: Supported properties: `name`, `tag`, `ingredient`
+> :bulb: Tip: Supported properties: `name`, `tag`, `ingredient`
 
 i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL KEYWORDS]...`, `find ingredient KEYWORD [ADDITIONAL KEYWORDS]...`
 
-Example of usage:
+Example(s) of usage:
 * `find cheese` returns all recipes with the keyword `cheese` in their recipe name
 * `find name pancakes sandwich` returns all recipes with the keyword `pancakes` and/or `sandwich` in their names
 ![FindCommandUI](images/FindCommandUI.png)
@@ -131,9 +131,9 @@ Example of usage:
 >
 > Recipes are listed in the chronological order that they were added.
 >
-> The order of the keywords does not matter. e.g. ham sandwich will match sandwich ham
+> The order of the keywords does not matter. e.g. `ham sandwich` will match a recipe named `sandwich ham`
 >
-> Only full words will be matched. e.g. chick will **not** match chicken
+> Only full words will be matched. e.g. `chick` will **not** match `chicken`
 
 ### Deleting a recipe: `delete`
 
@@ -142,7 +142,7 @@ No longer like a certain recipe? Simply delete it from the database by its index
 Format:
 `delete INDEX`
 
-Example of usage:
+Example(s) of usage:
 * `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
 *  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
@@ -159,7 +159,7 @@ dish with an alternative ingredient!
 Format:
 `sub INGREDIENT_NAME`
 
-Example of usage:
+Example(s) of usage:
 * `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
 
 > `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
@@ -234,15 +234,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                       |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |
-| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag`, `ingredient` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`, `find ingredient tofu`                                                                                                                                                                                     |
-| **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                                   |
-| **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                             |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                               |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                         |
+| **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag`, `ingredient` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`, `find ingredient tofu`                                                                                                                                                                             |
+| **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                           |
+| **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                     |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                         |
 
 
