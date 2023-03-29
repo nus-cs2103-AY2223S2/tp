@@ -39,8 +39,7 @@ public class ElderlyCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
-    @FXML
-    private Label availability;
+
     @FXML
     private Label age;
     @FXML
@@ -53,6 +52,10 @@ public class ElderlyCard extends UiPart<Region> {
     private FlowPane region;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox availableDatesBox;
+    @FXML
+    private FlowPane availableDates;
 
     /**
      * Creates a {@code ElderlyCard} with the given {@code Elderly} and index to display.
@@ -70,18 +73,6 @@ public class ElderlyCard extends UiPart<Region> {
         address.setText(elderly.getAddress().value);
         age.setText(String.valueOf(elderly.getBirthDate().getAge()));
         email.setText(elderly.getEmail().value);
-
-        StringBuilder available = new StringBuilder();
-        if (elderly.getAvailableDates().size() != 0) {
-            for (AvailableDate dates : elderly.getAvailableDates()) {
-                boolean b = !(available.toString().isEmpty());
-                if (b) {
-                    available.append(", ");
-                }
-                available.append(dates.toString());
-            }
-        }
-        availability.setText(available.toString());
         region.getChildren().add(
                 new Label(elderly.getRegion().region.name())
         );
@@ -92,12 +83,15 @@ public class ElderlyCard extends UiPart<Region> {
         elderly.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        elderly.getAvailableDates().stream()
+                .sorted(Comparator.comparing(AvailableDate::getStartDate))
+                .forEach(availableDate -> availableDates.getChildren().add(new Label(availableDate.toString())));
 
         if (elderly.getTags().isEmpty()) {
             tagsBox.getChildren().removeAll(tagsBox.getChildren());
         }
-        if (available.toString().isEmpty()) {
-            availability.setVisible(false);
+        if (elderly.getAvailableDates().isEmpty()) {
+            availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());
         }
         if (displayedIndex == 0) {
             id.setVisible(false);

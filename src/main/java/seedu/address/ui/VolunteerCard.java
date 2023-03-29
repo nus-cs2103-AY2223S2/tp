@@ -46,8 +46,6 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private FlowPane region;
     @FXML
-    private Label availability;
-    @FXML
     private FlowPane medicalTags;
     @FXML
     private HBox tagsBox;
@@ -55,6 +53,10 @@ public class VolunteerCard extends UiPart<Region> {
     private HBox medicalTagsBox;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox availableDatesBox;
+    @FXML
+    private FlowPane availableDates;
 
     /**
      * Creates a {@code VolunteerCode} with the given {@code Volunteer} and index to display.
@@ -72,17 +74,6 @@ public class VolunteerCard extends UiPart<Region> {
         address.setText(volunteer.getAddress().value);
         age.setText(String.valueOf(volunteer.getBirthDate().getAge()));
         email.setText(volunteer.getEmail().value);
-        StringBuilder available = new StringBuilder();
-        if (volunteer.getAvailableDates().size() != 0) {
-            for (AvailableDate dates : volunteer.getAvailableDates()) {
-                boolean b = !(available.toString().isEmpty());
-                if (b) {
-                    available.append(", ");
-                }
-                available.append(dates.toString());
-            }
-        }
-        availability.setText(available.toString());
         region.getChildren().add(
                 new Label(volunteer.getRegion().region.name())
         );
@@ -91,19 +82,19 @@ public class VolunteerCard extends UiPart<Region> {
         volunteer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        volunteer.getAvailableDates().stream()
+                .sorted(Comparator.comparing(AvailableDate::getStartDate))
+                .forEach(availableDate -> availableDates.getChildren().add(new Label(availableDate.toString())));
 
         if (volunteer.getTags().isEmpty()) {
             tagsBox.getChildren().removeAll(tagsBox.getChildren());
         }
-
         if (volunteer.getMedicalTags().isEmpty()) {
             medicalTagsBox.getChildren().removeAll(medicalTagsBox.getChildren());
         }
-
-        if (available.toString().isEmpty()) {
-            availability.setVisible(false);
+        if (volunteer.getAvailableDates().isEmpty()) {
+            availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());
         }
-
         if (displayedIndex == 0) {
             id.setVisible(false);
         }
