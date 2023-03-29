@@ -12,13 +12,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
-import seedu.dengue.storage.temporary.UndoSpecialisedMemory;
+import seedu.dengue.storage.temporary.TemporaryMemory;
 import seedu.dengue.testutil.DengueHotspotTrackerBuilder;
 
-public class UndoSpecialisedMemoryTest {
+public class TemporaryMemoryTest {
     private DengueHotspotTrackerBuilder builder;
     private DengueHotspotTracker tracker;
-    private UndoSpecialisedMemory memory;
+    private TemporaryMemory memory;
     private ArrayList<DengueHotspotTracker> inputs;
 
     // Randomly generated states of DengueHotspotTrackers to test.
@@ -26,7 +26,7 @@ public class UndoSpecialisedMemoryTest {
     public void setUp() {
         this.builder = new DengueHotspotTrackerBuilder();
         this.tracker = this.builder.buildNew();
-        this.memory = new UndoSpecialisedMemory(this.tracker);
+        this.memory = new TemporaryMemory(this.tracker);
 
         this.inputs = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
@@ -61,7 +61,7 @@ public class UndoSpecialisedMemoryTest {
         for (int j = 0; j < numUndos; j++) {
             this.memory.undo();
         }
-        assertEquals(this.memory.peek(), inputs.get(numFiles - numUndos - 1));
+        assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
     }
 
     @Test
