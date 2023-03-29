@@ -296,9 +296,10 @@ The parser for the `add` command would extract out the arguments corresponding t
 
 The following activity diagram summarizes what happens when the user executes the `add` command.
 
- <p align="center">
-     <img src="images/AddCommandActivityDiagram.svg">
- </p>
+<p align="center">
+  <img src="images/AddCommandActivityDiagram.svg">
+  <br>Figure 14: Add Command Activity Diagram
+</p>
 
 ### DeleteXYZCommand
 
@@ -310,9 +311,10 @@ The parser for `delete` command extracts the index found in the arguments. If th
 
 The following activity diagram summarizes what happens when the user executes the `delete` command.
 
- <p align="center">
-     <img src="images/DeleteCommandActivityDiagram.svg">
- </p>
+<p align="center">
+  <img src="images/DeleteCommandActivityDiagram.svg">
+  <br>Figure 15: Delete Command Activity Diagram
+</p>
 
 ### Edit feature
 
@@ -335,8 +337,9 @@ the edited item is saved to the filtered list and `EditXYZCommand#execute()` wil
 
 Lastly, Changes made are saved to local data and success message will be shown.
 
- <p align="center">
-    <img src="images/EditCommandActivityDiagram.svg" width="900" />
+<p align="center">
+  <img src="images/EditCommandActivityDiagram.svg" width="900" />
+  <br>Figure 16: Edit Command Activity Diagram
 </p>
 
 ### FindXYZCommand
@@ -353,7 +356,8 @@ A `XYZContainsKeywordPredicate` is built upon these fields, which is used to tes
 The following activity diagram summarizes what happens when the user executes the `find` command.
 
 <p align="center">
-    <img src="images/FindCommandActivityDiagram.svg">
+  <img src="images/FindCommandActivityDiagram.svg">
+  <br>Figure 17: Find Command Activity Diagram
 </p>
 
 ### ListXYZCommand
@@ -367,93 +371,9 @@ The `FilteredXYZList` is then updated to have all `XYZ` objects, it will then to
 The following activity diagram summarizes what happens when the user executes the `list` command.
 
 <p align="center">
-    <img src="images/ListCommandActivityDiagram.svg">
+  <img src="images/ListCommandActivityDiagram.svg">
+  <br>Figure 18: List Command Activity Diagram
 </p>
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
-* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
-* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedTrackr` will be initialized with the initial trackr state, and the `currentStatePointer` pointing to that single trackr state.
-
-![UndoRedoState0](images/UndoRedoState0.svg)
-
-Step 2. The user executes `delete_task 5` command to delete the 5th task in the trackr. The `delete_task` command calls `Model#commitTrackr()`, causing the modified state of the trackr after the `delete_task 5` command executes to be saved in the `trackrStateList`, and the `currentStatePointer` is shifted to the newly inserted trackr state.
-
-![UndoRedoState1](images/UndoRedoState1.svg)
-
-Step 3. The user executes `add_task n/Sort Storage …​` to add a new task. The `add_task` command also calls `Model#commitTrackr()`, causing another modified trackr state to be saved into the `trackrStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTrackr()`, so the trackr state will not be saved into the `trackrStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTrackr()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous trackr state, and restores the trackr to that state.
-
-![UndoRedoState3](images/UndoRedoState3.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Trackr state, then there are no previous Trackr states to restore. The `undo` command uses `Model#canUndoTrackr()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list_task`. Commands that do not modify the trackr, such as `list_task`, will usually not call `Model#commitTrackr()`, `Model#undoTrackr()` or `Model#redoTrackr()`. Thus, the `trackrStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.svg)
-
-Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the `currentStatePointer` is not pointing at the end of the `trackrStateList`, all trackr states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add_task n/Sort Storage …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.svg)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.svg" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
