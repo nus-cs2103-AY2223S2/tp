@@ -60,7 +60,7 @@ NextBigFish (NBF) is a
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
-### Viewing help : `help` [coming soon]
+### Viewing help : `help`
 
 Brings users to the help page.
 
@@ -68,16 +68,16 @@ Format: `help`
 
  Adding a person: 'add'
 =======
-### Adding a person: `add` [coming soon]
+### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/BUSINESS\_SIZE c/COMPANY\_NAME [x/ACTION] [d/DEADLINE] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/BUSINESS_SIZE c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS pr/HIGH tr/0`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank pr/LOW tr/10 t/criminal`
 
 
 ### Listing all persons : `list`
@@ -88,12 +88,12 @@ Shows a list of all persons in the contact list.
 Format: list
 
 
-### Editing a person : `edit` [coming soon]
+### Editing a person : `edit`
 
 
 Edits an existing person in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/BUSINESS\_SIZE] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/BUSINESS_SIZE] [pr/PRIORITY] [tr/TRANSACTION_COUNT] [t/TAG]…`
 
 - Edits the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -119,18 +119,19 @@ Examples:
 
 - `filter` followed by `friend client` retrieves contacts that are both tagged friend and client.
 
-### Marking contacts : `mark` [coming soon]
+### Marking contacts : `mark`
 
 Marks the contact at specified index as requiring follow-up action.
 
-Format : `mark INDEX x/ACTION d/DEADLINE`
+Format : `mark INDEX m/NEED FOLLOWUP:yes/no`
 
 - Marks a particular contact as requiring follow-up action
 - This action can be specified by a String of arbitrary length
 
 Examples :
 
-- `mark 1 x/text message d/2002-03-01` marks a contact at index one as requiring a follow up text message by 1st March of 2002.
+- `mark 1 m/yes` marks a contact at index one as requiring a follow up.
+- `mark 1 m/no` marks a contact at index one as not requiring a follow up.
 
 ### Marking as done : `markDone` [coming soon]
 
@@ -142,23 +143,9 @@ Examples:
 
 - `markDone 3` marks the contact at index 3 as having already been followed up with.
 
-###
-
-
-### Unmarking : `unmark` [coming soon]
-
-Unmarks the contact with specified index. Which means the contact no longer requires any follow up action.
-
-Format : `unMark INDEX`
-
-Examples:
-
-- `unMark 3` unmarks the contact at index 3 as not requiring any further follow up action.
 
 
 ### Deleting a person : `delete`
-
-
 
 Deletes the specified person from the contact list.
 
@@ -186,6 +173,11 @@ Examples:
 - 'find' followed by `KEYWORD1 KEYWORD2 …` returns all the contacts with name containing `KEYWORDS`
 - 'find Betsy' followed by delete 1 deletes the 1st person in the results of the find command.
 
+### Open a window containing summary of contacts : `summary`
+
+Shows a summary of contacts. Information includes number of contacts, tags used and total potential earnings.
+
+Format: `summary`
 
 ### Clearing all entries : `clear`
 

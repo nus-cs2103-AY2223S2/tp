@@ -9,6 +9,7 @@ public class TransactionCount implements Comparable<TransactionCount>{
 
     public static final String MESSAGE_CONSTRAINTS =
             "Transaction Count will start and zero and be increment to a value >= 0";
+    public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
 
     public final String value;
 
@@ -31,11 +32,7 @@ public class TransactionCount implements Comparable<TransactionCount>{
     }
 
     public static boolean isValidTransactionCount(String test) {
-        if (Integer.valueOf(test) >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
