@@ -39,26 +39,6 @@ public class AlarmWindow extends UiPart<Stage> {
      */
     public AlarmWindow(Stage root) {
         super(FXML, root);
-        if (AlarmList.getAlarmCount() > 0) {
-            double remainingTime = AlarmList.getFirstAlarm().getRemainingTime();
-            this.countdownLabel = new Label(Double.toString(remainingTime));
-            Timeline[] countdownTimeline = new Timeline[1];
-            // Create a timeline object with a keyframe event
-            countdownTimeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    countdownLabel.setText(Double.toString(AlarmList.getFirstAlarm().getRemainingTime()));
-                    if (remainingTime <= 0) {
-                        countdownTimeline[0].stop(); // Stop the timeline when the countdown reaches zero
-                    }
-                }
-            }));
-
-            countdownTimeline[0].setCycleCount(Timeline.INDEFINITE); // Set the timeline to repeat indefinitely
-            countdownTimeline[0].play(); // Start the timeline
-        } else {
-            this.countdownLabel.setText("no alarm available");
-        }
     }
 
     /**
@@ -70,6 +50,20 @@ public class AlarmWindow extends UiPart<Stage> {
 
     public void show() {
         logger.fine("Showing help page about the application.");
+        double remainingTime = AlarmList.getFirstAlarm().getRemainingTimeSec();
+        Timeline[] countdownTimeline = new Timeline[1];
+        // Create a timeline object with a keyframe event
+        countdownTimeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                countdownLabel.setText(Integer.toString((int)AlarmList.getFirstAlarm().getRemainingTimeSec()));
+                if (remainingTime <= 0) {
+                    countdownTimeline[0].stop(); // Stop the timeline when the countdown reaches zero
+                }
+            }
+        }));
+        countdownTimeline[0].setCycleCount(Timeline.INDEFINITE); // Set the timeline to repeat indefinitely
+        countdownTimeline[0].play(); // Start the timeline
         getRoot().show();
         getRoot().centerOnScreen();
     }

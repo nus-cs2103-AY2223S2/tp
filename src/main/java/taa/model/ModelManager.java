@@ -287,6 +287,7 @@ public class ModelManager implements Model {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            AlarmList.deleteTheAlarm(alarm); //when the alarm is sounded, it's deleted from the alarm list
         }));
         timeline.setCycleCount(1);
         timeline.play();

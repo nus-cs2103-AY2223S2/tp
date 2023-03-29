@@ -33,6 +33,11 @@ public class Alarm {
                 subtract(this.timeline.getCurrentTime()).toMinutes();
     }
 
+    public double getRemainingTimeSec() {
+        return this.timeline.getTotalDuration().
+                subtract(this.timeline.getCurrentTime()).toSeconds();
+    }
+
     public String getMessage() {
         return this.message;
     }
@@ -50,6 +55,11 @@ public class Alarm {
     public String toString() {
         return "time left:" + this.getRemainingTime()
                 + " minutes | notes: " + this.message;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return ((Alarm)other).hashCode == this.hashCode;
     }
 
 }

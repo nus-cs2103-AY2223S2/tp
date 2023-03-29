@@ -1,24 +1,25 @@
 package taa.model.alarm;
 
-import javafx.collections.ObservableList;
-import taa.assignment.Assignment;
-import taa.assignment.Submission;
-import taa.model.ReadOnlyAddressBook;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 
-public class AlarmList{
+public class AlarmList {
 
     private static List<Alarm> alarms = new ArrayList<Alarm>();
 
-    //// alarm-level operations
-
+    //// alarm-level operation
 
     public void addAlarm(Alarm alarm) {
         alarms.add(alarm);
+    }
+
+    public static void deleteTheAlarm(Alarm alarm) {
+        for (int i = 0; i < alarms.size(); i++) {
+            if(alarms.get(i) == alarm) {
+                alarms.remove(i);
+            }
+        }
     }
 
     public static Alarm getFirstAlarm() {
