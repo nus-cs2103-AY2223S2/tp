@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -15,7 +14,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Importer;
 import seedu.address.storage.JsonImporter;
-import seedu.address.storage.exceptions.EmptyAddressBookException;
+import seedu.address.storage.exceptions.JsonNotFoundException;
 
 public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
@@ -44,20 +43,17 @@ public class ImportCommand extends Command {
         requireNonNull(model);
 
         Importer importer = new JsonImporter(importPath);
-        Optional<ReadOnlyAddressBook> readOnlyAddressBookOptional;
+        ReadOnlyAddressBook importReadOnlyAddressBook;
 
         try {
-            readOnlyAddressBookOptional = importer.readData();
+            importReadOnlyAddressBook = importer.readData();
         } catch (DataConversionException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DATA);
-        } catch (EmptyAddressBookException e) {
+        } catch (JsonNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NO_IMPORT);
         }
 
-        if (readOnlyAddressBookOptional.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_NO_IMPORT);
-        }
-        ReadOnlyAddressBook importReadOnlyAddressBook = readOnlyAddressBookOptional.get();
+        assert(importReadOnlyAddressBook != null);
         List<Person> importPersonList = importReadOnlyAddressBook.getPersonList();
 
         if (importPersonList.size() != 1) {

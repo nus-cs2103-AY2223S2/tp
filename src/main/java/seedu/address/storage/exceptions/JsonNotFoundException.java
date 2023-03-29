@@ -3,8 +3,8 @@ package seedu.address.storage.exceptions;
 /**
  * Represents an exception that occurs when an AddressBook is unexpectedly empty.
  */
-public class EmptyAddressBookException extends Exception {
-    public EmptyAddressBookException(String message) {
+public class JsonNotFoundException extends Exception {
+    public JsonNotFoundException(String message) {
         super(message);
     }
 }

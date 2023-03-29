@@ -1,15 +1,12 @@
 package seedu.address.storage;
 
-import java.nio.file.Path;
-import java.util.Optional;
-
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.storage.exceptions.EmptyAddressBookException;
+import seedu.address.storage.exceptions.JsonNotFoundException;
 
 /**
  * A class to perform importing of AddressBook data.
  */
 public interface Importer {
-    Optional<ReadOnlyAddressBook> readData() throws DataConversionException, EmptyAddressBookException;
+    ReadOnlyAddressBook readData() throws DataConversionException, JsonNotFoundException;
 }
