@@ -50,7 +50,8 @@ public class RosterParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Command parseCommand(String userInput, CurrentSelection currentSelection) throws ParseException, CommandException {
+    public static Command parseCommand(String userInput, CurrentSelection currentSelection)
+            throws ParseException, CommandException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));

@@ -21,8 +21,8 @@ import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
-import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditTaskCommand;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -37,8 +37,8 @@ import tfifteenfour.clipboard.model.task.Task;
  * Parses input arguments and creates a new EditCommand object
  */
 public class NewEditCommandParser implements Parser<EditCommand> {
-    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    private static final String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to edit a %1$s";
 
     private final CurrentSelection currentSelection;
 

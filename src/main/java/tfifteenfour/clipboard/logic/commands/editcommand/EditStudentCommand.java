@@ -33,7 +33,8 @@ import tfifteenfour.clipboard.model.task.Task;
 public class EditStudentCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + COMMAND_TYPE_WORD + ": Edits the details of the student identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + COMMAND_TYPE_WORD
+            + ": Edits the details of the student identified "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -54,12 +55,9 @@ public class EditStudentCommand extends EditCommand {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
-     *
-     */
-    /**
-     *  @param index of the student in the filtered student list to edit
-     *
+     * Constructor for EditStudentCommand.
+     * @param index Index of the student in the displayed list to be edited.
+     * @param editStudentDescriptor Descriptor containing the new student's details.
      */
     public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
@@ -70,7 +68,8 @@ public class EditStudentCommand extends EditCommand {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException, ParseException {
+    public CommandResult execute(Model model, CurrentSelection currentSelection)
+            throws CommandException, ParseException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
         List<Student> lastShownList = selectedGroup.getModifiableStudentlist();
@@ -102,7 +101,9 @@ public class EditStudentCommand extends EditCommand {
         }
 
         lastShownList.set(index.getZeroBased(), editedStudent);
-        return new CommandResult(this, String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), willModifyState);
+        return new CommandResult(this,
+                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
+                willModifyState);
     }
 
     /**
