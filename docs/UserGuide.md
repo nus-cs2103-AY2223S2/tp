@@ -68,7 +68,7 @@ Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
 
 ## GUI Information
 
-ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
+![DefinedGUI](images/DefinedGUI.png)
   
 --------------------------------------------------------------------------------------------------------------------  
 
