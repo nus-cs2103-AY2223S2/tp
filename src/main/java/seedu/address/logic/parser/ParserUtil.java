@@ -345,6 +345,11 @@ public class ParserUtil {
         return LocalDateTime.parse(trimmedDate, formatter);
     }
 
+    /**
+     * Checks if a new event can be added by checking if the TA already has a scheduled event
+     * @param range LocalDateTime[]
+     * @return whether the TA is busy or not
+     */
     public static boolean isBusy(LocalDateTime[] range) {
         LocalDateTime start = range[0];
         LocalDateTime end = range[1];
