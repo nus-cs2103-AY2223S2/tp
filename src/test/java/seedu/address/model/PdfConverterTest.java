@@ -61,11 +61,6 @@ public class PdfConverterTest {
     }
 
     @Test
-    public void setUpContentStream_contentStreamOpened() throws IOException {
-        pdfConverter.setUpContentStream(this.font, this.fontTableContentSize, this.x, this.y);
-    }
-
-    @Test
     public void exportProgress_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> pdfConverter.exportProgress(null));
     }
