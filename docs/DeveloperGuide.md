@@ -681,33 +681,28 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 **MSS**
 
 1.  User request to add a new student's name and particulars.
-
 2.  System adds new student and their particulars as a new entry in the list
-
+    
     Use case ends
 
 **Extensions**
 
 * 1a. The given name/particulars is invalid
-
     * 1a1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1b. The compulsory name field is missing
-
     * 1a1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1c. A student entry with the same name exists in the list
-
     * 1c1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1d. Some optional particulars are missing
-
     * 1d1. System adds new student, leaving their particulars blank
 
       Use case ends
@@ -718,7 +713,6 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 **MSS**
 
 1. User requests to find a specific set of students based on a set of criteria
-
 2. System shows a list of students that match the criteria 
    
    Use case ends
@@ -726,21 +720,19 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 **Extensions**
 
 * 1a. The field to search in specified by the user is empty
-
   * 1a1. System shows an error message
-    
+
     Use case resumes from step 1.
 
 * 1b. The field to search in is not specified by the user
-
   * 1b1. System defaults to searching the keyword in the name field
   * 1b2. System shows a list of students whose names match the keyword
-  
+
     Use case ends
 
 * 1c. The field and keyword are not specified by the user
   * 1c1. System shows an error message
-  
+
     Use case resumes from step 1
 
 **Use case UC3: Delete a student**
@@ -748,53 +740,50 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 **MSS**
 
 1.  User requests to list students
-
 2.  System shows a list of students
-
 3.  User requests to delete a specific student in the list by their index from the list
-
 4.  System deletes the student
 
     Use case ends
 
 **Extensions**
+
 * 1a. User requests to find a specific set of students based on a set of criteria
-
   * 1a1. System shows a list of students which matches the criteria input by the user
-  
   * 1a2. User requests to delete a specific student in the list by their index from the list
-  
   * 1a3. System deletes the student
-  
+    
     Use case ends
-  
-* 2a. The list is empty
 
+* 2a. The list is empty
+  
   Use case ends
 
 * 3a. The given index is invalid
-
-    * 3a1. System shows an error message
-
-      Use case resumes at step 2
+  * 3a1. System shows an error message
+    
+    Use case resumes at step 2
 
 **Use case UC4: List student(s)**
 
 **MSS**
-1. User requests to list all the students.
-2. System shows the list of all students.
 
-Use case ends.
+1.  User requests to list all the students.
+2.  System shows the list of all students.
+    
+    Use case ends.
 
 **Extensions**
+
 * 1a. Additional parameters are added behind `list`.
   * 1a1. System shows an error message.
-
-  Use case ends.
+    
+    Use case ends.
 
 **Use case UC5: Update remarks**
 
 **MSS**
+
 1. User requests to list students
 2. System shows a list of students
 3. User requests to edit a student's remarks of a specific student in the list by their index from the list
@@ -802,23 +791,24 @@ Use case ends.
 5. User enters remarks
 6. User can exit writing the remarks at any time
 7. System saves the remarks
-
+   
    Use case ends
 
 **Extensions**
 
 * 2a. The list is empty
-
-Use case ends
+  
+  Use case ends
 
 * 3a. The given index is invalid
-    * 3a1. System shows an error message
-
-  Use case resumes at step 2
+  * 3a1. System shows an error message
+    
+    Use case resumes at step 2
 
 **Use case UC6: Edit particulars**
 
 **MSS**
+
 1. User requests to edit a student's particulars based on the list displayed
 2. System replaces the specified fields with the new details
    
@@ -828,24 +818,27 @@ Use case ends
 
 * 1a. The field to edit is not specified
   * 1a1. System shows an error message
-
+    
     Use case resumes from step 1
+
 * 1b. The index is given is invalid
   * 1b1. System shows an error message
-
+    
     Use case resumes from step 1
+
 * 1c. The field is specified but the details are empty
   * 1c1. System deletes the information in the specified field
-
+    
     Use case ends
 
 **Use case UC7: Exiting the application**
 
 **MSS**
+
 1. User requests to exit the application
 2. System saves all data into a local file
 3. System exits from the application
-
+   
    Use case ends
 
 [↑ Back to top](#table-of-contents)
