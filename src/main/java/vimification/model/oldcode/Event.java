@@ -13,16 +13,16 @@ public class Event {
     private LocalDateTime endDateTime;
 
     public Event(String description, Status status, Priority priority,
-                 LocalDateTime startDateTime,
-                 LocalDateTime endDateTime) {
-        //super(description, status, priority);
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime) {
+        // super(description, status, priority);
         requireAllNonNull(startDateTime, endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }
 
     public Event(String description, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        //super(description);
+        // super(description);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }
@@ -44,31 +44,18 @@ public class Event {
     }
 
     /**
-
-    @Override
-    public Event clone() {
-        return new Event(getDescription(), getStatus(), getPriority(), startDateTime, endDateTime);
-    }
-
-    @Override
-    public boolean isSameTask(Task task) {
-        if (task == this) {
-            return true;
-        }
-        if (!(task instanceof Event)) {
-            return false;
-        }
-        Event otherEvent = (Event) task;
-        return super.isSameTask(otherEvent)
-                && otherEvent.startDateTime.equals(startDateTime)
-                && otherEvent.endDateTime.equals(endDateTime);
-    }
-
-
-    @Override
-    public boolean isDeadline() {
-        return false;
-    }
+     * 
+     * @Override public Event clone() { return new Event(getTitle(), getStatus(), getPriority(),
+     *           startDateTime, endDateTime); }
+     * 
+     * @Override public boolean isSameTask(Task task) { if (task == this) { return true; } if
+     *           (!(task instanceof Event)) { return false; } Event otherEvent = (Event) task;
+     *           return super.isSameTask(otherEvent) &&
+     *           otherEvent.startDateTime.equals(startDateTime) &&
+     *           otherEvent.endDateTime.equals(endDateTime); }
+     * 
+     * 
+     * @Override public boolean isDeadline() { return false; }
      */
     @Override
     public boolean equals(Object other) {

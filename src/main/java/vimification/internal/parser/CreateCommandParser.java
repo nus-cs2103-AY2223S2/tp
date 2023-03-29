@@ -5,24 +5,25 @@ import java.time.LocalDateTime;
 import vimification.internal.command.logic.AddCommand;
 import vimification.model.oldcode.Deadline;
 import vimification.model.oldcode.Todo;
+import vimification.model.task.Task;
 
 public class CreateCommandParser implements LogicCommandParser<AddCommand> {
 
-    private static final ApplicativeParser<Todo> TODO_PARSER = ApplicativeParser
+    private static final ApplicativeParser<Task> TODO_PARSER = ApplicativeParser
             .string("todo")
             .takeNext(ApplicativeParser.skipWhitespaces1())
             .takeNext(ApplicativeParser.untilEof().map(String::strip))
-            .map(Todo::new);
+            .map(Task::new);
 
     private static final ApplicativeParser<LocalDateTime> DATE_TIME_PARSER = ApplicativeParser
             .nonWhitespaces()
             .map(ignore -> LocalDateTime.now()); // TODO: Fix after we agree on the format.
 
-    private static final ApplicativeParser<Deadline> DEADLINE_PARSER = ApplicativeParser
+    private static final ApplicativeParser<Task> DEADLINE_PARSER = ApplicativeParser
             .string("deadline")
             .takeNext(ApplicativeParser.skipWhitespaces1())
             .takeNext(ApplicativeParser.until("/").map(String::strip))
-            .combine(DATE_TIME_PARSER, Deadline::new);
+            .combine(DATE_TIME_PARSER, Task::new);
 
     private static final ApplicativeParser<AddCommand> COMMAND_PARSER = ApplicativeParser
             .choice(TODO_PARSER, DEADLINE_PARSER)

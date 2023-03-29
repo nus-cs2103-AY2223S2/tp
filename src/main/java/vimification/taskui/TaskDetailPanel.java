@@ -41,7 +41,7 @@ public class TaskDetailPanel extends UiPart<VBox> {
         String taskType = getTaskType(task);
         typeField.setText(taskType);
 
-        descriptionField.setText(task.getDescription());
+        descriptionField.setText(task.getTitle());
         statusField.setText(task.isDone() ? "Completed" : "Incomplete");
         priorityField.setText(task.getPriority().toString());
 

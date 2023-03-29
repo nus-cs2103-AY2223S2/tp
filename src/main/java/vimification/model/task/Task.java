@@ -13,12 +13,16 @@ public class Task {
     private LocalDateTime deadline;
     private Status status;
     private Priority priority;
-    private Set<String> tags;    
+    private Set<String> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(String title, LocalDateTime deadline, Status status, Priority priority) {  //used when converting from storage
+    public Task(String title, LocalDateTime deadline, Status status, Priority priority) { // used
+                                                                                          // when
+                                                                                          // converting
+                                                                                          // from
+                                                                                          // storage
         requireAllNonNull(title, priority);
         this.title = title;
         this.deadline = deadline;
@@ -26,8 +30,8 @@ public class Task {
         this.priority = priority;
         this.tags = new HashSet<>();
     }
-    
-    public Task(String title) {     //used when creating new tasks
+
+    public Task(String title) { // used when creating new tasks
         this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
@@ -43,9 +47,21 @@ public class Task {
         requireNonNull(title);
         this.title = title;
     }
-    
+
     public Priority getPriority() {
         return priority;
+    }
+
+    public void mark() {
+        this.status = Status.COMPLETED;
+    }
+
+    public void unmark() {
+        this.status = Status.NOT_DONE;
+    }
+
+    public boolean isDone() {
+        return status == Status.COMPLETED;
     }
 
     public void setPriority(Priority priority) {
@@ -69,11 +85,11 @@ public class Task {
     public void setStatus(int level) {
         this.status = Status.fromInt(level);
     }
-    
+
     public LocalDateTime getDeadline() {
         return deadline;
     }
-    
+
     public void setDeadline(LocalDateTime deadline) {
         requireNonNull(deadline);
         this.deadline = deadline;
@@ -86,7 +102,7 @@ public class Task {
     public boolean containsKeyword(String keyword) {
         return title.contains(keyword);
     }
-    
+
     public void addTag(String newTag) {
         requireNonNull(newTag);
         newTag = newTag.toLowerCase();
@@ -103,10 +119,8 @@ public class Task {
     }
 
     /**
-    public boolean containsLabel(String label) {
-        return labels.contains(label);
-    }
-    */
+     * public boolean containsLabel(String label) { return labels.contains(label); }
+     */
 
     public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
@@ -133,9 +147,9 @@ public class Task {
         if (otherTask == this) {
             return true;
         }
-        boolean isSame =  otherTask.title.equals(title) && otherTask.deadline.equals(deadline)
+        boolean isSame = otherTask.title.equals(title) && otherTask.deadline.equals(deadline)
                 && otherTask.status.equals(status) && otherTask.priority.equals(priority);
-                //&& otherTask.labels.equals(labels);
+        // && otherTask.labels.equals(labels);
         return isSame;
     }
 

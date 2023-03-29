@@ -24,7 +24,7 @@ public class MarkCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        taskList.mark(targetIndex.getZeroBased());
+        taskList.get(targetIndex.getZeroBased()).mark();
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
