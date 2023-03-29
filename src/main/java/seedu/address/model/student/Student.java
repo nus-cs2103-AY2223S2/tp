@@ -14,6 +14,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.student.exceptions.ConflictingExamsException;
+import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.tag.Tag;
 
@@ -263,13 +265,12 @@ public class Student {
      * Adds a lesson to the lesson list
      * @param lesson the lesson to be added
      */
-    public void addLesson(Lesson lesson) {
-        for (Lesson l : this.lessonsList) {
-            if (l.equals(lesson)) {
-                return;
-            }
+    public void addLesson(Lesson lesson) throws ConflictingLessonsException {
+        try {
+            this.lessonsList.add(lesson);
+        } catch (Exception e) {
+            throw new ConflictingLessonsException(e.getMessage());
         }
-        this.lessonsList.add(lesson);
     }
 
     /**
@@ -298,13 +299,23 @@ public class Student {
         return Collections.unmodifiableList(filteredLessonsList);
     }
 
-    public void setLesson(Lesson target, Lesson editedLesson) {
+    public void setLesson(Integer target, Lesson editedLesson) {
         requireAllNonNull(target, editedLesson);
+        //        UniqueLessonsList tempLessonList = lessonsList.clone();
+        //        tempLessonList.setLesson(target, editedLesson);
+        //        if (!(tempLessonList.validLessons())) {
+        //            throw new ConflictingLessonsException();
+        //        }
         lessonsList.setLesson(target, editedLesson);
     }
 
-    public void setExam(Exam target, Exam editedLesson) {
+    public void setExam(Integer target, Exam editedLesson) {
         requireAllNonNull(target, editedLesson);
+        //        UniqueExamList tempExamList = examList;
+        //        tempExamList.setExam(target, editedLesson);
+        //        if (!(tempExamList.validExams())) {
+        //            throw new ConflictingExamsException();
+        //        }
         examList.setExam(target, editedLesson);
     }
 
@@ -388,7 +399,7 @@ public class Student {
      * @param exam Exam to be added
      * @throws DuplicateEntryException when exam already exists
      */
-    public void addExam(Exam exam) {
+    public void addExam(Exam exam) throws DuplicateEntryException, ConflictingExamsException {
         // check for duplicate homework
         if (examList.contains(exam)) {
             throw new DuplicateEntryException();

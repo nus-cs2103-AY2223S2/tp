@@ -10,7 +10,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.student.exceptions.ConflictingExamsException;
+import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
+import seedu.address.model.student.exceptions.DuplicateExamsException;
+import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.EntryNotFoundException;
 
 /**
@@ -45,12 +49,18 @@ public class UniqueExamList implements Iterable<Exam> {
      *
      * @param toAdd the Exam to be added
      */
-    public void add(Exam toAdd) {
+    public void add(Exam toAdd) throws DuplicateLessonException, ConflictingLessonsException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateEntryException();
+            throw new DuplicateExamsException();
+        }
+        for (Exam exam : internalList) {
+            if (exam.isSameTimeExam(toAdd)) {
+                throw new ConflictingExamsException();
+            }
         }
         internalList.add(toAdd);
+        internalList.sort((l1, l2) -> l1.getStartTime().compareTo(l2.getStartTime()));
     }
 
     /**
@@ -58,19 +68,17 @@ public class UniqueExamList implements Iterable<Exam> {
      * {@code target} must exist in the list.
      * The Exam identity of {@code editedHomework} must not be the same as another existing homework in the list.
      */
-    public void setExam(Exam target, Exam editedExam) {
+    public void setExam(Integer target, Exam editedExam) {
         requireAllNonNull(target, editedExam);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EntryNotFoundException();
-        }
-
-        if (!target.isSameExam(editedExam) && contains(editedExam)) {
+        if (contains(editedExam)) {
             throw new DuplicateEntryException();
         }
-
-        internalList.set(index, editedExam);
+        Exam originalExam = internalList.get(target);
+        internalList.set(target, editedExam);
+        if (!this.validExams()) {
+            internalList.set(target, originalExam);
+            throw new ConflictingExamsException();
+        }
     }
 
     /**
@@ -84,6 +92,10 @@ public class UniqueExamList implements Iterable<Exam> {
         if (!internalList.remove(toRemove)) {
             throw new EntryNotFoundException();
         }
+    }
+
+    public boolean validExmas() {
+        return examsAreUnique(internalList);
     }
 
     /**
@@ -157,6 +169,21 @@ public class UniqueExamList implements Iterable<Exam> {
             }
         }
         return true;
+    }
+
+    private boolean examsAreCompatible(List<Exam> exams) {
+        for (int i = 0; i < exams.size() - 1; i++) {
+            for (int j = i + 1; j < exams.size(); j++) {
+                if (exams.get(i).isSameTimeExam(exams.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean validExams() {
+        return examsAreUnique(internalList) && examsAreCompatible(internalList);
     }
 
     @Override

@@ -44,7 +44,6 @@ public class DeleteHomeworkCommandParser implements Parser<DeleteHomeworkCommand
                     DeleteHomeworkCommand.MESSAGE_USAGE));
         }
 
-        // there can only be one name keyword, if there are more than one then throw an exception
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
@@ -57,7 +56,29 @@ public class DeleteHomeworkCommandParser implements Parser<DeleteHomeworkCommand
         }
         names = nameKeywords;
 
+        if (nameKeywords.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one student name is allowed."));
+        }
+
+        // name cannot be an empty string
+        if (nameKeywords.get(0).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Name cannot be empty."));
+        }
+
+        // there should also be one index keyword
+        if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Only one index is allowed for mark homework as done command."));
+        }
+        // index cannot be an empty string
+        if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Index cannot be empty."));
+        }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+
         return new DeleteHomeworkCommand(names, new NamePredicate(nameKeywords), index);
     }
 

@@ -6,7 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -73,6 +75,8 @@ public class UpdateExamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {
@@ -102,8 +106,20 @@ public class UpdateExamCommand extends Command {
         String newExamName = this.examName.orElse(examToUpdate.getDescription());
         LocalDateTime newStartTime = this.startTime.orElse(examToUpdate.getStartTime());
         LocalDateTime newEndTime = this.endTime.orElse(examToUpdate.getEndTime());
+        if (newStartTime.isAfter(newEndTime)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_TIME);
+        }
+
+        if (Duration.between(newStartTime, newEndTime).toMinutes() < 30 || Duration.between(newStartTime,
+            newEndTime).toHours() > 3) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DURATION);
+        }
         Exam newExam = new Exam(newExamName, newStartTime, newEndTime);
-        student.setExam(examToUpdate, newExam);
+        try {
+            student.setExam(index.getZeroBased(), newExam);
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
 
         return new CommandResult(
             String.format(Messages.MESSAGE_LESSON_UPDATED_SUCCESS, index.getOneBased(),
@@ -122,4 +138,3 @@ public class UpdateExamCommand extends Command {
             && endTime.equals((((UpdateExamCommand) other).endTime)));
     }
 }
-

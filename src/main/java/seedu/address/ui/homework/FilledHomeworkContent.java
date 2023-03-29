@@ -17,7 +17,7 @@ import seedu.address.model.student.Student;
 public class FilledHomeworkContent extends GeneralHomeworkContent {
     private static final Logger logger = LogsCenter.getLogger(FilledHomeworkContent.class);
     private static final String FXML = "HomeworkContent.fxml";
-    private static final String NAME_LABEL = "Name: %s";
+    private static final String NAME_LABEL = "First Name: %s";
     private static final String LIST_NAME_LABEL = "Homework List: ";
     private static final String PIE_CHART_TITLE = "Completed/Uncompleted Homework";
 

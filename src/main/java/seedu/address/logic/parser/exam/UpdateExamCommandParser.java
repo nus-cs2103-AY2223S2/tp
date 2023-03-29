@@ -56,6 +56,10 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
+            if (name.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    UpdateExamCommand.MESSAGE_USAGE));
+            }
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {
             //                name = name.substring(0, spaceIndex);
@@ -82,7 +86,7 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
         }
 
         Optional<LocalDateTime> endTime = Optional.empty();
-        if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
             endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));
         }
 

@@ -7,4 +7,7 @@ public class ConflictingLessonsException extends RuntimeException {
     public ConflictingLessonsException() {
         super("Operation would result in lessons with overlapping timeslots");
     }
+    public ConflictingLessonsException(String message) {
+        super(message);
+    }
 }
