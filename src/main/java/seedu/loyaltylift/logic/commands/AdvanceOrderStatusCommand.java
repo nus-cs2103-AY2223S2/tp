@@ -33,8 +33,6 @@ public class AdvanceOrderStatusCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 ";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$s";
-
     public static final String MESSAGE_ADVANCE_STATUS_SUCCESS = "Advanced status for order: %1$s \n"
             + "New status is: %2$s";
     public static final String MESSAGE_INVALID_STATE = "This order is already completed or cancelled";

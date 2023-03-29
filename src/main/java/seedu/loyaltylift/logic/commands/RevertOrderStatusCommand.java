@@ -32,8 +32,6 @@ public class RevertOrderStatusCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 ";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$s";
-
     public static final String MESSAGE_REVERT_STATUS_SUCCESS = "Reverted status for order: %1$s \n"
             + "New status is: %2$s";
     public static final String MESSAGE_INVALID_COMMAND = "This order status is already at its earliest stage";

@@ -33,7 +33,6 @@ public class CancelOrderCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1 ";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$s";
 
     public static final String MESSAGE_CANCEL_ORDER_SUCCESS = "The order: %1$s\n has been cancelled!";
     public static final String MESSAGE_INVALID_STATE = "This order is already completed or cancelled";
