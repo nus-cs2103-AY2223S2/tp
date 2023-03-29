@@ -125,6 +125,7 @@ Format: `addtag [t/TAG]…`
 Examples: 
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
+![add_tag](images/add-tag.png)
 
 ### Deleting a tag: `dtag`
 
