@@ -128,8 +128,8 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 
 **Step 4:** Double-click the `ConnectUS.jar` file to start the app.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> <div style="page-break-after: avoid"></div>
-   ![Ui](images/Ui.png)
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
+![Ui](images/Ui.png)
 
 Congratulations! You have successfully set up ConnectUS.
 
@@ -322,6 +322,8 @@ If you are lost while using ConnectUS, simply use the `help` command! Using the 
 
 ![HelpMessage](images/helpMessage.png)
 
+<div style="page-break-after: always"></div>
+
 If you want to know the usage instructions of a specific command, simply use `help [COMMAND]`, where `[COMMAND]` is the command that you need help with. There will be feedback from the command result feedback box if the command is successfully retrieved.
 
 ![HelpCommandRetrieveUsage](images/HelpCommandRetrieveUsage.png)
@@ -341,6 +343,8 @@ Format: `list`
 Use `list` when you need to view a list of *all* the contacts in your ConnectUS. The `list` command can be used directly without any additional parameters.
 
 [↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
 
 ## 4.3 Clearing all entries: `clear`
 
@@ -376,11 +380,15 @@ You can add a contact using the `add` command followed by the parameters (as sho
 A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (including 0)
 </div>
 
+<div style="page-break-after: always"></div>
+
 **Example 1:**
 
 **Input in Command Box:** `add n/James`
 
 **Result:**<br>![AddContactExample1](images/AddContactExample1.png)
+
+<div style="page-break-after: always"></div>
 
 **Example 2:**
 
