@@ -214,7 +214,14 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
-**Step 4.** To add group tags {Kenny Please} <br>
+**Step 4.** To add groups that you currently belong to as such: `tag g/[GROUP_NAME]`  
+<br>
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+E.g `tag g/SoC g/Sailing` <br>
+</div>
+
 
 **Step 5.** You are done! **ENJOY!** <br>
 
@@ -335,6 +342,13 @@ Pattern: `m/MODULE`<br>
 Rules: `MODULE` should be the name of a valid NUS module.<br>
 Example: `m/CS2107`
 
+### Module with Lessons
+
+Description: The name of the module the person is taking, and a lesson associate with the module.<br>
+Pattern: `m/MODULE DAY START_TIME END_TIME`<br>
+Rules: `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
+Example: `m/CS1234 mon 12 13`
+
 ## Basic Commands
 
 ### Add a contact `add`
@@ -416,44 +430,23 @@ Examples:
 
 ### Add a label to a contact `tag`
 
-Adds module tag(s) to an existing contact.
+Adds module tag(s) or group tag(s)to an existing contact.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `tag CONTACT_INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
+* `tag CONTACT_INDEX m/MODULE_TAG DAY START END`
+* `tag m/MOUDLE_TAG DAY START END`
+* `tag CONTACT_INDEX g/GROUP`
+* `tag g/GROUP`
 
-Example of usage: `tag 3 m/CS2103T`
-```
-Name: John Doe (User)
-Modules: [CS2101 , MA2104 , MA3252 , CFG1002]
-```
+What you should see:<br>
+{GUI}<br>
+{Explanation}
 
-Expected outcome for CLI:
-```
-Module(s) tagged to Person!
-Name: John Smith
-Modules: [CS2100, CS2101, CS2102, CS2103T]
-Module(s) in common: [CS2101, CS2103T]
-```
-Description of outcome:
+Examples:
+* `tag 1 m/CS1234`: Adds CS1234 to the first contact from EduMate.
 
-CS2103T is added to John Doe's list of modules. Assuming you also take CS2101 and CS2103T, which are represented as the modules in common.
-
-Example of usage: tag m/CS2103T
-```
-Name: John Doe (user)
-Modules: [CS2101, MA2104, MA3252, CFG1002]
-```
-
-Expected outcome for CLI:
-```
-Module(s) tagged to Person!
-Name: John Doe
-Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
-```
-Description of outcome:
-
-CS2103T is added to John Doe's, the user, list of modules.
 
 ### Remove a label from a contact `untag`
 
@@ -462,39 +455,19 @@ Removes a module tag from an existing contact.
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
+* `untag CONTACT_INDEX m/MODULE_TAG DAY START END`
+* `untag m/MOUDLE_TAG DAY START END`
+* `untag CONTACT_INDEX g/GROUP`
+* `untag g/GROUP`
 
-Example of usage: `untag 3 m/CS2103T`
-```
-Name: John Doe (User)
-Modules: [CS2101, MA2104, MA3252, CFG1002]
-```
+What you should see:<br>
+{GUI}<br>
+{Explanation}
 
-Expected outcome for CLI:
-```
-"Module(s) untagged to Person!
-Name: John Smith
-Modules: [CS2100, CS2101, CS2102]
-Module(s) in common: [CS2101]
-```
-Description of outcome:
+Examples:
+* `utag 1 m/CS1234`: Removes CS1234 to the first contact from EduMate.
 
-CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
 
-Example of usage: untag m/CS2103T
-```
-Name: John Doe (user)
-Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
-```
-
-Expected outcome for CLI:
-```
-"Module(s) untagged to Person!
-Name: John Doe
-Modules: [CS2101, MA2104, MA3252, CFG1002]
-```
-Description of outcome:
-
-CS2103T is added to John Doe's, the user, list of modules.
 
 ## Advanced Commands
 
@@ -668,19 +641,19 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 
 ### Command Summary
 
-| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))                                              | Examples                                     |
-|----------------------|------------------------------------------------------|----------------------------------------------|
-| **Add a contact**    | `add n/NAME p/PHONE...`                              | `add n/Wen Li...`                            |
-| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                  | `view 5`, `view n/Wen Li`                    |
-| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`         | `edit 4 n/Wen Qing`, `edit a/NUS t/@wenqing` |
-| **Delete a contact** | `delete INDEX`                                       | `delete 3`                                   |
-| **Tag a contact**    | {Kenny pls}                                          | {Kenny pls}                                  |
-| **Untag a contact**  | {Kenny pls}                                          | {Kenny pls}                                  |
-| **Filter contacts**  | `find z/FIELD`                                       | `find n/Tan`, `find m/CS1231`                |
-| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`        | `sort`, `sort n/a`, `sort m/ p/d`            |
-| **Save a copy**      | `save FILE_NAME`                                     | `save backup`                                |
-| **Load a copy**      | `load FILE_NAME`                                     | `load backup`                                |
-| **Suggest meetups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​` | `meet 1 6 4`, `eat 10 4 7`                   |
+| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))      | Examples                                                    |
+|----------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| **Add a contact**    | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                           |
+| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                   |
+| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit a/NUS t/@wenqing`                |
+| **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
+| **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
+| **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
+| **Filter contacts**  | `find z/FIELD`                                                                         | `find n/Tan`, `find m/CS1231`                               |
+| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                           |
+| **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                               |
+| **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                               |
+| **Suggest meetups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                  |
 
 
 ## Troubleshooting
@@ -688,7 +661,11 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 ### How to check your Java version
 
 #### For **Windows** Users
-{Kenny and Sean pls}
+**Step 1** Open up Command Prompt
+
+**Step 2** Run the command `java -version`
+
+**Step 3** Check the version number from the output.
 
 #### For **Mac** and **Linux** Users
 **Step 1** Open up Terminal.
