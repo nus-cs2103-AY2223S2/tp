@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -63,11 +65,13 @@ public class EditModuleCommandTest {
         model.addModule(originalModule);
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_SUCCESS, editedModule);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                new ModuleEditInfo(originalModule, editedModule));
 
         Model expectedModel = new ModelManager();
         expectedModel.addModule(editedModule);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test

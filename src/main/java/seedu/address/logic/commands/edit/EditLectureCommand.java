@@ -13,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -74,7 +75,8 @@ public class EditLectureCommand extends EditCommand {
         }
 
         model.setLecture(module, lectureToEdit, editedLecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, editedLecture));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, editedLecture),
+                new LectureEditInfo(moduleCode, lectureToEdit, editedLecture));
     }
 
     @Override

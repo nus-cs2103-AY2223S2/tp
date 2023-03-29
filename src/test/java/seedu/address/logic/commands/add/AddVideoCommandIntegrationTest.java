@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -55,8 +57,11 @@ public class AddVideoCommandIntegrationTest {
         expectedModel.addLecture(moduleCopy, lectureCopy);
         expectedModel.addVideo(lectureCopy, validVideo);
 
+        String expectedMessage = String.format(AddVideoCommand.MESSAGE_SUCCESS, moduleCode, lectureName, validVideo);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                new VideoEditInfo(moduleCode, lectureName, null, validVideo));
         assertCommandSuccess(new AddVideoCommand(moduleCode, lectureName, validVideo), model,
-                String.format(AddVideoCommand.MESSAGE_SUCCESS, moduleCode, lectureName, validVideo), expectedModel);
+                expectedCommandResult, expectedModel);
     }
 
     @Test

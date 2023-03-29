@@ -19,6 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -97,13 +99,15 @@ public class EditVideoCommandTest {
 
         String expectedMessage = String.format(
                 EditVideoCommand.MESSAGE_SUCCESS, originalLecture.getName(), originalModule.getCode(), editedVideo);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                new VideoEditInfo(originalModule.getCode(), originalLecture.getName(), originalVideo, editedVideo));
 
         Model expectedModel = new ModelManager();
         editedLecture.addVideo(editedVideo);
         editedModule.addLecture(editedLecture);
         expectedModel.addModule(editedModule);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test
