@@ -84,6 +84,13 @@ public class Person implements Comparable<Person> {
         return transactionCount;
     }
 
+    public void incrementTransactionCount(TransactionCount transactionCount) {
+        int incrementAmount = transactionCount.getIntValue();
+        int currentAmount = transactionCount.getIntValue();
+        int finalAmount = incrementAmount + currentAmount;
+        transactionCount = new TransactionCount(String.valueOf(finalAmount));
+    }
+
     public void changeMark() {
         mark = new Mark(mark.isMark ? "no" : "yes");
     }
