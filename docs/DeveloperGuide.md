@@ -302,7 +302,7 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/SalaryCommand0.png" width="800" />
+   current address book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
@@ -336,11 +336,11 @@ The feature uses operations in the `Model` interface as `Model#updateFilteredRol
 Given below is an example usage of how TagCommand is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/SalaryCommand0.png" width="800" />
+   current address book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Tag Command` to filter tags.
     - The user executes `tag <keyword>` command to filter roles by their tag.
-      <img src="images/CompanyCommand1.png" width="800" />
+      <img src="images/TagCommand.png" width="800" />
 
 The following sequence diagram shows how the Tag Command is being done:
 
