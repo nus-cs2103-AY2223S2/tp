@@ -17,8 +17,6 @@ import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.util.Duration;
-import org.knowm.xchart.SwingWrapper;
-import org.knowm.xchart.internal.chartpart.Chart;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
@@ -296,7 +294,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displayChart(Chart chart) {
-        new SwingWrapper<>(chart).displayChart();
+    public void displayChart() {
     }
 }

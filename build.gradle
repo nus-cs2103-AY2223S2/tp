@@ -69,6 +69,10 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 
     implementation "org.apache.commons:commons-csv:1.10.0"
+
+    implementation group: 'org.jfree', name: 'jfreechart', version: '1.5.4'
+    implementation group: 'org.jfree', name: 'jcommon', version: '1.0.23'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 

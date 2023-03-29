@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import org.knowm.xchart.internal.chartpart.Chart;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.student.Student;
@@ -130,5 +129,5 @@ public interface Model {
 
     void addAlarm(Alarm alarm) throws CommandException;
 
-    void displayChart(Chart chart);
+    void displayChart();
 }

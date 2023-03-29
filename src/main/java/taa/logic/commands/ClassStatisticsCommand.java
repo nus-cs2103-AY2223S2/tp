@@ -3,6 +3,11 @@ package taa.logic.commands;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import taa.logic.commands.enums.ClassStatisticField;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
@@ -91,4 +96,5 @@ public class ClassStatisticsCommand extends Command {
         }
         return false;
     }
+
 }
