@@ -238,7 +238,7 @@ There are two ways to select a contact:
 
 Consequently, the state of the selected person needs to be shared between the two methods, so that the user can be correctly notified if they have already selected the contact that they are trying to access.
 > **Example:**
-> - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already select.
+> - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already selected.
 > - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
 
 ### Command for Favourite Contacts
