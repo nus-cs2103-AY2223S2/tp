@@ -1,6 +1,5 @@
 package mycelium.mycelium.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.AppUtil.checkArgument;
 
 import mycelium.mycelium.model.util.NonEmptyString;
@@ -26,7 +25,6 @@ public class Name {
      * @param name A valid name.
      */
     public Name(String name) {
-        requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
@@ -34,8 +32,8 @@ public class Name {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
-        return NonEmptyString.isValid(test);
+    public static boolean isValidName(String name) {
+        return NonEmptyString.isValid(name.trim());
     }
 
 

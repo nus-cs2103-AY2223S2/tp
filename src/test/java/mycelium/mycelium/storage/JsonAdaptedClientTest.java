@@ -20,7 +20,7 @@ import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.testutil.ClientBuilder;
 
 public class JsonAdaptedClientTest {
-    private static final String INVALID_NAME = "K@NY3 W3ST";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_MOBILE_NUMBER = "+651234";
     private static final String INVALID_EMAIL = "12312113";
     private static final String INVALID_YEAR_OF_BIRTH = "123";
