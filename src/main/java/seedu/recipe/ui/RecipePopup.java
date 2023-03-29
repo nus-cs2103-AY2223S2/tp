@@ -1,22 +1,24 @@
 package seedu.recipe.ui;
 
-import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
-
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import seedu.recipe.model.util.IngredientUtil;
 
 
 /**
@@ -47,7 +49,7 @@ public class RecipePopup extends UiPart<Region> {
     private VBox steps;
 
     @FXML
-    private GridPane tags;
+    private HBox tags;
 
     /**
      * Generates and returns the UI instance for this Recipe card.
@@ -74,29 +76,44 @@ public class RecipePopup extends UiPart<Region> {
                         .orElse("Portion was not added."));
 
         // Ingredients
-        AtomicInteger ingredientIndex = new AtomicInteger(1); // Initialize AtomicInteger for ingredients
-        recipe.getIngredients()
-            .forEach((ingredient, information) -> {
-                Label ingredientLabel = new Label(ingredientIndex.getAndIncrement() + ". " + ingredientKeyValuePairToString(ingredient, information));
-                ingredientLabel.setWrapText(true);
-                ingredientLabel.setMaxWidth(500);
-                ingredients.getChildren().add(ingredientLabel);
-            });
+        createIngredientList(recipe);
 
         // Steps
-        AtomicInteger stepIndex = new AtomicInteger(1); // Initialize AtomicInteger for steps
-        recipe.getSteps()
-            .forEach(step -> {
-                Label stepLabel = new Label(stepIndex.getAndIncrement() + ". " + step.toString());
-                stepLabel.setWrapText(true);
-                stepLabel.setMaxWidth(500);
-                steps.getChildren().add(stepLabel);
-            });
+        createStepList(recipe);
 
         //Tags
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void createIngredientList(Recipe recipe) {
+        HashMap<Ingredient, IngredientInformation> ingredientTable = recipe.getIngredients();
+        if (ingredientTable.size() == 0) {
+            ingredients.getChildren().add(new Label("No Ingredients were added. Add some!"));
+            return;
+        }
+        ingredientTable.forEach((ingredient, information) -> {
+            String ingredientLabelText = IngredientUtil.ingredientKeyValuePairToString(ingredient, information);
+            Label ingredientLabel = new Label("• " + ingredientLabelText);
+            ingredientLabel.setWrapText(true);
+            ingredients.getChildren().add(ingredientLabel);
+        });
+    }
+
+    private void createStepList(Recipe recipe) {
+        List<Step> stepList = recipe.getSteps();
+        if (stepList.size() == 0) {
+            steps.getChildren().add(new Label("No steps were added. Add some!"));
+            return;
+        }
+        for (int i = 0; i < stepList.size(); i++) {
+            Label stepLabel = new Label((
+                i + 1) + ". " + stepList.get(i).toString()
+            );
+            stepLabel.setWrapText(true);
+            steps.getChildren().add(stepLabel);
+        }
     }
 
     /**
@@ -108,6 +125,7 @@ public class RecipePopup extends UiPart<Region> {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Recipe Details");
         VBox vbox = new VBox(getRoot());
+        vbox.setStyle("-fx-background-color: #3f3f46");
         Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {

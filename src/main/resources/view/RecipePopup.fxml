@@ -10,18 +10,19 @@
 
 <?import java.net.URL?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      minWidth="300" minHeight="500" prefWidth="500" prefHeight="500"
-      styleClass="root-layout">
+      minWidth="300" minHeight="500" prefWidth="500" prefHeight="500" maxHeight="700"
+      styleClass="root-layout"
+      >
   <stylesheets>
     <URL value="@Popup.css"/>
   </stylesheets>
-  <GridPane HBox.hgrow="ALWAYS" styleClass="root-layout">
+  <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="2">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets top="5" right="5" bottom="10" left="15" />
       </padding>
 
       <!-- NAME AND ID GROUP -->
@@ -40,15 +41,15 @@
 
       <!-- INGREDIENTS GROUP -->
       <Label fx:id="ingredientsTitle" styleClass="cell_small_label" text="Ingredients: " />
-      <VBox fx:id="ingredients"/>
+      <VBox fx:id="ingredients" styleClass="list-container"/>
 
       <!-- STEPS GROUP -->
       <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
-      <VBox fx:id="steps"/>
+      <VBox fx:id="steps" styleClass="list-container"/>
 
       <!-- TAGS GROUP -->
       <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
-      <GridPane fx:id="tags" />
+      <HBox fx:id="tags" styleClass="tag-container"/>
     </VBox>
   </GridPane>
 </HBox>
