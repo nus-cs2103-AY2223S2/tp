@@ -92,7 +92,7 @@ public class AdvanceCommand extends Command {
      */
     private void checkValidInterviewDateInput(Model model, Person personToAdvance,
             Optional<InterviewDateTime> interviewDateTime) throws CommandException {
-
+        model.refreshListWithPredicate(predicate);
         // interviewDateTime is only required if the applicant's status is Applied
         if (interviewDateTime.isPresent()) {
             if (!isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
