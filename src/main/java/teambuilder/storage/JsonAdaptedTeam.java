@@ -83,7 +83,7 @@ public class JsonAdaptedTeam {
             throw new IllegalValueException(TeamName.MESSAGE_CONSTRAINTS);
         }
         final TeamName modelName = new TeamName(teamName);
-        // TODO: check if person in team exists in team builder
+        // TODO: check if members of team exists in team builder before adding team.
         if (teamDesc == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Desc.class.getSimpleName()));
