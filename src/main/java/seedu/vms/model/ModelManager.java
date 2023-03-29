@@ -259,7 +259,16 @@ public class ModelManager implements Model {
     @Override
     public void handleVaccinationChange(ValueChange<VaxType> change) {
         appointmentManager.handleVaccinationChange(change);
+        patientManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
+
+        IdData<Patient> oldPatient = detailedPatientProperty.get();
+        if (oldPatient == null) {
+            return;
+        }
+        IdData<Patient> newPatient = patientManager.getMapView().get(oldPatient.getId());
+        ValueChange<IdData<Patient>> patientChange = new ValueChange<>(oldPatient, newPatient);
+        updatePatientDetail(patientChange);
     }
 
     // =========== VaxTypeManager ==============================================================================

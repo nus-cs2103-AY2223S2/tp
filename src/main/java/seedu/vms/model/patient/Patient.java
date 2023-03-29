@@ -117,6 +117,10 @@ public class Patient {
         return Collections.unmodifiableSet(vaccineStrings);
     }
 
+    public Patient setVaccination(Set<GroupName> updatedVaccines) {
+        return new Patient(name, phone, dateOfBirth, bloodType, allergies, updatedVaccines);
+    }
+
     /**
      * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.

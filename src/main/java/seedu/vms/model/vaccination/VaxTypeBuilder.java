@@ -1,6 +1,7 @@
 package seedu.vms.model.vaccination;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -99,13 +100,15 @@ public class VaxTypeBuilder {
      *      to illegally set parameters.
      */
     public VaxType create(GroupName name) throws IllegalValueException {
-        return build(new VaxType(
-                name,
-                VaxType.DEFAULT_GROUP_SET,
-                VaxType.DEFAULT_MIN_AGE,
-                VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_INGREDIENTS,
-                VaxType.DEFAULT_HISTORY_REQS));
+        return build(
+                new VaxType(
+                        name,
+                        VaxType.DEFAULT_GROUP_SET,
+                        VaxType.DEFAULT_MIN_AGE,
+                        VaxType.DEFAULT_MAX_AGE,
+                        VaxType.DEFAULT_INGREDIENTS,
+                        VaxType.DEFAULT_HISTORY_REQS),
+                true);
     }
 
 
@@ -117,18 +120,29 @@ public class VaxTypeBuilder {
      * @throws IllegalValueException if the vaccination cannot be created due
      *      to illegally set parameters.
      */
-    public VaxType update(VaxType reference) throws IllegalValueException {
-        return build(reference);
+    public VaxType update(VaxType reference, boolean isSet) throws IllegalValueException {
+        return build(reference, isSet);
     }
 
 
-    private VaxType build(VaxType reference) throws IllegalValueException {
+    private VaxType build(VaxType reference, boolean isSet) throws IllegalValueException {
         GroupName name = setName.orElse(reference.getGroupName());
-        HashSet<GroupName> grps = setGrps.orElse(reference.getGroups());
         Age minAge = setMinAge.orElse(reference.getMinAge());
         Age maxAge = setMaxAge.orElse(reference.getMaxAge());
-        HashSet<GroupName> ingredients = setIngredients.orElse(reference.getIngredients());
-        List<Requirement> historyReqs = setHistoryReqs.orElse(reference.getHistoryReqs());
+
+        HashSet<GroupName> grps = reference.getGroups();
+        HashSet<GroupName> ingredients = reference.getIngredients();
+        List<Requirement> historyReqs = reference.getHistoryReqs();
+
+        if (isSet) {
+            setGrps.ifPresent(grpSet -> setAll(grps, grpSet));
+            setIngredients.ifPresent(ingredientSet -> setAll(ingredients, ingredientSet));
+            setHistoryReqs.ifPresent(historyReqSet -> setAll(historyReqs, historyReqSet));
+        } else {
+            setGrps.ifPresent(grpSet -> grps.addAll(grpSet));
+            setIngredients.ifPresent(ingredientSet -> ingredients.addAll(ingredientSet));
+            setHistoryReqs.ifPresent(historyReqSet -> historyReqs.addAll(historyReqSet));
+        }
 
         Optional<String> errMessage = validateParams(grps, minAge, maxAge, ingredients, historyReqs);
         if (errMessage.isPresent()) {
@@ -136,6 +150,12 @@ public class VaxTypeBuilder {
         }
 
         return new VaxType(name, grps, minAge, maxAge, ingredients, historyReqs);
+    }
+
+
+    private <T> void setAll(Collection<T> to, Collection<T> from) {
+        to.clear();
+        to.addAll(from);
     }
 
 
