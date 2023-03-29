@@ -479,6 +479,34 @@ _For more advanced users_
 [Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## UI Features
+<hr style="border:2px solid gray">
+
+### Light Mode: `light`
+
+Want to use a brighter version of our UI?
+
+Use Light mode!
+
+**Syntax:**
+
+`light`
+
+
+<hr style="border:2px solid gray">
+
+### Dark Mode: `dark`
+
+Want to use a darker version of our UI?
+
+Use Dark mode!
+
+**Syntax:**
+
+`dark`
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## Data
 
 ### Saving the data
