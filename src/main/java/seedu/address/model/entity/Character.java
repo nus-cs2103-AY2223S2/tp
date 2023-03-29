@@ -75,20 +75,6 @@ public class Character extends Entity {
         return this.inventory;
     }
 
-    /**
-     * Add item to the character
-     */
-    public void addItem(Item item) {
-        this.inventory.addItem(item);
-    }
-
-    /**
-     * Delete item from the character
-     */
-    public void deleteItem(Item item) {
-        this.inventory.deleteItem(item);
-    }
-
     @Override
     public List<Pair<String, String>> getFields() {
         Set<Tag> tags = getTags();
