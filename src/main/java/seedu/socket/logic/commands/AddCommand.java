@@ -42,7 +42,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SOCket";
-    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags and it exceeds our restriction of 10 tags";
+    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags which exceeds the limit of 10 tags";
 
     private final Person toAdd;
 
