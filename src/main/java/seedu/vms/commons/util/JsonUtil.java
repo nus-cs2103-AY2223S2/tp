@@ -8,10 +8,10 @@ import java.util.logging.Level;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonLocation;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
-    private static final String FORMAT_INVALID_JSON_FILE = "File is not in a valid JSON format: %s";
+    private static final String FORMAT_INVALID_JSON_FILE = "%s [%s] (Unexpected JSON format)";
 
     private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
@@ -65,11 +65,21 @@ public class JsonUtil {
                 throws IOException {
         try (BufferedReader reader = FileUtil.getFileReader(path)) {
             return objectMapper.readValue(reader, valueType);
-        } catch (JsonParseException | JsonMappingException jsonEx) {
+        } catch (JsonProcessingException jsonEx) {
             throw new IOException(
-                    String.format(FORMAT_INVALID_JSON_FILE, path),
-                    jsonEx);
+                    String.format(FORMAT_INVALID_JSON_FILE,
+                            path.toString(),
+                            formatJsonException(jsonEx)));
         }
+    }
+
+
+    private static String formatJsonException(JsonProcessingException ex) {
+        JsonLocation loc = ex.getLocation();
+        int lineNum = loc.getLineNr();
+        int colNum = loc.getColumnNr();
+
+        return String.format("line: %d, col: %d", lineNum, colNum);
     }
 
 
