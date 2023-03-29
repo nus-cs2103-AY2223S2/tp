@@ -32,6 +32,10 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
      * @param lectureName
      */
     public MarkAsUnwatchedCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
+        requireNonNull(targetVideoName);
+        requireNonNull(moduleCode);
+        requireNonNull(lectureName);
+
         this.targetVideoName = targetVideoName;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
@@ -71,5 +75,17 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
         model.setVideo(lecture, targetVideo, newVideo);
 
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkAsUnwatchedCommand)) {
+            return false;
+        }
+
+        MarkAsUnwatchedCommand markCommand = (MarkAsUnwatchedCommand) other;
+        return this.targetVideoName.equals(markCommand.targetVideoName)
+                && this.lectureName.equals(markCommand.lectureName)
+                && this.moduleCode.equals(markCommand.moduleCode);
     }
 }

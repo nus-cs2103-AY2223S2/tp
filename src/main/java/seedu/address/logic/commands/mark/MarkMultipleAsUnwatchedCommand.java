@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.mark;
 
-import java.util.ArrayList;
 import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -30,6 +31,10 @@ public class MarkMultipleAsUnwatchedCommand extends MarkCommand {
      * @param lectureName
      */
     public MarkMultipleAsUnwatchedCommand(VideoName[] videoNames, ModuleCode moduleCode, LectureName lectureName) {
+        requireNonNull(videoNames);
+        requireNonNull(moduleCode);
+        requireNonNull(lectureName);
+
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
 
@@ -66,14 +71,26 @@ public class MarkMultipleAsUnwatchedCommand extends MarkCommand {
                     this.moduleCode, this.lectureName));
         }
 
+        int successSize = this.videoNames.size() - invalidVideoNames.size();
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
                     MultipleEventsParser.convertArrayListToString(this.videoNames),
                     MarkAsUnwatchedCommand.COMMAND_WORD,
-                    (this.videoNames.size() - invalidVideoNames.size()) + " ",
-                    (this.videoNames.size() - invalidVideoNames.size()) == 1
+                    successSize + " ",
+                    successSize == 1
                         ? ""
                         : "s"));
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkMultipleAsUnwatchedCommand)) {
+            return false;
+        }
+
+        MarkMultipleAsUnwatchedCommand markCommand = (MarkMultipleAsUnwatchedCommand) other;
+        return this.videoNames.equals(markCommand.videoNames)
+                && this.lectureName.equals(markCommand.lectureName)
+                && this.moduleCode.equals(markCommand.moduleCode);
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands.mark;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -10,8 +11,6 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-
-import seedu.address.logic.commands.CommandResult;
 
 
 /**
