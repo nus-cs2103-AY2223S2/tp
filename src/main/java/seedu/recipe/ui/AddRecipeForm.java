@@ -23,7 +23,7 @@ import seedu.recipe.ui.util.FieldsUtil;
  * Represents the form element for users to add {@code Recipe}s
  */
 public class AddRecipeForm extends UiPart<Region> {
-    private static final String FXML = "RecipeForm.fxml";
+    private static final String FXML = "AddRecipeForm.fxml";
 
     @FXML
     private TextField nameField;

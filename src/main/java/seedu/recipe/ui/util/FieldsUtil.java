@@ -28,6 +28,9 @@ public class FieldsUtil {
         textArea.setPrefHeight(5.0);
         //Keyboard listener for navigation
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.BACK_SPACE) {
+                return;
+            }
             int currentIndex = ((VBox) textArea.getParent()).getChildren().indexOf(textArea);
             handleNavigation(event, textArea, currentIndex);
         });
@@ -78,6 +81,11 @@ public class FieldsUtil {
      * @param currentIndex The index of the TextArea in its parent VBox.
      */
     public static void handleNavigation(KeyEvent event, TextArea textArea, int currentIndex) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            textArea.getScene().getWindow().requestFocus();
+            return;
+        }
+
         TextArea nextField = (TextArea) ((VBox) textArea.getParent()).getChildren().get(currentIndex + 1);
 
         // >>> Should be removed - arrow keys are for navigation WITHIN text field
