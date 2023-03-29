@@ -5,8 +5,12 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.connectus.commons.core.index.Index;
@@ -51,6 +55,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses string containing keywords into an {@code String[]} of keywords and returns it. Leading
+     * and trailing whitespaces will be
+     * trimmed.
+     */
+    public static List<String> parseKeywords(String str) {
+        String trimmedArgs = str.trim();
+        if (trimmedArgs.isEmpty()) {
+            return null;
+        }
+        List<String> fieldKeywords = Arrays.asList(trimmedArgs.split("\\s+"));
+        return fieldKeywords;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -77,6 +95,17 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
+        return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Doesn't check if phone number is valid.
+     */
+    public static Phone parsePhoneForFilter(String phone) {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
         return new Phone(trimmedPhone);
     }
 
@@ -277,5 +306,76 @@ public class ParserUtil {
         );
 
         return socialMedia.isBlank() ? null : socialMedia;
+    }
+
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if
+     * {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    public static Optional<Set<Tag>> parseTagsOptional(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>} if
+     * {@code modules} is non-empty.
+     * If {@code modules} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<module>} containing zero modules.
+     */
+    public static Optional<Set<Module>> parseModulesOptional(Collection<String> modules) throws ParseException {
+        assert modules != null;
+
+        if (modules.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> moduleSet = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
+        return Optional.of(ParserUtil.parseModules(moduleSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> ccas} into a {@code Set<Cca>} if
+     * {@code ccas} is non-empty.
+     * If {@code ccas} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Cca>} containing zero ccas.
+     */
+    public static Optional<Set<Cca>> parseCcasOptional(Collection<String> ccas) throws ParseException {
+        assert ccas != null;
+
+        if (ccas.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> ccaSet = ccas.size() == 1 && ccas.contains("") ? Collections.emptySet() : ccas;
+        return Optional.of(ParserUtil.parseCcas(ccaSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>} if
+     * {@code ccaPositions} is non-empty.
+     * If {@code ccaPositions} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Cca>} containing zero ccaPositions.
+     */
+    public static Optional<Set<CcaPosition>> parseCcaPositionsOptional(Collection<String> ccaPositions)
+            throws ParseException {
+        assert ccaPositions != null;
+
+        if (ccaPositions.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> ccaPositionSet = ccaPositions.size() == 1 && ccaPositions
+                .contains("") ? Collections.emptySet() : ccaPositions;
+        return Optional.of(ParserUtil.parseCcaPositions(ccaPositionSet));
     }
 }
