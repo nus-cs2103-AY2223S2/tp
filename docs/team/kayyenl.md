@@ -31,14 +31,13 @@ Given below are my contributions to the project.
   * Added user stores
   * Added respective deadlines to big milestones (such as v1.2b and v1.3, v1.3b) in order to keep team's progress in check.
 
-* **Enhancements to existing features**:
-  * Advanced help guide as mentioned above.
-
 * **Documentation**:
-  * To be added.
+  * Contributed to Help Section, and Quickstart Section in the Implementations of DG.
+  * Included Activity Diagrams to better illustrate point being made in DG.
 
 * **Community**:
-  * To be added.
+  * Reviewed PRs within the group: [\#113](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/113), [\#117](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/117), [\#126](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/126), [\#127](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/127), [\#125](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/125), 
+  * Closed various important PRs, albeit without leaving review comments (comments were in the conversation box)
 
 * **Tools**:
   * To be added.
