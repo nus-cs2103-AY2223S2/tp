@@ -39,8 +39,15 @@ public class TaskListPanel extends UiPart<Region> {
         if (person != null) {
             if (person.getTaskList().getInternalList().size() != 0) {
                 name.setText("Tasks for " + person.getName().fullName);
+                if (person.getName().fullName.length() >= 30) {
+                    name.setText("Tasks for " + person.getName().fullName.substring(0, 29) + "...");
+                }
+
             } else {
                 name.setText("No task found for " + person.getName().fullName);
+                if (person.getName().fullName.length() >= 30) {
+                    name.setText("No task found for " + person.getName().fullName.substring(0, 29) + "...");
+                }
             }
         }
     }
