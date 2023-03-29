@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import seedu.address.logic.commands.ImportDataCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -15,7 +15,7 @@ public class ImportDataCommandParser implements Parser<ImportDataCommand> {
     public ImportDataCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILE_PATH);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
 
         if (trimmedArgs.isEmpty()) {
@@ -23,12 +23,12 @@ public class ImportDataCommandParser implements Parser<ImportDataCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportDataCommand.MESSAGE_USAGE));
         }
 
-        if (!argMultimap.getValue(PREFIX_FILE_PATH).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_FILEPATH).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportDataCommand.MESSAGE_USAGE));
         }
 
-        return new ImportDataCommand(argMultimap.getValue(PREFIX_FILE_PATH).get());
+        return new ImportDataCommand(argMultimap.getValue(PREFIX_FILEPATH).get());
     }
 
 }

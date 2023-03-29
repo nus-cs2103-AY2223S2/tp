@@ -77,7 +77,7 @@ public class Score {
         return other == this // short circuit if same object
                 || (other instanceof Score // instanceof handles nulls
                 && scoreLabel.equals(((Score) other).scoreLabel)
-                && scoreValue == ((Score) other).scoreValue
+                && scoreValue.equals(((Score) other).scoreValue)
                 && scoreDate.equals(((Score) other).scoreDate)); // state check
     }
 

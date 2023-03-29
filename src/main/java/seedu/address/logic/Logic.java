@@ -65,4 +65,6 @@ public interface Logic {
      * @return the person being selected by the user.
      */
     Person findCheckedPerson();
+
+    void exportProgress(Person target, String completePath) throws IOException;
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,7 +23,7 @@ public class ExportDataCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Export data from a JSON file. "
             + "Parameters: "
-            + PREFIX_FILE_PATH + "FILE_PATH\n"
+            + PREFIX_FILEPATH + "FILE_PATH\n"
             + "Example: " + COMMAND_WORD + " "
             + "C:\\Users\\User\\Desktop\\data.json";
 

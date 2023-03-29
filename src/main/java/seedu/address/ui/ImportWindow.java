@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
 import static seedu.address.logic.commands.ImportDataCommand.COMMAND_WORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.io.File;
 import java.util.function.Consumer;
@@ -169,7 +169,7 @@ public class ImportWindow extends UiPart<Stage> {
      * Handles import button click event. Creates a command string and executes it.
      */
     public void handleImport() {
-        String commandString = COMMAND_WORD + " " + PREFIX_FILE_PATH + filePath;
+        String commandString = COMMAND_WORD + " " + PREFIX_FILEPATH + filePath;
         message.accept(commandString);
     }
 

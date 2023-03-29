@@ -2,7 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.ExportDataCommand.COMMAND_WORD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -155,7 +155,7 @@ public class ExportWindow extends UiPart<Stage> {
     public void handleExport() {
         try {
             requireNonNull(filePath);
-            String commandString = COMMAND_WORD + " " + PREFIX_FILE_PATH + filePath;
+            String commandString = COMMAND_WORD + " " + PREFIX_FILEPATH + filePath;
             this.logic.execute(commandString);
             hide();
         } catch (ParseException | CommandException e) {
