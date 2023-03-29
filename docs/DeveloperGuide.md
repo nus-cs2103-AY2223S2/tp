@@ -1,7 +1,11 @@
 ---
 layout: page
 title: Developer Guide
+
 ---
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -9,11 +13,18 @@ title: Developer Guide
 
 ## Acknowledgements
 
-@junyi
+* Libraries used: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5)
+* With inspiration from: [fzf](https://github.com/junegunn/fzf) (for fuzzy
+  finding), [Vim](https://www.vim.org/) (for hotkeys)
+* Originally forked from: [AddressBook
+  3](https://github.com/nus-cs2103-AY2223S2/tp)
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## Using this Guide
 
-## How to use this guide
+This guide is written for anyone who wishes to hack on the Mycelium codebase.
+It assumes basic knowledge of Java as well as the ability to read UML diagrams.
 
 ### Icons and conventions
 
@@ -39,16 +50,68 @@ below. Here is what each of them means.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *etting up, getting started
+## Setting Up, Getting Started
 
-@junyi
+### Cloning the repo
 
-{TODO put the page here instead}
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+First, fork [the repo](https://github.com/AY2223S2-CS2103T-W14-1/tp), and clone
+the fork into your local machine.
+
+If you plan to use Intellij IDEA:
+
+1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring
+   the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to
+   ensure Intellij is configured to use **JDK 11**.
+1. **Import the project as a Gradle project**: Follow the guide
+   [_[se-edu/guides] IDEA: Importing a Gradle
+   project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
+   to import the project into IDEA.<br> :information_source: Note: Importing a Gradle
+   project is slightly different from importing a normal Java project.
+
+If you plan to use other development environments, please seek out the
+appropriate guides on setting up JDK 11 and Gradle.
+
+Now, assuming you have successfully set up the project, let us verify that the
+code works as intended. In a terminal, navigate to the directory where you
+cloned the repo and execute the following command: `./gradlew test`. This will
+run all of Mycelium's automated tests. If you don't see any error messages
+printed, then you're all set.
+
+<div markdown="span" class="alert alert-success">
+:bulb: Did `./gradlew test` not work for you? Depending on your operating
+system and shell, there might be different ways to run the Gradle wrapper file.
+We advise you to
+
+1. Check that the file has execute permissions
+1. Check [Gradle's
+   website](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper)
+   for more information
+</div>
+
+### Before writing code
+
+1. **Configure the coding style**
+
+   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code
+   style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to
+   set up IDEA's coding style to match ours.
+
+1. **Set up CI**
+
+   This project comes with a GitHub Actions config files (in
+   `.github/workflows` folder). When GitHub detects those files, it will run
+   the CI for your project automatically at each push to the `master` branch or
+   to any PR. No set up required.
+
+1. **Learn the design**
+
+   When you are ready to start coding, we recommend that you get some sense of
+   the overall design by reading about [Mycelium’s
+   architecture](#architecture).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *esign
+## Design
 
 ### Architecture
 
@@ -188,8 +251,12 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-@junyi
-{TODO add a brief interlude here about categorization of implementation details}
+<div markdown="span" class="alert alert-info">
+:information_source: The following three sections discuss implementation
+details. We have divided them into three overarching themes: [User
+Interface](#user-interface), [Command Handling](#command-handling), and
+[Keyboard Interactions](#keyboard-interactions).
+</div>
 
 ## User Interface
 
@@ -499,19 +566,155 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 ## DevOps
 
-@junyi
+### Build automation
 
-## Logging
+This project uses Gradle for **build automation and dependency management**.
+**You are recommended to read [this Gradle Tutorial from the
+se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
-@junyi
+Given below are how to use Gradle for some important project tasks.
 
-## Documentation
+* **`clean`**: Deletes the files created during the previous build tasks (e.g.
+  files in the `build` folder).<br>e.g. `./gradlew clean`
 
-@junyi
+* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the
+  `build/lib` folder, *if the current file is outdated*.<br>e.g. `./gradlew shadowJar`.
+
+* **`run`**: Builds and runs the application.<br>
+  **`runShadow`**: Builds the application as a fat JAR, and then runs it.
+
+* **`checkstyleMain`**: Runs the code style check for the main code base.<br>
+  **`checkstyleTest`**: Runs the code style check for the test code base.
+
+* **`test`**: Runs all tests.
+  * `./gradlew test` — Runs all tests
+  * `./gradlew clean test` — Cleans the project and runs tests
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *ppendix: Requirements
+### Continuous integration (CI)
+
+This project uses GitHub Actions for CI. The project comes with the necessary
+GitHub Actions configurations files (in the `.github/workflows` folder). No
+further setting up required.
+
+#### Code coverage
+
+As part of CI, this project uses Codecov to generate coverage reports. When CI
+runs, it will generate code coverage data (based on the tests run by CI) and
+upload that data to the CodeCov website, which in turn can provide you more
+info about the coverage of your tests.
+
+However, because Codecov is known to run into intermittent problems (e.g.,
+report upload fails) due to issues on the Codecov service side, the CI is
+configured to pass even if the Codecov task failed. Therefore, developers are
+advised to check the code coverage levels periodically and take corrective
+actions if the coverage level falls below desired levels.
+
+To enable Codecov for forks of this project, follow the steps given in [this
+se-edu guide](https://se-education.org/guides/tutorials/codecov.html).
+
+#### Repository-wide checks
+
+In addition to running Gradle checks, CI includes some repository-wide checks.
+Unlike the Gradle checks which only cover files used in the build process,
+these repository-wide checks cover all files in the repository. They check for
+repository rules which are hard to enforce on development machines such as line
+ending requirements.
+
+These checks are implemented as POSIX shell scripts, and thus can only be run
+on POSIX-compliant operating systems such as macOS and Linux. To run all checks
+locally on these operating systems, execute the following in the repository
+root directory:
+
+`./config/travis/run-checks.sh`
+
+Any warnings or errors will be printed out to the console.
+
+**If adding new checks:**
+
+* Checks are implemented as executable `check-*` scripts within the `.github`
+  directory. The `run-checks.sh` script will automatically pick up and run
+  files named as such. That is, you can add more such files if you need and the
+  CI will do the rest.
+
+* Check scripts should print out errors in the format `SEVERITY:FILENAME:LINE:
+  MESSAGE`
+  * SEVERITY is either ERROR or WARN.
+  * FILENAME is the path to the file relative to the current directory.
+  * LINE is the line of the file where the error occurred and MESSAGE is the
+    message explaining the error.
+
+* Check scripts must exit with a non-zero exit code if any errors occur.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Making a release
+
+Here are the steps to create a new release.
+
+1. Update the version number in
+   [`MainApp.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/MainApp.java).
+1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
+1. Tag the repo with the version number. e.g. `v0.1`
+1. [Create a new release using
+   GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR
+   file you created.
+
+## Logging
+
+* We are using `java.util.logging` package for logging.
+* The `LogsCenter` class is used to manage the logging levels and logging
+  destinations.
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)`
+  which will log messages according to the specified logging level.
+* Log messages are output through the console and to a `.log` file.
+* The output logging level can be controlled using the `logLevel` setting in
+  the configuration file (See the [Configuration guide](Configuration.md)
+  section).
+* **When choosing a level for a log message**, follow the conventions given in
+  [_[se-edu/guides] Java: Logging
+  conventions_](https://se-education.org/guides/conventions/java/logging.html).
+
+## Documentation
+
+**Setting up and maintaining the project website:**
+
+* We use [**Jekyll**](https://jekyllrb.com/) to manage documentation.
+* The `docs/` folder is used for documentation.
+* To learn how set it up and maintain the project website, follow the guide
+  [_[se-edu/guides] **Using Jekyll for project
+  documentation**_](https://se-education.org/guides/tutorials/jekyll.html).
+* Note these points when adapting the documentation to a different
+  project/product:
+  * The 'Site-wide settings' section of the page linked above has information
+    on how to update site-wide elements such as the top navigation bar.
+  * :bulb: In addition to updating content files, you might have to update the
+    config files `docs\_config.yml` and `docs\_sass\minima\_base.scss` (which
+    contains a reference to `Mycelium` that comes into play when converting
+    documentation pages to PDF format).
+
+**Style guidance:**
+
+* Follow the [**_Google developer documentation style
+  guide_**](https://developers.google.com/style).
+* Also relevant is the [_[se-edu/guides] **Markdown coding
+  standard**_](https://se-education.org/guides/conventions/markdown.html)
+
+**Diagrams:**
+
+We use both [draw.io](https://app.diagrams.net/) and
+[PlantUML](https://plantuml.com/) as diagramming tools. The former is a drag
+and drop editor, while the latter defines UML diagrams through plain text
+files.
+
+* The `docs/images` directory contains ready-for-use pictures in PNG format
+* The `docs/diagrams` directory contains `.puml` files (for PlantUML) and
+  `.xml` files (for draw.io) which allow editing and regenerating of diagrams
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Requirements
 
 ### Product scope
 
@@ -656,13 +859,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+The terms in this glossary are sorted in alphabetical order.
 
-* **Console-first Interface**: An interface with interactions primarily through
-                               text commands
-* **Project**: A freelance software development job
+
 * **Client**: An individual associated with a particular project
-
-@junyi
+* **Console-first Interface**: An interface with interactions primarily through
+  text commands
+* **Draw.io**: A drag-and-drop diagramming tool. Available at
+  [draw.io](https://app.diagrams.net/).
+* **Fuzzy search**: A feature to search for items which partially match a query
+  rather than exactly
+* **PlantUML**: A text-based diagramming tool. See
+  [plantuml.com](https://plantuml.com/) for more information.
+* **Project**: A freelance software development gig
 
 --------------------------------------------------------------------------------------------------------------------
 
