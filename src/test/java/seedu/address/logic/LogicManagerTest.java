@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DOCTOR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DRUG_ALLERGY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -83,7 +84,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NRIC_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NRIC_DESC_AMY + DATE_DESC_AMY
                 + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + DRUG_ALLERGY_DESC_AMY + GENDER_DESC_AMY + DOCTOR_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
