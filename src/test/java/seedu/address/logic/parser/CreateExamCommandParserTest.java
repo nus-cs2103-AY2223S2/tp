@@ -1,17 +1,19 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CreateExamCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.CreateExamCommand;
+
 
 public class CreateExamCommandParserTest {
     private static final String VALID_START_TIME = "2027-04-30T12:00";
     private static final String VALID_END_TIME = "2027-04-30T:14:00";
     private static final String VALID_EXAM_NAME = "Math";
     private static final String VALID_STUDENT_NAME = "Amy";
-    CreateExamCommandParser parser = new CreateExamCommandParser();
+    private CreateExamCommandParser parser = new CreateExamCommandParser();
     @Test
     public void parse_fieldsMissing_failure() {
         String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,

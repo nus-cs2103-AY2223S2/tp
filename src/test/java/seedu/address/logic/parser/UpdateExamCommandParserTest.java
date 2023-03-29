@@ -1,15 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.UpdateExamCommand;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.UpdateExamCommand;
+
+
 class UpdateExamCommandParserTest {
-    private String VALID_START_TIME = "2027-04-30T12:00";
-    private String VALID_END_TIME = "2027-04-30T14:00";
+    private static final String VALID_START_TIME = "2027-04-30T12:00";
+    private static final String VALID_END_TIME = "2027-04-30T14:00";
     private UpdateExamCommandParser parser = new UpdateExamCommandParser();
     @Test
     public void parse_compulsoryFieldsMissing_failure() {
@@ -39,5 +40,4 @@ class UpdateExamCommandParserTest {
         assertParseFailure(parser, input1, expected);
 
     }
-
 }
