@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_BOB;
 import static seedu.careflow.testutil.Assert.assertThrows;
+import static seedu.careflow.testutil.TypicalPatients.AMY;
+import static seedu.careflow.testutil.TypicalPatients.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -58,11 +61,11 @@ class AddCommandTest {
 
     @Test
     public void execute_duplicatePatientIc_throwsCommandException() {
-        Patient validPatient = new PatientBuilder().withIc(VALID_IC_AMY).build();
-        AddCommand addCommand = new AddCommand(validPatient);
-        ModelStub modelStub = new ModelStubWithPatient(validPatient);
+        Patient validPatient = new PatientBuilder(AMY).build();
         // patient with duplicate IC as validPatient
-        Patient patient = new PatientBuilder().withIc(VALID_IC_AMY).build();
+        Patient patient = new PatientBuilder(BOB).withIc(VALID_IC_AMY).build();
+        AddCommand addCommand = new AddCommand(patient);
+        ModelStub modelStub = new ModelStubWithPatient(validPatient);
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_PATIENT_IC, () -> addCommand.execute(modelStub));
     }
@@ -244,6 +247,12 @@ class AddCommandTest {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
+
+        @Override
+        public boolean hasSamePatientIc(Patient patient) {
+            requireNonNull(patient);
+            return this.patient.isSameIc(patient);
+        }
     }
 
     /**
@@ -256,6 +265,12 @@ class AddCommandTest {
         public boolean hasSamePatientName(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(patient::isSamePatient);
+        }
+
+        @Override
+        public boolean hasSamePatientIc(Patient patient) {
+            requireNonNull(patient);
+            return patientsAdded.stream().anyMatch(patient::isSameIc);
         }
 
         @Override

@@ -50,7 +50,7 @@ public class PatientRecord implements ReadOnlyPatientRecord {
     }
 
     /**
-     * Returns true if a patient with the same name as {@code patient} exists in the patient record.
+     * Returns true if a patient with the same ic as {@code patient} exists in the patient record.
      */
     public boolean hasSamePatientIc(Patient patient) {
         requireNonNull(patient);

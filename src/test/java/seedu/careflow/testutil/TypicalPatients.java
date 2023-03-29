@@ -54,7 +54,7 @@ public class TypicalPatients {
             .withGender("female").withIc("W9164411S").build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withDob("01-08-1991")
-            .withGender("male").withIc("B9965511S").withEmergencyContact("83704433")
+            .withGender("male").withIc("B9665511S").withEmergencyContact("83704433")
             .build();
 
     // Manually added

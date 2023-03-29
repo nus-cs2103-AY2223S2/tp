@@ -11,9 +11,11 @@ import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUt
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandFailure;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.showPatientAtIndex;
+import static seedu.careflow.logic.commands.patientcommands.UpdateCommand.MESSAGE_DUPLICATE_PATIENT_IC;
 import static seedu.careflow.logic.commands.patientcommands.UpdateCommand.MESSAGE_DUPLICATE_PATIENT_NAME;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 import org.junit.jupiter.api.Test;
@@ -88,8 +90,8 @@ public class UpdateCommandTest {
     @Test
     public void execute_filteredList_success() {
         showPatientAtIndex(model, INDEX_FIRST);
-        Patient personInFilteredList = model.getFilteredPatientList().get(0);
-        Patient editedPatient = new PatientBuilder(personInFilteredList).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
+        Patient patientInFilteredList = model.getFilteredPatientList().get(0);
+        Patient editedPatient = new PatientBuilder(patientInFilteredList).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
                 .build();
         UpdateCommand editCommand = new UpdateCommand(model.getFilteredPatientList().get(0).getName(),
                 new EditPatientDescriptorBuilder().withDrugAllergy(VALID_DRUG_ALLERGY_BOB).build());
@@ -123,6 +125,18 @@ public class UpdateCommandTest {
                 new EditPatientDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PATIENT_NAME);
+    }
+
+    @Test
+    public void execute_duplicatePatientIcUnfilteredList_failure() {
+        Patient firstPatient = model.getFilteredPatientList().get(0);
+        Patient secondPatient = model.getFilteredPatientList().get(1);
+        EditPatientDescriptor descriptor =
+                new EditPatientDescriptorBuilder(firstPatient).withIc(secondPatient.getIc().value).build();
+        // assume the typicalPatientRecord's patient list has more than 2 patients
+        UpdateCommand editCommand = new UpdateCommand(firstPatient.getName(), descriptor);
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PATIENT_IC);
     }
 
     @Test

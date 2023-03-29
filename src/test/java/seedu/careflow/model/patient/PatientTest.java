@@ -90,23 +90,24 @@ public class PatientTest {
         // same ic, all others attributes same(except for name) -> returns true
         Patient editedPatient = new PatientBuilder(AMY)
                 .withName(VALID_NAME_BOB).withIc(VALID_IC_AMY.toUpperCase()).build();
-        assertTrue(ALICE.isSameIc(editedPatient));
+        assertTrue(AMY.isSameIc(editedPatient));
 
         // same ic, all other attributes different -> returns true
         editedPatient = new PatientBuilder(BOB).withIc(VALID_IC_AMY.toUpperCase()).build();
-        assertTrue(ALICE.isSameIc(editedPatient));
+        assertTrue(AMY.isSameIc(editedPatient));
 
         // same ic but differs in case -> return true
+        Patient amyWithCapitalIC = new PatientBuilder().withIc(VALID_IC_AMY.toUpperCase()).build();
         editedPatient = new PatientBuilder(BOB).withIc(VALID_IC_AMY.toLowerCase()).build();
-        assertTrue(ALICE.isSameIc(editedPatient));
+        assertTrue(amyWithCapitalIC.isSameIc(editedPatient));
 
         // different ic, all others attributes same -> return false
-        editedPatient = new PatientBuilder(ALICE).withIc(VALID_IC_BOB).build();
-        assertFalse(ALICE.isSameIc(editedPatient));
+        editedPatient = new PatientBuilder(AMY).withIc(VALID_IC_BOB).build();
+        assertFalse(AMY.isSameIc(editedPatient));
 
         // different ic, all others attributes different -> return false
         editedPatient = new PatientBuilder(BOB).build();
-        assertFalse(ALICE.isSameIc(editedPatient));
+        assertFalse(AMY.isSameIc(editedPatient));
     }
 
 

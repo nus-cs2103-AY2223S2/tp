@@ -41,7 +41,7 @@ import seedu.careflow.storage.JsonPatientRecordStorage;
 import seedu.careflow.storage.JsonUserPrefsStorage;
 import seedu.careflow.testutil.PatientBuilder;
 
-class CareFlowCareFlowLogicManagerTest {
+class CareFlowLogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir

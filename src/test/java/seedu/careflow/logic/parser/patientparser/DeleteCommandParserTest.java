@@ -3,6 +3,8 @@ package seedu.careflow.logic.parser.patientparser;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.careflow.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.careflow.model.patient.Ic.MESSAGE_CONSTRAINTS;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -21,10 +23,13 @@ class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_negativeIndex_throwsParseException() {
+        assertParseFailure(deleteCommandParser, " -i -1", MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
     public void parse_invalidNonNumericalIndex_throwsParseException() {
-        assertParseFailure(deleteCommandParser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(deleteCommandParser, " -i a", MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -35,14 +40,10 @@ class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidNumberAsIc_throwsParseException() {
-        assertParseFailure(deleteCommandParser, " -ic 123",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(deleteCommandParser, " -ic 123", MESSAGE_CONSTRAINTS);
     }
 
     @Test public void parse_invalidLengthIc_throwsParseException() {
-        assertParseFailure(deleteCommandParser, " -ic A7654321BB",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(deleteCommandParser, " -ic A7654321BB", MESSAGE_CONSTRAINTS);
     }
 }
