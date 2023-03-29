@@ -199,7 +199,7 @@ Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 Examples:
 
 * `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the 
+* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the
 `find` command.
 
 ### Adding a score for a student: `addScore`
@@ -224,7 +224,7 @@ Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 Examples:
 
-* `list` followed by `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a 
+* `list` followed by `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
   value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.
 * `check 5` followed by `addScore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
