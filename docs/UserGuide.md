@@ -153,7 +153,7 @@ If you enter an unrecognized command or a command with the wrong format, an erro
 
 ![CommandFeedbackInvalid](images/CommandFeedbackInvalid.png)
 
-You can then use the scroll bar below the feedback box to navigate through the feedback given.
+You can then use the scroll bars of the feedback box to navigate through the feedback given.
 
 ### 3.1.3 Contact List
 
