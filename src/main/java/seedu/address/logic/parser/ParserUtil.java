@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -75,6 +77,21 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
+    public static DateOfBirth parseDateOfBirth(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DateOfBirth.isValidDate(trimmedDate)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
@@ -83,6 +100,7 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
