@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * An UI component that displays information of a {@code Project}.
+ * A UI component that displays information of a {@code Project}.
  */
 public class ProjectCard extends UiPart<Region> {
 
@@ -73,6 +73,9 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         status.setText("Status: " + (project.isOverdue() ? "OVERDUE" : project.getStatus().toString()));
+        if (project.isOverdue()) {
+            status.setStyle("-fx-text-fill: #8112db;");
+        }
 
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
