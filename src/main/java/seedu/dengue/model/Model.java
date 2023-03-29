@@ -1,10 +1,12 @@
 package seedu.dengue.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
+import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.person.Person;
 
@@ -78,6 +80,8 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void setPersons(List<Person> persons);
+
     /**
      * Returns an unmodifiable view of the filtered person list.
      */
@@ -100,4 +104,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFromMemoryStack();
+
+    /**
+     * Undo an action.
+     * @throws CommandException if cannot undo further.
+     */
+    void undo() throws CommandException;
+
+    /**
+     * Redo an action.
+     * @throws CommandException if cannot redo further.
+     */
+    void redo() throws CommandException;
 }
