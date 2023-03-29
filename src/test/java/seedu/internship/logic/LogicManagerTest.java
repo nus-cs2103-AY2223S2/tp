@@ -1,7 +1,6 @@
 package seedu.internship.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.internship.logic.commands.CommandTestUtil.COMMENT_DESC_APPLE;
