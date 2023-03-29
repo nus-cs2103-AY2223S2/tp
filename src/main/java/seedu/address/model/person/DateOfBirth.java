@@ -1,15 +1,16 @@
 package seedu.address.model.person;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 /**
  * Represents a Person's date of birth in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class DateOfBirth {
 
@@ -18,11 +19,11 @@ public class DateOfBirth {
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$";
 
-    public static final SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat INPUT_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
-    public static final SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+    public static final SimpleDateFormat OUTPUT_FORMAT = new SimpleDateFormat("dd MMMM yyyy");
 
-    public String dateOfBirth;
+    public final String dateOfBirth;
 
     /**
      * Constructs a {@code dateOfBirth}.
@@ -32,14 +33,15 @@ public class DateOfBirth {
     public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
         checkArgument(isValidDate(dateOfBirth), MESSAGE_CONSTRAINTS);
+        String formatted = "28/12/2000";
         try {
-            Date date = inputFormat.parse(dateOfBirth);
-            String formatted = outputFormat.format(date);
-            this.dateOfBirth = formatted;
+            Date date = INPUT_FORMAT.parse(dateOfBirth);
+            formatted = OUTPUT_FORMAT.format(date);
+
         } catch (Exception e) {
-            this.dateOfBirth = "28/12/2000";
             System.out.println("Invalid date format");
         }
+        this.dateOfBirth = formatted;
     }
 
     /**
@@ -54,11 +56,11 @@ public class DateOfBirth {
         String output = this.dateOfBirth;
         Date date = null;
         try {
-            date = outputFormat.parse(output);
+            date = OUTPUT_FORMAT.parse(output);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        output = inputFormat.format(date);
+        output = INPUT_FORMAT.format(date);
         return output;
     }
 
