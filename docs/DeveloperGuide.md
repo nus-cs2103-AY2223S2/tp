@@ -1312,11 +1312,43 @@ Expected Output in the Command Output Box: Error message for invalid command for
 
 ### **Add a tag to a person**
 
-{to be filled}
+The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
+`tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
+
+`tag 1 m/CS1234`
+
+Expected Output in the PersonList: The first person has a new `ModuleTag` added to its 
+`ModuleTagSet` with `tagName` of `CS1234`, if a `ModuleTag` with the same `tagName` does not already exist
+in the person's `ModuleTagSet`.
+
+`tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: The second person has a new `ModuleTag` added to its `ModuleTagSet`
+with `tagName` of `CS1234`, if a `ModuleTag` with the same `TagName` does not already exist in the person's
+`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`. 
+
+`tag 3 g/Friend`
+
+Expected Output in the PersonList: The third person has a new `GroupTag` added to its `GroupTagSet` with a `tagName` of
+`Friend`, if a `GroupTag` with the same `tagName` does not already exist in the person's `GroupTagSet`
+
 
 ### **Remove a tag from a person**
 
-{to be filled}
+`untag 1 m/CS1234`
+
+Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its 
+`ModuleTagSet`. All lessons belonging to the `ModuleTag` will be dropped.
+
+`untag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from 
+`ModuleTag` WITH `tagName` of `CS2345`.
+
+`untag 3 g/Enemy`
+
+Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its 
+`GroupTagSet`. 
 
 ### **Filter persons by keywords**
 
