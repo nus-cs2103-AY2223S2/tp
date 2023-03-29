@@ -386,40 +386,21 @@ If your changes to the data file makes its format invalid, the internship book w
 
 ## **6. Command Summary**
 
-<<<<<<< HEAD
-| Action                       | Format, Examples                                                                                                                                                 |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application    | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`               |
-| **Delete**<br/> Application  | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
-| **Add** <br/> Task           | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task          | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
-| **Delete** <br/> Task        | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
-| **List**                     | `list`                                                                                                                                                           |
-| **Find**                     | `find [search term]` <br/> e.g. `find Meta` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`         |
-| **Sort**                     | `sort ORDER` <br/> e.g. `sort alphabetical` or `sort deadline`                                                                                                   |
-| **Help**                     | `help`                                                                                                                                                           |
-| **Undo**                     | `undo`                                                                                                                                                           |
-| **Clear**                    | `clear`                                                                                                                                                          |
-| **Exit**                     | `exit`                                                                                                                                                           |
-=======
 | Action                      | Format, Examples                                                                                                                                                 |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/goggleHR@example.com`               |
+| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`               |
 | **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
 | **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
 | **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
 | **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
 | **List**                    | `list`                                                                                                                                                           |
-| **Find**                    | `find [search term]` <br/> e.g. `find Mata` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Mata s/Offered`         |
-| **Sort**                    | `sort ORDER` <br/> e.g. `sort alphabetical` or `sort deadline`                                                                                                   |
+| **Find**                    | `find [search term]` <br/> e.g. `find Meta` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`         |
+| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                      |
 | **Help**                    | `help`                                                                                                                                                           |
 | **Undo**                    | `undo`                                                                                                                                                           |
 | **Redo**                    | `redo`                                                                                                                                                           |
 | **Clear**                   | `clear`                                                                                                                                                          |
-| **Exit**                    | `exit`                                                                                                                                                           |                                                                                                                                                                  |
->>>>>>> master
-
+| **Exit**                    | `exit`                                                                                                                                                           |
 
 <div style="page-break-after: always;"></div>
