@@ -138,15 +138,12 @@ Examples:
 
 Deletes the specified person from MediConnect.
 
-Format: `delete name`
+Format: `delete ic/nric`
 
-* Shows a list of person with the specified `name`
-* User then enters the number assigned to the person to be deleted
+* Deletes the person with the specified `nric`
 
 Examples:
-* `delete John` shows a list of people name John in MediConnect.
-* MediConnet prompts: "Enter number to be deleted:"
-* User enters `number` to be deleted
+* `delete ic/S9876543K` deletes the person with the nric number S9876543K in MediConnect.
 
 ### Book appointment : `appointment`
 
@@ -168,7 +165,21 @@ Example:
 
 ### Exiting the program : `exit`
 
-_Details coming soon ..._
+Closes the `MediConnect` application
+
+Format: `exit`
+
+Examples:
+* `exit` closes the `MediConnect` application immediately.
+
+### Requesting help : `help`
+
+Provides the user with a link to the user guide
+
+Format: `help`
+
+Examples:
+* `help` opens a mini window with a url link of the user guide which can be copied by the user.
 
 ### Saving the data
 
