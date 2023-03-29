@@ -22,9 +22,11 @@ import teambuilder.logic.commands.ExitCommand;
 import teambuilder.logic.commands.FindCommand;
 import teambuilder.logic.commands.HelpCommand;
 import teambuilder.logic.commands.ListCommand;
+import teambuilder.logic.commands.ShowCommand;
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.person.NameContainsKeywordsPredicate;
+import teambuilder.model.person.TeamContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 import teambuilder.testutil.PersonBuilder;
@@ -76,6 +78,14 @@ public class TeamBuilderParserTest {
         FindCommand command = (FindCommand) parser
                 .parseCommand(FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_show() throws Exception {
+        List<String> keywords = Arrays.asList("TeamA");
+        ShowCommand command = (ShowCommand) parser
+                .parseCommand(ShowCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new ShowCommand(new TeamContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
