@@ -1,5 +1,5 @@
 @font-face {
-    src: url("fonts/SourceSansPro-Regular.ttf");
+    src: url("../fonts/SourceSansPro-Regular.ttf");
 }
 
 
@@ -283,12 +283,16 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#ffffff, 20%);
+    -fx-background-color: derive(#CACCCE, 80%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#CACCCE, 50%);
+    -fx-background-color: #CACCCE;
     -fx-background-insets: 3;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #86888A;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {

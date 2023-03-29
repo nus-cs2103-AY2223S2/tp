@@ -51,8 +51,6 @@ public class OpeningCard extends UiPart<Region> {
         company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
         status.setText(opening.getStatus().fullStatus);
-        email.setText(opening.getEmail().value);
-        remark.setText(String.format("Remark: [%s]", opening.getRemark().value));
         opening.getDates().stream()
                 .forEach(date -> dates.getChildren().add(new DateCard(date)));
     }

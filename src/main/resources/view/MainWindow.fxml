@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -46,12 +47,17 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="openingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <SplitPane fx:id= "openingContainer" dividerPositions="0.5" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
-          <StackPane fx:id="openingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+          <VBox fx:id="openingList" styleClass="pane-with-border" minWidth="170" prefWidth="170" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="openingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+          <VBox fx:id="openingDetails" styleClass="pane-with-border" minWidth="170" prefWidth="170" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="openingDetailsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

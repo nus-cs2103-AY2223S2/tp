@@ -25,6 +25,7 @@ public class OpeningListPanel extends UiPart<Region> {
      */
     public OpeningListPanel(ObservableList<Opening> openingList) {
         super(FXML);
+        System.out.println("Start");
         openingListView.setItems(openingList);
         openingListView.setCellFactory(listView -> new OpeningListViewCell());
     }
