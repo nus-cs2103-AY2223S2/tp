@@ -100,6 +100,7 @@ public class EditCommand extends Command {
 
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
+
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
     }
 
@@ -107,8 +108,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Employee} with the details of {@code employeeToEdit}
      * edited with {@code editEmployeeDescriptor}.
      */
-    private static Employee createEditedEmployee(Employee employeeToEdit,
-                                                 EditEmployeeDescriptor editEmployeeDescriptor) {
+    static Employee createEditedEmployee(Employee employeeToEdit,
+                                         EditEmployeeDescriptor editEmployeeDescriptor) {
         assert employeeToEdit != null;
 
         Name updatedName = editEmployeeDescriptor.getName().orElse(employeeToEdit.getName());
@@ -120,12 +121,9 @@ public class EditCommand extends Command {
         LeaveCounter updatedLeaveCounter = editEmployeeDescriptor.getLeaveCounter()
                 .orElse(employeeToEdit.getLeaveCounter());
         Optional<LocalDate> updatedDateOfBirth = Optional.ofNullable(editEmployeeDescriptor.getDateOfBirth())
-                .flatMap(s -> s);
-        if (updatedDateOfBirth.isEmpty()) {
-            updatedDateOfBirth = employeeToEdit.getDateOfBirthOptional();
-        }
+                .flatMap(s -> s).or(employeeToEdit::getDateOfBirthOptional);
         Optional<LocalDate> updatedDateOfJoining = Optional.ofNullable(editEmployeeDescriptor.getDateOfJoining())
-                .flatMap(s -> s);
+                .flatMap(s -> s).or(employeeToEdit::getDateOfJoiningOptional);
         if (updatedDateOfJoining.isEmpty()) {
             updatedDateOfJoining = employeeToEdit.getDateOfJoiningOptional();
         }
