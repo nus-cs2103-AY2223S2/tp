@@ -78,10 +78,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         }
 
         ModuleTag existingModuleTag = modules.get(tagName);
-        existingModuleTag.removeLessons(moduleTag.getImmutableLessons());
-        modules.put(tagName, existingModuleTag);
+        ModuleTag moduleTagCopy =
+                new ModuleTag(tagName, existingModuleTag.getImmutableLessons());
+        moduleTagCopy.removeLessons(moduleTag.getImmutableLessons());
+        modules.put(tagName, moduleTagCopy);
 
-        if (existingModuleTag.getImmutableLessons().size() == 0) {
+        if (moduleTagCopy.getImmutableLessons().size() == 0) {
             modules.remove(tagName);
         }
     }

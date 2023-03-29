@@ -14,6 +14,7 @@ import static seedu.address.model.timetable.util.TypicalTime.TEN_AM;
 import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimeBlock;
@@ -42,20 +43,20 @@ public class CommitmentTest {
 
     @Test
     void constructor_locationNull_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Commitment(null, HOUR_BLOCK));
+        assertThrows(NullPointerException.class, ()
+                -> new Commitment(null, HOUR_BLOCK));
     }
 
     @Test
     void constructor_timePeriodNull_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Commitment(SENGKANG, null));
+        assertThrows(NullPointerException.class, ()
+                -> new Commitment(SENGKANG, null));
     }
 
     @Test
     void constructor_allNull_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Commitment(null, null));
+        assertThrows(NullPointerException.class, ()
+                -> new Commitment(null, null));
     }
 
     @Test

@@ -17,6 +17,7 @@ import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 import static seedu.address.model.timetable.util.TypicalTime.TWO_PM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
@@ -29,11 +30,11 @@ public class RecommendationTest {
     private static final TimePeriod TIME_PERIOD =
             new TimeBlock(TEN_AM, ONE_PM, Day.THURSDAY);
     private static final Recommendation RECOMMENDATION =
-            new Recommendation(SEMBAWANG, TIME_PERIOD, CONTACT_INDEX, false);
+            new Recommendation(STEVENS, TIME_PERIOD, CONTACT_INDEX, false);
 
     @Test
     public void constructor_fullConstructor_success() {
-        assertDoesNotThrow(() -> new Recommendation(STEVENS, TIME_PERIOD,
+        assertDoesNotThrow(() -> new Recommendation(SEMBAWANG, TIME_PERIOD,
                 CONTACT_INDEX, false));
     }
 
@@ -55,32 +56,32 @@ public class RecommendationTest {
 
     @Test
     public void constructor_nullLocation_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(null, TIME_PERIOD));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(null, TIME_PERIOD, CONTACT_INDEX));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(null, TIME_PERIOD, true));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(null, TIME_PERIOD, CONTACT_INDEX, true));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(null, TIME_PERIOD));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(null, TIME_PERIOD, CONTACT_INDEX));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(null, TIME_PERIOD, true));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(null, TIME_PERIOD, CONTACT_INDEX, true));
     }
 
     @Test
     public void constructor_nullTimePeriod_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(STEVENS, null));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(STEVENS, null, CONTACT_INDEX));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(STEVENS, null, true));
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(STEVENS, null, CONTACT_INDEX, true));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(STEVENS, null));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(STEVENS, null, CONTACT_INDEX));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(STEVENS, null, true));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(STEVENS, null, CONTACT_INDEX, true));
     }
 
     @Test
     public void constructor_nullContactIndex_throwsException() {
-        assertThrows(NullPointerException.class,
-                () -> new Recommendation(STEVENS, TIME_PERIOD, null, true));
+        assertThrows(NullPointerException.class, ()
+                -> new Recommendation(STEVENS, TIME_PERIOD, null, true));
     }
 
     @Test
@@ -130,7 +131,7 @@ public class RecommendationTest {
                 new Recommendation(STEVENS, new TimeBlock(TWELVE_PM, THREE_PM, Day.TUESDAY));
         Recommendation sameRecommendation =
                 new Recommendation(STEVENS, TIME_PERIOD, CONTACT_INDEX, false);
-        assertEquals(noonRecommendation.compareTo(RECOMMENDATION), 1);
+        assertEquals(noonRecommendation.compareTo(RECOMMENDATION), -1);
         assertEquals(RECOMMENDATION.compareTo(sameRecommendation), 0);
     }
 
@@ -149,9 +150,9 @@ public class RecommendationTest {
     public void equals_differentValues_false() {
         assertNotEquals(RECOMMENDATION,
                 new Recommendation(STEVENS, TIME_PERIOD, CONTACT_INDEX, true));
-        assertNotEquals(RECOMMENDATION,
+        assertEquals(RECOMMENDATION,
                 new Recommendation(STEVENS, TIME_PERIOD, new ContactIndex(2), false));
-        TimePeriod newTimePeriod = new TimeBlock(TEN_AM, TWELVE_PM, Day.TUESDAY);
+        TimePeriod newTimePeriod = new TimeBlock(TEN_AM, TWELVE_PM, Day.THURSDAY);
         assertNotEquals(RECOMMENDATION,
                 new Recommendation(STEVENS, newTimePeriod, CONTACT_INDEX, false));
         assertNotEquals(RECOMMENDATION,
@@ -166,7 +167,7 @@ public class RecommendationTest {
     @Test
     public void toString_validTimePeriod_containsTimePeriod() {
         assertTrue(RECOMMENDATION.toString().contains(TIME_PERIOD.toString()));
-        assertTrue(RECOMMENDATION.toString().contains(Day.TUESDAY.toString()));
+        assertTrue(RECOMMENDATION.toString().contains(Day.THURSDAY.toString()));
     }
 
     @Test

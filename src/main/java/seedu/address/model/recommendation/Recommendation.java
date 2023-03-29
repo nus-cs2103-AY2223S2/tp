@@ -1,10 +1,10 @@
 package seedu.address.model.recommendation;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.TimePeriod;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A meetup suggestion consisting of a location and time period.
