@@ -144,6 +144,21 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Checks if given string is a valid datetime format
+     *
+     * @param dateString - the String to check.
+     * @return True if {@code dateString} is a valid datetime format
+     */
+    public static boolean isValidDateTimeFormat(String dateString) {
+        try {
+            parseDate(dateString);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
     private static LocalDateTime parseCustomDate(String dateString) throws ParseException {
         if (dateString.matches(DEFAULT_DATE_REGEX)) {
             // yyyy-MM-dd'T'hh:mm format
