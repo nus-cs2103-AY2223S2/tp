@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-
-
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="container" alignment="CENTER" stylesheets="/view/WelcomePage.css">
-    <Label fx:id="welcomeMessage" text="Welcome To Modcheck!"/>
-    <Label fx:id="secondMessage" wrapText="true" alignment="CENTER">
-        We noticed that you are new here.
-        Would you like to set up a password?
-    </Label>
-</VBox>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
+<fx:root type="javafx.scene.layout.VBox" fx:id="container" alignment="CENTER" stylesheets="/view/WelcomePage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="welcomeMessage" text="Welcome To Modcheck!">
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin></Label>
+    <Label fx:id="secondMessage" alignment="CENTER" contentDisplay="CENTER" stylesheets="@WelcomePage.css" text="We noticed that you are new here. Would you like to set up a password?" textAlignment="CENTER" wrapText="true">
+      <opaqueInsets>
+         <Insets bottom="20.0" left="20.0" right="20.0" />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin></Label>
+    <TextField fx:id="inputField" alignment="CENTER" maxHeight="50.0" maxWidth="650.0" prefHeight="40.0">
+      <VBox.margin>
+         <Insets top="20.0" />
+      </VBox.margin>
+      <font>
+         <Font name="Arial" size="18.0" />
+      </font>
+    </TextField>
+    <VBox.margin>
+        <Insets top="20.0" />
+    </VBox.margin>
+</fx:root>

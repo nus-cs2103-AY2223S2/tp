@@ -15,6 +15,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.ui.events.ProceedCreatePasswordEvent;
 
 /**
  * The manager of the UI component.
@@ -50,7 +51,7 @@ public class UiManager implements Ui {
 
             //this.showMainWindow(primaryStage);
             //mainWindow = new MainWindow(primaryStage, logic);
-            this.showApplicationWindow(primaryStage);
+            //this.showApplicationWindow(primaryStage);
             this.showWelcomePage(primaryStage);
 
         } catch (Throwable e) {
@@ -78,13 +79,26 @@ public class UiManager implements Ui {
         applicationWindow.show(); //This should be called before creating other UI parts
     }
 
+    /**
+     * Shows the welcome page
+     * @param primaryStage Primary stage of the whole application
+     * @throws IOException Input Output Exception
+     */
     public void showWelcomePage(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/WelcomePage.fxml"));
         Scene scene = new Scene(root);
+        scene.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD, this::onProceedCreatePassword);
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(600);
         primaryStage.show();
+    }
+
+    /**
+     * Switches the next scene to enter password page
+     */
+    private void onProceedCreatePassword(ProceedCreatePasswordEvent event) {
+
     }
 
     private Image getImage(String imagePath) {
