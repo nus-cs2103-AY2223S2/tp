@@ -1,7 +1,7 @@
 package seedu.patientist.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
@@ -22,15 +22,23 @@ public class AddPatientStatusCommandParser implements Parser<AddPatientStatusCom
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientStatusCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_STATUS);
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STATUS) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddPatientStatusCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddPatientStatusCommand.MESSAGE_USAGE), pe);
+        }
+
         ArrayList<PatientStatusDetails> details =
                 new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
         return new AddPatientStatusCommand(index, details);
