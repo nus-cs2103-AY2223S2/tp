@@ -50,10 +50,10 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/primary` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/secondary`, `t/friend t/secondary` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -292,20 +292,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PARENT_PHONE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/11112222 t/friend t/colleague` |
-| **Delete Student** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                             |
-| **Clear**          | `clear`                                                                                                                                                                                         |
-| **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                                |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                         |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                      |
-| **List Students**  | `list`                                                                                                                                                                                          |
-| **Add Task**       | `addTask INDEX t/TITLE`<br> e.g `addTask 2 Homework Assignment 1`                                                                                                                               |
-| **Delete Task**    | `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deleteTask 2 1`                                                                                                                            |
-| **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markComplete`, `markLate` or `markInProgress`)<br> e.g. `markComplete 1 2`<br>                                     |
-| **Add Score**      | `addScore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addScore l/CA2 A Math v/70 d/2022-03-03`                                                                                                    |
-| **Delete Score**   | `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deleteScore 3 4`                                                                                                                        |
-| **Help**           | `help`                                                                                                                                                                                          |
+| Action             | Format, Examples                                                                                                                                                                              |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/PARENT_PHONE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 c/11112222 t/friend t/primary` |
+| **Delete Student** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                                           |
+| **Clear**          | `clear`                                                                                                                                                                                       |
+| **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
+| **List Students**  | `list`                                                                                                                                                                                        |
+| **Add Task**       | `addTask INDEX t/TITLE`<br> e.g `addTask 2 t/Homework Assignment 1`                                                                                                                           |
+| **Delete Task**    | `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deleteTask 2 1`                                                                                                                          |
+| **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markComplete`, `markLate` or `markInProgress`)<br> e.g. `markComplete 1 2`<br>                                   |
+| **Add Score**      | `addScore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addScore l/CA2 A Math v/70 d/2022-03-03`                                                                                                  |
+| **Delete Score**   | `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deleteScore 3 4`                                                                                                                      |
+| **Help**           | `help`                                                                                                                                                                                        |
 
 
