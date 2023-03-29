@@ -666,6 +666,16 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 
 ### Prefixes
 
+| Prefix | Representation  |
+|--------|-----------------|
+| n/     | Name            |
+| a/     | Address         | 
+| p/     | Telegram Handle | 
+| e/     | Email           | 
+| g/     | Group           | 
+| m/     | Module          | 
+| "   "  | Empty           | 
+
 ### Command Summary
 
 | Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))                                              | Examples                                     |
