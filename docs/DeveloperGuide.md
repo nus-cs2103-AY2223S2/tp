@@ -203,6 +203,22 @@ The `Storage` component is responsible for the reading and writing of the states
 
 <!-- TODO -->
 
+#### Cascading delete
+
+The cascading delete feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is deleted from the VMS, any related records should also be deleted to ensure that the system remains consistent.
+
+##### Relationship between `Patient` and `Appointment` 
+
+When a `Patient` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `Appointment` records are directly linked to a specific `Patient`, and it would not make sense to keep these records around if the `Patient` is no longer in the system. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `VaxType` and `Appointment` 
+
+When a `VaxType` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and it would not make sense to keep these records around if the `VaxType` record is no longer offered by the VaxType center. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `Patient` and `VaxType` 
+
+On the other hand, `Patient` records are not deleted when a `VaxType` record is deleted from the system. This is because `Patient` records should not be modified if a `VaxType` is no longer offered. If a `VaxType` record is deleted, the associated `Appointment` records will be deleted, but any `Patient` records associated with those `VaxType` records will not be updated in the system. This is because the `Patient` records may still be relevant, even if the `VaxType` is no longer in the system.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.vms.commons` package.
