@@ -16,7 +16,12 @@ import seedu.vms.model.vaccination.VaxType;
 public class DeleteVaxTypeParser implements CommandParser {
     public static final String COMMAND_WORD = "delete";
 
-    private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
+    public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
+            + ": Deletes the specified vaccination\n"
+            + "Syntax: "
+            + "vaccination delete VACCINATION\n"
+            + "Example: "
+            + "vaccination delete INDEX::1";
 
 
     @Override
@@ -25,7 +30,7 @@ public class DeleteVaxTypeParser implements CommandParser {
         try {
             retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
         } catch (ParseException parseEx) {
-            throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
+            throw new ParseException(String.format("VACCINATION: %s\n%s", parseEx.getMessage(), MESSAGE_USAGE));
         }
         boolean isForce = argsMap
                 .getValue(CliSyntax.PREFIX_FORCE)
