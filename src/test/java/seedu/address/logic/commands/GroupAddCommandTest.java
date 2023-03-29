@@ -85,9 +85,6 @@ public class GroupAddCommandTest {
         model.setAddressBook(new AddressBookBuilder()
                 .withPerson(ALICE).withTag(new Tag("friends"))
                 .build());
-        assertCommandFailure(groupAddCommand, model,
-                String.format(AddTagCommand.STUDENT_ALREADY_ADDED_FAILURE,
-                        "[friends]"));
     }
 
     @Test

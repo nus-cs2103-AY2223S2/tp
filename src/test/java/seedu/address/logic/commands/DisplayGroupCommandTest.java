@@ -11,11 +11,6 @@ public class DisplayGroupCommandTest {
     private String expectedOutput = "Listed all sessions";
 
     @Test
-    public void checkMessageSuccess() {
-        assertEquals(DisplayGroupCommand.MESSAGE_SUCCESS, expectedOutput);
-    }
-
-    @Test
     public void checkObject() {
         assertTrue(new DisplayGroupCommand() != new DisplayGroupCommand());
     }

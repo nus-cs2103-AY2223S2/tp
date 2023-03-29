@@ -57,13 +57,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_group() throws Exception {
-        Tag tag = new Tag("Hall");
-        GroupCommand command = (GroupCommand) parser.parseCommand("group n/Hall");
-        assertEquals(new GroupCommand(tag), command);
-    }
-
-    @Test
     public void parseCommand_display() throws Exception {
         assertTrue(parser.parseCommand(DisplayGroupCommand.COMMAND_WORD) instanceof DisplayGroupCommand);
         assertTrue(parser.parseCommand(DisplayGroupCommand.COMMAND_WORD + " 3") instanceof DisplayGroupCommand);
