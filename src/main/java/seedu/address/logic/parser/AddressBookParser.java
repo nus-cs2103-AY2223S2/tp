@@ -20,6 +20,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TabCommand;
+import seedu.address.logic.commands.TagEventCommand;
+import seedu.address.logic.commands.UnTagEventCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
 import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
@@ -82,6 +84,12 @@ public class AddressBookParser {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
+        case TagEventCommand.COMMAND_WORD:
+            return new TagEventCommandParser().parse(arguments);
+
+        case UnTagEventCommand.COMMAND_WORD:
+            return new UnTagEventCommandParser().parse(arguments);
+
         case FavoriteCommand.COMMAND_WORD:
             return new FavoriteCommandParser().parse(arguments);
 
@@ -93,7 +101,6 @@ public class AddressBookParser {
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

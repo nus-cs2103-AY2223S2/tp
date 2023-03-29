@@ -3,10 +3,11 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Neo is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
+NeoBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
-Apart from being your all-encompassing address book, AddressBook Neo also has a calendar function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, NeoBook also has a calendar function for you to keep track of your daily schedule.
 
+## Table Of Contents
 * Table of Contents
 {:toc}
 
@@ -16,9 +17,9 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases/tag/v1.2.1).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your NeoBook.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -39,16 +40,18 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
    * `exit` : Exits the app.
 
-6. Refer to the [Address Book Features](#address-book-features) below for details of each command.
+6. Refer to the [NeoBook Features](#neobook-features) below for details of each command.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-1. Use these tabs to toggle between the Address Book and Calendar!
+1. Use these tabs to toggle between the NeoBook, Calendar and your own information!
 
 ![highlightTabs](images/userguide/highlightTab.png)
 
-### UI Breakdown For `Address Book`
+### UI Breakdown For `NeoBook`
 
 ![addressBkUI](images/userguide/addressBkUI.png)
 
@@ -62,7 +65,7 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
    * displays the result of input command
 4. Command Line:
    * type command and press enter to execute it
-   * refer to the [Address Book Features](#address-book-features ) below for possible commands to execute
+   * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
 ### UI Breakdown For `Calendar`
 
@@ -76,8 +79,15 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
    * type command and press enter to execute it
    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
+### UI Breakdown For `Me`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
+</div>
+
+[Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
-## Address Book Features
+## NeoBook Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -103,22 +113,32 @@ ________________________________________________________________________________
 
 </div>
 
+<hr style="border:2px solid gray">
+
 ### Viewing Help : `help`
 
 Don't know how to get started? Don't worry!
 
 Simply use this command to get access to our help page!
 
->Command: `help`
+**Syntax:**
+
+`help`
 
 ![help message](images/helpMessage.png)
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Adding A New Contact: `add`
 
 Met a new friend?
-Use this command to add him/her to your address book.
 
-> Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Use this command to add him/her to your NeoBook.
+
+**Syntax:**
+
+`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 Here are all the specifiers that can be used:
 
@@ -130,7 +150,6 @@ Here are all the specifiers that can be used:
 | m         | Major                           | Yes       |
 | mt        | Mods Taken                      | Yes       |
 | f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
 | g         | Gender                          | Yes       |
 | t         | Tags                            | Yes       |
 | c         | Preferred Communication Channel | Yes       |
@@ -150,13 +169,22 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
 ### Listing All Contacts : `list`
 
 Want to see all your contacts?
 
 Use this command to gain access to all of them!
 
-> Command: `list`
+**Syntax:**
+
+`list`
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
 
 ### Favourite A Contact : `fav`
 
@@ -164,12 +192,17 @@ Contact someone very frequently?
 
 Use this command to favourite it so that you have easy access to it!
 
-> Command: `fav INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`fav INDEX`
+
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Unfavourite A Contact : `unfav`
 
@@ -177,12 +210,15 @@ No longer contact someone as frequently as you used to?
 
 Use this command to unfavourite it!
 
-> Command: `unfav INDEX`
+**Syntax:** `unfav INDEX`
 
-Here are some important requirements for you to take note:
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Editing a contact's details : `edit`
 
@@ -190,9 +226,11 @@ Learnt something new about your friend? Or perhaps he/she changed a particular d
 
 Use this command to edit his/her details easily!
 
-> Command: `edit INDEX [{SPECIFIER}/{DATA}]`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`edit INDEX [{SPECIFIER}/{DATA}]`
+
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
@@ -211,7 +249,6 @@ Here are some important requirements for you to take note:
 | m         | Major                           | Yes       |
 | mt        | Mods Taken                      | Yes       |
 | f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
 | g         | Gender                          | Yes       |
 | t         | Tags                            | Yes       |
 | c         | Preferred Communication Channel | Yes       |
@@ -221,15 +258,20 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
 ### Finding Particular Contacts: `find`
 
 Want to narrow down your displayed contacts to a certain few?
 
 Use this command to find contacts whose names contain any of the given keywords!
 
-> Command: `find KEYWORD [MORE_KEYWORDS]`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`find KEYWORD [MORE_KEYWORDS]`
+
+_Here are some important requirements for you to take note:_
 * Only the name is searched.
 * The search is **case-insensitive**.
 
@@ -245,9 +287,12 @@ Here are some important requirements for you to take note:
 
     _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
 
-Examples:
+_Examples:_
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Select contact to expand details: `select`
 
@@ -255,65 +300,89 @@ Want to see more details about a certain contact in your list?
 
 Use this command to expand and view more information about the selected contact.
 
-> Command: `select INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`select INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
     * `INDEX` must be a positive integer.
 
-Examples:
+_Examples:_
 * `select 1` expands the details of the first contact in your list.
 * `select 4` expands the details of the fourth contact in your list.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Deleting A Contact : `delete`
 
 No longer interact with someone in your contacts?
 
-Use this command to delete the specified contact from your address book.
+Use this command to delete the specified contact from your NeoBook.
 
-> Command: `delete INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`delete INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
-Examples:
+_Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+<hr style="border:2px solid gray">
 
 ### Clearing all contacts : `clear`
 
 Want to start from a clean slate?
 
-Simply use this command to clear all contacts from your address book.
+Simply use this command to clear all contacts from your NeoBook.
 
-> Command: `clear`
+**Syntax:**
+
+`clear`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Switching between UI tabs: `tab`
 
-Looking for a faster way to switch between the address book and the calendar?
+Looking for a faster way to switch between NeoBook and the Calendar?
 
 Use this command to navigate to the specified tab.
 
-> Command: `tab INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`tab INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
   * `INDEX` must be a positive integer.
 
-Examples:
-* `tab 1` switches to the address book tab.
-* `tab 2` switches to the calendar tab.
+_Examples:_
+* `tab 1` switches to the NeoBook tab.
+* `tab 2` switches to the Calendar tab.
 
-### Exiting AddressBookNeo : `exit`
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Exiting NeoBook : `exit`
 
 Finished what you needed to do?
 
 Use this command to exit the application!
 
-> Command: `exit`
+**Syntax:**
 
-### Address Book Command Summary
+`exit`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### NeoBook Command Summary
 
 | Action      | Format, Examples                                                                                                                                                      |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -330,6 +399,8 @@ Use this command to exit the application!
 | **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
 | **Exit**    | `exit`                                                                                                                                                                |
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features
 
@@ -337,16 +408,18 @@ Use this command to exit the application!
 **:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
 </div>
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Data
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
+NeoBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+NeoBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 
 You are welcome to update the data directly by editing that data file.
 
@@ -354,10 +427,14 @@ You are welcome to update the data directly by editing that data file.
 If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NeoBook home folder.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------

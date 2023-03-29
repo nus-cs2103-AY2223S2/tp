@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.HashSet;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddEventCommand;
@@ -36,11 +37,12 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
         if (argMultimap.getValue(PREFIX_RECURRENCE).isEmpty()) {
             // Non-recurring event
-            return new AddEventCommand(new OneTimeEvent(desc, startDateTime, endDateTime));
+            return new AddEventCommand(new OneTimeEvent(desc, startDateTime, endDateTime, new HashSet<>()));
         } else {
             // Recurring event
             Recurrence recurrence = ParserUtil.parseRecurrence(argMultimap.getValue(PREFIX_RECURRENCE).get());
-            return new AddEventCommand(new RecurringEvent(desc, startDateTime, endDateTime, recurrence));
+            return new AddEventCommand(new RecurringEvent(desc, startDateTime, endDateTime,
+                    recurrence, new HashSet<>()));
         }
     }
 

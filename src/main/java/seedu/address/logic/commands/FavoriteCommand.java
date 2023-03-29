@@ -56,6 +56,7 @@ public class FavoriteCommand extends Command {
 
         model.setPerson(personToFav, favoritedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_FAVORITE_PERSON_SUCCESS, favoritedPerson));
     }
 }
