@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -26,7 +27,6 @@ import seedu.address.model.student.Student;
  * Update the information of an existing homework.
  */
 public class UpdateLessonCommand extends Command {
-
     public static final String COMMAND_WORD = "update-lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing lesson.\n"
@@ -74,6 +74,8 @@ public class UpdateLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {

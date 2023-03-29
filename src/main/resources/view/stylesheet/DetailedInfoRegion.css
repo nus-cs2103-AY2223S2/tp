@@ -18,7 +18,7 @@
 }
 
 #welcomeMessage {
-    -fx-font-size: 15pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Comic Sans MS";
     -fx-text-fill: #1d1d1d;
 }

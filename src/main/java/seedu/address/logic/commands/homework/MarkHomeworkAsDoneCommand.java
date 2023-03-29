@@ -3,6 +3,7 @@ package seedu.address.logic.commands.homework;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
@@ -57,6 +58,8 @@ public class MarkHomeworkAsDoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {

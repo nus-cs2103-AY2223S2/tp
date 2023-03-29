@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,12 +20,12 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Homework;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateEntryException;
 
 /**
  * Update the information of an existing homework.
  */
 public class UpdateHomeworkCommand extends Command {
-
     public static final String COMMAND_WORD = "update-homework";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing homework.\n"
@@ -67,6 +68,8 @@ public class UpdateHomeworkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {
@@ -91,17 +94,24 @@ public class UpdateHomeworkCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Homework homeworkToUpdate = student.getHomework(index);
 
-        String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
-        LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
-        Homework newHomework = new Homework(newHomeworkName, newDeadline);
-        student.setHomework(homeworkToUpdate, newHomework);
+        try {
+            Homework homeworkToUpdate = student.getHomework(index);
 
-        return new CommandResult(
-                String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
-                        student.getName().getFirstName(),
-                        newHomeworkName, newDeadline));
+            String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
+            LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
+            Homework newHomework = new Homework(newHomeworkName, newDeadline);
+            student.setHomework(homeworkToUpdate, newHomework);
+
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
+                            student.getName().getFirstName(),
+                            newHomeworkName, newDeadline));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        } catch (DuplicateEntryException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override

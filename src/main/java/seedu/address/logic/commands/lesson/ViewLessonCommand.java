@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -23,7 +24,6 @@ import seedu.address.model.student.Student;
  * Keyword matching is case-insensitive.
  */
 public class ViewLessonCommand extends Command {
-
     public static final String COMMAND_WORD = "view-lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exams filtered by\n"
@@ -43,9 +43,6 @@ public class ViewLessonCommand extends Command {
         + PREFIX_SUBJECT + "Math "
         + PREFIX_DONE + "done";
     private static final String SEPERATOR = "--------------------------------------------------\n";
-    private static final String DOT = ". ";
-    private static final String LINE_BREAK = "\n";
-    private static final String NAME_LABEL = "%s:\n";
     private static final Predicate<Lesson> SHOW_ALL_LESSONS = lesson -> true;
 
     private final Predicate<Student> namePredicate;
@@ -101,6 +98,8 @@ public class ViewLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {

@@ -20,7 +20,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.command.CommandBox;
 import seedu.address.ui.command.ResultDisplay;
 import seedu.address.ui.detail.DetailedInfoRegion;
-import seedu.address.ui.detail.WelcomeContent;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -193,7 +192,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            setDetailedContent(new WelcomeContent());
+            detailedInfoRegion = new DetailedInfoRegion("Welcome to the TutorPro!");
+            detailedInfoRegionPlaceholder.getChildren().add(detailedInfoRegion.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

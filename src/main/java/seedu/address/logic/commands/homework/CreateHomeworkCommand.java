@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,9 +23,7 @@ import seedu.address.model.student.exceptions.DuplicateEntryException;
  * Adds an assignment to a student.
  */
 public class CreateHomeworkCommand extends Command {
-
     public static final String COMMAND_WORD = "new-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to a student.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
@@ -58,6 +57,8 @@ public class CreateHomeworkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
         StringBuilder nonExistNames = new StringBuilder();
         for (String name : names) {
             if (model.noSuchStudent(name)) {
@@ -81,10 +82,6 @@ public class CreateHomeworkCommand extends Command {
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
-
-        if (deadline.isBefore(LocalDateTime.now())) {
-            throw new CommandException("Deadline must be in the future.");
-        }
 
         Homework homework = new Homework(homeworkName, deadline);
 
