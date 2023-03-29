@@ -38,13 +38,6 @@ public class ModelManager implements Model {
     private Entity currentSelectedEntity;
 
     /**
-     * Initializes a ModelManager with empty Reroll and userPrefs.
-     */
-    public ModelManager() {
-        this(new Reroll(), new UserPrefs());
-    }
-
-    /**
      * Initializes a ModelManager with the given Reroll and userPrefs.
      */
     public ModelManager(ReadOnlyReroll reroll, ReadOnlyUserPrefs userPrefs) {
@@ -55,6 +48,25 @@ public class ModelManager implements Model {
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredActive = new FilteredList<>(this.reroll.getAllList());
+    }
+
+    /**
+     * Initializes a ModelManager with empty Reroll and userPrefs.
+     */
+    public ModelManager() {
+        this(new Reroll(), new UserPrefs());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof ModelManager) {
+            ModelManager modelManager = (ModelManager) other;
+            return (modelManager.reroll).equals(this.reroll) && (modelManager.userPrefs).equals(this.userPrefs);
+        } else {
+            return false;
+        }
     }
 
     //=========== UserPrefs ==================================================================================
@@ -229,5 +241,20 @@ public class ModelManager implements Model {
     @Override
     public void setCurrentSelectedEntity(Entity newSelection) {
         currentSelectedEntity = newSelection;
+    }
+
+    @Override
+    public ObservableList<Entity> getListByClassification(String classification) {
+        requireNonNull(classification);
+        ObservableList<Entity> entities = null;
+        if (classification.equals("char")) {
+            entities = this.reroll.getCharList();
+        } else if (classification.equals("mob")) {
+            entities = this.reroll.getMobList();
+        } else if (classification.equals("item")) {
+            entities = this.reroll.getItemList();
+        }
+        requireNonNull(entities);
+        return entities;
     }
 }

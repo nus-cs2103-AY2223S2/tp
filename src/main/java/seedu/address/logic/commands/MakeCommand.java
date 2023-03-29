@@ -7,9 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Entity;
 
 /**
- * Adds a person to the address book.
+ * Adds an entity to Reroll.
  */
-public class AddEntityCommand extends Command {
+public class MakeCommand extends Command {
 
     public static final String COMMAND_WORD = "make";
 
@@ -25,7 +25,7 @@ public class AddEntityCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddEntityCommand(Entity entity) {
+    public MakeCommand(Entity entity) {
         requireNonNull(entity);
         toAdd = entity;
     }
@@ -33,7 +33,6 @@ public class AddEntityCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasEntity(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTITY);
         }
@@ -45,7 +44,7 @@ public class AddEntityCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddEntityCommand // instanceof handles nulls
-            && toAdd.equals(((AddEntityCommand) other).toAdd));
+            || (other instanceof MakeCommand // instanceof handles nulls
+            && toAdd.equals(((MakeCommand) other).toAdd));
     }
 }

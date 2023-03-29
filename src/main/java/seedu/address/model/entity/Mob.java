@@ -72,4 +72,11 @@ public class Mob extends Entity {
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
+
+    @Override
+    public boolean isSameEntity(Entity otherEntity) {
+        return otherEntity == this
+                || (otherEntity instanceof Mob
+                && otherEntity.getName().equals(getName()));
+    }
 }

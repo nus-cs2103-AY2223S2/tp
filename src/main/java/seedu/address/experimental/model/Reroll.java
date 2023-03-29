@@ -104,6 +104,18 @@ public class Reroll implements ReadOnlyReroll {
         return entities.getEntityList();
     }
 
+    public ObservableList<Entity> getCharList() {
+        return characters.getEntityList();
+    }
+
+    public ObservableList<Entity> getItemList() {
+        return items.getEntityList();
+    }
+
+    public ObservableList<Entity> getMobList() {
+        return mobs.getEntityList();
+    }
+
     @Override
     public String toString() {
         return "Many entities...";
