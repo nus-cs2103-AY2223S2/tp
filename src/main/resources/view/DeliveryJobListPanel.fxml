@@ -23,9 +23,9 @@
       </VBox>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="listOptionMenu" BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="Order By">
+            <Menu fx:id="orderOption" mnemonicParsing="false" text="Order By" visible="false">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleOrderByDelivered" text="Delivered Status" />
                 <MenuItem mnemonicParsing="false" onAction="#handleOrderByEarning" text="Earning" />
@@ -39,15 +39,15 @@
                   </Label>
                </graphic>
             </Menu>
-            <Menu mnemonicParsing="false" text="Filter By">
+            <Menu fx:id="filterOption" mnemonicParsing="false" text="Filter By">
               <items>
-                  <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" text="All">
+                  <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" styleClass="select-radio-item" text="All">
                      <toggleGroup>
                         <ToggleGroup fx:id="toggleGroup" />
                      </toggleGroup>
                   </RadioMenuItem>
-                  <RadioMenuItem fx:id="filterDelivered" mnemonicParsing="false" text="Delivered" toggleGroup="$toggleGroup" />
-                  <RadioMenuItem fx:id="filterPending" mnemonicParsing="false" text="Pending" toggleGroup="$toggleGroup" />
+                  <RadioMenuItem fx:id="filterDelivered" mnemonicParsing="false" styleClass="select-radio-item" text="Delivered" toggleGroup="$toggleGroup" />
+                  <RadioMenuItem fx:id="filterPending" mnemonicParsing="false" styleClass="select-radio-item" text="Pending" toggleGroup="$toggleGroup" />
               </items>
             </Menu>
          </menus>

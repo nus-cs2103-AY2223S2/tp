@@ -137,6 +137,28 @@ public class LogicManager implements Logic {
         return earnings;
     }
 
+    @Override
+    public int getTotalCompleted(ObservableList<DeliveryJob> list) {
+        int completed = 0;
+        for (DeliveryJob job: list) {
+            if (job.getDeliveredStatus()) {
+                completed += 1;
+            }
+        }
+        return completed;
+    }
+
+    @Override
+    public int getTotalPending(ObservableList<DeliveryJob> list) {
+        int pending = 0;
+        for (DeliveryJob job: list) {
+            if (!job.getDeliveredStatus()) {
+                pending += 1;
+            }
+        }
+        return pending;
+    }
+
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
         return model.getUnscheduledDeliveryJobList();
     }

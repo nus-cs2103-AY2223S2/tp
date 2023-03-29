@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.Clipboard;
@@ -41,6 +42,10 @@ public class DeliveryJobListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
+    @FXML
+    private Menu orderOption;
+    @FXML
+    private Menu filterOption;
     @FXML
     private Label orderIndicator;
     @FXML
@@ -178,12 +183,14 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     public void setOrderByHandler(BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> handler) {
         // orderOption = Optional.of(handler);
         sortHandler = Optional.of(handler);
+        orderOption.setVisible(true);
     }
 
     /**
      * Sets handler to filter
      */
     public void setFilterHandler(Consumer<DeliveryFilterOption> con) {
+        filterOption.setVisible(true);
         filterDelivered.setToggleGroup(toggleGroup);
         filterPending.setToggleGroup(toggleGroup);
         filterAll.setToggleGroup(toggleGroup);

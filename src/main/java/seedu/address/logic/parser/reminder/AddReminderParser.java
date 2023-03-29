@@ -47,6 +47,11 @@ public class AddReminderParser implements Parser<AddReminderCommand> {
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).orElse("");
+        System.out.println(description.length());
+        if (description.length() > 50) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
+        }
+
         String dateTimeString = argMultimap.getValue(PREFIX_TIME).orElse("none");
         LocalDateTime dateTime;
         try {

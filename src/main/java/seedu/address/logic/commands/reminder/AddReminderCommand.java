@@ -19,7 +19,7 @@ public class AddReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder.\n"
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION(Max 40 characters, including space!) "
             + PREFIX_TIME + "YYYY-MM-DD HH:MM";
 
     public static final String MESSAGE_SUCCESS = "New reminder added";
