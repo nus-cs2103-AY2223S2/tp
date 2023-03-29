@@ -23,6 +23,7 @@ This user guide will help you get started and understand how PetPal can **seamle
    2. [Add](#add)
       1. [Adding a pet's information : `add`](#adding-a-pets-information--add)
       2. [Filtering out reminders that are due soon : `remind`](#filtering-out-reminders-that-are-due-soon--remind)
+      3. [Indicate amount owed by pet owners](#amount indicaation)
    3. [Retrieving](#retrieving)
    4. [Updating](#updating)
    5. [Deletion](#deletion)
@@ -212,6 +213,11 @@ Format: `remind`
 
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
+
+#### Amount indication
+
+Pet Card information indicates the amount of money owed to you for taking good care of their pets!
+![](images/UG/amount.png)
 
 ### Retrieving
 
