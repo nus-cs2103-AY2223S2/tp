@@ -172,4 +172,34 @@ public class MarkCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    @Test
+    public void parse_lowercaseReturn_success() {
+        Index targetIndex = INDEX_SECOND_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + CliSyntax.PREFIX_STATUS + "return";
+
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, DeliveryStatus.RETURN);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_mixedcaseReturn_success() {
+        Index targetIndex = INDEX_SECOND_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + CliSyntax.PREFIX_STATUS + "reTUrn";
+
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, DeliveryStatus.RETURN);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_uppercaseReturn_success() {
+        Index targetIndex = INDEX_SECOND_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + CliSyntax.PREFIX_STATUS + "RETURN";
+
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, DeliveryStatus.RETURN);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

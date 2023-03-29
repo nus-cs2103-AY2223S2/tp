@@ -146,6 +146,6 @@ public class ModelManagerTest {
         modelManager.setAddressBook(getTypicalAddressBook());
         modelManager.sort();
         assertEquals(modelManager.getAddressBook().getPersonList(),
-                Arrays.asList(DANIEL, ELLE, FIONA, GEORGE, BENSON, CARL, ALICE));
+                Arrays.asList(DANIEL, ELLE, FIONA, BENSON, CARL, ALICE, GEORGE));
     }
 }

@@ -24,7 +24,7 @@ import bookopedia.model.person.Person;
 class SortCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final List<Person> sortedList = Arrays.asList(DANIEL, ELLE, FIONA, GEORGE, BENSON, CARL, ALICE);
+    private final List<Person> sortedList = Arrays.asList(DANIEL, ELLE, FIONA, BENSON, CARL, ALICE, GEORGE);
 
     @Test
     public void executeSort() {
