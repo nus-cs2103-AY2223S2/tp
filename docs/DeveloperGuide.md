@@ -7,7 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 @junyi
 
@@ -16,6 +16,11 @@ title: Developer Guide
 ## How to use this guide
 
 ### Icons and conventions
+
+The following typographical conventions are used in this guide.
+
+* (KEYCAP) - Indicates a literal set of keys, e.g. (CTRL+F) refers to the
+  combination of the 'Control' and 'F' keys.
 
 Throughout this guide, you might encounter certain boxes which like the ones
 below. Here is what each of them means.
@@ -34,7 +39,7 @@ below. Here is what each of them means.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## *etting up, getting started
 
 @junyi
 
@@ -43,7 +48,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## *esign
 
 ### Architecture
 
@@ -367,14 +372,14 @@ for interactive changes to the displayed projects and clients as the user types.
 
 {TODO fix diagrams}
 
-A fuzzy search searches for text that matches a term closely instead of
-exactly. In Mycelium, this is implemented using [Levenshtein
-distance](https://en.wikipedia.org/wiki/Levenshtein_distance). A higher
-distance corresponds to a better match; a lower distance corresponds to a worse
-match. The goal of this feature is to provide interactive fuzzy searching and
-display sorted results such that the best match is at the top; here,
-"interactive" means that results are ranked and displayed *as* the user types
-their query.
+A fuzzy search searches for text that matches a term closely instead of exactly.
+In Mycelium, this is implemented using a modified version of [Levenshtein
+distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which measures
+the "distance" between two strings. A lower distance corresponds to a better
+match; a higher distance corresponds to a worse match. The goal of this feature
+is to provide interactive fuzzy searching and display sorted results such that
+the best match is at the top; here, "interactive" means that results are ranked
+and displayed *as* the user types their query.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** We will use the terms "fuzzy search" and "fuzzy
@@ -384,101 +389,98 @@ against some input, and sorting them such that the closest matches are at the
 front.
 </div>
 
-The main algorithm is in `Fuzzy#delta`, which is a pure function computing the
-distance between two strings. In order to use it from the application, we also
-have the `FuzzyManager` class which simplifies the task of ranking clients and
-projects. The class diagram below shows a high level overview of the classes
-involved.
+This section will briefly cover the idea behind the fuzzy ranking algorithm.
+For full details regarding how the scoring is done, it is best to refer to [the
+code](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/util/Fuzzy.java)
+directly.
+
+The scoring algorithm is implemented in the `Fuzzy` class in two pure
+functions - `Fuzzy#delta` and `Fuzzy#levenshtein`, both returning a `double`
+between 0 and 1 inclusive. A score of 1 indicates a perfect match, and lower
+scores indicate poorer matches.
+
+* `Fuzzy#delta` is a simpler algorithm which takes a query string and a target,
+  and expects to find the query string as a subsequence of the target. In other
+  words, it expects to find every character of the query within the target, and
+  in the same order.
+* `Fuzzy#levenshtein` computes the Levenshtein distance between two strings,
+  and then normalizes it into the range [0, 1].
+
+Suppose we have a query string and a list of items to rank, according to how
+well they match the query. In broad strokes, the algorithm proceeds as such:
+
+1. Compute `Fuzzy#delta` for each item.
+1. For each item which received a score above zero, sort them by descending
+   scores and add them to the resulting list.
+1. Compute `Fuzzy#levenshtein` for the *remaining items* only.
+1. Repeat step (2) for the remaining items using the scores obtained from
+   `Fuzzy#levenshtein`.
+1. Return the resulting list.
+
+<div markdown="span" class="alert alert-success">
+:bulb: The algorithm outlined above actually filters out all items which
+receive a **zero** score from both `Fuzzy#delta` and `Fuzzy#levenshtein`. These
+items would subsequently not be displayed to the user. If we raised this number
+to, say, 0.1, then we can impose a stricter requirement on how well the items
+match any given query, thus potentially filtering out more items. Hence, this
+is a point for possible fine-tuning in the future.
+</div>
+
+#### `FuzzyManager`
+
+In order to use fuzzy search from the application, we also have the
+`FuzzyManager` class which exposes a more convenient API for us to rank clients
+and projects. The class diagram below shows a high level overview of the
+classes involved.
 
 ![FuzzyManagerHighLevelClassDiagram](images/FuzzyManagerHighLevelClassDiagram.png)
-
-First, we briefly note that since the same command input box must be toggled
-between use for regular commands (e.g. for basic CRUD) as well as for fuzzy
-searching, the `CommandBox` has a `mode` attribute to help it distinguish
-between the two states. (The toggling between states is handled by key actions,
-which is discussed in another section.) The `Mode` abstract class is
-responsible for taking action upon changes in user input. In particular, the
-`SearchMode` class encapsulates the logic required to handle search requests
-(via a change in user input) as well as applying updates to the UI. The
-following sequence diagrams illustrate this in further detail.
-
-![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
-![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
-
-The two figures above illustrate the end to end sequence between a change in
-user input (e.g. a user types a single character) until the updating of the UI.
-The `handleInputChanged()` method on `CommandBox` is invoked by JavaFX, and the
-contents of the command box are passed to a `SearchMode` instance to handle.
-From here, it is a three-step process.
-
-1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
-1. Pass the two lists through the `FuzzyManager#rankItems` method, which
-   performs fuzzy ranking on the lists of clients and projects
-1. Apply the two ranked lists to the `MainWindow`
 
 The `FuzzyManager#rankItems` method is just a convenient pure function which,
 when given a list of clients or projects and a query string, constructs a new
 sorted and filtered list based on how well each item matches the query. It
 relies on the algorithm implemented within the `Fuzzy` class.
 
-#### Ranking considerations
+Note that part of this logic is implemented in the `SearchMode` class, which
+has already been mentioned [above](#command-box). The `SearchMode` class
+encapsulates the logic required to handle search requests (via a change in user
+input) as well as applying updates to the UI. The following sequence diagrams
+illustrate this in further detail.
 
-For ease of use, there is a `Fuzzy#ratio` method which wraps `Fuzzy#delta`.
-The former returns a score between 0 and 1, where 0 means that the two strings
-are completely different, and 1 means the two are identical. Let us call this
-number the *delta score* of two strings.
+![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
+![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
 
-Thus, the entire ranking process can be described as such:
+From above, we see that the `onInputChanged()` method on `SearchMode` is
+invoked with the current contents of the command box. From here, it is a
+three-step process.
 
-1. Compute the delta score of each project and client's name against the input text
-1. Sort the projects and clients by descending scores
-1. Prune the projects and clients whose score is below a certain threshold
-
-Note that we have not specified the threshold in the last point. At the moment,
-the threshold is set to zero, meaning only strings which are *completely*
-different (i.e. not even a single character matches) are pruned. Raising the
-threshold would reduce the number of results displayed; thus, this is a point
-for potential fine-tuning in the future.
+1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
+1. Pass the two lists through the `FuzzyManager#rankItems` method, which
+   performs fuzzy ranking on the lists of clients and projects
+1. Apply the two ranked lists to the `MainWindow`
 
 #### `CommandBox` state
 
-As mentioned above, the same command box is used for entering regular commands
-as well as fuzzy searching, so we need some way to track the state of the
-command box, i.e. at any point in time, whether it should be taking in commands
-or performing fuzzy searching. This is achieved through a `mode` attribute on
-the `CommandBox` class. At the time of writing, there are two modes in used -
-`CommandMode`, which is the usual mode used for entering commands to, for
-instance, create a project, and `SearchMode`, which allows the command box to
-function as an interactive search bar.
-
-The class diagram below gives an overview of the `Mode` abstract class. The two
-methods of interest are `onInputChange()` and `onInputSubmit()`. The latter is
-invoked by `CommandBox` when the user pressed enter, while the former is
-invoked upon every change in the input. Thus, `SearchMode` implements its logic
-in the `onInputChange()` method.
-
-![ModeAbstractClassDiagram](images/ModeAbstractClassDiagram.png)
-
-The activity diagram below illustrates this dispatching of state concerning
-changes in user input.
+The section on the [`Command Box`](#command-box) introduced the role of this
+class in managing state between `SearchMode` and `CommandMode`. We can now
+contextualize the differences between these two modes in relation to fuzzy
+searching. This is illustrated in the activity diagram below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
 #### Updating the UI
 
 From the second sequence diagram above, we see that updates to the UI after
-fuzzy ranking is done via two setters - `MainWindow#setClients` and
-`MainWindow#setProjects`. This departs from the model used in our CRUD
-operations, where (immutable) references to a `FilteredList` of clients and
-projects were obtained upon UI initialization, and any changes such as the
-creation or deletion of a client were automatically propagated to the UI with
-no additional setters required in our application's code.
+fuzzy ranking is achieved by having `SearchMode` *set* the list of items in
+`MainWindow`. This departs from the approach used in our CRUD operations, where
+(immutable) references to a `FilteredList` of clients and projects were
+obtained upon UI initialization, and any changes such as the creation or
+deletion of a client were automatically propagated to the UI with no additional
+setters required in our application's code.
 
 However, the inclusion of fuzzy search introduces an important requirement -
-*sorting*. We wish to modify the order of items based on how well they match
-the user's input, *and* filter out the items which match poorly. Furthermore,
-upon the user exiting fuzzy search mode, we need to revert the user's view of
-clients and projects back to the way it was, before fuzzy searching began.
+*arbitrary filtering and sorting* based on user input. Furthermore, upon the
+user exiting fuzzy search mode, we need to revert the user's view of clients
+and projects back to the way it was, before fuzzy searching began.
 
 In order to decouple these requirements from the more basic ones of CRUD, we
 avoid modifying the original `FilteredList` owned by the UI. The general idea
@@ -509,7 +511,7 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## *ppendix: Requirements
 
 ### Product scope
 
@@ -664,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 {TODO maybe add}
 
