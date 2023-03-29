@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.lesson.CreateLessonCommand;
 import seedu.address.logic.commands.lesson.UpdateLessonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -59,7 +58,7 @@ public class UpdateLessonCommandParser implements Parser<UpdateLessonCommand> {
             name = name.trim();
             if (name.trim().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CreateLessonCommand.MESSAGE_USAGE));
+                    UpdateLessonCommand.MESSAGE_USAGE));
             }
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {
