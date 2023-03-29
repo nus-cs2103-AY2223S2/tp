@@ -12,7 +12,7 @@ import trackr.model.menu.MenuItem;
 public class MenuItemBuilder {
 
     public static final String DEFAULT_ITEM_NAME = "Chocolate cookies";
-    public static final String DEFAULT_ITEM_COST = "0";
+    public static final String DEFAULT_ITEM_COST = "1";
     public static final String DEFAULT_ITEM_PRICE = "5";
 
     private ItemName itemName;

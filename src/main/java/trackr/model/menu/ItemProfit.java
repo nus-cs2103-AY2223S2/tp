@@ -1,7 +1,7 @@
 package trackr.model.menu;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.commons.util.AppUtil.checkArgument;
+//import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Item's profit in the Item list.
@@ -20,7 +20,8 @@ public class ItemProfit {
         requireNonNull(itemPrice);
         requireNonNull(itemCost);
         this.value = Float.toString(itemPrice.getValue() - itemCost.getValue());
-        checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
+        System.out.println(value);
+//        checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
     }
 
     /**

@@ -1,7 +1,7 @@
 package trackr.model.menu;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.commons.util.AppUtil.checkArgument;
+//import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Item's price in the Item list.
@@ -10,7 +10,7 @@ import static trackr.commons.util.AppUtil.checkArgument;
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "^([1-9]{0,4})$";
+    public static final String VALIDATION_REGEX = "\\d{1,9}";
     public final float value;
 
     /**
@@ -18,7 +18,7 @@ public class ItemPrice {
      */
     public ItemPrice(String value) {
         requireNonNull(value);
-        checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
+//        checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
         this.value = Float.parseFloat(value);
     }
 

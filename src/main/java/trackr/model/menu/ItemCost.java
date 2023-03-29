@@ -9,13 +9,14 @@ import static trackr.commons.util.AppUtil.checkArgument;
  */
 public class ItemCost {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cost should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "^([1-9]{0,4})$";
+            "Cost should only contain numbers, and it should be at most 3 digits long";
+    public static final String VALIDATION_REGEX = "\\d{1,9}";
     public final float value;
 
     /**
      * Constructs an Cost Object
      */
+    @SuppressWarnings("checkstyle:CommentsIndentation")
     public ItemCost(String value) {
         requireNonNull(value);
         checkArgument(isValidCost(value), MESSAGE_CONSTRAINTS);
