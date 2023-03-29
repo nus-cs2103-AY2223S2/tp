@@ -1,38 +1,18 @@
 package seedu.address.logic.parser.jobs;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_SLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
-import seedu.address.logic.commands.jobs.ImportDeliveryJobCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 
 public class ImportDeliveryJobCommandParser {
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values
-     * in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+    public static final String MESSAGE_MISSING_ELEMENT_IN_IMPORT = "Missing element in import";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -45,23 +25,20 @@ public class ImportDeliveryJobCommandParser {
         Scanner sc = new Scanner(file);
         List<DeliveryJob> listOfAddDeliveryJob = new ArrayList<>();
 
-        for (int i = 0; i < file.length(); i++) {
+        while (sc.hasNextLine()) {
             String line = sc.nextLine();
+            String[] arrOfStr = line.split(",");
 
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(line, PREFIX_SENDER_ID, PREFIX_RECIPIENT_ID,
-                    PREFIX_DELIVERY_DATE, PREFIX_DELIVERY_SLOT, PREFIX_EARNING);
-
-            if (!arePrefixesPresent(argMultimap, PREFIX_SENDER_ID, PREFIX_RECIPIENT_ID, PREFIX_DELIVERY_DATE,
-                    PREFIX_DELIVERY_SLOT, PREFIX_EARNING) || !argMultimap.getPreamble().isEmpty()) {
+            if (arrOfStr.length != 5) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeliveryJobCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_MISSING_ELEMENT_IN_IMPORT, AddDeliveryJobCommand.MESSAGE_USAGE));
             }
 
-            String sid = argMultimap.getValue(PREFIX_SENDER_ID).get();
-            String rid = argMultimap.getValue(PREFIX_RECIPIENT_ID).get();
-            String ded = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
-            String des = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
-            String ear = argMultimap.getValue(PREFIX_EARNING).get();
+            String sid = arrOfStr[0];
+            String rid = arrOfStr[1];
+            String ded = arrOfStr[2];
+            String des = arrOfStr[3];
+            String ear = arrOfStr[4];
 
             DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
 

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.jobs.CompleteDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
+import seedu.address.logic.commands.jobs.ImportDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.jobs.AddDeliveryJobWindow;
@@ -350,6 +351,14 @@ public class MainWindow extends UiPart<Stage> {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Files");
         File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        try {
+            logic.execute(new ImportDeliveryJobCommand(selectedFile));
+        } catch (ParseException | CommandException e) {
+            logger.warning("[Event] importDeliveryJob" + e.getMessage());
+        } catch (FileNotFoundException e) {
+            logger.warning("[Event] importDeliveryJob" + e.getMessage());
+        }
     }
 
     void show() {
