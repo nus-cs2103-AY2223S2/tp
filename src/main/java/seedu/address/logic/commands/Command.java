@@ -9,12 +9,6 @@ import seedu.address.model.StateHistory;
  */
 public abstract class Command {
 
-    public static void saveToFile() {
-    }
-
-    public static void addWord(String shortForm) {
-    }
-
     /**
      * Sets the StateHistory for this command to refer to.
      *
@@ -22,6 +16,10 @@ public abstract class Command {
      */
     public void setHistory(StateHistory history) {
         // Do nothing
+    }
+
+    public Command deepCopy() {
+        return this;
     }
 
     /**

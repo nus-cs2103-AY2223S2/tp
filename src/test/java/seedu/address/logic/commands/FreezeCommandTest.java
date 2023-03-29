@@ -35,14 +35,27 @@ public class FreezeCommandTest {
                 Collections.singletonList("owesMoney")
         );
         model.updateFilteredPersonList(tagPredicate);
-        expectedModel.updateFilteredPersonList(
-                new ParticularPersonsPredicate(
-                        Collections.singletonList(expectedModel.getFilteredPersonList().get(1))));
+        expectedModel.updateFilteredPersonList(tagPredicate);
+        try {
+            expectedModel.freezeFilteredPersonList();
+        } catch (ModifyFrozenStateException ex) {
+            throw new AssertionError("Freezing failed on new model", ex);
+        }
         FreezeCommand freezeCommand = new FreezeCommand();
         assertCommandSuccess(freezeCommand, model,
                 new CommandResult(FreezeCommand.MESSAGE_SUCCESS, true, true), expectedModel);
         model.deleteTag(BENSON, new Tag("owesMoney"));
         expectedModel.deleteTag(BENSON, new Tag("owesMoney"));
+        assertEquals(model.getFilteredPersonList(), expectedModel.getFilteredPersonList());
+        try {
+            expectedModel.unfreezeFilteredPersonList();
+        } catch (ModifyFrozenStateException ex) {
+            throw new AssertionError("Unfreezing failed on valid model", ex);
+        }
+        expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredPersonList(
+                new ParticularPersonsPredicate(
+                        Collections.singletonList(expectedModel.getFilteredPersonList().get(1))));
         assertEquals(model.getFilteredPersonList(), expectedModel.getFilteredPersonList());
     }
 
