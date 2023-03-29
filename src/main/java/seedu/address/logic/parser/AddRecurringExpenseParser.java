@@ -30,8 +30,8 @@ public class AddRecurringExpenseParser implements Parser<AddRecurringExpenseComm
      */
     public AddRecurringExpenseCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CATEGORY, PREFIX_PRICE ,PREFIX_START_DATE,
-                        PREFIX_END_DATE, PREFIX_TIMESPAN);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CATEGORY, PREFIX_PRICE , PREFIX_START_DATE,
+                         PREFIX_END_DATE, PREFIX_TIMESPAN);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_START_DATE, PREFIX_PRICE, PREFIX_TIMESPAN,
                 PREFIX_NAME)
