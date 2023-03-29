@@ -199,8 +199,8 @@ Format: `sortevent SORT_TYPE`
 
 * Sorts all the events in the current event list based on the specified `SORT_TYPE`.
 * `SORT_TYPE` must be one of these values:
-  * `a`: Sorts based on event names in ascending order.
-  * `b`: Sorts based on event names in descending order.
+  * `a`: Sorts based on event names in ascending ASCII order.
+  * `b`: Sorts based on event names in descending ASCII order.
   * `c`: Sorts based on start date times in ascending order.
   * `d`: Sorts based on end date times in ascending order.
 * There must be at least 2 events in the current event list to sort the event list.
