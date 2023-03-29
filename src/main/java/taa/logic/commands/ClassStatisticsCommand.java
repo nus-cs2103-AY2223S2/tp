@@ -3,6 +3,7 @@ package taa.logic.commands;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
+import taa.logic.commands.enums.ClassStatisticField;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 

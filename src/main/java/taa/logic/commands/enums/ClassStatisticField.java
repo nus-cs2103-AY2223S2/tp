@@ -1,4 +1,4 @@
-package taa.logic.commands;
+package taa.logic.commands.enums;
 
 public enum ClassStatisticField {
     ATTENDANCE,
