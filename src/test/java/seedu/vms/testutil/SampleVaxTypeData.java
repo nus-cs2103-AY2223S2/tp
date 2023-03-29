@@ -42,7 +42,8 @@ public class SampleVaxTypeData {
     public static final String CMD_GROUPS_REAL = CliSyntax.DELIMITER + CliSyntax.PREFIX_VAX_GROUPS.getPrefix() + " "
             + "DOSE 1,"
             + "Pfizer,"
-            + "Vaccination";
+            + "Vaccination"
+            + " --set true";
     public static final String CMD_MIN_AGE_REAL = CliSyntax.DELIMITER + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 5";
     public static final String CMD_MAX_AGE_REAL = "";
     public static final String CMD_INGREDIENTS_REAL = CliSyntax.DELIMITER
@@ -54,10 +55,11 @@ public class SampleVaxTypeData {
             + "Sucrose,"
             + "Phosphate,"
             + "Tromethamine,"
-            + "Tromethamine hydrochloride";
+            + "Tromethamine hydrochloride"
+            + " --set true";
     public static final String CMD_HISTORY_REQS_REAL = CliSyntax.DELIMITER
             + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
-            + " none::DOSE 1";
+            + " none::DOSE 1 --set true";
 
     public static final GroupName NAME_1 = new GroupName("UNCHI");
     public static final HashSet<GroupName> GROUPS_1 = new HashSet<>(List.of(
@@ -78,11 +80,11 @@ public class SampleVaxTypeData {
             HISTORY_REQS_1);
     public static final String CMD_NAME_1 = "UNCHI";
     public static final String CMD_GROUPS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_VAX_GROUPS.getPrefix()
-            + " UNCHI";
+            + " UNCHI --set true";
     public static final String CMD_MIN_AGE_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 35";
     public static final String CMD_MAX_AGE_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_MAX_AGE.getPrefix() + " 45";
     public static final String CMD_INGREDIENTS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_INGREDIENTS.getPrefix()
-            + " UNCHI";
+            + " UNCHI --set true";
     public static final String CMD_HISTORY_REQS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
-            + " none::UNCHI";
+            + " none::UNCHI --set true";
 }
