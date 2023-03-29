@@ -8,8 +8,8 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.model.Model;
-import seedu.address.model.person.MultiFieldContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -26,9 +26,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final MultiFieldContainsKeywordsPredicate predicate;
+    private final ContainsKeywordsPredicate predicate;
 
-    public FindCommand(MultiFieldContainsKeywordsPredicate predicate) {
+    public FindCommand(ContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

@@ -23,7 +23,7 @@ public class StringUtil {
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsWordIgnoreCase(String sentence, String word) {
+    public static boolean containsFullIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
@@ -36,6 +36,28 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the given text contains the keyword, ignoring case.
+     *
+     * @param text the text to search for the keyword
+     * @param keyword the keyword to search for in the text
+     * @return true if the text contains the keyword, ignoring case
+     */
+    public static boolean containsPartialIgnoreCase(String text, String keyword) {
+        if (keyword.isEmpty()) {
+            return true;
+        }
+
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+
+        String textLowerCase = text.toLowerCase();
+        String keywordLowerCase = keyword.toLowerCase();
+
+        return textLowerCase.contains(keywordLowerCase);
     }
 
     /**
@@ -66,21 +88,4 @@ public class StringUtil {
         }
     }
 
-    /**
-     * Returns true if the given text contains the keyword, ignoring case.
-     *
-     * @param text the text to search for the keyword
-     * @param keyword the keyword to search for in the text
-     * @return true if the text contains the keyword, ignoring case
-     */
-    public static boolean containsIgnoreCase(String text, String keyword) {
-        if (keyword.isEmpty()) {
-            return true;
-        }
-
-        String textLowerCase = text.toLowerCase();
-        String keywordLowerCase = keyword.toLowerCase();
-
-        return textLowerCase.contains(keywordLowerCase);
-    }
 }

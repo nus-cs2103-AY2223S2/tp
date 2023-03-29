@@ -21,4 +21,22 @@ public class CliSyntax {
     /** Not a prefix, but a placeholder for a index argument. */
     public static final Prefix PREFIX_INDEX = new Prefix("", "INDEX");
 
+    private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
+
+    /**
+     * Checks if the specified prefix is a valid prefix implemented in the program.
+     * @param prefix
+     * @return
+     */
+    public static boolean isPrefix(Prefix prefix) {
+        boolean isPrefix = false;
+        for (Prefix curr : prefixList) {
+            if (curr.equals(prefix)) {
+                isPrefix = true;
+                break;
+            }
+        }
+        return isPrefix;
+    }
 }
