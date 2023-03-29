@@ -165,6 +165,65 @@ Here are some recommended features to explore after this tutorial.
 * Advancing or reverting an order's progress with [`advo`]() or [`reverto`]()
 * Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
 
+### Following your order to completion
+
+In this tutorial, you will learn how to update your order's status with a few commands. 
+
+#### The order's status
+{: .no_toc}
+
+In LoyaltyLift, an order can have the following status.
+* Pending
+* Paid
+* Shipped
+* Completed
+* Cancelled
+
+<div markdown="block" class="alert alert-info">
+LoyaltyLift assumes that your order will follow a process similar to the order of status stated above (excluding 'cancelled').
+</div>
+
+Before we start, head over to [Add your first customer and order]() to include _Lyndon Edwards_ and the _Banana Cake_ order.
+However, do not clear the application data as we will be using the order for this tutorial.
+
+#### Advancing an order's status
+{: .no_toc}
+
+Let's take a look at our current list of orders, which should only consist of the order of _Banana Cake_.
+
+    listo
+
+Notice that the order's status is now 'Pending'.
+To advance an order's status, the [`advo`]() command will come in handy, which takes the index of the order as its only parameter.
+
+    advo 1
+
+Now, the status of the order should be 'Paid'. Doing this multiple times will eventually update the order's status to 'Completed'.
+Further attempts to advance the order status will return an error!
+
+#### Reverting an order's status
+{: .no_toc}
+
+To revert an order's status, the [`revo`]() command is similar to `advo` but has the inverse effect. 
+
+    revo 1
+
+Now, the status of the order should be 'Pending'. 
+As expected, trying to revert the status when it is already 'Pending', will be met with an error!
+
+#### Cancelling an order
+{: .no_toc}
+
+An order can be cancelled at any stage of the order. This can be performed with the [`cancelo`]() command.
+
+    cancelo 1
+
+Looking at the order status, it is now reflected as 'Cancelled'.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once an order is cancelled, the action is irrevertible and the order can no longer revert nor advance! <br />
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
