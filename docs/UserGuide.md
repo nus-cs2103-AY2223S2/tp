@@ -240,10 +240,10 @@ For the following fields, they are considered a `SuperField`.
 * Modules
 * Tags
 
-A `SuperField`
-can contain many inputs in that single field. When using edit, the command checks
-for if that input is already in that `SuperField`, if it is, it will remove it.
-If not, then it will add the input into the `SuperField`.
+A `SuperField` can contain many inputs in that single field.
+When using edit, the command looks for each input in the `SuperField`:
+* If the input already exists in the `SuperField` it will be removed.
+* Otherwise, the input will be added into the `SuperField`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
 of a person if it already exists and adds it if it does not.
   
