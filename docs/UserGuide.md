@@ -64,7 +64,7 @@ Some example commands you can try:
 - Items with `…` after them can be used multiple times including zero times.e.g. `[a/APPLICANT]…` can be used as `` (i.e. 0 times), `a/applicant1`, `a/applicant2 a/application3` etc.
 - Parameters can be in any order.e.g. if the command specifies `t/TITLE d/DESCRIPTION`, `d/DESCRIPTION t/TITLE` is also acceptable.
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.e.g. if you specify `t/Chicken Rice Uncle t/Chicken Rice Auntie`, only `t/Chicken Rice Uncle` will be taken.
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `view` and `exit`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -109,15 +109,21 @@ Adds a listing to the listing book.
 **Expected Output:**
 You should see a confirmation message showing the job title, description and applicants (if any). An example is shown below:
 ```ignorelang
-New listing added: Chicken Rice Uncle; JobDescription: Cooks tasty chicken rice; Applicants: Nicholas, Tom, Adele
+New listing added: Chicken Rice Uncle;
+JobDescription: Cooks tasty chicken rice;
+Applicants: Nicholas, Tom, Adele
 ```
 
 **Possible Error:**
-If the above format is not followed, an error message will display:
+If the above format is not followed or a listing with the same title already exists, one of the error messages below will be displayed.
 ```ignorelang
 Invalid Command Format!
-add: Adds a listing to the listing book. Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
+add: Adds a listing to the listing book.
+Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
+```
+```ignorelang
+This listing already exists in the listing book
 ```
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
@@ -129,7 +135,7 @@ Edits the details of a job listing.
 
 **Tips:**
 
-- Ensure that `NUMBER` is valid (ie. its is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. eg. if the command entered is:
 
      `edit 1 t/Chicken Rice Uncle d/Cooks tasty chicken rice`
@@ -173,7 +179,7 @@ Deletes a job listing from the listing book.
 
 **Tips:**
 
-- Ensure that `NUMBER` is valid (ie. its is non-negative and not greater than the number of tasks) or an error will occur!
+- Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 
 **Examples:**
 

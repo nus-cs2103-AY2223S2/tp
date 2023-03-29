@@ -88,12 +88,12 @@ public class Listing {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; JobDescription: ")
+                .append("\nJob Description: ")
                 .append(getDescription());
 
         ArrayList<Applicant> applicants = getApplicants();
         if (!applicants.isEmpty()) {
-            builder.append("; Applicants: ");
+            builder.append("\nApplicants: ");
             for (int index = 0; index < applicants.size(); index++) {
                 String applicant = applicants.get(index).toString();
                 //work on the element

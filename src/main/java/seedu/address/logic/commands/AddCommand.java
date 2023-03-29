@@ -16,7 +16,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a listing to the listing book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a listing to the listing book.\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
