@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -20,48 +21,51 @@ import seedu.address.logic.parser.Prefix;
 public class CommandSuggestor {
 
     private final ArrayList<String> commandList;
-    private final ArrayList<ArrayList<Prefix>> argPrefixList;
+    private final HashMap<String, ArrayList<Prefix>> commandArgPrefixes;
 
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
     public CommandSuggestor() {
         commandList = new ArrayList<>();
-        argPrefixList = new ArrayList<>();
+        commandArgPrefixes = new HashMap<>();
 
         commandList.add(AddCommand.COMMAND_WORD);
-        argPrefixList.add(AddCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ClearCommand.COMMAND_WORD);
-        argPrefixList.add(ClearCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES);
 
         commandList.add(DeleteCommand.COMMAND_WORD);
-        argPrefixList.add(DeleteCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES);
 
         commandList.add(EditCommand.COMMAND_WORD);
-        argPrefixList.add(EditCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ExitCommand.COMMAND_WORD);
-        argPrefixList.add(ExitCommand.ARGUMENT_PREFIXES);
-
-        commandList.add(DeleteCommand.COMMAND_WORD);
-        argPrefixList.add(DeleteCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES);
 
         commandList.add(FindCommand.COMMAND_WORD);
-        argPrefixList.add(FindCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES);
 
         commandList.add(HelpCommand.COMMAND_WORD);
-        argPrefixList.add(HelpCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ListCommand.COMMAND_WORD);
-        argPrefixList.add(ListCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES);
 
         commandList.add(RemarkCommand.COMMAND_WORD);
-        argPrefixList.add(RemarkCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ShowRemarkCommand.COMMAND_WORD);
-        argPrefixList.add(ShowRemarkCommand.ARGUMENT_PREFIXES);
+        commandArgPrefixes.put(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES);
 
+        // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
+        assert commandList.stream().allMatch(commandArgPrefixes::containsKey);
+        // and vice versa.
+        assert commandArgPrefixes.keySet().stream().allMatch(commandList::contains);
+        // Assert that they both contains only the same values and nothing else, with no duplicates.
+        assert commandArgPrefixes.keySet().size() == commandList.size();
     }
 
     /**
@@ -91,7 +95,7 @@ public class CommandSuggestor {
         if (suggestedCommand.equals("") && !commandWord.equals("")) {
             throw new CommandException("Invalid command");
         }
-        ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
+        ArrayList<Prefix> argPrefixes = commandArgPrefixes.get(suggestedCommand);
 
         if (userInputArray.length > 1) {
             if (userInput.charAt(userInput.length() - 1) == ' ') {
