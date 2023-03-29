@@ -16,6 +16,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -83,12 +85,14 @@ public class EditLectureCommandTest {
 
         String expectedMessage = String.format(
                 EditLectureCommand.MESSAGE_SUCCESS, originalModule.getCode(), editedLecture);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                new LectureEditInfo(originalModule.getCode(), originalLecture, editedLecture));
 
         Model expectedModel = new ModelManager();
         editedModule.addLecture(editedLecture);
         expectedModel.addModule(editedModule);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
 
     @Test

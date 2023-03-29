@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -62,7 +63,8 @@ public class AddVideoCommand extends AddCommand {
         ReadOnlyLecture lecture = module.getLecture(lectureName);
         model.addVideo(lecture, toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd),
+                new VideoEditInfo(moduleCode, lectureName, null, toAdd));
     }
 
     @Override
