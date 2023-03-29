@@ -7,6 +7,7 @@ NeoBook is a **desktop app for managing contacts, optimized for use via a Comman
 
 Apart from being your all-encompassing address book, NeoBook also has a calendar function for you to keep track of your daily schedule.
 
+## Table Of Contents
 * Table of Contents
 {:toc}
 
@@ -38,6 +39,8 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
    * `exit` : Exits the app.
 
 6. Refer to the [NeoBook Features](#neobook-features) below for details of each command.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
@@ -75,6 +78,12 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
 ### UI Breakdown For `Me`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
+</div>
+
+[Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
 ## NeoBook Features
 
@@ -116,6 +125,7 @@ Simply use this command to get access to our help page!
 
 ![help message](images/helpMessage.png)
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Adding A New Contact: `add`
@@ -156,6 +166,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Listing All Contacts : `list`
@@ -167,6 +178,8 @@ Use this command to gain access to all of them!
 **Syntax:**
 
 `list`
+
+[Back To Contents](#table-of-contents)
 
 <hr style="border:2px solid gray">
 
@@ -185,6 +198,7 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Unfavourite A Contact : `unfav`
@@ -200,6 +214,7 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Editing a contact's details : `edit`
@@ -240,6 +255,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Finding Particular Contacts: `find`
@@ -272,6 +288,7 @@ _Examples:_
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Select contact to expand details: `select`
@@ -292,6 +309,7 @@ _Examples:_
 * `select 1` expands the details of the first contact in your list.
 * `select 4` expands the details of the fourth contact in your list.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Deleting A Contact : `delete`
@@ -324,6 +342,7 @@ Simply use this command to clear all contacts from your NeoBook.
 
 `clear`
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Switching between UI tabs: `tab`
@@ -344,6 +363,7 @@ _Examples:_
 * `tab 1` switches to the NeoBook tab.
 * `tab 2` switches to the Calendar tab.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Exiting NeoBook : `exit`
@@ -356,6 +376,7 @@ Use this command to exit the application!
 
 `exit`
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### NeoBook Command Summary
@@ -374,12 +395,16 @@ Use this command to exit the application!
 | **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                            |
 | **Exit**   | `exit`                                                                                                                                                                   |
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
 </div>
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data
@@ -398,10 +423,14 @@ You are welcome to update the data directly by editing that data file.
 If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NeoBook home folder.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
