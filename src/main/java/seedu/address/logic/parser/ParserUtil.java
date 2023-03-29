@@ -78,6 +78,15 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
+        if (!StringUtil.isNonZeroUnsignedInteger(startIndex)
+                || !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        if (Integer.parseInt(startIndex) > Integer.parseInt(endIndex)) {
+            throw new ParseException("Start index cannot be greater than end index");
+        }
+
         Index startOneBased = Index.fromOneBased(Integer.parseInt(startIndex));
         Index endOneBased = Index.fromOneBased(Integer.parseInt(endIndex));
 

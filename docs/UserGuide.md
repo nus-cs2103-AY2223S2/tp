@@ -23,105 +23,169 @@ title: User Guide
 
 User Guide
 
-TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them. It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI). If you can type fast, TrAcker will display all the tutorials, labs and consultations in a specific time frame. You will also be able to visualise your schedule in a calendar format. Students involved in an event will be displayed based on preference.
+TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
+It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI). 
+If you can type fast, TrAcker will aid the task management for CS2040 TAs. Commands are similar to vim / terminal commands since
+CS2040 TAs are familiar with it
 
-**Features **
+**Features**
+
+*Event CRUD Features*
+
+### Adding a tutorial: `add tutorial`
+
+Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) and no modification of duration is allowed
+
+- Name need not be unique
+- Cannot be clashes in the time with any other events
+- Only .pdf file attachments allowed
+- FULL file path to a VALID pdf can be given
+- dd/MM/yyyy all in numbers
+- Tutorial name cannot have consultation or lab in it
+- Tutorial name cannot be just Tutorial alone
+- date and attachment is optional. Date will assume the current time if not specified
+
+Format: `touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -attachment [FULL_FILE_PATH_TO_PDF]`
+
+
+```
+date format: dd/MM/yyyy HH:mm
+```
+
+Examples:
+
+* `touch Tutorial/makeUpTutorial`
+* `touch Tutorial/examReview -date 01/01/2023 16:00`
+* `touch Tutorial/examReview -date 01/01/2023 16:00 -attachment /Users/JohnDoe/Desktop/Introduction.pdf`
+
+
+### Adding a lab: `add lab`
+
+Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to CS2040 Lab timing) and no modification of duration is allowed
+
+- Name need not be unique
+- Cannot be clashes in the time with any other events
+- Only .pdf file attachments allowed
+- FULL file path to a VALID pdf can be given
+- dd/MM/yyyy all in numbers
+- Lab name cannot have tutorial or consultation in it
+- Lab name cannot be just Lab alone
+- date and attachment is optional. Date will assume the current time if not specified
+
+Format: `vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+
+
+```
+date format: dd/MM/yyyy HH:mm
+```
+
+Examples:
+
+* `vim Lab/pancakeSort`
+* `vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00`
+* `vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf`
+
+
+
+### Adding a consultation: `add consultation`
+
+Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
+
+- Name need not be unique
+- Cannot be clashes in the time with any other events
+- dd/MM/yyyy all in numbers
+- Consultation name cannot have tutorial or lab in it
+- Consultation name cannot be just Consultation alone
+- date is optional. Date will assume the current time if not specified
+- No attachments allowed
+
+Format: `mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]`
+
+```
+date format: dd/MM/yyyy HH:mm
+```
+
+Examples:
+
+* `mkdir Consultation/reviewConnectedComponents`
+* `mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00`
 
 ### Adding a recurring event: `add recur`
 
-Adds a recurring task to the TA’s schedule. Recurring task defaults to once a week, but can be specified as a period if needs to be changed (Period = 2 means twice a week). Duration is in hours.
+Adds a recurring event to the TA’s schedule. Recurring event is assumed to be 1 hour long (adhering to CS2040 timing) and no modification of duration is allowed
 
-**Name must be unique. There cannot be clashes in the time as well. If there is, then show a confirmation message to overwrite an old recurring task with the same name or same time.**
+- Name need not be unique
+- Cannot be clashes in the time with any other events
+- Maximum number of occurrences of the event is 10
+- Event is assumed to be conducted weekly only (Adhering to CS2040 Timetables)
 
-Format: `touch recur [name] [type] [day] [time] [duration] [period]`
-
-Examples:
-
-
-
-* `touch recur fornightLabs Labs Friday 10:00 2 0.5`
-* `touch recur biWeeklyConsults Consultations Thursday 16:00 1 2`
-* `touch recur weeklyTutorials Tutorials Wednesday 14:00 1 1`
-
-
-### List all recurring event: `list recur`
-
-Lists all recurring tasks in the TA’s schedule. Can be filtered to have particular recurring events only.
-
-Format: `ls recur [task]`
+Format: `schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat`
 
 Examples:
 
+* `schedule Recur/Tutorial/weeklyWrapUp`
+* `schedule Recur/Lab/weeklyVisuAlgoQuiz`
 
+### Edit an event: `editEvent event`
 
-* `ls recur`
-* `ls recur labs`
-* `ls recur consultations`
-* `ls recur tutorials`
+Edits an event current in the TA’s schedule.
 
-Find specific recurring event: `find recur`
+- Name need not be unique
+- Cannot be clashes in the time with any other events
+- Only .pdf valid files can be added
+- FULL file path to the pdf file MUST be given
+- index starts from 1
+- Consultation does not allow attachments as mentioned in add consultation section
 
-Find a specific recurring task during a timeframe
-
-Format: `/ recur [timeframe] [startTime] [endTime]`
-
-Examples:
-
-
-
-* `/ recur Wednesday`
-* `/ recur Wednesday 8:00 10:00`
-
-Deleting recurring event: `delete recur`
-
-Delete recurring tasks based on index from list of **all **recurring tasks
-
-Format: `:[start],[end]d`
+Format: `editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
 
 Examples:
 
+* `editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf`
+* `editEvent 2 Lab/VisuAlgo`
+* `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00`
+
+### Delete events: `delete events`
+
+Deletes valid indexed events from TA's schedule.
+
+- Index starts from 1
+- Valid index must be provided
+- If range is provided, it is inclusive
+- If range is provided, all values in the inclusive range must be valid
+- If range is provided, start index cannot be longer greater end index
+
+Format: `delete [EVENT_TYPE]/index`
+
+Examples:
+
+* `delete Tutorial/1`
+* `delete Lab/1-5`
 
 
-* `:5d`
-* `:5,10d`
-* `:%d`
-* `:.,10d`
-* `:1d,$`
 
-Edit recurring event: `edit recur`
 
-Edit recurring tasks based on index from list of **all **recurring tasks or unique name
+
+
+
+
+
+Navigate to students in recurring event: `show event students`
+
+Show specific task’s students based on index from list of **all **non-recurring tasks or based on name.
+
+Once entered, use the students command features to add, delete, edit students.
 
 Format:
 
-
-
-* `:/%s/[name] or [index]/[new recurring task details]/g`
-* `:/%s/[name] or [index]/[new recurring task details]/gc`
+* `:cd nr [name] or [index] students`
 
 Examples:
 
+* `:cd nr 1 students`
+* `:cd nr consultation students`
 
 
-* `:/%s/weeklyTutorials/weeklyTutorials Tutorials Wednesday 18:00 1 1/g`
-* `:/%s/1/weeklyTutorials Tutorials Wednesday 18:00 1 1/g`
-
-Show recurring event in calendar: `show recur calendar`
-
-Show specific recurring task based on index from list of **all **recurring tasks or based on name
-
-Format:
-
-
-
-* `cd [name] or [index] calendar`
-
-Examples:
-
-
-
-* `:cd 1`
-* `:cd weeklyTutorials`
 
 Navigate to students in recurring event: `show recur students`
 
@@ -131,54 +195,12 @@ Once entered, use the students command features to add, delete, edit students.
 
 Format:
 
-
-
 * `:cd [name] or [index] students`
 
 Examples:
 
-
-
 * `:cd 1 students`
 * `:cd weeklyTutorials students`
-
-Move recurring event to normal event: `mv recur`
-
-Move specific recurring tasks based on index from list of **all **recurring tasks or based on name to a normal event.
-
-Only applicable for the next immediate recurring task
-
-Format:
-
-
-
-* `:mv [name] or [index]`
-
-Examples:
-
-
-
-* `:mv 1`
-* `:mv weeklyTutorials`
-
-Stop recurring event to normal event: `stop recur`
-
-Removing a recurring task will remove all data related to it. If the user wants to visually see the past recurring task but wants to stop the recurring task in the future, the user should use this.
-
-This has the same functionality as move, but it just does not move the next immediate recurring task to a normal task.
-
-Format:
-
-
-
-* `stop [name] or [index]  `
-
-Examples:
-
-
-
-* `:stop 1`
-* `:stop weeklyTutorials`
 
 
 ### Sort recurring events: `sort recur`
@@ -190,8 +212,6 @@ The sorted list should be a secondary list and does not replace the existing, no
 Format: `sort [type] [sorting method] [sorting order]`
 
 Examples:
-
-
 
 * `sort lab alphabetical reverse`
 * `sort tutorial duration nonreverse`
@@ -284,140 +304,6 @@ Examples:
 * `alert student tutorial participation`
 * `alert student consultation urgency`
 * `alert student all participation`
-
-
-### Adding a normal (non-recurring) event: `add recur`
-
-Adds an event to the TA’s schedule. Duration is in hours.
-
-**Name must be unique. There cannot be clashes in the time as well. If there is, then show a confirmation message to overwrite an old recurring task with the same name or same time.**
-
-Format: `touch event [name] [type] [date] [time] [duration]`
-
-
-```
-date format: YYYY-MM-DD
-```
-
-
-Examples:
-
-
-
-* `touch event Make-up-Lab Labs 2023-01-14 10:00 2`
-* `touch event Consultation Consultations 2023-04-14 16:00 1`
-* `touch event Extra-tutorial Tutorials 2023-04-14 14:00 1`
-
-
-### List all non-recurring events: `list event`
-
-Lists all non-recurring tasks in the TA’s schedule. Can be filtered to have particular events only.
-
-Format: `ls event [task]`
-
-Examples:
-
-
-
-* `ls event`
-* `ls event labs`
-* `ls event consultations`
-* `ls event tutorials`
-
-Find specific non-recurring event: `find event`
-
-Find a specific task on a particular date and (optional) time
-
-Format: `/ event [date] [startTime] [endTime]`
-
-Examples:
-
-
-
-* `/ event 2023-04-01`
-* `/ event 2023-03-12 8:00 10:00`
-
-Deleting non-recurring event: `delete event`
-
-Delete tasks based on index from list of **all **non-recurring tasks
-
-Format: `:delete event [start],[end]d`
-
-Examples:
-
-
-
-* `:delete event 5d`
-* `:delete event 5,10d`
-* `:delete event %d`
-* `:delete event .,10d`
-* `:delete event 1d,$`
-
-Edit non-recurring event: `edit event`
-
-Edit tasks based on index from list of **all **non-recurring tasks or unique name
-
-Format:
-
-
-
-* `:/%s/nr/[name] or [index]/[new task details]/g`
-* `:/%s/nr/[name] or [index]/[new task details]/gc`
-
-
-```
-nr stands for non-recurring
-```
-
-
-Examples:
-
-
-
-* `:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g`
-* `:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g`
-
-Show non-recurring event in calendar: `show event calendar`
-
-Show specific task based on index from list of **all **non-recurring tasks or based on name
-
-Format:
-
-
-
-* `cd nr [name] or [index] calendar`
-
-Examples:
-
-
-
-* `:cd nr 1`
-* `:cd nr Make-up-Tutorial`
-
-
-```
-nr stands for non-recurring
-```
-
-
-Navigate to students in recurring event: `show event students`
-
-Show specific task’s students based on index from list of **all **non-recurring tasks or based on name.
-
-Once entered, use the students command features to add, delete, edit students.
-
-Format:
-
-
-
-* `:cd nr [name] or [index] students`
-
-Examples:
-
-
-
-* `:cd nr 1 students`
-* `:cd nr consultation students`
 
 
 ### Adding a student: `add student`
@@ -577,6 +463,65 @@ Examples:
 * `sort students tutorials nonreverse`
 
 
+Find specific non-recurring event: `find event`
+
+Find a specific task on a particular date and (optional) time
+
+Format: `/ event [date] [startTime] [endTime]`
+
+Examples:
+
+-----------------------------------------------------------------
+Old UG commands (to remove)
+-----------------------------------------------------------------
+
+* `/ event 2023-04-01`
+* `/ event 2023-03-12 8:00 10:00`
+
+Deleting non-recurring event: `delete event`
+
+Delete tasks based on index from list of **all **non-recurring tasks
+
+Format: `:delete event [start],[end]d`
+
+Examples:
+
+
+
+* `:delete event 5d`
+* `:delete event 5,10d`
+* `:delete event %d`
+* `:delete event .,10d`
+* `:delete event 1d,$`
+
+Edit non-recurring event: `edit event`
+
+Edit tasks based on index from list of **all **non-recurring tasks or unique name
+
+Format:
+
+
+
+* `:/%s/nr/[name] or [index]/[new task details]/g`
+* `:/%s/nr/[name] or [index]/[new task details]/gc`
+
+
+```
+nr stands for non-recurring
+```
+
+
+Examples:
+
+
+
+* `:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g`
+* `:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g`
+
+
+```
+nr stands for non-recurring
+```
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
