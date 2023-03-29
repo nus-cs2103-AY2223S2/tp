@@ -10,7 +10,13 @@ import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
 import seedu.internship.logic.commands.Command;
+<<<<<<< HEAD
 import seedu.internship.logic.commands.DeleteCommand;
+=======
+import seedu.internship.logic.commands.CopyCommand;
+import seedu.internship.logic.commands.DeleteFieldCommand;
+import seedu.internship.logic.commands.DeleteIndexCommand;
+>>>>>>> 773616d82cf11535884a730e9ce35ee2063dbe41
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
@@ -53,8 +59,11 @@ public class InternBuddyParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteIndexCommand.COMMAND_WORD:
+            return new DeleteIndexCommandParser().parse(arguments);
+
+        case DeleteFieldCommand.COMMAND_WORD:
+            return new DeleteFieldCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
