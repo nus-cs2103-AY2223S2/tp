@@ -15,16 +15,16 @@ import seedu.roles.commons.util.ConfigUtil;
 import seedu.roles.commons.util.StringUtil;
 import seedu.roles.logic.Logic;
 import seedu.roles.logic.LogicManager;
-import seedu.roles.model.RoleBook;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
 import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.ReadOnlyUserPrefs;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.UserPrefs;
 import seedu.roles.model.util.SampleDataUtil;
-import seedu.roles.storage.RoleBookStorage;
 import seedu.roles.storage.JsonRoleBookStorage;
 import seedu.roles.storage.JsonUserPrefsStorage;
+import seedu.roles.storage.RoleBookStorage;
 import seedu.roles.storage.Storage;
 import seedu.roles.storage.StorageManager;
 import seedu.roles.storage.UserPrefsStorage;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        RoleBookStorage RoleBookStorage = new JsonRoleBookStorage(userPrefs.getRoleBookFilePath());
-        storage = new StorageManager(RoleBookStorage, userPrefsStorage);
+        RoleBookStorage roleBookStorage = new JsonRoleBookStorage(userPrefs.getRoleBookFilePath());
+        storage = new StorageManager(roleBookStorage, userPrefsStorage);
 
         initLogging(config);
 

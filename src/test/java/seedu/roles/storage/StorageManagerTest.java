@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonRoleBookStorage RoleBookStorage = new JsonRoleBookStorage(getTempFilePath("ab"));
+        JsonRoleBookStorage roleBookStorage = new JsonRoleBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(RoleBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(roleBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

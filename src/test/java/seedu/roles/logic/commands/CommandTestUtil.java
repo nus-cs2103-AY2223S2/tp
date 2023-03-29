@@ -20,8 +20,8 @@ import java.util.List;
 
 import seedu.roles.commons.core.index.Index;
 import seedu.roles.logic.commands.exceptions.CommandException;
-import seedu.roles.model.RoleBook;
 import seedu.roles.model.Model;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.NameContainsKeywordsPredicate;
 import seedu.roles.model.job.Role;
 import seedu.roles.testutil.EditRoleDescriptorBuilder;

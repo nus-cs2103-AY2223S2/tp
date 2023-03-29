@@ -32,14 +32,14 @@ public interface RoleBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyRoleBook} to the storage.
-     * @param RoleBook cannot be null.
+     * @param roleBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveRoleBook(ReadOnlyRoleBook RoleBook) throws IOException;
+    void saveRoleBook(ReadOnlyRoleBook roleBook) throws IOException;
 
     /**
      * @see #saveRoleBook(ReadOnlyRoleBook)
      */
-    void saveRoleBook(ReadOnlyRoleBook RoleBook, Path filePath) throws IOException;
+    void saveRoleBook(ReadOnlyRoleBook roleBook, Path filePath) throws IOException;
 
 }

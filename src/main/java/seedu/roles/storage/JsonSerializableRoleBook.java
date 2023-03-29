@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.roles.commons.exceptions.IllegalValueException;
-import seedu.roles.model.RoleBook;
 import seedu.roles.model.ReadOnlyRoleBook;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Role;
 
 /**
@@ -46,15 +46,15 @@ class JsonSerializableRoleBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public RoleBook toModelType() throws IllegalValueException {
-        RoleBook RoleBook = new RoleBook();
+        RoleBook roleBook = new RoleBook();
         for (JsonAdaptedRole jsonAdaptedRole : roles) {
             Role role = jsonAdaptedRole.toModelType();
-            if (RoleBook.hasRole(role)) {
+            if (roleBook.hasRole(role)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            RoleBook.addRole(role);
+            roleBook.addRole(role);
         }
-        return RoleBook;
+        return roleBook;
     }
 
 }

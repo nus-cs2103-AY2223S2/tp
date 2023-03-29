@@ -64,24 +64,24 @@ public class JsonRoleBookStorageTest {
     public void readAndsaveRoleBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRoleBook.json");
         RoleBook original = getTypicalRoleBook();
-        JsonRoleBookStorage JsonRoleBookStorage = new JsonRoleBookStorage(filePath);
+        JsonRoleBookStorage jsonRoleBookStorage = new JsonRoleBookStorage(filePath);
 
         // Save in new file and read back
-        JsonRoleBookStorage.saveRoleBook(original, filePath);
-        ReadOnlyRoleBook readBack = JsonRoleBookStorage.readRoleBook(filePath).get();
+        jsonRoleBookStorage.saveRoleBook(original, filePath);
+        ReadOnlyRoleBook readBack = jsonRoleBookStorage.readRoleBook(filePath).get();
         assertEquals(original, new RoleBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addRole(HOON);
         original.removeRole(ALICE);
-        JsonRoleBookStorage.saveRoleBook(original, filePath);
-        readBack = JsonRoleBookStorage.readRoleBook(filePath).get();
+        jsonRoleBookStorage.saveRoleBook(original, filePath);
+        readBack = jsonRoleBookStorage.readRoleBook(filePath).get();
         assertEquals(original, new RoleBook(readBack));
 
         // Save and read without specifying file path
         original.addRole(IDA);
-        JsonRoleBookStorage.saveRoleBook(original); // file path not specified
-        readBack = JsonRoleBookStorage.readRoleBook().get(); // file path not specified
+        jsonRoleBookStorage.saveRoleBook(original); // file path not specified
+        readBack = jsonRoleBookStorage.readRoleBook().get(); // file path not specified
         assertEquals(original, new RoleBook(readBack));
 
     }
