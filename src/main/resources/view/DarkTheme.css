@@ -309,6 +309,10 @@
   -fx-padding: 8 1 8 1;
 }
 
+.corner {
+  -fx-background-color: transparent;
+}
+
 #cardPane {
   -fx-background-color: transparent;
   -fx-border-width: 0;
