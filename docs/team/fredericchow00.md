@@ -96,6 +96,8 @@ Example Input: `advance n/John Doe p/(John Doe's number) d/05-05-2023 18:00`
 
 Output: `There is a clash of interview date and time with Jane Goh!`
 
+3. Changed GUI to make the application look nicer.
+
 - **Test Cases**:
 
 1. Wrote test cases for RejectCommand
@@ -113,15 +115,16 @@ Output: `There is a clash of interview date and time with Jane Goh!`
 
   - User Guide
     - Added documentation for the features `list`
+    - Added documentation for About and How to Use the User Guide.
 
   - Developer Guide
     - Added documentation for Product Scope and User Stories
+    - Added documentation for Annex such as User Stories and Manual Testing.
 
 - **Community**:
 
   - Reviewed Pull Requests (PRs) made by team members
+  - Ensure timely closure of milestones and issues
+  - Set deadlines before the hard deadline so that the team does not fall behind.
 
-- **Tools**:
-
-  - to be added soon
 
