@@ -71,10 +71,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<figure>
-  <img src="images/ArchitectureDiagram.svg" width="280" />
-  <figcaption>Figure 1: Architecture Diagram of Trackr</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/ArchitectureDiagram.svg" width="280" />
+    <figcaption>Figure 1: Architecture Diagram of Trackr</figcaption>
+  </figure>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -100,10 +102,12 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
-<figure>
-  <img src="images/ArchitectureSequenceDiagram.svg" width="650"/>
-  <figcaption>Figure 2: Sequence Diagram (Deleting Person)</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/ArchitectureSequenceDiagram.svg" width="650"/>
+    <figcaption>Figure 2: Sequence Diagram (Deleting Person)</figcaption>
+  </figure>
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -112,10 +116,12 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<figure>
-  <img src="images/ComponentManagers.svg" width="300" />
-  <figcaption>Figure 3: Logic Class Diagram</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/ComponentManagers.svg" width="300" />
+    <figcaption>Figure 3: Logic Class Diagram</figcaption>
+  </figure>
+</p>
 
 The sections below give more details of each component.
 
@@ -123,10 +129,12 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
-<figure>
-  <img src="images/UiClassDiagram.svg" />
-  <figcaption>Figure 4: UI Class Diagram</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/UiClassDiagram.svg" />
+    <figcaption>Figure 4: UI Class Diagram</figcaption>
+  </figure>
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -145,10 +153,12 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<figure>
-  <img src="images/LogicClassDiagram.svg" width="550"/>
-  <figcaption>Figure 5: Logic Class Diagram</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/LogicClassDiagram.svg" width="550"/>
+    <figcaption>Figure 5: Logic Class Diagram</figcaption>
+  </figure>
+</p>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TrackrParser` class to parse the user command.
@@ -165,10 +175,12 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<figure>
-  <img src="images/ParserClasses.svg" width="600"/>
-  <figcaption>Figure 6: Sequence Diagram (Deleting Order)</figcaption>
-</figure>
+<p align="center">
+  <figure>
+    <img src="images/ParserClasses.svg" width="600"/>
+    <figcaption>Figure 6: Sequence Diagram (Deleting Order)</figcaption>
+  </figure>
+</p>
 
 How the parsing works:
 
