@@ -73,17 +73,17 @@
          </font>
       </Text>
       <StackPane fx:id="tasksPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contacts" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <StackPane fx:id="contactsPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <StackPane fx:id="ordersPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <StackPane fx:id="contactsPlaceholder1" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <StackPane fx:id="ordersPlaceholder1" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
    </children>
 </GridPane>

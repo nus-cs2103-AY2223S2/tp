@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
-import trackr.ui.listpanels.SupplierListPanel;
+import trackr.ui.listpanels.SummarisedOrderListPanel;
 import trackr.ui.listpanels.TaskListPanel;
 
 /**
@@ -19,7 +19,7 @@ public class HomeView extends UiPart<Region> {
     private static final String FXML = "HomeDashboard.fxml";
     private Logic logic;
     private TaskListPanel taskListPanel;
-    private SupplierListPanel contactListPanel;
+    private SummarisedOrderListPanel summarisedOrderListPanel;
 
 
     @FXML
@@ -29,7 +29,7 @@ public class HomeView extends UiPart<Region> {
     private StackPane tasksPlaceholder;
 
     @FXML
-    private StackPane contactsPlaceholder;
+    private StackPane ordersPlaceholder;
 
 
     /**
@@ -56,9 +56,9 @@ public class HomeView extends UiPart<Region> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         tasksPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        // Add contacts
-        contactListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
-        contactsPlaceholder.getChildren().add(contactListPanel.getRoot());
+        // Add summarised orders
+        summarisedOrderListPanel = new SummarisedOrderListPanel(logic.getFilteredOrderList());
+        ordersPlaceholder.getChildren().add(summarisedOrderListPanel.getRoot());
     }
 
     private HBox createDashboard() {
