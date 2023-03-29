@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane minWidth="370.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-<VBox minWidth="370.0" HBox.hgrow="ALWAYS">
+<ScrollPane minWidth="400.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
    <children>
-         <VBox maxWidth="370.0" prefWidth="120.0" style="-fx-border-color: black;">
+         <VBox style="-fx-border-color: black; -fx-background-color: white;">
             <children>
             <Label id="name" fx:id="name" styleClass="cell_big_label" />
       
@@ -45,12 +46,18 @@
                </HBox>
             </children>
          </VBox>
-         <VBox>
+         <VBox style="-fx-border-color: black;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER" />
             <ListView id="appointments" fx:id="appointments" />
             </children>
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
          </VBox>
 
-   </children></VBox>
+   </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding></VBox>
 </ScrollPane>
