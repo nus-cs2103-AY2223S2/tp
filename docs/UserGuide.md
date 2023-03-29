@@ -174,7 +174,7 @@ Examples:
 
 [Scroll back to Table of Contents](#table-of-contents)
 
-### Deleting a patient : `del-ptn`
+### Deleting a patient :
 
 - Command format: `del-ptn INDEX`
 - What it does: Deletes the specified patient from the address book.
