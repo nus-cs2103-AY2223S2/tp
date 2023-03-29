@@ -51,10 +51,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE; // '&' not allowed in names
     public static final String INVALID_PROGRESS_DESC = " " + PREFIX_PROGRESS + "911*"; // '*' not allowed in progress
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE;
-    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for addresses
+    public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for author
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
