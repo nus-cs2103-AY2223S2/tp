@@ -13,7 +13,7 @@ import java.util.Stack;
  */
 public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
 
-    protected static final int MAX_SIZE = 10;
+    public static final int MAX_SIZE = 10;
     private final Deque<T> redoHistory;
     private final Stack<T> undoHistory;
 
