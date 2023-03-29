@@ -69,8 +69,6 @@ public class ExecutiveProDb implements ReadOnlyExecutiveProDb {
                 existingEmployee.getName().equals(employee.getName())
                         && existingEmployee.getPhone().equals(employee.getPhone())
                         && existingEmployee.getEmail().equals(employee.getEmail())
-                        && existingEmployee.getAddress().equals(employee.getAddress())
-                        && existingEmployee.getDepartment().equals(employee.getDepartment())
         );
     }
 

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LIST;
 
@@ -31,12 +32,18 @@ public class BatchAddCommand extends Command {
             + "Example: " + COMMAND_WORD + " executivepro.csv";
     public static final String MESSAGE_WORKS = "Batch added employees. %d employees were added.";
     public static final String MESSAGE_FILE_NOT_FOUND = "File Not Found";
+    public static final String MESSAGE_MISSING_NEEDED_FIELDS = "Name, Phone, Email, Department or Payroll is missing " +
+            "for one person!";
+    public static final String MESSAGE_NO_DATA = "%s does not have any data";
+    public static final String MESSAGE_DUPLICATE_FOUND = "One person in the list is found to be a duplicate. "
+            + "Call aborted";
+
 
     private final String fileName;
     private Path filePath;
 
     /**
-     * @param fileName of the input
+     * Creates an BatchAddCommand to add multiple {@code Employee}
      */
     public BatchAddCommand(String fileName) {
         requireAllNonNull(fileName);
@@ -76,7 +83,6 @@ public class BatchAddCommand extends Command {
                         }
                     }
                 }
-                System.out.println(arg);
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException exception) {
@@ -84,7 +90,11 @@ public class BatchAddCommand extends Command {
         } catch (IOException exception) {
             throw new CommandException(exception.getMessage());
         } catch (ParseException exception) {
-            throw new CommandException(exception.getMessage());
+            if (exception.getMessage().equals(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE))) {
+                throw new CommandException(MESSAGE_MISSING_NEEDED_FIELDS);
+            } else {
+                throw new CommandException(exception.getMessage());
+            }
         }
         return addCommandList;
     }
@@ -94,7 +104,7 @@ public class BatchAddCommand extends Command {
         int currEmployeeId = EmployeeId.getCount();
         List<AddCommand> addCommandList = this.getInfo();
         if (addCommandList.isEmpty()) {
-            throw new CommandException(String.format("%s does not have any data", this.fileName));
+            throw new CommandException(String.format(MESSAGE_NO_DATA, this.fileName));
         }
         List<Employee> copyEmployeeList = new ArrayList<>();
 
@@ -111,7 +121,7 @@ public class BatchAddCommand extends Command {
             database.setEmployees(copyEmployeeList);
             model.setExecutiveProDb(database);
             EmployeeId.setCount(currEmployeeId);
-            throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
+            throw new CommandException(MESSAGE_DUPLICATE_FOUND);
         }
         return new CommandResult(String.format(MESSAGE_WORKS, addCommandList.size()));
     }

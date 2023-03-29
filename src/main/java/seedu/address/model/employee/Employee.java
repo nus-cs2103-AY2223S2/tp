@@ -139,8 +139,7 @@ public class Employee {
     }
 
     /**
-     * Returns true if both employees have the same name.
-     * This defines a weaker notion of equality between two employees.
+     * Returns true if both employees have the same name, phone and email.
      */
     public boolean isSameEmployee(Employee otherEmployee) {
         if (otherEmployee == this) {
@@ -150,9 +149,7 @@ public class Employee {
         return otherEmployee != null
                 && otherEmployee.getName().equals(getName())
                 && otherEmployee.getPhone().equals(getPhone())
-                && otherEmployee.getEmail().equals(getEmail())
-                && otherEmployee.getAddress().equals(getAddress())
-                && otherEmployee.getDepartment().equals(getDepartment());
+                && otherEmployee.getEmail().equals(getEmail());
     }
 
     /**

@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.EmployeeId;
 
 /**
  * Adds an employee to the database.
@@ -24,6 +25,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the database. "
+            + "** Employee NAME, PHONE, EMAIL, DEPARTMENT are required**\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -42,14 +44,14 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_DEPARTMENT + "Marketing "
             + PREFIX_PAYROLL + "1000 15 "
-            + PREFIX_TAG + "SoftwareEngineer ";;
+            + PREFIX_TAG + "SoftwareEngineer";;
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in the database.";
 
     private final Employee toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Employee}
      */
     public AddCommand(Employee employee) {
         requireNonNull(employee);
@@ -60,8 +62,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        int current_EmployeeId = EmployeeId.getCount();
+        //Keep EmployeeId to current count if Employee added is a duplicate employee
         if (model.hasEmployee(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
+            EmployeeId.setCount(--current_EmployeeId);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE, toAdd.getName()));
         }
 
         model.addEmployee(toAdd);
