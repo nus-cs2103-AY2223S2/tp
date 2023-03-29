@@ -71,13 +71,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Name parseName(String name, boolean isChecked) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (isChecked && !Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
@@ -86,39 +87,30 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Phone parsePhone(String phone, boolean isChecked) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (isChecked && !Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     * Doesn't check if phone number is valid.
-     */
-    public static Phone parsePhoneForFilter(String phone) {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        return new Phone(trimmedPhone);
-    }
-
-    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address parseAddress(String address, boolean isChecked) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
+        if (isChecked && !Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
@@ -127,25 +119,30 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static Email parseEmail(String email, boolean isChecked) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        if (isChecked && !Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
     }
 
     /**
+     * Parses a {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}.
+     *
      * @throws ParseException
      */
-    public static Birthday parseBirthday(String birthday) throws ParseException {
+    public static Birthday parseBirthday(String birthday, boolean isChecked) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+        if (isChecked && !Birthday.isValidBirthday(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
         return new Birthday(trimmedBirthday);
@@ -155,13 +152,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Remark parseRemark(String remark) throws ParseException {
+    public static Remark parseRemark(String remark, boolean isChecked) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if (!Remark.isValidTagName(trimmedRemark)) {
+        if (isChecked && !Remark.isValidTagName(trimmedRemark)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
@@ -170,13 +168,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String module} into a {@code module}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}.
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
-    public static Module parseModule(String module) throws ParseException {
+    public static Module parseModule(String module, boolean isChecked) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidTagName(trimmedModule)) {
+        if (isChecked && !Module.isValidTagName(trimmedModule)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
         return new Module(trimmedModule);
@@ -185,13 +184,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String cca} into a {@code cca}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}.
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static Cca parseCca(String cca) throws ParseException {
+    public static Cca parseCca(String cca, boolean isChecked) throws ParseException {
         requireNonNull(cca);
         String trimmedCca = cca.trim();
-        if (!Cca.isValidTagName(trimmedCca)) {
+        if (isChecked && !Cca.isValidTagName(trimmedCca)) {
             throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
         }
         return new Cca(trimmedCca);
@@ -200,67 +200,81 @@ public class ParserUtil {
     /**
      * Parses a {@code String cca} into a {@code cca}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity if (@code isChecked}.
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
+    public static CcaPosition parseCcaPosition(String ccaPosition, boolean isChecked) throws ParseException {
         requireNonNull(ccaPosition);
         String trimmedCcaPosition = ccaPosition.trim();
-        if (!Cca.isValidTagName(trimmedCcaPosition)) {
+        if (isChecked && !Cca.isValidTagName(trimmedCcaPosition)) {
             throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
         }
         return new CcaPosition(trimmedCcaPosition);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Remark>}.
+     * Checks for validity if (@code isChecked}.
+     *
+     * @throws ParseException if the given {@code remarks} is invalid.
      */
-    public static Set<Remark> parseRemarks(Collection<String> remarks) throws ParseException {
+    public static Set<Remark> parseRemarks(Collection<String> remarks, boolean isChecked) throws ParseException {
         requireNonNull(remarks);
         final Set<Remark> remarkSet = new HashSet<>();
         for (String remarkName : remarks) {
-            remarkSet.add(parseRemark(remarkName));
+            remarkSet.add(parseRemark(remarkName, isChecked));
         }
         return remarkSet;
     }
 
     /**
      * Parses {@code Collection<String> modules} into a {@code Set<Module>}.
+     * Checks for validity if (@code isChecked}.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
      */
-    public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
+    public static Set<Module> parseModules(Collection<String> modules, boolean isChecked) throws ParseException {
         requireNonNull(modules);
         final Set<Module> moduleSet = new HashSet<>();
         for (String moduleName : modules) {
-            moduleSet.add(parseModule(moduleName));
+            moduleSet.add(parseModule(moduleName, isChecked));
         }
         return moduleSet;
     }
 
     /**
      * Parses {@code Collection<String> ccas} into a {@code Set<Cca>}.
+     * Checks for validity if (@code isChecked}.
+     *
+     * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
+    public static Set<Cca> parseCcas(Collection<String> ccas, boolean isChecked) throws ParseException {
         requireNonNull(ccas);
         final Set<Cca> ccaSet = new HashSet<>();
         for (String ccaName : ccas) {
-            ccaSet.add(parseCca(ccaName));
+            ccaSet.add(parseCca(ccaName, isChecked));
         }
         return ccaSet;
     }
 
     /**
      * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
+     * Checks for validity if (@code isChecked}.
+     *
+     * @throws ParseException if the given {@code ccaPosition} is invalid.
      */
-    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions) throws ParseException {
+    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions, boolean isChecked)
+            throws ParseException {
         requireNonNull(ccaPositions);
         final Set<CcaPosition> ccaPositionSet = new HashSet<>();
         for (String ccaPositionName : ccaPositions) {
-            ccaPositionSet.add(parseCcaPosition(ccaPositionName));
+            ccaPositionSet.add(parseCcaPosition(ccaPositionName, isChecked));
         }
         return ccaPositionSet;
     }
 
-    private static Instagram parseInstagram(String instagram) throws ParseException {
+    private static Instagram parseInstagram(String instagram, boolean isChecked) throws ParseException {
         if (instagram == null || instagram.isEmpty()) {
             return null;
         }
@@ -270,7 +284,7 @@ public class ParserUtil {
         return Instagram.of(instagram);
     }
 
-    private static Telegram parseTelegram(String telegram) throws ParseException {
+    private static Telegram parseTelegram(String telegram, boolean isChecked) throws ParseException {
         if (telegram == null || telegram.isEmpty()) {
             return null;
         }
@@ -280,7 +294,7 @@ public class ParserUtil {
         return Telegram.of(telegram);
     }
 
-    private static WhatsApp parseWhatsApp(String whatsApp) throws ParseException {
+    private static WhatsApp parseWhatsApp(String whatsApp, boolean isChecked) throws ParseException {
         if (whatsApp == null || whatsApp.isEmpty()) {
             return null;
         }
@@ -300,9 +314,9 @@ public class ParserUtil {
         var whatsapp = argMultimap.getValue(PREFIX_SOCMED_WHATSAPP);
 
         var socialMedia = new SocialMedia(
-            instagram.isPresent() ? ParserUtil.parseInstagram(instagram.get()) : null,
-            telegram.isPresent() ? ParserUtil.parseTelegram(telegram.get()) : null,
-            whatsapp.isPresent() ? ParserUtil.parseWhatsApp(whatsapp.get()) : null
+            instagram.isPresent() ? ParserUtil.parseInstagram(instagram.get(), true) : null,
+            telegram.isPresent() ? ParserUtil.parseTelegram(telegram.get(), true) : null,
+            whatsapp.isPresent() ? ParserUtil.parseWhatsApp(whatsapp.get(), true) : null
         );
 
         return socialMedia.isBlank() ? null : socialMedia;
@@ -323,7 +337,7 @@ public class ParserUtil {
             return Optional.empty();
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseRemarks(tagSet));
+        return Optional.of(ParserUtil.parseRemarks(tagSet, true));
     }
 
     /**
@@ -340,7 +354,7 @@ public class ParserUtil {
             return Optional.empty();
         }
         Collection<String> moduleSet = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
-        return Optional.of(ParserUtil.parseModules(moduleSet));
+        return Optional.of(ParserUtil.parseModules(moduleSet, true));
     }
 
     /**
@@ -357,7 +371,7 @@ public class ParserUtil {
             return Optional.empty();
         }
         Collection<String> ccaSet = ccas.size() == 1 && ccas.contains("") ? Collections.emptySet() : ccas;
-        return Optional.of(ParserUtil.parseCcas(ccaSet));
+        return Optional.of(ParserUtil.parseCcas(ccaSet, true));
     }
 
     /**
@@ -376,6 +390,6 @@ public class ParserUtil {
         }
         Collection<String> ccaPositionSet = ccaPositions.size() == 1 && ccaPositions
                 .contains("") ? Collections.emptySet() : ccaPositions;
-        return Optional.of(ParserUtil.parseCcaPositions(ccaPositionSet));
+        return Optional.of(ParserUtil.parseCcaPositions(ccaPositionSet, true));
     }
 }

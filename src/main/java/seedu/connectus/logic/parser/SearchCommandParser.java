@@ -8,12 +8,14 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
@@ -42,28 +44,41 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             predicate.setKeywords(keywords);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            predicate.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            predicate.setName(argMultimap.getValue(PREFIX_NAME).get());
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            predicate.setPhone(ParserUtil.parsePhoneForFilter(argMultimap.getValue(PREFIX_PHONE).get()));
+            predicate.setPhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            predicate.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            predicate.setEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            predicate.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            predicate.setAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            predicate.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
+            predicate.setBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
         }
-        {
-            predicate.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
+        if (argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).isPresent()) {
+            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get());
         }
-        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK)).ifPresent(predicate::setRemarks);
-        ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE)).ifPresent(predicate::setModules);
-        ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(predicate::setCcas);
-        ParserUtil.parseCcaPositionsOptional(argMultimap.getAllValues(PREFIX_CCA_POSITION))
-                .ifPresent(predicate::setCcaPositions);
+        if (argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).isPresent()) {
+            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get());
+        }
+        if (argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).isPresent()) {
+            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get());
+        }
+        Set<String> remarks = new HashSet<>();
+        remarks.addAll(argMultimap.getAllValues(PREFIX_REMARK));
+        predicate.setRemarks(remarks);
+        Set<String> modules = new HashSet<>();
+        modules.addAll(argMultimap.getAllValues(PREFIX_MODULE));
+        predicate.setModules(modules);
+        Set<String> ccas = new HashSet<>();
+        ccas.addAll(argMultimap.getAllValues(PREFIX_CCA));
+        predicate.setCcas(ccas);
+        Set<String> ccaPositions = new HashSet<>();
+        ccaPositions.addAll(argMultimap.getAllValues(PREFIX_CCA_POSITION));
+        predicate.setCcaPositions(ccaPositions);
 
         return new SearchCommand(predicate);
     }

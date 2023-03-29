@@ -9,27 +9,24 @@ import java.util.function.Predicate;
 
 import seedu.connectus.commons.util.CollectionUtil;
 import seedu.connectus.commons.util.StringUtil;
-import seedu.connectus.model.socialmedia.SocialMedia;
-import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
-import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Remark;
 
 /**
  * Tests that a {@code Person}'s information fields matches any of the keywords given.
  */
 public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     private List<String> keywords;
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    private SocialMedia socialMedia;
-    private Set<Remark> remarks;
-    private Birthday birthday;
-    private Set<Module> modules;
-    private Set<Cca> ccas;
-    private Set<CcaPosition> ccaPositions;
+    private String name;
+    private String phone;
+    private String email;
+    private String address;
+    private String instagram;
+    private String whatsapp;
+    private String telegram;
+    private Set<String> remarks;
+    private String birthday;
+    private Set<String> modules;
+    private Set<String> ccas;
+    private Set<String> ccaPositions;
     public FieldsContainKeywordsPredicate() {}
     public FieldsContainKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -44,7 +41,9 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
-        setSocialMedia(toCopy.socialMedia);
+        setInstagram(toCopy.instagram);
+        setWhatsapp(toCopy.whatsapp);
+        setTelegram(toCopy.telegram);
         setRemarks(toCopy.remarks);
         setModules(toCopy.modules);
         setCcas(toCopy.ccas);
@@ -56,7 +55,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Returns true if at least one field is edited.
      */
     public boolean isFieldKeywordPresent() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, remarks,
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, instagram, telegram, whatsapp, remarks,
                 birthday, modules, ccas, ccaPositions);
     }
 
@@ -67,61 +66,77 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     public Optional<List<String>> getKeywords() {
         return Optional.ofNullable(keywords);
     }
-    public void setName(Name name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Optional<Name> getName() {
+    public Optional<String> getName() {
         return Optional.ofNullable(name);
     }
 
-    public void setPhone(Phone phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Optional<Phone> getPhone() {
+    public Optional<String> getPhone() {
         return Optional.ofNullable(phone);
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Optional<Email> getEmail() {
+    public Optional<String> getEmail() {
         return Optional.ofNullable(email);
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public Optional<Address> getAddress() {
+    public Optional<String> getAddress() {
         return (address != null)
                 ? Optional.of(address)
                 : Optional.empty();
     }
 
-    public void setBirthday(Birthday birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public Optional<Birthday> getBirthday() {
+    public Optional<String> getBirthday() {
         return Optional.ofNullable(birthday);
     }
 
-    public void setSocialMedia(SocialMedia socialMedia) {
-        this.socialMedia = socialMedia;
+    public void setTelegram(String telegram) {
+        this.telegram = telegram;
     }
 
-    public Optional<SocialMedia> getSocialMedia() {
-        return Optional.ofNullable(socialMedia);
+    public Optional<String> getTelegram() {
+        return Optional.ofNullable(telegram);
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
+    }
+
+    public Optional<String> getWhatsapp() {
+        return Optional.ofNullable(whatsapp);
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public Optional<String> getInstagram() {
+        return Optional.ofNullable(instagram);
     }
 
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setRemarks(Set<Remark> remarks) {
+    public void setRemarks(Set<String> remarks) {
         this.remarks = (remarks != null) ? new HashSet<>(remarks) : null;
     }
 
@@ -131,7 +146,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Remark>> getRemarks() {
+    public Optional<Set<String>> getRemarks() {
         return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
     }
 
@@ -140,7 +155,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code modules} to this object's {@code modules}.
      * A defensive copy of {@code modules} is used internally.
      */
-    public void setModules(Set<Module> modules) {
+    public void setModules(Set<String> modules) {
         this.modules = (modules != null) ? new HashSet<>(modules) : null;
     }
 
@@ -150,7 +165,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code modules} is null.
      */
-    public Optional<Set<Module>> getModules() {
+    public Optional<Set<String>> getModules() {
         return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
     }
 
@@ -158,7 +173,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code ccas} to this object's {@code ccas}.
      * A defensive copy of {@code ccas} is used internally.
      */
-    public void setCcas(Set<Cca> ccas) {
+    public void setCcas(Set<String> ccas) {
         this.ccas = (ccas != null) ? new HashSet<>(ccas) : null;
     }
 
@@ -168,7 +183,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code ccas} is null.
      */
-    public Optional<Set<Cca>> getCcas() {
+    public Optional<Set<String>> getCcas() {
         return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
     }
 
@@ -176,7 +191,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code ccaPositions} to this object's {@code ccaPositions}.
      * A defensive copy of {@code ccaPositions} is used internally.
      */
-    public void setCcaPositions(Set<CcaPosition> ccaPositions) {
+    public void setCcaPositions(Set<String> ccaPositions) {
         this.ccaPositions = (ccaPositions != null) ? new HashSet<>(ccaPositions) : null;
     }
 
@@ -186,7 +201,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
      */
-    public Optional<Set<CcaPosition>> getCcaPositions() {
+    public Optional<Set<String>> getCcaPositions() {
         return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
     }
 
@@ -215,13 +230,101 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
                 && getCcas().equals(e.getCcas())
                 && getCcaPositions().equals(e.getCcaPositions())
                 && getBirthday().equals(e.getBirthday())
-                && getSocialMedia().equals(e.getSocialMedia());
+                && getTelegram().equals(e.getTelegram())
+                && getWhatsapp().equals(e.getWhatsapp())
+                && getInstagram().equals(e.getInstagram());
     }
 
-    //todo
+    //todo tag, social media, email
     @Override
     public boolean test(Person person) {
-        return keywords.stream().anyMatch(keyword ->
-                StringUtil.containsKeywordsListIgnoreCase(person.getAllFieldsAsString(), keyword));
+        if (getName().isPresent()) {
+            if (!StringUtil.containsKeywordsListIgnoreCase(person.getName().toString(), name)) {
+                return false;
+            }
+        }
+        if (getAddress().isPresent()) {
+            if (person.getAddress().isEmpty()
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getAddress().toString(), address)) {
+                return false;
+            }
+        }
+        if (getEmail().isPresent()) {
+            if (person.getEmail().isEmpty()
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getEmail().toString(), email)) {
+                return false;
+            }
+        }
+        if (getPhone().isPresent()) {
+            if (person.getPhone().isEmpty()
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getPhone().toString(), phone)) {
+                return false;
+            }
+        }
+        if (getBirthday().isPresent()) {
+            if (person.getBirthday().isEmpty()
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getBirthday().toString(),
+                    birthday)) {
+                return false;
+            }
+        }
+        if (getInstagram().isPresent()) {
+            if (person.getSocialMedia().isEmpty() || person.getSocialMedia().get().getInstagram() == null
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getSocialMedia().get()
+                            .getInstagram().toString(),
+                    instagram)) {
+                return false;
+            }
+        }
+        if (getWhatsapp().isPresent()) {
+            if (person.getSocialMedia().isEmpty() || person.getSocialMedia().get().getWhatsapp() == null
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getSocialMedia().get()
+                            .getWhatsapp().toString(),
+                    whatsapp)) {
+                return false;
+            }
+        }
+        if (getTelegram().isPresent()) {
+            if (person.getSocialMedia().isEmpty() || person.getSocialMedia().get().getTelegram() == null
+                    || !StringUtil.containsKeywordsListIgnoreCase(person.getSocialMedia().get()
+                            .getTelegram().toString(),
+                    telegram)) {
+                return false;
+            }
+        }
+        if (getKeywords().isPresent()) {
+            if (!keywords.stream().allMatch(keyword ->
+                    StringUtil.containsKeywordsListIgnoreCase(person.getAllFieldsAsString(), keyword))) {
+                return false;
+            }
+        }
+        if (getRemarks().isPresent()) {
+            if (!remarks.stream().allMatch(remarkKey -> person.getRemarks().stream().anyMatch(remark ->
+                            StringUtil.containsKeywordsListIgnoreCase(remark.toString(), remarkKey)))) {
+                return false;
+            }
+        }
+        if (getCcas().isPresent()) {
+            if (!ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca ->
+                    StringUtil.containsKeywordsListIgnoreCase(cca.toString(), ccaKey)))) {
+                return false;
+            }
+        }
+        if (getCcaPositions().isPresent()) {
+            if (!ccaPositions.stream().allMatch(ccaPositionKey ->
+                    person.getCcaPositions().stream().anyMatch(ccaPosition ->
+                            StringUtil.containsKeywordsListIgnoreCase(ccaPosition.toString(),
+                                    ccaPositionKey)))) {
+                return false;
+            }
+        }
+        if (getModules().isPresent()) {
+            if (!modules.stream().allMatch(moduleKey -> person.getModules().stream().anyMatch(module ->
+                    StringUtil.containsKeywordsListIgnoreCase(module.toString(), moduleKey)))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
