@@ -9,7 +9,7 @@ import seedu.address.model.jobs.DeliveryJob;
  * Helper class implementing Comparator
  * Sort by job's scheduled timing
  */
-public class SortbyTime implements Comparator<DeliveryJob> {
+public class SortbyTimeAndEarn implements Comparator<DeliveryJob> {
 
     /**
      * Method sort by time (increasing)
@@ -19,15 +19,24 @@ public class SortbyTime implements Comparator<DeliveryJob> {
      */
     public int compare(DeliveryJob a, DeliveryJob b) {
         try {
-            return a.getDate().compareTo(b.getDate());
+            return (a.getDate()).compareTo(b.getDate());
         } catch (NoSuchElementException e) {
             if (b.isScheduled()) {
-                return -1;
-            } else if (a.isScheduled()) {
                 return 1;
-            } else {
-                return 0;
+            } else if (a.isScheduled()) {
+                return -1;
+            } else if ((a.hasDateOrSlot()) && (!b.hasDateOrSlot())) {
+                return -1;
+            } else if ((b.hasDateOrSlot()) && (!a.hasDateOrSlot())) {
+                return 1;
+            } else if (a.hasEarning() && b.hasEarning()) {
+                return a.getEarning().get().compareTo(b.getEarning().get());
+            } else if (b.hasEarning()) {
+                return 1;
+            } else if (a.hasEarning()) {
+                return -1;
             }
+            return 0;
         }
     }
 }

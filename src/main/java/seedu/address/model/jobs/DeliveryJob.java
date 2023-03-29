@@ -3,7 +3,6 @@ package seedu.address.model.jobs;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,6 +32,22 @@ public class DeliveryJob {
     public DeliveryJob(String recipient, String sender, String earning, String description) {
         this(genJobId(recipient, sender), recipient, sender, Optional.empty(), Optional.empty(),
                 Optional.of(new Earning(earning)), false, description);
+    }
+
+    /**
+     * Constructs a job entity.
+     *
+     * @param recipient
+     * @param sender
+     * @param deliveryDate
+     * @param deliverySlot
+     * @param earning
+     */
+    public DeliveryJob(String recipient, String sender, Optional<DeliveryDate> deliveryDate,
+                       Optional<DeliverySlot> deliverySlot, Optional<Earning> earning,
+                       String description) {
+        this(genJobId(recipient, sender), recipient, sender, deliveryDate,
+                deliverySlot, earning, false, description);
     }
 
     /**
@@ -103,6 +118,14 @@ public class DeliveryJob {
         return deliverySlot;
     }
 
+    public LocalDate getDate() {
+        return deliveryDate.get().getDate();
+    }
+
+    public int getSlot() {
+        return deliverySlot.get().getSlot();
+    }
+
     public Optional<Earning> getEarning() {
         return earning;
     }
@@ -111,19 +134,19 @@ public class DeliveryJob {
         return isDelivered;
     }
 
-    public LocalDate getDate() throws NoSuchElementException {
-        return deliveryDate.get().getDate();
-    }
-
-    public int getSlot() throws NoSuchElementException {
-        return deliverySlot.get().getSlot();
-    }
-
     public String getDescription() {
         if (description == null) {
             return "";
         }
         return description;
+    }
+
+    /**
+     * Checks if job has delivery date or slot
+     * @return
+     */
+    public boolean hasDateOrSlot() {
+        return hasDate() || hasSlot();
     }
 
     /**
@@ -140,6 +163,22 @@ public class DeliveryJob {
      */
     public boolean hasSlot() {
         return getDeliverySlot().isPresent();
+    }
+
+    /**
+     * Checks if job has invalid delivery slot
+     * @return boolean
+     */
+    public boolean hasInvalidSlot() {
+        return getDeliverySlot().isPresent() && (!getDeliverySlot().get().isValid());
+    }
+
+    /**
+     * Checks if job has earning
+     * @return boolean
+     */
+    public boolean hasEarning() {
+        return getEarning().isPresent();
     }
 
     /**
@@ -235,7 +274,7 @@ public class DeliveryJob {
          * @param id
          * @return
          */
-        public Builder jobId(String id) {
+        public Builder setJobId(String id) {
             this.jobId = id;
             return this;
         }
@@ -246,7 +285,7 @@ public class DeliveryJob {
          * @param id
          * @return
          */
-        public Builder recipient(String id) {
+        public Builder setRecipient(String id) {
             this.recipient = id;
             return this;
         }
@@ -257,7 +296,7 @@ public class DeliveryJob {
          * @param id
          * @return
          */
-        public Builder sender(String id) {
+        public Builder setSender(String id) {
             this.sender = id;
             return this;
         }
@@ -268,7 +307,7 @@ public class DeliveryJob {
          * @param date
          * @return
          */
-        public Builder deliveryDate(String date) {
+        public Builder setDeliveryDate(String date) {
             this.deliveryDate = Optional.of(new DeliveryDate(date));
             return this;
         }
@@ -279,7 +318,7 @@ public class DeliveryJob {
          * @param slot
          * @return
          */
-        public Builder deliverySlot(String slot) {
+        public Builder setDeliverySlot(String slot) {
             this.deliverySlot = Optional.of(new DeliverySlot(slot));
             return this;
         }
@@ -300,7 +339,7 @@ public class DeliveryJob {
          * @param earn
          * @return
          */
-        public Builder earning(String earn) {
+        public Builder setEarning(String earn) {
             this.earning = Optional.of(new Earning(earn));
             return this;
         }
@@ -311,7 +350,7 @@ public class DeliveryJob {
          * @param isDelivered
          * @return
          */
-        public Builder isDelivered(boolean isDelivered) {
+        public Builder setDeliveredStatus(boolean isDelivered) {
             this.isDelivered = isDelivered;
             return this;
         }
@@ -322,7 +361,7 @@ public class DeliveryJob {
          * @param description
          * @return
          */
-        public Builder description(String description) {
+        public Builder setDescription(String description) {
             this.description = description;
             return this;
         }

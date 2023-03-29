@@ -264,6 +264,25 @@ public class MainWindow extends UiPart<Stage> {
     private void handleTimetable() {
         if (!timetableWindow.isShowing()) {
             logger.info("Opened timetable window of current week.");
+            try {
+                CommandResult commandResult = logic.execute("timetable");
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } catch (CommandException | ParseException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
+            timetableWindow.show();
+            timetableWindow.fillInnerParts();
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
+    /**
+     * Opends timetable window
+     */
+    private void openTimetable() {
+        if (!timetableWindow.isShowing()) {
+            logger.info("Opened timetable window of current week.");
             timetableWindow.show();
             timetableWindow.fillInnerParts();
         } else {
@@ -278,6 +297,12 @@ public class MainWindow extends UiPart<Stage> {
     private void handleUnscheduledTimetable() {
         if (!unscheduleWindow.isShowing()) {
             logger.info("Opened window of unscheduled jobs.");
+            try {
+                CommandResult commandResult = logic.execute("timetable_unscheduled");
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } catch (CommandException | ParseException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
             unscheduleWindow.show();
             unscheduleWindow.fillInnerParts();
         } else {
@@ -292,6 +317,12 @@ public class MainWindow extends UiPart<Stage> {
     private void handleCompletedTimetable() {
         if (!completeWindow.isShowing()) {
             logger.info("Opened window of completed jobs.");
+            try {
+                CommandResult commandResult = logic.execute("timetable_completed");
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } catch (CommandException | ParseException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
             completeWindow.show();
             completeWindow.fillInnerParts();
         } else {
@@ -394,7 +425,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowTimetable()) {
-                handleTimetable();
+                openTimetable();
             }
 
             if (commandResult.isShowUnschedule()) {
