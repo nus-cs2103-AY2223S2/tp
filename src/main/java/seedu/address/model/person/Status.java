@@ -27,7 +27,6 @@ public class Status {
      * @param statusDetail A valid status input of the student.
      */
     public Status(String statusDetail) {
-        System.out.println("status checked pass");
         requireNonNull(statusDetail);
         checkArgument(isValidStatus(statusDetail), MESSAGE_CONSTRAINTS);
         fullStatusDetail = statusDetail;
