@@ -2,12 +2,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="eventContainer" spacing="5" styleClass="pane-with-rounded-corner-accented, pv"
+<VBox fx:id="eventContainer" spacing="20" styleClass="pane-with-rounded-corner-accented, pv"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <HBox styleClass="ph">
         <VBox spacing="5" HBox.hgrow="ALWAYS">
@@ -24,7 +23,6 @@
         </VBox>
     </HBox>
     <VBox fx:id="attendeesCard" spacing="5">
-        <Separator />
         <Label text="Attendees" styleClass="label-p, ph" />
         <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER"
                     minHeight="-Infinity" styleClass="pane-transparent, p0">
