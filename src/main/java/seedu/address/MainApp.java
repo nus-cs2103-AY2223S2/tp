@@ -100,6 +100,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ExpenseTracker");
             initialData = new ExpenseTracker();
         }
+        logger.info("fine");
 
         return new ModelManager(initialData, userPrefs);
     }

@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Unmodifiable view of an address book
@@ -24,5 +25,7 @@ public interface ReadOnlyExpenseTracker {
     Budget getBudget();
 
     ObjectProperty<Budget> getBudgetForStats();
+
+    ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
 
 }

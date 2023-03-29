@@ -80,6 +80,10 @@ public class RecurringExpenseManager {
         return expenses;
     }
 
+    public void setExpenseCategory(Category expenseCategory) {
+        this.expenseCategory = expenseCategory;
+    }
+
     public void editRecurringExpenseName(String name) {
         expenseName = name;
     }
@@ -98,6 +102,36 @@ public class RecurringExpenseManager {
 
     public double getTotalAmount() {
         return expenseAmount * numberOfExpenses;
+    }
+
+    public LocalDate getNextExpenseDate() {
+        return nextExpenseDate;
+    }
+
+    public LocalDate getExpenseStartDate() {
+        return startDate;
+    }
+
+    public RecurringExpenseType getRecurringExpenseType() {
+        return recurringExpenseType;
+    }
+
+    public LocalDate getExpenseEndDate() {
+        return endDate;
+    }
+
+    public String getExpenseName() {
+        return expenseName;
+    }
+
+
+
+    public Category getExpenseCategory() {
+        return expenseCategory;
+    }
+
+    public double getExpenseAmount() {
+        return expenseAmount;
     }
 
     @Override

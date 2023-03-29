@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(dataModel);
 
         try {
+            logger.info("expense tracker before save " + dataModel.getExpenseTracker().getCategoryList().size());
             storage.saveExpenseTracker(dataModel.getExpenseTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

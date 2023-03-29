@@ -70,6 +70,7 @@ public class JsonExpenseTrackerStorage implements ExpenseTrackerStorage {
         requireNonNull(expenseTracker);
         requireNonNull(filePath);
 
+        logger.info(expenseTracker.getRecurringExpenseGenerators().toString());
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableExpenseTracker(expenseTracker), filePath);
     }
