@@ -123,6 +123,15 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredRecipeList());
     }
 
+    public static void assertCommandFailure(Command command, Model actualModel, CommandResult expectedCommandResult) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
      * {@code model}'s address book.

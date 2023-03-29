@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.commons.core.Messages.MESSAGE_DISPLAY_STORED_SUBS;
+import static seedu.recipe.commons.core.Messages.MESSAGE_NO_STORED_SUBS;
 
 /**
  * Searches all recipes within the recipe book for stored ingredient substitutions for given ingredient, and returns a
@@ -27,12 +29,6 @@ public class SubCommand extends Command {
             + "specified ingredient (case insensitive) and displays them in a list.\n"
             + "Parameters: INGREDIENT\n"
             + "Example: " + COMMAND_WORD + " chicken";
-
-    public static final String MESSAGE_NO_STORED_SUBS = "No substitutions are available. Check back later or " +
-            "update the RecipeBook with some suggested substitutions!";
-
-    public static final String MESSAGE_DISPLAY_STORED_SUBS = "Here's a list of potential substitutes for the " +
-            "ingredient %s: \n%s";
 
     private final Ingredient queryIngredient;
 
