@@ -62,6 +62,15 @@ class AvailableDatesWithinRangePredicateTest {
     }
 
     @Test
+    public void test_availableDatesEmpty_returnsTrue() {
+        // no dates specified
+        AvailableDatesWithinRangePredicate<Person> predicate =
+                new AvailableDatesWithinRangePredicate<>(firstDate, secondDate);
+        assertTrue(predicate.test(new ElderlyBuilder().build()));
+        assertTrue(predicate.test(new VolunteerBuilder().build()));
+    }
+
+    @Test
     public void test_availableDatesNotWithinRange_returnsFalse() {
         // start date later
         AvailableDatesWithinRangePredicate<Person> predicate =
