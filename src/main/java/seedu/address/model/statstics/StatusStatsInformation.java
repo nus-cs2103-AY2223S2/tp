@@ -1,7 +1,10 @@
-package seedu.address.model;
+package seedu.address.model.statstics;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.StatusPredicate;
@@ -16,8 +19,7 @@ public class StatusStatsInformation extends StatsInformation {
         this.model = model;
         this.status = status;
         this.description = status.toString();
-        this.numberOfInternshipApplication = getNumberOfApplicationWithStatus(
-            InternshipStatus.valueOf(description));
+        this.numberOfInternshipApplication = getNumberOfApplicationWithStatus(InternshipStatus.valueOf(description));
     }
 
     @Override
@@ -49,13 +51,13 @@ public class StatusStatsInformation extends StatsInformation {
     }
 
     /**
-     * Returns true if both internship applications have the same description. The number of internship application
-     * is not compared for equality check.
+     * Returns true if both internship applications have the same description and the number of internship application.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof StatusStatsInformation // instanceof handles nulls
-                && description.equals(((StatusStatsInformation) other).description)); // state check
+                && description.equals(((StatusStatsInformation) other).description) // state check
+                && numberOfInternshipApplication == ((StatusStatsInformation) other).numberOfInternshipApplication);
     }
 }

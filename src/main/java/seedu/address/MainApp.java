@@ -23,7 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyNote;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.StatsManager;
+import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;

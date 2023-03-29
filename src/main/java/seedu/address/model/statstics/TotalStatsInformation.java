@@ -1,6 +1,9 @@
-package seedu.address.model;
+package seedu.address.model.statstics;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 
 public class TotalStatsInformation extends StatsInformation {
@@ -47,6 +50,7 @@ public class TotalStatsInformation extends StatsInformation {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TotalStatsInformation // instanceof handles nulls
-                && description.equals(((TotalStatsInformation) other).description)); // state check
+                && description.equals(((TotalStatsInformation) other).description) // state check
+                && numberOfInternshipApplication == ((TotalStatsInformation) other).numberOfInternshipApplication);
     }
 }

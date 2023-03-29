@@ -1,4 +1,6 @@
-package seedu.address.model;
+package seedu.address.model.statstics;
+
+import javafx.beans.Observable;
 
 public abstract class StatsInformation {
     public abstract void updateStatsInformation();

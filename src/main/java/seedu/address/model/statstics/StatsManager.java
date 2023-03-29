@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.statstics;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,16 +7,20 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.model.Model;
 import seedu.address.model.person.InternshipStatus;
 
 public class StatsManager {
     private final Model model;
     private final ObservableList<StatsInformation> statsInformations;
+    private final FilteredList<StatsInformation> filteredStatsInformations;
 
     public StatsManager(Model model) {
         requireNonNull(model);
         this.model = model;
         this.statsInformations = FXCollections.observableArrayList();
+        this.filteredStatsInformations = new FilteredList<>(statsInformations);
         this.initStatsInformation();
     }
 
@@ -35,7 +39,11 @@ public class StatsManager {
         }
     }
 
-    public ObservableList<StatsInformation> getStatsInformations() {
-        return statsInformations;
+    public void updateFilteredStatsInformationList() {
+        filteredStatsInformations.setPredicate(p -> true);
+    }
+
+    public FilteredList<StatsInformation> getFilteredStatsInformations() {
+        return filteredStatsInformations;
     }
 }

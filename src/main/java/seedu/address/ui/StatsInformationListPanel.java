@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -9,8 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.StatsInformation;
-import seedu.address.model.StatsManager;
+import seedu.address.model.statstics.StatsInformation;
+import seedu.address.model.statstics.StatsManager;
 
 /**
  * Panel containing the list of statistics information.
@@ -18,6 +19,8 @@ import seedu.address.model.StatsManager;
 public class StatsInformationListPanel extends UiPart<Region> {
     private static final String FXML = "StatsInformationListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicationListPanel.class);
+
+    private final StatsManager statsManager;
 
     @FXML
     private ListView<StatsInformation> statsInformationListView;
@@ -30,7 +33,8 @@ public class StatsInformationListPanel extends UiPart<Region> {
      */
     public StatsInformationListPanel(StatsManager statsManager) {
         super(FXML);
-        statsInformationListView.setItems(statsManager.getStatsInformations());
+        this.statsManager = statsManager;
+        statsInformationListView.setItems(statsManager.getFilteredStatsInformations());
         statsInformationListView.setCellFactory(listView -> new StatsInformationListViewCell());
     }
 
@@ -39,10 +43,7 @@ public class StatsInformationListPanel extends UiPart<Region> {
     }
 
     public void updateDisplay() {
-        ObservableList<StatsInformation> l = statsInformationListView.getItems();
-        for (StatsInformation s: l) {
-            s.updateStatsInformation();
-        }
+        statsManager.updateFilteredStatsInformationList();
     }
 
     /**

@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.StatsInformation;
+import seedu.address.model.statstics.StatsInformation;
 
 /**
  * An UI component that displays information of a {@code StatsInformation}.
@@ -36,6 +36,7 @@ public class StatsInformationCard extends UiPart<Region> {
     public StatsInformationCard(StatsInformation statsInformation) {
         super(FXML);
         this.statsInformation = statsInformation;
+        updateStatsInformation();
         description.setText(statsInformation.getDescription());
         Number s = statsInformation.getStatsInformation();
         stats.setText(s.toString());
