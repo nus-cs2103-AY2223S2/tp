@@ -70,7 +70,12 @@ public class ApplicationCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Initialises JavaFX nodes for displaying task description and deadline.
+     * @param application Application to initialise task details for.
+     */
     public void initialiseTaskDetails(Application application) {
+        assert application.hasTask();
         HBox deadlineContainer = new HBox();
         HBox descriptionContainer = new HBox();
 
@@ -90,6 +95,9 @@ public class ApplicationCard extends UiPart<Region> {
         taskDetails.getChildren().addAll(descriptionContainer, deadlineContainer);
     }
 
+    /**
+     * Configures background colour of status labels depending on its value.
+     */
     public void setStatusColour() {
         if (status.getText().equals(Status.StatusType.INTERESTED.toString())) {
             status.setStyle("-fx-background-color:#91d7ff");
