@@ -6,6 +6,7 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
 import seedu.internship.logic.commands.Command;
@@ -15,7 +16,6 @@ import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.UpcomingCommand;
 import seedu.internship.logic.commands.ViewCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
