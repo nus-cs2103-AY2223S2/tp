@@ -154,11 +154,11 @@ To represent a patient, `Patient` contains the Identity and Medical information 
   * The `allergies` of the patient
   * The `vaccines` of the patient
 
-`Patient` have limitations on its attributes according to the [Non-Functional Requirement](#non-functional-requirement).
+`Patient` have limitations on its attributes according to the [Non-Functional Requirements](#non-functional-requirements).
 
 #### PatientManager
 
-On top of storing `Patient` objects, `PatientManager` ensures the patient's vaccination records are updated if the name of a vaccination changes. It also ensures that there is a maximum limit of `Patient` objects allowed to be stored according to the [Non-Functional Requirement](#non-functional-requirement).
+On top of storing `Patient` objects, `PatientManager` ensures the patient's vaccination records are updated if the name of a vaccination changes. It also ensures that there is a maximum limit of `Patient` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Vaccination component
 
@@ -177,7 +177,7 @@ To represent a vaccination, `VaxType` contains the following attributes:
 
 #### VaxTypeManager
 
-On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there is a maximum limit of `VaxType` objects allowed to be stored according to the [Non-Functional Requirement](#non-functional-requirement).
+On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there is a maximum limit of `VaxType` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Appointment component
 
@@ -838,7 +838,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
   * 2a1. VMS shows an error message.<br>
     Use case resumes from step 1.
 
-### Non-Functional Requirements {#non-functional-requirement}
+### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to handle the following limits without any noticeable sluggishness in performance on typical usage:
