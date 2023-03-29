@@ -2,9 +2,13 @@ package seedu.internship.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.StringUtil;
@@ -34,6 +38,23 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+    /**
+     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
+     * @throws ParseException if any specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        List<String> tokens = Arrays.asList(oneBasedIndexes.split("\\s+"))
+                .stream()
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
+        List<Index> result = new ArrayList<>();
+        for (String index: tokens) {
+            result.add(parseIndex(index));
+        }
+
+        return result;
     }
 
     /**
