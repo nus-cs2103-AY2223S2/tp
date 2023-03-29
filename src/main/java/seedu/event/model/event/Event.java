@@ -11,7 +11,7 @@ import seedu.event.model.contact.Contact;
 import seedu.event.model.tag.Tag;
 
 /**
- * Represents an Event in the address book.
+ * Represents an Event in the event book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.event.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Event's rate in the address book.
+ * Represents an Event's rate in the event book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRate(String)}
  */
 public class Rate {

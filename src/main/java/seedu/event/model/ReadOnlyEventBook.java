@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.event.model.event.Event;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an event book
  */
 public interface ReadOnlyEventBook {
 
