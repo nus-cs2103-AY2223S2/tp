@@ -1,42 +1,66 @@
 {
   "categories" : [ {
-    "categoryName" : "test",
+    "categoryName" : "t",
     "summary" : ""
   } ],
-  "expenses" : [ {
-    "name" : "test0",
-    "amount" : "50.0",
-    "date" : "2023-03-28",
-    "category" : {
-      "categoryName" : "test",
-      "summary" : ""
-    }
-  }, {
-    "name" : "test1",
-    "amount" : "30.0",
-    "date" : "2023-02-20",
-    "category" : {
-      "categoryName" : "test",
-      "summary" : ""
-    }
-  }, {
-    "name" : "test2",
-    "amount" : "10.0",
-    "date" : "2023-03-20",
-    "category" : {
-      "categoryName" : "test",
-      "summary" : ""
-    }
-  }, {
-    "name" : "test3",
-    "amount" : "12.0",
-    "date" : "2023-03-28",
-    "category" : {
-      "categoryName" : "test",
-      "summary" : ""
-    }
-  } ],
+  "expenses" : [ ],
   "budget" : {
-    "amount" : "50.0"
-  }
+    "amount" : "0.0"
+  },
+  "recurringGenerators" : [ {
+    "expenseName" : "test",
+    "expenseAmount" : "10.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2023-03-31",
+    "startDate" : "2023-03-10",
+    "endDate" : "null",
+    "recurringExpenseType" : "WEEKLY"
+  }, {
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2023-04-01",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "MONTHLY"
+  }, {
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2023-03-29",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "WEEKLY"
+  }, {
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2023-03-30",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "DAILY"
+  }, {
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2023-03-29",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "WEEKLY"
+  } ]
 }

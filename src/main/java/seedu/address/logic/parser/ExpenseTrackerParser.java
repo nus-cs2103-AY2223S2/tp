@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.commands.AddExpenseCommand;
+import seedu.address.logic.commands.AddRecurringExpenseCommand;
 import seedu.address.logic.commands.CategorySummaryCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -96,6 +97,9 @@ public class ExpenseTrackerParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case AddRecurringExpenseCommand.COMMAND_WORD:
+            return new AddRecurringExpenseParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

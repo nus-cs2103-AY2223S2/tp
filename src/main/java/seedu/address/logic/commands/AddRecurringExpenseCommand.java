@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.category.Category;
 import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
@@ -53,6 +54,15 @@ public class AddRecurringExpenseCommand extends Command {
         if (dataModel.hasRecurringExpense(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECURRING_EXPENSE);
         }
+
+        Category newCategory = toAdd.getExpenseCategory();
+        Category existingCategory = dataModel.getCategoryInstance(newCategory);
+        if (existingCategory != null) {
+            toAdd.setExpenseCategory(existingCategory);
+        } else {
+            dataModel.addCategory(newCategory);
+        }
+
         dataModel.addRecurringGenerator(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);
     }
