@@ -24,7 +24,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `add_contact` and `edit_status` in [#45](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/45).
     * Developer Guide:
-        * To be added soon 
+        * To be added soon
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): To be added soon
