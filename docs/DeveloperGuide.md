@@ -464,7 +464,7 @@ Additionally, the command line only provides a restricted view and input option 
 
 [↑ Back to top](#table-of-contents)
 
-#### \[Proposed\] Sort feature
+### \[Proposed\] Sort feature
 
 #### Proposed Implementation
 
@@ -502,7 +502,7 @@ _{more aspects to be added}_
 
 [↑ Back to top](#table-of-contents)
 
-#### Show feature
+### Show feature
 
 #### Implementation Details
 The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature. <br>
@@ -528,9 +528,9 @@ will not be visible. Hence, `show` allows users to view the full remark in the `
 
 [↑ Back to top](#table-of-contents)
 
-#### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature
 
-##### Proposed Implementation
+#### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -593,7 +593,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-##### Design considerations:
+#### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
