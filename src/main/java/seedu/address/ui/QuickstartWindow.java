@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.io.*;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Pagination;
@@ -14,6 +16,8 @@ import javafx.util.Callback;
 public class QuickstartWindow extends UiPart<Stage> {
 
     private static final String FXML = "QuickstartWindow.fxml";
+
+    private boolean firstTimeFocus;
 
     @FXML
     private Pagination quickPagination;
@@ -46,6 +50,31 @@ public class QuickstartWindow extends UiPart<Stage> {
                 return quickImageView;
             }
         });
+        if(this.checkFirstTime()) {
+            this.show();
+            this.firstTimeFocus = true;
+        } else {
+            this.firstTimeFocus = false;
+        }
+    }
+
+    public boolean getFirstTimeFocus() {
+        return this.firstTimeFocus;
+    }
+
+    public static boolean checkFirstTime() {
+        boolean returnBool = false;
+        try {
+            String firstTimeIndicatorTextDir = System.getProperty("user.dir") + "/firstTimeUser.txt";
+            File fileToCheckFirstTime = new File(firstTimeIndicatorTextDir);
+            if (!fileToCheckFirstTime.exists()) {
+                returnBool = true;
+                fileToCheckFirstTime.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnBool;
     }
 
     /**

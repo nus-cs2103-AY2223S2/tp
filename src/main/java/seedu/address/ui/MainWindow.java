@@ -93,8 +93,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         quickstartWindow = new QuickstartWindow();
-
-
     }
 
     public Stage getPrimaryStage() {
@@ -175,6 +173,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        if (quickstartWindow.getFirstTimeFocus()) {
+            quickstartWindow.show();
+            quickstartWindow.focus();
+        }
     }
 
     /**
