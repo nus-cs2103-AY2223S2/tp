@@ -242,12 +242,12 @@ Other parameters that end with `…​` like in `[mod/MODULE]…​` indicates t
 
 Suppose you have a friend whom you call Lineup Larry. His phone number is 91234567, and he stays on campus in UTown Residences. His Telegram username is lineuplarry, takes the modules CS2103T and CS2101, and is in the Art Club.
 
-`NAME`: Lineup Larry<br>
-`PHONE`: 91234567<br>
-`ADDRESS`: UTown Residences<br>
-`TELEGRAM`: lineuplarry<br>
-`MODULE`: CS2103T, CS2101<br>
-`CCA`: Art Club
+>`NAME`: Lineup Larry<br>
+>`PHONE`: 91234567<br>
+>`ADDRESS`: UTown Residences<br>
+>`TELEGRAM`: lineuplarry<br>
+>`MODULE`: CS2103T, CS2101<br>
+>`CCA`: Art Club
 
 The command you would enter into the command box would be:<br>
 `add n/Lineup Larry p/91234567 a/UTown Residences tg/lineuplarry mod/CS2103T mod/CS2101 cca/Art Club`
