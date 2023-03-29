@@ -14,6 +14,7 @@ public class CommandHistory {
     public CommandHistory() {
         commandList = new ArrayList<>();
         modifyingCommandHistoryIndexes = new ArrayList<>();
+        modifyingCommandHistoryIndexes.add(-1);
         currentStatePointer = 0;
     }
 
