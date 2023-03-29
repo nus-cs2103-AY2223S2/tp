@@ -87,7 +87,7 @@
 }
 
 .split-pane > .split-pane-divider {
-    -fx-padding: 0.5rem;
+    -fx-padding: 1px;
 }
 
 .split-pane {
@@ -362,5 +362,5 @@
     -fx-border-radius: 3;
     -fx-background-radius: 3;
     -fx-font-size: 12;
-    -fx-font-weight: semi_bold;
+    -fx-font-weight: normal;
 }
