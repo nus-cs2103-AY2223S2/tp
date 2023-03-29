@@ -15,10 +15,7 @@ public class ShowCommand extends Command {
             + "Parameters: TEAM_NAME\n"
             + "Example: " + COMMAND_WORD + " Team A";
 
-    public static final String MESSAGE_TEAM_NOT_FOUND = "This team have not been created yet";
-
     private final TeamContainsKeywordsPredicate predicate;
-    private final boolean isValid;
 
     /**
      * Initializes a ShowCommand with the given predicate.
@@ -26,15 +23,11 @@ public class ShowCommand extends Command {
     public ShowCommand(boolean isValid, TeamContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
-        this.isValid = isValid;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (!isValid) {
-            return new CommandResult(MESSAGE_TEAM_NOT_FOUND);
-        }
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getSortedPersonList().size()));
