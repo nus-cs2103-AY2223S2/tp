@@ -11,7 +11,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Command summary](#command-summary)
-    * [Add event](#add) : `add` command
+    * [Add new event](#add) : `add` command
     * [Repeat existing event](#recur) : `recur` command
     * [Delete event](#delete) : `delete` command
     * [List all events](#list) : `list` command
@@ -42,20 +42,20 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 <h2 id="command-summary">Command Summary</h2>
 
-| Action |                    Command Format                    |
-|:-------|:----------------------------------------------------:|
+| Action | Command Format                                       |
+|:-------|:-----------------------------------------------------|
  | Add    | `add n/<event> d/<date> s/<start time> e/<end time>` |
-| Delete |                   `delete <index>`                   |
-| List   |                        `list`                        |
-| Next   |               `next` or `next <count>`               |
-| Find   |                   `find <keyword>`                   |
-| Help   |                        `help`                        |
-| Exit   |                        `exit`                        |
+| Delete | `delete <index>`                                     |
+| List   | `list`                                               |
+| Next   | `next` or `next <count>`                             |
+| Find   | `find <keyword>`                                     |
+| Help   | `help`                                               |
+| Exit   | `exit`                                               |
 
 [[Back to top](#index)]
 
 
-<h3 id="add">Add Event</h3>
+<h3 id="add">Add New Event</h3>
 
 Adds an event into the Scheduler.
 
@@ -106,11 +106,15 @@ Example: `list`
 
 <h3 id="next">Retrieve next event</h3>
 
-Searches the Scheduler and returns the next upcoming event start time.
+Shows the next upcoming event(s).
 
-Format: `next event`
+Format: `next <count>`
 
-Example: `next event`<br><br>
+Parameter:\
+`<count>`: Number of upcoming events to show. Optional. 
+If not indicated, only the next one event is shown
+
+Example: `next` or `next 2`
 
 [[Back to top](#index)]
 
@@ -151,7 +155,7 @@ Example: `exit`<br><br>
 
 
 <h1 id="limitations">Limitations</h1>
-
+-------------------------------------
 * Currently, we only support same-day events.
   Events which are stretched across multiple days are not supported.
 
@@ -159,7 +163,7 @@ Example: `exit`<br><br>
 
 
 <h1 id="faq">FAQ</h1>
-
+---------------------
 **Q:** On a scale of 1 to 10, how awesome is this product?
 
 **A:** 10<br><br>
