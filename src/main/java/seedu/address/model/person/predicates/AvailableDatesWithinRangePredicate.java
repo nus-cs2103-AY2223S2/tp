@@ -4,9 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.information.AvailableDate;
 
 /**
  * Tests that a {@code Person}'s {@code AvailableDate} contains the given date range.
@@ -29,8 +31,11 @@ public class AvailableDatesWithinRangePredicate<T extends Person> implements Pre
 
     @Override
     public boolean test(T object) {
-        return object.getAvailableDates().stream().anyMatch(
-                range -> !range.getStartDate().isAfter(startDate) && !range.getEndDate().isBefore(endDate));
+        Set<AvailableDate> dateSet = object.getAvailableDates();
+
+        return dateSet.isEmpty()
+                || dateSet.stream().anyMatch(range ->
+                !range.getStartDate().isAfter(startDate) && !range.getEndDate().isBefore(endDate));
     }
 
     @Override
