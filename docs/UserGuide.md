@@ -53,7 +53,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -103,7 +103,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book in Customer Window.
 
 Format: `list`
 
