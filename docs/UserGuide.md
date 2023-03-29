@@ -51,10 +51,11 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 | Find   |                   `find <keyword>`                   |
 | Help   |                        `help`                        |
 | Exit   |                        `exit`                        |
+
 [[Back to top](#index)]
 
-<h3 id="add">Adding a event: `add`</h3>
- --------------------------------------
+
+<h3 id="add">Add Event</h3>
 
 Adds an event into the Scheduler.
 
