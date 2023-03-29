@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,9 +14,11 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Template;
 import seedu.address.model.util.ComposedPredicate;
 
 /**
@@ -30,7 +34,7 @@ public class ModelManager implements Model {
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
-    private FilteredList<Entity> filteredActive;
+    private final FilteredList<Entity> filteredActive;
 
     private Entity currentSelectedEntity;
 
@@ -69,14 +73,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -104,13 +108,27 @@ public class ModelManager implements Model {
     //=====================================Rerollllll==============================
 
     @Override
+    public ReadOnlyReroll getReroll() {
+        return reroll;
+    }
+
+    @Override
     public void setReroll(ReadOnlyReroll reroll) {
         this.reroll.resetData(reroll);
     }
 
     @Override
-    public ReadOnlyReroll getReroll() {
-        return reroll;
+    public Predicate<Entity> getClassificationPredicate(Classification classification) {
+        requireNonNull(classification);
+        if (classification.isMob()) {
+            return PREDICATE_IS_MOB;
+        } else if (classification.isCharacter()) {
+            return PREDICATE_IS_CHARACTER;
+        } else if (classification.isItem()) {
+            return PREDICATE_IS_ITEM;
+        }
+        return PREDICATE_SHOW_ALL_ENTITIES;
+
     }
 
     @Override
@@ -127,10 +145,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEntityList(Predicate<Entity> predicate) {
+        requireNonNull(predicate);
+        filteredActive.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void deleteEntities(List<Entity> entities) {
+        for (int i = entities.size() - 1; i >= 0; i--) {
+            deleteEntity(entities.get(i));
+        }
+
+    }
+
+    @Override
     public void deleteEntity(Entity key) {
         requireNonNull(key);
         reroll.deleteEntity(key);
     }
+
+    // =========== List operations
 
     @Override
     public void setEntity(Entity target, Entity edited) {
@@ -138,8 +173,6 @@ public class ModelManager implements Model {
 
         reroll.setEntity(target, edited);
     }
-
-    // =========== List operations
 
     @Override
     public void listItems() {
@@ -151,12 +184,31 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_IS_CHARACTER);
     }
 
+    //=========== Filtered Entity List Accessors =============================================================
+
     @Override
     public void listMobs() {
         updateFilteredEntityList(PREDICATE_IS_MOB);
     }
 
-    //=========== Filtered Entity List Accessors =============================================================
+    /**
+     * Returns the entities listed by the given predicate
+     * without modifying the selection
+     *
+     * @param predicate
+     */
+    @Override
+    public List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate) {
+        Predicate<? super Entity> previousPredicate = filteredActive.getPredicate();
+        filteredActive.setPredicate(predicate);
+        List<Entity> result = new ArrayList<>();
+
+        for (Entity e : getFilteredEntityList()) {
+            result.add(e);
+        }
+        filteredActive.setPredicate(previousPredicate);
+        return result;
+    }
 
     @Override
     public ObservableList<Entity> getFilteredEntityList() {
@@ -164,18 +216,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredEntityList(Predicate<Entity> predicate) {
-        requireNonNull(predicate);
-        filteredActive.setPredicate(predicate);
+    public Predicate<? super Entity> getCurrentPredicate() {
+        return filteredActive.getPredicate();
     }
 
     @Override
-    public void addFilteredEntityList(Predicate<Entity> predicate) {
+    public void addPredicate(Predicate<Entity> predicate) {
         requireNonNull(predicate);
         filteredActive.setPredicate(new ComposedPredicate<>(filteredActive.getPredicate(), predicate));
     }
-
-
 
     // Reset
     @Override
@@ -208,5 +257,10 @@ public class ModelManager implements Model {
         }
         requireNonNull(entities);
         return entities;
+    }
+
+    @Override
+    public ObservableList<Template> getTemplates() {
+        return reroll.getTemplates();
     }
 }
