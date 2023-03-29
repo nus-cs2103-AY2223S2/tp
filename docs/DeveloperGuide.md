@@ -2,7 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-## About TeachMeSenpai
+## **About TeachMeSenpai**
+
 TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of 
 students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a 
 **Graphical User Interface (GUI)**. 
