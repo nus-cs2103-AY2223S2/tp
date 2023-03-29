@@ -28,16 +28,6 @@ public class JsonTrackerStorageTest {
         assertThrows(NullPointerException.class, () -> readTracker(null));
     }
 
-    private java.util.Optional<ReadOnlyTracker> readTracker(String filePath) throws Exception {
-        return new JsonTrackerStorage(Paths.get(filePath)).readTracker(addToTestDataPathIfNotNull(filePath));
-    }
-
-    private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
-        return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
-                : null;
-    }
-
     @Test
     public void read_missingFile_emptyResult() throws Exception {
         assertFalse(readTracker("NonExistentFile.json").isPresent());
@@ -91,6 +81,21 @@ public class JsonTrackerStorageTest {
         assertThrows(NullPointerException.class, () -> saveTracker(null, "SomeFile.json"));
     }
 
+    @Test
+    public void saveTracker_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTracker(new Tracker(), null));
+    }
+
+    private java.util.Optional<ReadOnlyTracker> readTracker(String filePath) throws Exception {
+        return new JsonTrackerStorage(Paths.get(filePath)).readTracker(addToTestDataPathIfNotNull(filePath));
+    }
+
+    private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
+        return prefsFileInTestDataFolder != null
+                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
+                : null;
+    }
+
     /**
      * Saves {@code tracker} at the specified {@code filePath}.
      */
@@ -101,10 +106,5 @@ public class JsonTrackerStorageTest {
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
-    }
-
-    @Test
-    public void saveTracker_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTracker(new Tracker(), null));
     }
 }

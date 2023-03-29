@@ -3,6 +3,7 @@ package seedu.address.logic.commands.add;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -36,7 +37,8 @@ public class AddModuleCommand extends AddCommand {
         }
 
         model.addModule(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                new ModuleEditInfo(null, toAdd));
     }
 
     @Override

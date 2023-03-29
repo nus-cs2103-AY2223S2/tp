@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -62,7 +63,8 @@ public class EditModuleCommand extends EditCommand {
         }
 
         model.setModule(moduleToEdit, editedModule);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedModule),
+                new ModuleEditInfo(moduleToEdit, editedModule));
     }
 
     @Override

@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
@@ -47,6 +48,7 @@ public class VideoUtil {
         sb.append(video.getName() + " ");
         sb.append(PREFIX_MODULE + " " + moduleCode.toString() + " ");
         sb.append(PREFIX_LECTURE + " " + lectureName.toString() + " ");
+        sb.append(PREFIX_TIMESTAMP + " " + video.getTimestamp() + " ");
 
         if (!video.getTags().isEmpty()) {
             sb.append(PREFIX_TAG + " " + TagUtil.getTagsStr(video.getTags()) + " ");
@@ -106,6 +108,8 @@ public class VideoUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
         descriptor.hasWatched().ifPresent(hasWatched -> sb.append(hasWatched ? PREFIX_WATCH : PREFIX_UNWATCH)
                 .append(" "));
+        descriptor.getTimestamp().ifPresent(timestamp -> sb.append(PREFIX_TIMESTAMP)
+                .append(" " + timestamp.toString()).append(" "));
         descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
                 .append(" "));
         return sb.toString();

@@ -2,6 +2,7 @@ package seedu.address.logic.injector;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import java.util.regex.Matcher;
 
@@ -37,14 +38,20 @@ public class NavigationInjector extends Injector {
 
         final String arguments = matcher.group("arguments");
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_MODULE, PREFIX_LECTURE);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ROOT, PREFIX_MODULE, PREFIX_LECTURE);
         NavigationContext navContext = model.getCurrentNavContext();
         return injectMissingArgs(commandText, argMultimap, navContext).trim();
     }
 
     private String injectMissingArgs(String commandText, ArgumentMultimap argMultimap, NavigationContext navContext) {
+        boolean rootSpecified = argMultimap.getValue(PREFIX_ROOT).isPresent();
         boolean lectureArgSpecified = argMultimap.getValue(PREFIX_LECTURE).isPresent();
         boolean moduleArgSpecified = argMultimap.getValue(PREFIX_MODULE).isPresent();
+
+        if (rootSpecified && !lectureArgSpecified && !moduleArgSpecified) {
+            return removeRootPrefix(commandText);
+        }
 
         if (!moduleArgSpecified) {
             commandText = injectModulePrefixArg(commandText, navContext);
@@ -54,6 +61,10 @@ public class NavigationInjector extends Injector {
         }
 
         return commandText;
+    }
+
+    private String removeRootPrefix(String commandText) {
+        return commandText.replaceAll(PREFIX_ROOT.getPrefix(), "");
     }
 
     private String injectModulePrefixArg(String commandText, NavigationContext navContext) {

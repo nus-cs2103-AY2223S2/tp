@@ -7,6 +7,7 @@
       "videos" : [ {
         "name" : "Vid 1",
         "hasWatched" : true,
+        "timestamp" : "00:00:00",
         "tagged" : [ "Algo" ]
       } ],
       "tagged" : [ "Intro" ]
