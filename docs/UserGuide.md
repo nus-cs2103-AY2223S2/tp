@@ -27,12 +27,12 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
    * `listPerson` : Lists all contacts.
 
-   * `addPerson 1 n/Bob Tan p/97450597 e/btan@mail.com`: 
+   * `addPerson n/Bob Tan p/97450597 e/btan@mail.com a/ 313, Jurong East Street 32`: 
    Adds a contact named `Bob Tan` to records
 
    * `deletePerson 3` : Deletes the 3rd user shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Clears all persons and books in the ExpressLibrary.
 
    * `exit` : Exits the app.
 
@@ -69,47 +69,43 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 ### Person Commands
 
-### Adding a user: `addPerson`
+#### Adding a user: `addPerson`
 
 Adds a person to the ExpressLibrary.
 
 Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32 b/Harry Potter`
 
-### Deleting a person : `deletePerson`
+* `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32`
+
+#### Deleting a person : `deletePerson`
 
 Deletes a person at the specified person list index.
 
-Format: `deletePerson INDEX`
+Format: `deletePerson PERSON_INDEX`
 
-* Deletes the person at the specified STUDENT_ID.
+* Deletes the person at the specified PERSON_INDEX.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
+
 * `listPerson` followed by `deletePerson 2` deletes the 2nd person in the user records.
 
-### Listing all users : `listPerson`
-
-Shows a list of all users in the user records.
-
-Format: `listPerson`
-
-### Editing a person : `editPerson`
-
+#### Editing a person : `editPerson`
 
 Edits an existing person in the ExpressLibrary.
 
-Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editPerson PERSON_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-[//]: # ()
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 
 * At least one of the optional fields must be provided.
 
@@ -127,9 +123,14 @@ Examples:
 
 *  `editPerson 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `findPerson` 
 
-[//]: # (_Details coming soon ..._)
+#### Listing all users : `listPerson`
+
+Shows a list of all users in the user records.
+
+Format: `listPerson`
+
+#### Locating persons by name: `findPerson` 
 
 Finds persons whose names contain any of the given keywords.
 
@@ -149,7 +150,6 @@ Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-
 Examples:
 
 * `findPerson John` returns `john` , `John Doe` and `johnston`.
@@ -160,55 +160,73 @@ Examples:
 
 ### Book Commands
 
-### Adding a book: `addBook`
+#### Adding a book: `addBook`
 
-Adds a book to the book records
+Adds a book to the book records.
 
 Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
 
 Examples:
 * `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 
-### Deleting a book : `deleteBook`
+#### Deleting a book : `deleteBook`
 
-Delete a book given a book ID.
+Delete a book given an index in the book list.
 
-Format: `deleteBook BOOK_ID`
+Format: `deleteBook BOOK_INDEX`
 
-* Deletes the book at the specified BOOK_ID.
+* Deletes the book at the specified BOOK_INDEX.
 * The index refers to the index number shown in the displayed book list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
 * `listBook` followed by `deleteBook 2` deletes the 2nd book in the user records.
 
+#### Editing a book : `editBook`
 
-### Listing all books : `listBook`
+Edits an existing book in the book records.
+
+Format: `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`
+
+* Edits the book at the specified `BOOK_INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
+
+* At least one of the optional fields must be provided.
+
+* Existing values will be updated to the input values.
+
+Examples:
+
+*  `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+
+*  `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
+
+#### Listing all books : `listBook`
 
 Shows a list of all books in the book records.
 
 Format: `listBook`
 
-### Locate book by name: `findBook`
+#### Locate book by title: `findBook`
 
-Find books whose names contain any of the given keywords.
+Find books whose titles contain any of the given keywords.
 
 Format: `findBook KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `DUNE` will match `dune`
 * The order of the keywords does not matter. e.g. `Great Gatsby` will match `Gatsby Great`
-* Only the name is searched.
-* Only full words will be matched e.g. `Dun` will not match `Dune`
+* Only the title is searched.
 * Books matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Dune Great` will return `Dune`, `Great Gatsby`
 
 Examples:
-* `find The` returns `The Cat in the Hat` and `Call of the wild`
+* `find The` returns `The Cat in the Hat` and `Call of the Wild`
 * `find dune Cat` returns `Dune`, `The Cat in the Hat`
 
 [//]: # (add image later)
 
-### Borrowing a book : `borrow`
+### Common Commands
+
+#### Borrowing a book : `borrow`
 
 Lends a book to a person given a person index, book index and due date.
 
@@ -222,7 +240,7 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 Examples:
 * `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
 
-### Returning a book : `return`
+#### Returning a book : `return`
 
 Returns a person's borrowed book to the library given a person index and book index.
 
@@ -236,47 +254,41 @@ Format: `return PERSON_INDEX b/BOOK_INDEX`
 Examples:
 * `listBook/listPerson` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
 
-### Editing a book : `editBook`
-
-Edits an existing book in the book records.
-
-Format: `edit INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`
-
-* Edits the book at the specified `INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
-
-* At least one of the optional fields must be provided.
-
-* Existing values will be updated to the input values.
-
-Examples:
-
-*  `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
-
-*  `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
-
-
-### Common Functions
-
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from ExpressLibrary.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![helpMessage](images/helpMessage.png)
+
+Format: `help`
+
+### Colour coded due dates
+
+Expresslibrary automatically changes the color of due dates to alert the librarian when a book’s due date is within 3 days of the current date or has passed.
+
+![colourDates](images/colourDates.png)
+
+As clearly seen in the image above, if the due date is within 3 days of the current date, the color of the due date will turn yellow. If the due date has passed, the color of the due date will turn orange.
+
 ### Saving the data
 
-ExpressLibrary data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ExpressLibrary data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved) for more details.
 
 ### Editing the data file
 
-
-ExpressLibrary data are saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
+ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
@@ -284,7 +296,6 @@ ExpressLibrary data are saved as a JSON file `[JAR file location]/data/expressli
 If your changes to the data file makes its format invalid, ExpressLibrary will discard all data and start with an empty data file at the next run.
 
 </div>
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -302,20 +313,26 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 Action | Format, Examples
 --------|------------------
 **AddPerson** | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`
+**DeletePerson** | `deletePerson PERSON_INDEX`<br> e.g., `deletePerson 3`
 **EditPerson** | `editPerson INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
-**Help** | `help`
 
 #### Book
+
 Action | Format, Examples
 --------|------------------
-**List**| `listBook`
+**AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN…​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+**DeleteBook** | `deleteBook BOOK_INDEX`<br> e.g., `deleteBook 3`
+**EditBook** | `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
+**ListBook** | `listBook`
 
-#### General
+#### Common
+
 Action | Format, Examples
 --------|------------------
 **Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
 **Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
+**Clear** | `clear`
+**Help** | `help`
