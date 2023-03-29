@@ -425,6 +425,8 @@ The `edit` command:
 * At least one of the optional fields must be provided (e.g. `n/NAME`, `tg/TELEGRAM`).
 * Existing values will be updated to the input values.
 
+<div style="page-break-after: always"></div>
+
 **Edit Example:**
 
 **Input in Command Box:** `edit 1 p/12345678 e/james@example.com` 
@@ -457,6 +459,8 @@ The `add-t` command:
 * At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_NAME`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
 
+<div style="page-break-after: always"></div>
+
 **Add Tag Example:**
 
 **Input in Command Box:** `add-t 1 r/friends mod/CS2103T`
@@ -487,6 +491,8 @@ The `delete-t` command:
 * At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `CCA_POSITION_INDEX`).
 * The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
 
+<div style="page-break-after: always"></div>
+
 **Delete Tag Example:**
 
 **Input in Command Box:** `delete-t 1 mod/1`
@@ -513,6 +519,8 @@ The `delete` command:
 * The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 
+<div style="page-break-after: always"></div>
+
 **Delete Example 1:**
 
 `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
@@ -520,6 +528,8 @@ The `delete` command:
 **Before:**<br>![DeleteBefore1](images/DeleteBefore1.png)
 
 **After:**<br>![DeleteAfter1](images/DeleteAfter1.png)
+
+<div style="page-break-after: always"></div>
 
 **Delete Example 2:**
 
@@ -548,6 +558,8 @@ Examples:
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
+
+<div style="page-break-after: always"></div>
 
 **Search Example:**
 
