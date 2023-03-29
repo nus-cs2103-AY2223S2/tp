@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
 
@@ -10,11 +9,6 @@ import seedu.address.model.person.patient.Patient;
  */
 public interface ReadOnlyAddressBook {
 
-    /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
-     */
-    ObservableList<Person> getPersonList();
     /**
      * Returns an unmodifiable view of the doctors list.
      * This list will not contain any duplicate doctors.

@@ -14,7 +14,6 @@ import seedu.address.model.person.patient.Patient;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Doctor> PREDICATE_SHOW_ALL_DOCTORS = unused -> true;
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
@@ -57,11 +56,6 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
      * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
      */
     boolean hasDoctor(Doctor doctor);
@@ -70,12 +64,6 @@ public interface Model {
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
      */
     boolean hasPatient(Patient patient);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
 
     /**
      * Deletes the given doctor.
@@ -90,12 +78,6 @@ public interface Model {
     void deletePatient(Patient target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
      * Adds the given doctor.
      * {@code doctor} must not already exist in the address book.
      */
@@ -106,13 +88,6 @@ public interface Model {
      * {@code patient} must not already exist in the address book.
      */
     void addPatient(Patient patient);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
 
     /**
      * Replaces the given doctor {@code target} with {@code editedDoctor}.
@@ -129,20 +104,11 @@ public interface Model {
      */
     void setPatient(Patient target, Patient editedPatient);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
     /** Returns an unmodifiable view of the filtered doctor list */
     ObservableList<Doctor> getFilteredDoctorList();
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the filter of the filtered doctor list to filter by the given {@code predicate}.

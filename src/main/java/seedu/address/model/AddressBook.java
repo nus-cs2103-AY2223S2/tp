@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.UniqueDoctorList;
 import seedu.address.model.person.patient.Patient;
@@ -18,7 +16,6 @@ import seedu.address.model.person.patient.UniquePatientList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueDoctorList doctors;
     private final UniquePatientList patients;
 
@@ -30,7 +27,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         doctors = new UniqueDoctorList();
         patients = new UniquePatientList();
     }
@@ -46,14 +42,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Replaces the contents of the doctor list with {@code doctors}.
@@ -77,20 +65,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
         setDoctors(newData.getDoctorList());
         setPatients(newData.getPatientList());
     }
 
     //// person-level operations
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
 
     /**
      * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
@@ -108,13 +88,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return patients.contains(patient);
     }
 
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
 
     /**
      * Adds a doctor to the address book.
@@ -132,17 +105,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPatient(Patient patient) {
         patients.add(patient);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
     }
 
     /**
@@ -166,14 +128,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         patients.setPatient(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from {@code persons}.
-     * {@code key} must exist in {@code persons}.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     /**
@@ -204,11 +158,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return doctors.asUnmodifiableObservableList().size() + " doctors"
                 + " and " + patients.asUnmodifiableObservableList().size() + " patients";
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -244,7 +193,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
                 && doctors.equals(((AddressBook) other).doctors)
                 && patients.equals(((AddressBook) other).patients));
     }
