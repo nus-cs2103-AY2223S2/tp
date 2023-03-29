@@ -16,7 +16,7 @@ found that the completion of an internship increases one's chance of employment 
 To increase one's chances of successfully securing an internship, it is recommended that one sources out at least 50
 potential employers and submit a minimum of 20 internships applications. Being required to keep track of the
 application deadlines of multiple internships or finding ways to schedule interview timing so that they do not
-clash can be a confusing and time-consuming process.<br?>
+clash can be a confusing and time-consuming process.<br>
 
 Designed with internship-seeking <b>university students</b> in mind, <b>The Intern’s Ship (TinS)</b> aims to make
 managing your internship applications fuss-free. Optimized for use via a Command Line Interface (CLI), while still having
@@ -370,7 +370,7 @@ E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/I
 
 <tr>
 <td><b><a href="#list_function">List</a></b></td>
-<td><code>list</td>
+<td><code>list</code></td>
 </tr>
 
 <tr>
