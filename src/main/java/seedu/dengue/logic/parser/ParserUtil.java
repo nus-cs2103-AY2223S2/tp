@@ -2,8 +2,10 @@ package seedu.dengue.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,12 +32,26 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws seedu.dengue.logic.parser.exceptions.ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new seedu.dengue.logic.parser.exceptions.ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseMultiIndex(String oneBasedIndexes) throws ParseException {
+        List<Index> indexes = new ArrayList<>();
+        String[] splitIndexes = oneBasedIndexes.trim().split("\\s+");
+        for (int i = 0; i < splitIndexes.length; i++) {
+            indexes.add(parseIndex(splitIndexes[i]));
+        }
+        return indexes;
     }
 
     /**
