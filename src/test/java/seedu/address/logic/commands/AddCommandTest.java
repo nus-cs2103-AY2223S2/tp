@@ -213,11 +213,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<DeliveryJob> getCompletedDeliveryJobList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public LocalDate getFocusDate() {
             throw new AssertionError("This method should not be called.");
         }
@@ -274,11 +269,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setHasShown(int i, boolean b) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public Optional<Person> getPersonById(String id) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
@@ -299,18 +289,6 @@ public class AddCommandTest {
         public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
-        }
-
-        @Override
-        public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateSortedDeliveryJobListByComparator'");
-        }
-
-        @Override
-        public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getSortedDeliveryJobListByComparator'");
         }
 
     }

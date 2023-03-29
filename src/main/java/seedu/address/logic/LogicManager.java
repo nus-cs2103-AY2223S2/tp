@@ -4,10 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -49,10 +47,6 @@ public class LogicManager implements Logic {
         this.storage = storage;
         addressBookParser = new DukeDriverParser();
         timetableParser = new TimetableParser();
-    }
-
-    public Model getModel() {
-        return this.model;
     }
 
     @Override
@@ -111,11 +105,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
-        return model.getSortedDeliveryJobListByComparator();
-    }
-
-    @Override
     public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
         return model.getWeekDeliveryJobList();
     }
@@ -136,28 +125,6 @@ public class LogicManager implements Logic {
             }
         }
         return earnings;
-    }
-
-    @Override
-    public int getTotalCompleted(ObservableList<DeliveryJob> list) {
-        int completed = 0;
-        for (DeliveryJob job: list) {
-            if (job.getDeliveredStatus()) {
-                completed += 1;
-            }
-        }
-        return completed;
-    }
-
-    @Override
-    public int getTotalPending(ObservableList<DeliveryJob> list) {
-        int pending = 0;
-        for (DeliveryJob job: list) {
-            if (!job.getDeliveredStatus()) {
-                pending += 1;
-            }
-        }
-        return pending;
     }
 
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
@@ -195,32 +162,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void updateFilteredDeliveryJobList(Predicate<DeliveryJob> pre) {
-        model.updateFilteredDeliveryJobList(pre);
-    }
-
-    @Override
-    public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
-        model.updateSortedDeliveryJobList(sorter);
-    }
-
-    public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
-        model.updateSortedDeliveryJobListByComparator(sorter);
-    }
-
-    @Override
     public void updateSortedDeliveryJobListByDate() {
         model.updateSortedDeliveryJobListByDate();
-    }
-
-    @Override
-    public ObservableList<DeliveryJob> getCompletedDeliveryJobList() {
-        return model.getCompletedDeliveryJobList();
-    }
+    };
 
     @Override
     public LocalDate getFocusDate() {
         return model.getFocusDate();
     }
-
 }

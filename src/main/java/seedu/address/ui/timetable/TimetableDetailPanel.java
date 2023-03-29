@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -16,9 +15,9 @@ import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing timetable detail
+ * Controller for a timetable page
  */
-public class TimetableDetailPanel extends UiPart<Region> {
+public class TimetableDetailPanel extends UiPart<Region> /*implements Initializable*/ {
 
     private static final String FXML = "TimetablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -39,7 +38,7 @@ public class TimetableDetailPanel extends UiPart<Region> {
     private HBox jobListPanel;
 
     /**
-     * Creates a {@code TimetableDetailPanel} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
     public TimetableDetailPanel(LocalDate focusDate, Logic logic, Stage primaryStage) {
         super(FXML);
@@ -61,9 +60,7 @@ public class TimetableDetailPanel extends UiPart<Region> {
         Text year = new Text(String.valueOf(focusDate.getYear()));
         Text month = new Text(String.valueOf(focusDate.getMonth()));
         year.setFont(new Font(24));
-        year.setFill(Color.WHITE);
         month.setFont(new Font(24));
-        month.setFill(Color.WHITE);
 
         year.setText(String.valueOf(focusDate.getYear()));
         month.setText(String.valueOf(focusDate.getMonth()));
@@ -77,7 +74,6 @@ public class TimetableDetailPanel extends UiPart<Region> {
 
         logic.updateSortedDeliveryJobListByDate();
         logic.setWeekDeliveryJobList(focusDate);
-        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
 
     }
 }

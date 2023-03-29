@@ -3,9 +3,7 @@ package seedu.address.logic;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.Map;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -13,7 +11,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
@@ -46,8 +43,6 @@ public interface Logic {
 
     CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException, FileNotFoundException;
 
-    // ADDRESS BOOK SYSTEM ===================================
-
     /**
      * Returns the AddressBook.
      *
@@ -61,29 +56,17 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
-
-    // DELIVERY JOB SYSTEM ===================================
-
-    /**
      * Returns an unmodifiable view of the filtered list of delivery jobs
      */
     ObservableList<DeliveryJob> getFilteredDeliveryJobList();
 
     /**
-     * Returns an unmodifiable view of the sorted list of delivery jobs
-     */
-    ObservableList<DeliveryJob> getSortedDeliveryJobList();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of reminders
+     * Returns an unmodifiable view of the filtered list of persons
      */
     ObservableList<Reminder> getReminderList();
 
     /**
-     * Returns delivery job list in the week sorted into day
+     * Returns a map of delivery job list in the week
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 
@@ -93,32 +76,18 @@ public interface Logic {
      * @return job list in the specific day
      */
     DeliveryList getDayofWeekJob(int dayOfWeek);
-
     /**
-     * Returns an unmodifiable view of the list of unscheduled delivery jobs,
-     * sorted by time and earning
+     * Returns an unmodifiable view of the list of unscheduled delivery jobs
      */
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
-    /**
-     * Returns an unmodifiable view of the list of completed delivery jobs,
-     * sorted by time and earning
-     */
-    ObservableList<DeliveryJob> getCompletedDeliveryJobList();
 
-    /**
-     * Gets total earning of all jobs in job list
-     * @param list
-     */
     double getTotalEarnings(ObservableList<DeliveryJob> list);
 
     /**
-     * Gets total number of completed jobs in job list
-     * @param list
+     * Returns the user prefs' address book file path.
      */
-    int getTotalCompleted(ObservableList<DeliveryJob> list);
-
-    int getTotalPending(ObservableList<DeliveryJob> list);
+    Path getAddressBookFilePath();
 
     /**
      * Returns the user prefs' delivery job system file path.
@@ -126,28 +95,20 @@ public interface Logic {
     Path getDeliveryJobSystemFilePath();
 
     /**
+     * Returns the user prefs' GUI settings.
+     */
+    GuiSettings getGuiSettings();
+
+    /**
+     * Sets the user prefs' GUI settings.
+     */
+    void setGuiSettings(GuiSettings guiSettings);
+
+    /**
      * Set focus date
      * @param focusDate
      */
     void setWeekDeliveryJobList(LocalDate focusDate);
-
-    /**
-     * Updates filter delivery job list
-     * @return
-     */
-    void updateFilteredDeliveryJobList(Predicate<DeliveryJob> pre);
-
-    /**
-     * Updates sorted delivery job list
-     * @return
-     */
-    void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
-
-    /**
-     * Updates sorted delivery job list
-     * @return
-     */
-    void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter);
 
     /**
      * Updates sorted delivery job list by date
@@ -159,22 +120,4 @@ public interface Logic {
      * @return focus date
      */
     LocalDate getFocusDate();
-
-    // MODEL ===================================
-
-    /**
-     * Gets model
-     * @return model
-     */
-    Model getModel();
-
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
-
-    /**
-     * Sets the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
 }

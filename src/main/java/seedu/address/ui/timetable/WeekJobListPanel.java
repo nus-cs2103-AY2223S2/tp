@@ -12,9 +12,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.jobs.DayJobListPanel;
 
 /**
- * Panel containing job list in the week
+ * Controller for a timetable page
  */
 public class WeekJobListPanel extends UiPart<Region> {
 
@@ -35,7 +36,7 @@ public class WeekJobListPanel extends UiPart<Region> {
     private HBox jobListPanel;
 
     /**
-     * Creates a {@code WeekJobListPanel} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
     public WeekJobListPanel(Logic logic, Stage primaryStage) {
         super(FXML);
@@ -65,10 +66,6 @@ public class WeekJobListPanel extends UiPart<Region> {
         jobListPanel.setAlignment(Pos.CENTER);
     }
 
-    /**
-     * Sets background color for all job list panel placeholders for all days in week
-     * @param backgroundColor
-     */
     private void setAllPlaceholderBackgroundColor(String backgroundColor) {
         deliveryJobListPanelPlaceholder1.setStyle("-fx-background-color: " + backgroundColor);
         deliveryJobListPanelPlaceholder2.setStyle("-fx-background-color: " + backgroundColor);
@@ -80,10 +77,6 @@ public class WeekJobListPanel extends UiPart<Region> {
 
     }
 
-    /**
-     * Sets width size for all job list panel placeholders for all days in week
-     * @param widthSize
-     */
     private void setAllPalceholderPrefWidth(double widthSize) {
         deliveryJobListPanelPlaceholder1.setPrefWidth(widthSize);
         deliveryJobListPanelPlaceholder2.setPrefWidth(widthSize);
@@ -95,9 +88,6 @@ public class WeekJobListPanel extends UiPart<Region> {
 
     }
 
-    /**
-     * Sets job lists for all job list panel placeholders for all days in week
-     */
     private void addAllPlaceholderJobs() {
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder2, logic.getDayofWeekJob(2));
@@ -109,11 +99,6 @@ public class WeekJobListPanel extends UiPart<Region> {
 
     }
 
-    /**
-     * Sets job list for each job list panel placeholder
-     * @param panelPlaceholder job list panel placeholder for specific day
-     * @param jobListInDay job list in specific day
-     */
     private void addJobSlotsToPanel(StackPane panelPlaceholder, DeliveryList jobListInDay) {
         if (jobListInDay != null) {
             DayJobListPanel jobListInDayPane = new DayJobListPanel(logic, jobListInDay);

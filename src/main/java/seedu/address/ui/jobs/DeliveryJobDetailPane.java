@@ -6,13 +6,11 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.person.PersonCard;
@@ -54,7 +52,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     @FXML
     private Label earningCent;
     @FXML
-    private TextArea description;
+    private Label description;
     @FXML
     private Button completeButton;
     @FXML
@@ -83,11 +81,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         label.setText(job.getJobId());
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
-            if (val.date.equals(DeliveryDate.placeholder().toString())) {
-                deliveryTimeDate.setText("N.A");
-            } else {
-                deliveryTimeDate.setText(val.date);
-            }
+            deliveryTimeDate.setText(val.date);
         }, () -> {
             deliveryTimeDate.setText("N.A");
         });

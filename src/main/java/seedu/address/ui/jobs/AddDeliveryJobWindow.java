@@ -1,17 +1,11 @@
 package seedu.address.ui.jobs;
 
 import java.io.FileNotFoundException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -23,7 +17,6 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -45,6 +38,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     private static final String FXML = "AddDeliveryJobWindow.fxml";
 
     private static final String EDIT_TITLE = "Edit Delivery Job";
+    private static final String EDIT_BUTTON = "Edit Job";
 
     private final Optional<DeliveryJob> toEdit;
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -52,7 +46,6 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
     private Runnable completeEditCallback;
-    private AddressBookWindow addressBookWindow;
 
     @FXML
     private TextField inputSender;
@@ -69,71 +62,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     @FXML
     private Button createButton;
     @FXML
-    private Button editButton;
-    @FXML
     private VBox outputErrorPlaceholder;
-
-    // adapted from:
-    // https://stackoverflow.com/questions/26831978/javafx-datepicker-getvalue-in-a-specific-format
-    private StringConverter<LocalDate> deliveryDateConverter = new StringConverter<LocalDate>() {
-        private String pattern = "yyyy-MM-dd";
-        private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
-
-        {
-            inputDeliveryDate.setPromptText(pattern.toLowerCase());
-        }
-
-        @Override
-        public String toString(LocalDate date) {
-            if (date != null) {
-                return dateFormatter.format(date);
-            } else {
-                return "";
-            }
-        }
-
-        @Override
-        public LocalDate fromString(String string) {
-            if (string != null && !string.isEmpty()) {
-                return LocalDate.parse(string, dateFormatter);
-            } else {
-                return null;
-            }
-        }
-    };
-
-    // Adapted from
-    // https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
-    private UnaryOperator<Change> earningValidator = change -> {
-        String text = change.getText();
-        String fullText = inputEarning.getText();
-        if (text.equals(".") && fullText.split("\\d+").length < 2) {
-            System.out.println("length: " + fullText.split("\\d+").length);
-            return change;
-        }
-        if (text.isEmpty() || text.matches(Earning.VALIDATION_REGEX) || text.matches(Earning.VALIDATION_REGEX_DECI)) {
-            return change;
-        }
-        return null;
-    };
-
-    private ChangeListener<Boolean> emptyDateHandler = new ChangeListener<Boolean>() {
-        @Override
-        public void changed(final ObservableValue<? extends Boolean> observable,
-                final Boolean oldValue, final Boolean newValue) {
-            if (newValue) {
-                inputDeliveryDate.setValue(null);
-            }
-        }
-    };
-
-    private ObservableList<String> deliverySlotOptions = FXCollections.observableArrayList(
-            "",
-            new DeliverySlot("1").getDescription(),
-            new DeliverySlot("2").getDescription(),
-            new DeliverySlot("3").getDescription(),
-            new DeliverySlot("4").getDescription(),
-            new DeliverySlot("5").getDescription());
 
     /**
      * Create mode.
@@ -160,53 +89,52 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
      * fillInnerParts.
      */
     public void fillInnerParts() {
-        inputDeliverySlot.setItems(deliverySlotOptions);
-        inputEarning.setTextFormatter(new TextFormatter<String>(earningValidator));
-        inputDeliveryDate.getEditor().textProperty().isEmpty().addListener(emptyDateHandler);
-        inputDeliveryDate.setConverter(deliveryDateConverter);
+        inputDeliverySlot.setItems(FXCollections.observableArrayList("1", "2", "3", "4", "5"));
 
-        toEdit.ifPresent(job -> {
-            fillDetails(job);
-            primaryStage.setTitle(EDIT_TITLE);
-            createButton.setVisible(false);
-            editButton.setVisible(true);
-        });
+        // Adapted from
+        // https://stackoverflow.com/questions/7555564/what-is-the-recommended-way-to-make-a-numeric-textfield-in-javafx
+        UnaryOperator<Change> filter = change -> {
+            String text = change.getText();
+            if (text.isEmpty() || text.equals(".")) {
+                return change;
+            }
+            if (text.matches(Earning.VALIDATION_REGEX) || text.matches(Earning.VALIDATION_REGEX_DECI)) {
+                return change;
+            }
+            return null;
+        };
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+        inputEarning.setTextFormatter(textFormatter);
+
+        fillDetails();
     }
 
-    private void fillDetails(DeliveryJob job) {
-        inputSender.setText(job.getSenderId());
-        inputRecipient.setText(job.getRecipientId());
+    void fillDetails() {
+        toEdit.ifPresent(job -> {
+            inputSender.setText(job.getSenderId());
+            inputRecipient.setText(job.getRecipientId());
 
-        job.getDeliveryDate().ifPresentOrElse(val -> {
-            inputDeliveryDate.setValue(val.getDate());
-        }, () -> {
-            inputDeliveryDate.getEditor().setText("");
+            job.getDeliveryDate().ifPresent(val -> {
+                inputDeliveryDate.setValue(val.getDate());
+            });
+            job.getDeliverySlot().ifPresent(val -> {
+                inputDeliverySlot.getSelectionModel().select(val.value);
+            });
+            job.getEarning().ifPresent(val -> {
+                inputEarning.setText(val.value);
+            });
+            inputDescription.setText(job.getDescription());
+            primaryStage.setTitle(EDIT_TITLE);
+            createButton.setText(EDIT_BUTTON);
         });
-
-        job.getDeliverySlot().ifPresentOrElse(val -> {
-            inputDeliverySlot.getSelectionModel().select(val.getSlot());
-        }, () -> {
-            inputDeliverySlot.getSelectionModel().select(0);
-        });
-
-        job.getEarning().ifPresent(val -> {
-            inputEarning.setText(val.value);
-        });
-
-        inputDescription.setText(job.getDescription());
     }
 
     @FXML
     private void viewSenderAddressBook() {
         logger.info("[Event] viewSenderAddressBook");
-        if (addressBookWindow != null) {
-            addressBookWindow.getRoot().close();
-        }
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
+        AddressBookWindow addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
             inputSender.setText(person.getPersonId());
-            addressBookWindow.getRoot().close();
         });
-        addressBookWindow.getRoot().setTitle("Select sender");
         addressBookWindow.fillInnerParts();
         addressBookWindow.show();
     }
@@ -214,34 +142,11 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     @FXML
     private void viewRecipientAddressBook() {
         logger.info("[Event] viewRecipientAddressBook");
-        if (addressBookWindow != null) {
-            addressBookWindow.getRoot().close();
-        }
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
+        AddressBookWindow addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
             inputRecipient.setText(person.getPersonId());
-            addressBookWindow.getRoot().close();
         });
-        addressBookWindow.getRoot().setTitle("Select recipient");
         addressBookWindow.fillInnerParts();
         addressBookWindow.show();
-    }
-
-    @FXML
-    private void editDeliveryJob() {
-        logger.info("[Event] editDeliveryJob");
-        clearError();
-        if (!validateFields()) {
-            return;
-        }
-
-        try {
-            EditDeliveryJobCommand.EditDeliveryJobDescriptor des = prepareChange();
-            logic.execute(new EditDeliveryJobCommand(des));
-            completeEditCallback.run();
-            getRoot().close();
-        } catch (ParseException | CommandException e) {
-            logger.warning("[Event] editDeliveryJob" + e.getMessage());
-        }
     }
 
     @FXML
@@ -253,28 +158,27 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         }
 
         try {
-            DeliveryJob job;
-
-            if (inputDeliverySlot.getValue() == null) {
-                // if date and slot is empty
-                job = new DeliveryJob(
-                        inputSender.getText(),
-                        inputRecipient.getText(),
-                        inputEarning.getText(),
-                        inputDescription.getText());
+            if (toEdit.isPresent()) {
+                EditDeliveryJobCommand.EditDeliveryJobDescriptor des = prepareChange();
+                logic.execute(new EditDeliveryJobCommand(des));
+                completeEditCallback.run();
+                getRoot().close();
             } else {
-                // if date and slot has value
-                job = new DeliveryJob(
-                        inputSender.getText(),
-                        inputRecipient.getText(),
-                        inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT),
-                        Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex()),
-                        inputEarning.getText(),
-                        inputDescription.getText());
-            }
+                DeliveryJob job;
 
-            logic.execute(new AddDeliveryJobCommand(job));
-            getRoot().close();
+                if (inputDeliverySlot.getValue() == null) {
+                    job = new DeliveryJob(inputSender.getText(), inputRecipient.getText(),
+                            inputEarning.getText(), inputDescription.getText());
+                } else {
+                    job = new DeliveryJob(inputSender.getText(), inputRecipient.getText(),
+                            inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT),
+                            inputDeliverySlot.getValue(),
+                            inputEarning.getText(), inputDescription.getText());
+                }
+
+                logic.execute(new AddDeliveryJobCommand(job));
+                getRoot().close();
+            }
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
         } catch (FileNotFoundException e) {
@@ -304,41 +208,20 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             }
         });
 
-        if (!inputDeliveryDate.getEditor().getText().isEmpty()) {
-            // date field has value
-            job.getDeliveryDate().ifPresentOrElse(val -> {
-                // date is different from existing value, overwrite.
-                if (!val.date.equals(inputDeliveryDate.getEditor().getText())) {
-                    des.setDeliveryDate(new DeliveryDate(inputDeliveryDate.getEditor().getText()));
-                }
-            }, () -> {
-                // new date value
-                des.setDeliveryDate(new DeliveryDate(inputDeliveryDate.getEditor().getText()));
-            });
-        } else {
-            // date field is empty to overwrite existing value.
+        if (inputDeliveryDate.getValue() != null) {
             job.getDeliveryDate().ifPresent(val -> {
-                des.clearDeliveryDate();
+                if (!inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT).equals(val.date)) {
+                    des.setDeliveryDate(
+                            new DeliveryDate(inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT)));
+                }
             });
         }
 
-        if (!inputDeliverySlot.getValue().isEmpty()) {
-            // slot field has value
-            job.getDeliverySlot().ifPresentOrElse(val -> {
-                // slot is different from existing value, overwrite.
-                if (!inputDeliverySlot.getValue().equals(val.value)) {
-                    des.setDeliverySlot(new DeliverySlot(
-                            Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex())));
-                }
-            }, () -> {
-                // new slot value
-                des.setDeliverySlot(new DeliverySlot(
-                            Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex())));
-            });
-        } else {
-            // slot field is empty to overwrite existing value.
+        if (inputDeliverySlot.getValue() != null) {
             job.getDeliverySlot().ifPresent(val -> {
-                des.clearDeliverySlot();
+                if (!inputDeliverySlot.getValue().equals(val.value)) {
+                    des.setDeliverySlot(new DeliverySlot(inputDeliverySlot.getValue()));
+                }
             });
         }
 
@@ -380,61 +263,42 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             inputEarning.getStyleClass().add("error-input");
             outputError("Earning cannot be empty.");
             flag = false;
+        } else {
+            if (!inputEarning.getText().matches(Earning.VALIDATION_REGEX)
+                    && !inputEarning.getText().matches(Earning.VALIDATION_REGEX_DECI)) {
+                inputEarning.getStyleClass().add("error-input");
+                outputError("Invalid earning.");
+                flag = false;
+            }
         }
 
-        // any has value
         if (inputDeliveryDate.getValue() != null || inputDeliverySlot.getValue() != null) {
-            boolean dateFilled = false;
-            boolean slotFilled = false;
-
-            // date filled
-            if (inputDeliveryDate.getValue() != null && !inputDeliveryDate.getEditor().getText().isBlank()) {
-                dateFilled = true;
-            }
-
-            // slot filled
-            if (inputDeliverySlot.getValue() != null && !inputDeliverySlot.getValue().isBlank()) {
-                slotFilled = true;
-            }
-
-            if (dateFilled || slotFilled) {
-                // date empty
-                if (!dateFilled) {
-                    showDateError();
+            // Todo: refine rules
+            try {
+                if (!DeliveryDate.isValidDate(inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT))) {
+                    inputDeliveryDate.getStyleClass().add("error-input");
+                    outputError("Invalid schedule date.");
                     flag = false;
-                } else {
-                    // date filled, check format
-                    if (!DeliveryDate.isValidDate(inputDeliveryDate.getEditor().getText())) {
-                        showDateError();
-                        flag = false;
-                    }
                 }
-
-                // slot empty
-                if (!slotFilled) {
-                    showSlotError();
+            } catch (Exception e) {
+                inputDeliveryDate.getStyleClass().add("error-input");
+                outputError("Invalid schedule date.");
+                flag = false;
+            }
+            try {
+                if (inputDeliverySlot.getValue().isEmpty()) {
+                    inputDeliverySlot.getStyleClass().add("error-input");
+                    outputError("Invalid schedule slot.");
                     flag = false;
-                } else {
-                    // slot might have value, check field
-                    if (inputDeliverySlot.getValue().isBlank()) {
-                        showSlotError();
-                        flag = false;
-                    }
                 }
+            } catch (Exception e) {
+                inputDeliverySlot.getStyleClass().add("error-input");
+                outputError("Invalid schedule slot.");
+                flag = false;
             }
         }
 
         return flag;
-    }
-
-    private void showDateError() {
-        inputDeliveryDate.getStyleClass().add("error-input");
-        outputError("Invalid schedule date.");
-    }
-
-    private void showSlotError() {
-        inputDeliverySlot.getStyleClass().add("error-input");
-        outputError("Invalid schedule slot.");
     }
 
     private void outputError(String msg) {

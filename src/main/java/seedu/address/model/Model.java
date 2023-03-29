@@ -67,10 +67,6 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
-    /**
-     * Returns person with specified ID
-     * @param id
-     */
     Optional<Person> getPersonById(String id);
 
     /**
@@ -163,11 +159,6 @@ public interface Model {
     ObservableList<DeliveryJob> getDeliveryJobList();
 
     /**
-     * Returns job list sorted
-     */
-    ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator();
-
-    /**
      * Updates filtered delivery job list based on new predicate
      * @param predicate
      */
@@ -180,13 +171,7 @@ public interface Model {
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
 
     /**
-     * Updates sorted delivery job list based on new sorter
-     * @param sorter
-     */
-    void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter);
-
-    /**
-     * Updates sorted delivery job list by date and earning
+     * Updates sorted delivery job list by date
      */
     void updateSortedDeliveryJobListByDate();
 
@@ -229,11 +214,6 @@ public interface Model {
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
     /**
-     * Returns list of completed jobs
-     */
-    ObservableList<DeliveryJob> getCompletedDeliveryJobList();
-
-    /**
      * Returns focus date
      */
     LocalDate getFocusDate();
@@ -254,13 +234,8 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Returns an unmodifiable view of the filtered reminder list
+     * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Reminder> getReminderList();
-
-    /**
-     * Indicate that a reminder has already been shown for this app's runtime
-     */
-    void setHasShown(int i, boolean b);
 
 }

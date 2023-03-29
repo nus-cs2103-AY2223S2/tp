@@ -1,4 +1,4 @@
-package seedu.address.model.jobs;
+package seedu.address.model.deliveryjobs;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,17 +6,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Delivery's earning in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEarning(String)}
+ * @deprecated moved to jobs
  */
+@Deprecated
 public class Earning {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "\\d+";
-    public static final String VALIDATION_REGEX_DECI = "\\d+\\.\\d+";
+    public static final String VALIDATION_REGEX = "\\d+\\.\\d+";
 
     public final String value;
-    public final String dollar;
-    public final String cent;
 
     /**
      * Constructs an {@code earning}.
@@ -27,26 +26,13 @@ public class Earning {
         requireNonNull(earning);
         checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
         value = earning;
-
-        String[] format = earning.split("\\.");
-        if (format.length == 2) {
-            dollar = format[0];
-            cent = String.format("%-2s", format[1]).replace(' ', '0').substring(0, 2);
-        } else {
-            dollar = format[0];
-            cent = "00";
-        }
-    }
-
-    public static Earning placeholder() {
-        return new Earning("0.00");
     }
 
     /**
      * Returns true if a given string is a valid earning.
      */
     public static boolean isValidEarning(String test) {
-        return test.matches(VALIDATION_REGEX) || test.matches(VALIDATION_REGEX_DECI);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -57,8 +43,8 @@ public class Earning {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Earning // instanceof handles nulls
-                && value.equals(((Earning) other).value)); // state check
+                || (other instanceof seedu.address.model.deliveryjobs.Earning // instanceof handles nulls
+                && value.equals(((seedu.address.model.deliveryjobs.Earning) other).value)); // state check
     }
 
     @Override

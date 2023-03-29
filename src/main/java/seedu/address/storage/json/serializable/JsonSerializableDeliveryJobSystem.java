@@ -20,7 +20,7 @@ import seedu.address.storage.json.model.JsonAdaptedDeliveryJob;
 @JsonRootName(value = "deliveryjobsystem")
 public class JsonSerializableDeliveryJobSystem {
 
-    public static final String MESSAGE_DUPLICATE_JOB = "Job list contains duplicate job(s).";
+    public static final String MESSAGE_DUPLICATE_JOB = "Persons list contains duplicate job(s).";
 
     private final List<JsonAdaptedDeliveryJob> jobs = new ArrayList<>();
 

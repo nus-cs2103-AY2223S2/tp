@@ -12,7 +12,7 @@ import seedu.address.model.jobs.exceptions.DeliveryJobNotFoundException;
 import seedu.address.model.jobs.exceptions.DuplicateDeliveryJobException;
 
 /**
- * Represents a UniqueDeliveryList in the delivery jobs book.
+ * UniqueDeliveryList
  */
 public class UniqueDeliveryList implements Iterable<DeliveryJob> {
 
@@ -21,7 +21,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Checks if job list contain a job
+     * Contains.
      */
     public boolean contains(DeliveryJob toCheck) {
         requireNonNull(toCheck);
@@ -29,7 +29,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Adds a delivery job to job list
+     * add
      *
      * @param toAdd
      */
@@ -42,7 +42,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Sets/updates a specific delivery job
+     * setDeliveryJob
      *
      * @param target
      * @param editedJob
@@ -63,7 +63,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Removes a delivery job.
+     * Removes.
      */
     public void remove(DeliveryJob toRemove) {
         requireNonNull(toRemove);
@@ -73,7 +73,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Sets delivery job
+     * setDeliveryJobs
      *
      * @param replacement
      */
@@ -83,7 +83,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Sets job list to a new list
+     * setDeliveryJobs
      *
      * @param jobs
      */
@@ -104,7 +104,7 @@ public class UniqueDeliveryList implements Iterable<DeliveryJob> {
     }
 
     /**
-     * Returns number of jobs
+     * @return number of jobs
      */
     public int size() {
         return internalList.size();

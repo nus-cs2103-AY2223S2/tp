@@ -3,12 +3,10 @@ package seedu.address.ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -28,11 +26,6 @@ import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.ImportDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.jobs.sorters.DeliveryFilterOption;
-import seedu.address.model.jobs.sorters.DeliverySortOption;
-import seedu.address.model.jobs.sorters.SortbyDate;
-import seedu.address.model.jobs.sorters.SortbyDelivered;
-import seedu.address.model.jobs.sorters.SortbyEarning;
 import seedu.address.ui.jobs.AddDeliveryJobWindow;
 import seedu.address.ui.jobs.DeliveryJobDetailPane;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
@@ -40,7 +33,6 @@ import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 import seedu.address.ui.person.AddressBookWindow;
-import seedu.address.ui.timetable.CompleteWindow;
 import seedu.address.ui.timetable.UnscheduleWindow;
 
 /**
@@ -57,9 +49,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    // private PersonListPanel personListPanel;
     private AddressBookWindow addressBookWindow;
     private AddDeliveryJobWindow addDeliveryJobWindow;
-    private CompleteWindow completeWindow;
     private DeliveryJobListPanel deliveryJobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -103,10 +95,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     };
 
-    private Consumer<DeliveryJob> editDeliveryJobHandler = (job) -> {
-        if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
-        }
+    private Consumer<DeliveryJob> eidtDeliveryJobHandler = (job) -> {
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, () -> {
             refreshDeliveryJobDetailPane();
         });
@@ -123,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
             detailPane.fillInnerParts(logic.getAddressBook());
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
             detailPane.setCompleteHandler(completeDeliveryJobHandler);
-            detailPane.setEditHandler(editDeliveryJobHandler);
+            detailPane.setEditHandler(eidtDeliveryJobHandler);
             return;
         }
 
@@ -136,35 +125,6 @@ public class MainWindow extends UiPart<Stage> {
             logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
         } catch (ParseException | CommandException | FileNotFoundException e) {
             logger.warning(e.getMessage());
-        }
-    };
-
-    private BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> sortDeliveryJobHandler = (by, asc) -> {
-        switch (by) {
-        case COM:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyDelivered(asc));
-            break;
-        case EARN:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyEarning(asc));
-            break;
-        default:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyDate(asc));
-            break;
-        }
-        return logic.getSortedDeliveryJobList();
-    };
-
-    private Consumer<DeliveryFilterOption> filterDeliveryJobHandler = by -> {
-        switch (by) {
-        case COM:
-            logic.updateFilteredDeliveryJobList(job -> job.getDeliveredStatus());
-            break;
-        case PEN:
-            logic.updateFilteredDeliveryJobList(job -> !job.getDeliveredStatus());
-            break;
-        default:
-            logic.updateFilteredDeliveryJobList(job -> true);
-            break;
         }
     };
 
@@ -186,16 +146,12 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         timetableWindow = new TimetableWindow(new Stage(), logic);
         unscheduleWindow = new UnscheduleWindow(new Stage(), logic);
-        completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
 
     }
 
-    /**
-     * Returns primary stage of Main Window
-     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -258,8 +214,7 @@ public class MainWindow extends UiPart<Stage> {
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), selectDeliveryJobHandler,
                 completeDeliveryJobHandler,
                 deleteDeliveryJobHandler);
-        deliveryJobListPanel.setOrderByHandler(sortDeliveryJobHandler);
-        deliveryJobListPanel.setFilterHandler(filterDeliveryJobHandler);
+
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
         deliveryJobListPanel.selectItem(0);
 
@@ -308,18 +263,12 @@ public class MainWindow extends UiPart<Stage> {
 
 
     /**
-     * Reloads and opens Timetable window.
+     * Opens Timetable window.
      */
     @FXML
     private void handleTimetable() {
         if (!timetableWindow.isShowing()) {
             logger.info("Opened timetable window of current week.");
-            try {
-                CommandResult commandResult = logic.execute("timetable");
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } catch (CommandException | ParseException e) {
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            }
             timetableWindow.show();
             timetableWindow.fillInnerParts();
         } else {
@@ -328,31 +277,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens timetable window
-     */
-    public void openTimetable() {
-        if (!timetableWindow.isShowing()) {
-            logger.info("Opened timetable window of current week.");
-            timetableWindow.show();
-            timetableWindow.fillInnerParts();
-        } else {
-            timetableWindow.focus();
-        }
-    }
-
-    /**
-     * Opens unscheduled jobs window
+     * Opends unscheduled jobs window
      */
     @FXML
     private void handleUnscheduledTimetable() {
         if (!unscheduleWindow.isShowing()) {
             logger.info("Opened window of unscheduled jobs.");
-            try {
-                CommandResult commandResult = logic.execute("timetable_unscheduled");
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } catch (CommandException | ParseException e) {
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            }
             unscheduleWindow.show();
             unscheduleWindow.fillInnerParts();
         } else {
@@ -361,30 +291,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens completed jobs window
-     */
-    @FXML
-    private void handleCompletedTimetable() {
-        if (!completeWindow.isShowing()) {
-            logger.info("Opened window of completed jobs.");
-            try {
-                CommandResult commandResult = logic.execute("timetable_completed");
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } catch (CommandException | ParseException e) {
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            }
-            completeWindow.show();
-            completeWindow.fillInnerParts();
-        } else {
-            completeWindow.focus();
-        }
-    }
-
-    /**
      * Opens Reminder List window.
      */
     @FXML
-    public void handleReminderList() {
+    private void handleReminderList() {
         if (!reminderListWindow.isShowing()) {
             reminderListWindow.show();
             reminderListWindow.fillInnerParts();
@@ -413,10 +323,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleAddressBook() {
-        if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
-        }
-
         if (!addressBookWindow.isShowing()) {
             addressBookWindow.show();
             addressBookWindow.fillInnerParts();
@@ -426,9 +332,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Returns delivery job list panel
-     */
     public DeliveryJobListPanel getDeliveryJobListPanel() {
         return deliveryJobListPanel;
     }
@@ -438,9 +341,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleDeliveryJobSystemCreateAction() {
-        if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
-        }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
         addDeliveryJobWindow.show();
         addDeliveryJobWindow.fillInnerParts();
@@ -461,9 +361,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Shows main window
-     */
     void show() {
         primaryStage.show();
     }
@@ -503,7 +400,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowTimetable()) {
-                openTimetable();
+                handleTimetable();
             }
 
             if (commandResult.isShowTimetable()) {
@@ -512,10 +409,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowUnschedule()) {
                 handleUnscheduledTimetable();
-            }
-
-            if (commandResult.isShowComplete()) {
-                handleCompletedTimetable();
             }
 
             if (commandResult.isShowStatistics()) {

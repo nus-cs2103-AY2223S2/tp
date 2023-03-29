@@ -8,10 +8,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
+import seedu.address.model.jobs.sorters.SortbyTime;
 
 /**
- * Formats full timetable instructions for every command for display.
+ * Format full timetable instructions for every command for display.
  */
 public class TimetableCommand extends Command {
     public static final String COMMAND_WORD = "timetable";
@@ -23,7 +23,7 @@ public class TimetableCommand extends Command {
 
     public static final String SHOWING_TIMETABLE_MESSAGE = "Opened timetable window of current week.";
 
-    public static final SortbyTimeAndEarn SORTER = new SortbyTimeAndEarn();
+    public static final SortbyTime SORTER = new SortbyTime();
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

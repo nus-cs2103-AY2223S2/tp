@@ -3,12 +3,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="timetablePanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="393.0" minWidth="790.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane fx:id="timetablePanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="430.0" minWidth="790.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="monthYearPanel" layoutX="-3.0" layoutY="14.0" stylesheets="@DarkTheme.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
-      <HBox fx:id="dayOfWeekPanel" alignment="CENTER" layoutX="-3.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="26.0" prefHeight="26.0" stylesheets="@DarkTheme.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <HBox fx:id="dayOfMonthPanel" alignment="CENTER" layoutX="30.0" layoutY="86.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="20.0" prefHeight="20.0" stylesheets="@DarkTheme.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox fx:id="monthYearPanel" layoutX="-3.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+      <HBox fx:id="dayOfWeekPanel" alignment="CENTER" layoutX="-3.0" layoutY="59.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="26.0" prefHeight="26.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <HBox fx:id="dayOfMonthPanel" alignment="CENTER" layoutX="30.0" layoutY="86.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="20.0" prefHeight="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <HBox fx:id="jobListPanel" alignment="CENTER" layoutY="86.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0" />
    </children>
 </AnchorPane>

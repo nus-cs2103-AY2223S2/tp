@@ -1,56 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="248.0">
-        <ListView fx:id="deliveryJobListView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-         <stylesheets>
-            <URL value="@DarkTheme.css" />
-            <URL value="@Extensions.css" />
-         </stylesheets>
-      </VBox>
-   </center>
-   <top>
-      <MenuBar fx:id="listOptionMenu" BorderPane.alignment="CENTER">
-         <menus>
-            <Menu fx:id="orderOption" mnemonicParsing="false" text="Order By" visible="false">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleOrderByDelivered" text="Delivered Status" />
-                <MenuItem mnemonicParsing="false" onAction="#handleOrderByEarning" text="Earning" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleOrderBySchedule" text="Schedule Date &amp; Slot" />
-              </items>
-               <graphic>
-                  <Label fx:id="orderIndicator" graphicTextGap="0.0" text="↑">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-               </graphic>
-            </Menu>
-            <Menu fx:id="filterOption" mnemonicParsing="false" text="Filter By">
-              <items>
-                  <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" styleClass="select-radio-item" text="All">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="toggleGroup" />
-                     </toggleGroup>
-                  </RadioMenuItem>
-                  <RadioMenuItem fx:id="filterDelivered" mnemonicParsing="false" styleClass="select-radio-item" text="Delivered" toggleGroup="$toggleGroup" />
-                  <RadioMenuItem fx:id="filterPending" mnemonicParsing="false" styleClass="select-radio-item" text="Pending" toggleGroup="$toggleGroup" />
-              </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-   </top>
-</BorderPane>
+<VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="deliveryJobListView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+</VBox>

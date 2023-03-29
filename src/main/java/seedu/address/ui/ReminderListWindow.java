@@ -84,7 +84,7 @@ public class ReminderListWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    public void fillInnerParts() {
+    void fillInnerParts() {
         reminderList.setCellFactory(param -> new ListCell<>() {
             @Override
             protected void updateItem(Reminder item, boolean empty) {

@@ -10,7 +10,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,9 +21,9 @@
   </icons>
    <scene>
       <Scene fill="#1d1d1d">
-         <BorderPane>
-            <top>
-               <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+          <AnchorPane prefHeight="400.0" prefWidth="600.0">
+            <children>
+               <MenuBar fx:id="menuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <menus>
                      <Menu mnemonicParsing="false" text="File">
                         <items>
@@ -38,7 +37,6 @@
                      </Menu>
                      <Menu mnemonicParsing="false" text="Timetable">
                         <MenuItem fx:id="timetableMenuItem" mnemonicParsing="false" onAction="#handleTimetable" text="Scheduled Jobs" />
-                         <MenuItem fx:id="timetableUnscheduledItem" mnemonicParsing="false" onAction="#handleUnscheduledTimetable" text="Unscheduled Jobs" />
                      </Menu>
                      <Menu mnemonicParsing="false" text="Statistics">
                         <items>
@@ -53,19 +51,14 @@
                      <Menu mnemonicParsing="false" text="Delivery Job System">
                         <items>
                            <MenuItem fx:id="jobSystemCreateJob" mnemonicParsing="false" onAction="#handleDeliveryJobSystemCreateAction" text="Create Job" />
-                           <MenuItem fx:id="jobSystemImportJobs" mnemonicParsing="false" onAction="#handleDeliveryJobSystemImportAction" text="Import Jobs" />
+                           <MenuItem fx:id="jobSystemInportJobs" mnemonicParsing="false" text="Import Jobs" />
                         </items>
                      </Menu>
                   </menus>
                </MenuBar>
-            </top>
-            <bottom>
-               <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER" />
-            </bottom>
-            <center>
-               <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
+               <SplitPane dividerPositions="0.3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                  <items>
-                   <AnchorPane fx:id="job_listview" maxWidth="400.0" minWidth="250.0">
+                   <AnchorPane fx:id="job_listview" maxWidth="400.0" minWidth="150.0" prefWidth="200.0">
                         <children>
                            <StackPane fx:id="commandBoxPlaceholder" prefHeight="50.0" styleClass="pane-with-border" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <padding>
@@ -76,7 +69,7 @@
                              <items>
                                <AnchorPane prefHeight="70.0">
                                     <children>
-                                       <StackPane fx:id="resultDisplayPlaceholder" prefHeight="70.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                           <padding>
                                              <Insets bottom="5" left="10" right="10" top="5" />
                                           </padding>
@@ -116,12 +109,12 @@
                                  </AnchorPane>
                               </children>
                            </StackPane>
-                        </children>
-                     </AnchorPane>
+                        </children></AnchorPane>
                  </items>
                </SplitPane>
-            </center>
-         </BorderPane>
+               <StackPane fx:id="statusbarPlaceholder" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            </children>
+         </AnchorPane>
          <stylesheets>
             <URL value="@DarkTheme.css" />
             <URL value="@Extensions.css" />

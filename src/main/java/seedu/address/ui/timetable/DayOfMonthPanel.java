@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,7 +16,7 @@ import seedu.address.ui.UiPart;
 
 
 /**
- * Panel containing the days of month (11th, 12th,...) in the week
+ * Controller for a timetable page
  */
 public class DayOfMonthPanel extends UiPart<Region> {
 
@@ -40,8 +39,7 @@ public class DayOfMonthPanel extends UiPart<Region> {
     private HBox dayOfMonthPanel;
 
     /**
-     * Creates a {@code DayofMonthPanel} with the given {@code focusDate}, {@code Logic}
-     * and {@code Stage}.
+     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
     public DayOfMonthPanel(LocalDate focusDate, Logic logic, Stage primaryStage) {
         super(FXML);
@@ -54,7 +52,6 @@ public class DayOfMonthPanel extends UiPart<Region> {
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
         setAllDateText(focusDayOfWeek);
         setAllFont(12.0);
-        setAllTextColorWhite();
 
         dayOfMonthPanel.getChildren().addAll(day1, day2, day3, day4, day5, day6, day7);
         dayOfMonthPanel.setSpacing((primaryStage.getWidth() - 200) / 6);
@@ -62,7 +59,7 @@ public class DayOfMonthPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets all text font to specific font size
+     * Sets all text font to font size
      * @param fontSize
      */
     private void setAllFont(double fontSize) {
@@ -77,20 +74,7 @@ public class DayOfMonthPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets all text color to white
-     */
-    private void setAllTextColorWhite() {
-        day1.setFill(Color.WHITE);
-        day2.setFill(Color.WHITE);
-        day3.setFill(Color.WHITE);
-        day4.setFill(Color.WHITE);
-        day5.setFill(Color.WHITE);
-        day6.setFill(Color.WHITE);
-        day7.setFill(Color.WHITE);
-    }
-
-    /**
-     * Sets text in day of month for all days in week
+     * Sets day of month text for all days
      * @param focusDayOfWeek day in week of focus date
      */
     private void setAllDateText(int focusDayOfWeek) {

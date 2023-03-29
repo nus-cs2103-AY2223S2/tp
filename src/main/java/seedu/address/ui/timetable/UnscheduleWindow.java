@@ -1,34 +1,35 @@
 package seedu.address.ui.timetable;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 
 /**
- * Controller for unschedule window.
+ * Displays contact list.
  */
 public class UnscheduleWindow extends UiPart<Stage> {
 
     private static final String FXML = "UnscheduleWindow.fxml";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+    private final Consumer<DeliveryJob> selectHandler;
 
     private Stage primaryStage;
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    private UnscheduledDeliveryJobListPanel jobListPanel;
-
-    @FXML
-    private Text numberOfJobs;
-
+    private DeliveryJobListPanel jobListPanel;
     @FXML
     private StackPane jobListPanelPlaceholder;
     @FXML
@@ -41,6 +42,8 @@ public class UnscheduleWindow extends UiPart<Stage> {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.selectHandler = (job) -> {};
+
     }
 
 
@@ -48,48 +51,42 @@ public class UnscheduleWindow extends UiPart<Stage> {
      * Show main window.
      */
     public void show() {
-        logger.fine("Showing unscheduled window page");
+        logger.fine("Showing address book page");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the unscheduled window is currently being shown.
+     * Returns true if the stats window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the unscheduled window.
+     * Hides the stats window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the unscheduled window.
+     * Focuses on the stats window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * Fills Inner Parts and content of unscheduled window.
+     * fillInnerParts.
      */
     public void fillInnerParts() {
-        jobListPanel = new UnscheduledDeliveryJobListPanel(logic.getUnscheduledDeliveryJobList());
-        int jobListLen = logic.getUnscheduledDeliveryJobList().size();
-        numberOfJobs.setText(String.format("Total: %d job(s)", jobListLen));
-
+        jobListPanel = new DeliveryJobListPanel(logic.getUnscheduledDeliveryJobList());
         jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
-    /**
-     * Exits unscheduled window
-     */
     @FXML
     private void handleExit() {
         primaryStage.hide();

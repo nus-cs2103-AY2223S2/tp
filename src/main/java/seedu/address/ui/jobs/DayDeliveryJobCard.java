@@ -10,7 +10,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code DayDeliveryJobCard}.
+ * An UI component that displays information of a {@code Person}.
  */
 public class DayDeliveryJobCard extends UiPart<Region> {
 
@@ -30,7 +30,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label jobID;
+    private Label label;
     @FXML
     private Label id;
     @FXML
@@ -38,9 +38,11 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     @FXML
     private Label address;
 
+    @FXML
+    private Label earning;
+
     /**
-     * Creates a {@code DayDeliveryJobCard} with the given {@code Logic},
-     * {@code DeliveryJob} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public DayDeliveryJobCard(Logic logic, DeliveryJob job, int displayedIndex) {
         super(FXML);
@@ -49,28 +51,23 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         ReadOnlyAddressBook addressBook = logic.getAddressBook();
 
         id.setText(displayedIndex + ". ");
-        jobID.setText(job.getJobId());
-
-        String receipientInfo = "";
+        label.setText(job.getJobId());
         if (job.getRecipientId() != null) {
-            receipientInfo = "To: " + job.getRecipientId();
+            receipient.setText("To: " + job.getRecipientId());
         } else {
-            receipientInfo = "To: N.A.";
+            receipient.setText("To: N.A.");
         }
-
         addressBook.getPersonById(job.getRecipientId()).ifPresentOrElse(per -> {
-            address.setText("@" + per.getAddress().toString());
+            address.setText("Dest: " + "\n" + per.getAddress().toString());
         }, () -> {
             address.setText("Dest: N.A.");
         });
 
-        if (job.getEarning().isPresent()) {
-            receipientInfo += " +$" + job.getEarning().get();
-        } else {
-            receipientInfo += " +$0.0";
-        }
-
-        receipient.setText(receipientInfo);
+        job.getEarning().ifPresentOrElse(val -> {
+            earning.setText("Earning: $" + val.value);
+        }, () -> {
+            earning.setText("Earning: N.A");
+        });
 
     }
 

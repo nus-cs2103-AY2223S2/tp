@@ -10,8 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DeliverySlot {
 
-    public static final String MESSAGE_CONSTRAINTS = "Delivery Slot must be larger than 0 - should be between [1-5]."
-            + "\nIt should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Delivery Slot should between [1-n], and it should not be blank";
 
     public static final String VALIDATION_REGEX = "\\d+";
 
@@ -30,13 +29,15 @@ public class DeliverySlot {
 
     /**
      * Constructs an {@code DeliverySlot}.
+     *
+     * @param value A invalid slot.
      */
     private DeliverySlot() {
         this.value = "-1";
     }
 
     /**
-     * Returns true if a given string is a valid slot.
+     * Returns true if a given string is a valid earning.
      */
     public static boolean isValidDeliverySlot(String value) {
         return value.matches(VALIDATION_REGEX);
@@ -47,14 +48,6 @@ public class DeliverySlot {
      */
     public int getSlot() {
         return Integer.parseInt(value);
-    }
-
-    /**
-     * Checks if delivery slot is valid (within range 1-5)
-     * @return
-     */
-    public boolean isValid() {
-        return ((Integer.parseInt(value) < 6) && (Integer.parseInt(value) > 0));
     }
 
     @Override
@@ -81,20 +74,17 @@ public class DeliverySlot {
     public String getDescription() {
         switch (value) {
         case "1":
-            return "10AM - 11AM";
+            return "10am - 11am";
         case "2":
-            return "11AM - 12PM";
+            return "11am - 12pm";
         case "3":
-            return "1PM  - 2PM";
+            return "1pm  - 2pm ";
         case "4":
-            return "2PM  - 3PM";
+            return "2pm  - 3pm ";
         case "5":
-            return "3PM  - 4PM";
+            return "3pm  - 4pm ";
         default:
-            if (Integer.parseInt(value) > 5) {
-                return "Extra hours (4PM++)";
-            }
-            return "N.A.";
+            return "N.A";
         }
     }
 

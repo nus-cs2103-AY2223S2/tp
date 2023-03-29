@@ -26,7 +26,7 @@ import seedu.address.model.jobs.DeliverySlot;
 import seedu.address.model.jobs.Earning;
 
 /**
- * Edits the details of an existing job in the job system.
+ * Edits the details of an existing job in the address book.
  */
 public class EditDeliveryJobCommand extends Command {
 
@@ -79,66 +79,58 @@ public class EditDeliveryJobCommand extends Command {
      * edited with {@code editjobDescriptor}.
      */
     private static DeliveryJob createEditedDeliveryJob(DeliveryJob deliveryJobToEdit,
-                                                       EditDeliveryJobDescriptor editjobDescriptor) {
+            EditDeliveryJobDescriptor editjobDescriptor) {
         assert deliveryJobToEdit != null;
         DeliveryJob.Builder toEdit = new DeliveryJob.Builder();
 
-        toEdit.setJobId(deliveryJobToEdit.getJobId());
+        toEdit.jobId(deliveryJobToEdit.getJobId());
 
         editjobDescriptor.getRecipient().ifPresentOrElse(val -> {
-            toEdit.setRecipient(val);
+            toEdit.recipient(val);
         }, () -> {
-            toEdit.setRecipient(deliveryJobToEdit.getRecipientId());
+            toEdit.recipient(deliveryJobToEdit.getRecipientId());
         });
 
         editjobDescriptor.getSender().ifPresentOrElse(val -> {
-            toEdit.setSender(val);
+            toEdit.sender(val);
         }, () -> {
-            toEdit.setSender(deliveryJobToEdit.getSenderId());
+            toEdit.sender(deliveryJobToEdit.getSenderId());
         });
 
         editjobDescriptor.getDeliveryDate().ifPresentOrElse(val -> {
-            toEdit.setDeliveryDate(val.date);
+            toEdit.deliveryDate(val.date);
         }, () -> {
             deliveryJobToEdit.getDeliveryDate().ifPresent(val -> {
-                editjobDescriptor.ifClearDeliveryDate(()-> {
-                    toEdit.setDeliveryDate(DeliveryDate.placeholder().date);
-                }, () -> {
-                    toEdit.setDeliveryDate(val.date);
-                });
+                toEdit.deliveryDate(val.date);
             });
         });
 
         editjobDescriptor.getDeliverySlot().ifPresentOrElse(val -> {
-            toEdit.setDeliverySlot(val.value);
+            toEdit.deliverySlot(val.value);
         }, () -> {
             deliveryJobToEdit.getDeliverySlot().ifPresent(val -> {
-                editjobDescriptor.ifClearDeliverySlot(()-> {
-                    toEdit.clearDeliverySlot();
-                }, () -> {
-                    toEdit.setDeliverySlot(val.value);
-                });
+                toEdit.deliverySlot(val.value);
             });
         });
 
         editjobDescriptor.getEarning().ifPresentOrElse(val -> {
-            toEdit.setEarning(val.value);
+            toEdit.earning(val.value);
         }, () -> {
             deliveryJobToEdit.getEarning().ifPresent(val -> {
-                toEdit.setEarning(val.value);
+                toEdit.earning(val.value);
             });
         });
 
         editjobDescriptor.getDelivered().ifPresentOrElse(val -> {
-            toEdit.setDeliveredStatus(val);
+            toEdit.isDelivered(val);
         }, () -> {
-            toEdit.setDeliveredStatus(deliveryJobToEdit.getDeliveredStatus());
+            toEdit.isDelivered(deliveryJobToEdit.getDeliveredStatus());
         });
 
         editjobDescriptor.getDescription().ifPresentOrElse(val -> {
-            toEdit.setDescription(val);
+            toEdit.description(val);
         }, () -> {
-            toEdit.setDescription(deliveryJobToEdit.getDescription());
+            toEdit.description(deliveryJobToEdit.getDescription());
         });
 
         return toEdit.build();
@@ -215,9 +207,6 @@ public class EditDeliveryJobCommand extends Command {
         private boolean isDelivered;
         private String description;
 
-        private boolean clearDate = false;
-        private boolean clearSlot = false;
-
         public EditDeliveryJobDescriptor() {
         }
 
@@ -234,8 +223,6 @@ public class EditDeliveryJobCommand extends Command {
             setEarning(toCopy.earning);
             setDelivered(toCopy.isDelivered);
             setDescription(toCopy.description);
-            clearDate = toCopy.clearDate;
-            clearSlot = toCopy.clearSlot;
         }
 
         /**
@@ -331,46 +318,6 @@ public class EditDeliveryJobCommand extends Command {
                     && getDeliverySlot().equals(e.getDeliverySlot())
                     && getEarning().equals(e.getEarning())
                     && getDelivered().equals(e.getDelivered());
-        }
-
-        /**
-         * Sets the clear slot state.
-         */
-        public void clearDeliverySlot() {
-            clearSlot = true;
-        }
-
-        /**
-         * Sets the clear date state.
-         */
-        public void clearDeliveryDate() {
-            clearDate = true;
-        }
-
-        /**
-         * Handles slot clearing.
-         * @param s
-         * @param f
-         */
-        public void ifClearDeliverySlot(Runnable s, Runnable f) {
-            if (clearSlot) {
-                s.run();
-            } else {
-                f.run();
-            }
-        }
-
-        /**
-         * Handles date clearing.
-         * @param s
-         * @param f
-         */
-        public void ifClearDeliveryDate(Runnable s, Runnable f) {
-            if (clearDate) {
-                s.run();
-            } else {
-                f.run();
-            }
         }
     }
 }

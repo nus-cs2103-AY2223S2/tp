@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 
 /**
- * Sets delivered status for jobs in the delivery job system.
+ * Lists all persons in the address book to the user.
  */
 public class CompleteDeliveryJobCommand extends Command {
 
@@ -49,7 +49,7 @@ public class CompleteDeliveryJobCommand extends Command {
 
         if (deliveryJobToEdit.isPresent()) {
             DeliveryJob.Builder toEdit = new DeliveryJob.Builder().copy(deliveryJobToEdit.get());
-            toEdit.setDeliveredStatus(setDelivered);
+            toEdit.isDelivered(setDelivered);
             model.setDeliveryJob(deliveryJobToEdit.get(), toEdit.build());
             return new CommandResult(String.format(MESSAGE_SUCCESS, setDelivered ? "completed" : "not completed"));
         } else {
