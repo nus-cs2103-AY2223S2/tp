@@ -10,7 +10,7 @@ import seedu.address.model.pet.UniquePetList;
 
 /**
  * Wraps all data at the PetPal level
- * Duplicates are not allowed (by .isSamepet comparison)
+ * Duplicates are not allowed (by .isSamePet comparison)
  */
 public class PetPal implements ReadOnlyPetPal {
 
@@ -98,7 +98,7 @@ public class PetPal implements ReadOnlyPetPal {
      * {@code p} must exists in the address book
      */
     public void archivePet(Pet p) {
-        pets.archive(p);
+        pets.add(p);
     }
 
     //// util methods

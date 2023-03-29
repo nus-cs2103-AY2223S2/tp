@@ -64,6 +64,7 @@ public class PetPalParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case ListCommand.SHORTCUT_WORD:
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -73,6 +74,7 @@ public class PetPalParser {
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
 
+        case HelpCommand.SHORTCUT_WORD:
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
@@ -82,6 +84,7 @@ public class PetPalParser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
+        case ChangeCostCommand.SHORTCUT_WORD:
         case ChangeCostCommand.COMMAND_WORD:
             return new ChangeCostCommandParser().parse(arguments);
 

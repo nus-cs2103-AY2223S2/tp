@@ -25,7 +25,6 @@ import seedu.address.model.pet.exceptions.PetNotFoundException;
 public class UniquePetList implements Iterable<Pet> {
 
     private final ObservableList<Pet> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Pet> internalArchiveList = FXCollections.observableArrayList();
     private final ObservableList<Pet> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -76,21 +75,6 @@ public class UniquePetList implements Iterable<Pet> {
     public void remove(Pet toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PetNotFoundException();
-        }
-    }
-
-    /**
-     * Archives the equivalent pet from the list to an archive list
-     * Deletes the pet from the current list
-     * The pet must exist in the list
-     */
-    public void archive(Pet p) {
-        requireNonNull(p);
-        // add to archive list
-        internalArchiveList.add(p);
-        // remove from current list
-        if (!internalList.remove(p)) {
             throw new PetNotFoundException();
         }
     }

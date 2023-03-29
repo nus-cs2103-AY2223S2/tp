@@ -20,9 +20,8 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final PetPal petPal;
+    private final PetPal archiveStorage;
     private PetPal petPalCache;
-
-    private final PetPal petPalArchive;
     private final UserPrefs userPrefs;
     private final FilteredList<Pet> filteredPets;
 
@@ -30,13 +29,13 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given PetPal and userPrefs.
      */
     public ModelManager(ReadOnlyPetPal petPal, ReadOnlyPetPal petPalArchive, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(petPal, userPrefs);
+        requireAllNonNull(petPal, petPalArchive, userPrefs);
 
         logger.info("Initializing with PetPal: " + petPal + " and user prefs " + userPrefs);
 
         this.petPalCache = new PetPal(petPal);
         this.petPal = new PetPal(petPal);
-        this.petPalArchive = new PetPal(petPalArchive);
+        this.archiveStorage = new PetPal(petPalArchive);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPets = new FilteredList<>(this.petPal.getPetList());
     }
@@ -102,7 +101,7 @@ public class ModelManager implements Model {
     }
 
     public ReadOnlyPetPal getPetPalArchive() {
-        return petPalArchive;
+        return archiveStorage;
     }
 
     @Override
@@ -140,7 +139,8 @@ public class ModelManager implements Model {
     @Override
     public void archivePet(Pet petToArchive) {
         requireNonNull(petToArchive);
-        petPal.archivePet(petToArchive);
+        archiveStorage.archivePet(petToArchive);
+        petPal.removePet(petToArchive);
         updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 

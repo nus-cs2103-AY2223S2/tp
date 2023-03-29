@@ -88,12 +88,12 @@ public class JsonPetPalStorage implements PetPalStorage {
     }
 
     @Override
-    public Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException {
-        return readPetPalArchive(filePath);
+    public Optional<ReadOnlyPetPal> readPetPalArchive() {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
         System.out.println(filePath);
         Optional<JsonSerializablePetPal> jsonPetPalArchive = JsonUtil.readJsonFile(
