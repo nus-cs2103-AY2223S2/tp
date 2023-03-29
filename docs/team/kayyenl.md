@@ -35,10 +35,10 @@ Given below are my contributions to the project.
   * Contributed to Help Section, and Quickstart Section in the Implementations of DG.
   * Included Activity Diagrams to better illustrate point being made in DG.
   * Through several PR reviews, made rectifications to teammates' documentation errors and suggested alternatives.
-  * Contributed to group's collaborative docs, where reflections and discussion notes were written down (Google Docs)
+  * Contributed to group's collaborative docs, where reflections and discussion notes were written down (Google Docs).
 
 * **Community**:
-  * Reviewed PRs within the group: [\#113](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/113), [\#117](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/117), [\#126](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/126), [\#127](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/127), [\#125](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/125)
+  * Reviewed PRs within the group: [\#113](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/113), [\#117](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/117), [\#126](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/126), [\#127](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/127), [\#125](https://github.com/AY2223S2-CS2103-F10-1/tp/pull/125).
   * Closed various important PRs, albeit without leaving review comments (comments were in the conversation box).
 
 * **Tools**:
