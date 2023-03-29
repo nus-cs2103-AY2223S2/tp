@@ -9,8 +9,17 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-* --------------------------------------------------------------------------------------------------------------------
+* This project is based on the AddressBook-Level3 project created by the [_SE-EDU initiative_](https://se-education.org).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+* This Developer Guide documents the architecture and design of ExpressLibrary, along with some advanced information about the implementation details of ExpressLibrary’s features.
+
+* The Developer Guide is written to aid present and future librarians, who may be technically gifted, in extending ExpressLibrary features by providing them the necessary knowledge on how ExpressLibrary works.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -155,6 +164,40 @@ Classes used by multiple components are in the `expresslibrary.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### How data is saved
+
+#### Implementation
+
+Data in ExpressLibrary is saved in `[JAR file location]/data/expresslibrary.json`, consisting of an array of `persons` and `books`.
+
+Each person in the `persons` array will contain these fields:
+
+* `name`: Represents the name of the person.
+* `phone`: Represents the phone number of the person.
+* `email`: Represents the email of the person.
+* `address`: Represents the address of the person.
+* `books`: Represents the set of books that the person has borrowed, will be an empty set if the person has not borrowed any.
+* `tagged`: Represents the tags assigned to the person, will be an empty set if the person has no tags assigned.
+
+<div markdown="span" class="alert alert-warning">
+
+ :warning: **Note:** If editing the file manually, note that `books` in **each person** must be present in the main `books` array. Otherwise, the data file will be invalid.
+</div>
+
+Each book in the `books` array will contain these fields:
+
+* `title`: Represents the title of the book.
+* `author`: Represents the author of the book.
+* `isbn`: Represents the ISBN of the book.
+* `borrowDate`: Represents the date in the form `dd/mm/yyyy` when the book was borrowed by a person, will be an empty string if not borrowed.
+* `dueDate`: Represents the date in the form `dd/mm/yyyy` when the book has to be returned by a person, will be an empty string if not borrowed.
+* `isBorrowed`: Represents whether the book is borrowed. True if borrowed and false if not.
+
+<div markdown="span" class="alert alert-warning">
+
+ :warning: **Note:** If editing the file manually, note that borrowDate and dueDate has to be included if isBorrowed is true and vice versa. Otherwise, the data file will be invalid.
+</div>
+
 ### Borrow/return feature
 
 #### Implementation
@@ -173,7 +216,7 @@ The user executes `borrow 1 b/2 d/23/11/2023` command to lend the 2nd Book in th
 
 The `BorrowCommand` class will first retrieve the Person object and Book object from the given indexes and create a copy of them (since they are immutable) called `editedPerson` and `bookToBorrow`.
 
-Then, it calls `borrowBook` on `editedPerson` and passes in the Book object `bookToBorrow`. This will add the Book to the Person's `Set` of books field. Similarly, the class also calls `loanBookTo` on `bookToBorrow` to update the Book's fields with the borrower, the borrow date (current date) and the due date details. 
+Then, it calls `borrowBook` on `editedPerson` and passes in the Book object `bookToBorrow`. This will add the Book to the Person's `Set` of books field. Similarly, the class also calls `loanBookTo` on `bookToBorrow` to update the Book's fields with the borrower, the borrow date (current date) and the due date details.
 
 Given below is an example usage scenario of the return command:
 
@@ -204,19 +247,6 @@ Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `Logic
 The following sequence diagram shows how the findBook operation works:
 
 ![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire express library.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -236,13 +266,13 @@ The following sequence diagram shows how the findBook operation works:
 **Target user profile**:
 
 * has a need to manage a significant number of books and library users
-* prefer desktop apps over other types
+* has a need to quickly access a particular book or person
+* has a need to track if due dates of books borrowed are approaching/expired
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage users and books faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage users and books faster, quickly find users or books faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -260,8 +290,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | advanced librarian  | edit the data file                                | adjust the data to suit my needs                                   |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `ExpressLibrary` and the **Actor** is the `user`, unless specified otherwise)
@@ -270,21 +298,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list persons
-2. ExpressLibrary shows a list of persons
-3. User requests to delete a specific person in the list
-4. ExpressLibrary deletes the person
+1. User requests to list persons.
+2. ExpressLibrary shows a list of persons.
+3. User requests to delete a specific person in the list.
+4. ExpressLibrary deletes the person.
 
     Use case ends.
 
-**Use case: Add book borrowed to a person**
+**Use case: Book is borrowed by a person**
 
 **MSS**
 
-1.  User requests to list persons
-2.  ExpressLibrary shows a list of persons
-3.  User requests to add a book to a specific person in the list
-4.  ExpressLibrary adds a book field to the person
+1.  User requests to list persons.
+2.  ExpressLibrary shows a list of persons.
+3.  User requests to add a book to a specific person in the list.
+4.  ExpressLibrary adds a book field to the person.
 
     Use case ends.
 
@@ -311,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Book Status**: Status of the book, whether the book is available to borrow or not
+* **ISBN**: International Standard Book Number which is a commercial book identifier that is intended to be unique. Consists of 10 to 13 digits.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -319,21 +347,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
 ### Launch and shutdown
 
-1. Initial launch
+* Initial launch
 
    1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file. <br>
-      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+      Expected: Shows the GUI with a set of sample people and books.
 
-1. Saving window preferences
+* Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -342,7 +372,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a book
 
-1. Adding a book while all books are being shown
+* Adding a book while all books are being shown.
 
     1. Test case: `addBook t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
        Expected: A book and its details is added into the book list.
@@ -355,9 +385,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a book
 
-1. Deleting a book while all books are being shown
+* Deleting a book while all books are being shown.
 
-    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+    1. Prerequisites: List all books using the `listBook` command. Multiple books in the list.
 
     1. Test case: `deleteBook 1`<br>
        Expected: First book is deleted from the list. Details of the deleted book shown in the status message. Timestamp in the status bar is updated.
@@ -370,9 +400,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a book
 
-1. Editing a book while all books are being shown
+* Editing a book while all books are being shown.
 
-    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+    1. Prerequisites: List all books using the `listBook` command. Multiple books in the list.
 
     1. Test case: `editBook 1 t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
        Expected: First book is edited. Details of the book are changed according to the input.
@@ -385,7 +415,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all persons are being shown.
 
    1. Prerequisites: List all persons using the `listPerson` command. Multiple persons in the list.
 
@@ -400,8 +430,21 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files.
+   1. Delete `[JAR file location]/data/expresslibrary.json` if it exists. 
+   
+   Expected: Launch ExpressLibrary and you should be able to see sample data with people and books.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Dealing with corrupted data files.
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: `expresslibrary.json` should exist in `[JAR file location]/data`. If it does not exist, launch ExpressLibrary and use any command that will change the data of the ExpressLibrary (e.g. `addBook`, `borrow`, etc.) and the `expresslibrary.json` file will be automatically generated.
+
+   1. To simulate a corrupted file, go to `[JAR file location]/data/expresslibrary.json` and make changes so that the file would be invalid (e.g. remove a comma/bracket).
+
+   Expected: Launch ExpressLibrary and you should see that ExpressLibrary will be empty.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** Advanced users of ExpressLibrary are welcome to manually edit the data file if they wish to do so. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved).
+
+</div>
