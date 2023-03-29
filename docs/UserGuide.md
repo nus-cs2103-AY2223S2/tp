@@ -182,6 +182,8 @@ Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
 
+### Quick Access Buttons On Each Student Card
+
 
 --------------------------------------------------------------------------------------------------------------------
 
