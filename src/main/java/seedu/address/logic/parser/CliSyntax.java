@@ -18,4 +18,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_DATE = new Prefix("from/");
     public static final Prefix PREFIX_END_DATE = new Prefix("to/");
     public static final Prefix PREFIX_COMMENT = new Prefix("c/");
+    public static final Prefix PREFIX_TASKTYPE = new Prefix("type/");
 }
