@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_BOOK_BORROWED_NOT_FOUND =
         "The book is not found in the book list";
     public static final String MESSAGE_BORROWER_NOT_FOUND =
-        "The book is borrowed but the person is not found in person list";
+        "The person is not found in the person list";
     public static final String MESSAGE_BOOK_NOT_BORROWED = "The book is not borrowed";
     public static final String MESSAGE_BOOK_INVALID_BORROWER = "The book is not borrowed by this person";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
