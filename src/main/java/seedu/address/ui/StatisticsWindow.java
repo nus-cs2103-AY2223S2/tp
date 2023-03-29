@@ -15,8 +15,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.stats.TotalCompleted;
 import seedu.address.model.stats.TotalEarnings;
 import seedu.address.model.stats.TotalJobs;
+import seedu.address.model.stats.TotalPending;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 
@@ -122,10 +124,12 @@ public class StatisticsWindow extends UiPart<Stage> {
         ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
         TotalJobs totalJobs = new TotalJobs(list.size());
         TotalEarnings totalEarnings = new TotalEarnings(logic.getTotalEarnings(list));
+        TotalCompleted totalCompleted = new TotalCompleted(logic.getTotalCompleted(list));
+        TotalPending totalPending = new TotalPending(logic.getTotalPending(list));
         // new simple DeliveryJobListPanel constructor with no event handlers
         //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
         //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        totalJob.setText(totalJobs.toString() + totalEarnings.toString());
+        totalJob.setText(totalJobs + totalEarnings.toString() + totalCompleted + totalPending);
 
         //resultDisplay = new ResultDisplay();
         //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -171,6 +175,7 @@ public class StatisticsWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            //resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

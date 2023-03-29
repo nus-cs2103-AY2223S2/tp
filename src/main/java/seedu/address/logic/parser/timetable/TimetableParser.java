@@ -13,7 +13,7 @@ import seedu.address.logic.commands.timetable.TimetableUnscheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Represent a parser for timetable command
  */
 public class TimetableParser {
 

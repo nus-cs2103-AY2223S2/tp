@@ -70,9 +70,19 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
 
     @Override
     public DeliveryJob toModelType() throws IllegalValueException {
-        if (deliveryDate.equals(DeliveryDate.placeholder().date)
-                || deliverySlot.equals(DeliverySlot.placeholder().value)) {
-            return new DeliveryJob(jobId, recipient, sender, Optional.empty(),
+        if (deliveryDate.equals(DeliveryDate.placeholder().date)) {
+            if (deliverySlot.equals(DeliverySlot.placeholder().value)) {
+                return new DeliveryJob(jobId, recipient, sender, Optional.empty(),
+                        Optional.empty(),
+                        Optional.of(new Earning(earning)), isDelivered, description);
+            } else {
+                return new DeliveryJob(jobId, recipient, sender, Optional.empty(),
+                        Optional.of(new DeliverySlot(deliverySlot)),
+                        Optional.of(new Earning(earning)), isDelivered, description);
+            }
+        } else if (deliverySlot.equals(DeliverySlot.placeholder().value)) {
+            return new DeliveryJob(jobId, recipient, sender,
+                    Optional.of(new DeliveryDate(deliveryDate)),
                     Optional.empty(),
                     Optional.of(new Earning(earning)), isDelivered, description);
         }

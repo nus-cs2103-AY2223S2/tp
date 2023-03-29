@@ -9,7 +9,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.jobs.sorters.SortbyTime;
+import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 
 /**
  * Shows timetable of the requested week based on user's date input
@@ -27,11 +27,11 @@ public class TimetableDateCommand extends Command {
 
     public static final String SHOWING_TIMETABLE_MESSAGE = "Show timetable of the week containing day: %s.";
 
-    public static final SortbyTime SORTER = new SortbyTime();
+    public static final SortbyTimeAndEarn SORTER = new SortbyTimeAndEarn();
     private final LocalDate jobDate;
 
     /**
-     * Finds and shows timetable of jobs in week based on input date
+     * Updates and shows timetable of jobs in week based on input date
      * @param jobDate input date
      */
     public TimetableDateCommand(LocalDate jobDate) {

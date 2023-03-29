@@ -27,6 +27,11 @@ public class CommandResult {
     private final boolean showUnschedule;
 
     /**
+     * List of completed jobs should be shown to user.
+     */
+    private final boolean showComplete;
+
+    /**
      * Statistics information should be shown to the user.
      */
     private final boolean showStatistics;
@@ -46,12 +51,13 @@ public class CommandResult {
      */
 
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
-                         boolean showUnschedule, boolean showReminderList,
+                         boolean showUnschedule, boolean showComplete, boolean showReminderList,
                          boolean showStatistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
         this.showUnschedule = showUnschedule;
+        this.showComplete = showComplete;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
@@ -74,6 +80,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
         this.showUnschedule = false;
+        this.showComplete = false;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
@@ -87,31 +94,59 @@ public class CommandResult {
         this(feedbackToUser, false, false, false, false, false);
     }
 
+    /**
+     * Returns feedback to user
+     */
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
+    /**
+     * Checks if help window is shown
+     */
     public boolean isShowHelp() {
         return showHelp;
     }
 
+    /**
+     * Checks if timetable window is shown
+     */
     public boolean isShowTimetable() {
         return showTimetable;
     }
 
+    /**
+     * Checks if unscheduled job window is shown
+     */
     public boolean isShowUnschedule() {
         return showUnschedule;
     }
 
+    /**
+     * Checks if compelted job window is shown
+     */
+    public boolean isShowComplete() {
+        return showComplete;
+    }
 
+
+    /**
+     * Checks if stats window is shown
+     */
     public boolean isShowStatistics() {
         return showStatistics;
     }
 
+    /**
+     * Checks if reminder window is shown
+     */
     public boolean isShowReminderList() {
         return showReminderList;
     }
 
+    /**
+     * Checks if main window is exited
+     */
     public boolean isExit() {
         return exit;
     }

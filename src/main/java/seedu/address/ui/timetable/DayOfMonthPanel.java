@@ -16,7 +16,7 @@ import seedu.address.ui.UiPart;
 
 
 /**
- * Controller for a timetable page
+ * Panel containing the days of month (11th, 12th,...) in the week
  */
 public class DayOfMonthPanel extends UiPart<Region> {
 
@@ -39,7 +39,8 @@ public class DayOfMonthPanel extends UiPart<Region> {
     private HBox dayOfMonthPanel;
 
     /**
-     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code DayofMonthPanel} with the given {@code focusDate}, {@code Logic}
+     * and {@code Stage}.
      */
     public DayOfMonthPanel(LocalDate focusDate, Logic logic, Stage primaryStage) {
         super(FXML);
@@ -59,7 +60,7 @@ public class DayOfMonthPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets all text font to font size
+     * Sets all text font to specific font size
      * @param fontSize
      */
     private void setAllFont(double fontSize) {
@@ -74,7 +75,7 @@ public class DayOfMonthPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets day of month text for all days
+     * Sets text in day of month for all days in week
      * @param focusDayOfWeek day in week of focus date
      */
     private void setAllDateText(int focusDayOfWeek) {

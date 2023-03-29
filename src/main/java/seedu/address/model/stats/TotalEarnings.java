@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: details are present and not null.
  */
 public class TotalEarnings {
-    public static final String MESSAGE_CONSTRAINTS = "TotalEarnings must be a non-negative integer";
-    private static final String OUTPUT_MESSAGE = "Total Earnings: ";
+    public static final String MESSAGE_CONSTRAINTS = "TotalEarnings must be a non-negative number";
+    private static final String OUTPUT_MESSAGE = "Total Earnings: $";
     private double earnings;
 
     /**

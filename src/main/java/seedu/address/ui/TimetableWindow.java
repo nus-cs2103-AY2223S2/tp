@@ -74,21 +74,6 @@ public class TimetableWindow extends UiPart<Stage> {
 
     /**
      * Shows the timetable window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
      */
     public void show() {
         logger.fine("Showing timetable of week of " + focusDate.toString());
@@ -167,6 +152,11 @@ public class TimetableWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Executes the command and returns the result.
+     *
+     * @see seedu.address.logic.Logic#executeTimetableCommand(String)
+     */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.executeTimetableCommand(commandText);

@@ -1,4 +1,4 @@
-package seedu.address.ui.jobs;
+package seedu.address.ui.timetable;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -13,6 +13,7 @@ import seedu.address.logic.Logic;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.jobs.DayDeliveryJobCard;
 
 /**
  * Panel containing the list of jobs divided into slots in day.
@@ -37,9 +38,14 @@ public class DayJobListPanel extends UiPart<Region> {
     @FXML
     private ListView<DeliveryJob> jobList5;
 
+    @FXML
+    private ListView<DeliveryJob> jobList6;
+
 
     /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
+     * Creates a {@code DayJobListPanel}
+     * @param logic logic
+     * @param jobListInDay observable list of jobs
      */
     public DayJobListPanel(Logic logic, DeliveryList jobListInDay) {
         super(FXML);
@@ -50,6 +56,7 @@ public class DayJobListPanel extends UiPart<Region> {
         addJobListToSlot(jobList3, jobListInDay.get(2));
         addJobListToSlot(jobList4, jobListInDay.get(3));
         addJobListToSlot(jobList5, jobListInDay.get(4));
+        addJobListToSlot(jobList6, jobListInDay.get(5));
     }
 
     private void addJobListToSlot(ListView<DeliveryJob> jobSlot, ArrayList<DeliveryJob> jobList) {
@@ -61,7 +68,7 @@ public class DayJobListPanel extends UiPart<Region> {
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code job} using a
-     * {@code PersonCard}.
+     * {@code DayDeliveryJobCard}.
      */
     class DayJobListViewCell extends ListCell<DeliveryJob> {
         @Override

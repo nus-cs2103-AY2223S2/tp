@@ -109,16 +109,18 @@ public class MainApp extends Application {
             deliveryJobSystemOptional = storage.readDeliveryJobSystem();
 
             if (!deliveryJobSystemOptional.isPresent()) {
-                logger.info("[DS] Data file not found. Will be starting with a sample AddressBook");
+                logger.info("[DS] Data file not found. Will be starting with a sample DeliveryJobSystem");
             }
 
             initialDeliveryJobSystemData = deliveryJobSystemOptional
                     .orElseGet(SampleDataUtil::getSampleDeliveryJobSystem);
-        } catch (DataConversionException e) {
-            logger.warning("[DS] Data file not in the correct format. Will be starting with an empty AddressBook");
+        } catch (NullPointerException | DataConversionException e) {
+            logger.warning(
+                    "[DS] Data file not in the correct format. Will be starting with an empty DeliveryJobSystem");
             initialDeliveryJobSystemData = new DeliveryJobSystem();
         } catch (IOException e) {
-            logger.warning("[DS] Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning(
+                    "[DS] Problem while reading from the file. Will be starting with an empty DeliveryJobSystem");
             initialDeliveryJobSystemData = new DeliveryJobSystem();
         }
 

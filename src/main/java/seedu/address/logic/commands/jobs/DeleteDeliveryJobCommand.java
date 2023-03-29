@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a job identified using it's displayed index from the job system.
  */
 public class DeleteDeliveryJobCommand extends Command {
 
