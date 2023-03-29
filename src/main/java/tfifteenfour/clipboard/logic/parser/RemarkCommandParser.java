@@ -2,6 +2,7 @@ package tfifteenfour.clipboard.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.Arrays;
 
@@ -32,7 +33,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
      */
     public RemarkCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizePrefixes(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizePrefixes(args, PREFIX_REMARK);
         Index index;
 
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
@@ -45,16 +46,16 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RemarkCommand.MESSAGE_USAGE), ive);
         }
-        Remark remark = new Remark(parseRemarkInfo(args));
+        Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
         return new RemarkCommand(index, remark);
     }
 
     private String parseRemarkInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         System.out.println(tokens.length);
-        if (tokens.length < 3) {
-            throw new ParseException("Remark not entered");
-        }
+        //if (tokens.length < 3) {
+        //    throw new ParseException("Remark not entered");
+        //}
 
         return String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
 
