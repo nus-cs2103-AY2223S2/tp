@@ -120,7 +120,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 ### Basic Information about Tasks
 * A Task can be:
-    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
+    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a LongDate?](#q2-what-is-a-valid-Longdate))
     * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
     * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
 
@@ -138,9 +138,9 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 :man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
 
 Adds a task to the task book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
-For `Deadline` and `Event` `Date` field(s) are required.
+For `Deadline` and `Event` `LongDate` field(s) are required.
 
-`Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
+`LongDate` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid LongDate?](#q2-what-is-a-valid-Longdate))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -427,8 +427,8 @@ _Details coming soon ..._
 ### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
-### Q2 What is a valid Date?
-**A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
+### Q2 What is a valid LongDate?
+**A**: A valid LongDate must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid LongDate must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
 ### Q3 What is an effort level?
@@ -440,8 +440,8 @@ _Details coming soon ..._
 ### Q5 Why does two different tags have the same tag color??
 **A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
 
-### Q6 What is the difference between a `Date` and a `ShortDate`?
-**A**: A `ShortDate` omits the `HHMM` component of a `Date`. 
+### Q6 What is the difference between a `LongDate` and a `ShortDate`?
+**A**: A `ShortDate` omits the `HHMM` component of a `LongDate`. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -465,5 +465,5 @@ _Details coming soon ..._
 ## 6. Glossary
 1. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
 2. Free day: Allocating a task to this day will not result in overloading.
-3. Short date: YYYY-MM-DD
-4. Date: YYYY-MM-DD HHMM
+3. ShortDate: YYYY-MM-DD
+4. LongDate: YYYY-MM-DD HHMM
