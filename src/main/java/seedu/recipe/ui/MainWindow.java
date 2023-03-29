@@ -1,6 +1,7 @@
 package seedu.recipe.ui;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.storage.ExportManager;
 import seedu.recipe.storage.ImportManager;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
@@ -130,11 +132,26 @@ public class MainWindow extends UiPart<Stage> {
         ImportManager importManager = new ImportManager(primaryStage);
         try {
             ObservableList<Recipe> importedRecipes = importManager.execute();
-            for (Recipe recipe : importedRecipes) {
-                System.out.println("Recipe: " + recipe.toString());
+            if (importedRecipes == null) {
+                logger.info("No file selected");
+                resultDisplay.setFeedbackToUser("No file selected");
+                return;
             }
-        } catch (DataConversionException | IOException | IllegalValueException e) {
-            System.out.println(e.getMessage());
+//          For testing
+
+            ObservableList<Recipe> currentRecipes = logic.getFilteredRecipeList();
+            for (Recipe recipe : importedRecipes) {
+                if (!currentRecipes.stream().anyMatch(recipe::isSameRecipe)) {
+                    String commandText = "add" + importManager.getCommandText(recipe);
+                    logic.execute(commandText);
+                }
+            }
+            logger.info("Import Successfully");
+            resultDisplay.setFeedbackToUser("Import Successfully");
+        } catch (DataConversionException | IOException | IllegalValueException | CommandException e) {
+            logger.info("Invalid import: " + e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            return;
         }
     }
 
