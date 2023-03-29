@@ -11,7 +11,7 @@ import mycelium.mycelium.model.util.NonEmptyString;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS = NonEmptyString.MESSAGE_CONSTRAINTS;
+    public static final String MESSAGE_CONSTRAINTS = "Name cannot be empty or consist only of whitespace";
 
     /*
      * The first character of the address must not be a whitespace,
