@@ -30,6 +30,7 @@ CoDoc.**
     - [Viewing a person's modules](#2-viewing-a-person)
     - [Editing a person's modules](#3-editing-a-persons-details)
     - [Finding a person by their modules](#4-finding-a-person)
+- [Notes about the command format](#notes-about-the-command-format)
 - [Commands](#commands)
   - [Viewing help : `help`](#1-viewing-help--help)
   - [Adding a person : `add`](#2-adding-a-person--add)
@@ -52,7 +53,8 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Guide
 Before you start using CoDoc, you are recommended to read the
-[Glossary](#glossary), [Quick Start](#quick-start) as well as [Notes about the command format](#notes-about-the-command-format)
+[Glossary](#glossary), [Quick Start](#quick-start) and the [Notes about the command format](#notes-about-the-command-format)
+
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 User Guide and help you navigate it with ease.
 
@@ -389,6 +391,25 @@ If you need more info on the usage of each command, you can refer to the relevan
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 <br>
+
+---
+
+### Notes about the command format
+
+* Words in `UPPER_CASE` are the parameters to be **supplied by you**. \
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Items in square brackets are **optional**. \
+  e.g. `n/NAME [s/SKILL]` can be used as `n/John Doe s/Python` or as `n/John Doe`.
+* Items with `…`​ after them can be used **multiple times including zero times**. \
+  e.g. `[m/MODULE]…​` can be used as ` ` (i.e. 0 times), `m/AY2223S2 CS2103T`, `m/AY2122S1 CS1101S m/AY2223S2 CS2103T` etc.
+* Parameters can be **in any order**. \
+  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
+* If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence of the parameter will be taken**. \
+  e.g. if you specify `g/johnny g/john`, only `g/john` will be taken.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+[Scroll back to top](#table-of-contents)
 
 ---
 
