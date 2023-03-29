@@ -82,6 +82,9 @@ public class AddressBookParser {
             case IncrementCommand.COMMAND_WORD:
                 return new IncrementCommandParser().parse(arguments);
 
+            case DecrementCommand.COMMAND_WORD:
+                return new DecrementCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
 

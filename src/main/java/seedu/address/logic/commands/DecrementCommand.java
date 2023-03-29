@@ -17,20 +17,22 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 
 /**
- * Increments the transaction count of a client without needing to perform manual calculation.
+ * Decrements the current transaction count for fast access and to avoid calculation errors.
  */
-public class IncrementCommand extends Command {
+public class DecrementCommand extends Command {
 
-    public static final String COMMAND_WORD = "incr";
+    public static final String COMMAND_WORD = "decr";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Increments the transaction count by the specified amount.\n"
+            + ": Decrements the transaction count by the specified amount.\n"
             + "Parameters: INDEX (must be a postive integer) "
-            + PREFIX_TRANSACTION_COUNT + "How many transactions have taken place\n"
+            + PREFIX_TRANSACTION_COUNT + "How many transactions to decrease by\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TRANSACTION_COUNT+ "1";
 
-    public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count incremented";
+    public static final String MESSAGE_INCREMENT_SUCCESS = "Transaction Count decremented";
+
+    public static final String MESSAGE_FINAL_COUNT_NEGATIVE = "Final transaction count cannot be negative";
 
     private final EditPersonDescriptor editPersonDescriptor;
     private final Index index;
@@ -39,7 +41,7 @@ public class IncrementCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public IncrementCommand(Index index, EditCommand.EditPersonDescriptor editPersonDescriptor) {
+    public DecrementCommand(Index index, EditCommand.EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -60,7 +62,11 @@ public class IncrementCommand extends Command {
 
         int currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getIntValue();
         int incrementCount = editPersonDescriptor.getTransactionCount().get().getIntValue();
-        int finalAmount = currentCount + incrementCount;
+        int finalAmount = currentCount - incrementCount;
+
+        if (finalAmount < 0) {
+            throw new CommandException(MESSAGE_FINAL_COUNT_NEGATIVE);
+        }
 
         editPersonDescriptor.setTransactionCount(new TransactionCount(String.valueOf(finalAmount)));
 
@@ -81,12 +87,12 @@ public class IncrementCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof IncrementCommand)) {
+        if (!(other instanceof DecrementCommand)) {
             return false;
         }
 
         // state check
-        IncrementCommand e = (IncrementCommand) other;
+        DecrementCommand e = (DecrementCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
