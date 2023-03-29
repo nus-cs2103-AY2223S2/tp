@@ -447,19 +447,19 @@ _Details coming soon ..._
 
 ## 5. Command summary
 
-| Action       | Format, Examples                                                                                                    |
-|--------------|---------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**    | `clear`                                                                                                             |
-| **Delete**   | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
-| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
-| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
-| **List**     | `list`                                                                                                              |
-| **Help**     | `help`                                                                                                              |
-| **Stats**    | `stats`                                                                                                             |
-| **sort**     | `sort`                                                                                                              |
-| **alert**    | `alert [ALERT_WINDOW]`                                                                                              |
-| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                   |
+| Action       | Format, Examples                                                                                                      |
+|--------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**    | `clear`                                                                                                               |
+| **Delete**   | `delete INDEX [INDEX]…​ `<br> e.g., `delete 3`                                                                        |
+| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                    |
+| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                    |
+| **List**     | `list`                                                                                                                |
+| **Help**     | `help`                                                                                                                |
+| **Stats**    | `stats`                                                                                                               |
+| **sort**     | `sort`                                                                                                                |
+| **alert**    | `alert [ALERT_WINDOW]`                                                                                                |
+| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 ## 6. Glossary
