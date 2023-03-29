@@ -11,8 +11,10 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -32,7 +34,6 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    //TODO descriptor.setAddress, descriptor.setEmail, descriptor.setPhone, descriptor.setBirthday
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
@@ -40,7 +41,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
-        descriptor.setTags(person.getTags());
+        descriptor.setRemarks(person.getRemarks());
+        descriptor.setCcas(person.getCcas());
+        descriptor.setCcaPositions(person.getCcaPositions());
         descriptor.setModules(person.getModules());
     }
 
@@ -81,8 +84,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        Set<Remark> tagSet = Stream.of(tags).map(Remark::new).collect(Collectors.toSet());
+        descriptor.setRemarks(tagSet);
         return this;
     }
 
@@ -93,6 +96,26 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withModules(String... modules) {
         Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
         descriptor.setModules(moduleSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<Cca>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withCcas(String... ccas) {
+        Set<Cca> ccaSet = Stream.of(ccas).map(Cca::new).collect(Collectors.toSet());
+        descriptor.setCcas(ccaSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<CcaPosiiton>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withCcaPositions(String... ccaPositions) {
+        Set<CcaPosition> ccaPositionSet = Stream.of(ccaPositions).map(CcaPosition::new).collect(Collectors.toSet());
+        descriptor.setCcaPositions(ccaPositionSet);
         return this;
     }
 

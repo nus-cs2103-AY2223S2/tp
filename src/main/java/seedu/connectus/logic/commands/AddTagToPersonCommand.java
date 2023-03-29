@@ -2,7 +2,7 @@ package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -17,21 +17,21 @@ import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
- * Adds a tag (or module) to a person identified using its displayed index from ConnectUS.
+ * Adds a tag to a person identified using its displayed index from ConnectUS.
  */
 public class AddTagToPersonCommand extends Command {
     public static final String COMMAND_WORD = "addt";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag (or module) to the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_TAG + "TAG] "
+        + "[" + PREFIX_REMARK + "REMARK] "
         + "[" + PREFIX_MODULE + "MODULE]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_TAG + "friend "
+        + PREFIX_REMARK + "friend "
         + PREFIX_MODULE + "CS1231";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added %2$s to Person: %1$s";
@@ -70,10 +70,10 @@ public class AddTagToPersonCommand extends Command {
 
     private String getTagSuccessDetailsMessage() {
         StringBuilder sb = new StringBuilder(MESSAGE_ADD_TAG_SUCCESS.length() * 2);
-        if (!addTagDescriptor.tags.isEmpty()) {
-            sb.append("tag");
-            sb.append(addTagDescriptor.tags.size() > 1 ? "s " : " ");
-            sb.append(addTagDescriptor.tags.stream().map(tag -> tag.tagName)
+        if (!addTagDescriptor.remarks.isEmpty()) {
+            sb.append("remark");
+            sb.append(addTagDescriptor.remarks.size() > 1 ? "s " : " ");
+            sb.append(addTagDescriptor.remarks.stream().map(remark -> remark.remarkName)
                 .collect(Collectors.joining(", ")));
         }
 
@@ -89,13 +89,13 @@ public class AddTagToPersonCommand extends Command {
     }
 
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
-        var tags = new HashSet<>(personToEdit.getTags());
+        var remarks = new HashSet<>(personToEdit.getRemarks());
         var modules = new HashSet<>(personToEdit.getModules());
 
-        tags.addAll(addTagDescriptor.tags);
+        remarks.addAll(addTagDescriptor.remarks);
         modules.addAll(addTagDescriptor.modules);
 
-        return new Person(personToEdit, tags, modules);
+        return new Person(personToEdit, remarks, modules);
     }
 
     @Override
@@ -122,15 +122,15 @@ public class AddTagToPersonCommand extends Command {
      * corresponding field value of the person.
      */
     public static class AddTagDescriptor {
-        private final Set<Tag> tags;
+        private final Set<Remark> remarks;
         private final Set<Module> modules;
 
 
         /**
          * Constructor.
          */
-        public AddTagDescriptor(Set<Tag> tags, Set<Module> modules) {
-            this.tags = tags;
+        public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules) {
+            this.remarks = remarks;
             this.modules = modules;
         }
 
@@ -138,18 +138,18 @@ public class AddTagToPersonCommand extends Command {
          * Copy constructor.
          */
         public AddTagDescriptor(AddTagDescriptor addTagDescriptor) {
-            tags = addTagDescriptor.tags;
+            remarks = addTagDescriptor.remarks;
             modules = addTagDescriptor.modules;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws
+         * Returns an unmodifiable remark set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code remarks} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Remark>> getRemarks() {
+            return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
         }
 
         /**
@@ -163,7 +163,7 @@ public class AddTagToPersonCommand extends Command {
         }
 
         public boolean isEmpty() {
-            return (tags == null || tags.isEmpty()) && (modules == null || modules.isEmpty());
+            return (remarks == null || remarks.isEmpty()) && (modules == null || modules.isEmpty());
         }
 
         @Override
@@ -181,7 +181,7 @@ public class AddTagToPersonCommand extends Command {
             // state check
             var e = (AddTagDescriptor) other;
 
-            return getTags().equals(e.getTags()) && getModules().equals(e.getModules());
+            return getRemarks().equals(e.getRemarks()) && getModules().equals(e.getModules());
         }
     }
 }
