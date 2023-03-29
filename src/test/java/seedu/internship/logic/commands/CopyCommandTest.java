@@ -46,7 +46,7 @@ public class CopyCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
         CopyCommand copyCommand = new CopyCommand(outOfBoundIndex);
 
-        assertCommandFailure(copyCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(copyCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class CopyCommandTest {
 
         CopyCommand copyCommand = new CopyCommand(outOfBoundIndex);
 
-        assertCommandFailure(copyCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(copyCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_INDEX_LIST;
 import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
@@ -53,5 +54,10 @@ public class DeleteIndexCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteIndexCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 }

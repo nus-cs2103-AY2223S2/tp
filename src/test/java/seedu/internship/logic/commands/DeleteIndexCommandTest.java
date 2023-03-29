@@ -49,7 +49,7 @@ public class DeleteIndexCommandTest {
         List<Index> indexList = new ArrayList<>(Arrays.asList(outOfBoundIndex));
         DeleteIndexCommand deleteCommand = new DeleteIndexCommand(indexList);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class DeleteIndexCommandTest {
 
         DeleteIndexCommand deleteCommand = new DeleteIndexCommand(indexList);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.CopyCommand;
@@ -22,8 +23,12 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             assert index.getZeroBased() > -1;
             return new CopyCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE), pe);
+            }
         }
     }
 

@@ -58,7 +58,7 @@ public class DeleteIndexCommand extends Command {
 
         if (uniqueTargetIndexes.size() > 0 && uniqueTargetIndexes.get(uniqueTargetIndexes.size() - 1)
                 .getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
         }
 
         List<Internship> internshipsToDelete = new ArrayList<>(lastShownList);
