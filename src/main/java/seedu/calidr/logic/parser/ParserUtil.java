@@ -22,11 +22,11 @@ import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Phone;
 import seedu.calidr.model.person.Remark;
-import seedu.calidr.model.task.params.Tag;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Tag;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 

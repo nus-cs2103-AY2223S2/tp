@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.calidr.commons.core.index.Index;
-import seedu.calidr.logic.commands.EditCommand;
 import seedu.calidr.logic.commands.EditTaskCommand;
 import seedu.calidr.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.calidr.logic.parser.exceptions.ParseException;

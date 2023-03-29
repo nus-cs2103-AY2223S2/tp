@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.commons.core.Messages;
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.commons.util.CollectionUtil;

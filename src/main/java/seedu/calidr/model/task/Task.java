@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
