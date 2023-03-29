@@ -246,7 +246,6 @@ Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `Logic
 Step 5. `MainWindow#executeCommand` then uses the `CommandResult` to display feedback to the user on the UI which states: “{Number of books that match keyword} books found!”
 
 The following sequence diagram shows how the findBook operation works:
-
 ![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
