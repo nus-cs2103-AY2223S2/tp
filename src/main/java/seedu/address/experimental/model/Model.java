@@ -51,17 +51,12 @@ public interface Model {
     void setRerollFilePath(Path rerollFilePath);
 
     /**
-     * Replaces address book data with the data in {@code Reroll}.
-     */
-    void setReroll(ReadOnlyReroll reroll);
-
-    /**
      * Returns Reroll
      */
     ReadOnlyReroll getReroll();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code Reroll}.
      */
     void setReroll(ReadOnlyReroll reroll);
 
