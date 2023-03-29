@@ -70,6 +70,15 @@ public class Task {
     }
 
     /**
+     * Returns whether task is assigned.
+     *
+     * @return Boolean value of whether task is assigned to a person.
+     */
+    public boolean isAssigned() {
+        return personAssignedIndex != null;
+    }
+
+    /**
      * Marks the current task as done.
      */
     public void setStatus(boolean isDone) {

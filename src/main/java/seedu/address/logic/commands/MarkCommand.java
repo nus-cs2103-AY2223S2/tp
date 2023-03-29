@@ -26,9 +26,10 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by the index number in the displayed task list as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + PREFIX_TASK_INDEX + "1" + PREFIX_SCORE + "4";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TASK_INDEX + "1 " + PREFIX_SCORE + "4";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s \nPerformance Score: %2$s";
+    public static final String MESSAGE_TASK_NOT_ASSIGNED = "Task must be assigned to a person.";
 
     private final Index targetIndex;
     private final Score score;
@@ -58,6 +59,11 @@ public class MarkCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!taskToMark.isAssigned()) {
+            throw new CommandException(MESSAGE_TASK_NOT_ASSIGNED);
+        }
+
         taskBookModel.markTask(taskToMark, score);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()));

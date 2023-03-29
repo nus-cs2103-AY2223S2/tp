@@ -36,6 +36,7 @@ public class MarkCommandTest {
         DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
         taskBookModel.addTask(validDeadlineTask);
         Task taskToMark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+        taskToMark.assignPerson(INDEX_FIRST_PERSON, "Test Name", "Test Role");
         Score score = new Score(4);
         CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON, score).execute(model, taskBookModel);
 

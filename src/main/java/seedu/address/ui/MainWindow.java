@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private PersonListPanel personListPanel;
     private TaskListPanel taskListPanel;
+    private PersonStatsListPanel personStatsListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -211,6 +213,15 @@ public class MainWindow extends UiPart<Stage> {
                 StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
                 statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
                 panelLabel.setText("Tasks");
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ReviewCommand.MESSAGE_SUCCESS)) {
+                personStatsListPanel = new PersonStatsListPanel(logic);
+                listPanelPlaceholder.getChildren().clear();
+                listPanelPlaceholder.getChildren().add(personStatsListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+                panelLabel.setText("Review");
             }
 
             if (commandResult.isShowHelp()) {

@@ -42,7 +42,7 @@
                </font>
             </Label>
             <VBox.margin>
-               <Insets bottom="10.0" />
+                <Insets bottom="10.0" />
             </VBox.margin>
       </HBox>
          <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" spacing="10.0">
@@ -52,7 +52,7 @@
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
                </Label>
-               <Label style="-fx-font-size: 15px;" text="      Due By: " />
+               <Label style="-fx-font-size: 15px;" />
             <Label fx:id="taskDeadline" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
             </children>
          </HBox>
@@ -80,10 +80,10 @@
                <Circle fx:id="circle4" fill="WHITE" layoutX="66.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="circle5" fill="WHITE" layoutX="88.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
             </children>
-         </HBox>
+          </HBox>
     </VBox>
       <rowConstraints>
-         <RowConstraints />
+          <RowConstraints />
       </rowConstraints>
   </GridPane>
 </HBox>
