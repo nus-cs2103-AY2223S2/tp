@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5b. The given score's index is invalid.
 
     * 5b1.  MATHUTORING informs the tutor that the index is invalid.
-    
+
       Use case resumes at step 3.
 
 **Use case: Export a student's progress**
