@@ -82,7 +82,6 @@ public class LoginWindow extends UiPart<Stage> {
     public void fillCreateNewPasswordSection() {
         createPasswordSection = new CreatePasswordSection();
         container.getChildren().clear();
-        //container.getChildren().removeAll(welcomeSection.getRoot());
         container.getChildren().add(createPasswordSection.getRoot());
     }
 
@@ -92,7 +91,6 @@ public class LoginWindow extends UiPart<Stage> {
     public void fillLoadingSection() {
         loadingSection = new LoadingSection();
         container.getChildren().clear();
-        //container.getChildren().removeAll(welcomeSection.getRoot());
         container.getChildren().add(loadingSection.getRoot());
     }
 

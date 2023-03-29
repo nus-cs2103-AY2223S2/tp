@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -50,6 +50,22 @@ public class CreatePasswordSection extends UiPart<Region> {
             } else {
                 this.errorMessageLabel.setText("Passwords do not match. Please try again.");
             }
+        }
+    }
+
+    @FXML
+    private void handleButtonSubmit(ActionEvent event) {
+        // Check if both passwords match
+        String newPassword = firstInputField.getText();
+        String reEnterPassword = secondInputField.getText();
+        if (newPassword.equals(reEnterPassword)) {
+            // save the password
+
+            // send event to go to loading screen
+            CreatePasswordSuccessfulEvent createPasswordSuccessfulEvent = new CreatePasswordSuccessfulEvent();
+            Event.fireEvent(tempContainer, createPasswordSuccessfulEvent);
+        } else {
+            this.errorMessageLabel.setText("Passwords do not match. Please try again.");
         }
     }
 }
