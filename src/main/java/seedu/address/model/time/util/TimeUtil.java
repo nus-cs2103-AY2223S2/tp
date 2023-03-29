@@ -19,6 +19,37 @@ import seedu.address.model.timetable.Timetable;
  * Contains utils functions for Timetable related jobs.
  */
 public class TimeUtil {
+
+    public static final Integer FIRST_START_HOUR = 8;
+    public static final Integer FIRST_END_HOUR = 9;
+    public static final Integer LAST_END_HOUR = 23;
+    public static final Integer LAST_START_HOUR = 22;
+    public static final Integer FIRST_HOUR = 0;
+    public static final Integer LAST_HOUR = 23;
+
+    /**
+     * Checks if the time is a valid time.
+     */
+    public static boolean isValidHour(int hour) {
+        return hour >= FIRST_HOUR && hour <= LAST_HOUR;
+    }
+
+    /**
+     * Checks if the time is a valid start hour.
+     */
+    public static boolean isValidStartHour(int hour) {
+        assert(isValidHour(hour));
+        return hour >= FIRST_START_HOUR && hour <= LAST_START_HOUR;
+    }
+
+    /**
+     * Checks if the time is a valid end hour.
+     */
+    public static boolean isValidEndHour(int hour) {
+        assert(isValidHour(hour));
+        return hour >= FIRST_END_HOUR && hour <= LAST_END_HOUR;
+    }
+
     /**
      * Gets a list of free intervals for which a participant is free for the specific school day.
      */

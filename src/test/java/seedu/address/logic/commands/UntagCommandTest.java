@@ -46,7 +46,7 @@ public class UntagCommandTest {
         tags2.add(new ModuleTag("CS2102"));
         tags2.add(new ModuleTag("CS2106"));
 
-        //assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
+        assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
 
 
         TagCommand tag2 = new TagCommand(index2, modulesToRemove, TagType.MODULE);
@@ -73,7 +73,7 @@ public class UntagCommandTest {
         tags1.add(new ModuleTag("CHC5338"));
         tags1.add(new ModuleTag("BT2103"));
 
-        //assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
+        assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
 
         TagCommand tag1 = new TagCommand(index1, moduleToRemove, TagType.MODULE);
         tag1.execute(model);
@@ -99,7 +99,7 @@ public class UntagCommandTest {
 
         Person userAct = model.getUser();
 
-        //assertEquals(userAct.getImmutableModuleTags(), tags);
+        assertEquals(userAct.getImmutableModuleTags(), tags);
 
         TagCommand tag = new TagCommand(null, modulesToRemove, TagType.MODULE);
         tag.execute(model);

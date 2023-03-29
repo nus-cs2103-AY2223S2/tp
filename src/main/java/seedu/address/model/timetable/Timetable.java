@@ -21,8 +21,9 @@ import seedu.address.model.time.util.TimeUtil;
  * Represents a timetable for a person.
  */
 public class Timetable {
+
     public static final Integer[] START_TIMINGS = new Integer[] {
-        8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
+        8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
     };
     private static final Logger logger = LogsCenter.getLogger(Timetable.class);
     private final HashMap<Day, ArrayList<HourBlock>> schedule;

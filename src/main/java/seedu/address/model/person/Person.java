@@ -63,6 +63,15 @@ public class Person {
         }
     }
 
+    /**
+     * Copies the data of a person into a new Person.
+     */
+    public Person copy() {
+        return new Person(getName(), getPhone(), getEmail(),
+                getAddress(), getTelegramHandle(), getContactIndex(),
+                getImmutableGroupTags(), getImmutableModuleTags());
+    }
+
     public Name getName() {
         return name;
     }
@@ -228,11 +237,22 @@ public class Person {
                 .filter(this.moduleTags::canRemove)
                 .collect(Collectors.toList());
 
+        List<ModuleTag> completelyRemovableModuleTags = moduleTags.stream()
+                .filter(ModuleTag::isBasicTag)
+                .collect(Collectors.toList());
+
+        logger.info(String.format("Removing Module Tags: %s, %s",
+                removableModuleTags, completelyRemovableModuleTags));
+
         removableModuleTags.forEach(this.moduleTags::remove);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
                 .forEach(timetable::removeCommitment);
+
+        completelyRemovableModuleTags.stream()
+                .map(ModuleTag::getModuleCode)
+                .forEach(this.moduleTags::remove);
     }
 
     public Timetable getTimetable() {

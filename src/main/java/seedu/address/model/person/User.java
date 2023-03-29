@@ -19,4 +19,13 @@ public class User extends Person {
         super(name, phone, email, address, telegramHandle, contactIndex,
                 groupTags, moduleTags);
     }
+
+    /**
+     * Copies the data of a user into a new User.
+     */
+    public User copy() {
+        return new User(getName(), getPhone(), getEmail(),
+                getAddress(), getTelegramHandle(), getContactIndex(),
+                getImmutableGroupTags(), getImmutableModuleTags());
+    }
 }
