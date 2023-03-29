@@ -21,7 +21,7 @@ public class Name {
     public Name(String foodName) {
         requireNonNull(foodName);
         checkArgument(isValid(foodName), MESSAGE_CONSTRAINTS);
-        this.foodName = capitalizeString(foodName);
+        this.foodName = capitalizeString(foodName.toLowerCase());
     }
 
     public static boolean isValid(String foodName) {
