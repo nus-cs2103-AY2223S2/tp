@@ -22,6 +22,7 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.*;
 import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;

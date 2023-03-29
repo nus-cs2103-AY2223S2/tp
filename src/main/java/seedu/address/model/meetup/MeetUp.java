@@ -1,6 +1,5 @@
 package seedu.address.model.meetup;
 
-import seedu.address.model.Participants;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;

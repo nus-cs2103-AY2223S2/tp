@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.EduMate;
-import seedu.address.model.Participants;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.Person;

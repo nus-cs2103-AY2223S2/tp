@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.meetup;
 
 import seedu.address.model.person.ContactIndex;
 

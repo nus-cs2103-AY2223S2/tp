@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.OrganiseCommand;
-import seedu.address.model.Participants;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.location.Location;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
@@ -40,7 +40,7 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, Prefix.DAY, Prefix.TIME, Prefix.LOCATION);
 
         //for recommendations
-        if (!argumentMultimap.getPreamble().isEmpty()) {
+        if (!argumentMultimap.getPreamble().isEmpty() && !argumentMultimap.getValue(Prefix.DAY).isPresent()) {
             try {
                 ContactIndex contactIndex = new ContactIndex(Integer.parseInt(args.trim()));
                 return new OrganiseCommand(contactIndex);

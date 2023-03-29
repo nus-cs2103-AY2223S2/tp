@@ -196,9 +196,11 @@
 
 .organised-meet-card-top-label {
     -fx-font-family: 'Inter SemiBold';
+    -fx-font-size: 11;
 }
 
 .organised-meet-card-bottom-label {
     -fx-text-fill: white;
-    -fx-font-family: 'Inter Regular';
+    -fx-font-size: 11;
+    -fx-font-family: 'Inter SemiBold';
 }

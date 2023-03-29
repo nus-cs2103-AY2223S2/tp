@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import org.joda.time.LocalTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Participants;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
@@ -15,7 +15,6 @@ import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
-import java.util.List;
 
 /**
  * Adds a meeting to the address book

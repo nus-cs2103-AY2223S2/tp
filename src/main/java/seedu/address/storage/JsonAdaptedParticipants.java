@@ -3,7 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Participants;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
 
 import java.util.ArrayList;
