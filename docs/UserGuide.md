@@ -2,8 +2,9 @@
 layout: page
 title: User Guide
 ---
-
+## **Overview**
 GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+
 ### Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -19,8 +20,16 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
+### Purpose
+Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process and find the best candidates for your company.
+
+### How to use this guide
+To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
+
+Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+
 --------------------------------------------------------------------------------------------------------------------
-# Quick Start
+## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
@@ -38,7 +47,9 @@ Some example commands you can try:
     - add something here
 6. Refer to the [Features](#features) below for details of each command.
 
-# Features
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+## **Features**
 
 
 ℹ️ **Notes about the command format:**
@@ -51,7 +62,7 @@ Some example commands you can try:
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
-## Viewing help: `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -59,7 +70,7 @@ Shows a message explaining how to access the help page.
 
 **Format:** `help`
 
-## Viewing all job listings: `view`
+### Viewing all job listings: `view`
 
 Lists out all the jobs that are currently in the listing book.
 
@@ -101,7 +112,7 @@ add: Adds a listing to the listing book. Parameters: t/TITLE d/DESCRIPTION [a/AP
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
 
-## Editing a job listing: `edit`
+### Editing a job listing: `edit`
 
 Edits the details of a job listing.
 
@@ -145,7 +156,7 @@ The listing index provided is invalid
 ```
 
 
-## Deleting a job listing: `delete`
+### Deleting a job listing: `delete`
 
 Deletes a job listing from the listing book.
 
@@ -179,7 +190,7 @@ The listing index provided is invalid
 ```
 
 
-## Locating job listings by title: `find`
+### Locating job listings by title: `find`
 
 Finds job listings whose titles contain any of the given keywords.
 
@@ -218,7 +229,7 @@ Parameters: KEYWORD [MORE_KEYWORDS]...
 Example: find chicken rice
 ```
 
-## Sorting job listings: `sort`
+### Sorting job listings: `sort`
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
@@ -252,9 +263,8 @@ sort: Sorts the listing displayed according to the specified field.
 Parameters: f/FIELD_COMPARED(none, title, description, applicants)
 Example: sort f/applicants
 ```
-###
 
-## Filtering job listings [coming soon!]
+### Filtering job listings [coming soon!]
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
 
@@ -270,21 +280,18 @@ Sort job listings by the field specified by the user and display the sorted list
 
 - `filter attribute/num_of_applicants by/>= 5`
 
-## Tagging a job listing [coming soon]
+### Tagging a job listing [coming soon]
 
 Add tags to a job listing for easy reference.
 
-
-
-
 ---
 
-# FAQ
+## **FAQ**
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GoodMatch home folder.
 ---
 
-# Command summary
+## **Command summary**
 | Action     | Format, Examples                                                                                                                     |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | **add**    | `add t/TITLE d/DESCRIPTION [a/APPLICANTS]` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele` |
