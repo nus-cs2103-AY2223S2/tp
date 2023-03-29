@@ -78,9 +78,9 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         // prevent from resizing smaller than specified width
         primaryStage.widthProperty().addListener((o, oldValue, newValue) -> {
-            if (newValue.intValue() < 1050) {
+            if (newValue.intValue() < 1000) {
                 primaryStage.setResizable(false);
-                primaryStage.setWidth(1050);
+                primaryStage.setWidth(1000);
                 primaryStage.setResizable(true);
             }
         });
