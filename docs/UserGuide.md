@@ -153,7 +153,8 @@ Please be careful when using this command.
 Adds a new event.
 
 **Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
-- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and `TAG`s.
+
+- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and `TAG`s
     - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
@@ -167,7 +168,6 @@ Deletes the specified event.
 **Format**: `delete INDEX`
 
 - Deletes the event at the specified `INDEX`
-
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
 
@@ -182,7 +182,6 @@ Edits the specified event.
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
 - Edits the event at the specified `INDEX`
-
   - The `INDEX` refers to the index number shown in the displayed event list.
   - The `INDEX` must be a positive integer 1, 2, 3, …
   - `[]` are optional parameters.
@@ -284,6 +283,7 @@ Displays the total revenue based on all the completed events.
 Displays events that start within a specified number of days.
 
 **Format**: `remind DAYS`
+
 - Displays events that start within the specified number of `DAYS`
   - `DAYS` must be a positive integer 1, 2, 3, …
   - Only events that start after the current date and time will be displayed.
