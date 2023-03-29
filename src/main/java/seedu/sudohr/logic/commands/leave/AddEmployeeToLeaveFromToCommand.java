@@ -5,7 +5,6 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_START_DATE;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
