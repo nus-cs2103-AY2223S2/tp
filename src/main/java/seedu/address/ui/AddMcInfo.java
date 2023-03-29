@@ -45,7 +45,7 @@ public class AddMcInfo extends UiPart<Stage> {
         this.mcStage = mcStage;
         this.filesManager = filesManager;
         this.errorMessageDisplay = new ErrorMessageDisplay(errorMessagePlaceholder);
-        this.counter++;
+        counter++;
     }
 
     /**
@@ -130,8 +130,14 @@ public class AddMcInfo extends UiPart<Stage> {
             if (duration < 1 || duration > 60) {
                 throw new DurationException("Duration should be 1-60 days");
             }
+            if (doctorName.length() > 25 || medical.length() > 200) {
+                throw new DurationException("doctor name should be less than 25 chars"
+                    + " while medical condition should be less than 200 chars");
+            }
+            if (doctorName.length() < 1 || medical.length() < 1) {
+                throw new DurationException("doctor name and medical condition is necessary");
+            }
             filesManager.generateMc(doctorName, medical, duration);
-
             if (filesManager.isHasError()) {
                 medicalCondition.setText(filesManager.getErrorMessage());
                 return;

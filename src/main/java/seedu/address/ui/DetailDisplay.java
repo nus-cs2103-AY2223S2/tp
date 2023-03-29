@@ -129,9 +129,8 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
-
                 filesManager.addFile();
-                //add here
+  
                 try {
                     filesManager.addFile();
                 } catch (RuntimeException e) {
