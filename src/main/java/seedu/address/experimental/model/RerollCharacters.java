@@ -1,7 +1,6 @@
 package seedu.address.experimental.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 
 /**

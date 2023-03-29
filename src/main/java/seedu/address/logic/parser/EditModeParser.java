@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javafx.scene.transform.NonInvertibleTransformException;
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
@@ -68,7 +67,7 @@ public class EditModeParser {
         }
 
         final String fieldWord = matcher.group("fieldWord");
-        final String arguments; arguments = matcher.group("arguments").trim();
+        final String arguments = matcher.group("arguments").trim();
 
         if (fieldWord.equalsIgnoreCase("back")
                 || fieldWord.equalsIgnoreCase("b")) {
@@ -128,6 +127,7 @@ public class EditModeParser {
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
             parseInventoryCommand(value, editedInventory);
             outData.setInventory(editedInventory);
+            break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
@@ -172,6 +172,7 @@ public class EditModeParser {
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
             parseInventoryCommand(value, editedInventory);
             outData.setInventory(editedInventory);
+            break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
@@ -232,6 +233,8 @@ public class EditModeParser {
             editInventory.addItem(item);
         } else if (actionWord.equalsIgnoreCase("remove")) {
             editInventory.addItem(item);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
     }
 }

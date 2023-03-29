@@ -1,6 +1,5 @@
 package seedu.address.experimental.model;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.address.model.entity.Entity;
 

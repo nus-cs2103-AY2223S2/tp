@@ -16,8 +16,13 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Inventory;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
 /**
