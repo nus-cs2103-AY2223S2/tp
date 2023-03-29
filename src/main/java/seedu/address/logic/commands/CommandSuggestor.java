@@ -141,8 +141,8 @@ public class CommandSuggestor {
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
-    public String suggestArguments(
-            ArrayList<Prefix> argPrefixes, String userInput) throws CommandException {
+    private String suggestArguments(ArrayList<Prefix> argPrefixes, String userInput)
+            throws CommandException {
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
@@ -197,7 +197,7 @@ public class CommandSuggestor {
      * @return Longest matching prefix.
      * @throws CommandException If the user input is invalid.
      */
-    public String getLongestMatchingPrefixSuggestion(String userInput) {
+    private String getLongestMatchingPrefixSuggestion(String userInput) {
         assert userInput != null && !userInput.isEmpty();
         String[] userInputArray = userInput.split(" ", 2);
         String commandWord = userInputArray[0];
@@ -221,7 +221,7 @@ public class CommandSuggestor {
      * @param matchingCommands List of strings.
      * @return Longest matching prefix.
      */
-    public String getLongestMatchingPrefix(ArrayList<String> matchingCommands) {
+    private String getLongestMatchingPrefix(ArrayList<String> matchingCommands) {
         Collections.sort(matchingCommands);
         int size = matchingCommands.size();
         if (size == 0) {
