@@ -201,7 +201,7 @@
     -fx-background-color: transparent;
     -fx-font-weight: lighter;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: derive(#445568, 30%);
 }
 
 .result-display .label {
@@ -382,7 +382,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, derive(#445568, 25%), transparent, derive(#445568, 25%);
+    -fx-background-color: transparent, white, transparent, white;
     -fx-background-radius: 0;
 }
 
