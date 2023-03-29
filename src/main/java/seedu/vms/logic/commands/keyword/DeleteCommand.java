@@ -21,29 +21,30 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_GROUP = "keyword";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Deletes the keyword identified by the index number used in the keyword list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the keyword identified by the string used in the keyword map.\n"
+            + "Parameters: KEYWORD (must be a string)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_KEYWORD_SUCCESS = "Deleted keyword: %1$s";
 
-    private final Index targetIndex;
+//    private final Index targetIndex;
+    private final String targetKeyword;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(String targetKeyword) {
+        this.targetKeyword = targetKeyword;
     }
 
     @Override
     public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
-        Map<Integer, IdData<Keyword>> keywordList = model.getFilteredKeywordList();
+//        Map<Integer, IdData<Keyword>> keywordList = model.getFilteredKeywordList();
 
-        if (!keywordList.containsKey(targetIndex.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_KEYWORD_DISPLAYED_INDEX);
-        }
+//        if (!keywordList.containsKey(targetIndex.getZeroBased())) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_KEYWORD_DISPLAYED_INDEX);
+//        }
 
-        Keyword keywordToDelete = keywordList.get(targetIndex.getZeroBased()).getValue();
-        model.deleteKeyword(targetIndex.getZeroBased());
+//        Keyword keywordToDelete = keywordList.get(targetIndex.getZeroBased()).getValue();
+        Keyword keywordToDelete = model.deleteKeyword(targetKeyword);
         return new CommandMessage(String.format(MESSAGE_DELETE_KEYWORD_SUCCESS, keywordToDelete));
     }
 
@@ -51,7 +52,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.vms.logic.commands.keyword.DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((seedu.vms.logic.commands.keyword.DeleteCommand) other)
-                .targetIndex)); // state check
+                && targetKeyword.equals(((DeleteCommand) other)
+                .targetKeyword)); // state check
     }
 }

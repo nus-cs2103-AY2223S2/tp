@@ -20,28 +20,46 @@ public class KeywordManager {
     private static final String ERROR_FORMAT_DUPLICATE_KEYWORD = "Keyword %s already exist";
     private static final String ERROR_FORMAT_NONEXISTENT_KEYWORD = "Keyword %s does not exist";
     private static final String ERROR_FORMAT_LIMIT_EXCEEDED = "Limit of %d exceeded";
-    private final ObservableMap<String, Keyword> keywordMap;
+    private static HashMap<String, Keyword> keywordMap;
 //    private final ObservableMap<String, Keyword> unmodifiableTypeMap;
 
     /**
      * Constructs an empty {@code KeywordManager}.
      */
     public KeywordManager() {
-        keywordMap = FXCollections.observableHashMap();
+        keywordMap = new HashMap<>();
 //        unmodifiableTypeMap = FXCollections.unmodifiableObservableMap(keywordMap);
     }
 
-    public Keyword add(Keyword keyword) throws IllegalValueException {
-        if (keywordMap.containsKey(keyword.getKeyword())) {
-            throw new IllegalValueException(String.format(ERROR_FORMAT_DUPLICATE_KEYWORD,
-                    keyword.getKeyword()));
-        }
-        if (keywordMap.size() >= KEYWORD_LIMIT) {
-            throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
-                    KEYWORD_LIMIT));
-        }
+    public void add(Keyword keyword) {
+//        if (keywordMap.containsKey(keyword.getKeyword())) {
+//            throw new IllegalValueException(String.format(ERROR_FORMAT_DUPLICATE_KEYWORD,
+//                    keyword.getKeyword()));
+//        }
+//        if (keywordMap.size() >= KEYWORD_LIMIT) {
+//            throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
+//                    KEYWORD_LIMIT));
+//        }
         keywordMap.put(keyword.getKeyword(), keyword);
-        return keyword;
+        System.out.println("was i even here");
+        System.out.println(keyword);
+        System.out.println(keywordMap);
+//        return keyword;
+    }
+
+    public Keyword remove(String keyword) {
+//        if (keywordMap.containsKey(keyword.getKeyword())) {
+//            throw new IllegalValueException(String.format(ERROR_FORMAT_DUPLICATE_KEYWORD,
+//                    keyword.getKeyword()));
+//        }
+//        if (keywordMap.size() >= KEYWORD_LIMIT) {
+//            throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
+//                    KEYWORD_LIMIT));
+//        }
+//        if (keywordMap.containsKey(keyword)) {
+        Keyword keywordKeyword = keywordMap.get(keyword);
+        keywordMap.remove(keyword);
+        return keywordKeyword;
     }
 
     public ValueChange<Keyword> set(String name, Keyword newKeyword) throws IllegalValueException {
@@ -63,6 +81,10 @@ public class KeywordManager {
             return keywordString;
         }
         return keywordMap.get(keywordString).getMainKeyword();
+    }
+
+    public HashMap<String, Keyword> getKeywordMap() {
+        return keywordMap;
     }
 
 }

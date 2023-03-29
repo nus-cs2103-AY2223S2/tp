@@ -51,4 +51,8 @@ public class Keyword {
             return false;
         }
     }
+
+    public String toString() {
+        return keyword + "-->" + mainKeyword;
+    }
 }

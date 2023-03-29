@@ -89,18 +89,17 @@ public interface Model {
      * Deletes the given keyword.
      * The keyword must exist in the keyword manager.
      */
-    void deleteKeyword(int id);
+    Keyword deleteKeyword(String keyword);
 
 
-    /** Returns an unmodifiable view of the filtered keyword list */
-    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
-
-    /**
-     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredKeywordList(Predicate<Keyword> predicate);
-
+//    /** Returns an unmodifiable view of the filtered keyword list */
+//    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
+//
+//    /**
+//     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
+//     * @throws NullPointerException if {@code predicate} is null.
+//     */
+//    void updateFilteredKeywordList(Predicate<Keyword> predicate);
 
     /*
      * ========================================================================

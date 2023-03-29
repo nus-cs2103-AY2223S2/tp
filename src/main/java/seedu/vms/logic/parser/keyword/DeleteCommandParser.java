@@ -21,8 +21,8 @@ public class DeleteCommandParser implements CommandParser {
     @Override
     public DeleteCommand parse(ArgumentMultimap argsMap) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(argsMap.getPreamble());
-            return new DeleteCommand(index);
+            String keyword = ParserUtil.parseKeyword(argsMap.getPreamble());
+            return new DeleteCommand(keyword);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

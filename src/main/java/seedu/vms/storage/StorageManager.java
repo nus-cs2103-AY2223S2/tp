@@ -34,8 +34,8 @@ public class StorageManager implements Storage {
             PatientManagerStorage patientManagerStorage,
             VaxTypeStorage vaxTypeStorage,
             AppointmentStorage appointmentStorage,
-            UserPrefsStorage userPrefsStorage,
-            KeywordStorage keywordStorage) {
+            UserPrefsStorage userPrefsStorage
+            ) {
         this.patientManagerStorage = patientManagerStorage;
         this.vaxTypeStorage = vaxTypeStorage;
         this.appointmentStorage = appointmentStorage;

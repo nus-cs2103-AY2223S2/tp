@@ -13,6 +13,7 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.logic.parser.keyword.KeywordParser;
 import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.logic.parser.vaccination.VaccinationParser;
+import seedu.vms.model.keyword.KeywordManager;
 
 
 /** Parsers user input.  */
@@ -37,6 +38,7 @@ public class VmsParser {
     private final AppointmentParser appointmentParser = new AppointmentParser();
     private final VaccinationParser vaccinationParser = new VaccinationParser();
     private final KeywordParser keywordParser = new KeywordParser();
+    private final KeywordManager keywordManager = new KeywordManager();
 
     /**
      * Parses user input into command for execution.
@@ -54,7 +56,8 @@ public class VmsParser {
 
         final String featureName = matcher.group("featureName");
         final String arguments = matcher.group("arguments");
-        switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
+//        switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
+        switch (keywordManager.getKeyword(featureName)) {
 
         case PatientParser.FEATURE_NAME:
             return patientParser.parse(arguments);

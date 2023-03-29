@@ -33,7 +33,6 @@ public class AddCommandParser implements CommandParser {
 
         String keywordMain = ParserUtil.parseMainKeyword(argsMap.getValue(PREFIX_KEYWORD_MAIN).get());
         String keywordSub = ParserUtil.parseKeyword(argsMap.getValue(PREFIX_KEYWORD_SUB).get());
-
         Keyword keyword = new Keyword(keywordMain, keywordSub);
         return new AddCommand(keyword);
     }

@@ -17,7 +17,7 @@ import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
-import seedu.vms.storage.keyword.JsonKeywordStorage;
+//import seedu.vms.storage.keyword.JsonKeywordStorage;
 import seedu.vms.storage.patient.JsonPatientManagerStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.testutil.SampleVaxTypeData;
@@ -35,9 +35,9 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonVaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
         JsonAppointmentStorage appointmentStorage = new JsonAppointmentStorage();
-        JsonKeywordStorage keywordStorage = new JsonKeywordStorage();
+//        JsonKeywordStorage keywordStorage = new JsonKeywordStorage();
         storageManager = new StorageManager(patientManagerStorage, vaxTypeStorage,
-                appointmentStorage, userPrefsStorage, keywordStorage);
+                appointmentStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

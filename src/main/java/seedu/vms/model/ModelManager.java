@@ -3,6 +3,7 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,7 +53,7 @@ public class ModelManager implements Model {
     private final FilteredIdDataMap<Patient> filteredPatientMap;
     private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
-    private final FilteredIdDataMap<Keyword> filteredKeywordMap;
+//    private final FilteredIdDataMap<Keyword> filteredKeywordMap;
 
     private final VmsParser vmsParser;
 
@@ -73,8 +74,8 @@ public class ModelManager implements Model {
         this.appointmentManager = new AppointmentManager(appointmentManager);
         filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
 
-        this.keywordManager = new KeywordManager(keywordManager);
-        filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
+        this.keywordManager = new KeywordManager();
+//        filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
 
         this.vaxTypeManager = vaxTypeManager;
         filteredVaxTypeMap = new FilteredMapView<>(this.vaxTypeManager.asUnmodifiableObservableMap());
@@ -350,12 +351,14 @@ public class ModelManager implements Model {
     @Override
     public void addKeyword(Keyword keyword) {
         keywordManager.add(keyword);
-        updateFilteredKeywordList(PREDICATE_SHOW_ALL_KEYWORDS);
+//        ValueChange<Keyword> change = new ValueChange<>(null, keyword);
+//        updateFilteredKeywordList(PREDICATE_SHOW_ALL_KEYWORDS);
     }
 
     @Override
-    public void deleteKeyword(int id) {
-        keywordManager.remove(id);
+    public Keyword deleteKeyword(String keyword) {
+        Keyword deletedKeyword = keywordManager.remove(keyword);
+        return deletedKeyword;
     }
 
     @Override
@@ -365,7 +368,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setKeywordManager(KeywordManager keywordManager) {
-        this.keywordManager.resetData(keywordManager);
+//        this.keywordManager.resetData(keywordManager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================
@@ -426,16 +429,16 @@ public class ModelManager implements Model {
     }
 
     // =========== Filtered Keyword Map Accessors ==========================================================
-    @Override
-    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
-        return filteredKeywordMap.asUnmodifiableObservableMap();
-    }
-
-    @Override
-    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
-        requireNonNull(predicate);
-        filteredKeywordMap.filter(predicate);
-    }
+//    @Override
+//    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+//        return filteredKeywordMap.asUnmodifiableObservableMap();
+//    }
+//
+//    @Override
+//    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+//        requireNonNull(predicate);
+//        filteredKeywordMap.filter(predicate);
+//    }
 
     // =========== Misc methods ================================================================================
 

@@ -164,7 +164,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public void deleteKeyword(int id) {
+    public Keyword deleteKeyword(String keyword) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteKeyword'");
     }
 

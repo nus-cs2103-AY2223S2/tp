@@ -197,7 +197,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteKeyword(int id) {
+        public Keyword deleteKeyword(String keyword) {
             throw new AssertionError("This method should not be called.");
         }
 
