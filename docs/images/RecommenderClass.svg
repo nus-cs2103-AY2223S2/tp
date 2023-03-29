@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="176px" preserveAspectRatio="none" style="width:378px;height:176px;background:#FFFFFF;" version="1.1" viewBox="0 0 378 176" width="378px" zoomAndPan="magnify"><defs/><g><!--MD5=[5ef7f4b8e4a32159445d18d2f621f8c7]
+cluster Recommender--><g id="cluster_Recommender"><rect fill="none" height="163" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="365" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="102" x="138.5" y="22.5352">Recommender</text></g><!--MD5=[0519991ee8293750ee1dd942e4138875]
+class Recommender--><g id="elem_Recommender"><rect codeLine="9" fill="#005EC4" height="26.0986" id="Recommender" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="137" y="42"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="140" y="60.1318">Recommender</text></g><!--MD5=[e02958bc3f70e585fe60bb54d3b2bae8]
+class TimingRecommender--><g id="elem_TimingRecommender"><rect codeLine="10" fill="#005EC4" height="26.0986" id="TimingRecommender" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="143" x="23.5" y="128"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="137" x="26.5" y="146.1318">TimingRecommender</text></g><!--MD5=[d30fc9ac36abf59e2fcb859ef09afb95]
+class LocationRecommender--><g id="elem_LocationRecommender"><rect codeLine="11" fill="#005EC4" height="26.0986" id="LocationRecommender" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="154" x="202" y="128"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="148" x="205" y="146.1318">LocationRecommender</text></g><!--MD5=[50601f079c3c6f2f722742d8c78a0d28]
+link Recommender to LocationRecommender--><g id="link_Recommender_LocationRecommender"><path codeLine="14" d="M200.57,68.39 C216.47,82.91 242.89,107.03 260.62,123.21 " fill="none" id="Recommender-to-LocationRecommender" style="stroke:#005EC4;stroke-width:1.1;"/><polygon fill="#005EC4" points="264.25,126.53,260.2916,117.5116,260.5542,123.1624,254.9034,123.4249,264.25,126.53" style="stroke:#005EC4;stroke-width:1.1;"/></g><!--MD5=[3a8fdcaae28029b739c4c113271ea8ef]
+link Recommender to TimingRecommender--><g id="link_Recommender_TimingRecommender"><path codeLine="15" d="M173.43,68.39 C157.53,82.91 131.11,107.03 113.38,123.21 " fill="none" id="Recommender-to-TimingRecommender" style="stroke:#005EC4;stroke-width:1.1;"/><polygon fill="#005EC4" points="109.75,126.53,119.0966,123.4249,113.4458,123.1624,113.7084,117.5116,109.75,126.53" style="stroke:#005EC4;stroke-width:1.1;"/></g><!--MD5=[931d3e6dd85a99ed6c08500c57c770b4]
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+
+package Recommender {
+    class Recommender
+    class TimingRecommender
+    class LocationRecommender
+}
+
+Recommender - -> LocationRecommender
+Recommender - -> TimingRecommender
+
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #9900AA
+    Color #9900AA
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+skinparam sequenceReferenceBackgroundColor #C7CEC9
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #005EC4
+skinparam classBackgroundColor #005EC4
+
+
+package Recommender {
+    class Recommender
+    class TimingRecommender
+    class LocationRecommender
+}
+
+Recommender - -> LocationRecommender
+Recommender - -> TimingRecommender
+
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

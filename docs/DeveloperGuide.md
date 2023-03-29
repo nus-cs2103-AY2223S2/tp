@@ -428,7 +428,7 @@ Represents a collection of **unique** modules that the user or contact is enroll
 We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
 objects which is then used elsewhere in the codebase.
 
-<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
 </div>
@@ -657,13 +657,13 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
@@ -849,7 +849,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 **API** : `Recommender.java` {to be filled in}
 
-<img src="images/RecommenderClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -872,7 +872,7 @@ The `TimingRecommender`'s role is to recommend timings in which the user and all
 The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
