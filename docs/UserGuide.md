@@ -37,7 +37,7 @@ You can use the links in the Table of Contents to quickly navigate through this 
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar socket.jar` command to run the application.<br>
    A GUI containing __6 main components__ should appear as below in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiDescription.png)
+   <p align="center"><img src="images/UiDescription.png" /></p>
    <p align="center">
    <i>GUI of SOCket</i>
    <br>
@@ -61,8 +61,6 @@ You can use the links in the Table of Contents to quickly navigate through this 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -106,11 +104,11 @@ General commands to improve your experience with SOCket.
 
 Displays window showing the list of commands and a clickable URL to access help page.
 
-![help message](images/helpMessage.png)
-   <p align="center">
-   <i>Help Window displayed by the <code>help</code> command</i>
-   <br>
-   </p>
+<p align="center"><img src="images/helpMessage.png" /></p>
+<p align="center">
+<i>Help Window displayed by the <code>help</code> command</i>
+<br>
+</p>
 
 Format: `help`
 
@@ -173,7 +171,7 @@ A contact can have any number of languages/tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
 <br/><br/>
-  ![result for `add n/John Doe ...`](images/addJohnDoeResult.png)
+  <img src="images/addJohnDoeResult.png" width="600"/>
   <p align="center">
   <i>Result of the <code>add n/John Doe ...</code> command</i>
   <br>
@@ -181,6 +179,89 @@ Examples:
 
 
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+<div style="page-break-after: always;"></div>
+
+#### Editing a contact : `edit`
+
+Edits an existing contact in SOCket.
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`
+
+* Edits the information of the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input keywords.
+* When editing languages, the existing languages of the contact will **not** be removed.
+* When editing tags, the existing tags of the contact will be removed.
+* You can remove all the tags of a contact by typing `t/` without specifying any keywords after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+   <br/><br/>
+   <img src="images/edit1Result.png" width="600"/>
+   <p align="center">
+   <i>Result of the <code>edit 1 ...</code> command</i>
+   <br>
+   </p>
+
+
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
+<div style="page-break-after: always;"></div>
+
+#### Removing a contact's field : `remove`
+
+Removes the specific field value based on the given contact.
+
+Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
+
+* Removes field value of the contact at the specific `INDEX`.
+* At least one of the optional fields must be provided.
+* Removes the corresponding field value(s) matching the `KEYWORD`.
+  * e.g. `l/Java` will remove `Java` from the languages of the contact.
+* Clears the field value(s) when no keyword is provided for the field.
+  * e.g. `t/` will remove all the tags associated with the contact.
+
+Examples:
+* `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
+  <br/><br/>
+  <p align="center"><img src="images/remove.png" width="600"/></p>
+  <p align="center">
+  <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
+  <br>
+  </p>
+
+
+<div style="page-break-after: always;"></div>
+
+#### Deleting a contact : `delete`
+
+Deletes the specified contact from SOCket.
+
+Format: `delete INDEX`
+
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+
+#### Clearing all contacts or tags : `clear`
+
+Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
+
+Format: `clear [t/TAG]...`
+
+* Removes all contacts with the specified tags.
+* Any tag included is **case-insensitive**.
+  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
+* The tags **must exist** in SOCket.
+* If tags are provided, only remove existing tags.
+  * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
+* If no tag field is provided, remove all contacts in SOCket.
+* A confirmation prompt will appear before removal of contacts.
 
 <div style="page-break-after: always;"></div>
 
@@ -204,34 +285,6 @@ Format: `list [l/LANGUAGE] [t/TAG]`
 
 <div style="page-break-after: always;"></div>
 
-#### Editing a contact : `edit`
-
-Edits an existing contact in SOCket.
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`
-
-* Edits the information of the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input keywords.
-* When editing languages, the existing languages of the contact will **not** be removed.
-* When editing tags, the existing tags of the contact will be removed.
-* You can remove all the tags of a contact by typing `t/` without specifying any keywords after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-<br/><br/>
-   ![result for `edit 1 ...`](images/edit1Result.png)
-   <p align="center">
-   <i>Result of the <code>edit 1 ...</code> command</i>
-   <br>
-   </p>
-
-
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
-
-<div style="page-break-after: always;"></div>
-
 #### Locating contacts by keyword(s): `find`
 
 Find contacts stored in SOCket based on the given keyword(s) for the respective fields.
@@ -249,6 +302,9 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
 * Only full words will be matched.
     * e.g. `Han` will not match `Hans`.
     * e.g. `t/2103t` will not match `t/cs2103t`.
+
+<div style="page-break-after: always;"></div>
+
 * Contacts with multiple keyword(s) in the prefix matching at least one keyword for the respective field will be returned (i.e. `OR` search).
     * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`.
     * e.g. `find n/Hans l/Java` will return contacts whose name contains `Hans` or language contains `Java` or both.
@@ -258,65 +314,12 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
 <br/><br/>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  <p align="center"><img src="images/findAlexDavidResult.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>find n/alex david</code> command</i>
   <br>
   </p>
 
-
-#### Deleting a contact : `delete`
-
-Deletes the specified contact from SOCket.
-
-Format: `delete INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in SOCket.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-<div style="page-break-after: always;"></div>
-
-#### Removing a contact's field : `remove`
-
-Removes the specific field value based on the given contact.
-
-Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
-
-* Removes field value of the contact at the specific `INDEX`.
-* At least one of the optional fields must be provided.
-* Removes the corresponding field value(s) matching the `KEYWORD`.
-    * e.g. `l/Java` will remove `Java` from the languages of the contact.
-* Clears the field value(s) when no keyword is provided for the field.
-    * e.g. `t/` will remove all the tags associated with the contact.
-
-Examples: 
-* `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
-<br/><br/>
-  ![remove.png](images/remove.png)
-  <p align="center">
-  <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
-  <br>
-  </p>
-
-
-#### Clearing all contacts or tags : `clear`
-
-Clears all contacts from SOCket based on the given tag(s); if tags are not included, clears all contacts in SOCket.
-
-Format: `clear [t/TAG]...`
-
-* Removes all contacts with the specified tags.
-* Any tag included is **case-insensitive**.
-    * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
-* The tags **must exist** in SOCket.
-* If tags are provided, only remove existing tags.
-    * e.g. `clear t/cs2103t t/cs2103` will only remove the contacts associated with the tag `cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
-* If no tag field is provided, remove all contacts in SOCket.
-* A confirmation prompt will appear before removal of contacts.
 
 <div style="page-break-after: always;"></div>
 
@@ -333,16 +336,18 @@ Format: `sort [CATEGORY]`
 Examples: 
 * `sort` Sort contacts by **Name**.
 <br/><br/>
-![result for `sort`](images/SortByName.png)
+  <p align="center"><img src="images/SortByName.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>sort</code> command</i>
   <br>
   </p>
 
 
+<div style="page-break-after: always;"></div>
+
 * `sort address` Sort the contacts by **Address**.
 <br/><br/>
-![result for `sort address`](images/SortByAddress.png)
+  <p align="center"><img src="images/SortByAddress.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>sort address</code> command</i>
   <br>
@@ -387,11 +392,13 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
     * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
 * A project is considered to be the same if it has the same project name (case-insensitive).
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
 <br/><br/>
-  ![result for `addpj`](images/addpjResult.png)
-    <p align="center">
+  <p align="center"><img src="images/addpjResult.png" width="600"/></p>
+  <p align="center">
   <i>Result of the <code>addpj n/test ...</code> command</i>
   <br>
   </p>
@@ -413,7 +420,7 @@ Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeti
 Examples:
 * `editpj 1 n/Project Alpha d/02/01/23-2359`Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
 <br/><br/>
-![result for `editpj`](images/editpj.png)
+  <p align="center"><img src="images/editpj.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>editpj 1 ...</code> command</i>
   <br>
@@ -421,6 +428,40 @@ Examples:
 
 
 <div style="page-break-after: always;"></div>
+
+#### Removing a project's field: `removepj`
+
+Removes the specific field based on the given project in SOCket.
+
+Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
+
+* Removes field value of project at the specific `INDEX`.
+* At least one of the optional fields must be provided.
+* Removes all the corresponding field value in respect of the keyword.
+  * e.g. `r/alex-yeoh` will remove project’s repository name.
+* Removes the entire field value when that prefix has no keyword provided.
+  * e.g. `m/` will remove project's meeting.
+
+Examples:
+* `removepj 1 r/` Removes repository name from first project in the project list.
+  <br/><br/>
+  <p align="center"><img src="images/removepj.png" width="600"/></p>
+  <p align="center">
+  <i>Result of the <code>removepj 1 r/</code> command</i>
+  <br>
+  </p>
+
+
+<div style="page-break-after: always;"></div>
+
+* `removepj 1 d/01/01/23-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
+  <br/><br/>
+  <p align="center"><img src="images/removepj2.png" width="600"/></p>
+  <p align="center">
+  <i>Result of the <code>removpj 1 d/01/01/23-2359 m/</code> command</i>
+  <br>
+  </p>
+
 
 #### Deleting a project: `deletepj`
 
@@ -434,45 +475,13 @@ Format: `deletepj INDEX`
 Examples:
 * `deletepj 2` deletes the 2nd project in SOCket.
 
-#### Removing a project's field: `removepj`
-
-Removes the specific field based on the given project in SOCket. 
-
-Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
-
-* Removes field value of project at the specific `INDEX`.
-* At least one of the optional fields must be provided.
-* Removes all the corresponding field value in respect of the keyword.
-    * e.g. `r/alex-yeoh` will remove project’s repository name.
-* Removes the entire field value when that prefix has no keyword provided.
-    * e.g. `m/` will remove project's meeting.
-
-Examples: 
-* `removepj 1 r/` Removes repository name from first project in the project list.
-<br/><br/>
-  ![result for `removepj`](images/removepj.png)
-  <p align="center">
-  <i>Result of the <code>removepj 1 r/</code> command</i>
-  <br>
-  </p>
-
-
-* `removepj 1 d/01/01/23-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
-  <br/><br/>
-  ![result for `removepj2`](images/removepj2.png)
-  <p align="center">
-  <i>Result of the <code>removpj 1 d/01/01/23-2359 m/</code> command</i>
-  <br>
-  </p>
-
-
-<div style="page-break-after: always;"></div>
-
 #### Clearing all projects: `clearpj`
 
 Clears all the projects in SOCket.
 
 Format: `clearpj`
+
+<div style="page-break-after: always;"></div>
 
 #### Sorting projects (by other fields): `sortpj`
 
@@ -487,16 +496,18 @@ Format: `sortpj [CATEGORY]`
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
 <br/><br/>
-  ![result for `sortpj deadline`](images/SortpjByDeadline.png)
+  <p align="center"><img src="images/SortpjByDeadline.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>sortpj deadline</code> command</i>
   <br>
   </p>
 
 
+<div style="page-break-after: always;"></div>
+
 * `sortpj name` Sort the project list by **Project Name**.
 <br/><br/>
-  ![result for `sortpj deadline`](images/SortpjByName.png)
+  <p align="center"><img src="images/SortpjByName.png" width="600"/></p>
   <p align="center">
   <i>Result of the <code>sortpj name</code> command</i>
   <br>
@@ -514,7 +525,7 @@ Format: `assign CONTACT_INDEX PROJECT_INDEX`
 
 Examples:
 * Before Assigning:<br/><br/>
-  ![result for before assigned](images/AssignBefore.png)
+  <p align="center"><img src="images/AssignBefore.png" width="600"/></p>
   <p align="center">
   <i>Before the <code>assign 1 1</code> command</i>
   <br>
@@ -522,7 +533,7 @@ Examples:
 
 
 * After Assigning:<br/><br/>
-  ![result for after assigned](images/AssignAfter.png)
+  <p align="center"><img src="images/AssignAfter.png" width="600"/></p>
   <p align="center">
   <i>After the <code>assign 1 1</code> command</i>
   <br>
@@ -544,7 +555,7 @@ Format: `unassign INDEX n/NAME`
 
 Examples:
 * Before Unassigning:<br/><br/>
-  ![result for before unassigned](images/UnassignBefore.png)
+  <p align="center"><img src="images/UnassignBefore.png" width="600"/></p>
   <p align="center">
   <i>Before the <code>unassign 1 n/Alex Yeoh</code> command</i>
   <br>
@@ -552,7 +563,7 @@ Examples:
 
 
 * After Unassigning:<br/><br/>
-  ![result for after unassigned](images/UnassignAfter.png)
+  <p align="center"><img src="images/UnassignAfter.png" width="600"/></p>
   <p align="center">
   <i>After the <code>unassign 1 n/Alex Yeoh</code> command</i>
   <br>
