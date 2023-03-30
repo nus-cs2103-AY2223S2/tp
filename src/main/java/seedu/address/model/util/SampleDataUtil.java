@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.util.Pair;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
@@ -92,7 +91,7 @@ public class SampleDataUtil {
         assert strings.length % 2 == 0 : "getPrescriptionSet should only take an even number of arguments!";
 
         Set<Prescription> prescriptions = new HashSet<>();
-        for (int i = 0; i < strings.length; i+= 2) {
+        for (int i = 0; i < strings.length; i += 2) {
             prescriptions.add(new Prescription(new Medication(strings[i]), new Cost(strings[i + 1])));
         }
         return prescriptions;

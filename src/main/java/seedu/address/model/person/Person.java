@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**

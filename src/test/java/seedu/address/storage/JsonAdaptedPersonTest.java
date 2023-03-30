@@ -6,9 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -18,9 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
-import seedu.address.model.prescription.Prescription;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -37,7 +33,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedPrescription> VALID_PRESCRIPTIONS =  BENSON.getPrescriptions().stream()
+    private static final List<JsonAdaptedPrescription> VALID_PRESCRIPTIONS = BENSON.getPrescriptions().stream()
             .map(JsonAdaptedPrescription::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -141,16 +137,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-//
-//    @Test
-//    public void toModelType_invalidPrescription_throwsIllegalValueException() {
-//        List<JsonAdaptedPrescription> invalidPrescriptions = new ArrayList<>(VALID_PRESCRIPTIONS);
-//        invalidPrescriptions.add(new JsonAdaptedPrescription())
-//        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_NRIC,
-//                VALID_ADDRESS, INVALID_, VALID_TAGS, VALID_APPOINTMENTS, VALID_ROLE);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Prescription.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-//    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

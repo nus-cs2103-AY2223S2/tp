@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,16 +43,13 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNric(person.getNric());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-//        descriptor.setAppointments(person.getPatientAppointments());
 
         if (person.isDoctor()) {
             isDoctor = true;
-//            descriptor.setPrescriptions(new HashSet<>());
         } else {
             // isPatient
             Patient patient = (Patient) person;
             isDoctor = false;
-//            descriptor.setPrescriptions(patient.getPrescriptions());
         }
     }
 

@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.util.Pair;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.prescription.Cost;
-import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;

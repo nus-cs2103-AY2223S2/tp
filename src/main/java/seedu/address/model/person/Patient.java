@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
@@ -43,7 +42,6 @@ public class Patient extends Person {
     }
 
     public Set<Prescription> getPrescriptions() {
-//        return Collections.unmodifiableSet(prescriptions);
         return prescriptions;
     }
 

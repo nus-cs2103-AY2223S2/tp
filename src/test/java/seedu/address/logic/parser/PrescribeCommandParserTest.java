@@ -3,11 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.COST_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.MEDICATION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COST_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -15,9 +13,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.PrescribeCommand;
+import seedu.address.model.person.Nric;
 import seedu.address.model.prescription.Cost;
 import seedu.address.model.prescription.Medication;
-import seedu.address.model.person.Nric;
 import seedu.address.model.prescription.Prescription;
 
 class PrescribeCommandParserTest {
