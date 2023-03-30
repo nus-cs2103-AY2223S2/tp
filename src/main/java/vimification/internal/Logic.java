@@ -7,6 +7,7 @@ import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
 import vimification.model.UiTaskList;
 import vimification.model.task.Task;
+import vimification.ui.MainScreen;
 
 /**
  * API of the Logic component
@@ -50,4 +51,6 @@ public interface Logic {
     FilteredList<Task> getFilteredTaskList();
 
     UiTaskList getUiTaskList();
+
+    void setMainScreen(MainScreen mainScreen);
 }

@@ -120,6 +120,10 @@ public class LogicManager implements Logic {
         return uiTaskList;
     }
 
+    public void setMainScreen(MainScreen mainScreen) {
+        this.mainScreen = mainScreen;
+    }
+
     // @Override
     // public Path getTaskListFilePath() {
     // return model.getTaskListFilePath();
