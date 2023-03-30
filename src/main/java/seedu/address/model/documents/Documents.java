@@ -10,6 +10,8 @@ import java.util.Objects;
  */
 public class Documents {
 
+    public static final String MESSAGE_CONSTRAINTS = "Document should contain both a resume and a cover letter.";
+
     // Identity fields
     private final ResumeLink resumeLink;
     private final CoverLetterLink coverLetterLink;

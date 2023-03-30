@@ -10,6 +10,8 @@ import java.util.Objects;
  */
 public class Contact {
 
+    public static final String MESSAGE_CONSTRAINTS = "Contact should contain both a phone and an email.";
+
     // Identity fields
     private final Phone phone;
     private final Email email;
