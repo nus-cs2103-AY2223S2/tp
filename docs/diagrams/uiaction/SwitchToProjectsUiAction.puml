@@ -6,7 +6,7 @@ participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T3
 
 mainframe sd execute UiAction
 [-> Action: execute(mainWindow)
-activate Action1
+activate Action
 Action -> MainWindow: selectProjectTab()
 activate MainWindow
 MainWindow --> Action
