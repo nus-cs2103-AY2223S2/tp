@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
@@ -17,11 +18,14 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.CustomerTypePredicate;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.OrderStatusPredicate;
 import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.StatusValue;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -214,16 +218,29 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String statusValue} into a {@code StatusValue}.
+     * @throws ParseException if the given {@code statusValue} is invalid.
+     */
+    public static StatusValue parseStatusValue(String statusValue) throws ParseException {
+        requireNonNull(statusValue);
+        try {
+            return StatusValue.fromString(statusValue.trim());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(StatusValue.MESSAGE_FAIL_CONVERSION);
+        }
+    }
+
+    /**
      * Parses a {@code String sortOption} into a {@code Comparator<Customer>}.
-     * @throws ParseException if the given {@code attribute} is invalid.
+     * @throws ParseException if the given {@code sortOption} is invalid.
      */
     public static Comparator<Customer> parseCustomerSortOption(String sortOption) throws ParseException {
         requireNonNull(sortOption);
-        String trimmedAttribute = sortOption.trim();
-        switch (trimmedAttribute) {
-        case "name":
+        String trimmedSortOption = sortOption.trim().toUpperCase();
+        switch (trimmedSortOption) {
+        case "NAME":
             return Customer.SORT_NAME;
-        case "points":
+        case "POINTS":
             return Customer.SORT_POINTS;
         default:
             throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_SORT);
@@ -231,21 +248,55 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String filterOption} into a {@code Predicate<Customer>}.
+     * @throws ParseException if the given {@code filterOption} is invalid.
+     */
+    public static Predicate<Customer> parseCustomerFilterOption(String filterOption) throws ParseException {
+        requireNonNull(filterOption);
+        String trimmedFilterOption = filterOption.trim().toUpperCase();
+        switch (trimmedFilterOption) {
+        case "MARKED":
+            return Customer.FILTER_SHOW_MARKED;
+        case "IND":
+        case "ENT":
+            return new CustomerTypePredicate(parseCustomerType(trimmedFilterOption));
+        default:
+            throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_FILTER);
+        }
+    }
+
+    /**
      * Parses a {@code String sortOption} into a {@code Comparator<Order>}.
-     * @throws ParseException if the given {@code attribute} is invalid.
+     * @throws ParseException if the given {@code sortOption} is invalid.
      */
     public static Comparator<Order> parseOrderSortOption(String sortOption) throws ParseException {
         requireNonNull(sortOption);
-        String trimmedAttribute = sortOption.trim();
-        switch (trimmedAttribute) {
-        case "created":
+        String trimmedSortOption = sortOption.trim().toUpperCase();
+        switch (trimmedSortOption) {
+        case "CREATED":
             return Order.SORT_CREATED_DATE;
-        case "name":
+        case "NAME":
             return Order.SORT_NAME;
-        case "status":
+        case "STATUS":
             return Order.SORT_STATUS;
         default:
             throw new ParseException(ListOrderCommand.MESSAGE_INVALID_SORT);
         }
     }
+
+    /**
+     * Parses a {@code String filterOption} into a {@code Predicate<Order>}.
+     * @throws ParseException if the given {@code filterOption} is invalid.
+     */
+    public static Predicate<Order> parseOrderFilterOption(String filterOption) throws ParseException {
+        requireNonNull(filterOption);
+        String trimmedFilterOption = filterOption.trim();
+        try {
+            StatusValue status = parseStatusValue(trimmedFilterOption);
+            return new OrderStatusPredicate(status);
+        } catch (ParseException e) {
+            throw new ParseException(ListOrderCommand.MESSAGE_INVALID_FILTER);
+        }
+    }
+
 }

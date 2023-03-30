@@ -6,9 +6,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox spacing="5.0" styleClass="base" stylesheets="@OrderGeneralInfo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="5.0" styleClass="base" stylesheets="@OrderGeneralInfo.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <HBox alignment="CENTER_LEFT" spacing="4.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/person_icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="customer" text="\$customer" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" spacing="4.0">
          <children>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

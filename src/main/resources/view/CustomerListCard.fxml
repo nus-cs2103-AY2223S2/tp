@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" stylesheets="@CustomerListCard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" stylesheets="@CustomerListCard.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -61,7 +54,7 @@
     </VBox>
       <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
          <children>
-            <HBox fx:id="customerTypePlaceholder" alignment="TOP_RIGHT" />
+            <HBox fx:id="accessoryPlaceholder" alignment="TOP_RIGHT" spacing="5.0" />
             <Separator orientation="VERTICAL" visible="false" VBox.vgrow="ALWAYS" />
             <Label text="Last Ordered: " />
          </children>

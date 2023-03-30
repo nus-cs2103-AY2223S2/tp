@@ -14,6 +14,9 @@ public class OrderGeneralInfo extends UiPart<VBox> {
     private static final String FXML = "Order/OrderGeneralInfo.fxml";
 
     @FXML
+    private Label customer;
+
+    @FXML
     private Label quantity;
     @FXML
     private Label address;
@@ -27,6 +30,7 @@ public class OrderGeneralInfo extends UiPart<VBox> {
     public OrderGeneralInfo(Order order) {
         super(FXML);
 
+        customer.setText(order.getCustomer().getName().fullName);
         quantity.setText(order.getQuantity().toString());
         address.setText(order.getAddress().toString());
         createdDate.setText(order.getCreatedDate().toString());

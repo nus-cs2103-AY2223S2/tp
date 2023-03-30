@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -14,6 +15,8 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.CustomerTypePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCustomerCommand.
@@ -31,34 +34,48 @@ public class ListCustomerCommandTest {
 
     @Test
     public void equals() {
-        ListCustomerCommand listSortNameCommand = new ListCustomerCommand(Customer.SORT_NAME);
-        ListCustomerCommand listSortOrderCommand = new ListCustomerCommand(Customer.SORT_POINTS);
+        ListCustomerCommand listCommand = new ListCustomerCommand();
+        ListCustomerCommand listSortPointsCommand = new ListCustomerCommand(
+                Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS);
+        ListCustomerCommand listSortNameIndividualCommand = new ListCustomerCommand(
+                Customer.SORT_NAME, new CustomerTypePredicate(CustomerType.INDIVIDUAL));
 
         // same object -> returns true
-        assertTrue(listSortNameCommand.equals(listSortNameCommand));
+        assertTrue(listCommand.equals(listCommand));
 
-        // same comparator -> returns true
-        ListCustomerCommand listSortNameCommandCopy = new ListCustomerCommand(Customer.SORT_NAME);
-        assertTrue(listSortNameCommand.equals(listSortNameCommandCopy));
+        // same comparator and predicate -> returns true
+        ListCustomerCommand listCommandCopy = new ListCustomerCommand();
+        assertTrue(listCommand.equals(listCommandCopy));
+
+        ListCustomerCommand listSortNameIndividualCommandCopy = new ListCustomerCommand(
+                Customer.SORT_NAME, new CustomerTypePredicate(CustomerType.INDIVIDUAL));
+        assertTrue(listSortNameIndividualCommand.equals(listSortNameIndividualCommandCopy));
 
         // different types -> returns false
-        assertFalse(listSortNameCommand.equals(1));
+        assertFalse(listCommand.equals(1));
 
         // null -> returns false
-        assertFalse(listSortNameCommand.equals(null));
+        assertFalse(listCommand.equals(null));
 
         // different comparator -> returns false
-        assertFalse(listSortNameCommand.equals(listSortOrderCommand));
+        assertFalse(listCommand.equals(listSortPointsCommand));
+
+        // different predicate -> returns false
+        assertFalse(listCommand.equals(listSortNameIndividualCommand));
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCustomerCommand(null), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListCustomerCommand.MESSAGE_SUCCESS, false, false, true, false);
+        assertCommandSuccess(new ListCustomerCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showCustomerAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListCustomerCommand(null), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListCustomerCommand.MESSAGE_SUCCESS, false, false, true, false);
+        assertCommandSuccess(new ListCustomerCommand(), model, expectedCommandResult, expectedModel);
     }
 }

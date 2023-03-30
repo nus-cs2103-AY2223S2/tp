@@ -36,7 +36,7 @@ public class CustomerCard extends UiPart<Region> {
     //@FXML
     //placeholder for bookmark
     @FXML
-    private HBox customerTypePlaceholder;
+    private HBox accessoryPlaceholder;
 
     private boolean isSelected;
 
@@ -52,10 +52,13 @@ public class CustomerCard extends UiPart<Region> {
         address.setText(customer.getAddress().value);
 
         Bookmark bookmark = Bookmark.createBookmarkIcon(customer.getMarked());
-        customerTypePlaceholder.getChildren().add(bookmark.getRoot());
+        accessoryPlaceholder.getChildren().add(bookmark.getRoot());
+
+        Badge pointsTag = Badge.createPointsBadge(customer.getPoints());
+        accessoryPlaceholder.getChildren().add(pointsTag.getRoot());
 
         Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
-        customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
+        accessoryPlaceholder.getChildren().add(customerTypeTag.getRoot());
 
         this.isSelected = false;
     }

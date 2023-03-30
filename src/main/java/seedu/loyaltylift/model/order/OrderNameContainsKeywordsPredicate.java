@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.loyaltylift.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
+ * Tests that an {@code Order}'s {@code Name} matches any of the keywords given.
  */
 public class OrderNameContainsKeywordsPredicate implements Predicate<Order> {
     private final List<String> keywords;

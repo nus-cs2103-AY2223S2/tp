@@ -19,6 +19,8 @@ public class CustomerGeneralInfo extends UiPart<VBox> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label points;
 
     /**
      * Creates a {@code CustomerGeneralInfo} with the given {@code Customer}.
@@ -30,5 +32,11 @@ public class CustomerGeneralInfo extends UiPart<VBox> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
         email.setText(customer.getEmail().value);
+
+        String pointsString = customer.getPoints().value.toString()
+                + " points, "
+                + customer.getPoints().cumulative.toString()
+                + " cumulative points";
+        points.setText(pointsString);
     }
 }
