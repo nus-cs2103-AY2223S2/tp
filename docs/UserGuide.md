@@ -246,7 +246,7 @@ s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-success">
 
-:bulb: **Tip:** 
+:bulb: **Tip:** <br>
 You do not have to enter all your information at once! You can omit some of the information
 and **its corresponding prefix** and enter them in the future!
 <br>
