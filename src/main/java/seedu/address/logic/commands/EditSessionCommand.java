@@ -1,19 +1,23 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.session.Location;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
-import seedu.address.model.session.Location;
 
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
 
 /**
  * Edits the details of an existing session in the address book.
@@ -80,12 +84,16 @@ public class EditSessionCommand extends Command {
      * Creates and returns a {@code Session} with the details of {@code sessionToEdit}
      * edited with {@code editSessionDescriptor}.
      */
-    private static Session createEditedSession(Session SessionToEdit, EditSessionDescriptor editSessionDescriptor) {
-        assert SessionToEdit != null;
-        SessionName updatedSessionName = editSessionDescriptor.getSessionName().orElse(SessionToEdit.getSessionName());
-        String updatedSessionStartDateTime = editSessionDescriptor.getStartDateTime().orElse(SessionToEdit.getStartDateTime());
-        String updatedSessionEndDateTime = editSessionDescriptor.getEndDateTime().orElse(SessionToEdit.getEndDateTime());
-        Location updatedLocation = editSessionDescriptor.getLocation().orElse(SessionToEdit.getLocation());
+    private static Session createEditedSession(Session sessionToEdit, EditSessionDescriptor editSessionDescriptor) {
+        assert sessionToEdit != null;
+        SessionName updatedSessionName = editSessionDescriptor.getSessionName().orElse(
+                sessionToEdit.getSessionName());
+        String updatedSessionStartDateTime = editSessionDescriptor.getStartDateTime().orElse(
+                sessionToEdit.getStartDateTime());
+        String updatedSessionEndDateTime = editSessionDescriptor.getEndDateTime().orElse(
+                sessionToEdit.getEndDateTime());
+        Location updatedLocation = editSessionDescriptor.getLocation().orElse(
+                sessionToEdit.getLocation());
 
         return new Session(updatedSessionStartDateTime, updatedSessionEndDateTime, updatedSessionName, updatedLocation);
     }

@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 
-import java.util.*;
+import java.util.ArrayList;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditSessionCommand;
@@ -32,7 +32,8 @@ public class EditSessionCommandParser implements Parser<EditSessionCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSessionCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditSessionCommand.MESSAGE_USAGE), pe);
         }
 
         EditSessionCommand.EditSessionDescriptor editSessionDescriptor = new EditSessionCommand.EditSessionDescriptor();

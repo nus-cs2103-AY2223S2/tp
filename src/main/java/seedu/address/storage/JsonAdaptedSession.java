@@ -8,7 +8,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.session.*;
+import seedu.address.model.session.Location;
+import seedu.address.model.session.NameBooleanPair;
+import seedu.address.model.session.NamePayRatePair;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 
 
 /**
@@ -55,7 +59,6 @@ public class JsonAdaptedSession {
         attendanceMap.addAll(source.getNameBooleanMap().stream()
                 .map(JsonAdaptedNameBooleanPair::new)
                 .collect(Collectors.toList()));
-
     }
     /**
      * Converts this Jackson-friendly adapted session object into the model's {@code Session} object.

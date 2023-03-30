@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
@@ -83,8 +82,13 @@ public class Session implements Comparable<Session> {
      * Represents a session in the sports tracker.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
-    public Session(String startDateTime, String endDateTime, SessionName name,
-                   Location location, int id, List<NameBooleanPair> nameBooleanPairs, List<NamePayRatePair> namePayRatePairs) {
+    public Session(String startDateTime,
+                   String endDateTime,
+                   SessionName name,
+                   Location location,
+                   int id,
+                   List<NameBooleanPair> nameBooleanPairs,
+                   List<NamePayRatePair> namePayRatePairs) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.name = name;
