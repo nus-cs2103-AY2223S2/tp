@@ -83,6 +83,18 @@ Examples:
 - `edit 1 c/Goggle e/johndoe@example.com` Edits the company and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 - `edit 2 c/Shopee d/` Edits the company of the 2nd opening to be `Shopee` and clears all existing `KEYDATE`.
 
+# List upcoming dates : `upcoming`
+
+Lists openings which has events in the next N days.
+
+Format: `upcoming N`
+
+* Lists all openings which has events in the next N days.
+* N **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `upcoming 1` lists all openings with events happening in the next 1 day.
+
 ### Filtering openings by company or position: `find`
 
 Finds openings whose COMPANY or POSITION contain any of the given keywords.
