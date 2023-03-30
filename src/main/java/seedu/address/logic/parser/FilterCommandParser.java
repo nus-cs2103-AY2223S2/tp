@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterCommand.FilterTuteeDescription;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.Arrays;
 
 public class FilterCommandParser implements Parser<FilterCommand>  {
 
@@ -28,7 +31,13 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
         FilterTuteeDescription filterTuteeDescription = new FilterTuteeDescription();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            filterTuteeDescription.setNameToFilter(argMultimap.getValue(PREFIX_NAME).get());
+            String trimmedArgs = argMultimap.getValue(PREFIX_NAME).get().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            filterTuteeDescription.setNameToFilter(Arrays.asList(nameKeywords));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             filterTuteeDescription.setPhoneToFilter(argMultimap.getValue(PREFIX_PHONE).get());
@@ -37,7 +46,13 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
             filterTuteeDescription.setEmailToFilter(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            filterTuteeDescription.setAddressToFilter(argMultimap.getValue(PREFIX_ADDRESS).get());
+            String trimmedArgs = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] addressKeywords = trimmedArgs.split("\\s+");
+            filterTuteeDescription.setAddressToFilter(Arrays.asList(addressKeywords));
         }
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             filterTuteeDescription.setSubjectToFilter(argMultimap.getValue(PREFIX_SUBJECT).get());

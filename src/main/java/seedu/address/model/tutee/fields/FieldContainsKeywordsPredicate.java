@@ -1,5 +1,6 @@
 package seedu.address.model.tutee.fields;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -9,18 +10,18 @@ import seedu.address.model.tutee.Tutee;
  * Tests that a {@code Tutee}'s {@code Name} matches any of the keywords given.
  */
 public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
-    private final String nameKeyword;
+    private final List<String> nameKeyword;
     private final String phoneKeyword;
     private final String emailKeyword;
-    private final String addressKeyword;
+    private final List<String> addressKeyword;
     private final String subjectkeyword;
     private final String scheduleKeyword;
     private final String startTimeKeyword;
     private final String endTimeKeyword;
     private final String tagKeyword;
 
-    public FieldContainsKeywordsPredicate(String nameKeyword, String phoneKeyword, String emailKeyword,
-                                          String addressKeyword, String subjectkeyword,String scheduleKeyword,
+    public FieldContainsKeywordsPredicate(List<String> nameKeyword, String phoneKeyword, String emailKeyword,
+                                          List<String> addressKeyword, String subjectkeyword,String scheduleKeyword,
                                           String startTimeKeyword, String endTimeKeyword, String tagKeyword) {
         this.nameKeyword = nameKeyword;
         this.phoneKeyword = phoneKeyword;
@@ -36,13 +37,15 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
     @Override
     public boolean test(Tutee tutee) {
         boolean containsName = nameKeyword.isEmpty() ||
-                StringUtil.containsWordIgnoreCase(tutee.getName().fullName, nameKeyword);
+                nameKeyword.stream()
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutee.getName().toString(), keyword));
         boolean containsPhone = phoneKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getPhone().value, phoneKeyword);
         boolean containsEmail = emailKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getEmail().value, emailKeyword);
         boolean containsAddress = addressKeyword.isEmpty() ||
-                StringUtil.containsWordIgnoreCase(tutee.getAddress().value, addressKeyword);
+                addressKeyword.stream()
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutee.getAddress().toString(), keyword));
         boolean containsSubject = subjectkeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getSubject().subject, subjectkeyword);
         boolean containsSchedule = scheduleKeyword.isEmpty() ||

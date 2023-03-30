@@ -15,6 +15,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Filters and lists all tutees in address book whose field matches
  * any of the argument keywords. Keyword matching is case insensitive.
@@ -80,10 +84,10 @@ public class FilterCommand extends Command {
      * corresponding field value of the tutee.
      */
     public static class FilterTuteeDescription {
-        public String nameToFilter;
+        public List<String> nameToFilter;
         public String phoneToFilter;
         public String emailToFilter;
-        public String addressToFilter;
+        public List<String> addressToFilter;
         public String subjectToFilter;
         public String scheduleToFilter;
         public String startTimeToFilter;
@@ -94,10 +98,10 @@ public class FilterCommand extends Command {
          * FilterTuteeDescription constructor.
          */
         public FilterTuteeDescription() {
-            this.nameToFilter = "";
+            this.nameToFilter = Collections.emptyList();
             this.phoneToFilter = "";
             this.emailToFilter = "";
-            this.addressToFilter = "";
+            this.addressToFilter = Collections.emptyList();
             this.subjectToFilter = "";
             this.scheduleToFilter = "";
             this.startTimeToFilter = "";
@@ -116,11 +120,11 @@ public class FilterCommand extends Command {
                     && tagToFilter.isEmpty();
         }
 
-        public void setNameToFilter(String name) {
+        public void setNameToFilter(List<String> name) {
             nameToFilter = name;
         }
 
-        public String getNameToFilter() {
+        public List<String> getNameToFilter() {
             return nameToFilter;
         }
 
@@ -140,11 +144,11 @@ public class FilterCommand extends Command {
             return emailToFilter;
         }
 
-        public void setAddressToFilter(String address) {
+        public void setAddressToFilter(List<String> address) {
             addressToFilter = address;
         }
 
-        public String getAddressToFilter() {
+        public List<String> getAddressToFilter() {
             return addressToFilter;
         }
 
