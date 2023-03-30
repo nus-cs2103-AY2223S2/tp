@@ -37,7 +37,7 @@ public class BodyPanel extends UiPart<Region> {
 
         this.logic = logic;
         this.resultDisplay = resultDisplay;
-        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), this.logic, this.resultDisplay);
+        this.addressPanel = new AddressPanel(this.logic, this.resultDisplay);
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
@@ -109,13 +109,5 @@ public class BodyPanel extends UiPart<Region> {
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
             resultDisplay.setFeedbackToUser("Enter command below");
         });
-    }
-
-    /**
-     * Sets selected person's details in person detail panel
-     * @param person
-     */
-    public void setSelectedPerson(Person person) {
-        this.addressPanel.setSelectedPerson(person);
     }
 }

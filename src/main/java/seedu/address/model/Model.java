@@ -165,7 +165,10 @@ public interface Model {
     /** Sets the tab to the one specified in {@code index} */
     void setSelectedTab(Index index);
 
+    /** Gets the selected {@code Person} */
     ReadOnlyObjectProperty<Person> getSelectedPerson();
-    void setSelectedPerson(Index index);
+
+    /** Sets the selected person to {@code person} */
+    void setSelectedPerson(Person person);
 
 }

@@ -26,8 +26,6 @@ public class PersonDetailPanel extends UiPart<Region> {
     private static final String INDEX_UNSPECIFIED = "Select a contact";
     private static final String INDEX_SPECIFIED = "Index %d";
 
-    private int displayedIndex;
-
     @FXML
     private ScrollPane scrollContainer;
     @FXML
@@ -68,7 +66,6 @@ public class PersonDetailPanel extends UiPart<Region> {
      * @param index 1-based index of the corresponding {@code Person}.
      */
     public void setDisplayedIndex(int index) {
-        this.displayedIndex = index;
         if (index < 1) {
             id.setText(INDEX_UNSPECIFIED);
         } else {

@@ -81,7 +81,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        this.setSelectedPerson();
     }
 
     public Stage getPrimaryStage() {
@@ -250,14 +249,5 @@ public class MainWindow extends UiPart<Stage> {
              */
             bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
         }
-    }
-
-    /**
-     * Sets selected person's details in person detail panel.
-     */
-    private void setSelectedPerson() {
-        logic.getSelectedPerson().addListener((observable, oldValue, newValue) -> {
-            bodyPanel.setSelectedPerson(newValue);
-        });
     }
 }

@@ -49,14 +49,12 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person prevPerson = model.getSelectedPerson().get();
-        model.setSelectedPerson(index);
-        Person currPerson = model.getSelectedPerson().get();
+        Person currPerson = lastShownList.get(index.getZeroBased());
+        model.setSelectedPerson(currPerson);
         if (Objects.equals(prevPerson, currPerson)) {
-            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false,
-                    LightDarkMode.NO_CHANGE);
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson));
         } else {
-            return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson),
-                    false, false, LightDarkMode.NO_CHANGE);
+            return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson));
         }
     }
 

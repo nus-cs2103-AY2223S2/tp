@@ -261,7 +261,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public void setSelectedPerson(Index index) {
+        public void setSelectedPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
