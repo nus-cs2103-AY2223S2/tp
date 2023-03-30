@@ -257,9 +257,7 @@ public class ModelManager implements Model {
 
         // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
-
-        // TODO: INSERT CALL TO TIMETABLE UI
-        addressBook.getScheduleWeek().setInternalList(timetable);
+        addressBook.getScheduleWeek().setInternalList(timetable, date.getDayOfWeek());
     }
 
     @Override
