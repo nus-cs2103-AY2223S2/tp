@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -44,7 +45,7 @@ public class PersonBuilder {
     private JobTitle jobTitle;
     private Address address;
     private Remark remark;
-    private Task task;
+    private TaskList tasks;
     private Set<Tag> tags;
 
     /**
@@ -61,7 +62,7 @@ public class PersonBuilder {
         jobTitle = new JobTitle(DEFAULT_JOBTITLE);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
-        task = new Task(DEFAULT_TASK);
+        tasks = new TaskList().add(new Task(DEFAULT_TASK));
         tags = new HashSet<>();
     }
 
@@ -79,7 +80,7 @@ public class PersonBuilder {
         jobTitle = personToCopy.getJobTitle();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
-        task = personToCopy.getTask();
+        tasks = personToCopy.getTasks();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -174,7 +175,7 @@ public class PersonBuilder {
      * Sets the {@code Task} of the {@code Person} that we are building.
      */
     public PersonBuilder withTask(String task) {
-        this.task = new Task(task);
+        this.tasks = this.tasks.add(new Task(task));
         return this;
     }
 
@@ -183,6 +184,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
-                remark, tags, task);
+                remark, tags, tasks);
     }
 }

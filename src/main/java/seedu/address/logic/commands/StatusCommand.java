@@ -22,7 +22,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 
@@ -103,10 +103,10 @@ public class StatusCommand extends Command {
         JobTitle jobTitle = toBeUpdated.getJobTitle();
         Remark remark = toBeUpdated.getRemark();
         Set<Tag> tags = toBeUpdated.getTags();
-        Task task = toBeUpdated.getTask();
+        TaskList tasks = toBeUpdated.getTasks();
 
         return new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
-                remark, tags, task, status);
+                remark, tags, tasks, status);
     }
 
     @Override

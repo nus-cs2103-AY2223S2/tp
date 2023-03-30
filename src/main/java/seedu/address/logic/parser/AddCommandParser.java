@@ -28,7 +28,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -64,10 +64,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Task task = new Task("");
+        TaskList tasks = new TaskList(); //add command does not allow adding tasks straight away
 
         Person person = new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
-                remark, tagList, task);
+                remark, tagList, tasks);
 
         return new AddCommand(person);
     }
