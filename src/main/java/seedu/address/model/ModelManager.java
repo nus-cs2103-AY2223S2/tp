@@ -31,12 +31,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final Navigation navigation;
     private ReadOnlyModule listedLecturesByModule;
-	private ReadOnlyLecture listedVideosByLecture;
-	private FilteredList<? extends ReadOnlyModule> filteredModules;
-	private FilteredList<? extends ReadOnlyLecture> filteredLectures;
-	private FilteredList<? extends Video> filteredVideos;
-	private DisplayListLevel lastListLevel;
-
+    private ReadOnlyLecture listedVideosByLecture;
+    private FilteredList<? extends ReadOnlyModule> filteredModules;
+    private FilteredList<? extends ReadOnlyLecture> filteredLectures;
+    private FilteredList<? extends Video> filteredVideos;
+    private DisplayListLevel lastListLevel;
 
     /**
      * Constructs a {@code ModelManager} using the provided {@code tracker} and {@code userPrefs}.
@@ -241,7 +240,7 @@ public class ModelManager implements Model {
     };
 
     @Override
-	public ReadOnlyLecture getListedVideosByLectureName() {
+    public ReadOnlyLecture getListedVideosByLectureName() {
         return listedVideosByLecture;
     }
 
@@ -301,7 +300,7 @@ public class ModelManager implements Model {
     public void updateFilteredVideoList(Predicate<Video> predicate, ModuleCode moduleCode,
             ReadOnlyLecture lecture) {
         requireNonNull(predicate);
-        listedLecturesByModule = this.tracker.getModule(moduleCode) ;
+        listedLecturesByModule = this.tracker.getModule(moduleCode);
         listedVideosByLecture = lecture;
         filteredVideos = new FilteredList<>(lecture.getVideoList());
         filteredVideos.setPredicate(predicate);

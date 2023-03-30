@@ -95,7 +95,8 @@ public class ListCommand extends Command {
     private CommandResult filterByVideoList(Model model) {
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
         model.updateFilteredVideoList(new VideoPredicate(lecture), moduleCode, lecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), DisplayListLevel.VIDEO);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), DisplayListLevel.VIDEO);
     }
 
     private CommandResult filterByLectureList(Model model) {

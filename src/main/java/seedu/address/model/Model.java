@@ -315,7 +315,7 @@ public interface Model {
     /**
      * Returns the lecture name of the listed videos.
      */
-	ReadOnlyLecture getListedVideosByLectureName();
+    ReadOnlyLecture getListedVideosByLectureName();
 
     /**
      * Navigates to the parent layer.

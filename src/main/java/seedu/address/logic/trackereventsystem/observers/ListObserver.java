@@ -17,7 +17,8 @@ import seedu.address.model.video.Video;
  * Represents a list observer that responds to on module edited and on
  * lecture edited events.
  */
-public class ListObserver implements OnModuleEditedEventObserver, OnLectureEditedEventObserver, OnVideoEditedEventObserver {
+public class ListObserver implements
+        OnModuleEditedEventObserver, OnLectureEditedEventObserver, OnVideoEditedEventObserver {
 
     private final Model model;
 
@@ -36,8 +37,9 @@ public class ListObserver implements OnModuleEditedEventObserver, OnLectureEdite
         }
     }
 
-    private boolean isVideosAffectedByVideoEdit(DisplayListLevel curDisplayListLevel, ReadOnlyModule curModule, ReadOnlyLecture curLecture,
-                ModuleCode editedInModuleCode, LectureName editedInLectureName) {
+    private boolean isVideosAffectedByVideoEdit(DisplayListLevel curDisplayListLevel,
+            ReadOnlyModule curModule, ReadOnlyLecture curLecture,
+            ModuleCode editedInModuleCode, LectureName editedInLectureName) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
                 && editedInModuleCode.equals(curModule.getCode())
                 && editedInLectureName.equals(curLecture.getName());
@@ -59,14 +61,16 @@ public class ListObserver implements OnModuleEditedEventObserver, OnLectureEdite
         }
     }
 
-    private boolean isLecturesAffectedByLectureEdit(DisplayListLevel curDisplayListLevel, ReadOnlyModule curModule, ReadOnlyLecture curLecture,
-                ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
+    private boolean isLecturesAffectedByLectureEdit(DisplayListLevel curDisplayListLevel,
+            ReadOnlyModule curModule, ReadOnlyLecture curLecture,
+            ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.LECTURE
                 && editedInModuleCode.equals(curModule.getCode());
     }
 
-    private boolean isVideosAffectedByLectureEdit(DisplayListLevel curDisplayListLevel, ReadOnlyModule curModule, ReadOnlyLecture curLecture,
-                ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
+    private boolean isVideosAffectedByLectureEdit(DisplayListLevel curDisplayListLevel,
+            ReadOnlyModule curModule, ReadOnlyLecture curLecture,
+            ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
                 && editedInModuleCode.equals(curModule.getCode())
                 && originalLecture.equals(curLecture);
@@ -87,11 +91,13 @@ public class ListObserver implements OnModuleEditedEventObserver, OnLectureEdite
         }
     }
 
-    private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel, ModuleCode curModuleCode, ReadOnlyModule originalModule) {
+    private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
+            ModuleCode curModuleCode, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.LECTURE && curModuleCode.equals(originalModule.getCode());
     }
 
-    private boolean isVideosAffectedByModuleEdit(DisplayListLevel curDisplayListLevel, ModuleCode curModuleCode, ReadOnlyModule originalModule) {
+    private boolean isVideosAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
+            ModuleCode curModuleCode, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.VIDEO && curModuleCode.equals(originalModule.getCode());
     }
 }
