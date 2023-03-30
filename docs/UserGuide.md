@@ -82,7 +82,7 @@ and ensures freelancers can get the most out of every moment.
 The UI is split into 4 main parts
 - Eventbook
   - This is where the events that you specified are displayed. 
-- Contactbook
+- ContactList
   - This is where the contacts you have stored are displayed.
 - Message Box
   - This is where the messages regarding the status of your commands are displayed.
