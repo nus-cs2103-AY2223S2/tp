@@ -531,7 +531,7 @@ project or client will be listed (although possibly ranked very low).
 We will now demonstrate fuzzy searching through an example. Let us assume we
 have the following projects in Mycelium:
 
-<img src="images/FuzzyDemoInitial.png" />
+<img src="images/Ui.png" />
 
 <div markdown="span" class="alert alert-info">
 :information_source: Recall that Mycelium supports fuzzy search for projects by
@@ -650,16 +650,16 @@ If you have a project or client selected, pressing (ENTER) in **search mode** sw
 
 To demonstrate this, lets assume you want to delete a project. You can type in `dp -pn ` as shown below
 
-![step1](images/search-and-select/step1.png)
+![step1](images/SearchAndSelectStep1.png)
 
 Instead of typing the full project name, you can press (CTRL+F) to enter **search mode** and search for the project you want to delete
 and select the project as shown below.
 
-![step2](images/search-and-select/step2.png)
+![step2](images/SearchAndSelectStep2.png)
 
 You can then press (ENTER) to switch back to **command mode** and append the project name to the command box.
 
-![step3](images/search-and-select/step3.png)
+![step3](images/SearchAndSelectStep3.png)
 
 This way you can quickly reference a project or client in your command, without having to type out the full name or email.
 
