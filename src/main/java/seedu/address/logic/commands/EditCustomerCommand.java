@@ -81,7 +81,7 @@ public class EditCustomerCommand extends RedoableCommand {
         model.setCustomer(personToEdit, editedPerson);
         model.selectCustomer(editedPerson);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-//        model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

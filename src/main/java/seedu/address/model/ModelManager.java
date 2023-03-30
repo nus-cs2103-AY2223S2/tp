@@ -423,6 +423,7 @@ public class ModelManager implements Model {
     public void setTechnician(Technician target, Technician editedPerson) {
         requireAllNonNull(target, editedPerson);
         shop.setTechnician(target, editedPerson);
+        this.resetMaps();
     }
 
     // ==== Mapped ==

@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TECHNICIANS;
 
 import java.util.Collections;
@@ -34,7 +36,8 @@ public class EditTechnicianCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the technician identified "
             + "by the id number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INTERNAL_ID + "TECHNICIAN_ID "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -46,7 +49,7 @@ public class EditTechnicianCommand extends RedoableCommand {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited technician: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TECHNICIAN = "This technician already registered";
+    public static final String MESSAGE_TECHNICIAN_NOT_FOUND = "Technician %d does not exist";
     private static final Technician TECHNICIAN_DOES_NOT_EXIST = null;
     private final EditTechnicianDescriptor editTechnicianDescriptor;
 
@@ -69,15 +72,18 @@ public class EditTechnicianCommand extends RedoableCommand {
                         editTechnicianDescriptor.getId() == person.getId()).findAny()
                 .orElse(TECHNICIAN_DOES_NOT_EXIST);
 
-        Technician editedPerson = createEditedPerson(personToEdit, editTechnicianDescriptor);
-
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
+        if (personToEdit == TECHNICIAN_DOES_NOT_EXIST) {
+            throw new CommandException(String.format(MESSAGE_TECHNICIAN_NOT_FOUND,
+                this.editTechnicianDescriptor.getId()));
         }
 
+        Technician editedPerson = createEditedPerson(personToEdit, editTechnicianDescriptor);
+
         model.setTechnician(personToEdit, editedPerson);
+        //model.selectTechnician(editedPerson);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson, Tab.STAFF));
     }
 
     /**
