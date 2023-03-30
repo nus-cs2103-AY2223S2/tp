@@ -1,6 +1,43 @@
+---
+layout: page
+title: User Guide
+---
+
 # TrAcker User Guide
 
 --------------------------------------------------------------------------------------------------------------------
+
+# Table of Contents
+- [Quick Start](#quick-start)
+- [About TrAcker and User Guide](#about-tracker)
+- [Event Features](#event-features)
+    - [Adding Tutorial](#adding-tutorial--add-tutorial)
+    - [Adding Lab](#adding-lab--add-lab)
+    - [Adding Consultation](#adding-consultation--add-consultation)
+    - [Adding Recurring Event](#adding-recurring-event--add-recur)
+    - [Edit An Event](#edit-an-event--editEvent-event)
+    - [Delete Events](#delete-events--delete-events)
+    - [Open File in Event](#open-file)
+- [Student Features](#student-features)
+    - [Adding Student](#adding-student--add-student)
+    - [Deleting Student](#deleting-student--delete-student)
+    - [Add Student to Event](#add-student-to-event)
+    - [Delete Student from Event](#delete-student-from-event)
+- [Note Features](#note-features)
+    - [Add Note For Event](#add-note-for-event)
+    - [Delete Note From Event](#delete-note-from-event)
+    - [Edit Note in Event](#edit-note-in-event)
+- [Sort Features](#sort-features)
+    - [Sort Students](#sort-students)
+    - [Filter Students](#filter-students)
+- [Help Features](#help-features)
+- [Application Features](#application-features)
+    - [Exit from TrAcker](#exit)
+    - [Switch Tabs](#switch-tabs)
+- [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Quick start
 
@@ -18,7 +55,10 @@
    ![Ui](images/Ui4.png)
 
 --------------------------------------------------------------------------------------------------------------------
-Brief Overview of TrAcker
+
+<div id='about-tracker'></div>
+
+About TrAcker and User Guide
 
 TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
 It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI).
@@ -38,33 +78,9 @@ Let's clear a little confusion that might arise:
   - It is because TrAcker also functions as a schedule application for the CS2040 TA. So, if overlapping events
     can be added, the TA will be unsure if they are actually free during that period
 - How do I use the UG?
-  - Commands in [] with words capitalized, for example [INDEX], means it is a user's variable.
+  - [UPPER_CASE], i.e upper case letters in [], are parameters to be supplied by the user
   - So, if the command is `rm [INDEX]`, it can be `rm 1`. Of course, the parameters have to abide by TrAcker's restrictions
-
-
-# Table of Contents
-- [Event Features](#event-features)
-  - [Adding Tutorial](#adding-tutorial--add-tutorial)
-  - [Adding Lab](#adding-lab--add-lab)
-  - [Adding Consultation](#adding-consultation--add-consultation)
-  - [Adding Recurring Event](#adding-recurring-event--add-recur)
-  - [Edit An Event](#edit-an-event--editEvent-event)
-  - [Delete Events](#delete-events--delete-events)
-  - [Open File in Event](#open-file)
-- [Student Features](#student-features)
-  - [Adding Student](#adding-student--add-student)
-  - [Deleting Student](#deleting-student--delete-student)
-  - [Add Student to Event](#add-student-to-event)
-  - [Delete Student from Event](#delete-student-from-event)
-- [Note Features](#note-features)
-  - [Add Note For Event](#add-note-for-event)
-  - [Delete Note From Event](#delete-note-from-event)
-  - [Edit Note in Event](#edit-note-in-event)
-- [Sort Features](#sort-features)
-  - 
-- [Help Features](#help-features)
-- [Application Features](#application-features)
-- [Command Summary](#command-summary)
+  - Other than -date and -file in the event features, there are no other optional parameters
 
 **Features**
 --------------------------------------------------------------------
@@ -343,6 +359,8 @@ Examples:
 --------------------------------------------------------------------
 ## Sort Features
 
+<div id='sort-students'></div>
+
 ### Sort students in recurring events: `Sort Students`
 
 Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
@@ -360,6 +378,7 @@ Examples:
 * `sort-student consultation email nonreverse`
 * `sort-student all remark nonreverse`
 
+<div id='filter-students'></div>
 
 ### Filter students in recurring events: `Filter Students`
 
@@ -382,6 +401,8 @@ Examples:
 --------------------------------------------------------------------
 ## Help Features
 
+<div id='help-section'></div>
+
 ### Help for events: `help`
 
 Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
@@ -400,6 +421,8 @@ Examples:
 
 ## Application Features
 
+<div id='exit'></div>
+
 ### Exit from application: `Exit application`
 
 Exits from TrAcker
@@ -409,6 +432,8 @@ Format: `:wq`
 Examples:
 
 * `:wq`
+
+<div id='switch-tabs'></div>
 
 ### Navigate tabs: `Navigate Tabs`
 
