@@ -42,8 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DEPARTMENT, PREFIX_PAYROLL, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_LEAVE_COUNT, PREFIX_DATE_OF_BIRTH,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_DEPARTMENT, PREFIX_PAYROLL,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_LEAVE_COUNT, PREFIX_DATE_OF_BIRTH,
                         PREFIX_DATE_OF_JOINING, PREFIX_TAG);
 
 
