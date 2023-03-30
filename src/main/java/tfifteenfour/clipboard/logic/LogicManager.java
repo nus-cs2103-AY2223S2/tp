@@ -28,22 +28,19 @@ public class LogicManager implements Logic {
     private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
 
-    private CurrentSelection currentSelection;
-
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        this.currentSelection = new CurrentSelection();
     }
 
     CommandResult handleUndoCommand(Command command) throws CommandException, ParseException {
         UndoCommand undoCmd = (UndoCommand) command;
 
         undoCmd.setStateHistoryBuffer(this.stateHistoryBuffer);
-        CommandResult commandResult = undoCmd.execute(model, currentSelection);
+        CommandResult commandResult = undoCmd.execute(model);
         model = undoCmd.getPrevModel();
 
         return commandResult;
@@ -54,7 +51,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = RosterParser.parseCommand(commandText, currentSelection);
+        Command command = RosterParser.parseCommand(commandText, model);
 
         // Special case for UndoCommand because restoring the model to a previous state requires actions that are above
         // the model, as opposed to typical commands that behave within the model.
@@ -62,7 +59,7 @@ public class LogicManager implements Logic {
             commandResult = handleUndoCommand(command);
         } else {
             Model modelCopy = model.copy();
-            commandResult = command.execute(model, currentSelection);
+            commandResult = command.execute(model);
             if (commandResult.isStateModified()) {
                 modelCopy.setCommandTextExecuted(commandText);
                 modelCopy.setCommandExecuted(command);
@@ -101,8 +98,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CurrentSelection getCurrentSelection() {
-        return currentSelection;
+    public Model getModel() {
+        return this.model;
     }
 }
 

@@ -1,6 +1,5 @@
 package tfifteenfour.clipboard.logic.commands;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.model.Model;
 
 /**
@@ -20,7 +19,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
         return new CommandResult(this, SHOWING_HELP_MESSAGE, false);
     }
 }

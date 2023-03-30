@@ -161,6 +161,17 @@ public class Session {
         System.out.println("Marked student " + student.getName() + " absent in session " + sessionName);
     }
 
+    /**
+     * Creates a copy of this instance. Used for saving states by undo command.
+     * @return a copy of this instance.
+     */
+    public Session copy() {
+        Session copy = new Session(this.sessionName);
+        copy.setAttendance(new HashMap<>(attendance));
+
+        return copy;
+    }
+
     public void selectSession() {
         isSelected = true;
     }

@@ -45,6 +45,17 @@ public class Task {
     }
 
     /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
+    public Task copy() {
+        Task copy = new Task(this.taskName);
+        copy.setGrades(new HashMap<>(gradeList));
+
+        return copy;
+    }
+
+    /**
      * Returns an unmodifiable list of the students in the group with the task.
      */
     public ObservableList<StudentWithGrades> getUnmodifiableStudentList() {

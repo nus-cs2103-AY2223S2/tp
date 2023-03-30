@@ -23,6 +23,15 @@ import tfifteenfour.clipboard.model.task.exceptions.TaskNotFoundException;
  */
 public class UniqueTasksList extends UniqueList<Task> {
 
+    @Override
+    public UniqueTasksList copy() {
+        UniqueTasksList copy = new UniqueTasksList();
+        this.internalList.forEach(task -> copy.add(task));
+
+        return copy;
+    }
+
+
     /**
      * Returns true if the list contains an equivalent Task as the given argument.
      */

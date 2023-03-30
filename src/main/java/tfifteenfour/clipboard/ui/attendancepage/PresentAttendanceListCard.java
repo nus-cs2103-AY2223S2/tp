@@ -1,20 +1,22 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.attendancepage;
 
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.StudentWithAttendance;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * An UI component that displays the attendance information of a {@code Student}.
  */
-public class SelectedSessionListCard extends UiPart<Region> {
+public class PresentAttendanceListCard extends UiPart<Region> {
 
-    private static final String FXML = "SelectedListCard.fxml";
+    private static final String FXML = "PresentAttendanceListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,21 +27,26 @@ public class SelectedSessionListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Session session;
+    public final StudentWithAttendance student;
 
+    @FXML
+    private HBox cardPane;
+    @FXML
+    private Label name;
     @FXML
     private Label id;
     @FXML
-    private Label name;
+    private Label studentId;
 
     /**
-     * Creates a {@code GroupListCard} with the given {@code Group} and index to display.
+     * Creates an PresentAttendanceListCard with the given StudentWithAttendance and index to display.
      */
-    public SelectedSessionListCard(Session session, int displayedIndex) {
+    public PresentAttendanceListCard(StudentWithAttendance student, int displayedIndex) {
         super(FXML);
-        this.session = session;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(session.getSessionName());
+        name.setText(student.getName().fullName);
+        studentId.setText(student.getStudentId().value);
     }
 
     @Override
@@ -50,13 +57,13 @@ public class SelectedSessionListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SessionListCard)) {
+        if (!(other instanceof PresentAttendanceListCard)) {
             return false;
         }
 
         // state check
-        SelectedSessionListCard card = (SelectedSessionListCard) other;
+        PresentAttendanceListCard card = (PresentAttendanceListCard) other;
         return id.getText().equals(card.id.getText())
-                && session.equals(card.session);
+                && student.equals(card.student);
     }
 }

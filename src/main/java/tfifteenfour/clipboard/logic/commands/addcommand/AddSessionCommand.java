@@ -40,12 +40,13 @@ public class AddSessionCommand extends AddCommand {
      * Executes the AddSessionCommand to add a session to the selected group.
      *
      * @param model The model of the application.
-     * @param currentSelection The current selection of the user.
      * @return The result of the command execution.
      * @throws CommandException If the session already exists in the course or if the user is not on the session page.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
             throw new CommandException("Wrong page. Navigate to session page to add session");

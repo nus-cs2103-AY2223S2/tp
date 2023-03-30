@@ -23,6 +23,14 @@ import tfifteenfour.clipboard.model.student.exceptions.StudentNotFoundException;
  */
 public class UniqueStudentList extends UniqueList<Student> {
 
+    @Override
+    public UniqueStudentList copy() {
+        UniqueStudentList copy = new UniqueStudentList();
+        this.internalList.forEach(student -> copy.add(student.copy()));
+
+        return copy;
+    }
+
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */

@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.logic.commands;
 
 import tfifteenfour.clipboard.logic.CircularBuffer;
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 
@@ -26,7 +25,7 @@ public class UndoCommand extends Command {
      * @throws CommandException If an error occurs while executing the command.
      */
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         if (stateHistoryBuffer.size() > 0) {
             this.prevModel = stateHistoryBuffer.removeLast();
             Command prevCommandExecuted = prevModel.getCommandExecuted();

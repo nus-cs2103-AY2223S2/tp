@@ -1,20 +1,21 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.sessionpage;
 
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.student.SessionWithAttendance;
+import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * A UI component that displays the attendance information of a {@code Student}.
+ * An UI component that displays information of a {@code Session}.
  */
-public class PresentSessionCard extends UiPart<Region> {
-    private static final String FXML = "PresentSessionCard.fxml";
+public class SelectedSessionListCard extends UiPart<Region> {
+
+    private static final String FXML = "SelectedListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,19 +26,17 @@ public class PresentSessionCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final SessionWithAttendance session;
+    public final Session session;
 
-    @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label name;
 
     /**
-     * Creates a PresetSessionCard with the given SessionWithAttendance and index to display.
+     * Creates a {@code GroupListCard} with the given {@code Group} and index to display.
      */
-    public PresentSessionCard(SessionWithAttendance session, int displayedIndex) {
+    public SelectedSessionListCard(Session session, int displayedIndex) {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
@@ -52,12 +51,12 @@ public class PresentSessionCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PresentSessionCard)) {
+        if (!(other instanceof UnselectedSessionListCard)) {
             return false;
         }
 
         // state check
-        PresentSessionCard card = (PresentSessionCard) other;
+        SelectedSessionListCard card = (SelectedSessionListCard) other;
         return id.getText().equals(card.id.getText())
                 && session.equals(card.session);
     }

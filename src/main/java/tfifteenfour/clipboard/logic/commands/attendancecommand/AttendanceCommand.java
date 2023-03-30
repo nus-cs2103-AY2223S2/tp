@@ -29,20 +29,20 @@ public class AttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public AttendanceCommand() {
-        super(false);
+        super(true);
     }
 
     /**
      * Executes the command to select a group and view its sessions
      *
      * @param model the model to execute the command on
-     * @param currentSelection the current selection of the user
      * @return a CommandResult indicating the result of the command
      * @throws CommandException if there is an error executing the command
      */
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
             throw new CommandException("Please select a session to view overall attendance.");

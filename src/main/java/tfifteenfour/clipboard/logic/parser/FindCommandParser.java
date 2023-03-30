@@ -15,7 +15,7 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.GroupNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.SessionNameContainsPredicate;
-import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
 
 /**
@@ -34,10 +34,13 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
+     * @throws CommandException if command was performed on wrong page.
      */
     public FindCommand parse(String args) throws ParseException, CommandException {
         CommandTargetType findCommandType;
+
         try {
             findCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -71,7 +74,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
             }
-            return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
+            return new FindStudentCommand(new StudentParticularsContainsPredicate(keywords), currentSelection);
         case TASK:
             if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
@@ -82,9 +85,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
-
     /**
      * Parses the find command arguments and returns the search keywords as a String array.
+     *
      * @param args User input arguments.
      * @return String array of search keywords.
      * @throws ParseException If user input does not meet expected format.

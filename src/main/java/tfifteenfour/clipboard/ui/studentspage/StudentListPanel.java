@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.studentspage;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
  * Panel containing the list of persons.

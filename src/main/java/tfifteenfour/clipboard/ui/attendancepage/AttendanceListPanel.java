@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.attendancepage;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.StudentWithAttendance;
+import tfifteenfour.clipboard.ui.UiPart;
+import tfifteenfour.clipboard.ui.coursepage.CourseListPanel;
 
 /**
  * Panel containing the list of student attendance.
@@ -30,7 +32,8 @@ public class AttendanceListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code AttendanceListCard}.
+     * Custom {@code ListCell} to display the graphics of a {@code Student} using a {@code PresentAttendanceListCard}
+     * or a {@code AbsentListCard}.
      */
     class AttendanceListViewCell extends ListCell<StudentWithAttendance> {
         @Override
@@ -42,9 +45,9 @@ public class AttendanceListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (student.getAttendance() == 1) {
-                    setGraphic(new AttendanceListCard(student, getIndex() + 1).getRoot());
+                    setGraphic(new PresentAttendanceListCard(student, getIndex() + 1).getRoot());
                 } else {
-                    setGraphic(new AbsentListCard(student, getIndex() + 1).getRoot());
+                    setGraphic(new AbsentAttendanceListCard(student, getIndex() + 1).getRoot());
                 }
             }
         }

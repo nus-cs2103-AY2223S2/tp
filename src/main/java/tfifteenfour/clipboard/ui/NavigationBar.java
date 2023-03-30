@@ -22,7 +22,7 @@ public class NavigationBar extends UiPart<Region> {
      */
     public NavigationBar(Logic logic) {
         super(FXML);
-        CurrentSelection currentSelection = logic.getCurrentSelection();
+        CurrentSelection currentSelection = logic.getModel().getCurrentSelection();
 
         if (currentSelection.getCurrentPage() == PageType.GROUP_PAGE) {
             status.setText(currentSelection.getSelectedCourse().getCourseCode());

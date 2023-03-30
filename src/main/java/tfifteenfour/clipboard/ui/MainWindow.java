@@ -1,6 +1,6 @@
 package tfifteenfour.clipboard.ui;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -22,11 +22,13 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
@@ -41,9 +43,14 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.ui.attendancepage.AttendanceListPanel;
+import tfifteenfour.clipboard.ui.coursepage.CourseListPanel;
+import tfifteenfour.clipboard.ui.gradespage.GradeListPanel;
+import tfifteenfour.clipboard.ui.grouppage.GroupListPanel;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveSessionTab;
@@ -54,6 +61,10 @@ import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
+import tfifteenfour.clipboard.ui.sessionpage.SessionListPanel;
+import tfifteenfour.clipboard.ui.studentspage.StudentListPanel;
+import tfifteenfour.clipboard.ui.studentspage.StudentViewCardWithAttendance;
+import tfifteenfour.clipboard.ui.taskpage.TaskListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -64,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static Image clippySuccess;
     private static Image clippyFailure;
+    private static ArrayList<HelpWindow> helpWindows = new ArrayList<>();
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -72,9 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CourseListPanel courseListPanel;
-    private StudentViewCard studentViewCard;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -134,8 +144,6 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
-
         initClippy();
 
     }
@@ -179,13 +187,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void initClippy() {
-        String imageUrl = "docs/Images/CommandSuccess.GIF";
-        File file = new File(imageUrl);
-        clippySuccess = new Image(file.toURI().toString());
+        clippySuccess = new Image(this.getClass().getResourceAsStream("/images/CommandSuccess.GIF"));
 
-        imageUrl = "docs/Images/CommandFail.GIF";
-        file = new File(imageUrl);
-        clippyFailure = new Image(file.toURI().toString());
+        clippyFailure = new Image(this.getClass().getResourceAsStream("/images/CommandFail.GIF"));
     }
 
     /**
@@ -235,15 +239,47 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the help window with help specific to the current page the user
+     * is currently on.
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        String message = "";
+        PageType currentPage = logic.getModel().getCurrentSelection().getCurrentPage();
+
+        switch (currentPage) {
+        case COURSE_PAGE:
+            message = HelpWindowMessages.COURSE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case GROUP_PAGE:
+            message = HelpWindowMessages.GROUP_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case STUDENT_PAGE:
+            message = HelpWindowMessages.STUDENT_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case SESSION_PAGE:
+            message = HelpWindowMessages.SESSION_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case TASK_PAGE:
+            message = HelpWindowMessages.TASK_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case SESSION_STUDENT_PAGE:
+            message = HelpWindowMessages.ATTENDANCE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case TASK_STUDENT_PAGE:
+            message = HelpWindowMessages.GRADES_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        default:
+            break;
         }
+
+        if (!helpWindows.isEmpty()) {
+            HelpWindow prevHelpWindow = helpWindows.remove(0);
+            prevHelpWindow.hide();
+        }
+        HelpWindow currHelpWindow = new HelpWindow(message);
+        helpWindows.add(currHelpWindow);
+        currHelpWindow.show();
     }
 
     /**
@@ -254,7 +290,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+        helpWindows.get(0).hide();
         primaryStage.hide();
     }
 
@@ -288,12 +324,14 @@ public class MainWindow extends UiPart<Stage> {
     public void refreshViewPane() {
         rightPanelPlaceholder.getChildren().clear();
         ObservableList<Student> viewedStudent =
-                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
-                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+                logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student -> student.isSameStudent(logic.getModel()
+                        .getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
-                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+                logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()
-                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 0).getRoot());
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0),
+                sessionList, 0).getRoot());
     }
 
     /**
@@ -301,13 +339,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void closeViewPane() {
         rightPanelPlaceholder.getChildren().clear();
-        logic.getCurrentSelection().emptySelectedStudent();
+        logic.getModel().getCurrentSelection().emptySelectedStudent();
     }
 
-    //@FXML
-    //private void handleUndo() {
-    //    studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
-    //}
+    @FXML
+    private void handleUndoCommand(CommandResult commandResult) {
+        UndoCommand command = (UndoCommand) commandResult.getCommand();
+        Command prevCommand = command.getPrevModel().getCommandExecuted();
+
+        if (prevCommand instanceof SelectCommand) {
+            handleBackCommand();
+        } else {
+            // handleSelectCommand acts like refreshing whatever page you're on
+            // undo needs to refresh the page after restoring previous state
+            handleSelectCommand();
+        }
+    }
 
     /**
      * Shows course pane.
@@ -411,37 +458,43 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleSelectCommand() {
 
-        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+        PageType currentPage = logic.getModel().getCurrentSelection().getCurrentPage();
 
         switch (currentPage) {
         case COURSE_PAGE:
+            showCoursePane();
+            showModuleTab();
+            closeGroupTab();
+            refreshNavigationBar();
             break;
         case GROUP_PAGE:
-            showGroupPane(logic.getCurrentSelection().getSelectedCourse());
+            showGroupPane(logic.getModel().getCurrentSelection().getSelectedCourse());
             closeModuleTab();
             showGroupTab();
             refreshNavigationBar();
             break;
         case STUDENT_PAGE:
-            if (logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
-                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+            if (logic.getModel().getCurrentSelection().getSelectedStudent()
+                    .equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+                showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
                 showStudentTab();
+                refreshViewPane();
                 refreshNavigationBar();
             } else {
-                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+                showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
                 refreshViewPane();
             }
             break;
         case SESSION_STUDENT_PAGE:
-            logic.getCurrentSelection().getSelectedSession().selectSession();
-            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
-            showAttendancePane(logic.getCurrentSelection().getSelectedSession());
+            logic.getModel().getCurrentSelection().getSelectedSession().selectSession();
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+            showAttendancePane(logic.getModel().getCurrentSelection().getSelectedSession());
             refreshNavigationBar();
             break;
         case TASK_STUDENT_PAGE:
-            logic.getCurrentSelection().getSelectedTask().selectTask();
-            showTaskPane(logic.getCurrentSelection().getSelectedGroup());
-            showGradePane(logic.getCurrentSelection().getSelectedTask());
+            logic.getModel().getCurrentSelection().getSelectedTask().selectTask();
+            showTaskPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+            showGradePane(logic.getModel().getCurrentSelection().getSelectedTask());
             refreshNavigationBar();
             break;
         default:
@@ -453,8 +506,9 @@ public class MainWindow extends UiPart<Stage> {
      * Handles UI for back command.
      * @param backCommand
      */
-    private void handleBackCommand(BackCommand backCommand) {
-        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+    private void handleBackCommand() {
+        CurrentSelection currentSelection = logic.getModel().getCurrentSelection();
+        PageType currentPage = currentSelection.getCurrentPage();
 
         switch (currentPage) {
         case COURSE_PAGE:
@@ -464,7 +518,7 @@ public class MainWindow extends UiPart<Stage> {
             refreshNavigationBar();
             break;
         case GROUP_PAGE:
-            showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+            showGroupPane(currentSelection.getSelectedCourse());
             showGroupTab();
             closeViewPane();
             closeStudentTab();
@@ -472,15 +526,23 @@ public class MainWindow extends UiPart<Stage> {
             closeTaskTab();
             refreshNavigationBar();
             break;
+        case STUDENT_PAGE:
+            if (currentSelection.getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+                closeViewPane();
+            } else {
+                showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+                refreshViewPane();
+            }
+            break;
         case SESSION_PAGE:
-            logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
-            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+            currentSelection.getSelectedGroup().unMarkAllSessions();
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
             break;
         case TASK_PAGE:
-            logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
-            showTaskPane(logic.getCurrentSelection().getSelectedGroup());
+            currentSelection.getSelectedGroup().unMarkAllTasks();
+            showTaskPane(logic.getModel().getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
             break;
@@ -490,19 +552,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleSessionCommand() {
-        showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+        showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
         showSessionTab();
         refreshNavigationBar();
     }
 
     private void handleTaskCommand() {
-        showTaskPane(logic.getCurrentSelection().getSelectedGroup());
+        showTaskPane(logic.getModel().getCurrentSelection().getSelectedGroup());
         showTaskTab();
         refreshNavigationBar();
     }
 
     private void handleAttendanceCommand() {
-        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+        if (logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
             showStudentAttendance();
         }
     }
@@ -510,10 +572,11 @@ public class MainWindow extends UiPart<Stage> {
     private void showStudentAttendance() {
         rightPanelPlaceholder.getChildren().clear();
         ObservableList<Student> viewedStudent =
-                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
-                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+                logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student ->
+                        student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
-                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+                logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()
                 .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 1).getRoot());
     }
@@ -524,7 +587,7 @@ public class MainWindow extends UiPart<Stage> {
             handleSelectCommand();
 
         } else if (commandResult.getCommand() instanceof BackCommand) {
-            handleBackCommand((BackCommand) commandResult.getCommand());
+            handleBackCommand();
 
         } else if (commandResult.getCommand() instanceof ExitCommand) {
             handleExit();
@@ -543,10 +606,10 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof MarkAbsentCommand
                 || commandResult.getCommand() instanceof MarkPresentCommand) {
-            showAttendancePane(logic.getCurrentSelection().getSelectedSession());
+            showAttendancePane(logic.getModel().getCurrentSelection().getSelectedSession());
 
         } else if (commandResult.getCommand() instanceof AssignCommand) {
-            showGradePane(logic.getCurrentSelection().getSelectedTask());
+            showGradePane(logic.getModel().getCurrentSelection().getSelectedTask());
 
         } else if (commandResult.getCommand() instanceof UploadCommand
                 || commandResult.getCommand() instanceof EditStudentCommand
@@ -555,11 +618,9 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof AttendanceCommand) {
             handleAttendanceCommand();
+        } else if (commandResult.getCommand() instanceof UndoCommand) {
+            handleUndoCommand(commandResult);
         }
-
-
-        //} else if (commandResult.getCommand() instanceof UndoCommand) {
-        //handleUndo();
     }
 
     private void showClippySuccess() {

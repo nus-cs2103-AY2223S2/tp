@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.taskpage;
 
 import java.util.logging.Logger;
 
@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Task}.

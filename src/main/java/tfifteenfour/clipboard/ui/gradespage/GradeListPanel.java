@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.gradespage;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.StudentWithGrades;
+import tfifteenfour.clipboard.ui.UiPart;
+import tfifteenfour.clipboard.ui.coursepage.CourseListPanel;
 
 /**
  * Panel containing the list of student attendance.
@@ -21,7 +23,7 @@ public class GradeListPanel extends UiPart<Region> {
     private ListView<StudentWithGrades> listView;
 
     /**
-     * Creates a {@code AttendanceListPanel} with the given {@code ObservableList}.
+     * Creates a {@code GradeListPanel} with the given {@code ObservableList}.
      */
     public GradeListPanel(ObservableList<StudentWithGrades> studentList) {
         super(FXML);
@@ -30,7 +32,8 @@ public class GradeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code AttendanceListCard}.
+     * Custom {@code ListCell} to display the graphics of a {@code StudentWithGrades} using
+     * a {@code GradeListCard}.
      */
     class GradeListViewCell extends ListCell<StudentWithGrades> {
         @Override

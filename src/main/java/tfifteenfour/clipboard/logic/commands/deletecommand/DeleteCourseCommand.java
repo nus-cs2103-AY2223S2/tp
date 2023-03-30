@@ -38,11 +38,12 @@ public class DeleteCourseCommand extends DeleteCommand {
     /**
      * Executes the command and returns the result message.
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection of the {@code LogicManager}.
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
             throw new CommandException("Wrong page. Navigate to course page to delete course");

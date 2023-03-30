@@ -22,6 +22,15 @@ import tfifteenfour.clipboard.model.course.exceptions.SessionNotFoundException;
  * @see Session#isSameSession(Session)
  */
 public class UniqueSessionsList extends UniqueList<Session> {
+
+    @Override
+    public UniqueSessionsList copy() {
+        UniqueSessionsList copy = new UniqueSessionsList();
+        this.internalList.forEach(session -> copy.add(session));
+
+        return copy;
+    }
+
     /**
      * Returns true if the list contains an equivalent Session as the given argument.
      */

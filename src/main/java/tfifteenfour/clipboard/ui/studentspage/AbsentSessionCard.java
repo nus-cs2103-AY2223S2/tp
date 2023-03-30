@@ -1,20 +1,22 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.studentspage;
 
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * A UI component that displays the attendance information of a {@code Student}.
  */
-public class SessionListCard extends UiPart<Region> {
+public class AbsentSessionCard extends UiPart<Region> {
 
-    private static final String FXML = "ListCard.fxml";
+    private static final String FXML = "AbsentSessionCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,21 +27,23 @@ public class SessionListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Session session;
+    public final SessionWithAttendance session;
 
+    @FXML
+    private HBox cardPane;
+    @FXML
+    private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label code;
 
     /**
-     * Creates a {@code SessionListCard} with the given {@code Session} and index to display.
+     * Creates an AbsentAttendanceListCard with the given SessionWithAttendance and index to display.
      */
-    public SessionListCard(Session session, int displayedIndex) {
+    public AbsentSessionCard(SessionWithAttendance session, int displayedIndex) {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
-        code.setText(session.getSessionName());
+        name.setText(session.getSessionName());
     }
 
     @Override
@@ -50,12 +54,12 @@ public class SessionListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SessionListCard)) {
+        if (!(other instanceof AbsentSessionCard)) {
             return false;
         }
 
         // state check
-        SessionListCard card = (SessionListCard) other;
+        AbsentSessionCard card = (AbsentSessionCard) other;
         return id.getText().equals(card.id.getText())
                 && session.equals(card.session);
     }

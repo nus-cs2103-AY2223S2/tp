@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.studentspage;
 
 import java.util.logging.Logger;
 
@@ -8,14 +8,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.student.StudentWithGrades;
+import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * An UI component that displays the attendance information of a {@code Student}.
+ * An UI component that displays information of a {@code Student}.
  */
-public class GradeListCard extends UiPart<Region> {
+public class StudentListCard extends UiPart<Region> {
 
-    private static final String FXML = "GradeListCard.fxml";
+    private static final String FXML = "StudentListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -26,7 +27,7 @@ public class GradeListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final StudentWithGrades student;
+    public final Student student;
 
     @FXML
     private HBox cardPane;
@@ -36,21 +37,16 @@ public class GradeListCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label studentId;
-    @FXML
-    private Label grade;
 
     /**
-     * Creates an AttendanceListCard with the given StudentWithAttendance and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public GradeListCard(StudentWithGrades student, int displayedIndex) {
+    public StudentListCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         studentId.setText(student.getStudentId().value);
-        if (student.getGrade() != null) {
-            grade.setText(Integer.toString(student.getGrade()));
-        }
     }
 
     @Override
@@ -61,12 +57,12 @@ public class GradeListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof GradeListCard)) {
+        if (!(other instanceof StudentListCard)) {
             return false;
         }
 
         // state check
-        GradeListCard card = (GradeListCard) other;
+        StudentListCard card = (StudentListCard) other;
         return id.getText().equals(card.id.getText())
                 && student.equals(card.student);
     }

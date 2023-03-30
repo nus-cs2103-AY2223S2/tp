@@ -17,7 +17,7 @@ public class Course {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String courseCode;
-    private UniqueGroupsList groups;
+    private final UniqueGroupsList groups;
 
     {
         groups = new UniqueGroupsList();
@@ -31,6 +31,24 @@ public class Course {
         requireNonNull(courseCode);
         checkArgument(isValidCourseCode(courseCode), MESSAGE_CONSTRAINTS);
         this.courseCode = courseCode;
+    }
+
+    /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
+    public Course copy() {
+        Course copy = new Course(this.courseCode);
+        UniqueGroupsList groupsCopy = new UniqueGroupsList();
+        groups.asUnmodifiableObservableList().forEach(group -> groupsCopy.add(group.copy()));
+        copy.setGroups(groupsCopy);
+
+        return copy;
+
+    }
+
+    public void setGroups(UniqueGroupsList groups) {
+        this.groups.setInternalList(groups.asUnmodifiableObservableList());
     }
 
     /**

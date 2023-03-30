@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.studentspage;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -7,13 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
  * A UI component that displays information of a {@code Student}.
@@ -35,10 +35,6 @@ public class StudentViewCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label name;
-    @FXML
-    private FlowPane modules;
-    @FXML
-    private FlowPane tags;
     @FXML
     private Label phone;
     @FXML

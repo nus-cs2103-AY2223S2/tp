@@ -23,6 +23,14 @@ import tfifteenfour.clipboard.model.course.exceptions.GroupNotFoundException;
  */
 public class UniqueGroupsList extends UniqueList<Group> {
 
+    @Override
+    public UniqueGroupsList copy() {
+        UniqueGroupsList copy = new UniqueGroupsList();
+        this.internalList.forEach(group -> copy.add(group.copy()));
+
+        return copy;
+    }
+
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */

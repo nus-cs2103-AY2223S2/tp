@@ -6,7 +6,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
-import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
@@ -18,24 +18,30 @@ public class FindStudentCommand extends FindCommand {
     public static final String COMMAND_TYPE_WORD = "student";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
-            + ": Finds a student. "
+            + ": Finds a student by their name or student ID. "
             + "Parameters: "
             + "NAME_SEARCH_TERM\n"
             + "Example: " + COMMAND_WORD
             + " " + COMMAND_TYPE_WORD
-            + " " + "kelvin ";
+            + " " + "kelvin"
+            + " or"
+            + "SID_SEARCH_TERM\n"
+            + "Example: " + COMMAND_WORD
+            + " " + COMMAND_TYPE_WORD
+            + " " + "A1234567X";
 
     public static final String MESSAGE_SUCCESS = "Found %1$s results";
-    private final StudentNameContainsPredicate predicate;
+    private final StudentParticularsContainsPredicate predicate;
     private final CurrentSelection currentSelection;
 
     /**
      * Creates a FindStudentCommand with the given StudentNameContainsPredicate and CurrentSelection.
      *
-     * @param predicate The StudentNameContainsPredicate to use for finding the student.
+     * @param predicate The StudentParticularsContainsPredicate to use for finding the student.
      * @param currentSelection The CurrentSelection object to get the selected group from.
      */
-    public FindStudentCommand(StudentNameContainsPredicate predicate, CurrentSelection currentSelection) {
+    public FindStudentCommand(StudentParticularsContainsPredicate predicate,
+                                CurrentSelection currentSelection) {
         this.predicate = predicate;
         this.currentSelection = currentSelection;
     }
@@ -44,12 +50,13 @@ public class FindStudentCommand extends FindCommand {
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection The CurrentSelection object to get the selected group from.
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
+
         selectedGroup.updateFilteredStudents(predicate);
         int filteredSize = selectedGroup.getUnmodifiableFilteredStudentList().size();
 
@@ -67,3 +74,4 @@ public class FindStudentCommand extends FindCommand {
                 && predicate.equals(((FindStudentCommand) other).predicate));
     }
 }
+

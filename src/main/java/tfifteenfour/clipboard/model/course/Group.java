@@ -44,6 +44,46 @@ public class Group {
     }
 
     /**
+     * Creates a copy of this instance. Used for saving states by undo command.
+     * @return a copy of this instance.
+     */
+    public Group copy() {
+        Group copy = new Group(this.groupName);
+        UniqueStudentList studentsCopy = new UniqueStudentList();
+        UniqueSessionsList sessionsCopy = new UniqueSessionsList();
+        UniqueTasksList tasksCopy = new UniqueTasksList();
+
+        students.asUnmodifiableObservableList().forEach(student -> studentsCopy.add(student.copy()));
+        sessions.asUnmodifiableObservableList().forEach(session -> sessionsCopy.add(session.copy()));
+        tasks.asUnmodifiableObservableList().forEach(task -> tasksCopy.add(task.copy()));
+
+        copy.setStudents(studentsCopy);
+        copy.setSessions(sessionsCopy);
+        copy.setTasks(tasksCopy);
+        return copy;
+
+    }
+
+    public void setStudents(UniqueStudentList students) {
+        this.students.setInternalList(students.asUnmodifiableObservableList());;
+    }
+
+    public void setSessions(UniqueSessionsList sessions) {
+        this.sessions.setInternalList(sessions.asUnmodifiableObservableList());;
+    }
+
+    public void setTasks(UniqueTasksList tasks) {
+        this.tasks.setInternalList(tasks.asUnmodifiableObservableList());;
+    }
+
+    /**
+     * Returns the modifiable internal list of students in this group.
+     */
+    public ObservableList<Student> getModifiableStudentList() {
+        return students.asModifiableObservableList();
+    }
+
+    /**
      * Returns an unmodifiable view of the list of students in this group.
      */
     public ObservableList<Student> getUnmodifiableStudentList() {
@@ -52,10 +92,6 @@ public class Group {
 
     public ObservableList<Student> getUnmodifiableFilteredStudentList() {
         return students.asUnmodifiableFilteredList();
-    }
-
-    public ObservableList<Student> getModifiableStudentList() {
-        return students.asModifiableObservableList();
     }
 
 

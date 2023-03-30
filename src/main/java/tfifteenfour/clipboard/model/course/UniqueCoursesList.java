@@ -23,6 +23,15 @@ import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
  */
 public class UniqueCoursesList extends UniqueList<Course> {
 
+    @Override
+    public UniqueCoursesList copy() {
+        UniqueCoursesList copy = new UniqueCoursesList();
+        this.internalList.forEach(course -> copy.add(course.copy()));
+
+
+        return copy;
+    }
+
     /**
      * Returns true if the list contains an equivalent course as the given argument.
      */

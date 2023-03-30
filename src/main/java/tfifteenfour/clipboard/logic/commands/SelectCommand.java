@@ -33,13 +33,14 @@ public class SelectCommand extends Command {
      * Creates a SelectCommand to select a student at the specified index
      */
     public SelectCommand(Index targetIndex) {
-        super(false);
+        super(true);
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE:

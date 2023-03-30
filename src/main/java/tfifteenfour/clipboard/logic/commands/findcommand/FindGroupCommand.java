@@ -43,12 +43,11 @@ public class FindGroupCommand extends FindCommand {
     /**
      * Executes the command and returns the result message.
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection of the {@code LogicManager}.
      * @return The CommandResult containing the message indicating the number of results found.
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Course selectedCourse = currentSelection.getSelectedCourse();
         selectedCourse.updateFilteredGroups(predicate);
