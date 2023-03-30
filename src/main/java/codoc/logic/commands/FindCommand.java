@@ -17,10 +17,9 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) split by prefixes and displays them as a list with index "
-            + "numbers.\n"
-            + "Parameters: PREFIX/KEYWORD [MORE_KEYWORDS]... [PREFIX/KEYWORD [MORE_KEYWORDS]...]...\n"
-            + "Example: " + COMMAND_WORD + " n/alice bob charlie y/2 3 c/computer business";
+            + "the given constraints(case-insensitive).\n"
+            + "Available Parameters: n/NAME y/YEAR c/COURSE m/MODULES... s/SKILLS...\n"
+            + "Example: " + COMMAND_WORD + " n/alice c/computer m/cs1101 cs1231";
 
     private final Predicate<Person> predicate;
     private final String userInputs;
