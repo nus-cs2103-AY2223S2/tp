@@ -31,7 +31,6 @@ import seedu.vms.storage.UserPrefsStorage;
 import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
 import seedu.vms.storage.keyword.JsonKeywordStorage;
-//import seedu.vms.storage.keyword.JsonKeywordStorage;
 import seedu.vms.storage.keyword.KeywordStorage;
 import seedu.vms.storage.patient.JsonPatientManagerStorage;
 import seedu.vms.storage.patient.PatientManagerStorage;

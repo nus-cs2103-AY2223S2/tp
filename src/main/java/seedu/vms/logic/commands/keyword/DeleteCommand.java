@@ -2,6 +2,8 @@ package seedu.vms.logic.commands.keyword;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -25,7 +27,7 @@ public class DeleteCommand extends Command {
     private final String targetKeyword;
 
     public DeleteCommand(String targetKeyword) {
-        this.targetKeyword = targetKeyword;
+        this.targetKeyword = Objects.requireNonNull(targetKeyword);
     }
 
     @Override
