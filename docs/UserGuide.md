@@ -4,7 +4,7 @@ title: User Guide
 ---
 ## **Table of Contents**
 * Table of Contents
-{:toc}
+  {:toc}
 
 <div style="page-break-after: always;"></div>
 
@@ -382,17 +382,18 @@ Format: `view INDEX`
   the [List Panel](#exploring-the-graphical-user-interface).
 * The details will be shown in the [View Panel](#exploring-the-graphical-user-interface).
 * Apart from the internship details, a custom tips box is also included in the
-[View Panel](#exploring-the-graphical-user-interface), where the tips change according to the status of the
-internship entry.
+  [View Panel](#exploring-the-graphical-user-interface), where the tips change according to the status of the
+  internship entry.
 
 Examples:
 * `view 1` Assuming that you have at least three internships displayed in the
 [List Panel](#exploring-the-graphical-user-interface), this displays the details of the third internship in the
 [View Panel](#exploring-the-graphical-user-interface). This example is illustrated in Figure 5.
+
 * `view -1` Displays an error because `INDEX` must be a positive integer.
 * `view 8` Assuming that you have 7 internships displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
-than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
+  [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
+  than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
 
 
@@ -409,6 +410,7 @@ Need to quickly export the details of an internship? Use `copy` to copy the deta
 your clipboard.
 
 Format: `copy INDEX`
+
 * Copies the details of the internship entry with index number `INDEX` as indicated in
   the [List Panel](#exploring-the-graphical-user-interface).
 * The copied text will be in the format of
@@ -427,20 +429,39 @@ Examples:
 
 
 ### Finding Internships : `find`
-Are you an experienced internship hunter with tons of internship entries? Our `find` command will help filter through all your internship entries and return the internship entries you're looking for.
+Want to locate selected internship entries? Use the `find` command to filter through
+your entries and narrow down your search.
 
-Format: `find [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
 
-* You have to provide at least one of the optional fields. A `find` command without any fields will result in an invalid command format error.
-* The find command works through an exact match, regardless of upper or lower case, of the field and the internship entry's corresponding attributes.
-* When multiple instances of the same type of field exists in user input (e.g. multiple `n/COMPANY_NAME` fields or multiple `r/ROLE` fields), only internships containing at least one of these fields of the same type will be filtered out.
-* When different types of fields, each with multiple instances, exist in user input (e.g. multiple `n/COMPANY_NAME` and multiple `r/ROLE` fields), only internships containing at least one of the inputs from every different type of field will be filtered out. 
+Format: `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`
 
-Examples:
-* `find n/Google Ltd` filters out all internships with company name 'Google Ltd'. Note that case matching is insensitive, so internships with the company name 'google ltd', 'gOOglE ltD' or more will also be deleted. However, matching must be exact, so inputs like 'goo' and 'google' will not filter out an internship with company name 'Google Ltd'.
-* `find n/Google n/Apple n/Meta` filters out all internships with company name 'Google', 'Apple' or 'Meta'.
-* `find n/Google n/Apple s/new` filters out all internships that has the `new` status and have company name 'Google' or 'Apple'.
-* `find n/Google n/Apple t/Python t/Java` filters out all internships with company names 'Google' or 'Apple' and have the tags 'Python' or 'Java'.
+* You have to provide at least one of the optional fields.
+* The `find` command is case-insensitive, and it returns exact matches only. For example,
+  `find n/Google Ltd` will not return an entry with company name `Google` because `Google`
+  does not exactly match with `Google Ltd`.
+
+There are 2 possible ways for you to use the `find` command.
+
+**Method 1: Use a single field type**
+
+e.g., `find s/Applied`, `find s/Applied s/New`, `find n/Google n/Apple n/Meta`
+
+* The `find` command returns all internship entries that match with **any** of the values that you provide.
+* For example, `find s/Applied s/New` returns all internship entries that have a status of **either**
+  `Applied` **or** `New`.
+
+
+
+**Method 2: Use 2 or more different field types**
+
+e.g., `find n/Google n/Apple s/New`, `find n/Google n/Apple s/Applied s/New`, `find n/Google r/Engineer t/Python t/Java`
+
+* The `find` command returns all internship entries that matches with **at least one** value for
+  **every** field type that is specified.
+* For example, `find n/Google n/Apple s/new` returns internship entries that have a status `New` and have
+  a company name of `Google` **or** `Apple`.
+* Another example is that `find n/Google n/Apple s/Applied s/New` returns internship entries that have company names
+  of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
 
 
 
@@ -457,6 +478,7 @@ Format: `upcoming`
 * Upcoming week is defined as the current day and the 6 days that follow it.
 
 
+
 Examples: 
 * `upcoming` If today's date is 5 January 2023, it will list all internships that have a `STATUS`of `New/Offered/Assessment/Interview` and `DATE` is from 5 January 2023 to 11 January 2023 inclusive.
 
@@ -470,11 +492,11 @@ Format: `delete-index INDEX [INDEX]...`
 * Deletes the internship whose index number is `INDEX`.
 * If multiple `INDEX` are provided, multiple internships can be deleted.
 * At least 1 `INDEX` must be provided.
-* `INDEX` does not need to be unique. If 2 or more of `INDEX` have the same value, only the first one will be taken. 
+* `INDEX` does not need to be unique. If 2 or more of `INDEX` have the same value, only the first one will be taken.
 
 
 Examples:
-* If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find`. 
+* If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find`.
 * If you run `delete-index 1` after `list`, it will delete the first entry as displayed by `list`.
 * `delete-index 1 3` Deletes the first and third
   internship in the [List Panel](#exploring-the-graphical-user-interface).
@@ -496,7 +518,7 @@ Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... 
 * `delete-field` deletes entries with exact matches only. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
   `Google` does not exactly match with `Google Ltd`.
 
-There are 2 possible scenarios when using the `delete-field` command. 
+There are 2 possible scenarios when using the `delete-field` command.
 
 **Method 1: Use a single field type**
 
@@ -582,37 +604,6 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-### Navigating through Past Commands
-
-You can easily navigate through your past commands without having to manually type them in again.
-To do so, follow the steps below:
-1. Left-click the [Input Box](#exploring-the-graphical-user-interface).
-2. Press  <button>&uarr;</button> to restore a previous command. Press <button>&darr;</button> to move
-   forward one command. Figure 8 illustrates how this works.
-
-<p align="center">
-  <img src="images/ug-navigate-commands.png" width="450" />
-</p>
-
-
- <p style="text-align: center;">Figure 8: How navigation through past commands work</p>
-
-<br/>
-
-
-<div markdown="span" class="alert alert-primary">
-
-:information_source: InternBuddy only remembers the commands that you entered for the current run of
-InternBuddy. In other words, when you restart InternBuddy, InternBuddy will no longer remember the commands
-entered previously. Also, once the first entered command is reached, pressing <button>&uarr;</button> will
-not have any effect. Similarly, once the last command is reached, pressing <button>&darr;</button> will
-not have any effect.
-</div>
-
-<div style="page-break-after: always;"></div>
-
-
-
 ### Saving your Internship Data
 
 Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
@@ -631,7 +622,7 @@ where you placed `internbuddy.json`. There is no need to save manually.
 InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
 manually.
 * If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
-entries.
+  entries.
 * If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
   empty data file.
 
@@ -645,6 +636,32 @@ with the content in `internbuddy.json` unless you are confident in doing so. If 
 </div>
 
 <div style="page-break-after: always;"></div>
+
+
+### Navigating through Past Commands
+
+Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
+After the [Input Box](#exploring-the-graphical-user-interface) has been clicked, pressing <button>&uarr;</button>
+and <button>&darr;</button> will fill the [Input Box](#exploring-the-graphical-user-interface) with commands you entered recently.
+Hence, you will be able to just enter or edit before entering any of those inputs again.
+This will allow you to easily access and navigate through inputs you entered recently.
+
+* InternBuddy keeps a history of your past inputs.
+* Pressing the up key will cause your next most recent input to appear in the text box. However, once you reach the least recent input, pressing the up arrow key further will not result in any change and the least recent input will remain in the text box.
+* Pressing the down key will cause your next least recent input to appear in the text box. Once you reach the most recent input, pressing the down key once more will clear the text box. Pressing the down arrow key further, however, will not result in any change and the text box will remain empty.
+* However, InternBuddy only starts keeping track of your inputs from its most recent launch. Suppose you have already inputted some commands into InternBuddy and it has recorded these commands into its input history. Exiting InternBuddy and launching it again will result in InternBuddy forgetting those past inputs and start afresh.
+* InternBuddy will keep track of all past inputs, regardless of whether or not they were valid commands. This is so that in the case where a past input was an invalid command, it can be navigated to and edited to be used again instead of having to type out the entire command again.
+
+Example:
+- Suppose InternBuddy has just been launched and the inputs `find n/google`, `help` and `oops` are entered into InternBuddy in this order.
+    - Pressing the up arrow key once will cause the text box to be filled with the most recent input which was `oops`. Pressing the up arrow key again will cause `oops` to disappear and the next most recent input, which is `help`, to fill the text box. Pressing the up arrow key yet again will cause `help` to disappear and the next most recent input, which is `find n/google`, to fill the text box. However, as `find n/google` is the least recent input, pressing the up arrow key again will not result in any change and the text box will continue to be filled with the input `find n/google`.
+    - Now that you have navigated to the least recent input, `find n/google`, pressing the down arrow key once will cause `find n/google` to disappear and the next least recent input, which is `help`, to fill the text box. Pressing the down arrow key again will cause `help` to disappear and the next least recent input, which is `oops`, to fill the text box. However, as `oops` is the most recent input, pressing the down arrow key again will cause `oops` to disappear and clear the text box. Pressing the down arrow key further will not result in any change and the text box will remain empty.
+
+- Suppose InternBuddy has just been launched again and the inputs `delete 1`, `clear` and `blah` are entered into InternBuddy in this order.
+    - Pressing the up arrow key once will cause the text box to be filled with the most recent input, which is `blah`. Pressing the up arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to fill the text box.
+    - Pressing the down arrow key next will cause `clear` to disappear and the next least recent input, which is `blah`, to fill the text box again.
+    - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
+
 
 ## **FAQ**
 
@@ -661,20 +678,20 @@ that we are exploring and hope to implement in the future!
 ## **Command Summary**
 Table 7 provides an overview of the commands supported in InternBuddy.
 
-| Action                        | Format, Examples                                                                                                                                      |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| List                          | `list`                                                                                                                                                |
-| Add                           | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`  <br> e.g., `add n/Apple r/Software Engineer s/New d/2023-03-01`                   |
-| Edit                          | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE] [c/COMMENT] [t/TAG]...`<br> e.g.,`edit 2 s/Assessment r/Software Developer`                         |
-| View                          | `view INDEX`<br> e.g., `view 1`                                                                                                                       |
-| Copy to Clipboard             | `copy INDEX`<br> e.g., `copy 1`                                                                                                                       |
-| Find                          | `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `find n/Apple n/Google`                                         |
-| Get Upcoming Events/Deadlines | `upcoming`                                                                                                                                            |
-| Delete by Index               | `delete-index INDEX [INDEX]...`<br> e.g., `delete 1 3`                                                                                                |
-| Delete by Parameters          | `delete-parameter [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `delete-parameter n/Apple n/Google s/New s/Applied` |
-| Clear                         | `clear`                                                                                                                                               |
-| Help                          | `help`                                                                                                                                                |
-| Exit                          | `exit`                                                                                                                                                |
+| Action                        | Format, Examples                                                                                                                              |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| List                          | `list`                                                                                                                                        |
+| Add                           | `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`  <br> e.g., `add n/Apple r/Software Engineer s/New d/2023-03-01`           |
+| Edit                          | `edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE] [c/COMMENT] [t/TAG]...`<br> e.g.,`edit 2 s/Assessment r/Software Developer`                 |
+| View                          | `view INDEX`<br> e.g., `view 1`                                                                                                               |
+| Copy to Clipboard             | `copy INDEX`<br> e.g., `copy 1`                                                                                                               |
+| Find                          | `find [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `find n/Apple n/Google`                                 |
+| Get Upcoming Events/Deadlines | `upcoming`                                                                                                                                    |
+| Delete by Index               | `delete-index INDEX [INDEX]...`<br> e.g., `delete 1 3`                                                                                        |
+| Delete by Fields              | `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`<br/>e.g., `delete-field n/Apple n/Google s/New s/Applied` |
+| Clear                         | `clear`                                                                                                                                       |
+| Help                          | `help`                                                                                                                                        |
+| Exit                          | `exit`                                                                                                                                        |
 
 
 <p style="text-align: center;">Table 7: Commands in InternBuddy</p>
@@ -717,7 +734,7 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
    the file, you can choose any text editor such as `Notepad`.
 2. Once opened, you will see the JSON data file in a format as shown in Figure 9. Each box contains the data for one
    specific internship entry.
-3. Within each box, you can see that there are pairings where each pair is made up of a `PARAMETER` and `VALUE`.
+3. Within each box, you can see that there are pairings where each pair is made up of a `FIELD` and `VALUE`.
    <p align="center">
     <img src="images/ug-appendix-b-json-example.png" width="550" />
    </p>
@@ -726,12 +743,12 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
    <br/>
     <div style="page-break-after: always;"></div>
 
-4. To manually change the value of a parameter, simply replace the text for `VALUE`. Figure 10 illustrates an example
+4. To manually change the value of a field, simply replace the text for `VALUE`. Figure 10 illustrates an example
    where we change the value of `STATUS` from `assessment` to `interview` for the internship entry with company name
    `Google`. Once your changes have been made, you can save the file by pressing <button>CTRL</button> + <button>S</button>.
    <br/><br/>
    <div markdown="span" class="alert alert-danger">
-    :warning: **Warning:**  Make sure that you follow the [constraints](#descriptions-prefixes-and-constraints-for-parameters)
+    :warning: **Warning:**  Make sure that you follow the [constraints](#descriptions-prefixes-and-constraints-for-fields)
     when substituting in your own values. If the constraints are not satisfied, InternBuddy would not be able to
     read your data in `internbuddy.json` file and would restart with a new sample data file instead.
 

@@ -15,7 +15,7 @@ public class UpcomingCommand extends Command {
     public static final String COMMAND_WORD = "upcoming";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all internships with deadlines in the upcoming week\n"
+            + ": Lists all internships with events or deadlines in the upcoming week\n"
             + "No fields required. Any fields will be ignored.\n"
             + "Example: " + COMMAND_WORD;
 

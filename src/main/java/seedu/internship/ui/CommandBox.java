@@ -34,9 +34,11 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         this.commandHistory = new CommandHistory();
+        // @@author kohkaixun-reused
         // Reused from
         // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java
         this.commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleUpDownButtonEvent);
+        // @@author
     }
 
     /**
@@ -61,6 +63,7 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private void handleUpDownButtonEvent(KeyEvent event) {
+        // @@author kohkaixun-reused
         // Reused from
         // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java
         if (event.getCode().isArrowKey()) {
@@ -68,6 +71,7 @@ public class CommandBox extends UiPart<Region> {
             case UP:
                 String olderInput = this.commandHistory.getOlderInput();
                 commandTextField.setText(olderInput);
+                // @@author kohkaixun-reused
                 // Reused from
                 // https://stackoverflow.com/q/8293774
                 Platform.runLater(new Runnable() {
@@ -76,6 +80,7 @@ public class CommandBox extends UiPart<Region> {
                         commandTextField.end();
                     }
                 });
+                // @@author kohkaixun-reused
                 break;
 
             case DOWN:
@@ -86,6 +91,7 @@ public class CommandBox extends UiPart<Region> {
                 break;
             }
         }
+        // @@author
     }
 
     /**

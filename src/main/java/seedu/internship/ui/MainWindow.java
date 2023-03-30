@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
+        internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList(), logic.getModel(), this);
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -217,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Updates the right panel whenever user calls a valid view command
      */
-    private void updateRightPanel() {
+    public void updateRightPanel() {
         Internship selectedInternship = logic.getSelectedInternship();
         if (selectedInternship != null) {
             //Update with internship information

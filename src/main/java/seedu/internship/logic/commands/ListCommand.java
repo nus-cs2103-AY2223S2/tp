@@ -19,6 +19,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateSelectedInternship(null);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
