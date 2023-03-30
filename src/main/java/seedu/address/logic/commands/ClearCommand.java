@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.ReadOnlyModule;
 
 /**
- * Clears the address book.
+ * Clears the tracker.
  */
 public class ClearCommand extends Command {
 
