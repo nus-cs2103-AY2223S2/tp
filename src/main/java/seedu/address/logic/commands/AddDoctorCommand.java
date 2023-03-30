@@ -57,7 +57,8 @@ public class AddDoctorCommand extends Command {
         }
 
         model.addDoctor(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                true, toAdd);
     }
 
     @Override
