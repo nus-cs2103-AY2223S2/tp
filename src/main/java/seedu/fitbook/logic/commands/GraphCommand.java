@@ -54,14 +54,6 @@ public class GraphCommand extends Command {
         return targetIndex;
     }
 
-    /**
-     * Refines the {@code weightHistory} of the client.
-     */
-    public void refineGraphWeightHistory(WeightHistory weightHistory) {
-        weightHistory.sortByDate();
-        weightHistory.removeOldWeights();
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

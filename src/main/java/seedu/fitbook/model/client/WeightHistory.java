@@ -87,6 +87,15 @@ public class WeightHistory {
         weights.removeAll(weightsToRemove);
     }
 
+    /**
+     * Refines the {@code weight} of the client.
+     */
+    public WeightHistory refineGraphWeightHistory() {
+        sortByDate();
+        removeOldWeights();
+        return this;
+    }
+
     public List<Weight> getList() {
         return weights;
     }

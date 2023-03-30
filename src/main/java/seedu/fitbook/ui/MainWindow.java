@@ -300,7 +300,7 @@ public class MainWindow extends UiPart<Stage> {
         series.getData().clear();
         graphXAxis = new ArrayList<>();
         graphYAxis = new ArrayList<>();
-        WeightHistory weights = client.getWeightHistory().sortByDate();
+        WeightHistory weights = client.getWeightHistory().refineGraphWeightHistory().sortByDate();
 
         for (int i = 0; i < weights.getListSize(); i++) {
             double weightValue = Double.parseDouble(weights.getWeightValue(i));
@@ -317,7 +317,7 @@ public class MainWindow extends UiPart<Stage> {
         for (int i = 0; i < graphXAxis.size(); i++) {
             series.getData().add(new XYChart.Data(graphXAxis.get(i), graphYAxis.get(i)));
         }
-        series.setName("Weight History");
+        series.setName("1 Month's Weight History");
         lineChart.getData().add(series);
     }
 

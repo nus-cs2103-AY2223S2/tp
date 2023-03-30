@@ -442,6 +442,24 @@ Examples:
 * `graph 1` plots the weight history of the first client in the FitBook.
 * `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
+### Viewing a client summary: `view`
+
+{% include information.html content="
+
+Viewing the client's summary provides information like the `Exercise Routines` attached to the client.
+
+" %}
+
+Format: `view INDEX`
+
+* Views the summary of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` views the summary of the first client in the FitBook.
+* `find n/Alex` followed by `view 1` views the summary of the 1st client in the results of the `view` command.
+
 ### Exiting the program : `exit`
 
 {% include information.html content="
@@ -506,4 +524,5 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 | **Export Routine Details**       | `exportRoutine`                                                                                                                                                                                                                                                                         |
 | **Add weight**                   | `addWeight INDEX w/WEIGHT d/DATE`<br> e.g., `addWeight 1 w/70 d/10-10-2023 18:00`                                                                                                                                                                                                       |
 | **Graph**                        | `graph INDEX`<br> e.g., `graph 1`                                                                                                                                                                                                                                                       |
+| **View**                         | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                                                                                         |
 
