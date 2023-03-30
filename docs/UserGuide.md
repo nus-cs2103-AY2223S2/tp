@@ -485,12 +485,12 @@ With Edumate's `tag` command, you can tag your existing contacts with groups and
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `tag CONTACT_INDEX m/MODULE_TAG`
+* `tag INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
 * `tag m/MODULE_TAG DAY START END`
-* `tag CONTACT_INDEX m/MODULE_TAG DAY START END`
+* `tag INDEX m/MODULE_TAG DAY START END`
 * `tag m/MOUDLE_TAG DAY START END`
-* `tag CONTACT_INDEX g/GROUP`
+* `tag INDEX g/GROUP`
 * `tag g/GROUP`
 
 </div>
@@ -522,12 +522,12 @@ With EduMate's `untag` command, you can remove groups or modules from your exist
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `untag CONTACT_INDEX m/MODULE_TAG`
+* `untag INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
 * `untag m/MODULE_TAG DAY START END`
-* `untag CONTACT_INDEX m/MODULE_TAG DAY START END`
+* `untag INDEX m/MODULE_TAG DAY START END`
 * `untag m/MOUDLE_TAG DAY START END`
-* `untag CONTACT_INDEX g/GROUP`
+* `untag INDEX g/GROUP`
 * `untag g/GROUP`
 
 </div>
@@ -564,7 +564,9 @@ The search commands in EduMate help you to efficiently navigate and manage your 
 
 #### Filter contacts by keywords `find`
 
-EduMate's `find` command allows you to quickly locate specific contacts by searching for keywords within their fields. This can be useful when you need to find someone with a specific tag or shared module, or when you want to obtain specific information about a particular contact. Additionally, you can use the `find` command to generate a list of contacts that meet certain criteria, which can help you manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria you want to search for.
+EduMate's `find` command allows you to quickly locate specific contacts by searching for keywords within their fields. This can be useful when you need to find someone with a specific tag or shared module, or when you want to obtain specific information about a particular contact. 
+
+Additionally, you can use the `find` command to generate a list of contacts that meet certain criteria, which can help you manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria you want to search for.
 
 <div markdown="block" class="alert alert-info">
 
@@ -609,7 +611,9 @@ What you should see:<br>
 
 #### Arrange contacts based on criteria `sort`
 
-With EduMate's `sort` command, you have the power to organize your contacts in a way that's most helpful for you. Whether you want to find out who shares the most modules with you or who's likely to become a close friend this semester, the `sort` command can help you out. By simply typing `sort` followed by the relevant criteria, you can sort your contacts by name, the number of shared modules, or any other specified field. This feature can help you identify potential study or social groups within your contacts, making it easier to connect and collaborate with others.
+With EduMate's `sort` command, you have the power to organize your contacts in a way that's most helpful for you. Whether you want to find out who shares the most modules with you or who's likely to become a close friend this semester, the `sort` command can help you out. 
+
+By simply typing `sort` followed by the relevant criteria, you can sort your contacts by name, the number of shared modules, or any other specified field. This feature can help you identify potential study or social groups within your contacts, making it easier to connect and collaborate with others.
 
 
 <div markdown="block" class="alert alert-info">
@@ -717,9 +721,9 @@ The `meet` command in EduMate is used to suggest suitable meet-up locations and 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `meet CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
-* `study CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
-* `eat CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
+* `meet INDEX_1 INDEX_2 ...`
+* `study INDEX_1 INDEX_2 ...`
+* `eat INDEX_1 INDEX_2 ...`
 
 </div>
 
