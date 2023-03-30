@@ -107,7 +107,7 @@ Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (a
 
 Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
-:information_source
+:information_source:
 
 TrAcker only accepts the following date format
 ```
@@ -135,7 +135,7 @@ Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to
 
 Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
-:information_source
+:information_source:
 
 TrAcker only accepts the following date format
 
@@ -162,6 +162,10 @@ Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour
 - No attachments allowed
 
 Format: `mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]`
+
+:information_source:
+
+TrAcker only accepts the following date format
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -201,7 +205,7 @@ Edits an event current in the TA’s schedule.
 - index starts from 1
 - Consultation does not allow attachments as mentioned in add consultation section
 
-:bulb You can use the pwd in unix terminal to get the full path of the folder which the pdf file is in
+:bulb: You can use the pwd in unix terminal to get the full path of the folder which the pdf file is in
 
 Format: `editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
 
@@ -213,7 +217,7 @@ Examples:
 
 ### Delete events: `delete events`
 
-:exclamation You will not be able to undo the deletion
+:exclamation: You will not be able to undo the deletion
 
 Deletes valid indexed events from TA's schedule.
 
@@ -268,7 +272,7 @@ Examples:
 
 ### Deleting student: `delete student`
 
-:exclamation You will not be able to undo the deletion
+:exclamation: You will not be able to undo the deletion
 
 
 Removes a student from the student list.
@@ -345,7 +349,7 @@ Examples:
 
 ### Delete note from event: `delete note`
 
-:exclamation You will not be able to undo the deletion
+:exclamation: You will not be able to undo the deletion
 
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
