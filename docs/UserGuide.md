@@ -8,6 +8,7 @@ Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&g
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
 improving the efficiency of grocery shopping.
+
 --------------------------------------------------------------------------------------------------------------------
 * Table of Contents
   * [Quick Start](#quick-start)
@@ -57,6 +58,7 @@ The main application consists of 3 components, namely:
 * Food List
 * Result Display
 * User Input Box
+
 --------------------------------------------------------------------------------------------------------------------
 ## Trying out your first command!
 Not sure how to start? Don't worry, let's start out with a simple command as an example using the sample data
@@ -74,7 +76,6 @@ Congratulations, you just added your first item!
 To see what the command format means, you can refer to the [Features](#features) below for details of each command to maximise your productivity with WIFE.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -460,4 +461,4 @@ There is no support for mobile devices yet.
 ## Glossary
 
 * **GUI:** Graphical User Interface - It is the view of the application that you see!
-* **Destructive Command** It will wipe out all current data in WIFE.
+* **Destructive Command:** It will wipe out all current data in WIFE.
