@@ -128,6 +128,9 @@ public class AddressBookParser {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
+        case OpenFileCommand.COMMAND_WORD:
+            return new OpenFileCommandParser().parse(arguments);
+
         case EditEventCommand.COMMAND_WORD:
             return new EditEventCommandParser().parse(arguments);
 
