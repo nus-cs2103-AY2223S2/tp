@@ -270,17 +270,17 @@ with useful information related to productivity to make adjustments accordingly.
 For projects that are due soon, all projects that have deadlines within the current week 
 and next week will be displayed (Week starts from Sunday here). For example, if the current 
 date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be 
-shown on the Due soon dashboard.
+shown on the **Due soon project list**.
 
 For overdue list, all overdue projects will be displayed to make sure that users can
 keep track of all the deadlines they have missed. Any deadlines before the current date will be 
 counted as overdue. For example, if current date is 11/04/2023, projects with deadlines on 11/04/2023
-will not be shown in Overdue list, but projects with deadlines on 10/04/2023 will be shown in the Overdue 
-list. 
+will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue 
+project list**. 
 
-Both of due and overdue lists utilize LocalDate library in Java to perform various operations on dates. 
+Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates. 
 
-For progress overview pie chart, there will be at most three segments. The three segments
+For Progress Overview Pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
 The size of each segment is proportional to the number of projects with its corresponding segment
 label.
@@ -291,20 +291,23 @@ label.
 
 #### Updating the UI
 
-For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by
+For **Due soon project lists**, **Overdue project lists** and **Pie chart**, `FilteredList` retrieved by
 using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides,
 all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
 Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
 will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
-a new project is added), all the statistics will be updated as well.
-Moreover, when there are no projects available, there will be messages displayed.
+a new project is added), all the statistics will be updated as well. These changes could be due to 
+increased number of projects (e.g. a new project is created), or an existing project is modified. 
+Moreover, when there are no projects available matching the requirements of Due soon and Overdue project lists, 
+there will be messages displayed under the tab heading.
 
+![NoOverdueProjectsMessage](images/NoOverdueProjectsMessage.png)
 
-This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox.
+The diagram following shows us that the MainWindow is responsible for instantiating the StatisticsBox.
 The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. The remaining methods are not important in this discussion.
+will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data 
+for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded. 
 ![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
-{TODO update diagram}
 
 
 ### Tabs panel
