@@ -66,10 +66,4 @@ public class NoteTest {
                 + ";\n Relevant personnel: "
                 + "Jim Lin Han", note.toString());
     }
-
-    @Test
-    public void help_noInput_returnsHelpGuide() {
-        Note note = new Note();
-        assertNotNull(note.help());
-    }
 }
