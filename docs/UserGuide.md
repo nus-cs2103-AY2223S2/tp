@@ -93,7 +93,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## 1. Features available Customers
+## 1. Features available for Customers/Address Book
 ### *Can only access from Customer Window*
 ### 1.1. Adding a person: `add`
 
