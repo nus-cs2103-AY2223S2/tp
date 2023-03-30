@@ -14,6 +14,7 @@ import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -26,35 +27,41 @@ public class ModelManager implements Model {
 
     private final SupplierList supplierList;
     private final TaskList taskList;
+    private final Menu menu;
     private final OrderList orderList;
     private final UserPrefs userPrefs;
     private final FilteredList<Supplier> filteredSuppliers;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Order> filteredOrders;
+    private final FilteredList<MenuItem> filteredMenuItems;
 
     /**
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
-    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
+    public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList, ReadOnlyMenu menu,
                         ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
                 + " and task list: " + taskList
+                + " and menu: " + menu
                 + " and order list: " + orderList
                 + " and user prefs " + userPrefs);
 
         this.supplierList = new SupplierList(supplierList);
         this.taskList = new TaskList(taskList);
+        this.menu = new Menu(menu);
         this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredSuppliers = new FilteredList<Supplier>(this.supplierList.getItemList());
-        filteredTasks = new FilteredList<Task>(this.taskList.getItemList());
-        filteredOrders = new FilteredList<Order>(this.orderList.getItemList());
+        filteredSuppliers = new FilteredList<>(this.supplierList.getItemList());
+        filteredTasks = new FilteredList<>(this.taskList.getItemList());
+        filteredOrders = new FilteredList<>(this.orderList.getItemList());
+        filteredMenuItems = new FilteredList<>(this.menu.getItemList());
+
     }
 
     public ModelManager() {
-        this(new SupplierList(), new TaskList(), new OrderList(), new UserPrefs());
+        this(new SupplierList(), new TaskList(), new Menu(), new OrderList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -103,6 +110,9 @@ public class ModelManager implements Model {
         case TASK:
             this.taskList.resetData(taskList);
             break;
+        case MENUITEM:
+            this.menu.resetData(menu);
+            break;
         case ORDER:
             this.orderList.resetData(orderList);
             break;
@@ -119,6 +129,8 @@ public class ModelManager implements Model {
             return supplierList;
         case TASK:
             return taskList;
+        case MENUITEM:
+            return menu;
         case ORDER:
             return orderList;
         case CUSTOMER:
@@ -135,6 +147,8 @@ public class ModelManager implements Model {
             return supplierList.hasItem((Supplier) item);
         case TASK:
             return taskList.hasItem((Task) item);
+        case MENUITEM:
+            return menu.hasItem((MenuItem) item);
         case ORDER:
             return orderList.hasItem((Order) item);
         case CUSTOMER:
@@ -151,6 +165,9 @@ public class ModelManager implements Model {
             break;
         case TASK:
             taskList.removeItem((Task) item);
+            break;
+        case MENUITEM:
+            menu.removeItem((MenuItem) item);
             break;
         case ORDER:
             orderList.removeItem((Order) item);
@@ -170,6 +187,10 @@ public class ModelManager implements Model {
             break;
         case TASK:
             taskList.addItem((Task) item);
+            updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
+            break;
+        case MENUITEM:
+            menu.addItem((MenuItem) item);
             updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
             break;
         case ORDER:
@@ -192,6 +213,9 @@ public class ModelManager implements Model {
         case TASK:
             taskList.setItem((Task) item, (Task) itemEdited);
             break;
+        case MENUITEM:
+            menu.setItem((MenuItem) item, (MenuItem) itemEdited);
+            break;
         case ORDER:
             orderList.setItem((Order) item, (Order) itemEdited);
             break;
@@ -208,6 +232,8 @@ public class ModelManager implements Model {
             return filteredSuppliers;
         case TASK:
             return filteredTasks;
+        case MENUITEM:
+            return filteredMenuItems;
         case ORDER:
             return filteredOrders;
         case CUSTOMER:
@@ -226,6 +252,9 @@ public class ModelManager implements Model {
         case TASK:
             filteredTasks.setPredicate(predicate);
             break;
+        case MENUITEM:
+            filteredMenuItems.setPredicate(predicate);
+            break;
         case ORDER:
             filteredOrders.setPredicate(predicate);
             break;
@@ -234,6 +263,7 @@ public class ModelManager implements Model {
             break;
         }
     }
+
 
     //=========== AddressBook - Supplier ==============================================================================
 
@@ -282,6 +312,23 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    //=========== Menu ===================================================================================
+
+    @Override
+    public ReadOnlyMenu getMenu() {
+        return menu;
+    }
+
+    //=========== Filtered Menu Accessors ===============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code MenuItem} backed by the internal list of
+     * {@code versionedMenu}
+     */
+    @Override
+    public ObservableList<MenuItem> getFilteredMenu() {
+        return filteredMenuItems;
+    }
     //=========== OrderList ===================================================================================
 
     @Override
@@ -299,6 +346,7 @@ public class ModelManager implements Model {
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
     }
+
 
     //========================================================================================================
 
@@ -318,10 +366,12 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return supplierList.equals(other.supplierList)
                 && taskList.equals(other.taskList)
+                && menu.equals(other.menu)
                 && orderList.equals(other.orderList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredSuppliers.equals(other.filteredSuppliers)
                 && filteredTasks.equals(other.filteredTasks)
+                && filteredMenuItems.equals(other.filteredMenuItems)
                 && filteredOrders.equals(other.filteredOrders);
     }
 

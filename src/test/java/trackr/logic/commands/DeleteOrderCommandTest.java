@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.DeleteOrderCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -28,10 +30,10 @@ import trackr.model.order.Order;
  */
 public class DeleteOrderCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredOrderList_success() {
+    public void execute_validIndexUnfilteredOrderList_success() throws ParseException {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
@@ -40,7 +42,7 @@ public class DeleteOrderCommandTest {
                 orderToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         expectedModel.deleteItem(orderToDelete, ModelEnum.ORDER);
 
@@ -56,7 +58,7 @@ public class DeleteOrderCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredOrderList_success() {
+    public void execute_validIndexFilteredOrderList_success() throws ParseException {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
@@ -67,7 +69,7 @@ public class DeleteOrderCommandTest {
                 orderToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(orderToDelete, ModelEnum.ORDER);
         showNoOrder(expectedModel);
 

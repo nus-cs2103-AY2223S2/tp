@@ -29,26 +29,26 @@ public class AddOrderCommandTest {
     }
 
     @Test
-    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Order validTask = new OrderBuilder().build();
+        Order validOrder = new OrderBuilder().build();
 
-        CommandResult commandResult = new AddOrderCommand(validTask).execute(modelStub);
+        CommandResult commandResult = new AddOrderCommand(validOrder).execute(modelStub);
 
-        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validTask),
+        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validOrder),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.ordersAdded);
+        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
 
     @Test
-    public void execute_duplicateTask_throwsCommandException() {
-        Order validTask = new OrderBuilder().build();
-        AddOrderCommand addTaskCommand = new AddOrderCommand(validTask);
-        ModelStub modelStub = new AddOrderCommandTest.ModelStubWithOrder(validTask);
+    public void execute_duplicateOrder_throwsCommandException() {
+        Order validOrder = new OrderBuilder().build();
+        AddOrderCommand addOrderCommand = new AddOrderCommand(validOrder);
+        ModelStub modelStub = new AddOrderCommandTest.ModelStubWithOrder(validOrder);
 
         assertThrows(CommandException.class,
                 String.format(AddOrderCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER,
-                        ModelEnum.ORDER), () -> addTaskCommand.execute(modelStub));
+                        ModelEnum.ORDER), () -> addOrderCommand.execute(modelStub));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class AddOrderCommandTest {
         // null -> returns false
         assertFalse(addChocolateCookiesCommand.equals(null));
 
-        // different task -> returns false
+        // different order -> returns false
         assertFalse(addChocolateCookiesCommand.equals(addCheeseCakeCommand));
     }
 

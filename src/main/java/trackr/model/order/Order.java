@@ -6,8 +6,7 @@ import java.util.Objects;
 
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
-import trackr.model.order.customer.Customer;
-import trackr.model.task.Task;
+import trackr.model.person.Customer;
 
 /**
  * Represents an Order in the order list.
@@ -82,7 +81,7 @@ public class Order extends Item {
 
     /**
      * Compares 2 orders using their statuses.
-     * @param otherTask The order to compare with.
+     * @param otherOrder The order to compare with.
      * @return 1 if this order's status has lower a sorting priority than the other order's status,
      *         returns -1 if this order's status has higher a sorting priority than the other order's status,
      *         returns 0 if both tasks have the same statuses.

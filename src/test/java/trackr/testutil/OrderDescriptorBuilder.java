@@ -6,9 +6,9 @@ import trackr.model.order.OrderDescriptor;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 
 /**
@@ -77,7 +77,7 @@ public class OrderDescriptorBuilder {
      * Sets the {@code customerName} of the {@code orderDescriptor} that we are building.
      */
     public OrderDescriptorBuilder withCustomerName(String customerName) {
-        orderDescriptor.setCustomerName(new CustomerName(customerName));
+        orderDescriptor.setCustomerName(new PersonName(customerName));
         return this;
     }
 
@@ -85,7 +85,7 @@ public class OrderDescriptorBuilder {
      * Sets the {@code customerPhone} of the {@code orderDescriptor} that we are building.
      */
     public OrderDescriptorBuilder withCustomerPhone(String customerPhone) {
-        orderDescriptor.setCustomerPhone(new CustomerPhone(customerPhone));
+        orderDescriptor.setCustomerPhone(new PersonPhone(customerPhone));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class OrderDescriptorBuilder {
      * Sets the {@code customerAddress} of the {@code orderDescriptor} that we are building.
      */
     public OrderDescriptorBuilder withCustomerAddress(String customerAddress) {
-        orderDescriptor.setCustomerAddress(new CustomerAddress(customerAddress));
+        orderDescriptor.setCustomerAddress(new PersonAddress(customerAddress));
         return this;
     }
 

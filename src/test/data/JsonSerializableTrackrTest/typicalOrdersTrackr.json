@@ -18,5 +18,6 @@
         "customerName": "Amy Su",
         "customerPhone": "87654321",
         "customerAddress": "123 Bendy Street"
-    } ]
+    } ],
+    "menuItems": [ ]
   }

@@ -55,9 +55,9 @@ public class OrderCard extends UiPart<Region> {
         orderQuantity.setText(order.getOrderQuantity().value);
         orderDeadline.setText(order.getOrderDeadline().toString());
         orderStatus.setText(order.getOrderStatus().toString());
-        customerName.setText(order.getCustomer().getCustomerName().fullName);
-        customerAddress.setText(order.getCustomer().getCustomerAddress().value);
-        customerPhone.setText(order.getCustomer().getCustomerPhone().value);
+        customerName.setText(order.getCustomer().getCustomerName().getName());
+        customerAddress.setText(order.getCustomer().getCustomerAddress().personAddress);
+        customerPhone.setText(order.getCustomer().getCustomerPhone().personPhone);
     }
 
     @Override

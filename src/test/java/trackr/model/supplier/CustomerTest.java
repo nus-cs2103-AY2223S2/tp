@@ -1,14 +1,16 @@
-package trackr.model.order.customer;
+package trackr.model.supplier;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static trackr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static trackr.testutil.TypicalCustomer.AMY;
 import static trackr.testutil.TypicalCustomer.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.person.Customer;
 import trackr.testutil.CustomerBuilder;
 
 public class CustomerTest {
@@ -16,28 +18,19 @@ public class CustomerTest {
     @Test
     public void isSameCustomer() {
         // same object -> returns true
-        assertTrue(AMY.isSameCustomer(AMY));
+        assertTrue(AMY.isSameItem(AMY));
 
         // null -> returns false
-        assertFalse(AMY.isSameCustomer(null));
+        assertFalse(AMY.isSameItem(null));
 
-        Customer editedAmy = new CustomerBuilder(AMY)
-                .withCustomerPhone(VALID_PHONE_BOB)
-                .withCustomerAddress(VALID_ADDRESS_BOB).build();
-        assertTrue(AMY.isSameCustomer(editedAmy));
+        Customer editedBob = new CustomerBuilder(BOB)
+                .withCustomerPhone(VALID_PHONE_AMY)
+                .build();
+        assertTrue(AMY.isSameItem(editedBob));
 
-        // different name, all other attributes same -> returns false
-        editedAmy = new CustomerBuilder(AMY).withCustomerName(VALID_NAME_BOB).build();
-        assertFalse(AMY.isSameCustomer(editedAmy));
-
-        // name differs in case, all other attributes same -> returns false
-        Customer editedBob = new CustomerBuilder(BOB).withCustomerName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameCustomer(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new CustomerBuilder(BOB).withCustomerName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameCustomer(editedBob));
+        // different phone, all other attributes same -> returns false
+        Customer editedAmy = new CustomerBuilder(AMY).withCustomerPhone(VALID_PHONE_BOB).build();
+        assertFalse(AMY.isSameItem(editedAmy));
     }
 
     @Test

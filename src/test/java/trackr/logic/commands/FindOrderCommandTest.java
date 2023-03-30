@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
 import static trackr.testutil.TypicalOrders.DONUTS;
@@ -19,6 +20,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.order.FindOrderCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -28,9 +30,9 @@ import trackr.testutil.OrderPredicateBuilder;
 
 public class FindOrderCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -75,7 +77,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_zeroOrderNameKeywords_noOrderFound() {
+    public void execute_zeroOrderNameKeywords_noOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(" ", null, null);
         FindOrderCommand command = new FindOrderCommand(predicate);
@@ -85,7 +87,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_multipleOrderNameKeywords_multipleOrdersFound() {
+    public void execute_multipleOrderNameKeywords_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
         OrderContainsKeywordsPredicate predicate = preparePredicate("Cheese Donuts", null, null);
         FindOrderCommand command = new FindOrderCommand(predicate);
@@ -95,7 +97,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_orderDeadline_noOrderFound() {
+    public void execute_orderDeadline_noOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, "12/12/2012", null);
         FindOrderCommand command = new FindOrderCommand(predicate);
@@ -105,7 +107,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_orderDeadline_multipleOrdersFound() {
+    public void execute_orderDeadline_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, "01/01/2024", null);
         FindOrderCommand command = new FindOrderCommand(predicate);
@@ -115,7 +117,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_orderStatus_noOrderFound() {
+    public void execute_orderStatus_noOrderFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, null, "D");
         FindOrderCommand command = new FindOrderCommand(predicate);
@@ -127,7 +129,7 @@ public class FindOrderCommandTest {
     }
 
     @Test
-    public void execute_orderStatus_multipleOrdersFound() {
+    public void execute_orderStatus_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, null, "N");
         FindOrderCommand command = new FindOrderCommand(predicate);

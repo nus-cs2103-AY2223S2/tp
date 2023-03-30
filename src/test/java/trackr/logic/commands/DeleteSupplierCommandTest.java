@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.DeleteSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -29,10 +31,10 @@ import trackr.model.person.Supplier;
 public class DeleteSupplierCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws ParseException {
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
@@ -41,7 +43,7 @@ public class DeleteSupplierCommandTest {
                 supplierToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
@@ -56,7 +58,7 @@ public class DeleteSupplierCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws ParseException {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
@@ -66,8 +68,8 @@ public class DeleteSupplierCommandTest {
                 ModelEnum.SUPPLIER,
                 supplierToDelete);
 
-        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
         showNoSupplier(expectedModel);
 

@@ -13,6 +13,7 @@ import trackr.commons.exceptions.DataConversionException;
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.commons.util.FileUtil;
 import trackr.commons.util.JsonUtil;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -91,6 +92,34 @@ public class JsonTrackrStorage implements TrackrStorage {
     }
 
     @Override
+    public Optional<ReadOnlyMenu> readMenu() throws DataConversionException {
+        return readMenu(filePath);
+    }
+
+    /**
+     * Similar to {@link #readMenu}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    public Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException {
+        requireNonNull(filePath);
+
+        Optional<JsonSerializableTrackr> jsonTrackr = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTrackr.class);
+        if (!jsonTrackr.isPresent()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonTrackr.get().toMenuItemModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
+    }
+
+    @Override
     public Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException {
         return readOrderList(filePath);
     }
@@ -120,18 +149,18 @@ public class JsonTrackrStorage implements TrackrStorage {
 
     @Override
     public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList) throws IOException {
-        saveTrackr(addressBook, taskList, orderList, filePath);
+            ReadOnlyMenu menu, ReadOnlyOrderList orderList) throws IOException {
+        saveTrackr(addressBook, taskList, menu, orderList, filePath);
     }
 
     @Override
     public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, Path filePath)
+                           ReadOnlyMenu menu, ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
-        requireAllNonNull(addressBook, taskList, orderList, filePath);
+        requireAllNonNull(addressBook, taskList, menu, orderList, filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTrackr(addressBook, taskList, orderList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTrackr(addressBook, taskList, menu, orderList), filePath);
     }
 
 }

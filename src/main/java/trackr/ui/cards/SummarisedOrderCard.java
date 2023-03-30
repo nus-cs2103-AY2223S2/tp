@@ -49,7 +49,7 @@ public class SummarisedOrderCard extends UiPart<Region> {
         orderQuantity.setText(order.getOrderQuantity().value);
         orderDeadline.setText(order.getOrderDeadline().toString());
         orderStatus.setText(order.getOrderStatus().toString());
-        customerName.setText(order.getCustomer().getCustomerName().fullName);
+        customerName.setText(order.getCustomer().getCustomerName().getName());
     }
 
     @Override
