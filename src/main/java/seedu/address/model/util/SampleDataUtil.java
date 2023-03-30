@@ -11,6 +11,8 @@ import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
+import seedu.address.model.platform.PlatformName;
 
 /**
  * Contains utility methods for populating {@code ListingBook} with sample data.
@@ -20,22 +22,28 @@ public class SampleDataUtil {
         return new Listing[] {
             new Listing(new JobTitle("SE Summer Intern"),
                     new JobDescription("3 month internship specialising in Software Engineering."),
-                    getApplicantSet("friends")),
+                    getApplicantSet("friends"),
+                    getPlatformSet("linkedin")),
             new Listing(new JobTitle("UI Summer Intern"),
                     new JobDescription("3 month internship specialising in UI/UX"),
-                    getApplicantSet("colleagues", "friends")),
+                    getApplicantSet("colleagues", "friends"),
+                    getPlatformSet("indeed", "linkedin")),
             new Listing(new JobTitle("Computer Security Summer Intern"),
                     new JobDescription("3 month internship specialising in Computer Security."),
-                    getApplicantSet("Charlotte Oliveiro")),
+                    getApplicantSet("Charlotte Oliveiro"),
+                    getPlatformSet("talentConnect")),
             new Listing(new JobTitle("AI Summer Intern"),
                     new JobDescription("3 month internship specialising in Artificial Intelligence"),
-                    getApplicantSet("David Li")),
+                    getApplicantSet("David Li"),
+                    getPlatformSet("glints")),
             new Listing(new JobTitle("Algorithms Summer Intern"),
                     new JobDescription("3 month internship specialising in Algorithms."),
-                    getApplicantSet("Irfan Ibrahim")),
+                    getApplicantSet("Irfan Ibrahim"),
+                    getPlatformSet("jobstreet")),
             new Listing(new JobTitle("Parallel Computing Summer Intern"),
                     new JobDescription("3 month internship specialising in Parallel Computing."),
-                    getApplicantSet("Roy Balakrishnan"))
+                    getApplicantSet("Roy Balakrishnan"),
+                    getPlatformSet())
         };
     }
 
@@ -48,11 +56,20 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns an applicant set containing the list of strings given.
      */
     public static ArrayList<Applicant> getApplicantSet(String... strings) {
         return Arrays.stream(strings)
                 .map((name) -> new Applicant(new Name(name)))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Returns a platform set containing the list of strings given.
+     */
+    public static ArrayList<Platform> getPlatformSet(String... strings) {
+        return Arrays.stream(strings)
+                .map((platformName) -> new Platform(new PlatformName(platformName)))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 }

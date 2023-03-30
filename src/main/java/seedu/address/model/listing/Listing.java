@@ -25,7 +25,8 @@ public class Listing {
     /**
      * Every field must be present and not null.
      */
-    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<Applicant> applicants) {
+    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<Applicant> applicants,
+                   ArrayList<Platform> platforms) {
         requireAllNonNull(jobTitle, jobDescription, applicants, platforms);
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;

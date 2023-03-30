@@ -6,18 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddApplicantCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteApplicantCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditApplicantCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -79,6 +68,9 @@ public class ListingBookParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case AddPlatformCommand.COMMAND_WORD:
+            return new AddPlatformCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

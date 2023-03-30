@@ -93,7 +93,7 @@ public class EditCommand extends Command {
         ArrayList<Applicant> updatedApplicants = editListingDescriptor.getApplicants().orElse(
                 listingToEdit.getApplicants());
 
-        return new Listing(updatedJobTitle, updatedJobDescription, updatedApplicants);
+        return new Listing(updatedJobTitle, updatedJobDescription, updatedApplicants, listingToEdit.getPlatforms());
     }
 
     @Override
