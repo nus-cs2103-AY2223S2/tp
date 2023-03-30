@@ -5,24 +5,39 @@ title: User Guide
 
 # User Guide
 
-MATHUTORING is a **centralised desktop application used for private Math tuition teachers** to manage their students' contacts and performances which subsequently allows the tutors to plan their lesson plan for future lessons and overall view of their schedule for ease of planning. While the user interactions are conducted through using a CLI, it still has the benefits of a Graphical User Interface (GUI). If you can type fast, MATHUTORING can get your contact management tasks done faster than traditional GUI apps.
 ## Table of Contents
+*  **[Overview](#overview)**
 *  **[Quick start](#quick-start)**
 *  **[Features](#features)**
 *  **[FAQ](#faq)**
 *  **[Command summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
+## Overview
+
+Finding it hard to manage your student contact details and keep track of their progress?
+
+Finding it a hassle to keep a list of student tasks and scores?
+
+**MATHUTORING** helps you solve these problems!
+
+**MATHUTORING**, a centralised desktop application targeted to **private Math tuition teachers**, helps you manage student contact details and performance by keeping student contact details, tasks, and scores.
+You can also see score charts and statistics!
+
+What's more, you can generate a PDF report of your student containing the student's tasks and scores.
+If you need to switch to a new device, you can also export and import your previous data in the application!
+
+**MATHUTORING** is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **MATHUTORING** can get your contact management tasks done faster than traditional GUI apps.
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `MATHUTORING.jar` (Stay tuned for our release!).
+2. Download the latest `mathutoring.jar` (Stay tuned for our release!).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MATHUTORING.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar mathutoring.jar` command to run the application.<br>
    <br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data for your reference, you can also choose to delete the sample data after you get familiar with the MATHUTORING.<br>
    ![Ui](images/Ui.png)
