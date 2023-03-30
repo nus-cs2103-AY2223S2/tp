@@ -8,13 +8,13 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -28,7 +28,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_NRIC = "S1234967G";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MEDICATION = "";
     public static final String DEFAULT_ROLE_PATIENT = "Patient";
 
     private Name name;
@@ -36,7 +35,7 @@ public class PersonBuilder {
     private Email email;
     private Nric nric;
     private Address address;
-    private Medication medication;
+    private Set<Prescription> prescriptions;
     private Set<Tag> tags;
     private ArrayList<Appointment> appointments;
     private Role role;
@@ -51,7 +50,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
-        medication = new Medication(DEFAULT_MEDICATION);
+        prescriptions = new HashSet<>();
         tags = new HashSet<>();
         appointments = new ArrayList<>();
         role = new Role(DEFAULT_ROLE_PATIENT);
@@ -66,7 +65,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
-        medication = new Medication(DEFAULT_MEDICATION);
+        prescriptions = new HashSet<>();
         tags = new HashSet<>();
         appointments = new ArrayList<>();
         this.role = new Role(role);
@@ -81,15 +80,14 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         nric = personToCopy.getNric();
         address = personToCopy.getAddress();
-        if (personToCopy.isPatient()) {
-            Patient patientToCopy = (Patient) personToCopy;
-            medication = patientToCopy.getMedication();
-        } else {
-            isDoctor = true;
-        }
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new ArrayList<>(personToCopy.getPatientAppointments());
         role = personToCopy.getRole();
+
+        if (personToCopy instanceof Patient) {
+            Patient patientToCopy = (Patient) personToCopy;
+            prescriptions = new HashSet<>(patientToCopy.getPrescriptions());
+        }
     }
 
     /**
@@ -135,8 +133,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Medication} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMedication(String medication) {
-        this.medication = new Medication(medication);
+    public PersonBuilder withPrescriptions(String ... prescriptions) {
+        this.prescriptions = SampleDataUtil.getPrescriptionSet(prescriptions);
         return this;
     }
 
@@ -177,7 +175,7 @@ public class PersonBuilder {
     }
 
     public Patient buildPatient() {
-        return new Patient(name, phone, email, nric, address, medication, tags, appointments, role);
+        return new Patient(name, phone, email, nric, address, prescriptions, tags, appointments, role);
     }
 
     public Doctor buildDoctor() {

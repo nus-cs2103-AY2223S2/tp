@@ -3,9 +3,11 @@ layout: page
 title: User Guide
 ---
 
-Introducing **MediConnect** - the comprehensive desktop application designed to  **streamline patient management, doctor coordination, and hospital billing.** 
-As a centralised platform, **MediConnect** offers healthcare professionals and secretarial personnel an efficient solution
-to manage clinics in Singapore. The app simplifies the organization and maintainance of patient and doctor data, appointments and billing records. <br>
+Introducing **MediConnect** - the comprehensive application designed to  **streamline patient management, doctor
+coordination, and hospital billing.**
+As a centralised platform, **MediConnect** offers healthcare professionals an efficient solution to management and
+administrative matters.
+The app simplifies the organization and maintainance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
 
@@ -19,6 +21,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+   * If you are unsure of your system's Java version, you may use [this guide](https://www.java.com/en/download/help/version_manual.html) to find out.
 
 2. Download the latest `MediConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-1/tp/releases).
 
@@ -66,7 +69,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 * If a parameter is expected only once in the command, but it's specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if the command specifies `p/12341234 p/56785678`, only `p/56785678` will be stored.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -103,15 +106,34 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
-### Prescribing patient’s medication : `prescribe medication to patient`
+### Prescribing patient’s medication : `prescribe`
 
-Prescribe a patient’s medication.
+Prescribes medication to a patient, noting the medication's name and cost.
 
-Format: `prescribe m/MEDICATION to n/NAME`
+Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol to n/John Tan` Prescribes paracetamol to John Tan
+*  `prescribe m/paracetamol ic/S1234567X c/10` Prescribes paracetamol the patient of IC S1234567X at a cost of $10
+*  `prescribe m/Cough Syrup ic/S1234567X c/0.1` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
 
+### Removing patient’s medication : `unprescribe`
+
+Removes a chosen medication from a patient.
+
+Format: `unprescribe ic/NRIC m/MEDICATION`
+
+Examples:
+*  `unprescribe ic/S1234567X m/paracetamol` Remove patient of IC S1234567X's paracetamol prescription
+*  `unprescribe m/Cough Syrup ic/S1234567X` Remove patient of IC S1234567X's cough syrup prescription
+
+### Bill : `bill`
+
+Calculates the cost of all medication given a Patient's prescription.
+
+Format: `bill ic/NRIC`
+
+Examples:
+* `bill ic/S1234567X` Calculates the cost of patient's (of IC S1234567X) medication.
 
 ### Finding persons (patient or doctor) by NRIC : `find`
 
@@ -157,6 +179,7 @@ Format: `clear`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
+
 
 ### Exiting the program : `exit`
 
@@ -204,7 +227,7 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary |
 
 | Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -214,8 +237,10 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | **Delete Appointment** |                                                                                                                                                                                                                                                                                                                                                          |
 | **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                         |
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                  |
-| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   | 
+| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   |
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
 | **List**               | `list`                                                                                                                                                                                                                                                                                                                                                   |
 | **Prescribe**          | `prescribe medication to patient`                                                                                                                                                                                                                                                                                                                        |
+| **Unprescribe**        | `unprescribe ic/NRIC m/MEDICATION` <br> e.g.,           unprescribe m/paracetamol ic/S1234567X                                                                                                                                                                                                                                                           |
+| **Bill**               | `bill ic/NRIC` <br> e.g.,                               cost ic/S1234567X                                                                                                                                                                                                                                                                                |

@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,13 +25,13 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,7 +50,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_MEDICATION + "MEDICATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -122,10 +120,12 @@ public class EditCommand extends Command {
 
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
-            Medication updatedMedication = editPersonDescriptor.getMedication().orElse(patientToEdit.getMedication());
+            Set<Prescription> updatedPrescriptions = editPersonDescriptor.getPrescriptions()
+                    .orElse(patientToEdit.getPrescriptions());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedMedication,
-                    updatedTags, patientAppointments, role);
+
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress,
+                    updatedPrescriptions, updatedTags, patientAppointments, role);
         }
 
         if (personToEdit.isDoctor()) {
@@ -166,7 +166,7 @@ public class EditCommand extends Command {
         private Email email;
         private Nric nric;
         private Address address;
-        private Medication medication;
+        private Set<Prescription> prescriptions;
         private Set<Tag> tags;
         private ArrayList<Appointment> appointments;
         private Role role;
@@ -183,7 +183,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
-            setMedication(toCopy.medication);
+            setPrescriptions(toCopy.prescriptions);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
             setRole(toCopy.role);
@@ -228,12 +228,16 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setMedication(Medication medication) {
-            this.medication = medication;
+        /**
+         * Sets {@code prescriptions} to this object's {@code prescriptions}.
+         * A defensive copy of {@code prescriptions} is used internally.
+         */
+        public void setPrescriptions(Set<Prescription> prescriptions) {
+            this.prescriptions = (prescriptions != null) ? new HashSet<>(prescriptions) : null;
         }
 
-        public Optional<Medication> getMedication() {
-            return Optional.ofNullable(medication);
+        public Optional<Set<Prescription>> getPrescriptions() {
+            return (prescriptions != null) ? Optional.of(Collections.unmodifiableSet(prescriptions)) : Optional.empty();
         }
 
         public void setNric(Nric nric) {
@@ -304,7 +308,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
-                    && getMedication().equals(e.getMedication())
+                    && getPrescriptions().equals(e.getPrescriptions())
                     && getTags().equals(e.getTags());
         }
     }

@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.prescription.Prescription;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -43,7 +44,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label medication;
+    private Label prescriptions;
     @FXML
     private FlowPane tags;
     @FXML
@@ -72,8 +73,17 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         if (person.isPatient()) {
+            // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
             Patient patient = (Patient) person;
-            medication.setText(patient.getMedication().value);
+
+            StringBuilder prescriptionText = new StringBuilder("Prescription:\n");
+
+            int i = 1;
+            for (Prescription prescription: patient.getPrescriptions()) {
+                prescriptionText.append(String.format("%d. %s\n", i++, prescription.toString()));
+            }
+            prescriptions.setText(prescriptionText.toString());
+
             appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
         }
         if (person.isDoctor()) {
