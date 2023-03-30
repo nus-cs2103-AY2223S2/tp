@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -38,11 +40,16 @@ public class ViewCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
-        String entityInformation;
         Patient patientToDisplay = lastShownList.get(targetIndex.getZeroBased());
-        entityInformation = patientToDisplay.toString();
-        System.out.println(entityInformation);
-        return new CommandResult(MESSAGE_SHOW_ENTITY_SUCCESS, true, targetIndex.getZeroBased());
+        Predicate<Appointment> predicate = new Predicate<Appointment>() {
+            @Override
+            public boolean test(Appointment appointment) {
+                return appointment.getPatientName().fullName.equals(patientToDisplay.getName().fullName);
+            }
+        };
+        model.updateFilteredAppointmentList(predicate);
+        return new CommandResult(String.format(MESSAGE_SHOW_ENTITY_SUCCESS, model.getFilteredAppointmentList()),
+                true, targetIndex.getZeroBased());
     }
 
     @Override
