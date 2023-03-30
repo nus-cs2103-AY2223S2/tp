@@ -2,71 +2,98 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.FieldsMatchRegexPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
- * Changes the remark of an existing person in the e-lister.
+ * Performs a single-target sub-operation on every person currently filtered for display.
  */
 public class MassOpCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"mass", "Mass"});
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("mass", "m"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
-            + ":Tag or delete Tags people who are filtered by the filter in the person list.\n"
-            + "Parameters:  \n"
-            + "Example: " + COMMAND_WORDS + "tag/delete <TagName> <filter command>";
+    public static final String MESSAGE_USAGE = commandWords
+            + ": Applies a single-target operation to all people being displayed.\n"
+            + "Parameters: [edit | tag | delete_tag | delete] [FURTHER_ARGS (must exclude index)] \n"
+            + "Example: " + commandWords.get(0) + " tag marked";
 
-    public static final String MESSAGE_SUCCESS = "Tags added: %1$s";
-    public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";
+    public static final String MESSAGE_SUCCESS = "Command executed on %1$d / %2$d persons";
 
-    private final FieldsMatchRegexPredicate predicate;
-    private Tag toAddOrDelete;
-    private boolean isDelete;
+    private static final Logger logger = LogsCenter.getLogger(MassOpCommand.class);
+
+    private final String subcommandInput;
+
     /**
-     * Creates a TagCommand to add a specified tag to the person at a supplied index.
-     *
-     * @param index The index of the person to add the tag to
-     * @param tag The tag to add
+     * @param subcommandInput the parsable String containing the command word and arguments of the subcommand,
+     *                        with the Index argument omitted
      */
-    public MassOpCommand(FieldsMatchRegexPredicate predicate, Tag toAddOrDelete, boolean isDelete) {
-        this.predicate = predicate;
-        this.toAddOrDelete = toAddOrDelete;
-        this.isDelete = isDelete;
+    public MassOpCommand(String subcommandInput) {
+        this.subcommandInput = subcommandInput;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
         List<Person> lastShownList = model.getFilteredPersonList();
-        for (int i = 0; i < lastShownList.size(); i++) {
-            Person personToTag = lastShownList.get(i);
-            if (isDelete) {
-                model.deleteTag(personToTag, toAddOrDelete);
-            } else {
-                System.out.println(isDelete);
-                model.addTag(personToTag, toAddOrDelete);
+
+        int successes = 0;
+        int initialSize = lastShownList.size();
+        int end = lastShownList.size() - 1;
+        // lastShownList gets updated every iteration
+        for (int i = end; i >= 0; i--) {
+            try {
+                Command subcommand = AddressBookParser.parseCommandWithIndex(subcommandInput, Index.fromZeroBased(i));
+                subcommand.execute(model);
+                successes++;
+            } catch (ParseException pe) {
+                assert false : "Subcommand could not be parsed during mass execution";
+            } catch (CommandException ce) {
+                logger.warning("Subcommand failed on index " + i + " : " + ce.getMessage());
             }
         }
 
-        return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredPersonList()),
-                true, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, successes, initialSize), true, true);
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MassOpCommand // instanceof handles nulls
-                && toAddOrDelete.equals(((MassOpCommand) other).toAddOrDelete)
-                && predicate.equals(((MassOpCommand) other).predicate))
-                && (isDelete == ((MassOpCommand) other).isDelete);
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MassOpCommand)) {
+            return false;
+        }
+
+        // state check
+        if (subcommandInput.equals(((MassOpCommand) other).subcommandInput)) {
+            return true;
+        }
+        try {
+            Command thisSubcommand =
+                    AddressBookParser.parseCommandWithIndex(
+                            subcommandInput, Index.fromZeroBased(0));
+            Command otherSubcommand =
+                    AddressBookParser.parseCommandWithIndex((
+                            (MassOpCommand) other).subcommandInput, Index.fromZeroBased(0));
+            return thisSubcommand.equals(otherSubcommand);
+        } catch (ParseException ex) {
+            return false;
+        }
     }
 
 }

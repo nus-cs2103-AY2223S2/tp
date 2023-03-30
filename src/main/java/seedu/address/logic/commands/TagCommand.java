@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -15,13 +17,13 @@ import seedu.address.model.tag.Tag;
  * Changes the remark of an existing person in the e-lister.
  */
 public class TagCommand extends Command {
-
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"tag", "t"});
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("tag", "t"));
+    //CHECKSTYLE.ON: VisibilityModifier
+    public static final String MESSAGE_USAGE = commandWords
             + ": Tags the person identified by the index used in the displayed person list.\n"
             + "Parameters: Index (must be positive number) \n"
-            + "Example: " + COMMAND_WORDS + " 1";
+            + "Example: " + commandWords.get(0) + " 1";
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";

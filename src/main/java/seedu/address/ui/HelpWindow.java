@@ -23,23 +23,28 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public static final String AB3_NAME = "AddressBook v1.3 2023\n\n";
     public static final String OPTIONS = "Usage: \n"
-            + "  add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]              add a new contact\n"
-            + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]      edit details of an existing contact\n"
-            + "  find KEYWORD [MORE_KEYWORDS]                                     find contact by keyword\n"
-            + "  delete INDEX                                                     delete contact by index\n"
-            + "  tag INDEX TAG_NAME                                               add tag to a contact\n"
-            + "  delete_tag [n/NAME] [t/TAG_NAME]                                 delete tag of a contact\n"
-            + "  filter [t/TAG_NAME]                                              show only contacts with tag\n"
-            + "  load [f/FILENAME]                                                load from CSV file\n"
-            + "  export                                                           export to CSV file\n"
-            + "  clear                                                            clear address book\n"
-            + "  exit                                                             exit the program\n"
+            + "  add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]             add a new contact\n"
+            + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]     edit details of an existing contact\n"
+            + "  find KEYWORD [MORE_KEYWORDS]                                    find contact by keyword\n"
+            + "  delete INDEX                                                    delete contact by index\n"
+            + "  tag INDEX TAG_NAME                                              add tag to a contact\n"
+            + "  delete_tag [n/NAME] [t/TAG_NAME]                                delete tag of a contact\n"
+            + "  filter [t/TAG_NAME]                                             show only contacts with tag\n"
+            + "  load [f/FILENAME]                                               load from CSV file\n"
+            + "  export [shown|all]                                              export contacts to CSV file\n"
+            + "  import [combine|reset]                                          import contacts from CSV file\n"
+            + "  undo                                                            undo last operation\n"
+            + "  redo                                                            redo undone operation\n"
+            + "  mass tag NEW_TAG [t/EXISTING_TAG]                               add tag to users with existing tag\n"
+            + "  shortcut COMMAND ABBREVIATION                                   add shortcut for command\n"
+            + "  clear                                                           clear address book\n"
+            + "  exit                                                            exit the program\n"
             + "\n";
 
     public static final String EXAMPLE = "Example:   "
             + "add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01\n\n";
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html"; // TODO
+    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = AB3_NAME + OPTIONS + EXAMPLE
         + "For more information, get more help from the online user guide.";
 

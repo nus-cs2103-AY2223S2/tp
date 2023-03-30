@@ -28,4 +28,10 @@ public class DeleteTagCommandParserTest {
         assertParseFailure(parser, "abei2jfsk",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_noTag_throwsParseException() {
+        assertParseFailure(parser, "2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
+    }
 }

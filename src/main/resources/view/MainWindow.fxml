@@ -59,8 +59,8 @@
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
 
-        <VBox>
-          <StackPane fx:id="filtersDisplayPlaceholder" VBox.vgrow="NEVER" minHeight="200" maxHeight="200" styleClass="pane-with-border">
+        <VBox minWidth="250">
+          <StackPane fx:id="filtersDisplayPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" minHeight="200" maxHeight="200" styleClass="pane-with-border">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

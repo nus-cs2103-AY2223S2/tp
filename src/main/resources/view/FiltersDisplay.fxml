@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ScrollPane?>
 
-<ScrollPane fx:id="placeHolder" maxHeight="300" xmlns="http://javafx.com/javafx/8"
+<ScrollPane fx:id="placeHolder" maxHeight="200" minWidth="250" xmlns="http://javafx.com/javafx/8"
     xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@DarkTheme.css" />

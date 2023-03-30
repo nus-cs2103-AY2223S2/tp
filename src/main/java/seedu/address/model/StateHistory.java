@@ -57,15 +57,15 @@ public class StateHistory {
      * @param model {@code Model} after the execution of {@code command}
      * @param result {@code CommandResult} of the execution of {@code command}
      */
-    public void addCommand(Command command, Model model, CommandResult result) {
-        if (!result.isUndoable()) {
+    public void offerCommand(Command command, Model model, CommandResult result) {
+        if (!result.affectsModel()) {
             return;
         }
         clearFuture();
         now++;
-        commandHistory.put(now, command);
+        commandHistory.put(now, command.deepCopy());
         assert !modelHistory.isEmpty() : "modelHistory should never be empty";
-        if (result.isDeterministic() || modelHistory.lastKey() <= now - HISTORY_DEFAULT_INTERVAL) {
+        if (!result.isDeterministic() || modelHistory.lastKey() <= now - HISTORY_DEFAULT_INTERVAL) {
             modelHistory.put(now, model.stateDetachedCopy());
         }
     }

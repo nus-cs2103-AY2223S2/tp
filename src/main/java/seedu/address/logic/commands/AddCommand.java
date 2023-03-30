@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,10 +20,11 @@ import seedu.address.model.person.Person;
  * Adds a person to the address book.
  */
 public class AddCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("add", "a"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"add", "a"});
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = commandWords + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -29,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_INCOME + "INCOME "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORDS + " "
+            + "Example: " + commandWords.get(0) + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
@@ -49,6 +52,11 @@ public class AddCommand extends Command {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+    }
+
+    @Override
+    public AddCommand deepCopy() {
+        return new AddCommand(toAdd.deepCopy());
     }
 
     @Override

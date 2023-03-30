@@ -28,7 +28,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns false
         assertFalse(commandResult.equals(new CommandResult("different", true, true)));
 
-        // different undoable value -> returns false
+        // different affectsModel value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false)));
 
         // different deterministic value -> returns false
@@ -51,7 +51,7 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("different", true, true).hashCode());
 
-        // different undoable value -> returns different hashcode
+        // different affectsModel value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, false).hashCode());
 
         // different deterministic value -> returns different hashcode

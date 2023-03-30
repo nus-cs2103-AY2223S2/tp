@@ -159,7 +159,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
     ``` java
     ...
-    case EditCommand.COMMAND_WORD:
+    case EditCommand.COMMAND_WORDS:
         return new EditCommandParser().parse(arguments);
     ...
     ```

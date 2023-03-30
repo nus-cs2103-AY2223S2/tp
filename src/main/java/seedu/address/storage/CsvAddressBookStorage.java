@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CsvUtil;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * A class to access or store AddressBook data stored as a csv file on the hard disk.
@@ -43,7 +45,7 @@ public class CsvAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<List<List<String>>> csvData = CsvUtil.readCsvFile(
-                filePath);
+                filePath, CsvSerializableAddressBook.CSV_HEADERS);
         if (!csvData.isPresent()) {
             return Optional.empty();
         }
@@ -70,5 +72,24 @@ public class CsvAddressBookStorage implements AddressBookStorage {
 
         FileUtil.createIfMissing(filePath);
         CsvUtil.saveCsvFile(filePath, new CsvSerializableAddressBook(addressBook).toString());
+    }
+
+    public void saveAddressBook(ObservableList<Person> filteredList) throws IOException {
+        saveAddressBook(filteredList, filePath);
+    }
+
+    /**
+     * Saves a filtered list in a CSV file.
+     *
+     * @param filteredList The list containing only the filtered Persons.
+     * @param filePath File path selected by user to save at.
+     * @throws IOException
+     */
+    public void saveAddressBook(ObservableList<Person> filteredList, Path filePath) throws IOException {
+        requireNonNull(filteredList);
+        requireNonNull(filePath);
+
+        FileUtil.createIfMissing(filePath);
+        CsvUtil.saveCsvFile(filePath, new CsvSerializableAddressBook(filteredList).toString());
     }
 }

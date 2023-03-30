@@ -138,8 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         historyDisplay = new HistoryDisplay();
         historyDisplayPlaceholder.getChildren().add(historyDisplay.getRoot());
 
-        String historyString = model.getHistory().getHistoryString();
-        historyDisplay.displayHistoryToUser(historyString);
+        historyDisplay.displayHistoryToUser(model.getInputHistory());
     }
 
     /**
@@ -196,8 +195,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            historyDisplay.displayHistoryToUser(model.getHistory().getHistoryString());
             filtersDisplay.setApplyingFilters(model.getApplyingFilterList());
+            historyDisplay.displayHistoryToUser(model.getInputHistory());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

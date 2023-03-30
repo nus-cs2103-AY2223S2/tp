@@ -14,8 +14,12 @@ public abstract class Command {
      *
      * @param history StateHistory to use
      */
-    public void setHistory(StateHistory history) {
+    public void setStateHistory(StateHistory history) {
         // Do nothing
+    }
+
+    public Command deepCopy() {
+        return this;
     }
 
     /**
@@ -26,5 +30,6 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
 
 }

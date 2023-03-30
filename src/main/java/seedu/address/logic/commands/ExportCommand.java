@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -9,22 +11,32 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.CsvAddressBookStorage;
 
 /**
  * Exports to a csv file at a location specified by the user.
  */
 public class ExportCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("export", "exp"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"export", "exp"});
+    public static final String MESSAGE_USAGE = commandWords + ": Exports data into a csv file at "
+            + "a location of your choice.\n"
+            + "Type \"export\" or \"export shown\" to export only the filtered contacts shown.\n"
+            + "Type \"export all\" to export all contacts, even if they are not shown in the filtered list.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Exports data into a csv file at "
-            + "a location of your choice.";
+    public static final String MESSAGE_SUCCESS = "Exported to file";
 
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
+
+    private boolean isAllEnabled;
+
+    public ExportCommand(boolean isAllEnabled) {
+        this.isAllEnabled = isAllEnabled;
+    }
 
     @Override
     public CommandResult execute(Model model) {
@@ -40,16 +52,19 @@ public class ExportCommand extends Command {
 
         File fileToSave = FileUtil.getSelectedFileWithExtension(fileChooser);
         try {
-            AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
-            addressBookStorage.saveAddressBook(model.getAddressBook());
+            CsvAddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
+            if (isAllEnabled) {
+                addressBookStorage.saveAddressBook(model.getAddressBook());
+            } else {
+                addressBookStorage.saveAddressBook(model.getFilteredPersonList());
+            }
             JOptionPane.showMessageDialog(null, "Exported to " + fileToSave);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return new CommandResult("Exported to file", false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
-
 
     @Override
     public boolean equals(Object other) {

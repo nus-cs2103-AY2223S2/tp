@@ -17,8 +17,8 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Command is undoable and can be saved to undo & redo history. */
-    private final boolean undoable;
+    /** Command affects the state of Model, and shall be saved to undo & redo history. */
+    private final boolean affectsModel;
 
     /**
      * Command only ever produces one resultant Model state, given the initial Model state.
@@ -29,21 +29,21 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean undoable, boolean deterministic,
+    public CommandResult(String feedbackToUser, boolean affectsModel, boolean deterministic,
                          boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.undoable = undoable;
+        this.affectsModel = affectsModel;
         this.deterministic = deterministic;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code undoable},
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code affectsModel},
      * and {@code deterministic}, with other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean undoable, boolean deterministic) {
-        this(feedbackToUser, undoable, deterministic, false, false);
+    public CommandResult(String feedbackToUser, boolean affectsModel, boolean deterministic) {
+        this(feedbackToUser, affectsModel, deterministic, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -58,8 +58,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isUndoable() {
-        return undoable;
+    public boolean affectsModel() {
+        return affectsModel;
     }
 
     public boolean isDeterministic() {
@@ -84,7 +84,7 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && undoable == otherCommandResult.undoable
+                && affectsModel == otherCommandResult.affectsModel
                 && deterministic == otherCommandResult.deterministic
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
@@ -92,7 +92,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, undoable, deterministic, showHelp, exit);
+        return Objects.hash(feedbackToUser, affectsModel, deterministic, showHelp, exit);
     }
 
 }

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -22,7 +23,8 @@ import seedu.address.model.Filter;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.history.History;
+import seedu.address.model.exceptions.ModifyFrozenStateException;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -118,6 +120,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public String addPersonsFromAddressBook(ReadOnlyAddressBook person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +180,36 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void freezeFilteredPersonList() throws ModifyFrozenStateException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void unfreezeFilteredPersonList() throws ModifyFrozenStateException {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void freezeWith(List<Person> frozenPersons) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean isFrozen() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void replicateStateOf(Model other) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void addTag(Person person, Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
@@ -183,23 +220,23 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getHistoryStoragePath() {
-            throw new AssertionError("This method should not be called.");
+        public Path getInputHistoryStoragePath() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void setHistoryStoragePath(Path filePath) {
-            throw new AssertionError("This method should not be called.");
+        public void setInputHistoryStoragePath(Path filePath) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void setHistory(History history) {
-            throw new AssertionError("This method should not be called.");
+        public void setInputHistory(InputHistory inputHistory) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public History getHistory() {
-            throw new AssertionError("This method should not be called.");
+        public InputHistory getInputHistory() {
+            throw new AssertionError("This method should not be called");
         }
 
     }

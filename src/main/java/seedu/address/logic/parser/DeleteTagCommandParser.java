@@ -30,14 +30,14 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         }
 
         try {
-            String[] nameKeywords = trimmedArgs.split(" ");
+            String[] nameKeywords = trimmedArgs.split("[\\n\\r\\s]+");
             Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
             Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
 
             return new DeleteTagCommand(index, tag);
-        } catch (ParseException pe) {
+        } catch (ParseException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), e);
         }
     }
 

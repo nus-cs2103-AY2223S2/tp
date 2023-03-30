@@ -29,7 +29,7 @@ public class TagCommandParser implements Parser<TagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split(" ");
+        String[] nameKeywords = trimmedArgs.split("[\\n\\r\\s]+");
         Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
         String tagName = "";
         for (int i = TAG_INDEX; i < nameKeywords.length; i++) {
