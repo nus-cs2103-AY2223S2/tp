@@ -55,7 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_FROM_ON_TASK = "A from date cannot be added to a simple task.";
     public static final String MESSAGE_TO_ON_TASK = "A to date date cannot be added to a simple task.";
     public static final String MESSAGE_FROM_ON_DEADLINE = "A from date cannot be added to a deadline.";
-    public static  final String MESSAGE_TO_ON_DEADLINE = "A to date cannot be added to a deadline.";
+    public static final String MESSAGE_TO_ON_DEADLINE = "A to date cannot be added to a deadline.";
     public static final String MESSAGE_DEADLINE_ON_EVENT = "A deadline cannot be added to an event.";
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -113,19 +113,16 @@ public class EditCommand extends Command {
         if (taskToEdit instanceof SimpleTask) {
             if (deadlinePresent) {
                 throw new CommandException(MESSAGE_DEADLINE_ON_TASK);
-            }
-            else if (fromPresent) {
+            } else if (fromPresent) {
                 throw new CommandException(MESSAGE_FROM_ON_TASK);
-            }
-            else if (toPresent) {
+            } else if (toPresent) {
                 throw new CommandException(MESSAGE_TO_ON_TASK);
             }
             return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
         } else if (taskToEdit instanceof Deadline) {
             if (fromPresent) {
                 throw new CommandException(MESSAGE_FROM_ON_DEADLINE);
-            }
-            else if (toPresent) {
+            } else if (toPresent) {
                 throw new CommandException(MESSAGE_TO_ON_DEADLINE);
             }
             Date updatedDeadline = editTaskDescriptor.getDeadline().orElse(((Deadline) taskToEdit).getDeadline());
