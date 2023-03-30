@@ -127,12 +127,12 @@
 }
 
 .stack-pane {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: #292929;
 }
 
 .pane-with-border {
-  -fx-background-color: derive(#1d1d1d, 20%);
-  -fx-border-color: derive(#1d1d1d, 0%);
+  -fx-background-color: derive(#292929, 20%);
+  -fx-border-color: derive(#292929, 0%);
   -fx-border-top-width: px;
 }
 
@@ -319,6 +319,10 @@
   -fx-background-radius: 48;
 }
 
+.app-header {
+  -fx-background-color: #292929;
+}
+
 #cardPane {
   -fx-background-color: transparent;
   -fx-border-width: 0;
@@ -338,7 +342,7 @@
   -fx-border-color: #4E4E4E;
   -fx-border-width: 1.5;
   -fx-border-radius: 64;
-  -fx-background-color: transparent #383838 transparent #383838;
+  -fx-background-color: transparent #616060 transparent #616060;
   -fx-background-insets: 0;
   -fx-font-size: 13pt;
   -fx-text-fill: white;
