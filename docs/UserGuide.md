@@ -312,6 +312,7 @@ _Details coming soon ..._
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
 | **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit Tasks**  | `edittask INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edittask 2 title/Complete peer evaluation st/true                                |
 | **Find**        | `find NAME`<br> e.g., `find James Jake`                                                                                                                              |
 | **Find Task**   | `findtask TITLE`<br> e.g., `findtask CS2103 TP`                                                                                                                      |
 | **Mark Task**   | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                      |
