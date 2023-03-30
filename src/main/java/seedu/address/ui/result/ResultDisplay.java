@@ -34,11 +34,11 @@ import seedu.address.ui.UiPart;
  * A ui for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
+    public static final String KEYWORD_PARAMETERS = "Parameters";
+    public static final String KEYWORD_EXAMPLE = "Example";
+    public static final String KEYWORD_MORE_INFO = "More Info";
 
     private static final String FXML = "result/ResultDisplay.fxml";
-    private static final String KEYWORD_PARAMETERS = "Parameters";
-    private static final String KEYWORD_EXAMPLE = "Example";
-    private static final String KEYWORD_MORE_INFO = "More Info";
     private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, AddEventCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, DeleteEventCommand.MESSAGE_USAGE,
             EditContactCommand.COMMAND_WORD, EditUserCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
@@ -83,6 +83,18 @@ public class ResultDisplay extends UiPart<Region> {
             }
         }
         resultDisplayLabel.setText(extractor.getLeftoverFeedback());
+    }
+
+    /**
+     * Formats the messages to be displayed properly in a card.
+     *
+     * @param keyword One of the keywords in the internal {@code KEYWORDS} list,
+     *                which includes all the command words and constant keywords in {@code ResultDisplay}.
+     * @param messages Messages to be joined with a space.
+     * @return The formatted message.
+     */
+    public static String formatMessage(String keyword, String ...messages) {
+        return String.format("%s: %s\n", keyword, String.join(" ", messages));
     }
 
     /**
