@@ -31,7 +31,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label weight;
+    private Label cost;
     @FXML
     private FlowPane tags;
 
@@ -42,7 +42,7 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.entity = item;
         name.setText(item.getName().fullName);
-        weight.setText(String.valueOf((item).getWeight()));
+        cost.setText(String.valueOf(item.getCost()) + "g");
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

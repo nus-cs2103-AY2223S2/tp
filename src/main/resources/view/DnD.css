@@ -72,3 +72,11 @@
 #entityDetailsLabel {
 	-fx-font-size: 20px;
 }
+
+#inventoryLabel {
+	-fx-font-size: 26px;
+}
+
+#inventoryValueLabel {
+	-fx-font-size: 26px;
+}

@@ -31,6 +31,24 @@ public class ItemListPanel extends UiPart<Region> {
     }
 
     /**
+     * Updates item panel with new inventory items
+     */
+    public void updateItems(ObservableList<Item> newItemList) {
+        itemListView.setItems(newItemList);
+    }
+
+    /**
+     * Calculates total item value in inventoryList
+     */
+    public int calculateInventoryValue(ObservableList<Item> itemList) {
+        int totalCost = 0;
+        for (Item item : itemList) {
+            totalCost += item.getCost();
+        }
+        return totalCost;
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class ItemListViewCell extends ListCell<Item> {

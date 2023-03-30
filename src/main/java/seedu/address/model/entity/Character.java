@@ -81,7 +81,6 @@ public class Character extends Entity {
         final StringBuilder serializedTags = new StringBuilder();
         tags.forEach(serializedTags::append);
         return List.of(
-                new Pair<>("Name", getName().toString()),
                 new Pair<>("Str", String.valueOf(stats.getStrength())),
                 new Pair<>("Dex", String.valueOf(stats.getDexterity())),
                 new Pair<>("Int", String.valueOf(stats.getIntelligence())),

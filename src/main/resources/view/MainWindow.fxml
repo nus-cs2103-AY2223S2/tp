@@ -12,53 +12,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Reroll" type="javafx.stage.Stage"
+  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/Crate2.png"/>
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@DarkTheme.css"/>
+        <URL value="@Extensions.css"/>
       </stylesheets>
 
       <VBox styleClass="background-custom" stylesheets="@DarkTheme.css">
         <MenuBar fx:id="menuBar" styleClass="background-custom" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
           </Menu>
         </MenuBar>
-            <StackPane fx:id="modePanelPlaceholder" minHeight="100" prefHeight="400.0" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-               </padding>
-               <styleClass>
-                  <String fx:value="pane-with-border" />
-                  <String fx:value="background-custom" />
-               </styleClass>
-            </StackPane>
-
-           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
+        <StackPane fx:id="modePanelPlaceholder" minHeight="100" prefHeight="400.0" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
-               <styleClass>
-                  <String fx:value="pane-with-border" />
-                  <String fx:value="background-custom" />
-               </styleClass>
+          <styleClass>
+            <String fx:value="pane-with-border"/>
+            <String fx:value="background-custom"/>
+          </styleClass>
         </StackPane>
 
-           <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5" left="10" right="10" top="5"/>
+          </padding>
+          <styleClass>
+            <String fx:value="pane-with-border"/>
+            <String fx:value="background-custom"/>
+          </styleClass>
+        </StackPane>
+
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
       </VBox>
     </Scene>
   </scene>

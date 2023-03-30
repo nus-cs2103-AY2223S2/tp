@@ -15,12 +15,12 @@
          <items>
             <VBox fx:id="entityList" styleClass="pane-with-border">
                <children>
-                  <StackPane fx:id="entityListPanelPlaceholder" minWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="entityListPanelPlaceholder" minWidth="200.0" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stack-pane">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Pane fx:id="entitiesTicker" minWidth="50.0">
+                  <Pane fx:id="entitiesTicker" minHeight="-Infinity" minWidth="50.0">
                      <children>
                         <Label styleClass="label-header" stylesheets="@DnD.css" text="Editor" textFill="WHITE">
                            <padding>

@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
+
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.util.Pair;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
@@ -31,46 +34,59 @@ public class EntityDetailsPanel extends UiPart<Region> {
     private Label entityClassificationLabel;
 
     @javafx.fxml.FXML
-    private FlowPane inventoryPlaceholder;
+    private Label inventoryValueLabel;
+
+    @javafx.fxml.FXML
+    private StackPane inventoryPlaceholder;
 
     /**
      * Creates an entity details panel linked to items list.
      */
     public EntityDetailsPanel(ObservableList<Entity> itemList) {
         super(FXML);
-        itemListPanel = new ItemListPanel(FXCollections.observableList(new ArrayList<Item>()));
+        itemListPanel = new ItemListPanel(FXCollections.observableArrayList());
     }
 
     /**
      * Updates the detail panel with the specified entity.
      */
     public void updateEntityDetails(Entity entity) {
-        System.out.println("setting name :" + entity.getName());
         entityNameLabel.setText(entity.getName().fullName);
         entityClassificationLabel.setText("[" + entity.getClass().getSimpleName() + "]");
-        entityDetailsLabel.setText(entity.toString());
+        entityDetailsLabel.setText(entityFieldsToString(entity.getFields()));
 
         if (entity instanceof Item) { // Hide inventory panel
             if (inventoryPlaceholder.getChildren().size() > 0) {
                 inventoryPlaceholder.getChildren().remove(0);
             }
-            itemListPanel.getRoot().setManaged(false);
-            itemListPanel.getRoot().setVisible(false);
             //itemListPanel
         } else if (entity instanceof Character) { // Show inventory panel
             ObservableList<Item> inventoryItems = FXCollections.observableList((
                     (Character) entity).getInventory().getItems());
-            itemListPanel = new ItemListPanel(inventoryItems);
-            inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
-            itemListPanel.getRoot().setManaged(true);
-            itemListPanel.getRoot().setVisible(true);
+            itemListPanel.updateItems(inventoryItems);
+            inventoryValueLabel.setText("Total Value: "
+                    + itemListPanel.calculateInventoryValue(inventoryItems) + "g");
+            if (inventoryPlaceholder.getChildren().size() == 0) {
+                inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
+            }
         } else if (entity instanceof Mob) {
             ObservableList<Item> inventoryItems = FXCollections.observableList((
                     (Mob) entity).getInventory().getItems());
-            itemListPanel = new ItemListPanel(inventoryItems);
-            inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
-            itemListPanel.getRoot().setManaged(true);
-            itemListPanel.getRoot().setVisible(true);
+            itemListPanel.updateItems(inventoryItems);
+            inventoryValueLabel.setText("Total Value: "
+                    + itemListPanel.calculateInventoryValue(inventoryItems) + "g");
+            if (inventoryPlaceholder.getChildren().size() == 0) {
+                inventoryPlaceholder.getChildren().add(itemListPanel.getRoot());
+            }
         }
+    }
+
+    private String entityFieldsToString(List<Pair<String, String>> fields) {
+        final StringBuilder builder = new StringBuilder();
+        for (Pair<String, String> p : fields) {
+            String field = String.format("%s: %s\n", p.getKey(), p.getValue());
+            builder.append(field);
+        }
+        return builder.toString();
     }
 }

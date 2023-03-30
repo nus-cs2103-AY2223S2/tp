@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,16 +17,11 @@
     </columnConstraints>
       <HBox>
          <children>
-            <ImageView fx:id="logoImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ImageView>
           <VBox alignment="CENTER_LEFT" minHeight="60.0" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
-            <HBox alignment="TOP_CENTER" spacing="5">
+            <HBox alignment="TOP_CENTER" spacing="5" VBox.vgrow="NEVER">
                   <HBox HBox.hgrow="ALWAYS">
                      <children>
                     <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
@@ -35,7 +30,7 @@
             </HBox>
             <FlowPane fx:id="tags" />
           </VBox>
-            <Label fx:id="classification" minHeight="60.0" styleClass="cell_big_label" text="\$class" HBox.hgrow="NEVER">
+            <Label fx:id="cost" minHeight="60.0" styleClass="cell_big_label" text="\$class" HBox.hgrow="NEVER">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -46,4 +41,8 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
+   <stylesheets>
+      <URL value="@DarkTheme.css" />
+      <URL value="@Extensions.css" />
+   </stylesheets>
 </HBox>

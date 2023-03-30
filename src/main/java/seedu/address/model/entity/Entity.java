@@ -32,6 +32,7 @@ public abstract class Entity {
 
     /**
      * Initial declaration of entity
+     *
      * @param name name of the entity
      */
     public Entity(Name name) {
@@ -92,7 +93,7 @@ public abstract class Entity {
             String field = String.format("%s: %s\n", p.getKey(), p.getValue());
             builder.append(field);
         }
-        return builder.toString();
+        return "Name: " + getName().toString() + "\n" + builder.toString();
     }
 
     public abstract boolean isSameEntity(Entity otherEntity);
