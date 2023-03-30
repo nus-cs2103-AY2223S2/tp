@@ -47,11 +47,11 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
 * [**Advanced Commands**](#advanced-commands)
   * [**Search Commands**](#search-commands)
-  * [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
-  * [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
+    * [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
+    * [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
   * [**Storage Commands**](#storage-commands)
-  * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
-  * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
+    * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
+    * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
   * [**Meet Commands**](#meet-commands)
     * [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
 * [**Other Commands**](#other-commands)
@@ -360,26 +360,41 @@ Example: `m/CS1234 mon 12 13`
 
 Adds a contact to the EduMate.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-info">
+
+:bulb: Examples<br>
 * `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
-    * Name: `Wen Li`
-    * Phone number: `89229358`
-    * Address: `Boon Lay`
-    * Email: `wenli@gmail.com`
-    * Telegram handle: `@wenli`
-    * Groups: `Groupmate`
-    * Modules: `CS2101`, `CS2107`
+  * Name: `Wen Li`
+  * Phone number: `89229358`
+  * Address: `Boon Lay`
+  * Email: `wenli@gmail.com`
+  * Telegram handle: `@wenli`
+  * Groups: `Groupmate`
+  * Modules: `CS2101`, `CS2107`
+
+* `add n/Bryan Lam p/92837819` (Only the name and contact number included)
+  * Name: `Bryan Lam`
+  * Phone number: `92837819`
+  * Address: `Kent Ridge`
+  * Email: `bryanlam@gmail.com`
+  * Telegram handle: `@bryanlam`
+  * Groups: Empty
+  * Modules: Empty
+
+</div>
 
 ### View a contact's profile `view`
-
-The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
 
 <div markdown="block" class="alert alert-info">
 
@@ -389,18 +404,27 @@ The `view` command retrieves either the user's information or the contact's info
 
 </div>
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `view`: Views your profile.
 * `view INDEX`: Views the contact at index `INDEX`.
 * `view n/NAME`: Views the contact with name `NAME`.
 
+</div>
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-info">
+
+:bulb: Examples<br>
 * `view 5`: Views the profile of the fifth contact in EduMate.
 * `view n/Wen Li`: Views Wen Li's profile.
+
+</div>
 
 ### Edit a contact's details `edit`
 
