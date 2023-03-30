@@ -272,7 +272,7 @@ public class ParserUtil {
         final Set<Major> majorSet = new HashSet<>();
         int counter = 0;
         for (String majorName : majors) {
-            if(counter < Major.MAX_MAJOR_COUNT) {
+            if (counter < Major.MAX_MAJOR_COUNT) {
                 majorSet.add(parseMajor(majorName));
             }
             counter++;

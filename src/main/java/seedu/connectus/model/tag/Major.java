@@ -6,9 +6,9 @@ package seedu.connectus.model.tag;
  */
 public class Major extends Tag {
 
+    public static final int MAX_MAJOR_COUNT = 2;
     public static final String MESSAGE_CONSTRAINTS = "Major names should be alphanumeric";
     public final String major;
-    public static final int MAX_MAJOR_COUNT = 2;
 
     /**
      * Constructs a {@code Module}.

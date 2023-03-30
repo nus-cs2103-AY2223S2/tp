@@ -150,7 +150,7 @@ class JsonAdaptedPerson {
 
         final List<Major> personMajors = new ArrayList<>();
         for (JsonAdaptedMajor major : majors) {
-                personMajors.add(major.toModelType());
+            personMajors.add(major.toModelType());
         }
 
         if (name == null) {
