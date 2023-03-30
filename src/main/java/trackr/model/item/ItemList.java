@@ -2,6 +2,7 @@ package trackr.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -89,6 +90,10 @@ public class ItemList<T extends Item> implements ReadOnlyItemList<T> {
      */
     public void removeItem(T key) {
         items.remove(key);
+    }
+
+    public void sortItems(Comparator<T> comparator) {
+        items.sortItems(comparator);
     }
 
     //// util methods

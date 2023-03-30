@@ -20,9 +20,6 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -399,14 +396,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerName_validValueWithoutWhitespace_returnsCustomerName() throws Exception {
-        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        PersonName expectedCustomerName = new PersonName(VALID_NAME);
         assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(VALID_NAME));
     }
 
     @Test
     public void parseCustomerName_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String orderStatusWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        PersonName expectedCustomerName = new PersonName(VALID_NAME);
         assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(orderStatusWithWhitespace));
     }
 
@@ -422,14 +419,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerPhone_validValueWithoutWhitespace_returnsCustomerPhone() throws Exception {
-        CustomerPhone expectedCustoemrPhone = new CustomerPhone(VALID_PHONE);
-        assertEquals(expectedCustoemrPhone, ParserUtil.parseCustomerPhone(VALID_PHONE));
+        PersonPhone expectedCustomerPhone = new PersonPhone(VALID_PHONE);
+        assertEquals(expectedCustomerPhone, ParserUtil.parseCustomerPhone(VALID_PHONE));
     }
 
     @Test
     public void parseCustomerPhone_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String customerPhoneWithWhiteSpace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        CustomerPhone expectedCustomerPhone = new CustomerPhone(VALID_PHONE);
+        PersonPhone expectedCustomerPhone = new PersonPhone(VALID_PHONE);
         assertEquals(expectedCustomerPhone, ParserUtil.parseCustomerPhone(customerPhoneWithWhiteSpace));
     }
 
@@ -445,14 +442,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerAddress_validValueWithoutWhitespace_returnsCustomerAddress() throws Exception {
-        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        PersonAddress expectedCustomerAddress = new PersonAddress(VALID_ADDRESS);
         assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseCustomerAddress_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String customerAddressWithWhiteSpace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        CustomerAddress expectedCustomerAddress = new CustomerAddress(VALID_ADDRESS);
+        PersonAddress expectedCustomerAddress = new PersonAddress(VALID_ADDRESS);
         assertEquals(expectedCustomerAddress, ParserUtil.parseCustomerAddress(customerAddressWithWhiteSpace));
     }
 }

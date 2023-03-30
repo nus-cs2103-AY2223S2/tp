@@ -13,9 +13,9 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 public class JsonAdaptedOrderTest {
 
@@ -47,7 +47,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS,
                 VALID_ORDER_NAME, VALID_ORDER_DEADLINE, VALID_ORDER_QUANTITY,
                 VALID_ORDER_STATUS);
-        String expectedMessage = CustomerName.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -57,7 +57,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_ADDRESS, VALID_ORDER_NAME, VALID_ORDER_DEADLINE,
                 VALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                CustomerName.class.getSimpleName());
+                PersonName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -67,7 +67,7 @@ public class JsonAdaptedOrderTest {
                 INVALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS,
                 VALID_ORDER_NAME, VALID_ORDER_DEADLINE, VALID_ORDER_QUANTITY,
                 VALID_ORDER_STATUS);
-        String expectedMessage = CustomerPhone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonPhone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -77,7 +77,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_ADDRESS, VALID_ORDER_NAME, VALID_ORDER_DEADLINE,
                 VALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                CustomerPhone.class.getSimpleName());
+                PersonPhone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -87,7 +87,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_PHONE, INVALID_CUSTOMER_ADDRESS,
                 VALID_ORDER_NAME, VALID_ORDER_DEADLINE, VALID_ORDER_QUANTITY,
                 VALID_ORDER_STATUS);
-        String expectedMessage = CustomerAddress.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonAddress.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -97,7 +97,7 @@ public class JsonAdaptedOrderTest {
                 null, VALID_ORDER_NAME, VALID_ORDER_DEADLINE,
                 VALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                CustomerAddress.class.getSimpleName());
+                PersonAddress.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -143,7 +143,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidOrderQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS,
-                VALID_ORDER_NAME, "01/01/2024", INVALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
+                        VALID_ORDER_NAME, "01/01/2024", INVALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
         String expectedMessage = OrderQuantity.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }

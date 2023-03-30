@@ -14,13 +14,13 @@ import trackr.model.commons.Deadline;
 import trackr.model.commons.Name;
 import trackr.model.commons.TabEnum;
 import trackr.model.commons.Tag;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
+import trackr.model.menu.ItemPrice;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -36,6 +36,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TAB = "No such tab.";
+    public static final String MESSAGE_INVALID_CRITERIA = "Criteria given must be one of the types: "
+            + "`Time_added`, `Deadline`, `Status`, `Name`, `Status_and_Deadline` or blank";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -137,6 +139,23 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     *
+     */
+    public static CriteriaEnum parseSortingCriteria(Optional<String> criteria) throws ParseException {
+        requireNonNull(criteria);
+        if (!criteria.isPresent()) {
+            return CriteriaEnum.STATUS_AND_DEADLINE;
+        }
+
+        String trimmedCriteria = criteria.get().trim().toUpperCase();
+        try {
+            return CriteriaEnum.valueOf(trimmedCriteria);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_INVALID_CRITERIA);
+        }
+    }
+
     //========================Parse those related to task==================================
 
     /**
@@ -186,6 +205,52 @@ public class ParserUtil {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return new TaskStatus(trimmedTaskStatus);
+    }
+    //========================Parse those related to menu item==================================
+
+    /**
+     * Parses a {@code String itemName} into a {@code ItemName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemName parseItemName(String itemName) throws ParseException {
+        requireNonNull(itemName);
+        String trimmedItemName = itemName.trim();
+        if (!ItemName.isValidName(trimmedItemName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemName(trimmedItemName);
+    }
+
+    /**
+     * Parses a {@code String itemPrice} into a {@code ItemPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemPrice parseItemPrice(String itemPrice) throws ParseException {
+        requireNonNull(itemPrice);
+        String trimmedItemPrice = itemPrice.trim();
+        if (!ItemPrice.isValidPrice(trimmedItemPrice)) {
+            throw new ParseException(ItemPrice.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemPrice(trimmedItemPrice);
+    }
+
+    /**
+     * Parses a {@code String itemPrice} into a {@code ItemPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemCost parseItemCost(String itemCost) throws ParseException {
+        requireNonNull(itemCost);
+        String trimmedItemCost = itemCost.trim();
+        if (!ItemCost.isValidCost(trimmedItemCost)) {
+            throw new ParseException(ItemCost.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemCost(trimmedItemCost);
     }
 
     //========================Parse those related to order==================================
@@ -260,13 +325,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerName} is invalid.
      */
-    public static CustomerName parseCustomerName(String customerName) throws ParseException {
+    public static PersonName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
-        if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
-            throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedCustomerName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerName(trimmedCustomerName);
+        return new PersonName(trimmedCustomerName);
     }
 
     /**
@@ -275,13 +340,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerPhone} is invalid.
      */
-    public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
+    public static PersonPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
-        if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
-            throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(trimmedCustomerPhone)) {
+            throw new ParseException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerPhone(trimmedCustomerPhone);
+        return new PersonPhone(trimmedCustomerPhone);
     }
 
     /**
@@ -290,13 +355,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerAddress} is invalid.
      */
-    public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
+    public static PersonAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
-        if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {
-            throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(trimmedCustomerAddress)) {
+            throw new ParseException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerAddress(trimmedCustomerAddress);
+        return new PersonAddress(trimmedCustomerAddress);
     }
 
     //========================Parse those related to tab==================================

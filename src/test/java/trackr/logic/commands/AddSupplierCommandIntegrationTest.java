@@ -2,6 +2,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.AddSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -27,15 +29,15 @@ public class AddSupplierCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-                getTypicalOrderList(), new UserPrefs());
+                getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
-    public void execute_newSupplier_success() {
+    public void execute_newSupplier_success() throws ParseException {
         Supplier validSupplier = new SupplierBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSupplierList(),
-                model.getTaskList(), model.getOrderList(), new UserPrefs());
+                model.getTaskList(), model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.addItem(validSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(new AddSupplierCommand(validSupplier), model,

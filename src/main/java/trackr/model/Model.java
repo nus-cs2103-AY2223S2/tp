@@ -1,12 +1,14 @@
 package trackr.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -71,6 +73,7 @@ public interface Model {
 
     void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
 
+
     // =================================================== Supplier ===================================================
 
     /**
@@ -95,6 +98,11 @@ public interface Model {
      */
     ObservableList<Task> getFilteredTaskList();
 
+    /**
+     * Sort the filtered task list
+     */
+    void sortFilteredTaskList(Comparator<Task> comparator);
+
     // ================================================= Order =================================================
 
     /**
@@ -106,4 +114,16 @@ public interface Model {
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
+
+    // ===================================================== Menu Item ========================================
+
+    /**
+     * Returns the Menu
+     */
+    ReadOnlyMenu getMenu();
+
+    /**
+     * Returns an unmodifiable view of the filtered Menu Item list
+     */
+    ObservableList<MenuItem> getFilteredMenu();
 }

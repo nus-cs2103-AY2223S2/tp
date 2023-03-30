@@ -25,6 +25,7 @@ public class TabPanel extends UiPart<Region> {
     private HomeView homeView;
     private SupplierListPanel contactListPanel;
     private TaskListPanel taskListPanel;
+    private TaskListPanel sortedTaskListPanel;
     private OrderListPanel orderListPanel;
 
     @FXML

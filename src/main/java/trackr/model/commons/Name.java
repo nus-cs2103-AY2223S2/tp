@@ -42,6 +42,17 @@ public abstract class Name {
         return name;
     }
 
+    /**
+     * Compare two names lexicographically (ignoring case).
+     * @param other The name to compare this name with.
+     * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
+     *         -1 if this name is lexicographically smaller (ignoring case) than the other name,
+     *         0 if both names are lexicographically equal (ignoring case).
+     */
+    public int compare(Name other) {
+        return name.compareToIgnoreCase(other.name);
+    }
+
     @Override
     public String toString() {
         return name;

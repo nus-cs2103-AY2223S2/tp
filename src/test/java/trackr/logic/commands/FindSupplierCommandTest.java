@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.CARL;
 import static trackr.testutil.TypicalSuppliers.ELLE;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.FindSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -29,9 +31,9 @@ import trackr.model.person.PersonNameContainsKeywordsPredicate;
  */
 public class FindSupplierCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -61,7 +63,7 @@ public class FindSupplierCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noPersonFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0,
                 ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
@@ -72,7 +74,7 @@ public class FindSupplierCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multiplePersonsFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 3,
                 ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");

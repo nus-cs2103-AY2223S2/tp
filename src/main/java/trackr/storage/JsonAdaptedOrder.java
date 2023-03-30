@@ -9,10 +9,10 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.Customer;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.Customer;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -53,9 +53,9 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        customerName = source.getCustomer().getCustomerName().fullName;
-        customerPhone = source.getCustomer().getCustomerPhone().value;
-        customerAddress = source.getCustomer().getCustomerAddress().value;
+        customerName = source.getCustomer().getCustomerName().getName();
+        customerPhone = source.getCustomer().getCustomerPhone().personPhone;
+        customerAddress = source.getCustomer().getCustomerAddress().personAddress;
         orderName = source.getOrderName().value;
         orderDeadline = source.getOrderDeadline().toJsonString();
         orderQuantity = source.getOrderQuantity().value;
@@ -70,30 +70,30 @@ public class JsonAdaptedOrder {
     public Order toModelType() throws IllegalValueException {
         if (customerName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerName.class.getSimpleName()));
+                    PersonName.class.getSimpleName()));
         }
-        if (!CustomerName.isValidCustomerName(customerName)) {
-            throw new IllegalValueException(CustomerName.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(customerName)) {
+            throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        final CustomerName modelName = new CustomerName(customerName);
+        final PersonName modelName = new PersonName(customerName);
 
         if (customerPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerPhone.class.getSimpleName()));
+                    PersonPhone.class.getSimpleName()));
         }
-        if (!CustomerPhone.isValidCustomerPhone(customerPhone)) {
-            throw new IllegalValueException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(customerPhone)) {
+            throw new IllegalValueException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        final CustomerPhone modelPhone = new CustomerPhone(customerPhone);
+        final PersonPhone modelPhone = new PersonPhone(customerPhone);
 
         if (customerAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerAddress.class.getSimpleName()));
+                    PersonAddress.class.getSimpleName()));
         }
-        if (!CustomerAddress.isValidCustomerAddress(customerAddress)) {
-            throw new IllegalValueException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(customerAddress)) {
+            throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        final CustomerAddress modelAddress = new CustomerAddress(customerAddress);
+        final PersonAddress modelAddress = new PersonAddress(customerAddress);
 
         if (orderName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

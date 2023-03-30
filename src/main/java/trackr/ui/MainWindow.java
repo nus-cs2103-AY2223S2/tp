@@ -1,5 +1,8 @@
 package trackr.ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -9,6 +12,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
@@ -145,6 +149,32 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Executes uploadcsv command
+     */
+    @FXML
+    public void handleAddCsv() throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        String components = "";
+
+        if (selectedFile != null) {
+            FileReader fr = new FileReader(selectedFile);
+            BufferedReader br = new BufferedReader(fr);
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] strArr = line.split(",");
+                for (String str : strArr) {
+                    components = components + str + ",";
+                }
+            }
+            br.close();
+            String command = "upload_csv ," + components;
+            executeCommand(command);
         }
     }
 

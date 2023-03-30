@@ -7,7 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
-import trackr.model.order.customer.Customer;
+import trackr.model.person.Customer;
 
 /**
  * Represents a typical customer

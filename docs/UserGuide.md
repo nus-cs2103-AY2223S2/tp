@@ -131,12 +131,17 @@ Adds a menu item to the menu.
 
 Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
-* When entering price and cost data, you may input numbers with or without a decimal point.
-* For example, you can input the number 5, or the number 5.75.
+* When entering price and cost data, you may only
+  * input positive numbers. 
+    * For example, you can input the number 5, not -5. 
+  * choose to include number with a decimal point. A decimal point looks like this: `.` However, you can only key in up to 2 numbers after the decimal point.
+      * For example, the number 5.75 but not 5.752. 
+* After you have add an item, note that the profit margin displayed can be positive or negative number. 
+  * For example, if you see `Profit Margin: $-0.50` and  `Profit Margin: $2.00`, both are correct. However, this means that you are making a lost on your menu item.
 
 Examples:
 
-* `add_item n/Chocolate cookie pr/5 c/2.50
+* `add_item n/Chocolate cookie pr/5 c/2.50`
 * `add_i n/Harley Davidson Shirt pr/40 c/8.50`
 
 ### Adding tags to a supplier: `tag_supplier` / `tag_s`
@@ -165,7 +170,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Edits the supplier at the specified `INDEX`.
 * The index refers to the number shown in the suppliers list displayed.
 * The index **must be a positive integer** 1, 2, 3, …​
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the new values given.
 * When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
 * Typing `t/` without any input will remove all the existing tags.
@@ -182,10 +187,10 @@ Edits an order that is present in the order list.
 Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
 * Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
-* User can remove the remarks by typing r/ without specifying any remarks after it.
+* You can remove the remarks by typing r/ without specifying any remarks after it.
 
 Examples:
 
@@ -199,7 +204,7 @@ Edits a task present in the task list.
 Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
 * Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing status, the existing status of the order will be removed and replaced with the given status.
 * To edit status, use `N` / `n` for Not done or `D` / `d` for Done.
@@ -215,8 +220,10 @@ Edits an item present in the menu.
 Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
 
 * Edits the item at the specific INDEX. The index refers to the number shown in the menu list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
+* Take note, when entering the price and cost, it cannot take negative numbers.
+  * For example, `pr/2.40` is allowed but not `pr/-2.40`.
 
 Examples:
 

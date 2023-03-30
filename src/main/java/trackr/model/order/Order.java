@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
-import trackr.model.order.customer.Customer;
+import trackr.model.person.Customer;
 
 /**
  * Represents an Order in the order list.

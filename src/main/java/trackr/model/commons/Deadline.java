@@ -49,6 +49,16 @@ public abstract class Deadline {
     }
 
     /**
+     * Compare this deadline to a given deadline.
+     * @return 1 if this deadline is after the given deadline,
+     *         -1 if this deadline is before the given status,
+     *         0 if both deadlines are the same.
+     */
+    public int compare(Deadline other) {
+        return deadline.compareTo(other.deadline);
+    }
+
+    /**
      * Returns the deadline stored in "dd/MM/yyyy" format for json storage.
      * @return A string representation of the deadline.
      */

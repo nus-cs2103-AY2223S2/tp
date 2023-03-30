@@ -1,25 +1,29 @@
 package trackr.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import trackr.model.Menu;
 import trackr.model.OrderList;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.commons.Tag;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
+import trackr.model.menu.ItemPrice;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.Customer;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.Customer;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -76,9 +80,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"), new TaskStatus()),
-            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"), new TaskStatus("D")),
-            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"), new TaskStatus("N")),
+            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"),
+                    new TaskStatus(), LocalDateTime.now()),
+            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"),
+                    new TaskStatus("D"), LocalDateTime.now().minusDays(2)),
+            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"),
+                    new TaskStatus("N"), LocalDateTime.now().minusHours(1)),
         };
     }
 
@@ -90,16 +97,32 @@ public class SampleDataUtil {
         return sampleTl;
     }
 
+    public static MenuItem[] getSampleMenuItems() {
+        return new MenuItem[] {
+            new MenuItem(new ItemName("Chocolate Cookies"), new ItemPrice("5.00"), new ItemCost("1.20")),
+            new MenuItem(new ItemName("Cupcake"), new ItemPrice("6.20"), new ItemCost("1.10")),
+            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("0.5")),
+        };
+    }
+
+    public static ReadOnlyMenu getSampleMenu() {
+        Menu sampleM = new Menu();
+        for (MenuItem sampleMenuItem : getSampleMenuItems()) {
+            sampleM.addItem(sampleMenuItem);
+        }
+        return sampleM;
+    }
+
     public static Order[] getSampleOrders() {
-        Customer amy = new Customer(new CustomerName("Amy"),
-                new CustomerPhone("12345678"),
-                new CustomerAddress("123 Smith Street"));
-        Customer bob = new Customer(new CustomerName("Bob"),
-                new CustomerPhone("87654321"),
-                new CustomerAddress("321 Hoover Street"));
-        Customer charlie = new Customer(new CustomerName("Charlie"),
-                new CustomerPhone("71396482"),
-                new CustomerAddress("789 Bonder Street"));
+        Customer amy = new Customer(new PersonName("Amy"),
+                new PersonPhone("12345678"),
+                new PersonAddress("123 Smith Street"));
+        Customer bob = new Customer(new PersonName("Bob"),
+                new PersonPhone("87654321"),
+                new PersonAddress("321 Hoover Street"));
+        Customer charlie = new Customer(new PersonName("Charlie"),
+                new PersonPhone("71396482"),
+                new PersonAddress("789 Bonder Street"));
 
         return new Order[] {
             new Order(new OrderName("Chocolate Cookies"),

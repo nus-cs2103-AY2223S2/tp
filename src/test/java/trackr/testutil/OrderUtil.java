@@ -41,9 +41,9 @@ public class OrderUtil {
         sb.append(PREFIX_ORDERQUANTITY + order.getOrderQuantity().value + " ");
         sb.append(PREFIX_DEADLINE + order.getOrderDeadline().toJsonString() + " ");
         sb.append(PREFIX_STATUS + order.getOrderStatus().toJsonString() + " ");
-        sb.append(PREFIX_NAME + order.getCustomer().getCustomerName().fullName + " ");
-        sb.append(PREFIX_PHONE + order.getCustomer().getCustomerPhone().value + " ");
-        sb.append(PREFIX_ADDRESS + order.getCustomer().getCustomerAddress().value + " ");
+        sb.append(PREFIX_NAME + order.getCustomer().getCustomerName().getName() + " ");
+        sb.append(PREFIX_PHONE + order.getCustomer().getCustomerPhone().personPhone + " ");
+        sb.append(PREFIX_ADDRESS + order.getCustomer().getCustomerAddress().personAddress + " ");
         return sb.toString();
     }
 
@@ -60,11 +60,12 @@ public class OrderUtil {
         descriptor.getOrderQuantity()
                 .ifPresent(orderQuantity -> sb.append(PREFIX_ORDERQUANTITY).append(orderQuantity.value).append(" "));
         descriptor.getCustomerName()
-                .ifPresent(customerName -> sb.append(PREFIX_NAME).append(customerName.fullName).append(" "));
+                .ifPresent(customerName -> sb.append(PREFIX_NAME).append(customerName.getName()).append(" "));
         descriptor.getCustomerPhone()
-                .ifPresent(customerPhone -> sb.append(PREFIX_PHONE).append(customerPhone.value).append(" "));
+                .ifPresent(customerPhone -> sb.append(PREFIX_PHONE).append(customerPhone.personPhone).append(" "));
         descriptor.getCustomerAddress()
-                .ifPresent(customerAddress -> sb.append(PREFIX_ADDRESS).append(customerAddress.value).append(" "));
+                .ifPresent(customerAddress -> sb.append(PREFIX_ADDRESS).append(customerAddress.personAddress)
+                        .append(" "));
         return sb.toString();
     }
 
@@ -82,11 +83,12 @@ public class OrderUtil {
         descriptor.getOrderQuantity()
                 .ifPresent(orderQuantity -> sb.append(PREFIX_ORDERQUANTITY).append(orderQuantity.value).append(" "));
         descriptor.getCustomerName()
-                .ifPresent(customerName -> sb.append(PREFIX_NAME).append(customerName.fullName).append(" "));
+                .ifPresent(customerName -> sb.append(PREFIX_NAME).append(customerName.getName()).append(" "));
         descriptor.getCustomerPhone()
-                .ifPresent(customerPhone -> sb.append(PREFIX_PHONE).append(customerPhone.value).append(" "));
+                .ifPresent(customerPhone -> sb.append(PREFIX_PHONE).append(customerPhone.personPhone).append(" "));
         descriptor.getCustomerAddress()
-                .ifPresent(customerAddress -> sb.append(PREFIX_ADDRESS).append(customerAddress.value).append(" "));
+                .ifPresent(customerAddress -> sb.append(PREFIX_ADDRESS).append(customerAddress.personAddress)
+                        .append(" "));
         return sb.toString();
     }
 

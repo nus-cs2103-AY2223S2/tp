@@ -8,9 +8,9 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * OrderPredicateBuilder class
@@ -92,7 +92,7 @@ public class OrderPredicateBuilder {
      */
     public OrderPredicateBuilder withCustomerName(String customerName) {
         if (customerName != null) {
-            orderPredicate.setCustomerName(new CustomerName(customerName));
+            orderPredicate.setCustomerName(new PersonName(customerName));
         }
         return this;
     }
@@ -102,7 +102,7 @@ public class OrderPredicateBuilder {
      */
     public OrderPredicateBuilder withCustomerPhone(String customerPhone) {
         if (customerPhone != null) {
-            orderPredicate.setCustomerPhone(new CustomerPhone(customerPhone));
+            orderPredicate.setCustomerPhone(new PersonPhone(customerPhone));
         }
         return this;
     }
@@ -112,7 +112,7 @@ public class OrderPredicateBuilder {
      */
     public OrderPredicateBuilder withCustomerAddress(String customerAddress) {
         if (customerAddress != null) {
-            orderPredicate.setCustomerAddress(new CustomerAddress(customerAddress));
+            orderPredicate.setCustomerAddress(new PersonAddress(customerAddress));
         }
         return this;
     }
