@@ -291,9 +291,9 @@ public class ModelManager implements Model {
             String alertString = AlarmList.getAlarmAlert(alarm);
             AlarmList.deleteTheAlarm(alarm); //when the alarm is sounded, it's deleted from the alarm list
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Time's up!");
-            alert.setHeaderText("Time's up!");
-            alert.setContentText(alertString);
+            alert.setTitle("Alarm Warning");
+            alert.setHeaderText("Hey, your time's up!");
+            alert.setContentText("Note: " + alertString);
             alert.show();
 
         }));
