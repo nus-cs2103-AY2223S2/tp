@@ -153,6 +153,10 @@
     -fx-padding: 0;
 }
 
+#deckNameView .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 0;
+}
+
 #rightPanelTitlePlaceholder {
     -fx-padding: 0 0 0 0;
 }
