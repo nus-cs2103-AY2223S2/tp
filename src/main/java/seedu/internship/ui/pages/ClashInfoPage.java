@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
@@ -75,8 +76,8 @@ public class ClashInfoPage extends Page {
         ArrayList<TitledPane> panes = new ArrayList<>();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
-
-        for (LocalDate date : clashes.keySet()) {
+        List<LocalDate> keys = clashes.keySet().stream().sorted().collect(Collectors.toList());
+        for (LocalDate date : keys) {
             String title = date.format(formatter);
             TitledPane pane = new TitledPane(title,
                     new ClashInfoItem(clashes.get(date)).getRoot());

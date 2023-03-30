@@ -22,51 +22,21 @@ public class ClashInfoItem extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ClashInfoPage.class);
 
     private List<Event> clashingEvents;
-    private Event mainEvent;
 
-    @javafx.fxml.FXML
-    private Label description;
-    @FXML
-    private Label startLabel;
-    @FXML
-    private Label start;
-    @FXML
-    private Label endLabel;
-    @FXML
-    private Label end;
-    @FXML
-    private VBox eventInfoBox;
     @FXML
     private ListView<Event> clashList;
 
     /**
-     * Constructor for {@code ClashInfoItem.
-     * }
-     * @param mainEvent The main {@code Event} for this {@code ClashInfoItem}
+     * Constructor for {@code ClashInfoItem}
+     *
      * @param clashingEvents The {@code Event}s that clash with the main {@code Event}
      */
     public ClashInfoItem(List<Event> clashingEvents) {
         super(FXML);
         this.clashingEvents = clashingEvents;
-        setEventInfoBox();
+        //setEventInfoBox();
         clashList.setItems(FXCollections.observableList(clashingEvents));
         clashList.setCellFactory(listView -> new EventListViewCell());
-    }
-
-    public void setEventInfoBox() {
-        if (mainEvent.isDeadline()) {
-            start.setManaged(false);
-            startLabel.setManaged(false);
-            endLabel.setText("Deadline: ");
-            end.setText(mainEvent.getEnd().toString());
-        } else {
-            start.setManaged(true);
-            startLabel.setManaged(true);
-            start.setText(mainEvent.getStart().toString());
-            endLabel.setText("End: ");
-            end.setText(mainEvent.getEnd().toString());
-        }
-
     }
 
     /**
