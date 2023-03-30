@@ -318,8 +318,8 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
     - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
 
 Examples:
-- `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`
-- `add student n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X`
+- `add student n/Han Wei Jiew p/98765432 e/hanwj@example.com sid/A6789012F`
+- `add student n/Siti Aisyah p/92624417 e/saisyah@example.com sid/A7890123G`
 
 [Back to list of commands](#commands)
 
@@ -505,6 +505,7 @@ add session <SESSION>
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
       entering `add session Tutorial1` will display an error message.
+    - Note: whitespaces are not allowed in session names.
 
 Examples:
 - `add session Tutorial1`
@@ -579,7 +580,7 @@ mark <INDEX>, <INDEX>, ...
 
 Examples:
 - `mark 1` will mark the first student as present.
-- `mark 2,3,4` will mark the 2nd, 3rd and 4th students as present.
+- `mark 2, 4, 5, 6` will mark the 2nd, 4th, 5th and 6th students as present.
 
 [Back to list of commands](#commands)
 
@@ -631,12 +632,12 @@ add task <TASK NAME>
 ```
 
 - Adding a task with the same task name is not allowed.
-    - For example, if a task with name `CA1` already exists in CLIpboard,
-      entering `add task CA1` will display an error message.
+    - For example, if a task with name `OP1` already exists in CLIpboard,
+      entering `add task OP1` will display an error message.
 
 Examples:
-- `add task CA1`
-- `add task Pitch and Demo`
+- `add task OP1`
+- `add task Critical Reflection 1`
 
 [Back to list of commands](#commands)
 
@@ -707,7 +708,8 @@ assign <INDEX> <GRADE>
 - Grade must be a number between `0 and 100`, inclusive of `0 and 100`.
 
 Examples:
-- `assign 1 80` will assign the first student on the Student Page the grade of 80.
+- `assign 1 78` will assign the first student on the Student Page the grade of 78.
+- `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
 [Back to list of commands](#commands)
 
@@ -758,7 +760,7 @@ undo
 
 ### Opening help window: `help`
 
-Opens a window showing a link to this User Guide.
+Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
 
 Format:
 ```
