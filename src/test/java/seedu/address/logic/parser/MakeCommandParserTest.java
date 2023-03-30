@@ -28,7 +28,7 @@ public class MakeCommandParserTest {
         Need to update with tests that are more relevant to current app design
          */
         // whitespace only preamble
-        assertParseSuccess(parser, MakeCommand.COMMAND_WORD + " " + CHAR.label + NAME_DESC_BOB,
+        assertParseSuccess(parser,  CHAR.label + NAME_DESC_BOB,
                                                                 new MakeCommand(expectedEntity));
 
         // multiple names - last name accepted
