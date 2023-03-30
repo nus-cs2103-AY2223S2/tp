@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CAPACITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.stream.Stream;
 
@@ -26,20 +26,20 @@ public class AddWardCommandParser implements Parser<AddWardCommand> {
      */
     public AddWardCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CAPACITY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WARD, PREFIX_CAPACITY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_WARD)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWardCommand.MESSAGE_USAGE));
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CAPACITY)) {
-            WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_NAME).get());
+            WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get());
             Ward ward = new Ward(wardName);
             return new AddWardCommand(ward);
         }
 
-        WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_NAME).get());
+        WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get());
         Capacity wardCapacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
         Ward ward = new Ward(wardName, wardCapacity);
         return new AddWardCommand(ward);

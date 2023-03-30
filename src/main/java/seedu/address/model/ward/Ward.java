@@ -17,7 +17,8 @@ public class Ward {
     public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
             + "and it should not be blank";
 
-    public static final String WARD_FULL_MESSAGE_CONSTRAINTS = "The ward cannot be assigned to more patients than its capacity.";
+    public static final String WARD_FULL_MESSAGE_CONSTRAINTS = "The ward cannot be assigned to more patients "
+            + "than its capacity.";
 
     /*
      * The first character of the ward must not be a whitespace,

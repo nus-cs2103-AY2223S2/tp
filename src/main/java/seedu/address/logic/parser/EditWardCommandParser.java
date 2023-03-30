@@ -15,38 +15,38 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class EditWardCommandParser implements Parser<EditWardCommand> {
 
-  /**
-   * Parses the given {@code String} of arguments in the context of the
-   * EditWardCommand
-   * and returns an EditWardCommand object for execution.
-   *
-   * @throws ParseException if the user input does not conform the expected format
-   */
-  public EditWardCommand parse(String args) throws ParseException {
-    requireNonNull(args);
-    ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WARD, PREFIX_CAPACITY);
+    /**
+     * Parses the given {@code String} of arguments in the context of the
+     * EditWardCommand
+     * and returns an EditWardCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public EditWardCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WARD, PREFIX_CAPACITY);
 
-    Index index;
+        Index index;
 
-    try {
-      index = ParserUtil.parseIndex(argMultimap.getPreamble());
-    } catch (ParseException pe) {
-      throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditWardCommand.MESSAGE_USAGE), pe);
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditWardCommand.MESSAGE_USAGE), pe);
+        }
+
+        EditWardDescriptor editWardDescriptor = new EditWardCommand.EditWardDescriptor();
+        if (argMultimap.getValue(PREFIX_WARD).isPresent()) {
+            editWardDescriptor.setWard(ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CAPACITY).isPresent()) {
+            editWardDescriptor.setCapacity(ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get()));
+        }
+
+        if (!editWardDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditWardCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditWardCommand(index, editWardDescriptor);
     }
-
-    EditWardDescriptor editWardDescriptor = new EditWardCommand.EditWardDescriptor();
-    if (argMultimap.getValue(PREFIX_WARD).isPresent()) {
-      editWardDescriptor.setWard(ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get()));
-    }
-    if (argMultimap.getValue(PREFIX_CAPACITY).isPresent()) {
-      editWardDescriptor.setCapacity(ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get()));
-    }
-
-    if (!editWardDescriptor.isAnyFieldEdited()) {
-      throw new ParseException(EditWardCommand.MESSAGE_NOT_EDITED);
-    }
-
-    return new EditWardCommand(index, editWardDescriptor);
-  }
 
 }

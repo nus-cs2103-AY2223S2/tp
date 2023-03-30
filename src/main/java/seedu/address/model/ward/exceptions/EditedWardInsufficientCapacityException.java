@@ -5,7 +5,7 @@ package seedu.address.model.ward.exceptions;
  * capacity.
  */
 public class EditedWardInsufficientCapacityException extends RuntimeException {
-  public EditedWardInsufficientCapacityException() {
-    super("Operation would result in the edited ward having insufficient capacity!");
-  }
+    public EditedWardInsufficientCapacityException() {
+        super("Operation would result in the edited ward having insufficient capacity!");
+    }
 }
