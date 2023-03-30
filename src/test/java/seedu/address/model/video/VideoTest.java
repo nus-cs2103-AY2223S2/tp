@@ -43,6 +43,16 @@ public class VideoTest {
     }
 
     @Test
+    public void compareTo() {
+        Video contentVideo = TypicalVideos.CONTENT_VIDEO;
+        Video analysisVideo = TypicalVideos.ANALYSIS_VIDEO;
+
+        assertTrue(contentVideo.compareTo(contentVideo) == 0);
+        assertTrue(contentVideo.compareTo(analysisVideo) < 0);
+        assertTrue(analysisVideo.compareTo(contentVideo) > 0);
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Video videoCopy = new VideoBuilder(video).build();

@@ -40,7 +40,7 @@ public class Name implements Comparable<Name> {
 
     @Override
     public int compareTo(Name o) {
-        return name.compareTo(o.name);
+        return name.toLowerCase().compareTo(o.name.toLowerCase());
     }
 
     @Override

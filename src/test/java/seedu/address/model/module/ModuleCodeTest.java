@@ -43,4 +43,14 @@ public class ModuleCodeTest {
         assertTrue(ModuleCode.isValidCode("CS2040SR")); // multi alphabet, then multi numeric, then multi alphabet
     }
 
+    @Test
+    public void compareTo() {
+        ModuleCode cs2040ModuleCode = new ModuleCode("CS2040");
+        ModuleCode cs2030ModuleCode = new ModuleCode("CS2030");
+
+        assertTrue(cs2040ModuleCode.compareTo(cs2040ModuleCode) == 0);
+        assertTrue(cs2040ModuleCode.compareTo(cs2030ModuleCode) > 0);
+        assertTrue(cs2030ModuleCode.compareTo(cs2040ModuleCode) < 0);
+    }
+
 }
