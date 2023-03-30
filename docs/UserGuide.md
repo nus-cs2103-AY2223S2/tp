@@ -591,22 +591,22 @@ What you should see:<br>
 
 <div markdown="block" class="alert alert-success">
 
+:bulb: **Examples**<br>
+
+* `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
+* `find n/Edward Richards`: Returns all persons with names Edward or Richards
+* `find p/9093`: Returns all persons with phone numbers starting with 9093
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
 :bulb: Tips on usage<br>
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-
-</div>
-
-<div markdown="block" class="alert alert-success">
-
-:bulb: **Examples**<br>
-
-* `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
-* `find n/Edward Richards`: Returns all persons with names Edward or Richards
-* `find p/9093`: Returns all persons with phone numbers starting with 9093
 
 </div>
 
@@ -681,29 +681,46 @@ The storage commands allow you to save and load your EduMate data into a file.
 
 Saves the EduMate into a file with a name of your choice.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
 * `save backup`: Saves the EduMate in the `backup.json` file.
+
+</div>
 
 #### Load a copy of EduMate `load`
 
 Loads the save data of an EduMate from a file.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
+
+</div>
+
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
 * `load backup`: Loads the EduMate from the `backup.json` file.
+
+</div>
 
 ### Meet Commands
 
@@ -720,16 +737,27 @@ You can use this command if:
 
 </div>
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
-* `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
-* `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `meet CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
+* `study CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
+* `eat CONTACT_INDEX_1 CONTACT_INDEX_2 ...`
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
+* `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
+* `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
+* `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
+
+</div>
 
 ## Other Commands
 
