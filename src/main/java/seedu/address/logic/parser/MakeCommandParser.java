@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.MakeCommand;
@@ -15,7 +13,6 @@ import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -46,14 +43,13 @@ public class MakeCommandParser implements Parser<MakeCommand> {
         Name name = ParserUtil.parseName(split[2]);
         Classification classification = ParserUtil.parseClassification(split[1]);
 
-        Set<Tag> tagSet = new HashSet<Tag>();
         Entity newEntity = null;
         if (classification.isCharacter()) {
-            newEntity = new Character(name, tagSet);
+            newEntity = new Character(name);
         } else if (classification.isItem()) {
-            newEntity = new Item(name, tagSet);
+            newEntity = new Item(name);
         } else if (classification.isMob()) {
-            newEntity = new Mob(name, tagSet);
+            newEntity = new Mob(name);
         }
         requireNonNull(newEntity);
         return new MakeCommand(newEntity);

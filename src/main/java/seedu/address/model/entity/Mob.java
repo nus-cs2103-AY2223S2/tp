@@ -38,7 +38,19 @@ public class Mob extends Entity {
      * Every field should be present and non-null. Dummy values used for mob-specific fields.
      *
      * @param name name of the mob
-     * @param tags tags categorizing the mob
+     */
+    public Mob(Name name) {
+        super(name);
+        this.stats = new Stats(22, 11, 33);
+        this.challengeRating = 2;
+        this.isLegendary = false;
+        this.inventory = Inventory.emptyInventory();
+    }
+
+    /**
+     * Every field should be present and non-null. Dummy values used for mob-specific fields.
+     *
+     * @param name name of the mob
      */
     public Mob(Name name, Set<Tag> tags) {
         super(name, tags);

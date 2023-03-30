@@ -109,7 +109,7 @@ public class EditValueCommand extends Command {
         Set<Tag> updatedTags = editCharacterDescriptor.getTags().orElse(charToEdit.getTags());
         Inventory updatedInventory = editCharacterDescriptor.getInventory().orElse(charToEdit.getInventory());
 
-        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedTags, updatedInventory);
+        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedInventory, updatedTags);
     }
 
     /**
@@ -291,14 +291,6 @@ public class EditValueCommand extends Command {
             this.inventory = inventory;
         }
 
-        public void addItemToInventory(Item item) {
-            this.inventory.addItem(item);
-        }
-
-        public void removeItemFromInventory(Item item) {
-            this.inventory.deleteItem(item);
-        }
-
         @Override
         public boolean equals(Object other) {
             // check base constraints
@@ -375,14 +367,6 @@ public class EditValueCommand extends Command {
 
         public Optional<Inventory> getInventory() {
             return Optional.ofNullable(inventory);
-        }
-
-        public void addItemToInventory(Item item) {
-            this.inventory.addItem(item);
-        }
-
-        public void removeItemFromInventory(Item item) {
-            this.inventory.deleteItem(item);
         }
 
         @Override
