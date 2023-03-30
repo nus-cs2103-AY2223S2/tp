@@ -13,10 +13,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ScrollPane styleClass="root-layout" hbarPolicy="NEVER"
-                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox styleClass="root-box"
+<AnchorPane
+        maxWidth="Infinity" maxHeight="Infinity"
+        xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@Form.css"/>
+    </stylesheets>
+    <ScrollPane
+            styleClass="root-layout" hbarPolicy="NEVER"
+            fitToWidth="true" fitToHeight="true"
+            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox
+            HBox.hgrow="ALWAYS"
+            VBox.vgrow="ALWAYS"
+            styleClass="root-box"
             spacing="8"
             >
             <stylesheets>
@@ -39,11 +49,11 @@
             </VBox>
             <VBox spacing="2">
             <Label text="Ingredients:" />
-            <VBox fx:id="ingredientsBox" spacing="2" />
+            <VBox fx:id="ingredientsBox" spacing="5"/>
             </VBox>
             <VBox spacing="2">
                 <Label text="Steps:" />
-                <VBox fx:id="stepsBox" spacing="2" />
+                <VBox fx:id="stepsBox" spacing="5"/>
             </VBox>
             <VBox spacing="2">
                 <Label text="Tags:" />

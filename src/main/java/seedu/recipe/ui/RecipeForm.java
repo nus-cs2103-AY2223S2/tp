@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -38,33 +40,27 @@ public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
     private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
 
+    //UI child elements
     @FXML
     private TextField nameField;
-
     @FXML
     private TextField durationField;
-
     @FXML
     private TextField portionField;
-
     @FXML
     private TextField tagsField;
-
     @FXML
     private FlowPane tags;
-
     @FXML
     private VBox ingredientsBox;
-
     @FXML
     private VBox stepsBox;
 
+    //Core CTA Group
     @FXML
     private Region buttonCtrLeft;
-
     @FXML
     private Button saveButton;
-
     @FXML
     private Button cancelButton;
 
@@ -176,7 +172,7 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
-        window.setResizable(false);
+        //window.setResizable(false);
 
         //Set dimensions, scene graph
         VBox pane = new VBox(getRoot());
