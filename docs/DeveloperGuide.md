@@ -228,6 +228,7 @@ the execution of the command.
 application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
 
+
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
 
@@ -316,10 +317,12 @@ command from the user.
     the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
+
 For a more graphical illustration of how a find application command is processed, please refer to the following
 sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
+
 
 ### 5.4 Sort Applications feature
 
@@ -333,6 +336,7 @@ associated will be displayed in the sorted list. Those without an associated tas
 
 - `sort alphabetical` will sort applications by the company name in ascending order. If there are two or more 
 applications under the same company, the role will be used as a tiebreaker. 
+
 
 #### Implementation
 The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.

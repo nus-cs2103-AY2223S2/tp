@@ -159,6 +159,7 @@ Examples:
 * `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing`
 * `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
+
 #### 4.1.2 Editing an application : `edit-app`
 
 Edits an existing internship application to be tracked.
@@ -180,6 +181,7 @@ Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [
 Examples:
 *  `edit-app 1 r/Cloud Engineer e/googleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `googleHR@gmail.com` respectively.
 *  `edit-app 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
+
 
 #### 4.1.3 Deleting an application : `delete-app`
 
@@ -404,3 +406,4 @@ If your changes to the data file makes its format invalid, the internship book w
 | **Exit**                    | `exit`                                                                                                                                                                   |
 
 <div style="page-break-after: always;"></div>
+
