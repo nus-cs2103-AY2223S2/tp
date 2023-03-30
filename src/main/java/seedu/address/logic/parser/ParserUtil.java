@@ -249,7 +249,6 @@ public class ParserUtil {
     public static LocalTime parseLocalTime(String localTimeAsStr, boolean isStartHour) throws ParseException {
         try {
             int hour = Integer.parseInt(localTimeAsStr);
-
             if (!TimeUtil.isValidHour(hour)) {
                 throw new ParseException(MESSAGE_INVALID_HOUR);
             }
