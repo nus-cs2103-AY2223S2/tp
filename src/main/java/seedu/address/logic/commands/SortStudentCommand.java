@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONSULTATIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LABS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -81,6 +84,8 @@ public class SortStudentCommand extends Command {
         case "consultation":
             model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
             model.updateSortConsultationPersonList(this.metric, this.isIncreasing);
+            break;
+        default:
             break;
         }
 
