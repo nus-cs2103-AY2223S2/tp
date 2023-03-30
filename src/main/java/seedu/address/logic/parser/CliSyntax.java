@@ -13,7 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EDUCATION = new Prefix("edu/", "EDUCATION");
     public static final Prefix PREFIX_REMARK = new Prefix("r/", "REMARK");
     public static final Prefix PREFIX_TAG = new Prefix("t/", "TAG");
-    public static final Prefix PREFIX_SUBJECT = new Prefix("s/", "SUBJECT");
+    public static final Prefix PREFIX_MODULE = new Prefix("s/", "MODULE");
 
     /** Not a prefix, but a placeholder for a keyword argument. */
     public static final Prefix KEYWORD_PLACEHOLDER = new Prefix("", "KEYWORD");
@@ -25,7 +25,7 @@ public class CliSyntax {
     public static final Prefix REMARK_PLACEHOLDER = new Prefix("", PREFIX_REMARK.getPlaceholderText());
 
     private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-        PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
+        PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_MODULE};
 
     /**
      * Checks if the specified prefix is a valid prefix implemented in the program.

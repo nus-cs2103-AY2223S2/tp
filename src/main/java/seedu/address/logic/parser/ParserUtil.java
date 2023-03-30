@@ -19,7 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -171,30 +171,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String subject} into a {@code Subject}.
+     * Parses a {@code String module} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code subject} is invalid.
+     * @throws ParseException if the given {@code module} is invalid.
      */
-    public static Subject parseSubject(String subject) throws ParseException {
-        requireNonNull(subject);
-        String trimmedSubject = subject.trim();
-        if (!Subject.isValidSubjectName(trimmedSubject)) {
-            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+    public static Module parseModule(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!Module.isValidModuleName(trimmedModule)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
-        return new Subject(trimmedSubject);
+        return new Module(trimmedModule);
     }
 
     /**
-     * Parses {@code Collection<String> subjects} into a {@code Set<Subject>}.
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>}.
      */
-    public static Set<Subject> parseSubjects(Collection<String> subjects) throws ParseException {
-        requireNonNull(subjects);
-        final Set<Subject> subjectSet = new HashSet<>();
-        for (String subjectName : subjects) {
-            subjectSet.add(parseSubject(subjectName));
+    public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        final Set<Module> moduleSet = new HashSet<>();
+        for (String moduleName : modules) {
+            moduleSet.add(parseModule(moduleName));
         }
-        return subjectSet;
+        return moduleSet;
     }
 
     /**

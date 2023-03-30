@@ -4,47 +4,47 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 
 //@@author wendy0107
 /**
- * Jackson-friendly version of {@link Subject}.
+ * Jackson-friendly version of {@link Module}.
  */
-public class JsonAdaptedSubject {
+public class JsonAdaptedModule {
 
-    private final String subjectName;
+    private final String moduleName;
 
 
     /**
-     * Constructs a {@code JsonAdaptedSubject} with the given {@code subjectName}.
+     * Constructs a {@code JsonAdaptedModule} with the given {@code moduleName}.
      */
     @JsonCreator
-    public JsonAdaptedSubject(String subjectName) {
-        this.subjectName = subjectName;
+    public JsonAdaptedModule(String moduleName) {
+        this.moduleName = moduleName;
     }
 
     /**
-     * Converts a given {@code Subject} into this class for Jackson use.
+     * Converts a given {@code Module} into this class for Jackson use.
      */
-    public JsonAdaptedSubject(Subject source) {
-        subjectName = source.subjectName;
+    public JsonAdaptedModule(Module source) {
+        moduleName = source.moduleName;
     }
 
     @JsonValue
-    public String getSubjectName() {
-        return subjectName;
+    public String getModuleName() {
+        return moduleName;
     }
 
     /**
-     * Converts this Jackson-friendly adapted subject object into the model's {@code Subject} object.
+     * Converts this Jackson-friendly adapted module object into the model's {@code Module} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted subject.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
-    public Subject toModelType() throws IllegalValueException {
-        if (!Subject.isValidSubjectName(subjectName)) {
-            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
+    public Module toModelType() throws IllegalValueException {
+        if (!Module.isValidModuleName(moduleName)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
         }
-        return new Subject(subjectName);
+        return new Module(moduleName);
     }
 
 }

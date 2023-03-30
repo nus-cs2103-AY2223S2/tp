@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 
@@ -92,13 +92,13 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
             hasMatching = hasMatching && values.stream().allMatch(tag -> personTagNames.contains(tag));
         }
 
-        if (keywords.getValue(PREFIX_SUBJECT).isPresent()) {
-            List<String> values = keywords.getAllValues(PREFIX_SUBJECT);
-            Set<Subject> personSubjects = person.getSubjects();
-            List<String> personSubjectNames = personSubjects.stream()
-                    .map(subject -> subject.subjectName)
+        if (keywords.getValue(PREFIX_MODULE).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_MODULE);
+            Set<Module> personModules = person.getModules();
+            List<String> personModuleNames = personModules.stream()
+                    .map(module -> module.moduleName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching && values.stream().allMatch(subject -> personSubjectNames.contains(subject));
+            hasMatching = hasMatching && values.stream().allMatch(module -> personModuleNames.contains(module));
         }
 
         return hasMatching;

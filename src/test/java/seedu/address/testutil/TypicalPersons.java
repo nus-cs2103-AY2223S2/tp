@@ -32,7 +32,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEducation("P1")
             .withRemark("She hates bob.")
-            .withSubjects("Mathematics")
+            .withModules("Mathematics")
             .withTags("friends")
             .build();
     public static final Person BENSON = new PersonBuilder()
@@ -42,7 +42,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEducation("P2")
             .withRemark("He can't take beer!")
-            .withSubjects("English", "Science")
+            .withModules("English", "Science")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
@@ -52,7 +52,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withEducation("P3")
             .withRemark("Needs help with algebra.")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
     public static final Person DANIEL = new PersonBuilder()
@@ -62,7 +62,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withEducation("P4")
             .withRemark("Needs help with compo.")
-            .withSubjects()
+            .withModules()
             .withTags("friends")
             .build();
     public static final Person ELLE = new PersonBuilder()
@@ -72,7 +72,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withEducation("P5")
             .withRemark("Needs more time on limits")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
     public static final Person FIONA = new PersonBuilder()
@@ -82,7 +82,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withEducation("P6")
             .withRemark("Is good at algebra")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
     public static final Person GEORGE = new PersonBuilder()
@@ -92,7 +92,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withEducation("Sec 2")
             .withRemark("Is bad at argumentative essays")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
 
@@ -104,7 +104,7 @@ public class TypicalPersons {
             .withAddress("little india")
             .withEducation("Sec 3")
             .withRemark("Needs help with trigo")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
     public static final Person IDA = new PersonBuilder()
@@ -114,7 +114,7 @@ public class TypicalPersons {
             .withAddress("chicago ave")
             .withEducation("Sec 4")
             .withRemark("Needs help with angles")
-            .withSubjects()
+            .withModules()
             .withTags()
             .build();
 
@@ -126,7 +126,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_AMY)
             .withRemark(VALID_EDUCATION_AMY)
             .withRemark(null)
-            .withSubjects()
+            .withModules()
             .withTags(VALID_TAG_FRIEND)
             .build();
     public static final Person BOB = new PersonBuilder()
@@ -136,7 +136,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withRemark(VALID_EDUCATION_BOB)
             .withRemark(null)
-            .withSubjects()
+            .withModules()
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

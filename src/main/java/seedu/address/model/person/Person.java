@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,13 +27,13 @@ public class Person {
     private final Optional<Remark> remark;
     private final Optional<Education> education;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Subject> subjects = new HashSet<>();
+    private final Set<Module> modules = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Education education, Remark remark,
-            Set<Subject> subjects, Set<Tag> tags) {
+            Set<Module> modules, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
@@ -42,7 +42,7 @@ public class Person {
         this.education = Optional.ofNullable(education);
         this.remark = Optional.ofNullable(remark);
         this.tags.addAll(tags);
-        this.subjects.addAll(subjects);
+        this.modules.addAll(modules);
     }
 
     public Name getName() {
@@ -81,8 +81,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Subject> getSubjects() {
-        return Collections.unmodifiableSet(subjects);
+    public Set<Module> getModules() {
+        return Collections.unmodifiableSet(modules);
     }
 
     /**
@@ -118,7 +118,7 @@ public class Person {
                 && otherPerson.getOptionalEmail().equals(getOptionalEmail())
                 && otherPerson.getOptionalAddress().equals(getOptionalAddress())
                 && otherPerson.getOptionalEducation().equals(getOptionalEducation())
-                && otherPerson.getSubjects().equals(getSubjects())
+                && otherPerson.getModules().equals(getModules())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getOptionalRemark().equals(getOptionalRemark());
     }
@@ -126,7 +126,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, education, subjects, remark, tags);
+        return Objects.hash(name, phone, email, address, education, modules, remark, tags);
     }
 
     @Override
@@ -140,10 +140,10 @@ public class Person {
         getOptionalEducation().ifPresent(education -> builder.append("; Education: ").append(education));
         getOptionalRemark().ifPresent(remark -> builder.append("; Remark: ").append(remark));
 
-        Set<Subject> subjects = getSubjects();
-        if (!subjects.isEmpty()) {
-            builder.append(" ; Subjects: ");
-            subjects.forEach(builder::append);
+        Set<Module> modules = getModules();
+        if (!modules.isEmpty()) {
+            builder.append(" ; Modules: ");
+            modules.forEach(builder::append);
         }
 
         Set<Tag> tags = getTags();

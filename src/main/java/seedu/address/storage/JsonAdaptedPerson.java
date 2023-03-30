@@ -20,7 +20,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String education;
     private final String remark;
-    private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
+    private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -47,7 +47,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark, @JsonProperty("education") String education,
-                             @JsonProperty("subjects") List<JsonAdaptedSubject> subjects,
+                             @JsonProperty("modules") List<JsonAdaptedModule> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -55,8 +55,8 @@ class JsonAdaptedPerson {
         this.address = address;
         this.education = education;
         this.remark = remark;
-        if (subjects != null) {
-            this.subjects.addAll(subjects);
+        if (modules != null) {
+            this.modules.addAll(modules);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -73,8 +73,8 @@ class JsonAdaptedPerson {
         address = source.getOptionalAddress().map(Address::toString).orElse(null);
         education = source.getOptionalEducation().map(Education::toString).orElse(null);
         remark = source.getOptionalRemark().map(Remark::toString).orElse(null);
-        subjects.addAll(source.getSubjects().stream()
-                .map(JsonAdaptedSubject::new)
+        modules.addAll(source.getModules().stream()
+                .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
 
         tagged.addAll(source.getTags().stream()
@@ -88,10 +88,10 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Subject> personSubjects = new ArrayList<>();
+        final List<Module> personModules = new ArrayList<>();
         final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedSubject subject : subjects) {
-            personSubjects.add(subject.toModelType());
+        for (JsonAdaptedModule module : modules) {
+            personModules.add(module.toModelType());
         }
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
@@ -140,9 +140,9 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
+        final Set<Module> modelModules = new HashSet<>(personModules);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelEducation, modelRemark,
-                modelSubjects, modelTags);
+                modelModules, modelTags);
     }
 
 }
