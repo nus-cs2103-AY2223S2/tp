@@ -26,14 +26,14 @@ their patient management tasks and improve overall efficiency.
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-    - [Help](#viewing-help-help) `help`
+    - [Help](#viewing-help--help) `help`
     - [Undo](#undoing-previous-command-undo) `undo`
     - [Redo](#redoing-previous-undo-redo) `redo`
     - [Add patient](#adding-patient-record-add): `add`
     - [Edit patient](#editing-a-patient-record-edit): `edit`
     - [Delete patient](#deleting-a-patient-record-delete): `delete`
     - [List all patients](#listing-all-patients-list): `list`
-    - [Filter patients](#find-patients-by-nric-name-address-or-tags-find): `find`
+    - [Filter patients](#filter-patients-by-attribute-find): `find`
     - [Backup patient records](#backup-patient-records-backup): `backup`
     - [Load backups](#load-data-load): `load`
     - [View backups](#view-backup-data-viewbackup): `viewbackup`
@@ -88,7 +88,7 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 | Medicine             | m/     |
 | Backup description   | b/     |
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## Features
 
@@ -196,7 +196,7 @@ that you have loaded.
 
 Format: `list`
 
-### Find patients by nric, name, address, doctor or tags: `find`
+### Filter patients by attribute: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
@@ -305,7 +305,7 @@ Switches the GUI to dark mode.
 Format: `dark`
   
 --------------------------------------------------------------------------------------------------------------------  
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## FAQ
 
@@ -317,7 +317,7 @@ from your previous HospiSearch `data` directory.
 **A**: The `data` directory is created in the same folder your HospiSearch Jar file is opened in.
   
 --------------------------------------------------------------------------------------------------------------------  
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## Command summary
 
@@ -339,4 +339,4 @@ from your previous HospiSearch `data` directory.
 | **Light**          | `light`                                                                                                                                                                                                                           |  
 | **Dark**           | `dark`                                                                                                                                                                                                                            |
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
