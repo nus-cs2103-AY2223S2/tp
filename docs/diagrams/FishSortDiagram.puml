@@ -38,7 +38,7 @@ activate Model
 Model -> MainWindow : handleGuiChange
 activate MainWindow
 
-MainWindow -> SortedFishPanel : setPanels
+MainWindow -> SortedFishPanel : setMiddlePanel
 
 MainWindow <-- SortedFishPanel
 

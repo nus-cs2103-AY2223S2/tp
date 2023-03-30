@@ -182,14 +182,33 @@ public class ParserUtil {
      *
      * @throws ParseException If the given {@code tank} is invalid.
      */
-    public static Tank parseTank(String tank) throws ParseException {
+    public static Tank parseTankForEditCommand(String tank) throws ParseException {
         requireNonNull(tank);
         String trimmedTank = tank.trim();
         if (!TankName.isValidTankName(trimmedTank)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS
+            );
         }
         Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
         return retTank;
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Index}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Index parseTank(String strTankIndex) {
+        requireNonNull(strTankIndex);
+        String trimmedStrTankIndex = strTankIndex.trim();
+        int index = Integer.valueOf(trimmedStrTankIndex);
+        Index newTankIndex = Index.fromOneBased(index);
+        return newTankIndex;
+        //        if (!TankName.isValidTankName(trimmedTank)) {
+        //            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        //        }
+        //        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(),
+        //        new UniqueIndividualReadingLevels());
+        //        return retTank;
     }
 
     /**

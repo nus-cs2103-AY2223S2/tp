@@ -1,22 +1,25 @@
 {
-  "Fishes": [ {
+  "fishes": [ {
     "name": "Valid Fish",
-    "lastFedDate": "01/01/2000",
+    "lastFedDateTime": "01/01/2000 00:00",
     "species": "Guppy",
     "feedingInterval": "1d0h",
-    "tank": "tank 1"
+    "tank": "tank 1",
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name": "Fish With Invalid lastFedDate Field",
-    "lastFedDate": "948asdf2424",
+    "lastFedDateTime": "948asdf2424",
     "species": "Guppy",
     "feedingInterval": "1d0h",
-    "tank": "tank 1"
+    "tank": "tank 1",
+    "tagged" : [ "owesMoney", "friends" ]
   },
   {
     "name": "Fish With Invalid species Field",
-    "lastFedDate": "01/01/2000",
+    "lastFedDateTime": "01/01/2000 00:00",
     "species": "947@1803",
     "feedingInterval": "1d0h",
-    "tank": "tank 1"
+    "tank": "tank 1",
+    "tagged" : [ "owesMoney", "friends" ]
   } ]
 }

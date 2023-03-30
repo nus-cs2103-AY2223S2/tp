@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tank.readings.ReadingsAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,7 +25,7 @@ import seedu.address.model.tank.readings.Temperature;
 /**
  * Parses input arguments and creates a new ReadingAddCommand object
  */
-public class ReadingAddCommandParser {
+public class ReadingAddCommandParser implements Parser<ReadingsAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ReadingsAddCommand
