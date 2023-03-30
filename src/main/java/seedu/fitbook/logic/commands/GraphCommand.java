@@ -8,7 +8,6 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.WeightHistory;
 
 /**
  * Adds a client to the FitBook.
