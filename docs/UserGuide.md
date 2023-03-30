@@ -317,6 +317,120 @@ patient clear
 
 * `patent clear`
 
+### `vaccination` - Vaccination functionalities
+
+Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
+
+| Attribute               | Type                 | Description                                                       | Default value |
+| ----------------------- | -------------------- | ----------------------------------------------------------------- | ------------- |
+| Name                    | `<group-name>`       | The name of the vaccination.                                      | -             |
+| Groups                  | `...<group-name>...` | The groups the vaccination<br>classifies under                    | `empty list`  |
+| Minimum<br>age          | `<age>`              | The minimum age (inclusive)<br>to take the vaccination            | `0`           |
+| Maximum<br>age          | `<age>`              | The maximum age (inclusive)<br>to take the vaccination            | `200`         |
+| Ingredients             | `<group-name>`       | Ingredients of the vaccination.<br>Similar to patient's allergies | `empty list`  |
+| History<br>requirements | `...<req>...`        | The list of requirements to<br>take the vaccination               | `empty list`  |
+
+#### `add` - Add a vaccination type
+
+Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
+they will be set to their default values.
+
+##### Syntax
+
+<pre>
+vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>GROUP</var></code> : `<group-name>`
+* <code><var>MIN_AGE</var></code> : `<Age>`
+* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>INGREDIENT</var></code> : `<group-name>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
+
+##### Example
+
+```text
+vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
+    --lal 5 \
+    --a allergy1, allergy2, allergy3 \
+    --h NONE::DOES 1 \
+```
+
+Copy and paste:<br>
+`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
+<br><br>
+Output:<br>
+{some ss}
+
+##### Restrictions
+
+* The name of the vaccination being added must not exist in the system.
+
+#### `edit` - Edit a vaccination type
+
+Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
+are omitted, they will be set to what they were before.
+
+<pre>
+vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+    [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>NEW_NAME</var></code> : `<group-name>`
+* <code><var>GROUP</var></code> : `<group-name>`
+* <code><var>MIN_AGE</var></code> : `<Age>`
+* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>INGREDIENT</var></code> : `<group-name>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
+
+##### Example
+
+After the vaccination add example,
+
+```text
+vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
+    --groups DOSE 1, PFIZER, VACCINATION \
+    --a allergy1, allergy2, allergy3 \
+    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER \
+```
+
+Copy and paste:<br>
+`vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 1, PFIZER, VACCINATION --a allergy1, allergy2, allergy3 --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER`
+<br><br>
+Output:<br>
+{some ss}
+
+##### Restrictions
+
+* <code><var>VAX_NAME</var></code> must exist in the system.
+* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as <code><var>VAX_NAME</var></code>.
+
+#### `delete` - Deletes a vaccination
+
+Deletes the vaccination with the specified name from the system.
+
+<pre>
+vaccination delete <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+
+##### Example
+
+After the vaccination add example,
+
+```text
+vaccination delete Pfizer (Dose 1)
+```
+Output:<br>
+{some ss}
+
+<br></br>
+
 ### `appointment` - Appointment functionalities
 
 | Attribute     | Type              | Description                                |
@@ -487,118 +601,6 @@ appointment unmark INDEX
 * The specified appointment should already be done.
 
 <br></br>
-
-### `vaccination` - Vaccination functionalities
-
-Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
-
-| Attribute               | Type                 | Description                                                       | Default value |
-| ----------------------- | -------------------- | ----------------------------------------------------------------- | ------------- |
-| Name                    | `<group-name>`       | The name of the vaccination.                                      | -             |
-| Groups                  | `...<group-name>...` | The groups the vaccination<br>classifies under                    | `empty list`  |
-| Minimum<br>age          | `<age>`              | The minimum age (inclusive)<br>to take the vaccination            | `0`           |
-| Maximum<br>age          | `<age>`              | The maximum age (inclusive)<br>to take the vaccination            | `200`         |
-| Ingredients             | `<group-name>`       | Ingredients of the vaccination.<br>Similar to patient's allergies | `empty list`  |
-| History<br>requirements | `...<req>...`        | The list of requirements to<br>take the vaccination               | `empty list`  |
-
-#### `add` - Add a vaccination type
-
-Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
-they will be set to their default values.
-
-##### Syntax
-
-<pre>
-vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
-</pre>
-
-* <code><var>VAX_NAME</var></code> : `<group-name>`
-* <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
-* <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>HISTORY_REQ</var></code> : `<req>`
-
-##### Example
-
-```text
-vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
-    --lal 5 \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 1 \
-```
-
-Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
-<br><br>
-Output:<br>
-{some ss}
-
-##### Restrictions
-
-* The name of the vaccination being added must not exist in the system.
-
-#### `edit` - Edit a vaccination type
-
-Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
-are omitted, they will be set to what they were before.
-
-<pre>
-vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
-    [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
-</pre>
-
-* <code><var>VAX_NAME</var></code> : `<group-name>`
-* <code><var>NEW_NAME</var></code> : `<group-name>`
-* <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
-* <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>HISTORY_REQ</var></code> : `<req>`
-
-##### Example
-
-After the vaccination add example,
-
-```text
-vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
-    --groups DOSE 1, PFIZER, VACCINATION \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER \
-```
-
-Copy and paste:<br>
-`vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 1, PFIZER, VACCINATION --a allergy1, allergy2, allergy3 --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER`
-<br><br>
-Output:<br>
-{some ss}
-
-##### Restrictions
-
-* <code><var>VAX_NAME</var></code> must exist in the system.
-* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as <code><var>VAX_NAME</var></code>.
-
-#### `delete` - Deletes a vaccination
-
-Deletes the vaccination with the specified name from the system.
-
-<pre>
-vaccination delete <var>VAX_NAME</var>
-</pre>
-
-* <code><var>VAX_NAME</var></code> : `<group-name>`
-
-##### Example
-
-After the vaccination add example,
-
-```text
-vaccination delete Pfizer (Dose 1)
-```
-Output:<br>
-{some ss}
 
 ## Advance
 
