@@ -17,7 +17,7 @@ public class ExitCommandTest {
     @Test
     public void execute_exit_success() {
         ExitCommand exitCommand = new ExitCommand();
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
         CommandResult mockConfirmExit = exitCommand.execute(model);
         assertCommandSuccess(mockConfirmExit, model, expectedCommandResult, expectedModel);
     }
