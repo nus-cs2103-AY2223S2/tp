@@ -1,0 +1,46 @@
+@startuml FuzzyManagerSequenceDiagramA
+!include style.puml
+
+participant ":SearchMode" as SearchMode MODE_COLOR_T3
+participant ":MainWindow" as MainWindow UI_COLOR_T3
+
+-> SearchMode : onInputChanged(input)
+
+ref over SearchMode, MainWindow : fuzzy ranking
+
+SearchMode -> MainWindow : set clients
+SearchMode -> MainWindow : set projects
+
+@enduml
+
+@startuml FuzzyManagerSequenceDiagramB
+!include style.puml
+skinparam participantFontColor automatic
+
+mainframe sd fuzzy ranking
+
+participant ":SearchMode" as SearchMode MODE_COLOR_T3
+participant ":Logic" as Logic LOGIC_COLOR_T3
+participant "<<class>>\nFuzzyManager" as FuzzyManager
+
+SearchMode -> Logic : getFilteredClientList()
+activate Logic
+Logic --> SearchMode : list of clients
+deactivate Logic
+
+SearchMode -> Logic : getFilteredProjectList()
+activate Logic
+Logic --> SearchMode : list of projects
+deactivate Logic
+
+SearchMode -> FuzzyManager : fuzzy rank clients
+activate FuzzyManager
+FuzzyManager --> SearchMode : ranked clients
+deactivate FuzzyManager
+
+SearchMode -> FuzzyManager : fuzzy rank projects
+activate FuzzyManager
+FuzzyManager --> SearchMode : ranked projects
+deactivate FuzzyManager
+
+@enduml

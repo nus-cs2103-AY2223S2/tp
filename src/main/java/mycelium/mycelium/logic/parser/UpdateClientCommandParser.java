@@ -57,7 +57,7 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
                 ParserUtil::parseYearOfBirth);
         Optional<NonEmptyString> source = parseOptionalWith(
                 argMultimap.getValue(PREFIX_SOURCE),
-                ParserUtil::parseNonEmptyString);
+                ParserUtil::parseSource);
         Optional<Phone> mobileNumber = parseOptionalWith(
                 argMultimap.getValue(PREFIX_CLIENT_MOBILE_NUMBER),
                 ParserUtil::parsePhone);

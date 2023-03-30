@@ -4,6 +4,7 @@ import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -16,7 +17,11 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * Represents a project.
  */
 public class Project implements IsSame<Project>, FuzzyComparable<String> {
-    public static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    /**
+     * Parses dates in the dd/MM/uuuu format. Range of allowed years is [-9999, 9999].
+     */
+    public static final DateTimeFormatter DATE_FMT =
+        DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * The project's name
@@ -137,8 +142,8 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
      * deadline is the same, ties will be broken using name.
      *
      * @param other The other project
-     * @return 0 if two projects are equal with regards to {@code equals} * 1 if this project has deadline after the
-     *         given project or with same deadline but the name is * topologically smaller * -1 for the rest
+     * @return 0 if two projects are equal with regards to {@code equals}, 1 if this project has deadline after the
+     *     given project or with same deadline but the name is topologically smaller, and -1 for the rest
      */
     public int compareToWithDeadline(Project other) {
         assert this.getDeadline().isPresent();

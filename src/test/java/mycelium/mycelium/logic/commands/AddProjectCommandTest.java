@@ -1,14 +1,17 @@
 package mycelium.mycelium.logic.commands;
 
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.logic.commands.exceptions.CommandException;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.Assert;
@@ -16,6 +19,9 @@ import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
 public class AddProjectCommandTest {
+    private static final Function<String, CommandResult> buildCommandResult = (msg)
+        -> new CommandResult(msg, new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+
     /**
      * We don't use a stub for the model, and directly use the ModelManager
      * class. This is because the ModelManager already has unit and integration
@@ -30,23 +36,23 @@ public class AddProjectCommandTest {
 
     @Test
     public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
-        Project project = new ProjectBuilder().build();
-        CommandResult res = new AddProjectCommand(project).execute(model);
+        var project = new ProjectBuilder().build();
+        var cmd = new AddProjectCommand(project);
+        var expRes = buildCommandResult.apply(String.format(AddProjectCommand.MESSAGE_SUCCESS, project));
+        var expModel = new ModelManager();
+        expModel.addProject(project);
 
-        assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, project), res.getFeedbackToUser());
-        assertTrue(model.hasProject(project));
+        assertCommandSuccess(cmd, model, expRes, expModel);
     }
 
     @Test
     public void execute_duplicateProject_throwsCommandException() throws Exception {
-        Project project = new ProjectBuilder().build();
-        AddProjectCommand cmd = new AddProjectCommand(project);
-
-        // Execute this command once. Then we execute it again.
-        cmd.execute(model);
+        var project = new ProjectBuilder().build();
+        var cmd = new AddProjectCommand(project);
+        model.addProject(project);
         assertTrue(model.hasProject(project));
 
-        Assert.assertThrows(CommandException.class, () -> cmd.execute(model));
+        assertCommandFailure(cmd, model, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
     @Test

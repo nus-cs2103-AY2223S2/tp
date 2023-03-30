@@ -37,10 +37,10 @@ public class UpdateProjectCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         Map<String, String> tests = Map.of(
-            "-pn2   ", NonEmptyString.MESSAGE_CONSTRAINTS,
+            "-pn2   ", Messages.MESSAGE_EMPTY_PROJECT_NAME,
             "-s notastatus", ProjectStatus.MESSAGE_CONSTRAINTS,
             "-e notanemail", Email.MESSAGE_CONSTRAINTS,
-            "-src  ", NonEmptyString.MESSAGE_CONSTRAINTS,
+            "-src  ", Messages.MESSAGE_EMPTY_SOURCE,
             "-ad 31-12-2023", Messages.MESSAGE_INVALID_DATE,
             "-dd 31-12-2023", Messages.MESSAGE_INVALID_DATE
         );

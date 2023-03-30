@@ -11,7 +11,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_CLIENT = "The client email entered does not match any client";
     public static final String MESSAGE_INVALID_PROJECT = "The project name entered does not match any project";
-    public static final String MESSAGE_EMPTY_STR = "The source of the project / client cannot be empty";
     public static final String MESSAGE_INVALID_DATE = "The date entered is invalid";
 
+    public static final String MESSAGE_EMPTY_PROJECT_NAME =
+        "Project name cannot be empty or consist of only whitespace";
+    public static final String MESSAGE_EMPTY_SOURCE = "Source cannot be empty or consist of only whitespace";
 }

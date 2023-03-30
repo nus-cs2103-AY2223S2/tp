@@ -25,11 +25,10 @@ public class DeleteClientCommandParserTest {
             Map.entry("only whitespace", " "),
             Map.entry("no email", "-e")
         );
+        String expectedErr = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
-            assertParseFailure(parser,
-                input,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
+            assertParseFailure(parser, input, expectedErr, "While testing case: " + desc);
         });
     }
 
@@ -41,7 +40,7 @@ public class DeleteClientCommandParserTest {
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
-            assertParseFailure(parser, input, Email.MESSAGE_CONSTRAINTS);
+            assertParseFailure(parser, input, Email.MESSAGE_CONSTRAINTS, "While testing case: " + desc);
         });
     }
 
@@ -55,7 +54,7 @@ public class DeleteClientCommandParserTest {
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
-            assertParseSuccess(parser, input, want);
+            assertParseSuccess(parser, input, want, "While testing case: " + desc);
         });
     }
 }

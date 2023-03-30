@@ -6,7 +6,6 @@ import static mycelium.mycelium.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static mycelium.mycelium.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -32,7 +31,6 @@ import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddCommand;
 import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.tag.Tag;
@@ -110,10 +108,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-            + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
@@ -131,8 +125,8 @@ public class AddCommandParserTest {
             + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-            Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + INVALID_ADDRESS_DESC,
+            Email.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

@@ -1,14 +1,17 @@
 package mycelium.mycelium.logic.commands;
 
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.logic.commands.exceptions.CommandException;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.testutil.Assert;
@@ -16,6 +19,10 @@ import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 
 public class AddClientCommandTest {
+
+    private static final Function<String, CommandResult> buildCommandResult = (msg)
+        -> new CommandResult(msg, new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
+
     /**
      * We don't use a stub for the model, and directly use the ModelManager
      * class. This is because the ModelManager already has unit and integration
@@ -33,23 +40,26 @@ public class AddClientCommandTest {
         // For this test, we create a dummy client, add it through the model,
         // and assert that the model now sees the client, and that the command's
         // feedback is what we expect.
-        Client client = new ClientBuilder().build();
-        CommandResult res = new AddClientCommand(client).execute(model);
+        var client = new ClientBuilder().build();
+        var cmd = new AddClientCommand(client);
 
-        assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, client), res.getFeedbackToUser());
-        assertTrue(model.hasClient(client));
+        var msg = String.format(AddClientCommand.MESSAGE_SUCCESS, client);
+        var expRes = buildCommandResult.apply(msg);
+        var expModel = new ModelManager();
+        expModel.addClient(client);
+
+        assertCommandSuccess(cmd, model, expRes, model);
     }
 
     @Test
     public void execute_duplicateClient_throwsCommandException() throws Exception {
-        Client client = new ClientBuilder().build();
-        AddClientCommand cmd = new AddClientCommand(client);
+        var client = new ClientBuilder().build();
+        var cmd = new AddClientCommand(client);
 
-        // Execute this command once. Then we execute it again.
-        cmd.execute(model);
+        model.addClient(client);
         assertTrue(model.hasClient(client));
 
-        Assert.assertThrows(CommandException.class, () -> cmd.execute(model));
+        assertCommandFailure(cmd, model, AddClientCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test

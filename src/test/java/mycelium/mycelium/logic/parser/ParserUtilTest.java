@@ -3,25 +3,32 @@ package mycelium.mycelium.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Address;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.Assert;
 import mycelium.mycelium.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "   ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -192,5 +199,144 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseYearOfBirth_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseYearOfBirth(null));
+    }
+
+    @Test
+    public void parseYearOfBirth_invalidValue_throwsParseException() {
+        Map<String, String> tests = Map.of(
+            "negative", "-1",
+            "zero", "0",
+            "too large", "10000",
+            "not a number", "not a number",
+            "empty", "",
+            "whitespace", " "
+        );
+        tests.forEach((key, value) -> {
+            Assert.assertThrows(ParseException.class, YearOfBirth.MESSAGE_CONSTRAINTS, () ->
+                ParserUtil.parseYearOfBirth(value));
+        });
+    }
+
+    @Test
+    public void parseYearOfBirth_validValue_returnsYearOfBirth() throws Exception {
+        String[] tests = {"2000", "0000", "9999", "0001"};
+        for (String tt : tests) {
+            YearOfBirth expectedYearOfBirth = new YearOfBirth(tt);
+            Assertions.assertEquals(expectedYearOfBirth, ParserUtil.parseYearOfBirth(tt));
+        }
+    }
+
+    @Test
+    public void parseProjectStatus_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseProjectStatus(null));
+    }
+
+    @Test
+    public void parseProjectStatus_invalidValue_throwsParseException() {
+        Map<String, String> tests = Map.of(
+            "empty", "",
+            "whitespace", " ",
+            "not a status", "not a status"
+        );
+        tests.forEach((key, value) -> {
+            Assert.assertThrows(ParseException.class,
+                ProjectStatus.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseProjectStatus(value));
+        });
+    }
+
+    @Test
+    public void parseProjectStatus_validValue_returnsProjectStatus() throws Exception {
+        String[] tests = {"in_progress", "done", "not_started", "IN_PROGRESS", "iN_pRoGrEsS"};
+        for (String tt : tests) {
+            ProjectStatus expectedProjectStatus = ProjectStatus.fromString(tt);
+            Assertions.assertEquals(expectedProjectStatus, ParserUtil.parseProjectStatus(tt));
+        }
+    }
+
+    @Test
+    public void parseNonEmptyString_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseNonEmptyString(null));
+    }
+
+    @Test
+    public void parseNonEmptyString_invalidValue_throwsParseException() {
+        Map<String, String> tests = Map.of(
+            "empty", "",
+            "whitespace", "    "
+        );
+        tests.forEach((key, value) -> {
+            Assert.assertThrows(ParseException.class,
+                NonEmptyString.MESSAGE_CONSTRAINTS, () -> ParserUtil.parseNonEmptyString(value));
+        });
+    }
+
+    @Test
+    public void parseNonEmptyString_validValue_returnsNonEmptyString() throws Exception {
+        Map<String, String> tests = Map.of(
+            "single word", "foo",
+            "multiple words", "foo bar",
+            "special characters", "!@#$%^&*()_+"
+        );
+        for (var tt : tests.entrySet()) {
+            String input = tt.getValue();
+            NonEmptyString want = new NonEmptyString(input);
+            Assertions.assertEquals(want, ParserUtil.parseNonEmptyString(input));
+        }
+    }
+
+    @Test
+    public void parseLocalDate_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null, Project.DATE_FMT));
+    }
+
+    @Test
+    public void parseLocalDate_invalidValue_throwsParseException() {
+        Map<String, String> tests = Map.ofEntries(
+            Map.entry("empty", ""),
+            Map.entry("whitespace", " "),
+            Map.entry("not a date", "not a date"),
+            Map.entry("invalid format", "2020-01-01"),
+
+            Map.entry("day doesn't exist", "29/02/2001"),
+
+            Map.entry("year less than 4 digits", "01/01/01"),
+            Map.entry("month less than 2 digits", "01/1/2001"),
+            Map.entry("day less than 2 digits", "1/01/2001"),
+
+            Map.entry("year > 9999", "01/01/10000"),
+            Map.entry("month > 12", "01/13/2001"),
+            Map.entry("day > 31", "32/01/2001"),
+
+            Map.entry("zero month", "01/00/2001"),
+            Map.entry("zero day", "00/01/2001"),
+
+            Map.entry("negative month", "01/-01/2001"),
+            Map.entry("negative day", "-01/01/2001")
+        );
+        tests.forEach((key, value) -> {
+            Assert.assertThrows(ParseException.class,
+                Messages.MESSAGE_INVALID_DATE, () -> ParserUtil.parseLocalDate(value, Project.DATE_FMT));
+        });
+    }
+
+    @Test
+    public void parseLocalDate_validValue_returnsLocalDate() throws Exception {
+        String[] tests = {
+            "01/01/2000",
+            "01/01/-0001",
+            "01/01/0000",
+            "01/01/0001",
+            "01/01/9999",
+            "01/01/-9999"
+        };
+        for (String tt : tests) {
+            LocalDate want = LocalDate.parse(tt, Project.DATE_FMT);
+            Assertions.assertEquals(want, ParserUtil.parseLocalDate(tt, Project.DATE_FMT));
+        }
     }
 }

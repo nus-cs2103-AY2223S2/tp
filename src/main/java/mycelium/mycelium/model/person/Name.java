@@ -1,7 +1,9 @@
 package mycelium.mycelium.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.AppUtil.checkArgument;
+
+import mycelium.mycelium.model.util.NonEmptyString;
+
 
 /**
  * Represents a Person's name in the address book.
@@ -9,15 +11,12 @@ import static mycelium.mycelium.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS =
-        "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Name cannot be empty or consist only of whitespace";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
     public final String fullName;
 
     /**
@@ -26,7 +25,6 @@ public class Name {
      * @param name A valid name.
      */
     public Name(String name) {
-        requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }
@@ -34,8 +32,8 @@ public class Name {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidName(String name) {
+        return NonEmptyString.isValid(name.trim());
     }
 
 
