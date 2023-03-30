@@ -15,6 +15,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.person.Person;
 
 /**
@@ -69,14 +70,22 @@ public class EditIsolatedEventCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());
+
+        if (eventIndex.getZeroBased() >= personToEdit.getIsolatedEventList().getSize()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX);
+        }
+
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
+        editedIsolatedEvent.checkDateTime();
+        personToEdit.getIsolatedEventList().checkOverlapping(editedIsolatedEvent, eventIndex.getZeroBased());
+        IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
+
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " from " + originalEvent + " for " + personToEdit.getName());
-
+                + " for " + personToEdit.getName()
+                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 
     /**
@@ -168,5 +177,6 @@ public class EditIsolatedEventCommand extends Command {
                     && getStartDate().equals(e.getStartDate());
         }
     }
+
 
 }

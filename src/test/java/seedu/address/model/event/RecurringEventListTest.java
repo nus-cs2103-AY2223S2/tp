@@ -1,7 +1,9 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.SampleDateTimeUtil.FIVE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.MONDAY_SIX_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.NINE_O_CLOCK_VALID;
@@ -15,7 +17,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
-
 class RecurringEventListTest {
 
     private final RecurringEventList recurringEventList = new RecurringEventList();
@@ -40,6 +41,22 @@ class RecurringEventListTest {
     @Test
     void insert_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> recurringEventList.insert(null));
+    }
+
+    @Test
+    void contain() {
+        recurringEventList.insert(new RecurringEventListTest.RecurringEventStub("Biking", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+        recurringEventList.insert(new RecurringEventListTest.RecurringEventStub("Skiing", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+        recurringEventList.insert(new RecurringEventListTest.RecurringEventStub("Canoeing", DayOfWeek.MONDAY,
+                TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
+
+        assertFalse(recurringEventList.contain(new RecurringEventListTest.RecurringEventStub("Biking",
+                DayOfWeek.WEDNESDAY, TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime())));
+
+        assertTrue(recurringEventList.contain(new RecurringEventListTest.RecurringEventStub("Canoeing",
+                DayOfWeek.MONDAY, TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime())));
     }
 
     @Test

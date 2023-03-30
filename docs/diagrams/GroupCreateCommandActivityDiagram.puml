@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes command;
+
+if () then ([command is valid])
+    if () then ([group not in model])
+        :Add new group to model;
+    else ([else])
+    endif
+
+else([else])
+endif
+stop
+@enduml

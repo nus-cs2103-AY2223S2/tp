@@ -7,9 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
+
 
 /**
  * Adds a person to the address book.
@@ -52,6 +55,12 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        for (Group group : toAdd.getGroups()) {
+            if (!model.hasGroup(group)) {
+                throw new CommandException(Messages.MESSAGE_INVALID_GROUP);
+            }
         }
 
         model.addPerson(toAdd);

@@ -61,8 +61,6 @@ public class EditIsolatedEventCommandParser implements Parser<EditIsolatedEventC
         if (!editEventDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditIsolatedEventCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditIsolatedEventCommand(personIndex, eventIndex, editEventDescriptor);
-
     }
 }

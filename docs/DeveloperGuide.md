@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -153,8 +153,324 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Developed\] Group create
+
+The group create feature allows users to create group. Only one group can be created at a time.
+This is implemented using the `GroupCreateCommand`, `GroupCreateCommandParser` and
+`UniqueGroupList` classes.
+
+The `GroupCreateCommand` receives a `Group` to be added into `UniqueGroupList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group create command:
+
+<img src="images/GroupCreateCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupCreateCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group create `COMMAND_WORD`, the `AddressBookParser` creates a `GroupCreateCommandParser`
+to parse the user input.
+3. If `GroupCreateCommandParser` parse the command successfully, it creates a `GroupCreateCommand` and initialise it
+with a `Group`.
+4. The `GroupCreateCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupCreateCommand` instance which adds the `Group` into the
+   `UniqueGroupList` (If group does not exist).
+6. Execution of `GroupCreateCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Creating multiple groups**
+* **Alternative 1:** Create multiple `Group` in one user command.
+    * Pros:
+      * Users can create multiple groups at once instead of creating each group one at a time.
+    * Cons:
+      * More bug-prone due to duplicate groups.
+
+* **[Current implementation] Alternative 2:** Only allow one group to be added in one user command.
+    * Note: If user input more than one group, only the last group will be added.
+    * Pros:
+      * Easy to implement.
+      * Less bug-prone as only one group has to be checked for validity.
+    * Cons:
+      * Users have to key in the `group_create` command multiple times if they want to create multiple groups.
+
+* **Justification**
+    * As the other parameters such as phone and number only take the last occurrence of an input, it is best to
+      standardise the same for groups as well.
+    * Reduces the length of command input for users as they are prone to input duplicate groups in one command.
+
+### \[Developed\] Group delete
+
+The group delete feature allows users to delete a group and remove persons from that group.
+Only one group can be deleted at a time.
+
+This is implemented using the `GroupDeleteCommand`, `GroupDeleteCommandParser` and
+`UniqueGroupList` classes.
+
+The `GroupDeleteCommand` receives an `Index` of a `Group` to be deleted from the `UniqueGroupList`.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group delete command:
+
+<img src="images/GroupDeleteCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupDeleteCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group delete `COMMAND_WORD`, the `AddressBookParser` creates a `GroupDeleteCommandParser`
+to parse the user input.
+3. If `GroupDeleteCommandParser` parse the command successfully, it creates a `GroupDeleteCommand` and initialise it
+with an `Index`.
+4. The `GroupDeleteCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupDeleteCommand` instance which deletes the `Group` from the
+   `UniqueGroupList` (If the group exist).
+6. Execution of `GroupDeleteCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Deleting multiple groups**
+* **Alternative 1:** Delete multiple `Group` in one user command.
+    * Pros:
+      * Users can delete multiple groups at once instead of deleting each group one at a time.
+    * Cons:
+      * More bug-prone due to multiple index given by user
+      * Once a group is deleted, the index will shift, this will cause errors.
+
+* **[Current implementation] Alternative 2:** Only allow one group to be deleted in one user command.
+    * Pros:
+      * Easy to implement.
+      * Less bug-prone as only one index has to be checked for validity
+    * Cons:
+      * Users have to key in the `group_delete` command multiple times if they want to create multiple groups.
+
+* **Justification**
+    * When a group is deleted, the index of the groups will shift. Continuing to delete the remaining groups
+  based on index would result in the wrong group deleted.
+    * Handling the offset of the index due to a group deleted is challenging as users may not key in the index in
+  numerical order.
+    
+### \[Developed\] Find group(s)
+
+The find group feature allows users to find group(s) and persons who are in those group(s).
+
+This is implemented using the `GroupFindCommand`, `GroupFindCommandParser`, `UniqueGroupList` and `UniquePersonList`
+classes.
+
+The `GroupFindCommand` receives a group and member predicate,
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes a group find command:
+
+<img src="images/GroupFindCommandActivityDiagram.png" width="300" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/GroupFindCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the group find `COMMAND_WORD`, the `AddressBookParser` creates a `GroupFindCommandParser`
+   to parse the user input.
+3. If `GroupFindCommandParser` parse the command successfully, it creates`GroupFindCommand` and initialise it with
+`GroupNameContainsKeywordsPredicate` and `MemberOfGroupPredicate`.
+4. The `GroupFindCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `GroupFindCommand` instance which filters the `UniqueGroupList` and
+`UniquePersonList` based on the group and member predicate
+6. Execution of `GroupFindCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+### \[Developed\] Editing a person
+
+Users can edit a person's `Name`, `Phone`, `Email`, `Address`, `Group` and `Tag`.
+
+**Note:** Editing a person's event uses another command. Explanation is given at the end.
+
+This is implemented using the `EditCommand`, `EditPersonDescriptor` and `EditCommandParser` classes.
+
+The `EditCommand` receives an index of the person to be edited and an editable `EditPersonDescriptor` class which
+consists of the updated fields of the person.
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="200" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/EditCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. If the user command has the edit `COMMAND_WORD`, the `AddressBookParser`  creates an `EditCommandParser`
+to parse the user input.
+3. If `EditCommandParser` parse the command successfully, it creates a `EditCommand` and initialise it with
+`EditPersonDescriptor`, `Index` and a boolean (shouldMerge).
+4. The `EditCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the `UniquePersonList`.
+If shouldMerge is true, it adds on groups and tags (if specified), otherwise it overwrites existing tags/groups.
+6. Execution of `EditCommand` results in a `CommandResult` created and returned back to the `LogicManager`.
+
+#### Design consideration
+
+**Aspect: Overwriting or merging**
+* **Alternative 1:** Only allows group and tag to be overwritten.
+  * Pros:
+    * Easy implementation and reduces editing errors.
+  * Cons:
+    * Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
+
+* **[Current implementation] Alternative 2:** Allows group and tag to be added on instead of overwritten.
+   * Pros:
+     * Users can just add on one or more group/tag instead of retyping existing group/tag.
+   * Cons:
+     * More bug-prone due to duplicate group/tag and adding to non-existing group.
+
+* **Justification**
+  * Users had to retype existing groups/tags plus additional groups/tags they want to add on to a person.
+  * Reduces the length of command input for users by allowing them to add/merge without overwriting current groups/tags.
+
+**Aspect: User command for GroupCommand**
+* **Alternative 1:** Edit the group attribute of a person with a separate command.
+   * Pros:
+     * Reduce coupling.
+   * Cons:
+     * More commands for user to work with.
+
+* **[Current implementation] Alternative 2:** Edit the group attribute of a person using the existing edit command.
+   * Pros:
+     * Easy to implement
+     * lesser commands for user to remember.
+   * Cons:
+     * Easy for user to make an erroneous command.
+
+* **Justification**
+  * As editing a group requires the same index as the existing `EditCommand`, it would be better to reuse the same
+    command.
+  * Lesser commands for users to remember.
+
+#### Differences between editing a person and a person's event(s)
+* As editing for events require two index, `[INDEX_OF_PERSON]` and `[INDEX_OF_EVENT]`, it is different from the
+existing command.
+* This significantly increases the chances of users inputting a wrong command
+* Hence, editing events using a separate command from the existing `EditCommand` is more convenient and appropriate.
+
+### \[Developed\] Adding Isolated Event
+
+Users can add an isolated/non-recurring event. This is implemented using `AddIsolatedEventCommand`,
+`AddIsolatedEventCommandParser` and `IsolatedEventList` classes.
+
+The `AddIsolatedEventCommand` receives an isolated event to be added into the person's `IsolatedEventList`.
+
+#### Activity diagram
+The following activity diagram summarises what happens when a user executes an `event_create` command:
+
+<img src="images/AddIsolatedEventCommandActivityDiagram.png" width="300" />
+
+### Sequence diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/AddIsolatedEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+`event_create 1 ie/biking f/26/03/2023 14:00 t/26/03/2023 15:00`, it calls the `AddressBookParser` class to parse the
+user command.
+2. Since the user command has the `event_create` command word, it is a valid command. The `AddressBookParser` creates an
+   `AddIsolatedEventCommandParser` to parse the user input.
+3. The `AddIsolatedEventCommandParser` will checks if the command is valid through the `parse()` method.
+If it parses the command successfully, `AddIsolatedEventCommand` is created.
+4. The `AddIsolatedEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `AddIsolatedEventCommand` instance which add the isolated event to the requested
+person's IsolatedEventList.
+6. Execution of `AddIsolatedEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we allow isolated event's duration to span over multiple days**
+
+* **Alternative 1:** Only allows isolated event to start and end on the same day.
+    * Pros:
+        * Easy implementation and will be easier to implement find free time slots.
+    * Cons:
+        * There will be instances when users will have event that span over multiple days such as travelling. Hence,
+      it will reduce the user-friendliness if we restrict isolated events to be only one day long.
+
+* **[Current implementation] Alternative 2:** Allows isolated events' duration to span over two or more days.
+    * Pros:
+        * Users can just add one isolated event instead of adding the isolated event multiple times.
+    * Cons:
+        * Harder to implement finding free time slots.
+
+### \[Developed\] Editing Isolated Event
+This feature allows the user to edit a specific isolated event in the person's isolated event list.
+
+### Activity Diagram
+The following activity diagram summarises what happens when a user executes an `ie_edit` command:
+
+<img src="images/EditIsolatedEventCommandActivityDiagram.png" width="300" />
+
+### Sequence diagram
+The following sequence diagram illustrates the interaction within the Logic component for the execute
+API call.
+
+<img src="images/EditIsolatedEventCommandSequenceDiagram.png" width="1000" />
+
+Given below is an example usage scenario and how the command mechanism behaves at each step.
+1. When `LogicManager` is called upon to execute the user's command
+   `ie_edit 1 1 ie/biking`, it calls the `AddressBookParser` class to parse the
+   user command.
+2. Since the user command has the `ie_edit` command word, it is a valid command. The `AddressBookParser` creates an
+   `EditIsolatedEventCommandParser` to parse the user input.
+3. The `EditIsolatedEventCommandParser` will checks if the command is valid through the `parse()` method.
+   If it parses the command successfully, `EditIsolatedEventCommand` is created.
+4. The `EditIsolatedEventCommand` instance is then returned to the `LogicManager`.
+5. The `LogicManager` then executes the `EditIsolatedEventCommand` instance which edit the isolated event to the
+respective field requested.
+6. Execution of `EditIsolatedEventCommand` results in a CommandResult created and returned to the LogicManager.
+
+#### Design consideration
+
+**Aspect: Concern while adding a new command**
+- Workflow must be consistent with other commands.
+
+**Aspect: Should we edit isolated event using the existing EditCommand**
+
+* **Alternative 1:** Use existing EditCommand for users' to edit isolated event.
+    * Pros:
+        * Fewer things to implement and reduce the instances of duplicating code.
+    * Cons:
+        * More prone to bugs.
+
+* **[Current implementation] Alternative 2:** Create a separate command to edit isolated event.
+    * Pros:
+        * Easier to debug.
+    * Cons:
+        * Some part of the code is the same as EditCommand.
 
 ### \[Proposed\] Undo/redo feature
+
 
 #### Proposed Implementation
 
@@ -268,10 +584,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * wants to organise their contacts into groups
 * needs a method which is able to compile every group member's FTS
 
-**Value proposition**: 
+**Value proposition**:
 
-* Helps users to keep track of personal and friends timetable 
-* Students find it hard to find FTS within their group of friends in NUS as they have to compare their 
+* Helps users to keep track of personal and friends timetable
+* Students find it hard to find FTS within their group of friends in NUS as they have to compare their
 timetables one by one. WGT then helps students to easily find FTS within their friend groups
 * Students can keep track of group meetings across all modules
 
@@ -290,9 +606,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
 | `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
 | `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
-| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better | 
-| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
-| `* *`    | user | be able to categorize my contact lists                         | easily find someone | 
+| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better |
+| `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting |
+| `* *`    | user | be able to categorize my contact lists                         | easily find someone |
 | `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
 | `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
 
@@ -337,7 +653,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-    
+
     Use case ends.
 
 * 3a. The given index is invalid
@@ -413,10 +729,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: Command Line Interface 
+* **CLI**: Command Line Interface
 * **FTS**: Free Time Slot
 * **GUI**: Graphical User Interface
-* **MSS**: Main Success Scenario 
+* **MSS**: Main Success Scenario
 * **API**: Application Programming Interface
 --------------------------------------------------------------------------------------------------------------------
 

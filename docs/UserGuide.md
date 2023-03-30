@@ -104,8 +104,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]窶
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
-* To add on to existing groups/tags without overrwriting it, include the prefix `m/` (merge).
-* When using prefix m/, groups/tags added cannot be empty.
+* To add on to existing groups/tags without overwriting it, include the prefix `m/` (merge).
+* When using prefix `m/`, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
 * You can remove all the person窶冱 tags/groups by typing `t/` and `g/` respectively without
     specifying any tags/groups after it.
@@ -199,69 +199,96 @@ Examples:
 * `group_find CS2103` returns persons in the group `CS2103`
 * `group_find CS2103 CS2101` returns persons in the group `CS2103` and `CS2101`
 
-### Creating an event: `event_create`
-Creates a weekly recurring event or a non-recurring event
+### Creating an event:
+Creates either an isolated or weekly recurring event.
 
-#### 1) Non-recurring Event
+#### 1) Isolated event: `event_create`
 Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
-* Creates an event with the specified name `EVENT_NAME`
+* `INDEX` refers to the index of the person whose isolated event list will be added with the given isolated event
+* Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which stands for Isolated event
+* The flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
 * `EVENT_NAME`, `START_DATE` and `END_DATE` cannot be left empty
 
-#### 2) Weekly Recurring Event
-Format: `event_create_recur re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+Examples:
+* `event_create 1 ie/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00`
 
-* Creates a recurring event with the specified name `EVENT_NAME`
+#### 2) Weekly Recurring Event `event_create_recur`
+Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+
+* `INDEX` refers to the index of the person whose recurring event list will be added with the given recurring event
+* Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which stands for Recurring event
+* The flag `d` represents the day of the week
+* The remaining flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
 * The format of `START_TIME` and `END_TIME` would be in `HH:mm`
 * `EVENT_NAME`, `DAY_OF_WEEK`, `START_DATE` and `END_DATE` cannot be left empty
 
 Examples:
-* 'event create e/CS2101 Presentation f/28/02/2023 16:00 t/28/02/2023 18:00'
-* 'event create recurring e/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00'
+* `event_create_recur 1 re/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00`
 
 ### Deleting an event:
-### 1) Delete an isolated event: `ie_delete`
+Delete either an isolated or a weekly recurring event
+#### 1) Delete an isolated event: `ie_delete`
 
 Deletes an existing isolated event from person's isolated event list in the address book.
 
-Format: `ie_delete [INDEX OF PERSON] [INDEX OF EVENT]}`
+Format: `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
 
-* Deletes an event with the specified event name `EVENT_NAME`
-* The event name cannot be empty and must be an existing event
+* Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
+* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
 
 Examples:
-* ie_delete 1 1
+* `ie_delete 1 1`
 
-### Editing an event: 
-### 1) Edit an isolated event: `ie_edit`
+#### 2) Delete recurring event: `re_delete`
+Deletes a recurring event from a person's recurring event list in the address book.
+
+Format: `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
+
+* Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
+* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
+
+Examples:
+* `re_delete 1 1`
+
+### Editing an event:
+Edit the attributes of either an isolated event or a weekly recurring event
+#### 1) Edit an isolated event: `ie_edit`
 
 Edit an existing isolated event from person's isolated event list in the address book.
 
-Format: `ie_delete [INDEX OF PERSON] [INDEX OF EVENT] ie/NAME f/START_DATE t/END_DATE`
+Format: `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`
 
-* Deletes an event with the specified event name `EVENT_NAME`
-* The event name cannot be empty and must be an existing event
+* Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
+* The fields after `ie_edit` cannot be empty and must consist of at least one attribute to be edited on
+* Any attributes being edited on must be valid
+* `NAME` must only be in alphabetic or numeric terms
+* `START_DATE` and `END_DATE` must be in the format of `dd/MM/yyyy HH:mm`
 
 Examples:
-* ie_edit 1 1 ie/Biking
-* ie_edit 1 1 f/09/03/2023 15:00
+* `ie_edit 1 1 ie/Biking`
+* `ie_edit 1 1 f/09/03/2023 15:00`
+
+#### 2) Edit a recurring event: `re_edit`
+Edit an existing recurring event from person's recurring event list in the address book.
+
+Format: `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
+
+* Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
+* The fields after `re_edit` cannot be empty and must consist of at least one attribute to be edited on
+* Any attributes being edited on must be valid
+* `NAME` must only be in alphabetic or numeric terms
+* `DAY_OF_WEEK` must be either `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday`
+* `START_TIME` and `END_TIME` must be in the format of `HH:mm`
+
+Examples:
+* `re_edit 1 1 re/Swimming`
+* `re_edit 1 1 d/Tuesday`
+* `re_edit 1 1 t/14:00`
 
 ### List all events: `event list`  [coming soon]
-
-
-### Find an event: `event find`
-
-Find a specific event and list the details of the event.
-
-Format: `event find e/EVENT_NAME`
-* Finds an event with the specified event name `EVENT_NAME`
-* The event name cannot be empty and must be an existing event.
-
-Examples:
-* event find e/CS2103T Weekly Meeting
-* event find e/CS2101 Presentation
 
 ### Clearing all entries : `clear`
 
@@ -302,24 +329,23 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                    | Format, Examples                                                                                                                                                      |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]窶ｦ窶義 <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                 | `clear`                                                                                                                                                               |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]窶ｦ窶義<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**                  | `list`                                                                                                                                                                |
-| **Help**                  | `help`                                                                                                                                                                |
-| **Group create**          | `group create g/GROUP_NAME`                                                                                                                                           |
-| **Group delete**          | `group delete g/GROUP_NAME`                                                                                                                                           |
-| **Group add**             | `group add n/NAME g/GROUP_NAME`                                                                                                                                       |
-| **Group remove**          | `group remove n/NAME g/GROUP_NAME`                                                                                                                                    |
-| **Group list**            | `group list`                                                                                                                                                          |
-| **Group find**            | `group find g/GROUP_NAME`                                                                                                                                             |
-| **Event create**          | `event_create e/EVENT_NAME f/START_DATE t/END DATE`<br> e.g.,`event create recurring e/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                              |
-| **Isolated Event create** | `event_create ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
-| **Isolated event delete** | `ie_delete [PERSON_INDEX] [EVENT_INDEX]`                                                                                                                              |
-| **Isolated Event update** | `ie_edit [PERSON_INDEX] [EVENT_INDEX] [ie/NAME] [f/START_DATE] [t/END_DATE]`                                                                                          |
-| **Event list**            | [coming soon]                                                                                                                                                         |
-| **Event find**            | `event find e/EVENT_NAME`                                                                                                                                             |
+| Action                     | Format, Examples                                                                                                                                                            |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]窶ｦ窶義 <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`       |
+| **Clear**                  | `clear`                                                                                                                                                                     |
+| **Delete**                 | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
+| **Edit**                   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]窶ｦ窶義<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com t/CS2103T g/`<br> e.g., `edit 3 m/ t/CS2103T` |
+| **Find**                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                  |
+| **List**                   | `list`                                                                                                                                                                      |
+| **Help**                   | `help`                                                                                                                                                                      |
+| **Group create**           | `group_create g/GROUP_NAME`                                                                                                                                                 |
+| **Group delete**           | `group_delete GROUP_INDEX`                                                                                                                                                  |
+| **Group list**             | `group_list`                                                                                                                                                                |
+| **Group find**             | `group_find KEYWORD [MORE_KEYWORDS]` <br> e.g., `group_find CS2103 CS2101`                                                                                                  |
+| **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
+| **Isolated Event delete**  | `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
+| **Isolated Event update**  | `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`                                                                                                |
+| **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
+| **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
+| **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
+| **Event list**             | [coming soon]                                                                                                                                                               |

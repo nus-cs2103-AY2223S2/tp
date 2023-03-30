@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
@@ -55,6 +56,31 @@ public class IsolatedEventList {
         return null;
     }
 
+    /**
+     * Check to see if the edited event time period clashes with the existing isolated events in the list.
+     * @param event edited isolated event
+     * @param index index of edited event
+     * @throws EventConflictException to be thrown when it overlaps
+     */
+    public void checkOverlapping(IsolatedEvent event, int index) throws EventConflictException {
+        Iterator<IsolatedEvent> it = isolatedEvents.iterator();
+        LocalDateTime start = event.getStartDate();
+        LocalDateTime end = event.getEndDate();
+        IsolatedEvent currEvent;
+        int counter = 0;
+
+        while (it.hasNext()) {
+            currEvent = it.next();
+            if (counter == index) {
+                continue;
+            }
+            if (start.isBefore(currEvent.getEndDate()) && currEvent.getStartDate().isBefore(end)) {
+                throw new EventConflictException("Isolated Event List:\n" + index + ". " + currEvent);
+            }
+            counter++;
+        }
+    }
+
     public boolean contain(IsolatedEvent event) {
         return this.isolatedEvents.contains(event);
     }
@@ -98,6 +124,49 @@ public class IsolatedEventList {
         isolatedEvents.remove(originalEvent);
         isolatedEvents.add(editedEvent);
     }
+
+    /**
+     * This function cross-check with the recurring event list to check for any conflicts
+     * @param isolatedEvent is the event to be added
+     * @param recurringEventList is the event list to be checked with
+     * @throws EventConflictException if there is a conflicted event
+     */
+    public static void listConflictedEventWithRecurring(
+            IsolatedEvent isolatedEvent, RecurringEventList recurringEventList) throws EventConflictException {
+
+        LocalDateTime startPeriod = isolatedEvent.getStartDate();
+        LocalDateTime endPeriod = isolatedEvent.getEndDate();
+
+        int index = 1;
+        for (RecurringEvent re : recurringEventList.getRecurringEvents()) {
+            long count = re.numberOfDaysBetween(startPeriod, endPeriod, re.getDayOfWeek());
+
+            if (count == -1) {
+                continue;
+            }
+
+            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+            LocalDateTime dummyEventStartDate = LocalDateTime.of(recurringEventDate.toLocalDate(), re.getStartTime());
+            LocalDateTime dummyEventEndDate = LocalDateTime.of(recurringEventDate.toLocalDate(), re.getEndTime());
+
+            boolean isEventBefore = false;
+            boolean isEventAfter = false;
+
+            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
+                isEventBefore = true;
+            }
+
+            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
+                isEventAfter = true;
+            }
+
+            if (!(isEventBefore || isEventAfter)) {
+                throw new EventConflictException("Recurring Event List:\n" + index + " " + re);
+            }
+            index++;
+        }
+    }
+
     public void addAll(Set<IsolatedEvent> isolatedEvents) {
         this.isolatedEvents.addAll(isolatedEvents);
     }

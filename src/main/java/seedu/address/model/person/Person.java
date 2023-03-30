@@ -187,6 +187,23 @@ public class Person {
             builder.append("; Groups: ");
             groups.forEach(builder::append);
         }
+
+        Set<IsolatedEvent> isolatedEvents = getIsolatedEventList().getSet();
+        if (!isolatedEvents.isEmpty()) {
+            builder.append("; Isolated events: ");
+            for (IsolatedEvent isoEvent : isolatedEvents) {
+                builder.append("[" + isoEvent + "]");
+            }
+        }
+
+        Set<RecurringEvent> recurringEvents = getRecurringEventList().getSet();
+        if (!recurringEvents.isEmpty()) {
+            builder.append("; Recurring events: ");
+            for (RecurringEvent recurEvent : recurringEvents) {
+                builder.append("[" + recurEvent + "]");
+            }
+        }
+
         return builder.toString();
     }
 }

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
  */
@@ -30,7 +32,6 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
      */
     public RecurringEvent(String eventName, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
         super(eventName);
-
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -149,9 +150,48 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         }
     }
 
+    /**
+     * Checks if the start time and the end time of the event is valid for recurring event.
+     * @throws CommandException if start time is after the end time.
+     */
+    public void checkPeriod() throws CommandException {
+        if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
+            throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
+        }
+    }
+
     @Override
     public String toString() {
         return getEventName() + " on " + this.dayOfWeek.name() + " from " + startTime.toString() + " to "
                 + endTime.toString();
+    }
+
+
+    /**
+     * To check if the day of the week falls between 2 dates
+     * @param startPeriod represents the starting date
+     * @param endPeriod represents the ending date
+     * @param dayOfWeek is the day of the week
+     * @return count which indicates how many the number of in which the day of week falls after the start period
+     *      and -1 if it does not fall between the 2 dates
+     */
+    public long numberOfDaysBetween(LocalDateTime startPeriod, LocalDateTime endPeriod, DayOfWeek dayOfWeek) {
+        long daysBetween = startPeriod.until(endPeriod, ChronoUnit.DAYS);
+        DayOfWeek startPeriodDay = startPeriod.getDayOfWeek();
+
+        DayOfWeek eventDay = startPeriodDay;
+        long count = 0;
+
+        for (int i = 0; i < daysBetween; i++) {
+            if (dayOfWeek.equals(eventDay)) {
+                break;
+            }
+            eventDay = eventDay.plus(1);
+            count++;
+        }
+        if (eventDay.equals(dayOfWeek)) {
+            return count;
+        }
+        return -1;
     }
 }

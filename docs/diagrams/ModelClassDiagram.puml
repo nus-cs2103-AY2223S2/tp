@@ -19,6 +19,8 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Group
+Class UniqueGroupList
 
 }
 
@@ -35,12 +37,15 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueGroupList
 UniquePersonList --> "~* all" Person
+UniqueGroupList --> "*" Group
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Group
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
