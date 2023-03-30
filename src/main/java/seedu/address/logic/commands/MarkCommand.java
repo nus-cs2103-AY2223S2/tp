@@ -55,7 +55,7 @@ public class MarkCommand extends Command {
         }
 
         Task markedTask = createMarkedTask(taskToMark);
-        officeConnectModel.setTaskModelManagerItem(taskToMark, markedTask);
+        officeConnectModel.setTaskModelManagerItem(taskToMark, markedTask, model);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }
