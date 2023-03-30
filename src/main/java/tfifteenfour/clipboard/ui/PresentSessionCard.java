@@ -1,5 +1,7 @@
 package tfifteenfour.clipboard.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -8,10 +10,11 @@ import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 
-import java.util.logging.Logger;
-
+/**
+ * A UI component that displays the attendance information of a {@code Student}.
+ */
 public class PresentSessionCard extends UiPart<Region> {
-    private static final String FXML = "AttendanceListCard.fxml";
+    private static final String FXML = "PresentSessionCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -30,15 +33,15 @@ public class PresentSessionCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label studentId;
 
+    /**
+     * Creates a PresetSessionCard with the given SessionWithAttendance and index to display.
+     */
     public PresentSessionCard(SessionWithAttendance session, int displayedIndex) {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
         name.setText(session.getSessionName());
-        studentId.setText("");
     }
 
     @Override

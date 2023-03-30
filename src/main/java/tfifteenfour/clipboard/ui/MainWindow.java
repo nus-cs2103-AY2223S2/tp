@@ -290,8 +290,10 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
-        ObservableList<SessionWithAttendance> sessionList = logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
-        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot());
+        ObservableList<SessionWithAttendance> sessionList =
+                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren()
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 0).getRoot());
     }
 
     /**
@@ -500,7 +502,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleAttendanceCommand() {
-        if(logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
             showStudentAttendance();
         }
     }
@@ -510,8 +512,10 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
-        ObservableList<SessionWithAttendance> sessionList = logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
-        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot());
+        ObservableList<SessionWithAttendance> sessionList =
+                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren()
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 1).getRoot());
     }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {

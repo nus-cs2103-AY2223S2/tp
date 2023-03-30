@@ -7,14 +7,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 
-
+/**
+ * A UI component for a student's attendance.
+ */
 public class StudentAttendanceListPanel extends UiPart<Region> {
     private static final String FXML = "StudentAttendanceListPanel.fxml";
 
     @FXML
     private ListView<SessionWithAttendance> listView;
 
-    public StudentAttendanceListPanel (ObservableList<SessionWithAttendance> attendanceList) {
+    /**
+     * Creates a {@code StudentAttendancePanel} with the given {@code ObservableList}.
+     */
+    public StudentAttendanceListPanel(ObservableList<SessionWithAttendance> attendanceList) {
         super(FXML);
         listView.setItems(attendanceList);
         listView.setCellFactory(listView -> new SessionAttendanceListViewCell());
