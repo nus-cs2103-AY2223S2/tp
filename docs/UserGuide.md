@@ -415,14 +415,29 @@ appointment list
 
 #### `find` - Find all matching appointments
 
+List all the appointments that matches the predicates provided.
+
+* <code><var>INDEX</var></code> : List appointments of a specific patient
+* <code><var>STARTING_TIME</var></code> : List appointments after the starting time
+* <code><var>ENDING_TIME</var></code> : List appointments before the ending time
+* <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
+* <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
+
 ```text
-appointment find --p <integer> --s <date> --e <date> --v <string>`
+appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] [--v ...VAX_GROUP...]`
+appointment find [...KEYWORDS...]
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+* <code><var>KEYWORDS</var></code> : `<String>`
 
 ##### Example
 
-* `appointment find Dose 1`
 * `appointment find --p 1`
+* `appointment find Dose 1`
 
 <br></br>
 
