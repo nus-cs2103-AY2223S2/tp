@@ -358,6 +358,8 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 #### `delete` - Delete an appointment
 
+Removes the specified appointment from the appointment manager.
+
 ```text
 appointment delete INDEX
 ```
