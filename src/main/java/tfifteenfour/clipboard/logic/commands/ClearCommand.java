@@ -76,7 +76,14 @@ public class ClearCommand extends Command {
                 students.remove(0);
             }
             break;
+        case TASK_STUDENT_PAGE:
+            throw new CommandException("Can't clear current page!\n"
+                    + "Unselect a task by 'back' to clear tasks.\n");
+        case SESSION_STUDENT_PAGE:
+            throw new CommandException("Can't clear current page!\n"
+                    + "Unselect a session by 'back' to clear sessions.\n");
         default:
+            // Should be unreachable
             throw new CommandException("Can't clear current page!\n"
                     + "Navigate to the following pages to use clear command:\n"
                     + "Course page, Group page, Session page, Task page, Student page");
