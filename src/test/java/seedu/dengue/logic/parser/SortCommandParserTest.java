@@ -24,11 +24,6 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsNeedsLowercase_returnsSortCommand() {
-        assertParseSuccess(parser, "N/", new SortCommand(new PersonNameComparator(), "NAME"));
-    }
-
-    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "p/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }

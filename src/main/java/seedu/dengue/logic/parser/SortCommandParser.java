@@ -23,7 +23,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimmedArgs = args.trim().toLowerCase();
+        String trimmedArgs = args.trim();
 
         if (trimmedArgs.equals(PREFIX_NAME.getPrefix())) {
             return new SortCommand(new PersonNameComparator(), "NAME");

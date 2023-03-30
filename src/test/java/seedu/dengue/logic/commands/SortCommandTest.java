@@ -31,7 +31,7 @@ import seedu.dengue.model.range.StartDate;
 import seedu.dengue.model.variant.Variant;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code SortCommand}.
  */
 public class SortCommandTest {
     private Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
@@ -120,7 +120,6 @@ public class SortCommandTest {
         SortCommand command = new SortCommand(new PersonNameComparator(), "NAME");
         String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "NAME");
 
-        // filtering
         Optional<SubPostal> emptySubPostal = Optional.empty();
         Optional<Name> testName = Optional.of(new Name("Kurz"));
         Optional<Age> emptyAge = Optional.empty();
