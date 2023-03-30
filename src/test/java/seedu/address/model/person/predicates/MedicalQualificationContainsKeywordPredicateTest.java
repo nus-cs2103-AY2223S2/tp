@@ -2,6 +2,7 @@ package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -63,5 +64,12 @@ class MedicalQualificationContainsKeywordPredicateTest {
 
         // anagram
         assertFalse(predicate.test(new VolunteerBuilder().withMedicalTags("pcr basic").build()));
+    }
+
+    @Test
+    public void test_emptyMedicalQualification_throwsIllegalArgumentException() {
+        String invalidMedicalQualification = "";
+        assertThrows(IllegalArgumentException.class, () ->
+                new MedicalQualificationContainsKeywordPredicate<>(invalidMedicalQualification));
     }
 }

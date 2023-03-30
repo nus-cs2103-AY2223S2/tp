@@ -1,6 +1,9 @@
 package seedu.address.model.person.predicates;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_FIELD_CANNOT_BE_EMPTY;
+import static seedu.address.commons.util.AppUtil.argNotEmpty;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -20,6 +23,7 @@ public class AddressContainsKeywordPredicate<T extends Person> implements Predic
      */
     public AddressContainsKeywordPredicate(String keyword) {
         requireNonNull(keyword);
+        checkArgument(argNotEmpty(keyword), String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Address"));
         this.keyword = keyword.toLowerCase();
     }
 

@@ -11,32 +11,32 @@ import java.util.function.Predicate;
 import seedu.address.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Nric} contains the given keyword.
+ * Tests that any {@code Person}'s {@code Tag} contains the given keyword.
  */
-public class NricContainsKeywordPredicate<T extends Person> implements Predicate<T> {
+public class TagContainsKeywordPredicate<T extends Person> implements Predicate<T> {
     private final String keyword;
 
     /**
-     * Constructs an {@code NricContainsKeywordPredicate} with the given keyword.
+     * Constructs a {@code TagContainsKeywordPredicate} with the given keyword.
      *
      * @param keyword The matching string.
      */
-    public NricContainsKeywordPredicate(String keyword) {
+    public TagContainsKeywordPredicate(String keyword) {
         requireNonNull(keyword);
-        checkArgument(argNotEmpty(keyword), String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "NRIC"));
+        checkArgument(argNotEmpty(keyword), String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Tag"));
         this.keyword = keyword.toLowerCase();
     }
 
     @Override
     public boolean test(T object) {
-        return object.getNric().value.toLowerCase().contains(keyword);
+        return object.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase().contains(keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NricContainsKeywordPredicate // instanceof handles nulls
-                && keyword.equals(((NricContainsKeywordPredicate<?>) other).keyword)); // state check
+                || (other instanceof TagContainsKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((TagContainsKeywordPredicate<?>) other).keyword)); // state check
     }
 
     @Override

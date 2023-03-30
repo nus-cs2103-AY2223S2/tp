@@ -36,8 +36,7 @@ import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
 import seedu.address.model.person.predicates.RegionIsEqualPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.SkillLevelIsEqualPredicate;
-import seedu.address.model.person.predicates.TagIsEqualPredicate;
-import seedu.address.model.tag.MedicalQualificationTag;
+import seedu.address.model.person.predicates.TagContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
@@ -58,16 +57,17 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_RISK, PREFIX_REGION, PREFIX_MEDICAL_TAG,
                         PREFIX_AVAILABILITY, PREFIX_TAG);
-
-        List<Predicate<Person>> sharedfilterList = parseSharedPredicates(argMultimap);
-        List<Predicate<Elderly>> elderlyOnlyfilterList = parseElderlyOnlyPredicates(argMultimap);
-        List<Predicate<Volunteer>> volunteerOnlyfilterList = parseVolunteerOnlyPredicates(argMultimap);
-
-        if ((sharedfilterList.size() + elderlyOnlyfilterList.size() + volunteerOnlyfilterList.size()) == 0) {
-            throw new ParseException(MESSAGE_NO_FIELD_PROVIDED + "\n" + MESSAGE_USAGE);
+        try {
+            List<Predicate<Person>> sharedfilterList = parseSharedPredicates(argMultimap);
+            List<Predicate<Elderly>> elderlyOnlyfilterList = parseElderlyOnlyPredicates(argMultimap);
+            List<Predicate<Volunteer>> volunteerOnlyfilterList = parseVolunteerOnlyPredicates(argMultimap);
+            if ((sharedfilterList.size() + elderlyOnlyfilterList.size() + volunteerOnlyfilterList.size()) == 0) {
+                throw new ParseException(MESSAGE_NO_FIELD_PROVIDED + "\n" + MESSAGE_USAGE);
+            }
+            return new FindCommand(sharedfilterList, elderlyOnlyfilterList, volunteerOnlyfilterList);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-
-        return new FindCommand(sharedfilterList, elderlyOnlyfilterList, volunteerOnlyfilterList);
     }
 
     /**
@@ -83,19 +83,19 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             sharedFilterList.add(new NameContainsKeywordPredicate<>(
-                    argMultimap.getValue(PREFIX_NAME).get()));
+                    argMultimap.getValue(PREFIX_NAME).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             sharedFilterList.add(new AddressContainsKeywordPredicate<>(
-                    argMultimap.getValue(PREFIX_ADDRESS).get()));
+                    argMultimap.getValue(PREFIX_ADDRESS).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
             sharedFilterList.add(new NricContainsKeywordPredicate<>(
-                    argMultimap.getValue(PREFIX_NRIC).get()));
+                    argMultimap.getValue(PREFIX_NRIC).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             sharedFilterList.add(new PhoneContainsDigitsPredicate<>(
-                    argMultimap.getValue(PREFIX_PHONE).get()));
+                    argMultimap.getValue(PREFIX_PHONE).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_BIRTH_DATE).isPresent()) {
             sharedFilterList.add(new BirthDateEqualPredicate<>(
@@ -103,15 +103,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             sharedFilterList.add(new EmailContainsKeywordPredicate<>(
-                    argMultimap.getValue(PREFIX_EMAIL).get()));
+                    argMultimap.getValue(PREFIX_EMAIL).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
             sharedFilterList.add(new RegionIsEqualPredicate<>(
                     ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()).region));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            sharedFilterList.add(new TagIsEqualPredicate<>(
-                    ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName));
+            sharedFilterList.add(new TagContainsKeywordPredicate<>(
+                    argMultimap.getValue(PREFIX_TAG).get().trim()));
         }
         if (argMultimap.getValue(PREFIX_AVAILABILITY).isPresent()) {
             AvailableDate dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_AVAILABILITY).get());
@@ -145,17 +145,16 @@ public class FindCommandParser implements Parser<FindCommand> {
      *
      * @param argMultimap Mapping of prefix to arguments.
      * @return List of volunteer only predicates.
-     * @throws ParseException If there is an error parsing any of the arguments.
      */
-    private List<Predicate<Volunteer>> parseVolunteerOnlyPredicates(ArgumentMultimap argMultimap)
-            throws ParseException {
+    private List<Predicate<Volunteer>> parseVolunteerOnlyPredicates(ArgumentMultimap argMultimap) {
         List<Predicate<Volunteer>> volunteerOnlyFilterList = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_MEDICAL_TAG).isPresent()) {
-            MedicalQualificationTag medicalTag =
-                    ParserUtil.parseMedicalTag(argMultimap.getValue(PREFIX_MEDICAL_TAG).get());
-            volunteerOnlyFilterList.add(new MedicalQualificationContainsKeywordPredicate<>(medicalTag.tagName));
-            volunteerOnlyFilterList.add(new SkillLevelIsEqualPredicate<>(medicalTag.getQualificationLevel()));
+            String[] values = argMultimap.getValue(PREFIX_MEDICAL_TAG).get().split(",", 2);
+            volunteerOnlyFilterList.add(new MedicalQualificationContainsKeywordPredicate<>(values[0].trim()));
+            if (values.length == 2) {
+                volunteerOnlyFilterList.add(new SkillLevelIsEqualPredicate<>(values[1].trim()));
+            }
         }
 
         return volunteerOnlyFilterList;

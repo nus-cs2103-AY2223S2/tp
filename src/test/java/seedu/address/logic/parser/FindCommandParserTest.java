@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_FIELD_CANNOT_BE_EMPTY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_ADDRESS;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_AVAILABLE_DATE;
@@ -28,10 +29,9 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
-import seedu.address.model.tag.MedicalQualificationTag;
-import seedu.address.model.tag.Tag;
 
 public class FindCommandParserTest {
     private final FindCommandParser parser = new FindCommandParser();
@@ -51,6 +51,7 @@ public class FindCommandParserTest {
         List<Predicate<Elderly>> elderlyPredicateList = Collections.singletonList(PREDICATE_HAS_RISKLEVEL);
         List<Predicate<Volunteer>> volunteerPredicateList =
                 Arrays.asList(PREDICATE_HAS_MEDICAL_QUALIFICATION, PREDICATE_HAS_SKILL_LEVEL);
+        List<Predicate<Volunteer>> onlyMedicalQualificationList = Arrays.asList(PREDICATE_HAS_MEDICAL_QUALIFICATION);
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
@@ -74,6 +75,11 @@ public class FindCommandParserTest {
         userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 ic/S9673908G p/94351253 "
                 + "bd/1990-01-01 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12 "
                 + "mt/cpr,basic";
+
+        // medical qualification without skill level
+        expectedFindCommand = new FindCommand(Collections.emptyList(),
+                Collections.emptyList(), onlyMedicalQualificationList);
+        userInput = " mt/cpr";
         assertParseSuccess(parser, userInput, expectedFindCommand);
     }
 
@@ -114,19 +120,44 @@ public class FindCommandParserTest {
         userInput = " r/extreme";
         assertParseFailure(parser, userInput, expectedCommandResult);
 
-        // invalid medical tag
-        expectedCommandResult = MedicalQualificationTag.MESSAGE_CONSTRAINTS;
-        userInput = " mt/oneValue";
+        // invalid birth date
+        expectedCommandResult = BirthDate.MESSAGE_CONSTRAINTS;
+        userInput = " bd/19 july 2000";
         assertParseFailure(parser, userInput, expectedCommandResult);
 
-        // invalid medical tag skill level
-        expectedCommandResult = MedicalQualificationTag.MESSAGE_CONSTRAINTS_SKILL;
-        userInput = " mt/cpr, cat";
+        // empty medical tag
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Medical tag name");
+        userInput = " mt/  , basic";
         assertParseFailure(parser, userInput, expectedCommandResult);
 
-        // invalid tag
-        expectedCommandResult = Tag.MESSAGE_CONSTRAINTS;
-        userInput = " t/$$$";
+        // empty tag
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Tag");
+        userInput = " t/    ";
+        assertParseFailure(parser, userInput, expectedCommandResult);
+
+        // empty name
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Name");
+        userInput = " n/";
+        assertParseFailure(parser, userInput, expectedCommandResult);
+
+        // empty nric
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "NRIC");
+        userInput = " ic/";
+        assertParseFailure(parser, userInput, expectedCommandResult);
+
+        // empty phone number
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Phone number");
+        userInput = " p/   ";
+        assertParseFailure(parser, userInput, expectedCommandResult);
+
+        // empty address
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Address");
+        userInput = " a/        ";
+        assertParseFailure(parser, userInput, expectedCommandResult);
+
+        // empty email
+        expectedCommandResult = String.format(MESSAGE_FIELD_CANNOT_BE_EMPTY, "Email");
+        userInput = " e/";
         assertParseFailure(parser, userInput, expectedCommandResult);
     }
 }
