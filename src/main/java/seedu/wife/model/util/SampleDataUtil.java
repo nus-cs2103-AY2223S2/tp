@@ -29,6 +29,7 @@ public class SampleDataUtil {
         return new Tag[] {
             new Tag("New"),
             new Tag("Used"),
+            new Tag("Dairy"),
         };
     }
 
