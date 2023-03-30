@@ -14,7 +14,6 @@ import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.ClearCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
 import seedu.address.logic.parser.DeleteVolunteerCommandParser;
@@ -47,8 +46,8 @@ public class CommandRecommendationEngineTest {
             actual = commandRecommendationEngine.recommendCommand("ex");
             assertEquals(expected, actual);
 
-            expected = "clear";
-            actual = commandRecommendationEngine.recommendCommand("clea");
+            expected = "auto_pair";
+            actual = commandRecommendationEngine.recommendCommand("auto_p");
             assertEquals(expected, actual);
         } catch (CommandException e) {
             fail();
@@ -82,11 +81,6 @@ public class CommandRecommendationEngineTest {
                 .COMMAND_INFO_MAP.get(AddPairCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(AddPairCommandParser.validate(argumentMultimap));
-
-        argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .COMMAND_INFO_MAP.get(ClearCommand.COMMAND_WORD).getCmdPrompts().keySet()
-                .toArray(new Prefix[]{}));
-        assertFalse(ClearCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
                 .COMMAND_INFO_MAP.get(ExitCommand.COMMAND_WORD).getCmdPrompts().keySet()
@@ -155,10 +149,10 @@ public class CommandRecommendationEngineTest {
             String autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
             assertEquals("add_volunteer", autocomplete);
 
-            userInput = "clea";
+            userInput = "auto_p";
             recommended = commandRecommendationEngine.recommendCommand(userInput);
             autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
-            assertEquals("clear", autocomplete);
+            assertEquals("auto_pair", autocomplete);
 
             userInput = "add_elderly";
             recommended = commandRecommendationEngine.recommendCommand(userInput);
