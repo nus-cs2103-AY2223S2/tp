@@ -281,7 +281,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void updateView(String commandText) {
         int index = Character.getNumericValue(commandText.charAt(5));
-        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index-1));
+        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
