@@ -32,8 +32,9 @@ public class Timeslot {
      * Constructs a {@code Timeslot}.
      *
      * @param timeslot A valid string containing both the start and end time of the timeslot.
+     * @throws IllegalArgumentException if the starting time is not before the ending time.
      */
-    public Timeslot(String timeslot) {
+    public Timeslot(String timeslot) throws IllegalArgumentException {
         requireNonNull(timeslot);
         checkArgument(isValidTimeslot(timeslot), MESSAGE_CONSTRAINTS);
         String[] dateTimes = splitIntoStartAndEnd(timeslot);
@@ -41,6 +42,19 @@ public class Timeslot {
         this.startingDateTime = LocalDateTime.parse(dateTimes[0], dateTimeFormatter);
         this.endingDateTime = LocalDateTime.parse(dateTimes[1], dateTimeFormatter);
         checkArgument(startingDateTime.isBefore(endingDateTime), MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Constructs a {@code Timeslot}.
+     *
+     * @param startingDateTime The start time.
+     * @param endingDateTime   The end time.
+     */
+    public Timeslot(LocalDateTime startingDateTime, LocalDateTime endingDateTime) {
+        this.startingDateTime = startingDateTime;
+        this.endingDateTime = endingDateTime;
+        this.timeslotString =
+            startingDateTime.format(dateTimeFormatter) + "," + endingDateTime.format(dateTimeFormatter);
     }
 
     /**
@@ -64,6 +78,17 @@ public class Timeslot {
             || (this.startingDateTime.isBefore(otherTimeslot.endingDateTime)
             && otherTimeslot.startingDateTime.isBefore(this.endingDateTime));
     }
+
+    ///**
+    // * Checks if the first datetime is before or equal to the second datetime.
+    // *
+    // * @param thisTime The first datetime that should be before or equal to the second datetime.
+    // * @param thatTime The second datetime.
+    // * @return if the first datetime is before or equal to the second datetime.
+    // */
+    //private boolean isBeforeOrEqual(LocalDateTime thisTime, LocalDateTime thatTime) {
+    //    return thisTime.isBefore(thatTime) || thisTime.isEqual(thatTime);
+    //}
 
     /**
      * Returns true if a given string is a valid timeslot.

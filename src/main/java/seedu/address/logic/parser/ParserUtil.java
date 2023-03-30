@@ -113,7 +113,14 @@ public class ParserUtil {
         if (!Timeslot.isValidTimeslot(trimmedTimeslot)) {
             throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
         }
-        return new Timeslot(trimmedTimeslot);
+
+        Timeslot result;
+        try {
+            result = new Timeslot(trimmedTimeslot);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
+        }
+        return result;
     }
 
     /**
