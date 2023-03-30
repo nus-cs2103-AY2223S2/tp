@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.pet.NoDeadline;
 import seedu.address.model.pet.Pet;
 
 /**
@@ -46,13 +47,15 @@ public class PetListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new PetCard(pet, getIndex() + 1).getRoot());
 
-                LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
-                LocalDateTime currTime = LocalDateTime.now();
+                if (!(pet.getDeadline() instanceof NoDeadline)) {
+                    LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
+                    LocalDateTime currTime = LocalDateTime.now();
 
-                if (currTime.isAfter(deadline) && !(pet.getIsMarked())) {
-                    pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, true);
-                } else {
-                    pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, false);
+                    if (currTime.isAfter(deadline) && !(pet.getIsMarked())) {
+                        pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, true);
+                    } else {
+                        pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, false);
+                    }
                 }
             }
         }
