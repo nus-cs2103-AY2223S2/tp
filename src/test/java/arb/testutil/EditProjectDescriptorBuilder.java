@@ -1,5 +1,7 @@
 package arb.testutil;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,7 +38,9 @@ public class EditProjectDescriptorBuilder {
         descriptor.setDeadline(project.getDeadline());
         descriptor.setPrice(project.getPrice());
         descriptor.setTags(project.getTags());
-        descriptor.setClient(project.getClientName());
+        descriptor.setClientNameKeywords(project.getClientName() == null
+                ? Arrays.asList()
+                : Arrays.asList(project.getClientName()));
     }
 
     /**
@@ -73,10 +77,10 @@ public class EditProjectDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code linkedClient} of the {@code EditProjectDescriptor} that we are building.
+     * Sets the {@code clientNameKeywords} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withLinkedClient(String clientName) {
-        descriptor.setClient(clientName);
+    public EditProjectDescriptorBuilder withLinkedClientNameKeywords(List<String> clientNameKeywords) {
+        descriptor.setClientNameKeywords(clientNameKeywords);
         return this;
     }
 

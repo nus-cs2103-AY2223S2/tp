@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +71,7 @@ public class AddressBookParserTest {
         for (String commandWord : AddProjectCommand.getCommandWords()) {
             AddProjectCommand command = (AddProjectCommand) parser
                 .parseCommand(ProjectUtil.getAddProjectCommand(project, commandWord));
-            assertEquals(new AddProjectCommand(project, Optional.empty()), command);
+            assertEquals(new AddProjectCommand(project, Arrays.asList()), command);
         }
     }
 

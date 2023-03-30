@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +40,7 @@ public class AddProjectCommandTest {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().build();
 
-        CommandResult commandResult = new AddProjectCommand(validProject, Optional.empty())
+        CommandResult commandResult = new AddProjectCommand(validProject, Arrays.asList())
                 .execute(modelStub, ListType.CLIENT);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
@@ -52,7 +51,7 @@ public class AddProjectCommandTest {
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, Optional.empty());
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, Arrays.asList());
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () ->
@@ -63,14 +62,14 @@ public class AddProjectCommandTest {
     public void equals() {
         Project crochet = new ProjectBuilder().withTitle("Crochet").build();
         Project sculpture = new ProjectBuilder().withTitle("sculpture").build();
-        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet, Optional.empty());
-        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture, Optional.empty());
+        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet, Arrays.asList());
+        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture, Arrays.asList());
 
         // same object -> returns true
         assertTrue(addCrochetCommand.equals(addCrochetCommand));
 
         // same values -> returns true
-        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet, Optional.empty());
+        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet, Arrays.asList());
         assertTrue(addCrochetCommand.equals(addCrochetCommandCopy));
 
         // different types -> returns false
