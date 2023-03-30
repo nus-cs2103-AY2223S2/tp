@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.jobs.ImportDeliveryJobCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.person.Person;
 
 /**
  * Mass imports delivery jobs from CSV file to the delivery job system.
@@ -37,12 +38,24 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
     public CommandResult execute(Model model) throws CommandException, ParseException, FileNotFoundException {
         requireNonNull(model);
 
+        Person recipient = new Person();
+        Person sender = new Person();
+
         if (toAdd.length() == 0) {
             throw new CommandException(MESSAGE_EMPTY_FILE);
         }
 
         List<DeliveryJob> listOfAddDeliveryJob;
-        listOfAddDeliveryJob = ImportDeliveryJobCommandParser.parse(toAdd);
+
+        listOfAddDeliveryJob = ImportDeliveryJobCommandParser.parse(toAdd, recipient, sender);
+
+        if (!model.hasPerson(recipient) && !recipient.getPersonId().equals("null")) {
+            model.addPerson(recipient);
+        }
+
+        if (!model.hasPerson(sender) && !sender.getPersonId().equals("null")) {
+            model.addPerson(sender);
+        }
 
         for (int i = 0; i < listOfAddDeliveryJob.size(); i++) {
             model.addDeliveryJob(listOfAddDeliveryJob.get(i));
