@@ -103,7 +103,9 @@ public class TaskCard extends UiPart<Region> {
                 label.getStyleClass().add("cell_small_label");
                 label.getStyleClass().add("person-index");
                 FlowPane.setMargin(label, new Insets(0, 5, 5, 0));
-
+                label.setMaxWidth(200);
+                label.setWrapText(true);
+                personIndexes.setMinWidth(210);
                 personIndexes.getChildren().add(label);
             });
 
