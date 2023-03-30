@@ -3,10 +3,11 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-- [CoDoc Developer Guide](#codoc-developer-guide)
-- [Navigating the Developer Guide](#navigating-the-developer-guide)
-- [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
+- [Introduction](#introduction)
+  - [Intended Audience](#intended-audience)
+  - [Navigating the Developer Guide](#navigating-the-developer-guide)
+  - [Glossary](#glossary)
 - [Setting up](#setting-up-getting-started)
 - [Design Architecture](#design-architecture)
   - [Common Component](#commons-component)
@@ -36,9 +37,18 @@ title: Developer Guide
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Acknowledgements**
+
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+[Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **CoDoc Developer Guide**
+## Introduction
+
+### **Intended Audience**
 
 CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
 of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
@@ -56,9 +66,7 @@ You are recommended to read the [Navigating the Developer Guide](#navigating-the
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 Developer Guide and help you navigate it with ease.
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Navigating the Developer Guide**
+### **Navigating the Developer Guide**
 
 The Developer Guide is divided into the following sections :
 - [Design Architecture](#design-architecture)
@@ -119,7 +127,7 @@ We would recommend you to read the [Glossary](#glossary) section next.
 
 <div style="page-break-after: always;"></div>
 
-## **Glossary**
+### **Glossary**
 
 The glossary illustrated in the table below will help you understand the terminologies used in this
 Developer Guide.
@@ -214,14 +222,6 @@ Developer Guide.
     </td>
   </tr>
 </table>
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
-[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
