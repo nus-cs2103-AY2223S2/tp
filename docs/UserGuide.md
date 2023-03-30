@@ -308,9 +308,9 @@ Format: `help [type]`
 
 Examples:
 * `help`
-* `help lab`
-* `help tutorial`
-* `help consultation`
+* `help student`
+* `help event`
+* `help organisation`
 
 --------------------------------------------------------------------
 *Sort / Filter features*
