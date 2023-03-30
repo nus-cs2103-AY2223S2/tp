@@ -1,8 +1,11 @@
 package seedu.address.logic.commands.jobs;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_SLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
