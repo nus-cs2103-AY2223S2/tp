@@ -63,14 +63,16 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `view mob` : Lists all monster sheets in the database.
-
    * `make char John Cena` : Adds a character sheet named `John Cena` to the database.
+   
+   * `edit char John Cena` : Enters edit mode for a character named `John Cena`.
 
    * `delete char John Cena` : Deletes previously created character `John Cena`.
+
+   * `list char` : Displays a list of all character entities.
    
-   * `template Wrestler|John Cena`: Create a character sheet named `John Cena` based on 
-   a pre-existing character template
+   * `template Wrestler John Cena`: Create a character sheet named `John Cena` based on 
+   a pre-existing character template called `Wrestler`.
    
    * `clear` : Deletes all entity sheets.
 
@@ -91,10 +93,7 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
   e.g. in `make CLASSIFICATION NAME`, `CLASSIFICATION` and `NAME` are parameters which can be used as `add item gilded dagger`.
 
 * CLASSIFICATION can be the following: .<br>
-  Item: `item`, Monster:`mob`, Character: `char` Template: `template`
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  Item: `item`, Monster:`mob`, Character: `char`
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -116,7 +115,7 @@ Adds a new entity into the database.
 Format: `make CLASSIFICATION NAME`
 
 Examples:
-* `make char John Cena `
+* `make char John Cena`
 * `make item Sword`
 
 ### Listing all entities of a classification : `list`
@@ -151,6 +150,12 @@ Format: `edit CLASSIFICATION NAME`
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
+### Filter entities by tags : `filter`
+
+Finds entities who contain the given tags
+
+Format: `filter TAG [MORE_TAGS]`
+
 ### Locating Entity by name: `find`
 
 Finds Entity whose names contain any of the given keywords.
@@ -164,11 +169,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting an entity : `delete`
 
 Deletes the specified entity from Reroll's database.
@@ -178,7 +178,20 @@ Format: `delete CLASSIFICATION NAME`
 * Deletes the entity with both the specified `CLASSIFICATION` and `NAME`.
 
 Examples:
-* `delete char John Cena` will delete only exactly a `Character` with the name `John Cena`.
+* `delete char John Cena` will delete a `Character` with the exact name `John Cena`.
+
+### Make new character from a template: `template`
+
+Creates a new Character from a pre-determined template
+
+Format: `template TEMPLATE_NAME NAME`
+
+Examples:
+* `template Wrestler John Cena` will create a new `Character` named `John Cena` using the template called `Wrestler`
+
+### Show templates : `show templates`
+
+Shows all template names.  
 
 ### Clearing all entries : `clear`
 
@@ -220,13 +233,9 @@ _Details coming soon ..._
 <h2 id="summary"></h2>
 
 ## Entity classifications
-There are 4 different entity classifications in Reroll, each with their own set of fields to track.
+There are 3 different entity classifications in Reroll, each with their own set of fields to track.
 
 `Character` or `char` in short refers to characters whose actions are controlled by players instead of the game master.
-
-`Template` refers to pre-determined characters that can be used to quickly generate characters 
-with a preferred stat distribution. Templates are pre-determined and 
-cannot be created/edited/deleted by the user.
 
 `Mob` refers to hostile non-playable characters which are controlled by the game master, 
 meant to be defeated by player characters.
@@ -236,7 +245,7 @@ can be used by the player characters.
 
 The definitive list of the different values each entity has:
 
-| Character (template) | Mob              | Item   |
+| Character  | Mob              | Item   |
 |----------------------|------------------|--------|
 | Name                 | Name             | Name   | 
 | Strength             | Strength         | Cost   |
@@ -245,6 +254,37 @@ The definitive list of the different values each entity has:
 | Level                | Challenge Rating |        |
 | XP                   | Legendary        |        |
 | Tags                 | Tags             |        |
+
+## Templates
+
+`Template` refers to pre-determined characters that can be used to quickly generate characters 
+with a preferred stat distribution. Templates are pre-determined and cannot be created/edited/deleted by the user.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Short-form commands
+
+To aid expert users, commonly used commands and fields have short-form variants that can be used instead.
+
+| Reference | Full | Short-form |
+| - | - | - |
+| Make command | make | m |
+| Edit command | edit | e |
+| Delete command | delete | d |
+| List command | list | l |
+| Character | char | c |
+| Mob | mob | m |
+| Item | item | i |
+| Template command | template | t |
+| Strength | strength | s |
+| Dexterity | dexterity | d |
+| Level | level | lvl |
+| Name | name | n |
+| Tags | tags | t | 
+| Inventory | inventory | inv |
+
+Example: `make char John Cena` -> `m c John Cena`
+
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
