@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import seedu.patientist.commons.util.StringUtil;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.tag.Tag;
 
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.
@@ -18,7 +17,7 @@ public class PatientNameContainsKeywordsPredicate implements Predicate<Person> {
     }
     @Override
     public boolean test(Person person) {
-        if (!(person.getTags().contains(new Tag("Patient")))) {
+        if (!(person instanceof Patient)) {
             return false;
         }
         Patient patient = (Patient) person;
