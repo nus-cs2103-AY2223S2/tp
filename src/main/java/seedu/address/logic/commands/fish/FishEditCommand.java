@@ -82,19 +82,10 @@ public class FishEditCommand extends FishCommand {
         }
 
         Fish fishToEdit = lastShownList.get(index.getZeroBased());
-        Fish editedFish = createEditedFish(fishToEdit, editFishDescriptor);
+        Fish editedFish = createEditedFish(fishToEdit, editFishDescriptor, model);
         //editedFish's tank attribute is only an index
-        Tank tank;
-        try {
-            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
-            Index tankIndex = Index.fromOneBased(ind);
-            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
-        } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_MISSING_TANK);
-        } catch (NumberFormatException e) {
-            throw new CommandException(MESSAGE_USE_INDEX);
-        }
-        editedFish.setTank(tank);
+
+//        editedFish.setTank(tank);
 
         if (!fishToEdit.isSameFish(editedFish) && model.hasFish(editedFish)) {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
@@ -117,7 +108,8 @@ public class FishEditCommand extends FishCommand {
      * Creates and returns a {@code Fish} with the details of {@code fishToEdit}
      * edited with {@code editFishDescriptor}.
      */
-    private static Fish createEditedFish(Fish fishToEdit, EditFishDescriptor editFishDescriptor) {
+    private static Fish createEditedFish(Fish fishToEdit, EditFishDescriptor editFishDescriptor, Model model)
+            throws CommandException {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
@@ -125,7 +117,22 @@ public class FishEditCommand extends FishCommand {
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
                 .orElse(fishToEdit.getFeedingInterval());
-        Tank updatedTank = editFishDescriptor.getTank().orElse(fishToEdit.getTank());
+        Tank updatedTank;
+
+        try {
+            updatedTank = editFishDescriptor.getTankIndex()
+                    .map(ind -> model.getFilteredTankList().get(ind.getZeroBased()))
+                    .orElse(fishToEdit.getTank());
+
+//            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
+//            Index tankIndex = Index.fromOneBased(ind);
+//            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_MISSING_TANK);
+        } catch (NumberFormatException e) {
+            throw new CommandException(MESSAGE_USE_INDEX);
+        }
+
         Set<Tag> updatedTags = editFishDescriptor.getTags().orElse(fishToEdit.getTags());
 
         return new Fish(updatedName, updatedLastFedDate, updatedSpecies, updatedFeedingInterval, updatedTank,
@@ -159,7 +166,7 @@ public class FishEditCommand extends FishCommand {
         private LastFedDateTime lastFedDate;
         private Species species;
         private FeedingInterval feedingInterval;
-        private Tank tank;
+        private Index tankIndex;
         private Set<Tag> tags;
 
         public EditFishDescriptor() {}
@@ -173,7 +180,7 @@ public class FishEditCommand extends FishCommand {
             setLastFedDate(toCopy.lastFedDate);
             setSpecies(toCopy.species);
             setFeedingInterval(toCopy.feedingInterval);
-            setTank(toCopy.tank);
+            setTankIndex(toCopy.tankIndex);
             setTags(toCopy.tags);
         }
 
@@ -181,7 +188,7 @@ public class FishEditCommand extends FishCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, lastFedDate, species, feedingInterval, tank, tags);
+            return CollectionUtil.isAnyNonNull(name, lastFedDate, species, feedingInterval, tankIndex, tags);
         }
 
         public void setName(Name name) {
@@ -216,12 +223,12 @@ public class FishEditCommand extends FishCommand {
             return Optional.ofNullable(feedingInterval);
         }
 
-        public void setTank(Tank tank) {
-            this.tank = tank;
+        public void setTankIndex(Index tankIndex) {
+            this.tankIndex = tankIndex;
         }
 
-        public Optional<Tank> getTank() {
-            return Optional.ofNullable(tank);
+        public Optional<Index> getTankIndex() {
+            return Optional.ofNullable(tankIndex);
         }
 
         /**
@@ -260,7 +267,7 @@ public class FishEditCommand extends FishCommand {
                     && getLastFedDate().equals(e.getLastFedDate())
                     && getSpecies().equals(e.getSpecies())
                     && getFeedingInterval().equals(e.getFeedingInterval())
-                    && getTank().equals(e.getTank())
+                    && getTankIndex().equals(e.getTankIndex())
                     && getTags().equals(e.getTags());
         }
     }
