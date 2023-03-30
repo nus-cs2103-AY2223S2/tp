@@ -44,6 +44,17 @@ public class UnmarkCommand extends Command {
         }
 
         Appointment appointmentToUnmark = appointmentList.get(targetIndex.getZeroBased()).getValue();
+
+        Index patientId = appointmentToUnmark.getPatient();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(patientId)
+                    && !appointment.getStatus()) {
+                throw new CommandException(String.format("Patient #%04d has active appointments",
+                        patientId.getOneBased()));
+            }
+        }
+
         model.unmarkAppointment(targetIndex.getZeroBased());
         return new CommandMessage(String.format(MESSAGE_UNMARK_APPOINTMENT_SUCCESS, appointmentToUnmark));
     }
