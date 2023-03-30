@@ -30,8 +30,8 @@ public class ShowNextPanel extends UiPart<Region> {
      */
     public ShowNextPanel(ObservableList<Event> eventList) {
         super(FXML);
-        eventList.addListener(
-                (ListChangeListener<Event>) c -> showNextLabel.setText("Next " + eventList.size() + " Event"));
+        setUpcomingEvent(eventList);
+        eventList.addListener((ListChangeListener<Event>) c -> setUpcomingEvent(eventList));
         showNextListView.setItems(eventList);
         showNextListView.setCellFactory(listView -> new ShowNextPanel.ShowNextViewCell());
     }
@@ -48,8 +48,13 @@ public class ShowNextPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ShowNextCard(event, getIndex() + 1).getRoot());
+                String displayNumber = String.format("%02d", getIndex() + 1);
+                setGraphic(new ShowNextCard(event, displayNumber).getRoot());
             }
         }
+    }
+
+    private void setUpcomingEvent(ObservableList<Event> eventList) {
+        showNextLabel.setText("Upcoming " + eventList.size() + " Events");
     }
 }

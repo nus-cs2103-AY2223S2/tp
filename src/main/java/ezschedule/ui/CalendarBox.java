@@ -5,10 +5,10 @@ import java.util.List;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.EventMatchesDatePredicate;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -30,6 +30,8 @@ public class CalendarBox extends UiPart<Region> {
     private VBox calendarEvents;
     @FXML
     private Rectangle calendarHighlight;
+    @FXML
+    private Label now;
 
     /**
      * Creates an empty {@code CalenderBox}.
@@ -46,7 +48,7 @@ public class CalendarBox extends UiPart<Region> {
         this.events = events;
         this.filterExecutor = filterExecutor;
         setDate(date);
-        setHighlightForToday(isToday);
+        setToday(isToday);
         setEvents();
     }
 
@@ -64,22 +66,33 @@ public class CalendarBox extends UiPart<Region> {
         calendarDate.setText(date);
     }
 
-    private void setHighlightForToday(boolean isToday) {
+    private void setToday(boolean isToday) {
         if (isToday) {
-            calendarHighlight.setStroke(Color.RED);
+            now.setText("now");
+            now.setStyle("-fx-text-fill: white; "
+                    + "-fx-background-color: #4c837a; "
+                    + "-fx-background-radius: 5;");
         }
     }
 
     private void setEvents() {
         if (events != null) {
-            calendarEvents.setStyle("-fx-background-color:GRAY");
+            // calendarEvents.setStyle("-fx-background-color:GRAY");
             int firstEvent = 0;
-            String eventName = getEventName(events.get(firstEvent));
-            Text event = new Text(eventName);
-            calendarEvents.getChildren().add(event);
+            String eventNameOne = getEventName(events.get(firstEvent));
+            Label eventOne = new Label(eventNameOne);
+            setEventLabelStyle(eventOne);
+            calendarEvents.getChildren().add(eventOne);
 
-            if (events.size() >= 2) {
-                Text moreEvents = new Text("...");
+            if (events.size() == 2) {
+                int secondEvent = 0;
+                String eventNameTwo = getEventName(events.get(secondEvent));
+                Label eventTwo = new Label(eventNameTwo);
+                setEventLabelStyle(eventTwo);
+                calendarEvents.getChildren().add(eventTwo);
+            } else if (events.size() > 2) {
+                Label moreEvents = new Label("...");
+                setEventLabelStyle(moreEvents);
                 calendarEvents.getChildren().add(moreEvents);
             }
         }
@@ -99,5 +112,13 @@ public class CalendarBox extends UiPart<Region> {
 
     private String refactorName(String name) {
         return name.substring(0, 5) + "...";
+    }
+
+    private void setEventLabelStyle(Label label) {
+        label.setStyle("-fx-text-fill: white; "
+                + "-fx-background-color: #4c837a; "
+                + "-fx-background-radius: 5; "
+                + "-fx-font-size: 11; "
+                + "-fx-padding: 0 10 0 10;");
     }
 }
