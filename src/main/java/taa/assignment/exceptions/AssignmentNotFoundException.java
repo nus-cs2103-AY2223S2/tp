@@ -1,12 +1,10 @@
 package taa.assignment.exceptions;
 
-import taa.logic.commands.exceptions.CommandException;
-
 /**
  * Assignment is not found.
  */
-public class AssignmentNotFoundException extends CommandException {
-    public AssignmentNotFoundException(String message) {
-        super(message);
+public class AssignmentNotFoundException extends AssignmentException {
+    public AssignmentNotFoundException(String assignmentName) {
+        super(String.format("Assignment %s could not be found", assignmentName));
     }
 }

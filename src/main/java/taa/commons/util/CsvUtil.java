@@ -14,4 +14,7 @@ public class CsvUtil {
     public static final String KW_TAGS = "tags";
     public static final CSVFormat STU_FMT = CSVFormat.Builder.create(CSVFormat.DEFAULT).setHeader(KW_NAME, KW_TAGS)
             .build();
+
+    private CsvUtil() {
+    }
 }

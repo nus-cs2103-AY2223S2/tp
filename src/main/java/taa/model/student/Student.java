@@ -3,9 +3,11 @@ package taa.model.student;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import taa.assignment.Submission;
+import taa.assignment.exceptions.AssignmentNotFoundException;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
@@ -15,7 +17,7 @@ import taa.model.tag.Tag;
  */
 public class Student {
 
-    private static int lastId = 0;
+    private static int lastId;
     // Identity fields
     private final Name name;
     private final int id;
@@ -108,6 +110,16 @@ public class Student {
     }
 
     /**
+     * Returns the grade obtained by the student, if it exists.
+     * Otherwise, an Optional.empty() is returned.
+     * @throws AssignmentNotFoundException if the assignment does not exist.
+     */
+    public Optional<Integer> getGradesForAssignment(String assignmentName)
+            throws AssignmentNotFoundException {
+        return this.submissions.getSubmissionScore(assignmentName);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -142,6 +154,13 @@ public class Student {
             classes.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Updates the attendance counter for the entire class list.
+     */
+    public void updateAttendanceCounter(int[] counter) {
+        this.atd.updateAttendanceCounter(counter);
     }
 
 }

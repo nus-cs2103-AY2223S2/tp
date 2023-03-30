@@ -41,4 +41,3 @@ public class ListByClassCommand extends Command {
                 && predicate.equals(((ListByClassCommand) other).predicate)); // state check
     }
 }
-

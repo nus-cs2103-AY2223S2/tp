@@ -5,8 +5,9 @@ import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
 import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.DuplicateAssignmentException;
 import taa.assignment.exceptions.InvalidGradeException;
-import taa.assignment.exceptions.SubmissiontNotFoundException;
+import taa.assignment.exceptions.SubmissionNotFoundException;
 import taa.model.student.Student;
 
 /**
@@ -21,9 +22,9 @@ public class AssignmentList {
      * @param sl
      */
     public void add(String assignmentName, FilteredList<Student> sl, int totalMarks)
-            throws AssignmentNotFoundException {
+            throws DuplicateAssignmentException {
         if (assignmentMap.containsKey(assignmentName)) {
-            throw new AssignmentNotFoundException("Duplicate assignment name: " + assignmentName);
+            throw new DuplicateAssignmentException(assignmentName);
         } else {
             Assignment a = new Assignment(assignmentName, sl, totalMarks);
             assignments.add(a);
@@ -36,7 +37,7 @@ public class AssignmentList {
      */
     public void delete(String assignmentName) throws AssignmentNotFoundException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
+            throw new AssignmentNotFoundException(assignmentName);
         } else {
             Assignment removed = assignmentMap.remove(assignmentName);
             removed.delete();
@@ -51,9 +52,9 @@ public class AssignmentList {
      * @param isLateSubmission
      */
     public void grade(String assignmentName, Student student, int marks, boolean isLateSubmission)
-            throws AssignmentNotFoundException, SubmissiontNotFoundException, InvalidGradeException {
+            throws AssignmentNotFoundException, SubmissionNotFoundException, InvalidGradeException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
+            throw new AssignmentNotFoundException(assignmentName);
         } else {
             assignmentMap.get(assignmentName).gradeSubmission(student, marks, isLateSubmission);
         }
@@ -63,12 +64,12 @@ public class AssignmentList {
      * @param assignmentName
      * @param student
      * @throws AssignmentNotFoundException
-     * @throws SubmissiontNotFoundException
+     * @throws SubmissionNotFoundException
      */
     public void ungrade(String assignmentName, Student student) throws AssignmentNotFoundException,
-            SubmissiontNotFoundException {
+            SubmissionNotFoundException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
+            throw new AssignmentNotFoundException(assignmentName);
         } else {
             assignmentMap.get(assignmentName).ungradeSubmission(student);
         }
@@ -80,11 +81,18 @@ public class AssignmentList {
     public String list() {
         StringBuilder sb = new StringBuilder();
         for (Assignment a : assignments) {
-            sb.append("Assignment " + a + ":\n");
+            sb.append("Assignment ").append(a).append(":\n");
             for (Submission s : a.getSubmissions()) {
-                sb.append("  " + s + "\n");
+                sb.append("  ").append(s).append("\n");
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * Returns true if an assignment with the provided name exists.
+     */
+    public boolean contains(String name) {
+        return this.assignmentMap.containsKey(name);
     }
 }
