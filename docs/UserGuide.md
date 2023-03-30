@@ -70,11 +70,20 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/BUSINESS_SIZE c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/Potential Sale Value c/COMPANY_NAME pr/PRIORITY tr/TRANSACTION_COUNT [t/TAG]`
+
+- Name: Refers to the name of the specified person. (Duplicates are not allowed)
+- Phone Number: The handphone number of the specified person (Must be a minimum of 3 digits)
+- Email: The email of the specified person. (Must be a valid email with a domain)
+- Address: The full address of the specified person. 
+- Potential Sale Value: The expected value of revenue to be brought in by the client. 
+- Company Name: Name of the specified person's company. (Put 'NIL' if not applicable)
+- Priority: How much this client should be prioritized.
+- Transaction Count: The number of previous transaction between the user and this client. 
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS pr/HIGH tr/0`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/SoftwareEngineeringIsNotCS pr/HIGH tr/0`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank pr/LOW tr/10 t/criminal`
 
 
@@ -103,6 +112,40 @@ Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+
+### Incrementing a person's Transaction Count : `incr`
+
+
+Increments the selected person's Transaction Count by the specified amount. 
+
+Format: `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
+
+- Increments the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- The increment amount cannot be left empty.
+- The increment amount must be an integer greater than zero. 
+- The resultant transaction count will be the sum of the person's Transaction Count and the specified increment amount.
+
+Examples:
+
+`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS pr/HIGH tr/0`
+- `incr 1 tr/13` Increments the Transaction Count of the first person by 13. (i.e. the Transaction Count of person 'John Doe' will be set to 13.)
+
+### Decrementing a person's Transaction Count : `decr`
+
+
+Decrements the selected person's Transaction Count by the specified amount.
+
+Format: `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
+
+- Decrements the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- The decrement amount cannot be left empty.
+- The decrement amount must be an integer greater than zero.
+- The resultant transaction count will be the difference of the person's Transaction Count and the specified increment amount.
+
+Examples:
+
+`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS pr/HIGH tr/13`
+- `decr 1 tr/13` Decrements the Transaction Count of the first person by 13. (i.e. the Transaction Count of person 'John Doe' will be set to 0.)
 
 ### Filtering contacts : `filter`
 
