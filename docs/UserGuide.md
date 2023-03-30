@@ -403,7 +403,7 @@ Edits personal details of students for the student corresponding to the `INDEX_N
 
 Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
 imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
-pn/<PARENT NAME> pnP/<PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
+npn/<NEW PARENT NAME> npnP/<NEW PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
 
 ***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
