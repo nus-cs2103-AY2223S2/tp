@@ -48,7 +48,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 ## Features
 
-<div class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:** <br>
 
@@ -98,7 +98,7 @@ Adds a person to OfficeConnect.
 
 Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…`
 
-<div class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
@@ -145,8 +145,8 @@ Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findp John` returns `john` and `John Doe`
-* `findp alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findp alex david'](images/findAlexDavidResult.png)
+* `findp alice` returns `alice pauline`<br>
+  ![result for 'findp alex p'](images/findAlicePaulineResult.png)
 
 ### Deleting a person : `deletep`
 
@@ -176,8 +176,8 @@ OfficeConnect data are saved in the hard disk automatically after any command th
 
 OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, OfficeConnect will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
 # Command Summary For OfficeConnect

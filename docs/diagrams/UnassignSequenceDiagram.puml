@@ -13,10 +13,10 @@ box OfficeConnectModel MODEL_COLOR_T1
 participant ":OfficeConnectModel" as OfficeConnectModel MODEL_COLOR
 end box
 
-[-> LogicManager : execute("unassign pi/1 t1/1")
+[-> LogicManager : execute("unassign pi/1 ti/1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("unassign pi/1 t1/1")
+LogicManager -> AddressBookParser : parseCommand("unassign pi/1 ti/1")
 activate AddressBookParser
 
 create UnassignCommandParser
