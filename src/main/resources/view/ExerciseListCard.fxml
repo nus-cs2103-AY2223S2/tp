@@ -9,13 +9,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10" />
         </columnConstraints>
         <HBox>
-
+            <HBox alignment="TOP_LEFT" prefWidth="100" >
+                <ImageView fx:id="genderList" fitWidth="150" fitHeight="150" />
+            </HBox>
             <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
                 <padding>
                     <Insets top="5" right="5" bottom="5" left="15" />
@@ -32,8 +35,24 @@
                         <Insets  bottom="10" />
                     </padding>
                 </HBox>
-                <FlowPane fx:id="tags"/>
                 <FlowPane fx:id="appointments"/>
+                <HBox alignment="CENTER_LEFT">
+                    <ImageView fx:id="weightIcon" fitWidth="32" fitHeight="32" />
+                    <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" wrapText="true" maxWidth="200"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT">
+                    <ImageView fx:id="caloriesIcon" fitWidth="30" fitHeight="30" />
+                    <Label fx:id="calorie" styleClass="cell_small_label" text="\$calorie" wrapText="true" maxWidth="200"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT">
+                    <ImageView fx:id="goalIcon" fitWidth="35" fitHeight="35" />
+                    <Label fx:id="goal" styleClass="cell_small_label" text="\$goal" wrapText="true" maxWidth="200"/>
+                </HBox>
+                <HBox alignment="CENTER_LEFT">
+                    <ImageView fx:id="routineIcon" fitWidth="35" fitHeight="35" />
+                    <Label fx:id="subTitle" alignment="CENTER_LEFT" contentDisplay="LEFT" styleClass="subTitle" text="Exercises:" textAlignment="LEFT" wrapText="true" maxWidth="200"/>
+                </HBox>
+                <Label fx:id="routines" styleClass="cell_small_label" text="\$routine" wrapText="true" maxWidth="200"/>
             </VBox>
         </HBox>
     </GridPane>

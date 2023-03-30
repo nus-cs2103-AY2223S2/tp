@@ -30,7 +30,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" maxWidth="200"/>
         <padding>
           <Insets  bottom="10" />
         </padding>
@@ -39,27 +39,27 @@
       <FlowPane fx:id="appointments"/>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="phoneIcon" fitWidth="35" fitHeight="35" />
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" maxWidth="200"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="addressIcon" fitWidth="35" fitHeight="35" />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" maxWidth="200"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="emailIcon" fitWidth="35" fitHeight="35" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" maxWidth="200"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="weightIcon" fitWidth="32" fitHeight="32" />
-        <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" />
+        <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" wrapText="true" maxWidth="200"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="caloriesIcon" fitWidth="30" fitHeight="30" />
-        <Label fx:id="calorie" styleClass="cell_small_label" text="\$calorie"/>
+        <Label fx:id="calorie" styleClass="cell_small_label" text="\$calorie" wrapText="true" maxWidth="200"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
         <ImageView fx:id="goalIcon" fitWidth="35" fitHeight="35" />
-        <Label fx:id="goal" styleClass="cell_small_label" text="\$goal"/>
+        <Label fx:id="goal" styleClass="cell_small_label" text="\$goal" wrapText="true" maxWidth="200"/>
       </HBox>
     </VBox>
     </HBox>

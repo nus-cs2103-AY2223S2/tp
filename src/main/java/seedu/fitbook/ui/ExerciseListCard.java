@@ -16,10 +16,10 @@ import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
 
 /**
- * A UI component that displays detailed information of a {@code Client} with {@code Routine}.
+ * A UI component that displays information of a {@code Routine}.
  */
-public class SummaryCard extends UiPart<Region> {
-    private static final String FXML = "SummaryCard.fxml";
+public class ExerciseListCard extends UiPart<Region> {
+    private static final String FXML = "ExerciseListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
     /**
@@ -39,15 +39,7 @@ public class SummaryCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private Label weight;
-    @FXML
-    private Label gender;
     @FXML
     private Label routines;
     @FXML
@@ -55,19 +47,11 @@ public class SummaryCard extends UiPart<Region> {
     @FXML
     private FlowPane appointments;
     @FXML
-    private FlowPane tags;
-    @FXML
     private Label goal;
     @FXML
     private Label calorie;
     @FXML
     private ImageView genderList;
-    @FXML
-    private ImageView phoneIcon;
-    @FXML
-    private ImageView addressIcon;
-    @FXML
-    private ImageView emailIcon;
     @FXML
     private ImageView weightIcon;
     @FXML
@@ -81,7 +65,7 @@ public class SummaryCard extends UiPart<Region> {
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
-    public SummaryCard(Client client, int displayedIndex) {
+    public ExerciseListCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
         String genderText;
@@ -90,10 +74,8 @@ public class SummaryCard extends UiPart<Region> {
         } else {
             genderText = "femaleIcon";
         }
+        id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
-        phone.setText(client.getPhone().value);
-        address.setText(client.getAddress().value);
-        email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
         setGoalCondition(client, goal);
         setCalorieCondition(client, calorie);
@@ -101,14 +83,8 @@ public class SummaryCard extends UiPart<Region> {
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
-        client.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         genderList.setImage(
                 new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
-        phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/AddressIcon.png")));
-        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
     }
 
@@ -184,7 +160,7 @@ public class SummaryCard extends UiPart<Region> {
         }
 
         // state check
-        SummaryCard card = (SummaryCard) other;
+        ExerciseListCard card = (ExerciseListCard) other;
         return id.getText().equals(card.id.getText())
                 && client.equals(card.client);
     }

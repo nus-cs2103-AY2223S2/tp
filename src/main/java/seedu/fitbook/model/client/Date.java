@@ -17,7 +17,7 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in dd-mm-yyyy HH:mm format.";
     public static final String MESSAGE_DATE_CONSTRAINTS =
-            "Appointment should have valid date.";
+            "Date should be valid.";
     public static final String VALIDATION_REGEX =
             "^(?:0[1-9]|[1-2][0-9]|3[0-1])-(?:0[1-9]|1[0-2])-(?:[0-9]{4}) (?:[01][0-9]|2[0-3]):(?:[0-5][0-9])$";
     public final DateTimeFormatter dateTimeFormatter =

@@ -62,12 +62,14 @@ public class WeightHistory {
     /**
      * Sorts the weights in ascending order of date and time.
      */
-    public void sortByDate() {
-        weights.sort((w1, w2) -> {
+    public WeightHistory sortByDate() {
+        List<Weight> sortWeights = new ArrayList<>(weights);
+        sortWeights.sort((w1, w2) -> {
             LocalDateTime d1 = w1.getDateTime();
             LocalDateTime d2 = w2.getDateTime();
             return d1.compareTo(d2);
         });
+        return new WeightHistory(sortWeights);
     }
 
     /**
@@ -83,6 +85,15 @@ public class WeightHistory {
             }
         }
         weights.removeAll(weightsToRemove);
+    }
+
+    /**
+     * Refines the {@code weight} of the client.
+     */
+    public WeightHistory refineGraphWeightHistory() {
+        sortByDate();
+        removeOldWeights();
+        return this;
     }
 
     public List<Weight> getList() {

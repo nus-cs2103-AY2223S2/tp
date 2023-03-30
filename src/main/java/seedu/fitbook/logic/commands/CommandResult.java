@@ -16,6 +16,7 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
     private final boolean showRoutine;
+    private final boolean showGraph;
 
     /** The application should exit. */
     private final boolean exit;
@@ -26,13 +27,14 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Client clientToView,
-                         boolean showHelp, boolean exit, boolean view, boolean showRoutine) {
+                         boolean showHelp, boolean exit, boolean view, boolean showRoutine, boolean showGraph) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.view = view;
         this.clientToView = clientToView;
         this.showRoutine = showRoutine;
+        this.showGraph = showGraph;
     }
 
     /**
@@ -40,7 +42,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false, false);
+        this(feedbackToUser, null, false,
+                false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -49,6 +52,9 @@ public class CommandResult {
 
     public boolean isShowRoutine() {
         return showRoutine;
+    }
+    public boolean isShowGraph() {
+        return showGraph;
     }
 
     public boolean isShowHelp() {

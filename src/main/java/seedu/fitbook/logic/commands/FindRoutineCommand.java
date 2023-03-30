@@ -30,7 +30,7 @@ public class FindRoutineCommand extends Command {
         model.updateFilteredRoutineList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ROUTINES_LISTED_OVERVIEW, model.getFilteredRoutineList().size()),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     @Override

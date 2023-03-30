@@ -21,7 +21,8 @@ public class ClearRoutinesCommand extends Command {
         requireNonNull(model);
         model.setFitBookExerciseRoutine(new FitBookExerciseRoutine());
         updateClientExercise(model);
-        return new CommandResult((MESSAGE_SUCCESS), null, false, false, false, true);
+        return new CommandResult((MESSAGE_SUCCESS),
+                null, false, false, false, true, false);
     }
 
     /**

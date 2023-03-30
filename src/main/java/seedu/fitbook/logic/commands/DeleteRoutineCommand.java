@@ -44,7 +44,7 @@ public class DeleteRoutineCommand extends Command {
         model.deleteRoutine(routineToDelete);
         updateClientRoutine(routineToDelete, model);
         return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, routineToDelete),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     /**

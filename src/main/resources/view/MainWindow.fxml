@@ -37,9 +37,6 @@
           <Menu mnemonicParsing="false" text="Exercise">
             <MenuItem fx:id="exerciseMenuItem" mnemonicParsing="false" onAction="#handleExercise" style="-fx-font-size: 10pt;" text="Exercise" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Statistic">
-            <MenuItem fx:id="statisticMenuItem" mnemonicParsing="false" onAction="#handleStatistics" style="-fx-font-size: 10pt;" text="Statistic" />
-          </Menu>
           <Menu mnemonicParsing="false" text="Summary">
             <MenuItem fx:id="summaryMenuItem" mnemonicParsing="false" onAction="#handleSummary" style="-fx-font-size: 10pt;" text="Summary" />
           </Menu>

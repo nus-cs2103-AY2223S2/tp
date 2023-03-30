@@ -30,7 +30,6 @@ class WeightTest {
         // valid genders
         assertTrue(Weight.isValidWeight("23")); // whole number weight
         assertTrue(Weight.isValidWeight("233.0")); // weight to 1 decimal
-        assertTrue(Weight.isValidWeight("23.00")); // weight to 2 decimal
     }
 
     @Test

@@ -16,6 +16,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(FitBookModel model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, null, true, false, false, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE,
+                null, true, false, false, false, false);
     }
 }

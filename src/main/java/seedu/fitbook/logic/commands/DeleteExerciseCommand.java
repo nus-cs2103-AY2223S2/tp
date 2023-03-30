@@ -55,7 +55,7 @@ public class DeleteExerciseCommand extends Command {
         model.removeExercise(routineToDelete, targetExercise.getZeroBased());
         updateClientExercise(routineToDelete, model);
         return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, exercise1, routineToDelete),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     /**

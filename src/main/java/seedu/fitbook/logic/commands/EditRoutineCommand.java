@@ -35,8 +35,7 @@ public class EditRoutineCommand extends Command {
             + PREFIX_EXERCISE + "EXERCISE\n"
             + "Example 1: " + COMMAND_WORD + " 1 "
             + PREFIX_EXERCISE_NUMBER + "1 "
-            + PREFIX_EXERCISE + "3x10 Dumbbell Curls "
-            + PREFIX_EXERCISE + "5x11 Sit Ups\n"
+            + PREFIX_EXERCISE + "3x10 Dumbbell Curls\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ROUTINE + "ROUTINE_NAME\n"
             + "Example 2: " + COMMAND_WORD + " 1 "
@@ -80,7 +79,7 @@ public class EditRoutineCommand extends Command {
         model.setRoutine(routineToEdit, editedRoutine);
         model.updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
         return new CommandResult(String.format(MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     /**
