@@ -5,7 +5,7 @@ title: CareFlow User Guide
 <a id="top"></a>
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ Figure 1. Graphical User Interface (GUI) of CareFlow*
 
 # 2. About
 
-Welcome to the CareFlow user guide 1! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
+Welcome to the CareFlow user guide! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
 
 ## 2.1 How to navigate this user guide
 
@@ -85,47 +85,62 @@ Table 1. Symbols and formats used in this User Guide.
    <summary>Click here for more information on Java 11 installation</summary>
       <details>
       <summary> I. Installing Java 11 on Windows: </summary>
-
-   - To install Java 11 on Window, you have to first <span style="color:pink">download the jdk installer</span> and then <span style="color:pink">run the jdk installer</span> to install Java 11.
-
-   - Step 1: To download jdk installer, click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0) and scroll down to `Downloading the JDK installer` section:
+   <ul>
+   <li>
+   To install Java 11 on Window, you have to first <span style="color:orange">download the jdk installer</span> and then <span style="color:orange">run the jdk installer</span> to install Java 11.
+   </li>
+   
+    <br>
+   <li>
+   Step 1: To download jdk installer, click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0">link</a> and scroll down to `Downloading the JDK installer` section:
      <p align="center">
       <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
        </p>
-       <br>
-
-   - Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
+    </li>
+   
+   <br>
+   <li>
+   Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
      <p align="center">
         <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
        </p>
-           <br>
-
-   - Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
+   </li>
+         
+   <br>
+   <li>
+   Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
      <p align="center">
        <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
      </p>
-     <br>
-
-   - Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
+   </li>
+     
+   <br>
+   <li>
+    Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
       <p align="center">
       <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
       </p>
       <p align="center">
       <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
       </p>
+   </li>
+   
       <br>
-
-   - Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
+   <li>
+   Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
      <p align="center">
        <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
      </p>
+   </li>
+   
      <br> 
+   </ul>
      </details>
 
      <details> 
      <summary>II. Installing Java 11 on macOS</summary>
 
-     - Click on the [link](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html) and scroll down to `Installing JDK on macOS` and simply follow the instructions there!
+     - Click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html">link</a> and scroll down to `Installing JDK on macOS` and simply follow the instructions there!
        <p align="center">
        <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
        </p>
@@ -133,45 +148,59 @@ Table 1. Symbols and formats used in this User Guide.
        </details>
        </details>
 
-2. Download the latest `careflow.jar` jar file from [here](https://github.com/AY2223S2-CS2103T-W09-3/tp).
+2. Download the latest `careflow.jar` jar file from <a href="https://github.com/AY2223S2-CS2103T-W09-3/tp">here</a>.
 
 3. Copy the jar file to the folder you want to use as the home folder for your careflowBook. For instance, you can create a folder `CareFlow` on your desktop and put the jar file inside.
 
 4. Open a `command terminal`
    <details>
    <summary>Click here for more information on Java 11 installation</summary>
-   <details> 
-   <summary> I. For macOS: </summary>
-    - Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
+      <details> 
+      <summary> I. For macOS: </summary>
+   <ul>
+   <li>
+    Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
         <p align="center">
           <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
         </p>
+   </li>
         <br>
-    - Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
+   <li>
+    Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
         <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
         </p>
+   </li>
         <br>
-    -Step 3: You're now looking at the `command terminal`, good job!
-          <p align="center">
+   <li>
+    Step 3: You're now looking at the `command terminal`, good job!
+        <p align="center">
             <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
-          </p>
-          <br>
-      </details>
-    <details> 
-       <summary> II. For Windows:</summary>
-          - To Be Added
-        </details>
-     </details>
+        </p>
+   </li>
+        <br>
+
+   </ul>
+            </details>
+      <details> 
+      <summary> II. For Windows:</summary>
+   <ul>
+   <li>
+          To Be Added
+   </li>
+   </ul>
+         </details>
+         </details>
 
 5. The next step is to navigate into the folder you put the jar file in with the `cd` command
    <details>
    <summary> Click here for more information on navigating to jar file </summary>
 
-    - Suppose you have adopted the suggestion to put the jar file inside a folder called `CareFlow` on your desktop, you should type:`cd desktop/CareFlow` into your `command terminal` and hit `Enter`.
+    - Suppose you have adopted the suggestion to put the jar file inside a folder called `CareFlow` on your desktop, you should type:`cd desktop/CareFlow` into your `command terminal` and hit `Enter`. <br>
+   
     - For keen learners, you can take a look at the short video below to fund out more about the `cd` command
-        - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
-        - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
+         - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
+         - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
@@ -181,23 +210,16 @@ Table 1. Symbols and formats used in this User Guide.
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
    <details> 
    <summary>Click here for  Some example commands you can try</summary>
-
-    - `p list` : Lists all patients. <br>
-   
-    - `d list` : Lists all drugs.<br>
-
-    - `add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C` : Adds a patient named `John Lo` to the patient records. <br>
-
-    - `p delete 3` : Deletes the 3rd patient record shown in the current list.<br>
-
-    - `p clear` : Deletes all patient records.<br>
-
-    - `d clear` : Deletes all drug records<br>
-
-    - `exit` : Exits the app.<br>
-      
+    <ul>
+        <li><code>p list </code> : Lists all patients. </li> 
+        <li><code>d list`</code> : Lists all drugs.</li>
+        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named `John Lo` to the patient records.</li>
+        <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
+        <li><code>p clear</code> : Deletes all patient records</li>
+        <li><code>d clear</code> : Deletes all drug records</li>
+        <li><code>exit</code> : Exits the app.</li>
+   </ul>
       </details>
-    
     <br>
 
 [Back to top](#top)
