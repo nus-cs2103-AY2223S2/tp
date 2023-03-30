@@ -213,11 +213,12 @@ public class ParserUtil {
         }
 
         return parserFunction.apply(retArg);
+    }
 
+    /**
      * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
      *
-     * @throws ParseException if any of the
-     * specified indexes are invalid (not positive integers).
+     * @throws ParseException if any of the specified indexes are invalid (not positive integers).
      */
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String[] indexStrings = oneBasedIndexes.trim().split("\\s+");
