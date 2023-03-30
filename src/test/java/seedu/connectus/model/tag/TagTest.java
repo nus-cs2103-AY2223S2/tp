@@ -10,7 +10,7 @@ public class TagTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Tag(null));
     }
-    
+
     @Test
     public void isValidTagName() {
         // null tag name
