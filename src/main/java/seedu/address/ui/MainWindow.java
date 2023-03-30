@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PatientViewCard patientViewCard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -55,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane patientCardPLaceHolder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -71,6 +75,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        //patientViewCard = new PatientViewCard();
     }
 
     public Stage getPrimaryStage() {
@@ -161,6 +167,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    void handleView(int index) {
+        patientViewCard = new PatientViewCard(logic.getFilteredPatientList().get(index), new Stage());
+        if (!patientViewCard.isShowing()) {
+            patientViewCard.show();
+        } else {
+            patientViewCard.focus();
+        }
+        //patientViewCard = new PatientViewCard(logic.getFilteredPatientList().get(index));
+        //patientCardPLaceHolder.getChildren().add(patientViewCard.getRoot());
+    }
+
     /**
      * Closes the application.
      */
@@ -194,6 +211,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isView()) {
+                handleView(commandResult.getIndex());
             }
 
             return commandResult;

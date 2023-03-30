@@ -17,13 +17,27 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final boolean view;
+
+    private final int index;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean view, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.view = view;
+        this.index = index;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code view} and {@code index},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean view, int index) {
+        this(feedbackToUser, false, false, view, index);
     }
 
     /**
@@ -31,7 +45,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, 0);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +58,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isView() {
+        return view;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override
