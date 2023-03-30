@@ -102,8 +102,15 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * resets each person contact status to be hidden.
+     */
     void resetPersonHiddenStatus();
 
+    /**
+     * Sets each person's contact in the person list to be visible.
+     * @param personList list of person.
+     */
     void showPersonContact(List<Person> personList);
 
 }
