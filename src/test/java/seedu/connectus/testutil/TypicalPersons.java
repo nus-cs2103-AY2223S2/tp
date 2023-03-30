@@ -55,8 +55,8 @@ public class TypicalPersons {
             .withBirthday("01/01/2000")
             .withMajors("CS")
             .build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").
-            withPhone("87652533")
+    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
+            .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withRemarks("friends")
