@@ -1,28 +1,31 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
+import static seedu.address.testutil.TypicalElderly.getTypicalElderly;
+import static seedu.address.testutil.TypicalVolunteers.getTypicalVolunteers;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.ModelManagerBuilder;
-import seedu.address.testutil.TypicalElderly;
 
 class DeleteElderlyCommandTest {
 
-    private final Model model = getTypicalModelManager();
-
     @Test
     public void execute_validNric_success() {
-        Elderly elderlyToDelete = TypicalElderly.getTypicalElderly().get(0);
+        Model model = getTypicalModelManager();
+        Elderly elderlyToDelete = getTypicalElderly().get(0);
         DeleteElderlyCommand deleteElderlyCommand =
                 new DeleteElderlyCommand(elderlyToDelete.getNric());
 
@@ -37,7 +40,21 @@ class DeleteElderlyCommandTest {
     }
 
     @Test
+    public void execute_pairedElderly_pairDeleted() {
+        Model model = getTypicalModelManager();
+        Elderly elderly = getTypicalElderly().get(0);
+        Volunteer volunteer = getTypicalVolunteers().get(0);
+        Pair pair = new Pair(elderly, volunteer);
+        model.addPair(elderly.getNric(), volunteer.getNric());
+        assertTrue(model.hasPair(pair));
+
+        model.deleteElderly(elderly);
+        assertFalse(model.hasPair(pair));
+    }
+
+    @Test
     public void execute_invalidNric_throwsCommandException() {
+        Model model = getTypicalModelManager();
         Nric invalidNric = new Nric("T9999999I");
         DeleteElderlyCommand deleteElderlyCommand = new DeleteElderlyCommand(invalidNric);
 

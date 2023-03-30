@@ -17,7 +17,7 @@ With its easy-to-use **text-based interface** and contact management features, s
 
 Please read this section before skipping to specific parts in the `Features` section.
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+<div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
 
 The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%. 
 It is recommended that you switch to this resolution before proceeding with the rest of the user guide. UI bugs stemming 
@@ -45,13 +45,13 @@ You may see the following icons throughout our user guide, which are styled diff
 This provides some additional information that you are recommended to know.
 </div>
 
-##### Tip Box
+#### Tip Box
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
-##### Danger Box
+#### Danger Box
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
@@ -87,8 +87,6 @@ Fields are the information following the slash in a command, to provide appropri
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
 
-FriendlyLink fields are described below.
-
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
 * NRIC is case-insensitive
@@ -100,11 +98,20 @@ NRIC is a unique identifier given to all Singaporeans.
 
 #### Phone number
 The phone number of a person.
-* Phone number is strictly numeric (digits from 0 to 9) and have more than 3 digits
+* Phone number is strictly numeric (digits from 0 to 9) and have more than or equal to 3 digits
 
 #### Email
-The email of a person
-* Email must be in the `local-part@domain.com` format, containing the `@`
+The email of a person.
+
+Emails should be of the format local-part@domain and adhere to the following constraints:
+
+* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+* This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+
+The domain name must:
+* end with a domain label at least 2 characters long
+* have each domain label start and end with alphanumeric characters
+* have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 #### Date
 A date represents a point in time, such as aa birthdate or starting or ending days where someone is available for meet ups.
@@ -113,12 +120,12 @@ A date represents a point in time, such as aa birthdate or starting or ending da
 * When a person's available dates have passed, it will not be removed.
 * Where relevant, start date must occur before end date
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 You can enter a person's available date for record keeping purposes, even if the date has already passed
 </div>
 
 #### Region
-The general area in Singapore.
+The general area in **Singapore**.
 * Region must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` and `EAST`.
 
 #### Risk Level
@@ -134,13 +141,16 @@ The susceptibility level of an elderly to injury or sickness.
 * Specified for volunteers only.
 
 #### Available Dates
+
+The availability of a person.
 * The start of the available dates must be before the end of the available dates.
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
 Out of concerns of time, we do not implement the scheme to check and merge overlapping available date ranges, 
 such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
 please ensure your input available date ranges are non-overlapping.
+
 </div>
 
 #### Tags
@@ -213,7 +223,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
     * Open the app by entering `java -jar friendlylink.jar` into the terminal.
    
    The GUI should appear in a few seconds.
-   ![Ui](images/Ui.png)
+   ![Ui](images/emptyFriendlyLink.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -234,7 +244,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage1.PNG)
+![help message](images/helpMessage.PNG)
 
 Format: `help`
 
@@ -308,7 +318,7 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 <div markdown="block" class="alert alert-info">
    
-**:information_source: Info:**<br>
+**:information_source: Info**<br>
 * A warning will be given when:
    * there are clashes in availability between the volunteer and elderly; or
    * the volunteer and elderly lives in different regions
@@ -576,17 +586,15 @@ Example:
   suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
   these fields have not been filled.
 * Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR, ADVANCED dr/2023-06-03,2023-06-17`
-, FriendlyLink will not suggest anything as all possible fields have at least one value.
+, FriendlyLink will not suggest anything by default as all possible fields have at least one value.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes:**<br>
+**:information_source: Notes on Command Recommendation**<br>
 
-* Input validation validates the set of possible fields. If the user specifies a field that is
-  not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
+* If the user specifies a field that is not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
   error will be thrown when the user confirms the command.
-* There is a known UI bug when the text in `commandTextField` overflows. To improve user experience, the recommendation
-  engine is disabled once overflow is detected.
+* There is a known UI bug when the text in `command box` overflows. To improve user experience, command recommendation is disabled once overflow is detected.
 
 </div>
 
