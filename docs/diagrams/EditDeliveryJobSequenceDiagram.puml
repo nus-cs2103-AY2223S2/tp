@@ -1,0 +1,108 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DukeDriverParser" as DukeDriverParser LOGIC_COLOR
+participant ":EditDeliveryJobCommandParser" as EditDeliveryJobCommandParser LOGIC_COLOR
+participant ":EditDeliveryJobDescriptor" as EditDeliveryJobDescriptor LOGIC_COLOR
+participant "d:EditDeliveryJobCommand" as EditDeliveryJobCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "toEdit:DeliveryJob.Builder" as DeliveryJob.Builder MODEL_COLOR
+participant ":DeliveryJob" as DeliveryJob MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit_job ji/ABCXX slot/1")
+activate LogicManager
+
+LogicManager -> DukeDriverParser : parseCommand("edit_job ji/ABCXX slot/1")
+activate DukeDriverParser
+
+create EditDeliveryJobCommandParser
+DukeDriverParser -> EditDeliveryJobCommandParser
+activate EditDeliveryJobCommandParser
+
+EditDeliveryJobCommandParser --> DukeDriverParser
+deactivate EditDeliveryJobCommandParser
+
+DukeDriverParser -> EditDeliveryJobCommandParser : parse("ji/ABCXX slot/1")
+activate EditDeliveryJobCommandParser
+
+create EditDeliveryJobDescriptor
+EditDeliveryJobCommandParser -> EditDeliveryJobDescriptor
+activate EditDeliveryJobDescriptor
+
+EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser
+deactivate EditDeliveryJobDescriptor
+
+EditDeliveryJobCommandParser -> EditDeliveryJobDescriptor: setJobId("ABCXX")
+activate EditDeliveryJobDescriptor
+EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser 
+deactivate EditDeliveryJobDescriptor
+
+EditDeliveryJobCommandParser -> EditDeliveryJobDescriptor: setDeliverySlot("1")
+activate EditDeliveryJobDescriptor
+EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser 
+deactivate EditDeliveryJobDescriptor
+
+create EditDeliveryJobCommand
+EditDeliveryJobCommandParser -> EditDeliveryJobCommand
+activate EditDeliveryJobCommand
+
+EditDeliveryJobCommand --> EditDeliveryJobCommandParser : d
+deactivate EditDeliveryJobCommand
+
+EditDeliveryJobCommandParser --> DukeDriverParser : d
+deactivate EditDeliveryJobCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditDeliveryJobCommandParser -[hidden]-> DukeDriverParser
+destroy EditDeliveryJobCommandParser
+
+DukeDriverParser --> LogicManager : d
+deactivate DukeDriverParser
+
+LogicManager -> EditDeliveryJobCommand : execute()
+activate EditDeliveryJobCommand
+
+Create DeliveryJob.Builder
+EditDeliveryJobCommand -> DeliveryJob.Builder : Builder()
+activate DeliveryJob.Builder
+DeliveryJob.Builder --> EditDeliveryJobCommand
+deactivate DeliveryJob.Builder
+EditDeliveryJobCommand -> DeliveryJob.Builder : setJobId("ABCXX")
+activate DeliveryJob.Builder
+DeliveryJob.Builder --> EditDeliveryJobCommand
+deactivate DeliveryJob.Builder
+EditDeliveryJobCommand -> DeliveryJob.Builder : setSlot("1")
+activate DeliveryJob.Builder
+DeliveryJob.Builder --> EditDeliveryJobCommand
+deactivate DeliveryJob.Builder
+EditDeliveryJobCommand -> DeliveryJob.Builder : build()
+activate DeliveryJob.Builder
+DeliveryJob.Builder --> EditDeliveryJobCommand : toEdit
+deactivate DeliveryJob.Builder
+
+EditDeliveryJobCommand -> DeliveryJob : setDeliveryJob(toEdit)
+activate DeliveryJob
+
+DeliveryJob --> EditDeliveryJobCommand
+deactivate DeliveryJob
+
+destroy DeliveryJob.Builder
+
+create CommandResult
+EditDeliveryJobCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditDeliveryJobCommand
+deactivate CommandResult
+
+EditDeliveryJobCommand --> LogicManager : result
+deactivate EditDeliveryJobCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
