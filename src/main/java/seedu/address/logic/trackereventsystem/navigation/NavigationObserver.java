@@ -34,7 +34,7 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
     }
 
     private boolean isAtLectureAffectedByLectureEdit(NavigationContext navContext, ReadOnlyLecture originalLecture) {
-        return navContext.getLayer() == NavLayer.LECTURE
+        return originalLecture != null && navContext.getLayer() == NavLayer.LECTURE
                 && navContext.getLectureName().equals(originalLecture.getName());
     }
 
@@ -57,10 +57,12 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
     }
 
     private boolean isAtLectureAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return navContext.getLayer() == NavLayer.LECTURE && navContext.getModuleCode().equals(originalModule.getCode());
+        return originalModule != null && navContext.getLayer() == NavLayer.LECTURE
+                && navContext.getModuleCode().equals(originalModule.getCode());
     }
 
     private boolean isAtModuleAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return navContext.getLayer() == NavLayer.MODULE && navContext.getModuleCode().equals(originalModule.getCode());
+        return originalModule != null && navContext.getLayer() == NavLayer.MODULE
+                && navContext.getModuleCode().equals(originalModule.getCode());
     }
 }
