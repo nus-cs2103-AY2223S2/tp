@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -74,7 +75,9 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
         Video newVideo = new Video(targetVideoName, false, targetVideo.getTimestamp(), targetVideo.getTags());
         model.setVideo(lecture, targetVideo, newVideo);
 
-        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
+                        targetVideoName, COMMAND_WORD, "", "", lectureName, moduleCode),
+                new VideoEditInfo(moduleCode, lectureName, targetVideo, newVideo));
     }
 
     @Override

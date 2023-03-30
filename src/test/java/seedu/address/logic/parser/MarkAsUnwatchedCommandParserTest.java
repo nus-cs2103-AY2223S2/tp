@@ -11,6 +11,9 @@ import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalVideos;
 
+/**
+ * Contains tests for the parser of "unmark" command
+ */
 public class MarkAsUnwatchedCommandParserTest {
 
     private MarkAsUnwatchedCommandParser parser = new MarkAsUnwatchedCommandParser();

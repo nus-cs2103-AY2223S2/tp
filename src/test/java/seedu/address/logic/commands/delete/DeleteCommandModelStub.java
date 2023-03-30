@@ -13,6 +13,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
@@ -79,7 +80,7 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
-        return new Video(videoName, false, Set.of());
+        return new Video(videoName, false, new VideoTimestamp(), Set.of());
     }
 
     @Override

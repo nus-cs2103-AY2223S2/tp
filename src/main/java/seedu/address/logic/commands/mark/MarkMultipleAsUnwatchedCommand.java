@@ -6,11 +6,14 @@ import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MultipleEventsParser;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
@@ -71,14 +74,24 @@ public class MarkMultipleAsUnwatchedCommand extends MarkCommand {
                     this.moduleCode, this.lectureName));
         }
 
-        int successSize = this.videoNames.size() - invalidVideoNames.size();
+        ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
+        VideoEditInfo[] editedVideos = new VideoEditInfo[this.videoNames.size()];
+        for (int i = 0; i < this.videoNames.size(); i++) {
+            VideoName targetVideoName = this.videoNames.get(i);
+            Video targetVideo = model.getVideo(moduleCode, lectureName, targetVideoName);
+            Video newVideo = new Video(targetVideoName, false, targetVideo.getTimestamp(), targetVideo.getTags());
+            editedVideos[i] = new VideoEditInfo(moduleCode, lectureName, targetVideo, newVideo);
+            model.setVideo(lecture, targetVideo, newVideo);
+        }
+
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
-                    MultipleEventsParser.convertArrayListToString(this.videoNames),
-                    MarkAsUnwatchedCommand.COMMAND_WORD,
-                    successSize + " ",
-                    successSize == 1
-                        ? ""
-                        : "s"));
+                        MultipleEventsParser.convertArrayListToString(this.videoNames),
+                        MarkAsUnwatchedCommand.COMMAND_WORD,
+                        this.videoNames.size() + " ",
+                        this.videoNames.size() == 1
+                                ? ""
+                                : "s"),
+                editedVideos);
     }
 
     @Override

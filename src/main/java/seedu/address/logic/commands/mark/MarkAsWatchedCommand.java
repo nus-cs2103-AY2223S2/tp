@@ -73,4 +73,16 @@ public class MarkAsWatchedCommand extends MarkCommand {
 
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkAsWatchedCommand)) {
+            return false;
+        }
+
+        MarkAsWatchedCommand command = (MarkAsWatchedCommand) other;
+        return this.targetVideoName.equals(command.targetVideoName)
+                && this.moduleCode.equals(command.moduleCode)
+                && this.lectureName.equals(command.lectureName);
+    }
 }
