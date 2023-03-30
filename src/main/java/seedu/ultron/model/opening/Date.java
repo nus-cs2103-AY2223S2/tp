@@ -14,6 +14,8 @@ import java.util.Objects;
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should only be in the format yyyy-MM-dd e.g. 2023-01-01";
+    private static final String DATE_ERROR = "Date should be valid.";
+    private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public final String fullDate;
     public final String fullName;
@@ -48,7 +50,6 @@ public class Date implements Comparable<Date> {
      * Returns true if the date is in the past.
      */
     public boolean isPastDate() {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate date = LocalDate.parse(fullDate, dateFormat);
             if (date.isBefore(LocalDate.now())) {
@@ -57,7 +58,20 @@ public class Date implements Comparable<Date> {
             return false;
         } catch (DateTimeParseException e) {
             // Should not happen
-            return false;
+            throw new AssertionError(DATE_ERROR);
+        }
+    }
+
+    /**
+     * Returns true if the date is within the given number of days, inclusive of today.
+     */
+    public boolean isWithinDays(int days) {
+        try {
+            LocalDate date = LocalDate.parse(fullDate, dateFormat);
+            return !date.isBefore(LocalDate.now()) && !date.isAfter(LocalDate.now().plusDays(days));
+        } catch (DateTimeParseException e) {
+            // Should not happen
+            throw new AssertionError(DATE_ERROR);
         }
     }
 

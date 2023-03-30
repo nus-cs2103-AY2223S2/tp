@@ -6,9 +6,6 @@ import seedu.ultron.logic.commands.UpcomingCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
 import seedu.ultron.model.opening.OpeningsBeforeDaysPredicate;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class UpcomingCommandParser implements Parser<UpcomingCommand> {
     public UpcomingCommand parse(String args) throws ParseException {
         try {

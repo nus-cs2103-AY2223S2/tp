@@ -1,8 +1,5 @@
 package seedu.ultron.model.opening;
 
-import seedu.ultron.logic.parser.ParserUtil;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -16,16 +13,12 @@ public class OpeningsBeforeDaysPredicate implements Predicate<Opening> {
 
     @Override
     public boolean test(Opening opening) {
-        boolean hasEvent = false;
-        LocalDate today = LocalDate.now();
-        LocalDate remindLimit = today.plusDays(days);
         List<Date> allDates = opening.getDates();
         for (Date d : allDates) {
-            LocalDate eventDate = ParserUtil.getTime(d.fullDate);
-            if (!eventDate.isAfter(remindLimit) && !eventDate.isBefore(today)) {
-                hasEvent = true;
+            if (d.isWithinDays(days)) {
+                return true;
             }
         }
-        return hasEvent;
+        return false;
     }
 }

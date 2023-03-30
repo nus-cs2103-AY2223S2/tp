@@ -1,6 +1,5 @@
 package seedu.ultron.model.opening;
 
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 
@@ -14,10 +13,8 @@ public class ContainsKeydatePredicate implements Predicate<Opening> {
         if (opening.getDates() == null || opening.getDates().isEmpty()) {
             return false;
         }
-        LocalDate today = LocalDate.now();
         for (Date date : opening.getDates()) {
-            LocalDate curr = LocalDate.parse(date.fullDate);
-            if (curr.compareTo(today) >= 0) {
+            if (date.isPastDate()) {
                 return true;
             }
         }
