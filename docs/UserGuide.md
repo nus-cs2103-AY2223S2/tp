@@ -1,9 +1,9 @@
 ---
 layout: page
-title: User Guide
+title: HMHero User Guide
 ---
 
-# Table of Contents
+## Table of Contents
 
 
 1. [About HMHero](#1-about-hmhero)
@@ -11,8 +11,8 @@ title: User Guide
    * 2.1. [Applicant Management System](#21-applicant-management-system)
    * 2.2. [Hiring Process Analytics](#22-hiring-process-analytics)
 3. [How to use this User Guide](#3-how-to-use-this-user-guide)
-   * 3.1. [Admonition Boxes](#31-admonition-boxes)
-   * 3.2. [Miscellaneous Notations](#32-miscellaneous-notations)
+   * 3.1. [Icons and Hyperlinks](#31-icons-and-hyperlinks)
+   * 3.2. [Purpose of User Guide](#32-purpose-of-user-guide)
 4. [Installation](#4-installation)
 5. [Quick Start](#5-quick-start)
    * 5.1. [User Interface](#51-user-interface)
@@ -99,23 +99,41 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 
 ## 3. How to use this User Guide
 
-Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
+### 3.1 Icons and Hyperlinks
+
+You may come across colored boxes containing text that will aid you in better understanding how to use each feature.
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Info:</strong> <br>
+Highlight and display information you should pay attention to. </div>
+
+
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+Highlight tips which you might find useful. </div>
+
+
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
+Highlight dangers and things to look out for. </div>
+
+
+Other than the icons mentioned above, you maye also come across <a href> Phrases coloured in blue </a> are hyperlinks
+that will bring you to another part of this documentation that is relevant to the phrase.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
+
+### 3.2 Purpose of User Guide
+
+If you are a **new user**, head over to the [Installation](#4-installation) section to download the application.
+
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
 of how to use HMHero.
 </div>
 
-If you are a **new user**, and you have not installed HMHero yet, head over to the [Installation](#4-installation)
-section.
 
-Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#5-quick-start)
-section!
-This includes:
-* The [User Interface](#51-user-interface) of HMHero
-* How each `Applicant` is represented
-* HMHero's Command Format
-* Trying out your very first HMHero command
+Next, you can find the necessary information to get started in the [Quick Start](#5-quick-start) section!
 
 If you are an **experienced user**, you may head over to the [Command Summary](#7-command-summary) to get a quick overview
 of all the commands available in HMHero!
@@ -129,43 +147,6 @@ To aid in your navigation, we have included the a <a href="#table-of-contents">B
 sub-section in this User Guide so that it is easy for you to jump across different sections!
 </div>
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-This User Guide contains many clickable links for you to navigate around different sections.
-You may use the keyboard shortcuts <code>Alt + Left arrow</code>  and <code>Alt + Right arrow</code>
-to navigate back and forth between the links quickly. (<code>Command + Left arrow</code> and
-<code>Command + Right arrow</code> if you are using Mac).
-</div>
-
-[Back to Table of Contents](#table-of-contents)
-
----
-
-### 3.1 Admonition Boxes
-
-In this guide, you will often come across colored boxes containing text that will aid you in better understanding
-how to use each feature.
-
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-Highlight and display information you should pay attention to. </div>
-
-
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-Highlight tips which you might find useful. </div>
-
-
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
-Highlight dangers and things to look out for. </div>
-
-[Back to Table of Contents](#table-of-contents)
-
----
-
-### 3.2 Miscellaneous Notations
-
-Other than the icons mentioned above, there are also some other notations used in this guide:
-
-- <a href> Phrases coloured in blue </a> are hyperlinks that will bring you to another part of
-this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -180,7 +161,7 @@ will reside in.
 4. Double-click on the jar file to launch HMHero.
 5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
-![ui.png](images%2Fui.png)
+<img src="images/ui.png" alt="UI image" width="500" height="400">
 
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
@@ -193,7 +174,7 @@ You will notice that a folder called "data" would have been created in the same 
 Do not edit this file because doing so might result in a corruption of your data, causing the application to fail!
 </div>
 
-Not sure where to start? The following section on [Quick Start](#5-quick-start) is a tutorial on how to use HMHero
+The following section on [Quick Start](#5-quick-start) is a tutorial on how to use HMHero
 after you have launched it for the first time. Feel free to skip to the next section on [Commands](#6-commands) if you
 are already familiar with the application!
 
