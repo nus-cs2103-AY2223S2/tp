@@ -2,8 +2,6 @@
 
 # User Guide
 
----
-
 ## What is Advis.io?
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
@@ -39,8 +37,6 @@ see in your career.
         * Deleting a policy : `deletePolicy`
 * ### FAQ
 * ### Command Summary
-
---------------------------------------------------------------------------------------------------------------------
 
 ## How to Get Started
 
@@ -380,10 +376,26 @@ _Details coming soon ..._
 
 ## FAQ
 
+**Q**: My computer doesn't have Java 11 installed, what should I do?<br>
+**A**: You can install Java 11 from [Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html). All you have to do now is find your operating systems and follow the steps given! Alternatively, you can also install Java 11 from [OpenJDK](https://openjdk.org). 
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
+**Q**: Do I need an internet connection use Advisio?<br>
+**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application anywhere and anytime as you see fit!
+
+**Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
+**A**:Unfortunately, Advisio does not  support cloud support. However, you can follow these steps to store your data safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service. 
+
+**Q**: I would like to add a new policy, however the application doesn't allow me to add a policy other than those that are supported by the application. What should I do?<br>
+**A**: We restricted the policies to a limited few for the convenience of Financial Advisors so that they wouldn't find themselves in a situation where they can't remember the policy that was added. The engineering team for your company should be able to add a new general policy if it's required.
+
+**Q**: Is there a limit to the number of clients or policies that I can add?<br>
+**A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed those thresholds. However, the limit can be expanded in the future if necessary.
+
+**Q**: If I
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
