@@ -9,15 +9,17 @@
 
 <VBox fx:id="enlargedDoctorInfoCard" styleClass="enlarged-contact-card, primary-border"
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <HBox alignment="CENTER" styleClass="only-bottom-primary-border">
-    <Label fx:id="name" text="\$first" styleClass="label-header-3"/>
+  <HBox alignment="CENTER" styleClass="title-background, only-bottom-primary-border">
+    <Label text="Selected Doctor" styleClass="label-header-3"/>
   </HBox>
-  <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="enlarged-contacts-details-container"
-              xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+              styleClass="enlarged-contacts-details-scroll-pane, edge-to-edge">
     <VBox styleClass="enlarged-contacts-details-pane">
       <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
       </padding>
+      <Label styleClass="description-label" text="Name:" />
+      <Label fx:id="name" styleClass="value-label" text="\$name" />
       <Label styleClass="description-label" text="Phone Number:" />
       <Label fx:id="phone" styleClass="value-label" text="\$phone" />
       <Label styleClass="description-label" text="Email:" />
@@ -27,7 +29,7 @@
       <Label styleClass="description-label" text="Years of Experience:" />
       <Label fx:id="yearsOfExperience" styleClass="value-label" text="\$yearsOfExperience" />
       <Label styleClass="description-label" text="Tags:" />
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" minWidth="150"/>
     </VBox>
   </ScrollPane>
 </VBox>

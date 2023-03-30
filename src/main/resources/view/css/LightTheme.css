@@ -55,10 +55,6 @@
     -fx-background-color: #FEFAE0;
 }
 
-.contact-listview .scroll-bar:vertical{
-    -fx-background-color: #7D6D61;
-}
-
 /*
  * Contact Card Styles
  */
