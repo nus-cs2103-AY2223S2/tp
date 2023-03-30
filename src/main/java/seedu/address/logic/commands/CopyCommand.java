@@ -25,7 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Copies the details of an existing person in the address book to the user's clipboard.
+ * Copies the details of an existing person in the address book to the user's
+ * clipboard.
  */
 public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
@@ -34,14 +35,14 @@ public class CopyCommand extends Command {
             + ": Copies the information of the person identified by "
             + "the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "[" + PREFIX_NAME + "] "
-            + "[" + PREFIX_PHONE + "] "
-            + "[" + PREFIX_EMAIL + "] "
-            + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_RANK + "] "
+            + "[" + PREFIX_NAME + "] "
             + "[" + PREFIX_UNIT + "] "
             + "[" + PREFIX_COMPANY + "] "
             + "[" + PREFIX_PLATOON + "] "
+            + "[" + PREFIX_PHONE + "] "
+            + "[" + PREFIX_EMAIL + "] "
+            + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + " " + PREFIX_RANK;
 
@@ -88,20 +89,11 @@ public class CopyCommand extends Command {
 
     public String getInformation(Person personToCopy, CopyInformationSelector copyInformationSelector) {
         final StringBuilder infoBuilder = new StringBuilder();
-        if (copyInformationSelector.toCopyName()) {
-            infoBuilder.append("Name: " + personToCopy.getName() + "\n");
-        }
-        if (copyInformationSelector.toCopyPhone()) {
-            infoBuilder.append("Phone: " + personToCopy.getPhone() + "\n");
-        }
-        if (copyInformationSelector.toCopyEmail()) {
-            infoBuilder.append("Email: " + personToCopy.getEmail() + "\n");
-        }
-        if (copyInformationSelector.toCopyAddress()) {
-            infoBuilder.append("Address: " + personToCopy.getAddress() + "\n");
-        }
         if (copyInformationSelector.toCopyRank()) {
             infoBuilder.append("Rank: " + personToCopy.getRank() + "\n");
+        }
+        if (copyInformationSelector.toCopyName()) {
+            infoBuilder.append("Name: " + personToCopy.getName() + "\n");
         }
         if (copyInformationSelector.toCopyUnit()) {
             infoBuilder.append("Unit: " + personToCopy.getUnit() + "\n");
@@ -111,6 +103,15 @@ public class CopyCommand extends Command {
         }
         if (copyInformationSelector.toCopyPlatoon()) {
             infoBuilder.append("Platoon: " + personToCopy.getPlatoon() + "\n");
+        }
+        if (copyInformationSelector.toCopyPhone()) {
+            infoBuilder.append("Phone: " + personToCopy.getPhone() + "\n");
+        }
+        if (copyInformationSelector.toCopyEmail()) {
+            infoBuilder.append("Email: " + personToCopy.getEmail() + "\n");
+        }
+        if (copyInformationSelector.toCopyAddress()) {
+            infoBuilder.append("Address: " + personToCopy.getAddress() + "\n");
         }
         if (copyInformationSelector.toCopyTags()) {
             infoBuilder.append("Tags: ");
@@ -134,65 +135,33 @@ public class CopyCommand extends Command {
      * Stores which field is selected to be copied.
      */
     public static class CopyInformationSelector {
-        private boolean name;
-        private boolean phone;
-        private boolean email;
-        private boolean address;
         private boolean rank;
+        private boolean name;
         private boolean unit;
         private boolean company;
         private boolean platoon;
+        private boolean phone;
+        private boolean email;
+        private boolean address;
         private boolean tags;
 
         public boolean isAnyFieldSelected() {
-            return CollectionUtil.isAnyTrue(name, phone, email, address, rank, unit, company, platoon, tags);
+            return CollectionUtil.isAnyTrue(rank, name, unit, company, platoon, phone, email, address, tags);
         }
 
         /**
          * All fields are selected to be copied.
          */
         public void copyAllInformation(boolean toCopy) {
-            this.name = toCopy;
-            this.phone = toCopy;
-            this.email = toCopy;
-            this.address = toCopy;
             this.rank = toCopy;
+            this.name = toCopy;
             this.unit = toCopy;
             this.company = toCopy;
             this.platoon = toCopy;
-            this.tags = toCopy;
-        }
-
-        public void copyName(boolean toCopy) {
-            this.name = toCopy;
-        }
-
-        public boolean toCopyName() {
-            return this.name;
-        }
-
-        public void copyPhone(boolean toCopy) {
             this.phone = toCopy;
-        }
-
-        public boolean toCopyPhone() {
-            return this.phone;
-        }
-
-        public void copyEmail(boolean toCopy) {
             this.email = toCopy;
-        }
-
-        public boolean toCopyEmail() {
-            return this.email;
-        }
-
-        public void copyAddress(boolean toCopy) {
             this.address = toCopy;
-        }
-
-        public boolean toCopyAddress() {
-            return this.address;
+            this.tags = toCopy;
         }
 
         public void copyRank(boolean toCopy) {
@@ -201,6 +170,14 @@ public class CopyCommand extends Command {
 
         public boolean toCopyRank() {
             return this.rank;
+        }
+
+        public void copyName(boolean toCopy) {
+            this.name = toCopy;
+        }
+
+        public boolean toCopyName() {
+            return this.name;
         }
 
         public void copyUnit(boolean toCopy) {
@@ -225,6 +202,30 @@ public class CopyCommand extends Command {
 
         public boolean toCopyPlatoon() {
             return this.platoon;
+        }
+
+        public void copyPhone(boolean toCopy) {
+            this.phone = toCopy;
+        }
+
+        public boolean toCopyPhone() {
+            return this.phone;
+        }
+
+        public void copyEmail(boolean toCopy) {
+            this.email = toCopy;
+        }
+
+        public boolean toCopyEmail() {
+            return this.email;
+        }
+
+        public void copyAddress(boolean toCopy) {
+            this.address = toCopy;
+        }
+
+        public boolean toCopyAddress() {
+            return this.address;
         }
 
         public void copyTags(boolean toCopy) {

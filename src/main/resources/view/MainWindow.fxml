@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="650.0" minWidth="650.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="650.0" minWidth="650.0" onCloseRequest="#handleExit" title="Army Information Management System" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -45,7 +45,7 @@
             <center>
                <SplitPane dividerPositions="0.3" orientation="VERTICAL" BorderPane.alignment="CENTER">
                   <items>
-                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="250.0" minHeight="-Infinity" prefHeight="130.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
+                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300.0" minHeight="-Infinity" prefHeight="120.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
                    <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
                    </padding>
