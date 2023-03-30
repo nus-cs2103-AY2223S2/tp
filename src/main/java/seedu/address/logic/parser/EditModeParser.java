@@ -107,15 +107,18 @@ public class EditModeParser {
             break;
         case "s":
         case "str":
+        case "strength":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
         case "d":
         case "dex":
+        case "dexterity":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     Integer.valueOf(value), toEdit.getStats().getIntelligence()));
             break;
         case "int":
+        case "intelligence":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     toEdit.getStats().getDexterity(), Integer.valueOf(value)));
             break;
@@ -127,7 +130,7 @@ public class EditModeParser {
         case "exp":
             outData.setXp(Integer.valueOf(value));
             break;
-        case "i":
+        case "inv":
         case "inventory":
             // Check if add or delete
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
