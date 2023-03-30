@@ -9,31 +9,10 @@ events and their friends' events **via a Command Line Interface (CLI)** while st
 Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to 
 meet instead of having to manually compare timetables with each other.
 
-* [Quick Start](#QuickStart) 
-* [Features](#Features)
-  * [Person-related commands](#PersonRelatedCommands)
-    * [Add person's information into WGT](#AddPerson)
-    * [List all the persons stored in WGT](#ListPerson)
-    * [Edit information about a person](#EditPerson)
-    * [Find a person's information by his/her name](#FindPerson)
-    * [Delete a person's information in WGT](#DeletePerson)
-  * [Group-related commands](#GroupRelatedCommands)
-    * [Create a group in WGT](#CreateGroup)
-    * [Delete a group created in WGT](#DeleteGroup)
-    * [List all the groups created in WGT](#ListGroup)
-    * [Find a group by the group's name](#FindGroup)
-  * [Event-related commands](#EventRelatedCommands)
-    * [Create an event](#CreateEvent)
-    * [Delete an event](#DeleteEvent)
-    * [Edit information about an event](#EditEvent)
-    * [List all the events created](#lListEvent)
-  * [Miscellaneous features](#MiscellaneousCommands)
-    * [Clear all data stored in WGT](#Clear)
-    * [Exit the program](#Exit)
-    * [Help](#Help)
-
+* Table of Contents
+  {:toc}
 --------------------------------------------------------------------------------------------------------------------
-## Quick start <a id="QuickStart" />
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -61,7 +40,7 @@ meet instead of having to manually compare timetables with each other.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Features <a id="Features" />
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -87,9 +66,9 @@ meet instead of having to manually compare timetables with each other.
 
 </div>
 
-## Person-related commands <a id="PersonRelatedCommands" />
+## Person-related commands 
 
-### Adding a person: `add` <a id="AddPerson" />
+### Adding a person: `add` 
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
@@ -102,7 +81,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list` <a id="ListPerson" />
+### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
@@ -130,7 +109,7 @@ Examples:
 *  `edit 3 m/ t/Borrowed $10` Edit the tags of the 2nd person to be `Borrowed $10` plus the existing tag of that person.
 *  `edit 3 m/ t/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups of that person.
 
-### Locating persons by name: `find` <a id="FindPerson" />
+### Locating persons by name: `find` 
 
 Finds persons whose names contain any of the given keywords.
 
@@ -148,7 +127,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete` <a id="DeletePerson" />
+### Deleting a person : `delete` 
 
 Deletes the specified person from the address book.
 
@@ -162,8 +141,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-## Group-related commands <a id="GroupRelatedCommands" />
-### Creating a group : `group_create` <a id="CreateGroup" />
+## Group-related commands 
+### Creating a group : `group_create` 
 
 Create a group in the address book.
 
@@ -176,7 +155,7 @@ Examples:
 * `group_create g/CS2103T`
 * `group_create g/CS2101`
 
-### Deleting a group : `group_delete` <a id="DeleteGroup" />
+### Deleting a group : `group_delete`
 
 Deletes an existing group from the address book.
 
@@ -190,13 +169,13 @@ Examples:
 * `group_delete 1`
 * `group_delete 2`
 
-### List all groups: `group_list` <a id="ListGroup" />
+### List all groups: `group_list` 
 
 Shows a list of all existing groups' name in the address book.
 
 Format: `group_list`
 
-### Find a group: `group_find` <a id="FindGroup" />
+### Find a group: `group_find` 
 
 Finds persons in groups whose group names contain any of the given keywords.
 
@@ -214,8 +193,8 @@ Examples:
 * `group_find CS2103` returns persons in the group `CS2103`
 * `group_find CS2103 CS2101` returns persons in the group `CS2103` and `CS2101`
 
-## Event-related commands <a id="EventRelatedCommand" />
-### Creating an event: <a id="CreateEvent" />
+## Event-related commands 
+### Creating an event: 
 Creates either an isolated or weekly recurring event.
 
 #### 1) Isolated event: `event_create`
@@ -244,7 +223,7 @@ Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END
 Examples:
 * `event_create_recur 1 re/CS2103T Weekly Meeting d/Monday f/12:00 t/14:00`
 
-### Deleting an event: <a id="DeleteEvent" />
+### Deleting an event: 
 Delete either an isolated or a weekly recurring event
 #### 1) Delete an isolated event: `ie_delete`
 
@@ -269,7 +248,7 @@ Format: `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
 Examples:
 * `re_delete 1 1`
 
-### Editing an event: <a id="EditEvent" />
+### Editing an event: 
 Edit the attributes of either an isolated event or a weekly recurring event
 #### 1) Edit an isolated event: `ie_edit`
 
@@ -304,7 +283,7 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-### List all events: `event list`  [coming soon] <a id="ListEvent" />
+### List all events: `event list`  [coming soon] 
 
 ##Miscellaneous features <a id="MiscellaneousCommands" />
 ### Clearing all entries : `clear` <a id="Clear" />
