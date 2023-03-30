@@ -369,6 +369,8 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void deleteLeave(Leave leave) {
         leaves.remove(leave);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
