@@ -38,7 +38,7 @@ class AddCommandParserTest {
                         + "nausea, vomiting, stomach pain, and constipation. Less common side effects may include "
                         + "rash, itching, and hives. -sc 99999999",
                 "Storage Count should only contain positive integers, it should be at least 1 digit long "
-                        + "but no more than 7 digits"
+                        + "but no more than 3 digits"
 
         );
     }
