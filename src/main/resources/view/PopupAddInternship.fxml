@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/add_internship.png" />
     </icons>
@@ -236,7 +236,7 @@
                      </HBox>
                      <HBox prefHeight="50.0" prefWidth="586.0">
                         <children>
-                           <Label prefHeight="69.0" prefWidth="28.0" />
+                           <Label prefHeight="39.0" prefWidth="16.0" />
                            <Text fill="#a12222" strokeType="OUTSIDE" strokeWidth="0.0" text="Inputs should not have alphabets followed by &quot;/&quot;, e.g. y/" wrappingWidth="468.13671875" />
                            <Button mnemonicParsing="false" onMouseClicked="#handleAddInternship" prefHeight="31.0" prefWidth="88.0" styleClass="primary-button" stylesheets="@PopupAddInternship.css" text="Add">
                               <graphic>

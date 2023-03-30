@@ -34,8 +34,6 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label jobTitle;
     @FXML
-    private VBox reviews;
-    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -61,8 +59,6 @@ public class ApplicationCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
-        application.getReviews().stream()
-                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
         internshipStatus.setText(application.getStatus().name());
         Contact companyContact = application.getContact();
         if (companyContact != null) {
@@ -89,8 +85,6 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
-        application.getReviews().stream()
-                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
         internshipStatus.setText(application.getStatus().name());
         Contact companyContact = application.getContact();
         if (companyContact != null) {
