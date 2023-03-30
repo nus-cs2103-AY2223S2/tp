@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
-import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.RecurCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Date;
