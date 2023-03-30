@@ -47,7 +47,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         if (endTime.isBefore(startTime)) {
             throw new ParseException(ENDTIME_BEFORE_STATRTIME);
         }
-
-        return new AddAppointmentCommand(index, new Appointment(startTime, endTime));
+        Appointment newAppointment = new Appointment(startTime, endTime);
+        return new AddAppointmentCommand(index, newAppointment);
     }
 }
