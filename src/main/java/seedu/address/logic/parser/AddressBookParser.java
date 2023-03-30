@@ -116,7 +116,7 @@ public class AddressBookParser {
 
         case FindTimeCommand.COMMAND_WORD:
             return new FindTimeCommandParser().parse(arguments);
-            
+
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
 
