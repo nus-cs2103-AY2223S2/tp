@@ -401,291 +401,6 @@ This section describes some noteworthy details on how certain features are imple
 
 <br>
 
-## **Model Implementation**
-
-This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more 
-information about this package.
-
-### **Person Class**
-Each `Person` in CoDoc is implemented in the following way:
-
-![Person Class Diagram](images/PersonClassDiagram.png)
-
-All `Person` must have a `Name`, `Email`, `Course` and `Year`.
-
-`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
-
-#### Design Considerations
-
-For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different. 
-
-We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.  
-
-**Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
-
-- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL 
-  - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
-  - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
-- Alternative 2: Make them compulsory 
-  - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
-  - Cons:
-  Slower and more inconvenient, need to add these attributes when adding a person.
-- Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
-
-<div style="page-break-after: always;"></div>
-
-[Scroll back to top](#table-of-contents)
-
-### **Module Class**
-Each module in CoDoc have a string representing its module.
-#### Regex and validation
-All module string should satisfy the following regex pattern,
-
-`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
-
-For example, a valid Module string is "AY2223S1 CS1101S"
-
-Additionally, a final validation is required to ensure that the 4 digit after
-the "AY" is valid. 
-
-The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
-- 2223
-- 9900
-- 0102
-
-The following are invalid (the last 2 digit number is not an increment of the first)
-- 2224
-- 1111
-- 2019
-
-[Scroll back to top](#table-of-contents)
-
-### **Course and CourseList Class**
-Each `Course` in CoDoc is implemented in the following way:
-
-![Course Class Diagram](images/CourseClassDiagram.png)
-
-All `Course` hava a `String` representing the name of the course.
-
-#### Design Considerations
-
-The `Course` constructor accepts a `String` input that represents the index of the course name 
-residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel 
-of the GUI, along with the corresponding index of the course name.
-
-Instead of parsing the name of the course directly into
-the `Course` constructor, we wanted to standardize the names of courses without allowing users to
-input their own course names. This prevents 1 course from having multiple `String` representations
-in our `Storage` as well as the courses displayed in the application.
-
-<div style="page-break-after: always;"></div>
-
-[Scroll back to top](#table-of-contents)
-
-## **Logic Implementation**
-
-This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
-for more information about this package.
-
-<br>
-
-### **Edit Command**
-
-Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
-For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
-
-For `Skills` and `Modules`, the command is capable of adding, deleting and updating existing data.
-
-`Edit` has the prefixes as follows:
-* `n/` for name
-* `e/` for email
-* `y/` for year
-* `c/` for course
-* `g/` for GitHub
-* `l/` for LinkedIn
-* `m/` for updating the current module list
-* `m+/` for adding a new module
-* `m-/` for deleting an existing module
-* `s/` for updating the current skill list
-* `s+/` for adding a new skill
-* `s-/` for deleting an existing skill
-
-#### Implementation Flow
-
-Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
-person.
-
-![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
-
-Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
-
-![Edit Activity Diagram](images/EditActivityDiagram.png)
-
-#### Design Considerations
-
-We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes. 
-However, we realised the behaviour is similar to simply deleting and adding new modules and skills. 
-Hence, we removed the implementation of the old and new prefixes.
-
-[Scroll back to top](#table-of-contents)
-
-### Find Command
-
-Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
-
-- `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
-- **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
-- Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
-- Case-insensitive.
-- If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
-
-`find` has the prefixes corresponding to attributes as follows:
-* `n/` for `Name`
-* `y/` for `Year`
-* `c/` for `Course`
-* `m/` for `Module`
-* `s/` for `Skill`
-
-**Implementation Flow**
-
-The following sequence diagram summarizes what happens when the user executes a `find` command:
-
-![Find Command Sequence Diagram](images/FindSequenceDiagram.png)
-
-`ModelManager`, which implements the `Model` interface, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s that is shown in the `MainWindow` class as a `PersonListPanel`. When a `find` command is called by the user, `ModelManager` updates its `filteredPersons` to only contain `Person`s that satisfy all the `predicate`s corresponding to the attibrutes specified by the user. The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
-
-Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
-
-![Find Activity Diagram](images/FindActivityDiagram.png)
-
-#### Design Considerations
-
-We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
-
-Our find command can **take in multiple keywords for each attribute prefix** i.e. `find m/cs2109s cs2103t` finds people that are taking have taken both CS2109S and CS2103T. We made it this way instead of `find m/cs2109s m/cs2103t` to increase the speed of the search i.e. user requires less key presses.
-
-We also chose to make our find command case-insensitive to increase the speed of the search i.e. user does not need to press the Caps Lock key.
-
-**Aspect 1: `find` by logical AND vs `find` by logical OR:**
-
-- Alternative 1 (current choice): `find` by logical AND
-    - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
-    - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
-- Alternative 2: `find` by logical OR
-    - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
-    - Cons:
-      User cannot find people that have multiple attributes.
-- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
-
-**Aspect 2: `find` by contains vs containsWord:**
-
-- Alternative 1 (current choice): `find` by contains
-  - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
-  - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam. 
-- Alternative 2: `find` by containsWord (not a built-in method but can be created)
-  - Pros: Resolves the cons in Alternative 1.
-  - Cons:
-    Harder for people to show up in the `FilteredList`, might lead to the user missing out on information that might be useful, i.e. find m/cs1101 will only find people that are taking/have taken CS1101 but it will not show people taking/have taken other variants of CS1101 such as CS1101S and CS1101R. In such cases, the user might want to find these people but are unaware that these variants even exist, and even if he/she know, he/she would have to query multiple commands like `find m/CS1101S` and `find m/CS1101SR`, which makes it more time-consuming.
-- Decision: We chose Alternative 1 as it is more conventional; our normal Ctrl-F or Cmd-F searches by contains instead of containsWord. This option enables the user to search faster, have more search results and can inform users about information that could be useful to them.
-
-[Scroll back to top](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
-
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCodoc`. It extends `Codoc` with an undo/redo history, stored internally as an `codocStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCodoc#commit()` — Saves the current CoDoc state in its history.
-* `VersionedCodoc#undo()` — Restores the previous CoDoc state from its history.
-* `VersionedCodoc#redo()` — Restores a previously undone CoDoc state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCodoc()`, `Model#undoCodoc()` and `Model#redoCodoc()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCodoc` will be initialized with the initial CoDoc state, and the `currentStatePointer` pointing to that single CoDoc state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in CoDoc. The `delete` command calls `Model#commitCodoc()`, causing the modified state of CoDoc after the `delete 5` command executes to be saved in the `codocStateList`, and the `currentStatePointer` is shifted to the newly inserted CoDoc state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCodoc()`, causing another modified CoDoc state to be saved into the `codocStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCodoc()`, so CoDoc state will not be saved into the `codocStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCodoc()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous CoDoc state, and restores CoDoc to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Codoc state, then there are no previous Codoc states to restore. The `undo` command uses `Model#canUndoCodoc()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCodoc()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores CoDoc to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `codocStateList.size() - 1`, pointing to the latest CoDoc state, then there are no undone Codoc states to restore. The `redo` command uses `Model#canRedoCodoc()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify CoDoc, such as `list`, will usually not call `Model#commitCodoc()`, `Model#undoCodoc()` or `Model#redoCodoc()`. Thus, the `codocStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCodoc()`. Since the `currentStatePointer` is not pointing at the end of the `codocStateList`, all CoDoc states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-[Scroll back to top](#table-of-contents)
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire CoDoc.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-[Scroll back to top](#table-of-contents)
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-[Scroll back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **UI Implementation**
 
@@ -898,6 +613,294 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 
 [Scroll back to UI Implementation](#ui-implementation)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Logic Implementation**
+
+This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
+for more information about this package.
+
+<br>
+
+### **Edit Command**
+
+Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
+For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
+
+For `Skills` and `Modules`, the command is capable of adding, deleting and updating existing data.
+
+`Edit` has the prefixes as follows:
+* `n/` for name
+* `e/` for email
+* `y/` for year
+* `c/` for course
+* `g/` for GitHub
+* `l/` for LinkedIn
+* `m/` for updating the current module list
+* `m+/` for adding a new module
+* `m-/` for deleting an existing module
+* `s/` for updating the current skill list
+* `s+/` for adding a new skill
+* `s-/` for deleting an existing skill
+
+#### Implementation Flow
+
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
+person.
+
+![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
+
+![Edit Activity Diagram](images/EditActivityDiagram.png)
+
+#### Design Considerations
+
+We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes.
+However, we realised the behaviour is similar to simply deleting and adding new modules and skills.
+Hence, we removed the implementation of the old and new prefixes.
+
+[Scroll back to top](#table-of-contents)
+
+### Find Command
+
+Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
+
+- `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
+- **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
+- Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
+- Case-insensitive.
+- If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
+
+`find` has the prefixes corresponding to attributes as follows:
+* `n/` for `Name`
+* `y/` for `Year`
+* `c/` for `Course`
+* `m/` for `Module`
+* `s/` for `Skill`
+
+**Implementation Flow**
+
+The following sequence diagram summarizes what happens when the user executes a `find` command:
+
+![Find Command Sequence Diagram](images/FindSequenceDiagram.png)
+
+`ModelManager`, which implements the `Model` interface, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s that is shown in the `MainWindow` class as a `PersonListPanel`. When a `find` command is called by the user, `ModelManager` updates its `filteredPersons` to only contain `Person`s that satisfy all the `predicate`s corresponding to the attibrutes specified by the user. The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
+
+Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
+
+![Find Activity Diagram](images/FindActivityDiagram.png)
+
+#### Design Considerations
+
+We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
+
+Our find command can **take in multiple keywords for each attribute prefix** i.e. `find m/cs2109s cs2103t` finds people that are taking have taken both CS2109S and CS2103T. We made it this way instead of `find m/cs2109s m/cs2103t` to increase the speed of the search i.e. user requires less key presses.
+
+We also chose to make our find command case-insensitive to increase the speed of the search i.e. user does not need to press the Caps Lock key.
+
+**Aspect 1: `find` by logical AND vs `find` by logical OR:**
+
+- Alternative 1 (current choice): `find` by logical AND
+  - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
+  - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
+- Alternative 2: `find` by logical OR
+  - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both.
+  - Cons:
+    User cannot find people that have multiple attributes.
+- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
+
+**Aspect 2: `find` by contains vs containsWord:**
+
+- Alternative 1 (current choice): `find` by contains
+  - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
+  - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam.
+- Alternative 2: `find` by containsWord (not a built-in method but can be created)
+  - Pros: Resolves the cons in Alternative 1.
+  - Cons:
+    Harder for people to show up in the `FilteredList`, might lead to the user missing out on information that might be useful, i.e. find m/cs1101 will only find people that are taking/have taken CS1101 but it will not show people taking/have taken other variants of CS1101 such as CS1101S and CS1101R. In such cases, the user might want to find these people but are unaware that these variants even exist, and even if he/she know, he/she would have to query multiple commands like `find m/CS1101S` and `find m/CS1101SR`, which makes it more time-consuming.
+- Decision: We chose Alternative 1 as it is more conventional; our normal Ctrl-F or Cmd-F searches by contains instead of containsWord. This option enables the user to search faster, have more search results and can inform users about information that could be useful to them.
+
+[Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedCodoc`. It extends `Codoc` with an undo/redo history, stored internally as an `codocStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedCodoc#commit()` — Saves the current CoDoc state in its history.
+* `VersionedCodoc#undo()` — Restores the previous CoDoc state from its history.
+* `VersionedCodoc#redo()` — Restores a previously undone CoDoc state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitCodoc()`, `Model#undoCodoc()` and `Model#redoCodoc()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedCodoc` will be initialized with the initial CoDoc state, and the `currentStatePointer` pointing to that single CoDoc state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in CoDoc. The `delete` command calls `Model#commitCodoc()`, causing the modified state of CoDoc after the `delete 5` command executes to be saved in the `codocStateList`, and the `currentStatePointer` is shifted to the newly inserted CoDoc state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCodoc()`, causing another modified CoDoc state to be saved into the `codocStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCodoc()`, so CoDoc state will not be saved into the `codocStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCodoc()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous CoDoc state, and restores CoDoc to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Codoc state, then there are no previous Codoc states to restore. The `undo` command uses `Model#canUndoCodoc()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoCodoc()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores CoDoc to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `codocStateList.size() - 1`, pointing to the latest CoDoc state, then there are no undone Codoc states to restore. The `redo` command uses `Model#canRedoCodoc()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify CoDoc, such as `list`, will usually not call `Model#commitCodoc()`, `Model#undoCodoc()` or `Model#redoCodoc()`. Thus, the `codocStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitCodoc()`. Since the `currentStatePointer` is not pointing at the end of the `codocStateList`, all CoDoc states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+[Scroll back to top](#table-of-contents)
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire CoDoc.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+[Scroll back to top](#table-of-contents)
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
+[Scroll back to top](#table-of-contents)
+
+
+[Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+## **Model Implementation**
+
+This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more
+information about this package.
+
+### **Person Class**
+Each `Person` in CoDoc is implemented in the following way:
+
+![Person Class Diagram](images/PersonClassDiagram.png)
+
+All `Person` must have a `Name`, `Email`, `Course` and `Year`.
+
+`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+#### Design Considerations
+
+For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different.
+
+We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
+
+**Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
+
+- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL
+  - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
+  - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
+- Alternative 2: Make them compulsory
+  - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
+  - Cons:
+    Slower and more inconvenient, need to add these attributes when adding a person.
+- Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
+
+<div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
+### **Module Class**
+Each module in CoDoc have a string representing its module.
+#### Regex and validation
+All module string should satisfy the following regex pattern,
+
+`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
+
+For example, a valid Module string is "AY2223S1 CS1101S"
+
+Additionally, a final validation is required to ensure that the 4 digit after
+the "AY" is valid.
+
+The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
+- 2223
+- 9900
+- 0102
+
+The following are invalid (the last 2 digit number is not an increment of the first)
+- 2224
+- 1111
+- 2019
+
+[Scroll back to top](#table-of-contents)
+
+### **Course and CourseList Class**
+Each `Course` in CoDoc is implemented in the following way:
+
+![Course Class Diagram](images/CourseClassDiagram.png)
+
+All `Course` hava a `String` representing the name of the course.
+
+#### Design Considerations
+
+The `Course` constructor accepts a `String` input that represents the index of the course name
+residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel
+of the GUI, along with the corresponding index of the course name.
+
+Instead of parsing the name of the course directly into
+the `Course` constructor, we wanted to standardize the names of courses without allowing users to
+input their own course names. This prevents 1 course from having multiple `String` representations
+in our `Storage` as well as the courses displayed in the application.
+
+<div style="page-break-after: always;"></div>
 
 [Scroll back to top](#table-of-contents)
 
