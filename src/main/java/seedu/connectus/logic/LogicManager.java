@@ -64,6 +64,7 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
+
     @Override
     public Path getConnectUsFilePath() {
         return model.getConnectUsFilePath();

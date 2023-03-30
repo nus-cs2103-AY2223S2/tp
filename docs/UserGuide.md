@@ -551,9 +551,9 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 ## 4.9 Searching for contact information: `search`
 
-Format: `search KEYWORDS`, `search [n/NAME} [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​`
+Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [ccapos/CCA_POSITION_KEYWORD]...`
 
-> Finds all contacts whose information fields and tags contain any of the given keywords.
+> For keywords without a specified field, finds all contacts whose information from any field contains the given keywords. For keywords in a specified field, finds all contacts whose field contains given keyword.
 
 There are 2 methods in which you can search for a contact. 
 
@@ -566,21 +566,16 @@ For example, if you have 2 contacts, one with the name January, and another with
 Examples:
 * `search january` returns all contacts whose information fields contain the keyword `january`.
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
-
-**Search Example 1:**
-
-**Input in Command Box:** `search january`
-
-**Result:**<br>![SearchCommandExample1](images/SearchCommandExample.png)
-
-**Method 2:**
-
-Using `search` followed by a [prefixed information field](#5-information-fields--prefixes) will return a list of the contacts whose prefixed information fields match the prefix.
-
-For example, if you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
+* `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
+* `search n\lex y`returns all contacts whose name contains the keyword `lex y`
+* `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
+* `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
+* `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-The keywords are case-insensitive! This means that <code>search january</code>, <code>search JANUARY</code> and <code>search jAnUaRy</code> will all return the contacts whose information fields contain the keyword <code>january</code>january.
+* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
+* Only unspecified keywords treat space as a separator. This means `search yu alex` will search for a contact that contains both `yu` and `alex` in the information, but `search n/yu alex` will search for a contact that contains the string `yu alex` in its name. 
+* If you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
 </div>
 
 <div style="page-break-after: always"></div>
@@ -844,18 +839,23 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 If you wish to assign a CCA Position to a contact, you can do so with the CCA prefix as well!
 * Format: `cca/CCA#CCA_POSITION`
+* CCA_POSITION is optional, however if you enter # after CCA you are expected to enter a CCA_NAME.
 * Example: If you have a contact who is the President of the Chess Club, you can use the field `cca/Chess Club#President` to assign that CCA tag to them.
+* Example: If you have a contact who is a member of the Arts Club, but you do not know their position, you can use the field `cca/Arts Club` to assign just CCA.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 
-### 5.9.3 Major Tags: `major/`
+### 5.9.3 Major Tags: `maj/`
 >Major tags refer to Majors that you can assign to a contact to keep track of the majors that the contact is taking.
 
-* Major is an *optional* field, i.e. a contact can exist even if it does not have a CCA position.
-* The prefix for a major is `major/`.
+* Major is an *optional* field, i.e. a contact can exist even if it does not have a Major.
+* The prefix for a major is `maj/`.
 * Major names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have a maximum of 2 majors assigned to it.
+* If more than 2 majors are assigned during add command, the last 2 majors are taken.
+* If total number of majors after using add-t exceeds 2, the command is not accepted.
+
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 

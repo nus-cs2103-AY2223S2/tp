@@ -2,8 +2,8 @@ package seedu.connectus.testutil;
 
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -15,7 +15,7 @@ import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -56,8 +56,8 @@ public class PersonUtil {
         person.getCcas().stream().forEach(
                 s -> sb.append(PREFIX_CCA + s.ccaName + " ")
         );
-        person.getCcaPositions().stream().forEach(
-                s -> sb.append(PREFIX_CCA_POSITION + s.ccaPositionName + " ")
+        person.getMajors().stream().forEach(
+                s -> sb.append(PREFIX_MAJOR + s.major + " ")
         );
         return sb.toString();
     }
@@ -95,12 +95,12 @@ public class PersonUtil {
                 ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.ccaName).append(" "));
             }
         }
-        if (descriptor.getCcaPositions().isPresent()) {
-            Set<CcaPosition> ccaPositions = descriptor.getCcaPositions().get();
-            if (ccaPositions.isEmpty()) {
-                sb.append(PREFIX_CCA_POSITION).append(" ");
+        if (descriptor.getMajors().isPresent()) {
+            Set<Major> majors = descriptor.getMajors().get();
+            if (majors.isEmpty()) {
+                sb.append(PREFIX_MAJOR).append(" ");
             } else {
-                ccaPositions.forEach(s -> sb.append(PREFIX_MODULE).append(s.ccaPositionName).append(" "));
+                majors.forEach(s -> sb.append(PREFIX_MODULE).append(s.major).append(" "));
             }
         }
         return sb.toString();

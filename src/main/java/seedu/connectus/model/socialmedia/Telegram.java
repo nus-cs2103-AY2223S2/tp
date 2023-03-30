@@ -17,7 +17,7 @@ public class Telegram implements Openable {
         + "and adhere to the following constraints:\n"
         + "1. The username should only contain alphanumeric characters and the special character, excluding "
         + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
-        + "2. The username should contain at least 5 characters."
+        + "2. The username should contain at least 5 characters.\n"
         + "Format: " + PREFIX_SOCMED_TELEGRAM + "TELEGRAM";
 
     // alphanumeric and special characters, beginning with 0 or 1 "@"

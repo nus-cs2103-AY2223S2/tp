@@ -11,7 +11,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 import seedu.connectus.model.util.SampleDataUtil;
@@ -34,7 +34,7 @@ public class PersonBuilder {
     private Set<Remark> remarks;
     private Set<Module> modules;
     private Set<Cca> ccas;
-    private Set<CcaPosition> ccaPositions;
+    private Set<Major> majors;
     private Birthday birthday;
 
     /**
@@ -49,7 +49,7 @@ public class PersonBuilder {
         remarks = new HashSet<>();
         modules = new HashSet<>();
         ccas = new HashSet<>();
-        ccaPositions = new HashSet<>();
+        majors = new HashSet<>();
     }
 
     /**
@@ -64,7 +64,7 @@ public class PersonBuilder {
         remarks = new HashSet<>(personToCopy.getRemarks());
         modules = new HashSet<>(personToCopy.getModules());
         ccas = new HashSet<>(personToCopy.getCcas());
-        ccaPositions = new HashSet<>(personToCopy.getCcaPositions());
+        majors = new HashSet<>(personToCopy.getMajors());
     }
 
     /**
@@ -106,8 +106,8 @@ public class PersonBuilder {
      * Parses the {@code ccaPositions} into a {@code Set<CcaPosition>} and set it to the
      * {@code Person} that we are building.
      */
-    public PersonBuilder withCcaPositions(String... ccaPositions) {
-        this.ccaPositions = SampleDataUtil.getCcaPositionSet(ccaPositions);
+    public PersonBuilder withMajors(String... majors) {
+        this.majors = SampleDataUtil.getMajorSet(majors);
         return this;
     }
 
@@ -199,8 +199,8 @@ public class PersonBuilder {
 
         }
 
-        if (ccaPositions != null) {
-            p.setCcaPositions(ccaPositions);
+        if (majors != null) {
+            p.setMajors(majors);
 
         }
 

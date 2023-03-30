@@ -7,6 +7,7 @@ import java.util.Map;
 
 import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
+import seedu.connectus.logic.commands.ChatCommand;
 import seedu.connectus.logic.commands.ClearCommand;
 import seedu.connectus.logic.commands.DeleteCommand;
 import seedu.connectus.logic.commands.DeleteTagFromPersonCommand;
@@ -14,7 +15,9 @@ import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.commands.ExitCommand;
 import seedu.connectus.logic.commands.HelpCommand;
 import seedu.connectus.logic.commands.ListCommand;
+import seedu.connectus.logic.commands.OpenCommand;
 import seedu.connectus.logic.commands.SearchCommand;
+import seedu.connectus.logic.commands.UpcomingBirthdayCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,6 +40,10 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         COMMAND_USAGE_MESSAGES.put(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
         COMMAND_USAGE_MESSAGES.put(ListCommand.COMMAND_WORD, ListCommand.MESSAGE_USAGE);
         COMMAND_USAGE_MESSAGES.put(SearchCommand.COMMAND_WORD, SearchCommand.MESSAGE_USAGE);
+        COMMAND_USAGE_MESSAGES.put(OpenCommand.COMMAND_WORD, OpenCommand.MESSAGE_USAGE);
+        COMMAND_USAGE_MESSAGES.put(ChatCommand.COMMAND_WORD, ChatCommand.MESSAGE_USAGE);
+        COMMAND_USAGE_MESSAGES.put(UpcomingBirthdayCommand.COMMAND_WORD,
+                UpcomingBirthdayCommand.MESSAGE_USAGE);
     }
 
     /**

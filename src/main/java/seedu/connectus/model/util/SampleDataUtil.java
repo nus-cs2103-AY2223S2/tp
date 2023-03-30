@@ -17,7 +17,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -26,16 +26,19 @@ import seedu.connectus.model.tag.Remark;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        // Sample person 1
+        // Sample person 1 - should have ALL data fields
         Person p1 = new Person(new Name("Alex Yeoh"));
         p1.setEmail(new Email("alexyeoh@example.com"));
+        p1.setPhone(new Phone("91234567"));
+        p1.setAddress(new Address("UTown Residence"));
         p1.setSocialMedia(new SocialMedia(Instagram.of("alex.yeoh"),
-                Telegram.of("alexyeoh"), null));
+                Telegram.of("alexyeoh"),
+                WhatsApp.of("91234567")));
         p1.setBirthday(new Birthday("01/01/1990"));
         p1.setRemarks(getRemarkSet("friends"));
-        p1.setModules(getModuleSet("CS2107"));
-        p1.setCcas(getCcaSet("NUS Hackers"));
-        p1.setCcaPositions(getCcaPositionSet("Director"));
+        p1.setModules(getModuleSet("CS2103T"));
+        p1.setCcas(getCcaSet("NUS Hackers#Director"));
+        p1.setMajors(getMajorSet("BBA"));
 
         // Sample person 2
         Person p2 = new Person(new Name("Bernice Yu"));
@@ -44,17 +47,19 @@ public class SampleDataUtil {
                 Telegram.of("berniceyu"),
                 WhatsApp.of("99272658")));
         p2.setBirthday(new Birthday("31/05/2000"));
-        p2.setRemarks(getRemarkSet("classmates", "friends"));
-        p2.setModules(getModuleSet("CS2105", "CS2103T"));
-        p2.setCcas(getCcaSet("NUS Chess Club", "Gardening Society"));
-        p2.setCcaPositions(getCcaPositionSet("Secretary"));
+        p2.setRemarks(getRemarkSet("colleagues", "friends"));
+        p2.setModules(getModuleSet("CS2105", "CS2101"));
+        p2.setCcas(getCcaSet("NUS Chess Club#Secretary", "Hackermen"));
+        p2.setMajors(getMajorSet("COMPUTER SCIENCE"));
+
 
         // Sample person 3
         Person p3 = new Person(new Name("Charlotte Oliveiro"));
         p3.setPhone(new Phone("93210283"));
         p3.setEmail(new Email("charlotte@example.com"));
         p3.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
-        p3.setSocialMedia(new SocialMedia(Instagram.of("charlotte.oliveriro"), Telegram.of("charlotteoliveriro"),
+        p3.setSocialMedia(new SocialMedia(Instagram.of("charlotte.oliveriro"),
+                Telegram.of("charlotteoliveriro"),
                 WhatsApp.of("93210283")));
         p3.setBirthday(new Birthday("10/01/2000"));
         p3.setRemarks(getRemarkSet("neighbours"));
@@ -71,7 +76,7 @@ public class SampleDataUtil {
         p4.setRemarks(getRemarkSet("family"));
         p4.setModules(getModuleSet("CS2109S"));
         p4.setCcas(getCcaSet("ICS"));
-        p4.setCcaPositions(getCcaPositionSet("President"));
+        p4.setMajors(getMajorSet("CCA"));
 
         // Sample person 5
         Person p5 = new Person(new Name("Irfan Ibrahim"));
@@ -134,9 +139,9 @@ public class SampleDataUtil {
     /**
      * Returns a ccaPosition set containing the list of strings given.
      */
-    public static Set<CcaPosition> getCcaPositionSet(String... strings) {
+    public static Set<Major> getMajorSet(String... strings) {
         return Arrays.stream(strings)
-                .map(CcaPosition::new)
+                .map(Major::new)
                 .collect(Collectors.toSet());
     }
 }

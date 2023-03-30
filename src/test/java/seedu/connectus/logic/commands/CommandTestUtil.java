@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -43,8 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CS2101 = "CS2101";
     public static final String VALID_CCA_ICS = "ICS";
     public static final String VALID_CCA_NES = "NES";
-    public static final String VALID_CCA_POSITION_DIRECTOR = "DIRECTOR";
-    public static final String VALID_CCA_POSITION_PRESIDENT = "PRESIDENT";
+    public static final String VALID_MAJOR_COMPUTER_SCIENCE = "COMPUTER SCIENCE";
+    public static final String VALID_MAJOR_BBA = "BBA";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,8 +60,8 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_CS2101 = " " + PREFIX_MODULE + VALID_MODULE_CS2101;
     public static final String CCA_DESC_ICS = " " + PREFIX_CCA + VALID_CCA_ICS;
     public static final String CCA_DESC_NES = " " + PREFIX_CCA + VALID_CCA_NES;
-    public static final String CCA_POSITION_DESC_DIRECTOR = " " + PREFIX_CCA_POSITION + VALID_CCA_POSITION_DIRECTOR;
-    public static final String CCA_POSITION_DESC_PRESIDENT = " " + PREFIX_CCA_POSITION + VALID_CCA_POSITION_PRESIDENT;
+    public static final String MAJOR_DESC_COMPUTER_SCIENCE = " " + PREFIX_MAJOR + VALID_MAJOR_COMPUTER_SCIENCE;
+    public static final String MAJOR_DESC_BBA = " " + PREFIX_MAJOR + VALID_MAJOR_BBA;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -69,8 +69,8 @@ public class CommandTestUtil {
     public static final String INVALID_REMARK_DESC = " " + PREFIX_REMARK + "hubby*"; // '*' not allowed in REMARKs
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS2!03T"; //! not allowed in modules
     public static final String INVALID_CCA_DESC = " " + PREFIX_CCA + "*ICS*"; //* not allowed in ccas
-    public static final String INVALID_CCA_POSITION_DESC = " "
-            + PREFIX_CCA_POSITION + "PRESIDENT!"; //! not allowed in ccas
+    public static final String INVALID_MAJOR_DESC = " "
+            + PREFIX_MAJOR + "BBA!"; //! not allowed in majors
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -78,6 +78,7 @@ public class CommandTestUtil {
     // For help command tests
     public static final String VALID_HELP_COMMAND_ADD = "add";
     public static final String VALID_HELP_COMMAND_ADD_T = "add-t";
+    public static final String VALID_HELP_COMMAND_CHAT = "chat";
     public static final String VALID_HELP_COMMAND_CLEAR = "clear";
     public static final String VALID_HELP_COMMAND_DELETE = "delete";
     public static final String VALID_HELP_COMMAND_DELETE_T = "delete-t";
@@ -85,7 +86,9 @@ public class CommandTestUtil {
     public static final String VALID_HELP_COMMAND_EXIT = "exit";
     public static final String VALID_HELP_COMMAND_HELP = "help";
     public static final String VALID_HELP_COMMAND_LIST = "list";
+    public static final String VALID_HELP_COMMAND_OPEN = "open";
     public static final String VALID_HELP_COMMAND_SEARCH = "search";
+    public static final String VALID_HELP_COMMAND_UPCOMING_B = "upcoming-b";
     public static final String VALID_HELP_COMMAND_EMPTY = "";
     public static final String VALID_HELP_COMMAND_WITH_WHITESPACE = "\t   \n clear   ";
     public static final String VALID_HELP_COMMAND_WHITESPACE = "              ";

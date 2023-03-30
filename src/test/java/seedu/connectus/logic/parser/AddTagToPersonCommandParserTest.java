@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -27,11 +27,11 @@ public class AddTagToPersonCommandParserTest {
         modules.add(new Module("MOD1234"));
         var ccas = new HashSet<Cca>();
         ccas.add(new Cca("NUSHighers"));
-        var ccaPositions = new HashSet<CcaPosition>();
-        ccaPositions.add(new CcaPosition("higher"));
-        assertParseSuccess(parser, "1 r/remarkss mod/MOD1234 cca/NUSHighers ccapos/higher",
+        var majors = new HashSet<Major>();
+        majors.add(new Major("higher"));
+        assertParseSuccess(parser, "1 r/remarkss mod/MOD1234 cca/NUSHighers maj/higher",
             new AddTagToPersonCommand(INDEX_FIRST_PERSON,
-                    new AddTagToPersonCommand.AddTagDescriptor(remarks, modules, ccas, ccaPositions)));
+                    new AddTagToPersonCommand.AddTagDescriptor(remarks, modules, ccas, majors)));
     }
 
     @Test

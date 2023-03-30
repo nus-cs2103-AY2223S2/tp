@@ -126,13 +126,13 @@ public class PersonCard extends UiPart<Region> {
                     ccaLabel.getStyleClass().add("cca");
                     tags.getChildren().add(ccaLabel);
                 });
-        person.getCcaPositions().stream()
-                .sorted(Comparator.comparing(ccaPosition -> ccaPosition.tagName))
-                .forEach(ccaPosition -> {
-                    Label ccaPositionLabel = new Label(ccaPosition.tagName);
-                    ccaPositionLabel.getStyleClass().add("label");
-                    ccaPositionLabel.getStyleClass().add("ccaPosition");
-                    tags.getChildren().add(ccaPositionLabel);
+        person.getMajors().stream()
+                .sorted(Comparator.comparing(major -> major.tagName))
+                .forEach(major -> {
+                    Label majorLabel = new Label(major.tagName);
+                    majorLabel.getStyleClass().add("label");
+                    majorLabel.getStyleClass().add("major");
+                    tags.getChildren().add(majorLabel);
                 });
     }
 

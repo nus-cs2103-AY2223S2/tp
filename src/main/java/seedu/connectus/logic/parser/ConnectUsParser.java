@@ -19,6 +19,7 @@ import seedu.connectus.logic.commands.HelpCommand;
 import seedu.connectus.logic.commands.ListCommand;
 import seedu.connectus.logic.commands.OpenCommand;
 import seedu.connectus.logic.commands.SearchCommand;
+import seedu.connectus.logic.commands.UpcomingBirthdayCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,6 +84,8 @@ public class ConnectUsParser {
 
         case ChatCommand.COMMAND_WORD:
             return new ChatCommandParser().parse(arguments);
+        case UpcomingBirthdayCommand.COMMAND_WORD:
+            return new UpcomingBirthdayCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
