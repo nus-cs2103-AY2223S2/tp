@@ -2,7 +2,9 @@ package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.recipe.commons.core.Messages;
@@ -33,7 +35,7 @@ public class GroceriesCommand extends Command {
         requireNonNull(model);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
-        StringBuilder groceries = new StringBuilder();
+        Map<String, Ingredient> groceries = new HashMap<>();
 
         for (Index idx : indices) {
             if (idx.getZeroBased() >= lastShownList.size()) {
@@ -44,11 +46,25 @@ public class GroceriesCommand extends Command {
             Recipe recipe = lastShownList.get(idx.getZeroBased());
             Set<Ingredient> ingredients = recipe.getIngredients();
             for (Ingredient ig : ingredients) {
-                groceries.append(ig.toDisplayString());
-                groceries.append("\n");
+                if (groceries.containsKey(ig.name)) {
+                    Ingredient existingIngredient = groceries.get(ig.name);
+                    Ingredient updatedIngredient = new Ingredient(existingIngredient.name,
+                                                                  existingIngredient.quantity + ig.quantity,
+                                                                  existingIngredient.unitOfMeasurement,
+                                                                  existingIngredient.pricePerUnit);
+                    groceries.put(ig.name, updatedIngredient);
+                } else {
+                    groceries.put(ig.name, ig);
+                }
             }
         }
-        return new CommandResult(groceries.toString());
 
+        StringBuilder groceriesString = new StringBuilder();
+        for (Ingredient ig : groceries.values()) {
+            groceriesString.append(ig.name + ", " + ig.quantity + " " + ig.unitOfMeasurement);
+            groceriesString.append("\n");
+        }
+
+        return new CommandResult(groceriesString.toString());
     }
 }
