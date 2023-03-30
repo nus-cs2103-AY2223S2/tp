@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/add_internship.png" />
     </icons>
@@ -121,12 +121,18 @@
                               <children>
                                  <HBox prefHeight="31.0" prefWidth="433.0">
                                     <children>
-                                       <Label prefHeight="20.0" prefWidth="515.0" text="Qualifications">
+                                       <Label prefHeight="20.0" prefWidth="472.0" text="Qualifications">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
                                        <Button fx:id="addQualificationButton" mnemonicParsing="false" onMouseClicked="#handleAddQualification" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="+">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delQualificationButton" mnemonicParsing="false" onMouseClicked="#handleDelQualification" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
                                           <font>
                                              <Font name="Berlin Sans FB" size="15.0" />
                                           </font>
@@ -145,12 +151,18 @@
                               <children>
                                  <HBox prefHeight="31.0" prefWidth="433.0">
                                     <children>
-                                       <Label prefHeight="20.0" prefWidth="515.0" text="Programming Languages">
+                                       <Label prefHeight="20.0" prefWidth="471.0" text="Programming Languages">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
                                        <Button fx:id="addProgrammingLanguageButton" mnemonicParsing="false" onMouseClicked="#handleAddProgrammingLanguage" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="+">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delProgrammingLanguageButton" mnemonicParsing="false" onMouseClicked="#handleDelProgrammingLanguage" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
                                           <font>
                                              <Font name="Berlin Sans FB" size="15.0" />
                                           </font>
@@ -169,12 +181,18 @@
                               <children>
                                  <HBox prefHeight="31.0" prefWidth="433.0">
                                     <children>
-                                       <Label prefHeight="20.0" prefWidth="515.0" text="Reviews">
+                                       <Label prefHeight="20.0" prefWidth="472.0" text="Reviews">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
                                        <Button fx:id="addReviewButton" mnemonicParsing="false" onMouseClicked="#handleAddReview" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="+">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delReviewButton" mnemonicParsing="false" onMouseClicked="#handleDelReview" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
                                           <font>
                                              <Font name="Berlin Sans FB" size="15.0" />
                                           </font>
@@ -193,12 +211,18 @@
                               <children>
                                  <HBox prefHeight="31.0" prefWidth="433.0">
                                     <children>
-                                       <Label prefHeight="20.0" prefWidth="515.0" text="Notes">
+                                       <Label prefHeight="20.0" prefWidth="476.0" text="Notes">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
                                        <Button fx:id="addNoteButton" mnemonicParsing="false" onMouseClicked="#handleAddNote" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="+">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delNoteButton" mnemonicParsing="false" onMouseClicked="#handleDelNote" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
                                           <font>
                                              <Font name="Berlin Sans FB" size="15.0" />
                                           </font>
@@ -217,12 +241,18 @@
                               <children>
                                  <HBox prefHeight="31.0" prefWidth="433.0">
                                     <children>
-                                       <Label prefHeight="20.0" prefWidth="515.0" text="Reflections">
+                                       <Label prefHeight="20.0" prefWidth="476.0" text="Reflections">
                                           <font>
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
                                        <Button fx:id="addReflectionButton" mnemonicParsing="false" onMouseClicked="#handleAddReflection" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="+">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delReflectionButton" mnemonicParsing="false" onMouseClicked="#handleDelReflection" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
                                           <font>
                                              <Font name="Berlin Sans FB" size="15.0" />
                                           </font>
