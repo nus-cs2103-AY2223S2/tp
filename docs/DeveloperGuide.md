@@ -8,7 +8,7 @@ title: Developer Guide
 - [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
 - [Setting up](#setting-up-getting-started)
-- [Architecture](#architecture)
+- [Design Architecture](#design-architecture)
   - [Common Component](#commons-component)
   - [UI Component](#ui-component)
   - [Logic Component](#logic-component)
@@ -60,13 +60,13 @@ Developer Guide and help you navigate it with ease.
 ## **Navigating the Developer Guide**
 
 The Developer Guide is divided into the following sections :
-- [Design](#design)
+- [Design Architecture](#design-architecture)
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
-The [Design](#design) section gives an overview of the architecture of CoDoc.
+The [Design Architecture](#design-architecture) section gives an overview of the architecture of CoDoc.
 In this section, you will be provided with:
 
 1. The API (Application Programming Interface) of the major components of CoDoc.
