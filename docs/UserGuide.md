@@ -480,7 +480,7 @@ The search commands allow you to easily navigate and manage your EduMate. Instea
 
 #### Filter contacts by keywords `find`
 
-Finds persons whose specified fields contain any of the given keywords limited to only one attribute.
+Finds persons whose specified fields contain any of the given keywords. If multiple prefixes are used, persons found must contain at least one keyword from each specified field.
 
 <div markdown="block" class="alert alert-info">
 
