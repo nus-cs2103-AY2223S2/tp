@@ -120,6 +120,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
             personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editedPerson);
         persons.refreshInternalMeetingList();
         return editedPerson;
     }
