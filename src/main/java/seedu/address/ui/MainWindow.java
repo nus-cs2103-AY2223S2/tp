@@ -61,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     private Label panelLabel;
 
     @FXML
-    private CheckMenuItem light;
+    private CheckMenuItem dark;
 
     @FXML
     private Menu menuButton;
@@ -119,13 +119,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void setTheme() {
-        light.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+        dark.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
             String currentStyleSheet = primaryStage.getScene().getStylesheets().get(0);
             String newStyleSheet;
             if (isSelected) {
-                newStyleSheet = "view/LightTheme.css";
-            } else {
                 newStyleSheet = "view/DarkTheme.css";
+            } else {
+                newStyleSheet = "view/LightTheme.css";
             }
             primaryStage.getScene().getStylesheets().remove(currentStyleSheet);
             primaryStage.getScene().getStylesheets().add(newStyleSheet);

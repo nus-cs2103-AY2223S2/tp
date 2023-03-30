@@ -21,7 +21,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css." />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -44,7 +44,7 @@
                      </Menu>
                      <Menu mnemonicParsing="false" text="Theme" fx:id="menuButton">
                         <items>
-                           <CheckMenuItem mnemonicParsing="false" text="Light Mode" fx:id="light" />
+                           <CheckMenuItem mnemonicParsing="false" text="Dark Mode" fx:id="dark" />
                         </items>
                      </Menu>
               </MenuBar>
