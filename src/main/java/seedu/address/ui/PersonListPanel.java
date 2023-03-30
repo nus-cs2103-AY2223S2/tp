@@ -89,10 +89,11 @@ public class PersonListPanel extends UiPart<Region> {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        super.updateItem(item, empty);
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
                         Text text = new Text(item);
-                        text.setStyle("-fx-text-alignment:justify;");
-                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty());
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
                         setGraphic(text);
                     }
                 }

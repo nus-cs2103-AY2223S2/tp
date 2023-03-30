@@ -33,7 +33,7 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_AMY = "85355255";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "e1234567@u.nus.edu";
-    public static final String VALID_EMAIL_BOB = "e9988776@u.nus.edu";
+    public static final String VALID_EMAIL_BOB = "e8121212@u.nus.edu";
     public static final String VALID_ADDRESS_AMY = "123, Jurong West Ave 6, #08-111";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_REMARK_AMY = "Like skiing.";

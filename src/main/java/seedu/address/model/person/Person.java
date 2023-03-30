@@ -104,7 +104,7 @@ public class Person implements Comparable<Person> {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.equals(this);
     }
 
     /**
@@ -133,6 +133,8 @@ public class Person implements Comparable<Person> {
         if (otherPerson.getPhone().equals(getPhone())) {
             return true;
         }
+
+
 
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())

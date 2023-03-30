@@ -31,7 +31,8 @@ public class EditEventCommand extends Command {
     public static final String COMMAND_WORD = "editEvent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
-            + "by the index number used in the displayed event list. ";
+            + "by the index number used in the displayed event list.  \n"
+            + "Example: " + COMMAND_WORD + " 1 Tutorial/newName -date 10/10/2024 10:00";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
