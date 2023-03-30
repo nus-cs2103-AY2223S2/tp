@@ -60,7 +60,7 @@ the fork into your local machine.
 If you plan to use Intellij IDEA:
 
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring
-   the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to
+   the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to
    ensure Intellij is configured to use **JDK 11**.
 1. **Import the project as a Gradle project**: Follow the guide
    [_[se-edu/guides] IDEA: Importing a Gradle
@@ -115,10 +115,7 @@ We advise you to
 
 ### Architecture
 
-@doug (all the misc todos here)
-
-{TODO drawio}
-<img src="images/archi/ArchitectureDiagram.png" width="280" />
+![Architecture Class Diagram](images/archi/ArchitectureClassDiagram.png "Architecture Class Diagram")
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -126,8 +123,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-{TODO update link}
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/MainApp.java).
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -142,23 +140,20 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-{TODO update the description and diagram here}
-
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/archi/ComponentManagers.png" width="300" />
+![Components Class Diagram](images/archi/ComponentsClassDiagram.png)
 
 The sections below give more details of each component.
 
 ### UI component
 
-{TODO update link}
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/ui/Ui.java)
 
 {TODO update diagram}
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -166,7 +161,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 ### Logic component
 
 {TODO update link}
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -197,10 +192,9 @@ How the parsing works:
 
 ### Smaller components used by Model component
 
-***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java)
+***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/project/Project.java)
 
-{TODO update diagram}
-![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
+![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
 
 The `Model` box is the central component of the Mycelium's data. It contains
 the entities `Client` and `Project` which are used to store the data of each
@@ -233,10 +227,9 @@ list.
 
 ### Storage component
 
-{TODO update diagram and link}
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/storage/Storage.java)
 
-<img src="images/storage/StorageClassDiagram.png" width="550" />
+![Structure of the Storage Component](images/storage/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -274,16 +267,16 @@ For overdue list, all overdue projects will be displayed to make sure that users
 keep track of all the deadlines they have missed. Any deadlines before the current date will be 
 counted as overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
 will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue 
-project list**. 
+project list**.
 
-Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates. 
+Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
 
 For Progress Overview Pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
 The size of each segment is proportional to the number of projects with its corresponding segment
 label.
 <div markdown="span" class="alert alert-danger">
-:warning: The color of each segment is not related to the status. 
+:warning: The color of each segment is not related to the status.
 </div>
 
 
@@ -294,31 +287,31 @@ using `Logic#getFilteredProjectList` cannot be used because it will affect the U
 all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
 Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
 will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
-a new project is added), all the statistics will be updated as well. These changes could be due to 
-increased number of projects (e.g. a new project is created), or an existing project is modified. 
-Moreover, when there are no projects available matching the requirements of Due soon and Overdue project lists, 
+a new project is added), all the statistics will be updated as well. These changes could be due to
+increased number of projects (e.g. a new project is created), or an existing project is modified.
+Moreover, when there are no projects available matching the requirements of Due soon and Overdue project lists,
 there will be messages displayed under the tab heading.
 
 ![NoOverdueProjectsMessage](images/NoOverdueProjectsMessage.png)
 
 The diagram following shows us that the MainWindow is responsible for instantiating the StatisticsBox.
 The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data 
-for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded. 
+will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data
+for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded.
 
 ![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
 
 
 ### Tabs panel
-In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**. 
-The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab 
-will display all clients created. Each of these two tabs is a `EntityTab` object, and contains a `EntityList` of 
-`Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same 
-panel `EntityPanel` on the left side of the application view. 
+In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**.
+The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab
+will display all clients created. Each of these two tabs is a `EntityTab` object, and contains a `EntityList` of
+`Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same
+panel `EntityPanel` on the left side of the application view.
 
 The **Due soon** tab will be responsible for displaying all projects that are due soon while the **Overdue** tab
 will display all projects that are overdue as mentioned in the [Statistics Dashboard](#statistics-dashboard) section.
-Each of these two tabs is a `StatisticsTab` object, and contains a `EntityList` of `Project`. Both of these two 
+Each of these two tabs is a `StatisticsTab` object, and contains a `EntityList` of `Project`. Both of these two
 tabs will be in the same panel `StatisticsPanel` on the right side of the application view.
 
 ![Tabs](images/Tabs.png)
@@ -328,8 +321,8 @@ For demonstration purposes, the following is the Activity Diagram when a `Entity
 ![EntityTabPanelActivityDiagram](images/TabActivityDiagram.png)
 
 
-For more information about interacting with the tabs using hotkeys, please refer to the 
-[Hotkeys with UiEvents](#hotkeys-with-uievents) section. 
+For more information about interacting with the tabs using hotkeys, please refer to the
+[Hotkeys with UiEvents](#hotkeys-with-uievents) section.
 
 
 ## Keyboard Interaction
@@ -379,7 +372,7 @@ The above seqeuence diagram shows what happens when a keyboard event is
 registered. To keep the diagram simple, we only explicitly show two
 out of the 10 registered event handlers as the other event handlers
 work in a similar manner.
-The key combination that triggered the event will be checked against the
+The key combination that triggered the event will be checked against
 each of the registered event handlers to decide which event handler to invoke.
 
 ![GenericKey sequence diagram](images/uievent/GenericKey/GenericKey.png)
@@ -584,9 +577,9 @@ and projects back to the way it was, before fuzzy searching began.
 In order to decouple these requirements from the more basic ones of CRUD, we
 avoid modifying the original `FilteredList` owned by the UI. The general idea
 is to replace the two lists of projects and clients every time the fuzzy
-ranking is performed. Thus the fuzzy ranking is free to perform any kind of
+ranking is performed. Thus, the fuzzy ranking is free to perform any kind of
 sorting and filtering it requires without worrying about any unintentional
-side-effects on the UI. After the user exits from fuzzy finding mode, the UI
+side effects on the UI. After the user exits from fuzzy finding mode, the UI
 then retrieves a clean reference to the lists of clients and projects from the
 address book, which automatically reverts it to its pre-fuzzy state.
 
@@ -649,7 +642,7 @@ This project has three types of tests:
    e.g. `mycelium.mycelium.commons.StringUtilTest`
 2. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
    e.g. `mycelium.mycelium.storage.StorageManagerTest`
-3. Hybrids of *unit* and *integration tests*. These test are checking multiple code units as well as how the are connected together.<br>
+3. Hybrids of *unit* and *integration tests*. These test are checking multiple code units as well as how they are connected together.<br>
    e.g. `mycelium.mycelium.logic.LogicManagerTest`
 
 
@@ -667,7 +660,7 @@ Given below are how to use Gradle for some important project tasks.
 * **`clean`**: Deletes the files created during the previous build tasks (e.g.
   files in the `build` folder).<br>e.g. `./gradlew clean`
 
-* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the
+* **`shadowJar`**: Uses the ShadowJar plugin to create a fat JAR file in the
   `build/lib` folder, *if the current file is outdated*.<br>e.g. `./gradlew shadowJar`.
 
 * **`run`**: Builds and runs the application.<br>
@@ -804,7 +797,7 @@ files.
 
 ## Configurations
 
-Certain properties of the application can be controlled (e.g user preferences file location, logging level) through the configuration file (default: `config.json`). The configuration file is created the first time the application is run. It is in JSON format and contains name-value pairs.
+Certain properties of the application can be controlled (e.g. user preferences file location, logging level) through the configuration file (default: `config.json`). The configuration file is created the first time the application is run. It is in JSON format and contains name-value pairs.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -878,7 +871,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case resumes at step 1.
 
-* 1b. Some projet details are invalid.
+* 1b. Some project details are invalid.
    * 1b1. Mycelium shows an error message.
 
    Use case resumes at step 1.
@@ -943,7 +936,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 1.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage.
-1.  Should be able to hold up to 1000 projects without a noticable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  All user operations should complete under 100ms.
 1.  Should not lose any work in case the application crashes.
