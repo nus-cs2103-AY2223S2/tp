@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATEDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -27,7 +27,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_CONTENT, PREFIX_STATUS,
-                PREFIX_TASK_DEADLINE, PREFIX_TASK_CREATETIME);
+                PREFIX_TASK_DEADLINE, PREFIX_TASK_CREATEDATE);
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -50,9 +50,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             editTaskDescriptor.setDeadline(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }
 
-        if (argMultimap.getValue(PREFIX_TASK_CREATETIME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_TASK_CREATEDATE).isPresent()) {
             editTaskDescriptor.setCreateDate(ParserUtil.parseDateTime(argMultimap
-                .getValue(PREFIX_TASK_CREATETIME).get()));
+                .getValue(PREFIX_TASK_CREATEDATE).get()));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

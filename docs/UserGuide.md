@@ -223,6 +223,12 @@ Shows a list of all tasks in OfficeConnect.
 
 Format: `listt`
 
+## Listing all Tasks and Persons: `listall`
+
+Shows a list of all tasks and persons in OfficeConnect.
+
+Format: `listall`
+
 ## Assigning a Task to a Person: `assign`
 
 Assigns an existing task to an existing person in OfficeConnect.
@@ -393,6 +399,7 @@ _Details coming soon ..._
 | **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
 | **Edit Tasks**              | `editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [createdate/CREATEDATE]`<br> e.g.,`editt 2 title/Submit report st/true`                                       |
+| **Exit**                    | `exit`                                                                                                                                                                       |
 | **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
 | **Find Task**               | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |

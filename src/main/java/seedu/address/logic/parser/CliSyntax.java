@@ -19,5 +19,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_PERSON_INDEX = new Prefix("pi/");
     public static final Prefix PREFIX_TASK_INDEX = new Prefix("ti/");
     public static final Prefix PREFIX_TASK_DEADLINE = new Prefix("dl/");
-    public static final Prefix PREFIX_TASK_CREATETIME = new Prefix("createtime/");
+    public static final Prefix PREFIX_TASK_CREATEDATE = new Prefix("cd/");
 }
