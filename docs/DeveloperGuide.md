@@ -341,8 +341,12 @@ method will be called with the incoming event as the argument.
 
 ![EventHandling sequence diagram](images/EventHandling.png)
 
+The above seqeuence diagram shows what happens when a keyboard event is
+registered. To keep the diagram simple, we only explicitly show two
+out of the 10 registered event handlers as the other event handlers
+work in a similar manner.
 The key combination that triggered the event will be checked against the
-above-mentioned registered event handlers to decide which event handler to invoke.
+each of the registered event handlers to decide which event handler to invoke. 
 
 ![GenericKey sequence diagram](images/GenericKey.png)
 
