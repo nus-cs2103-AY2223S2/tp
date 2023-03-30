@@ -120,7 +120,7 @@ public class ParserUtil {
         requireNonNull(keydate);
         String trimmedKeydate = keydate.trim();
         String[] keydateArray = trimmedKeydate.split("@");
-        if (!Keydate.isValidKeydate(keydateArray[1])) {
+        if (!Keydate.isValidKeydate(keydateArray)) {
             throw new ParseException(Keydate.MESSAGE_CONSTRAINTS);
         }
         return new Keydate(keydateArray[0], keydateArray[1]);

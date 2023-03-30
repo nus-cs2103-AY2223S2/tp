@@ -37,7 +37,7 @@ class JsonAdaptedKeydate {
      * @throws IllegalValueException if there were any data constraints violated in the adapted date.
      */
     public Keydate toModelType() throws IllegalValueException {
-        if (!Keydate.isValidKeydate(date)) {
+        if (!Keydate.isValidKeydate(new String[]{name, date})) {
             throw new IllegalValueException(Keydate.MESSAGE_CONSTRAINTS);
         }
         return new Keydate(name, date);
