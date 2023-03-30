@@ -140,8 +140,6 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-{TODO update the description and diagram here}
-
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -195,9 +193,8 @@ How the parsing works:
 
 ### Smaller components used by Model component
 
-***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java)
+***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/project/Project.java)
 
-{TODO update diagram}
 ![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
 
 The `Model` box is the central component of the Mycelium's data. It contains
