@@ -20,7 +20,7 @@ public class DetailVaxTypeParser implements CommandParser {
             + "Syntax: "
             + "vaccination detail VACCINATION\n"
             + "Example: "
-            + "vaccination detail INDEX::1";
+            + "vaccination detail Dose 1 (Moderna)";
 
 
     @Override

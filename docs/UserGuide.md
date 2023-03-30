@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Vaccination Management System (VMS) is a **desktop app for managing vaccination appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, VMS can get your appointments sorted out with great efficiency.
+An increasing number of vaccination are now having more complicated prerequisites to take them and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments** its operations are **optimized for fast typist who prefer the use of a Command Line Interface** (CLI). If you type fast, VMS can get your vaccination appointment validated with great efficiency!
 
 * Table of Contents
 {:toc}
@@ -31,7 +31,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
    * `patient clear` : Deletes all patients.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Command line syntax](#command-line-syntax) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
   <pre>
   appointment add --p <var>PATIENT_ID</var> \
       --s <var>START_TIME</var> --e <var>END_TIME</var> \
-      --v <var>VAX_NAME</var> \
+      --v <var>VAX_NAME</var>
   </pre>
   would have the same meaning as this
   <pre>
@@ -148,6 +148,32 @@ The supported date formats are:
 
 Only 8 digit Singapore numbers are allowed.
 
+#### `<vax-retriever>`
+
+`<vax-retriever>` or vaccination retriever aids in referring to a vaccination stored in the system. Vaccination may be referred to either by their names or the index that they are displayed in.
+
+The syntax of a vaccination retriever is as follows:
+
+<pre>
+[<var>RETRIEVER_TYPE</var> :: ] <var>RETRIEVER_VALUE</var>
+</pre>
+
+* <code><var>RETRIEVER_TYPE</var></code> : `<retriever-type>` - the type of the retriever.
+* <code><var>RETRIEVER_VALUE</var></code> : `<string>` - the value of the retriever.
+
+If <code><var>RETRIEVER_TYPE</var></code> is omitted, its value will be inferred from <code><var>RETRIEVER_VALUE</var></code>. It will be `INDEX` if <code><var>RETRIEVER_VALUE</var></code> contains only the digits 0 to 9 and `NAME` otherwise.
+
+Specifying the <code><var>RETRIEVER_TYPE</var></code> will override the inference and retrieve the vaccination based on the type specified. Thus, to refer to a vaccination whose name contains only digits, use <code>NAME :: <var>VAX_NAME</var></code> to avoid the inference.
+
+#### `<retriever-type>`
+
+Only the following values are allowed:
+
+* `INDEX` - to retrieve a vaccination by its index that it is displayed in the vaccination list view.
+* `NAME` - to retrieve a vaccination by its name.
+
+These values are not case sensitive.
+
 #### `<req>`
 
 `<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
@@ -169,17 +195,12 @@ are satisfied, the check passes and the patient satisfies the history requiremen
 
 Only the following values are allowed:
 
-* `ALL` - all groups of the requirement set must be present to pass. Example, a vaccination requirement of `G1, G2, G3`
-  will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and
-  `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
-* `ANY` - at least one group within the requirement set must be present to pass. Example, a vaccination requirement of
-  `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with
-  `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
-* `NONE` - none of the groups within the requirement set must be present to pass. Example, a requirement with
-  `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A
-  vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will
-  break the testing process of the patient and the patient will immediately fail the history requirement of the
-  vaccination. In other words, the patient will not be able to take that vaccination.
+* `ALL` - all groups of the requirement set must be present to pass.
+  * **Example**: a vaccination requirement of `G1, G2, G3` will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
+* `ANY` - at least one group within the requirement set must be present to pass.
+  * **Example**: a vaccination requirement of `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
+* `NONE` - none of the groups within the requirement set must be present to pass.
+  * **Example** a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
 
 ## Components
 
@@ -319,16 +340,20 @@ patient clear
 
 ### `vaccination` - Vaccination functionalities
 
-Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
+Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description.
 
-| Attribute               | Type                 | Description                                                       | Default value |
-| ----------------------- | -------------------- | ----------------------------------------------------------------- | ------------- |
-| Name                    | `<group-name>`       | The name of the vaccination.                                      | -             |
-| Groups                  | `...<group-name>...` | The groups the vaccination<br>classifies under                    | `empty list`  |
-| Minimum<br>age          | `<age>`              | The minimum age (inclusive)<br>to take the vaccination            | `0`           |
-| Maximum<br>age          | `<age>`              | The maximum age (inclusive)<br>to take the vaccination            | `200`         |
-| Ingredients             | `<group-name>`       | Ingredients of the vaccination.<br>Similar to patient's allergies | `empty list`  |
-| History<br>requirements | `...<req>...`        | The list of requirements to<br>take the vaccination               | `empty list`  |
+* **Name** : `<group-name>` - the name of the vaccination.
+* **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
+  * Default value = `empty list`.
+* **Minimum age** : `<age>` - the minimum age (inclusive) allowed to take the vaccination.
+  * Default value = `0`.
+* **Maximum age** : `<age>` - the maximum age (inclusive) allowed to take the vaccination.
+  * Default value = `200`.
+* **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
+  * Default value = `empty list`.
+* **History requirements** - the list requirements of vaccination groups to take the vaccination.
+  * Default value = `empty list`.
+  * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
 
 #### `add` - Add a vaccination type
 
@@ -344,12 +369,14 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 
 * <code><var>VAX_NAME</var></code> : `<group-name>`
 * <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>MIN_AGE</var></code> : `<age>`
+* <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
 ##### Example
+
+Example assumes that the vaccination `ABC VAX` does not exist yet.
 
 ```text
 vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
@@ -362,7 +389,12 @@ Copy and paste:<br>
 `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
 <br><br>
 Output:<br>
-{some ss}
+
+```text
+[INFO] Vaccination: ABC VAX added
+```
+
+![Vaccination Add Detail Card](images/VaccinationAddDetailCard.png)
 
 ##### Restrictions
 
@@ -373,61 +405,211 @@ Output:<br>
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
 are omitted, they will be set to what they were before.
 
+##### Syntax
+
 <pre>
-vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
     [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]... \
+    [--set <var>IS_SET</var>]
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 * <code><var>NEW_NAME</var></code> : `<group-name>`
 * <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>MIN_AGE</var></code> : `<age>`
+* <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
+* <code><var>IS_SET</var></code> : `<boolean>`
+  * `true` to replace all list-like vaccination attributes (**Groups**, **Ingredients** and **History requirements**) with the one specified in the command or `false` to append them.
+  * It is `false` by default.
 
 ##### Example
 
-After the vaccination add example,
+Following examples are independent of each other and follow after vaccination add example.
+
+###### Set example
 
 ```text
-vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
-    --groups DOSE 1, PFIZER, VACCINATION \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER \
+vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH --set true
 ```
 
-Copy and paste:<br>
-`vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 1, PFIZER, VACCINATION --a allergy1, allergy2, allergy3 --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER`
-<br><br>
 Output:<br>
-{some ss}
+
+```text
+[INFO] Vaccination: ABC VAX updated
+```
+
+![Vaccination Edit Detail Card 1](images/VaccinationEditDetailCard_1.png)
+
+###### Append example
+
+```text
+vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH
+```
+
+Output:<br>
+
+```text
+[INFO] Vaccination: ABC VAX updated
+```
+
+![Vaccination Edit Detail Card 2](images/VaccinationEditDetailCard_2.png)
 
 ##### Restrictions
 
-* <code><var>VAX_NAME</var></code> must exist in the system.
-* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as <code><var>VAX_NAME</var></code>.
+* <code><var>VACCINATION</var></code> must exist in the system.
+* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
 
 #### `delete` - Deletes a vaccination
 
-Deletes the vaccination with the specified name from the system.
+Deletion of a vaccination may cause appointments to be come invalid as the vaccination will no longer exist in the system. `VMS` will check for this and prevent such deletions from happening. However, an additional `--force true` argument will force the change to happen which will delete all invalid appointments after the change.
+
+##### Syntax
 
 <pre>
-vaccination delete <var>VAX_NAME</var>
+vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+* <code><var>IS_FORCE</var></code> : `<boolean>`
+  * `true` to force the change that the command will make and `false` to not.
+  * By default, its value is `false`.
 
 ##### Example
 
-After the vaccination add example,
+Examples follow after vaccination clear and then add command examples.
 
 ```text
-vaccination delete Pfizer (Dose 1)
+vaccination 1
 ```
+
+```text
+vaccination INDEX::1
+```
+
+```text
+vaccination ABC VAX
+```
+
+```text
+vaccination NAME::ABC VAX
+```
+
 Output:<br>
-{some ss}
+
+```text
+vaccination: ABC VAX deleted
+```
+
+##### Restrictions
+
+* Vaccination must exist in the system.
+
+#### `clear` - Clears all vaccination data
+
+##### Syntax
+
+Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
+
+<pre>
+vaccination clear
+</pre>
+
+##### Example
+
+```text
+vaccination clear
+```
+
+Output:<br>
+
+```text
+[INFO] Vaccinations successfully cleared
+```
+
+#### `find` - Finds a vaccination
+
+Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
+
+For example, if given `Dose Dose 1`, the following will match:
+
+* `Dose Dose 1`
+* `Dose abc dose abc 1`
+
+However, the following will not:
+
+* `Dose 1` - Missing a `dose`.
+* `1 Dose Dose` - Wrong order.
+* `Dose dose` - Missing `1`.
+
+##### Syntax
+
+<pre>
+vaccination find <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<string>`
+  * The character sequence in the vaccination's name to search for.
+
+##### Example
+
+```text
+vaccination find dose 1
+```
+
+Output:<br>
+
+```text
+[INFO] 3 vaccinations listed!
+```
+
+![Vaccination Find Example](images/VaccinationFindExample.png)
+
+##### Restrictions
+
+* <code><var>VAX_NAME</var></code> cannot be blank.
+
+#### `list` - Lists all vaccination
+
+Clears previously set filters and list all vaccinations in the list view.
+
+##### Syntax
+
+<pre>
+vaccination list
+</pre>
+
+#### `detail` - Displays the detail of a vaccination
+
+##### Syntax
+
+<pre>
+vaccination detail <var>VACCINATION</var>
+</pre>
+
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+
+##### Example
+
+Example assumes none of the default start-up vaccinations are deleted yet.
+
+```text
+vaccination detail Dose 1 (Moderna)
+```
+
+Output:<br>
+
+```text
+[INFO] Detailing vaccination: Dose 1 (Moderna)
+```
+
+![Vaccination Detail Example](images/VaccinationDetailExample.png)
+
+##### Restrictions
+
+* <code><var>VACCINATION</var></code> must exist in the system.
 
 <br></br>
 
@@ -604,12 +786,7 @@ appointment unmark INDEX
 
 ## Advance
 
-VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
-
-Locations:
-
-1. `[JAR file location]/data/patientlist.json`
-2. `[JAR file location]/data/appointmentlist.json`
+VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
