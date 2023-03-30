@@ -38,9 +38,9 @@ public class EditCommand extends Command {
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {
-        COMMAND_PROMPTS.put(PREFIX_NAME, "NAME");
-        COMMAND_PROMPTS.put(PREFIX_NRIC, "NRIC");
-        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "BIRTH_DATE");
+        COMMAND_PROMPTS.put(PREFIX_NAME, "[NAME]");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "[NRIC]");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "[BIRTH_DATE]");
         COMMAND_PROMPTS.put(PREFIX_REGION, "[REGION]");
         COMMAND_PROMPTS.put(PREFIX_RISK, "[RISK]");
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "[ADDRESS]");
