@@ -1,0 +1,37 @@
+@startuml
+skinparam activityFontSize 30
+skinparam activityArrowFontSize 25
+
+start
+:User enters command to edit XYZ in XYZ List;
+:EditXYZCommandParser parses the user input;
+if () then ([Invalid command format])
+  :ParseException is thrown;
+  :Invalid Command Format error message is shown;
+  stop
+else ([else])
+:EditXYZCommandParser parses input;
+:Check if index given is valid;
+
+if () then ([Index is out of bounds])
+    :CommandExeception is thrown;
+    :Invalid Item Index error message is shown;
+    stop
+else ([else])
+:Item XYZ at given index retrieved from its filtered XYZ List;
+:Copy of the item XYZ is made and edited;
+
+if () then ([Edited item is the same as other items in the list
+or no actual change is made to item])
+:CommandException is thrown;
+:Duplicate Item error message is shown;
+stop
+
+else ([else])
+:Item in XYZ List is edited
+and Filtered XYZ List is updated;
+:Changes made are saved to local data;
+:Edit Success Message is shown;
+stop
+
+@enduml
