@@ -22,8 +22,31 @@ public class AlarmList {
         }
     }
 
-    public static Alarm getFirstAlarm() {
-        return alarms.get(0);
+    public static void deleteTheAlarm(int i) {
+        alarms.get(i - 1).stopTimeLine();
+        alarms.remove(i - 1);
+    }
+
+    public static Alarm getSoonestAlarm() {
+        int i = 0;
+        double maxRemainingTime = Double.MAX_VALUE;
+        int maxIndex = -1;
+        for (Alarm a : alarms) {
+            if (a.getRemainingTime() < maxRemainingTime) {
+                maxIndex = i;
+            }
+            i++;
+        }
+        return alarms.get(maxIndex);
+    }
+
+    public static String getAlarmAlert(Alarm alarm) {
+        for (Alarm a : alarms) {
+            if (a.equals(alarm)) {
+                return a.getMessage();
+            }
+        }
+        return null;
     }
 
     public static int getAlarmCount() {
@@ -39,7 +62,7 @@ public class AlarmList {
      */
     public String list() {
         StringBuilder sb = new StringBuilder();
-        int i = 0;
+        int i = 1;
         for (Alarm a : alarms) {
             sb.append(i + ". Alarm " + a + "\n");
             i++;

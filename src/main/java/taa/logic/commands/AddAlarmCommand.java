@@ -11,7 +11,7 @@ import taa.model.Model;
  */
 public class AddAlarmCommand extends Command {
 
-    public static final String MESSAGE_ALARM_ACKNOWLEDGEMENT = "Adding a new alarm ...";
+    public static final String MESSAGE_ALARM_ACKNOWLEDGEMENT = "Added a new alarm!";
     public static final String COMMAND_WORD = "add_alarm";
     private final Alarm alarm;
 

@@ -100,6 +100,9 @@ public class TaaParser {
         case ListAlarms.COMMAND_WORD:
             return new ListAlarms();
 
+        case DeleteAlarm.COMMAND_WORD:
+            return new DeleteAlarmParser().parse(arguments);
+
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

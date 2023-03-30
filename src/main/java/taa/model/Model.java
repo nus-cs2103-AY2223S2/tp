@@ -127,4 +127,6 @@ public interface Model {
     void addAlarm(Alarm alarm) throws CommandException;
 
     public String listAlarms();
+
+    void deleteAlarm(int index) throws CommandException;
 }

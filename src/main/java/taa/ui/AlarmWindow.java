@@ -50,13 +50,13 @@ public class AlarmWindow extends UiPart<Stage> {
 
     public void show() {
         logger.fine("Showing help page about the application.");
-        double remainingTime = AlarmList.getFirstAlarm().getRemainingTimeSec();
+        double remainingTime = AlarmList.getSoonestAlarm().getRemainingTimeSec();
         Timeline[] countdownTimeline = new Timeline[1];
         // Create a timeline object with a keyframe event
         countdownTimeline[0] = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                countdownLabel.setText(Integer.toString((int)AlarmList.getFirstAlarm().getRemainingTimeSec()));
+                countdownLabel.setText(Integer.toString((int)AlarmList.getSoonestAlarm().getRemainingTimeSec()));
                 if (remainingTime <= 0) {
                     countdownTimeline[0].stop(); // Stop the timeline when the countdown reaches zero
                 }

@@ -16,6 +16,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert;
 import javafx.util.Duration;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
@@ -287,7 +288,14 @@ public class ModelManager implements Model {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            String alertString = AlarmList.getAlarmAlert(alarm);
             AlarmList.deleteTheAlarm(alarm); //when the alarm is sounded, it's deleted from the alarm list
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Time's up!");
+            alert.setHeaderText("Time's up!");
+            alert.setContentText(alertString);
+            alert.show();
+
         }));
         timeline.setCycleCount(1);
         timeline.play();
@@ -298,6 +306,14 @@ public class ModelManager implements Model {
     //Solution below adapted from ChatGPT
     @Override
     public String listAlarms() {
+        if (AlarmList.getAlarmCount() == 0) {
+            return "There is no alarm as of now.";
+        }
         return this.alarmList.list();
+    }
+
+    @Override
+    public void deleteAlarm(int index) {
+        AlarmList.deleteTheAlarm(index);
     }
 }

@@ -33,6 +33,10 @@ public class Alarm {
                 subtract(this.timeline.getCurrentTime()).toMinutes();
     }
 
+    public void stopTimeLine() {
+        this.timeline.stop();
+    }
+
     public double getRemainingTimeSec() {
         return this.timeline.getTotalDuration().
                 subtract(this.timeline.getCurrentTime()).toSeconds();
