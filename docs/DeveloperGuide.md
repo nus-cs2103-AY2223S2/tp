@@ -669,8 +669,11 @@ Hence, we removed the implementation of the old and new prefixes.
 Finding i.e. filtering a person by their attributes is implemented such that the user can find people by their `name`, `year`, `course`, `modules` and/or `skills`, such that he/she is able to reach out to them for collaboration more quickly.
 
 - `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Logical AND not logical OR.
+</div>
 - **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
-- Checks if the attributes of the person **contain** the keywords specified by the user(uses contain, not containWord).
+- Checks if the attributes of the person **contain** the keywords specified by the user.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Uses contain, not containWord.
 </div>
