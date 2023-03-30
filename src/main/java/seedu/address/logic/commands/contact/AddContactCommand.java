@@ -15,6 +15,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -100,9 +101,10 @@ public class AddContactCommand extends Command {
         InternshipStatus status = internshipToAddContact.getStatus();
         boolean isArchived = internshipToAddContact.isArchived();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
+        Documents documents = internshipToAddContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, isArchived, interviewDate);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

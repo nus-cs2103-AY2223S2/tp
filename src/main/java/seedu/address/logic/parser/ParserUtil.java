@@ -12,6 +12,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.CoverLetterLink;
+import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipStatus;
@@ -418,5 +420,35 @@ public class ParserUtil {
             throw new ParseException(NoteContent.MESSAGE_CONSTRAINTS);
         }
         return new NoteContent(trimmedContent);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code ResumeLink}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static ResumeLink parseResumeLink(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!ResumeLink.isValidResumeLink(trimmedStatus)) {
+            throw new ParseException(ResumeLink.MESSAGE_CONSTRAINTS);
+        }
+        return new ResumeLink(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code CoverLetterLink}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static CoverLetterLink parseCoverLetterLink(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!CoverLetterLink.isValidCoverLetterLink(trimmedStatus)) {
+            throw new ParseException(CoverLetterLink.MESSAGE_CONSTRAINTS);
+        }
+        return new CoverLetterLink(trimmedStatus);
     }
 }

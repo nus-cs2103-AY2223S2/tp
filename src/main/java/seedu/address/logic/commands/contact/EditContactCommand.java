@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -116,9 +117,10 @@ public class EditContactCommand extends Command {
         InternshipStatus status = internshipToUpdateContact.getStatus();
         boolean isArchived = internshipToUpdateContact.isArchived();
         InterviewDate interviewDate = internshipToUpdateContact.getInterviewDate();
+        Documents documents = internshipToUpdateContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, newContact, status, isArchived, interviewDate);
+                salary, notes, rating, reflections, newContact, status, isArchived, interviewDate, documents);
     }
 
     @Override

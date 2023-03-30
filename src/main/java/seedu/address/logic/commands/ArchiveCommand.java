@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -90,9 +91,11 @@ public class ArchiveCommand extends Command {
         Contact contact = internshipApplication.getContact();
         InternshipStatus status = internshipApplication.getStatus();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
+        Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, true, interviewDate);
+                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, true, interviewDate,
+                documents);
     }
 
     @Override
