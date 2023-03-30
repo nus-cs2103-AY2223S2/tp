@@ -285,7 +285,7 @@ public class StudentEditCommand extends StudentCommand {
                     }
                     Parent newParent = new Parent(student.getParentName(), new Age("Insert parent age here!"),
                             new Image("Insert parent image here!"), new Email("Insert parent email here!"),
-                            student.getPhone(), new Address("Insert Address here!"), p.getTags());
+                            student.getParentNumber(), new Address("Insert Address here!"), p.getTags());
                     // Created new parent since it does not exist in existing parents
                     newParent.addStudent(student);
                     student.setParent(newParent);
