@@ -456,6 +456,7 @@ Use this command to exit the application!
 | **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Events Features
