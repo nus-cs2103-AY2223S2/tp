@@ -23,7 +23,6 @@ import seedu.address.experimental.storage.JsonUserPrefsStorage;
 import seedu.address.experimental.storage.StorageManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MakeCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Entity;

@@ -4,7 +4,6 @@ import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.logic.parser.ClassificationTerms.ITEM;
 import static seedu.address.logic.parser.ClassificationTerms.MOB;
 
-import seedu.address.logic.commands.MakeCommand;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
