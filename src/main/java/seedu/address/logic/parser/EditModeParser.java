@@ -232,7 +232,7 @@ public class EditModeParser {
         if (actionWord.equalsIgnoreCase("add")) {
             editInventory.addItem(item);
         } else if (actionWord.equalsIgnoreCase("remove")) {
-            editInventory.addItem(item);
+            editInventory.deleteItem(item);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
