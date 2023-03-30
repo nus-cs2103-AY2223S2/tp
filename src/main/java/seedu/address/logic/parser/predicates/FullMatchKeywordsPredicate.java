@@ -25,15 +25,15 @@ import seedu.address.model.tag.Tag;
 /**
  * Predicate that returns true if all keywords are contained in the Person's fields (Name, Address, Phone).
  */
-public class ContainsKeywordsPredicate implements Predicate<Person> {
+public class FullMatchKeywordsPredicate implements Predicate<Person> {
     private final ArgumentMultimap keywords;
 
     /**
-     * Constructs a ContainsKeywordsPredicate.
+     * Constructs a FullMatchKeywordsPredicate.
      *
      * @param keywords list of keywords to match with the Person's fields
      */
-    public ContainsKeywordsPredicate(ArgumentMultimap keywords) {
+    public FullMatchKeywordsPredicate(ArgumentMultimap keywords) {
         this.keywords = keywords;
     }
 
@@ -107,8 +107,8 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ContainsKeywordsPredicate
-                && keywords.equals(((ContainsKeywordsPredicate) other).keywords));
+                || (other instanceof FullMatchKeywordsPredicate
+                && keywords.equals(((FullMatchKeywordsPredicate) other).keywords));
     }
 
 

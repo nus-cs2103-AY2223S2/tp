@@ -9,10 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -26,7 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -79,7 +75,7 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " " + keywords);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(keywords, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_SUBJECT, PREFIX_TAG);
-        assertEquals(new FindCommand(new ContainsKeywordsPredicate(argMultimap)), command);
+        assertEquals(new FindCommand(new FullMatchKeywordsPredicate(argMultimap)), command);
     }
 
     @Test
