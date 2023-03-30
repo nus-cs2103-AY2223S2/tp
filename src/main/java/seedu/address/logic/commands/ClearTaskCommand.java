@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_TASK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -11,40 +10,35 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskList;
 
 /**
- * Changes the task of an existing person in the address book.
+ * Clears the tasks of an existing person in the address book.
  */
-public class AddTaskCommand extends Command {
+public class ClearTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtask";
+    public static final String COMMAND_WORD = "cleartask";
+    public static final TaskList EMPTY_TASKLIST = new TaskList();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the task of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing task will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_ADD_TASK + "[TASK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ADD_TASK + "Time to swim.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Clears the tasks of the person identified "
+            + "by the index number used in the displayed person list. \n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Task: %2$s";
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added task to Person: %1$s";
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed task from person: %1$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
+    public static final String MESSAGE_CLEAR_TASK_SUCCESS = "Cleared tasklist of Person: %1$s";
+    public static final String MESSAGE_CLEAR_TASK_FAILURE = "Failure to clear tasklist of Person: %1$s";
 
     private final Index index;
-    private final Task task;
 
     /**
-     * @param index of the person in the filtered person list to edit the task
-     * @param task of the person to be updated to
+     * @param index of the person in the filtered person list to clear the tasks
      */
-    public AddTaskCommand(Index index, Task task) {
-        requireAllNonNull(index, task);
+    public ClearTaskCommand(Index index) {
+        requireAllNonNull(index);
 
         this.index = index;
-        this.task = task;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -55,13 +49,12 @@ public class AddTaskCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        TaskList editedTaskList = personToEdit.getTasks().add(task);
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getGender(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getCompany(), personToEdit.getLocation(),
                 personToEdit.getOccupation(), personToEdit.getJobTitle(),
                 personToEdit.getAddress(), personToEdit.getRemark(),
-                personToEdit.getTags(), editedTaskList, personToEdit.getStatus());
+                personToEdit.getTags(), EMPTY_TASKLIST, personToEdit.getStatus());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -70,11 +63,11 @@ public class AddTaskCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether the tasks are cleared from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !task.value.isEmpty() ? MESSAGE_ADD_TASK_SUCCESS : MESSAGE_DELETE_TASK_SUCCESS;
+        String message = personToEdit.getTasks().isEmpty() ? MESSAGE_CLEAR_TASK_SUCCESS : MESSAGE_CLEAR_TASK_FAILURE;
         return String.format(message, personToEdit);
     }
 
@@ -86,14 +79,13 @@ public class AddTaskCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTaskCommand)) {
+        if (!(other instanceof ClearTaskCommand)) {
             return false;
         }
 
-        assert other instanceof AddTaskCommand;
+        assert other instanceof ClearTaskCommand;
         // state check
-        AddTaskCommand e = (AddTaskCommand) other;
-        return index.equals(e.index)
-                && task.equals(e.task);
+        ClearTaskCommand e = (ClearTaskCommand) other;
+        return index.equals(e.index);
     }
 }

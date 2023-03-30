@@ -22,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 
@@ -93,7 +94,7 @@ class JsonAdaptedPerson {
         jobTitle = source.getJobTitle().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
-        task = source.getTask().value;
+        task = source.getTasks().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -200,12 +201,11 @@ class JsonAdaptedPerson {
         if (task == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Task.class.getSimpleName()));
         }
-        final Task modelTask = new Task(task);
+        final TaskList modelTasks = new TaskList().add(new Task(task));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelGender, modelPhone, modelEmail, modelCompany, modelLocation,
-                modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags, modelTask, modelLeadStatus);
-
+                modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags, modelTasks, modelLeadStatus);
     }
 }
