@@ -15,7 +15,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all persons or persons whose tag(s) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all persons, or persons whose tag(s) "
             + "contain any of the keyword(s) (case-insensitive).\n"
             + "Parameters: "
             + "[" + PREFIX_TAG + "TAG]\n"
