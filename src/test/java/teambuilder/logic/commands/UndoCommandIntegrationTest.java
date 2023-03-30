@@ -21,7 +21,7 @@ import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.person.Person;
 import teambuilder.model.team.Team;
 
-public class UndoCommandTest {
+public class UndoCommandIntegrationTest {
     @Test
     public void constructor_noNull() {
         UndoCommand undoer = new UndoCommand();
