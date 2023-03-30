@@ -266,6 +266,15 @@ The Add Event Command works by having the User entering the "addevent" command. 
 End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
 If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of AddressBook Neo.
 
+### Command for Edit Event Command
+
+The Edit Event Command allows users to modify any of the specific fields for an existing event in the AddressBook Neo calendar. To use this command, the user will enter "editevent" followed by the index number that corresponds to the event they wish to modify.
+The user can then include multiple field prefix/desired-change arguments in the same command. The field prefixes are as follows: "d" for Description, "s" for Start Date, "e" for End Date, and "r" for Recurrence Type.
+After each field prefix, the user should enter the desired change they would like to make to the corresponding field. For example, to change the Description of an event with index number 1 to "Meeting with clients", the user would enter "editevent 1 /d Meeting with clients".
+
+Once all the desired fields have been updated, the Success Message will prompt to the user that the event has been updated in the Events Calendar UI of AddressBook Neo.
+It is important to note that the index number must be specified in order to edit an event, and at least one field prefix/desired-change argument must be included in the command. If an incorrect index number is entered or if a field prefix is misspelled or not recognized, the command will not work and an error message will be displayed.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
