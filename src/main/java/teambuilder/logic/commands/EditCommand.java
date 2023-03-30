@@ -113,9 +113,18 @@ public class EditCommand extends Command {
         HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + editedPerson);
 
         model.setPerson(personToEdit, editedPerson);
+        if (!personToEdit.getName().equals(editedPerson.getName())) {
+            Person deletusPerson = createTeamlessPerson(personToEdit);
+            model.updatePersonInTeams(deletusPerson);
+        }
         model.updatePersonInTeams(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    private Person createTeamlessPerson(Person personToEdit) {
+        return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getMajor(), personToEdit.getTags(), new HashSet<>());
     }
 
     /**
