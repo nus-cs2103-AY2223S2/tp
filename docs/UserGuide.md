@@ -21,7 +21,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**Table of Contents**](#table-of-contents)
 * [**Overview**](#overview)
   * [**What is EduMate?**](#what-is-edumate)
-  * [**Understanding the Symbols and Colours**](#understanding-the-symbols-and-colours)
+  * [**Understanding the Symbols**](#understanding-the-symbols)
   * [**Glossary**](#glossary)
 * [**Quick Start**](#quick-start)
   * [**System Requirements**](#system-requirements)
@@ -38,7 +38,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
-  * [**Arguments**](#arguments)
+  * [**Attributes**](#attributes)
   * [**Basic Commands**](#basic-commands)
     * [**Add a contact `add`**](#add-a-contact-add)
     * [**View a contact's profile `view`**](#view-a-contacts-profile-view)
@@ -55,7 +55,10 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
     * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
   * [**Meet Commands**](#meet-commands)
-    * [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
+    * [**Suggest places to meet with your contacts `meet`**](#meet-commands)
+  * [**Schedule Commands**](#schedule-commands)
+    * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
+    * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
 * [**Other Commands**](#other-commands)
     * [**Exit the application `exit`**](#exit-the-application)
 * [**FAQ**](#faq)
@@ -842,6 +845,62 @@ whilst referring to their index on the Person List and find out what are the mos
 
 </div>
 
+### Schedule Commands
+
+The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
+
+#### Organise a meet up `organise`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `organise INDEX`
+* `organise INDEX_1 INDEX_2 ... d/DAY T/START_TIME END_TIME l/LOCATION`
+
+</div>
+
+What you should see:<br>
+
+<img src="images/ug_cmds_pics/organise_cmd.png" style="width:80%;margin:0 10%">
+<center>Diagram 18: A new meet up: Monday 8AM to 11AM at Queenstown Public Library is added to <code>EduMate</code>.</center>
+
+##### Explanation:
+After deciding you want to meet with Samantha and Ian, you execute the `meet` command to generate recommended timings and locations. Scrolling through the list of recommendations, you decide that Queenstown Public Library on a Monday morning sounds the best. You can then execute the `organise` command to add that recommendation to your scheduled meet ups list.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Example 1 : Adding a meet up from the recommendation list**<br>
+* `organise 1`: Adds the recommendation with index 1 on the [Meet Up Recommendation Panel](#meet-up-recommendation-panel) to the [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+
+:bulb: **Example 2 : Adding a customised meet up**<br>
+* `organise 1 3 d/TUESDAY T/10 11 l/Starbucks`: Adds a customised meet up with the following details to the [Scheduled Meet Up Panel](#scheduled-meet-up-panel):
+  * Participants: `contacts with index 1 and 3`
+  * Day: `TUESDAY`
+  * Start time: `10AM`
+  * End time: `11AM`
+  * Location: `Starbucks`
+
+</div>
+
+#### Unorganise a meet up `unorganise`
+
+If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `unorganise INDEX`
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Example : Removing a meet up from the scheduled meet up list**<br>
+* `unorganise 1`: Removes the scheduled meet up with index 1 on the [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+
+</div>
+
+
 ## Other Commands
 
 ### Exit the application
@@ -874,23 +933,28 @@ suggest new features and it is easily extensible!
 | e/     | Email           | 
 | g/     | Group           | 
 | m/     | Module          | 
+| d/     | Day             |
+| l/     | Location        |
+| T/     | Time Period     |
 | "   "  | Empty           | 
 
 ### Command Summary
 
-| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))      | Examples                                                    |
-|----------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **Add a contact**    | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                           |
-| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                   |
-| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                |
-| **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
-| **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
-| **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
-| **Filter contacts**  | `find z/FIELD`                                                                         | `find n/Tan`, `find m/CS1231`                               |
-| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                           |
-| **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                               |
-| **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                               |
-| **Suggest meet ups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                  |
+| Action                   | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))    | Examples                                                     |
+|--------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| **Add a contact**        | `add n/NAME p/PHONE...`                                                              | `add n/Wen Li...`                                            |
+| **View a profile**       | `view`, `view INDEX`, `view n/NAME`                                                  | `view 5`, `view n/Wen Li`                                    |
+| **Edit a contact**       | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                         | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                 |
+| **Delete a contact**     | `delete INDEX`                                                                       | `delete 3`                                                   |
+| **Tag a contact**        | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`       | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
+| **Untag a contact**      | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
+| **Filter contacts**      | `find z/FIELD`                                                                       | `find n/Tan`, `find m/CS1231`                                |
+| **Sort contacts**        | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                        | `sort`, `sort n/a`, `sort m/ p/d`                            |
+| **Save a copy**          | `save FILE_NAME`                                                                     | `save backup`                                                |
+| **Load a copy**          | `load FILE_NAME`                                                                     | `load backup`                                                |
+| **Suggest meet ups**     | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                 | `meet 1 6 4`, `eat 10 4 7`                                   |
+| **Organise a meet up**   | `organise INDEX`, `organise [INDEX]... d/DAY T/START_TIME END_TIME l/LOCATION`       | `organise 1`, `organise 1 2 3 d/MONDAY T/10 12 l/NUS`        |
+| **Unorganise a meet up** | `unorganise INDEX` | `unorganise 1`   |
 
 
 ## Troubleshooting
