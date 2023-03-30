@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -93,6 +95,16 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_tagField_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        AnyFieldContainsKeywordsPredicate predicate = preparePredicate("ends");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
     /**
