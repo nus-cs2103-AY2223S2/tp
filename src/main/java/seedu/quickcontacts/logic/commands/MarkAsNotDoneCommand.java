@@ -16,7 +16,7 @@ public class MarkAsNotDoneCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a meeting as not done\n" + "Parameters: m/ "
             + "index of meeting";
     public static final String INDEX_NOT_FOUND = "One of the provided indices is not found";
-
+    public static final String COMMAND_DESCRIPTION = "Marks a meeting as not done";
     public static final String SUCCESS_FORMAT = "Meetings %s marked as undone";
     private final List<Index> indexes;
 

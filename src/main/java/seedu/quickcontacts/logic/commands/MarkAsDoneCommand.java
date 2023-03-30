@@ -16,7 +16,7 @@ public class MarkAsDoneCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a meeting as done\n" + "Parameters: m/ "
             + "index of meeting";
     public static final String INDEX_NOT_FOUND = "One of the provided indices is not found";
-
+    public static final String COMMAND_DESCRIPTION = "Marks a meeting as done";
     public static final String SUCCESS_FORMAT = "Meetings %s marked as done";
     private final List<Index> indexes;
 
@@ -39,6 +39,7 @@ public class MarkAsDoneCommand extends Command {
         return new CommandResult(String.format(SUCCESS_FORMAT,
                 indexes.stream().map(Index::getOneBased).collect(Collectors.toList())));
     }
+
     @Override
     public boolean equals(Object o) {
         return o == this // short circuit if same object
