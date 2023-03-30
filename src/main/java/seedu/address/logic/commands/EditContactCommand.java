@@ -23,8 +23,8 @@ public class EditContactCommand extends EditPersonCommand {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values other than for Modules and Tags.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "{SPECIFIER}/{INPUT}... "
-            + "\nFor more information on specifiers, use the help command. Note that Modules and Tags "
+            + "{SPECIFIER}/{INPUT}...\n"
+            + "More Info: For more information on specifiers, use the help command. Note that Modules and Tags "
             + "have a different behaviour. Editting a mod or tag, will remove the module or tag if they already "
             + "exist in the Person's Modules field or Tags field and will add it if it does not exist. For more "
             + "information, check out the user guide in the link that appears in the help command.";
