@@ -1,7 +1,7 @@
 .primary-button {
     -fx-background-color: #55CEFF;
     -fx-background-radius: 8;
-    -fx-text-fill: white;
+    -fx-text-fill: #2d3f4d;
 }
 
 .primary-button:hover {
@@ -15,7 +15,7 @@
 .add-button {
     -fx-background-color: #B5B7BB;
     -fx-background-radius: 8;
-    -fx-text-fill: white;
+    -fx-text-fill: #2d3f4d;
 }
 
 .add-button:hover {
