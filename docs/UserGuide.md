@@ -56,7 +56,7 @@ Without further ado, let's get started!
           1. [List all students / parents](#listing)
           2. [Viewing help: `help`](#help)
           3. [Exiting program: `exit`](#exit)
-    </details>
+            </details>
 </details>
 
 4. [Saving the data](#savingdata)
