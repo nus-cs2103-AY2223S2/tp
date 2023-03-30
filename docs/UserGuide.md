@@ -257,23 +257,23 @@ Examples:
 
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
-### Create a New Lesson Plan for the Upcoming Lesson
+### Create a New Lesson for a Student
 
-Creates a new lesson for a given student, with a lesson title and time.
+Creates a new lesson for a given student, with a lesson title, start time, and end time.
 
-Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
+Format: `new-lesson [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields are mandatory.
+* All fields, except for additional studetn names, are mandatory.
 
 Examples:
-`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
+`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
 
 
-### View Lessons History
+### View Lessons
 
-Displays the lesson history for a given student/all students.
+Displays the lessons for a given student/all students, filtered by subject and/or student name and/or date and/or whether the lesson has been completed
 
-Format: `view-lesson [name/STUDENT_NAME]`
+Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (optional)[date/DATE] (optional)[done/DONE]`
 
 * Displays the lesson history for all the tutor’s students if no student name is specified.
 * Displays the lesson history for a specific student if a student's name is specified with the `name/` prefix.
@@ -281,7 +281,31 @@ Format: `view-lesson [name/STUDENT_NAME]`
 
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
-* `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
+* `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
+* `view-lesson done/done` Displays all lessons that have been completed
+
+### Remove a Lesson
+Deletes a lesson for a given student.
+
+Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Deletes the lesson at the specified `LESSON_INDEX`.
+
+Example:
+* `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
+
+### Update a Lesson
+Updates a lesson for a given student. This includes the lesson title, start time, and end time.
+
+Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
+* At least one of the fields must be specified.
+
+Example:
+* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` updates the lesson for John Doe with the new information.
 
 ### Add an Exam to be tracked: `add-exam`
 
@@ -299,8 +323,8 @@ Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/
 See `calculate-grade` below:
 
 Examples:
-* `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
-* `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00`
+* `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00` creates an exam named `Math MYE` for the student named John Doe, which starts at 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
+* `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00` creates an exam named `Science MYE` for the students named John Doe and Faye Doe, which starts at 12:00 on 22 May 2023 and ends at 14:00 on 22 May 2023.
 
 ### Remove an exam: `delete-exam`
 
@@ -312,8 +336,8 @@ Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [in
 student.
 
 Examples:
-* `delete-exam name/John Doe index/1`
-* `delete-exam name/John Doe name/Faye Doe index/1`
+* `delete-exam name/John Doe index/1` deletes the first exam for the student named John Doe.
+* `delete-exam name/John Doe name/Faye Doe index/1` deletes the first exam for the students named John Doe and Faye Doe.
 
 ### View exams tracked by TutorPro: `view-exam`
 
@@ -342,7 +366,9 @@ Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_
 student.
 
 Examples:
-* `update-exam name/John index/1 grade/20/25`
+* `update-exam name/John index/1 grade/20/25` updates the grade of the first exam for the student named John Doe to 20/25.
+* `update-exam name/John index/1 exam/Science MYE` updates the name of the first exam for the student named John Doe to Science MYE.
+* `update-exam name/John index/1 start/2023-05-21 12:00 end/2023-05-21 14:00` updates the start and end time of the first exam for the student named John Doe to 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
 
 ### Calculate grade:  `calculate-grade`
 
