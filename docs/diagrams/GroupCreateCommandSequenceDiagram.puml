@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GroupCreateCommandParser" as GroupCreateCommandParser LOGIC_COLOR
+participant "g:GroupCreateCommand" as GroupCreateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("group_create g/CS2103")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("group_create g/CS2103")
+activate AddressBookParser
+
+create GroupCreateCommandParser
+AddressBookParser -> GroupCreateCommandParser : parse(g/CS2103")
+activate GroupCreateCommandParser
+
+create GroupCreateCommand
+GroupCreateCommandParser -> GroupCreateCommand : groupToAdd
+activate GroupCreateCommand
+
+GroupCreateCommand --> GroupCreateCommandParser
+deactivate GroupCreateCommand
+
+GroupCreateCommandParser --> AddressBookParser : g
+deactivate GroupCreateCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GroupCreateCommand : execute()
+activate GroupCreateCommand
+
+GroupCreateCommand -> Model : addGroup(groupToAdd)
+activate Model
+
+Model --> GroupCreateCommand
+deactivate Model
+
+create CommandResult
+GroupCreateCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GroupCreateCommand
+deactivate CommandResult
+
+GroupCreateCommand --> LogicManager : result
+deactivate GroupCreateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

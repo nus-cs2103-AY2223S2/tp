@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -46,6 +47,15 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        if (command instanceof ExportCommand) {
+            ExportCommand exportCommand = (ExportCommand) command;
+            try {
+                storage.exportPerson(exportCommand.getExportPerson());
+            } catch (IOException ioe) {
+                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            }
+        }
+
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
@@ -72,7 +82,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<String> getFilteredTimeSlotList() {
-        return model.getFilteredTimeSlotList();
+        return null;
     }
 
     @Override

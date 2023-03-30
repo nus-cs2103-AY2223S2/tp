@@ -60,10 +60,10 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(setLabelMaxWidth(tag.tagName)));
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
-                .forEach(group -> groups.getChildren().add(new Label(group.groupName)));
+                .forEach(group -> groups.getChildren().add(setLabelMaxWidth(group.groupName)));
         isolatedEventList.setText(person.getIsolatedEventList().toString());
         recurringEventList.setText(person.getRecurringEventList().toString());
 
@@ -85,5 +85,12 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    private Label setLabelMaxWidth(String name) {
+        Label label = new Label(name);
+        label.setMaxWidth(182);
+        label.setWrapText(true);
+        return label;
     }
 }

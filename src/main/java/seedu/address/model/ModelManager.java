@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.model.timeslot.TimeMask;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -31,8 +32,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredGroups;
-
-    private FilteredList<String> filteredTimeSlots;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,7 +46,6 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
         ObservableList<String> emptyList = FXCollections.observableArrayList();
-        filteredTimeSlots = new FilteredList<>(emptyList);
     }
 
     public ModelManager() {
@@ -222,14 +220,6 @@ public class ModelManager implements Model {
         return filteredGroups;
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered time slot list
-     */
-    @Override
-    public ObservableList<String> getFilteredTimeSlotList() {
-        return filteredTimeSlots;
-    }
-
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {
         requireNonNull(predicate);
@@ -244,18 +234,21 @@ public class ModelManager implements Model {
         List<Person> persons = this.addressBook.getPersonList();
         TimeMask baseMask = new TimeMask();
         for (Person person: persons) {
-            baseMask.mergeMask(person.getRecurringMask());
-            IsolatedEventList isolatedEventList = person.getIsolatedEventList();
-            if (isolatedEventList == null) {
-                continue;
+            if (person.getGroups().contains(group)) {
+                baseMask.mergeMask(person.getRecurringMask());
+                IsolatedEventList isolatedEventList = person.getIsolatedEventList();
+                if (isolatedEventList == null) {
+                    continue;
+                }
+                baseMask.mergeIsolatedEvents(isolatedEventList, date);
             }
-            baseMask.mergeIsolatedEvents(isolatedEventList);
         }
 
         // TODO: Potential bugs
-        ObservableList<String> timetable = TimeMask.getTimetable(date.getDayOfWeek(), baseMask);
-        System.out.println(timetable);
-        filteredTimeSlots = new FilteredList<>(timetable);
+        ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
+        addressBook.getScheduleWeek().setInternalList(timetable, date.getDayOfWeek());
+        // TODO: Consider removing
+        logger.info("Timetable generation finished. Rendering expected.");
     }
 
     @Override

@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GroupDeleteCommandParser" as GroupDeleteCommandParser LOGIC_COLOR
+participant "g:GroupDeleteCommand" as GroupDeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("group_delete 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("group_delete 1")
+activate AddressBookParser
+
+create GroupDeleteCommandParser
+AddressBookParser -> GroupDeleteCommandParser : parse("1")
+activate GroupDeleteCommandParser
+
+create GroupDeleteCommand
+GroupDeleteCommandParser -> GroupDeleteCommand : index
+activate GroupDeleteCommand
+
+GroupDeleteCommand --> GroupDeleteCommandParser
+deactivate GroupDeleteCommand
+
+GroupDeleteCommandParser --> AddressBookParser : g
+deactivate GroupDeleteCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GroupDeleteCommand : execute()
+activate GroupDeleteCommand
+
+GroupDeleteCommand -> Model : deleteGroup(groupToDelete)
+activate Model
+
+Model --> GroupDeleteCommand
+deactivate Model
+
+create CommandResult
+GroupDeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GroupDeleteCommand
+deactivate CommandResult
+
+GroupDeleteCommand --> LogicManager : result
+deactivate GroupDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -37,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
+    private WhereGotTimeTable whereGotTimeTable;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -48,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane groupListPanelPlaceholder;
+
+    @FXML
+    private StackPane whereGotTimePlaceholder;
 
     @FXML
     private StackPane timeSlotListPanelPlaceholder;
@@ -124,8 +129,8 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
-        timeSlotListPanel = new TimeSlotListPanel(logic.getFilteredTimeSlotList());
-        timeSlotListPanelPlaceholder.getChildren().add(timeSlotListPanel.getRoot());
+        whereGotTimeTable = new WhereGotTimeTable();
+        whereGotTimePlaceholder.getChildren().add(whereGotTimeTable.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

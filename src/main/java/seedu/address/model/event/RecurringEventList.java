@@ -8,7 +8,7 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.timeslot.TimeMask;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -207,8 +207,10 @@ public class RecurringEventList {
         return output.toString();
     }
 
+
     public TimeMask getRecurringMask() {
         return recurringMask;
     }
+
 
 }

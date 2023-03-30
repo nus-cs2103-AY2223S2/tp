@@ -14,6 +14,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.time.ScheduleWeek;
 
 /**
  * Wraps all data at the address-book level
@@ -23,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueGroupList groups;
+
+    private final ScheduleWeek scheduleWeek;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         groups = new UniqueGroupList();
+        scheduleWeek = new ScheduleWeek();
     }
 
     public AddressBook() {}
@@ -206,6 +210,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasGroup(Group group) {
         requireNonNull(group);
         return groups.contains(group);
+    }
+
+    public ScheduleWeek getScheduleWeek() {
+        return scheduleWeek;
     }
 
     //// util methods
