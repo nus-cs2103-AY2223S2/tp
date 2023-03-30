@@ -153,11 +153,6 @@ public class MakeCommandTest {
         }
 
         @Override
-        public Entity getEntityFromName(String name) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate) {
             return null;
         }
