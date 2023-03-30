@@ -16,26 +16,25 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `MATHUTORING.jar` (Stay tuned for our release!).
+2. Download the latest `MATHUTORING.jar`.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your MATHUTORING app.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MATHUTORING.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MATHUTORING.jar` command to run the application. For Mac users, right click on the _home folder_ and click "New Terminal at Folder" then run the same command.<br>
    <br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data for your reference, you can also choose to delete the sample data after you get familiar with the MATHUTORING.<br>
+   The GUI below should appear in a few seconds. Note how the app contains some sample data for your reference, you are free to delete the sample data after you get familiar with the MATHUTORING.<br>
    <img width="1440" alt="Screenshot 2023-03-30 at 12 51 28 PM" src="https://user-images.githubusercontent.com/97392685/228732862-ca3893da-f637-468c-9a9b-5f4e4a38a9cf.png">
    
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all students in the student list.
 
-   * `add n/John p/86232384 a/Ang Mo Kio Ave 10 e/JOHN_08@gmail.com c/98763928` : Adds a student named `John` to the student list in MATHUTORING.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/87849999 t/female t/primary : Adds a student named `John Doe` to the student list in MATHUTORING with two tags attached.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd student (if the student exist) shown in the current list.
 
    * `clear` : Deletes all students.
 
