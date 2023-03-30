@@ -25,5 +25,4 @@ public class MarkCommandParser implements Parser<MarkCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
         }
     }
-
 }

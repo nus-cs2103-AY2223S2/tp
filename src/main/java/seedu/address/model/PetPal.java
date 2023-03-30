@@ -103,6 +103,9 @@ public class PetPal implements ReadOnlyPetPal {
 
     //// util methods
 
+    /**
+     * Marks the provided {@code Pet} isMarked field to true
+     */
     public void markPet(Pet pet) {
         Pet markedPet = pet;
         markedPet.setMarked();

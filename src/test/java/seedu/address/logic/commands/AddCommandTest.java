@@ -114,6 +114,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void markPet(Pet target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPetPal(ReadOnlyPetPal newData) {
             throw new AssertionError("This method should not be called.");
         }
