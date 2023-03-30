@@ -86,7 +86,8 @@ public class ParseFromCsvToPersons {
     private void requireAllFieldsPresent() throws ParseException {
         String[] headers = csv.getRow(0);
 
-        if (!Arrays.stream(necessaryFields).allMatch(f -> Arrays.stream(headers).anyMatch(h -> h.equalsIgnoreCase(f)))) {
+        if (!Arrays.stream(necessaryFields).allMatch(f -> Arrays.stream(headers)
+                .anyMatch(h -> h.equalsIgnoreCase(f)))) {
             throw new ParseException("CSV file given must contain all fields (Name, Phone, Email, Address, Rank, "
                     + "Unit, Company, Platoon, Tags) for each entry. The first row has to contain the headers "
                     + "for each column");

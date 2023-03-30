@@ -75,8 +75,9 @@ public interface Model {
     int findDuplicateIndex(List<Person> persons);
 
     /**
-     * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the address
-     * book. Returns empty {@code String} if no duplicates are found.
+     * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the
+     * address book.
+     * Returns empty {@code String} if no duplicates are found.
      */
     String findDuplicateString(Person duplicatePerson);
 

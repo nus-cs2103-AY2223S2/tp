@@ -16,9 +16,9 @@ public class CsvTest {
     private static final Path CSV_FOLDER = Paths.get("src", "test", "data", "CsvTest");
     @Test
     public void canReadTypicalCsvFile() throws FileNotFoundException, IOException {
-        Path CsvPath = CSV_FOLDER.resolve("typicalCsvFile.csv");
+        Path csvPath = CSV_FOLDER.resolve("typicalCsvFile.csv");
 
-        Csv typicalCsv = new Csv(CsvPath.toString());
+        Csv typicalCsv = new Csv(csvPath.toString());
 
         assertEquals(typicalCsv.getNumOfRows(), 4);
         assertEquals(typicalCsv.getNumOfCols(), 11);
@@ -26,7 +26,7 @@ public class CsvTest {
         for (int i = 0; i < typicalCsv.getNumOfCols(); i++) {
             assertEquals(typicalCsv.getRow(1)[i],
                     new String[]{"alphaeus", "7 Hougang Street, #12-01", "alphaolive@test.com", "987654321",
-                            "MAJ", "6SIR", "Bravo", "Support", "g6pd", "", ""}[i]);
+                        "2LT", "6SIR", "Bravo", "Support", "g6pd", "", ""}[i]);
         }
 
         assertEquals(typicalCsv.getColumnIndex("phone"), 3);

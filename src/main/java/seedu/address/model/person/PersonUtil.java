@@ -52,7 +52,8 @@ public class PersonUtil {
     }
 
     /**
-     * Returns a {@code Pair} of indexes referring to the first duplicates found within a {@code List} of {@code Person}s.
+     * Returns a {@code Pair} of indexes referring to the first duplicates found within a {@code List} of
+     * {@code Person}s.
      * If no duplicates are found, a {@code Pair} containing -1 as both key and value are returned.
      */
     public static Pair<Integer, Integer> findDuplicates(List<Person> personList) {
