@@ -2,10 +2,10 @@ package seedu.address.logic.trackereventsystem;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lecture.LectureName;
@@ -144,7 +144,7 @@ public class TrackerEventSystem {
             Video editedVideo) {
 
         logger.info(String.format("Trigger \"on video edited\" event on module %s lecture %s:"
-                    + "\noriginal: %s\nedited: %s",
+                + "\noriginal: %s\nedited: %s",
                 moduleCode, lectureName, originalVideo, editedVideo));
 
         for (OnVideoEditedEventObserver observer : onVideoEditedEventObservers) {
