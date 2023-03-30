@@ -81,6 +81,7 @@ public class TimeSlot implements Comparable<TimeSlot> {
         return storedInputString;
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
