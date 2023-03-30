@@ -289,7 +289,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindows.get(0).hide();
+        if (!helpWindows.isEmpty()) {
+            helpWindows.get(0).hide();
+        }
         primaryStage.hide();
     }
 
@@ -477,7 +479,6 @@ public class MainWindow extends UiPart<Stage> {
                     .equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
                 showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
                 showStudentTab();
-                refreshViewPane();
                 refreshNavigationBar();
             } else {
                 showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
