@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -33,8 +32,6 @@ public class ResultPersonCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-//    @FXML
-//    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -53,7 +50,6 @@ public class ResultPersonCard extends UiPart<Region> {
     public ResultPersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-//        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getOptionalPhone().map(Phone::toString).orElse(null));
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
