@@ -11,6 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -143,7 +146,8 @@ public class TagCommand extends Command {
         Module taggedModule = new Module(taggingModule.getCode(),
                 taggingModule.getName(), newTags, taggingModule.getLectureList());
         model.setModule(taggingModule, taggedModule);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode),
+                new ModuleEditInfo(taggingModule, taggedModule));
     }
 
     private CommandResult tagLecture(Model model) throws CommandException {
@@ -167,7 +171,8 @@ public class TagCommand extends Command {
 
         Lecture taggedLecture = new Lecture(taggingLecture.getName(), newTags, taggingLecture.getVideoList());
         model.setLecture(targetModule, taggingLecture, taggedLecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName),
+                new LectureEditInfo(moduleCode, taggingLecture, taggedLecture));
     }
 
     private CommandResult tagVideo(Model model) throws CommandException {
@@ -199,7 +204,9 @@ public class TagCommand extends Command {
         Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(),
                 taggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName),
+                new VideoEditInfo(moduleCode, lectureName,
+                taggingVideo, taggedVideo));
     }
 
     @Override

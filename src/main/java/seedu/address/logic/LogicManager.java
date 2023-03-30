@@ -28,6 +28,7 @@ import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
+import seedu.address.storage.Archive;
 import seedu.address.storage.Storage;
 
 /**
@@ -41,6 +42,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TrackerParser trackerParser;
+    private final Archive archive;
     private final Injector navigationInjector;
     private final TrackerEventSystem trackerEventSystem;
 
@@ -54,6 +56,7 @@ public class LogicManager implements Logic {
         this.navigationInjector = new NavigationInjector();
         trackerParser = new TrackerParser();
         trackerEventSystem = new TrackerEventSystem();
+        archive = new Archive(storage);
     }
 
     @Override
@@ -68,12 +71,15 @@ public class LogicManager implements Logic {
 
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        CommandResult commandResult;
+        Command command;
+
         commandText = navigationInjector.inject(commandText, model);
 
         logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+        command = trackerParser.parseCommand(commandText);
 
-        Command command = trackerParser.parseCommand(commandText);
-        CommandResult commandResult = command.execute(model);
+        commandResult = command.execute(model);
 
         triggerTrackerEvents(commandResult);
 
@@ -81,6 +87,17 @@ public class LogicManager implements Logic {
         this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
+
+        if (!commandResult.getPath().isEmpty()) {
+            if (commandResult.isExporting()) {
+                archive.exportToArchive(commandResult.getPath().get(),
+                        model.getTracker(), commandResult.isOverwriting());
+            } else {
+                archive.importFromArchive(commandResult.getPath().get(), model,
+                        commandResult.isImportingWholeArchive(),
+                        commandResult.isOverwriting(), commandResult.getModuleCodesToImport());
+            }
+        }
 
         try {
             storage.saveTracker(model.getTracker());

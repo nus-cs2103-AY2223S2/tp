@@ -18,4 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("/mod");
     public static final Prefix PREFIX_LECTURE = new Prefix("/lec");
     public static final Prefix PREFIX_VIDEO = new Prefix("/vid");
+    public static final Prefix PREFIX_OVERWRITE = new Prefix("/overwrite");
+    public static final Prefix PREFIX_COMMENT = new Prefix("/comments");
 }

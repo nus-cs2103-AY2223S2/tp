@@ -24,20 +24,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Tag parseSingleTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS, trimmedTag));
-        }
-        return new Tag(trimmedTag);
-    }
 
     /**
      * Parses a {@code String} of comma-separated tags into a {@code Set} of {@code Tag}.
@@ -53,19 +39,19 @@ public class ParserUtil {
 
         String[] arrayOfTags = tags.split(",");
 
-        List<String> listOfUnvalidTagName = Arrays.stream(arrayOfTags)
+        List<String> listOfInvalidTagName = Arrays.stream(arrayOfTags)
                 .map(tag -> tag.trim())
                 .filter(trimmedTag -> !Tag.isValidTagName(trimmedTag))
                 .collect(Collectors.toList());
 
-        if (listOfUnvalidTagName.size() > 0) {
+        if (listOfInvalidTagName.size() > 0) {
             throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS,
-                    String.join(", ", listOfUnvalidTagName)));
+                    String.join(", ", listOfInvalidTagName)));
         }
 
         List<Tag> listOfTags = Arrays.stream(arrayOfTags)
                 .map(tag -> tag.trim())
-                .map(trimmedtag -> new Tag(trimmedtag))
+                .map(trimmedTag -> new Tag(trimmedTag))
                 .collect(Collectors.toList());
 
         return new HashSet<>(listOfTags);
@@ -80,23 +66,24 @@ public class ParserUtil {
     public static Set<Tag> parseMultiTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
 
-        List<String> listOfUnvalidTagName = tags.stream()
+        List<String> listOfInvalidTagName = tags.stream()
                 .map(tag -> tag.trim())
                 .filter(trimmedTag -> !Tag.isValidTagName(trimmedTag))
                 .collect(Collectors.toList());
 
-        if (listOfUnvalidTagName.size() > 0) {
+        if (listOfInvalidTagName.size() > 0) {
             throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS,
-                    String.join(", ", listOfUnvalidTagName)));
+                    String.join(", ", listOfInvalidTagName)));
         }
 
         List<Tag> listOfTags = tags.stream()
                 .map(tag -> tag.trim())
-                .map(trimmedtag -> new Tag(trimmedtag))
+                .map(trimmedTag -> new Tag(trimmedTag))
                 .collect(Collectors.toList());
 
         return new HashSet<>(listOfTags);
     }
+
 
     /**
      * Parses a {@code String moduleCode} into a {@code ModuleCode}.<p>
@@ -111,6 +98,39 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses a {@code List<String>} of module codes into a {@code Set} of {@code ModuleCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+
+    public static Set<ModuleCode> parseMultiModuleCode(String moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+
+        if (moduleCodes.trim().equals("")) {
+            return new HashSet<>();
+        }
+
+        String[] arrayOfModuleCode = moduleCodes.split(",");
+
+        List<String> listOfInvalidModuleCode = Arrays.stream(arrayOfModuleCode)
+                .map(moduleCode -> moduleCode.trim())
+                .filter(trimmedModuleCode -> !ModuleCode.isValidCode(trimmedModuleCode))
+                .collect(Collectors.toList());
+
+        if (listOfInvalidModuleCode.size() > 0) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+
+        List<ModuleCode> listOfModuleCode = Arrays.stream(arrayOfModuleCode)
+                .map(moduleCode -> moduleCode.trim())
+                .map(trimmedModuleCode -> new ModuleCode(trimmedModuleCode))
+                .collect(Collectors.toList());
+
+        return new HashSet<>(listOfModuleCode);
     }
 
     /**
