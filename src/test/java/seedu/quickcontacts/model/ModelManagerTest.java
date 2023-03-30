@@ -6,18 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.quickcontacts.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.quickcontacts.testutil.Assert.assertThrows;
+import static seedu.quickcontacts.testutil.TypicalMeetings.DONE_MEETING;
 import static seedu.quickcontacts.testutil.TypicalMeetings.MEETING_A;
+import static seedu.quickcontacts.testutil.TypicalMeetings.UNDONE_MEETING;
 import static seedu.quickcontacts.testutil.TypicalPersons.ALICE;
 import static seedu.quickcontacts.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.quickcontacts.commons.core.GuiSettings;
+import seedu.quickcontacts.commons.core.index.Index;
 import seedu.quickcontacts.model.person.NameContainsKeywordsPredicate;
 import seedu.quickcontacts.testutil.QuickBookBuilder;
 
@@ -137,6 +141,22 @@ public class ModelManagerTest {
     public void hasMeeting_meetingInQuickBook_returnsTrue() {
         modelManager.addMeeting(MEETING_A);
         assertTrue(modelManager.hasMeeting(MEETING_A));
+    }
+
+    @Test
+    public void markMeetingDone_meetingExists() {
+        Model modelManager = new ModelManager();
+        modelManager.addMeeting(UNDONE_MEETING);
+        modelManager.markMeetingsAsDone(List.of(Index.fromZeroBased(0)));
+        assertTrue(modelManager.getFilteredMeetingList().get(0).getIsCompleted());
+    }
+
+    @Test
+    public void markMeetingNotDone_meetingsExist() {
+        Model modelManager = new ModelManager();
+        modelManager.addMeeting(DONE_MEETING);
+        modelManager.markMeetingsAsNotDone(List.of(Index.fromZeroBased(0)));
+        assertFalse(modelManager.getFilteredMeetingList().get(0).getIsCompleted());
     }
 
     @Test

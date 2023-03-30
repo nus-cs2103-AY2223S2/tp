@@ -25,6 +25,8 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    Predicate<Meeting> PREDICATE_UNDONE_MEETINGS = meeting -> !meeting.getIsCompleted() && !meeting.hasPassed();
+
     /**
      * Returns the user prefs.
      */
@@ -169,4 +171,7 @@ public interface Model {
      * @return an unmodifiable view of the filtered list of meetings
      */
     ObservableList<Meeting> getFilteredMeetingList();
+    void markMeetingsAsDone(List<Index> index) throws IndexOutOfBoundsException;
+    void markMeetingsAsNotDone(List<Index> index) throws IndexOutOfBoundsException;
+
 }

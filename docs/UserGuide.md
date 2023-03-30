@@ -370,10 +370,6 @@ QuickContacts data are saved as a JSON file `[JAR file location]/data/quickconta
 If your changes to the data file makes its format invalid, QuickContacts will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ### Exporting of contact : `export`
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
@@ -509,6 +505,21 @@ Format: `delm INDEX`
 Examples:
 
 * `listm` followed by `delm 2` deletes the 2nd meeting.
+
+### Marking meetings as done or undone: `mark` or `unmark`
+
+Marks the specified meeting as either done or undone.
+
+Format: "mark INDEX" or "unmark INDEX"
+
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3...
+* 
+### Showing meetings that are done or over: `pending`
+
+Shows meetings that either have dates that are in the past or not marked as done.
+
+Format: "pending"
 
 --------------------------------------------------------------------------------------------------------------------
 
