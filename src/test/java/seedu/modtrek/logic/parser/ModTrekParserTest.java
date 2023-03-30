@@ -13,8 +13,14 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.modtrek.logic.commands.*;
+import seedu.modtrek.logic.commands.AddCommand;
+import seedu.modtrek.logic.commands.DeleteCommand;
+import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
+import seedu.modtrek.logic.commands.ExitCommand;
+import seedu.modtrek.logic.commands.FindCommand;
+import seedu.modtrek.logic.commands.HelpCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
