@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
@@ -15,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -43,14 +43,13 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNric(person.getNric());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        descriptor.setAppointments(person.getPatientAppointments());
 
         if (person.isDoctor()) {
             isDoctor = true;
         } else {
             // isPatient
             Patient patient = (Patient) person;
-            descriptor.setMedication(patient.getMedication());
+            isDoctor = false;
         }
     }
 
@@ -97,8 +96,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Medication} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withMedication(String address) {
-        descriptor.setMedication(new Medication(address));
+    public EditPersonDescriptorBuilder withPrescription(String ... strings) {
+        descriptor.setPrescriptions(SampleDataUtil.getPrescriptionSet(strings));
         return this;
     }
 

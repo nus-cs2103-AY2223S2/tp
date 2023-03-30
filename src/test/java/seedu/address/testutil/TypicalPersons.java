@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withNric("S1234567A")
-            .withMedication("")
+            .withPrescriptions("Paracetamol", "10")
             .withTags("friends")
             .withRole("Patient")
             .buildPatient();
@@ -43,7 +43,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withNric("S1234567B")
-            .withMedication("20 Paracetamol")
+            .withPrescriptions("Cough Syrup", "0.01")
             .withTags("owesMoney", "friends")
             .withRole("Patient")
             .buildPatient();
@@ -52,7 +52,7 @@ public class TypicalPersons {
             .withPhone("95352563")
             .withNric("T1234567C")
             .withEmail("heinz@example.com")
-            .withMedication("20 Paracetamol; 20 Oprhenadrine")
+            .withPrescriptions("20 Paracetamol", "0.01", "20 Oprhenadrine", "10")
             .withAddress("wall street")
             .withRole("Patient")
             .buildPatient();
@@ -62,7 +62,7 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withNric("T1234567W")
             .withAddress("10th street")
-            .withMedication("1 Cough Syrup")
+            .withPrescriptions("1 Cough Syrup", "10000")
             .withTags("friends")
             .withRole("Patient")
             .buildPatient();
@@ -71,7 +71,7 @@ public class TypicalPersons {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withNric("S1234569L")
-            .withMedication("1 Physiotherapy")
+            .withPrescriptions("1 Physiotherapy", "1234")
             .withAddress("michegan ave")
             .withRole("Patient")
             .buildPatient();
@@ -80,7 +80,7 @@ public class TypicalPersons {
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withNric("M1234067P")
-            .withMedication("1 Drug A; 2 Drug B; 3 Drug C; 4 Drug D")
+            .withPrescriptions("Drug A", "1000", "Drug B", "200", "Drug C", "30", "Drug D", "4")
             .withAddress("little tokyo")
             .withRole("Patient")
             .buildPatient();
@@ -88,7 +88,7 @@ public class TypicalPersons {
             .withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com")
-            .withMedication("1 annual checkup")
+            .withPrescriptions("1 annual checkup", "4.95")
             .withNric("S9874567A")
             .withAddress("4th street")
             .withRole("Patient")
@@ -98,7 +98,6 @@ public class TypicalPersons {
             .withPhone("9482427")
             .withEmail("sarah@example.com")
             .withNric("S1234567S")
-            .withMedication("")
             .withAddress("Sarah Street")
             .withRole("Doctor")
             .buildDoctor();
@@ -123,16 +122,16 @@ public class TypicalPersons {
             .build();
 
     public static final Person JOHN1 = new PersonBuilder().withName("John Doe").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("T2458659P")
-            .withRole("Patient").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withNric("T2458659P").withRole("Patient").build();
 
     public static final Person JOHN2 = new PersonBuilder().withName("John Tay").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("M3438159L")
-            .withRole("Patient").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withNric("M3438159L").withRole("Patient").build();
 
     public static final Person JOHN3 = new PersonBuilder().withName("John Sena").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withMedication("").withNric("S3458659P")
-            .withRole("Patient").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withNric("S3458659P").withRole("Patient").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
