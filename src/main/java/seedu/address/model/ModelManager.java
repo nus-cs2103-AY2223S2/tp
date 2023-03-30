@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredGroups;
 
-    private FilteredList<String> filteredTimeSlots;
+//    private FilteredList<String> filteredTimeSlots;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -47,7 +48,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
         ObservableList<String> emptyList = FXCollections.observableArrayList();
-        filteredTimeSlots = new FilteredList<>(emptyList);
+//        filteredTimeSlots = new FilteredList<>(emptyList);
     }
 
     public ModelManager() {
@@ -222,13 +223,13 @@ public class ModelManager implements Model {
         return filteredGroups;
     }
 
-    /**
-     * Returns an unmodifiable view of the filtered time slot list
-     */
-    @Override
-    public ObservableList<String> getFilteredTimeSlotList() {
-        return filteredTimeSlots;
-    }
+//    /**
+//     * Returns an unmodifiable view of the filtered time slot list
+//     */
+//    @Override
+//    public ObservableList<String> getFilteredTimeSlotList() {
+//        return filteredTimeSlots;
+//    }
 
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {
@@ -253,13 +254,10 @@ public class ModelManager implements Model {
         }
 
         // TODO: Potential bugs
-        ObservableList<String> timetable = TimeMask.getTimetable(date.getDayOfWeek(), baseMask);
+        ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
         System.out.println(timetable);
-        filteredTimeSlots = new FilteredList<>(timetable);
 
-        System.out.println(filteredTimeSlots);
-
-        //todo
+        // TODO: INSERT CALL TO TIMETABLE UI
     }
 
     @Override

@@ -1,11 +1,7 @@
 package seedu.address.model.timeslot;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
@@ -123,26 +119,29 @@ public class TimeMask {
         }
     }
 
-    public static ObservableList<String> getTimetable(DayOfWeek startDay, TimeMask timeMask) {
-        ObservableList<String> linearTimetable = FXCollections.observableArrayList();
-        for (int offset = 0; offset < WINDOW_RANGE; offset++) {
-            int dayIndex = (startDay.getValue() + offset) % (WINDOW_RANGE);
-            linearTimetable.addAll(getTimeSlots(timeMask.getDayMask(dayIndex), dayIndex));
-        }
-        return linearTimetable;
-    }
+//    public static ObservableList<Integer> getTimetable(TimeMask timeMask) {
+//        ObservableList<Integer> linearTimetable = FXCollections.observableArrayList();
+//        for (int offset = 0; offset < WINDOW_RANGE; offset++) {
+//            linearTimetable.addAll(getTimeSlotIndexes(timeMask.getDayMask(offset), offset));
+//        }
+//        return linearTimetable;
+//    }
 
-    private static List<String> getTimeSlots(int mask, int dayIndex) {
-        String prefix = "DAY " + dayIndex + ": ";
-        ArrayList<String> slotsInDay = new ArrayList<>();
-        int slots = 0;
-        while (slots < SLOTS_PER_DAY) {
-            if (mask % 2 == 0) {
-                slotsInDay.add(prefix + slots + ":00 HOURS\n");
+    public static ArrayList<ArrayList<Integer>> getTimeSlotIndexes(TimeMask mask) {
+        ArrayList<ArrayList<Integer>> twoDimensionalSlotList = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            int dayMask = mask.getDayMask(i);
+            ArrayList<Integer> daySlots = new ArrayList<>();
+            int slots = 0;
+            while (slots < SLOTS_PER_DAY) {
+                if (dayMask % 2 == 0) {
+                    daySlots.add(slots);
+                }
+                dayMask = dayMask >> 1;
+                slots++;
             }
-            mask = mask >> 1;
-            slots++;
+            twoDimensionalSlotList.add(daySlots);
         }
-        return slotsInDay;
+        return twoDimensionalSlotList;
     }
 }
