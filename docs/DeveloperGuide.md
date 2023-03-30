@@ -587,7 +587,7 @@ Step 1: Allocate all events to the day(s) it is supposed to be happening. Events
 
 After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 
-![Event Scheduling Example](images/EventAllocation.png)
+<img src="images/EventAllocation.png">
 
 **Some Rules**
 * Events are allocated to the date they are scheduled to happen, regardless of time.
@@ -608,7 +608,7 @@ Step 2: Allocate all deadlines to the first free day before it is due (exclusive
 
 After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 
-![Deadline Scheduling Example](images/DeadlineAllocation.png)
+<img src="images/DeadlineAllocation.png">
 
 **Some Rules**
 * Overdue deadlines still in the TaskBook is not considered in the algorithm
@@ -631,7 +631,7 @@ Step 3: Allocate all SimpleTasks in descending order of effort required. As we a
 
 After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
 
-![Simple Task Scheduling Example](images/SimpleTaskAllocation.png)
+<img src="images/SimpleTaskAllocation.png">
 
 **Some Rules**
 * SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
