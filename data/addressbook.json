@@ -1,0 +1,63 @@
+{
+  "persons" : [ {
+    "rank" : "REC",
+    "name" : "Alex Yeoh",
+    "unit" : "2 SIR",
+    "company" : "Charlie",
+    "platoon" : "2",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tagged" : [ "friends" ]
+  }, {
+    "rank" : "CPL",
+    "name" : "Bernice Yu",
+    "unit" : "1 GDS",
+    "company" : "Charlie",
+    "platoon" : "2",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tagged" : [ "colleagues", "friends" ]
+  }, {
+    "rank" : "PTE",
+    "name" : "Charlotte Oliveiro",
+    "unit" : "1 SIR",
+    "company" : "Bravo",
+    "platoon" : "4",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "tagged" : [ "neighbours" ]
+  }, {
+    "rank" : "3SG",
+    "name" : "David Li",
+    "unit" : "9 SIR",
+    "company" : "Bravo",
+    "platoon" : "4",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "tagged" : [ "family" ]
+  }, {
+    "rank" : "2LT",
+    "name" : "Irfan Ibrahim",
+    "unit" : "30 SCE",
+    "company" : "Bravo",
+    "platoon" : "2",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "tagged" : [ "classmates" ]
+  }, {
+    "rank" : "PTE",
+    "name" : "Roy Balakrishnan",
+    "unit" : "38 SCE",
+    "company" : "Delta",
+    "platoon" : "1",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "tagged" : [ "colleagues" ]
+  } ]
+}
