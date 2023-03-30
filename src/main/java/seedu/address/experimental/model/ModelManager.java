@@ -136,21 +136,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Entity getEntityFromName(String name) {
-        requireNonNull(name);
-        String trimName = name.trim();
-        Entity toReturn = null;
-        ObservableList<Entity> entities = reroll.getItemList();
-        for (Entity entity : entities) {
-            if (entity.getName().fullName.equals(trimName)) {
-                toReturn = entity;
-                break;
-            }
-        }
-        return toReturn;
-    }
-
-    @Override
     public void updateFilteredEntityList(Predicate<Entity> predicate) {
         requireNonNull(predicate);
         filteredActive.setPredicate(predicate);

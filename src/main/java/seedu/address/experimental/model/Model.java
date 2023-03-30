@@ -88,13 +88,6 @@ public interface Model {
      */
     void setEntity(Entity target, Entity editedEntity);
 
-    /**
-     * Gets the entity with name matching the provided name.
-     * @param name the name of the entity to be found
-     * @return the found entity
-     */
-    Entity getEntityFromName(String name);
-
     // ============== Filtered entity list =================
     /**
      * Returns the entities listed by the given predicate
