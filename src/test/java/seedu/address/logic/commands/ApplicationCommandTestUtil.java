@@ -100,7 +100,9 @@ public class ApplicationCommandTestUtil {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
         if (command instanceof AddApplicationCommand || command instanceof ClearApplicationCommand
-                || command instanceof DeleteApplicationCommand || command instanceof EditApplicationCommand) {
+                || command instanceof DeleteApplicationCommand || command instanceof EditApplicationCommand
+                || command instanceof DeleteTaskCommand
+                || command instanceof AddTaskCommand || command instanceof EditTaskCommand) {
             expectedCommandHistory.setLastCommandAsModify();
         }
 

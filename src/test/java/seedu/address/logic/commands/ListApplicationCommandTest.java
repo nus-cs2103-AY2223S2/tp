@@ -28,15 +28,16 @@ public class ListApplicationCommandTest {
         expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
     }
 
+
     /*
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListApplicationCommand(), model, commandHistory,
                 ListApplicationCommand.MESSAGE_SUCCESS, expectedModel);
     }
-     */
 
-    /*
+
+
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
@@ -44,4 +45,5 @@ public class ListApplicationCommandTest {
                 ListApplicationCommand.MESSAGE_SUCCESS, expectedModel);
     }
      */
+
 }

@@ -1,13 +1,11 @@
 package seedu.address.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-//import static seedu.address.testutil.TypicalApplications.AMAZON;
-//import static seedu.address.testutil.TypicalApplications.APPLE;
-//import static seedu.address.testutil.TypicalApplications.GOOGLE;
+import static seedu.address.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalApplications.GOOGLE;
 import static seedu.address.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import java.util.Arrays;
@@ -58,27 +56,27 @@ public class FindApplicationCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    /*
+
     @Test
-    public void execute_zeroKeywords_noApplicationFound() {
+    public void execute_invalidKeywords_noApplicationFound() {
         String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicate predicate = preparePredicate("?");
         FindApplicationCommand command = new FindApplicationCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicationList());
+        assertEquals(Collections.emptyList(), model.getSortedApplicationList());
     }
 
     @Test
-    public void execute_multipleKeywords_multipleApplicationsFound() {
-        String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Google Amazon Apple");
+    public void execute_oneKeywords_oneApplicationFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Google");
         FindApplicationCommand command = new FindApplicationCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(GOOGLE, AMAZON, APPLE), model.getFilteredApplicationList());
+        assertEquals(Arrays.asList(GOOGLE), model.getSortedApplicationList());
     }
-    */
+
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
