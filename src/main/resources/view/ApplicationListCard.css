@@ -2,3 +2,21 @@
   text-align: center;
   -fx-border-color: rgba(255, 255, 255, 0.3);
 }
+
+#cardPane {
+    -fx-background-color: #143D4D;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(24, 87, 87, 1.0), 0, 0, 5, 5);
+    -fx-text-fill: #dbd8d0;
+}
+
+#cardPane : hover {
+    -fx-background-color: #1884a8;
+    -fx-background-radius: 8;
+    -fx-text-fill: whitesmoke;
+}
+
+#cardPane *.text {
+    -fx-fill: white;
+    -fx-family: "Segoe UI Light";
+}
