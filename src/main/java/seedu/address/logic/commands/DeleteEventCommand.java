@@ -16,7 +16,7 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delevent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes an event identified by the index number"
+            + ": Deletes an event identified by the index number.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

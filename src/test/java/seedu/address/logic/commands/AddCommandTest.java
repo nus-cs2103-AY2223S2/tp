@@ -199,21 +199,14 @@ public class AddCommandTest {
         public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public void setEvent(Event target, Event editedEvent) {
-            throw new AssertionError("This method should not be called.");
-        }
+
         @Override
         public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public ObservableList<Event> getEvents() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
-        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        public ObservableList<Event> getEvents() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -228,11 +221,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean isPersonTaggedToEvent(Index index, Person p) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public void untagPersonFromEvent(Index index, Person p) {
+        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -241,7 +230,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
         public boolean isPersonTaggedToEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
@@ -250,14 +238,17 @@ public class AddCommandTest {
         public boolean isValidTabIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public TabUtil getTabUtil() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ReadOnlyObjectProperty<TabInfo> getSelectedTab() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void setSelectedTab(Index index) {
             throw new AssertionError("This method should not be called.");
