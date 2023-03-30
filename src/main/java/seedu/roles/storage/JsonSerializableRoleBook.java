@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.roles.commons.exceptions.IllegalValueException;
-import seedu.roles.model.AddressBook;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Role;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable RoleBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "RoleBook")
+class JsonSerializableRoleBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Roles list contains duplicate role(s).";
 
     private final List<JsonAdaptedRole> roles = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given roles.
+     * Constructs a {@code JsonSerializableRoleBook} with the given roles.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("roles") List<JsonAdaptedRole> roles) {
+    public JsonSerializableRoleBook(@JsonProperty("roles") List<JsonAdaptedRole> roles) {
         this.roles.addAll(roles);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyRoleBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableRoleBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableRoleBook(ReadOnlyRoleBook source) {
         roles.addAll(source.getRoleList().stream().map(JsonAdaptedRole::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code RoleBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public RoleBook toModelType() throws IllegalValueException {
+        RoleBook roleBook = new RoleBook();
         for (JsonAdaptedRole jsonAdaptedRole : roles) {
             Role role = jsonAdaptedRole.toModelType();
-            if (addressBook.hasRole(role)) {
+            if (roleBook.hasRole(role)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addRole(role);
+            roleBook.addRole(role);
         }
-        return addressBook;
+        return roleBook;
     }
 
 }

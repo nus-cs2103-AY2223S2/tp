@@ -11,9 +11,9 @@ import seedu.roles.logic.commands.Command;
 import seedu.roles.logic.commands.CommandResult;
 import seedu.roles.logic.commands.exceptions.CommandException;
 import seedu.roles.logic.commands.exceptions.exceptions.ParseException;
-import seedu.roles.logic.parser.AddressBookParser;
+import seedu.roles.logic.parser.RoleBookParser;
 import seedu.roles.model.Model;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.job.Role;
 import seedu.roles.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final RoleBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        addressBookParser = new RoleBookParser();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveRoleBook(model.getRoleBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyRoleBook getRoleBook() {
+        return model.getRoleBook();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getRoleBookFilePath() {
+        return model.getRoleBookFilePath();
     }
 
     @Override
