@@ -121,7 +121,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #DFE7F2;
+    -fx-background-color: #80a1d4;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -337,9 +337,9 @@
 }
 
 #commandTextField { /* enter command here */
-    -fx-background-color: #B8BCC0;
+    -fx-background-color: white;
     -fx-background-insets: 0;
-    -fx-border-color: #B8BCC0;
+    -fx-border-color: white;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -354,8 +354,8 @@
 }
 
 #resultDisplay .content { /* below enter commmand here */
-    -fx-background-color: transparent, #CFD3D8, transparent, #CFD3D8;
-    -fx-border-color: #CFD3D8;
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-border-color: white;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
