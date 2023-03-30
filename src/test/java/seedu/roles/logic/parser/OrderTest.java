@@ -1,11 +1,10 @@
-package seedu.roles.model.job;
+package seedu.roles.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.roles.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.roles.logic.parser.OrderParser;
 
 public class OrderTest {
 

@@ -3,8 +3,8 @@ package seedu.roles.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.roles.logic.commands.exceptions.CommandException;
-import seedu.roles.model.Model;
 import seedu.roles.logic.parser.OrderParser;
+import seedu.roles.model.Model;
 
 
 /**
