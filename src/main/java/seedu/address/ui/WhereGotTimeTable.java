@@ -23,7 +23,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
 
     private static final String FXML = "WhereGotTimeTable.fxml";
 
-    private Callback factory = conditionForColouredCell();
+    private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = conditionForColouredCell();
 
     private final ObservableList<ScheduleDay> data = FXCollections.observableArrayList(
             new ScheduleDay("Monday", new ArrayList<>(Arrays.asList(Status.BUSY, Status.FREE, Status.BUSY,
@@ -84,8 +84,8 @@ public class WhereGotTimeTable extends UiPart<Region> {
      * Creates a callback and edits every cells in the columns to have their own unique background colour
      * according to the Status.
      */
-    private Callback conditionForColouredCell() {
-        Callback factory = new Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>>() {
+    private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> conditionForColouredCell() {
+        Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = new Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>>() {
             @Override
             public TableCell<ScheduleDay, Status> call(TableColumn<ScheduleDay, Status> param) {
                 return new TableCell<ScheduleDay, Status>() {
