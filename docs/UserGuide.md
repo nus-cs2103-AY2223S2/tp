@@ -55,7 +55,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
     * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
   * [**Meet Commands**](#meet-commands)
-    * [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
+    * [**Suggest places to meet with your contacts `meet`**](#meet-commands)
   * [**Schedule Commands**](#schedule-commands)
     * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
     * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
