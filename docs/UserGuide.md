@@ -18,10 +18,10 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [View guide : `help`](#view-help--help)
     - [Add an internship application](#)
         - [Add](#)
-    - [Add an interview date : `add_date`](#adding-an-interview-date--add_date)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
+    - [Add an interview date : `add_date`](#add-an-interview-date--add_date)
     - [Manage company contact for an internship application](#add-contact-details--add_contact)
         - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
         - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
@@ -168,9 +168,9 @@ Examples:
 * `edit 1 q/Singapore citizen q/Pursuing CS degree` updates the qualification of the internship with first index to `Singapore citizen` and `Pursuing CS degree`.
 * `edit 2 n/ j/Data Engineer` updates the second internship job title to `Data Engineer` and retains the original name.
 
-### Adding an interview date : `add_date`
+### Add an interview date : `add_date`
 
-Adds an interview date and time to an internship application
+Adds an interview date and time to an internship application.
 
 Format: `add_date INDEX d/DATE_TIME`
 
