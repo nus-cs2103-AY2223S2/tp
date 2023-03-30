@@ -53,7 +53,7 @@ public class JobTitle extends InternshipApplicationAttribute implements Comparab
 
     @Override
     public int compareTo(JobTitle jobTitle) {
-        return this.fullName.compareTo(jobTitle.fullName);
+        return this.fullName.toUpperCase().compareTo(jobTitle.fullName.toUpperCase());
     }
 
     @Override

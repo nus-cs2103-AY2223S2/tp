@@ -46,7 +46,7 @@ public class CompanyName extends InternshipApplicationAttribute implements Compa
 
     @Override
     public int compareTo(CompanyName companyName) {
-        return fullName.compareTo(companyName.fullName);
+        return fullName.toUpperCase().compareTo(companyName.fullName.toUpperCase());
     }
 
     @Override
