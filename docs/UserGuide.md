@@ -297,7 +297,7 @@ Examples:
 * `sortClientName 1` sorts the client list based on client's name in **ascending** order
 * `sortClientName 0` sorts the client list based on client's name in **descending** order
 
-### Sorting clients by their email : `sortClientPhone`
+### Sorting clients by their phone : `sortClientPhone`
 
 Format: `sortClientPhone INDEX`
 
@@ -371,78 +371,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Sorting clients by their email : `sortClientEmail`
-
-Format: `sortClientEmail INDEX`
-
-* Sort list of clients based on their email
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
-* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
-
-### Sorting clients by their name : `sortClientName`
-
-Format: `sortClientName INDEX`
-
-* Sort list of clients based on their name
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientName 1` sorts the client list based on client's name in **ascending** order
-* `sortClientName 0` sorts the client list based on client's name in **descending** order
-
-### Sorting clients by their email : `sortClientPhone`
-
-Format: `sortClientPhone INDEX`
-
-* Sort list of clients based on their phone number
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
-* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
-
-## Policy Management (todo)
-
-### Adding a policy : `addPolicy`
-
-Adds a policy to a specific client
-
-Do note that the Policy Name should be from the following list:
-
-- Health Insurance
-- Life Insurance
-- Medical Insurance
-- Fire Insurance
-- Car Insurance
-- Travel Insurance
-
-The frequency should be one of the following: `weekly`, `monthly`,`yearly`
-
-Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
-
-Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
-
-### Listing all policies : `listPolicy`
-
-Format: `listPolicy`
-
-### Editing a policy : `editPolicy`
-
-Format: `editPolicy`
-
-### Filtering policies by name : `findPolicy`
-
-Format: `findPolicy`
-
 ### Deleting a policy `deletePolicy`
 
 Deletes the indexed policy from a specific client
@@ -486,6 +414,7 @@ should be able to add a new general policy if it's required.
 interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed
 those thresholds. However, the limit can be expanded in the future if necessary.
 
+**Q**: If I
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
