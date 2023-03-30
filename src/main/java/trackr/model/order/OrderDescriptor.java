@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import trackr.commons.util.CollectionUtil;
 import trackr.model.item.ItemDescriptor;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.CustomerAddress;
+import trackr.model.person.CustomerName;
+import trackr.model.person.CustomerPhone;
 
 /**
  * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.

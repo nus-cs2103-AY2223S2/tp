@@ -6,6 +6,8 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.person.CustomerName;
+
 public class CustomerNameTest {
 
     @Test
@@ -21,19 +23,19 @@ public class CustomerNameTest {
 
     @Test
     public void isValidName() {
-        assertThrows(NullPointerException.class, () -> CustomerName.isValidCustomerName(null));
+        assertThrows(NullPointerException.class, () -> CustomerName.isValidName(null));
 
         // invalid name
-        assertFalse(CustomerName.isValidCustomerName("")); // empty string
-        assertFalse(CustomerName.isValidCustomerName(" ")); // spaces only
-        assertFalse(CustomerName.isValidCustomerName("^")); // only non-alphanumeric characters
-        assertFalse(CustomerName.isValidCustomerName("peter*")); // contains non-alphanumeric characters
+        assertFalse(CustomerName.isValidName("")); // empty string
+        assertFalse(CustomerName.isValidName(" ")); // spaces only
+        assertFalse(CustomerName.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(CustomerName.isValidName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(CustomerName.isValidCustomerName("peter jack")); // alphabets only
-        assertTrue(CustomerName.isValidCustomerName("12345")); // numbers only
-        assertTrue(CustomerName.isValidCustomerName("peter the 2nd")); // alphanumeric characters
-        assertTrue(CustomerName.isValidCustomerName("Capital Tan")); // with capital letters
-        assertTrue(CustomerName.isValidCustomerName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(CustomerName.isValidName("peter jack")); // alphabets only
+        assertTrue(CustomerName.isValidName("12345")); // numbers only
+        assertTrue(CustomerName.isValidName("peter the 2nd")); // alphanumeric characters
+        assertTrue(CustomerName.isValidName("Capital Tan")); // with capital letters
+        assertTrue(CustomerName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }

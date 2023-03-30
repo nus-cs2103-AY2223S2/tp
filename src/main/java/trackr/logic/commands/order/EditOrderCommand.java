@@ -18,10 +18,10 @@ import trackr.model.order.OrderDescriptor;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.Customer;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.Customer;
+import trackr.model.person.CustomerAddress;
+import trackr.model.person.CustomerName;
+import trackr.model.person.CustomerPhone;
 
 /**
  * Edits the details of an existing order in the order list.

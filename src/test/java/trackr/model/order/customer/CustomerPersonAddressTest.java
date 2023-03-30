@@ -6,6 +6,8 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.person.CustomerAddress;
+
 public class CustomerPersonAddressTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -21,15 +23,15 @@ public class CustomerPersonAddressTest {
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> CustomerAddress.isValidCustomerAddress(null));
+        assertThrows(NullPointerException.class, () -> CustomerAddress.isValidPersonAddress(null));
 
         // invalid addresses
-        assertFalse(CustomerAddress.isValidCustomerAddress("")); // empty string
-        assertFalse(CustomerAddress.isValidCustomerAddress(" ")); // spaces only
+        assertFalse(CustomerAddress.isValidPersonAddress("")); // empty string
+        assertFalse(CustomerAddress.isValidPersonAddress(" ")); // spaces only
 
         // valid addresses
-        assertTrue(CustomerAddress.isValidCustomerAddress("Blk 456, Den Road, #01-355"));
-        assertTrue(CustomerAddress.isValidCustomerAddress("-")); // one character
-        assertTrue(CustomerAddress.isValidCustomerAddress("Leng Inc; San Francisco CA 2349879; USA")); // long address
+        assertTrue(CustomerAddress.isValidPersonAddress("Blk 456, Den Road, #01-355"));
+        assertTrue(CustomerAddress.isValidPersonAddress("-")); // one character
+        assertTrue(CustomerAddress.isValidPersonAddress("Leng Inc; San Francisco CA 2349879; USA")); // long address
     }
 }

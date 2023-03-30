@@ -18,9 +18,9 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.CustomerAddress;
+import trackr.model.person.CustomerName;
+import trackr.model.person.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -282,7 +282,7 @@ public class ParserUtil {
     public static CustomerName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
-        if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
+        if (!CustomerName.isValidName(trimmedCustomerName)) {
             throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
         }
         return new CustomerName(trimmedCustomerName);
@@ -297,7 +297,7 @@ public class ParserUtil {
     public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
-        if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
+        if (!CustomerPhone.isValidPersonPhone(trimmedCustomerPhone)) {
             throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
         }
         return new CustomerPhone(trimmedCustomerPhone);
@@ -312,7 +312,7 @@ public class ParserUtil {
     public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
-        if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {
+        if (!CustomerAddress.isValidPersonAddress(trimmedCustomerAddress)) {
             throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
         }
         return new CustomerAddress(trimmedCustomerAddress);

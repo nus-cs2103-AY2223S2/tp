@@ -6,6 +6,8 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.model.person.CustomerPhone;
+
 public class CustomerPersonPhoneTest {
 
     @Test
@@ -22,19 +24,19 @@ public class CustomerPersonPhoneTest {
     @Test
     public void isValidPhone() {
         // null phone number
-        assertThrows(NullPointerException.class, () -> CustomerPhone.isValidCustomerPhone(null));
+        assertThrows(NullPointerException.class, () -> CustomerPhone.isValidPersonPhone(null));
 
         // invalid phone numbers
-        assertFalse(CustomerPhone.isValidCustomerPhone("")); // empty string
-        assertFalse(CustomerPhone.isValidCustomerPhone(" ")); // spaces only
-        assertFalse(CustomerPhone.isValidCustomerPhone("91")); // less than 3 numbers
-        assertFalse(CustomerPhone.isValidCustomerPhone("phone")); // non-numeric
-        assertFalse(CustomerPhone.isValidCustomerPhone("9011p041")); // alphabets within digits
-        assertFalse(CustomerPhone.isValidCustomerPhone("9312 1534")); // spaces within digits
-        assertFalse(CustomerPhone.isValidCustomerPhone("911")); // exactly 3 numbers
-        assertFalse(CustomerPhone.isValidCustomerPhone("124293842033123")); // long phone numbers
+        assertFalse(CustomerPhone.isValidPersonPhone("")); // empty string
+        assertFalse(CustomerPhone.isValidPersonPhone(" ")); // spaces only
+        assertFalse(CustomerPhone.isValidPersonPhone("91")); // less than 3 numbers
+        assertFalse(CustomerPhone.isValidPersonPhone("phone")); // non-numeric
+        assertFalse(CustomerPhone.isValidPersonPhone("9011p041")); // alphabets within digits
+        assertFalse(CustomerPhone.isValidPersonPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(CustomerPhone.isValidCustomerPhone("93121534"));
+        assertTrue(CustomerPhone.isValidPersonPhone("93121534"));
+        assertTrue(CustomerPhone.isValidPersonPhone("911")); // exactly 3 numbers
+        assertTrue(CustomerPhone.isValidPersonPhone("124293842033123")); // long phone numbers
     }
 }
