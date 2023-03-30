@@ -68,14 +68,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_invalidDeleteCommandFormat_throwsParseException() {
-        String invalidCommand = "delete 9";
+        String invalidCommand = "del 9";
         assertParseException(invalidCommand,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete eid/1";
+        String deleteCommand = "del eid/1";
         assertCommandException(deleteCommand, MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
     }
 

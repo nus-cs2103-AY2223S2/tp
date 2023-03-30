@@ -139,7 +139,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | d/     | DATE                       |
 | s/     | START_DATE                 |
 | e/     | END_DATE                   |
- 
+
 
 ### 6.2.5. Placeholders
 
@@ -235,7 +235,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.1.5. Deleting an employee : `delete`
+### 7.1.5. Deleting an employee : `del`
 
 Deletes the specified employee from SudoHR.
 
@@ -470,7 +470,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **List all employees**                              | `list`                                                                            |
 | **Edit an employee**                                | `edit eid/EMPLOYEE_ID [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Find employee by name**                           | `find KEYWORD [MORE_KEYWORDS]`                                                    |
-| **Delete an employee**                              | `delete eid/EMPLOYEE_ID`                                                          |
+| **Delete an employee**                              | `del eid/EMPLOYEE_ID`                                                             |
 | **Add a department**                                | `adep n/DEPARTMENT_NAME`                                                          |
 | **List all departments**                            | `ldep`                                                                            |
 | **Edit a department**                               | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                                  |

@@ -22,7 +22,7 @@ public class EditDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the department identified "
             + "by the department name. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: DEPARTMENT_NAME "
+            + "Parameters: OLD_DEPARTMENT_NAME "
             + PREFIX_DEPARTMENT_NAME + "NEW_DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " Engineering "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";

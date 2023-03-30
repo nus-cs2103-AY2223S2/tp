@@ -25,7 +25,7 @@ public class AddEmployeeToLeaveCommand extends Command {
     public static final String COMMAND_WORD = "aetl";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a leave on a specific day to SudoHR. \n"
-            + "Parameters: \n"
+            + "Parameters: "
             + PREFIX_EMPLOYEE + "ID "
             + PREFIX_DATE + "DATE \n"
             + "Example: " + COMMAND_WORD + " "
