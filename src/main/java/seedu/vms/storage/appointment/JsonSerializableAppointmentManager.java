@@ -2,12 +2,14 @@ package seedu.vms.storage.appointment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.model.IdData;
@@ -55,6 +57,12 @@ class JsonSerializableAppointmentManager {
         AppointmentManager appointmentManager = new AppointmentManager();
         for (JsonAdaptedAppointmentData jsonAdaptedAppointmentData : datas) {
             IdData<Appointment> appointmentData = jsonAdaptedAppointmentData.toModelType();
+
+            if (isDuplicate(appointmentManager, appointmentData)) {
+                throw new IllegalValueException(String.format("Patient #%04d contain multiple active appointments",
+                        appointmentData.getValue().getPatient().getOneBased()));
+            }
+
             if (appointmentManager.contains(appointmentData.getId())) {
                 throw new IllegalValueException(DUPLICATE_ID);
             }
@@ -66,6 +74,22 @@ class JsonSerializableAppointmentManager {
             }
         }
         return appointmentManager;
+    }
+
+
+    private boolean isDuplicate(AppointmentManager manager, IdData<Appointment> appointmentData) {
+        if (appointmentData.getValue().getStatus()) {
+            return false;
+        }
+        Index patientId = appointmentData.getValue().getPatient();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : manager.getMapView().entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(patientId)
+                    && !appointment.getStatus()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
