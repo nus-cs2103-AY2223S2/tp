@@ -1,2 +1,0 @@
-Alex Yeoh; Phone: 91164512; Email: alexyeoh@example.com; Description: Blk 30 Geylang Street 29, #06-40; Tags: [friends]; ModuleTags: [CS2103]
-Irfan Ibrahim; Phone: 92492021; Email: irfan@example.com; Description: Blk 47 Tampines Street 20, #17-35; Tags: [classmates]; ModuleTags: [CS2103]

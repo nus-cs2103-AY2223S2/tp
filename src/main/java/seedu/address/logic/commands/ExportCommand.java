@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,15 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.MatchNamePredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonSerializableAddressBook;
 
 /**
  * Views a person's contact details
@@ -25,6 +30,7 @@ import seedu.address.model.person.Person;
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
+    public static final String FILEPATH = "export/ModCheck_contact_list.json";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": exports the contact details of the person identified "
@@ -66,7 +72,7 @@ public class ExportCommand extends Command {
 
         List<Person> updatedPersonList = model.getFilteredPersonList();
         try {
-            writeToFile(updatedPersonList);
+            writeToJsonFile(updatedPersonList);
         } catch (IOException e) {
             throw new CommandException(Messages.MESSAGE_IOEXCEPTION);
         }
@@ -94,22 +100,20 @@ public class ExportCommand extends Command {
      * @param personList list of person's contact details
      * @throws IOException read/write exception
      */
-    public void writeToFile(List<Person> personList) throws IOException {
-        File dir = new File("export");
-        dir.mkdir();
-
-        File file = new File("export/ModCheck_contact_list.txt");
-
-        if (!file.exists()) {
-            file.createNewFile();
+    @SuppressWarnings("checkstyle:CommentsIndentation")
+    public void writeToJsonFile(List<Person> personList) throws IOException {
+        File file = new File(FILEPATH);
+        Path path = Path.of(FILEPATH);
+        FileUtil.createParentDirsOfFile(path);
+        FileUtil.createIfMissing(path);
+        AddressBook addressBook = new AddressBook();
+        for (Person p : personList) {
+            addressBook.addPerson(p);
         }
-
         if (file.exists() && !file.isDirectory()) {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            for (Person p : personList) {
-                writer.write(p.toString());
-                writer.newLine();
-            }
+            writer.write(JsonUtil.toJsonString(new JsonSerializableAddressBook(addressBook)));
+            writer.newLine();
             writer.close();
         }
     }
