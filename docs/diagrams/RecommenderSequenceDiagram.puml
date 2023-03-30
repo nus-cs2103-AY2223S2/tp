@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":Recommender" as Recommender LOGIC_COLOR
+participant ":LocationRecommender" as LocationRecommender LOGIC_COLOR
+participant ":TimingRecommender" as TimingRecommender LOGIC_COLOR
+participant ":LocationTracker" as LocationTracker LOGIC_COLOR
+end box
+
+-> Recommender
+activate Recommender
+
+Recommender -> LocationRecommender : initialise(destinations)
+activate LocationRecommender
+
+deactivate LocationRecommender
+
+Recommender -> TimingRecommender : initialise(participantIndices)
+activate TimingRecommender
+
+deactivate TimingRecommender
+
+Recommender -> TimingRecommender : giveLongestTimingRecommendations()
+activate TimingRecommender
+
+TimingRecommender --> Recommender : timings
+deactivate TimingRecommender
+
+Recommender -> LocationTracker : getLocationsFromTimePeriod(timings)
+activate LocationTracker
+
+LocationTracker --> Recommender : locations
+deactivate LocationTracker
+
+Recommender -> LocationRecommender : recommend(locations)
+activate LocationRecommender
+
+LocationRecommender --> Recommender : locationRecommendations
+deactivate
+
+@enduml

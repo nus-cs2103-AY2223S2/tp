@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private UserProfilePanel userProfilePanel;
     private MeetListPanel meetListPanel;
+    private ScheduledMeetsListPanel scheduledMeetsListPanel;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -104,6 +106,9 @@ public class MainWindow extends UiPart<Stage> {
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         meetPlaceholder.getChildren().add(scrollPane);
+
+        scheduledMeetsListPanel = new ScheduledMeetsListPanel(logic.getObservableMeetUpList());
+        scheduledMeetsPlaceholder.getChildren().add(scheduledMeetsListPanel.getRoot());
 
         setUserName(logic.getUser());
     }
