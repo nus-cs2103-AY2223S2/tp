@@ -635,7 +635,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | User who likes to cook             | see recipes with the food in my fridge as ingredients | decide what meals I can make                |
 | `*`      | User who does grocery shopping     | generate a grocery list                               | bring it to the supermarket                 |
 
-*{More to be added}*
 
 ### Use cases
 

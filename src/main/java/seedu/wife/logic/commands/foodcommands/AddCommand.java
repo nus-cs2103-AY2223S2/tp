@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 
 import seedu.wife.logic.commands.Command;
@@ -25,8 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_UNIT + "UNIT "
             + PREFIX_QUANTITY + "QUANTITY "
-            + PREFIX_EXPIRY_DATE + "EXPIRY DATE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_EXPIRY_DATE + "EXPIRY DATE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Broccoli "
             + PREFIX_UNIT + "STALK "

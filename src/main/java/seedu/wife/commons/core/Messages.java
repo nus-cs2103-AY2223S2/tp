@@ -7,9 +7,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%s";
-
     public static final String MESSAGE_INVALID_FOOD_DISPLAYED_INDEX = "The food item index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_FOODS_LISTED_OVERVIEW = "%1$d food item(s) found!";
     public static final String MESSAGE_TAG_NOT_FOUND = "There is no %1$s Tag!";
     public static final String MESSAGE_SUCCESSFUL_FOOD_TAG = "%s successfully tagged with %s";
     public static final String MESSAGE_SUCCESSFUL_FOOD_UNTAG = "%s successfully untagged from %s";
