@@ -172,7 +172,7 @@ public class Attendance {
     public String listAtdString() {
         String res = "";
         for (int i = 0; i < this.attendanceList.length; i++) {
-            res += String.format("Week %d: [%s]\n", i+1, this.attendanceList[i] ? "X" : " ");
+            res += String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " ");
         }
         return res;
     }
@@ -182,8 +182,8 @@ public class Attendance {
      */
     public String listPpString() {
         String res = "";
-        for (int i = 0; i < this.participationPoint.length  ; i++) {
-            res += String.format("Week %d: [%d]\n", i+1, this.participationPoint[i]);
+        for (int i = 0; i < this.participationPoint.length; i++) {
+            res += String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]);
         }
         return res;
     }

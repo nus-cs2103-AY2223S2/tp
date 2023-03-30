@@ -11,6 +11,7 @@ import taa.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new ListParticipationCommand object
  */
 public class ListParticipationParser implements Parser<ListParticipationCommand> {
+    @Override
     public ListParticipationCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =

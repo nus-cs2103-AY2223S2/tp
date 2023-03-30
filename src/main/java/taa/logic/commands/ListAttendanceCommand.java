@@ -1,7 +1,6 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import java.util.List;
 
