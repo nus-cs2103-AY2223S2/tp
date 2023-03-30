@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = ResultDisplay.formatMessage(COMMAND_WORD,
-            "Deletes the contact according to the given index.")
+            "Deletes the contact specified by the given index.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 

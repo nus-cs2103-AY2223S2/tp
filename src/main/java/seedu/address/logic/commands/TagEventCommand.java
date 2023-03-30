@@ -22,7 +22,7 @@ public class TagEventCommand extends Command {
     public static final String COMMAND_WORD = "tagpersonevent";
 
     public static final String MESSAGE_USAGE =
-            ResultDisplay.formatMessage(COMMAND_WORD, "Tags a contact to an Event.")
+            ResultDisplay.formatMessage(COMMAND_WORD, "Tags a contact to an event.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
                     PREFIX_EVENT_TO_TAG + "INDEX OF EVENT TO TAG",
                     PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG")
@@ -30,10 +30,10 @@ public class TagEventCommand extends Command {
                     COMMAND_WORD,
                     PREFIX_EVENT_TO_TAG + "1",
                     PREFIX_PERSON_TO_TAG + "John Doe");
-    private static final String MESSAGE_SUCCESS = "%1$s is now tagged to Event %2$s";
-    private static final String MESSAGE_SUCCESS_2 = "%1$s is already tagged to Event %2$s";
-    private static final String MESSAGE_INVALID_EVENT = "This Event doesn't exist in the Calendar!";
-    private static final String MESSAGE_INVALID_PERSON = "This contact doesn't exist in the Calendar!";
+    private static final String MESSAGE_SUCCESS = "%1$s is now tagged to event %2$s";
+    private static final String MESSAGE_SUCCESS_2 = "%1$s is already tagged to event %2$s";
+    private static final String MESSAGE_INVALID_EVENT = "This event doesn't exist!";
+    private static final String MESSAGE_INVALID_PERSON = "This contact doesn't exist!";
 
     private final Index eventIndex;
     private final Name personName;

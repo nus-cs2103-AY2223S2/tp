@@ -15,7 +15,9 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all contacts";
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD, "Lists all contacts in the address book.")
-            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD);
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD)
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
+                    "Note that the indices of the contacts in the resulting list may be different.");
 
 
     @Override

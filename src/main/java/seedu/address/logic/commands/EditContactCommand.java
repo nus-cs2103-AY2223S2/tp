@@ -28,12 +28,11 @@ public class EditContactCommand extends EditPersonCommand {
                     "INDEX (must be a positive integer)",
                     "{SPECIFIER}/{INPUT}...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
-                    "For more information on specifiers, use the help command.",
-                    "Note that Modules and Tags have a different behaviour from the other fields.",
-                    "Editing a mod or tag will remove the module or tag",
-                    "if they already exist in the contact's Modules field or Tags field,",
-                    "and will add it if it does not exist.",
-                    "For more information, check out the user guide in the link that appears in the help command.");
+                    "For more information on specifiers, refer to the user guide using the help command.",
+                    "Note that editing Modules and Tags have a different behaviour from editing the other fields.",
+                    "If a module or tag already exists in the contact, it will be removed.",
+                    "Otherwise, it will be added to the contact.",
+                    "For more information, refer to the user guide using the help command.");
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited contact: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

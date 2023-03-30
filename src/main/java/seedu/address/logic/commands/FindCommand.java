@@ -18,9 +18,11 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD,
                     "Finds all contacts matching any of the specified keywords (case-insensitive)",
-                    "in the specified fields, and displays them as a list with index numbers.")
+                    "in the specified fields, and displays them in the list.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "PREFIX/KEYWORD [PREFIX/KEYWORD]...")
-            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "n/alice mt/CS2103T");
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "n/alice mt/CS2103T")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
+                    "Note that the indices of the contacts in the resulting list may be different.");
 
     private final PersonContainsKeywordsPredicate predicate;
 

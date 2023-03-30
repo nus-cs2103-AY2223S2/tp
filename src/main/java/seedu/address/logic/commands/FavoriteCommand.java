@@ -20,7 +20,7 @@ public class FavoriteCommand extends Command {
 
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD,
-                    "Favorites the contact according to the given index.")
+                    "Favorites the contact specified by the given index.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be positive integer)")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 

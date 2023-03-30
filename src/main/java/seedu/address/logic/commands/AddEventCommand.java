@@ -33,7 +33,7 @@ public class AddEventCommand extends Command {
                     PREFIX_RECURRENCE + "weekly");
 
     private static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the Calendar!";
+    private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists!";
     private static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
             + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
             + PREFIX_START_DATE_TIME + ")";
