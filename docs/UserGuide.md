@@ -231,7 +231,7 @@ Add a student to an event.
 - The specified event must exist.
 - Event type input must be valid
 
-Format: `addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]`
+Format: `addStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]`
 
 Examples:
 
@@ -248,7 +248,7 @@ Deletes a student from an event.
 - The specified event must exist.
 - Event type input must be valid
 
-Format: `deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]`
+Format: `deleteStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]`
 
 Examples:
 
@@ -522,7 +522,7 @@ Examples:
       <td><strong>Add Student To Event</strong>
       </td>
       <td>
-         <code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
+         <code>addStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]</code>
          </li>
       </td>
       <td>
@@ -535,7 +535,7 @@ Examples:
    <tr>
       <td><strong>Delete Student From Event</strong>
       </td>
-      <td><code>deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
+      <td><code>deleteStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]</code>
       </td>
       <td>
          <ul>
