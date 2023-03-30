@@ -23,17 +23,6 @@ public class RerollItems implements ReadOnlyEntities {
         return items;
     }
 
-    @Override
-    public Entity getEntityWithName(String name) {
-        Entity toReturn = null;
-        for (Entity entity : items) {
-            if (entity.getName().fullName.equals(name)) {
-                toReturn = entity;
-                break;
-            }
-        }
-        return toReturn;
-    }
 
     @Override
     public boolean equals(Object other) {

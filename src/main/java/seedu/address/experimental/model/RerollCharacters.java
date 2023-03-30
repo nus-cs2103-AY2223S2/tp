@@ -24,18 +24,6 @@ public class RerollCharacters implements ReadOnlyEntities {
     }
 
     @Override
-    public Entity getEntityWithName(String name) {
-        Entity toReturn = null;
-        for (Entity character : characters) {
-            if (character.getName().fullName.equals(name)) {
-                toReturn = character;
-                break;
-            }
-        }
-        return toReturn;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof RerollCharacters

@@ -24,18 +24,6 @@ public class RerollMobs implements ReadOnlyEntities {
     }
 
     @Override
-    public Entity getEntityWithName(String name) {
-        Entity toReturn = null;
-        for (Entity entity : mobs) {
-            if (entity.getName().fullName.equals(name)) {
-                toReturn = entity;
-                break;
-            }
-        }
-        return toReturn;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof RerollMobs

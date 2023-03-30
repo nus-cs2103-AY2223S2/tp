@@ -228,7 +228,7 @@ public class EditModeParser {
         }
         final String actionWord = matcher.group("actionWord");
         final String itemName = matcher.group("name");
-        final Item item = (Item) model.getReroll().getItems().getEntityWithName(itemName);
+        final Item item = (Item) model.getEntityWithName(itemName);
         if (actionWord.equalsIgnoreCase("add")) {
             editInventory.addItem(item);
         } else if (actionWord.equalsIgnoreCase("remove")) {
