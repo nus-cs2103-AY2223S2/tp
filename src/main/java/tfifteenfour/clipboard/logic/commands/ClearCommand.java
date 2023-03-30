@@ -21,7 +21,7 @@ import tfifteenfour.clipboard.model.task.Task;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "%1$s of %2$s have been cleared!";
 
     public ClearCommand() {
         super(false);
@@ -35,32 +35,42 @@ public class ClearCommand extends Command {
         Course selectedCourse = currentSelection.getSelectedCourse();
         Group selectedGroup = currentSelection.getSelectedGroup();
 
-
-
+        String clearedObject;
+        String section;
 
         switch (currentPage) {
         case COURSE_PAGE:
+            clearedObject = "Courses";
+            section = "CLIpboard";
             model.setRoster(new Roster());
             break;
         case GROUP_PAGE:
+            clearedObject = "Groups";
+            section = selectedCourse.getCourseCode();
             List<Group> groups = selectedCourse.getModifiableGroupList();
             while (!groups.isEmpty()) {
                 groups.remove(0);
             }
             break;
         case SESSION_PAGE:
+            clearedObject = "Sessions";
+            section = selectedGroup.getGroupName();
             List<Session> sessions = selectedGroup.getModifiableSessionList();
             while (!sessions.isEmpty()) {
                 sessions.remove(0);
             }
             break;
         case TASK_PAGE:
+            clearedObject = "Tasks";
+            section = selectedGroup.getGroupName();
             List<Task> tasks = selectedGroup.getModifiableTaskList();
             while (!tasks.isEmpty()) {
                 tasks.remove(0);
             }
             break;
         case STUDENT_PAGE:
+            clearedObject = "Students";
+            section = selectedGroup.getGroupName();
             List<Student> students = selectedGroup.getModifiableStudentList();
             while (!students.isEmpty()) {
                 students.remove(0);
@@ -68,9 +78,10 @@ public class ClearCommand extends Command {
             break;
         default:
             throw new CommandException("Can't clear current page!\n"
-                    + "Navigate to the following pages to use clear command:"
+                    + "Navigate to the following pages to use clear command:\n"
                     + "Course page, Group page, Session page, Task page, Student page");
         }
-        return new CommandResult(this, MESSAGE_SUCCESS, willModifyState);
+        return new CommandResult(this,
+                String.format(MESSAGE_SUCCESS, clearedObject, section), willModifyState);
     }
 }
