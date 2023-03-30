@@ -6,7 +6,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
@@ -49,10 +48,7 @@ public class ReminderApplicationCard extends UiPart<Region> {
     private Label internshipStatus;
     @FXML
     private Label interviewDate;
-    @FXML
-    private Label resume;
-    @FXML
-    private Label coverLetter;
+
 
     /**
      * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
@@ -79,15 +75,6 @@ public class ReminderApplicationCard extends UiPart<Region> {
             interviewDate.setText(interviewDateStr.toString());
             interviewDate.setVisible(true);
             interviewDate.setManaged(true);
-        }
-        Documents documents = application.getDocuments();
-        if (documents != null) {
-            resume.setText(documents.getResumeLink().value);
-            coverLetter.setText(documents.getCoverLetterLink().value);
-            resume.setVisible(true);
-            coverLetter.setVisible(true);
-            resume.setManaged(true);
-            coverLetter.setManaged(true);
         }
     }
 
