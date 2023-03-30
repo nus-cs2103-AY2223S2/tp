@@ -1,32 +1,23 @@
-package seedu.address.model.person;
+package seedu.address.model.prescription;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's current medication
+ * Represents a Patient's medication
  * Guarantees: immutable; is valid as declared in {@link #isValidMedication(String)}
  */
 public class Medication {
 
-    private static final String DELIMITER = ";";
-    public static final String MESSAGE_CONSTRAINTS = "Medication should be of the format:\n"
-            + "qty medication\n"
-            + "If you would like to prescribe multiple medications, insert " + DELIMITER + " between each string.";
+    public static final String MESSAGE_CONSTRAINTS = "Medications should only contain alphanumeric character and"
+            + "spaces, and it should not be blank.";
 
-    /*
-     * Accepts one of the following 2 cases:
-     * An empty string
-     * number medication[;number medication]*
-     */
-    // ^$|\\d+ [^+;+]+(;\\s*\\d+ [^;]+)*
-    public static final String VALIDATION_REGEX = "^$|\\d+ [^+" + DELIMITER + "+]+(" + DELIMITER
-            + "\\s*\\d+ [^" + DELIMITER + "]+)*";
+    public static final String VALIDATION_REGEX = "^[\\w][\\w ]+$";
 
     public final String value;
 
     /**
-     * Constructs an {@code Medication}.
+     * Constructs a {@code Medication}.
      *
      * @param medication A valid medication.
      */
@@ -41,13 +32,6 @@ public class Medication {
      */
     public static boolean isValidMedication(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if Medication value is an empty string.
-     */
-    public boolean isEmpty() {
-        return value.length() == 0;
     }
 
     @Override

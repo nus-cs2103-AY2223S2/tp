@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,16 +15,16 @@ import seedu.address.model.tag.Tag;
  */
 public class Patient extends Person {
     private final ArrayList<Appointment> patientAppointments;
-    private final Medication medication;
+    private final Set<Prescription> prescriptions;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Medication medication,
+    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Set<Prescription> prescriptions,
                    Set<Tag> tags, ArrayList<Appointment> patientAppointments, Role role) {
         super(name, phone, email, nric, address, tags, patientAppointments, role);
-        requireAllNonNull(name, phone, email, address, tags, patientAppointments, role);
-        this.medication = medication;
+        requireAllNonNull(name, phone, email, address, prescriptions, patientAppointments, role);
+        this.prescriptions = prescriptions;
         this.patientAppointments = patientAppointments;
     }
 
@@ -40,8 +41,8 @@ public class Patient extends Person {
                 && otherPerson.getNric().equals(getNric());
     }
 
-    public Medication getMedication() {
-        return medication;
+    public Set<Prescription> getPrescriptions() {
+        return prescriptions;
     }
 
     /**
@@ -67,7 +68,7 @@ public class Patient extends Person {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getNric().equals(getNric())
                 && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getMedication().equals(getMedication())
+                && otherPatient.getPrescriptions().equals(getPrescriptions())
                 && otherPatient.getTags().equals(getTags())
                 && otherPatient.getPatientAppointments().equals(getPatientAppointments());
     }
@@ -76,9 +77,10 @@ public class Patient extends Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder(super.toString());
 
-        if (!getMedication().isEmpty()) {
-            builder.append("; Medication: ")
-                    .append(getMedication());
+        Set<Prescription> prescriptions = getPrescriptions();
+        if (!prescriptions.isEmpty()) {
+            builder.append("; Prescriptions: ");
+            prescriptions.stream().map(Prescription::toString).sorted().forEach(builder::append);
         }
 
         ArrayList<Appointment> appointments = getPatientAppointments();
