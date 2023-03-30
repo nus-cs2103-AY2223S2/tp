@@ -13,7 +13,7 @@ import seedu.modtrek.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ViewCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -26,6 +26,6 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewCommand(false), model, ViewCommand.MESSAGE_MODULES_SUCCESS, expectedModel);
     }
 }

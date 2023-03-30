@@ -14,14 +14,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.AddCommand;
-import seedu.modtrek.logic.commands.ClearCommand;
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
-import seedu.modtrek.logic.commands.ListCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
@@ -39,12 +38,6 @@ public class ModTrekParserTest {
         Module module = new ModuleBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ModuleUtil.getAddCommand(module));
         assertEquals(new AddCommand(module), command);
-    }
-
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
@@ -87,9 +80,9 @@ public class ModTrekParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_view() throws Exception {
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD + " modules") instanceof ViewCommand);
+        assertTrue(parser.parseCommand(ViewCommand.COMMAND_WORD + " progress") instanceof ViewCommand);
     }
 
     @Test

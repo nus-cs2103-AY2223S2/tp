@@ -31,9 +31,9 @@ public class SortCommand extends Command {
     /**
      * The constant MESSAGE_USAGE.
      */
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Sorts modules in module list view\n"
-            + "Parameters: prefix (eg. /g, /c ... etc)\n"
-            + "Example: sort /g\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts modules in module list view\n\n"
+            + "Parameters: One of (/m, /c, /y, /g, /t)\n\n"
+            + "Example: sort /g";
 
     /**
      * The enum Sort.
