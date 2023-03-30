@@ -12,7 +12,7 @@ public class Premium {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Premiums should only contain numbers, it can be either integer, or a double";
-    public static final String VALIDATION_REGEX = "\\d{1,}.*..*\\d{0,}";
+    public static final String VALIDATION_REGEX = "^\\d*[1-9]\\d*(\\.\\d{1,2})?$";
     public final String value;
 
     /**
