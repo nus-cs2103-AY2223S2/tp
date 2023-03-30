@@ -16,10 +16,9 @@ title: User Guide
       * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
       * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
       * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
-      * [Adding readings `tank addReadings`](#listing-tanks-list-tanks)
-      * [Deleting readings `tank delLastReadings`](#listing-tanks-list-tanks)
-
-
+      * [Tank readings](#tank-readings)
+        * [Adding a set of readings `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
+        * [Deleting a most recent set of readings `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
     * [Fishes](#fishes)
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
@@ -161,6 +160,10 @@ to log down the respective readings.
 
 :bulb: You are required to log all 3 types of readings when addings a set of readings! If you do not
 own equipment to track that type of reading, enter `0` for that type of reading!
+
+Currently, there are two operations around tanks readings:
+* [Adding a set of readings `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
+* [Deleting a most recent set of readings `tank delLastReadings`](#deleting-the-most-recent-set-of-readings-tank-dellastreadings)
 
 ### Adding a set of readings: `tank addReadings`
 
@@ -366,9 +369,9 @@ Format: `help`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `fish add` `tank add` `task add`
+**Add** | `fish add` `tank add` `task add` <br>`tank addReadings`
 **Clear** | `clear` **Coming soon**
-**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX`<br> e.g., `tank delete 3`
+**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3`
 **Edit** | **Coming soon**
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**
 **Sort** | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`
