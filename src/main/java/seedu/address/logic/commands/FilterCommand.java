@@ -19,10 +19,11 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters the entities of a provided tag";
 
-    private List<String> tagList;
+    private final List<String> tagList;
 
     /**
      * Saves the args to filter later
+     *
      * @param asList
      */
     public FilterCommand(List<String> asList) {
@@ -39,8 +40,8 @@ public class FilterCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.addFilteredEntityList(entity -> true);
-        model.addFilteredEntityList(entity -> {
+        model.addPredicate(entity -> true);
+        model.addPredicate(entity -> {
             boolean result = true;
             for (String tag : tagList) {
                 if (!entity.getTags().contains(new Tag(tag))) {

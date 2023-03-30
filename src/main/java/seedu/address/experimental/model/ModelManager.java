@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -33,7 +35,7 @@ public class ModelManager implements Model {
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
-    private FilteredList<Entity> filteredActive;
+    private final FilteredList<Entity> filteredActive;
 
     private Entity currentSelectedEntity;
 
@@ -72,14 +74,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -107,13 +109,13 @@ public class ModelManager implements Model {
     //=====================================Rerollllll==============================
 
     @Override
-    public void setReroll(ReadOnlyReroll reroll) {
-        this.reroll.resetData(reroll);
+    public ReadOnlyReroll getReroll() {
+        return reroll;
     }
 
     @Override
-    public ReadOnlyReroll getReroll() {
-        return reroll;
+    public void setReroll(ReadOnlyReroll reroll) {
+        this.reroll.resetData(reroll);
     }
 
     @Override
@@ -130,10 +132,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredEntityList(Predicate<Entity> predicate) {
+        requireNonNull(predicate);
+        filteredActive.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void deleteEntities(List<Entity> entities) {
+        for (int i = entities.size() - 1; i >= 0; i--) {
+            deleteEntity(entities.get(i));
+        }
+
+    }
+
+    @Override
     public void deleteEntity(Entity key) {
         requireNonNull(key);
         reroll.deleteEntity(key);
     }
+
+    // =========== List operations
 
     @Override
     public void setEntity(Entity target, Entity edited) {
@@ -141,8 +160,6 @@ public class ModelManager implements Model {
 
         reroll.setEntity(target, edited);
     }
-
-    // =========== List operations
 
     @Override
     public void listItems() {
@@ -154,31 +171,49 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_IS_CHARACTER);
     }
 
+    //=========== Filtered Entity List Accessors =============================================================
+
     @Override
     public void listMobs() {
         updateFilteredEntityList(PREDICATE_IS_MOB);
     }
 
+    /**
+     * Returns the entities listed by the given predicate
+     * without modifying the selection
+     *
+     * @param predicate
+     */
+    @Override
+    public List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate) {
+        Predicate<? super Entity> previousPredicate = filteredActive.getPredicate();
+        filteredActive.setPredicate(predicate);
+        List<Entity> result = new ArrayList<>();
+
+        for (Entity e : getFilteredEntityList()) {
+            result.add(e);
+        }
+        filteredActive.setPredicate(previousPredicate);
+        return result;
+    }
     @Override
     public void listTemplates() {
         updateFilteredEntityList(PREDICATE_IS_TEMPLATE);
     }
 
     //=========== Filtered Entity List Accessors =============================================================
-
     @Override
     public ObservableList<Entity> getFilteredEntityList() {
         return filteredActive;
     }
 
     @Override
-    public void updateFilteredEntityList(Predicate<Entity> predicate) {
-        requireNonNull(predicate);
-        filteredActive.setPredicate(predicate);
+    public Predicate<? super Entity> getCurrentPredicate() {
+        return filteredActive.getPredicate();
     }
 
     @Override
-    public void addFilteredEntityList(Predicate<Entity> predicate) {
+    public void addPredicate(Predicate<Entity> predicate) {
         requireNonNull(predicate);
         filteredActive.setPredicate(new ComposedPredicate<>(filteredActive.getPredicate(), predicate));
     }
