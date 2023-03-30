@@ -6,11 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-<<<<<<< HEAD
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Address;
-=======
->>>>>>> master
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -106,7 +102,6 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
      * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
      * and set it to the {@code Person} that we are building.
      */
@@ -125,10 +120,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-=======
      * Sets the {@code Station} of the {@code Person} that we are building.
->>>>>>> master
      */
     public PersonBuilder withStation(String station) {
         this.station = new Station(station);
@@ -136,10 +128,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Station} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(Location location) {
-        this.address = new Address(location.getName());
+    public PersonBuilder withStation(Location location) {
+        this.station = new Station(location.getName());
         return this;
     }
 

@@ -124,62 +124,41 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class TypicalPersons {
 
     public static final Person ALBERT = new PersonBuilder().withName("Albert Park")
-<<<<<<< HEAD
-            .withAddress(KING_ALBERT_PARK)
+            .withStation(KING_ALBERT_PARK)
             .withEmail("albertpark@gmail.com")
             .withPhone("89760441")
             .withTelegramHandle("@albertpark")
-=======
-            .withStation("King Albert Park").withEmail("albertpark@gmail.com")
-            .withPhone("89760441").withTelegramHandle("@albertpark")
-            .withContactIndex(1)
->>>>>>> master
             .withGroupTags("TA")
             .withModuleTags()
             .build();
 
     public static final Person ANG = new PersonBuilder().withName("Ang Mei Hua")
-<<<<<<< HEAD
-            .withAddress(MAYFLOWER)
+            .withStation(MAYFLOWER)
             .withEmail("angmeihua@gmail.com")
-=======
-            .withStation("Mayflower").withEmail("angmeihua@gmail.com")
->>>>>>> master
             .withPhone("86203169").withTelegramHandle("@angmeihua")
             .withGroupTags("Study")
             .withModuleTags(MA2108_HA, MA2101_HA, CS3230_HA, CS2102_HA, CS2100_HA)
             .build();
 
     public static final Person BART = new PersonBuilder().withName("Bart Lee")
-<<<<<<< HEAD
-            .withAddress(BARTLEY)
+            .withStation(BARTLEY)
             .withEmail("bartlee@gmail.com")
             .withPhone("82630347")
             .withTelegramHandle("@bartlee")
-=======
-            .withStation("Bartley").withEmail("bartlee@gmail.com")
-            .withPhone("82630347").withTelegramHandle("@bartlee")
-            .withContactIndex(3)
->>>>>>> master
             .withGroupTags("CCA")
             .withModuleTags(GEC1030_HA, GEA1000_HA, ST2334_HA, CS2030S_HA, CS2040S_HA)
             .build();
 
     public static final Person CLARK = new PersonBuilder().withName("Clark Kee")
-<<<<<<< HEAD
-            .withAddress(CLARKE_QUAY)
+            .withStation(CLARKE_QUAY)
             .withEmail("clarkkee@gmail.com")
-=======
-            .withStation("Clarke Quay").withEmail("clarkkee@gmail.com")
->>>>>>> master
             .withPhone("81342028").withTelegramHandle("@clarkkee")
             .withGroupTags("NUS")
             .withModuleTags(CS1101S_HA, GESS1019_HA, CS1231S_HA, MA2001_HA, MA1521_HA)
             .build();
 
-<<<<<<< HEAD
     public static final Person DONG = new PersonBuilder().withName("Dong Yu Lang")
-            .withAddress(JURONG_EAST)
+            .withStation(JURONG_EAST)
             .withEmail("dongyulang@gmail.com")
             .withPhone("86263617")
             .withTelegramHandle("@dongyulang")
@@ -189,68 +168,37 @@ public class TypicalPersons {
             .build();
 
     public static final Person EDWARD = new PersonBuilder().withName("Edward Richards")
-            .withAddress(KENT_RIDGE)
+            .withStation(KENT_RIDGE)
             .withEmail("edwardrichards@gmail.com")
             .withPhone("92463693")
             .withTelegramHandle("@edwardrichards")
-=======
-    public static final Person DAKOTA = new PersonBuilder().withName("Dakota Dunman")
-            .withStation("Dakota").withEmail("dakotadunman@gmail.com")
-            .withPhone("86263617").withTelegramHandle("@dakotadunman")
-            .withContactIndex(5)
-            .withGroupTags("CCA")
-            .withModuleTags("GE2102", "QF3101", "LLJ5203", "CS2104", "ST2132", "CM3261").build();
-
-    public static final Person EDWARD = new PersonBuilder().withName("Edward Richards")
-            .withStation("Kent Ridge").withEmail("edwardrichards@gmail.com")
-            .withPhone("92463693").withTelegramHandle("@edwardrichards")
-            .withContactIndex(6)
->>>>>>> master
             .withGroupTags("CCA")
             .withModuleTags(BT1101_DZ, IS1108_DZ, IS2218_DZ, MA1521_DZ, CS1010J_DZ)
             .build();
 
     public static final Person FORD = new PersonBuilder().withName("Ford Canning")
-<<<<<<< HEAD
-            .withAddress(FORT_CANNING)
+            .withStation(FORT_CANNING)
             .withEmail("fordcanning@gmail.com")
             .withPhone("88032666")
             .withTelegramHandle("@fordcanning")
-=======
-            .withStation("Fort Canning").withEmail("fordcanning@gmail.com")
-            .withPhone("88032666").withTelegramHandle("@fordcanning")
-            .withContactIndex(7)
->>>>>>> master
             .withGroupTags("TA")
             .withModuleTags(MA2104_RU_ALT_2, CS3230_RU, CS2100_RU, MA2108_RU, ES2660_RU_ALT_2)
             .build();
 
     public static final Person GEORGE = new PersonBuilder().withName("George Richards")
-<<<<<<< HEAD
-            .withAddress(KENT_RIDGE)
+            .withStation(KENT_RIDGE)
             .withEmail("georgerichards@gmail.com")
             .withPhone("98796811")
             .withTelegramHandle("@georgerichards")
-=======
-            .withStation("Kent Ridge").withEmail("georgerichards@gmail.com")
-            .withPhone("98796811").withTelegramHandle("@georgerichards")
-            .withContactIndex(8)
->>>>>>> master
             .withGroupTags("CCA")
             .withModuleTags(CS2108_HA, CS3223_HA, CS3245_HA, CS2103T_HA_ALT_1, CS2101_ALT_1, CS4225_HA)
             .build();
 
     public static final Person HONG = new PersonBuilder().withName("Hong Shan")
-<<<<<<< HEAD
-            .withAddress(REDHILL)
+            .withStation(REDHILL)
             .withEmail("hongshan@gmail.com")
             .withPhone("91345682")
             .withTelegramHandle("@hongshan")
-=======
-            .withStation("Redhill").withEmail("hongshan@gmail.com")
-            .withPhone("91345682").withTelegramHandle("@hongshan")
-            .withContactIndex(9)
->>>>>>> master
             .withGroupTags("Groupmate")
             .withModuleTags(CS2108_HA, CS2106_HA, CS3245_HA, CS2103T_HA_ALT_1, CS2101_ALT_1)
             .build();
@@ -274,39 +222,26 @@ public class TypicalPersons {
     // MA3252=TUT:2,LEC:1
 
     public static final Person ISAAC = new PersonBuilder().withName("Isaac Newton")
-<<<<<<< HEAD
-            .withAddress(NEWTON)
+            .withStation(NEWTON)
             .withEmail("isaacnewton@gmail.com")
             .withPhone("93175044")
             .withTelegramHandle("@isaacnewton")
-=======
-            .withStation("Newton").withEmail("isaacnewton@gmail.com")
-            .withPhone("93175044").withTelegramHandle("@isaacnewton")
-            .withContactIndex(10)
->>>>>>> master
             .withGroupTags("TA", "NS")
             .withModuleTags(MA2001_F, LAJ1201_F, CS1101S_F, MA3252_F, CS2106_F)
             .build();
 
     public static final Person JUKUN = new PersonBuilder().withName("Ju Kun")
-<<<<<<< HEAD
-            .withAddress(JOO_KOON)
+            .withStation(JOO_KOON)
             .withEmail("jukun@gmail.com")
             .withPhone("84709651")
             .withTelegramHandle("@jukun")
-=======
-            .withStation("Joo Koon").withEmail("jukun@gmail.com")
-            .withPhone("84709651").withTelegramHandle("@jukun")
-            .withContactIndex(11)
->>>>>>> master
             .withGroupTags("Groupmate")
             .withModuleTags(CS2040S_F, CS2106_F, CS2109S_F,
                     CS3245_F, CS3223_F, CS2105_F)
             .build();
 
     public static final Person KEVIN = new PersonBuilder().withName("Kevin Ho")
-<<<<<<< HEAD
-            .withAddress(KOVAN)
+            .withStation(KOVAN)
             .withEmail("kevinho@gmail.com")
             .withPhone("99997496")
             .withTelegramHandle("@kevinho")
@@ -316,61 +251,37 @@ public class TypicalPersons {
             .build();
 
     public static final Person LAO = new PersonBuilder().withName("Lao Ming Da")
-            .withAddress(LAVENDER)
+            .withStation(LAVENDER)
             .withEmail("laomingda@gmail.com")
             .withPhone("83340546")
             .withTelegramHandle("@laomingda")
-=======
-            .withStation("Kovan").withEmail("kevinho@gmail.com")
-            .withPhone("99997496").withTelegramHandle("@kevinho")
-            .withContactIndex(12)
-            .withGroupTags("NUS", "TA")
-            .withModuleTags("IS2101", "CS2030S", "LAC2201", "YSC1207", "CS2113T", "CS2107").build();
-
-    public static final Person LAVENDER = new PersonBuilder().withName("Lavender Crawford")
-            .withStation("Lavender").withEmail("lavendercrawford@gmail.com")
-            .withPhone("83340546").withTelegramHandle("@lavendercrawford")
-            .withContactIndex(13)
->>>>>>> master
             .withGroupTags("Groupmate")
             .withModuleTags(ES2660_F, CS1101S_F, CS3245_F,
                     CS2106_F, MA3252_F, CS2040S_F)
             .build();
 
     public static final Person MARY = new PersonBuilder().withName("Mary Meng")
-<<<<<<< HEAD
-            .withAddress(MARYMOUNT)
+            .withStation(MARYMOUNT)
             .withEmail("marymeng@gmail.com")
             .withPhone("93816073")
             .withTelegramHandle("@marymeng")
-=======
-            .withStation("Marymount").withEmail("marymeng@gmail.com")
-            .withPhone("93816073").withTelegramHandle("@marymeng")
-            .withContactIndex(14)
->>>>>>> master
             .withGroupTags("CCA")
             .withModuleTags(MA2001_F, LAJ1201_F, CS1101S_F,
                     MA3252_F, CS2106_F, ES2660_F)
             .build();
 
     public static final Person NICOLE = new PersonBuilder().withName("Nicole Hai Wei Ting")
-<<<<<<< HEAD
-            .withAddress(NICOLL_HIGHWAY)
+            .withStation(NICOLL_HIGHWAY)
             .withEmail("nicolehaiweiting@gmail.com")
             .withPhone("92574283")
             .withTelegramHandle("@nicolehaiweiting")
-=======
-            .withStation("Nicoll Highway").withEmail("nicolehaiweiting@gmail.com")
-            .withPhone("92574283").withTelegramHandle("@nicolehaiweiting")
-            .withContactIndex(15)
->>>>>>> master
             .withGroupTags("CCA")
             .withModuleTags(MA3252_F, CS3223_F, BT2102_F,
                     CS2030S_F, CS1101S_F, ES2660_F)
             .build();
 
     public static final Person OWEN = new PersonBuilder().withName("Owen Farrer")
-            .withAddress(FARRER_PARK)
+            .withStation(FARRER_PARK)
             .withEmail("owenfarrer@gmail.com")
             .withPhone("97561235")
             .withTelegramHandle("@owenfarrer")
@@ -384,7 +295,7 @@ public class TypicalPersons {
     // our info
 
     public static final Person HALF = new PersonBuilder().withName("Half")
-            .withAddress(PASIR_RIS)
+            .withStation(PASIR_RIS)
             .withEmail("half@gmail.com")
             .withPhone("91355634")
             .withTelegramHandle("@half")
@@ -394,7 +305,7 @@ public class TypicalPersons {
             .build();
 
     public static final Person FIREFOX = new PersonBuilder().withName("Fire Fox")
-            .withAddress(SERANGOON)
+            .withStation(SERANGOON)
             .withEmail("firefox@gmail.com")
             .withPhone("95673158")
             .withTelegramHandle("@firefox")
@@ -404,7 +315,7 @@ public class TypicalPersons {
             .build();
 
     public static final Person JINYONG = new PersonBuilder().withName("Jin Yong")
-            .withAddress(KAKI_BUKIT)
+            .withStation(KAKI_BUKIT)
             .withEmail("jinyong@gmail.com")
             .withPhone("89654235")
             .withTelegramHandle("@jinyong")
@@ -413,7 +324,7 @@ public class TypicalPersons {
             .build();
 
     public static final Person KAIMIN = new PersonBuilder().withName("Kai Min")
-            .withAddress(SERANGOON)
+            .withStation(SERANGOON)
             .withEmail("kaimin@gmail.com")
             .withPhone("89654235")
             .withTelegramHandle("@kaimin")
