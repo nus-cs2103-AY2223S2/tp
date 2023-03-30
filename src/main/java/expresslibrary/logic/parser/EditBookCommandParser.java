@@ -8,6 +8,10 @@ import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.DateUtil;
 import expresslibrary.logic.commands.EditBookCommand;
@@ -49,11 +53,30 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
         if (argMultimap.getValue(PREFIX_ISBN).isPresent()) {
             editBookDescriptor.setIsbn(ParserUtil.parseIsbn(argMultimap.getValue(PREFIX_ISBN).get()));
         }
+
         if (argMultimap.getValue(PREFIX_BORROW_DATE).isPresent()) {
-            editBookDescriptor.setBorrowDate(DateUtil.parseDate(argMultimap.getValue(PREFIX_BORROW_DATE).get()));
+            String dateString = argMultimap.getValue(PREFIX_BORROW_DATE).orElse("");
+            try {
+                LocalDate borrowDate = DateUtil.parseDate(dateString);
+                editBookDescriptor.setBorrowDate(borrowDate);
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_INVALID_DATE));
+            }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
-            editBookDescriptor.setDueDate(DateUtil.parseDate(argMultimap.getValue(PREFIX_DUE_DATE).get()));
+            String dateString = argMultimap.getValue(PREFIX_DUE_DATE).orElse("");
+            try {
+                LocalDate dueDate = DateUtil.parseDate(dateString);
+                editBookDescriptor.setDueDate(dueDate);
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_INVALID_DATE));
+            }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE));
         }
         if (!editBookDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBookCommand.MESSAGE_NOT_EDITED);

@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.exceptions.IllegalValueException;
 import expresslibrary.commons.util.DateUtil;
@@ -44,12 +45,12 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
                 dueDate = DateUtil.parseDate(dateString);
             } catch (DateTimeParseException e) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        BorrowCommand.MESSAGE_INVALID_DATE));
+                        Messages.MESSAGE_INVALID_DATE));
             }
             // Check if due date is after the current date
             if (!dueDate.isAfter(LocalDate.now())) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        BorrowCommand.MESSAGE_EARLY_DATE));
+                        Messages.MESSAGE_EARLY_DATE));
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));

@@ -52,7 +52,7 @@ public class EditBookCommand extends Command {
     private final EditBookDescriptor editBookDescriptor;
 
     /**
-     * @param index of the book in the filtered book list to edit
+     * @param index              of the book in the filtered book list to edit
      * @param editBookDescriptor details to edit the book with
      */
     public EditBookCommand(Index index, EditBookDescriptor editBookDescriptor) {
@@ -99,8 +99,11 @@ public class EditBookCommand extends Command {
     /**
      * Creates and returns a {@code Book} with the details of {@code bookToEdit}
      * edited with {@code editBookDescriptor}.
+     *
+     * @throws CommandException
      */
-    private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor) {
+    private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor)
+            throws CommandException {
         assert bookToEdit != null;
 
         Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
@@ -112,6 +115,12 @@ public class EditBookCommand extends Command {
 
         Book editedBook = new Book(updatedTitle, updatedAuthor, updatedIsbn);
         if (updatedBorrower != null) {
+            if (updatedBorrowDate.isAfter(updatedDueDate)) {
+                throw new CommandException(Messages.MESSAGE_BORROW_DATE_AFTER_DUE_DATE);
+            }
+            if (updatedBorrowDate.isAfter(LocalDate.now())) {
+                throw new CommandException(Messages.MESSAGE_BORROW_DATE_AFTER_CURRENT_DATE);
+            }
             editedBook.loanBookTo(updatedBorrower, updatedBorrowDate, updatedDueDate);
         }
 
