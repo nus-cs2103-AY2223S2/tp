@@ -214,6 +214,23 @@ Examples:
 
 - `findlead <leadstatus>` - returns all contacts with the associated lead status, `Dewy Thompson` or `Majorie Dewy`
 
+### Finding a contact tag: `findall`
+
+Search for a contact based on all attributes of a Person recorded in the addressbook.
+
+Format: `findall <any keyword that matches any attribute>`
+
+The user can search for any attribute and if it matches with any Person, that person will be listed.
+
+- The search is case-insensitive. e.g `u` will match `U`
+- The search will match with any attribute
+- Persons matching the search will be returned 
+  e.g. `findall Blk 30` will return contacts with address attributes of `Blk 16 Hello Drive` who is a contact with a lead status of `Blk Goodbye Drive`
+
+Examples:
+
+- `findall Blk` - returns all contacts with the `blk` in any of their attributes, `Dewy Thompson` or `Majorie Dewy`
+
 ### Finding a contact tag: `findtxn`
 
 Search for a single contact and all txns related to this contact. The user must enter an existing user that is in the database and must match exactly the name in the database.
