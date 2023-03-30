@@ -159,28 +159,24 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
-        throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
-    }
-
-    @Override
     public void addKeyword(Keyword keyword) {
         throw new UnsupportedOperationException("Unimplemented method 'addKeyword'");
     }
 
     @Override
-    public void deleteKeyword(int id) {
+    public Keyword deleteKeyword(String keyword) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteKeyword'");
-    }
-
-    @Override
-    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
-        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredKeywordList'");
     }
 
     @Override
     public KeywordManager getKeywordManager() {
         throw new UnsupportedOperationException("Unimplemented method 'getKeywordManager'");
+    }
+
+    @Override
+    public void setKeywordManager(KeywordManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
     }
 
     @Override
@@ -199,12 +195,6 @@ public class VaxTypeModelStub implements Model {
     public void setAppointmentManager(AppointmentManager manager) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
-    }
-
-    @Override
-    public void setKeywordManager(KeywordManager manager) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
     }
 
     @Override

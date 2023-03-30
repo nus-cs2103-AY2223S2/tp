@@ -104,6 +104,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public KeywordManager loadEmptyKeywords() throws RuntimeException {
+        return keywordStorage.loadEmptyKeywords();
+    }
+
+    @Override
     public void saveKeywords(KeywordManager manager) throws IOException {
         keywordStorage.saveKeywords(manager);
     }

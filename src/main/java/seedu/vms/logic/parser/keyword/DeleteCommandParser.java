@@ -1,8 +1,5 @@
 package seedu.vms.logic.parser.keyword;
 
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.keyword.DeleteCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CommandParser;
@@ -21,11 +18,11 @@ public class DeleteCommandParser implements CommandParser {
     @Override
     public DeleteCommand parse(ArgumentMultimap argsMap) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(argsMap.getPreamble());
-            return new DeleteCommand(index);
+            String keyword = ParserUtil.parseDeleteKeyword(argsMap.getPreamble());
+            return new DeleteCommand(keyword);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format("invalid command format \n%s", pe.getMessage()), pe);
         }
     }
 }

@@ -1,6 +1,15 @@
 package seedu.vms.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
+import static seedu.vms.commons.core.Messages.MESSAGE_KEYWORD_IS_EMPTY;
+import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_HELP_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -269,7 +278,33 @@ public class ParserUtil {
      */
     public static String parseKeyword(String keyword) throws ParseException {
         requireNonNull(keyword);
-        String trimmedKeyword = keyword.trim();
+        String trimmedKeyword = keyword.strip();
+        if (trimmedKeyword.isBlank()) {
+            throw new ParseException(MESSAGE_KEYWORD_IS_EMPTY);
+        }
+        if (!Keyword.isNotMainKeyword(trimmedKeyword)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_SUB_KEYWORD,
+            MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING,
+            MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING));
+        }
+
+        return trimmedKeyword;
+    }
+
+    /**
+     * Parses a {@code String keyword} into a {@code String keyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    public static String parseDeleteKeyword(String keyword) throws ParseException {
+        requireNonNull(keyword);
+
+        String trimmedKeyword = keyword.strip();
+        if (trimmedKeyword.isBlank()) {
+            throw new ParseException(MESSAGE_KEYWORD_IS_EMPTY);
+        }
+
         return trimmedKeyword;
     }
 
@@ -281,9 +316,10 @@ public class ParserUtil {
      */
     public static String parseMainKeyword(String mainKeyword) throws ParseException {
         requireNonNull(mainKeyword);
-        String trimmedMainKeyword = mainKeyword.trim();
+        String trimmedMainKeyword = mainKeyword.strip();
         if (!Keyword.isValidMainKeyword(trimmedMainKeyword)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_MAIN_KEYWORD,
+            MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING));
         }
         return trimmedMainKeyword;
     }

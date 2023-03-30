@@ -262,8 +262,9 @@ public class LogicManager implements Logic {
             sendLoadInfo(String.format(LOAD_SUCCESS_FORMAT, "keywords"));
         } catch (IOException ioEx) {
             sendLoadWarning(String.format(LOAD_ERROR_FORMAT,
-                    "keywords", ioEx.getMessage()));
-            sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "keywords"));
+                   "keywords", ioEx.getMessage()));
+            keywordManager = storage.loadEmptyKeywords();
+            sendLoadInfo(String.format(LOAD_DEFAULT_FORMAT, "keywords"));
         } catch (Throwable deathEx) {
             sendLoadDeath(String.format(LOAD_DEATH_FORMAT,
                     "keywords", deathEx.getMessage()));

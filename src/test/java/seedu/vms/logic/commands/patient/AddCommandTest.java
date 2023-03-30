@@ -192,25 +192,20 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+        public Keyword deleteKeyword(String keyword) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteKeyword(int id) {
-            throw new AssertionError("This method should not be called.");
+        public void setKeywordManager(KeywordManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
         }
 
         @Override
         public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getFilteredAppointmentMap'");
-        }
-
-        @Override
-        public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
         }
 
         @Override
@@ -235,12 +230,6 @@ public class AddCommandTest {
         public void setAppointmentManager(AppointmentManager manager) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
-        }
-
-        @Override
-        public void setKeywordManager(KeywordManager manager) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
         }
 
         @Override

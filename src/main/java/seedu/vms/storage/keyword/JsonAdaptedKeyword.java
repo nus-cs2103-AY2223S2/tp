@@ -1,5 +1,7 @@
 package seedu.vms.storage.keyword;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,18 +21,20 @@ public class JsonAdaptedKeyword {
     @JsonCreator
     public JsonAdaptedKeyword(@JsonProperty("keyword") String keyword,
                               @JsonProperty("mainKeyword") String mainKeyword) {
-        this.keyword = keyword;
-        this.mainKeyword = mainKeyword;
+        this.keyword = Objects.requireNonNull(keyword);
+        this.mainKeyword = Objects.requireNonNull(mainKeyword);
 
     }
 
     /**
      * Converts a given {@code Keyword} into this class for Jackson use.
      */
-    public JsonAdaptedKeyword(Keyword source) {
-        keyword = source.getKeyword();
-        mainKeyword = source.getMainKeyword();
+    public static JsonAdaptedKeyword fromModelType(Keyword source) {
+        String keyword = source.getKeyword();
+        String mainKeyword = source.getMainKeyword();
+        return new JsonAdaptedKeyword(keyword, mainKeyword);
     }
+
 
     /**
      * Converts this Jackson-friendly adapted keyword object into the model's

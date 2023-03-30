@@ -26,13 +26,15 @@ public class AddCommandParser implements CommandParser {
      */
     @Override
     public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
-        if (!arePrefixesPresent(argsMap, PREFIX_KEYWORD_MAIN, PREFIX_KEYWORD_SUB)
-                || !argsMap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argsMap, PREFIX_KEYWORD_MAIN, PREFIX_KEYWORD_SUB)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         String keywordMain = ParserUtil.parseMainKeyword(argsMap.getValue(PREFIX_KEYWORD_MAIN).get());
         String keywordSub = ParserUtil.parseKeyword(argsMap.getValue(PREFIX_KEYWORD_SUB).get());
+        if (keywordSub.matches(".*[\\s(--)]+.*")) {
+            throw new ParseException("Subkeyword must be 1 word.");
+        }
 
         Keyword keyword = new Keyword(keywordMain, keywordSub);
         return new AddCommand(keyword);

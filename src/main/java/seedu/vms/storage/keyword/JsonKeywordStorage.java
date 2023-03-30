@@ -7,7 +7,6 @@ import java.nio.file.Path;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
-import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.keyword.KeywordManager;
 
 /**
@@ -17,24 +16,22 @@ import seedu.vms.model.keyword.KeywordManager;
 public class JsonKeywordStorage implements KeywordStorage {
     public static final Path USER_KEYWORD_PATH = Path.of("data", "keyword.json");
 
-    private final Path filePath;
-
-    public JsonKeywordStorage() {
-        this(USER_KEYWORD_PATH);
-    }
-
-    public JsonKeywordStorage(Path filePath) {
-        this.filePath = filePath;
-    }
 
     @Override
     public KeywordManager loadKeywords() throws IOException {
         try {
-            return JsonUtil
-                    .deserializeFromFile(USER_KEYWORD_PATH, JsonSerializableKeywordManager.class)
-                    .toModelType();
+            return KeywordLoader.load(USER_KEYWORD_PATH);
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
+        }
+    }
+
+    @Override
+    public KeywordManager loadEmptyKeywords() throws RuntimeException {
+        try {
+            return KeywordLoader.load();
+        } catch (Throwable ex) {
+            throw new RuntimeException("Unable to load defaults", ex);
         }
     }
 
@@ -44,6 +41,6 @@ public class JsonKeywordStorage implements KeywordStorage {
         requireNonNull(manager);
 
         FileUtil.createIfMissing(USER_KEYWORD_PATH);
-        JsonUtil.serializeToFile(USER_KEYWORD_PATH, new JsonSerializableKeywordManager(manager));
+        KeywordLoader.fromModelType(manager).write(USER_KEYWORD_PATH);
     }
 }

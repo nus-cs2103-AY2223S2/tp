@@ -1,7 +1,5 @@
 package seedu.vms.logic.parser;
 
-import java.util.AbstractMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,30 +11,20 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.logic.parser.keyword.KeywordParser;
 import seedu.vms.logic.parser.patient.PatientParser;
 import seedu.vms.logic.parser.vaccination.VaccinationParser;
+import seedu.vms.model.keyword.KeywordManager;
 
 
 /** Parsers user input.  */
 public class VmsParser {
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<featureName>\\S+)(?<arguments>.*)");
-    private static final Map<String, String> ALTERNATIVE_FEATURE_NAME_MAPPINGS = Map.ofEntries(
-            new AbstractMap.SimpleEntry<String, String>("p", "patient"),
-            new AbstractMap.SimpleEntry<String, String>("pa", "patient"),
-            new AbstractMap.SimpleEntry<String, String>("pat", "patient"),
-            new AbstractMap.SimpleEntry<String, String>("a", "appointment"),
-            new AbstractMap.SimpleEntry<String, String>("app", "appointment"),
-            new AbstractMap.SimpleEntry<String, String>("appo", "appointment"),
-            new AbstractMap.SimpleEntry<String, String>("appt", "appointment"),
-            new AbstractMap.SimpleEntry<String, String>("v", "vaccination"),
-            new AbstractMap.SimpleEntry<String, String>("vac", "vaccination"),
-            new AbstractMap.SimpleEntry<String, String>("vacc", "vaccination")
-    );
 
     private final BasicParser basicParser = new BasicParser();
     private final PatientParser patientParser = new PatientParser();
     private final AppointmentParser appointmentParser = new AppointmentParser();
     private final VaccinationParser vaccinationParser = new VaccinationParser();
     private final KeywordParser keywordParser = new KeywordParser();
+    private final KeywordManager keywordManager = new KeywordManager();
 
     /**
      * Parses user input into command for execution.
@@ -54,7 +42,7 @@ public class VmsParser {
 
         final String featureName = matcher.group("featureName");
         final String arguments = matcher.group("arguments");
-        switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
+        switch (keywordManager.getKeyword(featureName)) {
 
         case PatientParser.FEATURE_NAME:
             return patientParser.parse(arguments);
