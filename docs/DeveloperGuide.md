@@ -14,12 +14,14 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Undo feature](#undo-feature)
-    - [Current Implementation](#current-implementation)
-    - [Design considerations](#design-considerations)
+    - [Undo: Current implementation](#undo-current-implementation)
+    - [Undo: Design considerations](#undo-design-considerations)
   - [Filter feature](#filter-feature)
-    - [Current Filter Implementation](#current-filter-implementation)
+    - [Filter: Current implementation](#filter-current-implementation)
   - [Copy feature](#copy-feature)
-    - [Current Copy Implementation](#current-copy-implementation)
+    - [Copy: Current implementation](#copy-current-implementation)
+  - [New army-specific fields](#new-army-specific-fields)
+    - [New army fields: Current implementation](#new-army-fields-current-implementation)
   - [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
@@ -43,7 +45,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [*Setting up and getting started*](SettingUp.md).
 
 ---
 
@@ -51,7 +53,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [*PlantUML Tutorial* at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -59,7 +61,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The **_Architecture Diagram_** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -82,13 +84,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-- defines its _API_ in an `interface` with the same name as the Component.
+- defines its *API* in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -157,7 +159,7 @@ How the parsing works:
 The `Model` component,
 
 - stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate *filtered* list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -193,7 +195,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Undo feature
 
-#### Current Implementation
+#### Undo: Current implementation
 
 The current undo mechanism is handled by `AddressBook`. It stores the address book history internally as an `addressBookStateList` and uses a `currentStatePointer` to track where the current address book state is in the history. Additionally, it implements the following operations:
 
@@ -304,7 +306,7 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 <br>
 
-#### Design considerations
+#### Undo: Design considerations
 
 **Aspect: How undo executes:**
 
@@ -318,11 +320,11 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
   - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+*{more aspects and alternatives to be added}*
 
 ### Filter feature
 
-#### Current Filter Implementation
+#### Filter: Current implementation
 
 The current filter feature is facilitated by `FilterCommand` which extends `Command`. The `FilterCommand`
 has a constructor that requires a non-null `FilterDescriptor`, which is an inner class of `FilterCommand`.
@@ -347,7 +349,7 @@ The following sequence diagram shows an example of how the filter feature runs w
 
 ### Copy feature
 
-#### Current Copy Implementation
+#### Copy: Current implementation
 
 The copy feature is implemented by extracting information of the specified `Person` and then setting it as the content of the user's system's clipboard. The copy mechanism is facilitated by `CopyCommand` which extends `Command`.
 Since the information of a `Person` is required, the `Model#getFilteredPersonList()` operation is invoked to retrieve the specified `Person` and the information is extracted and copied into the user's system's clipboard.
@@ -365,13 +367,18 @@ In the scenario where the user's system's clipboard is not accessible, the reque
 
 ### New army-specific fields
 
-#### Current Copy Implementation
+#### New army fields: Current implementation
 
-New army-specific fields include Rank, Unit, Company, and Platoon. Rank is compulsory, hence its implementation is similar to that of other compulsory fields like Name. Unit, Company, and Platoon are optional as a military personnel might not always be assigned to a unit, company, or platoon. For these, fields, implementation is similar to the Tag field as tags are optional as well. When new users are being created and Unit, Company, and Platoon fields are not specified, they will automatically be set to "N/A" at first.
+The new army-specific fields are `rank`, `unit`, `company` and `platoon`.
+
+- We made the `rank` field compulsory since we are only dealing with army personnel (i.e., everyone should have a `rank`).
+  - `rank` is not a free-response field as `"ABCDEF"` is *not* a valid rank. For now, `rank` can only take on the values `"REC"`, `"PTE"`, `"CPL"`, `"3SG"` or `"2LT"` -- we intend to expand this list to include all valid ranks in the future.
+- We made the `unit`, `company` and `platoon` fields optional as military personnel might not always be assigned to a unit, company, and/or platoon.
+  - If the user omitted the `unit`, `company` and/or `platoon` fields when creating a new contact, they will be automatically set to `"N/A"`.
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+*{Explain here how the data archiving feature will be implemented}*
 
 ---
 
@@ -471,8 +478,8 @@ Priority:
 **MSS**
 
 1. Admin clerk <ins>searches for a person named "Lawrence Tay" (UC5)</ins>.
-1. Admin clerk <ins>edits the _rank_ information of "Lawrence Tay" (UC6)</ins>.
-1. FAILS displays the updated _rank_ information of "Lawrence Tay".
+1. Admin clerk <ins>edits the *rank* information of "Lawrence Tay" (UC6)</ins>.
+1. FAILS displays the updated *rank* information of "Lawrence Tay".
 
    Use case ends.
 
@@ -492,9 +499,9 @@ Priority:
 
 1. Admin clerk chooses to import a CSV file containing the personal information of military personnel from her computer.
 1. FAILS imports the CSV file.
-1. FAILS prompts the admin clerk whether the information in the CSV file should _replace_ or be _added_ to the existing list of contacts.
+1. FAILS prompts the admin clerk whether the information in the CSV file should *replace* or be *added* to the existing list of contacts.
 1. Admin clerk chooses one of the options.
-1. If the option was to _replace_, FAILS will delete all existing all contacts. Otherwise, FAILS does nothing in this step.
+1. If the option was to *replace*, FAILS will delete all existing all contacts. Otherwise, FAILS does nothing in this step.
 1. FAILS adds the CSV contacts to the existing list of contacts.
 
    Use case ends.
@@ -505,7 +512,7 @@ Priority:
   - 2a1. FAILS prompts the admin clerk to decide which CSV column refer to which FAILS contact field (e.g., the CSV might have a column called "mobile_number" whereas FAILS has a field called "phone").
   - Use case resumes at step 3.
 
-_{More to be added}_
+*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -534,8 +541,8 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">
 
-:information*source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more \_exploratory* testing.
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
 
 </div>
 
@@ -548,7 +555,7 @@ testers are expected to do more \_exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-1. _{ more test cases …​ }_
+1. *{ more test cases …​ }*
 
 ### Deleting a person
 
@@ -560,10 +567,10 @@ testers are expected to do more \_exploratory* testing.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-1. _{ more test cases …​ }_
+1. *{ more test cases …​ }*
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-1. _{ more test cases …​ }_
+   1. *{explain how to simulate a missing/corrupted file, and the expected behavior}*
+1. *{ more test cases …​ }*

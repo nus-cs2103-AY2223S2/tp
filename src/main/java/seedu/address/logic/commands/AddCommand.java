@@ -25,29 +25,30 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_RANK + "RANK "
+            + PREFIX_NAME + "NAME "
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_PLATOON + "PLATOON] "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_RANK + "REC "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_UNIT + "Alpha "
+            + PREFIX_COMPANY + "Bravo "
+            + PREFIX_PLATOON + "2 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_RANK + "REC "
-            + PREFIX_UNIT + "Alpha "
-            + PREFIX_COMPANY + "Bravo "
-            + PREFIX_PLATOON + "Charlie "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already exists. Duplicate Emails or Phone numbers "
+            + "are not allowed ";
 
     private final Person toAdd;
 
@@ -64,7 +65,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, model.findDuplicateString(toAdd)));
         }
 
         model.addPerson(toAdd);

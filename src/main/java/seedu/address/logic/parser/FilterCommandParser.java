@@ -29,39 +29,31 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      */
     public FilterCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_RANK,
-                        PREFIX_UNIT, PREFIX_COMPANY, PREFIX_PLATOON, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_RANK,
+                PREFIX_NAME,
+                PREFIX_UNIT,
+                PREFIX_COMPANY,
+                PREFIX_PLATOON,
+                PREFIX_PHONE,
+                PREFIX_EMAIL,
+                PREFIX_ADDRESS,
+                PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
         FilterDescriptor filterDescriptor = new FilterDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String nameValue = argMultimap.getValue(PREFIX_NAME).get();
-            requireFieldValueNotBlank(nameValue);
-            filterDescriptor.setNameValue(nameValue);
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            String phoneValue = argMultimap.getValue(PREFIX_PHONE).get();
-            requireFieldValueNotBlank(phoneValue);
-            filterDescriptor.setPhoneValue(phoneValue);
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            String emailValue = argMultimap.getValue(PREFIX_EMAIL).get();
-            requireFieldValueNotBlank(emailValue);
-            filterDescriptor.setEmailValue(emailValue);
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            String addressValue = argMultimap.getValue(PREFIX_ADDRESS).get();
-            requireFieldValueNotBlank(addressValue);
-            filterDescriptor.setAddressValue(addressValue);
-        }
         if (argMultimap.getValue(PREFIX_RANK).isPresent()) {
             String rankValue = argMultimap.getValue(PREFIX_RANK).get();
             requireFieldValueNotBlank(rankValue);
             filterDescriptor.setRankValue(rankValue);
+        }
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String nameValue = argMultimap.getValue(PREFIX_NAME).get();
+            requireFieldValueNotBlank(nameValue);
+            filterDescriptor.setNameValue(nameValue);
         }
         if (argMultimap.getValue(PREFIX_UNIT).isPresent()) {
             String unitValue = argMultimap.getValue(PREFIX_UNIT).get();
@@ -77,6 +69,21 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             String platoonValue = argMultimap.getValue(PREFIX_PLATOON).get();
             requireFieldValueNotBlank(platoonValue);
             filterDescriptor.setPlatoonValue(platoonValue);
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            String phoneValue = argMultimap.getValue(PREFIX_PHONE).get();
+            requireFieldValueNotBlank(phoneValue);
+            filterDescriptor.setPhoneValue(phoneValue);
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            String emailValue = argMultimap.getValue(PREFIX_EMAIL).get();
+            requireFieldValueNotBlank(emailValue);
+            filterDescriptor.setEmailValue(emailValue);
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            String addressValue = argMultimap.getValue(PREFIX_ADDRESS).get();
+            requireFieldValueNotBlank(addressValue);
+            filterDescriptor.setAddressValue(addressValue);
         }
 
         List<String> tagValues = argMultimap.getAllValues(PREFIX_TAG);

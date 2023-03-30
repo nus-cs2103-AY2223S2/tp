@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    //// person-level operations
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -63,8 +66,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
     }
-
-    //// person-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -75,11 +76,43 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with the same identity as any person in {@code newPersons} exists in the address book.
+     */
+    public boolean hasPersons(List<Person> newPersons) {
+        requireAllNonNull(newPersons);
+        return persons.containsAny(newPersons);
+    }
+
+    /**
+     * Returns the index of the first duplicate found between {@code newPersons} and the address book.
+     * Returns -1 if none are found.
+     */
+    public int findDuplicateIndex(List<Person> newPersons) {
+        requireAllNonNull(newPersons);
+        return persons.findDuplicateIndex(newPersons);
+    }
+
+    /**
+     * Returns the duplicated field that was found between {@code duplicatedPerson} and the address book.
+     */
+    public String findDuplicateString(Person duplicatedPerson) {
+        return persons.findDuplicatedString(duplicatedPerson);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        persons.addPerson(p);
+    }
+
+    /**
+     * Adds a list of persons to the address book.
+     * Each person in the list must not already exist in the address book.
+     */
+    public void addPersons(List<Person> p) {
+        persons.addPersons(p);
     }
 
     /**
