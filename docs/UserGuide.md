@@ -20,14 +20,14 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 - [Quick Start](#quick-start)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
-    - [Course Page Commands: ](#course-page-commands)
-    - [Group Page Commands: ](#group-page-commands)
-    - [Students Page Commands: ](#students-page-commands)
-    - [Session Page Commands: ](#session-page-commands)
-    - [Attendance Page Commands: ](#attendance-page-commands)
-    - [Task Page Commands: ](#task-page-commands)
-    - [Grades Page Commands: ](#grades-page-commands)
-    - [General Commands: ](#general-commands)
+    - [Course Page Commands](#course-page-commands)
+    - [Group Page Commands](#group-page-commands)
+    - [Students Page Commands](#students-page-commands)
+    - [Session Page Commands](#session-page-commands)
+    - [Attendance Page Commands](#attendance-page-commands)
+    - [Task Page Commands](#task-page-commands)
+    - [Grades Page Commands](#grades-page-commands)
+    - [General Commands](#general-commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ List of commands:
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
     - [Editing a student: ](#editing-a-student-edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id--find) `find student`
+    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
     - [Displays a student's information:  ](#displays-a-students-information-select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
