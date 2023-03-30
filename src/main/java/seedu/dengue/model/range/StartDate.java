@@ -49,4 +49,8 @@ public class StartDate implements Start<Date> {
         LocalDate d2 = LocalDate.parse(end.date.get().value);
         return d1.compareTo(d2) <= 0;
     }
+
+    public Date get() {
+        return date.get();
+    }
 }
