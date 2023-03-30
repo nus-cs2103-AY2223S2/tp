@@ -72,6 +72,11 @@ public interface Logic {
      */
     ObservableList<Reminder> getReminderList();
 
+    /**
+     * Sorts reminder list
+     */
+    void sortReminderList();
+
     // DELIVERY JOB SYSTEM ===================================
 
     /**
@@ -83,16 +88,6 @@ public interface Logic {
      * Returns an unmodifiable view of the sorted list of delivery jobs
      */
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of reminders
-     */
-    ObservableList<Reminder> getReminderList();
-
-    /**
-     * Sorts reminder list
-     */
-    void sortReminderList();
 
     /**
      * Returns delivery job list in the week sorted into day
