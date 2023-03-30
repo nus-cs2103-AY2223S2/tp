@@ -34,6 +34,7 @@ public class Tag {
     }
 
     public String getTagName() {
+        assert tagName != null : "Tag object with null tagName!";
         String[] splitTag = this.tagName.split("XXXXX");
         if (splitTag.length == 1) {
             return splitTag[0];
