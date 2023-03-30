@@ -19,4 +19,8 @@ public class ClearCommand extends Command {
         model.setScheduler(new Scheduler());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
 }

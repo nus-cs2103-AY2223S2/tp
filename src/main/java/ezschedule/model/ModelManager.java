@@ -1,15 +1,19 @@
 package ezschedule.model;
 
 import static ezschedule.commons.util.CollectionUtil.requireAllNonNull;
+import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
+import ezschedule.logic.commands.Command;
 import ezschedule.model.event.Event;
+import ezschedule.model.event.UpcomingEventPredicate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -17,27 +21,43 @@ import javafx.collections.transformation.FilteredList;
  * Represents the in-memory model of the scheduler data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
+    private ArrayList<Command> recentCommand;
+    private ArrayList<Event> recentEvent;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> upcomingEvents;
+    private final FilteredList<Event> findEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given scheduler and userPrefs.
      */
     public ModelManager(ReadOnlyScheduler scheduler, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(scheduler, userPrefs);
-
         logger.fine("Initializing with scheduler: " + scheduler + " and user prefs " + userPrefs);
-
         this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
+        recentCommand = new ArrayList<Command>();
+        recentEvent = new ArrayList<Event>();
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
+        upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
+        findEvents = new FilteredList<>(this.scheduler.getEventList());
+        updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
-
     public ModelManager() {
         this(new Scheduler(), new UserPrefs());
+    }
+    /**
+     * Constructs a ModelManager
+     */
+    public ModelManager(ArrayList<Command> command, ArrayList<Event> event) {
+        this(new Scheduler(), new UserPrefs());
+        this.recentCommand = command;
+        this.recentEvent = event;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -102,40 +122,85 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event target) {
         scheduler.removeEvent(target);
+        updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     @Override
     public void addEvent(Event event) {
         scheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         scheduler.setEvent(target, editedEvent);
+        updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
-
     @Override
-    public void sortEvents() {
-        scheduler.sortEvent();
+    public ArrayList<Command> recentCommand() {
+        return this.recentCommand;
+    }
+    @Override
+    public ArrayList<Event> recentEvent() {
+        return this.recentEvent;
+    }
+    @Override
+    public void addRecentEvent(Event event) {
+        this.recentEvent.add(event);
+    }
+    @Override
+    public void clearRecent() {
+        this.recentCommand.clear();
+        this.recentEvent.clear();
     }
 
-    //=========== Filtered Event List Accessors =============================================================
+    //=========== Event List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedScheduler}
+     * {@code scheduler}
      */
+    @Override
+    public ObservableList<Event> getEventList() {
+        return scheduler.getEventList();
+    }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
     }
 
     @Override
+    public ObservableList<Event> getUpcomingEventList() {
+        return upcomingEvents;
+    }
+
+    @Override
+    public ObservableList<Event> getFindEventList() {
+        return findEvents;
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateUpcomingEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        upcomingEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFindEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        findEvents.setPredicate(predicate);
     }
 
     @Override
@@ -153,7 +218,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return scheduler.equals(other.scheduler)
-            && userPrefs.equals(other.userPrefs)
-            && filteredEvents.equals(other.filteredEvents);
+                && userPrefs.equals(other.userPrefs)
+                && filteredEvents.equals(other.filteredEvents);
     }
 }

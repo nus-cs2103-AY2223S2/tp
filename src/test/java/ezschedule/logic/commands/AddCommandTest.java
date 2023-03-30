@@ -142,9 +142,28 @@ public class AddCommandTest {
         public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ArrayList<Command> recentCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
-        public void sortEvents() {
+        public ArrayList<Event> recentEvent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRecentEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearRecent() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -154,7 +173,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getUpcomingEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFindEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateUpcomingEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFindEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -182,6 +221,8 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
+        final ArrayList<Command> recentCommand = new ArrayList<>();
+        final ArrayList<Event> recentEvent = new ArrayList<>();
 
         @Override
         public boolean hasEvent(Event event) {
@@ -199,6 +240,19 @@ public class AddCommandTest {
         public void addEvent(Event event) {
             requireNonNull(event);
             eventsAdded.add(event);
+        }
+
+        @Override
+        public void clearRecent() {}
+
+        @Override
+        public ArrayList<Command> recentCommand() {
+            return recentCommand;
+        }
+
+        @Override
+        public ArrayList<Event> recentEvent() {
+            return recentEvent;
         }
 
         @Override

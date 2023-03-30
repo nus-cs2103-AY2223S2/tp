@@ -1,5 +1,7 @@
 package ezschedule.logic.parser;
 
+import java.util.List;
+
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.DeleteCommand;
@@ -18,8 +20,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            List<Index> indexes = ParserUtil.parseMultipleIndex(args);
+            return new DeleteCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

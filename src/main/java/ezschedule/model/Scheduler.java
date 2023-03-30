@@ -27,7 +27,21 @@ public class Scheduler implements ReadOnlyScheduler {
         events = new UniqueEventList();
     }
 
-    public Scheduler() {}
+    /**
+     * Construct an instance of Scheduler object.
+     * Listeners are attached in here.
+     */
+    public Scheduler() {
+
+        // Attach a listener to auto-sort events in chronological order
+        events.addListChangeListener(c -> {
+            while (c.next()) {
+                if (!c.wasPermutated()) {
+                    events.sortByChronologicalOrder();
+                }
+            }
+        });
+    }
 
     /**
      * Creates a Scheduler using the Events in the {@code toBeCopied}
@@ -52,7 +66,6 @@ public class Scheduler implements ReadOnlyScheduler {
      */
     public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
-
         setEvents(newData.getEventList());
     }
 
@@ -93,13 +106,6 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     /**
-     * Sorts all events in the scheduler in chronological order.
-     */
-    public void sortEvent() {
-        events.sortByChronologicalOrder();
-    }
-
-    /**
      * Removes {@code key} from this {@code Scheduler}.
      * {@code key} must exist in the scheduler
      */
@@ -108,7 +114,6 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return events.asUnmodifiableObservableList().size() + " events";

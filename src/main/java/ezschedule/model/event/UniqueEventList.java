@@ -9,6 +9,7 @@ import ezschedule.commons.util.CollectionUtil;
 import ezschedule.model.event.exceptions.DuplicateEventException;
 import ezschedule.model.event.exceptions.EventNotFoundException;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 /**
@@ -43,6 +44,22 @@ public class UniqueEventList implements Iterable<Event> {
     public boolean existsAtTime(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isEventOverlap);
+    }
+
+    /**
+     * Attach {@code listener}, which is called whenever internalList is changed.
+     *
+     * @param listener A ListChangeListener to be called.
+     */
+    public void addListChangeListener(ListChangeListener<Event> listener) {
+        internalList.addListener(listener);
+    }
+
+    /**
+     * Sorts all events in chronological order.
+     */
+    public void sortByChronologicalOrder() {
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -102,13 +119,6 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.setAll(events);
-    }
-
-    /**
-     * Sorts all events in chronological order.
-     */
-    public void sortByChronologicalOrder() {
-        FXCollections.sort(internalList);
     }
 
     /**

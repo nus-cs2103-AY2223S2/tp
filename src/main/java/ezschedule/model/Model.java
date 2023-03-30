@@ -1,9 +1,11 @@
 package ezschedule.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import ezschedule.commons.core.GuiSettings;
+import ezschedule.logic.commands.Command;
 import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 
@@ -15,6 +17,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Event> PREDICATE_SHOW_NO_EVENTS = unused -> false;
 
     /**
      * Returns the user prefs.
@@ -47,14 +54,14 @@ public interface Model {
     void setSchedulerFilePath(Path schedulerFilePath);
 
     /**
-     * Replaces scheduler data with the data in {@code scheduler}.
-     */
-    void setScheduler(ReadOnlyScheduler scheduler);
-
-    /**
      * Returns the Scheduler
      */
     ReadOnlyScheduler getScheduler();
+
+    /**
+     * Replaces scheduler data with the data in {@code scheduler}.
+     */
+    void setScheduler(ReadOnlyScheduler scheduler);
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Scheduler.
@@ -84,11 +91,15 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
-
+    ArrayList<Command> recentCommand();
+    ArrayList<Event> recentEvent();
+    void addRecentEvent(Event event);
+    void clearRecent();
     /**
-     * Sorts all the events in the event list in chronological order.
+     * Returns an unmodifiable view of the event list
      */
-    void sortEvents();
+    ObservableList<Event> getEventList();
+
 
     /**
      * Returns an unmodifiable view of the filtered event list
@@ -96,9 +107,33 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
+     * Returns an unmodifiable view of the upcoming event list
+     */
+    ObservableList<Event> getUpcomingEventList();
+
+    /**
+     * Returns an unmodifiable view of the find command event list
+     */
+    ObservableList<Event> getFindEventList();
+
+    /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the upcoming event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateUpcomingEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the find event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFindEventList(Predicate<Event> predicate);
 }

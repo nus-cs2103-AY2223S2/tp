@@ -39,7 +39,10 @@ public class AddCommand extends Command {
         requireNonNull(event);
         toAdd = event;
     }
-
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -49,8 +52,10 @@ public class AddCommand extends Command {
         } else if (model.hasEventAtTime(toAdd)) {
             throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
         }
-
         model.addEvent(toAdd);
+        model.clearRecent();
+        model.recentCommand().add(this);
+        model.recentEvent().add(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

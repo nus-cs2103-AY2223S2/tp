@@ -1,6 +1,7 @@
 package ezschedule.logic;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.logic.commands.CommandResult;
@@ -33,11 +34,29 @@ public interface Logic {
     ReadOnlyScheduler getScheduler();
 
     /**
+     * Returns an unmodifiable view of the list of events
+     */
+    ObservableList<Event> getEventList();
+
+    /**
      * Returns an unmodifiable view of the filtered list of events
-     *
-     * @return
      */
     ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Returns an unmodifiable view of the upcoming list of events
+     */
+    ObservableList<Event> getUpcomingEventList();
+
+    /**
+     * Returns an unmodifiable view of the find command list of events
+     */
+    ObservableList<Event> getFindEventList();
+
+    /**
+     * Updates the filtered list of events
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
 
     /**
      * Returns the user prefs' scheduler file path.

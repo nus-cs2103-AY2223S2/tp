@@ -118,7 +118,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                + "Using default config properties");
+                    + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -166,6 +166,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting Scheduler " + ezschedule.MainApp.VERSION);
+        primaryStage.setMaximized(true);
         ui.start(primaryStage);
     }
 
