@@ -26,7 +26,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)  
 - [Command Prefixes](#command-prefixes)  
 - [Features](#features)  
-  - [Help](#viewing-help--help) `help`  
+ - [Help](#viewing-help--help) `help`  
  - [Undo](#undoing-previous-command-undo) `undo`  
  - [Redo](#redoing-previous-undo-redo) `redo`  
  - [Add patient](#adding-a-patient-record-add): `add`  
