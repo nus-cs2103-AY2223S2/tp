@@ -233,8 +233,9 @@ public class AutocompleteEngine {
             String matchingArgs = argPrefixes.stream()
                     // Excludes prefix-less arguments like index/keywords.
                     .filter(prefix -> !prefix.isPlaceholder())
-                    // Get only unfilled arguments.
-                    .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                    // Remove filled non-repeating prefixed arguments.
+                    .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                            || prefix.isRepeatable())
                     .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "));
