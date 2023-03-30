@@ -19,12 +19,12 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_needsTrimming_returnsSortCommand() {
+    public void parse_validArgsNeedsTrimming_returnsSortCommand() {
         assertParseSuccess(parser, "    n/      ", new SortCommand(new PersonNameComparator(), "NAME"));
     }
 
     @Test
-    public void parse_validArgs_needsLowercase_returnsSortCommand() {
+    public void parse_validArgsNeedsLowercase_returnsSortCommand() {
         assertParseSuccess(parser, "N/", new SortCommand(new PersonNameComparator(), "NAME"));
     }
 
