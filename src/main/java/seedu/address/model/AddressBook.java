@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other
      * ways to avoid duplication
      * among constructors.
-     */
+     */ 
     {
         patients = new UniquePatientList();
         wards = new UniqueWardList();
@@ -59,9 +59,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPatients(List<Patient> patients) {
         List<Patient> patientsCopy = new ArrayList<>();
         for (Patient patient : patients) {
-            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(),
-                    patient.getWardName(),
-                    patient.getDischarge());
+            Patient toCopy = new Patient(patient.getNric(), patient.getName(),
+                    patient.getStatus(), patient.getWardName(), patient.getDischarge());
             patientsCopy.add(toCopy);
         }
         this.patients.setPatients(patientsCopy);
@@ -214,7 +213,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && patients.equals(((AddressBook) other).patients));
+                && patients.equals(((AddressBook) other).patients));
     }
 
     @Override
