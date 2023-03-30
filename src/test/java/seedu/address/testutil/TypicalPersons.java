@@ -32,7 +32,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEducation("P1")
             .withRemark("She hates bob.")
-            .withModules("Mathematics")
+            .withModules("CS2101")
             .withTags("friends")
             .build();
     public static final Person BENSON = new PersonBuilder()
@@ -42,7 +42,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEducation("P2")
             .withRemark("He can't take beer!")
-            .withModules("English", "Science")
+            .withModules("CS2103T", "CS2030")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
