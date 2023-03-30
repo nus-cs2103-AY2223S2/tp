@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
     public void execute_newModule_success() {
         Module validModule = new ModuleBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getModuleTracker(), new UserPrefs());
         expectedModel.addModule(validModule);
 
         assertCommandSuccess(new AddCommand(validModule), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateModule_throwsCommandException() {
-        Module moduleInList = model.getAddressBook().getModuleList().get(0);
+        Module moduleInList = model.getModuleTracker().getModuleList().get(0);
         assertCommandFailure(new AddCommand(moduleInList), model, AddCommand.MESSAGE_DUPLICATE_MODULE);
     }
 

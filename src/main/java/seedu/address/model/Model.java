@@ -39,20 +39,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleTrackerFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setModuleTrackerFilePath(Path moduleTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code moduleTracker}.
      */
-    void setAddressBook(ReadOnlyModuleTracker addressBook);
+    void setModuleTracker(ReadOnlyModuleTracker moduleTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyModuleTracker getAddressBook();
+    /** Returns the ModuleTracker */
+    ReadOnlyModuleTracker getModuleTracker();
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.

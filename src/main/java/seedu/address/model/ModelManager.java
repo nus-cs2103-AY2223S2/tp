@@ -68,25 +68,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getModuleTrackerFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setModuleTrackerFilePath(Path moduleTrackerFilePath) {
+        requireNonNull(moduleTrackerFilePath);
+        userPrefs.setAddressBookFilePath(moduleTrackerFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyModuleTracker addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setModuleTracker(ReadOnlyModuleTracker moduleTracker) {
+        this.addressBook.resetData(moduleTracker);
     }
 
     @Override
-    public ReadOnlyModuleTracker getAddressBook() {
+    public ReadOnlyModuleTracker getModuleTracker() {
         return addressBook;
     }
 

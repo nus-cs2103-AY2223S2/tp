@@ -100,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getModuleTrackerFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setModuleTrackerFilePath(Path moduleTrackerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyModuleTracker newData) {
+        public void setModuleTracker(ReadOnlyModuleTracker moduleTracker) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyModuleTracker getAddressBook() {
+        public ReadOnlyModuleTracker getModuleTracker() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,7 +192,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyModuleTracker getAddressBook() {
+        public ReadOnlyModuleTracker getModuleTracker() {
             return new ModuleTracker();
         }
     }
