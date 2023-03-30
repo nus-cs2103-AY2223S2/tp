@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.commons.Deadline;
 import trackr.model.commons.Name;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
@@ -67,7 +66,7 @@ class JsonAdaptedMenuItem {
                     ItemCost.class.getSimpleName()));
         }
         if (!ItemCost.isValidCost(itemCost)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(ItemCost.MESSAGE_CONSTRAINTS);
         }
         final ItemCost modelItemCost = new ItemCost(itemCost);
 

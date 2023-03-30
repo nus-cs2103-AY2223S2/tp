@@ -354,11 +354,12 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return supplierList.equals(other.supplierList)
                 && taskList.equals(other.taskList)
+                && menu.equals(other.menu)
                 && orderList.equals(other.orderList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredSuppliers.equals(other.filteredSuppliers)
                 && filteredTasks.equals(other.filteredTasks)
-                && filteredMenuItems.equals(other.filteredTasks)
+                && filteredMenuItems.equals(other.filteredMenuItems)
                 && filteredOrders.equals(other.filteredOrders);
     }
 

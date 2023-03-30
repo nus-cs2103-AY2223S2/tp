@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 public class ItemProfit {
     public static final String MESSAGE_CONSTRAINTS =
             "Profit should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "^([1-9]{0,4})$";
+    public static final String VALIDATION_REGEX = "\\d{1,3}";
     public final String value;
 
     /**
@@ -21,7 +21,6 @@ public class ItemProfit {
         requireNonNull(itemCost);
         this.value = Float.toString(itemPrice.getValue() - itemCost.getValue());
         System.out.println(value);
-//        checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
     }
 
     /**

@@ -10,7 +10,7 @@ import static trackr.commons.util.AppUtil.checkArgument;
 public class ItemCost {
     public static final String MESSAGE_CONSTRAINTS =
             "Cost should only contain numbers, and it should be at most 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{1,9}";
+    public static final String VALIDATION_REGEX = "\\d{1,3}";
     public final float value;
 
     /**

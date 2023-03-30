@@ -8,7 +8,6 @@ import static trackr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalSuppliers.AMY;
 
 import java.io.IOException;

@@ -44,7 +44,7 @@ class JsonSerializableTrackr {
     @JsonCreator
     public JsonSerializableTrackr(@JsonProperty("suppliers") List<JsonAdaptedSupplier> suppliers,
                                   @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                                  @JsonProperty("menu items") List<JsonAdaptedMenuItem> menuItems,
+                                  @JsonProperty("menuItems") List<JsonAdaptedMenuItem> menuItems,
                                   @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.suppliers.addAll(suppliers);
         this.tasks.addAll(tasks);
