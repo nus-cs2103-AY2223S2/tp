@@ -1,8 +1,23 @@
 package seedu.connectus.logic.parser;
 
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_HELP;
-
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_COMMAND_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD_T;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CHAT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE_T;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EDIT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EMPTY;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EXIT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_HELP;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_LIST;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_OPEN;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_SEARCH;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_UPCOMING_B;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WHITESPACE;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WITH_WHITESPACE;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.connectus.testutil.Assert.assertThrows;
