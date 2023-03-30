@@ -399,8 +399,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 3a1. MC requests for the correct data.
 
-  * 3a2. User enters new data. 
-  
+  * 3a2. User enters new data.
+
     Steps 3a1-3a2 are repeated until the data entered are correct.
 
     Use case resumes from step 4.
@@ -415,19 +415,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MC requests for details of the information.
 3. User enters the requested details.
 4. MC displays the new doctor’s information..
-   
+
     Use case ends.
 
 **Extensions**
 
-* 3a. MC detects an error in the entered data. 
+* 3a. MC detects an error in the entered data.
 
-  * 3a1. MC requests for the correct data. 
-  
-  * 3a2. User enters new data. 
-  
+  * 3a1. MC requests for the correct data.
+
+  * 3a2. User enters new data.
+
     Steps 3a1-3a2 are repeated until the data entered are correct.
-    
+
     Use case resumes from step 4.
 
 **Use case: UC03 - Retrieve patient’s information**
@@ -443,20 +443,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. MC detects an error in the entered data. 
-  
+* 3a. MC detects an error in the entered data.
+
   * 3a1. MC requests for the correct data.
-  
-  * 3a2. User enters new data. 
-  
-    Steps 3a1-3a2 are repeated until the data entered are correct. 
-  
-    Use case resumes from step 4. 
-  
-* 3b. User request an unassigned patient’s information 
+
+  * 3a2. User enters new data.
+
+    Steps 3a1-3a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 4.
+
+* 3b. User request an unassigned patient’s information
 
   * 3b1. MC denies the request.
-  
+
     Use case ends.
 
 **Use case: UC04 - Delete patient's information**

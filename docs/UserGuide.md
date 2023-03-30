@@ -4,8 +4,8 @@ title: User Guide
 ---
 
 Introducing **MediConnect** - the comprehensive application designed to  **streamline patient management, doctor
-coordination, and hospital billing.** 
-As a centralised platform, **MediConnect** offers healthcare professionals an efficient solution to management and 
+coordination, and hospital billing.**
+As a centralised platform, **MediConnect** offers healthcare professionals an efficient solution to management and
 administrative matters.
 The app simplifies the organization and maintainance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
@@ -63,7 +63,7 @@ _With MediConnect, managing your healthcare practice has never been easier._
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br> 
+* Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but it's specified multiple times, only the last occurrence of the parameter will be taken.<br>
@@ -237,7 +237,7 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | **Delete Appointment** |                                                                                                                                                                                                                                                                                                                                                          |
 | **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                         |
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                  |
-| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   | 
+| **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   |
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
 | **List**               | `list`                                                                                                                                                                                                                                                                                                                                                   |
