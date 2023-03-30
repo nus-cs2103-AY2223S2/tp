@@ -142,6 +142,9 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Sets the initial message upon startup.
+     */
     void setInitialMessage(JsonStorageState initialStorageState) {
         switch (initialStorageState) {
         case VALID:
@@ -151,7 +154,10 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser("Data file not found. Sample data successfully loaded.");
             break;
         case INVALID:
-            resultDisplay.setFeedbackToUser("Data file not in the correct format. No data loaded and data file has been wiped.");
+            resultDisplay.setFeedbackToUser("Data file not in the correct format. "
+                    + "No data loaded and data file has been wiped.");
+            break;
+        default:
             break;
         }
     }
