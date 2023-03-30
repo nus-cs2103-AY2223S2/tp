@@ -30,16 +30,16 @@ public class ListDepartmentHeadcountCommand extends Command {
             + "the department on a given date. \n"
             + "Parameters: "
             + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME "
-            + PREFIX_DATE + "DATE\n"
+            + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DEPARTMENT_NAME + "Human Resources"
+            + PREFIX_DEPARTMENT_NAME + "Human Resources" + " "
             + PREFIX_DATE + "2023-03-04";
 
     public static final String MESSAGE_DEPARTMENT_NOT_EXIST = "The given department does not exist.";
 
     public static final String MESSAGE_INVALID_DATE_FOR_HEADCOUNT = "The given date to get headcount is invalid.";
 
-    public static final String MESSAGE_SUCCESS = "%1$d employees are present on the given date in %2$s department.";
+    public static final String MESSAGE_SUCCESS = "%1$d employees are present on %2$s in %3$s department.";
 
     private LocalDate date;
     private LocalDate currentDate;
@@ -87,7 +87,8 @@ public class ListDepartmentHeadcountCommand extends Command {
         model.updateFilteredLeaveList(l -> l.equals(leaveOnGivenDate));
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getFilteredEmployeeList().size(), departmentName));
+                String.format(MESSAGE_SUCCESS, model.getFilteredEmployeeList().size(),
+                        date.toString(), departmentName));
     }
 
     private boolean isValidDate(LocalDate date, LocalDate currentDate) {
