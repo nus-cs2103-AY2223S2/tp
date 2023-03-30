@@ -93,8 +93,6 @@ public class LogicManager implements Logic {
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
 
-        commandResult = command.execute(model);
-
 
         try {
             storage.saveTracker(model.getTracker());
