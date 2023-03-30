@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="container" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="121.0" prefWidth="594.0" style="-fx-background-color: #170945;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="container" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="121.0" prefWidth="594.0" style="-fx-background-color: #170945;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@StatsInformationListPanel.css" />
     </stylesheets>
