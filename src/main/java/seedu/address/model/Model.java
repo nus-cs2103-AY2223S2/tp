@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
     Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
     /**
@@ -99,7 +100,7 @@ public interface Model {
      */
     void sortAddressBook(int targetField);
 
-    void setSession(Session target, Session editedPerson);
+    void setSession(Session target, Session editedSession);
 
     /**
      * Commits the current state of the address book.

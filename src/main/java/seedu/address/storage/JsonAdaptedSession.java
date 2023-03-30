@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.session.Location;
 import seedu.address.model.session.NameBooleanPair;
+import seedu.address.model.session.NamePayRatePair;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
 
@@ -25,6 +26,7 @@ public class JsonAdaptedSession {
     private final String id;
     private final String location;
     private final List<JsonAdaptedNameBooleanPair> attendanceMap = new ArrayList<>();
+    private final List<JsonAdaptedNamePayRatePair> payRateMap = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedSession} with the given session details.
      */
@@ -52,12 +54,11 @@ public class JsonAdaptedSession {
         name = source.getName();
         startDateTime = source.getStartDateTime();
         endDateTime = source.getEndDateTime();
-        location = source.getLocation();
+        location = source.getLocation().toString();
         id = source.getId();
-        attendanceMap.addAll(source.getMap().stream()
+        attendanceMap.addAll(source.getNameBooleanMap().stream()
                 .map(JsonAdaptedNameBooleanPair::new)
                 .collect(Collectors.toList()));
-
     }
     /**
      * Converts this Jackson-friendly adapted session object into the model's {@code Session} object.
@@ -107,7 +108,13 @@ public class JsonAdaptedSession {
             modelAttendanceList.add(pair);
         }
 
+        ArrayList<NamePayRatePair> modelPayRateList = new ArrayList<>();
+        for (JsonAdaptedNamePayRatePair jsonAdaptedPair: payRateMap) {
+            NamePayRatePair pair = jsonAdaptedPair.toModelType();
+            modelPayRateList.add(pair);
+        }
+
         return new Session(modelStartDateTime, modelEndDateTime,
-                modelName, modelLocation, modelId, modelAttendanceList);
+                modelName, modelLocation, modelId, modelAttendanceList, modelPayRateList);
     }
 }
