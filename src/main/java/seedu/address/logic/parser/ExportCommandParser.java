@@ -18,7 +18,7 @@ public class ExportCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
 
-    public ExportCommand parse(String args, Storage storage) throws ParseException  {
+    public ExportCommand parse(String args, Storage storage) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE);
         boolean isOverwritingExistingFile = false;
 

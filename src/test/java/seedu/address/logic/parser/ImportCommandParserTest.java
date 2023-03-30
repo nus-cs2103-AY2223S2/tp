@@ -24,7 +24,7 @@ public class ImportCommandParserTest {
     private static final String MODULE_1 = "CS2040S";
     private static final String MODULE_2 = "EG2310";
 
-    ImportCommandParser parser = new ImportCommandParser();
+    private ImportCommandParser parser = new ImportCommandParser();
 
     private Storage storage;
 

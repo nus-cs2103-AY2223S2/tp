@@ -1,38 +1,37 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.parser.ArchiveParser;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.tag.Tag;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.Tracker;
 import seedu.address.storage.JsonTrackerStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
+import seedu.address.testutil.ModelStub;
+import seedu.address.testutil.StorageStub;
 import seedu.address.testutil.TypicalModules;
-import seedu.address.testutil.TypicalTags;
+
 
 public class ExportCommandTest {
     private static final String TEST_FILE = "test.json";
+    @TempDir
+    public Path testFolder;
+    private Model model = new ModelStubWithTracker();
 
-    Storage storage;
-
-    @BeforeEach
-    public void setUp() {
-        JsonTrackerStorage archiveStorage = new JsonTrackerStorage(Paths.get("lt"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(Paths.get("prefs"));
-        storage = new StorageManager(archiveStorage, userPrefsStorage);
-    }
+    private Storage storage = new StorageStubForExport(Paths.get(TEST_FILE));
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
@@ -51,5 +50,63 @@ public class ExportCommandTest {
         assertTrue(exportCommand.equals(exportCommandCopy));
         assertFalse(exportCommand.equals(1));
         assertFalse(exportCommand.equals(exportCommandOverwrite));
+    }
+
+    @Test
+    public void execute_fileAlreadyExist_throwCommandException() {
+        ExportCommand exportCommand = new ExportCommand("letracker.json", storage, false);
+        assertThrows(CommandException.class, () -> exportCommand.execute(model));
+    }
+
+    @Test
+    public void execute_correctCommand_successful() throws CommandException, DataConversionException, IOException {
+        Path savePath = testFolder.resolve(TEST_FILE);
+        Storage storage = new StorageStubForExport(savePath);
+        ExportCommand exportCommand = new ExportCommand("Random.json", storage, false);
+        exportCommand.execute(model);
+        assertEquals(storage.readTracker().get(), model.getTracker());
+    }
+
+
+    /**
+     * A {@code Model} stub that contains a tracker.
+     */
+    private class ModelStubWithTracker extends ModelStub {
+        private Tracker tracker;
+
+        public ModelStubWithTracker() {
+            this.tracker = TypicalModules.getTypicalTracker();
+        }
+
+        @Override
+        public Tracker getTracker() {
+            return tracker;
+        }
+    }
+
+
+    /**
+     * A {@code Storage} stub that is used to test export command.
+     */
+
+    private class StorageStubForExport extends StorageStub {
+        private final Path archivePath;
+        public StorageStubForExport(Path archivePath) {
+            this.archivePath = archivePath;
+        }
+
+        public void saveTracker(ReadOnlyTracker tracker, Path filePath) {
+
+            try {
+                new JsonTrackerStorage(archivePath)
+                        .saveTracker(tracker, archivePath);
+            } catch (IOException ioe) {
+                throw new AssertionError("There should not be an error writing to the file.", ioe);
+            }
+        }
+
+        public Optional<ReadOnlyTracker> readTracker() {
+            return Optional.of(TypicalModules.getTypicalTracker());
+        }
     }
 }

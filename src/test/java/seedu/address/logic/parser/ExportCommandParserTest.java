@@ -17,7 +17,7 @@ import seedu.address.storage.StorageManager;
 
 public class ExportCommandParserTest {
     private static final String TEST_FILE = "test.json";
-    ExportCommandParser parser = new ExportCommandParser();
+    private ExportCommandParser parser = new ExportCommandParser();
 
     private Storage storage;
 
