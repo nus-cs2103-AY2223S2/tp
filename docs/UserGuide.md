@@ -573,7 +573,7 @@ will be done on a case-by-case basis.
 Example:
 
 * Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
-  suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
+  suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<available_date_start,available_date_end>` as
   these fields have not been filled.
 * Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR, ADVANCED dr/2023-06-03,2023-06-17`
 , FriendlyLink will not suggest anything by default as all possible fields have at least one value.
