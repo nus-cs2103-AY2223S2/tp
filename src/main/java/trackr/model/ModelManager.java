@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -47,9 +48,9 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredSuppliers = new FilteredList<>(this.supplierList.getItemList());
-        filteredTasks = new FilteredList<>(this.taskList.getItemList());
-        filteredOrders = new FilteredList<>(this.orderList.getItemList());
+        filteredSuppliers = new FilteredList<Supplier>(this.supplierList.getItemList());
+        filteredTasks = new FilteredList<Task>(this.taskList.getItemList());
+        filteredOrders = new FilteredList<Order>(this.orderList.getItemList());
     }
 
     public ModelManager() {
@@ -234,7 +235,6 @@ public class ModelManager implements Model {
         }
     }
 
-
     //=========== AddressBook - Supplier ==============================================================================
 
     @Override
@@ -259,6 +259,17 @@ public class ModelManager implements Model {
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+
+    /**
+     * Update the sorted task list.
+     * @param comparator The comparator used to sort the tasks.
+     */
+    @Override
+    public void sortFilteredTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        taskList.sortItems(comparator);
+    }
+
 
     //=========== Filtered Task List Accessors ===============================================================
 
