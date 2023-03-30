@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide:\n" + USERGUIDE_URL;
 
-    public static final String USER_GUIDE = "Greeting! There is a quick and easy guide for you to use the MATHUTORING. "
+    public static final String USER_GUIDE = "Greetings! Here's a quick and easy guide for you to use MATHUTORING. "
             + "Below are the functions supported.\n"
             + "Commands with parameter(s):\n"
             + "1. add: Adds a student to the student list. \n"
