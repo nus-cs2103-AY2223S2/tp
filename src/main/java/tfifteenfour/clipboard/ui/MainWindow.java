@@ -1,5 +1,6 @@
 package tfifteenfour.clipboard.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -42,6 +43,7 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
@@ -73,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static Image clippySuccess;
     private static Image clippyFailure;
+    private static ArrayList<HelpWindow> helpWindows = new ArrayList<>();
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -82,7 +85,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private CourseListPanel courseListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -141,8 +143,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
 
         initClippy();
 
@@ -239,15 +239,47 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the help window with help specific to the current page the user
+     * is currently on.
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        String message = "";
+        PageType currentPage = logic.getModel().getCurrentSelection().getCurrentPage();
+
+        switch (currentPage) {
+        case COURSE_PAGE:
+            message = HelpWindowMessages.COURSE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case GROUP_PAGE:
+            message = HelpWindowMessages.GROUP_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case STUDENT_PAGE:
+            message = HelpWindowMessages.STUDENT_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case SESSION_PAGE:
+            message = HelpWindowMessages.SESSION_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case TASK_PAGE:
+            message = HelpWindowMessages.TASK_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case SESSION_STUDENT_PAGE:
+            message = HelpWindowMessages.ATTENDANCE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        case TASK_STUDENT_PAGE:
+            message = HelpWindowMessages.GRADES_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
+            break;
+        default:
+            break;
         }
+
+        if (!helpWindows.isEmpty()) {
+            HelpWindow prevHelpWindow = helpWindows.remove(0);
+            prevHelpWindow.hide();
+        }
+        HelpWindow currHelpWindow = new HelpWindow(message);
+        helpWindows.add(currHelpWindow);
+        currHelpWindow.show();
     }
 
     /**
@@ -258,7 +290,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
+        helpWindows.get(0).hide();
         primaryStage.hide();
     }
 
