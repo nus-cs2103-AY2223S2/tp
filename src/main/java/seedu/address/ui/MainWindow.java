@@ -91,10 +91,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-
     private Consumer<DeliveryJob> completeDeliveryJobHandler = (job) -> {
         try {
-            logic.execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
+            CommandResult commandResult = logic
+                    .execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             refreshDeliveryJobDetailPane();
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
@@ -107,11 +108,23 @@ public class MainWindow extends UiPart<Stage> {
         if (addDeliveryJobWindow != null) {
             addDeliveryJobWindow.getRoot().close();
         }
-        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, () -> {
+        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, commandResult -> {
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             refreshDeliveryJobDetailPane();
         });
         addDeliveryJobWindow.show();
         addDeliveryJobWindow.fillInnerParts();
+    };
+
+    private Consumer<DeliveryJob> deleteDeliveryJobHandler = job -> {
+        try {
+            deliveryJobListPanel.selectAvailable();
+            CommandResult commandResult = logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            refreshDeliveryJobDetailPane();
+        } catch (ParseException | CommandException | FileNotFoundException e) {
+            logger.warning(e.getMessage());
+        }
     };
 
     private BiConsumer<Integer, DeliveryJob> selectDeliveryJobHandler = (idx, job) -> {
@@ -124,32 +137,26 @@ public class MainWindow extends UiPart<Stage> {
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
             detailPane.setCompleteHandler(completeDeliveryJobHandler);
             detailPane.setEditHandler(editDeliveryJobHandler);
+            detailPane.setDeleteHandler(deleteDeliveryJobHandler);
             return;
         }
 
         emptyDeliveryJobListPanelPlaceholder.setVisible(true);
     };
 
-    private Consumer<DeliveryJob> deleteDeliveryJobHandler = job -> {
-        try {
-            deliveryJobListPanel.selectPrevious();
-            logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
-        } catch (ParseException | CommandException | FileNotFoundException e) {
-            logger.warning(e.getMessage());
-        }
-    };
-
     private BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> sortDeliveryJobHandler = (by, asc) -> {
-        switch (by) {
-        case COM:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyDelivered(asc));
-            break;
-        case EARN:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyEarning(asc));
-            break;
-        default:
-            logic.updateSortedDeliveryJobListByComparator(new SortbyDate(asc));
-            break;
+        if (deliveryJobListPanel.size() > 0) {
+            switch (by) {
+            case COM:
+                logic.updateSortedDeliveryJobListByComparator(new SortbyDelivered(asc));
+                break;
+            case EARN:
+                logic.updateSortedDeliveryJobListByComparator(new SortbyEarning(asc));
+                break;
+            default:
+                logic.updateSortedDeliveryJobListByComparator(new SortbyDate(asc));
+                break;
+            }
         }
         return logic.getSortedDeliveryJobList();
     };
@@ -189,7 +196,8 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, this);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {
+        }, this);
 
     }
 
