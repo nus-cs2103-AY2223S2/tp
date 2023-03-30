@@ -4,17 +4,16 @@ title: User Guide
 ---
 # EduMate User Guide
 
-#### Greetings! Are you a _busy NUS Student_ who wants to efficiently manage your **academic** and **social** life?
-We understand that University is a great place for bright minds like you to network and make long-lasting 
-friends. We built this personalised desktop app to help **YOU** do just that!
+#### Are you a _busy NUS student_ who wants to efficiently manage your **academic** and **social** life?
+We acknowledge that for brilliant individuals like yourself, the time you spend in university presents an opportunity to connect with others and establish long-lasting friendships. We have built this [personalised desktop app](#what-is-edumate) to help **YOU** do just that!
 
 ## Using this Guide
-If this is the first time you are using this user guide, we highly recommend you to read the [Overview](#overview) section. Otherwise,
+If you are new to this user guide, we strongly recommend you to read the [Overview](#overview) section. Otherwise,
 
-* If you are running EduMate for the first time, please take a look at our [Quick Start](#quick-start) guide.
-* If you want to learn to use EduMate, do check out our [Commands](#commands) section for a detailed guide.
-* If you want a more hands-on learning experience with EduMate, you start from our[Try-it-out](#try-it-out-recommended) section.
-* If you want to contribute to this project, please refer to our [Developer Guide](https://ay2223s2-cs2103t-w14-2.github.io/tp/DeveloperGuide.html).
+* If you want to run EduMate for the first time, check out our [Quick Start](#quick-start) guide.
+* If you want to learn to use EduMate, check out our [Commands](#commands) section for a detailed guide.
+* If you want a more hands-on learning experience with EduMate, check out our [Try-it-out](#try-it-out-recommended) section.
+* If you want to contribute to this project, check out our [Developer Guide](https://ay2223s2-cs2103t-w14-2.github.io/tp/DeveloperGuide.html).
 
 For **experienced users**, you may refer to the [Command Summary](#command-summary) for a summarised table of all the commands available. 
 ## Table of Contents
@@ -22,12 +21,12 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 2. [**Table of Contents**](#table-of-contents)
 3. [**Overview**](#overview)
     1. [**What is EduMate?**](#what-is-edumate)
-    2. [**Understanding the Symbols and Colours**](#understanding-the-symbols-and-colours)
+    2. [**Understanding the Colours**](#understanding-the-symbols)
     3. [**Glossary**](#glossary)
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out! (Recommended)**](#try-it-out-recommended)
+    3. [**Try it out! (Recommended)**](#try-it-out---recommended-)
     4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
@@ -75,7 +74,7 @@ EduMate is a desktop app designed for NUS students to manage their academic and 
 but has other interesting features as well. It works mostly by commands and can behave like a
 Command Line Interface (CLI).
 
-### Understanding the Symbols and Colours
+### Understanding the Symbols
 
 Here is a breakdown of the different symbols and colours we will use throughout this guide.
 
@@ -126,7 +125,7 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 2. Copy the file to the folder you want to use as the _home folder_ for your EduMate.
 
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eduMate.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   After a few seconds, a GUI resembling the one shown below will appear. Please take note that the application already includes some sample data.<br>
    ![Ui](images/Ui.png)
    <br>
 
@@ -141,15 +140,16 @@ before continuing.
 <br>
 </div>
 
-Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
+Before we dive into exploring the various features of EduMate, please choose whether you prefer a guided or unguided experience.
 
-1. For a guided experience, type `sample 100` in the command box located at the top left of the application. This will create 100 sample contacts in your EduMate to serve as your playground.
-2. If you want to start with a fresh EduMate, type `clear` in the same command box.
-3. Try your hands out whilst referring to [Commands](#commands)
+1. For a guided experience, please enter `sample 100` in the command box located at the top left of the application. This will generate 100 sample contacts in your EduMate, which you can use to familiarize yourself with the application's functionalities.
+2. If you would like to start with a fresh EduMate, simply type `clear` in the same command box.
+
+As you navigate through the application, we encourage you to experiment with different [commands](#commands) to further enhance your understanding.
 
 ### Getting help
 
-Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command...
+If you require assistance while using EduMate, you may find the solution in the [Commands](#commands) section of this User Guide. Alternatively, you can type in the `help` command to access a quick reference guide.
 
 If you need more assistance, do not hesitate to head over to our
 [Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *customer-assistance-required*.
@@ -184,7 +184,7 @@ A member of our core team will attend to you as soon as possible.
 --------------------------------------------------------------------------------------------------------------------
 ## Set Your Own Profile
 
-After getting comfortable trying EduMate, you are now ready to start personalising it!
+Once you have familiarized yourself with EduMate, you are now ready to begin customizing the application to suit your preferences and needs!
 
 **Step 1.** Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
 (if you have tried out `sample` from earlier) <br>
@@ -233,7 +233,7 @@ E.g `tag g/SoC g/Sailing` <br>
 
 ## Commands
 
-`EduMate` is an application that works with commands. Commands can be executed to carry out certain functionalities of the application.
+EduMate is a command-driven application, which means that its various functionalities can be accessed by executing specific commands.
 
 ### How to interpret the command format
 
@@ -284,13 +284,13 @@ E.g `tag g/SoC g/Sailing` <br>
 
 [Return to the top](#table-of-contents)
 
-## Arguments
+## Attributes
 
-A contact's attributes can be categorised into two types: _single-valued_ and _multi-valued_. 
+Contacts in EduMate have two types of attributes: single-valued and multi-valued.
 
-A contact may have only one of each single-valued attribute, such as name, phone number, email address, Telegram handle, and home address. 
+Single-valued attributes for each contact can only have one value. Examples of single-valued attributes include a contact's name, phone number, email address, Telegram handle, and home address.
 
-Conversely, a contact may have any number of multi-valued attributes, such as groups and modules.
+Multi-valued attributes, on the other hand, can have multiple values associated with a single contact. Examples of multi-valued attributes include the groups and modules that a contact belongs to.
 
 ### Name
 
@@ -354,16 +354,24 @@ Example: `m/CS1234 mon 12 13`
 
 ### Add a contact `add`
 
-Adds a contact to the EduMate.
+You can easily add a new contact to EduMate using the `add` command. This allows you to quickly store their information for future reference, such as their name, phone number, email address, Telegram handle, and home address. Once added, you can also assign them to groups or modules using the `tag` command.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
+Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+* `add n/NAME [z/FIELD]…​`: Adds a contact with the given details. Notice that `NAME` is a compulsory field.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `add n/Wen Qing`: Adds a contact with the following details. Note the default values for each attribute:
+  * Name: `Wen Qing`
+  * Phone number: `00000000`
+  * Address: `NUS`
+  * Email: `wenqing@gmail.com`
+  * Telegram handle: `@wenqing`
+  * Groups:
+  * Modules:
 * `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
     * Name: `Wen Li`
     * Phone number: `89229358`
@@ -375,7 +383,7 @@ Examples:
 
 ### View a contact's profile `view`
 
-The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
+You can use the `view` command to retrieve and view either your own information or a contact's information. This will display the relevant details on the [Profile Panel](#profile-panel).
 
 <div markdown="block" class="alert alert-info">
 
@@ -400,7 +408,7 @@ Examples:
 
 ### Edit a contact's details `edit`
 
-Edits the profile of a contact. You can choose to edit as many fields as you'd like.
+With EduMate's `edit` command, you can easily update the profile of a contact. You have the flexibility to modify as many fields as required, ensuring that your contact's information is always up-to-date.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
@@ -417,21 +425,21 @@ Examples:
 
 ### Delete a contact `delete`
 
-Removes a contact from EduMate.
+If you no longer need a contact in EduMate, you can remove them using the `delete` command.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `delete INDEX`: Deletes the contact at index `INDEX`.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+Example:
 * `delete 5`: Removes the fifth contact from EduMate.
 
 ### Add a label to a contact `tag`
 
-Adds module tag(s) or group tag(s)to an existing contact.
+With Edumate's `tag` command, you can tag your existing contacts with groups and modules using this command. You can also assign lessons to the contacts to indicate their availability during specific time periods. This will enable EduMate to suggest more suitable meet up times when using the `meet` command.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `tag CONTACT_INDEX m/MODULE_TAG`
@@ -451,7 +459,7 @@ Examples:
 
 ### Remove a label from a contact `untag`
 
-Removes a module tag from an existing contact.
+With EduMate's `untag` command, you can remove groups or modules from your existing contacts. Additionally, you can unassign lessons from a contact to indicate their availability during that specific period of time. This will help EduMate to suggest more appropriate meet up times when using the meet command.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `untag CONTACT_INDEX m/MODULE_TAG`
@@ -472,25 +480,17 @@ Examples:
 
 ## Advanced Commands
 
-Once you have learned the basics of EduMate, let's go through our more sophisticated features. Remember that you can run `sample 100` to have a more guided experience through this section.
+Now that you have become familiar with the basics of EduMate, it's time to explore its more advanced features. For a more guided experience, you can run the `sample 100` command to navigate through this section.
 
 ### Search Commands
 
-The search commands allow you to easily navigate and manage your EduMate. Instead of scrolling through the dozens of contacts, you can use these commands to customise how EduMate displays them.
+The search commands in EduMate help you to efficiently navigate and manage your contacts. Instead of manually searching through a long list of contacts, these commands allow you to customise how EduMate displays them, making the process much more efficient.
 
 #### Filter contacts by keywords `find`
 
-Finds persons whose specified fields contain any of the given keywords. If multiple prefixes are used, persons found must contain at least one keyword from each specified field.
+EduMate's `find` command helps you quickly locate specific contacts by searching for keywords within their fields. This tool allows you to generate a list of contacts that meet certain criteria and manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria. The command can also be used with multiple prefixes to refine your search. The results returned will contain at least one keyword from each specified field. Use the `find` command to save time and easily find the information you need.
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you want to find a specific person and know specific information about that person
-* you want to obtain a list of people that you want to use the other commands on
-
-</div>
-
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `find z/KEYWORD [MORE_KEYWORDS]… z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
@@ -505,7 +505,6 @@ What you should see:<br>
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-* When multiple fields are specified, persons matching at least one keyword from each field will be returned (i.e. AND search) e.g. n/Hans Bo m/CS2103 wll return Hans Gruber who takes CS2103 but not Bo Yang who does not take CS2103
 
 </div>
 
@@ -513,20 +512,10 @@ Examples:
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
-* `find n/Edward p/9093`: Returns all persons with name Edward and phone numbers starting with 9093
-* `find n/Edward Richards m/CS2103T CS2109S` Returns all persons with name Edward and module CS2103T, or name Edward and module CS2109S, or name Richards and module CS2103T, or name Richards and module CS2109S
 
 #### Arrange contacts based on criteria `sort`
 
-Sorts persons based on certain criteria. For example, you can sort the contacts by name (in alphabetical order).
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you want to know who shares the most number of modules with you
-* you want to know who is likely going to be a close friend this semester
-
-</div>
+With EduMate's `sort` command, you have the power to organize your contacts in a way that's most helpful for you. Whether you want to find out who shares the most modules with you or who's likely to become a close friend this semester, the `sort` command can help you out. By simply typing `sort` followed by the relevant criteria, you can sort your contacts by name, the number of shared modules, or any other specified field. This feature can help you identify potential study or social groups within your contacts, making it easier to connect and collaborate with others.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `sort`: Sorts the contacts by their indices.
@@ -559,7 +548,7 @@ Examples:
 
 ### Storage Commands
 
-The storage commands allow you to save and load your EduMate data into a file.
+The storage commands allow you to save and load your EduMate data into a file. This means you can easily backup your data and access it from different devices or share it with others.
 
 <div markdown="block" class="alert alert-info">
 
@@ -572,7 +561,7 @@ The storage commands allow you to save and load your EduMate data into a file.
 
 #### Save a copy of EduMate `save`
 
-Saves the EduMate into a file with a name of your choice.
+Using the `save` command in EduMate, you can easily save your data into a file with a name of your choice. This allows you to back up your data and access it later or share it with others.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
@@ -586,7 +575,7 @@ Examples:
 
 #### Load a copy of EduMate `load`
 
-Loads the save data of an EduMate from a file.
+Using the `load` command in EduMate, you can easily load a previously saved data file into the application. This allows you to access your data from different devices or recover it in case of data loss.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
@@ -600,21 +589,10 @@ Examples:
 
 ### Meet Commands
 
-#### Suggest places to meet with your contacts `meet`
-
-Suggests a meetup location **and** timing that is optimal for you and your friend group to meetup for
-social, academic or other general meetings.
-
-<div markdown="block" class="alert alert-info">
-
-You can use this command if:
-* You want to schedule a meetup for academic, social or other general purposes.
-* You find it difficult to agree on a timing and location that is suitable for all your friends to meet and you require a recommendation.
-
-</div>
+The `meet` command in EduMate is used to suggest suitable meet-up locations and times for users and their contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialized commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
+* `meet 12 32 8 4` : Recommends a meeting time and location for a potential meet up with friends with the following indices `12, 32, 4, 8`.
 * `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
 
@@ -639,7 +617,7 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 **A**: Yes you may! Refer to [Editing a Contact's Details](#edit-a-contacts-details-edit)
 
 **Q**: How is `EduMate` better than Microsoft Outlook or uWave?
-**A**: We have features that Microsoft Outlook or uWave don't have but we think should be integrated into these platforms, like the [meetup recommenders](#meet-commands)
+**A**: We have features that Microsoft Outlook or uWave don't have but we think should be integrated into these platforms, like the [meet up recommenders](#meet-commands)
 and several search functions like [sort](#arrange-contacts-based-on-criteria-sort) and [find](#filter-contacts-by-keywords-find). It is also open-source so student developers can 
 suggest new features and it is easily extensible!
 
@@ -668,11 +646,11 @@ suggest new features and it is easily extensible!
 | **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
 | **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
 | **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
-| **Filter contacts**  | `find z/FIELD`                                                                         | `find n/Tan`, `find m/CS1231`                               |
+| **Filter contacts**  | `find z/FIELD... z/FIELD...`                                                           | `find n/Tan`, `find m/CS1231`                               |
 | **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                           |
 | **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                               |
 | **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                               |
-| **Suggest meetups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                  |
+| **Suggest meet ups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                  |
 
 
 ## Troubleshooting
