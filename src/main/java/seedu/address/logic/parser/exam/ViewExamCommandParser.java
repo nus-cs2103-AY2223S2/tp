@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exam.ViewExamCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -86,6 +87,9 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
+            if (!done.equals("done") && !done.equals("not done")) {
+                throw new ParseException(Messages.MESSAGE_INVALID_DONE_INPUT);
+            }
             donePredicate = new ExamDonePredicate(done);
         }
 
