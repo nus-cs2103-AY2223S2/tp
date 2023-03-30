@@ -15,6 +15,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Filters and lists all tutees in address book whose field matches
  * any of the argument keywords. Keyword matching is case insensitive.
@@ -39,7 +42,7 @@ public class FilterCommand extends Command {
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "98765432"
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDRESS + "311, Clementi "
             + PREFIX_SUBJECT + "Math "
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
@@ -80,29 +83,29 @@ public class FilterCommand extends Command {
      * corresponding field value of the tutee.
      */
     public static class FilterTuteeDescription {
-        public String nameToFilter;
+        public List<String> nameToFilter;
         public String phoneToFilter;
         public String emailToFilter;
-        public String addressToFilter;
+        public List<String> addressToFilter;
         public String subjectToFilter;
         public String scheduleToFilter;
         public String startTimeToFilter;
         public String endTimeToFilter;
-        public String tagToFilter;
+        public List<String> tagToFilter;
 
         /**
          * FilterTuteeDescription constructor.
          */
         public FilterTuteeDescription() {
-            this.nameToFilter = "";
+            this.nameToFilter = Collections.emptyList();
             this.phoneToFilter = "";
             this.emailToFilter = "";
-            this.addressToFilter = "";
+            this.addressToFilter = Collections.emptyList();
             this.subjectToFilter = "";
             this.scheduleToFilter = "";
             this.startTimeToFilter = "";
             this.endTimeToFilter = "";
-            this.tagToFilter = "";
+            this.tagToFilter = Collections.emptyList();
         }
 
         /**
@@ -116,11 +119,11 @@ public class FilterCommand extends Command {
                     && tagToFilter.isEmpty();
         }
 
-        public void setNameToFilter(String name) {
+        public void setNameToFilter(List<String> name) {
             nameToFilter = name;
         }
 
-        public String getNameToFilter() {
+        public List<String> getNameToFilter() {
             return nameToFilter;
         }
 
@@ -140,11 +143,11 @@ public class FilterCommand extends Command {
             return emailToFilter;
         }
 
-        public void setAddressToFilter(String address) {
+        public void setAddressToFilter(List<String> address) {
             addressToFilter = address;
         }
 
-        public String getAddressToFilter() {
+        public List<String> getAddressToFilter() {
             return addressToFilter;
         }
 
@@ -180,12 +183,38 @@ public class FilterCommand extends Command {
             return endTimeToFilter;
         }
 
-        public void setTagToFilter(String tag) {
+        public void setTagToFilter(List<String> tag) {
             tagToFilter = tag;
         }
 
-        public String getTagToFilter() {
+        public List<String> getTagToFilter() {
             return tagToFilter;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof FilterTuteeDescription)) {
+                return false;
+            }
+
+            // state check
+            FilterTuteeDescription f = (FilterTuteeDescription) other;
+
+            return getNameToFilter().equals(f.getNameToFilter())
+                    && getPhoneToFilter().equals(f.getPhoneToFilter())
+                    && getEmailToFilter().equals(f.getEmailToFilter())
+                    && getAddressToFilter().equals(f.getAddressToFilter())
+                    && getSubjectToFilter().equals(f.getSubjectToFilter())
+                    && getScheduleToFilter().equals(f.getScheduleToFilter())
+                    && getStartTimeToFilter().equals(f.getStartTimeToFilter())
+                    && getEndTimeToFilter().equals(f.getEndTimeToFilter())
+                    && getTagToFilter().equals(f.getTagToFilter());
         }
     }
 }
