@@ -160,7 +160,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `TemporaryMemory`. It extends `SpecialisedStackForMemory`, which implements `StackWithStorage`.
 `TemporaryMemory` only stores the 10 most recent actions performed by the user, when the app is open. This means that when the app is closed and open again, the user will not be able to perform an undo or redo.
-`TemporaryMemory` can be viewed as a stack which supports additional operations. 
+`TemporaryMemory` can be viewed as a stack which supports additional operations.
 
 1. `TemporaryMemory` only contains 10 saved iterations of the file. Therefore, older iterations are deleted.
 2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent iterations of the file are still stored in a temporary storage.
@@ -172,7 +172,7 @@ The proposed undo/redo mechanism is facilitated by `TemporaryMemory`. It extends
 * `TemporaryMemory#undo()` — Restores the previous Dengue Hotspot Tracker state from its history. This pops an item from the primary memory stack represented by a `Deque` and pushes it into the auxiliary storage stack implemented with a `Stack`.
 * `TemporaryMemory#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history. This pushes an item from the auxiliary `Stack` back into the primary memory stack.
 * `TemporaryMemory#loadCurrent()` — Peeks into the top element of the stack and loads it.
-These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`. 
+These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`.
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `DengueHotspotTracker` will be initialized with the initial Dengue Hotspot Tracker state, and the `TemporaryMemory` stack implementation contains only the current Dengue Hotspot Tracker state.

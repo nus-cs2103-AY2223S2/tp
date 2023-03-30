@@ -38,10 +38,10 @@ open the help window.<br>
    * `clear` : Deletes all cases.
 
    * `exit` : Exits the app.
-   
+
    * `undo 5` : Undo 5 previous actions.
-   
-   * `redo 5` : Redo 5 previous actions. 
+
+   * `redo 5` : Redo 5 previous actions.
 
 
 
