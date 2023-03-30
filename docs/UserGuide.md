@@ -36,7 +36,7 @@ their patient management tasks and improve overall efficiency.
     - [Filter patients](#filter-patients-by-attribute-find): `find`
     - [Backup patient records](#backup-patient-records-backup): `backup`
     - [Load backups](#load-data-load): `load`
-    - [View backups](#view-backup-data-viewbackup): `viewbackup`
+    - [View backups](#view-backup-data-viewbackup): `viewbackups`
     - [Delete backup](#delete-backup-data-deletebackup): `deletebackup`
     - [Clear all data](#clearing-all-data-clear): `clear`
     - [Light mode](#switch-to-light-mode-light): `light`
@@ -326,7 +326,7 @@ Format: `viewbackups`
 
 ![Viewbackup](images/command_result/Viewbackup.png)
 
-Above is the execution result of input `viewbackup`.
+Above is the execution result of input `viewbackups`.
 
 ### Deleting backup data: `deletebackup`
 
