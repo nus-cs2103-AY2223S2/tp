@@ -52,12 +52,10 @@ public class Birthday {
      */
     public boolean isUpcoming() {
         LocalDate today = LocalDate.now();
-        // Check if birthday is in this or upcoming month
-
-        if (value.getMonthValue() == today.getMonthValue() || value.getMonthValue() == today.getMonthValue() + 1) {
+        LocalDate twoMonthsLater = today.plusMonths(2);
+        if (value.isAfter(today) && value.isBefore(twoMonthsLater)) {
             return true;
         }
-
         return false;
     }
 
