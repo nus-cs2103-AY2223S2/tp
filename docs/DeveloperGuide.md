@@ -286,7 +286,7 @@ A collection of classes used by multiple other components located in the `codoc.
 
 [Scroll back to top](#table-of-contents)
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/Ui.java)
 
@@ -307,13 +307,13 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
+**How the `Logic` component works:**
 1. When `Logic` is called upon to execute a command, it uses the `CodocParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
