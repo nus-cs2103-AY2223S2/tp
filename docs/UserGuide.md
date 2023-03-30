@@ -408,6 +408,8 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 #### `list` - List all appointments
 
+Resets the view of the appointment pane to display all the appointments. Useful command after using the find command.
+
 ```text
 appointment list
 ```
