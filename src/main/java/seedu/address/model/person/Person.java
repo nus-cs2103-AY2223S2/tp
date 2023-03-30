@@ -47,6 +47,19 @@ public class Person {
         this(genPersonId(name, phone), name, phone, email, address, tags);
     }
 
+    /**
+     * Empty initialisation for ImportDeliveryJobCommand.
+     */
+    public Person() {
+        this.personId = "null";
+        this.name = null;
+        this.phone = null;
+        this.email = null;
+        this.address = null;
+        this.tags.add(null);
+    }
+
+
     private static String genPersonId(Name name, Phone phone) {
         requireAllNonNull(name, phone);
         String prefix = name.fullName.toUpperCase();
