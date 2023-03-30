@@ -19,7 +19,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -38,7 +38,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedCca> ccas = new ArrayList<>();
-    private final List<JsonAdaptedCcaPosition> ccaPositions = new ArrayList<>();
+    private final List<JsonAdaptedMajor> majors = new ArrayList<>();
     private JsonAdaptedBirthday birthday = new JsonAdaptedBirthday();
 
     /**
@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
             @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
             @JsonProperty("modules") List<JsonAdaptedModule> modules,
             @JsonProperty("ccas") List<JsonAdaptedCca> ccas,
-            @JsonProperty("ccaPositions") List<JsonAdaptedCcaPosition> ccaPositions,
+            @JsonProperty("majors") List<JsonAdaptedMajor> majors,
             @JsonProperty("birthday") JsonAdaptedBirthday birthday) {
         this.name = name;
         if (phone != null) {
@@ -75,8 +75,8 @@ class JsonAdaptedPerson {
         if (ccas != null) {
             this.ccas.addAll(ccas);
         }
-        if (ccaPositions != null) {
-            this.ccaPositions.addAll(ccaPositions);
+        if (majors != null) {
+            this.majors.addAll(majors);
         }
         if (birthday != null) {
             this.birthday = birthday;
@@ -100,8 +100,8 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedCca::new)
                 .collect(Collectors.toList()));
 
-        ccaPositions.addAll(source.getCcaPositions().stream()
-                .map(JsonAdaptedCcaPosition::new)
+        majors.addAll(source.getMajors().stream()
+                .map(JsonAdaptedMajor::new)
                 .collect(Collectors.toList()));
 
         if (source.getPhone().isPresent()) {
@@ -148,9 +148,9 @@ class JsonAdaptedPerson {
             personCcas.add(cca.toModelType());
         }
 
-        final List<CcaPosition> personCcaPositions = new ArrayList<>();
-        for (JsonAdaptedCcaPosition ccaPosition : ccaPositions) {
-            personCcaPositions.add(ccaPosition.toModelType());
+        final List<Major> personMajors = new ArrayList<>();
+        for (JsonAdaptedMajor major : majors) {
+            personMajors.add(major.toModelType());
         }
 
         if (name == null) {
@@ -218,10 +218,10 @@ class JsonAdaptedPerson {
             }
         }
 
-        if (ccaPositions != null) {
-            Set<CcaPosition> modelCcaPositions = new HashSet<>(personCcaPositions);
-            if (!modelCcaPositions.isEmpty()) {
-                p.setCcaPositions(modelCcaPositions);
+        if (majors != null) {
+            Set<Major> modelMajors = new HashSet<>(personMajors);
+            if (!modelMajors.isEmpty()) {
+                p.setMajors(modelMajors);
             }
         }
         return p;

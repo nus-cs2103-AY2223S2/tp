@@ -5,8 +5,8 @@ import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -70,8 +70,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
                 .ifPresent(editPersonDescriptor::setModules);
         ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(editPersonDescriptor::setCcas);
-        ParserUtil.parseCcaPositionsOptional(argMultimap.getAllValues(PREFIX_CCA_POSITION))
-                .ifPresent(editPersonDescriptor::setCcaPositions);
+        ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR))
+                .ifPresent(editPersonDescriptor::setMajors);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

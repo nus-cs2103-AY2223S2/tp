@@ -4,8 +4,8 @@ import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,7 +36,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         args = " " + args;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_BIRTHDAY, PREFIX_MODULE, PREFIX_SOCMED_INSTAGRAM,
-                PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
+                PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_MAJOR);
 
         FieldsContainKeywordsPredicate predicate = new FieldsContainKeywordsPredicate();
 
@@ -125,16 +125,16 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (ccas.size() > 0) {
             predicate.setCcas(ccas);
         }
-        Set<String> ccaPositions = new HashSet<>();
-        for (String s : argMultimap.getAllValues(PREFIX_CCA_POSITION)) {
+        Set<String> majors = new HashSet<>();
+        for (String s : argMultimap.getAllValues(PREFIX_MAJOR)) {
             if (s.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
             } else {
-                ccaPositions.add(s);
+                majors.add(s);
             }
         }
-        if (ccaPositions.size() > 0) {
-            predicate.setCcaPositions(ccaPositions);
+        if (majors.size() > 0) {
+            predicate.setMajors(majors);
         }
 
         if (!predicate.isFieldKeywordPresent()) {
