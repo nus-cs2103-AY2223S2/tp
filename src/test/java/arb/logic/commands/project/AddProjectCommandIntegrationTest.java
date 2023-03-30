@@ -4,7 +4,8 @@ import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.testutil.TypicalProjects.getTypicalAddressBook;
 
-import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ public class AddProjectCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject, Optional.empty()), ListType.CLIENT,
+        assertCommandSuccess(new AddProjectCommand(validProject, Arrays.asList()), ListType.CLIENT,
                 ListType.PROJECT, model, String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject),
                 expectedModel);
     }
@@ -47,7 +48,7 @@ public class AddProjectCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject, Optional.empty()), ListType.PROJECT,
+        assertCommandSuccess(new AddProjectCommand(validProject, Arrays.asList()), ListType.PROJECT,
                 ListType.PROJECT, model, String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject),
                 expectedModel);
     }
@@ -59,7 +60,7 @@ public class AddProjectCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addProject(validProject);
 
-        assertCommandSuccess(new AddProjectCommand(validProject, Optional.empty()), ListType.TAG,
+        assertCommandSuccess(new AddProjectCommand(validProject, Arrays.asList()), ListType.TAG,
                 ListType.PROJECT, model, String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject),
                 expectedModel);
     }
@@ -67,7 +68,7 @@ public class AddProjectCommandIntegrationTest {
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project projectInList = model.getAddressBook().getProjectList().get(0);
-        assertCommandFailure(new AddProjectCommand(projectInList, Optional.empty()), ListType.CLIENT, model,
+        assertCommandFailure(new AddProjectCommand(projectInList, Arrays.asList()), ListType.CLIENT, model,
                 AddProjectCommand.MESSAGE_DUPLICATE_PROJECT);
     }
 
@@ -75,8 +76,9 @@ public class AddProjectCommandIntegrationTest {
     public void execute_linkedClientNotFoundInAddressbook_throwsCommandException() {
         Project project = new ProjectBuilder().build();
         String notFoundInAddressbookName = "not";
-        assertCommandFailure(new AddProjectCommand(project, Optional.of(notFoundInAddressbookName)), ListType.PROJECT,
-                model, String.format(AddProjectCommand.MESSAGE_CANNOT_FIND_CLIENT, notFoundInAddressbookName));
+        List<String> keywords = Arrays.asList(notFoundInAddressbookName);
+        assertCommandFailure(new AddProjectCommand(project, keywords), ListType.PROJECT,
+                model, String.format(AddProjectCommand.MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS, "not"));
     }
 
 }

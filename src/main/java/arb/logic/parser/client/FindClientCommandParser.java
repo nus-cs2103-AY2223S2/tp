@@ -5,8 +5,10 @@ import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import arb.commons.core.predicate.CombinedPredicate;
@@ -17,16 +19,15 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
+import arb.model.client.Name;
 import arb.model.client.predicates.ClientContainsTagPredicate;
 import arb.model.client.predicates.NameContainsKeywordsPredicate;
+import arb.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
  */
 public class FindClientCommandParser implements Parser<FindClientCommand> {
-
-    public static final String EMPTY_NAME_ERROR = "Name cannot be empty!";
-    public static final String EMPTY_TAG_ERROR = "Tag cannot be empty!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindClientCommand
@@ -44,20 +45,25 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         }
 
         ArrayList<Predicate<Client>> predicates = new ArrayList<>();
-        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-        if (tags.stream().anyMatch(t -> t.isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_TAG_ERROR));
-        }
-        if (!tags.isEmpty()) {
-            predicates.add(new ClientContainsTagPredicate(tags));
+
+        // filter out all invalid tags
+        Stream<String> tags = argMultimap.getAllValues(PREFIX_TAG).stream().flatMap(s -> splitKeywords(s))
+                .filter(s -> Tag.isValidTagName(s));
+        List<String> listOfTags = tags.collect(Collectors.toList());
+        if (!listOfTags.isEmpty()) {
+            predicates.add(new ClientContainsTagPredicate(listOfTags));
         }
 
-        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-        if (nameKeywords.stream().anyMatch(t -> t.isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_NAME_ERROR));
+        // filter out all invalid names
+        Stream<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME).stream().flatMap(s -> splitKeywords(s))
+                .filter(s -> Name.isValidName(s));
+        List<String> listOfNameKeywords = nameKeywords.collect(Collectors.toList());
+        if (!listOfNameKeywords.isEmpty()) {
+            predicates.add(new NameContainsKeywordsPredicate(listOfNameKeywords));
         }
-        if (!nameKeywords.isEmpty()) {
-            predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
+
+        if (predicates.isEmpty()) {
+            throw new ParseException("At least one valid parameter must be provided");
         }
 
         return new FindClientCommand(new CombinedPredicate<>(predicates));
@@ -69,5 +75,13 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
+     * as a {@code Stream}.
+     */
+    private static Stream<String> splitKeywords(String keywords) {
+        return Arrays.asList(keywords.split(" ")).stream();
     }
 }

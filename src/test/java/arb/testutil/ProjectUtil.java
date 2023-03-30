@@ -76,8 +76,14 @@ public class ProjectUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getClient().ifPresent(clientName -> sb.append(PREFIX_CLIENT
-                + clientName.orElse("") + " "));
+        if (descriptor.getClientNameKeywords().isPresent()) {
+            List<String> clientNameKeywords = descriptor.getClientNameKeywords().get();
+            if (clientNameKeywords.isEmpty()) {
+                sb.append(PREFIX_CLIENT + " ");
+            } else {
+                clientNameKeywords.forEach(s -> sb.append(PREFIX_TAG).append(s).append(" "));
+            }
+        }
         return sb.toString();
     }
 }

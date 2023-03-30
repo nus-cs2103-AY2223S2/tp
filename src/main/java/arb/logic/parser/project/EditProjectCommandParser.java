@@ -8,10 +8,14 @@ import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand;
@@ -64,16 +68,12 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
                     .get()));
         }
 
-        if (argumentMultimap.getValue(PREFIX_CLIENT).isPresent()) {
-            // throw exception if not valid name
-            String clientName = argumentMultimap.getValue(PREFIX_CLIENT).get();
-            if (!clientName.isBlank() && !Name.isValidName(clientName)) {
-                throw new ParseException("Provided client name is not valid");
-            }
-            editProjectDescriptor.setClient(clientName);
-        }
 
         parseTagsForEdit(argumentMultimap.getAllValues(PREFIX_TAG)).ifPresent(editProjectDescriptor::setTags);
+
+        // filter out all invalid client names
+        parseClientNameKeywordsForEdit(argumentMultimap.getAllValues(PREFIX_CLIENT))
+                .ifPresent(editProjectDescriptor::setClientNameKeywords);
 
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);
@@ -95,5 +95,36 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<List<String>> parseClientNameKeywordsForEdit(List<String> clientNameKeywords)
+            throws ParseException {
+        assert clientNameKeywords != null;
+
+        if (clientNameKeywords.isEmpty()) {
+            return Optional.empty();
+        }
+        List<String> clientNameKeywordsSet = clientNameKeywords.size() == 1 && clientNameKeywords.contains("")
+                ? Collections.emptyList()
+                : clientNameKeywords.stream().flatMap(s -> splitKeywords(s)).collect(Collectors.toList());
+        for (String s : clientNameKeywordsSet) {
+            if (!Name.isValidName(s)) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+        }
+        return Optional.of(clientNameKeywordsSet);
+    }
+
+    /**
+     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
+     * as a {@code Stream}.
+     */
+    private static Stream<String> splitKeywords(String keywords) {
+        return Arrays.asList(keywords.split(" ")).stream();
     }
 }

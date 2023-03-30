@@ -9,9 +9,11 @@ import static arb.logic.parser.CliSyntax.PREFIX_STATUS;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import arb.commons.core.predicate.CombinedPredicate;
@@ -22,14 +24,17 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.client.Name;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Status;
+import arb.model.project.Title;
 import arb.model.project.predicates.IsOfStatusPredicate;
 import arb.model.project.predicates.LinkedClientNameContainsKeywordsPredicate;
 import arb.model.project.predicates.ProjectContainsTagsPredicate;
 import arb.model.project.predicates.ProjectWithinTimeframePredicate;
 import arb.model.project.predicates.TitleContainsKeywordsPredicate;
+import arb.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object
@@ -57,28 +62,28 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
 
         ArrayList<Predicate<Project>> predicates = new ArrayList<>();
 
-        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
-        if (tags.stream().anyMatch(t -> t.isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_TAG_ERROR));
-        }
-        if (!tags.isEmpty()) {
-            predicates.add(new ProjectContainsTagsPredicate(tags));
-        }
-
-        List<String> titleKeywords = argMultimap.getAllValues(PREFIX_NAME);
-        if (titleKeywords.stream().anyMatch(t -> t.isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_NAME_ERROR));
-        }
-        if (!titleKeywords.isEmpty()) {
-            predicates.add(new TitleContainsKeywordsPredicate(titleKeywords));
+        // filter out all invalid tags
+        Stream<String> tags = argMultimap.getAllValues(PREFIX_TAG).stream().flatMap(s -> splitKeywords(s))
+                .filter(s -> Tag.isValidTagName(s));
+        List<String> listOfTags = tags.collect(Collectors.toList());
+        if (!listOfTags.isEmpty()) {
+            predicates.add(new ProjectContainsTagsPredicate(listOfTags));
         }
 
-        List<String> clientNameKeywords = argMultimap.getAllValues(PREFIX_CLIENT);
-        if (clientNameKeywords.stream().anyMatch(c -> c.isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_CLIENT_NAME_ERROR));
+        // filter out all invalid titles
+        Stream<String> titleKeywords = argMultimap.getAllValues(PREFIX_NAME).stream().flatMap(s -> splitKeywords(s))
+                .filter(s -> Title.isValidTitle(s));
+        List<String> listOfTitleKeywords = titleKeywords.collect(Collectors.toList());
+        if (!listOfTitleKeywords.isEmpty()) {
+            predicates.add(new TitleContainsKeywordsPredicate(listOfTitleKeywords));
         }
-        if (!clientNameKeywords.isEmpty()) {
-            predicates.add(new LinkedClientNameContainsKeywordsPredicate(clientNameKeywords));
+
+        // filter out all invalid client names
+        Stream<String> clientNameKeywords = argMultimap.getAllValues(PREFIX_CLIENT).stream()
+                .flatMap(s -> splitKeywords(s)).filter(s -> Name.isValidName(s));
+        List<String> listOfClientNameKeywords = clientNameKeywords.collect(Collectors.toList());
+        if (!listOfClientNameKeywords.isEmpty()) {
+            predicates.add(new LinkedClientNameContainsKeywordsPredicate(listOfClientNameKeywords));
         }
 
         Optional<String> statusString = argMultimap.getValue(PREFIX_STATUS);
@@ -102,8 +107,13 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
             endOfTimeframe = ParserUtil.parseDeadline(endString.get());
         }
 
+        // if at least one of the timeframe specifiers are present
         if (startString.isPresent() || endString.isPresent()) {
             predicates.add(new ProjectWithinTimeframePredicate(startOfTimeframe, endOfTimeframe));
+        }
+
+        if (predicates.isEmpty()) {
+            throw new ParseException("At least one valid parameter must be provided");
         }
 
         return new FindProjectCommand(new CombinedPredicate<>(predicates));
@@ -115,5 +125,13 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
+     * as a {@code Stream}.
+     */
+    private static Stream<String> splitKeywords(String keywords) {
+        return Arrays.asList(keywords.split(" ")).stream();
     }
 }
