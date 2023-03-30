@@ -223,7 +223,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
     * Open the app by entering `java -jar friendlylink.jar` into the terminal.
    
    The GUI should appear in a few seconds.
-   ![Ui](images/Ui.png)
+   ![Ui](images/emptyFriendlyLink.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -244,7 +244,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage1.PNG)
+![help message](images/helpMessage.PNG)
 
 Format: `help`
 
