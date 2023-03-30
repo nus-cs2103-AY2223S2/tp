@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Vaccination Management System (VMS) is a **desktop app for managing vaccination appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, VMS can get your appointments sorted out with great efficiency.
+An increasing number of vaccination are now having more complicated prerequisites to take them and Vaccination Management System (VMS) aims to make this validation easier. VMS is a **desktop application for validating and keeping track of vaccination appointments** its operations are **optimized for fast typist who prefer the use of a Command Line Interface** (CLI). If you type fast, VMS can get your vaccination appointment validated with great efficiency!
 
 * Table of Contents
 {:toc}
@@ -31,7 +31,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
    * `patient clear` : Deletes all patients.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Command line syntax](#command-line-syntax) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -195,17 +195,12 @@ are satisfied, the check passes and the patient satisfies the history requiremen
 
 Only the following values are allowed:
 
-* `ALL` - all groups of the requirement set must be present to pass. Example, a vaccination requirement of `G1, G2, G3`
-  will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and
-  `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
-* `ANY` - at least one group within the requirement set must be present to pass. Example, a vaccination requirement of
-  `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with
-  `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
-* `NONE` - none of the groups within the requirement set must be present to pass. Example, a requirement with
-  `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A
-  vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will
-  break the testing process of the patient and the patient will immediately fail the history requirement of the
-  vaccination. In other words, the patient will not be able to take that vaccination.
+* `ALL` - all groups of the requirement set must be present to pass.
+  * **Example**: a vaccination requirement of `G1, G2, G3` will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
+* `ANY` - at least one group within the requirement set must be present to pass.
+  * **Example**: a vaccination requirement of `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
+* `NONE` - none of the groups within the requirement set must be present to pass.
+  * **Example** a requirement with `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will break the testing process of the patient and the patient will immediately fail the history requirement of the vaccination. In other words, the patient will not be able to take that vaccination.
 
 ## Components
 
@@ -419,6 +414,8 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 
 ##### Example
 
+Example assumes that the vaccination `ABC VAX` does not exist yet.
+
 ```text
 vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
     --lal 5 \
@@ -430,7 +427,12 @@ Copy and paste:<br>
 `vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
 <br><br>
 Output:<br>
-{some ss}
+
+```text
+[INFO] Vaccination: ABC VAX added
+```
+
+![Vaccination Add Detail Card](images/VaccinationAddDetailCard.png)
 
 ##### Restrictions
 
@@ -446,7 +448,8 @@ are omitted, they will be set to what they were before.
 <pre>
 vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
     [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]... \
+    [--set <var>IS_SET</var>]
 </pre>
 
 * <code><var>VACCINATION</var></code> : `<vax-retriever>`
@@ -456,23 +459,41 @@ vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GR
 * <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
+* <code><var>IS_SET</var></code> : `<boolean>`
+  * `true` to replace all list-like vaccination attributes (**Groups**, **Ingredients** and **History requirements**) with the one specified in the command or `false` to append them.
+  * It is `false` by default.
 
 ##### Example
 
-After the vaccination add example,
+Following examples are independent of each other and follow after vaccination add example.
+
+###### Set example
 
 ```text
-vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
-    --groups DOSE 1, PFIZER, VACCINATION \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER
+vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH --set true
 ```
 
-Copy and paste:<br>
-`vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 1, PFIZER, VACCINATION --a allergy1, allergy2, allergy3 --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER`
-<br><br>
 Output:<br>
-{some ss}
+
+```text
+[INFO] Vaccination: ABC VAX updated
+```
+
+![Vaccination Edit Detail Card 1](images/VaccinationEditDetailCard_1.png)
+
+###### Append example
+
+```text
+vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH
+```
+
+Output:<br>
+
+```text
+[INFO] Vaccination: ABC VAX updated
+```
+
+![Vaccination Edit Detail Card 2](images/VaccinationEditDetailCard_2.png)
 
 ##### Restrictions
 
@@ -481,45 +502,70 @@ Output:<br>
 
 #### `delete` - Deletes a vaccination
 
-Deletes the vaccination with the specified name from the system.
+Deletion of a vaccination may cause appointments to be come invalid as the vaccination will no longer exist in the system. `VMS` will check for this and prevent such deletions from happening. However, an additional `--force true` argument will force the change to happen which will delete all invalid appointments after the change.
 
 ##### Syntax
 
 <pre>
-vaccination delete <var>VACCINATION</var>
+vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 </pre>
 
 * <code><var>VACCINATION</var></code> : `<vax-retriever>`
+* <code><var>IS_FORCE</var></code> : `<boolean>`
+  * `true` to force the change that the command will make and `false` to not.
+  * By default, its value is `false`.
 
 ##### Example
 
-After the vaccination add example,
+Examples follow after vaccination clear and then add command examples.
 
 ```text
-vaccination delete Pfizer (Dose 1)
+vaccination 1
+```
+
+```text
+vaccination INDEX::1
+```
+
+```text
+vaccination ABC VAX
+```
+
+```text
+vaccination NAME::ABC VAX
 ```
 
 Output:<br>
-{some ss}
+
+```text
+vaccination: ABC VAX deleted
+```
+
+##### Restrictions
+
+* Vaccination must exist in the system.
 
 #### `clear` - Clears all vaccination data
 
 ##### Syntax
 
+Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
+
 <pre>
 vaccination clear
 </pre>
 
 ##### Example
 
-After start up with the default vaccination data,
-
 ```text
 vaccination clear
 ```
 
 Output:<br>
-{some ss}
+
+```text
+[INFO] Vaccinations successfully cleared
+```
 
 #### `find` - Finds a vaccination
 
@@ -536,15 +582,14 @@ However, the following will not:
 * `1 Dose Dose` - Wrong order.
 * `Dose dose` - Missing `1`.
 
-Providing blank `<string>`, a character sequence that contains only whitespace characters, is the equivalent to the [list](#list---lists-all-vaccination) command.
-
 ##### Syntax
 
 <pre>
 vaccination find <var>VAX_NAME</var>
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<string>` - the character sequence in the vaccination to search for.
+* <code><var>VAX_NAME</var></code> : `<string>`
+  * The character sequence in the vaccination's name to search for.
 
 ##### Example
 
@@ -553,7 +598,16 @@ vaccination find dose 1
 ```
 
 Output:<br>
-{some ss}
+
+```text
+[INFO] 3 vaccinations listed!
+```
+
+![Vaccination Find Example](images/VaccinationFindExample.png)
+
+##### Restrictions
+
+* <code><var>VAX_NAME</var></code> cannot be blank.
 
 #### `list` - Lists all vaccination
 
@@ -564,15 +618,6 @@ Clears previously set filters and list all vaccinations in the list view.
 <pre>
 vaccination list
 </pre>
-
-##### Example
-
-```text
-vaccination list
-```
-
-Output:<br>
-{some ss}
 
 #### `detail` - Displays the detail of a vaccination
 
@@ -586,19 +631,19 @@ vaccination detail <var>VACCINATION</var>
 
 ##### Example
 
+Example assumes none of the default start-up vaccinations are deleted yet.
+
 ```text
 vaccination detail Dose 1 (Moderna)
 ```
 
 Output:<br>
-{some ss}
 
 ```text
-vaccination detail 1
+[INFO] Detailing vaccination: Dose 1 (Moderna)
 ```
 
-Output:<br>
-{some ss}
+![Vaccination Detail Example](images/VaccinationDetailExample.png)
 
 ##### Restrictions
 
@@ -606,12 +651,7 @@ Output:<br>
 
 ## Advance
 
-VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
-
-Locations:
-
-1. `[JAR file location]/data/patientlist.json`
-2. `[JAR file location]/data/appointmentlist.json`
+VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
