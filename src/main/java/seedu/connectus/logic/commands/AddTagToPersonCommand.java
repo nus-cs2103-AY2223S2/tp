@@ -40,7 +40,7 @@ public class AddTagToPersonCommand extends Command {
         + PREFIX_CCA + "NES "
         + PREFIX_CCA + "ICS#Director"
         + PREFIX_MAJOR + "Computer Science "
-        + PREFIX_MAJOR + "Mathematics "
+        + PREFIX_MAJOR + "BBA "
         + PREFIX_REMARK + "friends "
         + PREFIX_REMARK + "owesMoney";
 
