@@ -9,7 +9,7 @@ title: CareFlow User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 1. Introduction
+# 1. **Introduction**
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
@@ -29,7 +29,7 @@ Figure 1. Graphical User Interface (GUI) of CareFlow*
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 2. About
+# 2. **About**
 
 Welcome to the CareFlow user guide! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
 
@@ -82,7 +82,7 @@ Table 1. Symbols and formats used in this User Guide.
 --------------------------------------------------------------------------------------------------------------------
  <p align="center">
       </p>
-# 3. Quick start
+# 3. **Quick start**
 
 1. Ensure you have Java 11 installed in your Computer.
    <details>
@@ -243,7 +243,7 @@ Table 1. Symbols and formats used in this User Guide.
 
 
 --------------------------------------------------------------------------------------------------------------------
-# 4. Features
+# 4. **Features**
 
 ## General Operations
 ### View help : `g help`
@@ -709,7 +709,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. FAQ
+# 5. **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -719,7 +719,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 6. Command Summary
+# 6. **Command Summary**
 
 If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
 
