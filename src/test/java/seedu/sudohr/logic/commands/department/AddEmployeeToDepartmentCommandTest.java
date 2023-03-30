@@ -391,6 +391,11 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
+        public void addEmployeeToDepartment(Employee p, Department d) {
+            sudoHr.addEmployeeToDepartment(p, d);
+        }
+
+        @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
 
         }
