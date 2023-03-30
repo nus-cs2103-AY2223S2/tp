@@ -2,6 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.model.client.appointment.Appointment;
 
+/**
+ * A utility class containing a typical set of appointments.
+ */
 public class TypicalAppointments {
     public static final Appointment DISCUSSION = new AppointmentBuilder().build();
 

@@ -127,7 +127,12 @@ public class ClientBuilder {
         return this;
     }
 
-    public ClientBuilder withAppointment(Appointment appointment){
+    /**
+     * Sets the {@code Appointment} of the {@code Client} that we are building.
+     * @param appointment the appointment that belongs to the client.
+     * @return A ClientBuilder that builds into {@code Client} when called.
+     */
+    public ClientBuilder withAppointment(Appointment appointment) {
         this.appointment = appointment;
         return this;
     }

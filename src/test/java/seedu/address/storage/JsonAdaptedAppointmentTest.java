@@ -4,17 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.DISCUSSION;
-import static seedu.address.testutil.TypicalPolicies.HEALTH;
 
 import org.junit.jupiter.api.Test;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.appointment.AppointmentName;
-import seedu.address.model.client.policy.CustomDate;
-import seedu.address.model.client.policy.PolicyName;
 
 public class JsonAdaptedAppointmentTest {
 
@@ -37,10 +31,9 @@ public class JsonAdaptedAppointmentTest {
     }
 
     @Test
-    public void toModelType_nullAppointment_name_throwsIllegalValidException() {
+    public void toModelType_nullAppointmentName_throwsIllegalValidException() {
         JsonAdaptedAppointment appt = new JsonAdaptedAppointment(null, VALID_MEETUP_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AppointmentName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appt::toModelType);
     }
-
 }

@@ -4,6 +4,9 @@ import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.appointment.AppointmentName;
 import seedu.address.model.client.appointment.MeetupDate;
 
+/**
+ * A utility class to help with building Appointment objects.
+ */
 public class AppointmentBuilder {
     public static final String DEFAULT_APPOINTMENT_NAME = "Meetup discussion";
     public static final String DEFAULT_MEETUP_DATE = "01.01.2024";
@@ -44,6 +47,9 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Creates an empty appointments.
+     */
     public Appointment emptyBuild() {
         appointmentName = new AppointmentName();
         meetupDate = new MeetupDate();
