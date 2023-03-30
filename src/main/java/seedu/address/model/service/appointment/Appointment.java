@@ -89,6 +89,15 @@ public class Appointment implements Findable {
     }
 
     /**
+     * Adds technician ID to the appointment
+     *
+     * @param technicianId ID of technician
+     */
+    public void addTechnician(int technicianId) {
+        this.staffIds.add(technicianId);
+    }
+
+    /**
      * Returns true if both staffs have the same id.
      */
     public boolean isSameAppointment(Appointment otherAppointment) {

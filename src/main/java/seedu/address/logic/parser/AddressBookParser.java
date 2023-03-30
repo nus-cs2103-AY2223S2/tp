@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddPartCommand;
 import seedu.address.logic.commands.AddPartToServiceCommand;
 import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.commands.AddTechnicianCommand;
+import seedu.address.logic.commands.AddTechnicianToAppointmentCommand;
 import seedu.address.logic.commands.AddTechnicianToServiceCommand;
 import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -137,6 +138,9 @@ public class AddressBookParser {
 
         case AddTechnicianToServiceCommand.COMMAND_WORD:
             return new AddTechnicianToServiceCommandParser().parse(arguments);
+
+        case AddTechnicianToAppointmentCommand.COMMAND_WORD:
+            return new AddTechnicianToAppointmentCommandParser().parse(arguments);
 
         // List
 
