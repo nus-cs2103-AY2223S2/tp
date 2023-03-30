@@ -189,7 +189,7 @@ Once you have familiarized yourself with EduMate, you are now ready to begin cus
 (if you have tried out `sample` from earlier) <br>
 
 **Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
-a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
+s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-primary">
 
@@ -250,7 +250,7 @@ EduMate is a command-driven application, which means that its various functional
   e.g. in `view n/NAME`, you can fill in the `NAME` argument like `view n/Tan Kah Kee`.
 
 * We use `z/` to denote any prefix.<br>
-  e.g. `z/FIELD` could mean `n/FIELD` or `a/FIELD`.
+  e.g. `z/FIELD` could mean `n/FIELD` or `s/FIELD`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [g/GROUP]` can be used as `n/Tan Kah Kee g/Friend` or as `n/Tan Kah Kee`.
@@ -259,7 +259,7 @@ EduMate is a command-driven application, which means that its various functional
   e.g. `[m/MODULE]…​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
 
 * Unless otherwise specified, arguments can be in any order.<br>
-  e.g. if the command specifies `n/NAME s/STATION`, `a/STATION n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME s/STATION`, `s/STATION n/NAME` is also acceptable.
 
 * If an argument is expected only once in the command, but you specified it multiple times, only the **last** occurrence of the argument will be taken.<br>
   e.g. `p/86544145 p/81353055` will be interpreted as `p/81353055`.
@@ -317,9 +317,9 @@ Rules: `EMAIL` should be of the form `local@domain`, where
 ### Home Station
 
 Description: The name of the **closest MRT station** to their home.<br>
-Pattern: `a/STATION`<br>
+Pattern: `s/STATION`<br>
 Rules: `STATION` should be the name of a valid MRT station.<br>
-Example: `a/Boon Lay`
+Example: `s/Boon Lay`
 
 ### Telegram Handle
 
@@ -372,7 +372,7 @@ Examples:
   * Telegram handle: `@wenqing`
   * Groups:
   * Modules:
-* `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
+* `add n/Wen Li p/89229358 s/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
     * Name: `Wen Li`
     * Phone number: `89229358`
     * Station: `Boon Lay`
