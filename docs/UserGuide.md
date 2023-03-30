@@ -685,6 +685,8 @@ will filter out contacts who have are tagged with CCA and CS2100.
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
+* `find n/Edward m/CS2103T` : Returns all persons with name Edward and module CS2103T
+* `find n/Edward Richards m/CS2103T CS2109S` : Returns all persons named Edward or Richards with module CS2103T or CS2109S.
 
 </div>
 
@@ -878,19 +880,19 @@ suggest new features and it is easily extensible!
 
 ### Command Summary
 
-| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))      | Examples                                                    |
-|----------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------|
-| **Add a contact**    | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                           |
-| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                   |
-| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                |
-| **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
-| **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
+| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))      | Examples                                                      |
+|----------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| **Add a contact**    | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                             |
+| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                     |
+| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                  |
+| **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                    |
+| **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`     |
 | **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
-| **Filter contacts**  | `find z/FIELD`                                                                         | `find n/Tan`, `find m/CS1231`                               |
-| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                           |
-| **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                               |
-| **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                               |
-| **Suggest meet ups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                  |
+| **Filter contacts**  | `find z/FIELD... z/FIELD...`                                                           | `find n/Tan`, `find m/CS1231`, `find n/Tan m/CS1231`           |
+| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                             |
+| **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                                 |
+| **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                                 |
+| **Suggest meet ups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                   | `meet 1 6 4`, `eat 10 4 7`                                    |
 
 
 ## Troubleshooting
