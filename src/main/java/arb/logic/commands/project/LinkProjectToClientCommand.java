@@ -25,7 +25,8 @@ public class LinkProjectToClientCommand extends Command {
     public static final String CANCEL_MESSAGE = "Linking between project and client has been cancelled";
 
     public static final String MESSAGE_USAGE = "Please select a client to link this project to.\n"
-            + "For example, enter 1 to select the first client in the list.";
+            + "For example, enter 1 to select the first client in the list.\n"
+            + "Enter 0 to cancel this operation.";
 
     private static final Logger logger = LogsCenter.getLogger(LinkProjectToClientCommand.class);
 
