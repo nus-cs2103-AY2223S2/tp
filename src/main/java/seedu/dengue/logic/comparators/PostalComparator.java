@@ -5,7 +5,7 @@ import java.util.Comparator;
 import seedu.dengue.model.person.Postal;
 
 /**
- * Comparator for the class {@code Age}
+ * Comparator for the class {@code Postal}
  */
 public class PostalComparator implements Comparator<Postal> {
 
