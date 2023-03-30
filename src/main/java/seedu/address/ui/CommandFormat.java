@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 public class CommandFormat {
 
     // All profile commands below
-    // Sequence: NAME, PHONE, EMAIL, ADDRESS, DEPARTMENT, TAGS
+    // Sequence: NAME, PHONE, EMAIL, ADDRESS, DEPARTMENT, PAYROLL, LEAVE_COUNT, DATE_OF_BIRTH, DATE_OF_JOINING, TAGS
     // Compulsory ones: NAME, PHONE, DEPARTMENT
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
             "add",
@@ -48,6 +48,12 @@ public class CommandFormat {
             "find",
             "Find employees with a search filter.",
             "find [*] KEYWORD [MORE KEYWORDS...]");
+
+    private static final CommandFormat LEAVE_COMMAND_FORMAT = new CommandFormat(
+            "leave",
+            "Helps an employee take leave.",
+            "leave EMPLOYEE_ID l/LEAVE_COUNT");
+
 
     // All misc commands below
     private static final CommandFormat HELP_COMMAND_FORMAT = new CommandFormat(
