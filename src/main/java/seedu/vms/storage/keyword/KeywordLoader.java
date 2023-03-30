@@ -6,14 +6,9 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.keyword.KeywordManager;
-import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeManager;
-import seedu.vms.storage.vaccination.JsonAdaptedVaxType;
-import seedu.vms.storage.vaccination.VaxTypeLoader;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.security.Key;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,6 +46,20 @@ public class KeywordLoader {
      */
     public static KeywordManager load(Path path) throws IllegalValueException, IOException {
         KeywordLoader loader = JsonUtil.deserializeFromFile(path, KeywordLoader.class);
+        return loader.toModelType();
+    }
+
+    /**
+     * Loads all the keywords contained in the keywords empty JSON
+     * file.
+     *
+     * @throws IllegalValueException if there are errors in the fields of the
+     *      JSON file.
+     * @throws IOException if an I/O error occurs.
+     */
+    public static KeywordManager load() throws IllegalValueException, IOException {
+        KeywordLoader loader = JsonUtil.deserializeFromResource(JSON_FILE_PATH, KeywordLoader.class);
+        System.out.println(loader.keywords);
         return loader.toModelType();
     }
 

@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.vaccination.VaxType;
-
-import java.security.Key;
 
 /** A JSON friendly version of {@link Keyword}. */
 public class JsonAdaptedKeyword {
@@ -36,12 +33,6 @@ public class JsonAdaptedKeyword {
         return new JsonAdaptedKeyword(keyword, mainKeyword);
     }
 
-//    public Keyword toModelType() throws IllegalValueException {
-//        if (keyword == null || mainKeyword == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "keyword"));
-//        }
-//        return new Keyword(mainKeyword, keyword);
-//    }
 
     /**
      * Converts this Jackson-friendly adapted keyword object into the model's

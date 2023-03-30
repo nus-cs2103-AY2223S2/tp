@@ -1,0 +1,16 @@
+{
+    "keywords": [
+        {
+            "keyword": "appt",
+            "mainKeyword": "appointment"
+        },
+        {
+            "keyword": "pat",
+            "mainKeyword": "patient"
+        },
+        {
+            "keyword": "vacc",
+            "mainKeyword": "vaccination"
+        }
+    ]
+}

@@ -4,32 +4,18 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.FileUtil;
-import seedu.vms.commons.util.JsonUtil;
-import seedu.vms.model.ModelManager;
-import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.keyword.KeywordManager;
-import seedu.vms.storage.patient.JsonSerializablePatientManager;
 
 /**
  * An {@link KeywordStorage} to handle read and write operations from and to
  * JSON files containing {@link KeywordManager} data.
  */
 public class JsonKeywordStorage implements KeywordStorage {
-    public static final Path USER_KEYWORD_PATH = Path.of("data", "keywords.json");
+    public static final Path USER_KEYWORD_PATH = Path.of("data", "keyword.json");
 
-//    private final Path filePath;
-
-//    public JsonKeywordStorage() {
-//        this(USER_KEYWORD_PATH);
-//    }
-
-//    public JsonKeywordStorage(Path filePath) {
-//        this.filePath = filePath;
-//    }
 
     @Override
     public KeywordManager loadKeywords() throws IOException {
@@ -37,6 +23,15 @@ public class JsonKeywordStorage implements KeywordStorage {
             return KeywordLoader.load(USER_KEYWORD_PATH);
         } catch (IllegalValueException illValEx) {
             throw new IOException(illValEx.getMessage());
+        }
+    }
+
+    @Override
+    public KeywordManager loadEmptyKeywords() throws RuntimeException {
+        try {
+            return KeywordLoader.load();
+        } catch (Throwable ex) {
+            throw new RuntimeException("Unable to load defaults", ex);
         }
     }
 

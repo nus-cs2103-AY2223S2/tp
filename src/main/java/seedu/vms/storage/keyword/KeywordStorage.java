@@ -15,6 +15,13 @@ public interface KeywordStorage {
      */
     public KeywordManager loadKeywords() throws IOException;
 
+    /**
+     * Loads the {@code KeywordManager} as defined in the application
+     * resources.
+     *
+     * @throws RuntimeException if an error occurs.
+     */
+    public KeywordManager loadEmptyKeywords() throws RuntimeException;
 
     /**
      * Saves the specified {@code KeywordManager} to hard disk.
