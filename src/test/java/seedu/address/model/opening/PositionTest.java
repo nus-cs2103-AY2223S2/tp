@@ -31,11 +31,11 @@ public class PositionTest {
         assertFalse(Position.isValidPosition(" ")); // spaces only
         assertFalse(Position.isValidPosition("&")); // only non-alphanumeric characters
 //        assertFalse(Position.isValidPosition("123")); // numbers only
-//        assertFalse(Position.isValidPosition("Engineer 10")); // with numbers
-//        assertFalse(Position.isValidPosition("Data-analyst 10")); // with non-alphanumeric characters and numbers
 
 
         // valid position
+//        assertTrue(Position.isValidPosition("Engineer 10")); // with numbers
+//        assertTrue(Position.isValidPosition("Data-analyst 10")); // with non-alphanumeric characters and numbers
         assertTrue(Position.isValidPosition("analyst")); // alphabets only
         assertTrue(Position.isValidPosition("Intern")); // with capital letters
 //        assertTrue(Position.isValidPosition("data-analyst")); // with non-alphanumeric characters, but no numbers

@@ -14,10 +14,12 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all openings whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all openings whose company or position contain "
+            + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " engineer analyst google";
+
+    private static final String MESSAGE_SUCCESS = "%1$d openings found!";
 
     private final CompanyOrPositionContainsKeywordsPredicate predicate;
 
@@ -30,7 +32,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredOpeningList().size()));
     }
 
     @Override

@@ -5,6 +5,7 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_KEYDATE;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
@@ -41,7 +42,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_KEYDATE + "KEY@DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "Microsoft "
             + PREFIX_EMAIL + "johndoe@example.com";
