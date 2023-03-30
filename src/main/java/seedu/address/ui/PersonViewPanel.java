@@ -100,7 +100,6 @@ public class PersonViewPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
-
             if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);

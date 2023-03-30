@@ -58,7 +58,7 @@
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></Label>
-            <ListView id="appointments" fx:id="appointments" prefWidth="368.0">
+            <ListView id="appointments" fx:id="appointments" style="-fx-background-color: white;">
                   <VBox.margin>
                      <Insets bottom="10.0" />
                   </VBox.margin>
