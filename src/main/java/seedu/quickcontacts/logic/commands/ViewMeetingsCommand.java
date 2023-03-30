@@ -11,6 +11,8 @@ import seedu.quickcontacts.model.meeting.Meeting;
  */
 public class ViewMeetingsCommand extends Command {
     public static final String COMMAND_WORD = "listm";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all meetings in the address book.\n"
+            + "Example: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
