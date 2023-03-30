@@ -264,7 +264,7 @@ public class ParserUtil {
     public static OrderName parseOrderName(String orderName) throws ParseException {
         requireNonNull(orderName);
         String trimmedTaskName = orderName.trim();
-        if (!OrderName.isValidOrderName(trimmedTaskName)) {
+        if (!OrderName.isValidName(trimmedTaskName)) {
             throw new ParseException(OrderName.MESSAGE_CONSTRAINTS);
         }
         return new OrderName(trimmedTaskName);
@@ -279,7 +279,7 @@ public class ParserUtil {
     public static OrderDeadline parseOrderDeadline(String orderDeadline) throws ParseException {
         requireNonNull(orderDeadline);
         String trimmedOrderDeadline = orderDeadline.trim();
-        if (!OrderDeadline.isValidOrderDeadline(trimmedOrderDeadline)) {
+        if (!OrderDeadline.isValidDeadline(trimmedOrderDeadline)) {
             throw new ParseException(OrderDeadline.MESSAGE_CONSTRAINTS);
         }
         return new OrderDeadline(trimmedOrderDeadline);
@@ -298,7 +298,7 @@ public class ParserUtil {
         }
 
         String trimmedOrderStatus = orderStatus.get().trim();
-        if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
+        if (!OrderStatus.isValidStatus(trimmedOrderStatus, OrderStatus.STATUSES)) {
             throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
         }
         return new OrderStatus(trimmedOrderStatus);

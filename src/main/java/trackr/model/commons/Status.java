@@ -12,7 +12,7 @@ import java.util.Map.Entry;
  */
 public abstract class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "%s status should only be%s";
+    public static final String MESSAGE_CONSTRAINTS = "%s status should only be %s";
     private final String validationRegex;
     private final HashMap<String, String> statuses = new HashMap<>();
 
@@ -53,22 +53,9 @@ public abstract class Status {
 
     /**
      * Compare this status to a given status.
-     * @return 1 if this status is done and the given status is not done,
-     *         -1 if this status is not done and the given status is done
-     *         0 if both statuses are the same.
+     * @return -1, 1 or 0 according to the sorting criteria.
      */
-    public int compare(Status other) {
-        //this status is done and given status is not done
-        if (status.equals("D") && other.status.equals("N")) {
-            return 1;
-        }
-        //this status is not done and given status is done
-        if (status.equals("N") && other.status.equals("D")) {
-            return -1;
-        }
-        //both status are the same
-        return 0;
-    }
+    public abstract int compare(Status other);
 
     public String toJsonString() {
         return status;

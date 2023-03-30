@@ -78,7 +78,7 @@ public class JsonSerializableTrackrTest {
     }
 
     @Test
-    public void toOrderModelType_typicalOrderFile_sucess() throws Exception {
+    public void toOrderModelType_typicalOrderFile_success() throws Exception {
         JsonSerializableTrackr dataFromFile = JsonUtil.readJsonFile(TYPICAL_ORDERS_FILE,
                 JsonSerializableTrackr.class).get();
         OrderList orderListFromFile = dataFromFile.toOrderModelType();
