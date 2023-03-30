@@ -34,16 +34,14 @@ public abstract class RecipeForm extends UiPart<Region> {
 
     // protected fields for package access
     protected final StringBuilder data;
-    @FXML
-    protected VBox ingredientsBox;
-    @FXML
-    protected VBox stepsBox;
-
     //data fields
     private final Recipe recipe;
     private final Map<String, String> initialValues = new HashMap<>();
     private final String title;
-
+    @FXML
+    protected VBox ingredientsBox;
+    @FXML
+    protected VBox stepsBox;
     //UI child elements
     @FXML
     private TextField nameField;
@@ -124,11 +122,13 @@ public abstract class RecipeForm extends UiPart<Region> {
             case "ingredients":
                 currentValue = ingredientsBox.getChildren().stream()
                     .map(node -> ((TextArea) node).getText().trim())
+                    .filter(str -> !str.isEmpty())
                     .collect(Collectors.joining(", "));
                 break;
             case "steps":
                 currentValue = stepsBox.getChildren().stream()
                     .map(node -> ((TextArea) node).getText().trim())
+                    .filter(str -> !str.isEmpty())
                     .collect(Collectors.joining(", "));
                 break;
             case "tags":
@@ -218,13 +218,13 @@ public abstract class RecipeForm extends UiPart<Region> {
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                             );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                            );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
