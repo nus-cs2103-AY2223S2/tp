@@ -6,7 +6,7 @@ title: User Guide
 TutorPro is a **desktop app designed to help private tutors manage their student information effectively**. With TutorPro, tutors can easily keep track of their students' addresses, contact details, lessons, homework, and progress, all in one place. This app is optimized for use via a Graphical User Interface (GUI), allowing tutors to interact with the app using easy-to-understand buttons and menus. However, TutorPro also provides a Command Line Interface (CLI) for those who prefer a faster way of getting things done. Whether you're managing a handful of students or hundreds, TutorPro can help you streamline your workflow and make your tutoring experience more efficient.
 
 --------------------------------------------------------------------------------------------------------------------
-## Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -30,93 +30,33 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
 
-You may come across some terms you do not understand in the user guide. The following table provides clarification of the terms commonly used in TutorPro.
+In the user guide, you may come across some terms you do not understand. The following table provides clarification
+of the terms commonly used in PetCode.
 
-|       Term       | Description                                                  |
-| :--------------: | ------------------------------------------------------------ |
-| **Alphanumeric** | Digits and letters only. For example, `AB3`, `TutorPro`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not. |
-|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status. |
-|   **Command**    | A command is a specific instruction you can give to TutorPro to perform an action. You can view the list of commands available [here](#command-summary). |
-|   **Contact**    | A contact is an information entry in TutorPro. There are three types of contacts you can add - `Buyer`, `Supplier`, and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add). |
-|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context. |
-|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the TutorPro application. |
-|    **Index**     | The index of the contact or item in the display list for contacts/items. |
-|   **Integer**    | Whole number                                                 |
-|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. |
-|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes). |
-|  **Whitespace**  | An empty character, or a placeholder character.              |
-|   **Student**    | A `Student` whom the user (who is a tutor) teaches           |
-|   **Homework**   | A `Homework` assignment whom the user (who is a tutor) has assigned to a `Student` |
-|    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`      |
-|     **Exam**     | An `Exam` that a Student is scheduled to sit for             |
+|       Term       | Description                                                                                                                                                                                                                                                                                                                                                  |
+|:----------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                                                 |
+|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status.                                                                                                                                                                                                                  |
+|   **Command**    | A command is a specific instruction you can give to PetCode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                                      |
+|   **Contact**    | A contact is an information entry in PetCode. There are three types of contacts you can add - `Buyer`, `Supplier` and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                                            |
+|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                                                     |
+|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                                         |
+|    **Index**     | The index of the contact or item in the display list for contacts/items.                                                                                                                                                                                                                                                                                     |
+|   **Integer**    | Whole number                                                                                                                                                                                                                                                                                                                                                 |
+|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> For example, the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display. `list buyer` displays your list of buyers, where the KEY parameter is `buyer`. |
+|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                                         |
+|  **Whitespace**  | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                                          |
+|   **Student**    | A `Student` whom the user (who is a tutor) teaches                                                                                                                                                                                                                                                                                                           |
+|   **Homework**   | A `Homework` assignment whom the user (who is a tutor) has assigned to a `Student`                                                                                                                                                                                                                                                                           |
+|    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`                                                                                                                                                                                                                                                                                                      |
+|     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                                                                                                                                                             |
 
 
 --------------------------------------------------------------------------------------------------------------------
-## GUI
-When you first run the app, you may see a display window pop up similar to the one below. We call this window the **Main Window**.
 
-![Starting Display Window](images/GUI.jpg)
-
-* The **Command Box** on the left bottom refers to the text field where you can type commands in.
-* The **Display List for Students** on the left top refers to the list of students  you are currently displaying.
-* The **Detailed Information Section** on the right refers to the section where more specific information of the profile, homework, lessons, or exams of a particular sutden is displayed.
-
-You may enter the following commands in the Command Box to see how the Display List changes:
-* `list` lists all students.
-* `delete-b 1` deletes the student with index 1.
-* `view-homework` displays all the homework from all students.
-
-You may also click the quick access buttons one each student card to see how the Detailed Information Section changes.
-      
-### Quick Access Buttons and Detailed Information Section
-Upon launching the application or executing a command, a welcome page will be displayed in the Detailed Information Section. 
-Each Student card has four buttons, which are profile, homework, lessons, and exams. When a user clicks on any of the buttons, the corresponding information will be presented in the Detailed Information Section.
-#### Profile Page
-Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed particulars of the student, including the student's full name, phone number, address, and email.
-
-![Starting Display Window](images/Profile.jpg)
-
-#### Homework Page
-
-Upon clicking the Profile Button, the Detailed Information section will be refreshed and show the detailed homework information of the student. 
-
-It includes a homework list, showing all the homework information. The icon on the left of each homework represents its status, with the tick icon being `completed` and the cross icon being `pending`. It also has a pie chart which represents ratio between completed and pending homework.
-
-![Starting Display Window](images/Homework.jpg)
-
-#### Lessons Page
-
-Upon clicking the Lessons Button, the Detailed Information section will be refreshed and show the detailed Lessons Information for the student.
-
-It includes a past lessons list, showing all the past lesson information and a upcoming lessons list, showing all the upcoming lessons.
-
-![Starting Display Window](images/Lessons.jpg)
-
-#### Exams Page
-
-Upon clicking the Exams Button, the Detailed Information section will be refreshed and show the detailed Exams Information for the student.
-
-It includes a past exams list, showing all the past exams information and all the  upcoming exams list, showing all the upcoming exams.
-
-![Starting Display Window](images/Exams.jpg)
-
-## Commands
+## Features
 
 
-:information_source: **How to interpret the Command format:**<br>
-
-* The terms in `UPPER_CASE` are placeholders need to replace with your n values. For example, in the command `add n/NAME`, `NAME` is a placeholder that can be substituted with a specific name, such as `add n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[name/STUDENT_NAME]…​` can be used as ` ` (i.e. 0 times), `name/John Doe`, `name/John Doe name/Jane Ho` etc.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit,` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
-* Unless otherwise specified, the order of prefixes does not matter.<br>
-  e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable unless stated otherwise in a particular command.
-
-[Go back to [Table of Contents](## Table of Contents)]
 
 ### Create a new student profile
 
@@ -154,24 +94,19 @@ Creates a homework assignment with a deadline for a student
 Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`
 
 * The `STUDENT_NAME` must be an existing student of the tutor.
-* The `DEADLINE` must be in the format given in the support date and time formats appendix.
-* The `DEADLINE` must be in the future.
 
 Examples:
 * `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
-
-
-:exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
 
 ### View the Homework of Students
 
 Displays a list of homework with the ability to filter by student name and homework status.
 
-Format: `view-homework [name/STUDENT_NAME]... [status/STATUS]`
+Format: `view-homework [name/STUDENT_NAME] [status/STATUS]`
 
-* By default, all homework will be displayed, if no name or status parameter is provide.
-* To view homework for specific students, specify the name using `name/STUDENT_NAME`s.
+* By default, all homework will be displayed.
+* To view homework for a specific student, specify the name using `name/STUDENT_NAME`.
 * To view homework with a specific status, specify the status using `status/STATUS`.
 * It is possible to filter by both student name and status simultaneously.
 * The available status values are `completed` and `pending`.
@@ -179,10 +114,8 @@ Format: `view-homework [name/STUDENT_NAME]... [status/STATUS]`
 Examples:
 * `view-homework` displays a list of all homework.
 * `view-homework name/John` displays homework for a student named `John`.
-* `view-homework status/completed` displays all completed homework from all students.
+* `view-homework status/completed` displays all completed homework.
 * `view-homework name/John status/pending` displays pending homework for a student named `John`.
-
-:exclamation: **Caution:** STATUS should only appear at most once and should not be empty. STUDENT_NAME can be zero or multiple but they all cannot be empty.
 
 ### Delete Homework from a Student
 
@@ -199,8 +132,6 @@ Examples:
 * `delete-homework name/John index/1` deletes the first homework assignment for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
-
 ### Mark the Homework of a Student as Done
 
 Marks homework of a student as done.
@@ -215,8 +146,6 @@ Examples:
 
 * `mark-homework name/John index/1` marks the first homework assignment for the student named John.
 * `mark-homework name/Susan index/3` marks the third homework assignment for the student named Susan.
-
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 
 ### Unmark Homework of a Student as Undone
@@ -234,7 +163,6 @@ Examples:
 * `unmark-homework name/John index/1`unmarks the first homework assignment for the student named John.
 * `unmark-homework name/Susan index/3` unmarks the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 ### Update Homework of a Student
 
@@ -244,9 +172,7 @@ Format: `update-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX] [homework/HO
 
 * The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
 * The `HOMEWORK_INDEX` must be the index of an existing homework assignment for the specified student.
-* The `DEADLINE` must be in the format given in the support date and time formats appendix.
-* The `DEADLINE` must be in the future.
-* At least one of homework name and deadline must be in the command. They cannot be absent concurrently.
+* At least one homework name and deadline must be in the command.
 * A success message will be displayed if the homework assignment is successfully deleted. Otherwise, an error message will be displayed.
 
 Examples:
@@ -255,25 +181,24 @@ Examples:
 * `updates-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `updates-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
 
-:exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
-### Create a New Lesson for a Student
+### Create a New Lesson Plan for the Upcoming Lesson
 
-Creates a new lesson for a given student, with a lesson title, start time, and end time.
+Creates a new lesson for a given student, with a lesson title and time.
 
-Format: `new-lesson [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
+Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields, except for additional studetn names, are mandatory.
+* All fields are mandatory.
 
 Examples:
-`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
+`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
 
 
-### View Lessons
+### View Lessons History
 
-Displays the lessons for a given student/all students, filtered by subject and/or student name and/or date and/or whether the lesson has been completed
+Displays the lesson history for a given student/all students.
 
-Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (optional)[date/DATE] (optional)[done/DONE]`
+Format: `view-lesson [name/STUDENT_NAME]`
 
 * Displays the lesson history for all the tutor’s students if no student name is specified.
 * Displays the lesson history for a specific student if a student's name is specified with the `name/` prefix.
@@ -281,31 +206,7 @@ Format: `view-lesson (optional)[name/STUDENT_NAME] (optional)[subject/SUBJECT] (
 
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
-* `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
-* `view-lesson done/done` Displays all lessons that have been completed
-
-### Remove a Lesson
-Deletes a lesson for a given student.
-
-Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
-
-* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Deletes the lesson at the specified `LESSON_INDEX`.
-
-Example:
-* `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
-
-### Update a Lesson
-Updates a lesson for a given student. This includes the lesson title, start time, and end time.
-
-Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
-
-* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
-* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
-* At least one of the fields must be specified.
-
-Example:
-* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` updates the lesson for John Doe with the new information.
+* `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
 
 ### Add an Exam to be tracked: `add-exam`
 
@@ -323,8 +224,8 @@ Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/
 See `calculate-grade` below:
 
 Examples:
-* `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00` creates an exam named `Math MYE` for the student named John Doe, which starts at 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
-* `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00` creates an exam named `Science MYE` for the students named John Doe and Faye Doe, which starts at 12:00 on 22 May 2023 and ends at 14:00 on 22 May 2023.
+* `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
+* `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00`
 
 ### Remove an exam: `delete-exam`
 
@@ -336,8 +237,8 @@ Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [in
 student.
 
 Examples:
-* `delete-exam name/John Doe index/1` deletes the first exam for the student named John Doe.
-* `delete-exam name/John Doe name/Faye Doe index/1` deletes the first exam for the students named John Doe and Faye Doe.
+* `delete-exam name/John Doe index/1`
+* `delete-exam name/John Doe name/Faye Doe index/1`
 
 ### View exams tracked by TutorPro: `view-exam`
 
@@ -366,9 +267,7 @@ Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_
 student.
 
 Examples:
-* `update-exam name/John index/1 grade/20/25` updates the grade of the first exam for the student named John Doe to 20/25.
-* `update-exam name/John index/1 exam/Science MYE` updates the name of the first exam for the student named John Doe to Science MYE.
-* `update-exam name/John index/1 start/2023-05-21 12:00 end/2023-05-21 14:00` updates the start and end time of the first exam for the student named John Doe to 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
+* `update-exam name/John index/1 grade/20/25`
 
 ### Calculate grade:  `calculate-grade`
 
@@ -436,7 +335,7 @@ Examples:
 | `subject/`  | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
 | `done/`     | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
 
-### Supported date-time formats
+### Supported date-time formats:
 * `MMM dd yyyy HHmm`
 * `MMM dd yyyy HH:mm`
 * `yyyy-MM-dd'T'HH:mm `
