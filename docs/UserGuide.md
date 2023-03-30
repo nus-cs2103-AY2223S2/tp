@@ -839,7 +839,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 If you wish to assign a CCA Position to a contact, you can do so with the CCA prefix as well!
 * Format: `cca/CCA#CCA_POSITION`
-* Example: If you have a contact who is the President of the Chess Club, you can use the field `cca/Chess Club#President` to assign that CCA tag to them.
+
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
@@ -847,10 +847,10 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 ### 5.9.3 Major Tags: `major/`
 >Major tags refer to Majors that you can assign to a contact to keep track of the majors that the contact is taking.
 
-* Major is an *optional* field, i.e. a contact can exist even if it does not have a CCA position.
-* The prefix for a major is `major/`.
+* Major is an *optional* field, i.e. a contact can exist even if it does not have a Major.
 * Major names should be <u>alphanumeric</u>, and can contain spaces.
 * A contact can have a maximum of 2 majors assigned to it.
+
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
