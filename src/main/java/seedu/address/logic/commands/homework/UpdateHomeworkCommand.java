@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.homework;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.handleDuplicateName;
+import static seedu.address.logic.commands.CommandUtil.handleNonExistName;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -8,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +30,6 @@ import seedu.address.model.student.exceptions.DuplicateEntryException;
  */
 public class UpdateHomeworkCommand extends Command {
     public static final String COMMAND_WORD = "update-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing homework.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
@@ -38,7 +40,7 @@ public class UpdateHomeworkCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_INDEX + "1 "
             + PREFIX_HOMEWORK + "Math Homework ";
-
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private final Index index;
     private final Optional<String> homeworkName;
     private final Optional<LocalDateTime> deadline;
@@ -70,47 +72,41 @@ public class UpdateHomeworkCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        StringBuilder nonExistNames = new StringBuilder();
-        for (String name : names) {
-            if (model.noSuchStudent(name)) {
-                nonExistNames.append(name).append(", ");
-            }
-        }
-        if (nonExistNames.length() != 0) {
-            nonExistNames = new StringBuilder(nonExistNames.substring(0, nonExistNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_NO_SUCH_STUDENT, nonExistNames));
-        }
-        StringBuilder dupNames = new StringBuilder();
-        for (String name : names) {
-            if (model.hasDuplicateName(name)) {
-                dupNames.append(name).append(", ");
-            }
-        }
-        if (dupNames.length() != 0) {
-            dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-        }
+        handleNonExistName(model, names);
+        handleDuplicateName(model, names);
         model.updateFilteredStudentList(predicate);
-        List<Student> studentList = model.getFilteredStudentList();
 
+        List<Student> studentList = model.getFilteredStudentList();
         Student student = studentList.get(0);
 
+        Homework homeworkToUpdate = student.getHomework(index);
+        String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
+        LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
+        Homework newHomework = new Homework(newHomeworkName, newDeadline);
+        updateHomework(student, homeworkToUpdate, newHomework);
+
+        return new CommandResult(
+                String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
+                        student.getName().getFirstName(), newHomeworkName, newDeadline.format(PRINT_FORMATTER)));
+    }
+
+    /**
+     * Updates the homework of the student.
+     *
+     * @param student          to update the homework
+     * @param homeworkToUpdate to be updated
+     * @param newHomework      to be updated to
+     * @throws DuplicateEntryException if the homework to be updated to already exists
+     * @throws CommandException        if the homework to be updated does not exist
+     */
+    public void updateHomework(Student student, Homework homeworkToUpdate, Homework newHomework)
+            throws DuplicateEntryException, CommandException {
         try {
-            Homework homeworkToUpdate = student.getHomework(index);
-
-            String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
-            LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
-            Homework newHomework = new Homework(newHomeworkName, newDeadline);
             student.setHomework(homeworkToUpdate, newHomework);
-
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_HOMEWORK_UPDATED_SUCCESS, index.getOneBased(),
-                            student.getName().getFirstName(),
-                            newHomeworkName, newDeadline));
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
         } catch (DuplicateEntryException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(String.format(Messages.MESSAGE_RESULT_IN_DUPLICATE, "homework"));
         }
     }
 

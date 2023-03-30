@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.homework;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.handleDuplicateName;
+import static seedu.address.logic.commands.CommandUtil.handleNonExistName;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -59,48 +61,52 @@ public class CreateHomeworkCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        StringBuilder nonExistNames = new StringBuilder();
-        for (String name : names) {
-            if (model.noSuchStudent(name)) {
-                nonExistNames.append(name).append(", ");
-            }
-        }
-        if (nonExistNames.length() != 0) {
-            nonExistNames = new StringBuilder(nonExistNames.substring(0, nonExistNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_NO_SUCH_STUDENT, nonExistNames));
-        }
-        StringBuilder dupNames = new StringBuilder();
-        for (String name : names) {
-            if (model.hasDuplicateName(name)) {
-                dupNames.append(name).append(", ");
-            }
-        }
-        if (dupNames.length() != 0) {
-            dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-        }
+        handleNonExistName(model, names);
+        handleDuplicateName(model, names);
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
-
         Homework homework = new Homework(homeworkName, deadline);
+        addHomework(studentList, homework);
+        String message = formatMessage(studentList, homework);
 
+        return new CommandResult(
+                String.format(Messages.MESSAGE_HOMEWORK_ADDED_SUCCESS, homework, message));
+    }
+
+    /**
+     * Adds the homework to the students.
+     *
+     * @param studentList The list of students to add the homework to.
+     * @param homework The homework to be added.
+     * @throws DuplicateEntryException If the homework already exists in the student.
+     * @throws CommandException If the homework already exists in the student.
+     */
+    public void addHomework(List<Student> studentList, Homework homework)
+            throws DuplicateEntryException, CommandException {
         try {
             for (Student student : studentList) {
                 student.addHomework(homework);
             }
         } catch (DuplicateEntryException e) {
-            throw new CommandException(e.getMessage());
+            throw new CommandException(String.format(Messages.MESSAGE_RESULT_IN_DUPLICATE, "homework"));
         }
+    }
 
+    /**
+     * Formats the message to be displayed to the user.
+     *
+     * @param studentList The list of students to add the homework to.
+     * @param homework The homework to be added.
+     * @return The formatted message.
+     */
+    public String formatMessage(List<Student> studentList, Homework homework) {
         StringBuilder sb = new StringBuilder();
         for (Student student : studentList) {
             sb.append(student.getName().fullName);
             sb.append("\n");
         }
-
-        return new CommandResult(
-                String.format(Messages.MESSAGE_HOMEWORK_ADDED_SUCCESS, homework, sb));
+        return sb.toString();
     }
 
     @Override

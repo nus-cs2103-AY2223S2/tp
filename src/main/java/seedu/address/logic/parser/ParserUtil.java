@@ -1,6 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,8 +14,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -245,5 +253,143 @@ public class ParserUtil {
             throw new ParseException("Invalid date format!", e);
         }
         return res;
+    }
+
+    /**
+     * Checks if the deadline is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for deadline.
+     * @throws ParseException if the deadline is not unique or null.
+     */
+    public static void checkUniqueNotNUllDeadline(ArgumentMultimap argMultimap) throws ParseException {
+        // only one deadline keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_DEADLINE).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_DEADLINE));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_DEADLINE));
+        }
+    }
+
+    /**
+     * Checks if the name is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for name.
+     * @throws ParseException if the name is not unique or null.
+     */
+    public static void checkUniqueNotNUllName(ArgumentMultimap argMultimap) throws ParseException {
+        // only one name keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_STUDENT));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_NAME).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_STUDENT));
+        }
+    }
+
+    /**
+     * Checks if the homework name is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for homework name.
+     * @throws ParseException if the homework name is not unique or null.
+     */
+    public static void checkUniqueNotNUllHomework(ArgumentMultimap argMultimap) throws ParseException {
+        // only one homework keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_HOMEWORK));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_HOMEWORK).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_HOMEWORK));
+        }
+    }
+
+    /**
+     * Checks if the index is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for index.
+     * @throws ParseException if the index is not unique or null.
+     */
+    public static void checkUniqueNotNullIndex(ArgumentMultimap argMultimap) throws ParseException {
+        // only one index keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_INDEX));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_INDEX));
+        }
+    }
+
+    /**
+     * Checks if the index is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for index.
+     * @throws ParseException if the index is not unique or null.
+     */
+    public static void checkUniqueNotNullStatus(ArgumentMultimap argMultimap) throws ParseException {
+        // only one index keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_STATUS).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_STATUS));
+        }
+        // it cannot be empty
+        if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_STATUS));
+        }
+    }
+
+    /**
+     * Checks if the index is unique and not null.
+     *
+     * @param argMultimap the argument multimap to check for index.
+     * @throws ParseException if the index is not unique or null.
+     */
+    public static void checkUniqueHomework(ArgumentMultimap argMultimap) throws ParseException {
+        // only one homework keyword is allowed
+        if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_ONLY_ONE_HOMEWORK));
+        }
+    }
+
+    /**
+     * Checks if the homework name is not null.
+     *
+     * @param homework the homework name to check for null.
+     * @throws ParseException if the homework name is null.
+     */
+    public static void checkNotNullHomework(String homework) throws ParseException {
+        // it cannot be empty
+        if (homework.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_EMPTY_HOMEWORK));
+        }
+    }
+
+    /**
+     * Checks if the name is not null.
+     *
+     * @param names the name to check for null.
+     * @throws ParseException if the name is null.
+     */
+    public static void checkNotNullNames(List<String> names) throws ParseException {
+        for (String name : names) {
+            if (name.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_EMPTY_STUDENT));
+            }
+        }
     }
 }
