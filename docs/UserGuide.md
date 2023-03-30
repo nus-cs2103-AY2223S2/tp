@@ -103,22 +103,17 @@ java version "xxx" <Other information>
 ## Installation
 
 1. Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
-
-1. Copy the file to the folder where you will use Trackr.
-
-1. Double click on the `trackr.jar` file.
+2. Copy the file to the folder where you will use Trackr.
+3. Double click on the `trackr.jar` file.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Cannot open your Trackr:**<br>
+  **:information_source: Cannot open your Trackr:**<br>
 
-1. Open a command terminal
-
-1. Type in `java -jar ` (Keep in mind of the space at the end)
-
-1. Drag and drop `trackr.jar` into the command terminal
-
-1. Press enter and execute the command.
+  1. Open a command terminal 
+  2. Type in `java -jar ` (Keep in mind of the space at the end)
+  3. Drag and drop `trackr.jar` into the command terminal 
+  4. Press enter and execute the command.
 
 An example of the final command is displayed below.
 
@@ -135,7 +130,7 @@ A GUI similar to the below should appear in a few seconds. (Note how the app con
     <br>Figure 1: Initial Setup UI
 </p>
 
-1. Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
+4. Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
    
    Some example commands you can try:
 
@@ -143,7 +138,7 @@ A GUI similar to the below should appear in a few seconds. (Note how the app con
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
