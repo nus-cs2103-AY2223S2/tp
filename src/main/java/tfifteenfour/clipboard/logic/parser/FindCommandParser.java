@@ -1,22 +1,20 @@
 package tfifteenfour.clipboard.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.*;
+import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindCourseCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindGroupCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindSessionCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindStudentCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindTaskCommand;
+import tfifteenfour.clipboard.logic.commands.findcommand.*;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
-import tfifteenfour.clipboard.logic.predicates.GroupNameContainsPredicate;
-import tfifteenfour.clipboard.logic.predicates.SessionNameContainsPredicate;
-import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
-import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.*;
+import tfifteenfour.clipboard.model.student.Student;
+
+import java.util.function.Predicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -34,10 +32,12 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException, CommandException {
         CommandTargetType findCommandType;
+
         try {
             findCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -52,39 +52,39 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] keywords = parseFindKeywords(trimmedArgs);
 
         switch (findCommandType) {
-        case MODULE:
-            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
-            }
-            return new FindCourseCommand(new CourseNameContainsPredicate(keywords));
-        case GROUP:
-            if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
-            }
-            return new FindGroupCommand(new GroupNameContainsPredicate(keywords), currentSelection);
-        case SESSION:
-            if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
-            }
-            return new FindSessionCommand(new SessionNameContainsPredicate(keywords), currentSelection);
-        case STUDENT:
-            if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
-            }
-            return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
-        case TASK:
-            if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
-            }
-            return new FindTaskCommand(new TaskNameContainsPredicate(keywords), currentSelection);
-        default:
-            throw new ParseException("Invalid type for find command");
+            case MODULE:
+                if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+                    throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
+                }
+                return new FindCourseCommand(new CourseNameContainsPredicate(keywords));
+            case GROUP:
+                if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+                    throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
+                }
+                return new FindGroupCommand(new GroupNameContainsPredicate(keywords), currentSelection);
+            case SESSION:
+                if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
+                    throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
+                }
+                return new FindSessionCommand(new SessionNameContainsPredicate(keywords), currentSelection);
+            case STUDENT:
+                if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+                    throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+                }
+            return new FindStudentCommand(new StudentParticularsContainsPredicate(keywords), currentSelection);
+            case TASK:
+                if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
+                    throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+                }
+                return new FindTaskCommand(new TaskNameContainsPredicate(keywords), currentSelection);
+            default:
+                throw new ParseException("Invalid type for find command");
         }
     }
 
-
     /**
      * Parses the find command arguments and returns the search keywords as a String array.
+     *
      * @param args User input arguments.
      * @return String array of search keywords.
      * @throws ParseException If user input does not meet expected format.
