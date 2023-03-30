@@ -689,7 +689,6 @@ public class ModelManager implements Model {
 
     @Override
     public <T extends Item> boolean isIndexValid(int index, ReadOnlyItemManager<T> itemManager) {
-        // TODO: change this logic once changed the indexing
-        return index < itemManager.size();
+        return index <= itemManager.size() && index >= 0;
     }
 }
