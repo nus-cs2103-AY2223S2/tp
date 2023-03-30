@@ -35,7 +35,7 @@ public class AddDeliveryJobCommand extends DeliveryJobCommand {
             + PREFIX_DELIVERY_DATE + "DELIVERY DATE "
             + PREFIX_DELIVERY_SLOT + "DELIVERY SLOT "
             + PREFIX_EARNING + "Earning "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_SENDER_ID + "ALE874 "
             + PREFIX_RECIPIENT_ID + "DAV910 "
             + PREFIX_DELIVERY_DATE + "2023-03-03 "
