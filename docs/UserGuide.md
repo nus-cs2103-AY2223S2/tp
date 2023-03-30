@@ -18,7 +18,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [View guide : `help`](#view-help--help)
     - [Add an internship application](#)
         - [Add](#)
-    - [Add an interview date](#adding-an-interview-date--adddate)
+    - [Add an interview date : `add_date`](#adding-an-interview-date--add_date)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
