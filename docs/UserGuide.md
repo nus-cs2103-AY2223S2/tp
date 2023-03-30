@@ -48,7 +48,6 @@ Table of Contents
 If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -191,6 +190,7 @@ e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 e.g. `add n/Sample d/Why can't I add n/?`
 
+<br>
 
 :man_technologist: **If you are a pro user, you may consider adding multiple tasks at once with this hack!**
 
@@ -367,9 +367,9 @@ The algorithm allocates tasks as such:
 
 <summary>Need more help?</summary>
 
+Displaying Daily Plans
 
-**Displaying Daily Plans**
-
+<br>
 
 Daily Plans can be viewed by entering `schedule D/SHORTDATE` or `schedule D/SHORTDATE E/EFFORT`, with the former showing an old plan, and the latter showing a newly generated plan.
 As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an `E/EFFORT` flag if they do not remember when they last generated their plan.
@@ -472,7 +472,7 @@ _Details coming soon ..._
 ### Q5 What is a valid Short Date?
 **A**: A valid ShortDate must be in the format of `YYYY-MM-DD` such as `2023-07-15` (15 July 2023).
 
-### Q6 What is the difference between a `LongDate` and a `ShortDate`?
+### Q6 What is the difference between a LongDate and a ShortDate?
 **A**: A `ShortDate` omits the `HHMM` component of a `LongDate`.
 
 ### Q7 What is an effort level?
