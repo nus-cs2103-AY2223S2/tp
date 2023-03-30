@@ -139,12 +139,13 @@ public class AdvanceCommand extends Command {
     private boolean isDuplicateDateTime(
             Model model, Person personToAdvance, InterviewDateTime interviewDateTime) throws CommandException {
         Predicate<Person> shortlistedPredicate = person -> (person.getStatus() == Status.SHORTLISTED);
-        model.refreshListWithPredicate(shortlistedPredicate);
-        ObservableList<Person> shortlistedApplicants = model.getFilteredPersonList();
+        ObservableList<Person> shortlistedApplicants =
+                model.getAddressBook().getPersonList().filtered(shortlistedPredicate);
         for (Person applicant : shortlistedApplicants) {
             if (applicant.getInterviewDateTime().get().equals(interviewDateTime)) {
-                Predicate<Person> samePersonPredicate = person -> (person.equals(applicant));
-                model.refreshListWithPredicate(samePersonPredicate);
+                Predicate<Person> sameInterviewDTPredicate =
+                        person -> (person.equals(applicant) || person.equals(personToAdvance));
+                model.refreshListWithPredicate(sameInterviewDTPredicate);
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_INTERVIEW_DATE, applicant.getName()));
             }
         }
