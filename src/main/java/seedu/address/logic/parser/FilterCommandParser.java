@@ -22,33 +22,22 @@ public class FilterCommandParser implements Parser<FilterCommand>{
         String trimmedArgs = args.trim();
         String[] parameters = trimmedArgs.split("\\s+");
         int length = parameters.length;
-    //        int length = nameKeywords.length;
-    //        boolean hasAsterisk = ParserUtil.parseAsterisk(nameKeywords);
-    //        boolean isEmpty = trimmedArgs.isEmpty();
-    //        boolean isEmptyAfterAsterisk = hasAsterisk && length == 1;
-    //        if (isEmpty || isEmptyAfterAsterisk) {
-    //            throw new ParseException(
-    //                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    //        }
-    //        if (hasAsterisk) {
-    //            String[] nameKeywordsAsteriskRemoved = Arrays.copyOfRange(nameKeywords, 1, length);
-    //            return new FilterCommand(new NameContainsAllKeywordsPredicate(
-    //                    Arrays.asList(nameKeywordsAsteriskRemoved)));
-    //        }
-    //        return new FilterCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        // length of parameter array has to be 3
+
         if (length != 3) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
         String sortParameter = ParserUtil.parseSortParameter(parameters);
-        boolean isGreaterThan = ParserUtil.parseComparisonSign(parameters);
+//        boolean isGreaterThan = ParserUtil.parseComparisonSign(parameters)[0];
+//        boolean isLesserThan = ParserUtil.parseComparisonSign(parameters)[1];
+//        boolean isEqualTo = ParserUtil.parseComparisonSign(parameters)[2];
+        boolean[] possibleOperators = ParserUtil.parseComparisonSign(parameters);
         int comparisonAmount = ParserUtil.parseComparisonAmount(parameters);
 
         switch(sortParameter) {
 
         case Payroll.SORT_PARAMETER:
-            return new FilterCommand(new FilterByPayrollPredicate(comparisonAmount, isGreaterThan));
+            return new FilterCommand(new FilterByPayrollPredicate(comparisonAmount, possibleOperators));
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

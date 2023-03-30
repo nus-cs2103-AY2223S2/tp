@@ -8,19 +8,27 @@ import java.util.function.Predicate;
 public class FilterByPayrollPredicate implements Predicate<Employee> {
 
     private final int comparisonAmount;
+    private final boolean[] possibleOperators;
     private final boolean isGreaterThan;
+    private final boolean isLesserThan;
+    private final boolean isEqualTo;
 
-    public FilterByPayrollPredicate(int comparisonAmount, boolean isGreaterThan) {
+    public FilterByPayrollPredicate(int comparisonAmount, boolean[] possibleOperators) {
         this.comparisonAmount = comparisonAmount;
-        this.isGreaterThan = isGreaterThan;
+        this.possibleOperators = possibleOperators;
+        this.isGreaterThan = possibleOperators[0];
+        this.isLesserThan = possibleOperators[1];
+        this.isEqualTo = possibleOperators[2];
     }
 
     @Override
     public boolean test(Employee employee) {
         if (isGreaterThan) {
             return employee.getPayroll().salary > comparisonAmount;
-        } else {
+        } else if (isLesserThan) {
             return employee.getPayroll().salary < comparisonAmount;
+        } else {
+            return employee.getPayroll().salary == comparisonAmount;
         }
     }
 

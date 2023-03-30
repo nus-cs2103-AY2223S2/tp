@@ -13,7 +13,7 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and lists all employees who satisfy the given "
             + "filter for the payroll amount.\n"
-            + "Parameters: pr < {OR} > AMOUNT(must be a positive integer)\n"
+            + "Parameters: pr < {OR} = {OR} > AMOUNT (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " pr > 1000";
     private final Predicate<Employee> predicate;
 

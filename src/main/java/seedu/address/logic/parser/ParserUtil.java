@@ -287,24 +287,28 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String[] parameters} and returns whether the comparison sign is {@code >} or {@code <}
+     * Parses {@code String[] parameters} and returns whether the comparison sign is {@code >}, {@code <}
+     * or {@code =}.
      * @param parameters the string array of parameters.
      * @return whether comparison sign is greater than or less than.
      * @throws ParseException if format is wrong.
      */
-    public static boolean parseComparisonSign(String[] parameters) throws ParseException {
+    public static boolean[] parseComparisonSign(String[] parameters) throws ParseException {
         String comparisonSign = parameters[1];
-        boolean isGreaterThan;
+        boolean[] possibleOperators = new boolean[3];
         if (comparisonSign.compareTo(">") == 0) {
-            isGreaterThan = true;
+            possibleOperators[0] = true;
         } else if (comparisonSign.compareTo("<") == 0) {
-            isGreaterThan = false;
-        } else {
+            possibleOperators[1] = true;
+        } else if(comparisonSign.compareTo("=") == 0) {
+            possibleOperators[2] = true;
+        }
+        else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE)
             );
         }
-        return isGreaterThan;
+        return possibleOperators;
     }
 
     /**
