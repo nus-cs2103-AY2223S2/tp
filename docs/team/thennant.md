@@ -5,8 +5,8 @@ title: Thennant Lim's Project Portfolio Page
 
 ### Project: MediConnect
 
-MediConnect is a desktop address book application used for managing patients and doctors information. 
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
+MediConnect is a desktop address book application used for managing patients and doctors information.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features 
+        * Added documentation for the features
     * Developer Guide:
         * Added documentation for use cases and glossary
 
