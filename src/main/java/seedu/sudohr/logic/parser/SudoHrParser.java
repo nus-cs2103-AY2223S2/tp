@@ -10,6 +10,7 @@ import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
+import seedu.sudohr.logic.commands.ShowAllCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
@@ -149,6 +150,8 @@ public class SudoHrParser {
 
         case ListLeaveCommand.COMMAND_WORD:
             return new ListLeaveCommand();
+        case ShowAllCommand.COMMAND_WORD:
+            return new ShowAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
