@@ -48,21 +48,21 @@ public class TypicalEmployees {
             .withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Employee ELLE = new EmployeeBuilder().withId("105")
-            .withName("Elle Meyer").withPhone("9482224")
+            .withName("Elle Meyer").withPhone("94822241")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Employee FIONA = new EmployeeBuilder().withId("106")
-            .withName("Fiona Kunz").withPhone("9482427")
+            .withName("Fiona Kunz").withPhone("94824271")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Employee GEORGE = new EmployeeBuilder().withId("107")
-            .withName("George Best").withPhone("9482442")
+            .withName("George Best").withPhone("94824421")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
     public static final Employee HOON = new EmployeeBuilder().withId("108")
-            .withName("Hoon Meier").withPhone("8482424")
+            .withName("Hoon Meier").withPhone("84824243")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Employee IDA = new EmployeeBuilder().withId("109")
-            .withName("Ida Mueller").withPhone("8482131")
+            .withName("Ida Mueller").withPhone("84821314")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Employee's details found in {@code CommandTestUtil}
