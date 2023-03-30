@@ -102,7 +102,8 @@ public class UpdateExamCommand extends Command {
         String newExamName = this.examName.orElse(examToUpdate.getDescription());
         LocalDateTime newStartTime = this.startTime.orElse(examToUpdate.getStartTime());
         LocalDateTime newEndTime = this.endTime.orElse(examToUpdate.getEndTime());
-        Exam newExam = new Exam(newExamName, newStartTime, newEndTime);
+        //todo: change this below
+        Exam newExam = new Exam(newExamName, newStartTime, newEndTime, null, null);
         student.setExam(examToUpdate, newExam);
 
         return new CommandResult(
