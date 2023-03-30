@@ -247,7 +247,7 @@ public class Person {
      * @return A view of list of sorted scores.
      */
     public ObservableList<Score> getSortedScoreList() {
-        ObservableList<Score> sortedScoreList = this.scoreList.getSortedScoreList();
+        ObservableList<Score> sortedScoreList = this.scoreList.getInternalList();
         return sortedScoreList;
     }
 
