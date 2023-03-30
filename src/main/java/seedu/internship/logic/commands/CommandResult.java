@@ -147,7 +147,6 @@ public class CommandResult {
 
     public HashMap<LocalDate, List<Event>> getClashingEvents() {
         return hash;
-//        return null;
     }
 
     @Override
