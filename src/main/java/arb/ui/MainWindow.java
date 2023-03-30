@@ -9,6 +9,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
+import arb.storage.JsonStorageState;
 import arb.ui.client.ClientListPanel;
 import arb.ui.project.ProjectListPanel;
 import arb.ui.tag.TagMappingListPanel;
@@ -139,6 +140,20 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void setInitialMessage(JsonStorageState initialStorageState) {
+        switch (initialStorageState) {
+        case VALID:
+            resultDisplay.setFeedbackToUser("Data file found. Saved data successfully loaded.");
+            break;
+        case NOTFOUND:
+            resultDisplay.setFeedbackToUser("Data file not found. Sample data successfully loaded.");
+            break;
+        case INVALID:
+            resultDisplay.setFeedbackToUser("Data file not in the correct format. No data loaded and data file has been wiped.");
+            break;
+        }
     }
 
     /**

@@ -22,6 +22,7 @@ import arb.model.UserPrefs;
 import arb.model.util.SampleDataUtil;
 import arb.storage.AddressBookStorage;
 import arb.storage.JsonAddressBookStorage;
+import arb.storage.JsonStorageState;
 import arb.storage.JsonUserPrefsStorage;
 import arb.storage.Storage;
 import arb.storage.StorageManager;
@@ -36,7 +37,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 1, true);
+    public static final Version VERSION = new Version(1, 3, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -45,6 +46,8 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    private JsonStorageState initialStorageState = JsonStorageState.VALID;
 
     @Override
     public void init() throws Exception {
@@ -65,7 +68,7 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        ui = new UiManager(logic, initialStorageState);
     }
 
     /**
@@ -80,14 +83,17 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+                initialStorageState = JsonStorageState.NOTFOUND;
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialStorageState = JsonStorageState.INVALID;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            initialStorageState = JsonStorageState.INVALID;
         }
 
         return new ModelManager(initialData, userPrefs);
