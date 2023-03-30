@@ -91,6 +91,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         setBudget(newData.getBudget());
         setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
         generateRetroactiveExpenses();
+        expenses.sortList();
     }
 
     /**
@@ -102,6 +103,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
                 addExpense(expense);
             }
         }
+        expenses.sortList();
     }
 
     //// category-level operations
@@ -202,14 +204,17 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     public void addExpense(Expense expense) {
         expenses.add(expense);
+        expenses.sortList();
     }
 
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
+        expenses.sortList();
     }
 
     public void setExpense(int index, Expense expense) {
         expenses.set(index, expense);
+        expenses.sortList();
     }
 
     /**
