@@ -582,6 +582,7 @@ Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
 > Opens the respective social media platform of an existing contact.
 
 You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
+For WhatsApp, if handle stored is an 8-digit phone number, it will be assumed to be a Singaporean number and `65` country code will be automatically filled. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
@@ -602,6 +603,9 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 Format: `chat PERSON_INDEX wa/ m/`
 
 > Sends a chat to an existing contact.
+
+Due to platform constraints, only WhatsApp is supported.
+Same as `open`, if WhatsApp handle stored is an 8-digit phone number, it will be assumed to be a Singaporean number and `65` country code will be automatically filled.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
