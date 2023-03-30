@@ -89,8 +89,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Mark/Unmark
 
-- `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
-- `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
+- `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`: Marks video(s) as watched
+- `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_index}`: Unmarks video(s) as unwatched
 
 ### Delete
 
@@ -122,6 +122,10 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 - `find {keywords} [/byTag /lec {lecture_name}]`: Find all videos in a specified lecture in a navigated module whose tag list contains any tag that starts with any of the keyword(s) (:exclamation: only works if you are in `module` context)
 - `find {keywords} [/mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in specified module whose name starts with any of the keyword(s)
 - `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
+
+### Clear
+
+- `clear`: Clears all information from Le Tracker
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -349,7 +353,9 @@ Parameters:
 
 Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
 
-Examples:
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be deleted by specying multiple video namese, separating them by commas(",")
+- Video Names must be of valid format
+- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
 
 - `mark Vid 1 /mod CS2040 /lec Week 1`
 - `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
@@ -591,6 +597,16 @@ Examples:
 - In any context: `find content /byTag /mod CS2040S /lec Week 2`\
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
+
+### Clear
+
+> Clears all information (modules, lectures, videos, tags) from Le Tracker
+
+Format:
+- `clear`
+
+- any following term entered after `clear` is ignored
+- calling `clear` will result in an empty Tracker
 
 ---
 
