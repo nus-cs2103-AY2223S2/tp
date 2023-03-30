@@ -1,11 +1,6 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,20 +16,15 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w14-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Check out our user guide online!";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-    private String commandListString = "";
-    private String descriptionListString = "";
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
-
-    @FXML
-    private Label commandList;
 
     /**
      * Creates a new HelpWindow.
@@ -43,15 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        InputStreamReader commandListFile =
-                new InputStreamReader(
-                        requireNonNull(
-                                HelpWindow.class
-                                        .getClassLoader()
-                                        .getResourceAsStream("data/commandsummary.txt")));
-        commandListString = new BufferedReader(commandListFile).lines().collect(Collectors.joining("\n"));
         helpMessage.setText(HELP_MESSAGE);
-        commandList.setText(commandListString);
     }
 
     /**
