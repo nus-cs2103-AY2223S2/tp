@@ -16,17 +16,18 @@ import seedu.address.model.exceptions.InputHistoryTimelineException;
  * Redoes a number of the recently undone {@code Command}s.
  */
 public class RedoCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
-
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("redo", "r", "heal"));
     //CHECKSTYLE.ON: VisibilityModifier
+
     public static final String MESSAGE_USAGE = commandWords + ": Redoes the last undone command,"
             + "or a number of the most recently undone commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
             + "Example: " + commandWords + " 5";
 
     public static final String MESSAGE_SUCCESS = "Redone %1$d / %2$d commands";
+
+    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
 
     private final int numCommands;
     private StateHistory history = null;

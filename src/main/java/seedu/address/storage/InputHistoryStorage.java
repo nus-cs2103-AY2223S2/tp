@@ -30,10 +30,10 @@ public interface InputHistoryStorage {
     Optional<InputHistory> readInputHistory(Path filePath) throws IOException;
 
     /**
-     * Replace the history txt file's content with the given string to the storage.
+     * Writes the given {@code history} to the default {@code InputHistory} text file.
      *
-     * @param historyString cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * @param history cannot be null.
+     * @throws IOException if there were any problems writing to the file.
      */
     void saveInputHistory(InputHistory history) throws IOException;
 

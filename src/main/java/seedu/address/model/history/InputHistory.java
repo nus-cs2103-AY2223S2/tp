@@ -22,6 +22,12 @@ public class InputHistory {
 
     public InputHistory() {}
 
+    /**
+     * Creates an {@code InputHistory} using the given {@code past} and {@code future}.
+     *
+     * @param past the list of previous command inputs
+     * @param future the list of undone following command inputs
+     */
     public InputHistory(List<String> past, List<String> future) {
         this.past.addAll(past);
         this.future.addAll(future);
@@ -46,17 +52,24 @@ public class InputHistory {
         this.historyStorageFilePath = newPath;
     }
 
-    /** Returns the history string of previous executed commands */
+    /** Returns the list of previously executed command inputs */
     public List<String> getPast() {
         return new ArrayList<>(past);
     }
 
+    /** Returns the list of undone following command inputs */
     public List<String> getFuture() {
         List<String> outFuture = new ArrayList<>(future);
         Collections.reverse(outFuture);
         return outFuture;
     }
 
+    /**
+     * Undoes the last {@code num} command inputs.
+     *
+     * @param num number of command inputs to undo
+     * @throws InputHistoryTimelineException if fewer than {@code num} previous command inputs exist
+     */
     public void undo(int num) throws InputHistoryTimelineException {
         if (num > past.size()) {
             throw new InputHistoryTimelineException("Attempted to undo more inputs than exists");
@@ -67,6 +80,12 @@ public class InputHistory {
         }
     }
 
+    /**
+     * Redoes the next {@code num} command inputs.
+     *
+     * @param num number of command inputs to redo
+     * @throws InputHistoryTimelineException if fewer than {@code num} future command inputs exist
+     */
     public void redo(int num) throws InputHistoryTimelineException {
         if (num > future.size()) {
             throw new InputHistoryTimelineException("Attempted to redo more inputs than exists");
@@ -77,6 +96,13 @@ public class InputHistory {
         }
     }
 
+    /**
+     * Adds {@code commandString} to the list of previous command inputs,
+     * if deemed appropriate given {@code commandResult}.
+     *
+     * @param commandString the command input to add
+     * @param commandResult the result of executing {@code commandString}
+     */
     public void offerCommand(String commandString, CommandResult commandResult) {
         if (!commandResult.isDeterministic()) { // not exactly accurate, <exportCommand> - to fix
             return;
@@ -98,6 +124,7 @@ public class InputHistory {
         future.addAll(newInputHistory.future);
     }
 
+    /** Returns the contents of this InputHistory in a loadable String format. */
     public String toDataString() {
         String dataString = past.size() + "\n" + future.size() + "\n";
         for (String s : past) {
@@ -117,6 +144,7 @@ public class InputHistory {
         return dataString;
     }
 
+    /** Creates an InputHistory based on a loadable String {@code s}. */
     public static InputHistory fromDataString(String s) {
         String[] lines = s.split("\n");
         int pastCount = Integer.parseInt(lines[0]);

@@ -7,19 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.StateHistory;
 import seedu.address.model.exceptions.InputHistoryTimelineException;
-import seedu.address.model.history.InputHistory;
 
 /**
  * Undoes a number of the most recent prior {@code Command}s.
  */
 public class UndoCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
-
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("undo", "u"));
     //CHECKSTYLE.ON: VisibilityModifier
@@ -30,6 +26,8 @@ public class UndoCommand extends Command {
             + "Example: " + commandWords + " 5";
 
     public static final String MESSAGE_SUCCESS = "Undone %1$d / %2$d commands";
+
+    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
 
     private final int numCommands;
     private StateHistory history = null;
