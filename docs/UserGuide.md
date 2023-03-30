@@ -43,8 +43,7 @@ open the help window.<br>
 
    * `redo 5` : Redo 5 previous actions.
    
-
-6. To learn more about PropertyWhiz, refer to the [Commands](#Commands) section below
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below
 for details of each command, or the [Command Summary](#Command summary).
 --------------------------------------------------------------------------------------------------------------------
 ## Navigating the User Interface
@@ -233,8 +232,6 @@ Format: `list`
 ### Importing data from CSV file : `import`
 
 Use this command to import buyers or properties from a CSV file. Imported items will be added to the front of the list.
-
-![Imported properties](images/ImportPropertyUi.png)
 
 Format: `import [FILENAME]`
 
