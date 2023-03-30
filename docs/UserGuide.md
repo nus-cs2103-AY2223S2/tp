@@ -373,6 +373,8 @@ Examples:
 
 * `sort_t` sorts all tasks by their status and deadline
 * `sort_task c/deadline` sorts all tasks by their deadlines
+* `find_t s/N` followed by `sort_t` would sort all the tasks but only the sorted result of the `find_t` command will be displayed<br>
+  (to get the sorted list of all the items, use the `list_t` command)
 
 ### Sorting a order: `sort_order` / `sort_o`
 
@@ -396,6 +398,8 @@ Examples:
 
 * `sort_o` sorts all orders by their status and deadline
 * `sort_order c/status` sorts all orders by their deadlines
+* `find_o s/N` followed by `sort_o` would sort all the orders but only the sorted result of the `find_o` command will be displayed<br>
+    (to get the sorted list of all the orders, use the `list_o` command)
 
 
 # Switch
