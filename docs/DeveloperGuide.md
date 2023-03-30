@@ -1019,42 +1019,56 @@ feature would work in practice.
 
 ### 5.6 Glossary
 
-1. **addp**: Add a new person to the list.
-2. **addt**: Add a new task to the list.
-3. **assign**: Assign a task to a person.
-4. **deletep**: Delete a person from the list.
-5. **deletet**: Delete a task from the list.
-6. **editp**: Edit the details of a person.
-7. **editt**: Edit the details of a task.
-8. **exit**: Close the application.
-9. **filterp**: Filter persons by a specific tag.
-10. **findp**: Search for a person by their name.
-11. **findt**: Search for a task by its title.
-12. **help**: Display help information.
-13. **listall**: List all persons and tasks.
-14. **listp**: List all persons.
-15. **listt**: List all tasks.
-16. **mark**: Mark a task as completed.
-17. **quickstart**: Launch the application with sample data.
-18. **unassign**: Unassign a task from a person.
-19. **unmark**: Unmark a completed task.
-20. **viewassignedall**: View all assigned persons and tasks.
-21. **viewassignedp**: View assigned persons.
-22. **viewassignedt**: View assigned tasks.
-23. **pi**: View a person's details.
-24. **ti**: View a task's details.
-25. **viewunassignedall**: View all unassigned persons and tasks.
-26. **viewunassignedp**: View unassigned persons.
-27. **viewunassignedt**: View unassigned tasks.
+#### *A*
+* **addp**: Add a new person to the list.
+* **addt**: Add a new task to the list.
+* **assign**: Assign a task to a person.
 
+#### *D*
+* **deletep**: Delete a person from the list.
+* **deletet**: Delete a task from the list.
+
+#### *E*
+* **editp**: Edit the details of a person.
+* **editt**: Edit the details of a task.
+
+#### *F*
+* **filterp**: Filter persons by a specific tag.
+* **findp**: Search for a person by their name.
+* **findt**: Search for a task by its title.
+
+#### *H*
+* **help**: Display help information.
+
+#### *L*
+* **listall**: List all persons and tasks.
+* **listp**: List all persons.
+* **listt**: List all tasks.
 
 #### *M*
-
+* **mark**: Mark a task as completed.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 #### *P*
-
+* **pi**: View a person's details.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **quickstart**: Launch the application with sample data.
+
+#### *T*
+* **ti**: View a task's details.
+
+#### *U*
+* **unassign**: Unassign a task from a person.
+* **unmark**: Unmark a completed task.
+
+#### *V*
+* **viewassignedall**: View all assigned persons and tasks.
+* **viewassignedp**: View assigned persons.
+* **viewassignedt**: View assigned tasks.
+* **viewunassignedall**: View all unassigned persons and tasks.
+* **viewunassignedp**: View unassigned persons.
+* **viewunassignedt**: View unassigned tasks.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
