@@ -1,21 +1,31 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.Set;
+import java.util.concurrent.Flow;
 import java.util.logging.Logger;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipApplicationAttribute;
 import seedu.address.model.task.InternshipTodo;
@@ -113,8 +123,13 @@ public class ViewContentPanel extends UiPart<Region> {
     private void showCompulsoryAttributes(InternshipApplication internshipApplication) {
         title.setText(internshipApplication.getCompanyName().fullName);
         description.setText(internshipApplication.getJobTitle().fullName);
-        sideLabel.setText(internshipApplication.getStatus().label);
-        sideLabel.setStyle("-fx-background-color: " + internshipApplication.getStatus().labelColour);
+        if (!internshipApplication.isArchived()) {
+            sideLabel.setText(internshipApplication.getStatus().label);
+            sideLabel.setStyle("-fx-background-color: " + internshipApplication.getStatus().labelColour);
+        } else {
+            sideLabel.setText("Archived");
+            sideLabel.setStyle("-fx-background-color: #808080");
+        }
     }
 
     private void showOptionalAttributes(InternshipApplication internshipApplication) {
@@ -122,6 +137,9 @@ public class ViewContentPanel extends UiPart<Region> {
         if (internshipApplication.getContact() != null) {
             addLabel("Company Phone", internshipApplication.getContact().getPhone());
             addLabel("Company Email", internshipApplication.getContact().getEmail());
+        }
+        if (internshipApplication.getDocuments() != null) {
+            addDocuments(internshipApplication.getDocuments());
         }
         addLabel("Interview Date", internshipApplication.getInterviewDate());
         addLabel("Location", internshipApplication.getLocation());
@@ -132,6 +150,41 @@ public class ViewContentPanel extends UiPart<Region> {
         addFlowPane("Qualifications", internshipApplication.getQualifications());
         addFlowPane("Notes", internshipApplication.getNotes());
         addFlowPane("Reflections", internshipApplication.getReflections());
+    }
+
+    private void addDocuments(Documents documents) {
+        FlowPane resumePane = new FlowPane();
+        resumePane.getStyleClass().add("link-items");
+        Label resumeLabel = new Label("Resume Link: ");
+        resumeLabel.getStyleClass().add("cell_small_label");
+        Hyperlink resumeHyperlink = new Hyperlink(documents.getResumeLink().value);
+        setHyperlink(resumePane, resumeLabel, resumeHyperlink);
+
+        FlowPane coverLetterPane = new FlowPane();
+        coverLetterPane.getStyleClass().add("link-items");
+        Label coverLetterLabel = new Label("Cover Letter Link: ");
+        coverLetterLabel.getStyleClass().add("cell_small_label");
+        Hyperlink coverLetterLink = new Hyperlink(documents.getCoverLetterLink().value);
+        setHyperlink(coverLetterPane, coverLetterLabel, coverLetterLink);
+
+        pane.getItems().addAll(resumePane, coverLetterPane);
+    }
+
+    private void setHyperlink(FlowPane flowPane, Label label, Hyperlink hyperlink) {
+        hyperlink.getStyleClass().add("link-item");
+        hyperlink.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                try {
+                    Desktop.getDesktop().browse(new URI(hyperlink.getText()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (URISyntaxException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        flowPane.getChildren().addAll(label, hyperlink);
     }
 
     private void addInternshipTodoDetails(InternshipTodo internshipTodo) {

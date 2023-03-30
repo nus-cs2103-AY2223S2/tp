@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.ui.control.ControlBox;
 
 /**
  * Panel containing the list of persons.
@@ -21,6 +22,7 @@ public class ApplicationListPanel extends UiPart<Region> {
 
     private ViewContentPanel viewContentPanel;
     private InternshipApplication currentApplication;
+    private ControlBox controlBox;
 
     @FXML
     private ListView<InternshipApplication> applicationListView;
@@ -31,10 +33,12 @@ public class ApplicationListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ViewContentPanel} with the given {@code ObservableList}.
      */
-    public ApplicationListPanel(ObservableList<InternshipApplication> applicationList,
+    public ApplicationListPanel(ObservableList<InternshipApplication> applicationList, MainWindow mainWindow,
                                 ViewContentPanel viewContentPanel) {
         super(FXML);
         this.viewContentPanel = viewContentPanel;
+        controlBox = new ControlBox(mainWindow);
+        container.getChildren().add(0, controlBox.getRoot());
         applicationListView.setItems(applicationList);
         applicationListView.setCellFactory(listView -> new ApplicationListViewCell());
     }

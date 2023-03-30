@@ -76,11 +76,6 @@
     -fx-background-color: transparent;
 }
 
-.reviews {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
 .multiple-items {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -95,3 +90,16 @@
     -fx-font-size: 13px;
 }
 
+.link-items {
+    -fx-hgap: 0;
+}
+
+.link-item {
+    -fx-font-size: 16px;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.link-item:visited {
+    -fx-text-fill: #0095C8;
+}
