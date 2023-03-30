@@ -485,13 +485,13 @@ Finds persons whose specified fields contain any of the given keywords limited t
 <div markdown="block" class="alert alert-info">
 
 :information_source: You can use this command if:
-* you want to find a specific person and know specific informataion about that person
+* you want to find a specific person and know specific information about that person
 * you want to obtain a list of people that you want to use the other commands on
 
 </div>
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `find z/KEYWORD [MORE_KEYWORDS]…​`
+* `find z/KEYWORD [MORE_KEYWORDS]… z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
 {GUI}<br>
@@ -505,6 +505,7 @@ What you should see:<br>
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* When multiple fields are specified, persons matching at least one keyword from each field will be returned (i.e. AND search) e.g. n/Hans Bo m/CS2103 wll return Hans Gruber who takes CS2103 but not Bo Yang who does not take CS2103
 
 </div>
 
@@ -512,6 +513,8 @@ Examples:
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
+* `find n/Edward p/9093`: Returns all persons with name Edward and phone numbers starting with 9093
+* `find n/Edward Richards m/CS2103T CS2109S` Returns all persons with name Edward and module CS2103T, or name Edward and module CS2109S, or name Richards and module CS2103T, or name Richards and module CS2109S
 
 #### Arrange contacts based on criteria `sort`
 
