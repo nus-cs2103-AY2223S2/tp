@@ -174,6 +174,7 @@ public class RecipeForm extends UiPart<Region> {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
         window.setMaxHeight(Screen.getPrimary().getBounds().getMaxY());
+        window.setMinHeight(500);
 
         //Set dimensions, scene graph
         VBox pane = new VBox(getRoot());
