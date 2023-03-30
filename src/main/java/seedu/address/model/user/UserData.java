@@ -101,10 +101,6 @@ public class UserData implements ReadOnlyUserData {
 
     //// util methods
 
-    public void setEvent(Event target, Event editedEvent) {
-        this.user.getValue().setEvent(target, editedEvent);
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

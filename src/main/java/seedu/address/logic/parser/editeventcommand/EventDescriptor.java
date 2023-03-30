@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.editeventcommand;
 
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -8,6 +9,7 @@ import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 
 /**
  * Stores the details of the event.
@@ -19,6 +21,8 @@ public class EventDescriptor {
     private DateTime startDateTime;
     private DateTime endDateTime;
     private Recurrence recurrence;
+
+    private Set<Person> taggedPeople;
 
     public EventDescriptor() {}
 
@@ -32,6 +36,7 @@ public class EventDescriptor {
         setStartDateTime(toCopy.startDateTime);
         setEndDateTime(toCopy.endDateTime);
         setRecurrence(toCopy.recurrence);
+        setTaggedPeople(toCopy.taggedPeople);
     }
 
     /**
@@ -80,6 +85,13 @@ public class EventDescriptor {
 
     public Optional<Recurrence> getRecurrence() {
         return Optional.ofNullable(recurrence);
+    }
+
+    public void setTaggedPeople(Set<Person> taggedPeople) {
+        this.taggedPeople = taggedPeople;
+    }
+    public Optional<Set<Person>> getTaggedPeople() {
+        return Optional.ofNullable(taggedPeople);
     }
 
     @Override

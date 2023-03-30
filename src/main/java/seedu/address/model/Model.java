@@ -132,11 +132,8 @@ public interface Model {
     /** Adds {@code event} to the event list */
     void addEvent(Event event);
 
-    void setEvent(Event target, Event editedEvent);
-
     /** Deletes {@code event} to the event list */
     void deleteEvent(Event event);
-
 
     /** Gets list of all events */
     ObservableList<Event> getEvents();

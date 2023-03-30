@@ -95,10 +95,6 @@ public class User extends Person {
         return this.events;
     }
 
-    public void setEvent(Event target, Event editedEvent) {
-        this.events.setEvent(target, editedEvent);
-    }
-
     public void deletePersonFromAllEvents(Person target) {
         this.events.deletePersonFromAllEvents(target);
     }

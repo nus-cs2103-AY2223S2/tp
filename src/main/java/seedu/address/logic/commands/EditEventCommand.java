@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -19,6 +20,7 @@ import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a command that edits an event object.
@@ -106,11 +108,12 @@ public class EditEventCommand extends Command {
         DateTime startDateTime = editEventDescriptor.getStartDateTime().orElse(eventToEdit.getStartDateTime());
         DateTime endDateTime = editEventDescriptor.getEndDateTime().orElse(eventToEdit.getEndDateTime());
         Recurrence recurrence = editEventDescriptor.getRecurrence().orElse(eventToEdit.getRecurrence());
+        Set<Person> taggedPeople = editEventDescriptor.getTaggedPeople().orElse(eventToEdit.getTaggedPeople());
 
         if (recurrence.isRecurring()) {
-            return new RecurringEvent(description, startDateTime, endDateTime, recurrence);
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
         } else {
-            return new OneTimeEvent(description, startDateTime, endDateTime);
+            return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
         }
     }
 
@@ -121,7 +124,7 @@ public class EditEventCommand extends Command {
     public boolean equals(Object other) {
         EditEventCommand otherEvent = (EditEventCommand) other;
         return other == this
-          || (other instanceof EditEventCommand
-          && this.editEventDescriptor.equals(otherEvent));
+            || (other instanceof EditEventCommand
+            && this.editEventDescriptor.equals(otherEvent));
     }
 }
