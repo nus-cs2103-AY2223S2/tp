@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#537FE7, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #537FE7; /* Used in the default.html file */
 }
 
 .label {
@@ -93,31 +93,26 @@
     -fx-background-color: derive(#DFE7F2, 20%);
 }
 
-.list-view-appmt {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(white, 20%);
-}
-
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
 
-    -fx-padding: 5px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
+    -fx-padding: 6px;
+    -fx-border-insets: 6px;
+    -fx-background-insets: 6px;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-border-color: #80A1D4;
+    /* -fx-border-color: #80A1D4; */
+
     -fx-border-width: 3;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: white;
+    -fx-background-color: #C4DDFF;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: white;
+    -fx-background-color: #C4DDFF;
 }
 
 .list-cell:filled:selected {
@@ -157,7 +152,7 @@
 
 .pane-with-border {
      -fx-background-color: derive(#DFE7F2, 20%);
-     -fx-border-color: derive(#DFE7F2, 10%);
+     /* -fx-border-color: derive(#DFE7F2, 10%); */
      -fx-border-top-width: 1px;
 }
 
@@ -301,7 +296,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#DFE7F2, 20%);
+    -fx-background-color: derive(#f0f3f7, 20%);
 }
 
 .scroll-bar .thumb {
@@ -367,7 +362,7 @@
 
 #tags .label {
     -fx-text-fill: black;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #f2ca44;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
