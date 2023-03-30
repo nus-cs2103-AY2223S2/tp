@@ -23,7 +23,7 @@ public class ClearTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Task: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
     public static final String MESSAGE_CLEAR_TASK_SUCCESS = "Cleared tasklist of Person: %1$s";
     public static final String MESSAGE_CLEAR_TASK_FAILURE = "Failure to clear tasklist of Person: %1$s";
 
