@@ -1,4 +1,4 @@
-package mycelium.mycelium.model.person;
+package mycelium.mycelium.model.client;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;

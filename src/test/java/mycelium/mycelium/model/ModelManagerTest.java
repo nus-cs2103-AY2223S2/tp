@@ -3,7 +3,6 @@ package mycelium.mycelium.model;
 import static mycelium.mycelium.commons.util.DateUtil.isBeforeToday;
 import static mycelium.mycelium.commons.util.DateUtil.isWithinThisAndNextWeek;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
 import static mycelium.mycelium.testutil.TypicalEntities.BARD;
 import static mycelium.mycelium.testutil.TypicalEntities.BING;
 import static mycelium.mycelium.testutil.TypicalEntities.BOSE;
@@ -24,8 +23,8 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.Name;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
-import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
@@ -89,27 +88,6 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setAddressBookFilePath(path);
         assertEquals(path, modelManager.getAddressBookFilePath());
-    }
-
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
@@ -297,25 +275,25 @@ public class ModelManagerTest {
     @Test
     public void getDueProjectList_alwaysContainsUnfinishedProjects_success() {
         assertEquals(0, modelManager.getDueProjectList().stream().filter(
-                p -> p.getStatus() == ProjectStatus.DONE).count());
+            p -> p.getStatus() == ProjectStatus.DONE).count());
     }
 
     @Test
     public void getDueProjectList_alwaysContainsProjectsWithDeadlinesWithinTwoWeeks_success() {
         assertEquals(0, modelManager.getDueProjectList().stream().filter(
-                p -> !isWithinThisAndNextWeek(p.getDeadline().get())).count());
+            p -> !isWithinThisAndNextWeek(p.getDeadline().get())).count());
     }
 
     @Test
     public void getDueProjectList_neverContainsOverdueProjects_success() {
         assertEquals(0, modelManager.getDueProjectList().stream().filter(
-                p -> isBeforeToday(p.getDeadline().get())).count());
+            p -> isBeforeToday(p.getDeadline().get())).count());
     }
 
     @Test
     public void getOverdueProjectList_neverContainsDueProjects_success() {
         assertEquals(0, modelManager.getOverdueProjectList().stream().filter(
-                p -> !isBeforeToday(p.getDeadline().get()) || p.getStatus() == ProjectStatus.DONE).count());
+            p -> !isBeforeToday(p.getDeadline().get()) || p.getStatus() == ProjectStatus.DONE).count());
     }
 
     @Test

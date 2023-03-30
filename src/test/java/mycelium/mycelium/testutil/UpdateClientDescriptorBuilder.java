@@ -3,10 +3,10 @@ package mycelium.mycelium.testutil;
 import java.util.Optional;
 
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
@@ -14,12 +14,14 @@ import mycelium.mycelium.model.util.NonEmptyString;
  */
 public class UpdateClientDescriptorBuilder {
     private UpdateClientCommand.UpdateClientDescriptor descriptor;
+
     public UpdateClientDescriptorBuilder() {
         descriptor = new UpdateClientCommand.UpdateClientDescriptor();
     }
 
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @param name the name of the client.
      * @return the updated descriptor.
      */
@@ -27,8 +29,10 @@ public class UpdateClientDescriptorBuilder {
         descriptor.setName(Optional.ofNullable(name).map(Name::new));
         return this;
     }
+
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @param email the email of the client.
      * @return the updated descriptor.
      */
@@ -39,6 +43,7 @@ public class UpdateClientDescriptorBuilder {
 
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @param yearOfBirth the year of birth of the client.
      * @return the updated descriptor.
      */
@@ -49,6 +54,7 @@ public class UpdateClientDescriptorBuilder {
 
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @param source the source of the client.
      * @return the updated descriptor.
      */
@@ -59,6 +65,7 @@ public class UpdateClientDescriptorBuilder {
 
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @param mobileNumber the mobile number of the client.
      * @return the updated descriptor.
      */
@@ -66,8 +73,10 @@ public class UpdateClientDescriptorBuilder {
         descriptor.setMobileNumber(Optional.ofNullable(mobileNumber).map(Phone::new));
         return this;
     }
+
     /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
+     *
      * @return the updated descriptor.
      */
     public UpdateClientCommand.UpdateClientDescriptor build() {

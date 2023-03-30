@@ -227,7 +227,6 @@ public class MainWindow extends UiPart<Stage> {
      * Appends the input of the command box.
      *
      * @param string the input to append to the command box.
-     * @see CommandBox#appendInput(String)
      */
     public void appendCommandBoxHighlighted(String string) {
         commandBox.appendHighlighted(string);
@@ -301,8 +300,6 @@ public class MainWindow extends UiPart<Stage> {
     // TabsPanelList methods =====================================================
     /**
      * Switches between the statistic panel and the entity panel.
-     *
-     * @see TabsPanelList#switchPanel()
      */
     public void nextTabPanel() {
         tabsPanelList.nextTabPanel();
@@ -328,8 +325,6 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Selects the previous item in the current entity panel.
-     *
-     * @see tabsPanelList#prevItem()
      */
     public void prevItem() {
         tabsPanelList.prevItem();

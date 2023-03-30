@@ -1,6 +1,5 @@
 {
 	"_comment": "The first project below is invalid, since the status is empty.",
-	"persons": [],
 	"projects": [
 		{
 			"name": "Bing",

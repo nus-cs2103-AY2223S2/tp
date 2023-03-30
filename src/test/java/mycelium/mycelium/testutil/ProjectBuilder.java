@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;

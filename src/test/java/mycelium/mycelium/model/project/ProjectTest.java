@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.ProjectBuilder;
 

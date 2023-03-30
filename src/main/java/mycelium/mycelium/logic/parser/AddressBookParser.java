@@ -6,19 +6,12 @@ import static mycelium.mycelium.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddClientCommand;
-import mycelium.mycelium.logic.commands.AddCommand;
 import mycelium.mycelium.logic.commands.AddProjectCommand;
-import mycelium.mycelium.logic.commands.ClearCommand;
 import mycelium.mycelium.logic.commands.Command;
 import mycelium.mycelium.logic.commands.DeleteClientCommand;
-import mycelium.mycelium.logic.commands.DeleteCommand;
 import mycelium.mycelium.logic.commands.DeleteProjectCommand;
-import mycelium.mycelium.logic.commands.EditCommand;
-import mycelium.mycelium.logic.commands.ExitCommand;
-import mycelium.mycelium.logic.commands.FindCommand;
-import mycelium.mycelium.logic.commands.HelpCommand;
-import mycelium.mycelium.logic.commands.ListCommand;
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
@@ -43,36 +36,12 @@ public class AddressBookParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Messages.MESSAGE_CHECK_USER_GUIDE));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         case AddClientCommand.COMMAND_ACRONYM:
             return new AddClientCommandParser().parse(arguments);
@@ -80,14 +49,14 @@ public class AddressBookParser {
         case AddProjectCommand.COMMAND_ACRONYM:
             return new AddProjectCommandParser().parse(arguments);
 
-        case UpdateClientCommand.COMMAND_ACRONYM:
-            return new UpdateClientCommandParser().parse(arguments);
-
         case DeleteClientCommand.COMMAND_ACRONYM:
             return new DeleteClientCommandParser().parse(arguments);
 
         case DeleteProjectCommand.COMMAND_ACRONYM:
             return new DeleteProjectCommandParser().parse(arguments);
+
+        case UpdateClientCommand.COMMAND_ACRONYM:
+            return new UpdateClientCommandParser().parse(arguments);
 
         case UpdateProjectCommand.COMMAND_ACRONYM:
             return new UpdateProjectCommandParser().parse(arguments);

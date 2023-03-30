@@ -1,4 +1,4 @@
-package mycelium.mycelium.model.person;
+package mycelium.mycelium.model.client;
 
 import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.AppUtil.checkArgument;

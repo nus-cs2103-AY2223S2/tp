@@ -15,10 +15,10 @@ import java.util.Optional;
 
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
@@ -35,34 +35,34 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
     public UpdateClientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        CliSyntax.PREFIX_CLIENT_NAME,
-                        CliSyntax.PREFIX_CLIENT_NEW_EMAIL,
-                        CliSyntax.PREFIX_CLIENT_EMAIL,
-                        CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH,
-                        CliSyntax.PREFIX_SOURCE,
-                        CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER
-                );
+            ArgumentTokenizer.tokenize(args,
+                CliSyntax.PREFIX_CLIENT_NAME,
+                CliSyntax.PREFIX_CLIENT_NEW_EMAIL,
+                CliSyntax.PREFIX_CLIENT_EMAIL,
+                CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH,
+                CliSyntax.PREFIX_SOURCE,
+                CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER
+            );
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateClientCommand.MESSAGE_USAGE));
         }
         Email email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         Optional<Name> name = parseOptionalWith(
-                argMultimap.getValue(PREFIX_CLIENT_NAME), ParserUtil::parseName);
+            argMultimap.getValue(PREFIX_CLIENT_NAME), ParserUtil::parseName);
         Optional<Email> newEmail = parseOptionalWith(
-                argMultimap.getValue(PREFIX_CLIENT_NEW_EMAIL), ParserUtil::parseEmail);
+            argMultimap.getValue(PREFIX_CLIENT_NEW_EMAIL), ParserUtil::parseEmail);
         Optional<YearOfBirth> yearOfBirth = parseOptionalWith(
-                argMultimap.getValue(PREFIX_CLIENT_YEAR_OF_BIRTH),
-                ParserUtil::parseYearOfBirth);
+            argMultimap.getValue(PREFIX_CLIENT_YEAR_OF_BIRTH),
+            ParserUtil::parseYearOfBirth);
         Optional<NonEmptyString> source = parseOptionalWith(
-                argMultimap.getValue(PREFIX_SOURCE),
-                ParserUtil::parseSource);
+            argMultimap.getValue(PREFIX_SOURCE),
+            ParserUtil::parseSource);
         Optional<Phone> mobileNumber = parseOptionalWith(
-                argMultimap.getValue(PREFIX_CLIENT_MOBILE_NUMBER),
-                ParserUtil::parsePhone);
+            argMultimap.getValue(PREFIX_CLIENT_MOBILE_NUMBER),
+            ParserUtil::parsePhone);
         UpdateClientCommand.UpdateClientDescriptor updateClientDescriptor = new UpdateClientCommand
-                .UpdateClientDescriptor();
+            .UpdateClientDescriptor();
         updateClientDescriptor.setName(name);
         updateClientDescriptor.setEmail(newEmail);
         updateClientDescriptor.setYearOfBirth(yearOfBirth);

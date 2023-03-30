@@ -5,10 +5,12 @@ title: User Guide
 ---
 
 Mycelium is a desktop application aimed at helping **freelance web developers
-manage clients and projects** from multiple online sources. All interactions
-with Mycelium are through text commands or HotKeys, allowing for efficient
-manipulation of data while benefiting from the ease of viewing offered by the
-Graphical User Interface.
+manage clients and projects** from multiple online sources like [Upstack](https://upstackhq.com/),
+[Fiverr](fiverr.com), and [Toptal](https://www.toptal.com/). All interactions
+with Mycelium are done through text commands or HotKeys, enabling one to efficiently
+manipulate data while availing oneself to the convenience of viewing, offered by the
+Graphical User Interface (GUI). You can expect to navigate its interface seamlessly and 
+access its functions with a mere keystroke or two.
 
 ## Using this Guide
 
@@ -80,16 +82,12 @@ the guide for a guided tour of how Mycelium is intended to be used.
 
 ## Glossary
 
-* Graphical User Interface (GUI): A form of user interface that allows users to interact
-with electronic devices through graphical icons
 
-* User Interface (UI): The point of human-computer interaction and communication in a device.
-This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also
-the way through which a user interacts with an application or a website.
-
-* Integrated Development Environment (IDE): A software application that helps programmers develop
-software code efficiently. It increases developer productivity by combining capabilities such as
-software editing, building, testing, and packaging in an easy-to-use application.
+| Term                                     | Definition                                                                                                                                                                                                                                       |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI)           | A form of user interface that allows users to interact with electronic devices through graphical icons                                                                                                                                           |
+| User Interface (UI)                      | The point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website. |
+| Integrated Development Environment (IDE) | A software application that helps programmers develop software code efficiently. It increases developer productivity by combining capabilities such as software editing, building, testing, and packaging in an easy-to-use application.         |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -108,7 +106,7 @@ This screenshot below highlights the four main components in Mycelium's window.
 1. **Entity panel:** Lists projects and clients in two separate tabs.
 1. **Statistics panel:** Displays overview of projects.
 
-More details about the Entity and Statistics panel are given in the following sections.
+You can find more details about the Entity and Statistics panels in the following sections.
 
 ### Entity Panel
 
@@ -199,7 +197,7 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 
 ## Managing Clients
 
-This section documents the commands related to managing clients.
+This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -208,7 +206,9 @@ on the Projects tab, Mycelium will automatically display the Clients tab.
 
 ### Creating a client contact: `c`
 
-Creates a new client contact.
+To create a new client contact, use the **`c`** command followed by the client's name and email. 
+The year of birth, platform source, and mobile number can also be added as optional arguments. 
+Once successfully created, the interface will display the new client's name and email.
 
 **Compulsory Arguments**
 
@@ -228,6 +228,7 @@ Creates a new client contact.
 - `-mn mobile_number`
     - The client’s mobile number.
     - **Default:** *null*
+
 
 **Example**
 
@@ -249,7 +250,8 @@ In fact, *X Æ A-12* is also a valid name in Mycelium.
 
 ### Deleting a client contact: `dc`
 
-Deletes an *existing* client contact.
+To delete an existing client contact, use the **`dc`** command followed 
+by the client's email address. Once the contact is deleted, the interface will display the name and email of the deleted client.
 
 **Compulsory Arguments**
 
@@ -273,7 +275,10 @@ client with an existing email in Mycelium.
 
 ### Updating a client: `uc`
 
-Updates an *existing* client contact.
+To update an existing client contact, use the **`uc`** command 
+followed by the client's email address. 
+You can then add one or more optional arguments to specify the updated information such as the client's new name, email, year of birth, platform source, or mobile number.
+The interface will display the updated client's name and email once the update is successful.
 
 **Compulsory Arguments**
 - `-e email`
@@ -302,7 +307,7 @@ At least one of the following arguments must be provided:
 
 The command `uc -e alice_baker@bakers.com -cn Bobby Baker` updates the client with email *alice_baker@bakers.com* to have the name *Bobby Baker*.
 
-**Expected output:**
+You should see the following output if the client is updated successfully.
 
 ```
 Updated Client: Bobby Baker (alice_baker@bakers.com)
@@ -311,7 +316,7 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 
 ## Managing Projects
 
-This section documents the commands related to managing projects.
+This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allow you to manage your projects.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -320,7 +325,11 @@ on the Clients tab, Mycelium will automatically display the Projects tab.
 
 ### Creating a project: `p`
 
-Creates a new project.
+Creating a project requires specifying the project's name, which must be unique, and the 
+email of the client who submitted the project. 
+There are several optional arguments available, such as the project's status, 
+source, description, accepted and deadline date. 
+If the project is added successfully, a message confirming the addition will be displayed.
 
 **Compulsory Arguments**
 
@@ -384,7 +393,8 @@ in Mycelium, an error will be displayed to block the operation.
 
 ### Deleting a project: `dp`
 
-Deletes an existing project.
+Deleting a project requires specifying the project's name, which is case-sensitive. If the project is deleted successfully, 
+a message confirming the deletion will be displayed.
 
 **Compulsory Arguments**
 
@@ -399,7 +409,7 @@ The following command deletes a project with name *Mycelium Desktop*.
 dp -pn Mycelium Desktop
 ```
 
-If successful, you should see the following message in the output box. (In this
+If the command is successful, you should see the following message in the output box. (In this
 example, the project's client is *spiderman@gmail.com*.)
 
 ```
@@ -412,13 +422,15 @@ Mycelium, an error will be displayed and no changes will be made to your data.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:warning: Deletion is irreversible! Mycelium does not provide a mechanism to
+:warning: Deletion is irreversible. Mycelium does not provide a mechanism to
 undo deletions.
 </div>
 
 ### Updating a project: `up`
 
-Performs partial updates an existing project.
+Updating a project allows users to partially update the target project using optional arguments.
+The user must specify the project name, and each argument, if specified, 
+will be used to partially update the project. The output will confirm the update's success.
 
 **Compulsory Arguments**
 
@@ -472,7 +484,7 @@ The following command will do the trick.
 up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
 ```
 
-If successful, you should see the following message in the output box. (Here we
+If the command is successful, you should see the following message in the output box. (Here we
 assume the project came from client *foo@bar.com*.)
 
 ```
@@ -534,11 +546,11 @@ have the following projects in Mycelium:
 <img src="images/Ui.png" />
 
 <div markdown="span" class="alert alert-info">
-:information_source: Recall that Mycelium supports fuzzy search for projects by
-their *names* only!
+:information_source: Recall that :mushroom:Mycelium supports fuzzy search for projects by
+their *names* only.
 </div>
 
-First, press (CTRL+F) to toggle to **search mode** (if you are not already in
+1. First, press (CTRL+F) to toggle to **search mode** (if you are not already in
 search mode). You should see the command box turn teal; now we can begin
 searching. Suppose we wanted to search for *Clash of Clans* listed at the
 bottom in the screenshot above. With the power of fuzzy matching, just typing
@@ -546,12 +558,12 @@ bottom in the screenshot above. With the power of fuzzy matching, just typing
 
 <img src="images/FuzzyDemoSearching.png" />
 
-If we queried a term which matches nothing at all, then no results will be
+- If we queried a term which matches nothing at all, then no results will be
 listed.
 
 <img src="images/FuzzyDemoSearchingNoResults.png" />
 
-Once we are done, pressing (CTRL+F) again switches us back to command mode.
+2. To exit search mode, press (CTRL+F) again. The command box should return to its original dark color.
 
 <div markdown="span" class="alert alert-info">
 :information_source: The example we have here is quite trivial. But you can
@@ -566,7 +578,7 @@ below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
 
 ### Fuzzy searching clients
 
-This works exactly the same as as fuzzy searching projects, described above.
+This works exactly the same as fuzzy searching projects, described above.
 The only difference to note is that the query is matched against the clients'
 emails, and not their names.
 
@@ -648,7 +660,7 @@ In **search mode**, the command box is highlighted light blue and the input is u
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
-To demonstrate this, lets assume you want to delete a project. You can type in `dp -pn ` as shown below
+To demonstrate this, let's assume you want to delete a project. You can type in `dp -pn ` as shown below
 
 ![step1](images/SearchAndSelectStep1.png)
 

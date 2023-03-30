@@ -5,7 +5,7 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
 
 import mycelium.mycelium.logic.commands.DeleteClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 
 /**
  * A command to delete an existing client.

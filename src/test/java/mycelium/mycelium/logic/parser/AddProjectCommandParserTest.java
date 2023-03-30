@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;

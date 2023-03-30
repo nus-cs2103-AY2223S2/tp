@@ -18,7 +18,7 @@ import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.UpdateClientDescriptorBuilder;
 

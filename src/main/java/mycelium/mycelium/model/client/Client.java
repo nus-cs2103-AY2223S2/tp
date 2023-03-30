@@ -3,9 +3,6 @@ package mycelium.mycelium.model.client;
 import java.util.Objects;
 import java.util.Optional;
 
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.FuzzyComparable;
 import mycelium.mycelium.model.util.IsSame;
 import mycelium.mycelium.model.util.NonEmptyString;

@@ -12,10 +12,10 @@ import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
@@ -26,18 +26,18 @@ public class UpdateClientCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_ACRONYM + ": Edits a client in Mycelium.\n"
 
-            + "Compulsory Arguments: "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
-            + "Optional Arguments: "
-            + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "NEW CLIENT EMAIL "
-            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH "
-            + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
-            + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER\n"
+        + "Compulsory Arguments: "
+        + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
+        + "Optional Arguments: "
+        + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "NEW CLIENT EMAIL "
+        + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH "
+        + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
+        + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER\n"
 
-            + "Example: " + COMMAND_ACRONYM + " "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + "topg@gmail.com "
-            + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "patrick_bateman@pandp.com"
-            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2000";
+        + "Example: " + COMMAND_ACRONYM + " "
+        + CliSyntax.PREFIX_CLIENT_EMAIL + "topg@gmail.com "
+        + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "patrick_bateman@pandp.com"
+        + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2000";
 
     public static final String MESSAGE_SUCCESS = "Updated Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "Client not updated.";
@@ -49,7 +49,8 @@ public class UpdateClientCommand extends Command {
 
     /**
      * Creates an UpdateClientCommand to edit the specified {@code Client}.
-     * @param email of the client in the filtered client list to edit.
+     *
+     * @param email                  of the client in the filtered client list to edit.
      * @param updateClientDescriptor details to edit the client with.
      */
     public UpdateClientCommand(Email email, UpdateClientDescriptor updateClientDescriptor) {
@@ -62,7 +63,8 @@ public class UpdateClientCommand extends Command {
 
     /**
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     * @param clientToEdit client to be edited.
+     *
+     * @param clientToEdit           client to be edited.
      * @param updateClientDescriptor details to edit the client with.
      * @return a client with the details of {@code clientToEdit}.
      */
@@ -75,10 +77,10 @@ public class UpdateClientCommand extends Command {
         Name updatedName = updateClientDescriptor.getName().orElse(clientToEdit.getName());
         Email updatedEmail = updateClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Optional<YearOfBirth> updatedYearOfBirth = updateClientDescriptor.getYearOfBirth()
-                .or(clientToEdit::getYearOfBirth);
+            .or(clientToEdit::getYearOfBirth);
         Optional<NonEmptyString> updatedSource = updateClientDescriptor.getSource().or(clientToEdit::getSource);
         Optional<Phone> updatedMobileNumber = updateClientDescriptor
-                .getMobileNumber().or(clientToEdit::getMobileNumber);
+            .getMobileNumber().or(clientToEdit::getMobileNumber);
         Client client = new Client(updatedName, updatedEmail, updatedYearOfBirth, updatedSource, updatedMobileNumber);
         if (client.equals(clientToEdit)) {
             return Optional.empty();
@@ -88,6 +90,7 @@ public class UpdateClientCommand extends Command {
 
     /**
      * Executes the UpdateClientCommand and returns the result message.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display.
      * @throws CommandException if an error occurs during command execution.
@@ -115,6 +118,7 @@ public class UpdateClientCommand extends Command {
 
     /**
      * Returns true if both commands have the same email and editClientDescriptor.
+     *
      * @param other object to be compared.
      * @return true if both commands have the same email and editClientDescriptor.
      */
@@ -133,11 +137,12 @@ public class UpdateClientCommand extends Command {
         // state check
         UpdateClientCommand e = (UpdateClientCommand) other;
         return email.equals(e.email)
-                && updateClientDescriptor.equals(e.updateClientDescriptor);
+            && updateClientDescriptor.equals(e.updateClientDescriptor);
     }
 
     /**
      * Returns a hashcode for the command.
+     *
      * @return a hashcode for the command.
      */
     @Override
@@ -182,6 +187,7 @@ public class UpdateClientCommand extends Command {
 
         /**
          * Creates an EditClientDescriptor with all fields optionally null.
+         *
          * @param toCopy the Client to copy.
          */
         public UpdateClientDescriptor(Client toCopy) {
@@ -193,13 +199,12 @@ public class UpdateClientCommand extends Command {
         }
 
 
-
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return Stream.of(name, email, yearOfBirth, source, mobileNumber)
-                    .anyMatch(Optional::isPresent);
+                .anyMatch(Optional::isPresent);
         }
 
         /**
@@ -367,10 +372,10 @@ public class UpdateClientCommand extends Command {
             UpdateClientDescriptor e = (UpdateClientDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getEmail().equals(e.getEmail())
-                    && getYearOfBirth().equals(e.getYearOfBirth())
-                    && getSource().equals(e.getSource())
-                    && getMobileNumber().equals(e.getMobileNumber());
+                && getEmail().equals(e.getEmail())
+                && getYearOfBirth().equals(e.getYearOfBirth())
+                && getSource().equals(e.getSource())
+                && getMobileNumber().equals(e.getMobileNumber());
         }
 
         /**

@@ -9,7 +9,7 @@ import mycelium.mycelium.logic.uiaction.UiAction;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
- * Represents an error which occurs during execution of a {@link Command}.
+ * Represents an error which occurs during execution of a {@code Command}.
  */
 public class CommandException extends Exception {
     private UiAction action;

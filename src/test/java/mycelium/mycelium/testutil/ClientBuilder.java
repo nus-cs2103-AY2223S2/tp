@@ -3,10 +3,10 @@ package mycelium.mycelium.testutil;
 import java.util.Optional;
 
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
@@ -101,12 +101,13 @@ public class ClientBuilder {
     }
 
     /**
-     *  Builds the {@code Client} with the given fields.
+     * Builds the {@code Client} with the given fields.
+     *
      * @return a {@code Client} with the given fields.
      */
     public Client build() {
         return new Client(name, email, Optional.ofNullable(yearOfBirth),
-                NonEmptyString.ofOptional(source), Optional.ofNullable(mobileNumber));
+            NonEmptyString.ofOptional(source), Optional.ofNullable(mobileNumber));
     }
 
 }
