@@ -1,6 +1,8 @@
 package seedu.loyaltylift.model.customer;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 
@@ -14,6 +16,33 @@ public class Points implements Comparable<Points> {
 
     public static final Integer MAXIMUM_POINTS_ADD = 999999;
     public static final Integer MAXIMUM_POINTS_SUBTRACT = -999999;
+
+    /**
+     * The tier a customer would belong to for having a certain amount of cumulative points
+     * 1000 for Bronze
+     * 5000 for Silver
+     * 100000 for Gold
+     */
+    public enum Tier {
+        NONE("No Tier"),
+        BRONZE("Bronze"),
+        SILVER("Silver"),
+        GOLD("Gold");
+
+        private final String name;
+
+        private Tier(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+    public static final Integer BRONZE_TIER = 1000;
+    public static final Integer SILVER_TIER = 5000;
+    public static final Integer GOLD_TIER = 10000;
 
     public static final String MESSAGE_CONSTRAINTS = "Points must be a positive integer "
             + "and can only range from "
@@ -36,7 +65,7 @@ public class Points implements Comparable<Points> {
      * @param points A valid amount of points.
      */
     public Points(Integer points, Integer maxPoints) {
-        requireNonNull(points);
+        requireAllNonNull(points, maxPoints);
         value = points;
         cumulative = maxPoints;
     }
@@ -74,6 +103,18 @@ public class Points implements Comparable<Points> {
         }
     }
 
+    public Points.Tier getLoyaltyTier() {
+        if (this.cumulative >= GOLD_TIER) {
+            return Tier.GOLD;
+        } else if (this.cumulative >= SILVER_TIER) {
+            return Tier.SILVER;
+        } else if (this.cumulative >= BRONZE_TIER) {
+            return Tier.BRONZE;
+        } else {
+            return Tier.NONE;
+        }
+    }
+
     /**
      * Returns true if a given point is valid.
      */
@@ -106,7 +147,7 @@ public class Points implements Comparable<Points> {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(value, cumulative);
     }
 
     @Override

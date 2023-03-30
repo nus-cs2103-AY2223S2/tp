@@ -63,7 +63,17 @@ public class Badge extends UiPart<StackPane> {
      * @return An instance of the Badge.
      */
     public static Badge createPointsBadge(Points points) {
-        return new Badge(Color.valueOf("#f09030"), Color.WHITE, points.value.toString() + " pts");
+        Points.Tier tier = points.getLoyaltyTier();
+        switch (tier) {
+        case GOLD:
+            return new Badge(Color.valueOf("#d4af37"), Color.WHITE, points.value.toString() + " pts");
+        case SILVER:
+            return new Badge(Color.valueOf("#808080"), Color.WHITE, points.value.toString() + " pts");
+        case BRONZE:
+            return new Badge(Color.valueOf("#CD7F32"), Color.WHITE, points.value.toString() + " pts");
+        default:
+            return new Badge(Color.valueOf("#3356a3"), Color.WHITE, points.value.toString() + " pts");
+        }
     }
 
     /**
