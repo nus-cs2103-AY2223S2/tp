@@ -236,7 +236,7 @@ list.
 {TODO update diagram and link}
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/storage/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -311,7 +311,7 @@ UiEvent handlers that are bundled together within the `UiEventManager` class.
 The following is the class diagram of the
 `UiEventManager` class.
 
-![UiEventManager class diagram](images/UiEventManager.png)
+![UiEventManager class diagram](images/uievent/UiEventManager.png)
 
 There are currently 10 registered event handlers, namely:
 * `HelpKey` Help (F1)
@@ -337,7 +337,7 @@ The `UiEventManager` is responsible for calling the appropriate event handler to
 the incoming event. When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
 method will be called with the incoming event as the argument.
 
-![EventHandling sequence diagram](images/EventHandling.png)
+![EventHandling sequence diagram](images/uievent/EventHandling.png)
 
 The above seqeuence diagram shows what happens when a keyboard event is
 registered. To keep the diagram simple, we only explicitly show two
@@ -346,14 +346,14 @@ work in a similar manner.
 The key combination that triggered the event will be checked against the
 each of the registered event handlers to decide which event handler to invoke.
 
-![GenericKey sequence diagram](images/GenericKey.png)
+![GenericKey sequence diagram](images/uievent/GenericKey/GenericKey.png)
 
 The above sequence diagram shows what happens once there is a match with a
 generic event handler. An instance of the respective `Key` will be created,
 and executed. The event is then consumed to prevent the event from propagating
 any further to the inner UI elements.
 
-![GenericKeyExecute sequence diagram](images/GenericKeyExecute.png)
+![GenericKeyExecute sequence diagram](images/uievent/GenericKey/GenericKeyExecute.png)
 
 The above sequence diagram shows how the user interface can be modified during
 the execution of the `Key` instance. The `Key` calls the respective method of
@@ -363,8 +363,8 @@ the action associated with the event.
 We will use the `SwitchTabKey` event handler as a concrete example. The following
 sequence diagrams show what happens when the `SwitchTabKey` event handler is invoked.
 
-![SwitchTabKey sequence diagram](images/SwitchTabKey.png)
-![SwitchTabKeyExecute sequence diagram](images/SwitchTabKeyExecute.png)
+![SwitchTabKey sequence diagram](images/uievent/SwitchTabKey/SwitchTabKey.png)
+![SwitchTabKeyExecute sequence diagram](images/uievent/SwitchTabKey/SwitchTabKeyExecute.png)
 
 Note that not all event handlers are built the same. An example of a more
 complicated event handler will be `FindKey` which we will elaborate more
@@ -379,7 +379,7 @@ dictates the behaviour of the command box on input change and on submit.
 
 The following is class diagram of the command box.
 
-![CommandBox class diagram](images/CommandBoxClassDiagram.png)
+![CommandBox class diagram](images/commandbox/CommandBoxClassDiagram.png)
 
 #### Changing Modes
 
@@ -391,14 +391,14 @@ handles keyboard event.
 The following sequence diagrams show what happens when `FindKey` event handler
 is invoked.
 
-![FindKey sequence diagram](images/ToggleMode.png)
-![FindKeyExecute sequence diagram](images/ToggleModeExecute.png)
+![FindKey sequence diagram](images/uievent/FindKey/ToggleMode.png)
+![FindKeyExecute sequence diagram](images/uievent/FindKey/ToggleModeExecute.png)
 
 Depending on the current `Mode` of the command box, triggering the `FindKey` event handler
 creates the other `Mode` and calls `MainWindow#setCommandBoxMode(Mode)` which sets `Mode`
 of the command box by calling `CommandBox#setMode(Mode)`.
 
-![CommandBoxSetMode sequence diagram](images/CommandBoxSetMode.png)
+![CommandBoxSetMode sequence diagram](images/commandbox/CommandBoxSetMode.png)
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
 on its outgoing `Mode` to perform the necessary clean up which includes
@@ -412,7 +412,7 @@ to its original state when incoming `Mode` is torn down in the future.
 The following sequence diagram shows what happens when the user submits in the
 command box.
 
-![CommandBoxSubmit sequence diagram](images/CommandBoxSubmit.png)
+![CommandBoxSubmit sequence diagram](images/commandbox/CommandBoxSubmit.png)
 
 When the user submits, the command box will call `Mode#onInputSubmit(String)`
 on its current `Mode` with the text input. An `Optional<Mode>` instance will be
@@ -425,7 +425,7 @@ box to `CommandMode` when submitting in `SearchMode`.
 The following sequence diagram shows what happens when the user edits the input
 of the command box.
 
-![CommandBoxInputChange sequence diagram](images/CommandBoxInputChange.png)
+![CommandBoxInputChange sequence diagram](images/commandbox/CommandBoxInputChange.png)
 
 When the user edits the input, the command box will call `Mode#onInputChange(String)`
 on its current `Mode` with the text input. This is utilised in `SearchMode` to allow
@@ -496,7 +496,7 @@ In order to use fuzzy search from the application, we also have the
 and projects. The class diagram below shows a high level overview of the
 classes involved.
 
-![FuzzyManagerHighLevelClassDiagram](images/FuzzyManagerHighLevelClassDiagram.png)
+![FuzzyManagerHighLevelClassDiagram](images/fuzzy/FuzzyManagerHighLevelClassDiagram.png)
 
 The `FuzzyManager#rankItems` method is just a convenient pure function which,
 when given a list of clients or projects and a query string, constructs a new
@@ -509,8 +509,8 @@ encapsulates the logic required to handle search requests (via a change in user
 input) as well as applying updates to the UI. The following sequence diagrams
 illustrate this in further detail.
 
-![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
-![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
+![FuzzyManagerSequenceDiagramA](images/fuzzy/FuzzyManagerSequenceDiagramA.png)
+![FuzzyManagerSequenceDiagramB](images/fuzzy/FuzzyManagerSequenceDiagramB.png)
 
 From above, we see that the `onInputChanged()` method on `SearchMode` is
 invoked with the current contents of the command box. From here, it is a
@@ -562,7 +562,7 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 When the command box is in `CommandMode`, the user can enter commands to perform various operations in Mycelium. The following sequence diagram shows how the command is handled.
 
-![CommandHandling Sequence Diagram](images/CommandHandling.png)
+![CommandHandling Sequence Diagram](images/commandbox/CommandHandling.png)
 
 When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`.
 The input from the command box is then propagated down to the `MainWindow`, the `Logic` and finally the `Parser` to be parsed.
@@ -581,7 +581,7 @@ This is used to perform actions such as switching the tab to Projects tab when a
 
 The following sequence diagram shows how the `UiAction` that switches the tab to Projects tab.
 
-![SwitchToProjectsUiAction sequence diagram](images/SwitchToProjectsUiAction.png)
+![SwitchToProjectsUiAction sequence diagram](images/uiaction/SwitchToProjectsUiAction.png)
 
 Upon being executed, `UiAction` instance calls the appropriate method in `MainWindow` to perform the action from a successful command. In this case, the `UiAction` calls `MainWindow#selectProjectTab` to switch the tab to the Projects tab.
 
