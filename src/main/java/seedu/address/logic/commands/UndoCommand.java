@@ -29,7 +29,7 @@ public class UndoCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             commandToUndo = commandHistory.getLastExecutedCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToUndo);
-//            commandHistory.updateCommandHistory(COMMAND_WORD);
+            commandHistory.updateCommandHistory(COMMAND_WORD);
             return new CommandResult(message);
         }
     }
