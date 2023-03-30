@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.event.exceptions.EventConflictException;
+
 class IsolatedEventListTest {
 
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
@@ -28,6 +30,18 @@ class IsolatedEventListTest {
     @Test
     void insert_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> isolatedEventList.insert(null));
+    }
+
+    @Test
+    void checkOverlapping_throwsEventConflictException() {
+        isolatedEventList.insert(new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Skiing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        isolatedEventList.insert(new IsolatedEventStub("Canoeing", TWO_O_CLOCK_VALID,
+                THREE_O_CLOCK_VALID));
+        IsolatedEventStub event = new IsolatedEventStub("Biking", TWO_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
+        assertThrows(EventConflictException.class, () -> isolatedEventList.checkOverlapping(event, 1));
     }
 
     @Test
