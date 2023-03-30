@@ -5,10 +5,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents statistics to be displayed for a given week.
+ */
 public class WeeklyStats {
     private List<LocalDate> dates;
 
+    /**
+     * Constructor of the WeeklyStats object.
+     * @param date Week which date is in. Cannot be negative and cannot be null.
+     */
     public WeeklyStats(LocalDate date) {
+        requireNonNull(date);
         this.dates = getWeekDates(date);
     }
 

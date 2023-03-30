@@ -28,11 +28,10 @@ import seedu.address.ui.main.ResultDisplay;
  * Controller for a statistics page
  */
 public class StatisticsWindow extends UiPart<Stage> {
+    public static final String ALL_STATS = "All time statistics: ";
+    public static final String LAST_WEEK = "Last Week's statistics:";
     public static final String STATISTICS = "Here are your statistics: ";
     private static final String FXML = "StatisticsWindow.fxml";
-    public static final String ALLSTATS = "All time statistics: ";
-    public static final String LASTWEEK = "Last Week's statistics:";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
     private Logic logic;
@@ -65,8 +64,8 @@ public class StatisticsWindow extends UiPart<Stage> {
         this.logic = logic;
 
         header.setText(STATISTICS);
-        titleAllStats.setText(ALLSTATS);
-        titleLastWeek.setText(LASTWEEK);
+        titleAllStats.setText(ALL_STATS);
+        titleLastWeek.setText(LAST_WEEK);
     }
 
     /**
