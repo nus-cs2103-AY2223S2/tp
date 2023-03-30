@@ -160,6 +160,17 @@ Shows a list of all bookmarks in the library.
 
 Format: `list`
 
+### Sorting bookmarks : `sort`
+
+Sorts the list of bookmarks in the library by ascending order or descending order.
+
+Format : sort [ORDER]
+* ORDER can only be either `asc` or `desc`
+
+Examples:
+* sort asc
+* sort desc
+
 ### Editing a person : `edit`
 
 Edits an existing bookmark in the library.
@@ -289,6 +300,7 @@ Action | Format, Examples
 **Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
+**Sort** | `sort [ORDER]` <br> e.g., `sort asc`, `sort desc`
 **Help** | `help`
 **List Tags** | `tags`
 **Adding a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
