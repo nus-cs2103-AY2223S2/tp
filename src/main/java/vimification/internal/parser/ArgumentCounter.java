@@ -15,18 +15,20 @@ public class ArgumentCounter {
     /**
      * Flags mapped to their respective arguments.
      **/
-    private final Map<ArgumentFlag, Integer> counter;
+    private final Map<ArgumentFlag, Integer> maximumCounts;
+    private final Map<ArgumentFlag, Integer> currentCounts;
 
     @SafeVarargs
     public ArgumentCounter(Pair<ArgumentFlag, Integer>... allowedFlags) {
-        this.counter = Arrays
+        this.maximumCounts = Arrays
                 .stream(allowedFlags)
-                .collect(Collectors.toMap(Pair::getFirst, Pair::getSecond, Integer::sum,
-                        HashMap::new));
+                .collect(Collectors.toMap(Pair::getFirst,
+                        Pair::getSecond, Integer::sum, HashMap::new));
+        this.currentCounts = new HashMap<>();
     }
 
     private void throwIfNotAllowed(ArgumentFlag flag) {
-        if (!counter.containsKey(flag)) {
+        if (!maximumCounts.containsKey(flag)) {
             throw new ParserException("Invalid flag " + flag);
         }
     }
@@ -42,14 +44,22 @@ public class ArgumentCounter {
      */
     public void add(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        int count = counter.merge(flag, -1, Integer::sum);
-        if (count < 0) {
+        int count = currentCounts.merge(flag, 1, Integer::sum);
+        if (flag instanceof ComposedArgumentFlag) {
+            ComposedArgumentFlag composedFlag = (ComposedArgumentFlag) flag;
+            currentCounts.merge(composedFlag.getActualFlag(), 1, Integer::sum);
+        }
+        if (count < maximumCounts.get(flag)) {
             throw new ParserException("Number of arguments for flag " + flag + " exceeded limit");
         }
     }
 
     public int get(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        return counter.get(flag);
+        return currentCounts.get(flag);
+    }
+
+    public boolean isEmpty() {
+        return currentCounts.isEmpty();
     }
 }

@@ -10,16 +10,7 @@ public class MacroCommandParser implements CommandParser<MacroCommand> {
             CommandParserUtil.MACRO_FLAG_PARSER
                     .dropNext(ApplicativeParser.skipWhitespaces1())
                     .map(ComposedArgumentFlag::getActualFlag)
-                    .flatMap(flag -> {
-                        if (flag.equals(CommandParserUtil.ADD_MACRO_FLAG)) {
-                            return CommandParserUtil.STRING_PARSER
-                                    .dropNext(ApplicativeParser.skipWhitespaces1())
-                                    .combine(CommandParserUtil.STRING_PARSER, AddMacroCommand::new);
-                        } else {
-                            return CommandParserUtil.STRING_PARSER
-                                    .map(DeleteMacroCommand::new);
-                        }
-                    })
+                    .flatMap(MacroCommandParser::parseFlag)
                     .dropNext(ApplicativeParser.skipWhitespaces())
                     .dropNext(ApplicativeParser.eof());
 
@@ -32,6 +23,18 @@ public class MacroCommandParser implements CommandParser<MacroCommand> {
     private static final MacroCommandParser INSTANCE = new MacroCommandParser();
 
     private MacroCommandParser() {}
+
+    private static final ApplicativeParser<MacroCommand> parseFlag(LiteralArgumentFlag flag) {
+        if (flag.equals(CommandParserUtil.ADD_MACRO_FLAG)) {
+            return CommandParserUtil.STRING_PARSER
+                    .dropNext(ApplicativeParser.skipWhitespaces1())
+                    .combine(CommandParserUtil.STRING_PARSER, AddMacroCommand::new);
+        }
+        if (flag.equals(CommandParserUtil.DELETE_MACRO_FLAG)) {
+            return CommandParserUtil.STRING_PARSER.map(DeleteMacroCommand::new);
+        }
+        throw new ParserException("Should not reach here!");
+    }
 
     public static MacroCommandParser getInstance() {
         return INSTANCE;
