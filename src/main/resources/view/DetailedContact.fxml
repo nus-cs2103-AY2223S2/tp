@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <StackPane>
             <children>
@@ -18,7 +15,7 @@
                     <children>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewContactTab" style="-fx-background-color: #79addc; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Contact" textAlignment="CENTER">
+                                <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewContactTab" style="-fx-background-color: #79addc; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Contact" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -27,7 +24,7 @@
                         </StackPane>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="modulesButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewModulesTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Modules" textAlignment="CENTER">
+                                <Button fx:id="modulesButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewModulesTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Modules" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -36,7 +33,7 @@
                         </StackPane>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="skillsButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewSkillsTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Skills" textAlignment="CENTER">
+                                <Button fx:id="skillsButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewSkillsTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Skills" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -49,29 +46,29 @@
         </StackPane>
         <VBox prefHeight="200.0" prefWidth="100.0">
             <children>
-                <Label styleClass="label-bold" text="Email Address:" />
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0">
-                    <children>
-                        <Label fx:id="email" prefWidth="140.0" text="\\\$email" wrapText="true" />
-                        <Button fx:id="copyEmailButton" mnemonicParsing="false" onAction="#copyEmailUrl" prefHeight="25.0" prefWidth="92.0" text="Copy Email" />
-                    </children>
-                </HBox>
-                <StackPane prefHeight="20.0" prefWidth="280.0" />
-                <Label styleClass="label-bold" text="GitHub:" />
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0">
-                   <children>
-                          <Label fx:id="github" prefWidth="140.0" text="\\\$github_username" wrapText="true" />
-                          <Button fx:id="copyGithubButton" mnemonicParsing="false" onAction="#copyGithubUrl" prefHeight="25.0" prefWidth="92.0" text="Copy Github" />
-                   </children>
-                </HBox>
-                <StackPane layoutX="10.0" layoutY="38.0" prefHeight="20.0" prefWidth="300.0" />
-                <Label styleClass="label-bold" text="LinkedIn Profile:" />
-                <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0">
-                   <children>
-                          <Label fx:id="linkedin" prefWidth="132.0" text="\\\$linkedin_url" wrapText="true" />
-                          <Button fx:id="copyLinkedinButton" mnemonicParsing="false" onAction="#copyLinkedinUrl" prefHeight="25.0" prefWidth="99.0" text="Copy Linkedin" />
-                   </children>
-                </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                      <Label prefWidth="200.0" styleClass="label-bold" text="Email Address:" />
+                        <Button fx:id="copyEmailButton" mnemonicParsing="false" onAction="#copyEmailUrl" prefHeight="25.0" prefWidth="100.0" text="Copy Email" />
+               </children>
+            </HBox>
+                  <Label fx:id="email" text="\\\$email" wrapText="true" />
+                <StackPane prefHeight="40.0" prefWidth="300.0" />
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                      <Label prefWidth="200.0" styleClass="label-bold" text="GitHub:" />
+                          <Button fx:id="copyGithubButton" mnemonicParsing="false" onAction="#copyGithubUrl" prefHeight="25.0" prefWidth="100.0" text="Copy Github" />
+               </children>
+            </HBox>
+                    <Label fx:id="github" text="\\\$github_username" wrapText="true" />
+                <StackPane layoutX="10.0" layoutY="38.0" prefHeight="40.0" prefWidth="300.0" />
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                      <Label prefWidth="200.0" styleClass="label-bold" text="LinkedIn Profile:" />
+                          <Button fx:id="copyLinkedinButton" mnemonicParsing="false" onAction="#copyLinkedinUrl" prefHeight="25.0" prefWidth="100.0" text="Copy Linkedin" />
+               </children>
+            </HBox>
+                    <Label fx:id="linkedin" prefWidth="132.0" text="\\\$linkedin_url" wrapText="true" />
             </children>
             <VBox.margin>
                 <Insets left="10.0" right="10.0" top="1.0" />

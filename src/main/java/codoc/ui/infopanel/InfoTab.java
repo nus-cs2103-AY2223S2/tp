@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 /**
  * Panel containing detailed information about a person.
@@ -28,7 +29,7 @@ public class InfoTab extends UiPart<Region> {
     private ImageView profilePicture;
 
     @FXML
-    private Label name;
+    private Text name;
 
     @FXML
     private Label identity;

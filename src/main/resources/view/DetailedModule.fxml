@@ -15,7 +15,7 @@
                     <children>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewContactTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Contact" textAlignment="CENTER">
+                                <Button fx:id="contactButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewContactTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Contact" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -24,7 +24,7 @@
                         </StackPane>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="modulesButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewModulesTab" style="-fx-background-color: #ffc09f; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Modules" textAlignment="CENTER">
+                                <Button fx:id="modulesButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewModulesTab" style="-fx-background-color: #ffc09f; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Modules" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -33,7 +33,7 @@
                         </StackPane>
                         <StackPane maxHeight="50" minHeight="50" minWidth="100.0">
                             <children>
-                                <Button fx:id="skillsButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewSkillsTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light;" text="Skills" textAlignment="CENTER">
+                                <Button fx:id="skillsButton" maxHeight="30.0" minHeight="30.0" minWidth="100.0" onAction="#viewSkillsTab" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: transparent; -fx-text-fill: #555555; -fx-font-family: Roboto Light; -fx-font-size: 14;" text="Skills" textAlignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
@@ -44,7 +44,7 @@
                 </HBox>
             </children>
         </StackPane>
-        <ListView fx:id="moduleListView" maxWidth="330" minHeight="340.0" style="-fx-background-color: derive(#ffc09f, 80%);" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="moduleListView" maxWidth="330" style="-fx-background-color: derive(#ffc09f, 80%);" VBox.vgrow="ALWAYS" />
     </children>
     <padding>
         <Insets bottom="10.0" />
