@@ -5,9 +5,10 @@ title: CareFlow User Guide
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
-CareFlow is a **desktop application for [patient management](#41-patient-information-management) and [drug inventory
-management](#42-drug-inventory-management), optimised for use
-via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+CareFlow is a **desktop application for [patient management](#31-patient-information-management) and [drug inventory
+management](#32-drug-inventory-management), optimised for use
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2]
+(#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#2-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -255,7 +256,7 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <img src="images/UGscreenshots/careflow_home.png" style="zoom:100%">
   </p>
-  <p>
+  <p align="center">
     <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
     </p>
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
@@ -275,7 +276,7 @@ Throughout this user guide, you may come across different formatting styles and 
 
 [↑ Back to top](#top)
 
-<br>
+
 --------------------------------------------------------------------------------------------------------------------
 # **3. Overview of Features**
 
