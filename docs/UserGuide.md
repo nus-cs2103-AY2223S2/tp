@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing **. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
+Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing**. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
 
 - Table of Contents
   {:toc}
@@ -114,10 +114,6 @@ Examples:
 - `find bank america` returns `Bank of America`, `Bank of Singapore`, `Bank Manager`<br>
   <!--![result for 'find alex david'](images/findAlexDavidResult.png)-->
 
-### Sorting openings by Keydates: `sort`
-
-Sorts the openings whose keydates are after today's date in the given order
-
 Format: `find ORDER`
 
 - `ORDER` **must be of asc or desc**.
@@ -182,7 +178,9 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 ## FAQ
 
-_Details coming soon ..._
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the JSON file 'data/ultron.json'.
 
 ---
 
@@ -195,4 +193,4 @@ _Details coming soon ..._
 | **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
 | **Status**   | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
 | **List**     | `list`                                                                                                                                                             |
-| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                              |   
+| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                              |

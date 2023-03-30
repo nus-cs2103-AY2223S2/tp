@@ -32,17 +32,20 @@ public class Keydate implements Comparable<Keydate> {
     public Keydate(String name, String date) {
         requireNonNull(date);
         requireNonNull(name);
-        checkArgument(isValidKeydate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidKeydate(new String[]{name, date}), MESSAGE_CONSTRAINTS);
         fullDate = date;
         fullKey = name;
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if a given string array is a valid keydate.
      */
-    public static boolean isValidKeydate(String test) {
+    public static boolean isValidKeydate(String[] test) {
+        if (test.length != 2 || test[0] == null || test[1] == null) {
+            return false;
+        }
         try {
-            LocalDate.parse(test, dateFormat);
+            LocalDate.parse(test[1], dateFormat);
             return true;
         } catch (DateTimeParseException e) {
             return false;
