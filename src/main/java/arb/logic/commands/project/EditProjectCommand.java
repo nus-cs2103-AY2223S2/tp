@@ -4,6 +4,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
+import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
@@ -106,6 +107,7 @@ public class EditProjectCommand extends Command {
             model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
                     .asList(updatedClientName)));
             if (model.getFilteredClientList().size() == 0) {
+                model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
                 throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
                         updatedClientName));
             }
