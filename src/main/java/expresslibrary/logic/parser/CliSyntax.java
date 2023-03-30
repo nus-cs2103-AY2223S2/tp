@@ -1,7 +1,8 @@
 package expresslibrary.logic.parser;
 
 /**
- * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ * Contains Command Line Interface (CLI) syntax definitions common to multiple
+ * commands
  */
 public class CliSyntax {
 
@@ -18,4 +19,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ISBN = new Prefix("i/");
     public static final Prefix PREFIX_DUE_DATE = new Prefix("dd/");
     public static final Prefix PREFIX_BORROW_DATE = new Prefix("bd/");
+    public static final Prefix PREFIX_FORCE = new Prefix("-f");
 }

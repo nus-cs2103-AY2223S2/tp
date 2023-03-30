@@ -8,10 +8,6 @@ import static expresslibrary.logic.parser.CliSyntax.PREFIX_ISBN;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
-//import java.util.Collection;
-//import java.util.Collections;
-//import java.util.Optional;
-//import java.util.Set;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.DateUtil;
 import expresslibrary.logic.commands.EditBookCommand;

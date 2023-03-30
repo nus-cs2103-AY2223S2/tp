@@ -51,7 +51,7 @@ public class ExpressLibraryParserTest {
     public void parseCommand_delete() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
                 DeletePersonCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(new DeletePersonCommand(INDEX_FIRST_PERSON, false), command);
     }
 
     @Test
