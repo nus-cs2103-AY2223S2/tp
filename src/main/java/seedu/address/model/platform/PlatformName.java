@@ -43,8 +43,8 @@ public class PlatformName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.applicant.Name // instanceof handles nulls
-                && fullPlatformName.equals(((seedu.address.model.applicant.Name) other).fullName)); // state check
+                || (other instanceof seedu.address.model.platform.PlatformName // instanceof handles nulls
+                && fullPlatformName.equals(((seedu.address.model.platform.PlatformName) other).fullPlatformName)); // state check
     }
 
 }

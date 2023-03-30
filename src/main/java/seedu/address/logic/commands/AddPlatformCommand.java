@@ -57,9 +57,8 @@ public class AddPlatformCommand extends Command {
 
         Listing listingToAddPlatformTo = lastShownList.get(targetIndex.getZeroBased());
 
-        if (listingToAddPlatformTo.getPlatforms().stream().filter(
-                        platform -> platform.equals(platformToAdd))
-                .count() > 0) {
+        if (listingToAddPlatformTo.getPlatforms().stream()
+                .anyMatch(platform -> platform.isSamePlatform(platformToAdd))) {
             throw new CommandException(MESSAGE_DUPLICATE_PLATFORM);
         }
 
