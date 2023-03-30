@@ -30,9 +30,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
   - [Mark or Unmark a Video](#mark-or-unmark-a-video)
-  - [Delete a Module](#delete-a-module)
-  - [Delete a Lecture](#delete-a-lecture)
-  - [Delete a Video](#delete-a-video)
+  - [Delete Module](#delete-module)
+  - [Delete Lecture](#delete-lecture)
+  - [Delete Video](#delete-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
   - [Tag a video](#tag-a-video)
@@ -338,7 +338,7 @@ Examples:
 - `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
 - `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
 
-### Delete Module(s)
+### Delete Module
 
 > Deletes the specified module(s) and all its embodied content from the application
 
@@ -353,7 +353,7 @@ Examples:
 - `delete CS2040`
 - `delete CS2040, ST2334`
 
-### Delete Lecture(s)
+### Delete Lecture
 
 > Deletes the specified lecture(s) and all its embodied content from the same specified module
 
@@ -369,7 +369,7 @@ Examples:
 - `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
 - `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
 
-### Delete Video(s)
+### Delete Video
 
 > Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
