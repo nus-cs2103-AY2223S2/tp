@@ -48,7 +48,8 @@ public class AddCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists.";
+    public static final String MESSAGE_DUPLICATE_PATIENT_NAME = "This patient already exists.";
+    public static final String MESSAGE_DUPLICATE_PATIENT_IC = "This NRIC already exists.";
     private final Patient patientToAdd;
 
     /**
@@ -71,8 +72,12 @@ public class AddCommand extends Command {
     public CommandResult execute(CareFlowModel careFlowModel) throws CommandException {
         requireNonNull(careFlowModel);
 
-        if (careFlowModel.hasPatient(patientToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        if (careFlowModel.hasSamePatientName(patientToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT_NAME);
+        }
+
+        if (careFlowModel.hasSamePatientIc(patientToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT_IC);
         }
 
         careFlowModel.addPatient(patientToAdd);

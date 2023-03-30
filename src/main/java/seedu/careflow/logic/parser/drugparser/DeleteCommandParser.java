@@ -22,24 +22,21 @@ import seedu.careflow.model.drug.TradeName;
 public class DeleteCommandParser implements Parser<DeleteCommand> {
     @Override
     public DeleteCommand parse(String userInput) throws ParseException {
-        try {
-            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
-            if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
-                Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-                return new DeleteCommand(index);
-            } else {
-                ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TRADE_NAME);
-                if (arePrefixesPresent(argMultimap, PREFIX_TRADE_NAME)) {
-                    TradeName tradeName = ParserUtil.parseTradeName(argMultimap.getValue(PREFIX_TRADE_NAME).get());
-                    return new DeleteCommand(tradeName);
-                } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            seedu.careflow.logic.commands.drugcommands.DeleteCommand.MESSAGE_USAGE));
-                }
-            }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+        if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+            Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+            return new DeleteCommand(index);
         }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TRADE_NAME);
+        if (arePrefixesPresent(argMultimap, PREFIX_TRADE_NAME)) {
+            TradeName tradeName = ParserUtil.parseTradeName(argMultimap.getValue(PREFIX_TRADE_NAME).get());
+            return new DeleteCommand(tradeName);
+        }
+
+        // only user input with invalid arg will reach this point
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
-import static seedu.careflow.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.DOB_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.DRUG_ALLERGY_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.EMERGENCY_CONTACT_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.IC_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.BIRTHDATE_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.DRUG_ALLERGY_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.EMERGENCY_CONTACT_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.IC_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.NAME_DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalPatients.AMY;
 
@@ -41,7 +41,7 @@ import seedu.careflow.storage.JsonPatientRecordStorage;
 import seedu.careflow.storage.JsonUserPrefsStorage;
 import seedu.careflow.testutil.PatientBuilder;
 
-class CareFlowCareFlowLogicManagerTest {
+class CareFlowLogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir
@@ -100,7 +100,7 @@ class CareFlowCareFlowLogicManagerTest {
 
         // Execute add command
         String addCommand = "p " + AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + DOB_DESC_AMY + GENDER_DESC_AMY + IC_DESC_AMY + DRUG_ALLERGY_DESC_AMY
+                + ADDRESS_DESC_AMY + BIRTHDATE_DESC_AMY + GENDER_DESC_AMY + IC_DESC_AMY + DRUG_ALLERGY_DESC_AMY
                 + EMERGENCY_CONTACT_DESC_AMY;
         Patient expectedPatient = new PatientBuilder(AMY).build();
         CareFlowModelManager expectedModel = new CareFlowModelManager();

@@ -28,31 +28,32 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     @Override
     public DeleteCommand parse(String userInput) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_IC);
-            if (arePrefixesPresent(argMultimap, PREFIX_IC)) {
-                if (argMultimap.getPreamble().isEmpty()) {
-                    Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
-                    return new DeleteCommand(ic);
-                } else {
-                    throw new ParseException(String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT,
-                            MESSAGE_USAGE));
-                }
+        // parse with ic
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_IC);
+        if (arePrefixesPresent(argMultimap, PREFIX_IC)) {
+            if (argMultimap.getPreamble().isEmpty()) {
+                Ic ic = ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get());
+                return new DeleteCommand(ic);
             } else {
-                ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
-                if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
-                    Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
-                    return new DeleteCommand(index);
-                } else {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
-                }
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            MESSAGE_USAGE), pe);
         }
+
+        // parse with index
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_INDEX);
+        if (arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+            if (argumentMultimap.getPreamble().isEmpty()) {
+                Index index = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
+                return new DeleteCommand(index);
+            } else {
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            }
+        }
+
+        // only user input with invalid arg will reach this point
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     /**

@@ -2,9 +2,9 @@ package seedu.careflow.logic.commands.drugcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.careflow.logic.commands.CommandTestUtil.assertDrugCommandFailure;
-import static seedu.careflow.logic.commands.CommandTestUtil.showDrugAtIndex;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertDrugCommandFailure;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.showDrugAtIndex;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;

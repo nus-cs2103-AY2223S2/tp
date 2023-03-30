@@ -59,8 +59,9 @@ public class UpdateCommand extends Command {
 
     public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s.";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This person already exists in the careflow storage.";
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "This person is not found: %1$s.";
+    public static final String MESSAGE_DUPLICATE_PATIENT_NAME = "This patient already exists in the careflow storage.";
+    public static final String MESSAGE_DUPLICATE_PATIENT_IC = "This NRIC already exists in the careflow storage.";
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "This patient is not found: %1$s.";
 
     private final Name name;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -96,8 +97,12 @@ public class UpdateCommand extends Command {
 
         Patient editedPatient = createEditedPatient(requireNonNull(patientToEdit), editPatientDescriptor);
 
-        if (!patientToEdit.isSamePatient(editedPatient) && careFlowModel.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        if (!patientToEdit.isSamePatient(editedPatient) && careFlowModel.hasSamePatientName(editedPatient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT_NAME);
+        }
+
+        if (!patientToEdit.isSameIc(editedPatient) && careFlowModel.hasSamePatientIc(editedPatient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT_IC);
         }
 
         careFlowModel.setPatient(patientToEdit, editedPatient);

@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.careflow.model.patient.exceptions.DuplicatePatientException;
+import seedu.careflow.model.patient.exceptions.DuplicatePatientIcException;
 import seedu.careflow.model.patient.exceptions.PatientNotFoundException;
 
 /**
@@ -28,11 +29,28 @@ public class UniquePatientList implements Iterable<Patient> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent patient as the given argument.
+     * Returns true if the list contains an equivalent patient's name as the given argument.
      */
-    public boolean contains(Patient toCheck) {
+    public boolean containName(Patient toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePatient);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent patient's NRIC as the given argument.
+     */
+    public boolean containIc(Patient toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameIc);
+    }
+
+    /**
+     * Check every patient in the list(except "except") contains equivalent patient's NRIC as the given argument, i.e.
+     * toCheck.
+     */
+    private boolean containIc(Patient except, Patient toCheck) {
+        requireAllNonNull(except, toCheck);
+        return internalList.stream().filter(p -> !except.isSamePatient(p)).anyMatch(toCheck::isSameIc);
     }
 
     /**
@@ -41,8 +59,11 @@ public class UniquePatientList implements Iterable<Patient> {
      */
     public void add(Patient toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containName(toAdd)) {
             throw new DuplicatePatientException();
+        }
+        if (containIc(toAdd)) {
+            throw new DuplicatePatientIcException();
         }
         internalList.add(toAdd);
     }
@@ -50,7 +71,8 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Replaces the patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the list.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient in term of name
+     * and IC in the list.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
@@ -60,8 +82,11 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
-        if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
+        if (!target.isSamePatient(editedPatient) && containName(editedPatient)) {
             throw new DuplicatePatientException();
+        }
+        if (containIc(target, editedPatient)) {
+            throw new DuplicatePatientIcException();
         }
 
         internalList.set(index, editedPatient);
@@ -85,14 +110,16 @@ public class UniquePatientList implements Iterable<Patient> {
 
     /**
      * Replaces the contents of this list with {@code patients}.
-     * {@code patients} must not contain duplicate patients.
+     * {@code patients} must not contain duplicate patients and ic.
      */
     public void setPatients(List<Patient> patients) {
         requireAllNonNull(patients);
         if (!patientsAreUnique(patients)) {
             throw new DuplicatePatientException();
         }
-
+        if (!patientsIcAreUnique(patients)) {
+            throw new DuplicatePatientIcException();
+        }
         internalList.setAll(patients);
     }
 
@@ -127,6 +154,20 @@ public class UniquePatientList implements Iterable<Patient> {
         for (int i = 0; i < patients.size() - 1; i++) {
             for (int j = i + 1; j < patients.size(); j++) {
                 if (patients.get(i).isSamePatient(patients.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if {@code patients} contains only unique patients' IC.
+     */
+    private boolean patientsIcAreUnique(List<Patient> patients) {
+        for (int i = 0; i < patients.size() - 1; i++) {
+            for (int j = i + 1; j < patients.size(); j++) {
+                if (patients.get(i).isSameIc(patients.get(j))) {
                     return false;
                 }
             }
