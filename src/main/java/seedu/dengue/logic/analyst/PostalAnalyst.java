@@ -17,13 +17,6 @@ public class PostalAnalyst extends Analyst {
     private final int total;
     private final EnumMap<Location, DataBin> bins;
 
-    private String processLocationString(String location) {
-        String[] tempArray = location.split("]",2);
-        String postals = tempArray[0] + "]";
-        String locations = Arrays.stream(tempArray[1].split(", ")).collect(Collectors.joining("\n"));
-        return postals + locations;
-    }
-
     /**
      * Constructs a {@code PostalAnalyst} instance with the given list of {@code Person}s.
      *
@@ -41,6 +34,13 @@ public class PostalAnalyst extends Analyst {
             Location location = PostalLocationMapping.getLocation(person.getPostal());
             bins.get(location).addPerson(person);
         });
+    }
+
+    private String processLocationString(String location) {
+        String[] tempArray = location.split("]", 2);
+        String postals = tempArray[0] + "]";
+        String locations = Arrays.stream(tempArray[1].split(", ")).collect(Collectors.joining("\n"));
+        return postals + locations;
     }
 
     @Override

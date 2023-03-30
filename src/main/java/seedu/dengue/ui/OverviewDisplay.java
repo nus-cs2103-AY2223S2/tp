@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.logic.analyst.DataBin;
 
@@ -28,7 +27,7 @@ public class OverviewDisplay extends UiPart<Region> {
     public OverviewDisplay(ObservableList<DataBin> dataBinList) {
         super(FXML);
         overviewContentView.setItems(dataBinList);
-        overviewContentView.setCellFactory(listView -> new overviewBinCell());
+        overviewContentView.setCellFactory(listView -> new OverviewBinCell());
     }
 
     public void updateOverviewDisplay(ObservableList<DataBin> dataBinList) {
@@ -38,7 +37,7 @@ public class OverviewDisplay extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class overviewBinCell extends ListCell<DataBin> {
+    class OverviewBinCell extends ListCell<DataBin> {
         @Override
         protected void updateItem(DataBin dataBin, boolean empty) {
             super.updateItem(dataBin, empty);
