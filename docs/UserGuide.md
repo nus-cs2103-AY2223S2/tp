@@ -13,7 +13,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `planease.jar`(Coming soon!).
+2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PlanEase application.
 
@@ -38,7 +38,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
    
    * `delevent 1` : Deletes the 1st event shown in the current event list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts and events.
 
    * `exit` : Exits the app.
 
@@ -86,7 +86,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A person can have any number of events (including 0)
 </div>
 
