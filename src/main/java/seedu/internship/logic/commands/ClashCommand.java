@@ -28,8 +28,10 @@ public class ClashCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
+
         HashMap<LocalDate, List<Event>> hash = eventCatalogue.findClashEvents();
         return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS, hash.keySet().size()),
                 ResultType.CLASH, hash);
+
     }
 }

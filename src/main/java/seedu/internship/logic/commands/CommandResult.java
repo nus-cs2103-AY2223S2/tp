@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Statistics;
@@ -148,6 +147,7 @@ public class CommandResult {
 
     public HashMap<LocalDate, List<Event>> getClashingEvents() {
         return hash;
+//        return null;
     }
 
     @Override
