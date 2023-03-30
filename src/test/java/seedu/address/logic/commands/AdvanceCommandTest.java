@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -101,7 +102,9 @@ public class AdvanceCommandTest {
 
         String expectedMessage = String.format(Messages.MESSAGE_DUPLICATE_INTERVIEW_DATE,
                 clashingPerson.getName());
-        model.refreshListWithPredicate(clashingNamePhonePredicate);
+        Predicate<Person> sameInterviewDTPredicate =
+                person -> (person.equals(clashingPerson) || person.equals(personToAdvance));
+        model.refreshListWithPredicate(sameInterviewDTPredicate);
 
         assertCommandFailure(advanceCommand, model, expectedMessage);
     }
