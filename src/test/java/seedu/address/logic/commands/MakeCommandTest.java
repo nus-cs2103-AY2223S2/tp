@@ -21,9 +21,9 @@ import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
-import seedu.address.model.entity.Classification;
 import seedu.address.testutil.EntityBuilder;
 
 public class MakeCommandTest {
