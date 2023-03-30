@@ -92,6 +92,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
         generateRetroactiveExpenses();
         expenses.sortList();
+        cleanupExpiredRecurringExpenses();
     }
 
     /**
@@ -104,6 +105,13 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
             }
         }
         expenses.sortList();
+    }
+
+    /**
+     * Removes RecurringExpenseManager objects that are expired.
+     */
+    public void cleanupExpiredRecurringExpenses() {
+        recurringGenerators.cleanupExpiredGenerators();
     }
 
     //// category-level operations
