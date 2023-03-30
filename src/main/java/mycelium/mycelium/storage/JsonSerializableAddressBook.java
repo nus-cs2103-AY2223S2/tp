@@ -17,7 +17,7 @@ import mycelium.mycelium.model.project.Project;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "mycelium")
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
