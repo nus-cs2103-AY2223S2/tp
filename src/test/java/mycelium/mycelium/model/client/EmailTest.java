@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.model.client.Email;
-
 public class EmailTest {
 
     @Test
