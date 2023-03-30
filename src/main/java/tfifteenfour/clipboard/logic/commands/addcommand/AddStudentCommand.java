@@ -5,7 +5,6 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
@@ -27,7 +26,6 @@ public class AddStudentCommand extends AddCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STUDENTID + "STUDENTID "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
