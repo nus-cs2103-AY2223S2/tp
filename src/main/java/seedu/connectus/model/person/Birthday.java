@@ -53,8 +53,7 @@ public class Birthday {
     public boolean isUpcoming() {
         LocalDate today = LocalDate.now();
         LocalDate twoMonthsLater = today.plusMonths(2);
-        LocalDate thisYear = LocalDate.of(today.getYear(), value.getMonth(), value.getDayOfMonth());
-        if (thisYear.isAfter(today) && thisYear.isBefore(twoMonthsLater)) {
+        if (value.isAfter(today) && value.isBefore(twoMonthsLater)) {
             return true;
         }
         return false;
