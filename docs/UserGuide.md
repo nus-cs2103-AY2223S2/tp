@@ -673,6 +673,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.1 Name: `n/`
 >Name refers to a contact's name.
+
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain <u>alphanumeric</u> characters and spaces.
@@ -681,6 +682,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.2 Phone: `p/`
 >Phone refers to a contact's phone number.
+
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain <u>numeric</u> characters.
@@ -692,6 +694,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.3 Email: `e/`
 >Email refers to a contact's email address.
+
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -706,6 +709,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.4 Address: `a/`
 >Address refers to a contact's home address.
+
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including <u>special characters</u>.
@@ -716,6 +720,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.5 Instagram: `ig/`
 >Instagram refers to a contact's Instagram username.
+
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format `john.123.doe` and adhere to the following constraints:
@@ -727,6 +732,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.6 Telegram: `tg/`
 >Telegram refers to a contact's Telegram username.
+
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format `johndoe` and adhere to the following constraints:
@@ -739,6 +745,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.7 WhatsApp: `wa/`
 >WhatsApp refers to a contact's WhatsApp phone number.
+
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
@@ -749,6 +756,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 ## 5.8 Birthday: `b/`
 >Birthday refers to a contact's birthday date.
+
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
@@ -770,6 +778,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 ### 5.9.1 Module Tags: `mod/`
 >Module tags refer to modules that you can assign to a contact to keep track of what modules that contact takes.
+
 * <u>Module</u> is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
 * Module names should be <u>alphanumeric</u>, and can contain spaces.
@@ -781,6 +790,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 ### 5.9.2 CCA Tags: `cca/`
 >CCA tags refer to CCAs that you can assign to a contact to record keep track of CCAs that contact is in.
+
 * <u>CCA</u> is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be <u>alphanumeric</u>, and can contain spaces.
@@ -791,6 +801,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 ### 5.9.3 CCA Position Tags: `ccapos/`
 >CCA Position tags refer to CCA Positions that you can assign to a contact to keep track of the positions that the contact holds in their various CCAs.
+
 * CCA Position is an *optional* field, i.e. a contact can exist even if it does not have a CCA position.
 * The prefix for a module is `ccapos/`.
 * CCA Position names should be <u>alphanumeric</u>, and can contain spaces.
@@ -802,6 +813,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 ### 5.9.4 Remark Tags: `r/`
 >Remark tags refer to any additional remarks you would like to assign to a contact to keep track of any information you deem relevant and important.
+
 * Remark is an *optional* field, i.e. a contact can exist even if it does not have a remark.
 * The prefix for a remark is `r/`.
 * Remark names should be <u>alphanumeric</u>, and can contain spaces.
