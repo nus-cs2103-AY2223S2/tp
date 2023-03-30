@@ -61,7 +61,7 @@ public enum HelpMenu {
             return "View a food item - view INDEX";
         }
     },
-    SORTBYEXPIRY("expiring") {
+    SORTBYEXPIRY("expiry") {
         @Override
         public String getCommandUsage() {
             return "Sort food items by expiry date - expiry";
