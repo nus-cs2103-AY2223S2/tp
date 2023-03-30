@@ -58,21 +58,13 @@ public class TypicalPersons {
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
-
-    /**
-     * For tests with optional fields.
-     *
-     * JASON: Missing phone
-     * KASEY: Missing email
-     * LARRY: Missing address
-     */
+            .withEmail("hans@example.com").withAddress("chicago ave").withRemarks("colleagues").build();
     public static final Person JASON = new PersonBuilder().withName("Jason Derulo")
             .withEmail("jason@example.com").withAddress("my house").build();
     public static final Person KASEY = new PersonBuilder().withName("Kasey Basey")
-            .withPhone("91234567").withAddress("your house").build();
+            .withPhone("91234567").withAddress("your house").withRemarks("friends").build();
     public static final Person LARRY = new PersonBuilder().withName("Lineup Larry")
-            .withPhone("92345678").withEmail("larry@example.com").build();
+            .withPhone("92345678").withEmail("larry@example.com").withRemarks("friends").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
