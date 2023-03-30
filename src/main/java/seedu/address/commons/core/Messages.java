@@ -21,7 +21,7 @@ public class Messages {
     public static final String MESSAGE_EVENT_CLASH = "You already have an event at this time period:\n%1$s";
     public static final String MESSAGE_EVENT_INVALID_DATE = "Invalid date! The date of event cannot be before the"
                                                                 + " current time!";
-    public static final String MESSAGE_NONEXISTENT_DATE = "Date do not exists";
+    public static final String MESSAGE_NONEXISTENT_DATE = "Date do not exist, please key in a valid date!";
 
     public static final String MESSAGE_INVALID_EVENT_INDEX = "The event index provided is invalid";
 

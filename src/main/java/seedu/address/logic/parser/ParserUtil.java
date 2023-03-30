@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -150,10 +151,21 @@ public class ParserUtil {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dueDate = LocalDateTime.parse(date, formatter);
+            checkDateExist(dueDate, date.substring(0,2));
+            System.out.println(dueDate);
+            System.out.println(date.substring(0,2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
         return dueDate;
+    }
+
+    public static void checkDateExist(LocalDateTime date, String day) throws ParseException {
+        int lastDay = date.getMonth().maxLength();
+
+        if (Integer.parseInt(day) > lastDay) {
+            throw new ParseException(Messages.MESSAGE_NONEXISTENT_DATE);
+        }
     }
 
     /**
