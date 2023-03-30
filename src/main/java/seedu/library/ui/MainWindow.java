@@ -84,13 +84,6 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.setResizable(true);
             }
         });
-//        primaryStage.heightProperty().addListener((o, oldValue, newValue) -> {
-//            if (newValue.intValue() < 800) {
-//                primaryStage.setResizable(false);
-//                primaryStage.setHeight(800);
-//                primaryStage.setResizable(true);
-//            }
-        //});
         setAccelerators();
         helpWindow = new HelpWindow();
 
