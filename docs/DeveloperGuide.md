@@ -321,11 +321,16 @@ This ensures that modifications (deletes/edits) to the persons after a `list` or
 The `SortBy` Enum ensures that new sorting options can be extended in future iterations. A new switch case can be added 
 to the `SortCommand` to perform an `updateSort()` for the `Model` object, with the corresponding comparator. 
 
-### Get Team feature
+### Show Team feature
 
 #### Implementation
 
-_{To be Added}_
+Show command utilizes the `updateFilterPersonList()` method implemented in ModelManager.java to filter the 
+`filtleredPersons` list variable in ModelManager with the given predicate `TeamContainsKeywordsPredicate`.
+
+The `TeamContainsKeywordsPredicate` object takes in a `List<String>` from `ShowCommandParser`, and make use of the
+`containsWordIgnoreCase()` from `StringUtil` to conduct matching between the user input and the `tagName` of each 
+the `teams` of each `Person` object.
 
 #### Design considerations:
 
