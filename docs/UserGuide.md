@@ -44,6 +44,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Delete a contact `delete`**](#delete-a-contact-delete)
     * [**Add a label to a contact `tag`**](#add-a-label-to-a-contact-tag)
     * [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
+    * [**Listing all your contacts `list`**](#listing-all-your-contacts-list)
 * [**Advanced Commands**](#advanced-commands)
   * [**Search Commands**](#search-commands)
     * [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
@@ -552,7 +553,20 @@ What you should see:<br>
 
 </div>
 
+### Listing all your contacts `list`
 
+With the `list` command, you can get EduMate to display all your contacts in the [Person List](#person-list)
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `list`
+
+</div>
+
+What you should see:<br>
+{GUI}<br>
+{Explanation}
 
 ## Advanced Commands
 
