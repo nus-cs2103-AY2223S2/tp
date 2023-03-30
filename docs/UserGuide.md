@@ -72,11 +72,16 @@ open the help window.<br>
 
 * For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits.
 
+* Users may choose to enter dates in various formats, including but not limited to:
+  * `yyyy-mm-dd`, e.g. `2023-03-12`
+  * `yyyy/mm/dd`, e.g. `2023/03/12`
+  * `dd MMM yyyy`, e.g. `12 mar 2023`
+
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -140,26 +145,46 @@ Examples:
 * `find alex david 101` returns `Alexander Peterson`, `Allison Tan` (postal code), `Davidson Li`<br>
   ![result for 'find alex david 101'](..%2F..%2F..%2FDownloads%2Fimage%20%281%29.png)
 
-### Deleting a case : `delete`
+### Deleting cases : `delete`
 
-Deletes the specified case from the Dengue Hotspot Tracker.
+Deletes the specified cases from the Dengue Hotspot Tracker. The cases can be specified with indexes, a date, or a date range.
 
-Format: `delete INDEX`
+Format: `delete INDEX…​` or `delete d/DATE` or `delete [sd/STARTDATE] [ed/ENDDATE]`, where at least one of the optional fields must be provided.
 
-* Deletes the case at the specified `INDEX`.
+* Deletes cases at the specified `INDEX`es, cases from the specified `DATE`, or cases falling within the specified range from `STARTDATE` to `ENDDATE` inclusive.
 * The index refers to the index number shown in the displayed case list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The command will fail if multiple indexes are given and at least one of them is out of range of the displayed case list.
+* If a start date is given without an end date, the range will be taken to end at the latest date in the Dengue Hotspot Tracker.
+* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in the Dengue Hotspot Tracker.
+* The `sd/` and `ed/` arguments can be given in any order.
+* The start date must come before or be the same as the end date.
+* The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd case in the Dengue Hotspot Tracker.
-* `find Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
-* `find s666` followed by `delete 4` deletes the 4th case in the results of the `find` command.
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in the Dengue Hotspot Tracker.
+* `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
+* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
+* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+
+### Sorting cases : `sort`
+
+Sorts the entire case list based on the specified criteria.
+
+Format: `sort [n/] [a/] [d/]`
+
+* Sorts cases based on the specified criteria.
+* One and only one of the criteria must be specified; `n/` for name, `a/` for age, and `d/` for date.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the Dengue Hotspot Tracker.
+Clears all entries from the displayed case list.
 
 Format: `clear`
+
+Examples:
+* `list` followed by `clear' deletes all cases from the Dengue Hotspot Tracker.
+* `find n/Betsy` followed by `clear` deletes all cases in the results of the `find` command.
 
 ### Exiting the program : `exit`
 
@@ -202,8 +227,9 @@ the data of your previous DengueHotspotTracker home folder.
 |------------|--------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
 | **Clear**  | `clear`                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
+| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`       |
 | **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
 | **List**   | `list`                                                                                                                         |
+| **Sort**   | `sort [n/] [a/] [d/]`<br> e.g.,`sort d/`                                                                                       |
 | **Help**   | `help`                                                                                                                         |
