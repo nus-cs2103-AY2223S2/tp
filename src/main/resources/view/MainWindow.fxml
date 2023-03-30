@@ -36,7 +36,7 @@
 
         <TextFlow fx:id="titlePanel" />
 
-        <SplitPane fx:id="masterDeckList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <SplitPane fx:id="masterDeckSplitPane" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
          <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="400" maxWidth="400"/>
           <VBox prefHeight="0.0" prefWidth="0.0" >
             <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" minWidth="300"/>
@@ -44,7 +44,7 @@
           </VBox>
         </SplitPane>
 
-        <SplitPane fx:id="commandBox" dividerPositions="0.5" VBox.vgrow="NEVER" >
+        <SplitPane fx:id="commandSplitPane" dividerPositions="0.5" VBox.vgrow="NEVER" >
           <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border" />
           <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border" />
         </SplitPane>
