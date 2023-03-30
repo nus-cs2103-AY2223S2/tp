@@ -16,19 +16,18 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Changes the remark of an existing person in the e-lister.
+ * Performs a single-target sub-operation on every person currently filtered for display.
  */
 public class MassOpCommand extends Command {
 
     //CHECKSTYLE.OFF: VisibilityModifier
-    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("mass", "m", "Mass"));
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("mass", "m"));
     //CHECKSTYLE.ON: VisibilityModifier
 
     public static final String MESSAGE_USAGE = commandWords
-            + ":Tag or delete Tags people who are filtered by the filter command in the person list.\n"
-            + "Filter command must be used first. \n"
-            + "Parameters:  \n"
-            + "Example: " + commandWords + "tag/delete <TagName>";
+            + ": Applies a single-target operation to all people being displayed.\n"
+            + "Parameters: [edit | tag | delete_tag | delete] [FURTHER_ARGS (must exclude index)] \n"
+            + "Example: " + commandWords + " tag marked";
 
     public static final String MESSAGE_SUCCESS = "Command executed on %1$d / %2$d persons";
 
@@ -37,10 +36,8 @@ public class MassOpCommand extends Command {
     private final String subcommandInput;
 
     /**
-     * Creates a MassOpCommand object to perform mass operations
-     *
-     * @param toAddOrDelete The tag to add
-     * @param isDelete Whether the command is deletion
+     * @param subcommandInput the parsable String containing the command word and arguments of the subcommand,
+     *                        with the Index argument omitted
      */
     public MassOpCommand(String subcommandInput) {
         this.subcommandInput = subcommandInput;
@@ -87,15 +84,16 @@ public class MassOpCommand extends Command {
             return true;
         }
         try {
-            if (AddressBookParser.parseCommandWithIndex(subcommandInput, Index.fromZeroBased(0)).equals(
-                    AddressBookParser.parseCommandWithIndex(((MassOpCommand) other).subcommandInput, Index.fromZeroBased(0))
-            )) {
-                return true;
-            }
+            Command thisSubcommand =
+                    AddressBookParser.parseCommandWithIndex(
+                            subcommandInput, Index.fromZeroBased(0));
+            Command otherSubcommand =
+                    AddressBookParser.parseCommandWithIndex((
+                            (MassOpCommand) other).subcommandInput, Index.fromZeroBased(0));
+            return thisSubcommand.equals(otherSubcommand);
         } catch (ParseException ex) {
             return false;
         }
-        return false;
     }
 
 }

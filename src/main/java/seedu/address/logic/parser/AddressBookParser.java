@@ -41,6 +41,14 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    /**
+     * Parses {@code input} into a command targeted at {@code index}.
+     *
+     * @param input full input string with Index omitted
+     * @param index target index
+     * @return the command based on {@code input} and {@code index}
+     * @throws ParseException if the input does not conform to an expected format
+     */
     public static Command parseCommandWithIndex(String input, Index index) throws ParseException {
         requireNonNull(index);
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
