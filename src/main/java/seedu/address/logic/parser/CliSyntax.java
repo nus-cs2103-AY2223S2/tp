@@ -27,5 +27,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIME = new Prefix("t/");
     public static final Prefix PREFIX_VEHICLE_COLOR = new Prefix("cl/");
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
-    public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
+    public static final Prefix PREFIX_REVERSE_SORT = new Prefix("r/");
 }

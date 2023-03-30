@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -356,6 +357,31 @@ public class AddCommandTest {
         @Override
         public Service getSelectedService() {
             return null;
+        }
+
+        @Override
+        public void updateCustomerComparator(Comparator<? super Customer> cmp) {
+
+        }
+
+        @Override
+        public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
+
+        }
+
+        @Override
+        public void updateServiceComparator(Comparator<? super Service> cmp) {
+
+        }
+
+        @Override
+        public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
+
+        }
+
+        @Override
+        public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
+
         }
 
         @Override

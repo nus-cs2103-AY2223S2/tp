@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -72,6 +73,7 @@ public interface Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -228,16 +230,17 @@ public interface Model {
      * Adds part to service
      *
      * @param serviceId ID of service
-     * @param partName Name of part
-     * @param quantity Quantity of part
+     * @param partName  Name of part
+     * @param quantity  Quantity of part
      * @throws NoSuchElementException If service not in system
      */
     void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
 
     /**
      * Assigns existing technician to existing service
+     *
      * @param serviceId ID of service
-     * @param techId ID of technician
+     * @param techId    ID of technician
      * @throws NoSuchElementException If technician or service not in system
      */
     void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
@@ -310,4 +313,41 @@ public interface Model {
      * Returns currently selected service
      */
     Service getSelectedService();
+
+    // Sort helper functions
+
+    /**
+     * Updates the comparator used to sort customers
+     *
+     * @param cmp Customer comparator
+     */
+    void updateCustomerComparator(Comparator<? super Customer> cmp);
+
+    /**
+     * Updates the comparator used to sort vehicles
+     *
+     * @param cmp Vehicle comparator
+     */
+    void updateVehicleComparator(Comparator<? super Vehicle> cmp);
+
+    /**
+     * Updates the comparator used to sort services
+     *
+     * @param cmp Service comparator
+     */
+    void updateServiceComparator(Comparator<? super Service> cmp);
+
+    /**
+     * Updates the comparator used to sort appointments
+     *
+     * @param cmp Appointment comparator
+     */
+    void updateAppointmentComparator(Comparator<? super Appointment> cmp);
+
+    /**
+     * Updates the comparator used to sort technicians
+     *
+     * @param cmp Technician comparator
+     */
+    void updateTechnicianComparator(Comparator<? super Technician> cmp);
 }
