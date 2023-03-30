@@ -546,7 +546,7 @@ have the following projects in :mushroom:Mycelium:
 
 <div markdown="span" class="alert alert-info">
 :information_source: Recall that :mushroom:Mycelium supports fuzzy search for projects by
-their *names* only!
+their *names* only.
 </div>
 
 1. First, press (CTRL+F) to toggle to **search mode** (if you are not already in
