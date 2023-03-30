@@ -40,7 +40,6 @@ see in your career.
 * ### FAQ
 * ### Command Summary
 
-
 ## How to Get Started
 
 #### 1. Ensure you have Java `11` or above installed in your Computer.

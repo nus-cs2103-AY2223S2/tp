@@ -79,7 +79,7 @@ public class EditPolicyCommand extends Command {
         Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
         Client editedPolicyClient = clientToEditPolicy.cloneClient();
 
-        List<Policy> lastShownPolicyList = clientToEditPolicy.getFilteredPolicyList();
+        List<Policy> lastShownPolicyList = editedPolicyClient.getFilteredPolicyList();
         if (policyIndex.getZeroBased() >= lastShownPolicyList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
@@ -91,8 +91,8 @@ public class EditPolicyCommand extends Command {
         if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
-        clientPolicyList.setPolicy(policyToEdit, editedPolicy);
 
+        clientPolicyList.setPolicy(policyToEdit, editedPolicy);
         model.setClient(clientToEditPolicy, editedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(generateSuccessMessage(clientToEditPolicy, editedPolicy));
