@@ -29,6 +29,8 @@ title: Developer Guide
     - [Module Class](#module-class)
     - [Course and CourseList Class](#course-and-courselist-class)
   - [Storage](#storage-implementation)
+    - [Saving Data](#saving-data)
+    - [Retrieving Data](#retrieving-data)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-)
@@ -905,17 +907,21 @@ in our `Storage` as well as the courses displayed in the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Storage Implementation
+### **Storage Implementation**
 
-### How data is saved
+#### Saving Data
 <img src="images/SaveSequenceDiagram.png" />
 <br>
 <br>
 
-### How data is retrieved
-<img src="images/ReadStorageSequenceDiagram.png" width="550" />
+#### Retrieving Data
+<img src="images/ReadStorageSequenceDiagram.png"/>
 <br>
 <br>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** User preference is saved and retrieved in a similar fashion.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
