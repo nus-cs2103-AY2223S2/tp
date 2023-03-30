@@ -109,6 +109,9 @@ class JsonAdaptedStudent {
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
+        if (!Phone.isMoreThanMaxDigits(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_IGITS);
+        }
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
@@ -132,6 +135,9 @@ class JsonAdaptedStudent {
         }
         if (!Phone.isValidPhone(parentPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        if (!Phone.isMoreThanMaxDigits(parentPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_IGITS);
         }
         final Phone modelParentPhone = new Phone(parentPhone);
 

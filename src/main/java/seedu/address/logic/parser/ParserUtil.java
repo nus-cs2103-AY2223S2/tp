@@ -116,6 +116,9 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
+        if (!Phone.isMoreThanMaxDigits(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_EXCEED_MAX_IGITS);
+        }
         return new Phone(trimmedPhone);
     }
 
