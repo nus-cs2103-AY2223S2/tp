@@ -34,7 +34,7 @@ class JsonAdaptedCcaPosition {
     }
 
     /**
-     * Converts this Jackson-friendly adapted module object into the model's {@code CcaPosition} object.
+     * Converts this Jackson-friendly adapted CCA Position object into the model's {@code CcaPosition} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ccaPosition.
      */

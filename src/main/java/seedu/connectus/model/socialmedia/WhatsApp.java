@@ -2,6 +2,7 @@ package seedu.connectus.model.socialmedia;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
 import seedu.connectus.model.person.Phone;
 
@@ -12,7 +13,8 @@ import seedu.connectus.model.person.Phone;
 public class WhatsApp {
 
     public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number. "
-            + Phone.MESSAGE_CONSTRAINTS;
+            + "Phone numbers should only contain numbers, and it should be at least 3 digits long\n"
+            + "Format: " + PREFIX_SOCMED_WHATSAPP + "WHATSAPP";
 
     public final String value;
 

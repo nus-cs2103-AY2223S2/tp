@@ -1,13 +1,19 @@
 package seedu.connectus.model.tag;
 
+import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+
 /**
  * Represents a Cca in the ConnectUS.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidCcaName(String)}
  */
 public class Cca extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "CCA names and CCA Positions should be "
-            + "alphanumeric and may have spaces";
+            + "alphanumeric and may contain spaces\n"
+            + "CCA Positions are optional\n"
+            + "Format: " + PREFIX_CCA + "CCA[#CCA_POSITION]";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+#?[\\p{Alnum}\\s]+$";
     public final String ccaName;
     public final String ccaPositionName;
     public final String coupledCcaName;
@@ -18,12 +24,13 @@ public class Cca extends Tag {
     private String decoupled;
 
     /**
-     * Constructs a {@code Module}.
+     * Constructs a {@code Cca}.
      *
      * @param coupledCcaName A valid CCA name.
      */
     public Cca(String coupledCcaName) {
-        super(coupledCcaName, MESSAGE_CONSTRAINTS);
+        super(coupledCcaName);
+        checkArgument(isValidCcaName(coupledCcaName), MESSAGE_CONSTRAINTS);
         this.coupledCcaName = coupledCcaName;
         decoupleCcaName();
         ccaName = cca;
@@ -32,28 +39,26 @@ public class Cca extends Tag {
     }
 
     /**
-     * Decouples command into desired tag name.
+     * Decouples command into CCA Name and CCA Position.
      */
     public void decoupleCcaName() {
         String[] arr = coupledCcaName.split("#");
         if (arr.length == 2) {
             cca = arr[0];
             position = arr[1];
-            decoupled = cca + "-" + position;
-        }
-        else {
+            decoupled = cca + " - " + position;
+        } else {
             cca = arr[0];
             position = "";
             decoupled = cca;
         }
     }
 
-
     /**
-     * Returns true if a given string is a valid cca name.
+     * Returns true if a given string is a valid ccaName.
      */
     public static boolean isValidCcaName(String test) {
-        return isValidTagName(test);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
