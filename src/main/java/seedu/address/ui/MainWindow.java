@@ -215,7 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             ReadOnlyNavigation nav = logic.getNavigation();
-            commandBox.setContextLabel(nav.getCurrentContext().toString());
+            commandBox.setContextLabel(nav.getCurrentContext().getCommandPrefixes());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -6,10 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLectureCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteVideoCommand;
+import seedu.address.logic.commands.delete.DeleteCommand;
+import seedu.address.logic.commands.delete.DeleteLectureCommand;
+import seedu.address.logic.commands.delete.DeleteModuleCommand;
+import seedu.address.logic.commands.delete.DeleteMultipleLecturesCommand;
+import seedu.address.logic.commands.delete.DeleteMultipleModulesCommand;
+import seedu.address.logic.commands.delete.DeleteMultipleVideosCommand;
+import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -38,21 +41,41 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ModuleCode moduleCode = new ModuleCode(moduleCodeOptional.get());
 
                 if (lectureNameOptional.isPresent()) {
+
                     LectureName lectureName = new LectureName(lectureNameOptional.get());
-                    VideoName videoName = new VideoName(preamble);
-                    return new DeleteVideoCommand(videoName, moduleCode, lectureName);
+
+                    VideoName[] videoNames = MultipleEventsParser.parseVideoNames(preamble);
+
+                    if (videoNames.length > 1) {
+                        return new DeleteMultipleVideosCommand(moduleCode, lectureName, videoNames);
+                    } else {
+                        return new DeleteVideoCommand(moduleCode, lectureName, videoNames[0]);
+                    }
+
                 } else {
-                    LectureName lectureName = new LectureName(preamble);
-                    return new DeleteLectureCommand(lectureName, moduleCode);
+                    LectureName[] lectureNames = MultipleEventsParser.parseLectureNames(preamble);
+
+                    if (lectureNames.length > 1) {
+                        return new DeleteMultipleLecturesCommand(moduleCode, lectureNames);
+                    } else {
+                        return new DeleteLectureCommand(moduleCode, lectureNames[0]);
+                    }
                 }
+
             } else {
-                ModuleCode moduleCode = ParserUtil.parseModuleCode(preamble);
-                return new DeleteModuleCommand(moduleCode);
+                ModuleCode[] moduleCodes = MultipleEventsParser.parseModuleCodes(preamble);
+
+                if (moduleCodes.length > 1) {
+                    return new DeleteMultipleModulesCommand(moduleCodes);
+                } else {
+                    return new DeleteModuleCommand(moduleCodes[0]);
+                }
             }
 
-        } catch (ParseException pe) {
+        } catch (ParseException | IllegalArgumentException e) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
+                        + "\n" + DeleteCommand.MESSAGE_USAGE), e);
         }
 
     }

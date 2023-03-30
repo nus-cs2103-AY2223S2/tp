@@ -243,7 +243,7 @@ The following is a description of the code execution flow
 1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
 The following table below depicts the consideration of inputs  against the user's argument:
 
-| Has Preamble | has `\mod` argument | has 'lec agrgument | Intent |
+| Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent |
 | --- | --- | --- | --- |
 | Yes | No | No | Delete Module |
 | Yes | Yes | No | DeleteLecture |
@@ -251,9 +251,11 @@ The following table below depicts the consideration of inputs  against the user'
 |-----|-----|-----|-------------|
 
 2. The argument values are then checked on as such:
-      - ModuleCode: valid mod code start with CS
+      - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could end with capital letters at the end
       - LectureName: valid lecture name that does not contain symbols
       - VideoName: valid lecture name that does not contain symbols
+
+   Note: LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
 3. The appropriate `DeleteCommand` subclass object is created then returned to its caller.
 
@@ -275,7 +277,7 @@ The following table below depicts the consideration of inputs  against the user'
       - creates a large file that needs to be edited. Hard to search through
 
 #### Possible further implementation
-    - Create parser for `preamble` of deleting multiple of a specified entity
+    - encapsulate conditional checks in each delete command execution
 
 ### Mark / UnMARK
 
@@ -332,21 +334,21 @@ Step 4. The user wants to list the videos of the CS2040S/Week 1 context and exec
 The `tag` command supports:
 - Tagging a module in the tracker
 - Tagging a lecture of a module in the tracker
-- Tagging a video of a lecture which belongs to a module in the tracker 
+- Tagging a video of a lecture which belongs to a module in the tracker
 
-The `tag` behaviour is dependent on the arguments provided by the user. Modules, lectures, and videos can have 
-multiple, unique tags. If a command contains new tags and tags that were already added to modules, lectures, or 
-videos, only the new tags will be added. 
+The `tag` behaviour is dependent on the arguments provided by the user. Modules, lectures, and videos can have
+multiple, unique tags. If a command contains new tags and tags that were already added to modules, lectures, or
+videos, only the new tags will be added.
 
 The feature utilises the following classes:
 - `TagCommandParser` – Creates the appropriate `TagCommand` subclass object based on the user's input
 - `TagCommand` – Execute the command to add tags to a module, lecture, or video based on the user's input
 
 The following is a description of the code execution flow:
-1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module, 
-   a lecture, or a video based on the appropriate prefixes included in the user's input. 
-2. The user input is then checked to determine whether it contains the required prefixes according to the table 
-   below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error. 
+1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module,
+   a lecture, or a video based on the appropriate prefixes included in the user's input.
+2. The user input is then checked to determine whether it contains the required prefixes according to the table
+   below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
 | Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
@@ -356,10 +358,10 @@ The following is a description of the code execution flow:
 | Tag Video   | Optional          | Optional          | No                | Yes                |
 
 
-3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an 
+3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an
    appropriate `TagCommand` object and returns it to the called.
-4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by 
-   `TagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were 
+4. `LogicManager` calls the `Command#execute(Model)` method of the `TagCommand` object returned by
+   `TagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
    provided, or if the tracker doesn't contain the specified module, lecture, or video.
 5. If no errors occur (no exceptions are thrown), the command succeeds in tagging the module, lecture, or video.
 
@@ -369,7 +371,7 @@ The `untag` command supports:
 - Removing tags from a lecture of a module in the tracker
 - Removing tags from a video of a lecture which belongs to a module in the tracker
 
-The `untag` behaviour is dependent on the arguments provided by the user. Multiple tags can be deleted in a single 
+The `untag` behaviour is dependent on the arguments provided by the user. Multiple tags can be deleted in a single
 command. If a command contains nonexistent tags and tags that were already added to modules, lectures, or
 videos, a `CommandException` will be thrown.
 
@@ -394,8 +396,8 @@ The following is a description of the code execution flow:
    appropriate `UntagCommand` object and returns it to the called.
 4. `LogicManager` calls the `Command#execute(Model)` method of the `UntagCommand` object returned by
    `UntagCommandParser#parse (String)`. During the execution, a CommandException will be thrown if no tags were
-   provided, if the tracker doesn't contain the specified module, lecture, or video, or if there are tags from the 
-   user input that doesn't exist in the module, lecture, or video. 
+   provided, if the tracker doesn't contain the specified module, lecture, or video, or if there are tags from the
+   user input that doesn't exist in the module, lecture, or video.
 5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
    or video.
 
@@ -494,7 +496,7 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Import archived data
 
 #### Reasons for such implementation:
-- The user need to retrieved data when the user wants to review the concepts taught in a module, 
+- The user need to retrieved data when the user wants to review the concepts taught in a module,
   lecture, or video
 
 ### \[Proposed\] Add Video's timestamp comment

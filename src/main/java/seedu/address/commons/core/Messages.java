@@ -23,6 +23,19 @@ public class Messages {
     public static final String MESSAGE_VIDEO_DOES_NOT_EXIST = "Video %1$s of "
             + String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, "%2$s", "%3$s");
 
+    public static final String MESSAGE_DO_NOT_EXIST = "%1$s do not exist";
+    public static final String MESSAGE_MODULES_DONT_EXIST = "Modules "
+            + String.format(MESSAGE_DO_NOT_EXIST, "%1$s");
+    public static final String MESSAGE_LECTURES_DO_NOT_EXIST = "Lectures "
+            + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
+            + " in Module %2$s";
+    public static final String MESSAGE_VIDEOS_DO_NOT_EXIST = "Videos "
+            + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
+            + " in Lecture %3$s of Module %2$s";
+
+    public static final String MESSAGE_CAN_DO_MULTIPLE = "(first parameter can be comma \",\" "
+            + "separated to include multiple objects)";
+
     public static final String MESSAGE_MODULE_TAG_DOES_NOT_EXIST = "Tag %1$s of "
             + String.format(MESSAGE_MODULE_DOES_NOT_EXIST, "%2$s");
     public static final String MESSAGE_LECTURE_TAG_DOES_NOT_EXIST = "Tag %1$s of "
