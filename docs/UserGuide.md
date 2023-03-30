@@ -79,7 +79,7 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
    * displays the result of input command
 3. Command Line
    * type command and press enter to execute it
-   * refer to the [Event Features](#event-features) below for possible commands to execute
+   * refer to the [Events Features](#events-features) below for possible commands to execute
 
 ### UI Breakdown For `Me`
 
@@ -137,9 +137,6 @@ Simply use this command to get access to our help page!
 `help`
 
 ![help](images/userguide/help.png)
-
-[Back To Contents](#table-of-contents)
-<hr style="border:2px solid gray">
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -284,7 +281,9 @@ Want to see the details of a particular contact?
 
 You can either use your cursor to click on the contact or use this command!
 
-> Command: `select INDEX`
+**Syntax:**
+
+`select INDEX`
 
 Here are some important requirements for you to take note:
 
@@ -455,7 +454,7 @@ Use this command to exit the application!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Event Features
+## Events Features
 <hr style="border:2px solid gray">
 
 ### Adding an Event : `addevent`
