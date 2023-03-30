@@ -26,7 +26,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -204,13 +204,15 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
-        requireNonNull(ccaPosition);
-        String trimmedCcaPosition = ccaPosition.trim();
-        if (!CcaPosition.isValidCcaPositionName(trimmedCcaPosition)) {
-            throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
+
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        String trimmedMajor = major.trim();
+        if (!Cca.isValidTagName(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+
         }
-        return new CcaPosition(trimmedCcaPosition);
+        return new Major(trimmedMajor);
     }
 
     /**
@@ -259,19 +261,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
+     * Parses {@code Collection<String> majors} into a {@code Set<Major>}.
      * Checks for validity.
      *
-     * @throws ParseException if the given {@code ccaPosition} is invalid.
+     * @throws ParseException if the given {@code major} is invalid.
      */
-    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions)
-            throws ParseException {
-        requireNonNull(ccaPositions);
-        final Set<CcaPosition> ccaPositionSet = new HashSet<>();
-        for (String ccaPositionName : ccaPositions) {
-            ccaPositionSet.add(parseCcaPosition(ccaPositionName));
+
+    public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
+        requireNonNull(majors);
+        final Set<Major> majorSet = new HashSet<>();
+        int counter = majors.size();
+        for (String majorName : majors) {
+            if (counter <= Major.MAX_MAJOR_COUNT) {
+                majorSet.add(parseMajor(majorName));
+            }
+            counter--;
         }
-        return ccaPositionSet;
+        return majorSet;
     }
 
     private static Instagram parseInstagram(String instagram) throws ParseException {
@@ -381,15 +387,15 @@ public class ParserUtil {
      * parsed into a
      * {@code Set<Cca>} containing zero ccaPositions.
      */
-    public static Optional<Set<CcaPosition>> parseCcaPositionsOptional(Collection<String> ccaPositions)
+    public static Optional<Set<Major>> parseMajorsOptional(Collection<String> majors)
             throws ParseException {
-        assert ccaPositions != null;
+        assert majors != null;
 
-        if (ccaPositions.isEmpty()) {
+        if (majors.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> ccaPositionSet = ccaPositions.size() == 1 && ccaPositions
-                .contains("") ? Collections.emptySet() : ccaPositions;
-        return Optional.of(ParserUtil.parseCcaPositions(ccaPositionSet));
+        Collection<String> majorSet = majors.size() == 1 && majors
+                .contains("") ? Collections.emptySet() : majors;
+        return Optional.of(ParserUtil.parseMajors(majorSet));
     }
 }

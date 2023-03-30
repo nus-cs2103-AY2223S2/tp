@@ -12,7 +12,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
         descriptor.setRemarks(person.getRemarks());
         descriptor.setCcas(person.getCcas());
-        descriptor.setCcaPositions(person.getCcaPositions());
+        descriptor.setMajors(person.getMajors());
         descriptor.setModules(person.getModules());
     }
 
@@ -113,9 +113,9 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code modules} into a {@code Set<CcaPosiiton>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withCcaPositions(String... ccaPositions) {
-        Set<CcaPosition> ccaPositionSet = Stream.of(ccaPositions).map(CcaPosition::new).collect(Collectors.toSet());
-        descriptor.setCcaPositions(ccaPositionSet);
+    public EditPersonDescriptorBuilder withMajors(String... majors) {
+        Set<Major> majorSet = Stream.of(majors).map(Major::new).collect(Collectors.toSet());
+        descriptor.setMajors(majorSet);
         return this;
     }
 

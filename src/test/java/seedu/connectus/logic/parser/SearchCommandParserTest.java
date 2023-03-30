@@ -174,17 +174,17 @@ public class SearchCommandParserTest {
 
         //search ccaPositions with one keyword
         predicate = new FieldsContainKeywordsPredicate();
-        predicate.setCcaPositions(Collections.singleton("Comp"));
-        assertParseSuccess(parser, "ccapos/Comp", new SearchCommand(predicate));
-        assertParseSuccess(parser, "ccapos/  \t Comp    ", new SearchCommand(predicate));
+        predicate.setMajors(Collections.singleton("Comp"));
+        assertParseSuccess(parser, "maj/Comp", new SearchCommand(predicate));
+        assertParseSuccess(parser, "maj/  \t Comp    ", new SearchCommand(predicate));
 
         //search ccaPositions with multiple keywords
         set = new HashSet<>();
         set.add("Comp");
         set.add("Sci");
-        predicate.setCcaPositions(set);
-        assertParseSuccess(parser, "ccapos/Comp ccapos/Sci", new SearchCommand(predicate));
-        assertParseSuccess(parser, "ccapos/ Comp   \t  ccapos/ \n   Sci", new SearchCommand(predicate));
+        predicate.setMajors(set);
+        assertParseSuccess(parser, "maj/Comp maj/Sci", new SearchCommand(predicate));
+        assertParseSuccess(parser, "maj/ Comp   \t  maj/ \n   Sci", new SearchCommand(predicate));
     }
 
 }
