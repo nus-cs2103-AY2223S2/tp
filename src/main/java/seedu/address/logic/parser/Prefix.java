@@ -7,14 +7,20 @@ package seedu.address.logic.parser;
 public class Prefix {
     private final String prefix;
     private final String placeholderText;
+    private final boolean isOptionalPrefix;
+
+    private Prefix(String prefix, String placeholderText, boolean isOptionalPrefix) {
+        this.prefix = prefix;
+        this.placeholderText = placeholderText;
+        this.isOptionalPrefix = isOptionalPrefix;
+    }
 
     /**
      * Constructs a {@code Prefix} with given prefix and an no placeholder text.
      * @param prefix Prefix value.
      */
     public Prefix(String prefix) {
-        this.prefix = prefix;
-        this.placeholderText = "";
+        this(prefix, "", false);
     }
 
     //@@author EvitanRelta-reused
@@ -26,8 +32,7 @@ public class Prefix {
      * @param placeholderText Placeholder text describing the expected data for the prefix.
      */
     public Prefix(String prefix, String placeholderText) {
-        this.prefix = prefix;
-        this.placeholderText = placeholderText;
+        this(prefix, placeholderText, false);
     }
     //@@author
 
@@ -48,8 +53,23 @@ public class Prefix {
         return prefix;
     }
 
+    @Override
     public String toString() {
         return getPrefix();
+    }
+
+    /**
+     * Returns true if this prefix is optional in a command.
+     */
+    public boolean isOptional() {
+        return isOptionalPrefix;
+    }
+
+    /**
+     * Returns a copy of this {@code Prefix}, but as an optional prefix.
+     */
+    public Prefix asOptional() {
+        return new Prefix(this.prefix, this.placeholderText, true);
     }
 
     @Override
