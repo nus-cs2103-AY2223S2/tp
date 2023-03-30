@@ -269,6 +269,11 @@ public class ModelManager implements Model {
         return assignmentList.list();
     }
 
+    @Override
+    public void deleteStudentSubmission(Student studentToDelete) {
+        assignmentList.deleteStudentSubmission(studentToDelete);
+    }
+
     //Solution below adapted from ChatGPT
     @Override
     public void addAlarm(Alarm alarm) {

@@ -87,4 +87,10 @@ public class AssignmentList {
         }
         return sb.toString();
     }
+
+    public void deleteStudentSubmission(Student s) {
+        for (Assignment a : assignments) {
+            a.deleteStudentSubmission(s);
+        }
+    }
 }

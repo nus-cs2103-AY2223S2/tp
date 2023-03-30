@@ -124,4 +124,6 @@ public interface Model {
     void ungrade(String assignmentName, int studentId) throws CommandException;
 
     void addAlarm(Alarm alarm) throws CommandException;
+
+    void deleteStudentSubmission(Student studentToDelete);
 }

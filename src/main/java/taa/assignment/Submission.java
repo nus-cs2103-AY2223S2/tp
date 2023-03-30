@@ -26,6 +26,10 @@ public class Submission implements Comparable<Submission> {
         this.timeCreated = new Date();
     }
 
+    public Student getStudent() {
+        return this.student;
+    }
+
     /**
      * Grades a students submission.
      * @param marks

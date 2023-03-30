@@ -82,4 +82,16 @@ public class Assignment {
     public String toString() {
         return this.name;
     }
+
+    public void deleteStudentSubmission(Student s) {
+        Submission toDelete = null;
+        for (Submission sub : submissions) {
+            if (sub.getStudent().equals(s)) {
+                toDelete = sub; // this is ok as a student can only have at most 1 submission per assignment.
+            }
+        }
+        if (toDelete != null) { // if student doesn't have submission for that assignment.
+            submissions.remove(toDelete);
+        }
+    }
 }
