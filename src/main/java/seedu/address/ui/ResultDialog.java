@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ import javafx.util.Duration;
  */
 public class ResultDialog {
 
-    private static final ImageView warningImgPath = new ImageView("/images/icon-warning.png");
+    private static final ImageView warningImgPath = new ImageView("/images/info_icon.png");
     private static String resultMessage;
     private static Stage primaryStage;
 
@@ -50,13 +51,14 @@ public class ResultDialog {
         result.setX(primaryStage.getX() + 0.35 * primaryStage.getWidth());
         result.setY(0.78 * primaryStage.getHeight());
         result.setWidth(600);
-        result.setHeight(140);
+        result.setHeight(250);
         result.setGraphic(warningImgPath);
         result.setContentText(resultMessage);
 
         result.getDialogPane().getScene().setFill(Color.TRANSPARENT);
         result.getDialogPane().lookupButton(ButtonType.OK).setVisible(false);
         result.getDialogPane().lookup(".button-bar").setVisible(false);
+        result.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
     }
 
     private static void displayDialog(Alert result) {

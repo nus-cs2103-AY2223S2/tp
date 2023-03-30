@@ -17,7 +17,7 @@ import seedu.address.model.task.InternshipTodo;
 public class ClearTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "clear_todo";
-    public static final String MESSAGE_SUCCESS = "All todos has been cleared!";
+    public static final String MESSAGE_SUCCESS = "All todos have been cleared!";
     public static final String MESSAGE_NULL = "There is nothing to clear!";
 
     private static final TaskType type = TaskType.TODO;
