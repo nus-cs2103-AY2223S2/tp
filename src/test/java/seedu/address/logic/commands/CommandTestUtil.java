@@ -62,8 +62,9 @@ public class CommandTestUtil {
     public static final String KEYDATE_DESC_OA = " " + PREFIX_KEYDATE + VALID_DATENAME_OA + "@" + VALID_DATE_LATEFEB;
     public static final String KEYDATE_DESC_INTERVIEW = " " + PREFIX_KEYDATE + VALID_DATENAME_INTERVIEW + "@" + VALID_DATE_EARLYMAR;
 
-    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "James&"; // '&' not allowed in positions
-    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "911a"; // 'a' not allowed in companies
+    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "Software Engineer&"; // '&' not allowed in positions
+    public static final String INVALID_COMPANY_DESC_1 = " " + PREFIX_COMPANY + " "; // whitespaces only not allowed in company
+    public static final String INVALID_COMPANY_DESC_2 = " " + PREFIX_COMPANY + ""; // blanks not allowed in company
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "shopee!yahoo"; // missing '@' symbol
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS; // empty string not allowed for statuses
     public static final String INVALID_DATE_DESC = " " + PREFIX_KEYDATE + "hubby*"; // '*' not allowed in dates
@@ -102,6 +103,7 @@ public class CommandTestUtil {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
+
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
