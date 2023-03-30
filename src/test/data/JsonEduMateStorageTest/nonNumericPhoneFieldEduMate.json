@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -117,7 +117,7 @@
       "name": "Ang De Yi",
       "email": "angdeyi@gmail.com",
       "telegramHandle": "@angdeyi",
-      "address": "Teck Ghee",
+      "station": "Teck Ghee",
       "groups": [],
       "phone": "3895as4665",
       "modules": [

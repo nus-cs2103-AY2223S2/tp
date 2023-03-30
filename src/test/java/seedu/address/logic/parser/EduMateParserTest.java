@@ -89,8 +89,8 @@ public class EduMateParserTest {
                 Arrays.asList("89760441", "92752656", "82630347")
         );
         createParseCommandFind(
-                Prefix.ADDRESS,
-                Arrays.asList("a/Ang", "Mo", "Kio"),
+                Prefix.STATION,
+                Arrays.asList("s/Ang", "Mo", "Kio"),
                 Arrays.asList("Ang", "Mo", "Kio")
         );
         createParseCommandFind(

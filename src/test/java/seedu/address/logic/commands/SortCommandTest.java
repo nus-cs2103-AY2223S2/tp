@@ -22,8 +22,8 @@ import seedu.address.model.person.Person;
 public class SortCommandTest {
     private static final Comparator<Person> NAME_COMPARATOR =
             Comparator.comparing(Person::getName);
-    private static final Comparator<Person> ADDRESS_COMPARATOR =
-            Comparator.comparing(Person::getAddress);
+    private static final Comparator<Person> STATION_COMPARATOR =
+            Comparator.comparing(Person::getStation);
     private static final Comparator<Person> TELEGRAM_HANDLE_COMPARATOR =
             Comparator.comparing(Person::getTelegramHandle);
     private static final Comparator<Person> PHONE_COMPARATOR =
@@ -55,7 +55,7 @@ public class SortCommandTest {
     public void execute_sortField_correctOrder() {
         List<Comparator<Person>> comparators = Arrays.asList(
                 NAME_COMPARATOR,
-                ADDRESS_COMPARATOR,
+                STATION_COMPARATOR,
                 TELEGRAM_HANDLE_COMPARATOR,
                 PHONE_COMPARATOR,
                 EMAIL_COMPARATOR,

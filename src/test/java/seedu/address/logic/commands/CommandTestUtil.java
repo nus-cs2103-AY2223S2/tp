@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -23,13 +22,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    public static final HashMap<String, String> LINUS = new HashMap<>() {{
-            put("name", "Linus Richards");
-            put("phone", "90102030");
-            put("email", "linusrichards@gmail.com");
-            put("address", "National University of Singapore");
-            put("telegramHandle", "@linusrichards");
-        }};
 
     public static final String NAME_ALEX = "Alex Quinn";
     public static final String NAME_BEN = "Benjamin Khoo";
@@ -37,8 +29,8 @@ public class CommandTestUtil {
     public static final String PHONE_BEN = "92552446";
     public static final String EMAIL_ALEX = "alexquinn@gmail.com";
     public static final String EMAIL_BEN = "benjaminkhoo@gmail.com";
-    public static final String ADDRESS_ALEX = "Queenstown";
-    public static final String ADDRESS_BEN = "Bencoolen";
+    public static final String STATION_ALEX = "Queenstown";
+    public static final String STATION_BEN = "Bencoolen";
     public static final String TELEGRAM_HANDLE_ALEX = "@alexquinn";
     public static final String TELEGRAM_HANDLE_BEN = "@benjaminkhoo";
     public static final Integer INDEX_ALEX = 16;
@@ -58,8 +50,8 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_ALEX = " " + Prefix.TELEGRAM_HANDLE + TELEGRAM_HANDLE_ALEX;
     public static final String TELEGRAM_DESC_BEN = " " + Prefix.TELEGRAM_HANDLE + TELEGRAM_HANDLE_BEN;
 
-    public static final String ADDRESS_DESC_ALEX = " " + Prefix.ADDRESS + ADDRESS_ALEX;
-    public static final String ADDRESS_DESC_BEN = " " + Prefix.ADDRESS + ADDRESS_BEN;
+    public static final String STATION_DESC_ALEX = " " + Prefix.STATION + STATION_ALEX;
+    public static final String STATION_DESC_BEN = " " + Prefix.STATION + STATION_BEN;
     public static final String VALID_GROUP_2_DESC = " " + Prefix.GROUP_TAG + VALID_GROUP_2;
     public static final String VALID_GROUP_1_DESC = " " + Prefix.GROUP_TAG + VALID_GROUP_1;
     public static final String VALID_MODULE_1_DESC = " " + Prefix.MODULE_TAG + VALID_MODULE_1;
@@ -68,7 +60,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + Prefix.NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + Prefix.PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + Prefix.EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + Prefix.ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_STATION_DESC = " " + Prefix.STATION; // empty string not allowed for stations
     public static final String INVALID_TELEGRAM_DESC = " " + Prefix.TELEGRAM_HANDLE
             + "hellothere"; // missing '@' symbol
     public static final String INVALID_GROUP_DESC = " " + Prefix.GROUP_TAG + "hubby*"; // '*' not allowed in tags
@@ -83,14 +75,14 @@ public class CommandTestUtil {
 
     static {
         DESC_ALEX = new EditPersonDescriptorBuilder().withName(NAME_ALEX)
-                .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withAddress(ADDRESS_ALEX)
+                .withPhone(PHONE_ALEX).withEmail(EMAIL_ALEX).withStation(STATION_ALEX)
                 .withTelegramHandle(TELEGRAM_HANDLE_ALEX)
                 .withContactIndex(INDEX_ALEX)
                 .withGroupTags(VALID_GROUP_2)
                 .withModuleTags(VALID_MODULE_1, VALID_MODULE_2).build();
         DESC_BEN = new EditPersonDescriptorBuilder().withName(NAME_BEN)
                 .withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
-                .withAddress(ADDRESS_BEN)
+                .withStation(STATION_BEN)
                 .withContactIndex(INDEX_BEN)
                 .withTelegramHandle(TELEGRAM_HANDLE_BEN)
                 .withGroupTags(VALID_GROUP_1, VALID_GROUP_2)

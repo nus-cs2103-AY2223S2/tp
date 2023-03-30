@@ -36,7 +36,7 @@ public class Person {
     private final ContactIndex contactIndex;
 
     // Data fields
-    private final Address address;
+    private final Station station;
     private final GroupTagSet groupTags = new GroupTagSet();
     private final ModuleTagSet moduleTags = new ModuleTagSet();
     private final Timetable timetable = new Timetable();
@@ -47,13 +47,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, TelegramHandle telegramHandle,
+    public Person(Name name, Phone phone, Email email, Station station, TelegramHandle telegramHandle,
                   ContactIndex contactIndex, Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
-        requireAllNonNull(name, phone, email, address, telegramHandle, contactIndex, groupTags, moduleTags);
+        requireAllNonNull(name, phone, email, station, telegramHandle, contactIndex, groupTags, moduleTags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.station = station;
         this.telegramHandle = telegramHandle;
         this.contactIndex = contactIndex;
         this.groupTags.addAll(groupTags);
@@ -68,7 +68,7 @@ public class Person {
      */
     public Person copy() {
         return new Person(getName(), getPhone(), getEmail(),
-                getAddress(), getTelegramHandle(), getContactIndex(),
+                getStation(), getTelegramHandle(), getContactIndex(),
                 getImmutableGroupTags(), getImmutableModuleTags());
     }
 
@@ -84,8 +84,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Station getStation() {
+        return station;
     }
 
     public TelegramHandle getTelegramHandle() {
@@ -145,7 +145,7 @@ public class Person {
      * Creates a new person and sets the contact index.
      */
     public Person setContactIndex(ContactIndex contactIndex) {
-        return new Person(name, phone, email, address, telegramHandle,
+        return new Person(name, phone, email, station, telegramHandle,
                 contactIndex, groupTags.getImmutableGroups(), moduleTags.getImmutableModules());
     }
 
@@ -241,10 +241,7 @@ public class Person {
                 .filter(ModuleTag::isBasicTag)
                 .collect(Collectors.toList());
 
-        logger.info(String.format("Removing Module Tags: %s, %s",
-                removableModuleTags, completelyRemovableModuleTags));
-
-        removableModuleTags.forEach(this.moduleTags::remove);
+        this.moduleTags.removeAll(removableModuleTags);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
@@ -290,16 +287,17 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGroupTags().equals(getGroupTags())
+                && otherPerson.getStation().equals(getStation())
                 && otherPerson.getImmutableGroupTags().equals(getImmutableGroupTags())
                 && otherPerson.getTelegramHandle().equals(getTelegramHandle())
-                && otherPerson.getImmutableModuleTags().equals(getImmutableModuleTags());
+                && otherPerson.getModuleTags().equals(getModuleTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, telegramHandle, groupTags, moduleTags);
+        return Objects.hash(name, phone, email, station, telegramHandle, groupTags, moduleTags);
     }
 
     @Override
@@ -311,8 +309,8 @@ public class Person {
                 .append(getPhone())
                 .append("\nEmail: ")
                 .append(getEmail())
-                .append("\nAddress: ")
-                .append(getAddress())
+                .append("\nStation: ")
+                .append(getStation())
                 .append("\nTelegram: ")
                 .append(getTelegramHandle())
                 .append("\nGroups: ")

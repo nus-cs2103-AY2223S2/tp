@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.LocalTime;
@@ -18,11 +19,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
@@ -114,18 +115,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String station} into an {@code Station}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code station} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Station parseStation(String station) throws ParseException {
+        requireNonNull(station);
+        String trimmedStation = station.trim();
+        if (!Station.isValidStation(trimmedStation)) {
+            throw new ParseException(Station.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Station(trimmedStation);
     }
 
     /**
@@ -199,7 +200,8 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         ArrayList<String> args = parseMoreModules(trimmedTag);
 
-        logger.info(String.format("Parsing tag: %s with %d arguments", args, args.size()));
+        logger.log(Level.FINE,
+                String.format("Parsing tag: %s with %d arguments", args, args.size()));
 
         if (args.size() == 1) {
             return parseModuleTagFromSingle(args.get(0));
@@ -217,7 +219,7 @@ public class ParserUtil {
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
 
-        logger.info(String.format("Lesson parsed: %s", lesson));
+        logger.log(Level.FINE, String.format("Lesson parsed: %s", lesson));
 
         return new ModuleTag(moduleCode, lesson);
     }
