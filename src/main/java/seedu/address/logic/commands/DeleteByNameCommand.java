@@ -34,6 +34,7 @@ public class DeleteByNameCommand extends DeleteCommand {
         if (updatedList.size() == 1) {
             Person personToDelete = updatedList.get(0);
             model.deletePerson(personToDelete);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         } else {
             return new CommandResult(
