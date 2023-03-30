@@ -1,9 +1,11 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import seedu.address.model.statstics.StatsInformation;
 
 /**
@@ -40,6 +42,10 @@ public class StatsInformationCard extends UiPart<Region> {
         description.setText(statsInformation.getDescription());
         Number s = statsInformation.getStatsInformation();
         stats.setText(s.toString());
+
+        cardPane.setAlignment(Pos.CENTER);
+        description.setTextAlignment(TextAlignment.CENTER);
+        stats.setTextAlignment(TextAlignment.CENTER);
     }
 
     /**
