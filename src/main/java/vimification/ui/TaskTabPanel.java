@@ -53,13 +53,24 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     @Override
     public void requestFocus() {
-        int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
-
-        boolean isOngoingTabSelected = selectedTabIndex == 0;
-        if (isOngoingTabSelected) {
+        if (checkIsOngoingTabSelected()) {
             ongoingTaskListPanel.requestFocus();
         } else {
             completedTaskListPanel.requestFocus();
         }
+    }
+
+    public void scrollToTaskIndex(int displayIndex) {
+        if (checkIsOngoingTabSelected()) {
+            ongoingTaskListPanel.scrollToTaskIndex(displayIndex);
+        } else {
+            completedTaskListPanel.scrollToTaskIndex(displayIndex);
+        }
+    }
+
+    private boolean checkIsOngoingTabSelected() {
+        int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
+        boolean isOngoingTabSelected = selectedTabIndex == 0;
+        return isOngoingTabSelected;
     }
 }

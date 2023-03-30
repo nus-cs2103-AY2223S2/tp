@@ -42,7 +42,6 @@ public class MainScreen extends UiPart<VBox> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private TaskListPanel taskListPanel;
     private TaskTabPanel taskTabPanel;
     // private TaskCreationPanel taskCreationPanel;
     private CommandInput commandInput;
@@ -70,12 +69,12 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     /**
-     * Returns the {@code TaskListPanel} component
+     * Returns the {@code TaskTabPanel} component
      *
      * @return
      */
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
+    public TaskTabPanel getTaskTabPanel() {
+        return taskTabPanel;
     }
 
     @FXML
@@ -85,7 +84,7 @@ public class MainScreen extends UiPart<VBox> {
 
     private void setupComponents() {
         intializeCommandInput();
-        initializeTaskListPanel();
+        initializeTaskTabPanel();
     }
 
     private void bindHeightAndWidth() {
@@ -100,7 +99,7 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
     }
 
-    public void initializeTaskListPanel() {
+    public void initializeTaskTabPanel() {
         taskTabPanel = new TaskTabPanel(this, logic);
         loadLeftComponent(taskTabPanel);
     }
