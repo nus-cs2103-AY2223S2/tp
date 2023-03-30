@@ -11,6 +11,9 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 
 /** Parser for base level commands. */
 public class BasicParser extends FeatureParser {
+    public static final String FEATURE_NAME = "basic";
+
+
     @Override
     public Command parseCommand(String commandWord, ArgumentMultimap args) throws ParseException {
         switch (commandWord) {

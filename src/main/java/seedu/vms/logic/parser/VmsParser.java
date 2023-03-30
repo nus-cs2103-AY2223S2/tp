@@ -68,6 +68,9 @@ public class VmsParser {
         case KeywordParser.FEATURE_NAME:
             return keywordParser.parse(arguments);
 
+        case BasicParser.FEATURE_NAME:
+            return basicParser.parse(userInput);
+
         default:
             return basicParser.parse(userInput);
         }
