@@ -74,7 +74,7 @@ public class BookmarkCard extends UiPart<Region> {
     public BookmarkCard(Bookmark bookmark, int displayedIndex) throws IOException {
         super(FXML);
         InputStream svol = this.getClass().getResourceAsStream("/images/volume.png");
-        InputStream schap =this.getClass().getResourceAsStream("/images/chapter.png");
+        InputStream schap = this.getClass().getResourceAsStream("/images/chapter.png");
         InputStream spage = this.getClass().getResourceAsStream("/images/page.png");
         InputStream ratingImage = this.getClass().getResourceAsStream("/images/ratingHead.png");
         this.bookmark = bookmark;
