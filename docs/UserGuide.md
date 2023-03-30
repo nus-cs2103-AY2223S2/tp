@@ -14,6 +14,11 @@ Our target audience is hospital and clinical administrative staff who deal with 
 ## About this Guide
 
 The purpose of this user guide document is to provide staff with a clear understanding of the features and benefits of HospiSearch. The guide aims to assist users in effectively utilizing HospiSearch's features to streamline their patient management tasks and improve overall efficiency.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Messages in this format are important!
+<div/>
+💡**Tip**:
+<br/> Messages in this format information that may be useful to the user.
+
 
 # Table of Contents:
 
@@ -31,7 +36,7 @@ The purpose of this user guide document is to provide staff with a clear underst
     - [Filter patients](#filter-patients-by-attribute-find): `find`
     - [Backup patient records](#backup-patient-records-backup): `backup`
     - [Load backups](#load-data-load): `load`
-    - [View backups](#view-backup-data-viewbackup): `viewbackup`
+    - [View backups](#view-backup-data-viewbackup): `viewbackups`
     - [Delete backup](#delete-backup-data-deletebackup): `deletebackup`
     - [Clear all data](#clearing-all-data-clear): `clear`
     - [Light mode](#switch-to-light-mode-light): `light`
@@ -106,6 +111,10 @@ Lists out all the commands available, along with a brief description.
 
 Format: `help`
 
+![Help](images/command_result/Help.png)
+
+Above is the view of help window after inputting `help`.
+
 ### Undoing previous command: `undo`
 
 Reverts the patient records to the state before the previous command was executed.
@@ -115,6 +124,12 @@ Format: `undo`
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
+
+Format: `undo`
+
+![Undo](images/command_result/Undo.png)
+
+Above is the execution result of input `undo` (the list has been cleared).
 
 ### Redoing previous undo: `redo`
 
@@ -129,6 +144,13 @@ Format: `redo`
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
 has run.
 </div>
+
+
+Format: `redo`
+
+![Redo](images/command_result/Redo.png)
+
+Above is the execution result of input `redo` (the list is cleared again).
 
 ### Adding patient record: `add`
 
@@ -149,6 +171,10 @@ Examples:
 * `add i/T0012345A n/John Doe dob/20/12/2000 p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male ad/Alex t/Diabetic m/Lantus`
 * `add i/T0012345B n/Betsy Crowe dob/18/12/1998 p/1234567 a/Newgate Prison d/Panadol g/Female ad/Shannon e/betsycrowe@example.com t/Dyslexic`
 
+![Add](images/command_result/Add.png)
+
+Above is the execution result of input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+
 ### Editing a patient record: `edit`
 
 Edits an existing patient in the patient records.
@@ -166,6 +192,23 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be 91234567 and johndoe@example.com respectively.
 
+![Edit](images/command_result/Edit.png)
+
+Above is the execution result of input `edit 2 i/G3787219P`
+
+### Viewing a patient detailed particulars: `view`
+
+Views a patient detailed particulars.
+
+Format : `view i/NRIC`
+
+Examples:
+* `view i/S1234567H` shows detailed information about the patient on the view pane.
+
+![View](images/command_result/View.png)
+
+Above is the execution result of input `view i/S1234567H`.
+
 ### Deleting a patient record: `delete`
 
 Deletes the specified patient from the patient records.
@@ -178,7 +221,12 @@ command, `undo` command will not undo all deletes made, but only **one** at a ti
 
 Examples:
 
-* `delete i/T0012345A` deletes the patient with NRIC T0012345A from patient records system.
+* `delete i/S1234567A` deletes the patient with NRIC S1234567A from patient records system.
+
+![Delete](images/command_result/Delete.png)
+
+Above is the execution result of input `delete i/S1234567A`.
+
 
 ### Listing all patients: `list`
 
@@ -190,7 +238,14 @@ Format: `list`
 that you have loaded.
 </div>
 
-### Filter patients by attribute: `find`
+
+Format: `list`
+
+![List](images/command_result/List.png)
+
+Above is the execution result of input `list`.
+
+### Filtering patients by attribute: `find`
 
 Find patients according to a particular command prefix stated followed by the change.
 
@@ -222,7 +277,11 @@ Examples (The following results are based of the sample data provided):
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 * `find ad/Shannon` returns all persons with attending doctor `Shannon`.
 
-### Backup patient records: `backup`
+![Find](images/command_result/Find.png)
+
+Above is the execution result of input `find i/S1234567A`.
+
+### Backing up patient records: `backup`
 
 Backs up the patient records to a specified slot represented by an index. Can add a description to the backup.
 
@@ -237,11 +296,18 @@ Format: `backup INDEX_NO [b/DESCRIPTION]`
 
 Examples:
 
+
 * `backup 3 b/Test` backups the data to the 3rd slot with description 'Test'.
+
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**: INDEX_NO can only be an integer between 1 and 10
 
-### Load data: `load`
+![Backup](images/command_result/Backup.png)
+
+Above is the execution result of input `backup 1`.
+
+### Loading data: `load`
 
 Loads the data from a specified slot represented by an index.
 
@@ -254,6 +320,10 @@ Example:
 
 * `load 3` loads the data from the 3rd slot.
 
+![Load](images/command_result/Load.png)
+
+Above is the execution result of input `load 1`.
+
 ### View backup data: `viewbackups`
 
 Shows all the backups available.
@@ -263,7 +333,11 @@ Format: `viewbackups`
 💡**Tip**:
 <br/>You can exit the backups page by typing the command `list`.
 
-### Delete backup data: `deletebackup`
+![Viewbackup](images/command_result/Viewbackup.png)
+
+Above is the execution result of input `viewbackups`.
+
+### Deleting backup data: `deletebackup`
 
 Deletes the data from a specified slot represented by an index.
 
@@ -277,6 +351,10 @@ Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
 
+![DeleteBackUp](images/command_result/Deletebackup.png)
+
+Above is the execution result of input `deletebackup 1`
+
 ### Clearing all data: `clear`
 
 Purges all data from the database.
@@ -287,20 +365,34 @@ Use this command with caution.
 
 Format: `clear`
 
-### Switch to light mode: `light`
+![Clear](images/command_result/Clear.png)
+
+Above is the execution result of input `clear`.
+
+### Switching to light mode: `light`
 
 Switches the GUI to light mode.
 
 Format: `light`
 
-### Switch to dark mode: `dark`
+![Light](images/command_result/Light.png)
+
+Above is the execution result of input `light`.
+
+### Switching to dark mode: `dark`
 
 Switches the GUI to dark mode.
 
 Format: `dark`
 
+
 💡**Tip**:
 <br/>The default GUI is light mode. Use these commands and see which is your preferred GUI!
+
+![Dark](images/command_result/Dark.png)
+
+Above is the execution result of input `dark`.
+
   
 --------------------------------------------------------------------------------------------------------------------  
 <sub>[return to table of contents](#table-of-contents)</sub>
