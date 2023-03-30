@@ -61,7 +61,10 @@
             <ListView id="appointments" fx:id="appointments" prefWidth="368.0">
                   <VBox.margin>
                      <Insets bottom="10.0" />
-                  </VBox.margin></ListView>
+                  </VBox.margin>
+                  <padding>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                  </padding></ListView>
             </children>
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
