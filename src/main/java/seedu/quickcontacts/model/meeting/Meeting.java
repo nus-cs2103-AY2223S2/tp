@@ -23,7 +23,7 @@ public class Meeting {
     // Data fields
     private final Location location;
     private final Description description;
-    private boolean isDone = false;
+    private final boolean isDone;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +35,28 @@ public class Meeting {
         this.attendees.addAll(attendees);
         this.location = location;
         this.description = description;
+        this.isDone = false;
+    }
+
+    /**
+     * Meeting constructor with isDone
+     *
+     * @param title       title of meeting
+     * @param dateTime    date and time of meeting
+     * @param attendees   people attending the meeting
+     * @param location    location of the meeting
+     * @param description description of the meeting
+     * @param isDone      whether the meeting is done
+     */
+    public Meeting(Title title, DateTime dateTime, Set<Person> attendees, Location location, Description description,
+                   boolean isDone) {
+        requireAllNonNull(title, dateTime);
+        this.title = title;
+        this.dateTime = dateTime;
+        this.attendees.addAll(attendees);
+        this.location = location;
+        this.description = description;
+        this.isDone = isDone;
     }
 
     public Title getTitle() {
@@ -62,15 +84,6 @@ public class Meeting {
     }
 
     /**
-     * Marks this meeting as done or not done
-     *
-     * @param isDone whether ot mark as done
-     */
-    public void setIsDone(boolean isDone) {
-        this.isDone = isDone;
-    }
-
-    /**
      * Returns true if both meetings have the same title, dateTime and attendees.
      * This defines a weaker notion of equality between two meetings.
      */
@@ -90,6 +103,13 @@ public class Meeting {
      */
     public boolean hasPassed() {
         return LocalDateTime.now().isAfter(dateTime.get());
+    }
+
+    /**
+     * Returns true if {@code Meeting} has passed based on the current DateTime.
+     */
+    public boolean getIsDone() {
+        return isDone;
     }
 
     /**

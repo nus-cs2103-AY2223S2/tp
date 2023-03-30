@@ -207,6 +207,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void markMeetingAsDone(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markMeetingAsNotDone(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void removeMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }

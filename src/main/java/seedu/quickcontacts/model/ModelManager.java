@@ -244,4 +244,17 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
+    @Override
+    public void markMeetingAsDone(Index index) throws IndexOutOfBoundsException {
+        Meeting meeting = this.filteredMeetings.get(index.getZeroBased());
+        setMeeting(meeting, new Meeting(meeting.getTitle(), meeting.getDateTime(), meeting.getAttendees(),
+                meeting.getLocation(), meeting.getDescription(), true));
+    }
+
+    @Override
+    public void markMeetingAsNotDone(Index index) throws IndexOutOfBoundsException {
+        Meeting meeting = this.filteredMeetings.get(index.getZeroBased());
+        setMeeting(meeting, new Meeting(meeting.getTitle(), meeting.getDateTime(), meeting.getAttendees(),
+                meeting.getLocation(), meeting.getDescription(), false));
+    }
 }
