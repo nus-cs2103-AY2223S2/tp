@@ -2,17 +2,31 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
            xmlns:fx="http://javafx.com/fxml/1">
-  <VBox>
-    <Label fx:id="overviewTitle" styleClass="overview-title" VBox.vgrow="NEVER" />
+  <VBox fx:id="overviewDisplay">
     <Label styleClass="small_label_gap" />
+
+    <HBox>
+      <Region HBox.hgrow="ALWAYS" />
+      <Label fx:id="overviewTitle" styleClass="overview-title" VBox.vgrow="NEVER" />
+      <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <HBox>
+      <Region HBox.hgrow="ALWAYS" />
+      <Label fx:id="overviewSubtitle" styleClass="overview-subtitle" VBox.vgrow="NEVER" />
+      <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
     <Label styleClass="small_label_gap" />
-    <Label fx:id="overviewSubtitle" styleClass="overview-subtitle" VBox.vgrow="NEVER" />
-    <Label styleClass="small_label_gap" />
-    <TextArea fx:id="overviewContent" editable="false" styleClass="overview-content" VBox.vgrow="ALWAYS" />
+
+    <TextArea fx:id="overviewContent" editable="false" styleClass="overview-content" VBox.vgrow="ALWAYS"
+              promptText="No cases to analyze." />
   </VBox>
 </StackPane>
