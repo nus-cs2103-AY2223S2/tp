@@ -15,12 +15,12 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
-    - [View guide](#)
+    - [View guide](###view-help--help)
     - [Add an internship application](#)
         - [Add](#)
     - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications](########TODO)
-    - [Find internship applications by the company name, job title, status, or interview date](#######TODO)
+    - [Find internship applications by the company name, job title, status, or interview date](###find-internship-applications-by-the-company-name,-job-title,-status,-or-interview-date-:-find)
     - [Manage company contact for an internship application](#add-contact-details--add_contact)
         - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
         - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
@@ -35,7 +35,6 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
       - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
       - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
-    - [Search](#search-for-an-application--find)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
         - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
@@ -43,7 +42,6 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [Revert delete or clear](#revert-a-recent-deleted-internship-application--revert)
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
-    - [Help](#########TODO)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
   
 - [Side Features](#side-features-planning-to-apply-internships)
@@ -136,7 +134,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 ## Main features: Tracking applied internships
 
 ### View help : `help`
-Shows a user guide message on how to use the internship tracker
+Shows user the link to user guide.
 
 Format: help
 
@@ -346,13 +344,21 @@ There are three use cases for the `find` command:
 2. Find by the current status of the application: `find s/STATUS`
 3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
 
-- The search 
+- The search for company name, job title, and status are case-insensitive. 
+- The order of KEYWORD doesn't matter.
+- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it 
+will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
+- Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
 
 Examples:
 1. `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
 2. `find s/PENDING` searches for all application that are pending.
 3. `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
 2023-12-02 12:30 PM (inclusive).
+
+### Sort all internship applications : `sort`
+
+Sorts internship applications according to either company name, job title, status or interview date.
 
 
 ### Clearing all internship application entries : `clear`
@@ -517,7 +523,7 @@ Format: `delete_note INDEX`
 * **Note that this action is irreversible**
 
 Examples:
-* `delete 2` Deletes the 2nd note in the list of notes.
+* `delete_note 2` Deletes the 2nd note in the list of notes.
 
 ### Clear all notes  : `clear_note`
 

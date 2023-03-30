@@ -375,7 +375,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String status} into a {@code InternshipStatus}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Leading and trailing whitespaces will be trimmed. It's case-insensitive
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
