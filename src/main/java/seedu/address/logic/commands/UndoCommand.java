@@ -23,7 +23,7 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords + ": Undoes the previous command, or a number of most "
             + "recent commands. Ignores Undo, Redo, and Export commands; affects all other valid commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
-            + "Example: " + commandWords + " 5";
+            + "Example: " + commandWords.get(0) + " 5";
 
     public static final String MESSAGE_SUCCESS = "Undone %1$d / %2$d commands";
 

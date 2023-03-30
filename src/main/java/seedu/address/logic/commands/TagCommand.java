@@ -23,7 +23,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords
             + ": Tags the person identified by the index used in the displayed person list.\n"
             + "Parameters: Index (must be positive number) \n"
-            + "Example: " + commandWords + " 1";
+            + "Example: " + commandWords.get(0) + " 1";
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";

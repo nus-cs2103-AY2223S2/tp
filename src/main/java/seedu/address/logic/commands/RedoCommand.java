@@ -23,11 +23,11 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords + ": Redoes the last undone command,"
             + "or a number of the most recently undone commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
-            + "Example: " + commandWords + " 5";
+            + "Example: " + commandWords.get(0) + " 5";
 
     public static final String MESSAGE_SUCCESS = "Redone %1$d / %2$d commands";
 
-    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(RedoCommand.class);
 
     private final int numCommands;
     private StateHistory history = null;

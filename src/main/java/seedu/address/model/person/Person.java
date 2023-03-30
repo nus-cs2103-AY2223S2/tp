@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -7,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.DeepCopyable;
 import seedu.address.model.tag.Tag;
 
@@ -18,12 +20,12 @@ import seedu.address.model.tag.Tag;
 public class Person implements DeepCopyable<Person> {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-    private final Income income;
+    private Name name;
+    private Phone phone;
+    private Email email;
+    private Income income;
     // Data fields
-    private final Address address;
+    private Address address;
     private HashSet<Tag> tags = new HashSet<>();
 
     /**
@@ -60,7 +62,7 @@ public class Person implements DeepCopyable<Person> {
     }
 
     /**
-     * Adds a tag to the person
+     * Adds a tag to the person.
      */
     public void addTag(Tag toAdd) {
         tags.add(toAdd);
@@ -82,6 +84,21 @@ public class Person implements DeepCopyable<Person> {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Edits the fields of this {@code Person} according to {@code editPersonDescriptor}.
+     *
+     * @param editPersonDescriptor field edits to be made
+     */
+    public void editTo(EditCommand.EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(editPersonDescriptor);
+        name = editPersonDescriptor.getName().orElse(name);
+        phone = editPersonDescriptor.getPhone().orElse(phone);
+        email = editPersonDescriptor.getEmail().orElse(email);
+        address = editPersonDescriptor.getAddress().orElse(address);
+        income = editPersonDescriptor.getIncome().orElse(income);
+        tags = new HashSet<>(editPersonDescriptor.getTags().orElse(tags));
     }
 
     /**
