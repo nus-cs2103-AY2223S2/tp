@@ -2,7 +2,6 @@ package seedu.address.model.navigation;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
