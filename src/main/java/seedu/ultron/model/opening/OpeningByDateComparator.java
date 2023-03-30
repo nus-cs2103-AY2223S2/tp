@@ -1,6 +1,5 @@
 package seedu.ultron.model.opening;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 public class OpeningByDateComparator implements Comparator<Opening> {
