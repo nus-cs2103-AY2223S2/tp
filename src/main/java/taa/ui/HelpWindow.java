@@ -56,8 +56,8 @@ public class HelpWindow extends UiPart<Stage> {
                     + "+-----------------------------+---------------------------------------------------+\n";
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t14-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more Information, " +
-            "please refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more Information, "
+            + "please refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
