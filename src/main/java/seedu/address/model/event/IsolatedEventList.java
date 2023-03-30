@@ -56,7 +56,13 @@ public class IsolatedEventList {
         return null;
     }
 
-    public void isOverlapping(IsolatedEvent event, int index) throws EventConflictException {
+    /**
+     * Check to see if the edited event time period clashes with the existing isolated events in the list.
+     * @param event edited isolated event
+     * @param index index of edited event
+     * @throws EventConflictException to be thrown when it overlaps
+     */
+    public void checkOverlapping(IsolatedEvent event, int index) throws EventConflictException {
         Iterator<IsolatedEvent> it = isolatedEvents.iterator();
         LocalDateTime start = event.getStartDate();
         LocalDateTime end = event.getEndDate();
