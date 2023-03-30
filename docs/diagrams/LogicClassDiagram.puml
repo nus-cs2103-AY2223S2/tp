@@ -26,7 +26,7 @@ package Storage{
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .right.|> Logic
+LogicManager .left.|> Logic
 LogicManager -right->"1" DengueHotspotTrackerParser
 DengueHotspotTrackerParser ..> XYZCommand : creates >
 
