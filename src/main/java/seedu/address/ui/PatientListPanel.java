@@ -27,6 +27,7 @@ public class PatientListPanel extends UiPart<Region> {
         super(FXML);
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> new PatientListViewCell());
+        patientListView.setPrefHeight(2000);
     }
 
     /**

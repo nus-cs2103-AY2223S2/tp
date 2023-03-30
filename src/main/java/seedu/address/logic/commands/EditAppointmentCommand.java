@@ -30,22 +30,24 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit_appt";
     public static final String COMMAND_ALIAS = "ea";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
-            + "by the index number used in the displayed appointment list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_DOCTOR + "DOCTOR]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_TIMESLOT + "01022023 09:00,01022023 11:00 "
-            + PREFIX_DESCRIPTION + "Regular checkup "
-            + PREFIX_DOCTOR + "Xiao Lu";
+        + "by the index number used in the displayed appointment list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+        + "[" + PREFIX_DOCTOR + "DOCTOR]\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_TIMESLOT + "01022023 09:00,01022023 11:00 "
+        + PREFIX_DESCRIPTION + "Regular checkup "
+        + PREFIX_DOCTOR + "Xiao Lu";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the patient list.";
+    public static final String MESSAGE_PATIENT_DOES_NOT_EXIST =
+        "The specified patient does not exist in the patient list.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -66,8 +68,13 @@ public class EditAppointmentCommand extends Command {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
+        System.out.println(editAppointmentDescriptor);
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        } else if (editAppointmentDescriptor.getPatientName().isPresent()
+            && !model.hasPatientName(editAppointmentDescriptor.getPatientName().get())) {
+            throw new CommandException(MESSAGE_PATIENT_DOES_NOT_EXIST);
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
@@ -93,7 +100,7 @@ public class EditAppointmentCommand extends Command {
 
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Description updatedDescription =
-                editAppointmentDescriptor.getDescription().orElse(appointmentToEdit.getDescription());
+            editAppointmentDescriptor.getDescription().orElse(appointmentToEdit.getDescription());
         Name updatedName = editAppointmentDescriptor.getPatientName().orElse(appointmentToEdit.getPatientName());
         Doctor updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
 
@@ -115,7 +122,7 @@ public class EditAppointmentCommand extends Command {
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
         return index.equals(e.index)
-                && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
+            && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
     /**
@@ -197,9 +204,19 @@ public class EditAppointmentCommand extends Command {
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
             return getPatientName().equals(e.getPatientName())
-                    && getTimeslot().equals(e.getTimeslot())
-                    && getDescription().equals(e.getDescription())
-                    && getDoctor().equals(e.getDoctor());
+                && getTimeslot().equals(e.getTimeslot())
+                && getDescription().equals(e.getDescription())
+                && getDoctor().equals(e.getDoctor());
+        }
+
+        @Override
+        public String toString() {
+            return "EditAppointmentDescriptor{"
+                + "timeslot=" + timeslot
+                + ", description=" + description
+                + ", patientName=" + patientName
+                + ", doctor=" + doctor
+                + '}';
         }
     }
 }
