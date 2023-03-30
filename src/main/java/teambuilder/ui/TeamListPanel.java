@@ -11,12 +11,10 @@ import teambuilder.commons.core.LogsCenter;
 import teambuilder.model.team.Team;
 
 /**
- * A panel containing the list of teams.
+ * Panel containing the list of teams.
  */
 public class TeamListPanel extends UiPart<Region> {
-
     private static final String FXML = "TeamListPanel.fxml";
-
     private final Logger logger = LogsCenter.getLogger(TeamListPanel.class);
 
     @FXML
@@ -38,6 +36,7 @@ public class TeamListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Team team, boolean empty) {
             super.updateItem(team, empty);
+
             if (empty || team == null) {
                 setGraphic(null);
                 setText(null);

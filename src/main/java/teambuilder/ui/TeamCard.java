@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import teambuilder.model.team.Team;
 
 /**
- * A UI component that displays the information of a {@code Team}.
+ * A UI component that displays information of a {@code Team}.
  */
 public class TeamCard extends UiPart<Region> {
 
@@ -21,31 +21,26 @@ public class TeamCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4 </a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
     public final Team team;
 
     @FXML
     private HBox cardPane;
-
     @FXML
     private Label teamName;
-
     @FXML
     private Label id;
-
     @FXML
     private Label teamDesc;
-
     @FXML
     private FlowPane skillTags;
-
     @FXML
     private FlowPane members;
 
     /**
-     * Creates a {@code TeamCode} with the given input {@code Team} and index to display.
+     * Creates a {@code TeamCode} with the given {@code Team} and index to display.
      */
     public TeamCard(Team team, int displayedIndex) {
         super(FXML);
@@ -69,14 +64,14 @@ public class TeamCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof teambuilder.ui.TeamCard)) {
+        if (!(other instanceof TeamCard)) {
             return false;
         }
 
         // state check
-        teambuilder.ui.TeamCard card = (teambuilder.ui.TeamCard) other;
+        TeamCard card = (TeamCard) other;
         return id.getText().equals(card.id.getText())
                 && team.equals(card.team);
     }
-
 }
+
