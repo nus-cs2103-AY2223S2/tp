@@ -201,6 +201,11 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 
 This section documents the commands related to managing clients.
 
+<div markdown="span" class="alert alert-success">
+:bulb: After executing a command listed in this section, if you are currently
+on the Projects tab, Mycelium will automatically display the Clients tab.
+</div>
+
 ### Creating a client contact: `c`
 
 Creates a new client contact.
@@ -307,6 +312,11 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 ## Managing Projects
 
 This section documents the commands related to managing projects.
+
+<div markdown="span" class="alert alert-success">
+:bulb: After executing a command listed in this section, if you are currently
+on the Clients tab, Mycelium will automatically display the Projects tab.
+</div>
 
 ### Creating a project: `p`
 
