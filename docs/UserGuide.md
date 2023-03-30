@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily 
-for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) 
-and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI 
-for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. 
-Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy 
+InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily
+for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI)
+and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI
+for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface.
+Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy
 to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
 
 ## Features Menu
@@ -27,13 +27,13 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Delete a company contact : `delete_contact`](#delete-contact-details--delete_contact)
     - [Edit the status of an internship application : `edit_status`](#edit-application-status--edit_status)
     - [Manage documents for an internship application](#add-documents--add_docs)
-      - [Add documents : `add_docs`](#add-documents--add_docs)
-      - [Edit documents : `edit_docs`](#edit-documents--edit_docs)
-      - [Delete documents : `delete_docs`](#delete-documents--delete_docs)
+        - [Add documents : `add_docs`](#add-documents--add_docs)
+        - [Edit documents : `edit_docs`](#edit-documents--edit_docs)
+        - [Delete documents : `delete_docs`](#delete-documents--delete_docs)
     - [Archive and unarchive an internship application](#archive-an-internship-application--archive)
-      - [Archive an application : `archive`](#archive-an-internship-application--archive)
-      - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
-      - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
+        - [Archive an application : `archive`](#archive-an-internship-application--archive)
+        - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
+        - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
@@ -43,7 +43,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
-  
+
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -60,8 +60,8 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-        - 
-- [FAQ](#faq)    
+        -
+- [FAQ](#faq)
 
 - [Command Summary](#command-summary)
 
@@ -562,36 +562,33 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
-
-
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
-**Clear**  | `clear`                             
+**Clear**  | `clear`
 **Clear_by**  | `clear_by n/COMPANY_NAME` <br> `clear_by j/JOB_TITLE` <br> `clear_by s/STATUS`
+**Clear Note** |`clear_note`
+**Clear Todo** |`clear_todo`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Delete Contact** | `delete_contact INDEX` <br> e.g., `delete_contact 2`
 **Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
+**Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
+**Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
 **Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
+**Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
+**Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit`
 **Find Applications** | `find KEYWORD [MORE KEYWORDS]` <br> e.g., `find Google` <br> `find s/STATUS` <br> e.g., `find s/PENDING` <br> `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2` <br> e.g., find before/2023-01-31 12:45 PM
+**Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
+**Help** | `help`
 **List** |`list`
 **List Archived Applications** |`list_archived`
-**Revert**   | `revert` 
+**List Note** |`list_note`
+**List Task** |`list_task`
+**List Todo** |`list_todo`
+**Revert**   | `revert`
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
 **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
-**Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
-**List Task** |`list_task`
-
-**Clear Todo** |`clear_todo`
-**Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
-**Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
-**Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
-**List Todo** |`list_todo`
-**Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
-**Clear Note** |`clear_note`
-**Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
-**List Note** |`list_note`
-**Help** | `help`

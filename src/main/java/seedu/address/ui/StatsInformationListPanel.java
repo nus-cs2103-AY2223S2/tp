@@ -60,6 +60,8 @@ public class StatsInformationListPanel extends UiPart<Region> {
         for (int i = 0; i < len; i++) {
             l.add(tempList.get(i));
         }
+        statsInformationListView.setItems(statsManager.getFilteredStatsInformations());
+        statsInformationListView.setCellFactory(listView -> new StatsInformationListViewCell());
     }
 
     /**
