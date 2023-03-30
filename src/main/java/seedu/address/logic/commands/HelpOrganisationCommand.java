@@ -11,16 +11,25 @@ public class HelpOrganisationCommand extends HelpCommand {
 
     public static final String HEADER_1 = "----- Tab-leport Commands -----\n";
 
+    public static final String HEADER_2 = "\n----- Filtering/Sorting Commands -----\n";
+
     public static final String CD_STUDENT = "Go to Students tab: "
             + "         cd_student\n";
 
     public static final String CD_EVENT = "Go to Events tab: "
             + "            cd_event\n";
 
+    public static final String FILTER = "Filter event student list: filter EVENT_TYPE METRIC THRESHOLD\n";
+
+    public static final String SORT = "Sort event student list: sort-student EVENT_TYPE METRIC SORTING_ORDER\n";
+
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
                 + CD_STUDENT
-                + CD_EVENT);
+                + CD_EVENT
+                + HEADER_2
+                + FILTER
+                + SORT);
     }
 }
