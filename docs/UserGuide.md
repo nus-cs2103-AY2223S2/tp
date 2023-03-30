@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+<!-- omit in toc -->
 ### Welcome to Docedex, your solution to doctor and patient management <!-- omit in toc -->
 
 Docedex is a **desktop application** is built for **administrative assistants** to manage patients within clinics.
@@ -18,8 +18,8 @@ With Docedex, taking control of patient management is just a few keystrokes away
 
 For **new users** visit our [quick start](#quick-start) to get you started .
 
-
-## Table of Contents <!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
@@ -227,6 +227,28 @@ Examples:
 
 [Scroll back to Table of Contents](#table-of-contents)
 
+### Select doctor
+- Command format: `sd INDEX`
+- What it does: This command displays the information of the doctor at `INDEX`, as well as the patients assigned to said doctor.
+- Note to user:
+  - The index refers to the index number shown in the displayed doctor list.
+  - The index **must be a positive integer** 1, 2, 3, …​
+
+![SelDoc](images/SelDoc.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
+### Select patient
+- Command format: `sp INDEX`
+- What it does: This command displays the information of the patient at `INDEX`, as well as the doctors assigned to said patient.
+- Note to user:
+  - The index refers to the index number shown in the displayed patient list.
+  - The index **must be a positive integer** 1, 2, 3, …​
+
+![SelPtn](images/SelPtn.png)
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Listing all doctors
 - Command format: `list-doc`
 - What it does: This command will list all doctors saved in Docedex together with their information.
@@ -248,6 +270,7 @@ Examples:
 - What it does: This command is equivalent to closing the application (exits the program).
 
 [Scroll back to Table of Contents](#table-of-contents)
+
 
 ### Clearing all data
 - Command format: `clear`
@@ -273,7 +296,43 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## Docedex Tutorial
 
+This is a tutorial for **first-time** Docedex users.
+1. Launch Docedex. You may refer to the instructions [here](#quick-start)
+![NewUi](images/Ui.png)
+2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
+![AddDoc](images/AddDoc.png)
+3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother` in the command box.
+![AddPtn](images/AddPtn.png)
+4. Add a few more doctors and patients to Docedex!
+5. Let us try **assigning the patient to the doctor**. Enter the command `assign-ptn ptn/1 doc/1` in the command box.
+![AssignPtn](images/AssignPtn.png)
+6. Let us try **selecting the doctor**. Enter the command `sd 1` in the command box.
+![SelDoc](images/SelDoc.png)
+7. Let us try **selecting the patient**. Enter the command `sp 1` in the command box.
+![SelPtn](images/SelPtn.png)
+8. Let us try **unassigning the patient from the doctor**. Enter the command `unassign-ptn ptn/1 doc/1` in the command box.
+![UnassignPtn](images/Unassign.png)
+9. Let us try **finding a doctor** named John. Enter the command `find-doc n/John` in the command box.
+![FindDocTut](images/FindDocTut.png)
+10. Let us try **finding a patient** with the name Patrick. Enter `find-ptn n/Patrick` in the command box.
+![FindPtnTut](images/FindPtnTut.png)
+11. Let us try **deleting a doctor** from Docedex. Enter the command `del-doc 1` in the command box.
+![DelDoc](images/DelDoc.png)
+12. Let us try **deleting a patient** from Docedex. Enter the command `del-ptn 1` in the command box.
+![DelPtn](images/DelPtn.png)
+13. Let us try **listing all doctors**. Enter the command `list-doc` in the command box.
+![ListDoc](images/ListDoc.png)
+14. Let us try **listing all patients**. Enter the command `list-ptn` in the command box.
+![ListPtn](images/ListPtn.png)
+15. Congratulations! You are now ready to use Docedex.
+
+[Scroll back to features](#features)
+[Scroll back to Table of Contents](#table-of-contents)
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 ### Launching Docedex
@@ -312,26 +371,28 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 **Q**: How can I load data from another computer into Docedex installed on another computer?<br>
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
 
-
+[Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                                                              |
-|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Doctor**     | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]…` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
-| **Add Patient**    | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
-| **Assign Patient**  | `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `assign-ptn ptn/1 doc/1`                                                                                                                                                                                                          |
-| **Unassign Patient** | `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `unassign-ptn ptn/1 doc/1`                                                                                                                                                                                                          |
-| **Delete Doctor**  | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                          |
-| **Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                          |
-| **Edit Doctor**    | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
-| **Edit Patient**   | `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-ptn 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
-| **Find Doctor**    | `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`<br> E.g. `find-doc n/Gabriel`                                                                                                                                                                                                                                |
-| **Find Patient**   | `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`<br> E.g. `find-ptn n/Gabriel`                                                                                                                                                                                                                     |
-| **List Doctors**   | `list-doc`                                                                                                                                                                                                                                    |
-| **List Patients**  | `list-ptn`                                                                                                                                                                                                                                    |
-| **Help**           | `help`                                                                                                                                                                                                                                        |
-| **Clear**          | `clear`                                                                                                                                                                                                                                       |
-| **Exit**           | `exit`                                                                                                                                                                                                                                        |
+| Action               | Format, Examples                                                                                                                                                                                                                               |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Doctor**       | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]…` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
+| **Add Patient**      | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
+| **Assign Patient**   | `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `assign-ptn ptn/1 doc/1`                                                                                                                                                              |
+| **Unassign Patient** | `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `unassign-ptn ptn/1 doc/1`                                                                                                                                                          |
+| **Delete Doctor**    | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                           |
+| **Delete Patient**   | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                           |
+| **Edit Doctor**      | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                      |
+| **Edit Patient**     | `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-ptn 3 n/Gabriel Tan p/12345678`                                                                                                                                                      |
+| **Find Doctor**      | `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`<br> E.g. `find-doc n/Gabriel`                                                                                                                   |
+| **Find Patient**     | `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`<br> E.g. `find-ptn n/Gabriel`                                                                                                     |
+| **Select Doctor**    | `sd INDEX` <br> E.g. `sd 1`                                                                                                                                                                                                                    |
+| **Select Patient**   | `sp INDEX` <br> E.g. `sp 1`                                                                                                                                                                                                                    |
+| **List Doctors**     | `list-doc`                                                                                                                                                                                                                                     |
+| **List Patients**    | `list-ptn`                                                                                                                                                                                                                                     |
+| **Help**             | `help`                                                                                                                                                                                                                                         |
+| **Clear**            | `clear`                                                                                                                                                                                                                                        |
+| **Exit**             | `exit`                                                                                                                                                                                                                                         |
