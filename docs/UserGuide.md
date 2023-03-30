@@ -604,7 +604,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 
 **Search Example 2:**
 
-**Input in Command Box:** `search mod/![img.png](img.png)cs`
+**Input in Command Box:** `search mod/cs`
 
 **Result:**<br>![SearchCommandExample2](images/SearchCommandExample2.png)
 
