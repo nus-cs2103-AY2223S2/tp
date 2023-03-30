@@ -11,8 +11,10 @@ import seedu.address.logic.commands.tank.TankDeleteCommand;
 import seedu.address.logic.commands.tank.TankFeedCommand;
 import seedu.address.logic.commands.tank.TankViewCommand;
 import seedu.address.logic.commands.tank.readings.ReadingsAddCommand;
+import seedu.address.logic.commands.tank.readings.ReadingsDeleteLastCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tank.readings.ReadingAddCommandParser;
+import seedu.address.logic.parser.tank.readings.ReadingDeleteLastCommandParser;
 
 /**
  * Parses user input for {@code Tank} commands.
@@ -50,6 +52,8 @@ public class TankParser {
             return new TankFeedCommandParser().parse(arguments);
         case ReadingsAddCommand.TANK_COMMAND_WORD:
             return new ReadingAddCommandParser().parse(arguments);
+        case ReadingsDeleteLastCommand.TANK_COMMAND_WORD:
+            return new ReadingDeleteLastCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     TankCommand.MESSAGE_USAGE));
