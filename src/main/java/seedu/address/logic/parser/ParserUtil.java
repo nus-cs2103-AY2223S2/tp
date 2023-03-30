@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
@@ -138,23 +137,6 @@ public class ParserUtil {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
         return new Nric(trimmedNric);
-    }
-
-    /**
-     * Parses a {@code String age} into an {@code Age}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @param age Age of the person.
-     * @return {@code Age} object.
-     * @throws ParseException If the given {@code age} is invalid.
-     */
-    public static Age parseAge(String age) throws ParseException {
-        requireNonNull(age);
-        String trimmedage = age.trim();
-        if (!Age.isValidAge(age)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
-        }
-        return new Age(trimmedage);
     }
 
     /**
