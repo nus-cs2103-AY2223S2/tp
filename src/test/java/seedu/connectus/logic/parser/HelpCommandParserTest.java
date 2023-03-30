@@ -14,7 +14,7 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_LIST;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_SEARCH;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WHITESPACE;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WITH_WHITESPACE;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.connectus.testutil.Assert.assertThrows;
@@ -47,6 +47,7 @@ public class HelpCommandParserTest {
         assertParseSuccess(parser, VALID_HELP_COMMAND_WHITESPACE, new HelpCommand());
     }
 
+    // test all valid args
     @Test
     public void parse_validArgs_returnsHelpCommandWithArgs() {
         assertParseSuccess(parser, VALID_HELP_COMMAND_ADD,
@@ -69,7 +70,7 @@ public class HelpCommandParserTest {
                 new HelpCommand(ListCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_SEARCH,
                 new HelpCommand(SearchCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_WITH_WHITESPACE,
+        assertParseSuccess(parser, VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE,
                 new HelpCommand(ClearCommand.MESSAGE_USAGE));
     }
 
@@ -83,5 +84,4 @@ public class HelpCommandParserTest {
     public void parseHelp_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> parser.parse(null));
     }
-
 }

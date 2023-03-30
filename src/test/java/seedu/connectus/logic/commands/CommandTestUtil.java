@@ -87,7 +87,7 @@ public class CommandTestUtil {
     public static final String VALID_HELP_COMMAND_LIST = "list";
     public static final String VALID_HELP_COMMAND_SEARCH = "search";
     public static final String VALID_HELP_COMMAND_EMPTY = "";
-    public static final String VALID_HELP_COMMAND_WITH_WHITESPACE = "\t   \n clear   ";
+    public static final String VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE = "\t   \n clear   ";
     public static final String VALID_HELP_COMMAND_WHITESPACE = "              ";
     public static final String INVALID_COMMAND_DESC = "Invalid Command.";
 
