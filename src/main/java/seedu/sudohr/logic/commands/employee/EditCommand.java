@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         model.cascadeEditEmployeeToDepartments(employeeToEdit, editedEmployee);
         model.cascadeUpdateUserInLeaves(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
-        return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
+        return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee.toStringAllFields()));
     }
 
     /**

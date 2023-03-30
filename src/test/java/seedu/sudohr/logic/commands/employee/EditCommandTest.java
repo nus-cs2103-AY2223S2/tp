@@ -67,7 +67,8 @@ public class EditCommandTest {
         EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(editedEmployee).build();
         EditCommand editCommand = new EditCommand(toEdit.getId(), descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
         expectedModel.setEmployee(model.getEmployee(toEdit.getId()), editedEmployee);
 
@@ -84,7 +85,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(toEdit.getId(),
                 new EditEmployeeDescriptorBuilder(editedEmployee).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -104,7 +106,8 @@ public class EditCommandTest {
                 .build();
         EditCommand editCommand = new EditCommand(lastEmployee.getId(), descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
         expectedModel.setEmployee(lastEmployee, editedEmployee);
 
@@ -125,7 +128,8 @@ public class EditCommandTest {
                 .build();
         EditCommand editCommand = new EditCommand(lastEmployee.getId(), descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
         expectedModel.setEmployee(lastEmployee, editedEmployee);
 
@@ -147,7 +151,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(employeeInFilteredList.getId(),
                 new EditEmployeeDescriptorBuilder(employeeInFilteredList).withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(new SudoHr(model.getSudoHr()), new UserPrefs());
         expectedModel.setEmployee(employeeInFilteredList, editedEmployee);
 
@@ -162,7 +167,8 @@ public class EditCommandTest {
                         .withEmail(VALID_EMAIL_AMY).withPhone(VALID_PHONE_AMY)
                         .build());
 
-        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         expectedModel.setEmployee(employeeNotInFilteredList, editedEmployee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -223,7 +229,8 @@ public class EditCommandTest {
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(EMPLOYEE_IN_HUMAN_RESOURCES)
                 .withId(VALID_ID_AMY)
                 .build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
 
@@ -259,7 +266,8 @@ public class EditCommandTest {
         EditCommand.EditEmployeeDescriptor descriptor =
                 new EditEmployeeDescriptorBuilder(EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES).withEmail(VALID_EMAIL_AMY)
                 .build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
 
@@ -287,7 +295,8 @@ public class EditCommandTest {
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(EMPLOYEE_ON_LEAVE_TYPE_1)
                 .withId(VALID_ID_AMY)
                 .build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
 
@@ -323,7 +332,8 @@ public class EditCommandTest {
         EditCommand.EditEmployeeDescriptor descriptor =
                 new EditEmployeeDescriptorBuilder(EMPLOYEE_ON_LEAVE_TYPE_2_AND_3).withEmail(VALID_EMAIL_AMY)
                         .build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS,
+                editedEmployee.toStringAllFields());
         Model expectedModel = new ModelManager(modelWithLeaves.getSudoHr(), new UserPrefs());
         expectedModel.setEmployee(employeeToEdit, editedEmployee);
 
