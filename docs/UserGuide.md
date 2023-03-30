@@ -66,6 +66,14 @@ If you need more information on how to use these commands, just refer to our han
 
 List of commands:
 
+- [General Commands: ](#general-commands)
+    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
+    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
+    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
+    - [Opening help window: ](#opening-help-window-help) `help`
+    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
+    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
+    - [Exiting the program: ](#exiting-the-program-exit) `exit`
 - [Course Page Commands: ](#course-page-commands)
     - [Adding a course: ](#adding-a-course-add-course) `add course`
     - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
@@ -83,7 +91,7 @@ List of commands:
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
     - [Editing a student: ](#editing-a-student-edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find) `find student`
+    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
     - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
     - [Displays a student's information:  ](#displays-a-students-information-select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
@@ -105,17 +113,105 @@ List of commands:
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
 - [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
-- [General Commands: ](#general-commands)
-    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
-    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
-    - [Opening help window: ](#opening-help-window-help) `help`
-    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
-    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
-    - [Exiting the program: ](#exiting-the-program-exit) `exit`
+
 
 
 --------------------------------------------------------------------------------------------------------------
+## General Commands
+Before navigating through pages in CLIpboard, you may familiarise yourself with general commands that can be used on any page.
+
+
+
+### Displaying the home page (Course Page): `home`
+
+Goes back to the home page, which is the Course Page of CLIpboard.
+
+Format:
+```
+home
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Displaying the previous page you were at: `back`
+
+Goes back to the page you were at.
+
+Format:
+```
+back
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Undoing the last command you did: `undo`
+
+Deletes the change that your last command did.
+
+Format:
+```
+undo
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Opening help window: `help`
+
+Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
+
+Format:
+```
+help
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Scrolling through command history: `UP` or `DOWN` arrow key
+
+Scrolls through past commands in command box.
+
+- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
+- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
+- Press `ENTER` to execute the command.
+
+[Back to list of commands](#commands)
+
+
+
+### Clearing all entries: `clear`
+
+Clears all entries in the list pane of the current page.
+
+Format:
+```
+clear
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format:
+```
+exit
+```
+
+[Back to list of commands](#commands)
+
+--------------------------------------------------------------------------------------------------------------
+
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
 
@@ -729,97 +825,4 @@ Examples:
 
 [Back to list of commands](#commands)
 
-
---------------------------------------------------------------------------------------------------------------
-
-## General Commands
-Commands that can be used on any page.
-
-### Displaying the home page (Course Page): `home`
-
-Goes back to the home page, which is the Course Page of CLIpboard.
-
-Format:
-```
-home
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Displaying the previous page you were at: `back`
-
-Goes back to the page you were at.
-
-Format:
-```
-back
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Undoing the last command you did: `undo`
-
-Deletes the change that your last command did.
-
-Format:
-```
-undo
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Opening help window: `help`
-
-Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
-
-Format:
-```
-help
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Scrolling through command history: `UP` or `DOWN` arrow key
-
-Scrolls through past commands in command box.
-
-- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
-- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
-- Press `ENTER` to execute the command.
-
-[Back to list of commands](#commands)
-
-
-
-### Clearing all entries: `clear`
-
-Clears all entries in the student roster.
-
-Format:
-```
-clear
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Exiting the program: `exit`
-
-Exits the program.
-
-Format:
-```
-exit
-```
-
-[Back to list of commands](#commands)
 
