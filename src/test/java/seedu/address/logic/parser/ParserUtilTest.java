@@ -267,4 +267,9 @@ public class ParserUtilTest {
         assertEquals("biking", parseEventName("biking     "));
 
     }
+
+    @Test
+    public void parseDate_notHourlyTime() {
+        assertThrows(ParseException.class, () -> parseDate("09-03-2023 1400"));
+    }
 }
