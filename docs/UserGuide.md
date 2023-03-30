@@ -8,37 +8,21 @@ for use via a Command Line Interface (CLI), while still having a Graphical User 
 on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more
 reliably than traditional GUI based apps.
 
-![MainScreen](../docs/images/Ui.png)
+![MainScreen](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### Using this guide
+## Using this guide
 * If you are setting up for the first time, please have a look at our [Quick Start](#quick-start) section.
 * If you are unsure how to use Patientist, the [Features](#features) section might be a good place to start.
 * For ease of navigation, clicking the hyperlinks at the bottom of each section to go back to the table of contents.
 
+___
 
-## Table of Contents (OUTDATED TABLE!!!!!)
-- **[Quick Start](#quick-start)**
-- **[Features](#features)**
-  * [Viewing help](#viewing-help--help)
-  * [Adding a patient](#adding-a-patient--addpat)
-  * [Adding a staff member](#adding-a-staff-member--addstf)
-  * [Adding prescriptions/instructions for a patient](#adding-prescriptionsinstructions-for-patient--addpresc)
-  * [Adding a ward to the system](#adding-a-ward-to-the-system--addward)
-  * [List all patients](#listing-all-patients--lspat)
-  * [List all staff members](#listing-staff-members--lsstf)
-  * [List a patient's prescriptions](#listing-a-patients-prescriptions--lspresc)
-  * [List all wards](#listing-all-wards--lsward)
-  * [View a patient's details](#viewing-the-details-of-a-specific-patient--view)
-  * [Update patient's particulars](#update-patient-particulars--editpat)
-  * [Delete a patient](#deleting-a-patient-from-the-system--delpat)
-  * [Delete a staff member](#deleting-a-staff-member-from-a-ward--delstf)
-  * [Delete a prescription from a patient](#deleting-an-entry-from-a-patients-list-of-prescriptions--delpresc)
-  * [Delete a ward from the system](#deleting-a-ward-from-the-system--delward)
-  * [Exit the program](#exiting-the-program--exit)
-- **[Frequently asked questions](#FAQ)**
-- **[Command Summary](#command-summary)**
+## Table of Contents
+
+* Table of Contents
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -54,14 +38,14 @@ reliably than traditional GUI based apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
-
+# Features
 
 ## Notes about formatting
 * Words in UPPER_CASE are user supplied parameters, e.g. `addpat n/NAME`: `NAME` is a parameter, and the command can be used as add `n/John Doe`
 * Items in square brackets are optional parameters, e.g. `addpat n/NAME [t/TAG]` can be used as `addpat n/John Doe t/urgent` or simply as `addpat n/John Doe`
 * Items with … after them can be specified 0 or more times, e.g. `[t/TAG]...` means it is valid to not include a tag, or you can include 1 or more `t/TAG` expressions
 * Extraneous parameters for commands that take in exactly 0 parameters will be ignored
+
 ---
 
 ## Viewing help: help
@@ -95,7 +79,7 @@ Tags attached to a user are meant to be short notes that do not fit into any oth
 `PATIENT_NAME` need not be unique.
 
 **Examples:**
-`addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends`
+**`addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -109,8 +93,8 @@ The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 **Format: `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`**
 
 **Examples:**
-`addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`\
-`addstf n/Nurse Joy id/A345678Z p/81623753, e/nurse.joy@example.com a/900 Still Rd w/block B ward 2`
+**`addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`**\
+**`addstf n/Nurse Joy id/A345678Z p/81623753, e/nurse.joy@example.com a/900 Still Rd w/block B ward 2`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -124,8 +108,8 @@ Creates an empty ward with the specified `WARD_NAME`.
 `WARD_NAME` must be unique and cannot be the same as any existing name. This field is case-sensitive.
 
 **Examples:**
-`addward n/block B ward 2` will create a new empty ward called block B ward 2\
-`addward n/block C ward 1` will create a new empty ward called block C ward 1
+**`addward n/block B ward 2`** will create a new empty ward called block B ward 2\
+**`addward n/block C ward 1`** will create a new empty ward called block C ward 1
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -133,13 +117,10 @@ Creates an empty ward with the specified `WARD_NAME`.
 ## Listing all patients: lspat
 Lists all the patients’ names and corresponding patient ID, displaying any tags attached to them and showing the ward they are in.
 
-**Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
-
 **Format: `lspat`**
-`WARD_NAME` can be specified to only list patients in the specified ward. This field is case-sensitive. This is an optional parameter.
 
 **Examples:**
-`lspat` will list all patients in each ward on the GUI. Every ward will be displayed in order, with all patients in each ward.\
+**`lspat`** will list all patients in each ward on the GUI. Every ward will be displayed in order, with all patients in each ward.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -148,13 +129,10 @@ Lists all the patients’ names and corresponding patient ID, displaying any tag
 
 Lists staff members’ names and the name of the ward they are assigned to.
 
-**Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
-
 **Format: `lsstf`**
-`WARD_NAME` can be specified to only list staff in the specified ward. This is an optional parameter.
 
 **Examples:**
-`lsstf` will list all staff assigned to each ward on the GUI. The lists will be grouped according to ward, and each staff
+**`lsstf`** will list all staff assigned to each ward on the GUI. The lists will be grouped according to ward, and each staff
 can appear more than once if they are assigned to more than 1 ward.\
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -176,19 +154,19 @@ Finds all persons with names containing any of the specified keywords and displa
 Finds all patients with names containing any of the specified keywords or id matching the specified keyword and displays
 them on the GUI.
 
-**Format:** `findpat [n/NAME] [id/ID_NUMBER]`
+**Format: `findpat [n/NAME] [id/ID_NUMBER]`**
 
 **Note:** Either NAME or ID_NUMBER must be present.
 
 **Examples:**
-`findpat n/Alex Bob Charles` Finds all patients with names containing Alex, Bob or Charles.\
-`findpat id/A12345B` Finds all patients with IDs matching A12345B.
+**`findpat n/Alex Bob Charles`** Finds all patients with names containing Alex, Bob or Charles.\
+**`findpat id/A12345B`** Finds all patients with IDs matching A12345B.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
 ## Adding patient status: addpatstatus
-Adds an entry to the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-patient--view)
+Adds an entry to the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the INDEX must be a `Patient`.
@@ -201,14 +179,14 @@ command.
 
 ---
 ## Deleting patient status: delpatstatus
-Deletes the specified entry in the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-patient--view)
+Deletes the specified entry in the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the PATIENT_INDEX must be a `Patient`.
 
 **Format: `delpatstatus PATIENT_INDEX STATUS_INDEX`**
 
-**Examples:** `delpatstatus 1 1` will delete the first status of the patient at the top of the list.
+**Examples: `delpatstatus 1 1`** will delete the first status of the patient at the top of the list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -219,7 +197,7 @@ Lists the full detail of a specific person, including their name, patient ID and
 **Format: `view INDEX`**
 
 **Examples:**
-`view 1` will display all the information associated with the 1st person shown on the GUI.
+**`view 1`** will display all the information associated with the 1st person shown on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -238,7 +216,7 @@ Lists all the patients found in the given `WARD_NAME`.
 
 **Format: `lswardpat WARD_NAME`**
 
-**Examples:** `lswardpat Block A Ward 1` will list all patients in Block A Ward 1.
+**Examples: `lswardpat Block A Ward 1`** will list all patients in Block A Ward 1.
 
 ---
 ## Update a person's particulars: edit
@@ -247,8 +225,8 @@ This overwrites the specified person’s particulars with new particulars. This 
 **Format: `edit INDEX [n/PATIENT_NAME] [t/TAG] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`**
 
 **Examples:**
-`edit 1 p/81234567`\
-`edit 2 n/Bob Tan p/91234567`
+**`edit 1 p/81234567`**\
+**`edit 2 n/Bob Tan p/91234567`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -271,7 +249,7 @@ This will remove the patient from his or her assigned ward as well.
 **Format: `delpat id/ID_NUMBER`**
 
 **Examples:**
-`delpat id/A0123456789B` will delete all records of patient with ID number A0123456789B from the system.
+**`delpat id/A0123456789B`** will delete all records of patient with ID number A0123456789B from the system.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -284,11 +262,12 @@ This will remove the staff from his or her assigned ward as well.
 **Format: `delstf id/ID_NUMBER`**
 
 **Examples:**
-`delstf id/A12345B` will delete all records of staff with ID number A12345B from the system.
+**`delstf id/A12345B`** will delete all records of staff with ID number A12345B from the system.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
+
 ## Deleting a ward from the system: delward
 This deletes the `WARD_NAME` specified from the system. The ward being deleted must be empty for this command to be successfully executed.
 
@@ -297,11 +276,12 @@ This deletes the `WARD_NAME` specified from the system. The ward being deleted m
 **Format: `delward n/WARD_NAME`**
 
 **Examples:**
-`delward n/block B ward 2` will remove block B ward 2 from the system. The ward must have been empty before deletion.
+**`delward n/block B ward 2`** will remove block B ward 2 from the system. The ward must have been empty before deletion.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
+
 ## Exiting the program: exit
 Exits the program.
 
@@ -310,7 +290,7 @@ Exits the program.
 [Go back to [Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Patientist home folder.
@@ -318,7 +298,7 @@ Exits the program.
 [Go back to [Table of Contents](#table-of-contents)]
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary (OUTDATED TABLE!!!!!)
+# Command summary
 
 | Action                           | Format, Examples                                                                                                                                                                                                           |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
