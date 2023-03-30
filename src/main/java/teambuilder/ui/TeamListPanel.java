@@ -11,7 +11,7 @@ import teambuilder.commons.core.LogsCenter;
 import teambuilder.model.team.Team;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of teams.
  */
 public class TeamListPanel extends UiPart<Region> {
     private static final String FXML = "TeamListPanel.fxml";
@@ -30,7 +30,7 @@ public class TeamListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Team} using a {@code TeamCard}.
      */
     class TeamListViewCell extends ListCell<Team> {
         @Override

@@ -54,6 +54,10 @@ public class Team {
         return members;
     }
 
+    public Set<Tag> getTags() {
+        return skillTags;
+    }
+
     @Override
     public int hashCode() {
         return teamName.hashCode();

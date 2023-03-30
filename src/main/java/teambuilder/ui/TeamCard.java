@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import teambuilder.model.team.Team;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Team}.
  */
 public class TeamCard extends UiPart<Region> {
 
@@ -29,32 +29,32 @@ public class TeamCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label teamName;
+    @FXML
+    private Label id;
     @FXML
     private Label teamDesc;
     @FXML
-    private FlowPane skilltags;
+    private FlowPane skillTags;
     @FXML
     private FlowPane members;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TeamCode} with the given {@code Team} and index to display.
      */
     public TeamCard(Team team, int displayedIndex) {
         super(FXML);
         this.team = team;
         id.setText(displayedIndex + ". ");
-        teamName.setText(team.getName().toString());
-        team.getSkillTags().stream()
+        teamName.setText(team.getName().teamName);
+        teamDesc.setText(team.getDesc().value);
+        team.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> skilltags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> skillTags.getChildren().add(new Label(tag.tagName)));
         team.getMembers().stream()
-                .sorted(Comparator.comparing(member -> member.toString()))
-                .forEach(member -> members.getChildren().add(new Label(member.toString())));
+                .sorted(Comparator.comparing(member -> member.fullName))
+                .forEach(member -> members.getChildren().add(new Label(member.fullName)));
     }
-
 
     @Override
     public boolean equals(Object other) {
