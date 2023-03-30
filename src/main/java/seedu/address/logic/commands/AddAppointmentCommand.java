@@ -16,7 +16,6 @@ import seedu.address.model.service.appointment.Appointment;
 public class AddAppointmentCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "addappointment";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment with customer. "
             + "Parameters: "
             + PREFIX_CUSTOMER_ID + "CUSTOMER ID "

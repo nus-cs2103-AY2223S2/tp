@@ -292,6 +292,7 @@ public class ModelManager implements Model {
     }
 
     // ==== For Services ==
+
     @Override
     public ObservableList<Service> getFilteredServiceList() {
         return this.sortedFilteredServices;
@@ -318,11 +319,13 @@ public class ModelManager implements Model {
         return this.shop.hasService(serviceId);
     }
 
+    @Override
     public void deleteService(Service service) {
         this.shop.removeService(service);
     }
 
     // ==== For Appointment ==
+
     /**
      * Adds appointment
      *
@@ -341,18 +344,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return this.sortedFilteredAppointments;
-    }
-
-    @Override
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return this.shop.hasAppointment(appointment);
-    }
-
-    @Override
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
-        requireAllNonNull(target, editedAppointment);
-        this.shop.setAppointment(target, editedAppointment);
     }
 
     // ==== For Part ==

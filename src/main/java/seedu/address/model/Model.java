@@ -207,11 +207,7 @@ public interface Model {
      */
     boolean hasService(int serviceId);
 
-    boolean hasAppointment(Appointment appointment);
-
     void deleteAppointment(Appointment target);
-
-    void setAppointment(Appointment target, Appointment editedAppointment);
 
     void deleteService(Service service);
 

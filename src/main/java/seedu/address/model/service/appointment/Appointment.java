@@ -20,6 +20,7 @@ public class Appointment {
     private final int id;
     private final int customerId;
     private final LocalDateTime timeDate;
+
     private final Set<Integer> staffIds = new HashSet<>();
 
     /**
