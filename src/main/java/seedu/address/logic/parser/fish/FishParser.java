@@ -5,7 +5,12 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.fish.*;
+import seedu.address.logic.commands.fish.FishAddCommand;
+import seedu.address.logic.commands.fish.FishCommand;
+import seedu.address.logic.commands.fish.FishDeleteCommand;
+import seedu.address.logic.commands.fish.FishEditCommand;
+import seedu.address.logic.commands.fish.FishSortCommand;
+import seedu.address.logic.commands.fish.FishViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

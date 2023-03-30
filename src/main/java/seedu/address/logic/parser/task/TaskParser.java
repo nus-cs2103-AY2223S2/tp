@@ -38,10 +38,8 @@ public class TaskParser {
         switch (taskCommandWord) {
         case TaskAddCommand.TASK_COMMAND_WORD:
             return new TaskAddCommandParser().parse(arguments);
-
         case TaskDeleteCommand.TASK_COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
-
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
         }

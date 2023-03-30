@@ -49,7 +49,7 @@ public class FishEditCommand extends FishCommand {
             + "[" + PREFIX_TANK + "TANK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " 1 "
-            + PREFIX_LAST_FED_DATE + "02/01/2023 "
+            + PREFIX_LAST_FED_DATE + "02/01/2023 12:30 "
             + PREFIX_TANK + "1 "
             + PREFIX_SPECIES + "Guppy ";
 
@@ -84,8 +84,7 @@ public class FishEditCommand extends FishCommand {
         Fish fishToEdit = lastShownList.get(index.getZeroBased());
         Fish editedFish = createEditedFish(fishToEdit, editFishDescriptor, model);
         //editedFish's tank attribute is only an index
-
-//        editedFish.setTank(tank);
+        //        editedFish.setTank(tank);
 
         if (!fishToEdit.isSameFish(editedFish) && model.hasFish(editedFish)) {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
@@ -113,7 +112,8 @@ public class FishEditCommand extends FishCommand {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
-        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDateTime());
+        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate()
+                .orElse(fishToEdit.getLastFedDateTime());
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
                 .orElse(fishToEdit.getFeedingInterval());
@@ -123,10 +123,9 @@ public class FishEditCommand extends FishCommand {
             updatedTank = editFishDescriptor.getTankIndex()
                     .map(ind -> model.getFilteredTankList().get(ind.getZeroBased()))
                     .orElse(fishToEdit.getTank());
-
-//            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
-//            Index tankIndex = Index.fromOneBased(ind);
-//            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
+            //            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
+            //            Index tankIndex = Index.fromOneBased(ind);
+            //            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_MISSING_TANK);
         } catch (NumberFormatException e) {

@@ -193,17 +193,22 @@ public class ParserUtil {
         return retTank;
     }
 
-    public static Index parseTank(String strTankIndex) throws ParseException {
+    /**
+     * Parses a {@code String} into an {@code Index}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Index parseTank(String strTankIndex) {
         requireNonNull(strTankIndex);
         String trimmedStrTankIndex = strTankIndex.trim();
         int index = Integer.valueOf(trimmedStrTankIndex);
         Index newTankIndex = Index.fromOneBased(index);
         return newTankIndex;
-//        if (!TankName.isValidTankName(trimmedTank)) {
-//            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-//        }
-//        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
-//        return retTank;
+        //        if (!TankName.isValidTankName(trimmedTank)) {
+        //            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        //        }
+        //        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(),
+        //        new UniqueIndividualReadingLevels());
+        //        return retTank;
     }
 
     /**

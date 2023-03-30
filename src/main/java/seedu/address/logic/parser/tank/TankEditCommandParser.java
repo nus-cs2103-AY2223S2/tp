@@ -2,7 +2,7 @@ package seedu.address.logic.parser.tank;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
 
@@ -40,7 +40,7 @@ public class TankEditCommandParser {
 
         TankEditCommand.EditTankDescriptor editTankDescriptor = new TankEditCommand.EditTankDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            editTankDescriptor.setName(ParserUtil.parseTankName(argMultimap.getValue(PREFIX_NAME).get()));
+            editTankDescriptor.setName(ParserUtil.parseTankName(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
         if (!editTankDescriptor.isAnyFieldEdited()) {

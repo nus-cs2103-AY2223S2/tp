@@ -1,21 +1,11 @@
 package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.fish.FishAddCommand.MESSAGE_MISSING_TANK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TANKS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,13 +14,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.TankList;
-import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDateTime;
-import seedu.address.model.fish.Name;
-import seedu.address.model.fish.Species;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
@@ -47,9 +30,9 @@ public class TankEditCommand extends TankCommand {
             + "by the index number used in the displayed tank list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME]\n"
+            + "[" + PREFIX_DESCRIPTION + "Description]\n"
             + "Example: " + COMMAND_WORD + " " + TANK_COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Glass Tank";
+            + PREFIX_DESCRIPTION + "Glass Tank";
 
     public static final String MESSAGE_EDIT_TANK_SUCCESS = "Edited Tank: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -80,13 +63,14 @@ public class TankEditCommand extends TankCommand {
         }
 
         Tank tankToEdit = lastShownList.get(index.getZeroBased());
-        Tank editedTank = createEditedTank(tankToEdit, editTankDescriptor);
+        editTankDescriptor.getName().ifPresent(newTankName -> tankToEdit.setTankName(newTankName));
 
-        TankList tankList = (TankList) model.getTankList();
-        tankList.setTank(tankToEdit, editedTank);
+        //        Tank editedTank = createEditedTank(tankToEdit, editTankDescriptor);
+        //        TankList tankList = (TankList) model.getTankList();
+        //        tankList.setTank(tankToEdit, editedTank);
 
         model.updateFilteredTankList(PREDICATE_SHOW_ALL_TANKS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TANK_SUCCESS, editedTank));
+        return new CommandResult(String.format(MESSAGE_EDIT_TANK_SUCCESS, tankToEdit));
     }
 
     /**

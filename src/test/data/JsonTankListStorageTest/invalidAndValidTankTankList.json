@@ -1,7 +1,7 @@
 {
-  "Tanks": [ {
-    "tank_name": "Valid Tank"
+  "tanks": [ {
+    "tankName": "Valid Tank"
   }, {
-    "tank_name": "Tank With Invalid T@nk name"
+    "tankName": "Tank With Invalid T@nk name"
   } ]
 }
