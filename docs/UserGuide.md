@@ -27,6 +27,23 @@ It is optimised for use via a Command Line Interface (CLI)** while still having 
 If you can type fast, TrAcker will aid the task management for CS2040 TAs. Commands are similar to vim / terminal commands since
 CS2040 TAs are familiar with it
 
+Let's clear a little confusion that might arise:
+- Why are commands more terminal and vim like instead of simply just an intuitive command? 
+  - It is because this app is targeted towards CS2040 TA, and CS2040 TAs are suppose to be proficient with vim and terminal like commands.
+   After all, the TAs have done well for CS2040 PE and that is conducted via terminal only
+- Why are students not allowed to be added together with the creation of an event?
+  - This ie because the app is meant for an attendance taking for a CS2040 TA who plans ahead. So, if a student can be added with an event,
+   it defeats the purpose of it being an attendance taking application
+- Why can't I see the notes even after adding it?
+  - You are supposed to navigate into the events tab and double-click on the event card that you have added the event to
+- Why are overlapping event date and time not allowed to be added?
+  - It is because TrAcker also functions as a schedule application for the CS2040 TA. So, if overlapping events
+    can be added, the TA will be unsure if they are actually free during that period
+- How do I use the UG?
+  - Commands in [] with words capitalized, for example [INDEX], means it is a user's variable.
+  - So, if the command is `rm [INDEX]`, it can be `rm 1`. Of course, the parameters have to abide by TrAcker's restrictions
+      
+
 **Features**
 --------------------------------------------------------------------
 --------------------------------------------------------------------
@@ -45,7 +62,7 @@ Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (a
 - Tutorial name cannot be just Tutorial alone
 - date and attachment is optional. Date will assume the current time if not specified
 
-Format: `touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -70,7 +87,7 @@ Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to
 - Lab name cannot be just Lab alone
 - date and attachment is optional. Date will assume the current time if not specified
 
-Format: `vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -94,7 +111,7 @@ Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour
 - date is optional. Date will assume the current time if not specified
 - No attachments allowed
 
-Format: `mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]`
+Format: `mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]`
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -114,7 +131,7 @@ Adds a recurring event to the TA’s schedule. Recurring event is assumed to be 
 - Maximum number of occurrences of the event is 10
 - Event is assumed to be conducted weekly only (Adhering to CS2040 Timetables)
 
-Format: `schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat`
+Format: `schedule Recur/[EVENT_TYPE]/[EVENT_NAME] -n [REPETITION]`
 
 Examples:
 
@@ -132,7 +149,7 @@ Edits an event current in the TA’s schedule.
 - index starts from 1
 - Consultation does not allow attachments as mentioned in add consultation section
 
-Format: `editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
+Format: `editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
 
 Examples:
 
@@ -150,7 +167,7 @@ Deletes valid indexed events from TA's schedule.
 - If range is provided, all values in the inclusive range must be valid
 - If range is provided, start index cannot be longer greater end index
 
-Format: `delete [EVENT_TYPE]/index`
+Format: `delete [EVENT_TYPE]/[INDEX]`
 
 Examples:
 
@@ -166,7 +183,7 @@ Opens a file in either Tutorial or Lab if the TA has added one.
 - Consultation events have no attachments
 - Only .pdf files will be parsed and opened
 
-Format: `openFile [EVENT_TYPE]/index`
+Format: `openFile [EVENT_TYPE]/[INDEX]`
 
 Examples:
 
@@ -185,15 +202,10 @@ Adds a student to the student list.
   unique telegram handle or unique phone number
 - Duplicate names are allowed
 
-Format: `add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]`
-
-```
-Fields with brackets [] are optional. If they are empty, corresponding fields in the student's records will also be empty
-```
+Format: `add student n/[NAME] telegram/[PHONE_NUMBER or TELEGRAM_HANDLE] e/[NUS_EMAIL] score/[SCORE]`
 
 Examples:
 
-* `add student n/Dijkstra`
 * `add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
 
 ### Deleting a student: `delete student`
@@ -203,7 +215,7 @@ Removes a student from the student list.
 - Index starts from 1
 - Valid index must be provided
 
-Format: `rm INDEX`
+Format: `rm [INDEX]`
 
 Examples:
 
@@ -254,7 +266,7 @@ Note that there can be an unlimited amount of notes to be created for each event
 
 Each addition increases node index by one.
 
-Format: `add-note -content hello world -type tutorial -name 2`
+Format: `addNote -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
 
 Examples:
 
@@ -267,7 +279,7 @@ Examples:
 
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
-Format: `delete note [type] [name or index] [note-index]`
+Format: `deletNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX]`
 
 Examples:
 
@@ -286,7 +298,7 @@ Format:
 
 
 
-* `edit-note [type] [name or index] [note-index] [newcontent]`
+* `editNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX] [NEW_CONTENT]`
 
 Examples:
 
@@ -304,7 +316,7 @@ Returns a list of instructions on what the event encompasses and also what param
 
 This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
 
-Format: `help [type]`
+Format: `help [TYPE]`
 
 Examples:
 * `help`
@@ -321,7 +333,7 @@ Sorts the students in recurring events available in the order specified by the T
 
 The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
-Format: `sort-student [group] [metric] [sorting order]`
+Format: `sort-student [GROUP] [METRIC] [SORTING_ORDER]`
 For the [group], it can be only lab, tutorial, consultation, or all.
 For the [metric], it can be only name, address, email, performance or remark.
 
@@ -339,7 +351,7 @@ Filters the students in recurring events depending on the metric specified by th
 
 The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
-Format: `filter [type] [metric] [threshold]`
+Format: `filter [TYPE] [METRIC] [THRESHOLD]`
 For the [group], it can be only lab, tutorial, consultation, or all.
 For the [metric], it can be only performance or urgency.
 The [threshold] value must be an integer between 0 to 100 (inclusive).
@@ -352,7 +364,7 @@ Examples:
 * `filter all urgency 90`
 
 --------------------------------------------------------------------
-*Exit Application*
+*Application Level features*
 ### Exit from application: `Exit application`
 
 Exits from TrAcker
@@ -362,6 +374,18 @@ Format: `:wq`
 Examples:
 
 * `:wq`
+
+### Navigate tabs: `Navigate Tabs`
+
+Navigates to the event or student tab
+
+Format: `cd_[TAB_TYPE]`
+
+Examples:
+
+* `cd_event`
+* `cd_student`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -378,7 +402,7 @@ Examples:
    <tr>
       <td><strong>Add Tutorial</strong>
       </td>
-      <td><code>touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      <td><code>touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
       </td>
       <td>
          <ul>
@@ -391,7 +415,7 @@ Examples:
    <tr>
       <td><strong>Add Lab</strong>
       </td>
-      <td><code>vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      <td><code>vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
       </td>
       <td>
          <ul>
@@ -405,7 +429,7 @@ Examples:
    <tr>
       <td><strong>Add Consultation</strong>
       </td>
-      <td><code>mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]</code>
+      <td><code>mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
@@ -418,7 +442,7 @@ Examples:
    <tr>
       <td><strong>Add Recurring Event</strong>
       </td>
-      <td><code>schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat</code>
+      <td><code>schedule Recur/[EVENT_TYPE]/[EVENT_NAME] -n number_of_times_to_repeat</code>
       </td>
       <td>
          <ul>
@@ -431,7 +455,7 @@ Examples:
    <tr>
       <td><strong>Edit event</strong>
       </td>
-      <td><code>editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
+      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
       </td>
       <td>
          <ul>
@@ -445,7 +469,7 @@ Examples:
    <tr>
       <td><strong>Delete Events</strong>
       </td>
-      <td><code>delete [EVENT_TYPE]/index</code>
+      <td><code>delete [EVENT_TYPE]/[INDEX]</code>
       </td>
       <td>
          <ul>
@@ -458,7 +482,7 @@ Examples:
    <tr>
       <td><strong>Open File in Events</strong>
       </td>
-      <td><code>openFile [EVENT_TYPE]/index</code>
+      <td><code>openFile [EVENT_TYPE]/[INDEX]</code>
       </td>
       <td>
          <ul>
@@ -472,12 +496,11 @@ Examples:
       <td><strong>Add Student</strong>
       </td>
       <td>
-         <code>add student n/NAME telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
+         <code>add student n/[NAME] telegram/[PHONE_NUMBER_OR_TELEGRAM_HANDLE e/[NUS_EMAIL] score/[SCORE]</code>
          </li>
       </td>
       <td>
          <ul>
-            <li><code>add student n/Dijkstra</code>
             <li><code>add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code></li>
          </ul>
       </td>
@@ -537,7 +560,7 @@ Examples:
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
-      <td><code>deleteNote [type] [name or index] [note-index]</code>
+      <td><code>deleteNote [TYPE] [NAME or INDEX] [NOTE_INDEX]</code>
       </td>
       <td>
          <ul>
@@ -550,7 +573,7 @@ Examples:
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>editNote [type] [name or index] [note-index] [newcontent]</code>
+      <td><code>editNote [TYPE] [NAME or INDEX] [NOTE_INDEX] [NEW_CONTENT]</code>
       </td>
       <td>
          <ul>
@@ -563,7 +586,7 @@ Examples:
    <tr>
       <td><strong>Help</strong>
       </td>
-      <td><code>help [type]</code>
+      <td><code>help [TYPE]</code>
       </td>
       <td>
          <ul>
@@ -578,7 +601,7 @@ Examples:
    <tr>
       <td><strong>Sort Students</strong>
       </td>
-      <td><code>sort-student [group] [metric] [sorting order]</code>
+      <td><code>sort-student [GROUP] [METRIC] [SORTING_ORDER]</code>
       </td>
       <td>
          <ul>
@@ -593,7 +616,7 @@ Examples:
    <tr>
       <td><strong>Filter Students</strong>
       </td>
-      <td><code>filter [type] [metric] [threshold]</code>
+      <td><code>filter [TYPE] [METRIC] [THRESHOLD]</code>
       </td>
       <td>
          <ul>
@@ -601,6 +624,20 @@ Examples:
             <li><code>filter tutorial performance 50</code>
             <li><code>filter consultation urgency 20</code>
             <li><code>filter all urgency 90</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Navigate Tabs</strong>
+      </td>
+      <td><code>cd_[TAB_TYPE]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>cd_event</code>
+            </li>
+            <li><code>cd_student</code>
             </li>
          </ul>
       </td>
@@ -620,74 +657,5 @@ Examples:
 </table>
 
 -----------------------------------------------------------------
-Old UG commands (to remove)
+End of User Guide
 -----------------------------------------------------------------
-
-Sort student: `sort student`
-
-Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
-
-Format: `sort student [type] [sorting order]`
-
-This method is designed for ease of grading students based on their attendance to tutorials and labs.
-
-Examples:
-* `sort students labs reverse`
-* `sort students tutorials nonreverse`
-
-### Sort students in recurring events: `sort-student`
-
-Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
-
-The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
-
-Format: `sort-student [group] [metric] [sorting order]`
-For the [group], it can be only lab, tutorial, consultation, or all.
-For the [metric], it can be only name, address, email, performance or remark.
-
-Examples:
-
-* `sort-student lab name reverse`
-* `sort-student tutorial performance nonreverse`
-* `sort-student consultation email nonreverse`
-* `sort-student all remark nonreverse`
-
-
-### Filter students in recurring events: `filter`
-
-Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
-
-The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
-
-Format: `filter [type] [metric] [threshold]`
-For the [group], it can be only lab, tutorial, consultation, or all.
-For the [metric], it can be only performance or urgency.
-The [threshold] value must be an integer between 0 to 100 (inclusive).
-
-Examples:
-
-* `filter lab performance 60 `
-* `filter tutorial performance 50`
-* `filter consultation urgency 20`
-* `filter all urgency 90`
-
-
-### Alert students in recurring events: `alert student`
-
-Provides a list of students who are suddenly performing poorly based on a certain metric, such as a sudden drop in participation level or a sudden increase in urgency level.
-
-The filtered list should be a secondary list and does not replace the existing, non-sorted one. As of now, this can be subjective and we will increase ways to customise this so that the TA can specify what he defines as a “sudden change”.
-
-Format: `alert student [type] [metric] `
-
-Examples:
-
-* `alert student lab urgency `
-* `alert student tutorial participation`
-* `alert student consultation urgency`
-* `alert student all participation`
-
-
-```
-nr stands for non-recurring
-```
