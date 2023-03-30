@@ -3,6 +3,8 @@ package seedu.address.model.entity.shop;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
@@ -18,6 +20,7 @@ import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.service.appointment.UniqueAppointmentList;
+import seedu.address.model.service.exception.PartLessThanZeroException;
 import seedu.address.model.service.exception.PartNotFoundException;
 import seedu.address.model.service.exception.VehicleNotFoundException;
 
@@ -29,12 +32,8 @@ public class Shop implements ReadOnlyShop {
     private final UniqueVehicleList vehicles = new UniqueVehicleList();
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
     private final ServiceList services = new ServiceList();
-
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
-
-    //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
-    //NOTE: Cannot convert to final due to setParts(newData.getPartMap());
-    private PartMap partMap = new PartMap();
+    private final PartMap partMap = new PartMap();
 
     /**
      * Constructor for class Shop.
@@ -88,8 +87,8 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasService(int serviceId) {
         return this.getServiceList()
-                .stream()
-                .anyMatch(s -> s.getId() == serviceId);
+            .stream()
+            .anyMatch(s -> s.getId() == serviceId);
     }
 
     /**
@@ -114,10 +113,9 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
-
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in AutoM8.
+     * {@code key} must exist in the address book.
      */
     public void removeService(Service key) {
         services.remove(key);
@@ -140,27 +138,28 @@ public class Shop implements ReadOnlyShop {
         return this.appointments.asUnmodifiableObservableList();
     }
 
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
-        requireNonNull(editedAppointment);
-        appointments.setAppointment(target, editedAppointment);
-    }
-
-    /**
-     * Returns true if a customer with the same id or identity as {@code customer}
-     * exists in the autom8 system.
-     */
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return appointments.contains(appointment);
-    }
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
+
+    /**
+     * Wrapper function to also check if appointment already added
+     * but using appointment param
+     *
+     * @param appointment Appointment to check
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Replaces the contents of the appointment list with {@code appointments}.
+     * {@code appointments} must not contain appointment customers.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
     // --------------------------------------------------
     //// part-level operations
     @Override
@@ -171,11 +170,49 @@ public class Shop implements ReadOnlyShop {
     /**
      * Adds part
      *
-     * @param partName Name of the p2art to add
+     * @param partName Name of the part to add
      * @param quantity Quantity of the part to add
      */
     public void addPart(String partName, int quantity) {
         this.getPartMap().addPart(partName, quantity);
+    }
+
+    /**
+     * Adds part to service
+     *
+     * @param serviceId ID of service
+     * @param partName  Name of part
+     * @param quantity  Quantity of part
+     * @throws NoSuchElementException    If service not in system
+     * @throws PartNotFoundException     If part not registered
+     * @throws PartLessThanZeroException If part insufficient
+     */
+    public void addPartToService(int serviceId, String partName, int quantity)
+            throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
+        Optional<Service> serviceOption = this.getServiceList()
+            .stream()
+            .filter(s -> s.getId() == serviceId)
+            .findFirst();
+        Service service = serviceOption.orElseThrow();
+        this.getPartMap().decreasePartQuantity(partName, quantity);
+        service.addPart(partName, quantity);
+    }
+
+    /**
+     * Assigns existing technician to existing service
+     * @param serviceId ID of service
+     * @param technicianId ID of technician
+     * @throws NoSuchElementException If service or technician doesn't exist
+     */
+    public void addTechnicianToService(int serviceId, int technicianId) throws NoSuchElementException {
+        if (!this.hasTechnician(technicianId)) {
+            throw new NoSuchElementException();
+        }
+        Service service = this.getServiceList().stream()
+            .filter(s -> s.getId() == serviceId)
+            .findFirst()
+            .orElseThrow();
+        service.assignTechnician(technicianId);
     }
 
     /**
@@ -201,7 +238,7 @@ public class Shop implements ReadOnlyShop {
      * Replaces the contents of the part map with {@code parts}.
      */
     public void setParts(PartMap parts) {
-        this.partMap = parts;
+        this.partMap.replace(parts);
     }
 
     // --------------------------------------------------
@@ -223,7 +260,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasCustomer(int customerId) {
         return this.getCustomerList().stream()
-                .anyMatch(c -> c.getId() == customerId);
+            .anyMatch(c -> c.getId() == customerId);
     }
 
     /**
@@ -285,7 +322,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasTechnician(int technicianId) {
         return this.getTechnicianList().stream()
-                .anyMatch(p -> p.getId() == technicianId);
+            .anyMatch(p -> p.getId() == technicianId);
     }
 
     /**
@@ -315,11 +352,11 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the technicians list with {@code technicians}.
+     * {@code technicians} must not contain duplicate technicians.
      */
-    public void setTechnicians(List<Technician> persons) {
-        technicians.setTechnicians(persons);
+    public void setTechnicians(List<Technician> technicians) {
+        this.technicians.setTechnicians(technicians);
     }
 
     @Override
@@ -364,7 +401,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasVehicle(int vehicleId) {
         return this.getVehicleList().stream()
-                .anyMatch(v -> v.getId() == vehicleId);
+            .anyMatch(v -> v.getId() == vehicleId);
     }
 
     /**
@@ -408,7 +445,6 @@ public class Shop implements ReadOnlyShop {
     }
 
 
-
     // --------------------------------------------------
 
     /**
@@ -421,6 +457,8 @@ public class Shop implements ReadOnlyShop {
         setVehicles(newData.getVehicleList());
         setParts(newData.getPartMap());
         setServices(newData.getServiceList());
+        setTechnicians(newData.getTechnicianList());
+        setAppointments(newData.getAppointmentList());
         setTechnicians(newData.getTechnicianList());
     }
 

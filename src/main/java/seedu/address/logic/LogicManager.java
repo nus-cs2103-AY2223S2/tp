@@ -17,11 +17,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 import seedu.address.storage.Storage;
 
 /**
@@ -76,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return model.getShopFilePath();
     }
 
     @Override
@@ -105,6 +107,22 @@ public class LogicManager implements Logic {
         return model.getFilteredServiceList();
     }
 
+    /**
+     * @return Unmodifiable view of the filtered list of appointments
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    /**
+     * @return Unmodifiable view of the filtered list of technicians
+     */
+    @Override
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return model.getFilteredTechnicianList();
+    }
+
     @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
         return model.getCustomerVehicleMap();
@@ -118,5 +136,19 @@ public class LogicManager implements Logic {
     @Override
     public ServiceDataMap getServiceDataMap() {
         return model.getServiceDataMap();
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return model.getSelectedCustomer();
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return model.getSelectedVehicle();
+    }
+    @Override
+    public Service getSelectedService() {
+        return model.getSelectedService();
     }
 }

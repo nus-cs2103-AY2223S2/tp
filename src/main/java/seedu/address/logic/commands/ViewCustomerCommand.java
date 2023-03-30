@@ -10,7 +10,7 @@ import seedu.address.model.entity.person.CustomerIdPredicate;
 /**
  * Finds and returns the customer details of the provided id.
  */
-public class ViewCustomerCommand extends RedoableCommand {
+public class ViewCustomerCommand extends Command {
 
     public static final String COMMAND_WORD = "viewcustomer";
 
@@ -25,13 +25,13 @@ public class ViewCustomerCommand extends RedoableCommand {
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
         Customer current = model.getFilteredCustomerList().get(0);
-        // TODO: Show all nested objects associated with customer
+        model.selectCustomer(current);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current), ResultType.LISTED_CUSTOMERS);
+                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current.getId()), Tab.CUSTOMERS);
     }
 
     @Override

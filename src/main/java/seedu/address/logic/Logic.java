@@ -10,11 +10,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * API of the Logic component
@@ -40,9 +42,9 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -66,6 +68,16 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of services */
     ObservableList<Service> getFilteredServiceList();
 
+    /**
+     * @return Unmodifiable view of the filtered list of appointments
+     */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * @return Unmodifiable view of the filtered list of technicians
+     */
+    ObservableList<Technician> getFilteredTechnicianList();
+
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();
 
@@ -74,4 +86,13 @@ public interface Logic {
 
     /** Returns maps of services and their respective vehicle or technicians */
     ServiceDataMap getServiceDataMap();
+
+    /** Returns currently selected customer*/
+    Customer getSelectedCustomer();
+
+    /** Returns currently selected vehicle*/
+    Vehicle getSelectedVehicle();
+
+    /** Returns currently selected service*/
+    Service getSelectedService();
 }

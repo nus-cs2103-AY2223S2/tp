@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,9 +52,13 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user attempts to delete a customer/service/appointment/part/technician who has the id of 1  (i.e. `deletecustomer 1`).
+
+This diagram is applicable also for other commands such as the add equivalent.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+Omitted from this image is that the `XCommand`, being an  instance of`RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below. 
 
 Each of the four main components (also shown in the diagram above),
 
@@ -69,24 +73,25 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `XListPanel` (`X` is a placeholder for a specific model list panel  e.g., `CustomerListPanel`, `VehicleListPanel`), `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays specific objects residing in the `Model` such as the `Customer`, `Vehicle`, `Service`, `Appointment` and `PartMap` objects.
+* also depends on some mapping classes in the `Model` component as certain objects have an integer array of object ids that refer to another object. One example is the Customer class, which has a `HashSet<Integer>` of `Vehicle` IDs. To associate each `Customer` object with the corresponding `Vehicle` objects, the Model uses an object called `CustomerVehicleMap`. The `UI` component then displays the relevant objects based on these mappings. In essence, the `Model` uses these mapping classes to ensure that objects with references to one another are properly connected and displayed in the user interface.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -94,54 +99,54 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCustomerCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletecustomer 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+This diagram is applicable to all `deleteXCommand` commands.
+
+Omitted from this image is that the `XCommand`, being an  instance of `RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XCommandParser` (`X` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XCommand` object (e.g., `AddCustomerCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `X` objects (which are contained in a `UniqueXList` object) where X are Customer/Service/Appointments/Vehicles/Technicians, and all `Part` objects (which are contained in a `partMap` object).
+* in the case of X, stores the currently 'selected' `X` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<X>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* in the case of Part, stores the currently 'selected' `Part` objects (e.g., results of a search query) as a separate hashmap.
+* in the case of ServiceList, it acts functionally the same as an `UniqueXList` except that the entry can be non-unique.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="1000" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both AutoM8 shop data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `ShopStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,6 +159,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+### Current Implementation
+The add function is facilitated by `AddXCommand` (`X` is a placeholder for the specific entity to be added e.g. `AddCustomerCommand`)
+
+Here `X` can be `Customer/Appointment/Service/Vehicle/Part/Technician`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the `execute("addX args*")` API call.
+
+<img src="images/AddXSequenceDiagram.png"/>
+
+The `addX(x)` method of `Model` adds the entity into the system via adding the entity into `Shop`.
+
+### View Feature
+
+### Current Implementation
+
+The view function is facilitated by `ViewXCommand` (`X` is a placeholder for the specific command name e.g., `ViewCustomerCommand`).
+
+Here X can be appointment/customer/service/technician/vehicle.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("viewcustomer 1") API call.
+
+<img src="images/ViewSequenceDiagram.png"/>
+
+This feature is implemented this way to best match how existing list and find function is done.
+
+This is done this way so that the code is easily maintainable and readable if once the developer understands how `listX` functions works.
+
+However, as you may have noticed, `ViewPartCommand`'s diagram differs slightly.
+
+The Sequence Diagram that illustrates the interactions within the Logic component for the execute("viewpartcommand 1") API call is to be added.
+
+* To add image *
+
+
+
+
+
+
+
+
+
+
 ### Undo/Redo Feature
 
 #### Current Implementation
@@ -161,21 +210,21 @@ This section describes some noteworthy details on how certain features are imple
 The undo/redo mechanism is facilitated by `StackUndoRedo`. The implemented undo/redo feature would be best described as two stacks of commands that the user has performed:
 
 - `undoStack` serves to store a "history" of the commands they have performed.
-- `redoStack` is a collection of their commands that lead up to initial condition at which they started performing the undo.
+- `redoStack` is a collection of their commands that lead up to initial state at which they started performing the undo.
 
-The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure of the which is a linear data structure that is based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
+The central concept is to store a stack of commands that essentially functions as a history-list of the commands. Essentially, we leverage on the stack's data structure which is a linear data structure based on the principle of Last In First Out (LIFO). Based on the implementation described above, `undoStack` is populated by pushing a user's command in the application.
 
 Then, when the user performs an undo, the command is firstly popped from `undoStack` and used to restore previous state, and then we store that command onto `redoStack`.
 
 `StackUndoRedo` contains 2 stacks, `undoStack` and `redoStack`. The `undoStack` and `redoStack` contain commands that are of type `RedoableCommand`. `RedoableCommand` extends Command and has the following attributes and methods.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo0.png)
 
 When a `RedoableCommand` is being executed, the methods `saveAddressBookSnapshot(Model model)` will be called. This ensures that the current states are stored within the command.
 
 After a command is executed, it will be added into the `StackUndoRedo`. The specific process is explained in the activity diagram below.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo1.png)
 
 Next, when undo is being performed, `undoStack` will remove the first command in its stack and add it to `redoStack`. It will then call `RedoableCommand` `undo()` of the command that is removed. The `undo()` method will then set the model to the previous snapshot of `saveAddressBookSnapshot`.
 
@@ -185,36 +234,35 @@ Given below is an example of a usage scenario and how the undo/redo mechanism be
 
 Step 1. The user launches the application. The `StackUndoRedo` will be initialized.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo2.png)
 
 Step 2. The user executes delete command. The delete command will be pushed into the `StackUndoRedo`.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo3.png)
 
 Step 3. The user executes add customer command to add a new customer.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo4.png)
 
 Step 4. The user now decides that adding of customer was a mistake, and decides to undo that action by executing the undo command.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo5.png)
 
 
 > <b>Note:</b> undoCommand will check if there is any command that can be undone by calling `StackUndoRedo` canUndo() method.
 
 The following sequence diagram shows how the undo operation works:
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo6.png)
 
 > <b>Note:</b> The redo command will call `popRedo()` method in `StackUndoRedo`and `redo()` method in `RedoableCommand` .
 
-Step 5. The user executes clear. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack` to be cleared.
+Step 5. The user executes listcustomers. Due to not being an `UndoCommand` or `RedoCommand`, it causes the `redoStack`
+to be cleared.  Commands that are not undoable are not added into the `undoStack`.
 
-*UndoRedoImage to be added soon*
+![UndoRedo0](images/UndoRedo7.png)
 
-Step 6. User executes list command. Commands that are not undoable are not added into the `undoStack`.
 
-*UndoRedoImage to be added soon*
 
 #### Design considerations:
 
@@ -237,6 +285,43 @@ Step 6. User executes list command. Commands that are not undoable are not added
 * **Alternative 2:** Use `HistoryManager` for undo/redo.
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle two different things._
+
+### Update Service Priority Feature
+This feature updates the priority of a service by increasing or decreasing it by 1 level. Priority levels are defined: low, medium, high
+> <b>Note:</b> Services created without specifying a priority by default are set with a low priority.
+#### Implementation
+> <b>Note:</b> In this explanation, X is either `Prioritise` or `Deprioritise`, depending on whether the user enters "prioritise 1" or "deprioritise 1"
+
+Users will be able to update the priority of a Service via 2 different commands: `PrioritiseCommand` and `DeprioritiseCommand`. The logical flow and interaction of both commands work similarly where the only difference is in the adjustment of priority up or down.
+
+When the user uses this feature, the XCommandParser parses the service integer id input of the user and creates a XServiceCommand object with the id passed in as a parameter. The XServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the XServiceCommand would then create a new `Service` that has an updated priority according to the given Command to increase (`prioritise`) or decrease (`deprioritise`) the level by 1.
+
+Given below is an example usage scenario and the description of how the XServiceCommand executes.
+
+Step 1. The user launches the application and enters "listservices" which executes the command to list all services.
+
+Step 2. In the list of services, service with id 1 has a priority of low. The user enters the "prioritise 1" command to increase the priority of the service with id 1.
+
+Step 3. The PrioritiseServiceCommandParser parses the service integer id input of the user and creates a PrioritiseServiceCommand object with the id passed in as a parameter.
+
+Step 4. The PrioritiseServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the PrioritiseServiceCommand would then create a new `Service` that has an updated priority of medium, which is then updated in the `Model` with the `setService()` method.
+
+Step 5. Finally, an `updateFilteredServiceList()` is called to display an updated list with all services, included the lastest updated service with the id 1 and a new priority of medium in the Ui. With the increased priority, the service with id 1 should also be displayed higher than those with lower priorities.
+
+The Sequence Diagram below illustrates the interactions with the `Logic` and `Model` components for the `execute("prioritise 1")` or `execute("deprioritise 1")` API call.
+<img src="images/SetServicePrioritySequenceDiagram.png" width="1100" />
+
+#### Design considerations:
+
+**Aspect: The way users can set priority**
+
+* **Alternative 1 (current choice):** Allow priority level adjustment by increasing or decreasing level by 1
+    * Pros: Implementation is easy, parsing is very similar to how other id specific Commands have been implemented
+    * Cons: UX is comprimised slightly as users need to enter the command twice to increase priority from low to high.
+
+* **Alternative 2:** Allow users to directly indicate the priority level they want the service to be set (e.g. setservicepriority 1 high)
+    * Pros: Better UX, users do not need to enter the command twice to increase priority from low to high.
+    * Cons: Need to implement extra steps to validate user input and parse the priority level they input to ensure it matches the system's defined priority levels
 
 _{more aspects and alternatives to be added}_
 

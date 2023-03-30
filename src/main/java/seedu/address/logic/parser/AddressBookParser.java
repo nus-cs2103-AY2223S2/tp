@@ -10,8 +10,10 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.commands.AddPartCommand;
+import seedu.address.logic.commands.AddPartToServiceCommand;
 import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.commands.AddTechnicianCommand;
+import seedu.address.logic.commands.AddTechnicianToServiceCommand;
 import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -30,10 +32,16 @@ import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListServicesCommand;
 import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortAppointmentsCommand;
+import seedu.address.logic.commands.SortCustomersCommand;
+import seedu.address.logic.commands.SortServicesCommand;
+import seedu.address.logic.commands.SortTechniciansCommand;
+import seedu.address.logic.commands.SortVehiclesCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
 import seedu.address.logic.commands.ViewPartCommand;
+import seedu.address.logic.commands.ViewServiceCommand;
 import seedu.address.logic.commands.ViewTechnicianCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -98,6 +106,8 @@ public class AddressBookParser {
 
         // AutoM8 commands
 
+        // Add
+
         case AddCustomerCommand.COMMAND_WORD:
             return new AddCustomerCommandParser().parse(arguments);
 
@@ -113,8 +123,16 @@ public class AddressBookParser {
         case AddPartCommand.COMMAND_WORD:
             return new AddPartCommandParser().parse(arguments);
 
+        case AddPartToServiceCommand.COMMAND_WORD:
+            return new AddPartToServiceCommandParser().parse(arguments);
+
         case AddTechnicianCommand.COMMAND_WORD:
             return new AddTechnicianCommandParser().parse(arguments);
+
+        case AddTechnicianToServiceCommand.COMMAND_WORD:
+            return new AddTechnicianToServiceCommandParser().parse(arguments);
+
+        // List
 
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
@@ -125,6 +143,7 @@ public class AddressBookParser {
         case ListServicesCommand.COMMAND_WORD:
             return new ListServicesCommand();
 
+        // View
 
         case ViewPartCommand.COMMAND_WORD:
             return new ViewPartCommand(arguments.trim());
@@ -141,6 +160,10 @@ public class AddressBookParser {
         case ViewTechnicianCommand.COMMAND_WORD:
             return new ViewTechnicianCommandParser().parse(arguments.trim());
 
+        case ViewServiceCommand.COMMAND_WORD:
+            return new ViewServiceCommandParser().parse(arguments.trim());
+
+        // Delete
 
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments.trim());
@@ -156,6 +179,23 @@ public class AddressBookParser {
 
         case DeleteTechnicianCommand.COMMAND_WORD:
             return new DeleteTechnicianCommandParser().parse(arguments.trim());
+
+        // Sort
+
+        case SortCustomersCommand.COMMAND_WORD:
+            return new SortCustomersCommandParser().parse(arguments);
+
+        case SortVehiclesCommand.COMMAND_WORD:
+            return new SortVehiclesCommandParser().parse(arguments);
+
+        case SortServicesCommand.COMMAND_WORD:
+            return new SortServicesCommandParser().parse(arguments);
+
+        case SortTechniciansCommand.COMMAND_WORD:
+            return new SortTechniciansCommandParser().parse(arguments);
+
+        case SortAppointmentsCommand.COMMAND_WORD:
+            return new SortAppointmentsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
