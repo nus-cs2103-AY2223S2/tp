@@ -66,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         TaskList tasks = new TaskList(); //add command does not allow adding tasks straight away
 
-        Person person = new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
+        Person person = new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
                 remark, tagList, tasks);
 
         return new AddCommand(person);

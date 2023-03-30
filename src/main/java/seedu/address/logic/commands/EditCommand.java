@@ -123,7 +123,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         TaskList updatedTasks = personToEdit.getTasks();
 
-        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updateCompany, updatedIndustry,
+        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updateCompany, updatedLocation,
                 updatedOccupation, updatedJobTitle, updatedAddress, updatedRemark, updatedTags, updatedTasks);
     }
 

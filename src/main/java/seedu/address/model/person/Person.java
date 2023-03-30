@@ -41,7 +41,7 @@ public class Person {
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark,
-                  Set<Tag> tags, Tasklist tasks) {
+                  Set<Tag> tags, TaskList tasks) {
         requireAllNonNull(name, gender, phone, email, company, location,
                 occupation, jobTitle, address, tags, remark, tasks);
         this.name = name;

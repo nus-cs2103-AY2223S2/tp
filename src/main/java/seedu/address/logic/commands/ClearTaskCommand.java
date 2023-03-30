@@ -9,8 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.TaskList;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 
 /**
  * Clears the tasks of an existing person in the address book.
@@ -51,7 +51,7 @@ public class ClearTaskCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getGender(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getCompany(), personToEdit.getIndustry(),
+                personToEdit.getCompany(), personToEdit.getLocation(),
                 personToEdit.getOccupation(), personToEdit.getJobTitle(),
                 personToEdit.getAddress(), personToEdit.getRemark(),
                 personToEdit.getTags(), EMPTY_TASKLIST, personToEdit.getStatus());
