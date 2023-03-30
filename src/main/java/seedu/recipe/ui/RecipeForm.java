@@ -218,13 +218,13 @@ public class RecipeForm extends UiPart<Region> {
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
                 .orElse("")
-                             );
+        );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
                 .orElse("")
-                            );
+        );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
