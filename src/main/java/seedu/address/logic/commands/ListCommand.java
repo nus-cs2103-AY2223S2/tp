@@ -45,6 +45,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_FAIL_CODE = "Module code format is invalid";
 
+    private final boolean isRoot;
+
     private ModuleCode moduleCode;
 
     private LectureName lectureName;
@@ -52,7 +54,16 @@ public class ListCommand extends Command {
     /**
      * Creates a ListCommand to list content from current context
      */
-    public ListCommand() {}
+    public ListCommand() {
+        this.isRoot = false;
+    }
+
+    /**
+     * Creates a ListCommand to list module contents from any context
+     */
+    public ListCommand(boolean isRoot) {
+        this.isRoot = isRoot;
+    }
 
     /**
      * Creates a ListCommand to list lecture contents from module context
@@ -60,6 +71,7 @@ public class ListCommand extends Command {
      */
     public ListCommand(ModuleCode moduleCode) {
         this.moduleCode = moduleCode;
+        this.isRoot = false;
     }
 
     /**
@@ -70,11 +82,16 @@ public class ListCommand extends Command {
     public ListCommand(ModuleCode moduleCode, LectureName lectureName) {
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
+        this.isRoot = false;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (isRoot) {
+            return filterByModuleList(model);
+        }
+
         if (moduleCode != null && lectureName != null) {
             if (!model.hasLecture(moduleCode, lectureName)) {
                 throw new CommandException(

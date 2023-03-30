@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         Optional<String> moduleCodeOpt = argMultimap.getValue(PREFIX_MODULE);
         Optional<String> lectureNameOpt = argMultimap.getValue(PREFIX_LECTURE);
+        Optional<String> rootOpt = argMultimap.getValue(PREFIX_ROOT);
 
         if (lectureNameOpt.isPresent()) {
             return parseListVideoCommand(lectureNameOpt, moduleCodeOpt);
@@ -33,10 +35,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (moduleCodeOpt.isPresent()) {
             return parseListLectureCommand(moduleCodeOpt);
         }
-        String trimmedArgs = args.trim();
-        if (!trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        if (rootOpt.isPresent()) {
+            return new ListCommand(true);
         }
         return new ListCommand();
     }
