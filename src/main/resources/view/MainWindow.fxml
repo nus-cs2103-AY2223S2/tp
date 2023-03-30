@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root height="850.0" minHeight="850.0" minWidth="1280.0" onCloseRequest="#handleExit" title="Vaccination Management System" type="javafx.stage.Stage" width="1280.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root height="850.0" minHeight="700.0" minWidth="1280.0" onCloseRequest="#handleExit" title="Vaccination Management System" type="javafx.stage.Stage" width="1280.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/vms_icon_32.png" />
   </icons>
