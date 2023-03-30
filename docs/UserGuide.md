@@ -83,6 +83,18 @@ Examples:
 - `edit 1 c/Goggle e/johndoe@example.com` Edits the company and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 - `edit 2 c/Shopee d/` Edits the company of the 2nd opening to be `Shopee` and clears all existing `KEYDATE`.
 
+# List upcoming dates : `upcoming`
+
+Lists openings which has events in the next N days.
+
+Format: `upcoming N`
+
+* Lists all openings which has events in the next N days.
+* N **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `upcoming 1` lists all openings with events happening in the next 1 day.
+
 ### Filtering openings by company or position: `find`
 
 Finds openings whose COMPANY or POSITION contain any of the given keywords.
@@ -184,10 +196,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Add**    | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
-| **Edit**   | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Status** | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
-| **List**   | `list`                                                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
+| **Edit**     | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Status**   | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
+| **List**     | `list`                                                                                                                                                             |
+| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                              |   
