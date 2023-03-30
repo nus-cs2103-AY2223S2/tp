@@ -15,7 +15,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -25,7 +25,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar officeconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/improvedUI.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -70,13 +70,19 @@ OfficeConnect offers a solution to these problems by providing better visibility
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
+### Quickstart Guide: `quickstart`
+
+Gives you a simple and brief initial run-through of the OfficeConnect app.
+
+If this is your first time using OfficeConnect, this window will be the first window to pop up. After being closed by the user, it is reaccesible by the calling the command `quickstart`.
+
+![image](https://user-images.githubusercontent.com/99934242/228518988-11e1aecd-6a5a-4bf9-bee1-9b0a7f62ea3f.png)
 
 ### Viewing help : `help`
 
 Displays a comprehensive window detailing the outline of executable commands by user.
 
-A hierarchical view on the left window lists the different available commands, with the description of the command on the right.
+Presents a hierarchical view which lists the different available commands, along with the description of each of the commands.
 
 ![image](https://user-images.githubusercontent.com/99934242/225213208-f94de7e4-2085-41e7-9325-9ecef5fe246f.png)
 
@@ -288,7 +294,75 @@ Format: `findt TITLE`
 Examples:
 - `findt CS2103 TP` displays everyone who are assigned to this task.
 
-### Archiving data files `[coming in v1.3]`
+
+## View Assigned People: `viewassignedp`
+
+Displays a list of all persons who have been assigned to a task.
+
+Format: `viewassignedp`
+
+Examples:
+- `viewassignedp` displays a list of all persons who have been assigned to a task.
+
+---
+
+## View Assigned Tasks: `viewassignedt`
+
+Displays a list of all tasks that have been assigned to a person.
+
+Format: `viewassignedt`
+
+Examples:
+- `viewassignedt` displays a list of all tasks that have been assigned to a person.
+
+---
+
+## View Unassigned People: `viewunassignedp`
+
+Displays a list of all persons who have not been assigned to any task.
+
+Format: `viewunassignedp`
+
+Examples:
+- `viewunassignedp` displays a list of all persons who have not been assigned to any task.
+
+---
+
+## View Unassigned Tasks: `viewunassignedt`
+
+Displays a list of all tasks that have not been assigned to any person.
+
+Format: `viewunassignedt`
+
+Examples:
+- `viewunassignedt` displays a list of all tasks that have not been assigned to any person.
+
+---
+
+## View Assigned: `viewassignedall`
+
+Displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
+
+Format: `viewassignedall`
+
+Examples:
+- `viewassignedall` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
+
+---
+
+## View Unassigned: `viewunassignedall`
+
+Displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+
+Format: `viewunassignedall`
+
+Examples:
+- `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+
+---
+
+
+### Archiving data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
@@ -302,20 +376,28 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                       |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Person**    | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**      | `addt title/TITLE c/CONTENT st/STATUS` <br> e.g., `addt title/Draft proposal c/Complete proposal by 1st March st/false`                                                |
-| **Assign**        | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                 |
-| **Clear**         | `clear`                                                                                                                                                                |
-| **Delete Person** | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                  |
-| **Delete Task**   | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                  |
-| **Edit Person**   | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find Person**   | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                              |
-| **Find Task**     | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                              |
-| **Mark Task**     | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                        |
-| **Unmark Task**   | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                   |
-| **Help**          | `help`                                                                                                                                                                 |
-| **List Person**   | `listp`                                                                                                                                                                |
-| **List Task**     | `listt`                                                                                                                                                                |
-| **List All**      | `listall`                                                                                                                                                              |
+| Action                      | Format, Examples                                                                                                                                                       |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**              | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Task**                | `addt title/TITLE c/CONTENT st/STATUS` <br> e.g., `addt title/Draft proposal c/Complete proposal by 1st March st/false`                                                |
+| **Assign**                  | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                 |
+| **Clear**                   | `clear`                                                                                                                                                                |
+| **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                  |
+| **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                  |
+| **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                              |
+| **Find Task**               | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                              |
+| **Help**                    | `help`                                                                                                                                                                 |
+| **List All**                | `listall`                                                                                                                                                              |
+| **List Persons**            | `listp`                                                                                                                                                                |
+| **List Tasks**              | `listt`                                                                                                                                                                |
+| **Mark Task**               | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                        |
+| **Quick Start**             | `quickstart`                                                                                                                                                           |
+| **Unassign**                | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                            |
+| **Unmark Task**             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                   |
+| **View Assigned All**       | `viewassignedall`                                                                                                                                                      |
+| **View Assigned Persons**   | `viewassignedp`                                                                                                                                                        |
+| **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                        |
+| **View Unassigned All**     | `viewunassignedall`                                                                                                                                                    |
+| **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                      |
+| **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                      |

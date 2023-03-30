@@ -5,7 +5,8 @@ package seedu.address.ui;
  */
 public class HelpStrings {
     public static final String HELP_MESSAGE = "For more help, Refer to the user guide: " + HelpStrings.USERGUIDE_URL;
-
+    public static final String CREDITS_MESSAGE =
+            "This project was based on the SE-EDU Initiative, using resources from ICON8 and freepik. Enjoy!";
     public static final String USERGUIDE_URL = "\nhttps://ay2223s2-cs2103-f10-1.github.io/tp/UserGuide.html";
     public static final String ADDMETHODS_HELP = "Nested within addmethods are the methods that you "
             + "can use for adding tasks, and people.";
