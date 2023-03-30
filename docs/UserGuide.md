@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a structured manner.
+Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing **. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
 
 - Table of Contents
   {:toc}
@@ -170,8 +170,6 @@ Format: `clear`
 * This command allows you to delete all openings from the list in a single command
 * Useful when you want to start a fresh new list!
 
-
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -181,12 +179,6 @@ Format: `exit`
 ### Saving the data
 
 Ultron data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
----
 
 ## FAQ
 
