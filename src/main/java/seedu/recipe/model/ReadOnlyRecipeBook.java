@@ -1,10 +1,12 @@
 package seedu.recipe.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 
-import java.util.List;
+
 
 /**
  * Unmodifiable view of a recipe book

@@ -1,12 +1,13 @@
 package seedu.recipe.model.util;
 
-import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
-import seedu.recipe.model.recipe.ingredient.IngredientInformation;
-
-import java.util.HashMap;
 import java.util.List;
 
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+
+
+/**
+ * We store a list of common ingredients and their substitutions, that will be preloaded into the Recipe Book.
+ */
 public class SubstitutionsUtil {
     private static final List<IngredientBuilder> PRELOADED_INGREDIENTS_LIST = List.of(
             new IngredientBuilder("-n Ketchup -s Barbeque Sauce -s Mustard"),

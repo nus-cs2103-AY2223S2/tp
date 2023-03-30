@@ -1,5 +1,13 @@
 package seedu.recipe.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.recipe.commons.core.Messages.MESSAGE_DISPLAY_STORED_SUBS;
+import static seedu.recipe.commons.core.Messages.MESSAGE_NO_STORED_SUBS;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ReadOnlyRecipeBook;
@@ -8,13 +16,9 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.recipe.commons.core.Messages.MESSAGE_DISPLAY_STORED_SUBS;
-import static seedu.recipe.commons.core.Messages.MESSAGE_NO_STORED_SUBS;
+
+
 
 /**
  * Searches all recipes within the recipe book for stored ingredient substitutions for given ingredient, and returns a

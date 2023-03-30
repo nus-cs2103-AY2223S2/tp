@@ -125,12 +125,16 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredRecipeList());
     }
 
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     */
     public static void assertCommandFailure(Command command, Model actualModel, CommandResult expectedCommandResult) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+            throw new AssertionError("Execution of command should not succeed.", ce);
         }
     }
 

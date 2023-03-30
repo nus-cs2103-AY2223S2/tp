@@ -17,7 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-
 //Custom Imports
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
@@ -27,7 +26,6 @@ import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
-import seedu.recipe.model.recipe.Recipe;
 
 
 /**
