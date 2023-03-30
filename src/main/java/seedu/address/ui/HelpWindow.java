@@ -50,7 +50,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "5. exit: Close the application. \n"
             + "\n"
             + "Addition: The student’s avatar will change if they have a male or female tag. "
-            + "If a student has both tags, his or her avatar will remain as the default.\n";
+            + "If a student has no or both the tags, his or her avatar will remain as the default.\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
