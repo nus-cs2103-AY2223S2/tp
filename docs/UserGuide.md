@@ -251,18 +251,20 @@ Format: `f n/PET_NAME`
 
 #### Updating your pet information : `edit`
 
-Edit the pet information of a pet in PetPal
+A pet owner changed their contact information? or did you find out new information about your pet client?
+
+You can edit these changes with the `edit` command. This command can be used to edit: phone number, address, email, tags
+
 If you accidentally invoked this command with the wrong parameters, you can use the `edit` command to re-edit the wrong fields or
 the `undo` command to revert the wrong changes.
-
-This command can be used to edit: phone number, address, email, tags
 
 **Constraints**
 * Edits the pet with the provided index.
 * `INDEX` is the index of the pet in the currently displayed list.
 * You must provide **at least one** of the optional fields.
 * Allows you to update a pet to have same owner name but different phone number or, same number but different owner name as a current pet in the PetPal.
-* Person profiles do not refresh when person is updated, they are only updated when we re-click the person card
+* Pet profiles are auto saved in PetPal and are reflected in the PetPal list.
+* Cost is constantly being updated in PetPal but the latest information may not be reflected to you. To get the latest information, either click on the pet profile or run a command (e.g. `list` or `l`)
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
 
@@ -326,9 +328,13 @@ Examples:
 
 #### Archiving a pet: `archive`
 
+Sometimes a client may become inactive or stop using your services. To keep a record of the pet whilst not cluttering
+your active PetPal list, you can use the `archive` command to move these records to another save file.
+
 Archives the specified pet into the `archive.json` file in the `data` folder.
+
 Note that:
-* The specified pet will be removed from your PetPal.
+* The specified pet will be removed from your PetPal list.
 * The index is based on the **currently displayed** PetPal list, which might change depending on prior commands used
   (e.g. `find`)
 
@@ -356,10 +362,7 @@ Format: `clear`
 If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore the previous state of PetPal.
 </div>
 
-
-
-
-### Command Flow
+### Undo
 
 #### Undoing a previous command : `undo`
 
