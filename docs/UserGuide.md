@@ -3,72 +3,233 @@ layout: page
 title: User Guide
 ---
 
-ConnectUS is a desktop app for **managing contacts, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ConnectUS can get your contact management tasks done faster than traditional GUI apps.
+# Welcome to ConnectUS!
 
-* Table of Contents
-{:toc}
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing student, this app is for you. With ConnectUS, you can **connect with people** without the stress of remembering who you met where (on top of the stress of a growing assignment backlog — ~~_trust us, we know!_~~) holding you back from socialising.
 
---------------------------------------------------------------------------------------------------------------------
+We're focused on:
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
 
-## Using this guide
-- For instructions on setting up ConnectUS, please refer to [Quick start](#quick-start).
-- For a table of commands, please refer to [Command summary](#command-summary).
-- For detailed instructions on how to use each command, please refer to [Features](#features).
+This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
 
-## Quick start
+So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
-1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) or above installed in your computer.
+---
 
-2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases).<br>
-   ![Latest](images/ConnectUSLatest.png)
+<div style="page-break-after: always"></div>
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app.<br>
-   ![Home Folder](images/ConnectUSHomeFolder.png)
+# Table of Contents
 
-4. Double-click the `ConnectUS.jar` file to start the app.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+- [1. Using this guide](#1-using-this-guide)
+  - [1.1 Notation](#11-notation)
+  - [1.2 Navigation](#12-navigation)
+- [2. Installation](#2-installation)
+- [3. Quick Start Guide](#3-quick-start-guide)
+  - [3.1 Layout](#31-layout)
+    - [3.1.1 Command Box](#311-command-box)
+    - [3.1.2 Command Result Feedback](#312-command-result-feedback)
+    - [3.1.3 Contact List](#313-contact-list)
+  - [3.2 Key Definitions](#32-key-definitions)
+    - [3.2.1 Command](#321-command)
+    - [3.2.2 Parameter](#322-parameter)
+  - [3.3 Command Format](#33-command-format)
+  - [3.4 How to Use the CLI](#34-how-to-use-the-cli)
+- [4. Features](#4-features)
+  - [4.1 Viewing help: `help`](#41-viewing-help-help)
+  - [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
+  - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
+  - [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
+  - [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
+  - [4.6 Adding additional tags to a contact: `add-t`](#46-adding-additional-tags-to-a-contact-add-t)
+  - [4.7 Deleting tags from a contact: `delete-t`](#47-deleting-tags-from-a-contact-delete-t)
+  - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
+  - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
+  - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
+  - [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+  - [4.11 Exiting the program: `exit`](#412-exiting-the-program-exit)
+  - [4.12 Saving the data](#413-saving-the-data)
+  - [4.13 Editing the data file](#414-editing-the-data-file)
+- [5. Information Fields & Prefixes](#5-information-fields--prefixes)
+  - [5.1 Name: `n/`](#51-name-n)
+  - [5.2 Phone: `p/`](#52-phone-p)
+  - [5.3 Email: `e/`](#53-email-e)
+  - [5.4 Address: `a/`](#54-address-a)
+  - [5.5 Instagram: `ig/`](#55-instagram-ig)
+  - [5.6 Telegram: `tg/`](#56-telegram-tg)
+  - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
+  - [5.8 Birthday: `b/`](#58-birthday-b)
+  - [5.9 Tags](#59-tags)
+    - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
+    - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
+    - [5.9.3 CCA Position Tags: `ccapos/`](#593-cca-position-tags-ccapos)
+    - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
+- [6. FAQ](#6-faq)
+- [7. Command Summary](#7-command-summary)
+- [8. Prefix Summary](#8-prefix-summary)
+- [9. Glossary](#9-glossary)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   ![Command Box](images/ConnectUSCommandBox.png) <br>
-   Some example commands you can try:
+---
 
-   * `list` : Lists all contacts.
+<div style="page-break-after: always"></div>
 
-   * `add n/James p/12345678 e/james@example.com a/Clementi tg/itsjameshere b/14/02/2000` : Adds a contact named `James` to ConnectUS.
+# 1. Using this guide
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+Thank you for choosing ConnectUS! We are delighted to have you onboard with us as a user.
 
-   * `clear` : Deletes all contacts.
+We **highly recommend** that you read through our User Guide in a sequential order.
 
-   * `exit` : Exits the app.
+## 1.1 Notation
 
-6. Refer to the [Features](#features) below for details of each command.
+Some special notations are used throughout this guide:
 
---------------------------------------------------------------------------------------------------------------------
+- [Links in blue](#11-notation) will help you navigate through this document, or take you to places on the Internet.
+- **Bolded words** are phrases that you should pay attention to.
+- <u>Underlined words</u> can be found in the [Glossary](#9-glossary).
 
-## Features
+## 1.2 Navigation
+
+- If this is your **first time** using ConnectUS, head over to our [Installation](#2-installation) guide for instructions on setting up ConnectUS, and our [Quick Start Guide](#3-quick-start-guide) to begin using ConnectUS.
+
+- If you need a **refresher on command syntax**, head over to [Command Summary](#7-command-summary) for a reference table of commands, or [Prefix Summary](#8-prefix-summary) for a reference table of prefixes.
+
+- For detailed instructions about the features we offer and how to use each command, please refer to [Features](#4-features).
+
+- For detailed information about the different information fields that you can assign to a contact, please refer to [Information Fields & Prefixes](#5-information-fields--prefixes).
+
+- Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
+
+[↑ Back to top of section](#1-using-this-guide)
+
+[↑ Back to table of contents](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 2. Installation
+
+ConnectUS works on any mainstream OS as long as <u>Java <code>11</code></u> installed.
+
+If you have yet to install ConnectUS, simply follow these steps to set it up:
+
+**Step 1:** Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
+
+**Step 2:** Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br> 
+![Latest](images/ConnectUSLatest.png)
+
+<div style="page-break-after: always"></div>
+
+
+**Step 3:** Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
+![Home Folder](images/ConnectUSHomeFolder.png)
+
+<div style="page-break-after: always"></div>
+
+
+**Step 4:** Double-click the `ConnectUS.jar` file to start the app.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
+![Ui](images/Ui.png)
+
+Congratulations! You have successfully set up ConnectUS.
+
+[↑ Back to top of section](#2-installation)
+
+[↑ Back to table of contents](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 3. Quick Start Guide
+
+## 3.1 Layout
+
+Let's take a look at the different components in ConnectUS.<br>
+
+![Layout](images/Layout.png)
+
+### 3.1.1 Command Box
+
+![CommandBox](images/CommandBox.png)
+
+The command box allows you to enter commands that you wish to perform. For starters, try typing the `help` command and hit enter!
+
+<div style="page-break-after: always"></div>
+
+### 3.1.2 Command Result Feedback
+
+![CommandResultFeedback](images/CommandResultFeedback.png)
+
+The command result feedback box will provide you with a feedback message after a command is entered. For example, after typing `help`, you should see the above feedback in your ConnectUS application, along with a new Help Window!
+
+If you enter an unrecognized command or a command with the wrong format, an error message will be shown in this feedback box:<br>
+
+![CommandFeedbackInvalid](images/CommandFeedbackInvalid.png)
+
+You can then use the scroll bars of the feedback box to navigate through the feedback given.
+
+<div style="page-break-after: always"></div>
+
+### 3.1.3 Contact List
+
+![ContactList](images/ContactList.png)
+
+The contact list shows the contacts that exist within your ConnectUS with all their registered information fields.
+
+* There is a scroll bar beside the contact list container for you to scroll through your contact list.
+* The index beside the contact name is the contact's index. It is used for certain commands such as `delete`. More details on this can be found in [Features](#4-features).
+* The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* You can also find a condensed summary table of these information fields in the [Prefix Summary](#8-prefix-summary).
+
+<div style="page-break-after: always"></div>
+
+## 3.2 Key Definitions
+
+### 3.2.1 Command
+
+Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as [parameters](#322-parameter), for ConnectUS to perform the action.
+
+### 3.2.2 Parameter
+
+Parameters are user inputs that ConnectUS requires to perform certain [commands](#321-command).
+
+Example: `n/NAME`
+
+In this case, `NAME` is the information field that you wish to input. The `n/` prefix must be used for ConnectUS to recognise that you intend on adding a `NAME` to a contact.
+
+* The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
+* You can also find a condensed summary of these information fields in the [Prefix Summary](#8-prefix-summary).
+
+## 3.3 Command Format
+
+To use ConnectUS, type the [command](#321-command) along with its [parameters](#322-parameter), if required. You can leave the parameters empty if it is optional (i.e. if it is wrapped in square brackets like this: `help [COMMAND]`).
+
+* The detailed list of commands and their command formats can be found in [Features](#4-features). 
+* You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
+
+<div style="page-break-after: always"></div>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:memo: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the information fields (referred to as *parameters*) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [b/BIRTHDAY]` can be used as `n/John Doe b/14/02/2000` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T`, `mod/CS2103T mod/CS2107` etc.
+  e.g. `[mod/MODULE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T` (i.e. 1 time), `mod/CS2103T mod/CS2107` (i.e. 2 times) etc.
 
 * Information fields can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* If an information field is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous information fields for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameter for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 * Commands are case-sensitive!<br>
@@ -76,194 +237,723 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 
 </div>
 
-### Viewing help : `help`
+<div style="page-break-after: always"></div>
 
-Shows a message explaining how to access the help page.
+## 3.4 How to Use the CLI
 
-![help message](images/helpMessage.png)
+To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+   ![Command Box](images/ConnectUSCommandBox.png) <br>
 
-Format: `help`
+To familiarise yourself with ConnectUS, let's try out the `add` command! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
 
-### Adding a person: `add`
+**Format:** `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [ccapos/CCA_POSITION]…​ [r/REMARK]…​`
 
-Adds a person to the ConnectUS app.
+**What does Format mean?**
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [ccapos/POSITION]…​ [t/TAG]…​` 
+The first word of every command allows ConnectUS to distinguish different commands.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags, modules and CCAs! (including 0)
-</div>
+* `add` tells ConnectUS that this command is to add a new contact
+* Prefixes such as `n/` and `p/` are delimiters that allow ConnectUS to distinguish different parameters from the input that you supply
+* Information fields such as `NAME` and `PHONE` show you what you should place in each portion of the command.
 
-Examples:
-* `add n/James` would create a contact named James without any other contact information.
-* `add n/James p/12345678` would create a contact named James with a phone number 12345678.
-* `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
-* `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
+Notice how there are square brackets `[]` surrounding certain parameters like in `[p/PHONE]`. This indicates that the parameter is **optional**, i.e. a contact can exist even if it does not have this field.
 
-Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
+Other parameters that end with `…​` like in `[mod/MODULE]…​` indicates that this parameter can be used multiple times.
 
-### Listing all persons : `list`
+<div style="page-break-after: always"></div>
 
-Shows a list of all persons in the ConnectUS app.
+**Let's test this out!**
+
+Suppose you have a friend whose nickname is Lineup Larry. His phone number is 91234567, and he stays on campus in UTown Residences. His Telegram username is lineuplarry, takes the modules CS2103T and CS2101, and is in the Art Club.
+
+>`NAME`: Lineup Larry<br>
+>`PHONE`: 91234567<br>
+>`ADDRESS`: UTown Residences<br>
+>`TELEGRAM`: lineuplarry<br>
+>`MODULE`: CS2103T, CS2101<br>
+>`CCA`: Art Club
+
+The command you would enter into the command box would be:<br>
+`add n/Lineup Larry p/91234567 a/UTown Residences tg/lineuplarry mod/CS2103T mod/CS2101 cca/Art Club`
+
+Go ahead and hit enter once you've entered the command. If you have a new contact added in the Contact List as follows:<br>
+![NewContactTutorial](images/NewContactTutorial.png)
+
+Congratulations! You have successfully added your first contact!
+
+There are many other features in ConnectUS. Do refer to the [Features](#4-features) below for details on each feature and command!
+
+[↑ Back to top of section](#3-quick-start-guide)
+
+[↑ Back to table of contents](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 4. Features
+
+ConnectUS has many features to assist you in your contact management needs. The exhaustive list of supported commands are as follows:
+
+- [4.1 Viewing help: `help`](#41-viewing-help-help)
+- [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
+- [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
+- [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
+- [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
+- [4.6 Adding additional tags to a contact: `add-t`](#46-adding-additional-tags-to-a-contact-add-t)
+- [4.7 Deleting tags from a contact: `delete-t`](#47-deleting-tags-from-a-contact-delete-t)
+- [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
+- [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
+- [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
+- [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+- [4.11 Exiting the program: `exit`](#412-exiting-the-program-exit)
+- [4.12 Saving the data](#413-saving-the-data)
+- [4.13 Editing the data file](#414-editing-the-data-file)
+
+<div style="page-break-after: always"></div>
+
+## 4.1 Viewing help: `help`
+
+Format: `help [COMMAND]`
+
+> Opens up the help window, or returns the usage instructions of a specific command.
+
+If you are lost while using ConnectUS, simply use the `help` command! Using the `help` command alone will show a message explaining how to access this User Guide.
+
+![HelpMessage](images/helpMessage.png)
+
+<div style="page-break-after: always"></div>
+
+If you want to know the usage instructions of a specific command, simply use `help [COMMAND]`, where `[COMMAND]` is the command that you need help with. There will be feedback from the command result feedback box if the command is successfully retrieved.
+
+![HelpCommandRetrieveUsage](images/HelpCommandRetrieveUsage.png)
+
+Examples: `help`, `help add`, `help list`
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.2 Listing all contacts: `list`
 
 Format: `list`
 
-### Editing a person : `edit`
+> Shows a list of all contact in the ConnectUS app.
 
-Edits an existing person in the ConnectUS app.
+Use `list` when you need to view a list of *all* the contacts in your ConnectUS. The `list` command can be used directly without any additional parameters.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [t/TAG]…​`
+[↑ Back to feature list](#4-features)
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* You can remove all the person’s tags by typing `edit -t` without specifying any tags after it.
-
-Examples:
-* `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
-* `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the ConnectUS app.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** e.g. 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the ConnectUS app.
-* `search Betsy` followed by `delete 1` deletes the 1st person in the results of the `search` command.
-
-### Searching for personal information : `search`
-
-Finds persons whose information fields and tags contain any of the given keywords.
-
-Format: `search KEYWORD`
-
-Examples:
-* `search january` returns all persons whose information fields contain the keyword `january`.
-* `search alex may` returns all persons whose information fields contain the keywords `alex` and `may`.
-
-* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the persons whose information fields contain the keyword `january`.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the ConnectUS app.
+## 4.3 Clearing all entries: `clear`
 
 Format: `clear`
 
-### Exiting the program : `exit`
+> Clears all contacts from the ConnectUS app.
 
-Exits the program.
+ConnectUS comes with a set of default contacts. If you want to remove all default contacts, or you want to restart your ConnectUS contact list, you can use the `clear` command without any additional parameters.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
+</div>
+
+<div style="page-break-after: always"></div>
+
+**Clear Example:**
+
+**Input in Command Box:** `clear`
+
+**Result:**<br>![ClearCommand](images/ClearCommand.png)
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.4 Adding a contact: `add`
+
+Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [ccapos/CCA_POSITION]…​ [r/REMARK]…​`
+
+>Adds a contact to the ConnectUS app.
+ 
+You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (including 0)
+</div>
+
+<div style="page-break-after: always"></div>
+
+**Add Example 1:**
+
+**Input in Command Box:** `add n/James`
+
+**Result:**<br>![AddContactExample1](images/AddContactExample1.png)
+
+<div style="page-break-after: always"></div>
+
+**Add Example 2:**
+
+**Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers r/Year 2 b/01/01/2000`
+
+**Result:**<br>![AddContactExample2](images/AddContactExample2.png)
+
+Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
+</div>
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.5 Editing a contact: `edit`
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`
+
+>Edits an existing contact in the ConnectUS app.
+
+If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">Adding Additional Tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">Deleting Existing Tags</a> instead!
+</div>
+
+The `edit` command:
+
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (e.g. `n/NAME`, `tg/TELEGRAM`).
+* Existing values will be updated to the input values.
+
+<div style="page-break-after: always"></div>
+
+**Edit Example:**
+
+**Input in Command Box:** `edit 1 p/12345678 e/james@example.com` 
+
+**Before:**<br>![EditContactExampleBefore](images/EditContactExampleBefore.png)
+
+**After:**<br>![EditContactExampleAfter](images/EditContactExampleAfter.png)
+
+Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you edit an existing contact.
+</div>
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.6 Adding additional tags to a contact: `add-t`
+
+Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`
+
+> Adds a tag to an existing contact.
+
+If you want to add a new tag to a contact, you can use the `add-t` command.
+
+The `add-t` command:
+* Adds a tag to the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_NAME`).
+* A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
+
+<div style="page-break-after: always"></div>
+
+**Add Tag Example:**
+
+**Input in Command Box:** `add-t 1 r/friends mod/CS2103T`
+
+**Before:**<br>![AddTagBefore](images/AddTagBefore.png)
+
+**After:**<br>![AddTagAfter](images/AddTagAfter.png)
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.7 Deleting tags from a contact: `delete-t`
+
+Format: `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [ccapos/CCA_POSITION_INDEX]`
+
+> Deletes an existing tag from an existing contact.
+
+If you want to delete an existing tag from a contact, you can use the `delete-t` command.
+
+The `delete-t` command:
+* Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX` and `CCA_POSITION_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
+
+![DeleteTagIndexContactExample](images/johndoe.png)
+
+* All indexes (i.e. `PERSON_INDEX`, `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX`, `CCA_POSITION_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `CCA_POSITION_INDEX`).
+* The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
+
+<div style="page-break-after: always"></div>
+
+**Delete Tag Example:**
+
+**Input in Command Box:** `delete-t 1 mod/1`
+
+**Before:**<br>![AddTagAfter](images/AddTagAfter.png)
+
+**After:**<br>![DeleteTagAfter](images/DeleteTagAfter.png)
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.8 Deleting a contact: `delete`
+
+Format: `delete PERSON_INDEX`
+
+> Deletes the specified contact from the ConnectUS app.
+
+If you wish to remove a contact, use the `delete` command.
+
+The `delete` command:
+
+* Deletes the contact at the specified `PERSON_INDEX`.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** e.g. 1, 2, 3, …​
+
+<div style="page-break-after: always"></div>
+
+**Delete Example 1:**
+
+`list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
+
+**Before:**<br>![DeleteBefore1](images/DeleteBefore1.png)
+
+**After:**<br>![DeleteAfter1](images/DeleteAfter1.png)
+
+<div style="page-break-after: always"></div>
+
+**Delete Example 2:**
+
+`search Alex` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
+
+**Before:**<br>![DeleteBefore2](images/DeleteBefore2.png)
+
+**After:**<br>![DeleteAfter2](images/DeleteAfter2.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
+</div>
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.9 Searching for contact information: `search`
+
+Format: `search KEYWORD`
+
+> Finds all contacts whose information fields and tags contain any of the given keywords.
+
+Examples:
+* `search january` returns all contacts whose information fields contain the keyword `january`.
+* `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
+
+* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
+
+<div style="page-break-after: always"></div>
+
+**Search Example:**
+
+**Input in Command Box:** `search january`
+
+**Result:**<br>![SearchCommandExample](images/SearchCommandExample.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
+</div>
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.10 Opening a social media platform: `open`
+
+Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
+
+> Opens the respective social media platform of an existing contact.
+
+You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
+</div>
+
+**Open Example:**
+
+**Input in Command Box:** `open 1 tg/`
+
+**Result:**<br>![OpenContactExample](images/johndoe.png)
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.11 Sending chats to a contact: `chat`
+
+Format: `chat PERSON_INDEX wa/ m/`
+
+> Sends a chat to an existing contact.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
+</div>
+
+**Chat Example:**
+
+**Input in Command Box:** `chat 1 [wa/] [tg/] m/hello world!`
+
+**Result:**<br>![ChatContactExample](images/johndoe.png)
+
+[↑ Back to feature list](#4-features)
+
+<div style="page-break-after: always"></div>
+
+## 4.12 Exiting the program: `exit`
 
 Format: `exit`
 
-### Saving the data
+> Exits the program.
 
-ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+When you are done with your contact management needs, you can exit ConnectUS with the `exit` command.
 
-### Editing the data file
+[↑ Back to feature list](#4-features)
 
-ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`. Advanced users are welcome to update data directly by editing that data file.
+## 4.13 Saving the data
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
+You won't ever need to worry about losing your contacts. ConnectUS automatically saves your data in the hard disk after any command that changes the data. There is no need to save manually.
+
+[↑ Back to feature list](#4-features)
+
+## 4.14 Editing the data file
+
+If you are an advanced user, you are welcome to update data directly by editing the data file.
+
+ConnectUS data is saved as a <u>JSON</u> file `[JAR file location]/data/ConnectUS.json`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run. Do remember to keep a backup of your data before attempting any changes in this manner!
 </div>
 
-### Additional information regarding specific fields
+[↑ Back to feature list](#4-features)
 
-**Name:**
+[↑ Back to table of contents](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 5. Information Fields & Prefixes
+
+ConnectUS uses prefixes to distinguish between the different types of information fields you supply. The exhaustive list of information fields supported and their respective prefixes are as follows:
+
+- [5.1 Name: `n/`](#51-name-n)
+- [5.2 Phone: `p/`](#52-phone-p)
+- [5.3 Email: `e/`](#53-email-e)
+- [5.4 Address: `a/`](#54-address-a)
+- [5.5 Instagram: `ig/`](#55-instagram-ig)
+- [5.6 Telegram: `tg/`](#56-telegram-tg)
+- [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
+- [5.8 Birthday: `b/`](#58-birthday-b)
+- [5.9 Tags](#59-tags)
+  - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
+  - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
+  - [5.9.3 CCA Position Tags: `ccapos/`](#593-cca-position-tags-ccapos)
+  - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
+
+<div style="page-break-after: always"></div>
+
+## 5.1 Name: `n/`
+>Name refers to a contact's name.
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
-* Names should only contain alphanumeric characters and spaces.
+* Names should only contain <u>alphanumeric</u> characters and spaces.
 
-**Phone:**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+## 5.2 Phone: `p/`
+>Phone refers to a contact's phone number.
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
-* Phone numbers should only contain numeric characters.
+* Phone numbers should only contain <u>numeric</u> characters.
 * Phone numbers should be at least 3 digits long.
 
-**Email**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
+
+## 5.3 Email: `e/`
+>Email refers to a contact's email address.
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
-    * The local-part should only contain alphanumeric characters and these special characters:`+_.-`. The local-part may not start or end with any special characters.
+    * The local-part should only contain <u>alphanumeric</u> characters and these <u>special characters</u>:`+_.-`. The local-part may not start or end with any special characters.
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
       The domain name must:
         - end with a domain label at least 2 characters long
-        - have each domain label start and end with alphanumeric characters
+        - have each domain label start and end with <u>alphanumeric</u> characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-**Address**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+## 5.4 Address: `a/`
+>Address refers to a contact's home address.
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
-* Addresses can take any values, including special characters.
+* Addresses can take any values, including <u>special characters</u>.
 
-**Instagram**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
+
+## 5.5 Instagram: `ig/`
+>Instagram refers to a contact's Instagram username.
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
-* Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
-    * The username should only contain alphanumeric characters and the special character: `.`.
+* Instagram usernames should be of the format `john.123.doe` and adhere to the following constraints:
+    * The username should only contain <u>alphanumeric</u> characters and the special character: `.`.
     * The dots `.` must not be consecutive or at the end.
     * The username should contain at most 30 characters.
 
-**Telegram**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+## 5.6 Telegram: `tg/`
+>Telegram refers to a contact's Telegram username.
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
-* Telegram usernames should be of the format johndoe and adhere to the following constraints:
-    * The username should only contain alphanumeric characters and the special character `_`.
+* Telegram usernames should be of the format `johndoe` and adhere to the following constraints:
+    * The username should only contain <u>alphanumeric</u> characters and the special character `_`.
     * The username should contain at least 5 characters.
 
-**WhatsApp**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
+
+## 5.7 WhatsApp: `wa/`
+>WhatsApp refers to a contact's WhatsApp phone number.
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
-    * Phone numbers should only contain numeric characters.
+    * Phone numbers should only contain <u>numeric</u> characters.
     * Phone numbers should be at least 3 digits long.
 
-**Birthday**
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+## 5.8 Birthday: `b/`
+>Birthday refers to a contact's birthday date.
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
-**Module**
-* Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
+
+## 5.9 Tags
+
+Tags are used to assign additional information to a contact. 
+
+There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA Tags, and Remark Tags.
+
+![TagTypes](images/TagTypes.png)
+
+
+### 5.9.1 Module Tags: `mod/`
+>Module tags refer to modules that you can assign to a contact to keep track of what modules that contact takes.
+* <u>Module</u> is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
-* Module names should be alphanumeric.
-* A person can have any number of modules assigned to it.
+* Module names should be <u>alphanumeric</u>, and can contain spaces.
+* A contact can have any number of modules assigned to it.
 
-**Tag**
-* Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
-* The prefix for a tag is `t/`.
-* Tag names should be alphanumeric.
-* A person can have any number of tags assigned to it.
+[↑ Back to prefix list](#5-information-fields--prefixes)
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
-## FAQ
+### 5.9.2 CCA Tags: `cca/`
+>CCA tags refer to CCAs that you can assign to a contact to record keep track of CCAs that contact is in.
+* <u>CCA</u> is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
+* The prefix for a CCA is `cca/`.
+* CCA names should be <u>alphanumeric</u>, and can contain spaces.
+* A contact can have any number of CCAs assigned to it.
+
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+
+### 5.9.3 CCA Position Tags: `ccapos/`
+>CCA Position tags refer to CCA Positions that you can assign to a contact to keep track of the positions that the contact holds in their various CCAs.
+* CCA Position is an *optional* field, i.e. a contact can exist even if it does not have a CCA position.
+* The prefix for a module is `ccapos/`.
+* CCA Position names should be <u>alphanumeric</u>, and can contain spaces.
+* A contact can have any number of CCA Positions assigned to it.
+
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
+
+### 5.9.4 Remark Tags: `r/`
+>Remark tags refer to any additional remarks you would like to assign to a contact to keep track of any information you deem relevant and important.
+* Remark is an *optional* field, i.e. a contact can exist even if it does not have a remark.
+* The prefix for a remark is `r/`.
+* Remark names should be <u>alphanumeric</u>, and can contain spaces.
+* A contact can have any number of remarks assigned to it.
+
+**Why do we need remark tags if we already have other kinds of tags?**
+* Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
+* If a tag you want to add to a contact does not exist, you can use the remark tag. 
+* The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+We are aware that you can assign any kinds of tags to a contact (e.g. using the Module Tag, but not entering an existing module). These tags are primarily to aid you in distinguishing the information that you assign to a contact via the different colours. While less intuitive, you are free to use these tags for any information you want to assign to a contact.
+</div>
+
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ConnectUS home folder.
 
---------------------------------------------------------------------------------------------------------------------
+**Q**: Why do we need remark tags if we already have other kinds of tags?<br>
+**A**: Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc. If a tag you want to add to a contact does not exist, you can use the remark tag. The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
-## Command summary
+**Q**: Instead of using the tags for assigning modules and CCAs, can I use it for other information instead?<br>
+**A**: We are aware that you can assign any kinds of tags to a contact (e.g. using the Module Tag, but not entering an existing module). These tags are primarily to aid you in distinguishing the information that you assign to a contact via the different colours. While less intuitive, you are free to use these tags for any information you want to assign to a contact.
 
-| Action     | Format                                                                                                                                                                       | Examples                                                                               |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​`                                            | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
-| **Clear**  | `clear`                                                                                                                                                                      |                                                                                        |
-| **Delete** | `delete INDEX`                                                                                                                                                               | `delete 3`                                                                             |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
-| **List**   | `list`                                                                                                                                                                       |                                                                                        |
-| **Help**   | `help`                                                                                                                                                                       |                                                                                        |
-| **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
-| **Exit**   | `exit`                                                                                                                                                                       |                                                                                        |
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 7. Command Summary
+
+| Command               | Format                                                                                                                                                  | Example                                                                               |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a Contact**     | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [ccapos/CCA_POSITION]…​` | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
+| **Add Tag**           | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`                                                                            | `add-t 1 r/friends mod/CS2103T`                                                       |
+| **Chat with Contact** | `chat PERSON_INDEX wa/ m/`                                                                                                                              | `chat 1 wa/ m/hello world!`                                                           |
+| **Clear Data**        | `clear`                                                                                                                                                 |                                                                                       |
+| **Delete a Contact**  | `delete PERSON_INDEX`                                                                                                                                   | `delete 3`                                                                            |
+| **Delete Tag**        | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`                                                                         | `delete-t 1 mod/1`                                                                    |
+| **Edit a Contact**    | `edit PERSON_INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`                                    | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
+| **Help**              | `help [COMMAND]`                                                                                                                                        | `help`, `help add`                                                                    |
+| **List All Contacts** | `list`                                                                                                                                                  |                                                                                       |
+| **Open Social Media** | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                                   | `open 1 tg/`                                                                          |
+| **Search**            | `search KEYWORDS`                                                                                                                                       | `search alex january`                                                                 |
+| **Exit**              | `exit`                                                                                                                                                  |                                                                                       |
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 8. Prefix Summary
+
+| Information Field    | Prefix    | Example                        |
+|----------------------|-----------|--------------------------------|
+| **Address**          | `a/`      | `a/Blk 456, Den Road, #01-355` |
+| **Birthday**         | `b/`      | `b/01/01/2000`                 |
+| **CCA Tag**          | `cca/`    | `cca/NUS Hackers`              |
+| **Email**            | `e/`      | `e/johndoe@example.com`        |
+| **Instagram**        | `ig/`     | `ig/john.doe`                  |
+| **CCA Position Tag** | `ccapos/` | `ccapos/Director`              |
+| **Module Tag**       | `mod/`    | `mod/CS2103T`                  |
+| **Name**             | `n/`      | `n/John Doe`                   |
+| **Phone**            | `p/`      | `p/91234567`                   |
+| **Remark Tag**       | `r/`      | `r/School of Computing`        |
+| **Telegram**         | `tg/`     | `tg/johndoe`                   |
+| **WhatsApp**         | `wa/`     | `wa/91234567`                  |
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 9. Glossary
+
+### A
+> **Alphanumeric:**
+> Alphabet letters and numbers only.
+
+### C
+> **CCA:**
+> Co-curricular activities that students participate in.
+> 
+> **Command Line Interface (CLI):**
+> A text-based user interface used to run programs.
+> 
+> **Command:**
+> Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
+> 
+> **ConnectUS.jar:**
+> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
+
+### F
+> **Format:**
+> In this User Guide, the format of a command is the correct input usage of a command.
+
+### G
+> **GitHub:**
+> A web-based version control and collaboration platform for software developers.
+> 
+> **Graphical User Interface (GUI):**
+> A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
+
+### J
+>**Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
+> 
+> **JavaFX:**
+> A Java library used for creating and delivering desktop applications.
+> 
+> **JSON:**
+> Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
+
+### M
+> **Module:**
+> Modules are courses that students take at the National University of Singapore.
+
+### N
+> **Numeric:**
+> Numbers only.
+> 
+> **NUS:**
+> Short for the National University of Singapore. 
+> 
+
+### P
+> **Parameter:**
+> Parameters are user inputs that ConnectUS requires to perform certain commands.
+
+### S
+> **School of Computing:**
+> Also known as SoC. A computing school in the National University of Singapore.
+> 
+> **Special Characters:**
+> Characters that are not alphabetic or numeric.
+
+<div style="page-break-after: always"></div>
+
+### U
+> **UTown Residence:**
+> Also known as UTR. On-campus accommodation for students at the National University of Singapore.
+
+[↑ Back to top](#table-of-contents)
