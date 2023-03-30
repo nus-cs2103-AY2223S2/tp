@@ -30,13 +30,13 @@ OfficeConnect offers a solution to these problems by providing better visibility
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listp` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
+   * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to OfficeConnect.
 
-   * `add s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
+   * `addp s/Complete slides c/Finish up slides for meeting st/false` : Adds a task with title `Complete slides` to OfficeConnect.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `deletep 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -53,7 +53,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -67,7 +67,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -83,33 +83,34 @@ A hierarchical view on the left window lists the different available commands, w
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `addp`
 
 Adds a person to OfficeConnect.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons : `listp`
 
 Shows a list of all persons in OfficeConnect.
 
-Format: `list`
+Format: `listp`
 
-### Editing a person : `edit`
+### Editing a person : `editp`
 
 Edits an existing person in OfficeConnect.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
+  The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -117,14 +118,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `editp 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findp`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -134,23 +135,23 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findp John` returns `john` and `John Doe`
+* `findp alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findp alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `deletep`
 
 Deletes the specified person from OfficeConnect.
 
-Format: `delete INDEX`
+Format: `deletep INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listp` followed by `deletep 2` deletes the 2nd person in the address book.
+* `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `findp` command.
 
 ### Clearing all entries : `clear`
 
@@ -178,43 +179,43 @@ If your changes to the data file makes its format invalid, OfficeConnect will di
 
 # Command Summary For OfficeConnect
 
-## Adding a Task: `addtask`
+## Adding a Task: `addt`
 
 Adds a task to OfficeConnect.
 
-Format: `addtask title/TITLE c/CONTENT st/STATUS`
+Format: `addt title/TITLE c/CONTENT st/STATUS`
 
 Examples:
-- `addtask title/Complete slides c/Finish slides for meeting st/false`
+- `addt title/Complete slides c/Finish slides for meeting st/false`
 
-## Deleting a Task: `deletetask`
+## Deleting a Task: `deletet`
 
 Deletes the specified task from OfficeConnect
 
-Format: `deletetask INDEX`
+Format: `deletet INDEX`
 
 * Deletes the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
 * The INDEX must be a positive integer 1, 2, 3...
 
 Examples:
-- `listtasks` followed by `delete 2` deletes the 2nd task in the task list.
-- `findtasks book` followed by `delete 1` deletes the 1st task in the results of the `findtask` command.
+- `listt` followed by `deletet 2` deletes the 2nd task in the task list.
+- `findt book` followed by `deletet 1` deletes the 1st task in the results of the `findt` command.
 
-## Locating a Specific Task: `findtask`
+## Locating a Specific Task: `findt`
 
 Finds the task based on given keyword.
 
-Format: `findtask KEYWORD [MORE_KEYWORDS]`
+Format: `findt KEYWORD [MORE_KEYWORDS]`
 
 Examples:
-- `findtask complete`
+- `findt complete`
 
-## Listing the Tasks: `listtask`
+## Listing the Tasks: `listt`
 
 Shows a list of all tasks in OfficeConnect.
 
-Format: `listtask`
+Format: `listt`
 
 ## Assigning a Task to a Person: `assign`
 
@@ -265,28 +266,27 @@ Format: `unmark INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3...
 
-## Find tasks assigned to a Person: `find`
+## Find Tasks assigned to a Person: `findp`
 
 Shows a list of tasks assigned to an existing person in OfficeConnect.
 
-Format: `find NAME`
+Format: `findp NAME`
 
 * Finds the list of tasks that are assigned to the person with the specified name.
 
 Examples:
-- `find John Cena` displays all tasks that are assigned to him.
+- `findp John Cena` displays all tasks that are assigned to him.
 
-## Find tasks assigned to a Person: `findtask`
-
+## Find Persons assigned to a Task: `findt`
 
 Shows a list of persons assigned to an existing task in OfficeConnect.
 
-Format: `findtask TITLE`
+Format: `findt TITLE`
 
 * Finds the list of persons who are assigned to the task with the specified title.
 
 Examples:
-- `findtask CS2103 TP` displays everyone who are assigned to this task.
+- `findt CS2103 TP` displays everyone who are assigned to this task.
 
 ### Archiving data files `[coming in v1.3]`
 
@@ -299,24 +299,23 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OfficeConnect home folder.
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                     |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**    | `addtask title/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask title/Draft proposal c/Complete proposal by 1st March st/false`                                        |
-| **Assign**      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                               |
-| **Clear**       | `clear`                                                                                                                                                              |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**        | `find NAME`<br> e.g., `find James Jake`                                                                                                                              |
-| **Find Task**   | `findtask TITLE`<br> e.g., `findtask CS2103 TP`                                                                                                                      |
-| **Mark Task**   | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                      |
-| **Unmark Task** | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                 |
-| **Help**        | `help`                                                                                                                                                               |
-| **List**        | `list`                                                                                                                                                               |
-| **List All**    | `listall`                                                                                                                                                            |
-| **List Task**   | `listtask`                                                                                                                                                           |
+| Action            | Format, Examples                                                                                                                                                       |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**    | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Task**      | `addt title/TITLE c/CONTENT st/STATUS` <br> e.g., `addt title/Draft proposal c/Complete proposal by 1st March st/false`                                                |
+| **Assign**        | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                 |
+| **Clear**         | `clear`                                                                                                                                                                |
+| **Delete Person** | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                  |
+| **Delete Task**   | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                  |
+| **Edit Person**   | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find Person**   | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                              |
+| **Find Task**     | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                              |
+| **Mark Task**     | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                        |
+| **Unmark Task**   | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                   |
+| **Help**          | `help`                                                                                                                                                                 |
+| **List Person**   | `listp`                                                                                                                                                                |
+| **List Task**     | `listt`                                                                                                                                                                |
+| **List All**      | `listall`                                                                                                                                                              |
