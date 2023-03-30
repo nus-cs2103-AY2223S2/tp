@@ -26,46 +26,29 @@ import seedu.recipe.ui.util.FieldsUtil;
  */
 public class AddRecipeForm extends UiPart<Region> {
     private static final String FXML = "AddRecipeForm.fxml";
-
-    @FXML
-    private TextField nameField;
-
-    @FXML
-    private TextField durationField;
-
-    @FXML
-    private TextField portionField;
-
-    @FXML
-    private TextField tagsField;
-
-    @FXML
-    private FlowPane tags;
-
-    @FXML
-    private VBox ingredientsBox;
-
-    @FXML
-    private VBox stepsBox;
-
-    @FXML
-    private Region buttonCtrLeft;
-
-    @FXML
-    private Button saveButton;
-
-    @FXML
-    private Button cancelButton;
-
     //Logic executors and system logging
     private final Logger logger = LogsCenter.getLogger(getClass());
-
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField durationField;
+    @FXML
+    private TextField portionField;
+    @FXML
+    private TextField tagsField;
+    @FXML
+    private FlowPane tags;
+    @FXML
+    private VBox ingredientsBox;
+    @FXML
+    private VBox stepsBox;
+    @FXML
+    private Region buttonCtrLeft;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button cancelButton;
     private StringBuilder commands;
-
-    @FunctionalInterface
-    interface CustomFocusChangeListener {
-        void onFocusChange(boolean newValue);
-    }
 
     /**
      * Creates a new AddRecipeForm instance.
@@ -195,12 +178,9 @@ public class AddRecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add Recipe");
-        window.setResizable(false);
 
         //Individual elements
-        VBox pane = new VBox(getRoot());
-        pane.setStyle("-fx-background-color: #3f3f46");
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(getRoot());
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();
@@ -208,5 +188,10 @@ public class AddRecipeForm extends UiPart<Region> {
         });
         window.setScene(scene);
         window.showAndWait();
+    }
+
+    @FunctionalInterface
+    interface CustomFocusChangeListener {
+        void onFocusChange(boolean newValue);
     }
 }
