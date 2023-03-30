@@ -264,7 +264,7 @@ public class PdfConverter {
     public void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
                                             int fontSize) throws IOException {
         float yFinal = this.y;
-        ObservableList<Score> sortedScoreList = scores.getSortedScoreList();
+        ObservableList<Score> sortedScoreList = scores.getInternalList();
         for (int i = 0; i < scores.size(); i++) {
             Score currentScore = sortedScoreList.get(i);
             double value = currentScore.getValue().value;

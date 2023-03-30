@@ -238,6 +238,8 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        importWindow.hide();
+        exportWindow.hide();
         personListPanel.hideExportProgressWindow();
         primaryStage.hide();
     }
