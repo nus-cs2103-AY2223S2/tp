@@ -189,7 +189,7 @@ Format: `template TEMPLATE_NAME NAME`
 Examples:
 * `template Wrestler John Cena` will create a new `Character` named `John Cena` using the template called `Wrestler`
 
-### Show templates : `show templates`
+### Show templates : `show`
 
 Shows all template names.  
 
