@@ -265,7 +265,7 @@ Examples (The following results are based of the sample data provided):
 
 Above is the execution result of input `find i/S1234567A`.
 
-### Backuping patient records: `backup`
+### Backing up patient records: `backup`
 
 Backs up the patient records to a specified slot represented by an index.
 
