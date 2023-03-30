@@ -191,20 +191,31 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 ### Statistics Dashboard
 
 Statistics Dashboard displays statistics regarding Projects. There are three
-main statistics: projects that are due within one week, projects that are overdue
+main statistics: projects that are due soon, projects that are overdue
 and a pie chart showing progress overview. The goal of this feature is to provide users
 with useful information related to productivity to make adjustments accordingly.
 
-For projects that are due within one week, only top three projects that match the
-condition will be displayed to ensure that users can focus on the most urgent projects.
+For projects that are due soon, all projects that have deadlines within the current week 
+and next week will be displayed (Week starts from Sunday here). For example, if the current 
+date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be 
+shown on the Due soon dashboard.
 
 For overdue list, all overdue projects will be displayed to make sure that users can
-keep track of all the deadlines they have missed.
+keep track of all the deadlines they have missed. Any deadlines before the current date will be 
+counted as overdue. For example, if current date is 11/04/2023, projects with deadlines on 11/04/2023
+will not be shown in Overdue list, but projects with deadlines on 10/04/2023 will be shown in the Overdue 
+list. 
+
+Both of due and overdue lists utilize LocalDate library in Java to perform various operations on dates. 
 
 For progress overview pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
 The size of each segment is proportional to the number of projects with its corresponding segment
 label.
+<div markdown="span" class="alert alert-danger">
+:warning: The color of each segment is not related to the status. 
+</div>
+
 
 #### Updating the UI
 
@@ -493,7 +504,32 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 ## Testing
 
-@ruby
+### Running tests
+
+There are two ways to run tests.
+
+* **Method 1: Using IntelliJ JUnit test runner**
+    * To run all tests, right-click on the `src/test/java` folder and choose `Run 'All Tests'`
+    * To run a subset of tests, you can right-click on a test package,
+      test class, or a test and choose `Run 'ABC'`
+* **Method 2: Using Gradle**
+    * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
+
+<div markdown="span" class="alert alert-secondary">:link: **Link**: Read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more about using Gradle.
+</div>
+
+### Types of tests
+
+This project has three types of tests:
+
+1. *Unit tests* targeting the lowest level methods/classes.<br>
+   e.g. `mycelium.mycelium.commons.StringUtilTest`
+2. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
+   e.g. `mycelium.mycelium.storage.StorageManagerTest`
+3. Hybrids of *unit* and *integration tests*. These test are checking multiple code units as well as how the are connected together.<br>
+   e.g. `mycelium.mycelium.logic.LogicManagerTest`
+
+
 
 ## DevOps
 
@@ -531,6 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | * * *    | user                   | create new projects and contacts.                                                                              |                                                                                      |
 | * * *    | user                   | delete projects and contacts I no longer need.                                                                 |                                                                                      |
 | * * *    | user                   | use the application on different platforms and operating systems.                                              |                                                                                      |
+| * * *    | user                   | update details of existing projects and contacts                                                               | I can keep up with changing requirements of clients.                                 |
 | *        | new user               | experience an intuitive user-interface. There should be help messages to guide me around the features.         | I can refer to instructions when I forget how to use the App                         |
 | *        | user                   | efficiently log information about a new client                                                                 | I minimise the effort and time needed to start a project.                            |
 | *        | new user               | login using my GitHub account                                                                                  | it is convenient to login.                                                           |
@@ -551,7 +588,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | *        | user                   | follow the work of other developers                                                                            | I can find opportunities to collaborate.                                             |
 | *        | user                   | use the app to estimate the amount of time that I will need for a project                                      | I can determine if I have the capacity to take on new projects.                      |
 | *        | user                   | keep in contact with other developers                                                                          | I can work on larger projects efficiently.                                           |
-| *        | user                   | update details of existing projects and contacts                                                               | I can keep up with changing requirements of clients.                                 |
 | *        | user                   | personalize my contacts                                                                                        | I can know each client better                                                        |
 | *        | user                   | export data from the product in different formats, such as CSV or Excel                                        | I can use the information elsewhere.                                                 |
 | *        | user                   | securely store confidential information, such as client details                                                | I can keep sensitive information safe.                                               |
