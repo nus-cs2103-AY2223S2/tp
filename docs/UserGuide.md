@@ -195,6 +195,15 @@ The Command Box is where you can input the [Commands](#commands) when using `Edu
 
 The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
 
+<div markdown="span" class="alert alert-success">
+
+:bulb: ** Pro Tip:**
+Did you know that the UP and DOWN arrow keys can be used to quickly access previously typed commands in the Command Box? This feature has been specially designed for you to save time and increase your productivity.
+
+In the current session, all of your previously typed commands can be accessed using the UP and DOWN arrow keys. Additionally, we automatically save up to 100 of your most recent commands to a file for your convenience in the next session. This way, you can easily refer back to your previous commands without having to retype them, saving you time and increasing your efficiency.
+
+</div>
+
 ### Command Response
 
 The Command Response box is where you will receive feedback for any command you execute. It could give you some information if the command execution was successful or if you had executed a command of an invalid format.
@@ -698,6 +707,16 @@ will filter out contacts who have are tagged with CCA and CS2100.
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+**:warning: Filtered list**<br>
+
+* The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
+  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
+* If you want to run commands related to persons not in the filtered list, just run the `list` command to obtain the full list of your contacts.
 
 </div>
 
