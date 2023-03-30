@@ -116,6 +116,9 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
+        if (!Phone.isMoreThanMaxDigits(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_EXCEED_MAX_DIGITS);
+        }
         return new Phone(trimmedPhone);
     }
 
@@ -160,6 +163,9 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        if (!Tag.isMoreThanMaxLetters(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_EXCEED_MAX_LETTERS);
         }
         return new Tag(trimmedTag);
     }
