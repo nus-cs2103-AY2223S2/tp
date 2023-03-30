@@ -99,7 +99,7 @@ public class EditBookCommand extends Command {
     /**
      * Creates and returns a {@code Book} with the details of {@code bookToEdit}
      * edited with {@code editBookDescriptor}.
-     * 
+     *
      * @throws CommandException
      */
     private static Book createEditedBook(Book bookToEdit, EditBookDescriptor editBookDescriptor)
