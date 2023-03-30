@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,8 @@ public class Task {
     private Status status;
     private Priority priority;
     private Set<String> labels;
+
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Every field must be present and not null.
@@ -43,6 +46,10 @@ public class Task {
 
     public LocalDateTime getDeadline() {
         return deadline;
+    }
+
+    public String getDeadlineToString() {
+        return dateTimeFormatter.format(deadline);
     }
 
     public void setDeadline(LocalDateTime deadline) {
