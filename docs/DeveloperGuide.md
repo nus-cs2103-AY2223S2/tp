@@ -926,3 +926,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 [↑ Back to top](#table-of-contents)
+
