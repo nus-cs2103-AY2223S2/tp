@@ -53,4 +53,21 @@ public class SortCommand extends Command {
         model.sort(toSort);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.type));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        // state check
+        SortCommand s = (SortCommand) other;
+        return type.equals(s.type);
+    }
 }
