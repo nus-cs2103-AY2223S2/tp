@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+# GoodMatch
+
 ## **Overview**
 
 GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
@@ -27,15 +29,21 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 
 ---
 
-### Purpose
+### Purpose of this guide
 
-Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process and find the best candidates for your company.
+Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process. We aim to help you find the best candidates for your company. 
 
 ### How to use this guide
 
 To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
 Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+
+### Legends
+
+ℹ️ **Notes**: You can find additional information about the command or feature here.
+
+❗ **Caution**: Be careful not to make this deadly mistake.
 
 ---
 
