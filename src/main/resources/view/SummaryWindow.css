@@ -1,0 +1,7 @@
+#countMessage, #tagMessage, #companies, #potentialEarnings {
+    -fx-text-fill: white;
+}
+
+#summaryMessageContainer {
+    -fx-background-color: derive(#1d4543, 0%);
+}
