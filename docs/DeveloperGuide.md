@@ -905,6 +905,8 @@ Use case ends.
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Extensions:**
 
 * 5a. SOCket detects a syntax error in the entered date.
@@ -952,15 +954,16 @@ Similar to **UC04 Sort Contacts**, except,
 * the list being sorted is the list of projects instead of contacts
 * the default sort when no category is provided is by the deadline of the project instead of the name.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC20 Assigning a member from a project**
+1. _{ to be added }_
 
 **Use case: UC21 Unassigning a member from a project**
 1. User requests to remove a member from a project.
 2. SOCket removes the member from the project.
 
    Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Extensions**
 
