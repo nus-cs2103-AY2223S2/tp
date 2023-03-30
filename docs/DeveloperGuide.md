@@ -223,11 +223,15 @@ Developer Guide.
   </tr>
 </table>
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+<br>
+<br>
 
 [Scroll back to top](#table-of-contents)
 
