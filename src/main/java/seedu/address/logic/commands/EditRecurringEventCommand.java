@@ -18,7 +18,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
-import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -91,6 +90,8 @@ public class EditRecurringEventCommand extends Command {
 
         editedRecurringEvent.checkPeriod();
 
+        RecurringEventList.checkForClashesInRecurringEvent(personToEdit, editedRecurringEvent, originalEvent);
+
         RecurringEventList.listConflictedEventWithIsolated(editedRecurringEvent, personToEdit.getIsolatedEventList());
 
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
@@ -105,8 +106,7 @@ public class EditRecurringEventCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static RecurringEvent createEditedRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
-                                                             EditEventDescriptor
-                                                                     eventDescriptor) throws EventConflictException {
+                                                             EditEventDescriptor eventDescriptor) {
         assert personToEdit != null;
 
         String updatedEventName = eventDescriptor.getEventName().orElse(originalEvent.getEventName());
@@ -117,7 +117,6 @@ public class EditRecurringEventCommand extends Command {
         RecurringEvent newlyEditedRecurringEvent =
                 new RecurringEvent(updatedEventName, dayOfWeek, startTime, endTime);
 
-        RecurringEventList.checkForClashesInRecurringEvent(personToEdit, newlyEditedRecurringEvent, originalEvent);
 
         return newlyEditedRecurringEvent;
     }
