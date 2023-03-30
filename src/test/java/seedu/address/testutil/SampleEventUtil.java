@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGEVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 import static seedu.address.testutil.SampleDateTimeUtil.FIVE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.FOUR_O_CLOCK_VALID;
+import static seedu.address.testutil.SampleDateTimeUtil.SIX_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 
@@ -50,5 +51,8 @@ public class SampleEventUtil {
 
     public static final RecurringEvent SWIMMING_RECURRING_EVENT = new RecurringEvent("swimming",
             DayOfWeek.MONDAY, FOUR_O_CLOCK_VALID.toLocalTime(), FIVE_O_CLOCK_VALID.toLocalTime());
+
+    public static final RecurringEvent JOGGING_RECURRING_EVENT = new RecurringEvent("jogging",
+            DayOfWeek.MONDAY, FOUR_O_CLOCK_VALID.toLocalTime(), SIX_O_CLOCK_VALID.toLocalTime());
 
 }
