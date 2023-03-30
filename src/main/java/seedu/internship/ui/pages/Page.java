@@ -30,7 +30,7 @@ public abstract class Page extends UiPart<Region> {
             break;
         case CLASH:
             // Change this to commandResult.getClashingEvents() which returns HashMap<LocalDate, List<Events>>
-            resultPage = new ClashInfoPage(new HashMap<>());
+            resultPage = new ClashInfoPage(commandResult.getClashingEvents());
             break;
         case SHOW_INFO:
             resultPage = new InternshipInfoPage(commandResult.getInternship(), commandResult.getEvents());

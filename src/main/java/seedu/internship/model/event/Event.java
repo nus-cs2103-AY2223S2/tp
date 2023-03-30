@@ -151,6 +151,15 @@ public class Event {
                 && otherEvent.getName().equals(getName());
     }
 
+    public int compareTo(Event otherEvent) {
+        if (this.start.compareTo(otherEvent.start) == 0) {
+            // Start Timings are the same, if one event ends earlier than the other put it first
+            return this.end.compareTo(otherEvent.end);
+        } else {
+            return this.start.compareTo(otherEvent.start);
+        }
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
