@@ -163,7 +163,7 @@ The proposed undo/redo mechanism is facilitated by `TemporaryMemory`. It extends
 `TemporaryMemory` can be viewed as a stack which supports additional operations.
 
 1. `TemporaryMemory` only contains 10 saved iterations of the file. Therefore, older iterations are deleted.
-2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent iterations of the file are still stored in a temporary storage.
+2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent iterations of the file are still stored in an auxiliary storage component.
 3. When the user performs an undo and then edits/saves the file once again, more recent iterations of the file must be overwritten. Therefore, this temporary storage is cleared.
 
 `TemporaryMemory`, therefore, is a specialised memory stack, where each item is an iteration of the Dengue Hotspot Tracker file. To be precise, it is `TemporaryMemory` is a stack which holds as attributes a `Deque` for the primary memory stack and an auxiliary storage `Stack`, which temporarily stores popped items.
