@@ -44,6 +44,13 @@ public class Group {
     }
 
     /**
+     * Returns the modifiable internal list of students in this group.
+     */
+    public ObservableList<Student> getModifiableStudentList() {
+        return students.asModifiableObservableList();
+    }
+
+    /**
      * Returns an unmodifiable view of the list of students in this group.
      */
     public ObservableList<Student> getUnmodifiableStudentList() {
