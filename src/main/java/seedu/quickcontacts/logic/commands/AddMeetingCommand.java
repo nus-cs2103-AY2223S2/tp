@@ -48,6 +48,7 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
+    public static final String COMMAND_DESCRIPTION = "Adds a meeting to the address book.";
 
     private final Title meetingTitle;
     private final DateTime dateTime;

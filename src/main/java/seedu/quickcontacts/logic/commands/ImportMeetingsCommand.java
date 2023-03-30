@@ -14,6 +14,7 @@ import seedu.quickcontacts.model.meeting.exceptions.DuplicateMeetingException;
  */
 public class ImportMeetingsCommand extends Command {
     public static final String COMMAND_WORD = "importm";
+    public static final String COMMAND_DESCRIPTION = "Imports meetings in JSON format.";
     static final String DUPLICATE_MEETING = "Duplicate meeting found";
     static final String SUCCESS = "Meetings imported";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports meetings in JSON format\n" + "Parameters: "

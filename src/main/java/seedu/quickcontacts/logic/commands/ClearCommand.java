@@ -14,6 +14,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears all contacts and meetings from the address book.\n" + "Example: " + COMMAND_WORD;
+    public static final String COMMAND_DESCRIPTION = "Clears all contacts and meetings from the address book.";
 
 
     @Override
