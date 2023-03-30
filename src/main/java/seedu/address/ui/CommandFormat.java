@@ -12,16 +12,18 @@ public class CommandFormat {
 
     // All profile commands below
     // Sequence: NAME, PHONE, EMAIL, ADDRESS, DEPARTMENT, TAGS
-    // Compulsory ones: NAME, PHONE, DEPARTMENT
+    // Compulsory ones: NAME, PHONE
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
             "add",
             "Adds a person to ExecutivePro.",
-            "add [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…");
+            "n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] d/DEPARTMENT pr/PAYROLL [l/LEAVE COUNT] [dob/DATE OF BIRTH] "
+                    + "[doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat EDIT_COMMAND_FORMAT = new CommandFormat(
             "edit",
             "Edits an employee's details.",
-            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…");
+            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE COUNT]"
+                    + " [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat DELETE_COMMAND_FORMAT = new CommandFormat(
             "delete",
@@ -48,6 +50,16 @@ public class CommandFormat {
             "find",
             "Find employees with a search filter.",
             "find [*] KEYWORD [MORE KEYWORDS...]");
+
+    private static final CommandFormat THEME_COMMAND_FORMAT = new CommandFormat(
+            "theme",
+            "Applies the theme with specified THEME_NAME to ExecutivePro's UI.",
+            "theme THEME_NAME");
+
+    private static final CommandFormat SETPICTURE_COMMAND_FORMAT = new CommandFormat(
+            "setpicture",
+            "Sets the picture for the specified employee",
+            "setpicture 2");
 
     // All misc commands below
     private static final CommandFormat HELP_COMMAND_FORMAT = new CommandFormat(
@@ -88,7 +100,9 @@ public class CommandFormat {
                 EDIT_COMMAND_FORMAT,
                 DELETE_COMMAND_FORMAT,
                 LIST_COMMAND_FORMAT,
-                FIND_COMMAND_FORMAT
+                FIND_COMMAND_FORMAT,
+                THEME_COMMAND_FORMAT,
+                SETPICTURE_COMMAND_FORMAT
         );
     }
 
