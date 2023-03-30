@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_PREMIUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_START_DATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,22 +77,25 @@ public class EditPolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
+        Client editedPolicyClient = clientToEditPolicy.cloneClient();
 
         List<Policy> lastShownPolicyList = clientToEditPolicy.getFilteredPolicyList();
         if (policyIndex.getZeroBased() >= lastShownPolicyList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
+
         Policy policyToEdit = lastShownPolicyList.get(policyIndex.getZeroBased());
         Policy editedPolicy = createEditedPolicy(policyToEdit, editPolicyDescriptor);
 
-        UniquePolicyList clientPolicyList = clientToEditPolicy.getPolicyList();
+        UniquePolicyList clientPolicyList = editedPolicyClient.getPolicyList();
         if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
-
         clientPolicyList.setPolicy(policyToEdit, editedPolicy);
-        model.setClient(clientToEditPolicy, clientToEditPolicy);
-        return new CommandResult(generateSuccessMessage(clientToEditPolicy, policyToEdit));
+
+        model.setClient(clientToEditPolicy, editedPolicyClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        return new CommandResult(generateSuccessMessage(clientToEditPolicy, editedPolicy));
     }
 
     private String generateSuccessMessage(Client client, Policy policy) {

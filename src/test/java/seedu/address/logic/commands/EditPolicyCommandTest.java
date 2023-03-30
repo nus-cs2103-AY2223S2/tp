@@ -96,21 +96,23 @@ class EditPolicyCommandTest {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
 
         Client clientInFilteredList = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        Policy targetPolicy = clientInFilteredList.getFilteredPolicyList().get(0);
+        Client editedPolicyClient = clientInFilteredList.cloneClient();
+        Policy targetPolicy = editedPolicyClient.getFilteredPolicyList().get(0);
 
         Policy editedPolicy = new PolicyBuilder(targetPolicy).withPremium("5000").build();
         EditPolicyCommand.EditPolicyDescriptor descriptor = new EditPolicyDescriptorBuilder(editedPolicy).build();
         EditPolicyCommand editPolicyCommand = new EditPolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_POLICY, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from: "
-                + clientInFilteredList.getName().toString();
-        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedPolicy));
-
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showClientAtIndex(expectedModel, INDEX_FIRST_CLIENT);
         editedPolicy = new PolicyBuilder(editedPolicy).build();
-        Client editedClient = expectedModel.getFilteredClientList().get(0);
-        editedClient.getPolicyList().setPolicy(targetPolicy, editedPolicy);
+
+        String expectedMessage = String.format(MESSAGE_EDIT_POLICY_SUCCESS, editedPolicy.toString()) + " from: "
+                + clientInFilteredList.getName().toString();
+        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedPolicy));
+        //Client editedClient = expectedModel.getFilteredClientList().get(0);
+        editedPolicyClient.getPolicyList().setPolicy(targetPolicy, editedPolicy);
+        expectedModel.setClient(clientInFilteredList, editedPolicyClient);
 
         assertCommandSuccess(editPolicyCommand, model, expectedCommandResult, expectedModel);
     }
