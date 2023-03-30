@@ -5,10 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ModuleTracker;
 import seedu.address.model.ReadOnlyModuleTracker;
 
 /**
- * Represents a storage for {@link seedu.address.model.AddressBook}.
+ * Represents a storage for {@link ModuleTracker}.
  */
 public interface AddressBookStorage {
 

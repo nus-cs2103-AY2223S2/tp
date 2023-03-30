@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ModuleTracker;
 import seedu.address.model.ReadOnlyModuleTracker;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Deadline;
@@ -55,7 +55,7 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyModuleTracker getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+        ModuleTracker sampleAb = new ModuleTracker();
         for (Module sampleModule : getSampleModules()) {
             sampleAb.addModule(sampleModule);
         }

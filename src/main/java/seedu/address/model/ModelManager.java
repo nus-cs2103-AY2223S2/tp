@@ -20,7 +20,7 @@ import seedu.address.model.module.Module;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private final AddressBook addressBook;
+    private final ModuleTracker addressBook;
     private final UserPrefs userPrefs;
     private final SortedList<Module> sortedModules;
     private final FilteredList<Module> displayedModules;
@@ -33,14 +33,14 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new ModuleTracker(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         sortedModules = new SortedList(this.addressBook.getModuleList());
         displayedModules = new FilteredList<>(sortedModules);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ModuleTracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

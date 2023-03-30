@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ModuleTracker(), new ModuleTracker(modelManager.getAddressBook()));
     }
 
     @Test
@@ -95,8 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withModule(CS2106_TUT).withModule(CS2103T_LEC).build();
-        AddressBook differentAddressBook = new AddressBook();
+        ModuleTracker addressBook = new AddressBookBuilder().withModule(CS2106_TUT).withModule(CS2103T_LEC).build();
+        ModuleTracker differentAddressBook = new ModuleTracker();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true

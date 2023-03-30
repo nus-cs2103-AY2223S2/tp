@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ModuleTracker;
 import seedu.address.model.module.Module;
 
 /**
@@ -73,8 +73,8 @@ public class TypicalModules {
     /**
      * Returns an {@code AddressBook} with all the typical modules.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ModuleTracker getTypicalAddressBook() {
+        ModuleTracker ab = new ModuleTracker();
         for (Module module : getTypicalModules()) {
             ab.addModule(module);
         }
