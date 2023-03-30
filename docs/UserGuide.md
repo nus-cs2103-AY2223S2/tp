@@ -55,10 +55,17 @@ QuickContacts.
 Throughout this user guide, you may observe coloured boxes that provide useful information with an icon on its top-left
 indicating the type of information present.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
 Tips empower you to make full use of QuickContacts.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+Notes are general information that gives you a better understand of QuickContacts.
 
 </div>
 
@@ -82,7 +89,7 @@ installed in your computer
 
 And that's it! You are good to go with QuickContacts.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
 QuickContacts is packaged with sample contacts and meetings. To delete the default data, simply execute the `clear`
@@ -100,33 +107,114 @@ editing or deleting such files unless you know what you are doing!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Quick Reference Guide
+
+This section will walk you through the essential parts of understanding and using QuickContacts in detail.
+
+### User Interface Layout
+
+Upon launching QuickContacts, you will be greeted by the following Graphical User Interface (GUI).
+
+![Annotated UI Layout](images/UiLayoutAnnotated.png)
+
+We can break the GUI into several parts:
+
+1. **Menu Bar**: This is where you find auxiliary features
+2. **Result Display Box**: This is where you get feedback from the command executed
+3. **Meetings List**: This is where you view all your meetings
+4. **Contacts List**: This is where you view all your contacts
+5. **Command Box**: This is where you input commands to interact with QuickContacts
+
+### Command Format
+
+QuickContacts provides a powerful Command Line Interface (CLI) which rely heavily on commands. In this
+subsection, we will discover how the commands are designed.
+
+#### Prefix
+
+Prefixes are placeholders in a command that uniquely identify different input parameters. Each prefix is
+_typically_ followed by the corresponding input data.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Commands are **_italicised and bolded_** for ease of identification.
+**:information_source: Note**<br>
+There are some input parameters that do not require any corresponding input data.
 
 </div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+There are some input data that share the same prefix. For example: `CONTACT_PHONE_NUMBER` and `MEETING_ATTENDEE`
+share the same prefix `p/`.
+
+</div>
+
+| Prefix   | Corresponding Input Data                     |
+|----------|----------------------------------------------|
+| `a/`     | `CONTACT_ADDRESS`                            |
+| `des/`   | `MEETING_DESCRIPTION`                        |
+| `dt/`    | `MEETING_DATE_TIME`                          |
+| `e/`     | `CONTACT_EMAIL`                              |
+| `end/`   | `MEETING_EXPORT_END_DATE`                    |
+| `f/`     | -                                            |
+| `l/`     | `MEETING_LOCATION`                           |
+| `m/`     | `MEETING_TITLE`                              |
+| `n/`     | `CONTACT_NAME`                               |
+| `p/`     | `CONTACT_PHONE_NUMBER` or `MEETING_ATTENDEE` |
+| `start/` | `MEETING_EXPORT_START_DATE`                  |
+| `t/`     | `CONTACT_TAG`                                |
+
+#### Understanding Commands
+
+Now that we are familiar with the prefixes and corresponding input data, let us put them together and see how
+a command works. Take the following as an example:
+
+Command: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
+
+| Command Component                                                                                        | Component Type  | Description                                                     |
+|----------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------|
+| `add`                                                                                                    | Command Keyword | Represents the action executed by QuickContacts                 |
+| `n/`, `p/`, `e/`, `a/`, `t/`                                                                             | Prefix          | Uniquely identifies the corresponding input data                |
+| `CONTACT_NAME`<br/>`CONTACT_PHONE_NUMBER/`<br/>`CONTACT_EMAIL`<br/>`CONTACT_ADDRESS/`<br/>`CONTACT_TAG/` | Input Data      | Placeholders for the actual data to be supplied for the command |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+`[]` means that the parameter is **optional**.
+
+`...` means that the parameter can be **supplied multiple times** in the same command input. 
+
+</div>
+
+A valid executable command of this example form is:
+
+`add n/Noah t/friend t/nus t/cs2103t`
+
+The above command would create a new contact with the name `Noah` and tags `friend`, `nus` and `cs2103t`.
+The phone number, email address and address of `Noah` will be left empty as they are not provided.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Command prefixes can be specified in any order. For example: `add t/friend t/nus n/Noah t/cs2103t` is equivalent to our
+example above.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+the parameter will be taken.<br>e.g. if you specify `n/Noah n/Peter`, only `n/Peter` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
+be ignored.<br>e.g. `help 123` will be interpreted as `help`.
+
+</div>
+
+## Features
 
 ### Theme toggling
 
