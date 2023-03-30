@@ -51,7 +51,7 @@ Refer to the [Features](#features) below for details of each command.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `p/POSITION c/COMPANY`, `c/COMPANY p/POSITION` is also acceptable.
 
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, excluding `status` command.<br>
   e.g. if you specify `c/Google c/Shopee`, only `c/Shopee` will be taken.
 
 - Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
@@ -66,10 +66,10 @@ Ultron provides you with a platform to remember all your openings so you don't h
 Just type 'add' followed by details of your opening in the format below and you can see 
 it being added to Ultron. 
 
-Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​`
+Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [r/REMARK] [d/KEYDATE]…​`
 
-- `KEYDATE` must be in the form `KEY@DATE`, where `KEY` is a stage or event in the application process and `DATE` is the date of the stage in `YYYY-MM-DD` format.
-- `KEY` must only contain alphanumeric characters, cannot be blank and cannot only contain whitespaces. 
+- `KEYDATE` must be in the form `KEY@DATE`, where `KEY` is a key event in the application process and `DATE` is the date of the event in `YYYY-MM-DD` format.
+- `KEY` must only contain alphabetic characters, cannot be blank and cannot only contain whitespaces. 
 - `STATUS` **must be of either found, applied, interviewing, offered, accepted or rejected**.
 - If both `COMPANY` and `POSITION` of a new opening matches a current opening, the new opening will not be added. 
 - Opening displayed after adding only displays `POSITION`, `COMPANY`, `STATUS` and `KEYDATES`. 
@@ -118,7 +118,7 @@ Examples:
 
 Edits the remark field of the opening at the specified INDEX to REMARK. 
 
-Format: `remark 1 [r/REMARK]`
+Format: `remark INDEX r/REMARK`
 
 - Edits the remark of the opening at the specified `INDEX`. The index refers to the index number shown in the displayed opening list. 
 - The index **must be a positive integer** 1, 2, 3, …​
@@ -142,15 +142,15 @@ Format: `show INDEX`
 
 # Listing upcoming dates : `upcoming`
 
-Lists openings which has events in the next N days.
+Lists openings which has events today or within the next `DAYS` days, sorting in order of the first keydate of each relevant opening in ascending order.
 
-Format: `upcoming N`
+Format: `upcoming DAYS`
 
-* Lists all openings which has events in the next N days.
-* N **must be a positive integer** 1, 2, 3, …​
+* Lists all openings which has events today or within the next `DAYS` days.
+* `DAYS` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `upcoming 1` lists all openings with events happening in the next 1 day.
+* `upcoming 1` lists all openings with events happening in the next 1 day, ie. today or tomorrow.
 
 ![Upcoming](images/Upcoming.png)
 
@@ -222,6 +222,12 @@ Format: `clear`
 * This command allows you to delete all openings from the list in a single command
 * Useful when you want to start a fresh new list!
 
+### Accessing help window : `help`
+
+Displays the help window.
+
+Format: `help`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -246,16 +252,18 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                   |
-|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
-| **Edit**     | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Status**   | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
-| **List**     | `list`                                                                                                                                                             |
-| **Clear**    | `clear`                                                                                                                                                            |
-| **Upcoming** | `upcoming DAYS`<br/> e.g., `upcoming 1`                                                                                                                            |
-| **Show**     | `show INDEX`<br/> e.g., `show 1`                                                                                                                                   |
-| **Remark**   | `remark INDEX [r/REMARK]`<br/> e.g., `remark 1 r/1 round of interview`                                                                                             |
-| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                              |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [r/REMARK] [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
+| **Edit**     | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                                   |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Status**   | `status STATUS`<br> e.g., `status interviewing`                                                                                                                               |
+| **List**     | `list`                                                                                                                                                                        |
+| **Clear**    | `clear`                                                                                                                                                                       |
+| **Upcoming** | `upcoming DAYS`<br/> e.g., `upcoming 1`                                                                                                                                       |
+| **Show**     | `show INDEX`<br/> e.g., `show 1`                                                                                                                                              |
+| **Remark**   | `remark INDEX r/REMARK`<br/> e.g., `remark 1 r/1 round of interview`                                                                                                          |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]...`<br/> e.g., `find Engineer data Software`                                                                                                    |
+| **Help**     | `help`                                                                                                                                                                        |
+| **Exit**     | `exit`                                                                                                                                                                        |
 
