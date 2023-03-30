@@ -200,16 +200,23 @@ Format: `list`
 
 Find patients according to a particular attribute stated followed by the change.
 
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
+Command Prefixes that can be searched: 
+* name(`n/`)
+* nric(`i/`)
+* tag(`t/`)
+* doctor(`ad/`)
+* medicine(`m/`)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Find searches by full strings and not 
-substrings. You may only search for a few attributes.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
+  - `find` searches by full strings and not substrings.
+  - You may only search for a few attributes.
+  - Only one attribute can be searched at one time.
 </div>
 
-Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
+Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
 
 * The search will only be carried out for the given attribute.
-* Only one attribute can be searched at one time.
 * The search is case-insensitive. e.g panadol will match pANAdol.
 * The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
 * Multiple keywords for a given attribute can be inputted. All matching persons will be returned.
