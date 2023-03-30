@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Introducing **MediConnect** - the comprehensive desktop application designed to  **streamline patient management, doctor coordination, and hospital billing.** 
-As a centralised platform, **MediConnect** offers healthcare professionals and secretarial personnel an efficient solution
-to manage clinics in Singapore. The app simplifies the organization and maintainance of patient and doctor data, appointments and billing records. <br>
+Introducing **MediConnect** - the hospital management application designed to  **streamline patient management, doctor coordination, and hospital billing.** 
+As a centralised platform, **MediConnect** offers healthcare professionals and administrative staff an efficient solution
+to manage administrative matters in local clinics. The app simplifies the organization and maintenance of patient and doctor data, appointments and billing records. <br>
 **MediConnect** can be used with either a command line interface (CLI) or a graphical user interface (GUI).
 Users experienced with the CLI may get their tasks done faster than traditional GUI apps. <br>
 
@@ -127,6 +127,16 @@ Format: `find ic/NRIC`
 Examples:
 * `find ic/S1234567A` returns the details for the person with NRIC number S1234567A.
 
+### Display patient's information : `display`
+Displays personal particulars, appointments and prescription for patients.
+
+Format: `display ic/NRIC`
+
+* Displays personal particulars, appointments and prescription for the patient with the specified `NRIC`.
+
+Examples:
+* `display ic/S1234567A` displays the information for the patient with NRIC number S1234567A.
+
 ### Deleting a person by name : `delete`
 
 Deletes the specified person from MediConnect.
@@ -140,12 +150,25 @@ Examples:
 
 ### Book appointment : `appointment`
 
-Set an appointment date to the patient and doctor
+Schedules an appointment with a specific doctor for the specified person.
 
-Format: `appointment r/ROLE n/NAME d/Date`
+Format: `appointment ic/NRIC d/DATE dric/NRIC`
+
+* Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
 
 Examples:
-* `appointment patient John 2020-10-12` attaches the date 12 October 2020 to the patient John
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
+
+### Delete appointment : `deleteAppointment`
+
+Deletes an appointment specified by the index of the person’s appointment list.
+
+Format: `deleteAppointment INDEX ic/NRIC`
+
+* Deletes the appointment indicated by `INDEX` from the list of appointments for the person specified by `NRIC`.
+
+Examples:
+* `deleteAppointment 2 ic/S1234567A` deletes the 2nd appointment as displayed the list for person with NRIC number S1234567A.
 
 ### Clearing all entries : `clear`
 
@@ -209,10 +232,11 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | Action                 | Format, Examples                                                                                                                                                                                                                                                                                                                                         |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Person**         | 1. `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567A a/1 Ben Street, block 13, #01-01` <br> 2. `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
-| **Appointment**        |                                                                                                                                                                                                                                                                                                                                                          |
+| **Book Appointment**   | `appointment ic/NRIC d/DATE dric/NRIC` <br> e.g, `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z`                                                                                                                                                                                                                                            |
 | **Clear**              | `clear`                                                                                                                                                                                                                                                                                                                                                  |
-| **Delete Appointment** |                                                                                                                                                                                                                                                                                                                                                          |
+| **Delete Appointment** | `deleteAppointment INDEX ic/NRIC` <br> e.g, `deleteAppointment 2 ic/S1234567A`                                                                                                                                                                                                                                                                           |
 | **Delete Person**      | `delete ic/NRIC`<br> e.g., `delete ic/S1234567A`                                                                                                                                                                                                                                                                                                         |
+| **Display**            | `display ic/NRIC` <br> e.g, `display ic/S1234567A`                                                                                                                                                                                                                                                                                                       |
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                  |
 | **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   | 
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
