@@ -19,8 +19,8 @@ public class Attendance {
      * constructor for attendance class
      */
     public Attendance(String atd, String pp) {
-        String[] atdArr = atd.split(",");
-        String[] ppArr = pp.split(",");
+        String[] atdArr = atd.split(";");
+        String[] ppArr = pp.split(";");
         for (int i = 0; i < atdArr.length; i++) {
             if (Objects.equals(atdArr[i], "1")) {
                 this.attendanceList[i] = true;
@@ -147,9 +147,9 @@ public class Attendance {
         String res = "";
         for (boolean atd : this.attendanceList) {
             if (atd) {
-                res += "1,";
+                res += "1;";
             } else {
-                res += "0,";
+                res += "0;";
             }
         }
         return res.substring(0, 23);
@@ -161,7 +161,7 @@ public class Attendance {
     public String partPointsStorageStr() {
         String res = "";
         for (int val : this.participationPoint) {
-            res += String.valueOf(val) + ",";
+            res += String.valueOf(val) + ";";
         }
         return res.substring(0, res.length() - 1);
     }
