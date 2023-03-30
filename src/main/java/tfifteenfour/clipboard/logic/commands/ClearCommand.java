@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -27,8 +28,9 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         PageType currentPage = currentSelection.getCurrentPage();
         Course selectedCourse = currentSelection.getSelectedCourse();
