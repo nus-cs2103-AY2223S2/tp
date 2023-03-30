@@ -18,7 +18,9 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
     private static final ApplicativeParser<ApplicativeParser<SearchCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("s") // search
-                    .map(SearchCommandParser::parseArguments);
+                    .map(SearchCommandParser::parseArguments)
+                    .dropNext(ApplicativeParser.skipWhitespaces())
+                    .dropNext(ApplicativeParser.eof());
 
     private static final SearchCommandParser INSTANCE = new SearchCommandParser();
 
@@ -32,7 +34,7 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                 Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
                 Pair.of(CommandParserUtil.AFTER_FLAG, 1),
-                Pair.of(CommandParserUtil.OR_FLAG, 1));
+                Pair.of(CommandParserUtil.OR_FLAG, 1)); // TODO: and and flag
 
         List<SearchCommand> commands = new ArrayList<>();
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
@@ -84,9 +86,7 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                     } else {
                         return new AndComposedSearchCommand(commands);
                     }
-                }) // lazy evaluation
-                .dropNext(ApplicativeParser.skipWhitespaces())
-                .dropNext(ApplicativeParser.eof());
+                });
     }
 
     public static SearchCommandParser getInstance() {
