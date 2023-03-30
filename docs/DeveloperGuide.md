@@ -37,7 +37,13 @@ title: Developer Guide
          * [Module Tag](#module-tag)
      * [Time](#time)
        * [Day](#day)
-       * [TimePeriod](#timeperiod)
+       * [HourBlock](#hourblock)
+       * [TimeBlock](#timeblock)
+     * [Location](#location)
+       * [DistanceUtil](#distance-util)
+       * [LocationDataUtil](#location-data-util)
+     * [Commitment](#commitment)
+       * [Lesson](#lesson)
      * [Timetable](#timetable)
        * [Module](#module)
      * [Utils](#utils)
@@ -58,8 +64,9 @@ title: Developer Guide
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
      * [Recommenders](#recommenders)
-       * [Timing Recommender](#timingRecommender)
+       * [Timing Recommender](#timing-recommender)
        * [Location Recommender](#location-recommender)
+       * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
      * [MathUtil](#math-util)
@@ -445,6 +452,81 @@ objects which is then used elsewhere in the codebase.
 #### **TimeBlock**
 `TimeBlock` is an object which can represent any (non-negative) hour of time.
 
+### **Location**
+
+A `Location` represents a point in Singapore. We use them to recommend places for the user to meet up with friends. It consists of a latitude (how far north it is), and a longitude (how far east it is).
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Restrictions on location attributes:**<br>
+
+* Latitude: must be between *1.23776* and *1.47066*
+* Longitude: must be between *103.61751* and *104.04360*
+
+This is to ensure that the location falls within the bounds of Singapore.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **The location can be *named* or *unnamed*:**<br>
+
+* *Named locations* are meant for actual locations in Singapore. For example, we may have "Bishan", "NUS", and "Suntec City".
+* *Unnamed locations* are reserved for computational purposes. For example, a location in between "Bishan" and "Ang Mo Kio" may be used to recommend suitable meet up locations.
+
+</div>
+
+There are also two other classes within the `location` package that help to process this data.
+
+#### Distance Util
+
+The `DistanceUtil` class deals with computing the distances between locations. It is used by the following classes:
+
+* It is used by the [Recommenders](#recommenders) to suggest ideal and central locations for people to meet.
+* It is used by the [LocationTrackers](#location-tracker) to give us approximate locations for a person.
+
+#### Location Data Util
+
+The `LocationDataUtil` class deals with reading and parsing location data from files. For example, the set of destinations to eat and study are stored in the [resources/data](https://github.com/AY2223S2-CS2103T-W14-2/tp/tree/master/src/main/resources/data) folder and are saved within this class. We also store the locations of MRT stations, which allow us to convert user-inputted strings into named locations.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips for using Locations:**
+
+Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
+
+</div>
+
+### **Commitment**
+
+A `Commitment` is something that a person needs to do at a certain time and place. Notice that we can only create `Lesson`s at the moment. Having this as a separate class can allow us to easily extend this application to fit more kinds of commitments.
+
+<img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.1</b> Class Diagram for Commitment Components
+</div>
+<br>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **What are commitments used for** <br>
+
+* They tell us when the person is unavailable, so that we do not recommend inappropriate timings.
+* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up. 
+
+</div>
+
+#### **Lesson**
+
+`Lesson` is inherited from `Commitment`, and represents a time and location that a person is attending a class. In addition, `Lesson` stores the module code for the lesson. For example, a person takes CS2040S on Monday at 9AM for 2 hours.
+
+<div markdown="span" class="alert alert-dark">
+
+:construction: **Potential extensions**
+Currently, all `Lessons` are in NUS, but this can be improved upon in the future, by adding additional arguments to the `tag` command.
+
+</div>
+
 ### **Timetable**
 
 The `Timetable` represents the daily schedule of the user or contact.
@@ -458,9 +540,20 @@ The `Timetable` represents the daily schedule of the user or contact.
 For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each representing an hour starting from 8 AM - 9 AM and ending at 10 PM - 11 PM.
 
 ### **Utils**
+
 #### **Sample Data Util**
 
-{Hafeez please}
+The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tips for reading the sample data:**<br>
+
+* Each row of data corresponds to a single person, and their fields are separated by the `|`, also known as the "pipe" character.
+* The attributes are: `NAME|PHONE|EMAIL|ADDRESS|TELEGRAM_HANDLE|GROUP_TAGS|MODULE_TAGS`.
+* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
+
+</div>
 
 ---
 
@@ -848,9 +941,9 @@ The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 ## **Recommenders**
 
-**API** : `Recommender.java` {to be filled in}
+**API** : `Recommender.java`
 
-<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -862,11 +955,19 @@ The `Recommender` component,
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
-2. Triggers the `TimingRecommender` to recommend common available timings amongst users and participants.
-3. `TimingRecommender` passes the recommended timings to `LocationRecommender`
-4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
-   their `Location` at that particular timing.
-5. Feedbacks to user the recommended meetup locations and timings.
+2. The `TimingRecommender` is initialised with a set of participants.
+3. The `LocationRecommender` is initialised with a set of destinations.
+4. New `LocationTracker`s are created to give approximate locations of each person.
+5. The `TimingRecommender` recommends common available timings amongst users and participants.
+6. Based on the timings provided, the `LocationTracker`s return each person's approximate locations.
+7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
+8. Feedbacks to user the recommended meetup locations and timings.
+
+<img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.6.1</b> Sequence Diagram for Recommender Module
+</div>
+<br>
 
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
