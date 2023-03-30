@@ -4,7 +4,7 @@ title: User Guide
 ---
 ## **Table of Contents**
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introducing InternBuddy**
@@ -228,10 +228,10 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 
 
 ### Duplicate internships
-InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store 
+InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store
 a duplicate internship, InternBuddy will remind you that the internship already exists.
 
-A duplicate internship is defined as 2 internships that have the matching `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. The comparison 
+A duplicate internship is defined as 2 internships that have the matching `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. The comparison
 will be case-insensitive. Please refer to the examples below for further explanation.
 
 In the table below, Internship A and Internship B will be considered as duplicate internships, because they have the same `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`
@@ -303,7 +303,7 @@ Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [
 
 * The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the [List Panel](#exploring-the-graphical-user-interface)  displayed using the `list` command.
 * You have to provide at least one of the optional parameters
-* You can remove all of an internship’s tags by typing `t/` without specifying any other tags after it. 
+* You can remove all of an internship’s tags by typing `t/` without specifying any other tags after it.
 * You can reset the comment of an internship to the default value of `NA` by typing `c/` without specifying any comments after it.
 
 <div markdown="span" class="alert alert-danger">
@@ -327,17 +327,17 @@ Format: `view INDEX`
   the [List Panel](#exploring-the-graphical-user-interface).
 * The details will be shown in the [View Panel](#exploring-the-graphical-user-interface).
 * Apart from the internship details, a custom tips box is also included in the
-[View Panel](#exploring-the-graphical-user-interface), where the tips change according to the status of the
-internship entry.
+  [View Panel](#exploring-the-graphical-user-interface), where the tips change according to the status of the
+  internship entry.
 
 Examples:
 * `view 1` Assuming that you have at least three internships displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this displays the details of the third internship in the
-[View Panel](#exploring-the-graphical-user-interface).
+  [List Panel](#exploring-the-graphical-user-interface), this displays the details of the third internship in the
+  [View Panel](#exploring-the-graphical-user-interface).
 * `view -1` Displays an error because `INDEX` must be a positive integer.
 * `view 8` Assuming that you have 7 internships displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
-than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
+  [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
+  than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
 
 
@@ -350,14 +350,14 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 Want to copy the content of a specific internship to somewhere else? You can do so using the `copy` command.
 
 Format: `copy INDEX`
-*Copy the details of information of the internship entry with index number `INDEX` as indicated 
+*Copy the details of information of the internship entry with index number `INDEX` as indicated
 in the [List Panel](#exploring-the-graphical-user-interface).
 *The details will be copied onto the clipboard of your computer.
 
 Examples:
 * `view 1` Assuming that you have at least three internships displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this will copy the details of the third internship onto the
-clipboard of your computer.
+  [List Panel](#exploring-the-graphical-user-interface), this will copy the details of the third internship onto the
+  clipboard of your computer.
 * `view -1` Displays an error because `INDEX` must be a positive integer.
 * `view 8` Assuming that you have 7 internships displayed in the
   [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
@@ -371,7 +371,7 @@ Format: `find [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]
 * You have to provide at least one of the optional parameters. A `find` command without any parameters will result in an invalid command format error.
 * The find command works through an exact match, regardless of upper or lower case, of the parameter and the internship entry's corresponding attributes.
 * When multiple instances of the same type of field exists in user input (e.g. multiple `n/COMPANY_NAME` fields or multiple `r/ROLE` fields), only internships containing at least one of these fields of the same type will be filtered out.
-* When different types of fields, each with multiple instances, exist in user input (e.g. multiple `n/COMPANY_NAME` and multiple `r/ROLE` fields), only internships containing at least one of the inputs from every different type of field will be filtered out. 
+* When different types of fields, each with multiple instances, exist in user input (e.g. multiple `n/COMPANY_NAME` and multiple `r/ROLE` fields), only internships containing at least one of the inputs from every different type of field will be filtered out.
 
 Examples:
 * `find n/Google Ltd` filters out all internships with company name 'Google Ltd'. Note that case matching is insensitive, so internships with the company name 'google ltd', 'gOOglE ltD' or more will also be deleted. However, matching must be exact, so inputs like 'goo' and 'google' will not filter out an internship with company name 'Google Ltd'.
@@ -393,7 +393,7 @@ Format: `upcoming`
 * Upcoming week is defined as the current day and the 6 days that follow it.
 
 
-Examples: 
+Examples:
 * `upcoming` If today's date is 5 January 2023, it will list all internships that have a `STATUS`of `NEW/OFFERED/ASSESSMENT/INTERVIEW` and `DATE` is from 5 January 2023 to 11 January 2023 inclusive.
 
 
@@ -406,11 +406,11 @@ Format: `delete-index INDEX [INDEX]...`
 * Deletes the internship whose index number is `INDEX` as specified by the `list` or `find` command in the [List Panel](#exploring-the-graphical-user-interface).
 * If multiple `INDEX` are provided, multiple internships can be deleted.
 * At least 1 `INDEX` must be provided.
-* `INDEX` does not need to be unique. If 2 or more of `INDEX` have the same value, only the first one will be taken. 
+* `INDEX` does not need to be unique. If 2 or more of `INDEX` have the same value, only the first one will be taken.
 
 
 Examples:
-* If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find`. 
+* If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find`.
 * If you run `delete-index 1` after `list`, it will delete the first entry as displayed by `list`.
 * `delete-index 1 3` Deletes the first and third
   internship in the [List Panel](#exploring-the-graphical-user-interface).
@@ -433,7 +433,7 @@ Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... 
 * `delete-field` deletes entries with exact matches only. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
   `Google` does not exactly match with `Google Ltd`.
 
-There are 2 possible scenarios when using the `delete-field` command. 
+There are 2 possible scenarios when using the `delete-field` command.
 
 **Method 1: Use a single parameter type**
 
@@ -519,7 +519,7 @@ where you placed `internbuddy.json`. There is no need to save manually.
 InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
 manually.
 * If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
-entries.
+  entries.
 * If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
   empty data file.
 
@@ -531,6 +531,28 @@ with the content in `internbuddy.json` unless you are confident in doing so. If 
 <a href="#appendix-b--customising-the-data-file">Appendix B</a> for instructions on how to do so.
 
 </div>
+
+### Review input history
+
+Want to reuse an input you entered just now but too lazy to type it all out again? InternBuddy's got you!
+After the text box has been clicked, pressing the up and down key arrows will fill the text box with inputs you entered recently and you will be able to just enter or edit before entering any of those inputs again.
+This will allow you to easily access and navigate through inputs you entered recently.
+* InternBuddy keeps a history of your past inputs.
+* Pressing the up key will cause your next most recent input to appear in the text box. However, once you reach the least recent input, pressing the up arrow key further will not result in any change and the least recent input will remain in the text box.
+* Pressing the down key will cause your next least recent input to appear in the text box. Once you reach the most recent input, pressing the down key once more will clear the text box. Pressing the down arrow key further, however, will not result in any change and the text box will remain empty.
+* However, InternBuddy only starts keeping track of your inputs from its most recent launch. Suppose you have already inputted some commands into InternBuddy and it has recorded these commands into its input history. Exiting InternBuddy and launching it again will result in InternBuddy forgetting those past inputs and start afresh.
+* InternBuddy will keep track of all past inputs, regardless of whether or not they were valid commands. This is so that in the case where a past input was an invalid command, it can be navigated to and edited to be used again instead of having to type out the entire command again.
+
+Example:
+- Suppose InternBuddy has just been launched and the inputs `find n/google`, `help` and `oops` are entered into InternBuddy in this order.
+    - Pressing the up arrow key once will cause the text box to be filled with the most recent input which was `oops`. Pressing the up arrow key again will cause `oops` to disappear and the next most recent input, which is `help`, to fill the text box. Pressing the up arrow key yet again will cause `help` to disappear and the next most recent input, which is `find n/google`, to fill the text box. However, as `find n/google` is the least recent input, pressing the up arrow key again will not result in any change and the text box will continue to be filled with the input `find n/google`.
+    - Now that you have navigated to the least recent input, `find n/google`, pressing the down arrow key once will cause `find n/google` to disappear and the next least recent input, which is `help`, to fill the text box. Pressing the down arrow key again will cause `help` to disappear and the next least recent input, which is `oops`, to fill the text box. However, as `oops` is the most recent input, pressing the down arrow key again will cause `oops` to disappear and clear the text box. Pressing the down arrow key further will not result in any change and the text box will remain empty.
+
+- Suppose InternBuddy has just been launched again and the inputs `delete 1`, `clear` and `blah` are entered into InternBuddy in this order.
+    - Pressing the up arrow key once will cause the text box to be filled with the most recent input, which is `blah`. Pressing the up arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to fill the text box.
+    - Pressing the down arrow key next will cause `clear` to disappear and the next least recent input, which is `blah`, to fill the text box again.
+    - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
