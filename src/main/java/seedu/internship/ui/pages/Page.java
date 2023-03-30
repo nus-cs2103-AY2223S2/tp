@@ -26,6 +26,7 @@ public abstract class Page extends UiPart<Region> {
 
         switch(commandResult.getResultType()) {
         case STATS:
+            resultPage = new StatsPage(commandResult.getStatistics());
             break;
         case CLASH:
             // Change this to commandResult.getClashingEvents() which returns HashMap<LocalDate, List<Events>>
