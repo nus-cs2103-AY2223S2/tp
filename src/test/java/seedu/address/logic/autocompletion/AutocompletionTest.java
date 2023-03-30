@@ -1,10 +1,7 @@
 package seedu.address.logic.autocompletion;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 
 import java.util.List;
 
