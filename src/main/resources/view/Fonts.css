@@ -51,12 +51,12 @@
 
 @font-face {
     font-family: 'IBM Plex Sans Semibold';
-    src: url("../fonts/IBMPlexSans-Semibold.ttf");
+    src: url("../fonts/IBMPlexSans-SemiBold.ttf");
 }
 
 @font-face {
     font-family: 'IBM Plex Sans Semibold Italic';
-    src: url("../fonts/IBMPlexSans-SemiboldItalic.ttf");
+    src: url("../fonts/IBMPlexSans-SemiBoldItalic.ttf");
 }
 
 @font-face {
