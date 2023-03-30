@@ -133,15 +133,15 @@ public class RecipePopup extends UiPart<Region> {
         Stage window = new Stage();
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
+
+        // init window
         window.setTitle("Recipe Details");
         double maxHeight = Screen.getPrimary().getBounds().getMaxY();
         window.setMaxHeight(maxHeight);
         window.setHeight(Math.min(maxHeight, DEFAULT_HEIGHT));
 
-
-        VBox vbox = new VBox(getRoot());
-        vbox.setStyle("-fx-background-color: #3f3f46");
-        Scene scene = new Scene(vbox);
+        // init scene
+        Scene scene = new Scene(getRoot());
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();
