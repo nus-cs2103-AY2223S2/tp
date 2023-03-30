@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid can get your contact management tasks done faster than traditional GUI apps.
+FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or missing out a client!
 
 * Table of Contents
 {:toc}
@@ -12,7 +13,16 @@ FAid is a **desktop app for managing contacts, optimized for use via a Command L
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
+
+1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or reinstalling Java.
 
 1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
