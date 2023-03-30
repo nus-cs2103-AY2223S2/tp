@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> upcomingEvents;
+    private final FilteredList<Event> findEvents;
 
     /**
      * Initializes a ModelManager with the given scheduler and userPrefs.
@@ -39,7 +40,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
+        findEvents = new FilteredList<>(this.scheduler.getEventList());
         updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     public ModelManager() {
@@ -109,6 +112,7 @@ public class ModelManager implements Model {
     public void deleteEvent(Event target) {
         scheduler.removeEvent(target);
         updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     @Override
@@ -116,6 +120,7 @@ public class ModelManager implements Model {
         scheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     @Override
@@ -123,6 +128,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEvent);
         scheduler.setEvent(target, editedEvent);
         updateUpcomingEventList(new UpcomingEventPredicate());
+        updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
 
     //=========== Event List Accessors =============================================================
@@ -147,6 +153,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getFindEventList() {
+        return findEvents;
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
@@ -156,6 +167,12 @@ public class ModelManager implements Model {
     public void updateUpcomingEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         upcomingEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFindEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        findEvents.setPredicate(predicate);
     }
 
     @Override
