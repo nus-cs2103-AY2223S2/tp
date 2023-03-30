@@ -1,12 +1,13 @@
 package seedu.address.logic.parser;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
