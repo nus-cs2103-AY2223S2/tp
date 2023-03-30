@@ -175,6 +175,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the opening details panel with the selected opening.
+     */
+    public void handleShow() {
+        openingDetailsPanel.setOpening(logic.getSelectedOpening());
+    };
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.ultron.logic.Logic#execute(String)
@@ -190,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShow()) {
+                handleShow();
             }
 
             return commandResult;
