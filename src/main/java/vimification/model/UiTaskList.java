@@ -14,7 +14,7 @@ public class UiTaskList {
     private final SortedList<Task> sortedTasks;
 
     public UiTaskList(FilteredList<Task> filterTasks, SortedList<Task> sortedTasks) {
-        if (sortedTasks.isInTransformationChain(filterTasks)) {
+        if (filterTasks.isInTransformationChain(sortedTasks)) {
             throw new IllegalArgumentException("Lists should be in the same chain");
         }
         this.filteredTasks = filterTasks;
