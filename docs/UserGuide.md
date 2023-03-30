@@ -322,6 +322,10 @@ Shows all the backups available.
 
 Format: `viewbackup`
 
+![Viewbackup](images/command_result/Viewbackup.png)
+
+Above is the execution result of input `viewbackup`.
+
 ### Deleting backup data: `deletebackup`
 
 Deletes the data from a specified slot represented by an index.
