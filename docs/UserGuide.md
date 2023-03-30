@@ -356,6 +356,8 @@ Example: `m/CS1234 mon 12 13`
 
 ## Basic Commands
 
+These commands will help you to perform basic functions on EduMate. These are functions that will be expected to be present in a typical address book.
+
 ### Add a contact `add`
 
 Adds a contact to the EduMate.
@@ -371,7 +373,7 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 :bulb: Examples<br>
 * `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
@@ -406,7 +408,7 @@ What you should see:<br>
 
 The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `view`: Views your profile.
@@ -430,10 +432,14 @@ What you should see:<br>
 
 Edits the profile of a contact. You can choose to edit as many fields as you'd like.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
 * `edit [z/FIELD]…​`: Edits your user profile.
 
+</div>
 What you should see:<br>
 {GUI}<br>
 {Explanation}
