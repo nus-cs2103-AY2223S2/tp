@@ -36,9 +36,9 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
     - **`list`** : Lists all employees in the company.
    
-    - **`add`** :`add n/Mark Doe p/98765432 e/markd@example.com a/311, Clementi Ave 2, #02-25 d/Marketing pr/1000 15
-   t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, email, address,
-   department, payroll and tags to ExecutivePro's database.
+    - **`add`** :`add n/Mark Doe p/98765432 d/Marketing pr/1000 15 e/markd@example.com a/311, Clementi Ave 2, #02-25
+   t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, department, payroll, 
+   email, address, and tags to ExecutivePro's database.
 
     - **`delete 3`** : Deletes employee with ID 3.
 
@@ -100,15 +100,19 @@ However, this function could fail (and ExecutivePro simply does not add any empl
 3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name and
     details.
 
-Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] d/DEPARTMENT pr/PAYROLL [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **For Tags:**
+
+:bulb:
+**For Tags:**
 A person can have any number of tags (including 0)
+
 </div>
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing pr/1000 15`
-* `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 d/Sales pr/4000 1 dob/2000-04-21 doj/2022-01-04 t/friend`
+* `add n/John Doe p/98765432 d/Marketing pr/1000 15 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe p/1234567 d/Sales pr/4000 1 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 dob/2000-04-21 doj/2022-01-04 t/friend`
 
 
 ### Adding multiple employees at once: `batchadd`
@@ -141,10 +145,10 @@ Order of headers is as such (**Order must be followed**):
 |-------|-----------------|----------------|
 | 1.    | `NAME`          | **Compulsory** | 
 | 2.    | `PHONE`         | **Compulsory** |
-| 3.    | `EMAIL`         | Optional       | 
-| 4.    | `ADDRESS`       | Optional       | 
-| 5.    | `DEPARTMENT`    | **Compulsory** | 
-| 6.    | `PAYROLL`       | **Compulsory** | 
+| 3.    | `DEPARTMENT`    | **Compulsory** | 
+| 4.    | `PAYROLL`       | **Compulsory** | 
+| 5.    | `EMAIL`         | Optional       | 
+| 6.    | `ADDRESS`       | Optional       | 
 | 7.    | `LEAVECOUNT`    | Optional       | 
 | 8.    | `DATEOFBIRTH`   | Optional       |
 | 9.    | `DATEOFJOINING` | Optional       |
@@ -196,7 +200,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 2. Include more fields like performance and leaves
 
 
-### Adding multiple employees at once: `batchexport`
+### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
 
@@ -229,7 +233,7 @@ Format: `list`
 
 Edits an employee’s details in the ExecutivePro database.
 
-Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
+Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 * Edits the details of the employee with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
 * At least one of the optional fields must be provided.
@@ -256,7 +260,7 @@ Examples:
 
 ### Locating employees by keyword: `find`
 
-Shows a list of all employees in address book whose names match the keyword provided.
+Shows a list of all employees in ExecutivePro whose names match the keyword provided.
 
 Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
@@ -374,13 +378,13 @@ This table describes the requirements for the input format of the fields.
 |----------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
 | `NAME`                     | n/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `John Doe`, `Shawn Lee`                  |
 | `PHONE`                    | p/     | Contain numbers only from 3 digits long to 15 digits long                                                                                                                                                                                                                                                                                                                                      | `80101126`, `973629831`, `999`           |
-| `EMAIL`                    | e/     | Be in the format of local-part@domain.ending. "local-part" should contain only alphanumeric characters and/or certain special characters (+\_.-), and cannot start or end with any special characters. "domain" should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. "ending" part must be at least 2 characters long (e.g. ".com") | `johnd@example.com`, `shawn@example.edu` |
-| `ADDRESS`                  | a/     | Can take any value.                                                                                                                                                                                                                                                                                                                                                                            | `311, Clementi Ave 2, #02-25`            |
 | `DEPARTMENT`               | d/     | Only alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                   | `Sales`, `General Management`            |
 | `PAYROLL`                  | pr/    | Can take any value.                                                                                                                                                                                                                                                                                                                                                                            | `1000 15`                                |
+| `EMAIL`                    | e/     | Be in the format of local-part@domain.ending. "local-part" should contain only alphanumeric characters and/or certain special characters (+\_.-), and cannot start or end with any special characters. "domain" should start and end with alphanumeric characters, must be at least 2 characters long, and can contain hyphens. "ending" part must be at least 2 characters long (e.g. ".com") | `johnd@example.com`, `shawn@example.edu` |
+| `ADDRESS`                  | a/     | Can take any value.                                                                                                                                                                                                                                                                                                                                                                            | `311, Clementi Ave 2, #02-25`            |
 | `LEAVE`                    | l/     | Must be an integer less than `21`.                                                                                                                                                                                                                                                                                                                                                             | `1`, `10`, `20`                          |
-| `DATE_OF_BIRTH`            | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
-| `DATE_OF_JOINING`          | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
+| `DATE_OF_BIRTH`            | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-01-10`                             |
+| `DATE_OF_JOINING`          | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `2022-12-10`                             |
 | `TAG`                      | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
                                                                                                                                                                                                                                                               
 --------------------------------------------------------------------------------------------------------------------
@@ -388,19 +392,19 @@ This table describes the requirements for the input format of the fields.
 ## Command summary
 
 
-| Action             | Format, Examples                                                                                                                                                                                                                                                                                                                      |
-|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                                                                                                                                                                                                                                                                                |
-| **Add**            | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing pr/4000 15 l/19 dob/2000-04-21 doj/2022-01-04 t/friends ` |
-| **BatchAdd**       | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                                                                                                                                            |
-| **BatchExport**    | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                                                                                                                                                 |
-| **List**           | `list`                                                                                                                                                                                                                                                                                                                                |
-| **Edit**           | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                                                |
-| **Leave**          | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                                              |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                            |
-| **Delete**         | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                             |
-| **Theme**          | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                                           |
-| **SetPicture**     | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                                                     |
-| **Exit**           | `exit`                                                                                                                                                                                                                                                                                                                                |
-| **Clear**          | `clear`                                                                                                                                                                                                                                                                                                                               |
+| Action             | Format, Examples                                                                                                                                                                                                                                                                                                |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                                                                                                                                                                                                                                                          |
+| **Add**            | `add n/NAME p/PHONE_NUMBER d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 d/Marketing pr/4000 15 e/johnd@example.com a/John street, block 123, #01-01 l/19 dob/2000-04-21 doj/2022-01-04 t/friends ` |
+| **BatchAdd**       | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                                                                                                                      |
+| **BatchExport**    | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                                                                                                                           |
+| **List**           | `list`                                                                                                                                                                                                                                                                                                          |
+| **Edit**           | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                          |
+| **Leave**          | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                        |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                      |
+| **Delete**         | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                       |
+| **Theme**          | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                     |
+| **SetPicture**     | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                               |
+| **Exit**           | `exit`                                                                                                                                                                                                                                                                                                          |
+| **Clear**          | `clear`                                                                                                                                                                                                                                                                                                         |
 

@@ -16,13 +16,13 @@ public class CommandFormat {
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
             "add",
             "Adds a person to ExecutivePro.",
-            "n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] d/DEPARTMENT pr/PAYROLL [l/LEAVE COUNT] [dob/DATE OF BIRTH] "
+            "n/NAME p/PHONE d/DEPARTMENT pr/PAYROLL [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT] [dob/DATE OF BIRTH] "
                     + "[doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat EDIT_COMMAND_FORMAT = new CommandFormat(
             "edit",
             "Edits an employee's details.",
-            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE COUNT]"
+            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [d/DEPARTMENT] [pr/PAYROLL] [e/EMAIL] [a/ADDRESS] [l/LEAVE COUNT]"
                     + " [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat DELETE_COMMAND_FORMAT = new CommandFormat(
@@ -60,6 +60,12 @@ public class CommandFormat {
             "setpicture",
             "Sets the picture for the specified employee",
             "setpicture 2");
+
+    private static final CommandFormat LEAVE_COMMAND_FORMAT = new CommandFormat(
+            "leave",
+            "Helps an employee take leave.",
+            "leave EMPLOYEE_ID l/LEAVE_COUNT");
+
 
     // All misc commands below
     private static final CommandFormat HELP_COMMAND_FORMAT = new CommandFormat(
@@ -102,7 +108,8 @@ public class CommandFormat {
                 LIST_COMMAND_FORMAT,
                 FIND_COMMAND_FORMAT,
                 THEME_COMMAND_FORMAT,
-                SETPICTURE_COMMAND_FORMAT
+                SETPICTURE_COMMAND_FORMAT,
+                LEAVE_COMMAND_FORMAT
         );
     }
 

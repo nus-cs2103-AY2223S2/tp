@@ -17,6 +17,8 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    private static final Address NULL = new Address();
+
     public final String value;
 
     /**
@@ -33,12 +35,19 @@ public class Address {
      * Bypass input validation, allows actual null values.
      */
     public Address() {
-        this.value = "N/A";
+        this.value = "";
+    }
+
+    public static Address getNullAddress() {
+        return Address.NULL;
     }
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
+        if (test == null || test.isEmpty() || test.equals("N/A")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
