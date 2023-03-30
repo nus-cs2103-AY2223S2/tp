@@ -66,14 +66,19 @@ public class PersonViewPanel extends UiPart<Region> {
         setPersonalDetails();
         setAppointmentDetails();
          */
+        String sname = "";
         this.person = person;
-        String sname = person.getName().toString();
+        if (person.isDoctor()) {
+            sname = "[Dr] " + person.getName().toString();
+        } else {
+            sname = person.getName().toString();
+        }
         name.setText(sname);
         phone.setText(person.getPhone().toString());
         email.setText(person.getEmail().toString());
         nric.setText(person.getNric().toString());
         address.setText(person.getAddress().toString());
-        //todo setPersonalInfo () -> new personinfocard
+
         //PersonInfoCard personInfoCard = new PersonInfoCard(person);
 
         /*if (person.getMedications().size() > 0) {
