@@ -211,6 +211,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public Event getEvent(Index index) {
             return null;
         }
@@ -221,16 +225,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        public boolean isPersonTaggedToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+        public void untagPersonFromEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public boolean isPersonTaggedToEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -52,23 +52,6 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
-    /*
-    public void setEvent(Event target, Event editedEvent) {
-        requireAllNonNull(target, editedEvent);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new EventNotFoundException();
-        }
-
-        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.set(index, editedEvent);
-    }*/
-
-
     /**
      * Removes the equivalent event from the list.
      * The event must exist in the list.

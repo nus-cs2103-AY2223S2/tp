@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Name;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Tags a Person to an Event
@@ -20,17 +21,21 @@ import seedu.address.model.person.fields.Name;
 public class TagEventCommand extends Command {
     public static final String COMMAND_WORD = "tagpersonevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags a Person to an Event.\n"
-                + "Parameters: "
-                + PREFIX_EVENT_TO_TAG + "INDEX OF EVENT TO TAG "
-                + PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG\n"
-                + "Example: " + COMMAND_WORD + " "
-                + PREFIX_EVENT_TO_TAG + "1 "
-                + PREFIX_PERSON_TO_TAG + "John Doe";
-    private static final String MESSAGE_SUCCESS = "%1$s is now tagged to Event %2$s";
-    private static final String MESSAGE_SUCCESS_2 = "%1$s is already tagged to Event %2$s";
-    private static final String MESSAGE_INVALID_EVENT = "This event doesn't exists in the Calendar!";
-    private static final String MESSAGE_INVALID_PERSON = "This Person doesn't exists in the Calendar!";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD, "Tags a contact to an event.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
+                    PREFIX_EVENT_TO_TAG + "EVENT INDEX",
+                    PREFIX_PERSON_TO_TAG + "CONTACT NAME")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD,
+                    PREFIX_EVENT_TO_TAG + "1",
+                    PREFIX_PERSON_TO_TAG + "John Doe")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
+                    "Note that the given contact name must be exact.");
+    private static final String MESSAGE_SUCCESS = "%1$s is now tagged to event %2$s";
+    private static final String MESSAGE_SUCCESS_2 = "%1$s is already tagged to event %2$s";
+    private static final String MESSAGE_INVALID_EVENT = "This event doesn't exist!";
+    private static final String MESSAGE_INVALID_PERSON = "This contact doesn't exist!";
 
     private final Index eventIndex;
     private final Name personName;

@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_TO_TAG;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UnTagEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.fields.Name;
@@ -26,7 +25,7 @@ public class UnTagEventCommandParser implements Parser<UnTagEventCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TO_TAG, PREFIX_PERSON_TO_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_TO_TAG, PREFIX_PERSON_TO_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagEventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnTagEventCommand.MESSAGE_USAGE));
         }
 
         Index eventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EVENT_TO_TAG).get());

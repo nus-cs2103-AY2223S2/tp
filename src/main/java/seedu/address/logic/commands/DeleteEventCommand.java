@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Deletes Event from the Calendar
@@ -15,13 +16,13 @@ import seedu.address.model.event.Event;
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes an event identified by the index number.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD, "Deletes an event specified by the given index.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
-    private static final String MESSAGE_SUCCESS = "Deleted Event: %1$s";
-    private static final String MESSAGE_INVALID_EVENT = "This Event Index provided is invalid!";
+    private static final String MESSAGE_SUCCESS = "Deleted event: %1$s";
+    private static final String MESSAGE_INVALID_EVENT = "This event index provided is invalid!";
 
     private final Index targetIndex;
 
