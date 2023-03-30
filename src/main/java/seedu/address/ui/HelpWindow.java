@@ -24,6 +24,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    private static final int STAGE_WIDTH = 427;
     private static final String XDG_OPEN = "xdg-open";
 
     @FXML
@@ -40,6 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        root.setMinWidth(STAGE_WIDTH); // This fixes a bug on Linux where the stage sometimes appear with 0 width
     }
 
     /**

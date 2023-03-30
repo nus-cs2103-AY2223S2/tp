@@ -1,8 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.mark;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -24,13 +26,17 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
 
     /**
      * Creates a Mark As Unwatched Command that marks a video with {@code targetVideoname}
-     * from lecture with {@code lectureName} in module of {@code moduelCode} as watched.
+     * from lecture with {@code lectureName} in module of {@code moduleCode} as unwatched.
      *
      * @param targetVideoName
      * @param moduleCode
      * @param lectureName
      */
     public MarkAsUnwatchedCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
+        requireNonNull(targetVideoName);
+        requireNonNull(moduleCode);
+        requireNonNull(lectureName);
+
         this.targetVideoName = targetVideoName;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
@@ -63,12 +69,32 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
         // TODO: ends here
 
         if (!targetVideo.hasWatched()) {
-            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED, targetVideoName, COMMAND_WORD));
+            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED,
+                    targetVideoName,
+                    COMMAND_WORD,
+                    "",
+                    "",
+                    lectureName,
+                    moduleCode));
         }
 
         Video newVideo = new Video(targetVideoName, false, targetVideo.getTimestamp(), targetVideo.getTags());
         model.setVideo(lecture, targetVideo, newVideo);
 
-        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD));
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
+                        targetVideoName, COMMAND_WORD, "", "", lectureName, moduleCode),
+                new VideoEditInfo(moduleCode, lectureName, targetVideo, newVideo));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof MarkAsUnwatchedCommand)) {
+            return false;
+        }
+
+        MarkAsUnwatchedCommand markCommand = (MarkAsUnwatchedCommand) other;
+        return this.targetVideoName.equals(markCommand.targetVideoName)
+                && this.lectureName.equals(markCommand.lectureName)
+                && this.moduleCode.equals(markCommand.moduleCode);
     }
 }

@@ -1,7 +1,6 @@
 package seedu.address.model.video;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a comment of a video at a specific time.

@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.storage.Storage;
 
 /**
  * Parses input arguments and creates a new ExportCommand object

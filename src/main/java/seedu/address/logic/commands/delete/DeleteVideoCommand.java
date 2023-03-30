@@ -21,8 +21,9 @@ import seedu.address.model.video.VideoName;
 public class DeleteVideoCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE =
-            "(3) Deletes the video of the lecture of the module identified.\n"
-            + "Parameters: video name, lecture name, module code\n"
+            "(3) Deletes one or more videos from a lecture.\n"
+            + "Parameters: {video_name_1}[, {video_name_2}[, ...]] " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_LECTURE + " {lecture_name}\n"
             + "Example: " + COMMAND_WORD + " Video 01 " + PREFIX_MODULE + " CS2102 " + PREFIX_LECTURE + " Lecture 01";
 
     public static final String MESSAGE_DELETE_VIDEO_SUCCESS = "Deleted Video: %1$s from Lecture %2$s in Module %3$s";

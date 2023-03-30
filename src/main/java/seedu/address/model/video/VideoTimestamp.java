@@ -143,7 +143,7 @@ public class VideoTimestamp {
         List<String> listOfTimeStampComment = comments.stream()
                 .map(TimeStampComment::getComment).collect(Collectors.toList());
         String allComments = String.join(", ", listOfTimeStampComment);
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds) + " " + allComments ;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds) + " " + allComments;
     }
 
     @Override

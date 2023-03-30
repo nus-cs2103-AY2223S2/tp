@@ -9,21 +9,19 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MarkAsUnwatchedCommand;
-import seedu.address.logic.commands.MarkAsWatchedCommand;
 import seedu.address.logic.commands.TagCommand;
-import seedu.address.logic.commands.TimeStampCommentCommand;
-import seedu.address.logic.commands.TimeStampUncommentCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.delete.DeleteCommand;
 import seedu.address.logic.commands.edit.EditCommand;
+import seedu.address.logic.commands.mark.MarkAsUnwatchedCommand;
+import seedu.address.logic.commands.mark.MarkAsWatchedCommand;
 import seedu.address.logic.commands.navigation.BackNavCommand;
 import seedu.address.logic.commands.navigation.NavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -103,10 +101,6 @@ public class TrackerParser {
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
 
-        case TimeStampCommentCommand.COMMAND_WORD:
-            return new TimeStampCommentCommandParser().parse(arguments);
-        case TimeStampUncommentCommand.COMMAND_WORD:
-            return new TimeStampUncommentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND + MESSAGE_KNOWN_COMMANDS);

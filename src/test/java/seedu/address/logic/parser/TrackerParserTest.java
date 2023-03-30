@@ -26,8 +26,6 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.MarkAsUnwatchedCommand;
-import seedu.address.logic.commands.MarkAsWatchedCommand;
 import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.add.AddModuleCommand;
@@ -40,6 +38,9 @@ import seedu.address.logic.commands.edit.EditModuleCommand;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.logic.commands.edit.EditVideoCommand;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
+import seedu.address.logic.commands.mark.MarkAsUnwatchedCommand;
+import seedu.address.logic.commands.mark.MarkAsWatchedCommand;
+import seedu.address.logic.commands.mark.MarkMultipleAsUnwatchedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -196,6 +197,7 @@ public class TrackerParserTest {
                         + " " + VALID_VIDEO_NAME_V1
                         + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
                 instanceof MarkAsWatchedCommand);
+
     }
 
     @Test
@@ -204,6 +206,12 @@ public class TrackerParserTest {
                         + " " + VALID_VIDEO_NAME_V1
                         + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
                 instanceof MarkAsUnwatchedCommand);
+
+        assertTrue(parser.parseCommand(MarkAsUnwatchedCommand.COMMAND_WORD
+                        + " " + VALID_VIDEO_NAME_V1
+                        + ", " + VALID_VIDEO_NAME_V2
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
+                instanceof MarkMultipleAsUnwatchedCommand);
     }
 
     @Test

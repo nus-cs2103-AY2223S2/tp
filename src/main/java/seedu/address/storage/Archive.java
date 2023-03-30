@@ -17,6 +17,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 
+/**
+ * A class to export tracker to archive and import modules from archive to tracker
+ */
+
 public class Archive {
     private final Storage storage;
 
@@ -24,7 +28,15 @@ public class Archive {
         this.storage = storage;
     }
 
-    public void exportToArchive(Path archivedPath, ReadOnlyTracker tracker, boolean isOverwriting) throws CommandException {
+    /**
+     * Export current tracker to archive
+     * @param archivedPath the archive file path
+     * @param tracker the current tracker
+     * @param isOverwriting whether the command will be overwriting existing archive file
+     * @throws CommandException
+     */
+    public void exportToArchive(Path archivedPath, ReadOnlyTracker tracker, boolean isOverwriting)
+            throws CommandException {
         if (Files.exists(archivedPath) && Files.isRegularFile(archivedPath) && !isOverwriting) {
             throw new CommandException(String.format(Messages.MESSAGE_ARCHIVE_FILE_ALREADY_EXIST));
         }
@@ -36,6 +48,12 @@ public class Archive {
         }
     }
 
+    /**
+     * Import modules from archive to current tracker
+     * @param archivedPath the archive file path
+     * @param isOverwriting whether the command will be overwriting existing modules in tracker
+     * @throws CommandException
+     */
     public void importFromArchive(Path archivedPath, Model model, boolean isImportingWholeArchive,
                                   boolean isOverwriting,
                                   Set<ModuleCode> moduleCodetoImport) throws CommandException {
@@ -47,11 +65,9 @@ public class Archive {
 
         try {
             archiveTracker = storage.readTracker(archivedPath).get();
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-        catch (DataConversionException dce) {
+        } catch (DataConversionException dce) {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + dce, dce);
 
         }

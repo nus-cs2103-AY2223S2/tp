@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,6 +16,8 @@ import seedu.address.model.module.ReadOnlyModule;
 public class ModuleCard extends UiPart<Region> {
 
     private static final String FXML = "ModuleListCard.fxml";
+    private static final String NO_LECTURES_FOUND_TEXT = "No lectures found";
+    private static final String LECTURE_PROGRESS_FORMAT = "Covered %o/%o lectures";
 
     private final ReadOnlyModule module;
 
@@ -26,6 +29,8 @@ public class ModuleCard extends UiPart<Region> {
     private Label moduleCode;
     @FXML
     private Label moduleName;
+    @FXML
+    private ProgressBar progressBar;
     @FXML
     private Label progress;
     @FXML
@@ -40,24 +45,30 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getCode().toString());
         moduleName.setText(module.getName().toString());
-        progress.setText(getProgressText(module));
+
+        setProgressUi(module);
 
         module.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
-    private String getProgressText(ReadOnlyModule module) {
+    private void setProgressUi(ReadOnlyModule module) {
         int totalLectureCount = module.getLectureList().size();
+        int lectureCompletedCount = 0;
 
-        if (totalLectureCount == 0) {
-            return "No lectures found!";
-        } else {
-            int lectureCompletedCount = module.getLectureList().filtered(lecture -> {
+        if (totalLectureCount > 0) {
+            lectureCompletedCount = module.getLectureList().filtered(lecture -> {
                 int watchCount = lecture.getVideoList().filtered(vid -> vid.hasWatched()).size();
-                return watchCount == lecture.getVideoList().size();
+                return watchCount > 0 && watchCount == lecture.getVideoList().size();
             }).size();
-            return String.format("Progress: %o/%o lectures covered", lectureCompletedCount, totalLectureCount);
         }
+
+        progress.setText(getProgressText(lectureCompletedCount, totalLectureCount));
+        progressBar.setProgress(totalLectureCount == 0 ? 0 : (double) lectureCompletedCount / totalLectureCount);
+    }
+
+    private String getProgressText(int completed, int total) {
+        return total == 0 ? NO_LECTURES_FOUND_TEXT : String.format(LECTURE_PROGRESS_FORMAT, completed, total);
     }
 
     @Override

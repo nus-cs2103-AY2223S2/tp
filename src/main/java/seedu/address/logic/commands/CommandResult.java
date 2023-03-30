@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -67,7 +66,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DisplayListLevel level, String context,
             List<ModuleEditInfo> moduleEditInfoList, List<LectureEditInfo> lectureEditInfoList,
-            List<VideoEditInfo> videoEditInfoList, Path archivePath, boolean isExporting, boolean isImportingWholeArchive,
+            List<VideoEditInfo> videoEditInfoList, Path archivePath, boolean isExporting,
+                         boolean isImportingWholeArchive,
                          boolean isOverwriting, Set<ModuleCode> moduleCodesToImport) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
