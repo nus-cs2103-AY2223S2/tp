@@ -101,7 +101,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList());
+        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList(), this);
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList());
@@ -235,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    public CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
