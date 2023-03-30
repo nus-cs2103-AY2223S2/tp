@@ -2,6 +2,7 @@ package taa.assignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javafx.collections.transformation.FilteredList;
 import taa.assignment.exceptions.AssignmentNotFoundException;
@@ -92,5 +93,30 @@ public class AssignmentList {
         for (Assignment a : assignments) {
             a.deleteStudentSubmission(s);
         }
+    }
+
+    public void initFromStorage(FilteredList<Student> sl) {
+        if (sl.isEmpty()) {
+            return;
+        }
+        // Step 1: populate the assignment list and hashmap with empty assignments.
+        Student firstStudent = sl.get(0);
+        List<String> submissionStrings = firstStudent.getSubmissionStorageStrings();
+        for (String submissionString : submissionStrings) {
+            String[] words = submissionString.split(",");
+            Assignment a = new Assignment(words[0], Integer.parseInt(words[4]));
+            assignments.add(a);
+            assignmentMap.put(words[0],a);
+        }
+
+        // Step 2: populate each assignment with each student submission.
+        for (Student stu : sl) {
+            for (String submissionString : submissionStrings) {
+                String assignmentName = submissionString.split(",")[0];
+                Assignment toAdd = assignmentMap.get(assignmentName);
+                toAdd.addStudentSubmission(stu, submissionString);
+            }
+        }
+
     }
 }

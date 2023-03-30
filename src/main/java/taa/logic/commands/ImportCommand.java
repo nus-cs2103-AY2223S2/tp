@@ -6,11 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -83,6 +79,14 @@ public class ImportCommand extends Command {
         }
         final String pp = record.get(CsvUtil.KW_Attendance).trim();
 
+        if (!record.isMapped(CsvUtil.KW_Attendance)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_Attendance));
+        }
+
+        ArrayList<String> submissions =  new ArrayList<>();
+        Collections.addAll(submissions, record.get(CsvUtil.KW_SUBMISSION).trim().split(","));
+
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
         }
@@ -97,7 +101,7 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new Student(new Name(name), atd, pp, parsedTags);
+        return new Student(new Name(name), atd, pp, submissions, parsedTags);
     }
 
     @Override

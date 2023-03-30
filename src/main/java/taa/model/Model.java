@@ -126,4 +126,6 @@ public interface Model {
     void addAlarm(Alarm alarm) throws CommandException;
 
     void deleteStudentSubmission(Student studentToDelete);
+
+    void initAssignmentsFromStorage();
 }

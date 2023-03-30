@@ -1,9 +1,6 @@
 package taa.model.student;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import taa.assignment.Submission;
 import taa.commons.util.CollectionUtil;
@@ -23,20 +20,21 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private final Submissions submissions;
+    private Submissions submissions = new Submissions(new ArrayList<>());
+    private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, String atd, String pp, Set<Tag> classTags) {
+    public Student(Name name, String atd, String pp, ArrayList<String> submissionStrArr, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
         this.id = ++lastId;
         this.name = name;
         this.atd = new Attendance(atd, pp);
         this.classTags.addAll(classTags);
-        this.submissions = new Submissions();
+        this.submissionStringArr = submissionStrArr;
         hashcode = Objects.hash(name, this.classTags);
     }
 
@@ -94,6 +92,9 @@ public class Student {
         return this.submissions.getLatestSubmission();
     }
 
+    public ArrayList<String> getSubmissionStorageStrings() {
+        return this.submissionStringArr;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

@@ -26,6 +26,24 @@ public class Submission implements Comparable<Submission> {
         this.timeCreated = new Date();
     }
 
+    /**
+     * Creates a Submission, used when creating from storage.
+     * @param student
+     * @param assignment
+     * @param isGraded
+     * @param isLateSubmission
+     * @param marks
+     */
+    public Submission(Student student, Assignment assignment, boolean isGraded,
+                      boolean isLateSubmission, int marks) {
+        this.student = student;
+        this.assignment = assignment;
+        this.isGraded = isGraded;
+        this.isLateSubmission = isLateSubmission;
+        this.marks = marks;
+        this.timeCreated = new Date();
+    }
+
     public Student getStudent() {
         return this.student;
     }
@@ -78,4 +96,12 @@ public class Submission implements Comparable<Submission> {
     public int compareTo(Submission otherSubmission) {
         return this.timeCreated.compareTo(otherSubmission.timeCreated);
     }
+
+    public String toStorageString() {
+        String assignmentName = assignment.getName();
+        int graded = isGraded ? 1 : 0;
+        int late = isLateSubmission ? 1 : 0;
+        return String.format("%s,%d,%d,%d,%d",assignmentName,graded,late,marks,assignment.getTotalMarks());
+    }
+
 }

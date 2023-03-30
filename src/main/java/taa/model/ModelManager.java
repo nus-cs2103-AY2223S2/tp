@@ -291,4 +291,9 @@ public class ModelManager implements Model {
         }));
         timeline.play();
     }
+
+    @Override
+    public void initAssignmentsFromStorage() {
+        assignmentList.initFromStorage(filteredStudents);
+    }
 }

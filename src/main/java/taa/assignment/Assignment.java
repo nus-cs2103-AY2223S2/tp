@@ -19,6 +19,7 @@ public class Assignment {
 
 
     /**
+     * Called using add_asgn
      * @param name name of the assignment
      * @param sl   the list of students from classlist.
      */
@@ -31,6 +32,20 @@ public class Assignment {
             stu.addSubmission(sub);
             submissionMap.put(stu, sub);
         }
+    }
+    public Assignment(String name, int totalMarks) {
+        this.name = name;
+        this.totalMarks = totalMarks;
+    }
+
+    public void addStudentSubmission(Student stu, String submissionString) {
+        String[] words = submissionString.split(",");
+        boolean isGraded = Integer.parseInt(words[1]) == 1;
+        boolean isLateSubmission = Integer.parseInt(words[2]) == 1;
+        Submission sub = new Submission(stu, this, isGraded, isLateSubmission, Integer.parseInt(words[3]));
+        submissions.add(sub);
+        submissionMap.put(stu, sub);
+        stu.addSubmission(sub);
     }
 
     /**
@@ -93,5 +108,9 @@ public class Assignment {
         if (toDelete != null) { // if student doesn't have submission for that assignment.
             submissions.remove(toDelete);
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

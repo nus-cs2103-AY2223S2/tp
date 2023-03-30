@@ -11,10 +11,6 @@ import taa.assignment.Submission;
 public class Submissions {
     private List<Submission> submissions;
 
-    public Submissions() {
-        this.submissions = new ArrayList<>();
-    }
-
     /**
      * @param submissions A list containing Submissions.
      */
@@ -47,5 +43,13 @@ public class Submissions {
             }
         }
         return latestSubmission;
+    }
+
+    public ArrayList<String> submissionStorageString() {
+        ArrayList<String> res = new ArrayList<>();
+        for (Submission sub: this.submissions) {
+            res.add(sub.toStorageString());
+        }
+        return res;
     }
 }
