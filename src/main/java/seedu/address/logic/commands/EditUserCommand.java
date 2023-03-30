@@ -26,7 +26,7 @@ public class EditUserCommand extends EditPersonCommand {
                     "Existing values will be overwritten by the input values for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
                     "INDEX",
-                    "[PREFIX/INPUT[...")
+                    "[PREFIX/INPUT]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "Note that INDEX must be a positive integer.",
                     "For more information on prefixes, refer to the user guide using the help command.",

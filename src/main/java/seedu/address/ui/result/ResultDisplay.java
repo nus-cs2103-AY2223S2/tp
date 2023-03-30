@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.logic.commands.AddCommand;
@@ -48,6 +49,8 @@ public class ResultDisplay extends UiPart<Region> {
             KEYWORD_PARAMETERS, KEYWORD_EXAMPLE, KEYWORD_MORE_INFO);
 
     @FXML
+    private ScrollPane scrollContainer;
+    @FXML
     private VBox resultDisplayContainer;
     @FXML
     private Label resultDisplayLabel;
@@ -83,6 +86,7 @@ public class ResultDisplay extends UiPart<Region> {
             }
         }
         resultDisplayLabel.setText(extractor.getLeftoverFeedback());
+        scrollContainer.setVvalue(0); // scrolls back to the top
     }
 
     /**
