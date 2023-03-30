@@ -19,8 +19,6 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
-If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
-
 Table of Contents
 * [1. Quick start](#1-quick-start)
 * [2. Introducing a Task](#2-a-task-in-clock-work)
@@ -46,6 +44,8 @@ Table of Contents
 * [5. FAQ](#5-faq)
 * [6. Command summary](#6-command-summary)
 * [7. Glossary](#7-glossary)
+
+If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -84,9 +84,21 @@ Table of Contents
 --------------------------------------------------------------------------------------------------------------------
 ## 2. A Task in Clock-Work
 
-A student's life is busy, but also vibrant and filled with a variety of activities. Thus, Clock-Work supports 3 types of tasks to cater to the varying needs in a student's life.
+The life of student is busy, but also vibrant and filled with a variety of activities. Clock-Work helps students achieve their maximum potential by supporting 3 types of tasks to cater to their varying needs.
 They are: Simple Tasks, Deadlines, and Events. As their name suggests, a simple task is a time-insensitive task that can be done at any time, a deadline is a time-sensitive task which must be done before the specified deadline, and an event is a time-sensitive task that must be done during the specified period of time.
 
+### Basic Information about Tasks
+* A Task can be:
+    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Long Date?](#q4-what-is-a-valid-long-date))
+    * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
+    * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
+
+* A task can have the following additional **Optional** fields attached to it:
+    * Tags
+    * Description
+    * Effort level
+    * Alert window
+    * Subsection
 
 This is what a task look like in Clock-Work.
 
@@ -94,14 +106,15 @@ This is what a task look like in Clock-Work.
 
 This is what each component mean:
 
-| Component | Meaning | How to use it | Usage Specifications                                                                     |
-| ---------- | --------- | ------------- |------------------------------------------------------------------------------------------|
-| Name | Name of task | Use it to identify task | Must be unique, Case-insensitive                                                         |
-| Tags | Labels / Folders | Use it to group related tasks | Must be a single word, Colour randomly generated, limit to 45 characters                 |
-| Time | Type of task | Keep track of time-related information here | A simple task has no specified time, a deadline has 1 long date, an event has 2 long dates |
-| Effort | Estimated amount of work to complete task | Set realistic effort estimates to help with scheduling | Default value of 24                                                                      |
-| Description | Good-to-know | Useful things to remember | Text with at least 1 character|
-| Subsection | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                         |
+| Component | Meaning | How to use it | Usage Specifications                                                                       |
+|--| --------- | ------------- |--------------------------------------------------------------------------------------------|
+| [Name](#q2-what-is-a-valid-name) | Name of task | Use it to identify task | Must be unique, Case-insensitive                                                           |
+| [Tag](#q3-what-is-a-valid-tag) | Labels / Folders | Use it to group related tasks | Must be a single word, Colour randomly generated, limit to 45 characters                   |
+| [Time](#q4-what-is-a-valid-long-date) | Type of task | Keep track of time-related information here | A simple task has no specified time, a deadline has 1 long date, an event has 2 long dates |
+| [Effort](#q7-what-is-an-effort-level) | Estimated amount of work to complete task | Set realistic effort estimates to help with scheduling | Default value of 24                                                                        |
+| [Description](#q8-what-is-a-valid-description) | Good-to-know | Useful things to remember | Text with at least 1 character                                                             |
+| [Subsection](#q9-what-is-a-valid-subsection) | Smaller tasks to complete | Split a larger task into more manageable pieces | Has its own name and description                                                           |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,18 +129,19 @@ This is what each component mean:
 For easy reference and understanding, this guide utilizes some special formatting of text. The conventions used are as follows:
 
 
-| Convention | Meaning |
-| --- | --- |
-| `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. |
-| `UPPERCASEWORD` | Compulsory inputs which must be supplied in order for the command to work. |
-| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. |
+| Convention | Meaning | Sample Usage |
+| --- |-----------------------------------------------------------------------------|--------------|
+| `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. | `plan`       |
+| `UPPERCASEWORD` | Compulsory inputs which must be supplied by user in order for the command to work. | `n/NAME`     |
+| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command.                        |  `[d/DESCRIPTION]` |
+| `…`​ | Inputs can be used multiple times, including zero times | `[t/TAG]…​` |
 
 
-| Emoji | Meaning |
-| -- | --- |
-| :man_technologist: | Short messages from the us to you |
-| :bulb: | Tips on how to enhance your user experience |
-| :warning: | Important things to note to avoid unintended behaviour |
+| Emoji              | Meaning |
+|--------------------| --- |
+| :man_technologist: | Short messages from us to you |
+| :bulb:             | Tips on how to enhance your user experience |
+| :warning:          | Important things to note to avoid unintended behaviour |
 
 ### Inputs into Clock-Work
 
@@ -135,32 +149,14 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 1. First word is assumed to be a command word (add/delete/list/find).
 
-2. Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
-
-3. Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/important`, `t/important t/urgent` etc.
-
-4. Parameters can be in any order.<br>
+2. Parameters can be in any order.<br>
   e.g. if the command specifies `n/Task A d/A's sample description`, `d/A's sample description n/Task A` is also acceptable.
 
-5. If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+3. If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
 
-6. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+4. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-### Basic Information about Tasks
-* A Task can be:
-    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a LongDate?](#q2-what-is-a-valid-Longdate))
-    * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
-    * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
-
-* A task can have the following additional **Optional** fields attached to it:
-    * Tags
-    * Description
-    * Effort level
-    * Alert window
-    * Subsection
 
 </div>
 
@@ -168,14 +164,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 :man_technologist: **Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task!** :tada:
 
-Adds a task to the task book. There are 3 types of tasks. `simpleTask`, `Deadline` and `Event`.
-For `Deadline` and `Event` `LongDate` field(s) are required.
-
-`LongDate` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid LongDate?](#q2-what-is-a-valid-Longdate))
-
-By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
-
-A Task must have a description.([What is a valid Description?](#q4-what-is-a-valid-description))
+You can create different types of tasks depending on the input parameters you enter.
 
 Format:
 
@@ -189,13 +178,6 @@ Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
-You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
-
-:bulb: **PRO TIP**: You can add multiple <span style="color:#FBBC05">Events</span> and <span style="color:#34A853">Deadlines</span> as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
-
-:bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
-
-:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q5-why-does-two-different-tags-have-the-same-tag-color)
 
 :warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
@@ -210,9 +192,22 @@ e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 e.g. `add n/Sample d/Why can't I add n/?`
 
 
+:man_technologist: **If you are a pro user, you may consider adding multiple tasks at once with this hack!**
+
+
+Add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
+
+
+:bulb: **PRO TIP**: You can add multiple <span style="color:#FBBC05">Events</span> and <span style="color:#34A853">Deadlines</span> as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
+
+:bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
+
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q5-why-does-two-different-tags-have-the-same-tag-color)
+
+
 ### 3.2 Editing a task : `edit`
 
-:man_technologist: Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.
+:man_technologist: **Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.**
 
 Edits an existing task in the task book.
 
@@ -236,7 +231,7 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 ### 3.3 Deleting a task : `delete`
 
-:man_technologist: Congratulations! You have completed a task. Now, you can remove it by using this command.
+:man_technologist: **Congratulations! You have completed a task. Now, you can remove it by using this command.**
 
 Deletes the specified task from the task  book.
 
@@ -255,7 +250,7 @@ Examples:
 
 ### 3.4 Listing all tasks : `list`
 
-:man_technologist: Want to have an overview of all your tasks? Try this!
+:man_technologist: **Want to have an overview of all your tasks? Try this!**
 
 Shows a list of all tasks in the task book.
 
@@ -266,7 +261,7 @@ Format: `list`
 
 ### 3.5 Sorting tasks : `sort`
 
-:man_technologist: Is the displayed list too messy for your liking? Sort is here to help.
+:man_technologist: **Is the displayed list too messy for your liking? Sort is here to help.**
 
 Sorts the list using the following format:
 
@@ -293,7 +288,7 @@ Format: `sort`
 
 ### 3.6 Locating tasks by name : `find`
 
-:man_technologist: Oops! Are you unable to locate a task? Try find.
+:man_technologist: **Oops! Are you unable to locate a task? Try find.**
 
 Find **Tasks** whose attribute best match the user input string.
 
@@ -326,7 +321,7 @@ e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/N
 
 ### 3.7 Getting statistics : `stats`
 
-:man_technologist: Some statistics will do no harm. Stats is here to help you visualise your tasks in numbers!
+:man_technologist: **Some statistics will do no harm. Stats is here to help you visualise your tasks in numbers!**
 
 Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
 
@@ -335,7 +330,7 @@ Format: `stats`
 
 ### 3.8 Get alerts : `alert [ALERT WINDOW]`
 
-:man_technologist: Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!
+:man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
 Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
 On opening of app, the **alert panel** will open to show **Tasks** which have deadlines within the **latest** window specified.
@@ -348,7 +343,7 @@ Examples:
 
 ### 3.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
 
-:man_technologist: Wouldn't it be great if you can have your life planned out for you? Schedule can help!
+:man_technologist: **Wouldn't it be great if you can have your life planned out for you? Schedule can help!**
 
 `schedule` displays a planned daily schedule according to the tasks currently stored.
 
@@ -372,6 +367,7 @@ The algorithm allocates tasks as such:
 
 <summary>Need more help?</summary>
 
+
 **Displaying Daily Plans**
 
 
@@ -393,7 +389,7 @@ Examples:
 
 ## 3.10 Subsections
 
-:man_technologist: Have a task that is really long? Want to organise it in smaller sections? Why not use subsection?
+:man_technologist: **Have a task that is really long? Want to organise it in smaller sections? Why not use subsection?**
 
 ### 3.10.1 Adding a Subsection to a Task : `subsection`
 
@@ -413,7 +409,7 @@ Examples:
 
 ### 3.11 Viewing help : `help`
 
-:man_technologist: For the beginner user who is still unfamiliar with the commands. Welcome!
+:man_technologist: **For the beginner user who is still unfamiliar with the commands. Welcome!**
 
 Shows a message explaining how to access the help page.
 
@@ -424,7 +420,7 @@ Format: `help`
 
 ### 3.12 Clearing all entries : `clear`
 
-:man_technologist: Think twice before using this. This action is not reversible.
+:man_technologist: **Think twice before using this. This action is not reversible.**
 
 Clears all entries from the task book.
 
@@ -432,7 +428,7 @@ Format: `clear`
 
 ### 3.13 Exiting the program : `exit`
 
-:man_technologist: We hope to see you again!
+:man_technologist: **We hope to see you again!**
 
 Exits the program.
 
@@ -463,24 +459,33 @@ _Details coming soon ..._
 ### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
-### Q2 What is a valid LongDate?
+### Q2 What is a valid Name?
+**A**: A valid Name has a minimum of 1 character, and does not have **/** in it. It can have multiple words, and there is no limit to the number of characters it accept. However, for a better user experience, we recommend limiting the number of character in name to 35 characters.
+
+### Q3 What is a valid Tag?
+**A**: A valid tag consists of only alphanumeric characters, and has minimum length of 1 character. Tags are case-sensitive, which means that **STUDY** and **study** are treated as different tags.
+
+### Q4 What is a valid Long Date?
 **A**: A valid LongDate must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid LongDate must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
-### Q4 What is a valid ShortDate?
+### Q5 What is a valid Short Date?
 **A**: A valid ShortDate must be in the format of `YYYY-MM-DD` such as `2023-07-15` (15 July 2023).
 
-### Q4 What is an effort level?
-**A**: [_More details to come_]
+### Q6 What is the difference between a `LongDate` and a `ShortDate`?
+**A**: A `ShortDate` omits the `HHMM` component of a `LongDate`.
 
-### Q5 What is a valid Description?
+### Q7 What is an effort level?
+**A**: The effort level is a user estimate of the amount of work required to complete a task. Users are free to select any value between 0 and 2147483647 for their estimate.
+
+### Q8 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
 
-### Q6 Why does two different tags have the same tag color??
-**A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
+### Q9 What is a valid Subsection?
+**A**: A valid Subsection has a name and an optional description. Within a task, all subsection names must be unique, and it is case-insensitive. This means that **study** and **STUDY** are treated as the same name.
 
-### Q7 What is the difference between a `LongDate` and a `ShortDate`?
-**A**: A `ShortDate` omits the `HHMM` component of a `LongDate`. 
+### Q10 Why does two different tags have the same tag color?
+**A**: Clock-Work randomly assigns 1 of 20 available colors to tags. As the number of tags users use increases, the chances of multiple tags being allocated the same colour increases. More colors will be added in future iterations.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -502,5 +507,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 ## 7. Glossary
-1. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
 2. Free day: Allocating a task to this day will not result in overloading.
+3. Long date: Date in the format YYYY-MM-DD HHMM
+4. Short date: Date in the format YYYY-MM-DD
+3. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
