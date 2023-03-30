@@ -86,16 +86,16 @@ Below is the full table of contents, in case you are looking for something very 
   - [Updating a contact : `edit`](#updating-a-contact--edit)
   - [Deleting a contact : `delete`](#deleting-a-contact--delete)
 - [Making a Team](#making-a-team)
-  - [Create team: `@TODO`](#create-team-todo)
+  - [Create team: `create`](#create-team-todo)
   - [Finding the right teammate I : `find`](#finding-the-right-teammate-i--find)
   - [Finding the right teammate II : `sort`](#finding-the-right-teammate-ii--sort)
-  - [Add a person to a team : `@TODO`](#add-a-person-to-a-team--todo)
-  - [List all teammates in a team : `@TODO`](#list-all-teammates-in-a-team--todo)
+  - [Add a person to a team : `edit`](#add-a-person-to-a-team--todo)
+  - [List all teammates in a team : `show`](#list-all-teammates-in-a-team--todo)
+  - [Remove a team : `remove`](#remove-a-team--remove)
 - [Extra Team Builder Features](#extra-team-builder-features)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing a command : `undo`](#undoing-a-command--undo)
   - [Redoing an undo command : `redo`](#redoing-an-undo-command--redo)
-  - [Listing all tags : `@TODO`](#listing-all-tags--todo)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -108,18 +108,21 @@ Below is the full table of contents, in case you are looking for something very 
 
 ## Full Table of Commands
 
-Action | Type |Format, Examples
-:--------:|:------:|:--------:
-[**Add**](#adding-a-new-contact--add) | Modifying |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
-[**Clear**](#clearing-all-entries--clear) | Modifying |`clear`
-[**Delete**](#deleting-a-contact--delete) | Modifying |`delete INDEX`<br> e.g., `delete 3`
-[**Edit**](#updating-a-contact--edit) | Modifying |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-[**Find**](#finding-the-right-teammate-i--find) | Listing | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Sort**](#finding-the-right-teammate-ii--sort) | Listing |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
-[**List**](#listing-all-contacts--list) | Listing |`list`
+Action |          Type          |Format, Examples
+:--------:|:----------------------:|:--------:
+[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
+[**Clear**](#clearing-all-entries--clear) |       Modifying        |`clear`
+[**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
+[**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find NAME/MAJOR/TAG [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
+[**Create**](#Creating-a-team--create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
+[**Show**](#listing-all-contacts-within-a-team--show) |        Listing         |`show TEAM_NAME` <br> e.g., `show TeamA`
+[**List**](#listing-all-contacts--list) |        Listing         |`list`
+[**Remove**](#remove-a-team--remove) |       Modifying        |`remove`
 [**Undo**](#undoing-a-command--undo) | Special<br/> Modifying | `undo`
-[**Redo**](#redoing-an-undo-command--redo) | Modifying |`redo`
-[**Help**](#help-command) | Window |`help`
+[**Redo**](#redoing-an-undo-command--redo) |       Modifying        |`redo`
+[**Help**](#help-command) |         Window         |`help`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,10 +192,11 @@ This includes:
 
 ### Adding a new contact : `add`
 
-Format: `add n/NAME [p/PHONE_NUMBE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0). Tags are especially useful for keeping track of skills and traits!
+A contact must have a name, other features are optional.
 </div>
 
 <img class="center" alt="**John Pic**" src="images/JohnContactCardFront.png" width="60%" />
@@ -282,26 +286,39 @@ Again, we see **John** is index 1 in our display.
 
 ## Making a Team
 
-This section convers on how to make a team in your Team Builder.
+This section converse on how to make a team in your Team Builder.
 
 This includes:
 1. Creating a team
 2. Finding the right teammate using `find` and `sort`
 3. Adding a person to a team
 4. Listing all teammates in a team
+5. Remove a team
 
-### Create team: `@TODO`
+### Create team: `create`
+
+Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
+
+You have decided to participate in NUS Hack&Roll hackathon. Let's create a team! Since your idea involves creating 
+a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI 
+person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills 
+are required too.
+
+**What to type**:
+
+`create tn/NUSMeets td/A multidisciplinary team for upcoming HacknRoll in mid Jan. t/JavaScript t/React t/AWS 
+t/Project Management t/UI Design`
+
+**Result**:
 
 `@TODO`
 
-
-
-
 ### Finding the right teammate I : `find`
 
-<a id="find-command" style="color:black"> Format: `find KEYWORD [MORE_KEYWORDS]...` </a>
+<a id="find-command" style="color:black"> Format: `find NAME/MAJOR/TAG [MORE_KEYWORDS]...` </a>
 
-Finds persons whose names contain any of the given keywords.
+You recall that two of your tutorial classmate named Alex and David are good at UI Design and you want to invite them
+to your team, but you have forgotten their full name and contact numbers.
 
 **What to type**:
 
@@ -311,6 +328,25 @@ Finds persons whose names contain any of the given keywords.
 
 <img class="center" alt="result for 'find alex david'" src="images/findAlexDavidResult.png" width="50%" />
 
+You still feel your team needs more people, and you decide to find someone who majored in computer science.
+
+**What to type**:
+
+`find computer science`
+
+**Result**:
+
+`@TODO`
+
+Now your team is almost formed, but you still need a person who mastered JavaScript.
+
+**What to type**:
+
+`find javascript`
+
+**Result**:
+
+`@TODO`
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Specificity of `find`**:
@@ -341,15 +377,56 @@ Finds persons whose names contain any of the given keywords.
 </div>
 
 
+### Add a person to a team : `edit`
 
-### Add a person to a team : `@TODO`
+Format: `edit INDEX [T/TEAMTAG]...`
+
+You recall participating in a Hackathon previously with Adam Tan and knows he is familiar with React. You decide to 
+reach out to him to form your team for Hack&Roll. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only add a person to the team if the team has been created beforehand!
+</div>
+
+**What to type**:
+
+`edit 1 T/NUSMeets`
+
+**Result**:
+
+`@TODO`
+
+### List all teammates in a team : `show`
+
+Format: `show TEAM_NAME`
+
+The Hack&Roll announced that there is a limit on team size. You want to list all people who are currently added to your
+NUSMeets team.
+
+**What to type**:
+
+`show NUSMeets`
+
+**Result**:
 
 `@TODO`
 
 
-### List all teammates in a team : `@TODO`
+### Remove a team : `remove`
+
+Format: `remove TEAMNAME`
+
+Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run. You decide to 
+not participate in it anymore. 
+
+**What to type**:
+
+`remove NUSMeets`
+
+**Result**:
 
 `@TODO`
+
 
 ## Extra Team Builder Features
 
@@ -411,10 +488,6 @@ These are all acceptable as anything after `redo` is discarded.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Typing any [modifying command](#full-table-of-commands) (other than an undo) after an `undo` makes it impossible to `redo` that `undo` command!
 </div>
-
-### Listing all tags : `@TODO`
-
-`@TODO`
 
 ### Exiting the program : `exit`
 
