@@ -19,7 +19,6 @@ import seedu.ultron.logic.commands.RemarkCommand;
 import seedu.ultron.logic.commands.UpcomingCommand;
 import seedu.ultron.logic.commands.ShowCommand;
 import seedu.ultron.logic.commands.StatusCommand;
-import seedu.ultron.logic.commands.SortCommand;
 
 import seedu.ultron.logic.parser.exceptions.ParseException;
 

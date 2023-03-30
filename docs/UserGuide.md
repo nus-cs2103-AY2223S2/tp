@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing **. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
+Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing**. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
 
 - Table of Contents
   {:toc}
@@ -172,6 +172,14 @@ Examples:
 - `find Google` returns `google` and `Google Cloud`
 - `find bank america` returns `Bank of America`, `Bank of Singapore`, `Bank Manager`<br>
 
+Format: `find ORDER`
+
+- `ORDER` **must be of asc or desc**.
+- The `ORDER` is case-insensitive. e.g. `AsC` will still order the relevant openings in ascending order
+- The openings without keydates or with keydates that have already passed today will not be shown.
+
+![Find](images/Find.png)
+
 ### Filtering openings by status: `status`
 
 Finds openings whose STATUS is the given KEYWORD.
@@ -186,6 +194,8 @@ Format: `status KEYWORD`
 Examples:
 
 - `status Interviewing` returns openings with status Interviewing
+
+![Status](images/Status.png)
 
 ### Deleting an opening : `delete`
 
@@ -228,6 +238,10 @@ Ultron data are saved in the hard disk automatically after any command that chan
 
 **A**: Remarks will only be displayed when `show` command is used.
 
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the JSON file 'data/ultron.json'.
+
 ---
 
 ## Command summary
@@ -243,3 +257,5 @@ Ultron data are saved in the hard disk automatically after any command that chan
 | **Upcoming** | `upcoming DAYS`<br/> e.g., `upcoming 1`                                                                                                                            |
 | **Show**     | `show INDEX`<br/> e.g., `show 1`                                                                                                                                   |
 | **Remark**   | `remark INDEX [r/REMARK]`<br/> e.g., `remark 1 r/1 round of interview`                                                                                             |
+| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                             |
+

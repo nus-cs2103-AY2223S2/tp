@@ -3,13 +3,16 @@ package seedu.ultron.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.ultron.commons.core.LogsCenter;
+import seedu.ultron.commons.core.index.Index;
+import seedu.ultron.logic.Logic;
 import seedu.ultron.model.opening.Opening;
 
 /**
@@ -25,10 +28,18 @@ public class OpeningListPanel extends UiPart<Region> {
     /**
      * Creates a {@code OpeningListPanel} with the given {@code ObservableList}.
      */
-    public OpeningListPanel(ObservableList<Opening> openingList) {
+    public OpeningListPanel(ObservableList<Opening> openingList, Logic logic, MainWindow mainWindow) {
         super(FXML);
         openingListView.setItems(openingList);
         openingListView.setCellFactory(listView -> new OpeningListViewCell());
+        openingListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Index selected = Index.fromZeroBased(openingListView.getSelectionModel().getSelectedIndex());
+                logic.setSelectedOpening(selected);
+                mainWindow.handleShow();
+            }
+        });
     }
 
     /**
