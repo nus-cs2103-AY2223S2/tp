@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -69,12 +69,12 @@ public class AutocompleteEngine {
 
         // For commands with index arguments, the index must be the first argument.
         assert ARGUMENT_PREFIX_MAP.values().stream()
-                .filter(argPrefix -> argPrefix.contains(PREFIX_INDEX))
-                .allMatch(argPrefix -> argPrefix.get(0).equals(PREFIX_INDEX));
+                .filter(argPrefix -> argPrefix.contains(INDEX_PLACEHOLDER))
+                .allMatch(argPrefix -> argPrefix.get(0).equals(INDEX_PLACEHOLDER));
         
         // For commands with keyword arguments, the keyword is assumed to be the only argument.
         assert ARGUMENT_PREFIX_MAP.values().stream()
-                .filter(argPrefix -> argPrefix.contains(PREFIX_KEYWORD))
+                .filter(argPrefix -> argPrefix.contains(KEYWORD_PLACEHOLDER))
                 .allMatch(argPrefix -> argPrefix.size() == 1);
         
         // All commands are assume to only have at most 1 prefix-less arguments (eg. index/keywords).
@@ -140,8 +140,8 @@ public class AutocompleteEngine {
         String nextAutocomplete = Optional.of(nextAutocompleteRegex.matcher(remainingSuggestion))
                 .filter(Matcher::find)
                 .map(Matcher::group)
-                .filter(match -> !match.trim().equals(PREFIX_INDEX.getPlaceholderText()))
-                .filter(match -> !match.trim().equals(PREFIX_KEYWORD.getPlaceholderText()))
+                .filter(match -> !match.trim().equals(INDEX_PLACEHOLDER.getPlaceholderText()))
+                .filter(match -> !match.trim().equals(KEYWORD_PLACEHOLDER.getPlaceholderText()))
                 .orElse("");
         return userInput + nextAutocomplete;
     }
@@ -182,10 +182,10 @@ public class AutocompleteEngine {
         assert !lastWord.isBlank();
         assert !lastWord.contains(" ");
 
-        boolean isIndexRequired = argPrefixes.contains(PREFIX_INDEX);
+        boolean isIndexRequired = argPrefixes.contains(INDEX_PLACEHOLDER);
         if (isIndexRequired) {
             // Index is assumed to always be the first arg.
-            assert argPrefixes.get(0) == PREFIX_INDEX;
+            assert argPrefixes.get(0) == INDEX_PLACEHOLDER;
 
             //TODO to remove when commands are dry-run to see if they're valid,
             //where an error should be thrown should the first word not be a integer.
@@ -234,7 +234,7 @@ public class AutocompleteEngine {
                     : matchingArgs.substring(lastWord.length());
         }
 
-        boolean isKeywordRequired = argPrefixes.contains(PREFIX_KEYWORD);
+        boolean isKeywordRequired = argPrefixes.contains(KEYWORD_PLACEHOLDER);
         if (isKeywordRequired) {
             // Commands with keyword argument are assumed to only require that keyword as argument.
             // If the keyword isn't the only arg., then more checks/parsing needs to be done when

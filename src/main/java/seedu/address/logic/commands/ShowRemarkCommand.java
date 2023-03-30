@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class ShowRemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            PREFIX_INDEX));
+            INDEX_PLACEHOLDER));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the remarks added to a person.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

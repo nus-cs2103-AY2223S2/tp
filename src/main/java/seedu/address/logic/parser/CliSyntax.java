@@ -16,10 +16,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_SUBJECT = new Prefix("s/", "SUBJECT");
 
     /** Not a prefix, but a placeholder for a keyword argument. */
-    public static final Prefix PREFIX_KEYWORD = new Prefix("", "KEYWORD");
+    public static final Prefix KEYWORD_PLACEHOLDER = new Prefix("", "KEYWORD");
 
     /** Not a prefix, but a placeholder for a index argument. */
-    public static final Prefix PREFIX_INDEX = new Prefix("", "INDEX");
+    public static final Prefix INDEX_PLACEHOLDER = new Prefix("", "INDEX");
 
     private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
         PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
