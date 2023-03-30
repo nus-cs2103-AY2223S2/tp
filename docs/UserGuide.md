@@ -524,39 +524,39 @@ Examples:
    <tr>
       <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>add-note note -content hello world -type tutorial -name 2</code>
+      <td><code>addNote note -content hello world -type tutorial -name 2</code>
       </td>
       <td>
          <ul>
-            <li><code>add-note note -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
-            <li><code>add-note note -content grade student labs timely\n -type Lab -name 2</code></li>
-            <li><code>add-note -content solve this student's query via email\n -type Recur -name 2</code></li>
+            <li><code>addNote -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
+            <li><code>addNote -content grade student labs timely\n -type Lab -name 2</code></li>
+            <li><code>addNote -content solve this student's query via email\n -type Recur -name 2</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
-      <td><code>delete note [type] [name or index] [note-index]</code>
+      <td><code>deleteNote [type] [name or index] [note-index]</code>
       </td>
       <td>
          <ul>
-            <li><code>rm-note -type Tutorial -name 2 -index 3</code>
-            <li><code>rm-note -type Lab -name 2 -index 1</code></li>
-            <li><code>rm-note -type Recur -name 2 -index 0</code></li>
+            <li><code>deleteNote -type Tutorial -name 2 -index 3</code>
+            <li><code>deleteNote -type Lab -name 2 -index 1</code></li>
+            <li><code>deleteNote -type Recur -name 2 -index 0</code></li>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>edit-note [type] [name or index] [note-index] [newcontent]</code>
+      <td><code>editNote [type] [name or index] [note-index] [newcontent]</code>
       </td>
       <td>
          <ul>
-            <li><code>edit-note -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3</code>
-            <li><code>edit-note -content grade student labs timely\n -type Lab -name 2 -index 1</code></li>
-            <li><code>edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0</code></li>
+            <li><code>editNote -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3</code>
+            <li><code>editNote -content grade student labs timely\n -type Lab -name 2 -index 1</code></li>
+            <li><code>editNote -content solve this student's query via email\n -type Recur -name 2 -index 0</code></li>
          </ul>
       </td>
    </tr>
