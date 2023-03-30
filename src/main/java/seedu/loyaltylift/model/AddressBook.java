@@ -138,7 +138,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// order-level operations
 
     /**
-     * Returns true if a order with the same identity as {@code order} exists in the address book.
+     * Returns true if an order with the same identity as {@code order} exists in the address book.
      */
     public boolean hasOrder(Order order) {
         requireNonNull(order);
