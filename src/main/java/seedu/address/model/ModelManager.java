@@ -251,7 +251,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+    public void updateFilteredCustomerList(Predicate<? super Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
     }
@@ -450,37 +450,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
+    public void updateFilteredTechnicianList(Predicate<? super Technician> predicate) {
         requireNonNull(predicate);
         filteredTechnicians.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredServiceList(Predicate<Service> predicate) {
+    public void updateFilteredServiceList(Predicate<? super Service> predicate) {
         requireNonNull(predicate);
         filteredServices.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+    public void updateFilteredVehicleList(Predicate<? super Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
     }
 
     //    @Override
-    //    public void updateFilteredPartList(Predicate<Part> predicate) {
+    //    public void updateFilteredPartList(Predicate<? super Part> predicate) {
     //        requireNonNull(predicate);
     //        filteredParts.setPredicate(predicate);
     //    }
 
     //    @Override
-    //    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    //    public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
     //        requireNonNull(predicate);
     //        filteredAppointments.setPredicate(predicate);
     //    }

@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.Findable;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.tag.Tag;
@@ -146,5 +147,4 @@ public class Customer extends Person {
         String temp = super.toString();
         return temp + StringUtil.NEWLINE + String.format("Vehicles: %s", this.getVehicleIds());
     }
-
 }

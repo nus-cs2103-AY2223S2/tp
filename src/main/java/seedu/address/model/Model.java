@@ -129,7 +129,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+    void updateFilteredAppointmentList(Predicate<? super Appointment> predicate);
 
     // ==== For Customers ==
 
@@ -144,7 +144,7 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
+    void updateFilteredCustomerList(Predicate<? super Customer> predicate);
 
     /**
      * Adds customer to the shop
@@ -275,11 +275,11 @@ public interface Model {
      */
     boolean hasTechnician(int technicianId);
 
-    void updateFilteredTechnicianList(Predicate<Technician> predicate);
+    void updateFilteredTechnicianList(Predicate<? super Technician> predicate);
 
-    void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+    void updateFilteredVehicleList(Predicate<? super Vehicle> predicate);
 
-    void updateFilteredServiceList(Predicate<Service> predicate);
+    void updateFilteredServiceList(Predicate<? super Service> predicate);
 
     void updatePartsMap();
 
