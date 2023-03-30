@@ -39,7 +39,7 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + " based on the person's INDEX number:\n"
                                                         + "Format: edit INDEX [n/NAME] [p/PHONE]"
                                                         + " [dob/DATE OF BIRTH]"
-                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES] g/GENDER"
+                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES] [g/GENDER]"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
     public static final String DELETE_COMMAND_MESSAGE = "5) Deletes patient with the specified NRIC from"
@@ -57,8 +57,9 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + " ad/doctor | m/MEDICINE)";
 
     public static final String BACKUP_COMMAND_MESSAGE = "9) Backs up the patient records to specified"
-                                                        + " slot represented by an index:\n"
-                                                        + " Format: backup INDEX_NO";
+                                                        + " slot represented by INDEX_NO with an optional"
+                                                        + " description:\n"
+                                                        + " Format: backup INDEX_NO [b/DESCRIPTION]";
 
     public static final String LOAD_DATA_COMMAND_MESSAGE = "10) Loads the data from a specified slot represented"
                                                         + " by an index.\n"
