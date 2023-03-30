@@ -113,7 +113,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `ModuleTrackerParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
 executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a module).
@@ -133,9 +133,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a 
+* When called upon to parse a user command, the `ModuleTrackerParser` class creates an `XYZCommandParser` (`XYZ` is a 
 placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back
+the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModuleTrackerParser` returns back
 as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` 
 interface so that they can be treated similarly where possible e.g, during testing.
@@ -149,7 +149,7 @@ interface so that they can be treated similarly where possible e.g, during testi
 
 The `Model` component,
 
-* stores the address book data i.e., all `Module` objects (which are contained in a `UniqueModuleList` object).
+* stores the module tracker data i.e., all `Module` objects (which are contained in a `UniqueModuleList` object).
 * stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list 
 which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be 
 bound to this list so that the UI automatically updates when the data in the list change.
@@ -159,7 +159,7 @@ a `ReadOnlyUserPref` objects.
 they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) 
-model is given below. It has a `Tag` list in the `AddressBook`, which `Module` references. This allows `AddressBook` to
+model is given below. It has a `Tag` list in the `ModuleTracker`, which `Module` references. This allows `ModuleTracker` to
 only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
@@ -175,16 +175,16 @@ only require one `Tag` object per unique tag, instead of each `Module` needing t
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding 
+* can save both module tracker data and user preference data in json format, and read them back into corresponding 
 objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only 
+* inherits from both `ModuleTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only 
 the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
 that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.moduletracker.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -199,7 +199,7 @@ This section will explain the implementation of the FindCommand and the FindComm
 to search for modules whose names or types contain any of the specified keywords (case-insensitive).
 
 FindCommand Class
-The FindCommand class is responsible for finding and listing all modules in the address book whose name contains any of
+The FindCommand class is responsible for finding and listing all modules in the module tracker whose name contains any of
 the argument keywords. Keyword matching is case insensitive.
 The FindCommandParser is responsible for parsing the input given by the user.
 
@@ -211,11 +211,11 @@ test method which is used by the FilteredList.
 
 Given below is an example usage scenario and how the find command behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
-address book state.
+Step 1. The user launches the application for the first time. The `ModuleTracker` will be initialized with the initial
+module tracker state.
 
 Step 2. The user executes `find CS3263` command. The 'find CS3263' will be handled by the LogicManager and 
-AddressBookParser which will extract out the needed argument, more importantly the predicate.
+ModuleTrackerParser which will extract out the needed argument, more importantly the predicate.
 
 Step 3. Now, the command is executed through the execute method which will update the list through
 `Model#updateFilteredModuleList`
@@ -227,49 +227,49 @@ find the items based on name or type
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an 
-undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it 
+The proposed undo/redo mechanism is facilitated by `VersionedModuleTracker`. It extends `ModuleTracker` with an 
+undo/redo history, stored internally as an `moduleTrackerStateList` and `currentStatePointer`. Additionally, it 
 implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedModuleTracker#commit()` — Saves the current module tracker state in its history.
+* `VersionedModuleTracker#undo()` — Restores the previous module tracker state from its history.
+* `VersionedModuleTracker#redo()` — Restores a previously undone module tracker state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` 
-and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitModuleTracker()`, `Model#undoModuleTracker()` 
+and `Model#redoModuleTracker()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the 
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedModuleTracker` will be initialized with the 
+initial module tracker state, and the `currentStatePointer` pointing to that single module tracker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th module in the address book. The `delete` command calls 
-`Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be
-saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th module in the module tracker. The `delete` command calls 
+`Model#commitModuleTracker()`, causing the modified state of the module tracker after the `delete 5` command executes to be
+saved in the `moduleTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted module tracker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new module. The `add` command also calls 
-`Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+`Model#commitModuleTracker()`, causing another modified module tracker state to be saved into the `moduleTrackerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will
-not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+not call `Model#commitModuleTracker()`, so the module tracker state will not be saved into the `moduleTrackerStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the module was a mistake, and decides to undo that action by executing the
-`undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once
-to the left, pointing it to the previous address book state, and restores the address book to that state.
+`undo` command. The `undo` command will call `Model#undoModuleTracker()`, which will shift the `currentStatePointer` once
+to the left, pointing it to the previous module tracker state, and restores the module tracker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0,
-pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command
-uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+pointing to the initial ModuleTracker state, then there are no previous ModuleTracker states to restore. The `undo` command
+uses `Model#canUndoModuleTracker()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -283,24 +283,24 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer`
-once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoModuleTracker()`, which shifts the `currentStatePointer`
+once to the right, pointing to the previously undone state, and restores the module tracker to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
-`addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook
-states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will
+`ModuleTrackerStateList.size() - 1`, pointing to the latest module tracker state, then there are no undone ModuleTracker
+states to restore. The `redo` command uses `Model#canRedoModuleTracker()` to check if this is the case. If so, it will
 return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as
-`list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the module tracker, such as
+`list`, will usually not call `Model#commitModuleTracker()`, `Model#undoModuleTracker()` or `Model#redoModuleTracker()`.
+Thus, the `moduleTrackerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be 
+Step 6. The user executes `clear`, which calls `Model#commitModuleTracker()`. Since the `currentStatePointer` is not
+pointing at the end of the `moduleTrackerStateList`, all module tracker states after the `currentStatePointer` will be 
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
@@ -314,7 +314,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire module tracker.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 

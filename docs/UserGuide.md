@@ -12,7 +12,7 @@ your contact management tasks done faster than traditional GUI apps.
 2. Download the latest `ContactnUS.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). 
 [coming soon]
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your ModuleTracker.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ContactnUS.jar` 
 command to run the application.<br>
@@ -206,7 +206,7 @@ save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to 
+ModuleTracker data are saved as a JSON file `[JAR file location]/data/moduletracker.json`. Advanced users are welcome to 
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
