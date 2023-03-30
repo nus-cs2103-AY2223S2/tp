@@ -26,7 +26,7 @@ public class Module extends Tag {
         this.moduleName = moduleName;
     }
     /**
-     * Returns true if a given string is a valid module name.
+     * Returns true if a given string is a valid moduleName.
      */
     public static boolean isValidModuleName(String test) {
         return test.matches(VALIDATION_REGEX);

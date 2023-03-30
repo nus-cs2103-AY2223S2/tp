@@ -24,7 +24,7 @@ public class Cca extends Tag {
     private String decoupled;
 
     /**
-     * Constructs a {@code Module}.
+     * Constructs a {@code Cca}.
      *
      * @param coupledCcaName A valid CCA name.
      */
@@ -39,7 +39,7 @@ public class Cca extends Tag {
     }
 
     /**
-     * Decouples command into desired tag name.
+     * Decouples command into CCA Name and CCA Position.
      */
     public void decoupleCcaName() {
         String[] arr = coupledCcaName.split("#");
@@ -55,7 +55,7 @@ public class Cca extends Tag {
     }
 
     /**
-     * Returns true if a given string is a valid cca name.
+     * Returns true if a given string is a valid ccaName.
      */
     public static boolean isValidCcaName(String test) {
         return test.matches(VALIDATION_REGEX);

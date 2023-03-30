@@ -22,7 +22,7 @@ public class Remark extends Tag {
         this.remarkName = remarkName;
     }
     /**
-     * Returns true if a given string is a valid remark name.
+     * Returns true if a given string is a valid remarkName.
      */
     public static boolean isValidRemarkName(String test) {
         return isValidTagName(test);
