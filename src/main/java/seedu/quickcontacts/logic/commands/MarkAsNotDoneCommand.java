@@ -32,7 +32,7 @@ public class MarkAsNotDoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            indexes.forEach(model::markMeetingAsNotDone);
+            model.markMeetingsAsNotDone(indexes);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(INDEX_NOT_FOUND);
         }

@@ -15,6 +15,7 @@ import static seedu.quickcontacts.testutil.TypicalPersons.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -146,15 +147,15 @@ public class ModelManagerTest {
     public void markMeetingDone_meetingExists() {
         Model modelManager = new ModelManager();
         modelManager.addMeeting(UNDONE_MEETING);
-        modelManager.markMeetingAsDone(Index.fromZeroBased(0));
+        modelManager.markMeetingsAsDone(List.of(Index.fromZeroBased(0)));
         assertTrue(modelManager.getFilteredMeetingList().get(0).getIsDone());
     }
 
     @Test
-    public void markMeetingNotDone_meetingExists() {
+    public void markMeetingNotDone_meetingsExist() {
         Model modelManager = new ModelManager();
         modelManager.addMeeting(DONE_MEETING);
-        modelManager.markMeetingAsNotDone(Index.fromZeroBased(0));
+        modelManager.markMeetingsAsNotDone(List.of(Index.fromZeroBased(0)));
         assertFalse(modelManager.getFilteredMeetingList().get(0).getIsDone());
     }
 

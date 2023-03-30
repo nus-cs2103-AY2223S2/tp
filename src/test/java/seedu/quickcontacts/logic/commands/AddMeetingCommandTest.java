@@ -190,12 +190,12 @@ public class AddMeetingCommandTest {
         }
 
         @Override
-        public void markMeetingAsDone(Index index) {
+        public void markMeetingsAsDone(List<Index> indexes) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void markMeetingAsNotDone(Index index) {
+        public void markMeetingsAsNotDone(List<Index> indexes) {
             throw new AssertionError("This method should not be called.");
         }
 

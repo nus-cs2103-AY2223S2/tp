@@ -169,7 +169,7 @@ public interface Model {
      * @return an unmodifiable view of the filtered list of meetings
      */
     ObservableList<Meeting> getFilteredMeetingList();
-    void markMeetingAsDone(Index index) throws IndexOutOfBoundsException;
-    void markMeetingAsNotDone(Index index) throws IndexOutOfBoundsException;
+    void markMeetingsAsDone(List<Index> index) throws IndexOutOfBoundsException;
+    void markMeetingsAsNotDone(List<Index> index) throws IndexOutOfBoundsException;
 
 }

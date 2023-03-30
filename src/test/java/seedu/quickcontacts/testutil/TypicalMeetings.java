@@ -22,6 +22,7 @@ public class TypicalMeetings {
             .withDescription("Plan for project work").build();
     public static final Meeting UNDONE_MEETING = new MeetingBuilder().withIsDone(false).build();
     public static final Meeting DONE_MEETING = new MeetingBuilder().withIsDone(true).build();
+    public static final Meeting DONE_MEETING2 = new MeetingBuilder().withTitle("A").withIsDone(true).build();
 
     /**
      * Private constructor to prevent initialisation.

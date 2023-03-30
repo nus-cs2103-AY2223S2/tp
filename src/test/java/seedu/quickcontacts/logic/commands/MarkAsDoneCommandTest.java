@@ -28,7 +28,7 @@ public class MarkAsDoneCommandTest {
         String expectedMessage = String.format(MarkAsDoneCommand.SUCCESS_FORMAT,
             indexList.stream().map(Index::getOneBased).collect(Collectors.toList()));
         Model expectedModel = new ModelManager(TypicalQuickBooks.getTypicalQuickBookMeetingsOnly(), new UserPrefs());
-        indexList.forEach(expectedModel::markMeetingAsDone);
+        model.markMeetingsAsDone(indexList);
 
         CommandTestUtil.assertCommandSuccess(markAsDoneCommand, model, expectedMessage, model);
     }
