@@ -3,6 +3,7 @@ package codoc.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -12,7 +13,7 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Hidden code number to facilitate interaction with UI */
-    private int code;
+    private String code;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -35,7 +36,7 @@ public class CommandResult {
     /**
      *
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, int code) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, String code) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -67,8 +68,8 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public int getCode() {
-        return code;
+    public Optional<String> getCode() {
+        return Optional.ofNullable(code);
     }
 
     public boolean isShowHelp() {

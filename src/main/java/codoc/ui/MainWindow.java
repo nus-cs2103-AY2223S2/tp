@@ -219,6 +219,10 @@ public class MainWindow extends UiPart<Stage> {
                 personListPanel.showLastItem();
             }
 
+            if (commandResult.getCode().isPresent()) {
+                personListPanel.showIndex(Integer.parseInt(commandResult.getCode().get()));
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

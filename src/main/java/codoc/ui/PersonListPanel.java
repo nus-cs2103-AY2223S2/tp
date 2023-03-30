@@ -35,6 +35,11 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.scrollTo(personListView.getItems().size() - 1);
     }
 
+    public void showIndex(int index) {
+        personListView.scrollTo(index);
+        personListView.getSelectionModel().select(index);
+    }
+
     /**
      * Set UiEventListener for InfoTab.
      * @param listener

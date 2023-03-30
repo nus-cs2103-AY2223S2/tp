@@ -80,6 +80,7 @@ public class ViewCommand extends Command {
         model.setProtagonist(protagonist);
         String[] nameParsed = protagonist.getName().toString().split(" ", 2);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, nameParsed[0], index.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, nameParsed[0], index.getOneBased()),
+                false, false, String.valueOf(index.getZeroBased()));
     }
 }
