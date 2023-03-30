@@ -36,6 +36,9 @@ public class StatsInformationListPanel extends UiPart<Region> {
         this.statsManager = statsManager;
         statsInformationListView.setItems(statsManager.getFilteredStatsInformations());
         statsInformationListView.setCellFactory(listView -> new StatsInformationListViewCell());
+
+
+        statsInformationListView.setMaxWidth(Region.USE_COMPUTED_SIZE);
     }
 
     public HBox getContainer() {

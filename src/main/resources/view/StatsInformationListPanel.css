@@ -1,6 +1,17 @@
 .list-view {
     -fx-background-color: #170945;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    /* m-fx-background-color: derive(#1d1d1d, 20%); */
+}
+
+.list-view .scroll-bar:vertical {
+    width: 0;
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar:horizontal {
+    width: 0;
+    height: 1;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:even {
