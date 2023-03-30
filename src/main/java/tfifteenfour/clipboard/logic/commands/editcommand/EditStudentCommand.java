@@ -68,9 +68,10 @@ public class EditStudentCommand extends EditCommand {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection)
-            throws CommandException, ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
+
         Group selectedGroup = currentSelection.getSelectedGroup();
         List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
         List<Session> sessions = selectedGroup.getModifiableSessionList();

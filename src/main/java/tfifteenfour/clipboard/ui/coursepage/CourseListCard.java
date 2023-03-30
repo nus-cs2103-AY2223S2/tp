@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.coursepage;
 
 import java.util.logging.Logger;
 
@@ -7,14 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * A UI component that displays information of a {@code Task}.
+ * An UI component that displays information of a {@code Course}.
  */
-public class SelectedTaskListCard extends UiPart<Region> {
+public class CourseListCard extends UiPart<Region> {
 
-    private static final String FXML = "SelectedListCard.fxml";
+    private static final String FXML = "ListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,21 +26,21 @@ public class SelectedTaskListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Task task;
+    public final Course course;
 
     @FXML
     private Label id;
     @FXML
-    private Label name;
+    private Label code;
 
     /**
-     * Creates a {@code TaskListCard} with the given {@code Task} and index to display.
+     * Creates a {@code CourseListCard} with the given {@code Course} and index to display.
      */
-    public SelectedTaskListCard(Task task, int displayedIndex) {
+    public CourseListCard(Course course, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.course = course;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getTaskName());
+        code.setText(course.getCourseCode());
     }
 
     @Override
@@ -50,13 +51,14 @@ public class SelectedTaskListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SelectedTaskListCard)) {
+        if (!(other instanceof CourseListCard)) {
             return false;
         }
 
         // state check
-        SelectedTaskListCard card = (SelectedTaskListCard) other;
+        CourseListCard card = (CourseListCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && course.equals(card.course);
     }
 }
+

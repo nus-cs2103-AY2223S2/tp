@@ -1,8 +1,7 @@
-package tfifteenfour.clipboard.logic.commands.studentcommands;
+package tfifteenfour.clipboard.logic.commands.sortcommand;
 
 import java.util.Comparator;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.model.Model;
@@ -30,13 +29,13 @@ public class SortCommand extends Command {
      * @param categoryName the name of the specified category.
      */
     public SortCommand(Comparator<Student> categoryComparator, String categoryName) {
-        super(false);
+        super(true);
         this.categoryComparator = categoryComparator;
         this.categoryName = categoryName;
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
         // requireNonNull(model);
         // try {
         //     model.getModifiableFilteredStudentList().sort(categoryComparator);
@@ -45,7 +44,6 @@ public class SortCommand extends Command {
         // }
         // return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
         return new CommandResult(this, "PLACEHOLDER", willModifyState);
-
     }
 
     @Override

@@ -42,12 +42,13 @@ public class DeleteSessionCommand extends DeleteCommand {
      * Deletes the session specified by the index from the selected group in the model.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection Current selection of course and group.
      * @return Result of the command execution.
      * @throws CommandException If the selected page is not a session page or if the index is invalid.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
             throw new CommandException("Wrong page. Navigate to session page to delete session");

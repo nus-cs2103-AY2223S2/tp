@@ -42,12 +42,13 @@ public class DeleteTaskCommand extends DeleteCommand {
      * Deletes the task specified by the index from the selected group in the model.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection Current selection of course and group.
      * @return Result of the command execution.
      * @throws CommandException If the selected page is not a task page or if the index is invalid.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
             throw new CommandException("Wrong page. Navigate to task page to delete task");

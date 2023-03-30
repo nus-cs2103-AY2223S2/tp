@@ -5,7 +5,6 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
@@ -47,8 +46,9 @@ public class AddStudentCommand extends AddCommand {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to student page to add student");
