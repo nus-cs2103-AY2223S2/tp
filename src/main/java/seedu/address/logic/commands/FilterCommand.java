@@ -13,7 +13,10 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and lists all employees who satisfy the given "
             + "filter for the payroll amount.\n"
-            + "Parameters: pr < {OR} = {OR} > AMOUNT (must be a positive integer)\n"
+            + "Parameters: FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT \n"
+            + "FILTER_PARAMETER can accept 'pr' or 'l' depicting Payroll and Leaves respectively\n"
+            + "BOOLEAN_OPERATOR can accept '>','<' or '=' \n"
+            + "COMPARISON_AMOUNT must be a non-negative integer \n"
             + "Example: " + COMMAND_WORD + " pr > 1000";
     private final Predicate<Employee> predicate;
 
