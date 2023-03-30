@@ -165,6 +165,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
         }
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
+        table.getColumns().forEach(column -> column.setMinWidth(50));
 
         table.setItems(newData);
     }
