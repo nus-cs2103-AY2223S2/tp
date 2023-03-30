@@ -8,16 +8,16 @@
       "phone" : "11111111",
       "email" : "amy@example.com",
       "address" : "Block 312, Amy Street 1",
-      "status" : "",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ ]
     }, {
       "name" : "Charlie Sandler",
       "id" : "G487659645D",
       "phone" : "2136784",
       "email" : "charlie@example.com",
       "address" : "123, abc, #08-111",
-      "status" : "Doing good",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ "Doing good" ]
     }],
     "staffs" : [ {
       "name" : "Charles Lee",
@@ -35,15 +35,16 @@
       "phone" : "94351253",
       "email" : "adam@example.com",
       "address" : "123, Jurong West Ave 6, #08-111",
-      "status" : "Doing fine",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ "Doing fine" ]
     }, {
       "name" : "Bob Choo",
       "id" : "Y78932734N",
       "phone" : "222222222",
       "email" : "bob@example.com",
       "address" : "Block 123, Bobby Street 3",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ ]
     }],
     "staffs" : [  {
       "name" : "Dacia Chin",

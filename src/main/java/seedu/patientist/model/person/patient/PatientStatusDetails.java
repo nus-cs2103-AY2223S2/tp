@@ -22,4 +22,11 @@ public class PatientStatusDetails {
     public String toString() {
         return details; //TODO?
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+               || (other instanceof PatientStatusDetails // instanceof handles nulls
+                   && details.equals(((PatientStatusDetails) other).details)); // state check
+    }
 }

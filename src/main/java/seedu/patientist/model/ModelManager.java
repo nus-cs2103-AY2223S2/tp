@@ -143,15 +143,13 @@ public class ModelManager implements Model {
 
 
     @Override
-    public void setPatient(Patient target, Patient edited) { //checked? global uniqueness not enforced
-        //difficult to enforce global uniqueness as delete op happens in UPlist
+    public void setPatient(Patient target, Patient edited) { //checked?
         requireAllNonNull(target, edited);
         patientist.setPatient(target, edited);
     }
 
     @Override
-    public void setStaff(Staff target, Staff edited) { //checked? global uniqueness not enforced
-        //difficult to enforce global uniqueness as delete op happens in UPlist
+    public void setStaff(Staff target, Staff edited) { //checked?
         requireAllNonNull(target, edited);
         patientist.setStaff(target, edited);
     }

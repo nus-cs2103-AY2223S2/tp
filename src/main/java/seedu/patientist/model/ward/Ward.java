@@ -3,6 +3,8 @@ package seedu.patientist.model.ward;
 import static seedu.patientist.commons.util.AppUtil.checkArgument;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.UniquePersonList;
@@ -107,6 +109,46 @@ public class Ward {
             patients.remove(person);
         } else {
             throw new PersonNotFoundException();
+        }
+    }
+
+    /**
+     * Deletes a patient based on id from any ward. Patient must already exist in ward.
+     *
+     * @param patient The dummy patient used to check equality of {@code IdNumber}.
+     */
+    public void deletePatientById(Patient patient) {
+        requireAllNonNull(patient);
+        if (!containsPatient(patient)) {
+            throw new PersonNotFoundException();
+        }
+        Iterator<Person> patientIterator = patients.iterator();
+        while (patientIterator.hasNext()) {
+            Person toCheck = patientIterator.next();
+            if (patient.isSamePerson(toCheck)) {
+                patientIterator.remove();
+                return;
+            }
+        }
+    }
+
+    /**
+     * Deletes a staff member based on id from any ward. Staff must already exist in ward.
+     *
+     * @param staff The dummy staff used to check equality of {@code IdNumber}.
+     */
+    public void deleteStaffById(Staff staff) {
+        requireAllNonNull(staff);
+        if (!containsStaff(staff)) {
+            throw new PersonNotFoundException();
+        }
+        Iterator<Person> staffIterator = staffs.iterator();
+        while (staffIterator.hasNext()) {
+            Person toCheck = staffIterator.next();
+            if (staff.isSamePerson(toCheck)) {
+                staffIterator.remove();
+                return;
+            }
         }
     }
 

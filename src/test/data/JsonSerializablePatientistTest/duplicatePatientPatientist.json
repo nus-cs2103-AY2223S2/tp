@@ -7,16 +7,16 @@
       "phone" : "87438807",
       "email" : "alex@example.com",
       "address" : "Blk 30 Geylang Street 29, #06-40",
-      "status" : "",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ ]
     }, {
       "name" : "Alex Yeoh",
       "id" : "A12345A",
       "phone" : "87438807",
       "email" : "alex@example.com",
       "address" : "Blk 30 Geylang Street 29, #06-40",
-      "status" : "",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ ]
     }],
     "staffs" : []
   }]

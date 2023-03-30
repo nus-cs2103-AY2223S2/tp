@@ -213,17 +213,17 @@ public class AddStaffCommandTest {
         }
 
         @Override
+        public List<String> getWardNames() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public List<String> getWardNames() {
             throw new AssertionError("This method should not be called.");
         }
     }
