@@ -66,7 +66,7 @@ If you need more information on how to use these commands, just refer to our han
 
 List of commands:
 
--  [Course Page Commands: ](#course-page-commands)
+- [Course Page Commands: ](#course-page-commands)
     - [Adding a course: ](#adding-a-course-add-course) `add course`
     - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
     - [Editing a course: ](#editing-a-course-edit-course) `edit course`
@@ -83,11 +83,12 @@ List of commands:
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
     - [Editing a student: ](#editing-a-student-edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
+    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find) `find student`
+    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
     - [Displays a student's information:  ](#displays-a-students-information-select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
-    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
+    - [Displays a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
 - [Session Page Commands: ](#session-page-commands)
     - [Adding a session: ](#adding-a-session-add-session) `add session`
     - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
@@ -402,9 +403,28 @@ Examples:
 
 [Back to list of commands](#commands)
 
+### Sorting list of students: `sort`
+
+Sorts list of students in student roster.
+
+Format:
+```
+sort <CATEGORY>
+```
+
+- Current possible categories are `name` and `id`
+
+Examples:
+- `sort name` will sort list of students alphabetically according to name.
+- `sort id` will sort list of students alphanumerically according to student ID.
+
+[Back to list of commands](#commands)
+
 
 
 ### Displays a student's information: `select`
+
+![image](./images/UiStudentView.png)
 
 Select a particular student and display his / her particulars.
 
@@ -414,7 +434,7 @@ select <INDEX>
 ```
 
 Examples:
-- `select 2` will select the 2nd student in the student list and display his / her particulars on the view panel.
+- `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
 [Back to list of commands](#commands)
 
@@ -467,23 +487,17 @@ Examples:
 [Back to list of commands](#commands)
 
 
+### Viewing a student's attendance throughout the course: `attendance`
 
-### Sorting list of students: `sort`
+![image](./images/UiStudentAttendanceView.png)
 
-Sorts list of students in student roster.
+Shows a summary of a student's attendance in the view pane.
 
 Format:
 ```
-sort <CATEGORY>
+attendance
 ```
-
-- Current possible categories are `name` and `id`
-
-Examples:
-- `sort name` will sort list of students alphabetically according to name.
-- `sort id` will sort list of students alphanumerically according to student ID.
-
-[Back to list of commands](#commands)
+- To mark a student's attendance for a particular session, you can navigate to the [Attendance page](#attendance-page-commands).
 
 
 
