@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
@@ -14,7 +13,7 @@ import seedu.address.model.jobs.DeliveryJob;
 /**
  * Sets delivered status for jobs in the delivery job system.
  */
-public class CompleteDeliveryJobCommand extends Command {
+public class CompleteDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String COMMAND_WORD_MARK = "com_job";
     public static final String COMMAND_WORD_UNMARK = "uncom_job";

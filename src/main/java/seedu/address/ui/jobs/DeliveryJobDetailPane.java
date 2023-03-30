@@ -34,6 +34,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
 
     private Consumer<DeliveryJob> handleEdit;
     private Consumer<DeliveryJob> handleComplete;
+    private Consumer<DeliveryJob> handleDelete;
 
     @FXML
     private StackPane senderContactInfoPlaceholder;
@@ -122,6 +123,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         description.setText(job.getDescription());
         handleEdit = (job) -> {};
         handleComplete = (job) -> {};
+        handleDelete = (job) -> {};
         updateCompleteButton();
     }
 
@@ -143,6 +145,15 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         handleComplete = handler;
     }
 
+    /**
+     * Sets the delete handler.
+     *
+     * @param handler
+     */
+    public void setDeleteHandler(Consumer<DeliveryJob> handler) {
+        handleDelete = handler;
+    }
+
     @FXML
     void handleEditAction() {
         logger.info("[Event] handleEditAction");
@@ -154,6 +165,12 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         logger.info("[Event] handleCompleteAction");
         updateCompleteButton();
         handleComplete.accept(job);
+    }
+
+    @FXML
+    void handleDeleteAction() {
+        logger.info("[Event] handleDeleteAction");
+        handleDelete.accept(job);
     }
 
     @FXML

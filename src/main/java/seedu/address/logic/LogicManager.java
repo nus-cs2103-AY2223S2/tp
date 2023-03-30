@@ -13,7 +13,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DukeDriverParser;
@@ -61,6 +63,19 @@ public class LogicManager implements Logic {
 
         Command command = addressBookParser.parseCommand(commandText);
         return execute(command);
+    }
+
+    @Override
+    public CommandResult execute(String commandText, Predicate<CommandGroup> condition)
+            throws CommandException, ParseException, FileNotFoundException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        Command command = addressBookParser.parseCommand(commandText);
+        if (condition.test(command.getGroup())) {
+            return execute(command);
+        } else {
+            return new CommandResult(String.format(Messages.COMMAND_NOT_ALLOW));
+        }
     }
 
     @Override

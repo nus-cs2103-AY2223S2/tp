@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
@@ -25,11 +26,10 @@ import seedu.address.ui.main.StatusBarFooter;
  */
 public class AddressBookWindow extends UiPart<Stage> {
 
-    private static final String FXML = "AddressBookWIndow.fxml";
+    private static final String FXML = "AddressBookWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
-    private final MainWindow dukeDriverWindow;
 
     private Stage primaryStage;
     private Logic logic;
@@ -59,7 +59,6 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
-        this.dukeDriverWindow = new MainWindow(primaryStage, logic);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -74,7 +73,6 @@ public class AddressBookWindow extends UiPart<Stage> {
     public AddressBookWindow(Stage primaryStage, Logic logic,
                              Consumer<Person> selectHandler, MainWindow dukeDriverWindow) {
         super(FXML, primaryStage);
-        this.dukeDriverWindow = dukeDriverWindow;
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -144,10 +142,6 @@ public class AddressBookWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleListJob() {
-        dukeDriverWindow.focus();
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -156,16 +150,13 @@ public class AddressBookWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText)
             throws CommandException, ParseException, FileNotFoundException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText,
+                    g -> g.equals(CommandGroup.PERSON) || g.equals(CommandGroup.GENERAL));
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isShowJobList()) {
-                handleListJob();
             }
 
             return commandResult;
