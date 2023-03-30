@@ -130,8 +130,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
-        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        if (logic.getAddressBook().getPersonList().size() != 0) {
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        }
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -200,6 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String feedback = commandResult.getFeedbackToUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -223,7 +226,15 @@ public class MainWindow extends UiPart<Stage> {
                 applyDarkTheme();
             }
 
-            if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
+            if (commandResult.isShowLight()) {
+                applyLightTheme();
+            }
+
+            if (feedback.startsWith("Edited Person:")) {
+                updateView(commandText);
+            }
+
+            if (feedback.equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
                 applyView();
             }
 
@@ -253,11 +264,24 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets the view pane to a specific person.
+     */
     private void applyView() {
         personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         viewPanePlaceHolder.getChildren().clear();
         viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
+        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+    }
+
+    /**
+     * Updates the view pane after successfully edition.
+     * @param commandText
+     */
+    private void updateView(String commandText) {
+        int index = Character.getNumericValue(commandText.charAt(5));
+        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index-1));
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
