@@ -5,6 +5,7 @@ import javafx.collections.transformation.FilteredList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
+import vimification.model.UiTaskList;
 import vimification.model.task.Task;
 
 /**
@@ -47,4 +48,6 @@ public interface Logic {
     // void setGuiSettings(GuiSettings guiSettings);
 
     FilteredList<Task> getFilteredTaskList();
+
+    UiTaskList getUiTaskList();
 }
