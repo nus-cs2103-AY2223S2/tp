@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.util.Pair;
 import org.apache.commons.lang3.StringUtils;
+
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
