@@ -79,7 +79,7 @@ open the help window.<br>
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -97,13 +97,13 @@ Examples:
 * `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
-### Listing all cases : `list`
+### Listing all cases: `list`
 
 Shows a list of all cases in the Dengue Hotspot Tracker.
 
 Format: `list`
 
-### Editing a case : `edit`
+### Editing a case: `edit`
 
 Edits an existing case in the Dengue Hotspot Tracker.
 
@@ -144,7 +144,7 @@ Examples:
 * `find alex david 101` returns `Alexander Peterson`, `Allison Tan` (postal code), `Davidson Li`<br>
   ![result for 'find alex david 101'](..%2F..%2F..%2FDownloads%2Fimage%20%281%29.png)
 
-### Deleting cases : `delete`
+### Deleting cases: `delete`
 
 Deletes the specified cases from the Dengue Hotspot Tracker. The cases can be specified with indexes, a date, or a date range.
 
@@ -166,7 +166,7 @@ Examples:
 * `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
 * * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
 
-### Sorting cases : `sort`
+### Sorting cases: `sort`
 
 Sorts the entire case list based on the specified criteria.
 
@@ -175,7 +175,7 @@ Format: `sort [n/] [a/] [d/]`
 * Sorts cases based on the specified criteria.
 * One and only one of the criteria must be specified; `n/` for name, `a/` for age, and `d/` for date.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the displayed case list.
 
@@ -185,7 +185,7 @@ Examples:
 * `list` followed by `clear' deletes all cases from the Dengue Hotspot Tracker.
 * `find n/Betsy` followed by `clear` deletes all cases in the results of the `find` command.
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
