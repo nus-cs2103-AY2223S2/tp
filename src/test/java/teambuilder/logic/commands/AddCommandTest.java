@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.testutil.Assert.assertThrows;
+import static teambuilder.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -21,14 +22,18 @@ import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.Memento;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
+import teambuilder.model.ModelManager;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.TeamBuilder;
+import teambuilder.model.UserPrefs;
 import teambuilder.model.person.Person;
 import teambuilder.model.team.Team;
 import teambuilder.testutil.PersonBuilder;
 
 public class AddCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -53,6 +58,13 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_teamTagDoNotExist_throwsCommandException() {
+        Person validPerson = new PersonBuilder().withName("John Doe").withTeams("NUS").build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_TEAM_NOT_FOUND, () -> addCommand.execute(model));
     }
 
     @Test

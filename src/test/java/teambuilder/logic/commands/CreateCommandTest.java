@@ -3,6 +3,7 @@ package teambuilder.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static teambuilder.testutil.Assert.assertThrows;
 import static teambuilder.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -38,6 +39,16 @@ public class CreateCommandTest {
                 new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
         CommandResult commandResult = new CreateCommand(team).execute(model);
         assertEquals(String.format(CreateCommand.MESSAGE_SUCCESS, validTeamName), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_throw() throws CommandException {
+        TeamName validTeamName = new TeamName("Team A");
+        Team team = new Team(validTeamName, new Desc("This is a description."),
+                new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
+        new CreateCommand(team).execute(model);
+        CreateCommand command = new CreateCommand(team);
+        assertThrows(CommandException.class, CreateCommand.MESSAGE_DUPLICATE_TEAM, () -> command.execute(model));
     }
 
     @Test
