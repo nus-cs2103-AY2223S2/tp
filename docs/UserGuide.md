@@ -59,7 +59,7 @@ so there's no need to worry about updating it manually. Pretty neat, right?
 5. Here are some simple commands to get you started with:
 
 * `list` : Lists all applications.
-* `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested d/01-01-2023` : Adds an
+* `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested` : Adds an
   application for Software Engineer Intern position @ Google that I'm interested in. Deadline of application is 1st of
   January.
 * `delete-app 3` : Deletes the 3rd application shown in the current list.
@@ -148,7 +148,7 @@ an optional argument.
 
 Adds an internship application to be tracked.
 
-Format: `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​`
+Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application.
@@ -163,7 +163,7 @@ Examples:
 
 Edits an existing internship application to be tracked.
 
-Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]​`
+Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]​`
 
 * Edits the internship application at the specified `INDEX`. The index here refers to the index number shown in the displayed application list. The index **must be a positive number**: 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -386,21 +386,21 @@ If your changes to the data file makes its format invalid, the internship book w
 
 ## **6. Command Summary**
 
-| Action                      | Format, Examples                                                                                                                                                 |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`               |
-| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
-| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
-| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
-| **List**                    | `list`                                                                                                                                                           |
-| **Find**                    | `find [search term]` <br/> e.g. `find Meta` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`         |
-| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                      |
-| **Help**                    | `help`                                                                                                                                                           |
-| **Undo**                    | `undo`                                                                                                                                                           |
-| **Redo**                    | `redo`                                                                                                                                                           |
-| **Clear**                   | `clear`                                                                                                                                                          |
-| **Exit**                    | `exit`                                                                                                                                                           |
+| Action                      | Format, Examples                                                                                                                                                         |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
+| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                       |
+| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
+| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                            |
+| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
+| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
+| **List**                    | `list`                                                                                                                                                                   |
+| **Find**                    | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
+| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
+| **Help**                    | `help`                                                                                                                                                                   |
+| **Undo**                    | `undo`                                                                                                                                                                   |
+| **Redo**                    | `redo`                                                                                                                                                                   |
+| **Clear**                   | `clear`                                                                                                                                                                  |
+| **Exit**                    | `exit`                                                                                                                                                                   |
 
 <div style="page-break-after: always;"></div>
