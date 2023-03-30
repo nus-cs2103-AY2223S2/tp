@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Statistics;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**
@@ -113,8 +114,6 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     public Internship getCurrent() {
         return this.currentInternship;
     }
-
-    //// util methods
 
     @Override
     public String toString() {
