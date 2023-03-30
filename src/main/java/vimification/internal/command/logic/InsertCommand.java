@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandResult;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -34,7 +35,7 @@ public class InsertCommand extends UndoableLogicCommand {
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList) {
+    public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         requireNonNull(taskList);
         int index = targetIndex.getZeroBased();
         Task oldTask = taskList.get(index);
@@ -45,6 +46,7 @@ public class InsertCommand extends UndoableLogicCommand {
         }
         request.getInsertedLabels().forEach(newTask::addLabel);
         taskList.set(index, newTask);
+        commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
     }
 

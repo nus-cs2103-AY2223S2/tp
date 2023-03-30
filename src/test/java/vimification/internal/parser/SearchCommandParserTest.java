@@ -1,4 +1,4 @@
 package vimification.internal.parser;
 
-public interface ArgumentFlag {
+public class SearchCommandParserTest {
 }

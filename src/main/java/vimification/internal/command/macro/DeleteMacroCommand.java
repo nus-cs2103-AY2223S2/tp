@@ -1,11 +1,9 @@
 package vimification.internal.command.macro;
 
+import vimification.internal.command.CommandResult;
 import vimification.model.MacroMap;
 
-public class DeleteMacroCommand {
-
-    // :del_macro <macro keyword> ?
-    // make it simple LOL
+public class DeleteMacroCommand extends MacroCommand {
 
     private final String macro;
 
@@ -13,8 +11,8 @@ public class DeleteMacroCommand {
         this.macro = macro;
     }
 
-    public void execute(MacroMap macroMap) {
+    public CommandResult execute(MacroMap macroMap) {
         macroMap.remove(macro);
+        return new CommandResult("Your macro has been removed");
     }
-
 }

@@ -13,19 +13,19 @@ import java.util.HashSet;
  */
 public class ArgumentMultimap {
 
-    private final Set<ArgumentFlag> allowedFlags;
+    private final Set<LiteralArgumentFlag> allowedFlags;
 
     /**
      * Flags mapped to their respective arguments.
      **/
-    private final Map<ArgumentFlag, Set<String>> args;
+    private final Map<LiteralArgumentFlag, Set<String>> args;
 
-    public ArgumentMultimap(ArgumentFlag... allowedFlags) {
+    public ArgumentMultimap(LiteralArgumentFlag... allowedFlags) {
         this.allowedFlags = Set.of(allowedFlags);
         this.args = new HashMap<>();
     }
 
-    private void throwIfNotAllowed(ArgumentFlag flag) {
+    private void throwIfNotAllowed(LiteralArgumentFlag flag) {
         if (!allowedFlags.contains(flag)) {
             throw new ParserException("Invalid flag for this command");
         }
@@ -40,30 +40,27 @@ public class ArgumentMultimap {
      * @param prefix Prefix key with which the specified argument value is to be associated
      * @param argValue Argument value to be associated with the specified prefix key
      */
-    public void put(ArgumentFlag flag, String value) {
+    public void put(LiteralArgumentFlag flag, String value) {
         throwIfNotAllowed(flag);
         Set<String> argValues = args.computeIfAbsent(flag, k -> new HashSet<>());
         if (!argValues.add(value)) {
             throw new ParserException("Duplicated argument");
         }
-        if (argValues.size() > flag.getMaxCount()) {
-            throw new ParserException("Number of argument exceeded limit");
-        }
     }
 
-    public Set<String> get(ArgumentFlag flag) {
+    public Set<String> get(LiteralArgumentFlag flag) {
         throwIfNotAllowed(flag);
         Set<String> result = args.get(flag);
         return result == null ? Set.of() : result;
     }
 
-    public Set<String> remove(ArgumentFlag flag) {
+    public Set<String> remove(LiteralArgumentFlag flag) {
         throwIfNotAllowed(flag);
         Set<String> result = args.remove(flag);
         return result == null ? Set.of() : result;
     }
 
-    public Optional<String> getFirst(ArgumentFlag flag) {
+    public Optional<String> getFirst(LiteralArgumentFlag flag) {
         throwIfNotAllowed(flag);
         return args.getOrDefault(flag, Set.of())
                 .stream()

@@ -10,8 +10,8 @@ import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 
-public class SearchByDateBefore extends SearchCommand {
-    public static final String COMMAND_WORD = "s -d -before";
+public class SearchByDeadlineBeforeCommand extends SearchCommand {
+    public static final String COMMAND_WORD = "s --before";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": search for tasks that have deadline before (inclusive) the input date.\n"
@@ -19,17 +19,17 @@ public class SearchByDateBefore extends SearchCommand {
             + "Conditions: Date time must be valid in the format of YYYY-MM-DD.\n"
             + "Example: " + COMMAND_WORD + " 2023-01-01";
 
-    public SearchByDateBefore(LocalDateTime date) {
+    public SearchByDeadlineBeforeCommand(LocalDateTime date) {
         super(task -> task.isDateBefore(date));
     }
 
-    @Override
-    public CommandResult execute(LogicTaskList taskList) throws CommandException {
-        ObservableList<Task> viewTaskList =
-                FXCollections.observableList(taskList.filter(getPredicate()));
-        setViewTaskList(viewTaskList);
-        return new CommandResult(SUCCESS_MESSAGE_FORMAT);
-    }
+    // @Override
+    // public CommandResult execute(LogicTaskList taskList) {
+    // ObservableList<Task> viewTaskList =
+    // FXCollections.observableList(taskList.filter(getPredicate()));
+    // setViewTaskList(viewTaskList);
+    // return new CommandResult(SUCCESS_MESSAGE_FORMAT);
+    // }
 
 }
 

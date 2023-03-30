@@ -92,7 +92,7 @@ public class CommandInput extends UiPart<HBox> {
 
         try {
             CommandResult result = logic.execute(commandString);
-            mainScreen.initializeTaskListPanel();
+            mainScreen.initializeTaskTabPanel();
             mainScreen.loadCommandResultComponent(result);
 
             // TODO: Should only clear if the task has been deleted.
@@ -115,7 +115,7 @@ public class CommandInput extends UiPart<HBox> {
 
         // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
         if (isNumeric(commandString)) {
-            mainScreen.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(commandString));
+            mainScreen.getTaskTabPanel().scrollToTaskIndex(Integer.parseInt(commandString));
             return true;
         }
 

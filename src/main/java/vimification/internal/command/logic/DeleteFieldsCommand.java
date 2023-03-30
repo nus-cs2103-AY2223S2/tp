@@ -2,6 +2,7 @@ package vimification.internal.command.logic;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandResult;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -21,7 +22,7 @@ public class DeleteFieldsCommand extends DeleteCommand {
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList) {
+    public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         int index = targetIndex.getZeroBased();
         Task oldTask = taskList.get(index);
         Task newTask = oldTask.clone();
@@ -31,6 +32,7 @@ public class DeleteFieldsCommand extends DeleteCommand {
         }
         request.getDeletedLabels().forEach(newTask::removeLabel);
         taskList.set(index, newTask);
+        commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
     }
 
