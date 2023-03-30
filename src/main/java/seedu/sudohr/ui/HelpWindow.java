@@ -43,7 +43,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "    leol   -   List employees on leave\n"
             + "    llbe   -   List leaves taken by employee\n"
             + "    llve   -   List leaves\n\n";
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t17-2.github.io/tp/UserGuide";
     public static final String HELP_MESSAGE = COMMAND_LIST + "For more information, refer to the user guide: "
             + USERGUIDE_URL;
 
