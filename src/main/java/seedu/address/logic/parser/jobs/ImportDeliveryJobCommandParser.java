@@ -53,11 +53,11 @@ public class ImportDeliveryJobCommandParser {
                 String ear = arrOfStr[4];
                 String description = arrOfStr[5];
                 if (arrOfStr.length > 6) {
-                    Person recipient = recipientOrSender(sid, arrOfStr, 6);
+                    Person recipient = recipientOrSender(arrOfStr, 6);
                     listOfCustomers.add(recipient);
                 }
                 if (arrOfStr.length > 12) {
-                    Person sender = recipientOrSender(sid, arrOfStr, 12);
+                    Person sender = recipientOrSender(arrOfStr, 12);
                     listOfCustomers.add(sender);
                 }
                 DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, description);
