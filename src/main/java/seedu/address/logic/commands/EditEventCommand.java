@@ -119,8 +119,9 @@ public class EditEventCommand extends Command {
      * This defines a weaker notion of equality between two events.
      */
     public boolean equals(Object other) {
+        EditEventCommand otherEvent = (EditEventCommand) other;
         return other == this
           || (other instanceof EditEventCommand
-          && this.editEventDescriptor.equals((EditEventCommand) other.editEventDescriptor));
+          && this.editEventDescriptor.equals(otherEvent));
     }
 }
