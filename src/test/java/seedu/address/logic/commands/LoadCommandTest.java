@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 
 class LoadCommandTest {
@@ -17,7 +18,7 @@ class LoadCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     }
     @Test
     void execute_pathNotSpecified() {
