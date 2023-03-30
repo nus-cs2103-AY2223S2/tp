@@ -37,7 +37,7 @@ public class AddTaskCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withTask(TASK_STUB).build();
 
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTask().value));
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTasks().value));
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, editedPerson);
 
@@ -53,7 +53,7 @@ public class AddTaskCommandTest {
         Person editedPerson = new PersonBuilder(firstPerson).withTask("").build();
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON,
-                new Task(editedPerson.getTask().toString()));
+                new Task(editedPerson.getTasks().toString()));
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, editedPerson);
 
@@ -71,7 +71,7 @@ public class AddTaskCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTask(TASK_STUB).build();
 
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTask().value));
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTasks().value));
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, editedPerson);
 
