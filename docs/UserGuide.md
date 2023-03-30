@@ -186,7 +186,33 @@ command.
 
 **Format: `delpatstatus PATIENT_INDEX STATUS_INDEX`**
 
-**Examples: `delpatstatus 1 1`** will delete the first status of the patient at the top of the list.
+**Examples: `delpatstatus 1 1`** will delete the first status of the patient at the top of the patient list.
+
+[Go back to [Table of Contents](#table-of-contents)]
+
+---
+## Adding patient status: addpattodo
+Adds an entry to the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+command.
+
+**Note:** If the person indicated by the INDEX must be a `Patient`.
+
+**Format: `addpattodo INDEX td/TODO [td/TODO]...`**
+
+**Examples: `addpattodo 1 td/Take medicine td/physio at 2`**
+
+[Go back to [Table of Contents](#table-of-contents)]
+
+---
+## Deleting patient status: delpattodo
+Deletes the specified entry in the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+command.
+
+**Note:** If the person indicated by the PATIENT_INDEX must be a `Patient`.
+
+**Format: `delpattodo PATIENT_INDEX TODO_INDEX`**
+
+**Examples: `delpattodo 1 1`** will delete the first todo of the patient at the top of the patient list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 

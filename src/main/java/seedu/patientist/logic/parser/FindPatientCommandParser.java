@@ -10,12 +10,11 @@ import java.util.stream.Stream;
 
 import seedu.patientist.logic.commands.FindPatientCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
+import seedu.patientist.model.person.patient.PatientIdContainsKeywordsPredicate;
 import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
-import seedu.patientist.model.person.patient.PidContainsKeywordsPredicate;
 
 /**
- * Finds and lists all patients in patientist book whose name/pid contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Parses input arguments and creates a new FindPatientCommand object
  */
 public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     /**
@@ -40,7 +39,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
             return new FindPatientCommand(new PatientNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             String[] pidKeywords = idNumber.get().trim().split("\\s+");
-            return new FindPatientCommand(new PidContainsKeywordsPredicate(Arrays.asList(pidKeywords)));
+            return new FindPatientCommand(new PatientIdContainsKeywordsPredicate(Arrays.asList(pidKeywords)));
         }
     }
 

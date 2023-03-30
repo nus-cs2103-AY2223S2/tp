@@ -10,7 +10,7 @@ import seedu.patientist.model.person.Person;
 public class IsPatientPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
-        return person.getRoleTag().isPatientTag();
+        return person instanceof Patient;
     }
 
     @Override

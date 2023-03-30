@@ -6,8 +6,10 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TODO;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
+import seedu.patientist.model.tag.PriorityTag;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.ward.Ward;
 
@@ -41,10 +45,10 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     public AddPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_WARD, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_STATUS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_PRIORITY, PREFIX_STATUS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_WARD, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ADDRESS) || !argMultimap.getPreamble().isEmpty()) {
+                PREFIX_ADDRESS, PREFIX_PRIORITY) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
         }
 
@@ -54,12 +58,15 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        PriorityTag priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         ArrayList<PatientStatusDetails> details =
                 new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
-        Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient")));
+        ArrayList<PatientToDo> toDos =
+                new ArrayList<>(ParserUtil.parseToDos(argMultimap.getAllValues(PREFIX_TODO)));
+        Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient"), priority));
         tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        Patient patient = new Patient(idNumber, name, phone, email, address, details, tagList);
+        Patient patient = new Patient(idNumber, name, phone, email, address, priority, details, toDos, tagList);
 
         return new AddPatientCommand(ward.getWardName(), patient);
 
