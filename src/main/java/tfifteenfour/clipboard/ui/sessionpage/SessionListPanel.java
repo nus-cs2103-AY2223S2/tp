@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.sessionpage;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
  * Panel containing the list of sessions.
@@ -30,7 +31,8 @@ public class SessionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SessionListCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Session} using a {@code SelectedSessionListCard}
+     * or a {@code UnselectedSessionListCard}.
      */
     class SessionListViewCell extends ListCell<Session> {
         @Override
@@ -44,7 +46,7 @@ public class SessionListPanel extends UiPart<Region> {
                 if (session.getSelectionStatus()) {
                     setGraphic(new SelectedSessionListCard(session, getIndex() + 1).getRoot());
                 } else {
-                    setGraphic(new SessionListCard(session, getIndex() + 1).getRoot());
+                    setGraphic(new UnselectedSessionListCard(session, getIndex() + 1).getRoot());
                 }
             }
         }

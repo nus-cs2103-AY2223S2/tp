@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.taskpage;
 
 import java.util.logging.Logger;
 
@@ -7,14 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Group}.
+ * A UI component that displays information of a {@code Task}.
  */
-public class GroupListCard extends UiPart<Region> {
+public class SelectedTaskListCard extends UiPart<Region> {
 
-    private static final String FXML = "GroupListCard.fxml";
+    private static final String FXML = "SelectedListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,7 +26,7 @@ public class GroupListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Group group;
+    public final Task task;
 
     @FXML
     private Label id;
@@ -33,13 +34,13 @@ public class GroupListCard extends UiPart<Region> {
     private Label name;
 
     /**
-     * Creates a {@code GroupListCard} with the given {@code Group} and index to display.
+     * Creates a {@code TaskListCard} with the given {@code Task} and index to display.
      */
-    public GroupListCard(Group group, int displayedIndex) {
+    public SelectedTaskListCard(Task task, int displayedIndex) {
         super(FXML);
-        this.group = group;
+        this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(group.getGroupName());
+        name.setText(task.getTaskName());
     }
 
     @Override
@@ -50,15 +51,13 @@ public class GroupListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof GroupListCard)) {
+        if (!(other instanceof SelectedTaskListCard)) {
             return false;
         }
 
         // state check
-        GroupListCard card = (GroupListCard) other;
+        SelectedTaskListCard card = (SelectedTaskListCard) other;
         return id.getText().equals(card.id.getText())
-                && group.equals(card.group);
+                && task.equals(card.task);
     }
 }
-
-

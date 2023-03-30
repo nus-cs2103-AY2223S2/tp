@@ -43,6 +43,10 @@ import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.ui.attendancepage.AttendanceListPanel;
+import tfifteenfour.clipboard.ui.coursepage.CourseListPanel;
+import tfifteenfour.clipboard.ui.gradespage.GradeListPanel;
+import tfifteenfour.clipboard.ui.grouppage.GroupListPanel;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveSessionTab;
@@ -53,6 +57,10 @@ import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
+import tfifteenfour.clipboard.ui.sessionpage.SessionListPanel;
+import tfifteenfour.clipboard.ui.studentspage.StudentListPanel;
+import tfifteenfour.clipboard.ui.studentspage.StudentViewCardWithAttendance;
+import tfifteenfour.clipboard.ui.taskpage.TaskListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -71,7 +79,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CourseListPanel courseListPanel;
-    private StudentViewCard studentViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
