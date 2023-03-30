@@ -6,10 +6,15 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 * Table of Contents
-   *	Feature Tracks (plan for v1.2)
+   *	Feature Tracks
          * Delivery tasking management system:
             * View jobs
-            * Add jobs
+            * Add jobs individually
+            * Mass import jobs and associated customers
+            * Find jobs
+            * Mark job as done
+            * Delete jobs
+            * Edit jobs
          * Reminder and notifications:
             * Set reminder for upcoming deadlines
             * Get notified as soon as you open the app
@@ -18,13 +23,12 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
             * Sort job list by date and slot
             * Display timetable of all scheduled/upcoming jobs in the week
          * Stats dashboard:
-            * Display all-time statistics
-            * Display previous week's statistics
-            * Statistics includes
-              * Total number of jobs 
+            * Show statistics on:
+              * Total number of jobs
+              * Pending jobs
+              * Completed jobs
               * Total earnings
-              * Total number of completed jobs 
-              * Total number of pending jobs
+              * Statistics from previous week
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -33,28 +37,28 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dukeDriver.jar` in the latest release from [here](https://github.com/AY2223S2-CS2103-F11-2/tp/releases).
+2. Download the latest `dukeDriver.jar` in the latest release from [here](https://github.com/AY2223S2-CS2103-F11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dukeDriver.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dukeDriver.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
    
    * `list_job` : Lists all jobs.
 
-  * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-  * `timetable` : Shows timetable of current week.
+   * `timetable` : Shows timetable of current week.
 
-  * `exit` : Exits the app.
+   * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,13 +90,16 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 ## 1. Features related to Customers
+
+To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
+
 ### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
@@ -168,20 +175,31 @@ Examples:
 Adds a delivery job to the delivery job system.
 
 Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
 * Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
-* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
-* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
+  * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+  * Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
 * Earning **must be a double**.
 
 Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
-### 2.2. Listing all jobs : `list_job`
+### 2.2. Mass importing jobs
+
+Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a file containing all the jobs to be imported
+
+* File **must be a CSV file**.
+* There must be a header row as the first row will be skipped when file is parsed.
+* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist. 
+  * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
+* If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
+
+### 2.3. Listing all jobs : `list_job`
 
 Shows a list of all jobs in the delivery job system in Main Window.
 
@@ -276,6 +294,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+Alternative: Click "File" in menu bar > "Exit"
+* The alternative also applies for `Timetable` in menu bar > `Scheduled Jobs`/ `Completed Jobs` and `Customer` in menu bar > `Address book`
 
 ### Saving the data
 
@@ -289,10 +309,6 @@ Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -304,20 +320,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
-**List reminder** | `list_reminder`
-**Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
-**Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
-**Show Timetable** | `timetable`
-**Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
-**Show List of Completed Jobs** | `timetable_completed`
-**Show List of Unscheduled Jobs** | `timetable_unscheduled`
-**Help** | `help`
+| Action                              | Format, Examples                                                                                                                                                                                                                        |
+|-------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Customer**                    | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**                           | `clear`                                                                                                                                                                                                                                 |
+| **Delete Customer**                 | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                        |
+| **Edit Customer details**           | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find Customer**                   | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                 |
+| **List Customer**                   | Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                                     |
+| **Add Job**                         | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                |
+| **Import Jobs**                     | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                    |
+| **List reminder**                   | `list_reminder`                                                                                                                                                                                                                         |
+| **Add reminder**                    | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                      |
+| **Delete reminder**                 | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                  |
+| **Show Timetable**                  | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                              |
+| **Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                     |
+| **Show List of Completed Jobs**     | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                    |
+| **Show List of Unscheduled Jobs**   | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                |
+| **Help**                            | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                  |
