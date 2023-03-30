@@ -1119,10 +1119,10 @@ testers are expected to do more *exploratory* testing.
        Expected: No project is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
 
     1. Test case: `editpj 0`<br>
-       Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+       Expected: No project is edited. An error message is shown as an invalid index was given. An error is logged in the console.
 
     1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
-       Expected: No contact is edited. An error message is shown as an invalid command was given.
+       Expected: No project is edited. An error message is shown as an invalid command was given.
 
 
 
