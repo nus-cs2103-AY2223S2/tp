@@ -15,10 +15,12 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
+import arb.model.client.Client;
 import arb.model.client.predicates.NameContainsKeywordsPredicate;
 
 /**
@@ -57,20 +59,22 @@ public class FindClientCommandTest {
 
     @Test
     public void execute_zeroKeywords_noClientFound() {
-        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindClientCommand command = new FindClientCommand(predicate);
-        expectedModel.updateFilteredClientList(predicate);
+        CombinedPredicate<Client> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        FindClientCommand command = new FindClientCommand(finalPredicate);
+        expectedModel.updateFilteredClientList(finalPredicate);
+        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0) + "\n" + finalPredicate;
         assertCommandSuccess(command, ListType.CLIENT, ListType.CLIENT, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleClientsFound() {
-        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindClientCommand command = new FindClientCommand(predicate);
-        expectedModel.updateFilteredClientList(predicate);
+        CombinedPredicate<Client> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        FindClientCommand command = new FindClientCommand(finalPredicate);
+        expectedModel.updateFilteredClientList(finalPredicate);
+        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3) + "\n" + finalPredicate;
         assertCommandSuccess(command, ListType.CLIENT, ListType.CLIENT, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
