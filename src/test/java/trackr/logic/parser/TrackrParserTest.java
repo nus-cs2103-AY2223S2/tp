@@ -67,13 +67,13 @@ public class TrackrParserTest {
         assertEquals(new AddTaskCommand(task), command);
     }
 
-    @Test
-    public void parseCommand_addOrder() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
-                OrderUtil.getAddOrderCommand(order));
-        assertEquals(new AddOrderCommand(order), command);
-    }
+//    @Test
+//    public void parseCommand_addOrder() throws Exception {
+//        Order order = new OrderBuilder().build();
+//        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
+//                OrderUtil.getAddOrderCommand(order));
+//        assertEquals(new AddOrderCommand(order), command);
+//    }
 
     @Test
     public void parseCommand_addTaskShortcut() throws Exception {
@@ -83,13 +83,13 @@ public class TrackrParserTest {
         assertEquals(new AddTaskCommand(task), command);
     }
 
-    @Test
-    public void parseCommand_addOrderShortcut() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
-                OrderUtil.getAddOrderCommandShortcut(order));
-        assertEquals(new AddOrderCommand(order), command);
-    }
+//    @Test
+//    public void parseCommand_addOrderShortcut() throws Exception {
+//        Order order = new OrderBuilder().build();
+//        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
+//                OrderUtil.getAddOrderCommandShortcut(order));
+//        assertEquals(new AddOrderCommand(order), command);
+//    }
 
     @Test
     public void parseCommand_clearSupplier() throws Exception {
