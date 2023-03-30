@@ -2,16 +2,29 @@
 layout: page
 title: Developer Guide
 ---
+## Advisio
+Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll see in your career.
 
-* Table of Contents
-  {:toc}
-
+## Table of Contents
+* [**Acknowledgements**](#acknowledgements)
+* [**Setting up, getting started**](#setting-up-getting-started)
+* [**Design**](#Design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+* [**Implementation**](#implementation)
+* [**Documentation**](#documentation-logging-testing-configuration-dev-ops)
+* [**Appendix: Requirements**](#appendix-requirements)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+* Adapted from [AB3](https://github.com/nus-cs2103-AY2223S1/tp)
+<!-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
+  original source as well} -->
 
 --------------------------------------------------------------------------------------------------------------------
 

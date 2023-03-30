@@ -25,7 +25,6 @@ Class PolicyName
 Class CustomDate
 Class Premium
 Class Frequency
-
 }
 
 Class HiddenOutside #FFFFFF
