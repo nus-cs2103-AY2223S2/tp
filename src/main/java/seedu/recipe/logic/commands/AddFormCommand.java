@@ -11,7 +11,7 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.AddRecipeForm;
 
 /**
- * Opens a new RecipeForm instance.
+ * Adds a recipe to the recipe book via a form UI.
  */
 public class AddFormCommand extends Command {
 
@@ -29,7 +29,7 @@ public class AddFormCommand extends Command {
     }
 
     /**
-     * Executes the AddFormCommand which opens a new RecipeForm instance and adds the recipe.
+     * Executes the AddFormCommand, which opens a new RecipeForm instance and adds the recipe.
      *
      * @param model The {@code Model} which the command should operate on.
      * @return A {@code CommandResult} with the message indicating the success of the operation.

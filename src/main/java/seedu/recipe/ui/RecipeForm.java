@@ -1,7 +1,5 @@
 package seedu.recipe.ui;
 
-//Core imports
-
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -27,7 +24,7 @@ import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.ui.util.FieldsUtil;
 
 /**
- * Represents the form element for users to edit {@code Recipe}s
+ * Represents a generic form element for modifying {@code Recipe}s.
  */
 public abstract class RecipeForm extends UiPart<Region> {
     // constants
@@ -45,6 +42,7 @@ public abstract class RecipeForm extends UiPart<Region> {
     protected VBox ingredientsBox;
     @FXML
     protected VBox stepsBox;
+
     //UI child elements
     @FXML
     private TextField nameField;
@@ -54,8 +52,7 @@ public abstract class RecipeForm extends UiPart<Region> {
     private TextField portionField;
     @FXML
     private TextField tagsField;
-    @FXML
-    private FlowPane tags;
+
     //Core CTA Group
     @FXML
     private Region buttonCtrLeft;
@@ -65,10 +62,12 @@ public abstract class RecipeForm extends UiPart<Region> {
     private Button cancelButton;
 
     /**
-     * Creates a new RecipeForm with the given recipe and displayed index.
-     * If the recipe is not null, the form fields are pre-populated with the recipe's data.
+     * Creates a new RecipeForm with a given recipe and a StringBuilder to store data in.
+     * If the recipe is not null, the form fields are pre-populated with the given recipe's data.
      *
-     * @param recipe The recipe to edit or null for creating a new recipe.
+     * @param data   The StringBuilder used to store form data.
+     * @param recipe The given recipe to seed form data with.
+     * @param title  The title of the form window.
      */
     public RecipeForm(Recipe recipe, StringBuilder data, String title) {
         super(FXML);
@@ -148,7 +147,7 @@ public abstract class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Closes the form without saving any changes.
+     * Closes the form window.
      */
     private void closeForm() {
         Stage stage = (Stage) saveButton.getScene().getWindow();
@@ -156,12 +155,11 @@ public abstract class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Displays the form in a new window.
-     * The window's title will be "Add Recipe" if creating a new recipe,
-     * or "Edit Recipe" if editing an existing recipe.
+     * Displays the form by creating a new window.
      */
     public void display() {
         Stage window = new Stage();
+
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
@@ -187,8 +185,6 @@ public abstract class RecipeForm extends UiPart<Region> {
 
     /**
      * Stores the initial values of the form fields in a HashMap.
-     * This is used for comparison when saving the recipe to determine
-     * which fields have been changed.
      */
     private void storeInitialValues() {
         initialValues.put("name", nameField.getText().trim());
@@ -209,8 +205,7 @@ public abstract class RecipeForm extends UiPart<Region> {
     // The following functions are helper functions used in the main code above.
 
     /**
-     * Populates the form fields with the data from the existing recipe.
-     * Stores all prepopulated data into a hashmap for comparison later when saving.
+     * Populates the form fields with the data from the seed recipe.
      */
     private void populateFields() {
         nameField.setText(recipe.getName().recipeName);
@@ -266,11 +261,11 @@ public abstract class RecipeForm extends UiPart<Region> {
     }
 
     /**
-     * Helper method to add all the changed field data into an existing StringBuilder instance.
+     * Stores changed recipe fields into the data StringBuilder.
      *
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    public void collectFields(Map<String, String> changedValues) {
+    protected void collectFields(Map<String, String> changedValues) {
         // Check if the name has been changed and append the name prefix and value.
         if (changedValues.containsKey("name")) {
             data.append(" n/");
@@ -317,5 +312,10 @@ public abstract class RecipeForm extends UiPart<Region> {
         }
     }
 
-    public abstract void handle(Map<String, String> changedValues);
+    /**
+     * Processes the data in the form for use externally.
+     *
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
+     */
+    protected abstract void handle(Map<String, String> changedValues);
 }
