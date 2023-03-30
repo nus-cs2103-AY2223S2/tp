@@ -26,22 +26,19 @@ public class MakeCommandParser implements Parser<MakeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public MakeCommand parse(String args) throws ParseException {
-        boolean isValidCommand = Pattern.matches("^make\\s+(char|item|mob)(\\s+[\\w]+)+$", args.trim());
+        boolean isValidCommand = Pattern.matches("^(char|item|mob|c|i|m)(\\s+[\\w]+)+$", args.trim());
         if (!isValidCommand) {
             // Check what kind of invalid command it is
-            boolean hasCommandKeyword = Pattern.matches("^make\\s+.*", args.trim());
             boolean hasRightFields = Pattern.matches(".*((\\s+[\\w]+)+)$", args.trim());
-            if (!hasCommandKeyword) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
-            } else if (!hasRightFields) {
+            if (!hasRightFields) {
                 throw new ParseException(Name.MESSAGE_CONSTRAINTS);
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
             }
         }
-        String[] split = args.trim().split("\\s+", 3);
-        Name name = ParserUtil.parseName(split[2]);
-        Classification classification = ParserUtil.parseClassification(split[1]);
+        String[] split = args.trim().split("\\s+", 2);
+        Name name = ParserUtil.parseName(split[1]);
+        Classification classification = ParserUtil.parseClassification(split[0]);
 
         Entity newEntity = null;
         if (classification.isCharacter()) {

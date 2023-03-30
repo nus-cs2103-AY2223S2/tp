@@ -3,8 +3,6 @@ package seedu.address.model.entity;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
-
 /**
  * Represents the classification of an entity: char (template), item or mob
  */
@@ -13,7 +11,7 @@ public class Classification {
     public static final String MESSAGE_CONSTRAINTS =
         "Classifications can only be char, item or mob, and should not be left blank.";
 
-    public static final String VALIDATION_REGEX = "(char|item|mob)";
+    public static final String VALIDATION_REGEX = "(char|item|mob|c|i|m)";
 
     public static final String CHAR_STRING = "char";
 
@@ -60,15 +58,15 @@ public class Classification {
     }
 
     public boolean isCharacter() {
-        return Objects.equals(classification, "char");
+        return classification.matches("char|c");
     }
 
     public boolean isItem() {
-        return Objects.equals(classification, "item");
+        return classification.matches("item|i");
     }
 
     public boolean isMob() {
-        return Objects.equals(classification, "mob");
+        return classification.matches("mob|m");
     }
 
 }

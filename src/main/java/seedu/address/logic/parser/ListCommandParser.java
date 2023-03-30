@@ -16,18 +16,16 @@ import seedu.address.model.entity.Classification;
 public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {
-
         if (args.isEmpty()) {
             return new ListCommand();
         }
 
-        boolean isValidCommand = Pattern.matches("^(char|item|mob|template)", args.trim());
+        boolean isValidCommand = Pattern.matches("^(char|item|mob|c|i|m)", args.trim());
         if (!isValidCommand) {
             throw new ParseException("Invalid command!");
         }
 
         Classification classification = ParserUtil.parseClassification(args);
         return new ListCommand(classification);
-
     }
 }
