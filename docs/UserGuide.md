@@ -100,6 +100,8 @@ Format:
 `addf`
 
 > An empty pop-up form as shown in the image below will appear!
+> 
+> ![AddCommandWindow](images/addfCommand.jpg)
 >
 > Tab to move on to the next input field, and shift+tab to go to the previous field!
 >
@@ -147,7 +149,9 @@ Format:
 > 
 > You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
 > 
-> :bulb: Tip: Alternatively, you can use the edit popup form that can be triggered using the keyboard shortcut displayed below.
+> :bulb: Important tip: Alternatively, you can use the edit popup form (shown below) that can be triggered using the keyboard shortcut displayed below.
+> 
+> ![EditFormWindow](images/editForm.jpg)
 
 Keyboard shortcut:
 As an alternate means to typing the full command, we provide a popup form to edit a recipe!
@@ -202,7 +206,7 @@ Example(s) of usage:
 > The index **must be a positive integer** 1, 2, 3, …
 
 Keyboard shortcut:
-While the recipe you want to deleted is being selected, simply hit the `delete` or `backspace` key and click on confirm to delete that particular recipe!
+While the recipe you want to delete is being selected, simply hit the `delete` or `backspace` key and click on confirm to delete that particular recipe!
 
 ### Searching for substitutions for an ingredient: `sub`
 
@@ -277,9 +281,13 @@ If your changes to the data file makes its format invalid, ***RIZZ***ipe will di
 The keyboard input `F3` will open an import window from the main window (as shown in the image below). From there, select the JSON
 file to be imported using the selector.
 
+![ImportDataWindow](images/ImportWindow.jpg)
+
 * Only files with correct and non-duplicate recipes will be imported
 * Any imported recipes will be added to your current recipe book!
 * Alternatively, you can access the import function from the `File` option in the top left corner of the main window.
+
+![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.jpg)
 
 
 ### Exporting data
@@ -287,8 +295,9 @@ file to be imported using the selector.
 The keyboard input `F4` will open an export window from the main window (as shown in the image below). From there, input the file name of the
 JSON file to be exported and select the desired location for it to be saved!
 
-* Alternatively, you can access the export function from the `File` option in the top left corner of the main window.
+* Alternatively, like the import function, you can access the export function from the `File` option in the top left corner of the main window.
 
+![ExportDataWindow](images/ExportWindow.jpg)
 ---
 
 ## FAQ
@@ -314,3 +323,4 @@ JSON file to be exported and select the desired location for it to be saved!
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Keyboard Shortcuts summary
+
