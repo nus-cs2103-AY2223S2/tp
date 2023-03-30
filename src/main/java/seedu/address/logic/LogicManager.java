@@ -171,6 +171,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void sortReminderList() {
+        model.sortReminderList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

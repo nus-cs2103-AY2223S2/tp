@@ -72,6 +72,11 @@ public interface Logic {
      */
     ObservableList<Reminder> getReminderList();
 
+    /**
+     * Sorts reminder list
+     */
+    void sortReminderList();
+
     // DELIVERY JOB SYSTEM ===================================
 
     /**

@@ -272,6 +272,10 @@ public class AddCommandTest {
         public ObservableList<Reminder> getReminderList() {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void sortReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void setHasShown(int i, boolean b) {
