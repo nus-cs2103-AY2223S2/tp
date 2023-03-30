@@ -273,7 +273,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Gets the argument from a command
      */
-    private String getArgs(String commandText){
+    private String getArgs(String commandText) {
         return commandText.split(" ")[1];
     }
 
@@ -318,19 +318,19 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if(commandResult.isFindCards()){
+            if (commandResult.isFindCards()) {
                 handleFindCards(commandText);
             }
 
-            if(commandResult.isFindDecks()){
+            if (commandResult.isFindDecks()) {
                 handleFindDecks(commandText);
             }
 
-            if(commandResult.isShowCards()){
+            if (commandResult.isShowCards()) {
                 handleShowCards();
             }
 
-            if(commandResult.isShowDecks()){
+            if (commandResult.isShowDecks()) {
                 handleShowDecks();
             }
 

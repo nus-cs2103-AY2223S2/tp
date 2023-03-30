@@ -103,15 +103,18 @@ public class CommandResult {
     public boolean isFindCards() {
         return findCards;
     }
+
     public boolean isFindDecks() {
         return findDecks;
     }
+
     public boolean isShowCards() {
         return showCards;
-    }    public boolean isShowDecks() {
-        return showDecks;
     }
 
+    public boolean isShowDecks() {
+        return showDecks;
+    }
 
     public boolean isClear() {
         return false;
