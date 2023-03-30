@@ -70,8 +70,8 @@ public class Task {
         this.status = status;
     }
 
-    public void setStatus(int level) {
-        this.status = Status.fromInt(level);
+    public boolean hasStatus(Status status) {
+        return this.status.equals(status);
     }
 
     public Priority getPriority() {
@@ -83,8 +83,8 @@ public class Task {
         this.priority = priority;
     }
 
-    public void setPriority(int level) {
-        this.priority = Priority.fromInt(level);
+    public boolean hasPriority(Priority priority) {
+        return this.priority.equals(priority);
     }
 
     public boolean containsKeyword(String keyword) {
@@ -113,14 +113,6 @@ public class Task {
 
     public boolean containsLabel(String label) {
         return labels.contains(label.toLowerCase());
-    }
-
-    public boolean isSamePriority(Priority priority) {
-        return this.priority.equals(priority);
-    }
-
-    public boolean isSamePriority(int level) {
-        return isSamePriority(Priority.fromInt(level));
     }
 
     public boolean isDateBefore(LocalDateTime date) {

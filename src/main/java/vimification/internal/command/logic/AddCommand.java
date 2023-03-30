@@ -3,6 +3,7 @@ package vimification.internal.command.logic;
 import static java.util.Objects.requireNonNull;
 
 import vimification.internal.command.CommandResult;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -32,9 +33,10 @@ public class AddCommand extends UndoableLogicCommand {
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList) {
+    public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         requireNonNull(taskList);
         taskList.add(addedTask);
+        commandStack.push(this);
         return new CommandResult(SUCCESS_MESSAGE);
     }
 

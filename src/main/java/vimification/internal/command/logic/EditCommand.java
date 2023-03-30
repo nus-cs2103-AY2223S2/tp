@@ -2,6 +2,7 @@ package vimification.internal.command.logic;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandResult;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -33,12 +34,15 @@ public class EditCommand extends UndoableLogicCommand {
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList) {
+    public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         requireNonNull(taskList);
         int index = targetIndex.getZeroBased();
         Task oldTask = taskList.get(index);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
+        if (request.getEditedTitle() != null) {
+            newTask.setTitle(request.getEditedTitle());
+        }
         if (request.getEditedDeadline() != null) {
             newTask.setDeadline(request.getEditedDeadline());
         }
@@ -53,6 +57,7 @@ public class EditCommand extends UndoableLogicCommand {
             newTask.addLabel(pair.getSecond());
         });
         taskList.set(index, newTask);
+        commandStack.push(this);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 

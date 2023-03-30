@@ -19,7 +19,7 @@ import vimification.model.task.Task;
  */
 public class LogicTaskList {
 
-    private final List<Task> tasks;
+    private List<Task> tasks;
 
     public LogicTaskList(List<Task> tasks) {
         this.tasks = tasks;
@@ -35,6 +35,10 @@ public class LogicTaskList {
 
     public List<Task> getInternalList() {
         return tasks;
+    }
+
+    public void setInternalList(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public int size() {
@@ -123,10 +127,6 @@ public class LogicTaskList {
 
     public Priority getPriority(int index) {
         return tasks.get(index).getPriority();
-    }
-
-    public void setPriority(int index, int newLevel) {
-        tasks.get(index).setPriority(newLevel);
     }
 
     public void setPriority(int index, Priority newPriority) {

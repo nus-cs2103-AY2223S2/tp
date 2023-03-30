@@ -23,8 +23,8 @@ public class InsertCommandParser implements CommandParser<InsertCommand> {
     private static ApplicativeParser<InsertCommand> parseArguments(Index index) {
         InsertRequest request = new InsertRequest();
         ArgumentCounter counter = new ArgumentCounter(
-                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
-                CommandParserUtil.DEADLINE_FLAG);
+                Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
+                Pair.of(CommandParserUtil.DEADLINE_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.LABEL_FLAG_PARSER
@@ -39,7 +39,7 @@ public class InsertCommandParser implements CommandParser<InsertCommand> {
                         .consume(request::setInsertedDeadline));
         return ApplicativeParser
                 .skipWhitespaces1()
-                .takeNext(flagParser) // flag is compulsory. At least 1 flag is expected
+                .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .constMap(new InsertCommand(index, request));
     }
 
