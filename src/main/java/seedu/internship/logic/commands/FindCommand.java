@@ -10,8 +10,7 @@ import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
