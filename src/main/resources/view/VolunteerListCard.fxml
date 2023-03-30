@@ -23,7 +23,7 @@
             <ColumnConstraints hgrow="ALWAYS" prefWidth="250"/>
         </columnConstraints>
 
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="3">
+        <VBox  minHeight="105" GridPane.columnIndex="0" spacing="3">
             <padding>
                 <Insets bottom="5" left="5" right="5" top="5"/>
             </padding>
@@ -43,7 +43,7 @@
                 </Label>
                 <FlowPane fx:id="region" alignment="CENTER_LEFT"/>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="5">
+            <HBox alignment="CENTER_LEFT" spacing="5" fx:id="addressBox">
                 <ImageView fitHeight="15" pickOnBounds="true"  preserveRatio="true">
                     <Image url="@/images/home-address.png"/>
                 </ImageView>
@@ -68,6 +68,7 @@
                     </graphic>
                 </Label>
 
+                <VBox HBox.hgrow="ALWAYS" fx:id="phoneBox">
                 <Label fx:id="phone"  styleClass="cell_small_label" text="\$phone" wrapText="true" HBox.hgrow="ALWAYS">
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
@@ -75,9 +76,10 @@
                         </ImageView>
                     </graphic>
                 </Label>
+                </VBox>
             </HBox>
 
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox spacing="5" alignment="CENTER_LEFT" fx:id="emailBox">
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" HBox.hgrow="ALWAYS">
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">

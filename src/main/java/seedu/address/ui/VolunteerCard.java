@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.AvailableDate;
 
@@ -58,6 +59,12 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private HBox regionBox;
     @FXML
+    private HBox addressBox;
+    @FXML
+    private HBox emailBox;
+    @FXML
+    private VBox phoneBox;
+    @FXML
     private FlowPane availableDates;
 
     /**
@@ -95,10 +102,19 @@ public class VolunteerCard extends UiPart<Region> {
             medicalTagsBox.getChildren().removeAll(medicalTagsBox.getChildren());
         }
         if (volunteer.getRegion().toString().isEmpty()) {
-            regionBox.getChildren().removeAll(region);
+            regionBox.getChildren().removeAll(regionBox.getChildren());
         }
         if (volunteer.getAvailableDates().isEmpty()) {
             availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());
+        }
+        if (volunteer.getAddress().toString().isEmpty()) {
+            addressBox.getChildren().removeAll(addressBox.getChildren());
+        }
+        if (volunteer.getEmail().toString().isEmpty()) {
+            emailBox.getChildren().removeAll(emailBox.getChildren());
+        }
+        if (volunteer.getPhone().toString().isEmpty()) {
+            phoneBox.getChildren().removeAll(phoneBox.getChildren());
         }
         if (displayedIndex == 0) {
             id.setVisible(false);
