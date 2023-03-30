@@ -104,7 +104,11 @@ public class Location implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-                String.format("%s", name));
+                String.format("%s", name),
+                String.format("%s: %s\n", "Plane", planeLink.toString()),
+                String.format("%s: %s\n", "Pilots", pilotLink.toString()),
+                String.format("%s: %s\n", "Crew", crewLink.toString())
+        );
     }
 
     /**
