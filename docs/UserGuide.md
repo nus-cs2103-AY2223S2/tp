@@ -85,7 +85,7 @@ The UI is split into 4 main parts
 - Message Box
   - This is where the messages regarding the status of your commands are displayed.
 - Command Box
-  - This is where you can enter your commands.
+  - This is where you can enter your commands. Press `Enter` to execute the command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
