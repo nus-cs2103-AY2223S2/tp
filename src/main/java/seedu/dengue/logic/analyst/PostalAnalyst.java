@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.dengue.model.person.Location;
 import seedu.dengue.model.person.Person;
@@ -16,6 +17,13 @@ public class PostalAnalyst extends Analyst {
     private final int total;
     private final EnumMap<Location, DataBin> bins;
 
+    private String processLocationString(String location) {
+        String[] tempArray = location.split("]",2);
+        String postals = tempArray[0] + "]";
+        String locations = Arrays.stream(tempArray[1].split(", ")).collect(Collectors.joining("\n"));
+        return postals + locations;
+    }
+
     /**
      * Constructs a {@code PostalAnalyst} instance with the given list of {@code Person}s.
      *
@@ -27,7 +35,7 @@ public class PostalAnalyst extends Analyst {
         this.bins = new EnumMap<>(Location.class);
 
         Arrays.stream(Location.values())
-                .forEach(location -> bins.put(location, new DataBin(location.toString())));
+                .forEach(location -> bins.put(location, new DataBin(processLocationString(location.toString()))));
 
         persons.forEach(person -> {
             Location location = PostalLocationMapping.getLocation(person.getPostal());

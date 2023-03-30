@@ -3,42 +3,39 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints percentWidth="15" />
+      <ColumnConstraints percentWidth="70" />
+      <ColumnConstraints percentWidth="15" />
     </columnConstraints>
-    <HBox spacing="5" alignment="CENTER_LEFT">
-      <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
         <padding>
-          <Insets right="5" left="15" />
+          <Insets right="15" left="15" bottom="10" />
         </padding>
-        <HBox>
-          <Label fx:id="id" styleClass="cell_big_label">
+          <Label fx:id="id" styleClass="cell_big_label" GridPane.columnIndex="0" GridPane.valignment="TOP">
+            <padding>
+              <Insets top="5" />
+            </padding>
             <minWidth>
               <!-- Ensures that the label text is never truncated -->
               <Region fx:constant="USE_PREF_SIZE" />
             </minWidth>
           </Label>
-          <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
-        </HBox>
-        <Label styleClass="small_label_gap" />
-        <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
-        <Label fx:id="postal" styleClass="cell_small_label" text="\$postal" />
-        <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-      </VBox>
-      <Region HBox.hgrow="ALWAYS" />
-      <FlowPane fx:id="variants" prefWidth="20" maxWidth="20" HBox.hgrow="NEVER">
-        <padding>
-          <Insets top="10" right="5" />
-        </padding>
-      </FlowPane>
-    </HBox>
+          <Label fx:id="binName" styleClass="cell_small_label" GridPane.columnIndex="1" wrapText="true"
+                 minWidth="200" maxWidth="150" GridPane.valignment="TOP">
+          <padding>
+            <Insets top="5" bottom="10"/>
+          </padding>
+          </Label>
+          <Label fx:id="binSize" styleClass="cell_big_label"  GridPane.columnIndex="2" GridPane.valignment="TOP">
+          <padding>
+            <Insets top="5" />
+          </padding>
+          </Label>
   </GridPane>
 </HBox>

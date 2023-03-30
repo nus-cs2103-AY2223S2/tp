@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.dengue.logic.analyst.Analyst;
 import seedu.dengue.logic.analyst.DataBin;
 import seedu.dengue.model.person.Person;
@@ -76,10 +78,9 @@ public abstract class Overview {
      *
      * @return Multi-line string representation of all present bins.
      */
-    public String getOverviewContent() {
-        List<DataBin> sortedBins = getAnalyst().getSortedBins();
-        return Stream.iterate(1, i -> i + 1).limit(sortedBins.size())
-                .map(i -> makeBinPrefix(i) + GAP + makeBinFormat(sortedBins.get(i - 1)))
-                .collect(Collectors.joining("\n\n"));
+    public ObservableList<DataBin> getOverviewContent() {
+        ObservableList<DataBin> tempBin = FXCollections.observableArrayList();
+        tempBin.setAll(getAnalyst().getSortedBins());
+        return tempBin;
     }
 }
