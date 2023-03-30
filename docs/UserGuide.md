@@ -7,6 +7,14 @@ Calidr is a **time-management and scheduling calendar application** for universi
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Calidr helps you
 manage your time and tasks more effectively.
 
+## How To Use This Guide
+
+Welcome to the user guide for Calidr! This guide provides detailed instructions on how to use the features and functionality of our product. Whether you're a new user getting started with the basics or an experienced user looking for advanced tips and tricks, this guide has everything you need to know.
+
+To get started, read through the Quick Start section to set up the application. Refer to the Definitions section to familiarize yourself with the terminology used in this guide.
+
+If you have any questions or run into problems, check out the FAQ for solutions to commonly faced issues.
+
 * Table of Contents
 {:toc}
 
@@ -79,7 +87,7 @@ manage your time and tasks more effectively.
 
 1. Elements on a calendar are refered to as **Tasks**.
 1. Tasks must have a **title**.
-1. A task can have an optional **description**, **location**, and **comment**.
+1. A task can have an optional **description**, **location**, and multiple **tags(s)**.
 1. Tasks have an associated **priority**.
     1. Priority is one of `HIGH`, `MEDIUM` or `LOW`.
     3. Tasks have a default priority of `MEDIUM`.
