@@ -391,11 +391,6 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 </div>
 <br>
 
-
-#### Additional Information
-* The sequence for user preference save and retrieval is similar to data
-* The location in which both files are save are specified in commons/core/config
-
 [Scroll back to top](#table-of-contents)
 
 
