@@ -149,8 +149,8 @@ Order of headers is as such (**Order must be followed**):
 | 6.    | `PAYROLL`       | **Compulsory** | 
 | 7.    | `LEAVECOUNT`    | Optional       | 
 | 8.    | `DATEOFBIRTH`   | Optional       |
-| 8.    | `DATEOFJOINING` | Optional       |
-| 6.    | `TAGS`          | Optional       | 
+| 9.    | `DATEOFJOINING` | Optional       |
+| 10.   | `TAGS`          | Optional       | 
 
 Sample `.csv` file:
 ![](images/UserGuide/sampleCSV.png)
