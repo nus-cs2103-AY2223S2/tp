@@ -23,6 +23,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 //Custom imports
 import seedu.recipe.commons.core.LogsCenter;
@@ -172,7 +173,7 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
-        //window.setResizable(false);
+        window.setMaxHeight(Screen.getPrimary().getBounds().getMaxY());
 
         //Set dimensions, scene graph
         VBox pane = new VBox(getRoot());
