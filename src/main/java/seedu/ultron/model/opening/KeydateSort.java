@@ -3,9 +3,6 @@ package seedu.ultron.model.opening;
 import static java.util.Objects.requireNonNull;
 import static seedu.ultron.commons.util.AppUtil.checkArgument;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
