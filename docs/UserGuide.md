@@ -28,12 +28,11 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## Components of PowerCards
 
-### Locations of the components
 ![UiComponent](images/UiComponent.png)
 
 ## Description of the components
 
-| Component          | Description                                                                                                          |
+| Component          | Description                                                                                                  |
 |--------------------|--------------------------------------------------------------------------------------------------------------|
 | **Left Panel**     | This shows either a **list of decks** or the **current review statistics** depending on the mode you are in. |
 | **Right Panel**    | This shows either a **list of cards** or the **current card in review** depending on the mode you are in.    |
@@ -56,89 +55,125 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 6. Refer to the [Features](#features) below for details of each command.
 
--------------------------------------------------------------------------------------------------------------------- 
+## Glossary
+
+### Deck
+A deck refers to a collection of flashcards that are organized together based on a specific topic or subject.
+For example, you might create a deck of flashcards to study for a math test, with each card containing a different math problem and solution.
+
+### Card
+A card refers to a flashcard within a deck. A card contains a question or prompt, and the corresponding answer or solution.
+During a review session, the card will only show the question, encouraging you to actively recall the answer.
+Once you attempt the question, you can command the card to reveal the answer and test your knowledge.
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Features
+
+## Command Components
+
+This section explains some common components in a command.
+
+| Component                 | Example              | Usage                                                                                                                                                                                                                                                                                                                    |
+|---------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Parameter**             | `QUESTION`, `ANSWER` | Parameters are placeholders where you have to insert your input.<br/> <br/>Suppose `add q\QUESTION a\ANSWER` is a valid command to add a card. You can simply replace `QUESTION` and `ANSWER` with the question and answer of your choice.                                                                               |  
+| **Prefix**                | `q\ `, `a\ `, `t\ `  | Prefixes are used to identify the parameters of a command. <br><br> For example, prefix `q\ ` identifies the parameter `QUESTION` in the command `add q\QUESTION`.                                                                                                                                                       |
+| **Optional Component**    | `[t\TAG]`            | Optional components can be omitted in the certain commands.<br/> <br/>For example, `add q\QUESTION a\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first two components `q\QUESTION`, `a\ANSWER` are compulsory.<br>The last component `t\TAG` is optional.                                             |
+| **Multi-value Parameter** | `KEYWORDS...`        | These are parameters that can appear **multiple times**. <br><br> For example, the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` | 
+| **Index**                 | `INDEX`              | Index refers to the index of the card/deck you want to target from the list. The index must be positive integer (1, 2, 3...). <br/> <br/>For example, `deleteDeck 1` deletes the first deck in the deck list.                                                                                                            |
+| **Flag**                  | `-e`, `-m`, `-h`     | Flags are used to toggle a particular setting or behavior.<br/><br/> For example, `review 1 -e` lets you review questions in the first deck that are tagged as easy only.                                                                                                                                                |
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add q\QUESTION`, `QUESTION` is a parameter which can be used as `add q\What is chemical symbol for Oxygen?`.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d\science d\chemistry`, only `d\chemistry` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be considered.
+  e.g. if you specify `q\What is photosynthesis q\What is a cell`, only `q\What is a cell` will be considered.
+- Extraneous parameters succeeding commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specified is `help 123`, it will be interpreted as `help`.
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
-
-## Main Mode
-
-Main mode will be started by default when the program is launched. 
-Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
-
-### Components in Main Mode
-![UiComponent](images/MainModeComponent.png)
-
-### Description of the components
-
-| Component         | Description                                                                                                |
-|-------------------|------------------------------------------------------------------------------------------------------------|
-| **Selected Deck** | This highlights the **Deck** currently selected and displays the cards in the deck on the **Right Panel**. |
-| **Deck**          | A **Deck** contains a list of **cards**.                                                                   |
-| **Card**          |                                                                                                            |
-| **Question**      |                                                                                                            |
-| **Answer**        |                                                                                                            |
-| **Tag**           |                                                                                                            |
-
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+If you are unsure about how to use PowerCard, you can always execute this command.
+This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each command and features of the app.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
 Format: `help`
 
+## Main Mode
+
+Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
+
+In the Main Mode, you can quickly and easily create new decks, add new cards to your decks, delete and modify existing cards or decks as needed, and more!
+
+![UiComponent](images/MainModeComponent.png)
+
+| Component         | Description                                                                                  |
+|-------------------|----------------------------------------------------------------------------------------------|
+| **Deck**          | A **deck** contains a list of **cards**. The existing decks are displayed in the left panel. |
+| **Selected Deck** | The **deck** currently selected. The cards in this deck are displayed in the right panel.    |
+| **Card**          | A card contains a question, an answer and an optional difficulty tag.                        |
+| **Question**      | The question that you assign to the card.                                                    |
+| **Answer**        | The corresponding answer to the question.                                                    |
+| **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation.               |
+
+## Main Mode - Before Selecting a Deck
+
 ### Adding a new Deck : `addDeck`
 
-Adds a new deck.
+Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
 
 Format: `addDeck DECK_NAME`
+- `DECK_NAME` is the name of the deck you want to create. 
+  - Deck name cannot be duplicated, e.g., if you already have a deck named Science, you cannot create another Science deck.
+  - You do not need any prefix before deck name.
 
-Examples:
-* `addDeck Science`
+Example:
+* `addDeck Science` will create a deck titled Science.
 
 ### Editing a Deck : `editDeck`
 
-Edits the name of a deck.
+You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command.  
 
-Format: `editDeck INDEX d\ DECK_NAME`
+Editing a deck name will not affect the cards stored inside it.
+
+Format: `editDeck INDEX DECK_NAME`
+- `INDEX` is the index of the deck you want to edit.
+- `DECK_NAME` is the new name you want to assign to the specified deck.
+  - The new deck name cannot be the name of an existing deck.
+
+Example: 
+- `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to Chemistry.
 
 ### Deleting a Deck : `deleteDeck`
 
-Deletes an existing Deck in the masterDeck.
+Once you have no use for a deck, you can delete the deck and all the cards within it with this command.  
+
+Be careful, a deck once deleted cannot be retrieved! 
 
 Format: `deleteDeck INDEX`
+- `INDEX` is the index of the deck in the deck list.
 
-* Deletes the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
+Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
 ### Selecting a Deck : `selectDeck`
 
-Selects a deck from the list of decks. 
+Once you have created your deck, you can access the list of cards inside it with this command.
 
 Format: `selectDeck INDEX`
+- `INDEX` is the index of the deck in the deck list.
 
 Examples:
-* `selectDeck 2`
+* `selectDeck 2` will select the deck at index 2. 
+  * The cards in this deck (if exist) will be displayed on the right panel. 
 
-##Main - After selecting a Deck
+## Main Mode - After Selecting a Deck
+
 With a deck selected, you can see all the cards in the deck on the right panel! 
 Now you can `addCard`, `deleteCard`, `editCard` or `findCards` in the deck.
+
 You will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
 
 ### Unselecting a Deck : `unselectDeck`
@@ -306,6 +341,7 @@ Format: `[`
 At any point, run this command to exit the programme.
 
 Format: `exit`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
