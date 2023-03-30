@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.ui;
+package tfifteenfour.clipboard.ui.grouppage;
 
 import java.util.logging.Logger;
 
@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.ui.UiPart;
+import tfifteenfour.clipboard.ui.coursepage.CourseListPanel;
 
 /**
  * Panel containing the list of groups.

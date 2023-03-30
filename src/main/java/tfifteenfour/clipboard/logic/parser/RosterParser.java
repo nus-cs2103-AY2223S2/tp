@@ -26,8 +26,8 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
+import tfifteenfour.clipboard.logic.commands.sortcommand.SortCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -96,7 +96,7 @@ public class RosterParser {
             return new UndoCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+            return new SortCommandParser(currentSelection).parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);

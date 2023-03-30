@@ -47,7 +47,7 @@ public class AttendanceCommand extends Command {
         if (currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
             throw new CommandException("Please select a session to view overall attendance.");
         } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE
-                && currentSelection.getSelectedStudent() == CurrentSelection.NON_EXISTENT_STUDENT) {
+                && currentSelection.getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
             throw new CommandException("Please select a student to view his / her overall attendance.");
         } else if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE
                 && currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {

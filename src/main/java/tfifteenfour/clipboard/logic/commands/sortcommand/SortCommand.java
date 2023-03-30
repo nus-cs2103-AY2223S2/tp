@@ -1,4 +1,4 @@
-package tfifteenfour.clipboard.logic.commands.studentcommands;
+package tfifteenfour.clipboard.logic.commands.sortcommand;
 
 import java.util.Comparator;
 
@@ -44,7 +44,6 @@ public class SortCommand extends Command {
         // }
         // return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
         return new CommandResult(this, "PLACEHOLDER", willModifyState);
-
     }
 
     @Override
