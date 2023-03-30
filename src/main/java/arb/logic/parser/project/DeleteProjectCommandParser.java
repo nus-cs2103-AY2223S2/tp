@@ -20,7 +20,8 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
      */
     public DeleteProjectCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            String[] wordsInArgs = args.trim().split(" ");
+            Index index = ParserUtil.parseIndex(wordsInArgs[0]);
             return new DeleteProjectCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

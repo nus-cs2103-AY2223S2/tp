@@ -25,6 +25,7 @@ import arb.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_UNSIGNED_INDEX = "Index is not an unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -37,6 +38,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not unsigned integer).
+     */
+    public static Index parseIndexWithZero(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_UNSIGNED_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex), true);
     }
 
     /**

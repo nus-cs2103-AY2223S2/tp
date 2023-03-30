@@ -16,10 +16,17 @@ public class Index {
      * {@link Index#fromOneBased(int)}.
      */
     private Index(int zeroBasedIndex) {
-        if (zeroBasedIndex < 0) {
+        this(zeroBasedIndex, false);
+    }
+
+    /**
+     * Index can only be created by calling
+     * {@link Index#fromOneBased(int, boolean)}.
+     */
+    private Index(int zeroBasedIndex, boolean allowNegative) {
+        if (!allowNegative && zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
-
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
@@ -42,7 +49,14 @@ public class Index {
      * Creates a new {@code Index} using a one-based index.
      */
     public static Index fromOneBased(int oneBasedIndex) {
-        return new Index(oneBasedIndex - 1);
+        return fromOneBased(oneBasedIndex, false);
+    }
+
+    /**
+     * Creates a new {@code Index} using a one-based index.
+     */
+    public static Index fromOneBased(int oneBasedIndex, boolean allowNegative) {
+        return new Index(oneBasedIndex - 1, allowNegative);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
+import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class AddProjectCommand extends Command {
         if (clientToBeLinked.isPresent()) {
             model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(clientToBeLinked.get())));
             if (model.getFilteredClientList().size() == 0) {
+                model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
                 throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT, clientToBeLinked.get()));
             }
             model.setProjectToLink(toAdd);

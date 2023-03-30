@@ -20,7 +20,8 @@ public class UnmarkProjectCommandParser implements Parser<UnmarkProjectCommand> 
      */
     public UnmarkProjectCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            String[] wordsInArgs = args.trim().split(" ");
+            Index index = ParserUtil.parseIndex(wordsInArgs[0]);
             return new UnmarkProjectCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
