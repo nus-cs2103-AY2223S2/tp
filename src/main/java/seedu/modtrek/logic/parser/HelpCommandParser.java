@@ -30,28 +30,27 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             return new HelpCommand("");
-        } else {
-            switch (trimmedArgs.toUpperCase()) {
-            case "ADD":
-                return new HelpCommand(AddCommand.MESSAGE_USAGE);
-            case "EDIT":
-                return new HelpCommand(EditCommand.MESSAGE_USAGE);
-            case "DELETE":
-                return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
-            case "TAG":
-                return new HelpCommand(TagCommand.MESSAGE_USAGE);
-            case "VIEW":
-                return new HelpCommand(ViewCommand.MESSAGE_USAGE);
-            case "FIND":
-                return new HelpCommand(FindCommand.MESSAGE_USAGE);
-            case "EXIT":
-                return new HelpCommand(ExitCommand.MESSAGE_USAGE);
-            case "SORT":
-                return new HelpCommand(SortCommand.MESSAGE_USAGE);
-            default:
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-            }
+        }
+        switch (trimmedArgs.toUpperCase()) {
+        case "ADD":
+            return new HelpCommand(AddCommand.MESSAGE_USAGE);
+        case "EDIT":
+            return new HelpCommand(EditCommand.MESSAGE_USAGE);
+        case "DELETE":
+            return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
+        case "TAG":
+            return new HelpCommand(TagCommand.MESSAGE_USAGE);
+        case "VIEW":
+            return new HelpCommand(ViewCommand.MESSAGE_USAGE);
+        case "FIND":
+            return new HelpCommand(FindCommand.MESSAGE_USAGE);
+        case "EXIT":
+            return new HelpCommand(ExitCommand.MESSAGE_USAGE);
+        case "SORT":
+            return new HelpCommand(SortCommand.MESSAGE_USAGE);
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
     }
 }
