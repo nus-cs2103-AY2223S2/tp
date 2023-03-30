@@ -27,7 +27,7 @@ public class CheckMeetingHasPassed extends TimerTask {
     @Override
     public void run() {
         for (Meeting m : meetings) {
-            if (!m.getHasPassed() && m.hasPassed()) {
+            if (m.hasPassed()) {
                 // UI update
                 Platform.runLater(() -> model.setMeeting(m, m));
             }

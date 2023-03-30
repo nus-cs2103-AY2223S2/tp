@@ -23,8 +23,7 @@ public class Meeting {
     // Data fields
     private final Location location;
     private final Description description;
-
-    private boolean hasPassed = false;
+    private boolean isDone = false;
 
     /**
      * Every field must be present and not null.
@@ -62,8 +61,13 @@ public class Meeting {
         return description;
     }
 
-    public boolean getHasPassed() {
-        return hasPassed;
+    /**
+     * Marks this meeting as done or not done
+     *
+     * @param isDone whether ot mark as done
+     */
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     /**
@@ -85,8 +89,7 @@ public class Meeting {
      * Returns true if {@code Meeting} has passed based on the current DateTime.
      */
     public boolean hasPassed() {
-        this.hasPassed = LocalDateTime.now().isAfter(dateTime.get());
-        return this.hasPassed;
+        return LocalDateTime.now().isAfter(dateTime.get());
     }
 
     /**
