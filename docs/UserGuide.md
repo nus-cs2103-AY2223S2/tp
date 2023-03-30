@@ -45,13 +45,13 @@ You may see the following icons throughout our user guide, which are styled diff
 This provides some additional information that you are recommended to know.
 </div>
 
-##### Tip Box
+#### Tip Box
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
-##### Danger Box
+#### Danger Box
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
