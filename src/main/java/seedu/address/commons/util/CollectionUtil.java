@@ -39,4 +39,11 @@ public class CollectionUtil {
     public static boolean isAnyNotBlank(String... strings) {
         return strings != null && Arrays.stream(strings).anyMatch(s -> !s.equals(""));
     }
+
+    /**
+     * Returns true if {@code booleans} contain any elements that are true.
+     */
+    public static boolean isAnyTrue(Boolean... booleans) {
+        return booleans != null && Arrays.stream(booleans).anyMatch(b -> b);
+    }
 }

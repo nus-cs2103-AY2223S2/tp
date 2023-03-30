@@ -18,4 +18,8 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Rank
+Person *--> Unit
+Person *--> Company
+Person *--> Platoon
 @enduml
