@@ -22,7 +22,7 @@ CareFlow is a **desktop application for patient and drug inventory management, o
 Figure 1. Graphical User Interface (GUI) of CareFlow*
 </p>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -61,13 +61,13 @@ To make the most of this user guide, we recommend reading through it in order, s
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-| <p>**Symbol/**<p>**Format** | **Meaning**                                                                                                                                                                                                                                                                                               |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| :exclamation:                 | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
-| UPPER_CASE                    | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
-| [brackets]                    | Items in square brackets are optional. E.g. update -n NAME [-ph PHONE] can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
-| `command`                     | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
-| [2. About](#2-about)          | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
+| **Symbol/ Format**   | **Meaning**                                                                                                                                                                                                                                                                                               |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
+| UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
+| [brackets]           | Items in square brackets are optional. E.g. update -n NAME [-ph PHONE] can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
+| `command`            | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
+| [2. About](#2-about) | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
 
 <p align="center"> 
 Table 1. Symbols and formats used in this User Guide.
@@ -75,7 +75,7 @@ Table 1. Symbols and formats used in this User Guide.
 
 <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -237,7 +237,7 @@ Table 1. Symbols and formats used in this User Guide.
       </details>
     <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -255,7 +255,7 @@ Table 1. Symbols and formats used in this User Guide.
 * **Format:** `g help`
 
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -265,7 +265,7 @@ Table 1. Symbols and formats used in this User Guide.
   &nbsp;
 * **Format:** `g exit`
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -299,7 +299,7 @@ ___
       <br>    
 
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -331,7 +331,9 @@ ___
 
     * You can scroll through the list of patient, and John Doe should not be present.
 
-[Back to top](#top)
+<br>
+
+[🠉 Back to top](#top)
 
 <br>
 
@@ -360,7 +362,7 @@ ___
       
       <br>    
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -388,7 +390,7 @@ ___
 
     <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -410,7 +412,7 @@ ___
 
 <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -431,7 +433,7 @@ ___
       
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -452,7 +454,7 @@ ___
       
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br> 
 
@@ -472,7 +474,7 @@ ___
   
     <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -501,7 +503,7 @@ ___
       
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -530,7 +532,7 @@ ___
       </p>
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -559,7 +561,7 @@ ___
       </p>
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -591,7 +593,7 @@ ___
         </p>
     <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -617,7 +619,7 @@ ___
       
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -636,7 +638,7 @@ ___
       </p>
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -655,7 +657,7 @@ ___
       </p>
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -676,7 +678,7 @@ ___
       </p>
       <br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -684,8 +686,10 @@ ___
 ### Saving the data
 
 * CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+  
+<br>
 
-[Back to top](#top)
+[🠉 Back to top](#top)
 
 <br>
 
@@ -698,7 +702,9 @@ ___
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
 </div>
 
-[Back to top](#top)
+<br>
+
+[🠉 Back to top](#top)
 
 <br>
 
@@ -714,7 +720,9 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
 
-[Back to top](#top)
+<br>
+
+[🠉 Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -736,16 +744,16 @@ The following are the general commands that are available in Careflow for you to
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
-| Action | Format, Example                                                                                                                                                                                                                                                                                   | Expected Outcome |
-| -------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| Action | Format, Example                                                                                                                                                                                                                                                                                | Expected Outcome |
+| -------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
 | **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
-| **Delete patient by index**   | `p delete -i PATIENT_INDEX` <p> e.g., `p delete -i 3`                                                                                                                                                                                                                                            | Removes patient record at the index you have selected.|
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <p> e.g., `p delete -ic T0021248C`                                                                                                                                                                                                                                   | Removes patient record associated with the provided IC number.|
-| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789`                                                                      | Edit patient details located at the i-th position in the patient list with your given arguments.|
-| **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1`                                                                                                                                                                                                                                                 | Shows the patient record located at the i-th position in the patient list.|
-| **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John`                                                                                                                                                                                                                                                    | Shows patient(s) record that match the patient name you have provided.|
-| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                         | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list`                                                                                                                                                                                                                                                                                          | Lists all the patients that have been recorded in CareFlow.| 
+| **Delete patient by index**   | `p delete -i PATIENT_INDEX` e.g., `p delete -i 3`                                                                                                                                                                                                                                              | Removes patient record at the index you have selected.|
+| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` e.g., `p delete -ic T0021248C`                                                                                                                                                                                                                                  | Removes patient record associated with the provided IC number.|
+| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789`                                                                    | Edit patient details located at the i-th position in the patient list with your given arguments.|
+| **View patient by index**     | `p view -i PATIENT_INDEX` e.g. `p view -i 1`                                                                                                                                                                                                                                                | Shows the patient record located at the i-th position in the patient list.|
+| **Find patient by name**      | `p find PATIENT_NAME` e.g., `p find John`                                                                                                                                                                                                                                                   | Shows patient(s) record that match the patient name you have provided.|
+| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                      | Removes all patient records stored in CareFlow.|
+| **List patient**              | `p list`                                                                                                                                                                                                                                                                                       | Lists all the patients that have been recorded in CareFlow.| 
 
 ## 6.3 Drug Commands
 
@@ -757,9 +765,9 @@ The following commands are drug-related commands that are available in Careflow 
 | **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   | Removes drug record at the index you have selected.|
 | **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             | Removes drug record associated with the provided trade name.|
 | **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                              | Edit drug's storage count with the provided trade name.|
-| **View drug by index**        | `d view -i DRUG_INDEX` <p> e.g. `d view -i 1`                                                                                                                                                                                                 | Shows the drug record located at the i-th position in the drug list.|
+| **View drug by index**        | `d view -i DRUG_INDEX` <br> e.g. `d view -i 1`                                                                                                                                                                                                  | Shows the drug record located at the i-th position in the drug list.|
 | **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided.|
 | **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow. |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
 
-[Back to top](#top)
+[🠉 Back to top](#top)
