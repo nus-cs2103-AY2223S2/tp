@@ -369,6 +369,11 @@ on top and tasks done and have the furthest deadlines below.<br>
 (i.e. The tasks will be sorted in the order:
 Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
 
+Examples:
+
+* `sort_t` sorts all tasks by their status and deadline
+* `sort_task c/deadline` sorts all tasks by their deadlines
+
 ### Sorting a order: `sort_order` / `sort_o`
 
 Syntax: `sort_order [c/CRITERIA]`
@@ -386,6 +391,11 @@ Syntax: `sort_order [c/CRITERIA]`
 * Sorting by `Status_and_deadline` first sorts the orders using their status and then sort them with deadlines.<br>
   (i.e. The orders will first be sorted in the order of: Not delivered > In progress > Delivered,<br>
   then, among orders of the same status, they will be sorted in the order of: earliest deadline to furthest deadline)
+
+Examples:
+
+* `sort_o` sorts all orders by their status and deadline
+* `sort_order c/status` sorts all orders by their deadlines
 
 
 # Switch
