@@ -25,7 +25,7 @@ import seedu.address.model.task.Task;
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findp";
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <PERSON_NAME>\n"
             + "Example: " + COMMAND_WORD + " John Cena";
 

@@ -41,7 +41,7 @@ class ListAssignmentTest {
         ListAssignment listAssignment = new ListAssignment(ListAssignment.TYPE_PERSON, true);
         CommandResult commandResult = listAssignment.execute(model, officeConnectModel);
 
-        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assign", "person(s)");
+        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assigned", "person(s)");
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(2, model.getFilteredPersonList().size());
     }
@@ -51,7 +51,7 @@ class ListAssignmentTest {
         ListAssignment listAssignment = new ListAssignment(ListAssignment.TYPE_PERSON, false);
         CommandResult commandResult = listAssignment.execute(model, officeConnectModel);
 
-        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "unassign", "person(s)");
+        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "unassigned", "person(s)");
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(model.getAddressBook().getPersonList().size() - 2, model.getFilteredPersonList().size());
     }
@@ -61,7 +61,7 @@ class ListAssignmentTest {
         ListAssignment listAssignment = new ListAssignment(ListAssignment.TYPE_TASK, true);
         CommandResult commandResult = listAssignment.execute(model, officeConnectModel);
 
-        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assign", "task(s)");
+        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assigned", "task(s)");
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(2, officeConnectModel.getTaskModelManagerFilteredItemList().size());
     }
@@ -71,7 +71,7 @@ class ListAssignmentTest {
         ListAssignment listAssignment = new ListAssignment(ListAssignment.TYPE_TASK, false);
         CommandResult commandResult = listAssignment.execute(model, officeConnectModel);
 
-        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "unassign", "task(s)");
+        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "unassigned", "task(s)");
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(0, officeConnectModel.getTaskModelManagerFilteredItemList().size());
     }
@@ -80,7 +80,7 @@ class ListAssignmentTest {
         ListAssignment listAssignment = new ListAssignment("", true);
         CommandResult commandResult = listAssignment.execute(model, officeConnectModel);
 
-        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assign", "person(s) and task(s)");
+        String expectedMessage = String.format(ListAssignment.MESSAGE_SUCCESS, "assigned", "person(s) and task(s)");
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(2, model.getFilteredPersonList().size());
         assertEquals(2, officeConnectModel.getTaskModelManagerFilteredItemList().size());

@@ -10,7 +10,7 @@ import seedu.address.model.OfficeConnectModel;
  * Lists all tasks in the address book to the user.
  */
 public class ListTaskCommand extends Command {
-    public static final String COMMAND_WORD = "listtask";
+    public static final String COMMAND_WORD = "listt";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
