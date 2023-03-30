@@ -22,7 +22,7 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Parameters: " + COMMAND_WORD + " [ji/JOB_ID]" + " [si/SENDER_ID] [ri/RECIPIENT_ID] "
             + "[date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]"
-            + "Example: " + COMMAND_WORD + " si/ALE874" + " earn/2";
+            + "Example: " + COMMAND_WORD + " si/ALE874";
 
     private final Predicate<DeliveryJob> predicate;
 
