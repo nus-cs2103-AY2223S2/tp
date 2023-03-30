@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
-import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -238,7 +237,7 @@ public class UntagCommand extends Command {
                 untaggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, untaggingVideo, untaggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName),
-                new VideoEditInfo(moduleCode, lectureName, untaggingVideo, untaggedVideo));
+                new CommandResult.VideoEditInfo(moduleCode, lectureName, untaggingVideo, untaggedVideo));
     }
 
     @Override

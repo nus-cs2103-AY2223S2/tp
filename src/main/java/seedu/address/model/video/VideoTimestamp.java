@@ -2,14 +2,9 @@ package seedu.address.model.video;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * Represents a timestamp of a video.<p>
@@ -40,7 +35,6 @@ public class VideoTimestamp {
     public final int hours;
     public final int minutes;
     public final int seconds;
-    public final Set<TimeStampComment> comments = new HashSet<>();
 
     /**
      * Constructs a {@code VideoTimestamp} with default values, {@link #DEFAULT_TIMESTAMP}.
@@ -62,22 +56,6 @@ public class VideoTimestamp {
         hours = hoursMinutesSeconds[0];
         minutes = hoursMinutesSeconds[1];
         seconds = hoursMinutesSeconds[2];
-    }
-
-    /**
-     * Constructs a {@code VideoTimestamp} with comments.
-     *
-     * @param timestamp A valid timestamp.
-     */
-    public VideoTimestamp(String timestamp, Set<TimeStampComment> comments) {
-        requireNonNull(timestamp);
-        validateTimestamp(timestamp);
-
-        int[] hoursMinutesSeconds = extractHoursMinutesSeconds(timestamp);
-        hours = hoursMinutesSeconds[0];
-        minutes = hoursMinutesSeconds[1];
-        seconds = hoursMinutesSeconds[2];
-        this.comments.addAll(comments);
     }
 
     /**
@@ -134,16 +112,10 @@ public class VideoTimestamp {
         return hoursMinutesSeconds;
     }
 
-    public Set<TimeStampComment> getComments() {
-        return Collections.unmodifiableSet(comments);
-    }
 
     @Override
     public String toString() {
-        List<String> listOfTimeStampComment = comments.stream()
-                .map(TimeStampComment::getComment).collect(Collectors.toList());
-        String allComments = String.join(", ", listOfTimeStampComment);
-        return String.format("%02d:%02d:%02d", hours, minutes, seconds) + " " + allComments;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     @Override
@@ -160,8 +132,7 @@ public class VideoTimestamp {
 
         return otherTimestamp.hours == hours
             && otherTimestamp.minutes == minutes
-            && otherTimestamp.seconds == seconds
-                && otherTimestamp.comments.equals(comments);
+            && otherTimestamp.seconds == seconds;
     }
 
     @Override

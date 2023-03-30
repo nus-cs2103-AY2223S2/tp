@@ -14,7 +14,6 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.video.TimeStampComment;
 import seedu.address.model.video.VideoName;
 import seedu.address.model.video.VideoTimestamp;
 
@@ -83,29 +82,6 @@ public class ParserUtil {
                 .collect(Collectors.toList());
 
         return new HashSet<>(listOfTags);
-    }
-
-    /**
-     * Parses a {@code String} of comma-separated comments into a {@code Set} of {@code TimeStampComment}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static Set<TimeStampComment> parseTimeStampComments(String comments) throws ParseException {
-        requireNonNull(comments);
-        if (comments.trim().equals("")) {
-            return new HashSet<>();
-        }
-
-        String[] arrayOfComments = comments.split(",");
-
-
-        List<TimeStampComment> listOfComments = Arrays.stream(arrayOfComments)
-                .map(comment -> comment.trim())
-                .map(trimmedComment -> new TimeStampComment(trimmedComment))
-                .collect(Collectors.toList());
-
-        return new HashSet<>(listOfComments);
     }
 
 
