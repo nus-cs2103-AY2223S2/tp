@@ -178,9 +178,8 @@ public class Employee {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" (Employee ID: ")
-                .append(getId())
-                .append(")");
+                .append("\nEmployee ID:\t")
+                .append(getId());
         return builder.toString();
     }
 }
