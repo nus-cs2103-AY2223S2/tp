@@ -55,29 +55,16 @@ public class RecurringExpenseManager {
         this.expenseCategory = expenseCategory;
         this.startDate = startDate;
         this.recurringExpenseType = recurringExpenseType;
-        // Get the next expense date from recurringExpenseType
-        this.nextExpenseDate = recurringExpenseType.getNextExpenseDate(startDate);
+        this.nextExpenseDate = startDate;
     }
 
 
     public ArrayList<Expense> getExpenses() {
         ArrayList<Expense> expenses = new ArrayList<>();
-        LocalDate currentExpense = startDate;
-        LocalDate lastDate = endDate == null ? nextExpenseDate : endDate;
-        while (currentExpense.isBefore(lastDate)) {
-            expenses.add(new Expense(expenseName, expenseAmount, currentExpense, expenseCategory));
-            currentExpense = recurringExpenseType.getNextExpenseDate(currentExpense);
-        }
-        nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
-        if (LocalDate.now().isAfter(nextExpenseDate)) {
+        while (nextExpenseDate.isBefore(LocalDate.now())) {
+            expenses.add(new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory));
             nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
-            Expense nextExpense = new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory);
-            // add the next expense if it is not already in the list
-            if (!expenses.contains(nextExpense)) {
-                expenses.add(nextExpense);
-            }
         }
-        startDate = nextExpenseDate;
         numberOfExpenses = expenses.size();
         return expenses;
     }

@@ -90,6 +90,20 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         setCategories(newData.getCategoryList());
         setBudget(newData.getBudget());
         setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
+        generateRetroactiveExpenses();
+        expenses.sortList();
+    }
+
+    /**
+     * Adds expenses retroactively for recurring expenses which have starting dates that need to be added.
+     */
+    public void generateRetroactiveExpenses() {
+        for (RecurringExpenseManager generators : recurringGenerators.getRecurringExpenseList()) {
+            for (Expense expense : generators.getExpenses()) {
+                addExpense(expense);
+            }
+        }
+        expenses.sortList();
     }
 
     //// category-level operations
@@ -187,17 +201,32 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
                         && categories.equals(((ExpenseTracker) other).categories));
     }
 
-
+    /**
+     * Adds an expense to the expense tracker.
+     * @param expense to be added.
+     */
     public void addExpense(Expense expense) {
         expenses.add(expense);
+        expenses.sortList();
     }
 
+    /**
+     * Deletes an expense from the expense tracker.
+     * @param expense to be deleted.
+     */
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
+        expenses.sortList();
     }
 
+    /**
+     * Sets an expense at the specified index.
+     * @param index index to be used.
+     * @param expense expense to be used to overwrite the previous expense.
+     */
     public void setExpense(int index, Expense expense) {
         expenses.set(index, expense);
+        expenses.sortList();
     }
 
     /**
