@@ -1,13 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
+
     public static final String MESSAGE_SUCCESS = "The last command %s has successfully been undone!";
     public static final String MESSAGE_FAILURE = "There has not been a recent modification to TeachMeSenpai to undo!";
     private String commandToUndo;
