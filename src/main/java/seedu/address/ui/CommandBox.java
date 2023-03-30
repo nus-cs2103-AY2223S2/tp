@@ -8,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.AutocompleteEngine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -21,7 +20,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final AutocompleteEngine autocompleteEngine;
+    private final CommandSuggestor commandSuggestor;
+    private final CommandAutocomplete commandAutocomplete;
 
     @FXML
     private TextField commandTextField;
@@ -32,9 +32,14 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor,
+            CommandSuggestor commandSuggestor,
+            CommandAutocomplete commandAutocomplete) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.commandSuggestor = commandSuggestor;
+        this.commandAutocomplete = commandAutocomplete;
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
@@ -47,7 +52,6 @@ public class CommandBox extends UiPart<Region> {
         commandSuggestionTextField.setEditable(false);
         commandSuggestionTextField.setFocusTraversable(false);
         commandSuggestionTextField.setMouseTransparent(true);
-        autocompleteEngine = new AutocompleteEngine();
         //@@author
     }
 
@@ -102,6 +106,34 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Represents a function that can suggest a possible autocomplete value 
+     * based on the user input.
+     */
+    @FunctionalInterface
+    public interface CommandSuggestor {
+        /**
+         * Suggest a possible autocomplete value based on the user input.
+         *
+         * @see seedu.address.logic.Logic#suggestCommand(String)
+         */
+        String suggest(String userInput) throws CommandException;
+    }
+
+    /**
+     * Represents a function that can autocomplete a user input based on the
+     * current command suggestion.
+     */
+    @FunctionalInterface
+    public interface CommandAutocomplete {
+        /**
+         * Autocomplete a user input based on the current command suggestion.
+         *
+         * @see seedu.address.logic.Logic#autocompleteCommand(String, String)
+         */
+        String autocomplete(String userInput, String commandSuggestion);
+    }
+
     //@@author EvitanRelta-reused
     // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
     /**
@@ -113,7 +145,7 @@ public class CommandBox extends UiPart<Region> {
         }
         String userInput = commandTextField.getText();
         String commandSuggestion = commandSuggestionTextField.getText();
-        String autocompletedCommand = autocompleteEngine.autocompleteCommand(userInput, commandSuggestion);
+        String autocompletedCommand = commandAutocomplete.autocomplete(userInput, commandSuggestion);
         if (!autocompletedCommand.isEmpty()) {
             commandTextField.setText(autocompletedCommand);
             commandTextField.end();
@@ -131,7 +163,7 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
         try {
-            commandSuggestionTextField.setText(autocompleteEngine.suggestCommand(commandText));
+            commandSuggestionTextField.setText(commandSuggestor.suggest(commandText));
             commandSuggestionTextField.positionCaret(commandTextField.getText().length());
         } catch (CommandException e) {
             commandSuggestionTextField.setText(commandText);
