@@ -3,9 +3,9 @@ layout: page
 title: Kim Young Jin's Project Portfolio Page
 ---
 
-### Project: Fast Army Internal Lookup System
+### Project: Army Information Management System
 
-Fast Army Internal Lookup System is a desktop address book application built to handle the personal information of military personnel. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Army Information Management System is a desktop address book application built to handle the personal information of military personnel. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
