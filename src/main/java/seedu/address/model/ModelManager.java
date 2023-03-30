@@ -563,6 +563,7 @@ public class ModelManager implements Model {
     public void setService(Service target, Service editedService) {
         requireAllNonNull(target, editedService);
         this.shop.setService(target, editedService);
+        this.resetMaps();
     }
 
     @Override

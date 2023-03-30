@@ -257,7 +257,7 @@ public class Service {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vehicleId, description);
+        return Objects.hash(id);
     }
 
     @Override

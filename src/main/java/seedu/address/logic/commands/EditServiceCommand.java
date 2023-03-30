@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_END;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SERVICES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -22,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
+import seedu.address.model.service.Vehicle;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -33,7 +36,8 @@ public class EditServiceCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the service identified "
             + "by the id number displayed by listservice. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INTERNAL_ID + "SERVICE_INDEX "
             + "[" + PREFIX_VEHICLE_ID + " VEHICLE ID]"
             + "[" + PREFIX_SERVICE_START + " SERVICE START DATE]"
             + "[" + PREFIX_SERVICE_END + " SERVICE END DATE]"
@@ -48,9 +52,9 @@ public class EditServiceCommand extends RedoableCommand {
     public static final String MESSAGE_EDIT_SERVICE_SUCCESS = "Edited service: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_SERVICE = "This service is already in the system";
+    public static final String MESSAGE_VEHICLE_NOT_FOUND = "Vehicle %d does not exist";
 
-    public static final String MESSAGE_SERVICE_NOT_FOUND = "This service does not exist.";
+    public static final String MESSAGE_SERVICE_NOT_FOUND = "Service %d does not exist.";
     private static final Service SERVICE_DOES_NOT_EXIST = null;
     private final EditServiceDescriptor editServiceDescriptor;
 
@@ -73,18 +77,31 @@ public class EditServiceCommand extends RedoableCommand {
                 .orElse(SERVICE_DOES_NOT_EXIST);
 
         if (serviceToEdit == null) {
-            throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_SERVICE_NOT_FOUND, this.editServiceDescriptor.getId()));
         }
 
         Service editService = createEditedService(serviceToEdit, editServiceDescriptor);
 
-        if (!serviceToEdit.isSameService(editService) && model.hasService(editService.getId())) {
-            throw new CommandException(MESSAGE_DUPLICATE_SERVICE);
+        if (!model.hasVehicle(editService.getVehicleId())) {
+            throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, editService.getVehicleId()));
+        }
+
+        if (serviceToEdit.getVehicleId() != editService.getVehicleId()) {
+            Vehicle prevVehicle = model.getFilteredVehicleList().stream()
+                .filter(v -> v.getId() == serviceToEdit.getVehicleId())
+                .findFirst().orElseThrow();
+            Vehicle newVehicle = model.getFilteredVehicleList().stream()
+                .filter(v -> v.getId() == editService.getVehicleId())
+                .findFirst().orElseThrow();
+            prevVehicle.removeService(serviceToEdit);
+            newVehicle.addService(editService);
         }
 
         model.setService(serviceToEdit, editService);
+        model.selectService(editService);
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
-        return new CommandResult(String.format(MESSAGE_EDIT_SERVICE_SUCCESS, editService));
+        model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        return new CommandResult(String.format(MESSAGE_EDIT_SERVICE_SUCCESS, editService, Tab.SERVICES));
     }
 
     /**
@@ -133,7 +150,7 @@ public class EditServiceCommand extends RedoableCommand {
     public static class EditServiceDescriptor {
 
         private int id;
-        private int vehicleId;
+        private Integer vehicleId;
         private LocalDate entryDate;
         private PartMap requiredParts;
         private String description;
@@ -176,7 +193,7 @@ public class EditServiceCommand extends RedoableCommand {
             return id;
         }
 
-        public void setVehicleId(int id) {
+        public void setVehicleId(Integer id) {
             this.vehicleId = id;
         }
 
