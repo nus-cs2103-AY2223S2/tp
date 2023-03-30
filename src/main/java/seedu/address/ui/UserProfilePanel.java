@@ -43,7 +43,7 @@ public class UserProfilePanel extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label address;
+    private Label station;
     @FXML
     private Label telegramHandle;
 
@@ -61,8 +61,8 @@ public class UserProfilePanel extends UiPart<Region> {
         name.setText(String.valueOf(this.user.getName()));
         phone.setText(PHONE_NUMBER + this.user.getPhone());
         email.setText(EMAIL + this.user.getEmail());
-        address.setText(STATION + this.user.getStation());
-        address.setWrapText(true);
+        station.setText(STATION + this.user.getStation());
+        station.setWrapText(true);
         telegramHandle.setText(TELEGRAM + this.user.getTelegramHandle());
 
         user.getImmutableGroupTags().forEach(groupTag -> {
@@ -89,7 +89,7 @@ public class UserProfilePanel extends UiPart<Region> {
         name.setText(String.valueOf(person.getName()));
         phone.setText(PHONE_NUMBER + person.getPhone());
         email.setText(EMAIL + person.getEmail());
-        address.setText(STATION + person.getStation());
+        station.setText(STATION + person.getStation());
         telegramHandle.setText(TELEGRAM + person.getTelegramHandle());
 
         person.getImmutableGroupTags().forEach(groupTag -> {
