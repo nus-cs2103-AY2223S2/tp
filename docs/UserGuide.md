@@ -54,9 +54,9 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    * `list_job` : Lists all jobs.
    
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
+   
    * `timetable` : Shows timetable of current week.
-
+   
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -101,7 +101,6 @@ Format: `help`
 ## 1. Features related to Customers
 ### *Can only access from Customer Window*
 To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
-
 ![address book](images/Dukedeliveryaddressbook.png)
 
 ### 1.1. Adding a person: `add`
@@ -357,7 +356,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | Action                                | Format, Examples                                                                                                                                                                                                                       |
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ***(C)* Add Customer**                | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                             | `clear`                                                                                                                                                                                                                                |
+| ***(B)* Clear**                       | `clear`                                                                                                                                                                                                                                |
 | ***(C)* Delete Customer**             | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
 | ***(C)* Edit Customer details**       | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | ***(C)* Find Customer**               | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                |
