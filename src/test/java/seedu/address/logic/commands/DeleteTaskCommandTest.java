@@ -31,7 +31,7 @@ public class DeleteTaskCommandTest {
         Index indexLastApplication = Index.fromOneBased(model.getFilteredApplicationList().size());
         Application applicationToDeleteTask = model.getFilteredApplicationList()
                 .get(indexLastApplication.getZeroBased());
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(indexLastApplication);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(Index.fromZeroBased(0));
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
                 applicationToDeleteTask.getTask());
@@ -42,7 +42,8 @@ public class DeleteTaskCommandTest {
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(applicationToDeleteTask, editedApplication);
-        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+        expectedModel.commitInternshipBookChange();
+        assertCommandSuccess(deleteTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -62,10 +63,10 @@ public class DeleteTaskCommandTest {
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(applicationToDeleteTask, editedApplication);
-        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
+        expectedModel.commitInternshipBookChange();
+        assertCommandSuccess(deleteTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
     */
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicationList().size() + 1);

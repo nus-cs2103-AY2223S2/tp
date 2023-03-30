@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_SECOND_APPLICATION;
@@ -17,7 +17,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.application.Application;
+import seedu.address.model.application.Application;
 
 /**
  * Contains integration tests (interaction with the ApplicationModel) and unit tests for
@@ -27,7 +27,7 @@ public class DeleteApplicationCommandTest {
     private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
-    /*
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Application applicationToDelete = model.getFilteredApplicationList()
@@ -39,10 +39,11 @@ public class DeleteApplicationCommandTest {
 
         ApplicationModelManager expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
+        expectedModel.commitInternshipBookChange();
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-     */
+
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -53,7 +54,7 @@ public class DeleteApplicationCommandTest {
                 Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
-    /*
+
     @Test
     public void execute_validIndexFilteredList_success() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
@@ -72,7 +73,7 @@ public class DeleteApplicationCommandTest {
 
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-     */
+
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {

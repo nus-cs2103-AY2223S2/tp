@@ -69,13 +69,6 @@ public class AddApplicationCommandTest {
         // same object -> returns true
         assertTrue(addGoogleCommand.equals(addGoogleCommand));
 
-        /*
-        we haven't defined equality for internship applications
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-        */
-
         // different types -> returns false
         assertFalse(addGoogleCommand.equals(1));
 

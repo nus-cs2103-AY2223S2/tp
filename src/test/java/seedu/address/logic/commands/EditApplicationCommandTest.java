@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESC_ONE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESC_TWO;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_EMAIL_GRAB;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_COMPANY_NAME_GRAB;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_GRAB;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_GRAB;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_SECOND_APPLICATION;
@@ -22,10 +22,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
-//import seedu.address.model.InternshipBook;
+import seedu.address.model.InternshipBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.Application;
-//import seedu.address.testutil.ApplicationBuilder;
+import seedu.address.testutil.ApplicationBuilder;
 import seedu.address.testutil.EditApplicationDescriptorBuilder;
 
 
@@ -35,6 +35,7 @@ public class EditApplicationCommandTest {
     private ApplicationModel model =
             new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
+
 
     /*
     @Test
@@ -50,10 +51,12 @@ public class EditApplicationCommandTest {
 
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
-        expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);
+        expectedModel.setApplication(model.getSortedApplicationList().get(0), editedApplication);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
+    */
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -77,8 +80,9 @@ public class EditApplicationCommandTest {
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(lastApplication, editedApplication);
+        expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -93,6 +97,7 @@ public class EditApplicationCommandTest {
 
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
+        expectedModel.commitInternshipBookChange();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -116,10 +121,11 @@ public class EditApplicationCommandTest {
                 new InternshipBook(model.getInternshipBook()),
                 new UserPrefs());
         expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);
+        expectedModel.commitInternshipBookChange();
 
         assertCommandSuccess(editCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-     */
+
 
     @Test
     public void execute_duplicateApplicationUnfilteredList_failure() {

@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESC
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION_INTERVIEW;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandFailure;
 //import static seedu.address.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.showApplicationAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalApplicationIndexes.INDEX_SECOND_APPLICATION;
@@ -50,7 +50,7 @@ public class AddTaskCommandTest {
                 Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
 
-    /*
+
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
@@ -63,9 +63,9 @@ public class AddTaskCommandTest {
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(outOfBoundIndex, descriptor);
         assertCommandFailure(addTaskCommand, model, commandHistory,
-        Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
     }
-
+    /*
     @Test
     public void execute_taskAlreadyExists_throwsCommandException() {
         Index indexApplicationToAddTask = Index.fromOneBased(model.getFilteredApplicationList().size());
@@ -76,6 +76,7 @@ public class AddTaskCommandTest {
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_TASK_EXISTS);
         assertCommandFailure(addTaskCommand, model, commandHistory, expectedMessage);
     }
+
 
     @Test
     public void execute_taskAccepted_success() {
@@ -95,9 +96,10 @@ public class AddTaskCommandTest {
         ApplicationModel expectedModel = new ApplicationModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(applicationToAddTask, editedApplication);
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
+        expectedModel.commitInternshipBookChange();
+        assertCommandSuccess(addTaskCommand, model, commandHistory, expectedMessage, expectedModel);
     }
-     */
+*/
 
     @Test
     public void equals() {
