@@ -290,11 +290,11 @@ what they keyed in.
 may be unintended.
   * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
 
-### \[Proposed\] Multi-index delete feature
+### Multi-index delete feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed multi-index delete mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
+The multi-index delete mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
 
 Given below is an example usage scenario and how the multi-index delete mechanism behaves at each step.
 
@@ -302,9 +302,9 @@ Step 1. The user launches the application and uses the `find` command to filter 
 
 Step 2. The user executes the `delete 1 3` command to delete the first and third persons in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `1 3` to the `DeleteCommandParser`.
 
-Step 3. `DeleteCommandParser#parse()` is called. A list of valid indexes `List<Index>` is returned, and a `DeleteCommand` is constructed, taking in this list of indexes as an attribute.
+Step 3. `DeleteCommandParser#parse()` is called. A list of valid indexes `List<Index>` is returned, and a `DeleteCommand` is constructed, taking in this list of indexes as an argument.
 
-Step 4. `DeleteCommand#execute()` will get the most updated list of filtered persons and loop through the list of indexes to delete their associated cases using `Model#deletePerson()`. Users will be notified with a message upon successful deletion of all relevant persons.
+Step 4. `DeleteCommand#execute()` will get the most updated list of filtered persons and delete the cases associated with each given index. Users will be notified with a message upon successful deletion of all relevant persons.
 
 The following sequence diagram shows how the multi-index delete operation works:
 
@@ -325,6 +325,50 @@ The following activity diagram summarises what happens when a user executes a mu
 * **Alternative 2:** Display a message indicating successful deletion for each individual deleted case, along with the details of the deleted case.
     * Pros: Shows exactly which cases were deleted for easy validation.
     * Cons: Unnecessarily lengthy; may take up too much space if many cases were deleted at once.
+
+### Delete-by-date feature
+
+#### Implementation
+
+The delete-by-date mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
+
+Given below is an example usage scenario and how the delete-by-date mechanism behaves at each step.
+
+Step 1. The user launches the application and uses the `find` command to filter the list of cases. The `ModelManager`’s `FilteredList<Person>` is updated.
+
+Step 2. The user executes the `delete d/2023-03-30` command to delete all cases from 30th March 2023 in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `d/2023-03-30` to the `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser#parse()` is called. The date `2023-03-30` is extracted, and a `DeleteCommand` is constructed, taking in this date as a Date object argument.
+
+Step 4. `DeleteCommand#execute()` will get the most updated list of filtered persons and delete the cases from the given date. Users will be notified with a message upon successful deletion of all relevant persons.
+
+To see how the delete-by-date mechanism works, as well as to understand the design considerations taken, you may refer to the multi-index delete feature’s sequence diagram, as they work largely similarly besides the parsing of dates and the use of the `executeDate` method instead.
+
+### Delete-by-date-range feature
+
+#### Implementation
+
+This feature is largely similar to the delete-by-date feature, except that the user can input up to two dates, a start date `sd/` and an end date `ed/`. For instance, `delete sd/2023-03-23 ed/2023-03-25` will delete all cases from 23rd March 2023 to 25th March 2023 inclusively.
+
+### Sort feature
+
+#### Implementation
+
+The sort mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `SortCommandParser#parse()`, and `SortCommand#execute()` methods.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application and executes the `sort n/` command to sort the list by name.
+
+Step 2. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `sort` command word, passes the argument `n/` to the `SortCommandParser`.
+
+Step 3. `SortCommandParser#parse()` is called. Detecting the `n/` argument, it constructs a `SortCommand` with a `PersonNameComparator` and sort type `“NAME”` as arguments. (The equivalents for sorting by age `a/` and date `d/` are the `PersonAgeComparator` and `PersonDateComparator` respectively.)
+
+Step 4. `SortCommand#execute()` will sort a copy of the filtered list `toSort`. `Model#sort(toSort)` will then update the new sorted list in the Model.
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

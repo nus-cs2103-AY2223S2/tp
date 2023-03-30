@@ -2,13 +2,14 @@
 layout: page
 title: User Guide
 ---
-
+* Table of Contents
+  {:toc}
+  
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
 DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimized for**
 **use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,13 +46,32 @@ open the help window.<br>
    * `undo 5` : Undo 5 previous actions.
 
    * `redo 5` : Redo 5 previous actions.
-
-
-
-6. Refer to the [Features](#features) below for details of each command.
+   
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below
+for details of each command, or the [Command Summary](#Command summary).
+--------------------------------------------------------------------------------------------------------------------
+## Navigating the User Interface
 
 --------------------------------------------------------------------------------------------------------------------
+## Command summary
 
+| Action     | Format, Examples                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
+| **Clear**  | `clear`                                                                                                                        |
+| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`       |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
+| **List**   | `list`                                                                                                                   |
+| **Sort**   | `sort [n/] [a/] [d/]`<br> e.g.,`sort d/`                                                                                       |
+| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                     |
+| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                     |
+| **Help**   | `help`                                                                                                                   |
+| **Undo**   | `undo [INTEGER]`                                                                                                         |
+| **Redo**   | `redo [INTEGER]`                                                                                                         |
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -86,18 +106,60 @@ open the help window.<br>
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits.
+* For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits. Postal codes should be valid, i.e. their first two digits should start with a valid postal sector in Singapore.
+
+* Users may choose to enter dates in various formats, including but not limited to:
+  * `yyyy-mm-dd`, e.g. `2023-03-12`
+  * `yyyy/mm/dd`, e.g. `2023/03/12`
+  * `dd MMM yyyy`, e.g. `12 mar 2023`
 
 </div>
 
-### Viewing help : `help`
+--------------------------------------------------------------------------------------------------------------------
+## Valid persons
+This section describes the requirements of the specified data fields.
 
-Shows a message explaining how to access the help page.
+### Person names
+The first character of the name must not be a whitespace
+* Names must only contain alphanumeric characters and spaces.
+* Names have a maximum allowed length of 50 and cannot be blank.
 
-![help message](images/helpMessage.png)
+### Postal codes
+* Postal codes must be of the following format:
+    * S123456
+    * 123456
+* Postal codes must have 6 digits.
 
-Format: `help`
+### Date
+* Dates should adhere to the following constraints:
+  * Year:
+    * 4-digit years YYYY
+  * Month:
+    * 2-digit months MM 
+    * 3-letter months MMM
+    * fully-spelled months MMMM
+  * Day:
+    * 2-digit days dd
 
+### Age
+* Ages should only contain numeric characters.
+* Ages should be within the range of 0 and 199.
+    * Valid:
+        * `0`
+        * `51`
+        * `199`
+    * Invalid:
+        * `#200` (contains invalid hash symbol)
+        * `200` (outside of the range of valid ages)
+
+### Variants
+* Variants must be one of following four values:
+  * `DENV1`
+  * `DENV2`
+  * `DENV3`
+  * `DENV4`
+--------------------------------------------------------------------------------------------------------------------
+## Commands
 
 ### Adding a case: `add`
 
@@ -109,13 +171,35 @@ Examples:
 * `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
-### Listing all cases : `list`
+### Clearing all entries: `clear`
 
-Shows a list of all cases in the Dengue Hotspot Tracker.
+Clears all entries from the Dengue Hotspot Tracker.
 
-Format: `list`
+Format: `clear`
 
-### Editing a case : `edit`
+### Deleting cases: `delete`
+
+Deletes the specified cases from the Dengue Hotspot Tracker. The cases can be specified with indexes, a date, or a date range.
+
+Format: `delete INDEX…​` or `delete d/DATE` or `delete [sd/STARTDATE] [ed/ENDDATE]`, where at least one of the optional fields must be provided.
+
+* Deletes cases at the specified `INDEX`es, cases from the specified `DATE`, or cases falling within the specified range from `STARTDATE` to `ENDDATE` inclusive.
+* The index refers to the index number shown in the displayed case list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The command will fail if multiple indexes are given and at least one of them is out of range of the displayed case list.
+* If a start date is given without an end date, the range will be taken to end at the latest date in the Dengue Hotspot Tracker.
+* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in the Dengue Hotspot Tracker.
+* The `sd/` and `ed/` arguments can be given in any order.
+* The start date must come before or be the same as the end date.
+* The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
+
+Examples:
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in the Dengue Hotspot Tracker.
+* `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
+* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
+* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+
+### Editing a case: `edit`
 
 Edits an existing case in the Dengue Hotspot Tracker.
 
@@ -178,20 +262,78 @@ Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
   ![result for find v/denv1](images/findExample.png)
 
-### Deleting a case : `delete`
+### Listing all cases : `list`
 
-Deletes the specified case from the Dengue Hotspot Tracker.
+Shows a list of all cases in the Dengue Hotspot Tracker.
 
-Format: `delete INDEX`
+Format: `list`
 
-* Deletes the case at the specified `INDEX`.
-* The index refers to the index number shown in the displayed case list.
-* The index **must be a positive integer** 1, 2, 3, …​
+### Sorting cases: `sort`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd case in the Dengue Hotspot Tracker.
-* `find Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
-* `find s666` followed by `delete 4` deletes the 4th case in the results of the `find` command.
+Sorts the entire case list based on the specified criteria.
+
+Format: `sort [n/] [a/] [d/]`
+
+* Sorts cases based on the specified criteria.
+* One and only one of the criteria must be specified; `n/` for name, `a/` for age, and `d/` for date.
+
+### Importing data from CSV file : `import`
+
+Use this command to import persons from a CSV file. Imported items will be added to the front of the list.
+
+Format: `import [FILENAME]`
+
+* The dengue case list imported must be valid. Some criteria are as follows:
+    * No duplicates
+    * All fields [valid](#valid-denguehotspottracker)
+    * No missing fields
+* The CSV must begin with a header that includes the names of each column.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+As DengueHotspotTracker does not allow persons with duplicate **names, postal code and date**, 
+please ensure that the persons you are importing do not conflict with existing data within DengueHotspotTracker. 
+This applies to **all** persons, not just those currently displayed.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+If you are using Microsoft Excel, you can easily export your data to a CSV file and import it into DengueHotspotTracker!
+
+</div>
+
+See [below](#exporting-data-to-csv-file--export) for example CSV files.
+
+### Exporting data to CSV file : `export`
+
+Use this command to export currently displayed cases to a CSV file.
+
+Format: `export [FILENAME]`
+
+Example CSV output of  `export sampledata.csv`
+<pre><code style="white-space: pre-wrap;">""Patient Name","Age","Date","Postal Code","Variants"
+"Alex Yeoh","111","2000-11-11","S664388","[DENV1]"
+"Bernice Yu","11","2000-11-11","S112727","[DENV4, DENV2]"
+"Charlotte Oliveiro","0","2000-11-11","S602283","[DENV3]"
+"David Li","1","2000-11-11","S600312","[DENV1]"
+"Irfan Ibrahim","199","2000-11-11","S654921","[DENV2]"
+"Roy Balakrishnan","2","2000-11-11","S666247","[DENV4]"
+</code></pre>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Try copying these to a .csv file. Then import them as sample inputs!
+</div>
+
+<div style="page-break-after: always;"></div>
+
+### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Undo/Redo an action : `undo` or `redo`
 
@@ -206,13 +348,12 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * The user cannot undo actions that do not change the data of the Dengue Hotspot Tracker, such as list and find.
 * Performing a change after undo-ing will clear any possible `redo` actions.
 
-### Clearing all entries : `clear`
+Examples:
+* `list` followed by `clear' 
+s all cases from the Dengue Hotspot Tracker.
+* `find n/Betsy` followed by `clear` deletes all cases in the results of the `find` command.
 
-Clears all entries from the Dengue Hotspot Tracker.
-
-Format: `clear`
-
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -225,7 +366,7 @@ the data. There is no need to save manually.
 
 ### Editing the data file
 
-DengueHotspotTracker data are saved as a JSON file `[JAR file location]/data/denguehotspottracker.json`. Advanced users
+DengueHotspotTracker data are saved as a CSV file `[JAR file location]/data/denguehotspottracker.csv`. Advanced users
 are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -244,19 +385,3 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous DengueHotspotTracker home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action     | Format, Examples                                                                                                               |
-|------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
-| **Clear**  | `clear`                                                                                                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
-| **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
-| **List**   | `list`                                                                                                                         |
-| **Help**   | `help`                                                                                                                         |
-| **Undo**   | `undo [INTEGER]`                                                                                                               |
-| **Redo**   | `redo [INTEGER]`                                                                                                               |
