@@ -1,4 +1,4 @@
-package trackr.ui;
+package trackr.ui.cards;
 
 import java.util.Comparator;
 
@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import trackr.model.person.Supplier;
+import trackr.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Supplier}.
