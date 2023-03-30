@@ -31,7 +31,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyModuleTracker> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readModuleTracker(addToTestDataPathIfNotNull(filePath));
+        return new JsonModuleTrackerStorage(Paths.get(filePath)).readModuleTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,7 +64,7 @@ public class JsonAddressBookStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         ModuleTracker original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonModuleTrackerStorage jsonAddressBookStorage = new JsonModuleTrackerStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveModuleTracker(original, filePath);
@@ -96,7 +96,7 @@ public class JsonAddressBookStorageTest {
      */
     private void saveAddressBook(ReadOnlyModuleTracker addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
+            new JsonModuleTrackerStorage(Paths.get(filePath))
                     .saveModuleTracker(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

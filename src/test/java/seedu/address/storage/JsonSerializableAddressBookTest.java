@@ -22,8 +22,8 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_typicalModulesFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_MODULES_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableModuleTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_MODULES_FILE,
+                JsonSerializableModuleTracker.class).get();
         ModuleTracker addressBookFromFile = dataFromFile.toModelType();
         ModuleTracker typicalModulesAddressBook = TypicalModules.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalModulesAddressBook);
@@ -31,16 +31,16 @@ public class JsonSerializableAddressBookTest {
 
     @Test
     public void toModelType_invalidModuleFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_MODULE_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableModuleTracker dataFromFile = JsonUtil.readJsonFile(INVALID_MODULE_FILE,
+                JsonSerializableModuleTracker.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateModules_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_MODULE,
+        JsonSerializableModuleTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_FILE,
+                JsonSerializableModuleTracker.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableModuleTracker.MESSAGE_DUPLICATE_MODULE,
                 dataFromFile::toModelType);
     }
 

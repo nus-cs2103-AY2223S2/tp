@@ -14,47 +14,47 @@ import seedu.address.model.ReadOnlyModuleTracker;
 import seedu.address.model.module.Module;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ModuleTracker that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "moduletracker")
+class JsonSerializableModuleTracker {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
 
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given modules.
+     * Constructs a {@code JsonSerializableModuleTracker} with the given modules.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
+    public JsonSerializableModuleTracker(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
         this.modules.addAll(modules);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyModuleTracker} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyModuleTracker source) {
+    public JsonSerializableModuleTracker(ReadOnlyModuleTracker source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this module tracker into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public ModuleTracker toModelType() throws IllegalValueException {
-        ModuleTracker addressBook = new ModuleTracker();
+        ModuleTracker moduleTracker = new ModuleTracker();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (addressBook.hasModule(module)) {
+            if (moduleTracker.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            addressBook.addModule(module);
+            moduleTracker.addModule(module);
         }
-        return addressBook;
+        return moduleTracker;
     }
 
 }
