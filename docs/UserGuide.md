@@ -164,10 +164,10 @@ Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
-- the flag `i/` seaches only through the recipe's ingredients
+- the flag `i/` seaches only through the recipe's ingredient names
 - the flag `tag/` searches only through the recipe's tags
 
-:mag: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity/unit of measurement/price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
+:exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity/unit of measurement/price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
 
 Examples:
 - `find r/eggs` is valid
