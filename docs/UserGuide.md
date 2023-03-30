@@ -293,18 +293,19 @@ Examples:
 
 Add a student to an event.
 
-- The index input refers to the index of the student in the student list
-- The index input is 1-based.
-- Valid index must be provided.
-- The specified event must exist.
-- Event type input must be valid
+- The STUDENT_INDEX input refers to the index of the student in the student list.
+- The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
+- The index inputs are 1-based.
+- Valid indexes must be provided.
+- EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
+- Event type input must be valid and the first letter must be capitalized.
 
-Format: `addStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]`
+Format: `addStudent [STUDENT_INDEX] [EVENT_TYPE]/[EVENT_INDEX]`
 
 Examples:
 
-* `addStudent 1 Tutorial/tut1`
-* `addStudent 4 Lab/mock_lab_session`
+* `addStudent 1 Tutorial/2`
+* `addStudent 4 Lab/1`
 
 <div id='delete-student-from-event'></div>
 
@@ -312,18 +313,19 @@ Examples:
 
 Deletes a student from an event.
 
-- The index input refers to the index of the student in the specified event's student list
-- The index input is 1-based.
-- Valid index must be provided.
-- The specified event must exist.
-- Event type input must be valid
+- The STUDENT_INDEX input refers to the index of the student in the student list.
+- The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
+- The index inputs are 1-based.
+- Valid indexes must be provided.
+- EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
+- Event type input must be valid and the first letter must be capitalized.
 
-Format: `deleteStudent [INDEX] [EVENT_TYPE]/[EVENT_NAME]`
+Format: `deleteStudent [STUDENT_INDEX] [EVENT_TYPE]/[EVENT_INDEX]`
 
 Examples:
 
-* `deleteStudent 1 Tutorial/tut1`
-* `deleteStudent 4 Lab/mock_lab_session`
+* `deleteStudent 1 Tutorial/1`
+* `deleteStudent 4 Lab/5`
 
 --------------------------------------------------------------------
 ## Note Features
