@@ -48,6 +48,8 @@ public class Listing {
 
     public ArrayList<Platform> getPlatforms() { return platforms; }
 
+    public int getPlatformCount() { return platforms.size(); }
+
     public String getUniqueID() {
         return uniqueID;
     }
