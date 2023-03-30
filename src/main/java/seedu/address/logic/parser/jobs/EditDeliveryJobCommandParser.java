@@ -30,6 +30,14 @@ import seedu.address.model.jobs.Earning;
  */
 public class EditDeliveryJobCommandParser implements Parser<EditDeliveryJobCommand> {
 
+    private static final String MESSAGE_DATE_FORMAT = "Invalid date format!\nDate/ <blank> | YYYY-MM-DD";
+    private static final String MESSAGE_SLOT_FORMAT = "Invalid slot format!\nSlot/ <blank> | 1..5";
+    private static final String MESSAGE_EARN_FORMAT = "Invalid earning format!\nearn/ d.f ";
+    private static final String MESSAGE_EMPTY_SENDER_ID = "Sender id missing!\nsi/ id ";
+    private static final String MESSAGE_EMPTY_JOB_ID = "Job id missing!\nji/ id ";
+    private static final String MESSAGE_EMPTY_RECIPIENT_ID = "Recipient id missing!\nri/ id ";
+    private static final String MESSAGE_EMPTY_STATUS = "Invalid status!\nDone/ t | f ";
+
     /**
      * Parses the given {@code String} of arguments in the context of the
      * EditCommand
@@ -63,15 +71,78 @@ public class EditDeliveryJobCommandParser implements Parser<EditDeliveryJobComma
 
         EditDeliveryJobDescriptor editDeliveryJobDescriptor = new EditDeliveryJobDescriptor();
         argMultimap.getValue(PREFIX_JOB_ID).ifPresent(val -> editDeliveryJobDescriptor.setJobId(val));
-        argMultimap.getValue(PREFIX_SENDER_ID).ifPresent(val -> editDeliveryJobDescriptor.setSender(val));
-        argMultimap.getValue(PREFIX_RECIPIENT_ID).ifPresent(val -> editDeliveryJobDescriptor.setRecipient(val));
-        argMultimap.getValue(PREFIX_DELIVERY_DATE)
-                .ifPresent(val -> editDeliveryJobDescriptor.setDeliveryDate(new DeliveryDate(val)));
-        argMultimap.getValue(PREFIX_DELIVERY_SLOT)
-                .ifPresent(val -> editDeliveryJobDescriptor.setDeliverySlot(new DeliverySlot(val)));
-        argMultimap.getValue(PREFIX_EARNING).ifPresent(val -> editDeliveryJobDescriptor.setEarning(new Earning(val)));
-        argMultimap.getValue(PREFIX_IS_DELIVERED)
-                .ifPresent(val -> editDeliveryJobDescriptor.setDelivered(Boolean.parseBoolean(val)));
+
+        if (argMultimap.getValue(PREFIX_SENDER_ID).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_SENDER_ID).get();
+            if (val.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_SENDER_ID));
+            }
+
+            editDeliveryJobDescriptor.setSender(val);
+        }
+
+        if (argMultimap.getValue(PREFIX_RECIPIENT_ID).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_RECIPIENT_ID).get();
+            if (val.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_RECIPIENT_ID));
+            }
+
+            editDeliveryJobDescriptor.setRecipient(val);
+        }
+
+        if (argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()) {
+            try {
+                String val = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
+                DeliveryDate toEditDate;
+                if (val.isBlank()) {
+                    toEditDate = DeliveryDate.placeholder();
+                } else {
+                    toEditDate = new DeliveryDate(val);
+                }
+                editDeliveryJobDescriptor.setDeliveryDate(toEditDate);
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                    String.format(MESSAGE_DATE_FORMAT, e.getMessage()));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
+            try {
+                String val = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
+                DeliverySlot toEditSlot;
+                if (val.isBlank()) {
+                    toEditSlot = DeliverySlot.placeholder();
+                } else {
+                    toEditSlot = new DeliverySlot(val);
+                }
+                editDeliveryJobDescriptor.setDeliverySlot(toEditSlot);
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                    String.format(MESSAGE_SLOT_FORMAT, e.getMessage()));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_EARNING).isPresent()) {
+            try {
+                String val = argMultimap.getValue(PREFIX_EARNING).get();
+                editDeliveryJobDescriptor.setEarning(new Earning(val));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                    String.format(MESSAGE_EARN_FORMAT, e.getMessage()));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_IS_DELIVERED).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_IS_DELIVERED).get().toLowerCase();
+            boolean done = false;
+            if (val.isBlank() || (!val.equals("t") && !val.equals("f"))) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_STATUS));
+            }
+            if (val.startsWith("t")) {
+                done = true;
+            }
+            editDeliveryJobDescriptor.setDelivered(done);
+        }
 
         if (!editDeliveryJobDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditDeliveryJobCommand.MESSAGE_NOT_EDITED);
