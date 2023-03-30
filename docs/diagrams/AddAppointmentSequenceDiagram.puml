@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser" as AddAppointmentCommandParser LOGIC_COLOR
+participant ":AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Appointment" as Appointment MODEL_COLOR
+end box
+[-> LogicManager : execute("makeApp 1 ..")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("makeApp 1 ..")
+activate AddressBookParser
+
+create AddAppointmentCommandParser
+AddressBookParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser --> AddressBookParser
+deactivate AddAppointmentCommandParser
+
+AddressBookParser -> AddAppointmentCommandParser : parse("makeApp 1 ..")")
+activate AddAppointmentCommandParser
+
+create Appointment
+AddAppointmentCommandParser -> Appointment
+activate Appointment
+
+Appointment --> AddAppointmentCommandParser
+deactivate Appointment
+
+create AddAppointmentCommand
+AddAppointmentCommandParser -> AddAppointmentCommand
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser --> AddressBookParser : :AddAppointmentCommand
+deactivate AddAppointmentCommandParser
+
+AddressBookParser --> LogicManager : :AddAppointmentCommand
+deactivate AddressBookParser
+
+LogicManager -> AddAppointmentCommand : execute(:Model)
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> Model : getFilteredPersonList()
+
+Model --> AddAppointmentCommand : lastShownList:List<Person>
+
+AddAppointmentCommand -> AddAppointmentCommand : createEditedPerson(:Person, :Appointment)
+
+AddAppointmentCommand -> Model : hasClash(:Person, :Index)
+
+AddAppointmentCommand -> Model : setPerson(:Person, :Person)
+
+AddAppointmentCommand -> Model : updateFilteredPersonList(:Predicate)
+
+AddAppointmentCommand --> LogicManager : :CommandResult
+deactivate AddAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
