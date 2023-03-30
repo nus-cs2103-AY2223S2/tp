@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  */
 public class MarkTaskCompleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "markComplete";
+    public static final String COMMAND_WORD = "markcomplete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by its index number in the task list of the "
