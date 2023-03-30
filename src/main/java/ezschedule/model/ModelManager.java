@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private ArrayList<Command> recentCommand;
     private ArrayList<Event> recentEvent;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> upcomingEvents;
     private final FilteredList<Event> findEvents;
 
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         recentCommand = new ArrayList<Command>();
         recentEvent = new ArrayList<Event>();
+        filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
         findEvents = new FilteredList<>(this.scheduler.getEventList());
         updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
@@ -156,10 +158,6 @@ public class ModelManager implements Model {
         this.recentCommand.clear();
         this.recentEvent.clear();
     }
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
 
     //=========== Event List Accessors =============================================================
 
@@ -174,7 +172,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        return upcomingEvents;
+        return filteredEvents;
     }
 
     @Override
@@ -190,7 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
-        upcomingEvents.setPredicate(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
@@ -221,6 +219,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return scheduler.equals(other.scheduler)
                 && userPrefs.equals(other.userPrefs)
-                && upcomingEvents.equals(other.upcomingEvents);
+                && filteredEvents.equals(other.filteredEvents);
     }
 }
