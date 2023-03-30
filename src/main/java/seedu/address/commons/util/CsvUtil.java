@@ -20,10 +20,9 @@ import seedu.address.commons.exceptions.DataConversionException;
  */
 public class CsvUtil {
 
-    private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
-
     public static final String ERROR_INVALID_HEADERS = "Invalid headers!\n"
             + "The CSV file should have the following headers: %s";
+    private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
 
     /**
      * Returns the csv data from the given file or {@code Optional.empty()} object if the file is not found.
