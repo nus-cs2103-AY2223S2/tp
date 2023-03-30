@@ -65,7 +65,38 @@ problems.
 
 ## 6.1. Layout
 
+![Screenshot of SudoHR app](images/Ui.png "SudoHR main page")
+
 [//]: # (<-- Insert labelled UI here -->)
+Our app interface consists of 5 main components:
+1. Command line
+2. Result display
+3. Leave section
+4. Employee section
+5. Department section
+
+### 6.1.1 Command line
+The command line box located at the top of the application window serves to receive your typed inputs. 
+
+To start typing a command, move your cursor over to the command line and click it.
+
+### 6.1.2 Result display
+Underneath the command line is the result display. This text box displays necessary information when executing
+commands.
+
+### 6.1.3 Departments
+The leftmost panel is the Departments section. Here you can view what are is the status of the departments in your
+company. The main data you can view on hand is the number of employees available.
+
+### 6.1.4 Employees
+Next to the Departments panel is the Employee section. This panel displays all the information regarding your 
+employees. The information shown include the employee id, email, phone number, address, emails and tags given to the
+employee
+
+### 6.1.5 Leaves
+The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have 
+applied for leave. Each leave date would contain the number of employees who applied leaves on that day.
+
 
 ## 6.2. Key definitions
 
@@ -80,7 +111,7 @@ problems.
 An employee models a person in the company. Employees can be added to SudoHR to better 
 track their data, involvement in the company, as well as easy retrieval of information.
 
-An employee possess the following attributes:
+An employee possesses the following attributes:
 1. Employee ID
 2. Name
 3. Phone Number

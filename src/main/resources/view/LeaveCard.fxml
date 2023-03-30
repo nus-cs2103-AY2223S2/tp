@@ -9,17 +9,18 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT"  GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="date" styleClass="cell_bigger_label">
+                <Label fx:id="date" styleClass="cell_bigger_label_leave">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
@@ -27,7 +28,6 @@
                 </Label>
             </HBox>
             <Label fx:id="totalNumber" styleClass="cell_big_label"/>
-            <FlowPane fx:id="employees" orientation="VERTICAL" styleClass="test" prefHeight="50"/>
         </VBox>
     </GridPane>
 </HBox>
