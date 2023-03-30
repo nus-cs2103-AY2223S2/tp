@@ -474,7 +474,7 @@ Examples
 
 ### Listing persons: `list`
 
-Shows a list of all persons in the address book or paired and unpaired persons if specified.
+Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
 
 Format: `list [paired/unpaired]`
 
@@ -482,6 +482,9 @@ Format: `list [paired/unpaired]`
 * `[paired/unpaired]` is case-insensitive e.g. `pAIReD` will match `paired`.
 * Pair list will always list all pairs when the command executes.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list` is useful if you need to refresh all the lists after they have been filtered.
+</div>
 Examples:
 
 * `list`
@@ -492,15 +495,24 @@ Examples:
 
 ### Finding people and their related pairs: `find`
 
-Finds any elderly or volunteers matching **all** the specified fields, and pairings that they are involved in.
+Finds any elderly or volunteers matching **all** the relevant specified fields, and pairings that they are involved in.
 
 Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]`
 
 * Fields can be in any order.
 * The fields are optional so any combination of them is possible but **at least one** field must be specified.
 * The search is case-insensitive for all fields. e.g. `jANe` will match `Jane`.
-* Specifying a certain portion of a field is possible except for `[r/RISK_LEVEL]`, `[mt/MEDICAL_QUALIFICATIONS]`, `[re/REGION]`, `[t/TAG]…` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
+* Elderly specific fields will not be searched for in the volunteer list and vice versa.
+    * `find r/HIGH` will show all volunteers since volunteers do not contain risk level field.
+    * `find mt/cpr basic` will show all elderly since elderly do not contain medical qualifications field.
+* `[n/NAME]` `[ic/NRIC]` `[p/PHONE_NUMBER]` `[e/EMAIL]` `[a/ADDRESS]` `[t/TAG]` need not be specified in full e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
+    * Such fields can contain any value but cannot be empty.
+* `[r/RISK_LEVEL]`, `[bd/BIRTH_DATE]`, `[re/REGION]` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` are required to be fully specified.
+    * Such fields have to be valid.
 * For `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` date ranges that starts before or equal to `AVAILABLE_DATE_START` and ends after or equal to `AVAILABLE_DATE_END` will match.
+* For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type e.g. `mt/cpr` or the type and its level separated by comma e.g. `mt/cpr, basic`.
+    * The type need not be specified in full so it can contain any non-empty value.
+    * Qualification level needs to be fully specified if present.
 
 Examples:
 

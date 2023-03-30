@@ -2,6 +2,7 @@ package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,17 +10,17 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.VolunteerBuilder;
 
-public class TagIsEqualPredicateTest {
+class TagContainsKeywordPredicateTest {
     @Test
     public void equals() {
-        TagIsEqualPredicate<Person> firstPredicate = new TagIsEqualPredicate<>("Eager");
-        TagIsEqualPredicate<Person> secondPredicate = new TagIsEqualPredicate<>("Active");
+        TagContainsKeywordPredicate<Person> firstPredicate = new TagContainsKeywordPredicate<>("Eager");
+        TagContainsKeywordPredicate<Person> secondPredicate = new TagContainsKeywordPredicate<>("Active");
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TagIsEqualPredicate<Person> firstPredicateCopy = new TagIsEqualPredicate<>("Eager");
+        TagContainsKeywordPredicate<Person> firstPredicateCopy = new TagContainsKeywordPredicate<>("Eager");
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -33,9 +34,13 @@ public class TagIsEqualPredicateTest {
     }
 
     @Test
-    public void test_tagIsEqual_returnsTrue() {
+    public void test_tagContainsKeyword_returnsTrue() {
+        // exact match
+        TagContainsKeywordPredicate<Person> predicate = new TagContainsKeywordPredicate<>("Eag");
+        assertTrue(predicate.test(new ElderlyBuilder().withTags("Eag").build()));
+        assertTrue(predicate.test(new VolunteerBuilder().withTags("Eag").build()));
+
         // matching tag
-        TagIsEqualPredicate<Person> predicate = new TagIsEqualPredicate<>("Eager");
         assertTrue(predicate.test(new ElderlyBuilder().withTags("Eager").build()));
         assertTrue(predicate.test(new VolunteerBuilder().withTags("Eager").build()));
 
@@ -49,14 +54,20 @@ public class TagIsEqualPredicateTest {
     }
 
     @Test
-    public void test_tagIsNotEqual_returnsFalse() {
+    public void test_tagDoesNotContainKeyword_returnsFalse() {
         // non-matching tag
-        TagIsEqualPredicate<Person> predicate = new TagIsEqualPredicate<>("Eager");
+        TagContainsKeywordPredicate<Person> predicate = new TagContainsKeywordPredicate<>("Eager");
         assertFalse(predicate.test(new ElderlyBuilder().withTags("45").build()));
         assertFalse(predicate.test(new VolunteerBuilder().withTags("45").build()));
 
         // no matching tag in multiple tags
         assertFalse(predicate.test(new ElderlyBuilder().withTags("Single").withTags("Strong").build()));
         assertFalse(predicate.test(new VolunteerBuilder().withTags("Single").withTags("Strong").build()));
+    }
+
+    @Test
+    public void test_emptyTag_throwsIllegalArgumentException() {
+        String invalidTag = "";
+        assertThrows(IllegalArgumentException.class, () -> new TagContainsKeywordPredicate<>(invalidTag));
     }
 }

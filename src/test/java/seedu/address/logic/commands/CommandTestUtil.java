@@ -43,7 +43,7 @@ import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
 import seedu.address.model.person.predicates.RegionIsEqualPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.SkillLevelIsEqualPredicate;
-import seedu.address.model.person.predicates.TagIsEqualPredicate;
+import seedu.address.model.person.predicates.TagContainsKeywordPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
 
 /**
@@ -161,8 +161,8 @@ public class CommandTestUtil {
     public static final AvailableDatesWithinRangePredicate<Person> PREDICATE_HAS_AVAILABLE_DATE =
             new AvailableDatesWithinRangePredicate<>(ALICE.getAvailableDates().iterator().next().getStartDate(),
                     ALICE.getAvailableDates().iterator().next().getEndDate());
-    public static final TagIsEqualPredicate<Person> PREDICATE_HAS_TAG =
-            new TagIsEqualPredicate<>(ALICE.getTags().iterator().next().tagName);
+    public static final TagContainsKeywordPredicate<Person> PREDICATE_HAS_TAG =
+            new TagContainsKeywordPredicate<>(ALICE.getTags().iterator().next().tagName);
 
     static {
         DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
