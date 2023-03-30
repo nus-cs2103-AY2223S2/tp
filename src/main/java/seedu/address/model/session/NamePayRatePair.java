@@ -1,20 +1,18 @@
 package seedu.address.model.session;
 
-import seedu.address.model.person.PayRate;
-
 /**
  * A pair of a name and a pay rate indicating person's pay rate.
  */
 public class NamePayRatePair {
     private String name;
-    private PayRate payRate;
+    private int payRate;
     /**
      * Constructs a {@code NamePayRatePair} object with the given name and presence status.
      * @param name The name of the person.
      * @param payRate The pay rate of the person.
      */
 
-    public NamePayRatePair(String name, PayRate payRate) {
+    public NamePayRatePair(String name, int payRate) {
         this.name = name;
         this.payRate = payRate;
     }
@@ -31,11 +29,11 @@ public class NamePayRatePair {
      * Returns the pay rate of the person.
      * @return PayRate of person.
      */
-    public PayRate getPayRate() {
+    public int getPayRate() {
         return payRate;
     }
     @Override
     public String toString() {
-        return name + ": " + payRate.toString();
+        return name + ": " + payRate;
     }
 }
