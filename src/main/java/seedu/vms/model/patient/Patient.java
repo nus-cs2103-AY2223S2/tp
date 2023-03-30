@@ -196,8 +196,7 @@ public class Patient {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
-        
+
         return builder.toString();
     }
-
 }
