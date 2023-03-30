@@ -58,6 +58,14 @@ public class Deadline implements Comparable<Deadline> {
         return dateTimeFormatter.format(value);
     }
 
+    public String displayInUI() {
+        if (value == null) {
+            return EMPTY_INPUT;
+        }
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
+        return dateTimeFormatter.format(value);
+    }
+
 
     @Override
     public boolean equals(Object other) {
