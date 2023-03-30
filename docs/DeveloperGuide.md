@@ -258,15 +258,14 @@ The logic of the filter implementation is found in `FilterCommand` class. The co
 a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
 `FilterTuteeDescription`.  
 
-`FilterTuteeDescription` implementation is similar to `EditPersonDescription` class which encapsulates 
-the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
-`name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
+`FilterTuteeDescription` encapsulates the fields of a tutee that the user wants to filter. 
+The class contains all the fields of a tutee including: `name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
 By default, `name`, `address`, `tags` are empty lists while the rest of the fields are empty strings. 
 
-`FilterTuteeDescription` will have its fields updated when the user specifies the fields he/she wants to filter using the
-`filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
+`FilterCommandParser` will set the appropriate fields in `FilterTuteeDescription` for the
 fields that are to be filtered in.  Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
 `FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
+
 `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
@@ -274,6 +273,28 @@ command.
 Finally, `FilterCommand` will execute which will call the method `model.updateFilteredTuteeList(predicate)` using the 
 `FieldContainsKeywordPredicate` object as the predicate. The feature will filter and display the tutees which have fields 
 that are equal to what the user has provided. 
+
+#### Design considerations
+
+#### How filter executes
+
+- Alternative 1 (current choice): Use prefix to filter what to search for.
+  - Pros: More precise when filtering time (e.g. `filter st/10:30` will only return tutees whose lesson starting time is at
+  10:30)
+  - Pros: Using prefix can filter tutees more precisely (e.g. `filter s/math sch/monday` will only return tutees whose 
+  lessons fall on `monday` **and** taking the `math` subject.) This is more useful as it is harder to find intersections between
+  multiple fields than the union of all the fields.
+  - Cons: Harder to implement.
+
+- Alternative 2: Extend find feature and filter any field without specifying prefix.
+  - Pros: Easier to implement.
+  - Cons: Could cause confusion when filtering time (e.g. `filter 10:30` will return all tutees whose lesson start time and
+  end time are at 10:30)
+  - Cons: The extended find feature will not be as precise in filtering tutees (e.g. `filter math monday`) will return 
+  all tutees whose lessons fall on `monday` **or** taking the `math` subject.) This is considered less useful as it is simple
+  to find the union of multiple fields compared to finding the intersections. (i.e. users can perform filter for individual fields
+  separately if they want to find the union of all of them)
+   
 
 ### Copy feature
 
