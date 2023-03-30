@@ -923,6 +923,8 @@ in our `Storage` as well as the courses displayed in the application.
 :information_source: **Note:** User preference data are saved and retrieved in a similar fashion.
 </div>
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
