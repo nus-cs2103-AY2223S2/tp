@@ -26,21 +26,21 @@ their patient management tasks and improve overall efficiency.
 - [GUI Information](#gui-information)
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
-    - [Help](#viewing-help--help) `help`
-    - [Undo](#undoing-previous-command--undo) `undo`
-    - [Redo](#redoing-previous-undo--redo) `redo`
-    - [Add patient](#adding-patient-record--add): `add`
-    - [Edit patient](#editing-a-patient-record--edit): `edit`
-    - [Delete patient](#deleting-a-patient-record--delete): `delete`
-    - [List all patients](#listing-all-patients--list): `list`
-    - [Filter patients](#find-patients-by-nric-name-address-or-tags--find): `find`
-    - [Backup patient records](#backup-patient-records--backup): `backup`
-    - [Load backups](#load-data--load): `load`
-    - [View backups](#view-backup-data--viewbackup): `viewbackup`
-    - [Delete backup](#delete-backup-data--deletebackup): `deletebackup`
-    - [Clear all data](#clearing-all-data--clear): `clear`
-    - [Light mode](#switch-to-light-mode--light): `light`
-    - [Dark mode](#switch-to-dark-mode--dark): `dark`
+    - [Help](#viewing-help-help) `help`
+    - [Undo](#undoing-previous-command-undo) `undo`
+    - [Redo](#redoing-previous-undo-redo) `redo`
+    - [Add patient](#adding-patient-record-add): `add`
+    - [Edit patient](#editing-a-patient-record-edit): `edit`
+    - [Delete patient](#deleting-a-patient-record-delete): `delete`
+    - [List all patients](#listing-all-patients-list): `list`
+    - [Filter patients](#find-patients-by-nric-name-address-or-tags-find): `find`
+    - [Backup patient records](#backup-patient-records-backup): `backup`
+    - [Load backups](#load-data-load): `load`
+    - [View backups](#view-backup-data-viewbackup): `viewbackup`
+    - [Delete backup](#delete-backup-data-deletebackup): `deletebackup`
+    - [Clear all data](#clearing-all-data-clear): `clear`
+    - [Light mode](#switch-to-light-mode-light): `light`
+    - [Dark mode](#switch-to-dark-mode-dark): `dark`
     - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -62,7 +62,7 @@ their patient management tasks and improve overall efficiency.
    1. `help` opens up the help menu.
 6. Refer to the [Features](#features) below for details of each command.
 
-Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
+Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
