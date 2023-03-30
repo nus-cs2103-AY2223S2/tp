@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
@@ -130,6 +131,26 @@ public class AddressBookTest {
                 }
             }
             return tagsInString;
+        }
+
+        @Override
+        public String getCompanies() {
+            Iterator<Person> iterator = persons.iterator();
+            Set<Company> companies = new HashSet<>();
+            String companiesInString = "";
+            while (iterator.hasNext()) {
+                companies.add(iterator.next().getCompany());
+            }
+            Iterator<Company> companyIterator = companies.iterator();
+            while (companyIterator.hasNext()) {
+                Company temp = companyIterator.next();
+                if (companyIterator.hasNext()) {
+                    companiesInString += "[" + temp.toString() + "]" + ", ";
+                } else {
+                    companiesInString += "[" + temp.toString() + "]";
+                }
+            }
+            return companiesInString;
         }
     }
 
