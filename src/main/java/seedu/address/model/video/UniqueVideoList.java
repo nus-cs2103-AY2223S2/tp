@@ -2,13 +2,15 @@ package seedu.address.model.video;
 
 import java.util.List;
 
-import seedu.address.model.UniqueDataList;
+import seedu.address.model.SortedUniqueDataList;
 import seedu.address.model.video.exceptions.DuplicateVideoException;
 import seedu.address.model.video.exceptions.VideoNotFoundException;
 
 // TODO: Test this
 /**
- * A list of videos that enforces uniqueness between its elements and does not allow nulls.<p>
+ * A list of sorted videos that enforces uniqueness between its elements and does not allow nulls.<p>
+ *
+ * A video is sorted by using the {@code Video#compareTo(Video)} method.
  *
  * A video is considered unique by comparing using {@code Video#isSameVideo(Video)}. As such, adding and updating of
  * videos uses {@code Video#isSameVideo(Video)} for equality so as to ensure that the video being added or updated is
@@ -19,9 +21,10 @@ import seedu.address.model.video.exceptions.VideoNotFoundException;
  *
  * Supports a minimal set of list operations.<p>
  *
+ * @see Video#compareTo(Video)
  * @see Video#isSameVideo(Video)
  */
-public class UniqueVideoList extends UniqueDataList<Video> {
+public class UniqueVideoList extends SortedUniqueDataList<Video> {
 
     /**
      * Constructs a {@code UniqueVideoList}.

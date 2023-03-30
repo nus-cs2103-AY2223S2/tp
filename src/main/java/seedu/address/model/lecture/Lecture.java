@@ -21,7 +21,7 @@ import seedu.address.model.video.exceptions.VideoNotFoundException;
  * Represents a lecture of a module.<p>
  * Guarantees: details are present and not null, field values are validated, immutable with the exception of video list.
  */
-public class Lecture implements ReadOnlyLecture {
+public class Lecture implements ReadOnlyLecture, Comparable<Lecture> {
 
     private final LectureName name;
 
@@ -89,6 +89,11 @@ public class Lecture implements ReadOnlyLecture {
 
         return other != null
                 && other.getName().equals(getName());
+    }
+
+    @Override
+    public int compareTo(Lecture other) {
+        return getName().compareTo(other.getName());
     }
 
     /**

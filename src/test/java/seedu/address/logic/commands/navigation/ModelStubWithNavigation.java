@@ -97,7 +97,7 @@ public class ModelStubWithNavigation extends ModelStub {
     }
 
     @Override
-    public void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture) {
+    public void updateFilteredVideoList(Predicate<Video> predicate, ModuleCode moduleCode, ReadOnlyLecture lecture) {
         // Required for list command but list tests not included.
     }
 }

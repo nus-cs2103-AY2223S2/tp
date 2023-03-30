@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -45,7 +46,9 @@ public class DeleteMultipleVideosCommandTest {
 
         // tests string output
         assertEquals(new CommandResult(String.format(DeleteMultipleVideosCommand.MESSAGE_SUCCESS,
-                        "2", module.getCode(), lecture.getName(), video.getName() + ", " + video2.getName())),
+                        "2", module.getCode(), lecture.getName(), video.getName() + ", " + video2.getName()),
+                new VideoEditInfo(module.getCode(), lecture.getName(), video, null),
+                new VideoEditInfo(module.getCode(), lecture.getName(), video2, null)),
                 actual);
 
         // tests model

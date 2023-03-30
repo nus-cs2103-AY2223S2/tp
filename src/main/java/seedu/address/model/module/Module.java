@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
  * Represents a module in the tracker.<p>
  * Guarantees: details are not null, field values are validated, immutable with exception of lecture list.
  */
-public class Module implements ReadOnlyModule {
+public class Module implements ReadOnlyModule, Comparable<Module> {
 
     private final ModuleCode code;
 
@@ -101,6 +101,11 @@ public class Module implements ReadOnlyModule {
 
         return other != null
                 && other.getCode().equals(getCode());
+    }
+
+    @Override
+    public int compareTo(Module other) {
+        return getCode().compareTo(other.getCode());
     }
 
     /**

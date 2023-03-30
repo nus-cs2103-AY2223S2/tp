@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -57,7 +58,8 @@ public class DeleteLectureCommand extends DeleteCommand {
 
         model.deleteLecture(module, lectureToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, targetLectureName, moduleCode));
+        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, targetLectureName, moduleCode),
+                new LectureEditInfo(moduleCode, lectureToDelete, null));
 
     }
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MultipleEventsParser;
 import seedu.address.model.Model;
@@ -55,15 +56,22 @@ public class DeleteMultipleLecturesCommand extends DeleteCommand {
         }
 
         if (invalidLectureNames.size() == 0) {
-            for (LectureName each:this.targetLectureNames) {
-                DeleteLectureCommand dlc = new DeleteLectureCommand(this.moduleCode, each);
+            LectureEditInfo[] editedLectures = new LectureEditInfo[this.targetLectureNames.size()];
+
+            for (int i = 0; i < this.targetLectureNames.size(); i++) {
+                LectureName lectureName = this.targetLectureNames.get(i);
+                DeleteLectureCommand dlc = new DeleteLectureCommand(this.moduleCode, lectureName);
                 dlc.execute(model);
+
+                editedLectures[i] = new LectureEditInfo(moduleCode,
+                        model.getLecture(moduleCode, lectureName), null);
             }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     this.targetLectureNames.size(),
                     this.moduleCode,
-                    MultipleEventsParser.convertArrayListToString(this.targetLectureNames)));
+                    MultipleEventsParser.convertArrayListToString(this.targetLectureNames)),
+                    editedLectures);
         } else {
             throw new CommandException(String.format((
                         invalidLectureNames.size() == 1

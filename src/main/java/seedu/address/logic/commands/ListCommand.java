@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Level;
+import seedu.address.model.DisplayListLevel;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -94,19 +94,20 @@ public class ListCommand extends Command {
 
     private CommandResult filterByVideoList(Model model) {
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
-        model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
+        model.updateFilteredVideoList(new VideoPredicate(lecture), moduleCode, lecture);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), DisplayListLevel.VIDEO);
     }
 
     private CommandResult filterByLectureList(Model model) {
         ReadOnlyModule module = model.getModule(moduleCode);
         model.updateFilteredLectureList(new LecturePredicate(module), module);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), DisplayListLevel.LECTURE);
     }
 
     private CommandResult filterByModuleList(Model model) {
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(MESSAGE_SUCCESS_MODULES, Level.MODULE);
+        return new CommandResult(MESSAGE_SUCCESS_MODULES, DisplayListLevel.MODULE);
     }
 
     @Override

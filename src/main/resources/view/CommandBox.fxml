@@ -5,15 +5,43 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane prefWidth="255.0" styleClass="stack-pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefWidth="255.0" styleClass="stack-pane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <HBox prefHeight="0.0" prefWidth="200.0" spacing="20.0">
       <children>
-         <Label id="context" fx:id="contextLabel" maxHeight="1.7976931348623157E308" styleClass="context_label" text="mods" HBox.hgrow="ALWAYS" />
-        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." HBox.hgrow="ALWAYS" />
+         <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" styleClass="context-label-container">
+            <children>
+               <Label id="context" fx:id="contextLabel" maxHeight="1.7976931348623157E308" styleClass="context-label" text="/r" HBox.hgrow="ALWAYS">
+                  <font>
+                     <Font name="Roboto" size="12.0" />
+                  </font>
+               </Label>
+            </children>
+            <padding>
+               <Insets left="10.0" right="10.0" />
+            </padding>
+            <HBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </HBox.margin>
+         </HBox>
+        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress" promptText="Hello there! Type &quot;help&quot; for a list of commands. :)" HBox.hgrow="ALWAYS">
+            <font>
+               <Font name="Roboto" size="12.0" />
+            </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </TextField>
       </children>
       <StackPane.margin>
-         <Insets left="20.0" />
+         <Insets />
       </StackPane.margin>
+      <padding>
+         <Insets left="20.0" right="20.0" />
+      </padding>
    </HBox>
+   <padding>
+      <Insets bottom="10.0" top="10.0" />
+   </padding>
 </StackPane>

@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -90,11 +93,19 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (moduleCode != null && lectureName != null) {
+            if (!model.hasLecture(moduleCode, lectureName)) {
+                throw new CommandException(
+                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
+            }
+            return filterByVideoList(model);
+        }
         if (moduleCode != null) {
-            if (lectureName != null) {
-                return filterByVideoList(model);
+            if (!model.hasModule(moduleCode)) {
+                throw new CommandException(
+                    String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
             }
             return filterByLectureList(model);
         }
@@ -105,7 +116,7 @@ public class FindCommand extends Command {
         Predicate<Video> videoPredicate = hasByTag
                 ? new VideoTagContainsKeywordsPredicate(keywords)
                 : new VideoNameContainsKeywordsPredicate(keywords);
-        model.updateFilteredVideoList(videoPredicate, model.getLecture(moduleCode, lectureName));
+        model.updateFilteredVideoList(videoPredicate, moduleCode, model.getLecture(moduleCode, lectureName));
         return new CommandResult(
                 String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, model.getFilteredVideoList().size()));
     }

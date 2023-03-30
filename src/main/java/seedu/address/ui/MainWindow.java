@@ -17,7 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Level;
+import seedu.address.model.DisplayListLevel;
+import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
@@ -118,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts(Level level) {
+    void fillInnerParts(DisplayListLevel level) {
         setListPanelPlaceholder(level);
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -146,18 +147,18 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the list displayed on UI based on {@code level} type.
      */
     @SuppressWarnings("unchecked")
-    private void setListPanelPlaceholder(Level level) {
-        if (level.equals(Level.MODULE)) {
+    private void setListPanelPlaceholder(DisplayListLevel level) {
+        if (level.equals(DisplayListLevel.MODULE)) {
             this.moduleListPanel = new ModuleListPanel(
                 (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
             listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         }
-        if (level.equals(Level.LECTURE)) {
+        if (level.equals(DisplayListLevel.LECTURE)) {
             this.lectureListPanel = new LectureListPanel(
                 (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
             listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
         }
-        if (level.equals(Level.VIDEO)) {
+        if (level.equals(DisplayListLevel.VIDEO)) {
             this.videoListPanel = new VideoListPanel(
                 (ObservableList<Video>) logic.getFilteredVideoList());
             listPanelPlaceholder.getChildren().add(videoListPanel.getRoot());
@@ -205,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            Level listLevel = commandResult.getLevel();
+            DisplayListLevel listLevel = commandResult.getLevel();
             if (listLevel == null) {
                 listLevel = logic.getLastListLevel();
             }
@@ -213,9 +214,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.getCurrentContext() != "") {
-                commandBox.setContextLabel(commandResult.getCurrentContext());
-            }
+            ReadOnlyNavigation nav = logic.getNavigation();
+            commandBox.setContextLabel(nav.getCurrentContext().getCommandPrefixes());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

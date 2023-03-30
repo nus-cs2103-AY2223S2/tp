@@ -19,8 +19,11 @@ import seedu.address.logic.injector.NavigationInjector;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.trackereventsystem.TrackerEventSystem;
-import seedu.address.model.Level;
+import seedu.address.logic.trackereventsystem.observers.ListObserver;
+import seedu.address.logic.trackereventsystem.observers.NavigationObserver;
+import seedu.address.model.DisplayListLevel;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
@@ -42,7 +45,8 @@ public class LogicManager implements Logic {
     private final TrackerEventSystem trackerEventSystem;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -54,6 +58,14 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
+
+        // Subscribe to tracker system
+        ListObserver listObserver = new ListObserver(model);
+        NavigationObserver navObserver = new NavigationObserver(model);
+        this.trackerEventSystem.addOnModuleModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.addOnLectureModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.addOnVideoModifiedObserver(listObserver);
+
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         commandText = navigationInjector.inject(commandText, model);
@@ -64,6 +76,11 @@ public class LogicManager implements Logic {
         CommandResult commandResult = command.execute(model);
 
         triggerTrackerEvents(commandResult);
+
+        // Unsubscribe to tracker system
+        this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
+        this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
 
         try {
             storage.saveTracker(model.getTracker());
@@ -77,6 +94,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyTracker getTracker() {
         return model.getTracker();
+    }
+
+    @Override
+    public ReadOnlyNavigation getNavigation() {
+        return model.getNavigation();
     }
 
     @Override
@@ -110,7 +132,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Level getLastListLevel() {
+    public DisplayListLevel getLastListLevel() {
         return model.getLastListLevel();
     }
 

@@ -62,7 +62,7 @@ public class ListCommandTest {
         listCommand = new ListCommand(existingModuleCode, existingLectureName);
         String expectedString = String.format(
                 ListCommand.MESSAGE_SUCCESS_VIDEOS, existingModuleCode, existingLectureName);
-        expectedModel.updateFilteredVideoList(new VideoPredicate(existingLecture), existingLecture);
+        expectedModel.updateFilteredVideoList(new VideoPredicate(existingLecture), existingModuleCode, existingLecture);
         assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }
 

@@ -2,13 +2,15 @@ package seedu.address.model.module;
 
 import java.util.List;
 
-import seedu.address.model.UniqueDataList;
+import seedu.address.model.SortedUniqueDataList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 // TODO: Test this
 /**
- * A list of modules that enforces uniqueness between its elements and does not allow nulls.<p>
+ * A list of sorted modules that enforces uniqueness between its elements and does not allow nulls.<p>
+ *
+ * A module is sorted by using the {@code Module#compareTo(Module)} method.
  *
  * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
  * modules uses {@code Module#isSameModule(Module)} for equality so as to ensure that the module being added or updated
@@ -19,9 +21,10 @@ import seedu.address.model.module.exceptions.ModuleNotFoundException;
  *
  * Supports a minimal set of list operations.<p>
  *
+ * @see Module#compareTo(Module)
  * @see Module#isSameModule(Module)
  */
-public class UniqueModuleList extends UniqueDataList<Module> {
+public class UniqueModuleList extends SortedUniqueDataList<Module> {
 
     /**
      * Constructs a {@code UniqueModuleList}.

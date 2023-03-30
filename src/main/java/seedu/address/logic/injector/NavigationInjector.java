@@ -64,7 +64,7 @@ public class NavigationInjector extends Injector {
     }
 
     private String removeRootPrefix(String commandText) {
-        return commandText.replaceAll(PREFIX_ROOT.getPrefix(), "");
+        return commandText.replaceAll(" " + PREFIX_ROOT.getPrefix(), "");
     }
 
     private String injectModulePrefixArg(String commandText, NavigationContext navContext) {

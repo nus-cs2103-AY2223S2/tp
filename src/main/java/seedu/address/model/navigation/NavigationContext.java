@@ -11,7 +11,7 @@ import seedu.address.model.module.ModuleCode;
  */
 public class NavigationContext {
 
-    private static final String ROOT_LEVEL_NAME = "mods";
+    private static final String ROOT_LEVEL_NAME = "/r";
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
@@ -116,6 +116,14 @@ public class NavigationContext {
         }
 
         return PREFIX_LECTURE + " " + lectureName;
+    }
+
+    public String getCommandPrefixes() {
+        if (getLayer() == NavLayer.ROOT) {
+            return ROOT_LEVEL_NAME;
+        } else {
+            return getModulePrefixArg() + " " + getLecturePrefixArg();
+        }
     }
 
     @Override

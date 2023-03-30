@@ -1,19 +1,13 @@
 package seedu.address.logic.commands.delete;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
-import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
-import seedu.address.model.video.VideoTimestamp;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
@@ -48,7 +42,9 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public ReadOnlyModule getModule(ModuleCode moduleCode) {
-        return new Module(moduleCode, new ModuleName(" "), Set.of(), List.of());
+        return moduleCode.equals(new ModuleCode("CS2040S"))
+                ? TypicalModules.getCs2040s()
+                : TypicalModules.getCs2107();
     }
 
     @Override
@@ -62,8 +58,10 @@ public class DeleteCommandModelStub extends ModelStub {
     }
 
     @Override
-    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lecturename) {
-        return new Lecture(lecturename, Set.of(), List.of());
+    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
+        return lectureName.equals(new LectureName("Week 1"))
+                ? TypicalLectures.getCs2040sWeek1()
+                : TypicalLectures.getCs2040sWeek2();
     }
 
     @Override
@@ -80,7 +78,9 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
-        return new Video(videoName, false, new VideoTimestamp(), Set.of());
+        return videoName.equals(new VideoName("Vid 2"))
+                ? TypicalVideos.ANALYSIS_VIDEO
+                : TypicalVideos.CONTENT_VIDEO;
     }
 
     @Override

@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -42,7 +43,9 @@ public class DeleteMultipleLecturesCommandTest {
 
         // tests string output
         assertEquals(new CommandResult(String.format(DeleteMultipleLecturesCommand.MESSAGE_SUCCESS,
-                        "2", module.getCode(), lecture.getName() + ", " + lecture2.getName())),
+                        "2", module.getCode(), lecture.getName() + ", " + lecture2.getName()),
+                new LectureEditInfo(module.getCode(), lecture, null),
+                new LectureEditInfo(module.getCode(), lecture2, null)),
                 actual);
         //tests model
         assertEquals(expectedModel, model);

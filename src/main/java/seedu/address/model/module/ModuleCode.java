@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a module's code in the tracker.<p>
  * Guarantees: immutable, is valid as declared in {@link #isValidCode(String)}.
  */
-public class ModuleCode {
+public class ModuleCode implements Comparable<ModuleCode> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally "
@@ -37,6 +37,11 @@ public class ModuleCode {
     public static boolean isValidCode(String test) {
         requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(ModuleCode o) {
+        return code.compareTo(o.code);
     }
 
     @Override

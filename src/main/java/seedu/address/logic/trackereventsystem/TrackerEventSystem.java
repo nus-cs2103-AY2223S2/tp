@@ -3,6 +3,7 @@ package seedu.address.logic.trackereventsystem;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.lecture.LectureName;
@@ -22,25 +23,25 @@ public class TrackerEventSystem {
     private final List<OnVideoEditedEventObserver> onVideoEditedEventObservers = new ArrayList<>();
 
     /**
-     * Adds an observer to the "on module edited" event which is triggered when a module is added, edited, or
+     * Add observer(s) to the "on module edited" event which is triggered when a module is added, edited, or
      * deleted.
      *
      * @param observer The observer to be added.
      */
-    public void addOnModuleModifiedObserver(OnModuleEditedEventObserver observer) {
+    public void addOnModuleModifiedObserver(OnModuleEditedEventObserver... observer) {
         requireNonNull(observer);
-        onModuleEditedEventObservers.add(observer);
+        onModuleEditedEventObservers.addAll(Arrays.asList(observer));
     }
 
     /**
-     * Adds an observer to the "on lecture edited" event which is triggered when a lecture is added, edited,
+     * Add observer(s) to the "on lecture edited" event which is triggered when a lecture is added, edited,
      * or deleted.
      *
      * @param observer The observer to be added.
      */
-    public void addOnLectureModifiedObserver(OnLectureEditedEventObserver observer) {
+    public void addOnLectureModifiedObserver(OnLectureEditedEventObserver... observer) {
         requireNonNull(observer);
-        onLectureEditedEventObservers.add(observer);
+        onLectureEditedEventObservers.addAll(Arrays.asList(observer));
     }
 
     /**
@@ -55,14 +56,14 @@ public class TrackerEventSystem {
     }
 
     /**
-     * Removes an observer from the "on module edited" event which is triggered when a module is added,
+     * Remove observer(s) from the "on module edited" event which is triggered when a module is added,
      * edited, or deleted.
      *
      * @param observer The observer to be removed.
      */
-    public void removeOnModuleModifiedObserver(OnModuleEditedEventObserver observer) {
+    public void removeOnModuleModifiedObserver(OnModuleEditedEventObserver... observer) {
         requireNonNull(observer);
-        onModuleEditedEventObservers.remove(observer);
+        onModuleEditedEventObservers.removeAll(Arrays.asList(observer));
     }
 
     /**
@@ -71,9 +72,9 @@ public class TrackerEventSystem {
      *
      * @param observer The observer to be removed.
      */
-    public void removeOnLectureModifiedObserver(OnLectureEditedEventObserver observer) {
+    public void removeOnLectureModifiedObserver(OnLectureEditedEventObserver... observer) {
         requireNonNull(observer);
-        onLectureEditedEventObservers.remove(observer);
+        onLectureEditedEventObservers.removeAll(Arrays.asList(observer));
     }
 
     /**

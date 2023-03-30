@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -73,9 +74,10 @@ public class DeleteVideoCommand extends DeleteCommand {
         model.deleteVideo(lecture, targetVideo);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VIDEO_SUCCESS,
-                                                    targetVideoName,
-                                                    lectureName,
-                                                    moduleCode));
+                        targetVideoName,
+                        lectureName,
+                        moduleCode),
+                new VideoEditInfo(moduleCode, lectureName, targetVideo, null));
     }
 
     @Override

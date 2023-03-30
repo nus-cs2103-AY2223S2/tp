@@ -30,10 +30,12 @@ public class ModelManager implements Model {
     private final Tracker tracker;
     private final UserPrefs userPrefs;
     private final Navigation navigation;
+    private ReadOnlyModule listedLecturesByModule;
+    private ReadOnlyLecture listedVideosByLecture;
     private FilteredList<? extends ReadOnlyModule> filteredModules;
     private FilteredList<? extends ReadOnlyLecture> filteredLectures;
     private FilteredList<? extends Video> filteredVideos;
-    private Level lastListLevel;
+    private DisplayListLevel lastListLevel;
 
     /**
      * Constructs a {@code ModelManager} using the provided {@code tracker} and {@code userPrefs}.
@@ -49,8 +51,8 @@ public class ModelManager implements Model {
         this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
-        filteredModules = new FilteredList<>(this.tracker.getModuleList());
-        lastListLevel = Level.MODULE;
+        filteredModules = new FilteredList<>(tracker.getModuleList());
+        lastListLevel = DisplayListLevel.MODULE;
     }
 
     /**
@@ -224,24 +226,23 @@ public class ModelManager implements Model {
     //=========== Filtered List Accessors =============================================================
 
     @Override
-    public void updateAllFilteredListAsHidden() {
-        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
-        if (filteredLectures != null) {
-            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
-        }
-        if (filteredVideos != null) {
-            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
-        }
-    }
-
-    @Override
-    public Level getLastListLevel() {
+    public DisplayListLevel getLastListLevel() {
         return lastListLevel;
     };
 
-    private Level setLastListLevel(Level listLevel) {
+    private DisplayListLevel setLastListLevel(DisplayListLevel listLevel) {
         return lastListLevel = listLevel;
     };
+
+    @Override
+    public ReadOnlyModule getListedLecturesByModule() {
+        return listedLecturesByModule;
+    };
+
+    @Override
+    public ReadOnlyLecture getListedVideosByLecture() {
+        return listedVideosByLecture;
+    }
 
     //=========== Filtered Module List Accessors =============================================================
 
@@ -255,7 +256,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
         filteredModules.setPredicate(predicate);
-        setLastListLevel(Level.MODULE);
+        setLastListLevel(DisplayListLevel.MODULE);
 
         // Hide other list components
         if (filteredLectures != null) {
@@ -276,9 +277,10 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module) {
         requireNonNull(predicate);
+        listedLecturesByModule = module;
         filteredLectures = new FilteredList<>(module.getLectureList());
         filteredLectures.setPredicate(predicate);
-        setLastListLevel(Level.LECTURE);
+        setLastListLevel(DisplayListLevel.LECTURE);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
@@ -295,11 +297,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture) {
+    public void updateFilteredVideoList(Predicate<Video> predicate, ModuleCode moduleCode,
+            ReadOnlyLecture lecture) {
         requireNonNull(predicate);
+        listedLecturesByModule = this.tracker.getModule(moduleCode);
+        listedVideosByLecture = lecture;
         filteredVideos = new FilteredList<>(lecture.getVideoList());
         filteredVideos.setPredicate(predicate);
-        setLastListLevel(Level.VIDEO);
+        setLastListLevel(DisplayListLevel.VIDEO);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);

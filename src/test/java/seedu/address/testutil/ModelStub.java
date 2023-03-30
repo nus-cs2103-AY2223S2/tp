@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.Level;
+import seedu.address.model.DisplayListLevel;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
@@ -187,17 +187,22 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture) {
+    public void updateFilteredVideoList(Predicate<Video> predicate, ModuleCode moduleCode, ReadOnlyLecture lecture) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateAllFilteredListAsHidden() {
+    public DisplayListLevel getLastListLevel() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Level getLastListLevel() {
+    public ReadOnlyModule getListedLecturesByModule() {
+        throw new AssertionError("This method should not be called.");
+    };
+
+    @Override
+    public ReadOnlyLecture getListedVideosByLecture() {
         throw new AssertionError("This method should not be called.");
     }
 

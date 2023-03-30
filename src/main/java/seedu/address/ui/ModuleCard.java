@@ -27,7 +27,7 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleName;
     @FXML
-    private Label lectureCount;
+    private Label progress;
     @FXML
     private FlowPane tags;
 
@@ -40,10 +40,24 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getCode().toString());
         moduleName.setText(module.getName().toString());
+        progress.setText(getProgressText(module));
 
-        lectureCount.setText("Lectures: " + module.getLectureList().size());
         module.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String getProgressText(ReadOnlyModule module) {
+        int totalLectureCount = module.getLectureList().size();
+
+        if (totalLectureCount == 0) {
+            return "No lectures found!";
+        } else {
+            int lectureCompletedCount = module.getLectureList().filtered(lecture -> {
+                int watchCount = lecture.getVideoList().filtered(vid -> vid.hasWatched()).size();
+                return watchCount == lecture.getVideoList().size();
+            }).size();
+            return String.format("Progress: %o/%o lectures covered", lectureCompletedCount, totalLectureCount);
+        }
     }
 
     @Override
