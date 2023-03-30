@@ -21,7 +21,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 ---
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -48,7 +48,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 ---
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,7 +75,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 </div>
 
-### Viewing help : `help`
+## Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -84,7 +84,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a patient to the system: `add`
+## Adding a patient to the system: `add`
 
 Adds the patient (NRIC, name and status).
 
@@ -99,13 +99,13 @@ Examples:
 
 - `add nric/S1234567A name/John Doe s/RED`
 
-### Listing all patients in the system: `list`
+## Listing all patients in the system: `list`
 
 Shows a list of all patients with their details in the system.
 
 Format: `list`
 
-### Editing a patient’s details in the system: `edit`
+## Editing a patient’s details in the system: `edit`
 
 Edit an existing patient’s status or ward or discharge date-time.
 
@@ -122,7 +122,7 @@ Examples:
 - `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`. 
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
-### Sorting all patients in the system: `sort`
+## Sorting all patients in the system: `sort`
 
 Sorts all the patients with the specified field and order in the system.
 
@@ -132,7 +132,7 @@ Examples:
 
 - `sort s/asc`
 
-### Finding patients by name in the system: `find`
+## Finding patients by name in the system: `find`
 
 Shows a list of all patients with their details that match input name or NRIC.
 
@@ -151,7 +151,7 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a patient from the system: `delete`
+## Deleting a patient from the system: `delete`
 
 Delete patient by NRIC.
 
@@ -163,7 +163,7 @@ Examples:
 
 `delete 1`
 
-### Adding a ward to the system: `addward`
+## Adding a ward to the system: `addward`
 
 Adds the ward (name and capacity).
 
@@ -181,17 +181,17 @@ Examples:
 
 - `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
-### Exiting the program : `exit`
+## Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data [coming soon]
+## Saving the data [coming soon]
 
 MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file `[coming soon]`
+## Editing the data file `[coming soon]`
 
 _Details coming soon ..._
 
@@ -203,7 +203,7 @@ _Details coming soon ..._
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div> -->
 
-### Archiving data files `[coming soon]`
+## Archiving data files `[coming soon]`
 
 _Details coming soon ..._
 
