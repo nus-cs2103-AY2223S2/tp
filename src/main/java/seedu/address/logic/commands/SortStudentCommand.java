@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -64,25 +64,26 @@ public class SortStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        /*
+
         switch (this.group) {
         case "all":
-            model.updateSortAllPersonList(this.metric, this.increasingOrder);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateSortAllPersonList(this.metric, this.isIncreasing);
             break;
         case "lab":
-            model.updateSortLabPersonList(this.metric, this.increasingOrder);
+            model.updateFilteredLabList(PREDICATE_SHOW_ALL_LABS);
+            model.updateSortLabPersonList(this.metric, this.isIncreasing);
             break;
         case "tutorial":
-            model.updateSortTutorialPersonList(this.metric, this.increasingOrder);
+            model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+            model.updateSortTutorialPersonList(this.metric, this.isIncreasing);
             break;
         case "consultation":
-            model.updateSortConsultationPersonList(this.metric, this.increasingOrder);
+            model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
+            model.updateSortConsultationPersonList(this.metric, this.isIncreasing);
             break;
         }
 
-         */
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateSortAllPersonList(this.metric, this.isIncreasing);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

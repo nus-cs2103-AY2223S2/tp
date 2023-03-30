@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -35,9 +37,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
-    private final FilteredList<Lab> filteredLabs;
-    private final FilteredList<Tutorial> filteredTutorials;
-    private final FilteredList<Consultation> filteredConsultations;
+    private FilteredList<Lab> filteredLabs;
+    private FilteredList<Tutorial> filteredTutorials;
+    private FilteredList<Consultation> filteredConsultations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -326,6 +328,79 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(sortedData);
     }
 
+    public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+            case "performance":
+                comparator = new PerformanceComparator(isIncreasing);
+                break;
+            case "email":
+                comparator = new EmailComparator(isIncreasing);
+                break;
+            case "name":
+                comparator = new NameComparator(isIncreasing);
+                break;
+            case "address":
+                comparator = new AddressComparator(isIncreasing);
+                break;
+            default:
+                comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Tutorial tutorial : filteredTutorials) {
+            Collections.sort(tutorial.getStudents(), comparator);
+        }
+    }
+
+    public void updateSortLabPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+            case "performance":
+                comparator = new PerformanceComparator(isIncreasing);
+                break;
+            case "email":
+                comparator = new EmailComparator(isIncreasing);
+                break;
+            case "name":
+                comparator = new NameComparator(isIncreasing);
+                break;
+            case "address":
+                comparator = new AddressComparator(isIncreasing);
+                break;
+            default:
+                comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Lab lab : filteredLabs) {
+            Collections.sort(lab.getStudents(), comparator);
+        }
+    }
+    public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        Comparator<Person> comparator;
+        switch (metric) {
+            case "performance":
+                comparator = new PerformanceComparator(isIncreasing);
+                break;
+            case "email":
+                comparator = new EmailComparator(isIncreasing);
+                break;
+            case "name":
+                comparator = new NameComparator(isIncreasing);
+                break;
+            case "address":
+                comparator = new AddressComparator(isIncreasing);
+                break;
+            default:
+                comparator = new RemarkComparator(isIncreasing);
+        }
+
+        for (Consultation consultation : filteredConsultations) {
+            Collections.sort(consultation.getStudents(), comparator);
+        }
+    }
     //=========== Filtered Tutorial List Accessors =============================================================
 
     @Override
