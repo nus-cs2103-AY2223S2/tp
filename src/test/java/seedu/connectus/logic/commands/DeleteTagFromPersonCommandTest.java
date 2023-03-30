@@ -32,9 +32,11 @@ public class DeleteTagFromPersonCommandTest {
         Person personToFiddle = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         List<Module> modifiedModules = convertSetToList(personToFiddle.getModules());
         modifiedModules.remove(0);
-        Person expectedPerson = new Person(personToFiddle, personToFiddle.getRemarks(), new HashSet<>(modifiedModules));
-        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, null,
-            Index.fromOneBased(1));
+        Person expectedPerson = new Person(personToFiddle, personToFiddle.getRemarks(), new HashSet<>(modifiedModules),
+            personToFiddle.getCcas(), personToFiddle.getCcaPositions());
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1),
+            null, null, null
+        );
 
         String expectedMessage = String.format(DeleteTagFromPersonCommand.MESSAGE_DELETE_TAG_SUCCESS, expectedPerson);
 
@@ -47,7 +49,8 @@ public class DeleteTagFromPersonCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteTagFromPersonCommand cmd = new DeleteTagFromPersonCommand(outOfBoundIndex, null, null);
+        DeleteTagFromPersonCommand cmd = new DeleteTagFromPersonCommand(outOfBoundIndex, null, null, null, null
+        );
 
         assertCommandFailure(cmd, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
