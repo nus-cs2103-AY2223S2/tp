@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final PetPal petPal;
     private final PetPal archiveStorage;
     private PetPal petPalCache;
+    private PetPal archiveCache;
     private final UserPrefs userPrefs;
     private final FilteredList<Pet> filteredPets;
 
@@ -127,6 +128,7 @@ public class ModelManager implements Model {
     public void undo() {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());
+        
     }
 
     @Override
@@ -138,6 +140,9 @@ public class ModelManager implements Model {
 
     @Override
     public void archivePet(Pet petToArchive) {
+        this.petPalCache = new PetPal(petPal);
+        this.archiveCache = new PetPal(petPal);
+
         requireNonNull(petToArchive);
         archiveStorage.archivePet(petToArchive);
         petPal.removePet(petToArchive);
