@@ -378,7 +378,7 @@ Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM]
  
 You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)! 
 * A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
 </div>
@@ -401,7 +401,7 @@ You can add a contact using the `add` command followed by the parameters (as sho
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
 </div>
 
@@ -417,7 +417,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">Adding Additional Tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">Deleting Existing Tags</a> instead!
 </div>
 
@@ -440,7 +440,7 @@ The `edit` command:
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you edit an existing contact.
 </div>
 <br>
@@ -551,7 +551,7 @@ The `delete` command:
 
 **After:**<br>![DeleteAfter2](images/DeleteAfter2.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
 </div>
 
@@ -588,7 +588,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 * `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
 * `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 * Only unspecified keywords treat space as a separator. This means `search yu alex` will search for a contact that contains both `yu` and `alex` in the information, but `search n/yu alex` will search for a contact that contains the string `yu alex` in its name. 
 * If you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
@@ -608,7 +608,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 
 **Result:**<br>![SearchCommandExample2](images/SearchCommandExample2.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
 </div>
 
@@ -628,7 +628,7 @@ You can directly open supported social media platforms (i.e. Instagram, Telegram
 
 For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
 </div>
 
@@ -652,7 +652,7 @@ Due to platform constraints, only WhatsApp is supported.
 
 Similar to `open`, if a WhatsApp handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
 </div>
 
