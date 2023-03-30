@@ -415,6 +415,11 @@ Examples:
 * Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
 * Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
+If you want to update all students under this student's parent, please kindly use the [PARENT EDIT COMMAND](#editparent) instead!!! <br><br>
+</div>
+
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -632,7 +637,7 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. <br><br>
+If your changes to the data file makes its format invalid, PowerConnect will discard all data and start with an empty data file at the next run. <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
