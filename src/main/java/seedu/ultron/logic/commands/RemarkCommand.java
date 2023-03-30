@@ -24,9 +24,9 @@ public class RemarkCommand extends Command {
             + "by the index number used in the last opening listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/[REMARK]\n"
+            + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/Likes to swim.";
+            + "r/ Likes to swim.";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Opening: %1$s";
@@ -69,7 +69,7 @@ public class RemarkCommand extends Command {
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code openingToEdit}.   
+     * {@code openingToEdit}.
      */
     private String generateSuccessMessage(Opening openingToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;

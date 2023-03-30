@@ -10,8 +10,7 @@ import static seedu.ultron.commons.util.AppUtil.checkArgument;
 public class Position {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Positions should not be blank or only contain non-alphanumeric characters"
-                  + "or only numbers.";
+            "Positions should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
