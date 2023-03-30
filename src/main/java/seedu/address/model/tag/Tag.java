@@ -33,6 +33,15 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getTagName() {
+        String[] splitTag = this.tagName.split("XXXXX");
+        if (splitTag.length == 1) {
+            return splitTag[0];
+        } else {
+            return splitTag[1];
+        }
+    }
+
     /**
      * @return the corresponding color code for css
      */
