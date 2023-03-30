@@ -243,6 +243,7 @@ public class ModelManager implements Model {
     public void setCustomer(Customer target, Customer editedPerson) {
         requireAllNonNull(target, editedPerson);
         this.shop.setCustomer(target, editedPerson);
+        resetMaps();
     }
 
     @Override

@@ -3,10 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -32,22 +33,21 @@ public class EditCustomerCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "editcustomer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
-            + "by the id number displayed by listcustomer. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the id number displayed by listcustomer. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: "
+        + "[" + PREFIX_INTERNAL_ID + "CUSTOMER_ID] "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
-
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "This customer does not exist.";
     private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
     private final EditCustomerDescriptor editPersonDescriptor;
@@ -68,8 +68,8 @@ public class EditCustomerCommand extends RedoableCommand {
 
         // Locate entry containing id. By right each ID is unique.
         Customer personToEdit = lastShownList.stream().filter(person ->
-                        editPersonDescriptor.getId() == person.getId()).findAny()
-                .orElse(CUSTOMER_DOES_NOT_EXIST);
+                editPersonDescriptor.getId() == person.getId()).findAny()
+            .orElse(CUSTOMER_DOES_NOT_EXIST);
 
         if (personToEdit == null) {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
@@ -77,12 +77,8 @@ public class EditCustomerCommand extends RedoableCommand {
 
         Customer editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
-        }
-
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setCustomer(personToEdit, editedPerson);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -134,7 +130,8 @@ public class EditCustomerCommand extends RedoableCommand {
         private Address address;
         private Set<Tag> tags;
 
-        public EditCustomerDescriptor() {}
+        public EditCustomerDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -229,11 +226,11 @@ public class EditCustomerCommand extends RedoableCommand {
             EditCustomerDescriptor e = (EditCustomerDescriptor) other;
 
             return getId() == e.getId() //not sure if need this id checking
-                    && getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                && getName().equals(e.getName())
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getAddress().equals(e.getAddress())
+                && getTags().equals(e.getTags());
         }
     }
 }

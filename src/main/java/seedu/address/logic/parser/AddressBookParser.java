@@ -189,7 +189,7 @@ public class AddressBookParser {
             return new EditAppointmentCommandParser().parse(arguments.trim());
 
         case EditCustomerCommand.COMMAND_WORD:
-            return new EditCustomerCommandParser().parse(arguments.trim());
+            return new EditCustomerCommandParser().parse(arguments);
 
         case EditTechnicianCommand.COMMAND_WORD:
             return new EditTechnicianCommandParser().parse(arguments.trim());
