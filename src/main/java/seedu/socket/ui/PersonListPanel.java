@@ -40,6 +40,7 @@ public class PersonListPanel extends UiPart<Region> {
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
 
+            personListView.setFocusTraversable(false);
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
