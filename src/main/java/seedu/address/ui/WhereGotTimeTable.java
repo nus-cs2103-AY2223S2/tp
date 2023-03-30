@@ -74,7 +74,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
         allColumns = new ArrayList<>(Arrays.asList(time0, time1, time2, time3, time4));
         columnNames = new ArrayList<>(Arrays.asList("time0", "time1", "time2", "time3", "time4"));
 
-        day.setCellValueFactory(new PropertyValueFactory<ScheduleDay, String>("day"));
+        day.setCellValueFactory(new PropertyValueFactory<>("day"));
 
         updateTable(data);
 
@@ -85,7 +85,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
      * according to the Status.
      */
     private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> conditionForColouredCell() {
-        Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = new Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>>() {
+        Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = new Callback<>() {
             @Override
             public TableCell<ScheduleDay, Status> call(TableColumn<ScheduleDay, Status> param) {
                 return new TableCell<ScheduleDay, Status>() {
@@ -94,14 +94,15 @@ public class WhereGotTimeTable extends UiPart<Region> {
                         super.updateItem(item, empty);
                         if (empty || item == null) {
                             setText(null);
+                            setStyle("-fx-text-fill:black;");
                         } else if (item.equals(Status.FREE)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: #71A89D");
+                            setStyle("-fx-background-color: #71A89D;" + "-fx-text-fill:black;");
                         } else if (item.equals(Status.BUSY)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: transparent");
+                            setStyle("-fx-background-color: transparent;" + "-fx-text-fill:black;");
                         } else {
-                            setStyle("-fx-background-color: grey");
+                            setStyle("-fx-background-color: grey;" + "-fx-text-fill:black;");
                         }
 
                     }
@@ -119,11 +120,10 @@ public class WhereGotTimeTable extends UiPart<Region> {
     public void updateTable(ObservableList<ScheduleDay> newData) {
         for (int i = 0; i < allColumns.size(); i++) {
             TableColumn<ScheduleDay, Status> currColumn = allColumns.get(i);
-            currColumn.setCellValueFactory(new PropertyValueFactory<ScheduleDay, Status>(columnNames.get(i)));
+            currColumn.setCellValueFactory(new PropertyValueFactory<>(columnNames.get(i)));
             currColumn.setCellFactory(factory);
 
         }
-
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
 
