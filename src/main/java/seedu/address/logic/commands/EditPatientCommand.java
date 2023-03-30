@@ -99,7 +99,8 @@ public class EditPatientCommand extends Command {
         changeAssignmentInDoctors(patientToEdit, editedPatient);
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
+                true, editedPatient);
     }
 
     /**

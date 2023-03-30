@@ -95,14 +95,19 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
         tags.getChildren().clear();
         selectedPatient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setWrapText(true);
+                    tagLabel.setMaxWidth(150);
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     /**
      * Clears the information shown on the {@code EnlargedPatientInfoCard}.
      */
     public void clearDisplay() {
-        name.setText("Nobody Selected");
+        name.setText("");
         phone.setText("");
         email.setText("");
         height.setText("");
