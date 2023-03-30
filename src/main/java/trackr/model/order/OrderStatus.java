@@ -1,15 +1,12 @@
 package trackr.model.order;
 
-import trackr.model.commons.Status;
-
 import java.util.HashMap;
 
-import static java.util.Objects.requireNonNull;
-import static trackr.commons.util.AppUtil.checkArgument;
+import trackr.model.commons.Status;
 
 /**
  * Represents an Order's status in the order list.
- * Guaruntees: immutable; is valid as declared in {@link #isValidStatus(String)}
+ * Guaruntees: immutable; is valid as declared in {@link #isValidStatus(String, HashMap)}
  */
 public class OrderStatus extends Status {
 

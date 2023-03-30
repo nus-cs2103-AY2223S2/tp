@@ -38,7 +38,7 @@ public class SortOrdersComparator implements Comparator<Order> {
 
         switch(criteria) {
         //case TIME_ADDED:
-            //return order1.compareTimeAdded(order2);
+        //return order1.compareTimeAdded(order2);
         case DEADLINE:
             return order1.compareDeadline(order2);
         case STATUS:

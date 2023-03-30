@@ -1,12 +1,12 @@
 package trackr.logic.commands.order;
 
+import static java.util.Objects.requireNonNull;
+import static trackr.logic.parser.CliSyntax.PREFIX_CRITERIA;
+
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
 import trackr.model.Model;
 import trackr.model.order.SortOrdersComparator;
-
-import static java.util.Objects.requireNonNull;
-import static trackr.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 /**
  * Sorts all task in task list using a criteria given.
