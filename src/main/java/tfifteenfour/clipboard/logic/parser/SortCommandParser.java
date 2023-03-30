@@ -26,6 +26,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @param args The arguments provided by the user.
      * @return The new SortCommand object.
      * @throws ParseException If the user input does not conform to the expected format.
+     * @throws CommandException if command was performed on wrong page.
      */
     public SortCommand parse(String args) throws ParseException, CommandException {
         String trimmedArgs = args.trim();

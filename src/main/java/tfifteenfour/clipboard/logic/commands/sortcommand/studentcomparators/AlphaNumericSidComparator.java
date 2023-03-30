@@ -5,7 +5,7 @@ import java.util.Comparator;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
- * Comparator for sorting students by name.
+ * Comparator for sorting students by student id.
  */
 public class AlphaNumericSidComparator implements Comparator<Student> {
     @Override
