@@ -38,7 +38,7 @@ public class HelpCommand extends Command {
      */
     public HelpCommand(String command) {
         this.isHelpWindowShown = false;
-        this.helpMessage = command;
+        this.helpMessage = "Command usage retrieved!\n" + command;
     }
 
     @Override

@@ -21,7 +21,8 @@ public class HelpCommandTest {
     @Test
     public void execute_helpWithValidInput_success() {
         ClearCommand clearCommand = new ClearCommand();
-        CommandResult expectedCommandResult = new CommandResult(clearCommand.MESSAGE_USAGE, false, false);
+        CommandResult expectedCommandResult = new CommandResult("Command usage retrieved!\n"
+                + clearCommand.MESSAGE_USAGE, false, false);
         assertCommandSuccess(new HelpCommand(clearCommand.MESSAGE_USAGE), model, expectedCommandResult,
                 expectedModel);
     }
