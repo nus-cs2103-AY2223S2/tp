@@ -53,11 +53,11 @@ Before going any further, here are some useful notations that you should know.
 
 **Tips**
 
-Tips are useful suggestions that will help you become a seasoned sprINT user more quickly.
+Tips are useful suggestions that will help you become a seasoned **MODTrek** user more quickly.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Tips are useful information. They can give you a better experience with sprINT.
+:bulb: **Tip:** Tips are useful information. They can give you a better experience with **MODTrek**.
 </div>
 
 **Notes**
@@ -105,8 +105,8 @@ The following is an annotated breakdown of **MODtrek's** GUI:
 2. Command Screen: Relevant messages from the application will be displayed here. This includes success messages, error
 messages and results from the commands. 
 3. Results Section: This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
-to toggle between the module list in **MODTrek** or the user's degree progression as well as using the `sort` and `find` command when making 
-a query on the module list.
+to toggle between the module list in **MODTrek** or the user's degree progression as well as when using the `find` command which will
+change to the module search screen.
 
 [Back to Table of Contents](#toc)
 
