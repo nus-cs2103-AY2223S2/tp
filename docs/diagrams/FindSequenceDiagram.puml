@@ -69,7 +69,7 @@ Model --> FindCommand
 deactivate Model
 
 create CommandResult
-FindCommand -> CommandResult : new CommandResult
+FindCommand -> CommandResult : CommandResult
 activate CommandResult
 
 CommandResult --> FindCommand
