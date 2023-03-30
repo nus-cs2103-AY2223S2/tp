@@ -308,6 +308,19 @@ Tag successfully deleted:
 [Healthy]
 ```
 
+### Checking expiry of tag(s) : `expiry`
+
+Sorts by expiry date and displays all food items.
+
+Format: `expiry`
+
+Examples:
+
+`expiry` returns
+```shell
+Food items are being sorted by their expiry dates.
+```
+
 ## General Commands
 
 ### Exiting the program : `exit`
