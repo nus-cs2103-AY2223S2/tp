@@ -28,7 +28,7 @@ import seedu.address.model.patient.Name;
 public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_appt";
-
+    public static final String COMMAND_ALIAS = "ea";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the index number used as their ID. "
             + "Existing values will be overwritten by the input values.\n"

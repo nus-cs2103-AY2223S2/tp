@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class DeleteAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "delete_appt";
-
+    public static final String COMMAND_ALIAS = "da";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the appointment identified by the patient name.\n"
             + "Parameters: name (must be existing patient name)\n"

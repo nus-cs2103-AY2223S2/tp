@@ -15,7 +15,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "add_appt";
-
+    public static final String COMMAND_ALIAS = "aa";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment for a patient. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
