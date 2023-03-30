@@ -44,7 +44,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center"><img src="images/ArchitectureDiagram.png" width="280" /></p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -70,7 +70,7 @@ The rest of the App consists of four components.
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center"><img src="images/ArchitectureSequenceDiagram.png" width="574" /></p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -79,7 +79,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center"><img src="images/ComponentManagers.png" width="300" /></p>
 
 The sections below give more details of each component.
 
@@ -91,7 +91,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 Shown below is the class diagram for the `UI` component:
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center"><img src="images/UiClassDiagram.png" /></p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -104,15 +104,13 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Project` object residing in the `Model`.
 
-<div style="page-break-after: always;"></div>
-
 ### Logic component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center"><img src="images/LogicClassDiagram.png" width="550"/></p>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `SocketParser` class to parse the user command.
@@ -120,16 +118,20 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center"><img src="images/DeleteSequenceDiagram.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center"><img src="images/ParserClasses.png" width="600"/></p>
 
 How the parsing works:
 * When called upon to parse a user command, the `SocketParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `SocketParser` returns back as a `Command` object.
@@ -142,7 +144,7 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 
 Shown below is the class diagram for the `Model` component:
 
-<img src="images/ModelClassDiagram.png" width="800" />
+<p align="center"><img src="images/ModelClassDiagram.png" width="800" /></p>
 
 The `Model` component,
 
@@ -155,7 +157,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<p align="center"><img src="images/BetterModelClassDiagram.png" width="450" /></p>
 
 </div>
 
@@ -167,7 +169,7 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 Shown below is the class diagram for the `Storage` component:
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<p align="center"><img src="images/StorageClassDiagram.png" width="550" /></p>
 
 The `Storage` component,
 * can save both `Socket` data and user preference data in json format, and read them back into corresponding objects.
@@ -205,15 +207,15 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedSocket` will be initialized with the initial `Socket` state, and the `currentStatePointer` pointing to that single `Socket` state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center"><img src="images/UndoRedoState0.png" /></p>
 
 Step 2. The user executes `delete 5` command to delete the 5th person in 'Socket'. The `delete` command calls `Model#commitSocket()`, causing the modified state of `Socket` after the `delete 5` command executes to be saved in the `socketStateList`, and the `currentStatePointer` is shifted to the newly inserted `Socket` state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<p align="center"><img src="images/UndoRedoState1.png" /></p>
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitSocket()`, causing another modified `Socket` state to be saved into the `socketStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<p align="center"><img src="images/UndoRedoState2.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitSocket()`, so the `Socket` state will not be saved into the `socketStateList`.
 
@@ -221,7 +223,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSocket()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous `Socket` state, and restores `Socket` to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center"><img src="images/UndoRedoState3.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Socket` state, then there are no previous `Socket` states to restore. The `undo` command uses `Model#canUndoSocket()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -230,7 +232,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+<p align="center"><img src="images/UndoSequenceDiagram.png" /></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -244,15 +246,16 @@ The `redo` command does the opposite — it calls `Model#redoSocket()`, whic
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the `Socket`, such as `list`, will usually not call `Model#commitSocket()`, `Model#undoSocket()` or `Model#redoSocket()`. Thus, the `socketStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+<p align="center"><img src="images/UndoRedoState4.png" /></p>
 
 Step 6. The user executes `clear`, which calls `Model#commitSocket()`. Since the `currentStatePointer` is not pointing at the end of the `socketStateList`, all `Socket` states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<p align="center"><img src="images/UndoRedoState5.png" /></p>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<p align="center"><img src="images/CommitActivityDiagram.png" width="250" /></p>
+
 
 #### Design considerations
 
@@ -290,7 +293,8 @@ This Predicate class will return True as long as any of the Predicate classes in
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
 The following sequence diagram shows how the `list` operation works:
-![ListSequenceDiagram.png](images%2FListSequenceDiagram.png)
+<p align="center"><img src="images/ListSequenceDiagram.png" /></p>
+
 
 #### Design considerations
 
@@ -321,7 +325,8 @@ The `sort` makes use of a comparator that sorts the persons or projects by the c
 If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
 The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
+<p align="center"><img src="images/SortSequenceDiagram.png" /></p>
+
 
 <div style="page-break-after: always;"></div>
 
@@ -351,6 +356,8 @@ This Predicate class will return True as long as any of the Predicate classes in
 The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from find command.
 
 If no argument is provided, an empty list will be shown.
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -388,6 +395,8 @@ If no argument is provided, an exception will be thrown. Otherwise, if only pred
     * If user decides to remove 1 out of many field values in a person's tag field, user will have a difficult time to type all the must-have value. WIth remove feature, user just need to type out the tag that he/she wish to remove.
     * Currently, edit feature for language field is cumulative, language will not be removed, so remove feature helps to resolve the issue on language removal.
 
+<div style="page-break-after: always;"></div>
+
 ### Project feature:
 
 #### Implementation
@@ -398,7 +407,7 @@ Any changes to `Person` objects that are associated with a `Project` object auto
 
 The following sequence diagram shows how updates are made to the associated `Project` object when updates are made to `Person` objects on execution of a `DeleteCommand`:
 
-![Interactions inside the Model Component on execution of a 'DeleteCommand'](images/UpdateProjectOnDeletePersonSequenceDiagram.png)
+<p align="center"><img src="images/UpdateProjectOnDeletePersonSequenceDiagram.png" /></p>
 
 Step 1. The `DeleteCommand#execute()` method is called.
 
@@ -965,7 +974,9 @@ Similar to **UC03 Delete a contact**, except,
 4.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
 5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GitHub profile**: GitHub username e.g. `chia-yh`
