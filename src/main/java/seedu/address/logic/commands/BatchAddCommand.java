@@ -54,6 +54,7 @@ public class BatchAddCommand extends Command {
     public void setFilePath(Path filePath) {
         this.filePath = filePath;
     }
+
     public List<AddCommand> getInfo() throws CommandException {
         Path file = this.filePath;
         String line = "";
@@ -66,20 +67,21 @@ public class BatchAddCommand extends Command {
                 String[] data = line.split(splitBy);
                 String arg = " ";
                 for (int i = 0; i < data.length; i++) {
+                    String value = data[i].replace("\"", ""); // Remove quotes
                     if (i == (data.length - 1)) {
-                        if (data[i].equals("")) {
+                        if (value.equals("")) {
                             continue;
                         } else {
-                            String[] tags = data[i].split("/");
+                            String[] tags = value.split("/");
                             for (String tag : tags) {
                                 arg += PREFIX_LIST[i] + tag + " ";
                             }
                         }
                     } else {
-                        if (data[i].equals("")) {
+                        if (value.equals("")) {
                             continue;
                         } else {
-                            arg += PREFIX_LIST[i] + data[i] + " ";
+                            arg += PREFIX_LIST[i] + value + " ";
                         }
                     }
                 }
