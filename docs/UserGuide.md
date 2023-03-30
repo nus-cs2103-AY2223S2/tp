@@ -5,9 +5,10 @@ title: CareFlow User Guide
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
-CareFlow is a **desktop application for [patient management](#41-patient-information-management) and [drug inventory
-management](#42-drug-inventory-management), optimised for use
-via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+CareFlow is a **desktop application for [patient management](#31-patient-information-management) and [drug inventory
+management](#32-drug-inventory-management), optimised for use
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2]
+(#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#2-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -255,7 +256,7 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <img src="images/UGscreenshots/careflow_home.png" style="zoom:100%">
   </p>
-  <p>
+  <p align="center">
     <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
     </p>
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
@@ -275,7 +276,7 @@ Throughout this user guide, you may come across different formatting styles and 
 
 [↑ Back to top](#top)
 
-<br>
+
 --------------------------------------------------------------------------------------------------------------------
 # **3. Overview of Features**
 
@@ -289,10 +290,8 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Visit Section [4.2 Patient Commands](#42-patient-commands) for more information on how to
-manage patient data in CareFlow.
+<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.2 Patient Commands]
+(#42-patient-commands) for more information on how to manage patient data in CareFlow.
 </div>
 
 ## 3.2 Drug Inventory Management
@@ -301,20 +300,21 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Visit Section [4.3 Drug Commands](#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
+<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.3 Drug Commands]
+(#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
 </div>
 
 ## 3.3 Hospital Information Directory
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Please note that you are not allowed to edit or change the hospital list in CareFlow. However,
-if you believe that a hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
+<div markdown="block" class="alert alert-info">:information_source: Please note that you are not allowed to edit or 
+change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please 
+feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are 
+committed to constantly improving our software to meet your needs.
 </div>
+
+[↑ Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 # **4. Commands**
@@ -853,16 +853,16 @@ The following commands are patient-related commands that are available in Carefl
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
-| Action | Format                                                                                                                                                                                                                                         | Expected Outcome |
-| -------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered. |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   | Removes drug record at the index you have selected.|
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             | Removes drug record associated with the provided trade name.|
-| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                              | Edit drug's storage count with the provided trade name.|
-| **View drug by index**        | `d view -i DRUG_INDEX` <br> e.g. `d view -i 1`                                                                                                                                                                                                  | Shows the drug record located at the i-th position in the drug list.|
-| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided.|
-| **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow. |
-| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
+| Action                        | Format                                                                                                                                                                                                                                         | Expected Outcome                                                         |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered.           |
+| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   | Removes drug record at the index you have selected.                      |
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             | Removes drug record associated with the provided trade name.             |
+| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                              | Edit drug's storage count with the provided trade name.                  |
+| **View drug by index**        | `d view -i DRUG_INDEX` <br> e.g. `d view -i 1`                                                                                                                                                                                                 | Shows the drug record located at the i-th position in the drug list.     |
+| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided. |
+| **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow.                 |
+| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow                              |
 <p align="center">
   <i>Table 4. Command table for drug commands.</i>
 </p>
