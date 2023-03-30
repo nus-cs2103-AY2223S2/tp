@@ -85,7 +85,7 @@ public class Patient extends Person {
         if (!toDoIndexInRange(index)) {
             throw new CommandException("Todo index not in range.");
         }
-        this.details.remove(index.getZeroBased());
+        this.toDos.remove(index.getZeroBased());
     }
 
     /**
