@@ -88,9 +88,6 @@ public class AddressBookParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
-        case ExportCommand.COMMAND_WORD:
-            return new ExportCommandParser().parse(arguments);
-            
         case LoadCommand.COMMAND_WORD:
             return new LoadCommandParser().parse(arguments);
 
@@ -99,6 +96,9 @@ public class AddressBookParser {
 
         case DarkCommand.COMMAND_WORD:
             return new DarkCommand();
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
