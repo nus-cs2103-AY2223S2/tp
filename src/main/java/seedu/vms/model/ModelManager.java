@@ -3,7 +3,6 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -360,6 +359,10 @@ public class ModelManager implements Model {
     @Override
     public KeywordManager getKeywordManager() {
         return keywordManager;
+    }
+
+    @Override
+    public void setKeywordManager(KeywordManager keywordManager) {
     }
 
     // =========== Filtered Patient List Accessors =============================================================

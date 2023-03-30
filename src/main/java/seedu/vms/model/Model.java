@@ -66,6 +66,7 @@ public interface Model {
     /** Returns the {@code KeywordManager} the model is using. */
     KeywordManager getKeywordManager();
 
+    void setKeywordManager(KeywordManager manager);
 
     /**
      * Parses the specified user command.

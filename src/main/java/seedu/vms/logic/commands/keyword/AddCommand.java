@@ -43,6 +43,7 @@ public class AddCommand extends Command {
             model.addKeyword(toAdd);
             return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
