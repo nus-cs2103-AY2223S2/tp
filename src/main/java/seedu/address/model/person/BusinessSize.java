@@ -8,7 +8,7 @@ public class BusinessSize {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Business Size can take any number greater than or equal to 0, and it should not be blank";
+            "Potential Sale Value can take any number greater than or equal to 0, and it should not be blank";
     public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
     public final String value;
 

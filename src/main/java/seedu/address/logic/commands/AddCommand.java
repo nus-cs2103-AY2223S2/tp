@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_BUSINESS_SIZE + "BUSINESS SIZE "
+            + PREFIX_BUSINESS_SIZE + "POTENTIAL SALE VALUE "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_PRIORITY + "PRIORITY "
             + "[" + PREFIX_TAG + "TAG]...\n"
