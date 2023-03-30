@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
 
@@ -51,6 +52,10 @@ public class ApplicationCard extends UiPart<Region> {
     private Label internshipStatus;
     @FXML
     private Label interviewDate;
+    @FXML
+    private Label resume;
+    @FXML
+    private Label coverLetter;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,6 +64,43 @@ public class ApplicationCard extends UiPart<Region> {
         super(FXML);
         this.application = application;
         id.setText(displayedIndex + ". ");
+        companyName.setText(application.getCompanyName().fullName);
+        jobTitle.setText(application.getJobTitle().fullName);
+        application.getReviews().stream()
+                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
+        internshipStatus.setText(application.getStatus().name());
+        Contact companyContact = application.getContact();
+        if (companyContact != null) {
+            email.setText(companyContact.getEmail().value);
+            phone.setText(companyContact.getPhone().value);
+            email.setVisible(true);
+            phone.setVisible(true);
+            email.setManaged(true);
+            phone.setManaged(true);
+        }
+        InterviewDate interviewDateStr = application.getInterviewDate();
+        if (interviewDateStr != null) {
+            interviewDate.setText(interviewDateStr.toString());
+            interviewDate.setVisible(true);
+            interviewDate.setManaged(true);
+        }
+        Documents documents = application.getDocuments();
+        if (documents != null) {
+            resume.setText(documents.getResumeLink().value);
+            coverLetter.setText(documents.getCoverLetterLink().value);
+            resume.setVisible(true);
+            coverLetter.setVisible(true);
+            resume.setManaged(true);
+            coverLetter.setManaged(true);
+        }
+    }
+
+    /**
+     * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
+     */
+    public ApplicationCard(InternshipApplication application) {
+        super(FXML);
+        this.application = application;
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         application.getReviews().stream()
