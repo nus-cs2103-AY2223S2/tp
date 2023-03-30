@@ -11,7 +11,7 @@ import seedu.dengue.model.person.Person;
  * Represents the predicate which tests for whether the person in the persons list has a valid substring of
  * the name given in the user input.
  */
-public class PersonContainsNamePredicate implements Predicate<Person> {
+public class PersonContainsNamePredicate extends PredicateUtil<Person> {
 
     private final Optional<Name> name;
 

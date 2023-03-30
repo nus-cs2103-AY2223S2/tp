@@ -2,7 +2,6 @@ package seedu.dengue.model.predicate;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
@@ -15,7 +14,7 @@ import seedu.dengue.model.variant.Variant;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class FindPredicate implements Predicate<Person> {
+public class FindPredicate extends PredicateUtil<Person> {
     private final Optional<Name> name;
     private final Optional<SubPostal> subPostal;
     private final Optional<Age> age;
@@ -46,17 +45,16 @@ public class FindPredicate implements Predicate<Person> {
         this.dateRange = dateRange;
         this.ageRange = ageRange;
     }
-
     @Override
     public boolean test(Person person) {
-        boolean containsName = new PersonContainsNamePredicate(name).test(person);
-        boolean containsPostal = new PersonContainsPostalPredicate(subPostal).test(person);
-        boolean containsAge = new PersonContainsAgePredicate(age).test(person);
-        boolean containsDate = new PersonContainsDatePredicate(date).test(person);
-        boolean containsVariants = new PersonContainsVariantsPredicate(variants).test(person);
-        boolean containsDateRange = new RangeContainsPersonPredicate(dateRange).test(person);
-        boolean containsAgeRange = new RangeContainsPersonPredicate(ageRange).test(person);
-        return containsName && containsPostal && containsAge && containsDate && containsVariants
-                && containsAgeRange && containsDateRange;
+        PersonContainsNamePredicate hasName = new PersonContainsNamePredicate(name);
+        PersonContainsAgePredicate hasAge = new PersonContainsAgePredicate(age);
+        PersonContainsPostalPredicate hasPostal = new PersonContainsPostalPredicate(subPostal);
+        PersonContainsDatePredicate hasDate = new PersonContainsDatePredicate(date);
+        PersonContainsVariantsPredicate hasVariants = new PersonContainsVariantsPredicate(variants);
+        RangeContainsPersonPredicate hasDateRange = new RangeContainsPersonPredicate(dateRange);
+        RangeContainsPersonPredicate hasAgeRange = new RangeContainsPersonPredicate(ageRange);
+        return andAll(
+                hasName, hasAge, hasDate, hasVariants, hasPostal, hasDateRange, hasAgeRange).test(person);
     }
 }

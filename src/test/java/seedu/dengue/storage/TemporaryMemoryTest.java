@@ -14,12 +14,14 @@ import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.storage.temporary.TemporaryMemory;
 import seedu.dengue.testutil.DengueHotspotTrackerBuilder;
+import seedu.dengue.testutil.TypicalPersons;
 
 public class TemporaryMemoryTest {
     private DengueHotspotTrackerBuilder builder;
     private DengueHotspotTracker tracker;
     private TemporaryMemory memory;
     private ArrayList<DengueHotspotTracker> inputs;
+
 
     // Randomly generated states of DengueHotspotTrackers to test.
     @BeforeEach
@@ -34,6 +36,38 @@ public class TemporaryMemoryTest {
         }
 
     }
+
+    // Specific test cases
+    @Test
+    public void saveFiveThenUndoThreeTimes_fixedInputs_loadsCorrectFile()
+            throws CommandException {
+        DengueHotspotTracker tracker = this.builder.buildNew();
+        DengueHotspotTracker first = tracker.generateDeepCopy();
+        first.addPerson(TypicalPersons.ALICE);
+
+        DengueHotspotTracker second = first.generateDeepCopy();
+        second.addPerson(TypicalPersons.BOB);
+
+        DengueHotspotTracker third = second.generateDeepCopy();
+        third.addPerson(TypicalPersons.CARL);
+
+        DengueHotspotTracker fourth = third.generateDeepCopy();
+        fourth.addPerson(TypicalPersons.DANIEL);
+
+        DengueHotspotTracker fifth = fourth.generateDeepCopy();
+        fifth.setPerson(TypicalPersons.CARL, TypicalPersons.FIONA);
+
+        for (DengueHotspotTracker file
+                : new DengueHotspotTracker[] {first, second, third, fourth, fifth}) {
+            this.memory.saveNewLatest(file);
+        }
+        this.memory.undo();
+        this.memory.undo();
+        this.memory.undo();
+        assertEquals(this.memory.loadCurrent(), second);
+    }
+
+    // Random test cases
 
     // Positive random test cases.
 

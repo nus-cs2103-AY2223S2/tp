@@ -14,6 +14,8 @@ public class NameComparator implements Comparator<Name> {
      * @param n2 the second object to be compared.
      * @return An integer, which is positive if n2 > n1, zero if n1 == n2 and negative if n1 < n2.
      */
+
+    @Override
     public int compare(Name n1, Name n2) {
         return n1.fullName.compareTo(n2.fullName);
     }

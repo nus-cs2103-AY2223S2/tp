@@ -29,10 +29,13 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
         persons = new UniquePersonList();
     }
 
+    /**
+     * Creates an empty {@code DengueHotspotTracker}.
+     */
     public DengueHotspotTracker() {}
 
     /**
-     * Creates an DengueHotspotTracker using the Persons in the {@code toBeCopied}
+     * Creates a {@code DengueHotspotTracker} using the Persons in the {@code toBeCopied}
      */
     public DengueHotspotTracker(ReadOnlyDengueHotspotTracker toBeCopied) {
         this();
