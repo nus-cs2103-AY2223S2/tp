@@ -663,7 +663,7 @@ If you edit the taggedPerson in User data, beware that you may end up unlinking 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NeoBook will discard all data and start with an empty data file at the next run.
 </div>
 
 [Back To Contents](#table-of-contents)
