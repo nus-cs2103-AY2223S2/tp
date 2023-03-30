@@ -679,6 +679,24 @@ Extensions:
   * All meetings imported.
   * Use case ends.
 
+**Use case: UC16 - Mark Meetings as Done**
+
+MSS:
+
+1. User marks meetings as done.
+2. QuickContacts updates meetings and updates the view.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Meeting index not found.
+    * 1a1. Show error message.
+
+* 1b. Meetings not provided.
+    * 1b1. Show error message.
+
+    Use case ends.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
