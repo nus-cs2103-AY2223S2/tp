@@ -7,14 +7,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.model.person.Person;
 
 public class UniqueGroupListTest {
     private final UniqueGroupList emptyGroupList = new UniqueGroupList();
@@ -37,13 +35,13 @@ public class UniqueGroupListTest {
     public void removeGroupFromList() {
         UniqueGroupList ugl = new UniqueGroupList();
         ugl.add(group);
-        ugl.delete(group, new HashSet<Person>());
+        ugl.delete(group);
         assertFalse(ugl.contains(group));
         assertThrows(NullPointerException.class, () -> {
-            ugl.delete(null, new HashSet<Person>());
+            ugl.delete(null);
         });
         assertThrows(GroupNotFoundException.class, () -> {
-            ugl.delete(group, new HashSet<Person>());
+            ugl.delete(group);
         });
     }
 
