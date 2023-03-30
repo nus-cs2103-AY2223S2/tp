@@ -47,7 +47,7 @@ public class PetListPanel extends UiPart<Region> {
                 LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
                 LocalDateTime currTime = LocalDateTime.now();
 
-                if (currTime.isAfter(deadline)) {
+                if (currTime.isAfter(deadline) && !(pet.getIsMarked())) {
                     getStyleClass().add("deadline-date");
                 } else {
                     getStyleClass().remove("deadline-date");
