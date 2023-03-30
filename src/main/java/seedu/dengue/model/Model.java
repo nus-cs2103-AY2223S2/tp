@@ -127,7 +127,16 @@ public interface Model {
      */
     void sort(List<Person> sortedList);
 
+    /**
+     * Imports data from a CSV file.
+     * @throws DataConversionException if data format is wrong.
+     * @throws IOException thrown while reading file.
+     */
     void importCsv(Path filePath) throws DataConversionException, IOException;
 
+    /**
+     * Exports data to a CSV file.
+     * @throws IOException thrown while writing file.
+     */
     void exportCsv(Path filePath) throws IOException;
 }
