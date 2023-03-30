@@ -7,16 +7,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.Findable;
+
 /**
  * The appointment class containing a meeting with a customer at a particular date.
  */
-public class Appointment {
+public class Appointment implements Findable {
     private static final String OUTPUT_FORMAT = "<<Appointment>>" + NEWLINE
                                                         + "Customer: %d" + NEWLINE
                                                         + "Date: %s";
@@ -115,5 +118,15 @@ public class Appointment {
         return String.format(OUTPUT_FORMAT, this.getCustomerId(),
                 this.getTimeDate().format(DateTimeFormatter.ofLocalizedDateTime(
                         FormatStyle.FULL, FormatStyle.SHORT)));
+    }
+
+    @Override
+    public boolean hasKeyword(String keyword) {
+        try {
+            LocalDate date = LocalDate.parse(keyword);
+            return this.timeDate.toLocalDate().equals(date);
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
     }
 }

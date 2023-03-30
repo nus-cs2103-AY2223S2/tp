@@ -146,5 +146,4 @@ public class Customer extends Person {
         String temp = super.toString();
         return temp + StringUtil.NEWLINE + String.format("Vehicles: %s", this.getVehicleIds());
     }
-
 }
