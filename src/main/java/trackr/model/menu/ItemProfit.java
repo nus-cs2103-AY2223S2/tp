@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
 import java.text.DecimalFormat;
-//import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Item's profit in the Item list.
@@ -24,7 +23,6 @@ public class ItemProfit {
         requireNonNull(itemPrice);
         requireNonNull(itemCost);
         this.value = DF.format(itemPrice.getValue() - itemCost.getValue());
-        System.out.println(value);
         checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
     }
 

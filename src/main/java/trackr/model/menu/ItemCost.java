@@ -3,6 +3,8 @@ package trackr.model.menu;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a Item's cost in the Item list.
  * Guarantees: immutable; is valid as declared in {@link #isValidCost(String)}
@@ -11,6 +13,7 @@ public class ItemCost {
     public static final String MESSAGE_CONSTRAINTS =
             "Cost should only contain positive numbers, and it should be at most 2 decimal place";
     public static final String VALIDATION_REGEX = "^\\d+(.\\d{0,2})?$";
+    public static final DecimalFormat DF = new DecimalFormat("0.00");
     public final Double value;
 
     /**
@@ -32,7 +35,7 @@ public class ItemCost {
 
     @Override
     public String toString() {
-        return "Cost Price: $" + value;
+        return "Cost Price: $" + DF.format(this.value);
     }
 
     public String toJsonString() {
