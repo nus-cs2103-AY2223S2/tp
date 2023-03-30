@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <VBox fx:id="tempContainer" alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="welcomeMessage" text="Welcome To Modcheck!" textAlignment="CENTER" wrapText="true">
+    <Label fx:id="welcomeMessage" text="Welcome To MODCheck!" textAlignment="CENTER" wrapText="true">
         <VBox.margin>
             <Insets bottom="20.0" />
         </VBox.margin>
@@ -24,14 +25,14 @@
       <font>
          <Font name="Arial" size="20.0" />
       </font></Label>
-    <TextField fx:id="inputField" alignment="CENTER" maxHeight="50.0" maxWidth="650.0" onKeyPressed="#handleSubmit" prefHeight="40.0">
+    <PasswordField fx:id="inputField" alignment="CENTER" maxHeight="50.0" maxWidth="650.0" onKeyPressed="#handleSubmit" prefHeight="40.0">
         <VBox.margin>
             <Insets bottom="10.0" />
         </VBox.margin>
         <font>
             <Font name="Arial" size="18.0" />
         </font>
-    </TextField>
+    </PasswordField>
    <Label fx:id="errorMessageLabel" textFill="RED">
       <VBox.margin>
          <Insets />

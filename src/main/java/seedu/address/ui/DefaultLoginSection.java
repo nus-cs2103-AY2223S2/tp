@@ -3,7 +3,7 @@ package seedu.address.ui;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -22,7 +22,7 @@ public class DefaultLoginSection extends UiPart<Region> {
     private Label errorMessageLabel;
 
     @FXML
-    private TextField inputField;
+    private PasswordField inputField;
 
     @FXML
     private VBox tempContainer;
