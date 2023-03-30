@@ -35,9 +35,9 @@ public class FavoriteCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, Boolean isFavorite) {
         assert personToEdit != null;
 
-        Person newPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRank(),
-                personToEdit.getUnit(), personToEdit.getCompany(), personToEdit.getPlatoon(), personToEdit.getTags());
+        Person newPerson = new Person(personToEdit.getRank(), personToEdit.getName(), personToEdit.getUnit(),
+                personToEdit.getCompany(), personToEdit.getPlatoon(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags());
         newPerson.setIsFavorite(isFavorite);
         return newPerson;
     }
