@@ -1,7 +1,6 @@
 package seedu.dengue.model.predicate;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.variant.Variant;

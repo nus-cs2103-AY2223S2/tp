@@ -3,10 +3,10 @@ package seedu.dengue.model.predicate;
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
+
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
-import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.variant.Variant;
@@ -79,8 +79,8 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
     /**
      * Composes all predicates with "and".
      * @param predicates Predicates to be composed.
-     * @return A new predicate.
      * @param <R> Any data-type.
+     * @return A new predicate.
      */
     public static <R> Predicate<R> andAll(Predicate<R>... predicates) {
         Predicate<R> initial = x -> true;
