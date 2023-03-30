@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.AddOrderCommand;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
+import seedu.loyaltylift.logic.commands.AdvanceOrderStatusCommand;
 import seedu.loyaltylift.logic.commands.AppendCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.AppendOrderNoteCommand;
+import seedu.loyaltylift.logic.commands.CancelOrderCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
@@ -24,6 +26,7 @@ import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.ListOrderCommand;
 import seedu.loyaltylift.logic.commands.MarkCustomerCommand;
+import seedu.loyaltylift.logic.commands.RevertOrderStatusCommand;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.SetOrderNoteCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
@@ -123,6 +126,15 @@ public class AddressBookParser {
 
         case ListOrderCommand.COMMAND_WORD:
             return new ListOrderCommandParser().parse(arguments);
+
+        case AdvanceOrderStatusCommand.COMMAND_WORD:
+            return new AdvanceOrderStatusCommandParser().parse(arguments);
+
+        case RevertOrderStatusCommand.COMMAND_WORD:
+            return new RevertOrderStatusCommandParser().parse(arguments);
+
+        case CancelOrderCommand.COMMAND_WORD:
+            return new CancelOrderCommandParser().parse(arguments);
 
         case ViewOrderCommand.COMMAND_WORD:
             return new ViewOrderCommandParser().parse(arguments);

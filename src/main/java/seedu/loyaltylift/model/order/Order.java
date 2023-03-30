@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Objects;
 
+import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
@@ -24,6 +25,8 @@ public class Order {
     public static final Comparator<Order> SORT_STATUS = Comparator.comparing(Order::getStatus)
             .thenComparing(SORT_CREATED_DATE);
 
+    public static final String MESSAGE_INVALID_REVERT_COMMAND = "This order status is already at its earliest stage";
+    public static final String MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND = "This order is already completed or cancelled";
     private final Customer customer;
     private final Name name;
     private final Quantity quantity;
@@ -92,6 +95,55 @@ public class Order {
     public Order newOrderWithCustomer(Customer customer) {
         return new Order(customer, getName(), getQuantity(), getAddress(), getStatus(), getCreatedDate(), getNote());
     }
+
+    /**
+     * Creates and returns a {@code Order} with the order status advanced
+     */
+    public Order advance() throws CommandException {
+        Status advancedStatus;
+
+        try {
+            advancedStatus = this.getStatus().newStatusWithNewUpdate(LocalDate.now());
+        } catch (IllegalStateException e) {
+            throw new CommandException(MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND);
+        }
+
+        return new Order(getCustomer(), getName(), getQuantity(),
+                getAddress(), advancedStatus, getCreatedDate(), getNote());
+    }
+
+    /**
+     * Creates and returns a {@code Order} with the order status reverted
+     */
+    public Order revert() throws CommandException {
+        Status revertedStatus;
+
+        try {
+            revertedStatus = status.newStatusWithRemoveLatest();
+        } catch (IllegalStateException e) {
+            throw new CommandException(MESSAGE_INVALID_REVERT_COMMAND);
+        }
+
+        return new Order(getCustomer(), getName(), getQuantity(),
+                getAddress(), revertedStatus, getCreatedDate(), getNote());
+    }
+
+    /**
+     * Creates and returns a {@code Order} with the order status cancelled
+     */
+    public Order cancel() throws CommandException {
+        Status newStatus;
+        Status currentStatus = getStatus();
+
+        try {
+            newStatus = currentStatus.newStatusForCancelledOrder(LocalDate.now());
+        } catch (IllegalStateException e) {
+            throw new CommandException(MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND);
+        }
+
+        return new Order(getCustomer(), getName(), getQuantity(), getAddress(), newStatus, getCreatedDate(), getNote());
+    }
+
 
     /**
      * Returns true if both orders have the same name.
