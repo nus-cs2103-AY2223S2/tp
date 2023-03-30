@@ -342,9 +342,9 @@ Format: `addNote note -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
 
 Examples:
 
-* `addNote note -content rmb to bring along apple pencil\n -type Tutorial -name 2`
-* `addNote note -content grade student labs timely\n -type Lab -name 2`
-* `addNote note -content solve this student's query via email\n -type Recur -name 2`
+* `addNote note -content rmb to bring along apple pencil -type Tutorial -name DummyTutorial`
+* `addNote note -content grade student labs timely -type Lab -name DummyLab`
+* `addNote note -content solve this student's query via email -type Recur -name DummyRecur`
 
 <div id='delete-note-from-event'></div>
 
@@ -354,7 +354,7 @@ Examples:
 
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
-Format: `deletNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX]`
+Format: `deleteNote -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index [NOTE_INDEX]`
 
 Examples:
 
@@ -372,35 +372,17 @@ Note that when a particular note index does not exist, it does nothing.
 
 Format:
 
-* `editNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX] [NEW_CONTENT]`
+* `editNote -content [NEW_CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME or EVENT_INDEX] -index [NOTE_INDEX]`
 
 Examples:
 
 
-* `editNote -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3`
-* `editNote -content grade student labs timely\n -type Lab -name 2 -index 1`
-* `editNote -content solve this student's query via email\n -type Recur -name 2 -index 0`
+* `editNote -content rmb to bring along apple pencil -type Tutorial -name 2 -index 3`
+* `editNote -content grade student labs timely -type Lab -name 2 -index 1`
+* `editNote -content solve this student's query via email -type Recur -name 2 -index 0`
 
 --------------------------------------------------------------------
-<div id='help'></div>
 
-## Help Features
-=======
-### Help for events: `help`
-
-Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
-
-This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
-
-Format: `help [TYPE]`
-
-Examples:
-* `help`
-* `help student`
-* `help event`
-* `help organisation`
-
---------------------------------------------------------------------
 <div id='sort-students'></div>
 
 ## Sort / Filter features*
@@ -446,9 +428,9 @@ Examples:
 
 <div id='help-section'></div>
 
-### Help for events: `help`
+### Help for the application: `help`
 
-Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
+Returns a list of instructions on what are the commands and also what input format is required to successfully execute certain functions.
 
 This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
 
@@ -456,9 +438,12 @@ Format: `help [TYPE]`
 
 Examples:
 * `help`
-* `help lab`
-* `help tutorial`
-* `help consultation`
+* `help student`
+* `help event`
+* `help event lab`
+* `help event tutorial`
+* `help event consultation`
+* `help organisation`
 
 --------------------------------------------------------------------
 
