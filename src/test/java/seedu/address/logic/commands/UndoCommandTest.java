@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalPersons;
 
 class UndoCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     @Test
     void execute_noUndoableCommand_failure() {
         assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_NO_UNDOABLE_COMMAND);

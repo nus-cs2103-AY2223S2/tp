@@ -130,4 +130,16 @@ public interface Model {
      * @param path The string representation of the path of the file to be combined with.
      */
     void combine(ReadOnlyAddressBook toBeCombined, String path);
+
+    //=========== UserData ==================================================================================
+
+    void setHashedPassword(String hashedPassword);
+
+    String getHashedPassword();
+
+    void setNumberOfTimesUsed(int numberOfTimesUsed);
+
+    int getNumberOfTimesUsed();
+
+    ReadOnlyUserData getUserData();
 }

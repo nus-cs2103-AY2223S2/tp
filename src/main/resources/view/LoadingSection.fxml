@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="tempContainer" alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="loadingLabel" alignment="CENTER" text="Hang Tight! You are currently entering into MODCheck..." textAlignment="CENTER" wrapText="true">
+      <font>
+         <Font name="Arial" size="30.0" />
+      </font></Label>
+</VBox>

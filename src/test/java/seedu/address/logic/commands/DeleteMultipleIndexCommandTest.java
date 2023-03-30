@@ -12,12 +12,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
 class DeleteMultipleIndexCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     @Test
     void execute_deleteMultipleValidIndex_success() {
         List<Person> list = model.getFilteredPersonList();
@@ -30,7 +31,8 @@ class DeleteMultipleIndexCommandTest {
         DeleteMultipleIndexCommand deleteCommand = new DeleteMultipleIndexCommand(indexes);
 
         String expectedMessage = String.format(DeleteMultipleIndexCommand.MESSAGE_DELETE_PERSON_SUCCESS);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new UserData());
         expectedModel.deleteMultiplePersons(new ArrayList<>(list));
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

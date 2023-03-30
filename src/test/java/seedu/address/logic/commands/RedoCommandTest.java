@@ -10,11 +10,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalPersons;
 
 class RedoCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     @Test
     void execute_noRedoableCommand_failure() {
         assertCommandFailure(new RedoCommand(), model, RedoCommand.MESSAGE_NO_REDOABLE_COMMAND);

@@ -85,4 +85,8 @@ public abstract class UiPart<T> {
         return requireNonNull(fxmlFileUrl);
     }
 
+    public void hashPassword(String password) {
+        // hashing to be done in v1.4
+    }
+
 }
