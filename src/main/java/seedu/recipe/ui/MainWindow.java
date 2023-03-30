@@ -1,5 +1,8 @@
 package seedu.recipe.ui;
 
+import static seedu.recipe.ui.events.DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE;
+import static seedu.recipe.ui.events.EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -83,7 +86,8 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
+        getRoot().addEventFilter(DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
+        getRoot().addEventFilter(EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
 
         helpWindow = new HelpWindow();
     }
