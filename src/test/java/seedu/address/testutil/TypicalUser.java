@@ -26,7 +26,7 @@ public class TypicalUser {
     public static final User LINUS = new User(new Name("Linus Richards"),
             new Phone("90102030"),
             new Email("linusrichards@gmail.com"),
-            new Station("NUS"),
+            new Station("Kent Ridge"),
             new TelegramHandle("@linusrichards"),
             new ContactIndex(0),
             new HashSet<>() {{

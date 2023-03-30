@@ -334,8 +334,12 @@ public class ModelManager implements Model {
 
     @Override
     public void addMeetUp(MeetUp meetUp) {
-        MeetUpIndex meetUpIndex = meetUpIndexHandler.assignMeetUpIndex();
         eduMate.addMeetUp(meetUp);
+    }
+
+    @Override
+    public void deleteMeetUp(MeetUpIndex meetUpIndex) {
+        eduMate.removeMeetUp(this.getMeetUpByIndex(meetUpIndex).get());
     }
 
     @Override
@@ -348,5 +352,15 @@ public class ModelManager implements Model {
         return observableMeetUps;
     }
 
+    @Override
+    public Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex) {
+        return meetUpIndexHandler.getMeetUpByIndex(meetUpIndex);
+    }
+
+    @Override
+    public boolean hasMeetUp(MeetUp meetUp) {
+        requireNonNull(meetUp);
+        return eduMate.hasMeetUp(meetUp);
+    }
 
 }

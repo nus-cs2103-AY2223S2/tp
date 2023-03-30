@@ -26,7 +26,7 @@ public class UniqueMeetUpList implements Iterable<MeetUp> {
      */
     public boolean contains(MeetUp toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameMeetUp);
+        return internalList.stream().anyMatch(other -> other.isSameMeetUp(toCheck));
     }
 
     /**

@@ -75,6 +75,6 @@ public class MeetUp implements Comparable<MeetUp> {
     public boolean isSameMeetUp(MeetUp other) {
         return this.timePeriod.equals(other.timePeriod)
                 && this.location.equals(other.location)
-                && this.participants.equals(other.participants);
+                && this.participants.isSameParticipants(other.participants);
     }
 }
