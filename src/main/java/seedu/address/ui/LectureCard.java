@@ -16,7 +16,7 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 public class LectureCard extends UiPart<Region> {
 
     private static final String FXML = "LectureListCard.fxml";
-    private static final String NO_VIDEOS_FOUND_TEXT = "No videos watched";
+    private static final String NO_VIDEOS_FOUND_TEXT = "No videos found";
     private static final String VIDEO_PROGRESS_FORMAT = "Watched %o/%o videos";
 
     private final ReadOnlyLecture lecture;

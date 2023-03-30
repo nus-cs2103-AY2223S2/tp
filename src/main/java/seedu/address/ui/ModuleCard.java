@@ -59,7 +59,7 @@ public class ModuleCard extends UiPart<Region> {
         if (totalLectureCount > 0) {
             lectureCompletedCount = module.getLectureList().filtered(lecture -> {
                 int watchCount = lecture.getVideoList().filtered(vid -> vid.hasWatched()).size();
-                return watchCount == lecture.getVideoList().size();
+                return watchCount > 0 && watchCount == lecture.getVideoList().size();
             }).size();
         }
 
