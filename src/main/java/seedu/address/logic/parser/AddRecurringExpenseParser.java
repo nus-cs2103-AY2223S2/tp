@@ -14,9 +14,9 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddRecurringExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
+import seedu.address.model.expense.Price;
 import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.expense.RecurringExpenseType;
-import seedu.address.model.person.Price;
 
 /**
  * Parses input arguments and creates a new AddCategoryCommand object

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.SetBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Budget;
-import seedu.address.model.person.Price;
+import seedu.address.model.expense.Price;
 
 /**
  * Parses input arguments and creates a new AddExpenseCommand object
