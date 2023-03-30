@@ -107,7 +107,7 @@ public class EnlargedPatientInfoCard extends UiPart<Region> {
      * Clears the information shown on the {@code EnlargedPatientInfoCard}.
      */
     public void clearDisplay() {
-        name.setText("Nobody Selected");
+        name.setText("");
         phone.setText("");
         email.setText("");
         height.setText("");

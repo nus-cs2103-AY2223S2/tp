@@ -130,7 +130,14 @@ public class ContactDisplay extends UiPart<Region> {
      * This information is either that of a doctor or a patient.
      */
     public void updateEnlargedInfoCard() {
-        // If app reaches here, then command should be select-doc or select-ptn
+        if (infoCardDisplayController.shouldDisplayDoctorInfoCard()
+                == infoCardDisplayController.shouldDisplayPatientInfoCard()) {
+            logger.severe("shouldDisplayDoctor and shouldDisplayPatient"
+                    + "in EnlargedInfoCardDisplayController should never be equal!");
+            return;
+        }
+
+        // If app reaches here, then command should contain some selection
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
             enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());

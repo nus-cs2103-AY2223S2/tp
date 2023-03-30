@@ -39,15 +39,15 @@
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder"
-                       minHeight="150">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
+                       minHeight="125">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="SOMETIMES" fx:id="contactDisplayPlaceholder"
-                       minHeight="250">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="contactDisplayPlaceholder"
+                       minHeight="250" maxHeight="700">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
