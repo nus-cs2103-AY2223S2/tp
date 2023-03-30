@@ -299,6 +299,32 @@ Exits the program.
 
 Format: `exit`
 
+
+### 15. Filtering students by tag: `filter`
+
+Filter students whose tag contain any of the given keywords.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `primary` will match `Primary`
+* The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
+* Only the tag is searched.
+* Only full words will be matched e.g. `primary` will not match `primary4`
+* Students whose tag matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `primary primary4` will return `primary`, `primary4`
+
+Examples:
+* `filter primary` returns `primary`, `Primary`
+* `filter primary primary4` returns `primary`, `primary4`
+
+
+### 16. Switch between tabs : `switch`
+
+Switch between the score list and score chart tabs.
+
+Format: `switch`, it also support mouse click.
+
+
 ### Saving the data
 
 MATHUTORING data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
