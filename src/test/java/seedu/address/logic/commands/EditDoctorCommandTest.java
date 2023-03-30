@@ -47,7 +47,7 @@ public class EditDoctorCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, editedDoctor, expectedModel);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class EditDoctorCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(lastDoctor, editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, editedDoctor, expectedModel);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class EditDoctorCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, editedDoctor, expectedModel);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class EditDoctorCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setDoctor(model.getFilteredDoctorList().get(0), editedDoctor);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, expectedMessage, editedDoctor, expectedModel);
     }
 
     @Test
