@@ -1,7 +1,5 @@
 package seedu.address.model.client.policy;
 
-import seedu.address.model.client.Email;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
