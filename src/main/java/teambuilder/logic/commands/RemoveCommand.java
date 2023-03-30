@@ -77,16 +77,9 @@ public class RemoveCommand extends Command {
         assert teamMember != null;
 
         Set<Tag> teamTags = teamMember.getTeams();
-        Tag[] teamMemberTeams = new Tag[teamTags.size()];
-        teamTags.toArray(teamMemberTeams);
-        HashSet<Tag> updatedTeamTag = new HashSet<Tag>();
-
-        for (Tag i : teamMemberTeams) {
-            if (i.equals(teamTagToDelete)) {
-                continue;
-            }
-            updatedTeamTag.add(i);
-        }
+        HashSet<Tag> updatedTeamTag = new HashSet<>();
+        updatedTeamTag.addAll(teamTags);
+        updatedTeamTag.remove(teamTagToDelete);
 
         return new Person(teamMember.getName(), teamMember.getPhone(), teamMember.getEmail(), teamMember.getAddress(),
                 teamMember.getMajor(), teamMember.getTags(), updatedTeamTag);

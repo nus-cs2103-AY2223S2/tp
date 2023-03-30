@@ -3,11 +3,13 @@ package teambuilder.model.team;
 import static java.util.Objects.requireNonNull;
 import static teambuilder.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
 import teambuilder.model.tag.Tag;
 import teambuilder.model.team.exceptions.DuplicateTeamException;
@@ -19,8 +21,8 @@ import teambuilder.model.team.exceptions.TeamNotFoundException;
 public class UniqueTeamList implements Iterable<Team> {
 
     private final ObservableList<Team> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Team> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Team> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent team as the given argument.
@@ -78,23 +80,24 @@ public class UniqueTeamList implements Iterable<Team> {
      */
     public void updatePersonInTeams(Person person) {
         requireNonNull(person);
-        Object[] allTeamTags = person.getTeams().toArray();
+        Tag[] allTeamTags = new Tag[person.getTeams().size()];
+        person.getTeams().toArray(allTeamTags);
 
         for (Team team : internalList) {
             boolean isPresent = false;
-            for (Object tag : allTeamTags) {
-                Tag castedTag = (Tag) tag;
-                if (castedTag.getName().equals(team.toString())) {
-                    team.addPerson(person.getName());
+            for (Tag tag : allTeamTags) {
+                if (tag.getName().equals(team.toString())) {
+                    Team editedTeam = addNameToTeamMember(team, person.getName());
+                    setTeam(team, editedTeam);
                     isPresent = true;
                     break;
                 }
             }
             if (!isPresent) {
-                team.removePerson(person.getName());
+                Team editedTeam = removeNameFromTeamMember(team, person.getName());
+                setTeam(team, editedTeam);
             }
         }
-
 
     }
 
@@ -103,9 +106,12 @@ public class UniqueTeamList implements Iterable<Team> {
      */
     public void removeFromAllTeams(Person person) {
         requireNonNull(person);
-
+        Name nameToRemove = person.getName();
         for (Team team : internalList) {
-            team.removePerson(person.getName());
+            if (team.getMembers().contains(nameToRemove)) {
+                Team editedTeam = removeNameFromTeamMember(team, nameToRemove);
+                setTeam(team, editedTeam);
+            }
         }
 
     }
@@ -144,7 +150,7 @@ public class UniqueTeamList implements Iterable<Team> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTeamList // instanceof handles nulls
-                && internalList.equals(((UniqueTeamList) other).internalList));
+                        && internalList.equals(((UniqueTeamList) other).internalList));
     }
 
     @Override
@@ -165,4 +171,19 @@ public class UniqueTeamList implements Iterable<Team> {
         }
         return true;
     }
+
+    private Team addNameToTeamMember(Team team, Name name) {
+        HashSet<Name> editedNames = new HashSet<>();
+        editedNames.addAll(team.getMembers());
+        editedNames.add(name);
+        return new Team(team, editedNames);
+    }
+
+    private Team removeNameFromTeamMember(Team team, Name name) {
+        HashSet<Name> editedNames = new HashSet<>();
+        editedNames.addAll(team.getMembers());
+        editedNames.remove(name);
+        return new Team(team, editedNames);
+    }
+
 }
