@@ -115,10 +115,7 @@ We advise you to
 
 ### Architecture
 
-@doug (all the misc todos here)
-
-{TODO drawio}
-<img src="images/archi/ArchitectureDiagram.png" width="280" />
+![Architecture Class Diagram](images/archi/ArchitectureClassDiagram.png "Architecture Class Diagram")
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
