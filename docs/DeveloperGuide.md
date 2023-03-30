@@ -369,7 +369,7 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 
 [Scroll back to top](#table-of-contents)
 
-### Storage component
+### Storage Component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/storage/Storage.java)
 
