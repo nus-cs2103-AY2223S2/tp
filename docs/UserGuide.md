@@ -73,22 +73,19 @@ You can click on any of the links below to navigate to the respective sections f
 ### Java
 Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)</ins> or above installed.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-tip">
 
-**:information_source: How to check your current Java version:**<br>
+  :bulb: **How to check your current Java version:**<br>
+  1. Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
+  2. Type and run the command `java -version`. 
+  3. Check the version number provided (`xxx`) is at least `11`.
 
-1. Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
+  An example is shown below.
 
-1. Type and run the command `java -version`.
-
-1. Check the version number provided (`xxx`) is at least `11`.
-
-An example is shown below.
-
-```
-> java -version
-java version "xxx" <Other information>
-```
+  ```
+  > java -version
+  java version "xxx" <Other information>
+  ```
 
 </div>
 
@@ -111,9 +108,9 @@ java version "xxx" <Other information>
 2. Copy the file to the folder where you will use Trackr.
 3. Double click on the `trackr.jar` file.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-tip">
 
-  **:information_source: Trackr does not open?**<br>
+  :bulb: **Trackr does not open?**<br>
 
   1. Open a command terminal.
   2. Type in `java -jar ` (Keep in mind of the space at the end).
@@ -487,7 +484,8 @@ Save changes after any command executed successfully. There is no need to save m
 
 Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
 
