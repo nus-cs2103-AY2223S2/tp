@@ -10,11 +10,32 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+        + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
-    private static final String COMMAND_DOES_NOT_EXIST = "Command does not exist";
+    private static final String COMMAND_DOES_NOT_EXIST = "This command does not exist in Quick Contacts.";
+    private static final String COMMAND_DESCRIPTION = "Shows program usage instructions.";
+    private static final String LIST_OF_AVAILABLE_COMMANDS = "Here are the list of available commands:\n"
+        + "Enter `help [command]` to find out more about each command.\n"
+        + "1. " + AddCommand.COMMAND_WORD + ": " + AddCommand.COMMAND_DESCRIPTION + "\n"
+        + "2. " + EditCommand.COMMAND_WORD + ": " + EditCommand.COMMAND_DESCRIPTION + "\n"
+        + "3. " + DeleteCommand.COMMAND_WORD + ": " + DeleteCommand.COMMAND_DESCRIPTION + "\n"
+        + "4. " + ClearCommand.COMMAND_WORD + ": " + ClearCommand.COMMAND_DESCRIPTION + "\n"
+        + "5. " + FindCommand.COMMAND_WORD + ": " + FindCommand.COMMAND_DESCRIPTION + "\n"
+        + "6. " + ListCommand.COMMAND_WORD + ": " + ListCommand.COMMAND_DESCRIPTION + "\n"
+        + "7. " + ExportPersonsCommand.COMMAND_WORD + ": " + ExportPersonsCommand.COMMAND_DESCRIPTION + "\n"
+        + "8. " + ImportPersonsCommand.COMMAND_WORD + ": " + ImportPersonsCommand.COMMAND_DESCRIPTION + "\n"
+        + "9. " + AddMeetingCommand.COMMAND_WORD + ": " + AddMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "10. " + FindMeetingCommand.COMMAND_WORD + ": " + FindMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "11. " + ViewMeetingsCommand.COMMAND_WORD + ": " + ViewMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "12. " + EditMeetingsCommand.COMMAND_WORD + ": " + EditMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "13. " + DeleteMeetingCommand.COMMAND_WORD + ": " + DeleteMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "14. " + ExportMeetingsCommand.COMMAND_WORD + ": " + ExportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "15. " + ImportMeetingsCommand.COMMAND_WORD + ": " + ImportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "16. " + SortMeetingCommand.COMMAND_WORD + ": " + SortMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "17. " + HelpCommand.COMMAND_WORD + ": " + HelpCommand.COMMAND_DESCRIPTION + "\n"
+        + "18. " + ExitCommand.COMMAND_WORD + ": " + ExitCommand.COMMAND_DESCRIPTION + "\n";
     private static final String SHOW_HELP_POPUP = "";
     private final String commandWord;
 
@@ -88,13 +109,14 @@ public class HelpCommand extends Command {
             return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
 
         default:
-            return new CommandResult(COMMAND_DOES_NOT_EXIST);
+            return new CommandResult(COMMAND_DOES_NOT_EXIST + "\n\n" + LIST_OF_AVAILABLE_COMMANDS);
         }
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof HelpCommand // instanceof handles nulls
-                && commandWord.equals(((HelpCommand) other).commandWord)); // state check
+            || (other instanceof HelpCommand // instanceof handles nulls
+            && commandWord.equals(((HelpCommand) other).commandWord)); // state check
     }
 }
