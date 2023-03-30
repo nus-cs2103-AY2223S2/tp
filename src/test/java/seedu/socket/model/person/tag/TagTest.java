@@ -1,12 +1,10 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.socket.model.person.tag.Tag;
 
 public class TagTest {
 

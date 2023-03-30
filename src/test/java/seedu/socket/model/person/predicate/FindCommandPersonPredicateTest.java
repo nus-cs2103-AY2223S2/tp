@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class PersonContainsKeywordsPredicateTest {
+public class FindCommandPersonPredicateTest {
 
     @Test
     public void testEquals() {
