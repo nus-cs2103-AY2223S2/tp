@@ -40,12 +40,15 @@ public class PersonListPanel extends UiPart<Region> {
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
 
+            personListView.setFocusTraversable(false);
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                logger.info("Clicked");
                 setOnMouseClicked(e -> {
+                    logger.info("Passed");
                     logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());
                     if (!logic.getViewedPerson().isEmpty()
                             && PersonListViewCell.super.getItem().isSamePerson(logic.getViewedPerson().get(0))) {
