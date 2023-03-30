@@ -28,14 +28,18 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + "Format: redo";
 
     public static final String ADD_COMMAND_MESSAGE = "3) Add a person to the patient records:\n"
-                                                        + "Format: add n/NAME i/NRIC p/PHONE_NUMBER a/ADDRESS"
+                                                        + "Format: add n/NAME i/NRIC "
+                                                        + "dob/DATE OF BIRTH"
+                                                        + " p/PHONE_NUMBER a/ADDRESS"
                                                         + " d/DRUG ALLERGIES g/GENDER"
                                                         + " ad/DOCTOR"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
-    public static final String EDIT_COMMAND_MESSAGE = "4) Edit an existing person in patient records:\n"
-                                                        + "Format: edit i/NRIC [n/NAME] [p/PHONE]"
-                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES g/GENDER"
+    public static final String EDIT_COMMAND_MESSAGE = "4) Edit an existing person in patient records"
+                                                        + " based on the person's INDEX number:\n"
+                                                        + "Format: edit INDEX [n/NAME] [p/PHONE]"
+                                                        + " [dob/DATE OF BIRTH]"
+                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES] g/GENDER"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
     public static final String DELETE_COMMAND_MESSAGE = "5) Deletes patient with the specified NRIC from"
@@ -46,12 +50,13 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + "Format: list";
 
     public static final String VIEW_COMMAND_MESSAGE = "7) View a patient's record:\n"
-                                                        + "Format: get i/NRIC";
+                                                        + "Format: view i/NRIC";
 
     public static final String FIND_COMMAND_MESSAGE = "8) Find patients according to a particular attribute:\n"
-                                                        + "Format: find (i/NRIC | n/NAME | t/TAG | m/MEDICINE)";
+                                                        + "Format: find (i/NRIC | n/NAME | t/TAG |"
+                                                        + " ad/doctor | m/MEDICINE)";
 
-    public static final String BACKUP_COMMAND_MESSAGE = "9) Backs up the patient recors to specified"
+    public static final String BACKUP_COMMAND_MESSAGE = "9) Backs up the patient records to specified"
                                                         + " slot represented by an index:\n"
                                                         + " Format: backup INDEX_NO";
 
@@ -60,7 +65,7 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + " Format: load INDEX_NO";
 
     public static final String VIEW_BACKUP_COMMAND_MESSAGE = "11) Shows all the backups available:\n"
-                                                        + "Format: viewbackup";
+                                                        + "Format: viewbackups";
 
     public static final String DELETE_BACKUP_COMMAND_MESSAGE = "12) Deletes the data from a specified slot"
                                                         + " represented by an index.\n"
