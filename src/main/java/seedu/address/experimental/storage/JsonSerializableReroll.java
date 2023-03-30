@@ -50,8 +50,8 @@ public class JsonSerializableReroll {
                 .map(x -> (Character) x).map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
         items.addAll(source.getItems().getEntityList().stream().map(x -> (Item) x)
                 .map(JsonAdaptedItem::new).collect(Collectors.toList()));
-        templates.addAll(source.getTemplates().stream().map(JsonAdaptedTemplate::new)
-                .collect(Collectors.toList()));
+        templates.addAll(source.getTemplates().getEntityList().stream().map(x -> (Template) x)
+                .map(JsonAdaptedTemplate::new).collect(Collectors.toList()));
     }
 
     /**
@@ -76,12 +76,9 @@ public class JsonSerializableReroll {
         }
 
         // Add all templates
-        List<Template> modelTemplates = new ArrayList<>();
         for (JsonAdaptedTemplate jsonTemplate : templates) {
-            modelTemplates.add(jsonTemplate.toModelType());
+            reroll.addEntity(jsonTemplate.toModelType());
         }
-
-        reroll.resetTemplates(modelTemplates);
 
         return reroll;
     }

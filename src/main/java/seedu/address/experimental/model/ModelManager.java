@@ -27,9 +27,11 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character;
+    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character
+                && !(entity instanceof Template);
     private static final Predicate<Entity> PREDICATE_IS_MOB = entity -> entity instanceof Mob;
     private static final Predicate<Entity> PREDICATE_IS_ITEM = entity -> entity instanceof Item;
+    private static final Predicate<Entity> PREDICATE_IS_TEMPLATE = entity -> entity instanceof Template;
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
@@ -194,7 +196,12 @@ public class ModelManager implements Model {
         filteredActive.setPredicate(previousPredicate);
         return result;
     }
+    @Override
+    public void listTemplates() {
+        updateFilteredEntityList(PREDICATE_IS_TEMPLATE);
+    }
 
+    //=========== Filtered Entity List Accessors =============================================================
     @Override
     public ObservableList<Entity> getFilteredEntityList() {
         return filteredActive;
@@ -233,19 +240,27 @@ public class ModelManager implements Model {
     public ObservableList<Entity> getListByClassification(String classification) {
         requireNonNull(classification);
         ObservableList<Entity> entities = null;
-        if (classification.equals("char")) {
+        switch (classification) {
+        case "char":
             entities = this.reroll.getCharList();
-        } else if (classification.equals("mob")) {
+            break;
+        case "mob":
             entities = this.reroll.getMobList();
-        } else if (classification.equals("item")) {
+            break;
+        case "item":
             entities = this.reroll.getItemList();
+            break;
+        case "template":
+            entities = this.reroll.getTemplateList();
+            break;
+        default:
+            logger.info("What have you done");
         }
-        requireNonNull(entities);
         return entities;
     }
 
     @Override
-    public ObservableList<Template> getTemplates() {
-        return reroll.getTemplates();
+    public ObservableList<Entity> getTemplates() {
+        return reroll.getTemplateList();
     }
 }

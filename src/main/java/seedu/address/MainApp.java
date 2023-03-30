@@ -78,7 +78,7 @@ public class MainApp extends Application {
         ReadOnlyReroll initialData;
         try {
             rerollOptional = storage.readReroll();
-            if (!rerollOptional.isPresent()) {
+            if (rerollOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = rerollOptional.orElseGet(SampleDataUtil::getSampleReroll);

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Stats;
 import seedu.address.model.entity.Template;
 import seedu.address.model.tag.Tag;
 
@@ -19,23 +21,22 @@ import seedu.address.model.tag.Tag;
  */
 public class JsonAdaptedTemplate {
     private final String name;
-    private final float strWeight;
-    private final float intWeight;
-    private final float dexWeight;
+    private final JsonAdaptedStats stats;
+    private final int level;
+    private final int xp;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedTemplate} with the given template details.
+     * Constructs a {@code JsonAdaptedTemplate} with the given character details.
      */
     @JsonCreator
-    JsonAdaptedTemplate(@JsonProperty("name") String name, @JsonProperty("strWeight") float strWeight,
-                        @JsonProperty("intWeight") float intWeight,
-                        @JsonProperty("dexWeight") float dexWeight,
-                        @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    JsonAdaptedTemplate(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
+                         @JsonProperty("level") int level, @JsonProperty("xp") int xp,
+                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.strWeight = strWeight;
-        this.intWeight = intWeight;
-        this.dexWeight = dexWeight;
+        this.stats = stats;
+        this.level = level;
+        this.xp = xp;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -46,25 +47,29 @@ public class JsonAdaptedTemplate {
      */
     public JsonAdaptedTemplate(Template source) {
         name = source.getName().fullName;
-        strWeight = source.getStrWeight();
-        intWeight = source.getIntWeight();
-        dexWeight = source.getDexWeight();
+        stats = new JsonAdaptedStats(source.getStats());
+        level = source.getLevel();
+        xp = source.getXP();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted Template object into the model's {@code Template} object.
+     * Converts this Jackson-friendly adapted Character object into the model's {@code Template} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted template.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted character.
      */
     public Template toModelType() throws IllegalValueException {
+        // dont care about error...
+        Stats stat = stats.toModalType();
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Template(new Name(name), strWeight, dexWeight, intWeight, modelTags);
+        // To add inventory
+        return new Template(new Name(name), stat, level, xp, Inventory.emptyInventory(), modelTags);
     }
+
 }

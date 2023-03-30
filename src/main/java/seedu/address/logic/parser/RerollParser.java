@@ -16,6 +16,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MakeCommand;
+import seedu.address.logic.commands.TemplateCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -76,6 +77,8 @@ public class RerollParser {
             return new ViewCommand();
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+        case TemplateCommand.COMMAND_WORD:
+            return new TemplateCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

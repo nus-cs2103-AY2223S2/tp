@@ -17,7 +17,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
+    Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = entity -> !(entity instanceof Template);
 
     /**
      * Returns the user prefs.
@@ -136,6 +136,11 @@ public interface Model {
      */
     void listMobs();
 
+    /**
+     * Set filtered list to templates only
+     */
+    void listTemplates();
+
     // =============== Edit mode ===================
 
     /**
@@ -156,5 +161,5 @@ public interface Model {
     /**
      * Get list of templates
      */
-    ObservableList<Template> getTemplates();
+    ObservableList<Entity> getTemplates();
 }

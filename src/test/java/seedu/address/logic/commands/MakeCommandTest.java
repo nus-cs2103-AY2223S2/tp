@@ -21,7 +21,6 @@ import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
 
 
@@ -198,6 +197,10 @@ public class MakeCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void listTemplates() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public Entity getCurrentSelectedEntity() {
             throw new AssertionError("This method should not be called.");
@@ -214,7 +217,7 @@ public class MakeCommandTest {
         }
 
         @Override
-        public ObservableList<Template> getTemplates() {
+        public ObservableList<Entity> getTemplates() {
             throw new AssertionError("This method should not be called.");
         }
     }
