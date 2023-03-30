@@ -95,7 +95,7 @@ Prompts the help page link.
 
 Format: `help`
 
-### Adding a student's contact: `add`
+### 2. Adding a student's contact: `add`
 
 Adds a student to the student list.
 
@@ -110,14 +110,14 @@ Examples:
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
 
-### Viewing students contacts as a list : `list`
+### 3. Viewing students contacts as a list : `list`
 
 Lists all the students in the student list.
 
 Format: `list`
 
 
-### 2. Editing a student : `edit`
+### 4. Editing a student : `edit`
 
 Edits an existing student in the student list.
 
@@ -135,7 +135,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 
-### 3. Locating students by name: `find`
+### 5. Locating students by name: `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -154,7 +154,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
-### 4. Deleting a student : `delete`
+### 6. Deleting a student : `delete`
 
 Deletes the specified student from the student list.
 
@@ -169,7 +169,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 
-### 5. Checking a student : `check`
+### 7. Checking a student : `check`
 
 Displays the information of the student being checked, including their task list and score list.
 
@@ -183,7 +183,7 @@ Examples:
 * `check 2` checks the 2nd student in the student list.
 
 
-### 6. Adding a task for a student: `addTask`
+### 8. Adding a task for a student: `addTask`
 
 Adds a task to a specific student.
 
@@ -203,7 +203,7 @@ Examples:
   being checked.
 
 
-### 7. Deleting a task of a student: `deleteTask`
+### 9. Deleting a task of a student: `deleteTask`
 
 Deletes the specified task from the task list of a student.
 
@@ -221,7 +221,7 @@ Examples:
 `find` command.
 
 
-### 8. Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
+### 10. Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
 
 Marks the specified task from the task list of a student as complete, in progress or late.
 
@@ -242,7 +242,7 @@ Examples:
   `find` command as late.
 
 
-### 9. Adding a score for a student: `addScore`
+### 11. Adding a score for a student: `addScore`
 
 Adds a score to a specific student.
 
@@ -269,7 +269,7 @@ Examples:
   value of `50` and dated `2021-09-09` to the student being checked.
 
 
-### 10. Deleting a score of a student: `deleteScore`
+### 12. Deleting a score of a student: `deleteScore`
 
 Deletes the specified score from the score list of a student.
 
@@ -286,14 +286,14 @@ Examples:
 * `find Betsy` followed by `deleteScore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 
-### 11. Clearing all entries : `clear`
+### 13. Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
 
-### 12. Exiting the program : `exit`
+### 14. Exiting the program : `exit`
 
 Exits the program.
 
