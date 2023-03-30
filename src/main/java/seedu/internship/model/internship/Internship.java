@@ -15,6 +15,10 @@ import seedu.internship.model.tag.Tag;
  */
 public class Internship {
 
+    public static final Internship EMPTY_INTERNSHIP = new Internship(new Position("EMPTY"),
+            new Company("EMPTY"), new Status(0), new Description("EMPTY"),
+            new HashSet<Tag>());
+
     private final Position position;
     private final Company company;
     private final Status status;
@@ -43,6 +47,10 @@ public class Internship {
 
     public Status getStatus() {
         return status;
+    }
+
+    public int getStatusId() {
+        return status.statusId;
     }
 
     public Description getDescription() {
@@ -86,6 +94,9 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
+        if (otherInternship == EMPTY_INTERNSHIP || this == EMPTY_INTERNSHIP) {
+            return false;
+        }
         return otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getStatus().equals(getStatus())

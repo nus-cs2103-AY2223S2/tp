@@ -7,19 +7,22 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
+import javafx.collections.ObservableList;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 
 /**
- * Adds a internship to the internship catalogue.
+ * Adds an internship to the internship catalogue.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to the internship catalogue. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to the internship catalogue.\n"
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_COMPANY + "COMPANY "
@@ -28,11 +31,11 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Software Engineer "
-            + PREFIX_COMPANY + "Grab"
-            + PREFIX_STATUS + "1"
-            + PREFIX_DESCRIPTION + "Interview Date: 20 May 2023"
-            + PREFIX_TAG + "highly interested"
-            + PREFIX_TAG + "django";
+            + PREFIX_COMPANY + "Grab "
+            + PREFIX_STATUS + "1 "
+            + PREFIX_DESCRIPTION + "Need SQL and Django "
+            + PREFIX_TAG + "important "
+            + PREFIX_TAG + "django ";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the catalogue";
@@ -56,7 +59,11 @@ public class AddCommand extends Command {
         }
 
         model.addInternship(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.updateSelectedInternship(toAdd);
+
+        model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
+        ObservableList<Event> events = model.getFilteredEventList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ResultType.SHOW_INFO, toAdd, events);
     }
 
     @Override

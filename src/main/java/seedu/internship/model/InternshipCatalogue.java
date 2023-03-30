@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Statistics;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**
@@ -15,6 +16,7 @@ import seedu.internship.model.internship.UniqueInternshipList;
 public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
 
     private final UniqueInternshipList internships;
+    private Internship currentInternship;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -47,6 +49,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
         this.internships.setInternships(internships);
     }
 
+
     /**
      * Resets the existing data of this {@code InternshipCatalogue} with {@code newData}.
      */
@@ -66,6 +69,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
         return this.internships.contains(internship);
     }
 
+
     /**
      * Adds a internship to the internship Catalogue.
      * The internship must not already exist in the internship Catalogue.
@@ -73,6 +77,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     public void addInternship(Internship p) {
         internships.add(p);
     }
+
 
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
@@ -93,7 +98,22 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
         this.internships.remove(key);
     }
 
-    //// util methods
+    //Current Internships Method
+    public void updateCurrent(Internship intern) {
+        this.currentInternship = intern;
+    }
+
+    public void clearCurrent() {
+        this.currentInternship = null;
+    }
+
+    public boolean hasCurrent() {
+        return this.currentInternship != null;
+    }
+
+    public Internship getCurrent() {
+        return this.currentInternship;
+    }
 
     @Override
     public String toString() {
@@ -105,6 +125,7 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     public ObservableList<Internship> getInternshipList() {
         return internships.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

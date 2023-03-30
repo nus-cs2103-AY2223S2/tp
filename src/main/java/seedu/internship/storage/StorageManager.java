@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.commons.exceptions.DataConversionException;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
@@ -19,13 +20,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private InternshipCatalogueStorage internshipCatalogueStorage;
     private UserPrefsStorage userPrefsStorage;
+    private EventCatalogueStorage eventCatalogueStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code InternshipCatalogueStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(InternshipCatalogueStorage internshipCatalogueStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(InternshipCatalogueStorage internshipCatalogueStorage, UserPrefsStorage userPrefsStorage,
+                          EventCatalogueStorage eventCatalogueStorage) {
         this.internshipCatalogueStorage = internshipCatalogueStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.eventCatalogueStorage = eventCatalogueStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -46,7 +50,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ InternshipCatalogue methods ==============================
 
     @Override
     public Path getInternshipCatalogueFilePath() {
@@ -75,6 +79,37 @@ public class StorageManager implements Storage {
             IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         internshipCatalogueStorage.saveInternshipCatalogue(internshipCatalogue, filePath);
+    }
+
+    // ================ EventCatalogue methods ==============================
+
+    @Override
+    public Path getEventCatalogueFilePath() {
+        return eventCatalogueStorage.getEventCatalogueFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEventCatalogue> readEventCatalogue() throws DataConversionException, IOException {
+        return readEventCatalogue(eventCatalogueStorage.getEventCatalogueFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEventCatalogue> readEventCatalogue(Path filePath) throws DataConversionException,
+            IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return eventCatalogueStorage.readEventCatalogue(filePath);
+    }
+
+    @Override
+    public void saveEventCatalogue(ReadOnlyEventCatalogue eventCatalogue) throws IOException {
+        saveEventCatalogue(eventCatalogue, eventCatalogueStorage.getEventCatalogueFilePath());
+    }
+
+    @Override
+    public void saveEventCatalogue(ReadOnlyEventCatalogue eventCatalogue, Path filePath) throws
+            IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        eventCatalogueStorage.saveEventCatalogue(eventCatalogue, filePath);
     }
 
 }

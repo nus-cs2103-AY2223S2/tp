@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.internship.commons.core.GuiSettings;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -13,6 +14,9 @@ import seedu.internship.model.internship.Internship;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -85,5 +89,84 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    //Events
+    /**
+     * Returns the user prefs' event catalogue file path.
+     */
+    Path getEventCatalogueFilePath();
+
+    /**
+     * Sets the user prefs' event catalogue file path.
+     */
+    void setEventCatalogueFilePath(Path eventCatalogueFilePath);
+
+    /**
+     * Replaces event catalogue data with the data in {@code eventCatalogue}.
+     */
+    void setEventCatalogue(ReadOnlyEventCatalogue eventCatalogue);
+
+    /** Returns the EventCatalogue */
+    ReadOnlyEventCatalogue getEventCatalogue();
+
+    /**
+     * Returns true if a event with the same contents as {@code event} exists in the event catalogue.
+     */
+    boolean hasEvent(Event event);
+
+    /**
+     * Deletes the given event.
+     * The event must exist in the event catalogue.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Adds the given event.
+     * {@code event} must not already exist in the event catalogue.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the event.
+     * The event content of {@code editedEvent} must not be the same as another existing event in the
+     * event catalogue.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
+
+    //Selected Internships Method
+
+    /**
+     * Updates Current Internship in Internhsip Catalogue
+     * @param intern
+     */
+    public void updateSelectedInternship(Internship intern);
+
+    /**
+     * Clears Current Internship in Internship Catalogue
+     */
+    public void clearSelectedInternship();
+
+    /**
+     * Checks If current Internship Exists in Internship Catalogue
+     * @return
+     */
+    public boolean hasSelectedInternship();
+
+    /**
+     * Return Current Internship in Internship Catalogue
+     * @return
+     */
+    public Internship getSelectedInternship();
+
 }
 

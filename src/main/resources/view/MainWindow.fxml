@@ -6,9 +6,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -16,7 +15,7 @@
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="The Intern's Ship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <!-- edit this if we want to change main icon image -->
-        <Image url="@/images/address_book_32.png" />
+        <Image url="@/images/ship.png" />
     </icons>
     <scene>
         <Scene>
@@ -24,10 +23,9 @@
                 <URL value="@DarkTheme.css" />
                 <URL value="@Extensions.css" />
             </stylesheets>
-            <BorderPane>
-
-                <top>
-                    <VBox>
+         <VBox>
+            <children>
+                    <VBox VBox.vgrow="ALWAYS">
                         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                             <Menu mnemonicParsing="false" text="File">
                                 <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -37,7 +35,7 @@
                             </Menu>
                         </MenuBar>
 
-                        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </padding>
@@ -46,30 +44,21 @@
                      </VBox.margin>
                         </StackPane>
 
-                        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" />
                             </padding>
                         </StackPane>
+                  <SplitPane dividerPositions="0.0" minWidth="450.0" VBox.vgrow="ALWAYS">
+                     <items>
+                        <StackPane fx:id="internshipListPanelPlaceholder" alignment="TOP_LEFT" />
+                        <StackPane fx:id="pagePlaceholder" alignment="TOP_LEFT" />
+                     </items>
+                  </SplitPane>
+                       <StackPane fx:id="statusbarPlaceholder" />
                     </VBox>
-                </top>
-
-                <left>
-                    <VBox fx:id="internshipList" minWidth="240" prefWidth="240" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                        <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                    </VBox>
-                </left>
-
-                <bottom>
-                    <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-                </bottom>
-            <center>
-                    <AnchorPane styleClass="pane-with-border" BorderPane.alignment="CENTER">
-                        <StackPane fx:id="internshipInfoPanelPlaceholder" alignment="TOP_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
-                    </AnchorPane>
-            </center>
-
-            </BorderPane>
+            </children>
+         </VBox>
         </Scene>
     </scene>
 </fx:root>

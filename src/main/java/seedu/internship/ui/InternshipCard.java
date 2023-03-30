@@ -5,8 +5,8 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -26,7 +26,7 @@ public class InternshipCard extends UiPart<Region> {
     public final Internship internship;
 
     @FXML
-    private HBox cardPane;
+    private VBox cardPane;
     @FXML
     private Label position;
     @FXML
