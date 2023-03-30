@@ -20,11 +20,9 @@ import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
-
 
 public class MakeCommandTest {
 
@@ -50,8 +48,8 @@ public class MakeCommandTest {
         MakeCommand makeCommand = new MakeCommand(validEntity);
         ModelStub modelStub = new ModelStubWithEntity(validEntity);
 
-        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, () ->
-                makeCommand.execute(modelStub));
+        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, (
+        )-> makeCommand.execute(modelStub));
     }
 
     @Test
@@ -116,10 +114,6 @@ public class MakeCommandTest {
         public void addEntity(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
-        @Override
-        public Predicate<Entity> getClassificationPredicate(Classification classification) {
-            return null;
-        }
 
         @Override
         public ReadOnlyReroll getReroll() {
@@ -172,7 +166,8 @@ public class MakeCommandTest {
         }
 
         /**
-         * Adds the predicate of the filtered entity list to filter by the given {@code predicate}.
+         * Adds the predicate of the filtered entity list to filter by the given
+         * {@code predicate}.
          *
          * @param predicate
          * @throws NullPointerException if {@code predicate} is null.
@@ -181,7 +176,6 @@ public class MakeCommandTest {
         public void addPredicate(Predicate<Entity> predicate) {
 
         }
-
 
         @Override
         public void resetFilteredEntityList() {
