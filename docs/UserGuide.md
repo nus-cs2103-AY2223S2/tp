@@ -3,40 +3,153 @@ layout: page
 title: User Guide
 ---
 
-Introducing **Trackr - the ultimate desktop application** designed to simplify the delivery management process for your business!
-With Trackr, you can seamlessly manage your deliveries through a powerful Command Line Interface (CLI), while still enjoying the benefits of a user-friendly Graphical User Interface (GUI).
+# Overview
+
+Introducing **Trackr - the ultimate desktop application** designed to simplify the delivery management process for your home business!
+
+With Trackr, you can seamlessly manage your suppliers, orders and tasks.
+
+It utilizes a Command Line Interface (CLI), while still enjoying the benefits of a user-friendly Graphical User Interface (GUI).
+
 Say goodbye to the hassle of Excel and the stress of time constraints! Whether you're a busy home business owner or simply looking for an efficient and streamlined solution, Trackr is the perfect fit for you.
 Experience the convenience of delivery management like never before with Trackr.
 
-* Table of Contents
-{:toc}
+# About This Guide
+
+This guide shows you the relevant information for setting up and using Trackr to manage your suppliers, orders and tasks.
+
+You can click on any of the links below to navigate to the respective sections for more information.
+
+
+# Table of Contents
+
+<!-- TOC -->
+* [Quick start](#quick-start)
+  * [Prerequisites](#prerequisites)
+    * [Java](#java)
+    * [Glossary](#glossary)
+  * [Installation](#installation)
+* [Features](#features)
+    * [Viewing help: `help`](#viewing-help-help)
+  * [Add](#add)
+    * [Adding a supplier: `add_supplier` or `add_s`](#adding-a-supplier-addsupplier-or-adds)
+    * [Adding an order: `add_order` or `add_o`](#adding-an-order-addorder-or-addo)
+    * [Adding a task: `add_task` or `add_t`](#adding-a-task-addtask-or-addt)
+    * [Adding a menu item: `add_item` / `add_i`](#adding-a-menu-item-additem--addi)
+  * [Edit](#edit)
+    * [Editing a supplier: `edit_supplier` or `edit_s`](#editing-a-supplier-editsupplier-or-edits)
+    * [Editing an order: `edit_order` or `edit_o`](#editing-an-order-editorder-or-edito)
+    * [Editing a task: `edit_task` or `edit_t`](#editing-a-task-edittask-or-editt)
+    * [Editing a menu item : `edit_item` / `edit_i`](#editing-a-menu-item--edititem--editi)
+  * [Find](#find)
+    * [Finding a supplier: `find_supplier` or `find_s`](#finding-a-supplier-findsupplier-or-finds)
+    * [Finding a task: `find_task` or `find_t`](#finding-a-task-findtask-or-findt)
+    * [Finding a menu item : `find_item` / `find_i`](#finding-a-menu-item--finditem--findi)
+  * [Delete](#delete)
+    * [Deleting a supplier: `delete_supplier` or `delete_s`](#deleting-a-supplier-deletesupplier-or-deletes)
+    * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
+    * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
+    * [Deleting a menu item: `delete_item` / `delete_i`](#deleting-a-menu-item-deleteitem--deletei)
+  * [Switch](#switch)
+    * [Sorting a task: `sort_task` / `sort_t`](#sorting-a-task-sorttask--sortt)
+    * [Switching tabs: `tab`](#switching-tabs-tab)
+  * [Others](#others)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Uploading a csv file](#uploading-a-csv-file)
+    * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-## Quick start
+# Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## Prerequisites
 
-1. Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
+### Java
+Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)</ins> or above installed.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Trackr.
+<div markdown="block" class="alert alert-tip">
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar trackr.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+  :bulb: **How to check your current Java version:**<br>
+  
+  **Step 1.** Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
+  
+  **Step 2.** Type and run the command `java -version`. 
+  
+  **Step 3.** Check the version number provided (`xxx`) is at least `11`.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+  An example is shown below.
+  ```
+  > java -version
+  java version "xxx" <Other information>
+  ```
+
+</div>
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: Command-Line Interface
+* **GUI**: Graphical User Interface
+* **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
+* **Customer**: Customer refers to someone whom the user receives an order from
+* **Order**: Order refers to the customers' orders the user accepts
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
+
+## Installation
+
+**Step 1.** Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
+
+**Step 2.** Copy the file to the folder where you will use Trackr.
+
+**Step 3.** Double-click on the `trackr.jar` file.
+
+<div markdown="block" class="alert alert-tip">
+    
+  :bulb: **Trackr does not open?**<br>
+  
+  **Step 1.** Open a command terminal.
+
+  **Step 2.** Type in `java -jar ` (Keep in mind of the space at the end).
+
+  **Step 3.** Drag and drop `trackr.jar` into the command terminal. 
+  
+  **Step 4.** Press enter and execute the command.
+
+  An example of the final command is displayed below.
+  ```
+  > java -jar xxxx/xxxx/trackr.jar
+  ```
+
+</div>
+
+A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
+  
+<p align="center">
+  <img src="images/Ui.png" />
+  <br>Figure 1: Initial Setup UI
+</p>
+
+**Step 4.** Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
+   
    Some example commands you can try:
 
    * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
-
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+**Step 5.** Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -45,7 +158,7 @@ Experience the convenience of delivery management like never before with Trackr.
 * Command keywords are case-sensitive, all command keywords must be in lower-case.
   e.g. For add supplier command, `add_supplier` is valid but `ADD_SUPPLIER` and `Add_Supplier` are not.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
 
 * Prefixes of the parameters are case-sensitive.<br>
@@ -58,7 +171,7 @@ Experience the convenience of delivery management like never before with Trackr.
   e.g. `{p/PHONE_NUMBER e/EMAIL}` can be used as `p/91234567` or `e/john@example.com` but cannot be left blank.
 
 * Items with `…​` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as `` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -71,7 +184,7 @@ Experience the convenience of delivery management like never before with Trackr.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -79,9 +192,9 @@ Shows a message explaining how to access the help page.
 
 Syntax: `help`
 
-# Add
+## Add
 
-### Adding a supplier: `add_supplier` / `add_s`
+### Adding a supplier: `add_supplier` or `add_s`
 
 Adds a supplier to the list of suppliers.
 
@@ -94,7 +207,8 @@ Examples:
 * `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
 
-### Adding an order: `add_order` / `add_o`
+
+### Adding an order: `add_order` or `add_o`
 
 Adds an order into the list of orders.
 
@@ -111,7 +225,7 @@ Examples:
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
 * `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/N`
 
-### Adding a task: `add_task` / `add_t`
+### Adding a task: `add_task` or `add_t`
 
 Adds a task to the list of tasks.
 
@@ -144,24 +258,9 @@ Examples:
 * `add_item n/Chocolate cookie pr/5 c/2.50`
 * `add_i n/Harley Davidson Shirt pr/40 c/8.50`
 
-### Adding tags to a supplier: `tag_supplier` / `tag_s`
+## Edit
 
-Add tags to an existing supplier entry.
-
-Syntax: `tag_supplier INDEX t/TAG`
-
-* Tags the supplier at the specified `INDEX`.
-* The index refers to the number shown in the suppliers list displayed.
-* The index **must be a positive integer** 1, 2, 3, …​
-* More than one tag can be given, but at least one tag must be given.
-
-Examples:
-`tag_supplier 1 t/Supplies Sugar t/100kg per order` adds the tags `Supplies Sugar` and `100kg per order` onto of the existing tags for the 1st supplier
-`tag_s 4 t/Minimum 10kg per order` adds the tag `Minimum 10kg per order` onto of the existing tags of the 4th supplier
-
-# Edit
-
-### Editing a supplier: `edit_supplier` / `edit_s`
+### Editing a supplier: `edit_supplier` or `edit_s`
 
 Edit an existing supplier’s information.
 
@@ -177,16 +276,18 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * To change status, use `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
 
 Examples:
-`edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
-`edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
-### Editing an order : `edit_order` / `edit_o`
+* `edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
+* `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
+
+
+### Editing an order: `edit_order` or `edit_o`
 
 Edits an order that is present in the order list.
 
 Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
-* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
+* Edits the order at the specific `INDEX`. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
 * You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
@@ -197,17 +298,16 @@ Examples:
 * `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 * `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
-### Editing a task : `edit_task` / `edit_t`
+### Editing a task: `edit_task` or `edit_t`
 
 Edits a task present in the task list.
 
 Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
-* Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
+* Edits the task at the specific `INDEX`. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
 * You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing status, the existing status of the order will be removed and replaced with the given status.
-* To edit status, use `N` / `n` for Not done or `D` / `d` for Done.
 
 Examples:
 
@@ -230,9 +330,9 @@ Examples:
 * edit_item 1 n/Coffee pr/2.50 c/1.50 edits the name of the first menu item to "Coffee", sets the price to $2.50 and the cost to $1.50.
 * edit_i 3 d/Our signature burger p/8.99 c/2 edits the description of the third menu item to "Our signature burger", sets the price to $8.99 and the cost to $2.
 
-# Find
+## Find
 
-### Finding a supplier : `find_supplier` / `find_s`
+### Finding a supplier: `find_supplier` or `find_s`
 
 Find suppliers whose information matches with any of the given parameters.
 
@@ -251,7 +351,7 @@ Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
-### Finding a task : `find_task` / `find_t`
+### Finding a task: `find_task` or `find_t`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -288,9 +388,9 @@ Examples:
 * `find_item n/vanilla cupcake` returns `vanilla ice cream` and `Disney cupcake`
 * `find_i n/shirt d/2023-02-17` returns menu items with `shirt`
 
-# Delete
+## Delete
 
-### Deleting a supplier: `delete_supplier` / `delete_s`
+### Deleting a supplier: `delete_supplier` or `delete_s`
 
 Deletes the specified supplier from the contact list.
 
@@ -302,10 +402,10 @@ Syntax: `delete_supplier INDEX`
 
 Examples:
 
-* `delete_supplier 2` deletes the first supplier
+* `delete_supplier 2` deletes the second supplier
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
 
-### Deleting an order: `delete_order` / `delete_o`
+### Deleting an order: `delete_order` or `delete_o`
 
 Syntax: `delete_order INDEX`
 
@@ -318,7 +418,7 @@ Examples:
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
 * `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
 
-### Deleting a task: `delete_task` / `delete_t`
+### Deleting a task: `delete_task` or `delete_t`
 
 Deletes the specified task from the task list.
 
@@ -348,7 +448,7 @@ Examples:
 * `delete_menu 2` deletes the first task
 * `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
 
-# Switch
+## Switch
 
 ### Sorting a task: `sort_task` / `sort_t`
 
@@ -380,9 +480,9 @@ Examples:
 
 * `tab t/HOME` switches the tab to the `Home` tab
 
-# Exit
+## Others
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -396,7 +496,8 @@ Save changes after any command executed successfully. There is no need to save m
 
 Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -405,7 +506,7 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. Below is an example of a valid csv file
 ![Valid csv file](images/CsvFileFormat.png)
 
-### Archiving data files `[coming in v1.3]`
+### Upcoming features `[coming soon]`
 
 * Different tabs for `Orders`, `Suppliers`
 * Sort orders by date to keep track of orders.
@@ -415,21 +516,21 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trackr home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                  |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
-| **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`                                                                                                          |
-| **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`                                                                                                                                       |
-| **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`                                                                                                             |
+| **Add**    | `add_supplier` or `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order` or `add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task` or `add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
+| **Edit**   | `edit_supplier` or `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` or `edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task` or `edit_t` <br> e.g., `edit_t 1 s/`                                                                                                          |
+| **Delete** | `delete_supplier` or `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` or `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` or `delete_t` <br> e.g., `delete_t 4`                                                                                                                                       |
+| **Find**   | `find_supplier` or `find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order` or `find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task` or `find_t` <br> e.g., `find_t s/N`                                                                                                             |
 | **Tab**    | `tab` <br> e.g., `tab Home`
 |**Sort Task**| `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                            |
