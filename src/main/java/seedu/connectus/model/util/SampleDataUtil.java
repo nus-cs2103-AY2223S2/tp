@@ -26,15 +26,18 @@ import seedu.connectus.model.tag.Remark;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        // Sample person 1
+        // Sample person 1 - should have ALL data fields
         Person p1 = new Person(new Name("Alex Yeoh"));
         p1.setEmail(new Email("alexyeoh@example.com"));
+        p1.setPhone(new Phone("91234567"));
+        p1.setAddress(new Address("UTown Residence"));
         p1.setSocialMedia(new SocialMedia(Instagram.of("alex.yeoh"),
-                Telegram.of("alexyeoh"), null));
+                Telegram.of("alexyeoh"),
+                WhatsApp.of("91234567")));
         p1.setBirthday(new Birthday("01/01/1990"));
         p1.setRemarks(getRemarkSet("friends"));
-        p1.setModules(getModuleSet("CS2107"));
-        p1.setCcas(getCcaSet("NUS Hackers"));
+        p1.setModules(getModuleSet("CS2103T"));
+        p1.setCcas(getCcaSet("NUS Hackers#Director"));
         p1.setMajors(getMajorSet("BBA"));
 
         // Sample person 2
@@ -45,8 +48,8 @@ public class SampleDataUtil {
                 WhatsApp.of("99272658")));
         p2.setBirthday(new Birthday("31/05/2000"));
         p2.setRemarks(getRemarkSet("colleagues", "friends"));
-        p2.setModules(getModuleSet("CS2105"));
-        p2.setCcas(getCcaSet("NUS Chess Club"));
+        p2.setModules(getModuleSet("CS2105", "CS2101"));
+        p2.setCcas(getCcaSet("NUS Chess Club#Secretary", "Hackermen"));
         p2.setMajors(getMajorSet("COMPUTER SCIENCE"));
 
 
