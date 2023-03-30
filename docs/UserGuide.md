@@ -131,12 +131,17 @@ Adds a menu item to the menu.
 
 Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
-* When entering price and cost data, you may input numbers with or without a decimal point.
-* For example, you can input the number 5, or the number 5.75.
+* When entering price and cost data, you may only
+  * input positive numbers. 
+    * For example, you can input the number 5, not -5. 
+  * choose to include number with a decimal point. A decimal point looks like this: `.` However, you can only key in up to 2 numbers after the decimal point.
+      * For example, the number 5.75 but not 5.752. 
+* After you have add an item, note that the profit margin displayed can be positive or negative number. 
+  * For example, if you see `Profit Margin: $-0.50` and  `Profit Margin: $2.00`, both are correct. However, this means that you are making a lost on your menu item.
 
 Examples:
 
-* `add_item n/Chocolate cookie pr/5 c/2.50
+* `add_item n/Chocolate cookie pr/5 c/2.50`
 * `add_i n/Harley Davidson Shirt pr/40 c/8.50`
 
 ### Adding tags to a supplier: `tag_supplier` / `tag_s`

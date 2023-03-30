@@ -9,8 +9,8 @@ import static trackr.commons.util.AppUtil.checkArgument;
  */
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "^\\d+(.\\d*){0,2}$";
+            "Price should only contain positive numbers, and it should be at most 2 decimal place";
+    public static final String VALIDATION_REGEX = "^\\d+(.\\d{0,2})?$";
     public final Double value;
 
     /**
