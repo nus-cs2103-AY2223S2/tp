@@ -634,7 +634,7 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 
 ## Editing the data file
 
-PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/parents.json` and `[JAR file location]/data/pcclass.json` for respectively parents/NOKs and students. Advanced users are welcome to update data directly by editing that data file.addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PowerConnect will discard all data and start with an empty data file at the next run. <br><br>
@@ -694,7 +694,7 @@ program. Essentially you do not need a mouse to run this program at all!
 **Q**: Why is my command not working?<br>
 **A**: PowerConnect is particular with the prefixes (/) and they need to be in the exact format as specified in the user guide. Don’t worry, with practice, it would be second nature to you.
 
-**Q**: There are some terms that I do not understand in the User Guide...
+**Q**: There are some terms that I do not understand in the User Guide...<br>
 **A**: You may refer to our [Glossary section](#glossary) to better understand the terminologies used in this User Guide!
 
 
@@ -719,6 +719,8 @@ program. Essentially you do not need a mouse to run this program at all!
 | **Edit**    | `edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE] id/[INDEX_NUMBER] imgS/[IMAGE] cca/[CCA]  att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] pn/[PARENT NAME] pnP/[PARENT PHONE NUMBER] rls/[RELATIONSHIP] ] ` |
 | **Find**    | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
 | **Delete**  | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
+
+<div style="page-break-after: always;"></div>
 
 ### Command Summary for Parent / NOK `parent`
 
