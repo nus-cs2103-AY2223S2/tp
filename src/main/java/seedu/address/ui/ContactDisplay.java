@@ -94,6 +94,8 @@ public class ContactDisplay extends UiPart<Region> {
 
         if (commandResult.hasSelectedDoctor()) {
             Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
+            doctorListPanel.selectDoctor(selectedDoctor);
+
             PatientFilter patientContainsDoctor =
                     new PatientFilter(selectedDoctor);
             Predicate<Patient> patientsOfDoctorPredicate =
@@ -101,10 +103,13 @@ public class ContactDisplay extends UiPart<Region> {
             logic.updateFilteredPatientList(patientsOfDoctorPredicate);
 
             enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
+            infoCardDisplayController.displayDoctor();
         }
 
         if (commandResult.hasSelectedPatient()) {
             Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
+            patientListPanel.selectPatient(selectedPatient);
+
             DoctorFilter doctorContainsPatient =
                     new DoctorFilter(selectedPatient);
             Predicate<Doctor> doctorsOfPatientPredicate =
@@ -112,6 +117,7 @@ public class ContactDisplay extends UiPart<Region> {
             logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
 
             enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
+            infoCardDisplayController.displayPatient();
         }
 
         updateEnlargedInfoCard();
