@@ -28,7 +28,7 @@
         </Label>
 	    <Label fx:id="nric" styleClass="cell_big_label" text="\$nric" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-        <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+        <Label fx:id="gender" style="-fx-background-color: #AC8E60; -fx-padding: 1 2 1 2; -fx-border-radius: 1; -fx-background-radius: 1; -fx-font-size: 13;" styleClass="cell_small_label" text="\$gender" />
         <Label fx:id="doctor" styleClass="doctor" text="\$doctor" />
       </HBox>
       <FlowPane fx:id="tags">
