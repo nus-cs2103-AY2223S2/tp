@@ -290,45 +290,6 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
-### Update Service Priority Feature
-This feature updates the priority of a service by increasing or decreasing it by 1 level. Priority levels are defined: low, medium, high
-> <b>Note:</b> Services created without specifying a priority by default are set with a low priority.
-#### Implementation
-> <b>Note:</b> In this explanation, X is either `Prioritise` or `Deprioritise`, depending on whether the user enters "prioritise 1" or "deprioritise 1"
-
-Users will be able to update the priority of a Service via 2 different commands: `PrioritiseCommand` and `DeprioritiseCommand`. The logical flow and interaction of both commands work similarly where the only difference is in the adjustment of priority up or down.
-
-When the user uses this feature, the XCommandParser parses the service integer id input of the user and creates a XServiceCommand object with the id passed in as a parameter. The XServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the XServiceCommand would then create a new `Service` that has an updated priority according to the given Command to increase (`prioritise`) or decrease (`deprioritise`) the level by 1.
-
-Given below is an example usage scenario and the description of how the XServiceCommand executes.
-
-Step 1. The user launches the application and enters "listservices" which executes the command to list all services.
-
-Step 2. In the list of services, service with id 1 has a priority of low. The user enters the "prioritise 1" command to increase the priority of the service with id 1.
-
-Step 3. The PrioritiseServiceCommandParser parses the service integer id input of the user and creates a PrioritiseServiceCommand object with the id passed in as a parameter.
-
-Step 4. The PrioritiseServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the PrioritiseServiceCommand would then create a new `Service` that has an updated priority of medium, which is then updated in the `Model` with the `setService()` method.
-
-Step 5. Finally, an `updateFilteredServiceList()` is called to display an updated list with all services, included the lastest updated service with the id 1 and a new priority of medium in the Ui. With the increased priority, the service with id 1 should also be displayed higher than those with lower priorities.
-
-The Sequence Diagram below illustrates the interactions with the `Logic` and `Model` components for the `execute("prioritise 1")` or `execute("deprioritise 1")` API call.
-<img src="images/SetServicePrioritySequenceDiagram.png" width="1100" />
-
-#### Design considerations:
-
-**Aspect: The way users can set priority**
-
-* **Alternative 1 (current choice):** Allow priority level adjustment by increasing or decreasing level by 1
-    * Pros: Implementation is easy, parsing is very similar to how other id specific Commands have been implemented
-    * Cons: UX is comprimised slightly as users need to enter the command twice to increase priority from low to high.
-
-* **Alternative 2:** Allow users to directly indicate the priority level they want the service to be set (e.g. setservicepriority 1 high)
-    * Pros: Better UX, users do not need to enter the command twice to increase priority from low to high.
-    * Cons: Need to implement extra steps to validate user input and parse the priority level they input to ensure it matches the system's defined priority levels
-
-_{more aspects and alternatives to be added}_
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
