@@ -8,6 +8,7 @@ import java.util.*;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Mark;
 import seedu.address.model.person.UniquePersonList;
@@ -219,6 +220,29 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         return tagsInString;
+    }
+
+    /**
+     * Returns the a string containing all companies.
+     */
+    @Override
+    public String getCompanies() {
+        Iterator<Person> iterator = persons.iterator();
+        Set<Company> companies = new HashSet<>();
+        String companiesInString = "";
+        while (iterator.hasNext()) {
+            companies.add(iterator.next().getCompany());
+        }
+        Iterator<Company> companyIterator = companies.iterator();
+        while (companyIterator.hasNext()) {
+            Company temp = companyIterator.next();
+            if (companyIterator.hasNext()) {
+                companiesInString += "[" + temp.toString() + "]" + ", ";
+            } else {
+                companiesInString += "[" + temp.toString() + "]";
+            }
+        }
+        return companiesInString;
     }
 
     //// util methods

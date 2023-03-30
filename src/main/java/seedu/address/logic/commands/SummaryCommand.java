@@ -23,6 +23,8 @@ public class SummaryCommand extends Command {
         SummaryWindow.setPotentialEarnings(potentialEarnings);
         String tags = model.getAddressBook().getTags();
         SummaryWindow.setTags(tags);
+        String companies = model.getAddressBook().getCompanies();
+        SummaryWindow.setCompanies(companies);
         return new CommandResult(SHOWING_SUMMARY_MESSAGE, false, true, false);
     }
 }

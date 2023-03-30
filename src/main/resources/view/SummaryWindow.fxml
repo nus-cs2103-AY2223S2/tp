@@ -15,12 +15,13 @@
     <scene>
         <Scene fill="#fffffb">
             <stylesheets>
-                <URL value="@HelpWindow.css" />
+                <URL value="@SummaryWindow.css" />
             </stylesheets>
-         <VBox minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0">
+         <VBox minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" fx:id="summaryMessageContainer">
             <children>
                     <Label fx:id="countMessage" text="Label" />
                     <Label fx:id="tagMessage" text="Label" />
+                    <Label fx:id="companies" text="Label" />
                     <Label fx:id="potentialEarnings" text="Label" />
             </children>
             <padding>
