@@ -26,6 +26,8 @@ public class ImportCommand extends Command {
 
     public static final String MESSAGE_USAGE = commandWords + ": Imports customer data from an existing dataset.";
 
+    public static final String MESSAGE_SUCCESS = "Imported data from file";
+
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
@@ -87,7 +89,7 @@ public class ImportCommand extends Command {
             }
         }
 
-        return new CommandResult("Imported data from file", true, false);
+        return new CommandResult(MESSAGE_SUCCESS, true, false);
     }
 
     @Override

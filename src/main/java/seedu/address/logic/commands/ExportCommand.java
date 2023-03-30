@@ -24,6 +24,8 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords + ": Exports data into a csv file at "
             + "a location of your choice.";
 
+    public static final String MESSAGE_SUCCESS = "Exported to file";
+
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
@@ -59,7 +61,7 @@ public class ExportCommand extends Command {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return new CommandResult("Exported to file", false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
     @Override
