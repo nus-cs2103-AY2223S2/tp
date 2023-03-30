@@ -92,6 +92,9 @@ public class EditTaskCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new ClearCommand()));
+
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND, DESC_SEND_EMAIL)));
 
