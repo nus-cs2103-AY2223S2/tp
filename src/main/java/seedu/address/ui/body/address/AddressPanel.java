@@ -1,7 +1,6 @@
 package seedu.address.ui.body.address;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;

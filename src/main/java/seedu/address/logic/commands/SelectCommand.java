@@ -10,9 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.ui.enums.LightDarkMode;
 import seedu.address.ui.result.ResultDisplay;
-
 
 /**
  * Selects person in address book to display details
