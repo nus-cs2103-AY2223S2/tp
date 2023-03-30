@@ -9,8 +9,8 @@ import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.UniqueTodoList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the todo-list level
+ * Duplicates are not allowed (by .isSameTodo comparison)
  */
 public class TodoList implements ReadOnlyTodoList {
 
@@ -20,8 +20,8 @@ public class TodoList implements ReadOnlyTodoList {
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * NoteList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * TodoList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * among constructors.
      */
     {
         todos = new UniqueTodoList();
@@ -30,7 +30,7 @@ public class TodoList implements ReadOnlyTodoList {
     public TodoList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TodoList using the InternshipTodos in the {@code toBeCopied}
      */
     public TodoList(ReadOnlyTodoList toBeCopied) {
         this();
@@ -39,7 +39,7 @@ public class TodoList implements ReadOnlyTodoList {
 
     /**
      * Replaces the contents of the todo list with {@code todos}.
-     * {@code persons} must not contain duplicate todos.
+     * {@code todos} must not contain duplicate todos.
      */
     public void setTodo(List<InternshipTodo> todos) {
         this.todos.setTodo(todos);
@@ -58,7 +58,7 @@ public class TodoList implements ReadOnlyTodoList {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TodoList} with {@code newData}.
      */
     public void resetData(ReadOnlyTodoList newData) {
         requireNonNull(newData);
@@ -66,7 +66,6 @@ public class TodoList implements ReadOnlyTodoList {
         setTodo(newData.getTodoList());
     }
 
-    /// application-level operations
     /**
      * Returns true if a todo with the same identity
      * as {@code todo} exists in the tracker.
@@ -85,8 +84,8 @@ public class TodoList implements ReadOnlyTodoList {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code TodoList}.
+     * {@code key} must exist in the todo list.
      */
     public void removeTodo(InternshipTodo key) {
         todos.remove(key);
@@ -104,7 +103,6 @@ public class TodoList implements ReadOnlyTodoList {
     @Override
     public String toString() {
         return todos.asUnmodifiableObservableList().size() + " todos";
-        // TODO: refine later
     }
 
     @Override

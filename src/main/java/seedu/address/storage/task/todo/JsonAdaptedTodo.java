@@ -7,15 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Jackson-friendly version of {@link InternshipApplication}.
+ * Jackson-friendly version of {@link InternshipTodo}.
  */
 public class JsonAdaptedTodo {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Internship application 's %s field is missing!";
@@ -28,7 +27,7 @@ public class JsonAdaptedTodo {
     private final String type;
 
     /**
-     * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
+     * Constructs a {@code JsonAdaptedInternshipTodo} with the given InternshipTodo details.
      */
     @JsonCreator
     public JsonAdaptedTodo(@JsonProperty("title") String title,
@@ -46,7 +45,7 @@ public class JsonAdaptedTodo {
     }
 
     /**
-     * Converts a given {@code InternshipApplication} into this class for Jackson use.
+     * Converts a given {@code InternshipTodo} into this class for Jackson use.
      */
     public JsonAdaptedTodo(InternshipTodo source) {
         title = source.getInternshipTitle().fullName;
@@ -62,44 +61,73 @@ public class JsonAdaptedTodo {
     }
 
     /**
-     * Converts this Jackson-friendly adapted InternshipApplication object
-     * into the model's {@code InternshipApplication} object.
+     * Converts this Jackson-friendly adapted InternshipTodo object
+     * into the model's {@code InternshipTodo} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted InternshipApplication.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted InternshipTodo.
      */
     public InternshipTodo toModelType() throws IllegalValueException {
+        final CompanyName modelTitle = titleToModelType();
+
+        final JobTitle modelJobTitle = jobToModelType();
+
+        final LocalDate modelDate = dateToModelType();
+
+        final TaskType modelType = typeToModelType();
+
+        final ApplicationDeadline modelDeadline = deadlineToModelType();
+
+        if (note != null) {
+            final NoteContent modelContent = noteToModelType();
+
+            return new InternshipTodo(
+                    modelTitle, modelJobTitle, modelDeadline, modelContent, modelDate, modelType);
+        }
+        return new InternshipTodo(
+                modelTitle, modelJobTitle, modelDeadline, modelDate, modelType);
+    }
+
+    private CompanyName titleToModelType() throws IllegalValueException {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            CompanyName.class.getSimpleName()));
+                    CompanyName.class.getSimpleName()));
         }
-        if (!CompanyName.isValidName(title)) {
+        if (!CompanyName.isValidCompanyName(title)) {
             throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
-        final CompanyName modelTitle = new CompanyName(title);
+        return new CompanyName(title);
+    }
 
+    private JobTitle jobToModelType() throws IllegalValueException {
         if (jobTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            JobTitle.class.getSimpleName()));
+                    JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
-        final JobTitle modelJobTitle = new JobTitle(jobTitle);
+        return new JobTitle(jobTitle);
+    }
 
+    private LocalDate dateToModelType() throws IllegalValueException {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date created"));
         }
-        final LocalDate modelDate = LocalDate.parse(date);
+        return LocalDate.parse(date);
+    }
 
+    private TaskType typeToModelType() throws IllegalValueException {
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TodoType.class.getSimpleName()));
+                    TaskType.class.getSimpleName()));
         }
-        if (!TodoType.isValidTodo(type)) {
-            throw new IllegalValueException(String.format(TodoType.MESSAGE_CONSTRAINTS, type));
+        if (!TaskType.isValidTodo(type)) {
+            throw new IllegalValueException(String.format(TaskType.MESSAGE_CONSTRAINTS, type));
         }
-        final TodoType modelType = TodoType.TODO;
+        return TaskType.TODO;
+    }
 
+    private ApplicationDeadline deadlineToModelType() throws IllegalValueException {
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ApplicationDeadline.class.getSimpleName()));
@@ -107,18 +135,13 @@ public class JsonAdaptedTodo {
         if (!ApplicationDeadline.isValidDate(LocalDate.parse(deadline))) {
             throw new IllegalValueException(String.format(ApplicationDeadline.MESSAGE_CONSTRAINTS, deadline));
         }
-        final ApplicationDeadline modelDeadline = new ApplicationDeadline(LocalDate.parse(deadline));
+        return new ApplicationDeadline(LocalDate.parse(deadline));
+    }
 
-        if (note != null) {
-            if (!NoteContent.isValidContent(note)) {
-                throw new IllegalValueException(NoteContent.MESSAGE_CONSTRAINTS);
-            }
-            final NoteContent modelContent = new NoteContent(note);
-
-            return new InternshipTodo(
-                    modelTitle, modelJobTitle, modelDeadline, modelContent, modelDate, modelType);
+    private NoteContent noteToModelType() throws IllegalValueException {
+        if (!NoteContent.isValidContent(note)) {
+            throw new IllegalValueException(NoteContent.MESSAGE_CONSTRAINTS);
         }
-        return new InternshipTodo(
-                modelTitle, modelJobTitle, modelDeadline, modelDate, modelType);
+        return new NoteContent(note);
     }
 }

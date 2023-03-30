@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 
 /**
  * Represents a note object in the planner.
@@ -16,56 +16,83 @@ public class Note {
 
     // Identity fields
     private final LocalDate date;
-    private final TodoType type;
+    private final TaskType type;
     private NoteContent note;
 
     /**
+     * A Note constructor to create an instance of note.
      * Every field must be present and not null.
+     *
+     * @param note represents a short note for the respective note
      */
     public Note(NoteContent note) {
         requireAllNonNull(note);
         this.note = note;
         this.date = LocalDate.now();
-        this.type = TodoType.NOTE;
+        this.type = TaskType.NOTE;
     }
 
     /**
+     * A Note constructor to create an instance of note.
      * Every field must be present and not null.
+     *
+     * @param note represents a short note for the respective note
+     * @param date represents the date of the note created, auto-assigned
+     * @param type represents the type of instance, it is in default set to `TaskType.NOTE`
      */
-    public Note(NoteContent note, LocalDate date, TodoType type) {
+    public Note(NoteContent note, LocalDate date, TaskType type) {
         requireAllNonNull(note, date, type);
         this.note = note;
         this.date = date;
         this.type = type;
     }
 
+    /**
+     * Getter for the note content.
+     */
     public NoteContent getNote() {
         return note;
     }
 
+    /**
+     * Getter for the note's created date.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Getter for a note's created date, it produces string of date in an acceptable format for the date parser before
+     * being stored in the Json file.
+     */
     public String getJsonDate() {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
     }
 
+    /**
+     * Getter for a note's created date string, it produces string of date in format for the displayed date.
+     */
     public String getDateString() {
         return DateTimeFormatter.ofPattern("dd MMM yyyy, EEEE").format(date);
     }
 
-    public TodoType getType() {
+    /**
+     * Getter for the note's type.
+     */
+    public TaskType getType() {
         return type;
     }
 
+    /**
+     * Set the note content for the note.
+     */
     public void setNote(NoteContent note) {
         this.note = note;
     }
 
     /**
-     * Returns true if both interested internship have the same title.
-     * This defines a weaker notion of equality between two internships.
+     * Returns true if both note have the same note content.
+     * This defines a weaker notion of equality between two notes.
      */
     public boolean isSameNote(Note otherNote) {
         if (otherNote == this) {
@@ -78,7 +105,7 @@ public class Note {
 
     /**
      * Returns true if both interested internships have the same fields.
-     * This defines a stronger notion of equality between two internships.
+     * This defines a stronger notion of equality between two notes.
      */
     @Override
     public boolean equals(Object other) {

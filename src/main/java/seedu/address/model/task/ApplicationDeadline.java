@@ -36,6 +36,9 @@ public class ApplicationDeadline {
         return !test.isBefore(LocalDate.now());
     }
 
+    /**
+     * Getter for the respective application deadline.
+     */
     public LocalDate getDeadline() {
         return applicationDeadline;
     }

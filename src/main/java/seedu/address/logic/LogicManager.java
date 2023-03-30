@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 import seedu.address.model.statstics.StatsManager;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 import seedu.address.storage.Storage;
@@ -54,11 +54,11 @@ public class LogicManager implements Logic {
         statsManager.updateAllStatsInformation();
 
         try {
-            if (commandResult.getType() == TodoType.NONE) {
+            if (commandResult.getType() == TaskType.NONE) {
                 storage.saveAddressBook(model.getAddressBook());
-            } else if (commandResult.getType() == TodoType.TODO) {
+            } else if (commandResult.getType() == TaskType.TODO) {
                 storage.saveTodoList(model.getTodoList());
-            } else if (commandResult.getType() == TodoType.NOTE) {
+            } else if (commandResult.getType() == TaskType.NOTE) {
                 storage.saveNoteList(model.getNoteList());
             }
 
@@ -99,6 +99,11 @@ public class LogicManager implements Logic {
         return model.getFilteredNoteList();
     }
 
+    @Override
+    public InternshipApplication getReminderApplication() {
+        model.updateReminder();
+        return model.getReminder();
+    }
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

@@ -19,7 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -56,13 +56,13 @@ public class SampleDataUtil {
         return new InternshipTodo[] {
             new InternshipTodo(new CompanyName("Google"), new JobTitle("SE"),
                     new ApplicationDeadline(LocalDate.parse("2023-10-01")),
-                    new NoteContent("no note"), LocalDate.parse("2023-03-11"), TodoType.TODO),
+                    new NoteContent("no note"), LocalDate.parse("2023-03-11"), TaskType.TODO),
             new InternshipTodo(new CompanyName("Meta"), new JobTitle("Web Dev"),
                     new ApplicationDeadline(LocalDate.parse("2023-07-10")),
-                    new NoteContent("no note"), LocalDate.parse("2023-02-11"), TodoType.TODO),
+                    new NoteContent("no note"), LocalDate.parse("2023-02-11"), TaskType.TODO),
             new InternshipTodo(new CompanyName("Amazon"), new JobTitle("App Dev"),
                     new ApplicationDeadline(LocalDate.parse("2023-10-02")),
-                    new NoteContent("no note"), LocalDate.parse("2023-01-11"), TodoType.TODO)
+                    new NoteContent("no note"), LocalDate.parse("2023-01-11"), TaskType.TODO)
         };
     }
 

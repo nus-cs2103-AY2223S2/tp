@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents an InternshipApplication's interviewDate in the tracker.
  */
-public class InterviewDate {
+public class InterviewDate extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Interview dates should be of the format 'MM/dd/yyyy hh:mm a'.";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");

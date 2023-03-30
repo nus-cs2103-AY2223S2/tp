@@ -59,7 +59,7 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        InternshipApplication bankOfAmerica = new InternshipBuilder().withCompanyName("Bank Of America").build();
+        InternshipApplication bankOfAmerica = new InternshipBuilder().withCompanyName("Bank of America").build();
         InternshipApplication deutscheBank = new InternshipBuilder().withCompanyName("Deutsche Bank").build();
         AddCommand addBankOfAmericaCommand = new AddCommand(bankOfAmerica);
         AddCommand addDeutscheBankCommand = new AddCommand(deutscheBank);
@@ -143,6 +143,15 @@ public class AddCommandTest {
 
         @Override
         public void addApplications(List<InternshipApplication> applications) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public InternshipApplication getReminder() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateReminder() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -153,7 +153,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return applications.asUnmodifiableObservableList().size() + " applications";
-        // TODO: refine later
     }
 
     @Override

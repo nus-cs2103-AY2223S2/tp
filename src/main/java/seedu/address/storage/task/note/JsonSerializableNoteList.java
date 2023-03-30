@@ -1,7 +1,5 @@
 package seedu.address.storage.task.note;
 
-import static seedu.address.logic.commands.task.note.AddNoteCommand.MESSAGE_DUPLICATE_NOTE;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,13 +19,12 @@ import seedu.address.model.task.Note;
 @JsonRootName(value = "notelist")
 class JsonSerializableNoteList {
 
-    public static final String MESSAGE_DUPLICATE_TODO = "Note list "
-                                                        + "contains duplicate Note(s).";
+    public static final String MESSAGE_DUPLICATE_NOTE = "Note list contains duplicate Note(s).";
 
     private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given applications.
+     * Constructs a {@code JsonSerializableNoteList} with the given notes.
      */
     @JsonCreator
     public JsonSerializableNoteList(@JsonProperty("notes")
@@ -36,9 +33,9 @@ class JsonSerializableNoteList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyNote} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableNote}.
      */
     public JsonSerializableNoteList(ReadOnlyNote source) {
         notes.addAll(source.getNoteList().stream().map(
@@ -46,7 +43,7 @@ class JsonSerializableNoteList {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this note list into the model's {@code Note List} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

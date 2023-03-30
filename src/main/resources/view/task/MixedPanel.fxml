@@ -12,16 +12,16 @@
    </stylesheets>
    <ListView VBox.vgrow="ALWAYS">
       <Label text="TODO" style="-fx-font-size:20; -fx-font-family: impact; -fx-font-weight: bold; -fx-text-fill: whitesmoke;">
-      <padding>
-         <Insets left="10" right="15" top="10" bottom="15"/>
-      </padding>
+         <padding>
+            <Insets left="10" right="15" top="10" bottom="15"/>
+         </padding>
       </Label>
-      <ListView fx:id="todoListView" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="todoListView" VBox.vgrow="ALWAYS" onMouseClicked="#handleTodoMouseClick"/>
       <Label text="NOTE" style="-fx-font-size:20; -fx-font-family: impact; -fx-font-weight: bold; -fx-text-fill: whitesmoke;">
          <padding>
-         <Insets left="10" right="10" top="15" bottom="15"/>
-      </padding>
+            <Insets left="10" right="10" top="15" bottom="15"/>
+         </padding>
       </Label>
-      <ListView fx:id="noteListView" VBox.vgrow="ALWAYS"/>
+      <ListView fx:id="noteListView" VBox.vgrow="ALWAYS" onMouseClicked="#handleNoteMouseClick"/>
    </ListView>
 </VBox>
