@@ -21,7 +21,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**Table of Contents**](#table-of-contents)
 * [**Overview**](#overview)
   * [**What is EduMate?**](#what-is-edumate)
-  * [**Understanding the Symbols and Colours**](#understanding-the-symbols-and-colours)
+  * [**Understanding the Symbols**](#understanding-the-symbols)
   * [**Glossary**](#glossary)
 * [**Quick Start**](#quick-start)
   * [**System Requirements**](#system-requirements)
@@ -38,7 +38,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
-  * [**Arguments**](#arguments)
+  * [**Attributes**](#attributes)
   * [**Basic Commands**](#basic-commands)
     * [**Add a contact `add`**](#add-a-contact-add)
     * [**View a contact's profile `view`**](#view-a-contacts-profile-view)
@@ -56,9 +56,9 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
   * [**Meet Commands**](#meet-commands)
     * [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
-  * [**Organise Commands**](#Organise-commands)
-    * [**Organise meetings with your contacts `organise`**](#organise-meetings-with-your-contacts-organise)
-    * [**Unorganise meetings with your contacts `unorganise`**](#unorganise-meetings-with-your-contacts-unorganise)
+  * [**Schedule Commands**](#schedule-commands)
+    * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
+    * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
 * [**Other Commands**](#other-commands)
     * [**Exit the application `exit`**](#exit-the-application)
 * [**FAQ**](#faq)
@@ -849,7 +849,7 @@ whilst referring to their index on the Person List and find out what are the mos
 
 The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
 
-#### Organise Command `organise`
+#### Organise a meet up `organise`
 
 <div markdown="block" class="alert alert-info">
 
@@ -882,7 +882,7 @@ After deciding you want to meet with Samantha and Ian, you execute the `meet` co
 
 </div>
 
-#### Unorganise Command `unorganise`
+#### Unorganise a meet up `unorganise`
 
 If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#scheduled-meet-up-panel), simply use the `unorganise` command.
 
