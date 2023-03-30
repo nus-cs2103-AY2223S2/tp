@@ -9,11 +9,13 @@ public class HelpLabCommand extends HelpCommand {
 
     public static final String COMMAND_WORD = "help lab";
 
-    public static final String HEADER_1 = "----- Labs Basic Inputs -----\n";
+    public static final String HEADER_1 = "----- Lab Basic Inputs -----\n";
 
     public static final String HEADER_2 = "\n----- Student Inputs -----\n";
 
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
+
+    public static final String HEADER_4 = "\n----- File Inputs -----\n";
 
     public static final String ADD_LAB = "Add:                         "
             + "vim Lab/LAB_NAME";
@@ -34,13 +36,16 @@ public class HelpLabCommand extends HelpCommand {
             + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_NAME";
 
     public static final String ADD_NOTE = "Add Note:         "
-            + "add-note -content NOTE ?????";
+            + "addNote note -content [NOTE] -type Lab -name [LAB_NAME]";
 
     public static final String EDIT_NOTE = "Edit Note:          "
-            + "edit-note -content NOTE ?????";
+            + "editNote -content [NEW_NOTE] -type Lab -name [LAB_NAME] -index [NOTE_INDEX]";
 
     public static final String DELETE_NOTE = "Delete Note:      "
-            + "rm-note -type Lab -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
+            + "deleteNote -type Lab -name [LAB_NAME_OR_INDEX] -index [NOTE_INDEX]";
+
+    public static final String OPEN_FILE = "Open File:      "
+            + "openFile Lab/[LAB_INDEX]";
 
     @Override
     public CommandResult execute(Model model) {
@@ -55,6 +60,8 @@ public class HelpLabCommand extends HelpCommand {
                 + HEADER_3
                 + ADD_NOTE + "\n"
                 + DELETE_NOTE + "\n"
-                + EDIT_NOTE);
+                + EDIT_NOTE + "\n"
+                + HEADER_4
+                + OPEN_FILE);
     }
 }
