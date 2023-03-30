@@ -7,5 +7,7 @@ public enum CommandGroup {
     GENERAL,
     PERSON,
     TIMETABLE,
+    REMINDER,
+    STAT,
     JOB
 }

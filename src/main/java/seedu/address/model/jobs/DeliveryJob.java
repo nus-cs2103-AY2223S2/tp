@@ -387,12 +387,22 @@ public class DeliveryJob {
         }
 
         /**
-         * Sets deliverySlot.
+         * Clears deliverySlot.
          *
          * @return
          */
         public Builder clearDeliverySlot() {
             this.deliverySlot = Optional.of(DeliverySlot.placeholder());
+            return this;
+        }
+
+        /**
+         * Clears deliveryDate.
+         *
+         * @return
+         */
+        public Builder clearDeliveryDate() {
+            this.deliveryDate = Optional.of(DeliveryDate.placeholder());
             return this;
         }
 
