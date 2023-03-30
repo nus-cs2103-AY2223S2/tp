@@ -93,6 +93,7 @@ will be ignored.<br>
     * As you may have guessed, as an NUS student, c stands for *Canvas*, our favourite website.
 
 --------------------------------------------------------------------------------------------------------------------
+</div>
 
 ## Features
 
@@ -154,4 +155,4 @@ the data of your previous ContactnUS home folder.
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
 <!-- **Help** | `help` -->
 
-</div>
+
