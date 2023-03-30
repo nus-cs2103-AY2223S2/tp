@@ -220,6 +220,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Resets {@code projectToLink}.
+     */
+    public void resetProjectToLink() {
+        this.projectToLink = Optional.empty();
+    }
+
+    /**
      * Links {@code projectToLink} to {@code client}.
      */
     public void linkProjectToClient(Client client) {

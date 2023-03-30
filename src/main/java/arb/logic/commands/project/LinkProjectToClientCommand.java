@@ -3,7 +3,9 @@ package arb.logic.commands.project;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import arb.commons.core.LogsCenter;
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
 import arb.logic.commands.Command;
@@ -20,18 +22,24 @@ import arb.model.client.Client;
 public class LinkProjectToClientCommand extends Command {
 
     public static final String MESSAGE_LINK_PROJECT_TO_CLIENT_SUCCESS = "Successfully linked the project to %1$s";
+    public static final String CANCEL_MESSAGE = "Linking between project and client has been cancelled";
 
     public static final String MESSAGE_USAGE = "Please select a client to link this project to.\n"
-            + "For example, enter 1 to select the first client in the list.";
+            + "For example, enter 1 to select the first client in the list.\n"
+            + "Enter 0 to cancel this operation.";
+
+    private static final Logger logger = LogsCenter.getLogger(LinkProjectToClientCommand.class);
 
     private final Index targetIndex;
 
     /**
      * Creates a LinkProjectToClient to link the client at {@code targetIndex} to
      * {@code projectToBeLinked} in the model.
+     * If the user enters "0", the linking is cancelled.
      */
     public LinkProjectToClientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        logger.info("Inputted index: " + this.targetIndex.getOneBased());
     }
 
     @Override
@@ -39,6 +47,11 @@ public class LinkProjectToClientCommand extends Command {
         requireNonNull(model);
         assert currentListBeingShown == ListType.CLIENT : "This command should only be executed "
                 + "with a client list being shown";
+
+        if (targetIndex.getOneBased() == 0) {
+            model.resetProjectToLink();
+            return new CommandResult(CANCEL_MESSAGE, ListType.PROJECT);
+        }
 
         List<Client> lastShownList = model.getSortedClientList();
 

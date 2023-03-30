@@ -174,6 +174,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void resetProjectToLink() {
+        addressBook.resetProjectToLink();
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
     public void linkProjectToClient(Client client) {
         requireNonNull(client);
         addressBook.linkProjectToClient(client);

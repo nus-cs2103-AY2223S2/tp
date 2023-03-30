@@ -183,6 +183,11 @@ public class AddProjectCommandTest {
         }
 
         @Override
+        public void resetProjectToLink() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void linkProjectToClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
