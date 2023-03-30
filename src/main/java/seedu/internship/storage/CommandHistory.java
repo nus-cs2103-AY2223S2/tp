@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// @@author kohkaixun-reused
 // Solution below adapted from
 // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/storage/UserInputHistory.java
 /**
@@ -53,3 +54,4 @@ public class CommandHistory {
         return this.list.get(this.index);
     }
 }
+// @@author
