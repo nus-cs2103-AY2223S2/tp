@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
@@ -42,12 +39,12 @@ public interface DengueHotspotStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker)
-            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException;
+            throws IOException;
 
     /**
      * @see #saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker)
      */
     void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
-            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException;
+            throws IOException;
 
 }

@@ -179,8 +179,19 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void sort(List<Person> sortedList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void importCsv(Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void exportCsv(Path filePath) {
             throw new AssertionError("This method should not be called.");
         }
     }

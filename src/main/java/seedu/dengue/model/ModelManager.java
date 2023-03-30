@@ -6,6 +6,7 @@ import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -162,7 +163,6 @@ public class ModelManager implements Model {
         dengueHotspotTracker.setPersons(persons);
         memory.saveNewLatest(this.dengueHotspotTracker);
         updateFromMemoryStack();
-
     }
 
 
@@ -206,26 +206,34 @@ public class ModelManager implements Model {
     //=========== Import/Export Csv Stuff ====================================================
 
     @Override
-    public void importCsv(Path filePath) {
-        DengueHotspotTracker tempDht = new DengueHotspotTracker();
-        tempDht.setPersons(filteredPersons);
+    public void importCsv(Path filePath) throws DataConversionException, IOException {
         CsvDengueHotspotStorage toRead = new CsvDengueHotspotStorage(filePath);
+        Optional<ReadOnlyDengueHotspotTracker> dengueHotspotTrackerOptional;
+        ReadOnlyDengueHotspotTracker importedData;
         try {
-            toRead.readDengueHotspotTracker();
+            dengueHotspotTrackerOptional = toRead.readDengueHotspotTracker();
+            if (!dengueHotspotTrackerOptional.isPresent()) {
+                logger.info("Data file not found. No change to data in DengueHotspotTracker");
+                throw new IOException();
+            } else {
+                importedData = dengueHotspotTrackerOptional.get();
+                dengueHotspotTracker.setPersons(importedData.getPersonList());
+            }
         } catch (DataConversionException e) {
-            throw new RuntimeException(e);
+            logger.warning("Data file not in the correct format. No change to data in DengueHotspotTracker");
+            throw e;
         }
     }
 
     @Override
-    public void exportCsv(Path filePath) {
+    public void exportCsv(Path filePath) throws IOException {
         DengueHotspotTracker tempDht = new DengueHotspotTracker();
         tempDht.setPersons(filteredPersons);
         CsvDengueHotspotStorage toSave = new CsvDengueHotspotStorage(filePath);
         try {
             toSave.saveDengueHotspotTracker(tempDht);
-        } catch (IOException | CsvRequiredFieldEmptyException | CsvDataTypeMismatchException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw e;
         }
     }
 

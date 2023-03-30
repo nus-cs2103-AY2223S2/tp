@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 
+import java.io.IOException;
+
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;
 
@@ -15,10 +17,13 @@ public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": exports data file to filePath. "
+            + ": exports data to filename in current directory. "
             + "Example: " + COMMAND_WORD + " sampledata.csv ";
 
     public static final String MESSAGE_SUCCESS = "Successfully exported data to %s";
+
+    public static final String MESSAGE_FAILURE = "Failed to import data from %s."
+            + " Please check if the data is in the correct format.";
 
     private final Path filePath;
 
@@ -29,6 +34,7 @@ public class ExportCommand extends Command {
      */
     public ExportCommand(Path filePath) {
         requireNonNull(filePath);
+
         this.filePath = filePath;
     }
 
@@ -36,7 +42,11 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.exportCsv(filePath);
+        try {
+            model.exportCsv(filePath);
+        } catch (IOException e) {
+            return new CommandResult(String.format(MESSAGE_FAILURE, this.filePath.toString()));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.filePath.toString()));
     }
 }
