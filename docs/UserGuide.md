@@ -302,11 +302,11 @@ Format: `exit`
 
 ### 15. Filtering students by tag: `filter`
 
-Filter students whose tag contain any of the given keywords.
+Filters students whose tag contain any of the given keywords.
 
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `primary` will match `Primary`
+* The filter is case-insensitive. e.g `primary` will match `Primary`
 * The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
 * Only the tag is searched.
 * Only full words will be matched e.g. `primary` will not match `primary4`
@@ -320,10 +320,31 @@ Examples:
 
 ### 16. Switch between tabs : `switch`
 
-Switch between the score list and score chart tabs.
+Switchs between the score list and score chart tabs.
 
-Format: `switch`, it also support mouse click.
+Format: There we support using CLI or mouse.
+CLI - `switch`
+Mouse - click the tab.
 
+
+### 16. Export the student information out : `export`
+
+Exports all the student's infomration. User can export with or without specific the path.
+If path is never being specificed, default exported position will be under the _home folder_.
+The export file name is `data.json`.
+
+Format: There we support using CLI or mouse.
+CLI - `export [FILE_PATH]`
+Mouse - Click the "File" on the top menu, then choose "Import" under the drop down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+
+Examples:
+* For windows user:
+    * `export p/C:\bin` will export the file to bin folder under C disk. 
+    * `export` will export the file under the _home folder_.
+* For mac user:
+    * `export p/C:\bin` will export the file to bin folder under C disk. 
+    * `export` will export the file under the _home folder_.
+    
 
 ### Saving the data
 
