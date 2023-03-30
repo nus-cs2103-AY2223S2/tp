@@ -25,7 +25,7 @@ public class JsonSerializableAddressBookTest {
         JsonSerializableModuleTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_MODULES_FILE,
                 JsonSerializableModuleTracker.class).get();
         ModuleTracker addressBookFromFile = dataFromFile.toModelType();
-        ModuleTracker typicalModulesAddressBook = TypicalModules.getTypicalAddressBook();
+        ModuleTracker typicalModulesAddressBook = TypicalModules.getTypicalModuleTracker();
         assertEquals(addressBookFromFile, typicalModulesAddressBook);
     }
 

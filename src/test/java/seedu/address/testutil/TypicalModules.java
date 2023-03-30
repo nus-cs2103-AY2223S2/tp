@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ModuleTracker;
 import seedu.address.model.module.Module;
+import seedu.address.model.ModuleTracker;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
@@ -71,14 +71,14 @@ public class TypicalModules {
     private TypicalModules() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical modules.
+     * Returns an {@code ModuleTracker} with all the typical modules.
      */
-    public static ModuleTracker getTypicalAddressBook() {
-        ModuleTracker ab = new ModuleTracker();
+    public static ModuleTracker getTypicalModuleTracker() {
+        ModuleTracker mt = new ModuleTracker();
         for (Module module : getTypicalModules()) {
-            ab.addModule(module);
+            mt.addModule(module);
         }
-        return ab;
+        return mt;
     }
 
     public static List<Module> getTypicalModules() {
