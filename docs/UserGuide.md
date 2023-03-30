@@ -170,7 +170,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Edits the supplier at the specified `INDEX`.
 * The index refers to the number shown in the suppliers list displayed.
 * The index **must be a positive integer** 1, 2, 3, …​
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the new values given.
 * When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
 * Typing `t/` without any input will remove all the existing tags.
@@ -187,10 +187,10 @@ Edits an order that is present in the order list.
 Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
 * Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
-* User can remove the remarks by typing r/ without specifying any remarks after it.
+* You can remove the remarks by typing r/ without specifying any remarks after it.
 
 Examples:
 
@@ -204,7 +204,7 @@ Edits a task present in the task list.
 Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
 * Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing status, the existing status of the order will be removed and replaced with the given status.
 * To edit status, use `N` / `n` for Not done or `D` / `d` for Done.
@@ -220,8 +220,10 @@ Edits an item present in the menu.
 Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
 
 * Edits the item at the specific INDEX. The index refers to the number shown in the menu list displayed. The index must be a positive integer 1, 2, 3, …
-* User is required to key in at least one of the optional fields.
+* You have to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
+* Take note, when entering the price and cost, it cannot take negative numbers.
+  * For example, `pr/2.40` is allowed but not `pr/-2.40`.
 
 Examples:
 
