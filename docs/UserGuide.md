@@ -118,7 +118,7 @@ Adds a customer appointment to the system.
 
 Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 
-Example: `addappointment c/5 d/05/03/2023 t/5pm`
+Example: `addappointment c/5 d/2023-03-05 t/14:00`
 
 ---
 ### List/Sort
@@ -126,65 +126,56 @@ Example: `addappointment c/5 d/05/03/2023 t/5pm`
 ### Listing all vehicles/customers/parts/appointments: `list`
 Shows all vehicles/customers/parts/appointments.
 
-Format: `list (vehicles/customers/parts/appointments)`
+Format: `list(vehicles/customers/parts/appointments/services/technicians)`
 
 Examples:
 * `listvehicles`
 * `listcustomers`
 * `listparts`
 * `listappointments`
+* `listtechnicians`
+* `listservices`
 
-Shows a list of all persons in the address book.
 
-### Sorting displayed list: `sort`
+### Sorting displayed lists: `sort`
 Sorts all vehicles/customers/parts/appointments list in ascending or descending direction by a specific param. \
 *Note: Command is context-sensitive (i.e. can only be used after list command)*
 
-Format: `sort by/BRAND d/DIRECTION`
+Format: `sort(vehicles/customers/parts/appointments/services) by/OBJECT_PARAMS [r/]`
+OBJECT_PARAMS are dependent on which object* and adding `r/` means to reverse the sort direction
 
-Example: `sort by/brand d/asc`
+Examples: 
+* `sortcustomers by/id r/`
+* `sortvehicles by/brand`
+* `sortappointments by/date r/`
+* `sortappointments by/date status`
 
 ---
 ### Find
 
-### Finding specific vehicles/customers/parts/appointments: `find`
+### Finding specific vehicles/customers/services/appointments/technicians: `find`
 
-Finds vehicles/customers/parts/appointments that contain any of the given keywords. This does not return details regarding the searched term, only returns information useful for other commands such as view, delete etc.
-* Vehicle - can find by brand, plate number and customer id
-* Customer - can find by name and customer id
-* Part - can find by name
-* Appointment - can find by customer id and date
+Finds all entities whose attributes match the specified keywords (case-insensitive) or the given date, to filter and displays them in the relevant tab lists.
 
-Format: `find (vehicle/customer/part/appointment) KEYWORD`
+Format: `find KEYWORD`
 
 Examples:
-* `findvehicle toyota`
-* `findcustomer John`
-* `findpart Cylinder Head`
-* `findappointment 05/03/2023`
+* `find alex`
+* `find toyota`
 ---
 ### View
 
-### Viewing specific vehicle/customer/appointment/service details: `view`
+### Viewing specific vehicles/customers/services/appointments/technicians: `view`
 
 View a specific vehicle/customer/part/appointment/service detail. Id can be found by using the find or list command.
 
-Format: `view(vehicle/customer/appointment/service) ID`
+Format: `view(vehicle/customer/appointment/service/technician) ID`
 
 Examples:
 * `viewvehicle 12`
 * `viewcustomer 2`
 * `viewappointment 56`
 * `viewservice 77`
-
-### Viewing specific vehicle/customer/part/appointment details: `view`
-
-View a specific part detail. Part name can be found by using the find or list command.
-
-Format: `viewpart name`
-
-Examples:
-* `viewpart Cylinder Head`
 
 ---
 ### Edit
@@ -193,7 +184,7 @@ Examples:
 
 Updates the specified (Vehicle/Customer/Appointment) information
 
-Format: `edit(vehicle/customer/appointment) ID [?/PARAM] …​`
+Format: `edit(vehicle/customer/appointment/service/technician) ID [?/PARAM] …​`
 
 * Edits the specified object at the specified `ID`. The id refers to the index number shown in the displayed list from the list or find command. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -206,14 +197,14 @@ Examples:
 ---
 ### Delete
 
-### Deleting a vehicle/customer/appointment/service : `delete`
+### Deleting a vehicle/customer/appointment/service/technician : `delete`
 
 Deletes the specified vehicle/customer/part/appointment/service from the system and all its related records.
 * Deletes the vehicle/customer/part/appointment/service at the specified `ID`.
 * The id refers to the index number shown in the displayed list from the list or find command.
 * The id **must be a positive integer** 1, 2, 3, …​
 
-Format: `delete(vehicle/customer/appointment) ID`
+Format: `delete(vehicle/customer/appointment/service/technician) ID`
 
 Example: `deletecustomer 12` deletes the customer with id 12 and all their related records in the AutoM8 system.
 
