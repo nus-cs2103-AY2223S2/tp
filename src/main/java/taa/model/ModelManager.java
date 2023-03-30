@@ -25,6 +25,7 @@ import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import taa.assignment.AssignmentList;
+import taa.assignment.exceptions.*;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
@@ -254,7 +255,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addAssignment(String assignmentName, int totalMarks) throws CommandException {
+    public void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException {
         assignmentList.add(assignmentName, filteredStudents, totalMarks);
         for (Student student : filteredStudents) {
             updateStudent(student);
@@ -262,7 +263,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteAssignment(String assignmentName) throws CommandException {
+    public void deleteAssignment(String assignmentName) throws AssignmentNotFoundException {
         assignmentList.delete(assignmentName);
         for (Student student : filteredStudents) {
             updateStudent(student);
@@ -271,14 +272,14 @@ public class ModelManager implements Model {
 
     @Override
     public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission)
-            throws CommandException {
+            throws AssignmentException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
         assignmentList.grade(assignmentName, student, marks, isLateSubmission);
         updateStudent(student);
     }
 
     @Override
-    public void ungrade(String assignmentName, int studentId) throws CommandException {
+    public void ungrade(String assignmentName, int studentId) throws AssignmentException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
         assignmentList.ungrade(assignmentName, student);
         updateStudent(student);

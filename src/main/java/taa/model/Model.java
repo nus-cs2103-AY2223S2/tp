@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import taa.assignment.exceptions.*;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
@@ -122,16 +123,16 @@ public interface Model {
     /**
      * Checks if a given assignment already exists.
      */
-    boolean hasAssignment(String assignmentName) throws CommandException;
-    void addAssignment(String assignmentName, int totalMarks) throws CommandException;
+    boolean hasAssignment(String assignmentName);
+    void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException;
 
-    void deleteAssignment(String assignmentName) throws CommandException;
+    void deleteAssignment(String assignmentName) throws AssignmentNotFoundException;
 
-    void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws CommandException;
+    void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws AssignmentException;
 
     String listAssignments();
 
-    void ungrade(String assignmentName, int studentId) throws CommandException;
+    void ungrade(String assignmentName, int studentId) throws AssignmentException;
 
     void addAlarm(Alarm alarm) throws CommandException;
 

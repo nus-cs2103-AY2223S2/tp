@@ -1,9 +1,12 @@
 package taa.assignment;
 
 import java.util.Date;
+import java.util.Optional;
 
 import taa.assignment.exceptions.InvalidGradeException;
 import taa.model.student.Student;
+
+import javax.swing.text.html.Option;
 
 /**
  * An assignment submission
@@ -60,6 +63,25 @@ public class Submission implements Comparable<Submission> {
         String gradeStatus = this.isGraded ? marks + "/" + assignment.getTotalMarks() : "Ungraded";
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
         return String.format("%s (Grade: %s) %s", this.assignment.toString(), gradeStatus, late);
+    }
+
+    /**
+     * Returns true if this submission belongs to an assignment with the given name.
+     */
+    public boolean isForAssignment(String assignmentName) {
+        return this.assignment.toString() == assignmentName;
+    }
+
+    /**
+     * Returns the score of this submission, if graded.
+     * Otherwise, an Optional.empty() is returned.
+     */
+    public Optional<Integer> getScore() {
+        if (isGraded) {
+            return Optional.of(this.marks);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override

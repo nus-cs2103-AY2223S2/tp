@@ -18,6 +18,8 @@ public class ClassStatisticsCommand extends Command {
     public static final String EXAMPLE_USAGE = "Examples: \n"
                     + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "attendance\n"
                     + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades " + PREFIX_ASSIGNMENT_NAME + "Homework 1\n";
+    public static final String SAVE_IMAGE_HINT = "Tip: Want to save the chart? \n"
+            + "Right click on it, select 'Save As' and click on 'PNG'!";
 
     public static final String MESSAGE_SUCCESS = "Displayed statistics for the %1$s of the active class %2$s";
 
@@ -74,12 +76,14 @@ public class ClassStatisticsCommand extends Command {
         CommandResult result;
 
         if (this.field == ChartType.CLASS_ATTENDANCE) {
-            result = new CommandResult(String.format(MESSAGE_SUCCESS, "attendance", ""));
+            result = new CommandResult(String.format(MESSAGE_SUCCESS, "attendance", "")
+                    + "\n\n" + SAVE_IMAGE_HINT);
         } else if (this.field == ChartType.CLASS_GRADES) {
             result = new CommandResult(String.format(
                     MESSAGE_SUCCESS,
                     "grades",
-                    "(" + this.assignmentName + ")"));
+                    "(" + this.assignmentName + ")")
+                    + "\n\n" + SAVE_IMAGE_HINT);
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_FIELD);
         }

@@ -2,6 +2,7 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import taa.assignment.exceptions.AssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 
@@ -23,7 +24,14 @@ public class DeleteAssignmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.deleteAssignment(assignmentName);
+
+        try {
+            model.deleteAssignment(assignmentName);
+        } catch (AssignmentException e) {
+            throw new CommandException(String.format("An error occurred when deleting assignment %%s:\n", assignmentName)
+                    + e.getMessage());
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentName));
     }
 }
