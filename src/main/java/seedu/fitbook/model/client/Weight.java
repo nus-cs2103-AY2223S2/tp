@@ -14,8 +14,9 @@ public class Weight {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should only contain positive numbers and cannot be 0";
-    public static final String VALIDATION_REGEX = "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$";
+            "Weight should only contain positive numbers and from 0.1 to 999.9 with 0 or 1 decimal place";
+    public static final String VALIDATION_REGEX =
+            "^(?!0$)(?!0\\d)\\d{1,3}(?:\\.\\d{0,1})?$";
     public final String value;
     public final Date date;
 
