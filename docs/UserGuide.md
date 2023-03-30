@@ -1,13 +1,11 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
 Army Information Management System (AIMS) is a **desktop app for managing the personal information of military
-personnel,
-optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical User
-Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI
-apps.
+personnel, optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical
+User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
+GUI apps.
 
 This user guide shows you how to get started using AIMS and how to make use of the features by following the
 easy-to-understand explanations and examples.
@@ -62,7 +60,7 @@ easy-to-understand explanations and examples.
       a new person `Jaden Ng` to AIMS with the following information:
 
    | Field        | Value                          |
-            | ------------ | ------------------------------ |
+                        | ------------ | ------------------------------ |
    | rank         | 3SG                            |
    | name         | Jaden Ng                       |
    | unit         | 3 SIR                          |
@@ -136,7 +134,7 @@ Examples:
   adds a new person `Lawrence Tay` to AIMS with the following information:
 
   | Field        | Value                 |
-      | ------------ | --------------------- |
+              | ------------ | --------------------- |
   | rank         | 3SG                   |
   | name         | Lawrence Tay          |
   | unit         | 1 GDS                 |
@@ -221,7 +219,7 @@ Tags: [colleagues][friends]
 
 - In the scenario where your clipboard is not accessible by AIMS, the information will be displayed so that you can
   manually select and copy it instead.
-  ![no clipboard for `copy 2` width=800](images/copy2_noclipboard.png)
+  ![no clipboard for `copy 2`](images/copy2_noclipboard.png)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -240,8 +238,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person's tags by typing `t/` without
-  specifying any tags after it.
+- You can remove all the person's tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
@@ -259,8 +256,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+- Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
+  , `Bo Yang`
 
 Examples:
 
@@ -332,6 +329,11 @@ Format: `favorite INDEX`
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
+Example:
+
+- `favorite 3` will pin the person in the favorite list.
+  ![result for `favorite 3`](images/favorite3.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -371,14 +373,23 @@ the data of your previous AIMS home folder.
 
 ## Command summary
 
- Action       | Format, Examples                                                                                                                                                                                                                            
+Action       | Format, Examples
 --------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]… ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague` 
- **Clear**    | `clear`                                                                                                                                                                                                                                     
- **Copy**     | `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                 
- **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                         
- **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       
- **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                  
- **Favorite** | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                                     
- **List**     | `list`                                                                                                                                                                                                                                      
- **Help**     | `help`                                                                                                                                                                                                                                      
+
+**
+Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]… ` <br>
+e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague`
+**Clear**    | `clear`
+**
+Copy**
+| `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br>
+e.g., `copy 1 n/ e/ t/`
+**Delete**   | `delete INDEX`<br> e.g., `delete 3`
+**
+Edit**
+| `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br>
+e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Favorite** | `favorite INDEX`<br> e.g., `favorite 3`
+**List**     | `list`
+**Help**     | `help`                                                                                                                                                                                                                                      
