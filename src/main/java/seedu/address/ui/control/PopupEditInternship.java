@@ -390,4 +390,54 @@ public class PopupEditInternship extends UiPart<Stage> {
         moreReflection.setPromptText("More reflection...");
         reflectionVBox.getChildren().add(moreReflection);
     }
+
+    /**
+     * Handles the delete qualification button clicked event.
+     */
+    @FXML
+    private void handleDelQualification() {
+        if (qualificationVBox.getChildren().size() > 2) {
+            qualificationVBox.getChildren().remove(qualificationVBox.getChildren().size() - 1);
+        }
+    }
+
+    /**
+     * Handles the delete programming language button clicked event.
+     */
+    @FXML
+    private void handleDelProgrammingLanguage() {
+        if (programmingLanguageVBox.getChildren().size() > 2) {
+            programmingLanguageVBox.getChildren().remove(programmingLanguageVBox.getChildren().size() - 1);
+        }
+    }
+
+    /**
+     * Handles the delete review button clicked event.
+     */
+    @FXML
+    private void handleDelReview() {
+        if (reviewVBox.getChildren().size() > 2) {
+            reviewVBox.getChildren().remove(reviewVBox.getChildren().size() - 1);
+        }
+    }
+
+    /**
+     * Handles the delete note button clicked event.
+     */
+    @FXML
+    private void handleDelNote() {
+        if (noteVBox.getChildren().size() > 2) {
+            noteVBox.getChildren().remove(noteVBox.getChildren().size() - 1);
+        }
+    }
+
+    /**
+     * Handles the delete reflection button clicked event.
+     */
+    @FXML
+    private void handleDelReflection() {
+        if (reflectionVBox.getChildren().size() > 2) {
+            reflectionVBox.getChildren().remove(reflectionVBox.getChildren().size() - 1);
+        }
+    }
 }

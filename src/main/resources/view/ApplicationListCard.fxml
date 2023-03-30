@@ -17,15 +17,17 @@
     <stylesheets>
         <URL value="@ApplicationListCard.css" />
     </stylesheets>
-    <GridPane alignment="CENTER" hgap="0" minWidth="420" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane alignment="CENTER" hgap="0" minWidth="420.0" prefHeight="52.0" prefWidth="414.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
         <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="100" />
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="10" />
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="10.0" />
+         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
-        <HBox prefHeight="100.0" prefWidth="200.0" maxWidth="Infinity">
+        <HBox maxWidth="Infinity" prefHeight="100.0" prefWidth="200.0">
             <children>
                 <VBox alignment="CENTER_LEFT" minHeight="103.0" prefHeight="103.0" prefWidth="386.0">
                     <padding>
@@ -51,7 +53,7 @@
 
             </children>
         </HBox>
-           <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleEditInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="primary-button" stylesheets="@PopupAddInternship.css" GridPane.columnIndex="1">
+           <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleEditInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="primary-button" GridPane.columnIndex="1">
                <graphic>
                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                        <image>
@@ -60,8 +62,29 @@
                    </ImageView>
                </graphic>
            </Button>
+      <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleDeleteInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="delete-button" GridPane.columnIndex="2">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="archiveButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleArchiveInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="archive-button" GridPane.columnIndex="3">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="archive-button">
+               <image>
+                  <Image url="@../images/archive.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
         <rowConstraints>
             <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
          <RowConstraints />
          <RowConstraints />
         </rowConstraints>

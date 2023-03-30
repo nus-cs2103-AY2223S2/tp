@@ -381,7 +381,7 @@ public class ParserUtil {
      */
     public static InternshipStatus parseInternshipStatus(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedStatus = status.trim();
+        String trimmedStatus = status.trim().toUpperCase();
         if (!InternshipStatus.isValidStatus(trimmedStatus)) {
             throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }

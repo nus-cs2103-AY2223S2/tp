@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.model.person.InternshipApplication;
@@ -27,17 +28,27 @@ public class Reminder {
     }
 
     public void setClosestUpcomingInterview() {
+        LocalDateTime now = LocalDateTime.now();
+        InternshipApplication closestApplication = null;
         if (applications == null || applications.isEmpty()) {
             this.upcomingApplication = null;
         } else {
-            InternshipApplication closestApplication = applications.get(0);
             for (int i = 1; i < applications.size(); i++) {
                 InternshipApplication application = applications.get(i);
-                if (application.getInterviewDate() != null) {
-                    if (closestApplication.getInterviewDate() == null
-                            || application.getInterviewDate()
-                            .isBeforeInclusive(closestApplication.getInterviewDate())) {
-                        closestApplication = application;
+                if (application.getInterviewDate().getDateTime().isAfter(now)) {
+                    closestApplication = application;
+                    break;
+                }
+            }
+            for (int i = 1; i < applications.size(); i++) {
+                InternshipApplication application = applications.get(i);
+                if (application.getInterviewDate().getDateTime().isAfter(now)) {
+                    if (application.getInterviewDate() != null) {
+                        if (closestApplication.getInterviewDate() == null
+                                || application.getInterviewDate()
+                                .isBeforeInclusive(closestApplication.getInterviewDate())) {
+                            closestApplication = application;
+                        }
                     }
                 }
             }

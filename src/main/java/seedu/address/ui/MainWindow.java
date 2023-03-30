@@ -103,7 +103,7 @@ public class MainWindow extends UiPart<Stage> {
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
-        // Initialise Statistics Panel
+        // Initialise statsInformationListPanel
         statsInformationListPanel = new StatsInformationListPanel(logic.getStatsManager());
         statsInformationListPanelPlaceholder.getChildren().add(statsInformationListPanel.getRoot());
 
