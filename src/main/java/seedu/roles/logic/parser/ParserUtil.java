@@ -15,7 +15,6 @@ import seedu.roles.model.job.Email;
 import seedu.roles.model.job.Experience;
 import seedu.roles.model.job.JobDescription;
 import seedu.roles.model.job.Name;
-import seedu.roles.model.job.Order;
 import seedu.roles.model.job.Phone;
 import seedu.roles.model.job.Salary;
 import seedu.roles.model.job.Website;
@@ -212,12 +211,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code order} is invalid.
      */
-    public static Order parseOrder(String order) throws ParseException {
+    public static OrderParser parseOrder(String order) throws ParseException {
         requireNonNull(order);
         String trimmedOrder = order.trim();
-        if (!Order.isValidOrder(trimmedOrder)) {
-            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        if (!OrderParser.isValidOrder(trimmedOrder)) {
+            throw new ParseException(OrderParser.MESSAGE_CONSTRAINTS);
         }
-        return new Order(trimmedOrder);
+        return new OrderParser(trimmedOrder);
     }
 }

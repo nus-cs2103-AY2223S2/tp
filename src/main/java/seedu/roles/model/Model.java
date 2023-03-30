@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.roles.commons.core.GuiSettings;
-import seedu.roles.model.job.Order;
+import seedu.roles.logic.parser.OrderParser;
 import seedu.roles.model.job.Role;
 
 /**
@@ -90,12 +90,12 @@ public interface Model {
      * Display the RoleList.
      * @throws NullPointerException if {@code list} is null.
      */
-    void displaySortedSalaryList(Order order);
+    void displaySortedSalaryList(OrderParser orderParser);
 
     /**
      * Display the DeadlineList.
      * @throws NullPointerException if {@code list} is null.
      */
-    void displaySortedDeadlineList(Order order);
+    void displaySortedDeadlineList(OrderParser orderParser);
 
 }

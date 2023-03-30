@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.roles.commons.core.GuiSettings;
 import seedu.roles.logic.commands.exceptions.CommandException;
+import seedu.roles.logic.parser.OrderParser;
 import seedu.roles.model.Model;
 import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.ReadOnlyUserPrefs;
 import seedu.roles.model.RoleBook;
-import seedu.roles.model.job.Order;
 import seedu.roles.model.job.Role;
 import seedu.roles.testutil.RoleBuilder;
 
@@ -150,12 +150,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void displaySortedSalaryList(Order order) {
+        public void displaySortedSalaryList(OrderParser orderParser) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void displaySortedDeadlineList(Order order) {
+        public void displaySortedDeadlineList(OrderParser orderParser) {
             throw new AssertionError("This method should not be called.");
         }
     }

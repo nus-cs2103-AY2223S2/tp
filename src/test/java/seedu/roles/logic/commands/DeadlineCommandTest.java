@@ -7,10 +7,10 @@ import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.roles.logic.parser.OrderParser;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
 import seedu.roles.model.UserPrefs;
-import seedu.roles.model.job.Order;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code NameCommand}.
@@ -22,11 +22,11 @@ public class DeadlineCommandTest {
     @Test
     public void equals() {
 
-        Order order1 = new Order("asc");
-        Order order2 = new Order("desc");
+        OrderParser orderParser1 = new OrderParser("asc");
+        OrderParser orderParser2 = new OrderParser("desc");
 
-        DeadlineCommand deadlineFirstCommand = new DeadlineCommand(order1);
-        DeadlineCommand deadlineSecondCommand = new DeadlineCommand(order2);
+        DeadlineCommand deadlineFirstCommand = new DeadlineCommand(orderParser1);
+        DeadlineCommand deadlineSecondCommand = new DeadlineCommand(orderParser2);
 
         // different types -> returns false
         assertFalse(deadlineFirstCommand.equals(1));
@@ -41,8 +41,8 @@ public class DeadlineCommandTest {
     @Test
     public void execute_asecOrder() {
         String expectedMessage = String.format(MESSAGE_DEADLINE_COMMAND_FORMAT, "asc");
-        DeadlineCommand command = new DeadlineCommand(new Order("asc"));
-        expectedModel.displaySortedDeadlineList(new Order("asc"));
+        DeadlineCommand command = new DeadlineCommand(new OrderParser("asc"));
+        expectedModel.displaySortedDeadlineList(new OrderParser("asc"));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }

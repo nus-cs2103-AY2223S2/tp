@@ -4,7 +4,6 @@ import static seedu.roles.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.roles.logic.commands.DeadlineCommand;
 import seedu.roles.logic.commands.exceptions.exceptions.ParseException;
-import seedu.roles.model.job.Order;
 
 /**
  * Parses input arguments and creates a new SalaryCommand object
@@ -18,8 +17,8 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
      */
     public DeadlineCommand parse(String args) throws ParseException {
         try {
-            Order order = ParserUtil.parseOrder(args);
-            return new DeadlineCommand(order);
+            OrderParser orderParser = ParserUtil.parseOrder(args);
+            return new DeadlineCommand(orderParser);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE), pe);
