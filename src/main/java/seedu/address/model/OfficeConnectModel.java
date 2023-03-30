@@ -69,6 +69,23 @@ public class OfficeConnectModel {
     }
 
     /**
+     * Checks if assigntask model manager contains assignment
+     * @param assignTask assignment to be checked
+     * @return true if assigntask model manager contains the item
+     */
+    public boolean hasAssignTaskModelManagerItem(AssignTask assignTask) {
+        return assignTaskModelManager.hasItem(assignTask);
+    }
+
+    /**
+     * Adds assignment to assigntask model manager
+     * @param assignTask assignment to be added
+     */
+    public void addAssignTaskModelManagerItem(AssignTask assignTask) {
+        assignTaskModelManager.addItem(assignTask);
+    }
+
+    /**
      * Updates filtered item list in task model manager
      * @param predicate predicate that determines if item should stay in the filtered item list
      */
@@ -81,7 +98,18 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Deletes task from task model manager
+     * Edits the given task in task model manager.
+     *
+     * @param target target task to be edited
+     * @param editedTask edited task
+     */
+    public void setTaskModelManagerItem(Task target, Task editedTask) {
+        taskModelManager.setItem(target, editedTask);
+    }
+
+    /**
+     * Deletes task from task model manager.
+     *
      * @param task task to be deleted
      */
     public void deleteTaskModelManagerItem(Task task) {
@@ -93,7 +121,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Deletes assignment from assign task model manager
+     * Deletes assignment from assign task model manager.
+     *
      * @param assignTask assignment to be deleted
      */
     public void deleteAssignTaskModelManagerItem(AssignTask assignTask) {

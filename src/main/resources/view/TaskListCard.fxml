@@ -35,7 +35,7 @@
 
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" wrapText="true"/>
             <Label fx:id="createDate" styleClass="cell_small_label" text="\$createDate" wrapText="true"/>
-            <FlowPane fx:id="personIndexes" />
+            <FlowPane fx:id="personIndexes" minWidth="25"/>
 
         </VBox>
     </GridPane>
