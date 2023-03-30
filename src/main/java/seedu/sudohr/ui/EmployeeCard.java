@@ -29,7 +29,7 @@ public class EmployeeCard extends UiPart<Region> {
     public final Employee employee;
 
     @FXML
-    private HBox cardPane;
+    private HBox cardPane2;
     @FXML
     private Label name;
     @FXML
