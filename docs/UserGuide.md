@@ -34,16 +34,18 @@ ___
    9. [Find person](#finding-a-person--find)                                                         
    10. [Find patient by ID](#finding-a-patient-by-id-number--findpat)                                            
    11. [Add patient status](#adding-patient-status--addpatstatus)                                                
-   12. [Delete patient status](#deleting-patient-status--delpatstatus)                                           
-   13. [View details of a person](#viewing-the-details-of-a-specific-person--view)                               
-   14. [List wards](#listing-the-names-of-all-wards--lsward)                                                     
-   15. [List patients in a ward](#listing-all-patients-in-a-particular-ward--lswardpat)                          
-   16. [Update person's particulars](#update-particulars-of-a-person--edit)                                      
-   17. [Delete person from system based on GUI](#deleting-a-person-from-the-system-based-on-list-on-gui--delete) 
-   18. [Delete patient from system](#deleting-a-patient-from-the-system--delpat)                                 
-   19. [Delete staff member from system](#deleting-a-staff-member-from-the-system--delstf)                       
-   20. [Delete ward from system](#deleting-a-ward-from-the-system--delward)                                      
-   21. [Exit the program](#exiting-the-program--exit)
+   12. [Delete patient status](#deleting-patient-status--delpatstatus)  
+   13. [Add patient todo](#adding-patient-todo--addpattodo)
+   14. [Delete patient todo](#deleting-patient-todo--delpattodo)
+   15. [View details of a person](#viewing-the-details-of-a-specific-person--view)                               
+   16. [List wards](#listing-the-names-of-all-wards--lsward)                                                     
+   17. [List patients in a ward](#listing-all-patients-in-a-particular-ward--lswardpat)                          
+   18. [Update person's particulars](#update-particulars-of-a-person--edit)                                      
+   19. [Delete person from system based on GUI](#deleting-a-person-from-the-system-based-on-list-on-gui--delete) 
+   20. [Delete patient from system](#deleting-a-patient-from-the-system--delpat)                                 
+   21. [Delete staff member from system](#deleting-a-staff-member-from-the-system--delstf)                       
+   22. [Delete ward from system](#deleting-a-ward-from-the-system--delward)                                      
+   23. [Exit the program](#exiting-the-program--exit)
 3. [FAQ](#faq)
 4. [Command summary](#command-summary)
 
@@ -214,7 +216,7 @@ command.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Adding patient status: addpattodo
+## Adding patient todo: addpattodo
 Adds an entry to the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
@@ -227,7 +229,7 @@ command.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting patient status: delpattodo
+## Deleting patient todo: delpattodo
 Deletes the specified entry in the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
@@ -363,8 +365,10 @@ Exits the program.
 | **[List staff members](#listing-staff-members--lsstf)**                                                       | `lsstf`                                                                                  |
 | **[Find person](#finding-a-person--find)**                                                                    | `find NAME`                                                                              |
 | **[Find patient by ID](#finding-a-patient-by-id-number--findpat)**                                            | `findpat [n/NAME] [id/ID_NUMBER]`                                                        |
-| **[Add patient status](#adding-patient-status--addpatstatus)**                                                | `addpatstatus INDEX s/STATUS [s/STATUS] ... `                                            |
+| **[Add patient status](#adding-patient-status--addpatstatus)**                                                | `addpatstatus INDEX s/STATUS [s/STATUS]... `                                             |
 | **[Delete patient status](#deleting-patient-status--delpatstatus)**                                           | `delpatstatus PATIENT_INDEX STATUS_INDEX`                                                |
+| **[Add patient todo](#adding-patient-todo--addpattodo)**                                                      | `addpattodo INDEX td/TODO [td/TODO]...`                                                  |
+| **[Delete patient todo](#deleting-patient-todo--delpattodo)**                                                 | `delpattodo PATIENT_INDEX TODO_INDEX`                                                    |
 | **[View details of a person](#viewing-the-details-of-a-specific-person--view)**                               | `view INDEX`                                                                             |
 | **[List wards](#listing-the-names-of-all-wards--lsward)**                                                     | `lsward`                                                                                 |
 | **[List patients in a ward](#listing-all-patients-in-a-particular-ward--lswardpat)**                          | `lswardpat WARD_NAME`                                                                    |
