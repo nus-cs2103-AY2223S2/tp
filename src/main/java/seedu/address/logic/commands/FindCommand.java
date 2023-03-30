@@ -1,14 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Findable;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

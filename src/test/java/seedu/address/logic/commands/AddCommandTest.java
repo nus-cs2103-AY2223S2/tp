@@ -176,12 +176,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+        public void updateFilteredCustomerList(Predicate<? super Customer> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -301,17 +301,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
+        public void updateFilteredTechnicianList(Predicate<? super Technician> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
+        public void updateFilteredVehicleList(Predicate<? super Vehicle> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredServiceList(Predicate<Service> predicate) {
+        public void updateFilteredServiceList(Predicate<? super Service> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
