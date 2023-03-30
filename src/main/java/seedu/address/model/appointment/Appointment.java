@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.chrono.ChronoLocalDateTime;
 import java.util.Objects;
 
-import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
 
 /**
@@ -13,7 +12,6 @@ import seedu.address.model.patient.Name;
  * Guarantees: details except description are present and not null, field values are validated, immutable.
  */
 public class Appointment {
-    private final AppointmentId id;
     private final Name patientName;
     private final Timeslot timeslot;
     private final Description description;
@@ -22,18 +20,13 @@ public class Appointment {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(AppointmentId id, Name patientName, Timeslot timeslot, Description description,
+    public Appointment(Name patientName, Timeslot timeslot, Description description,
                        Doctor doctor) {
         requireAllNonNull(timeslot, description, patientName, doctor);
-        this.id = id;
         this.patientName = patientName;
         this.timeslot = timeslot;
         this.description = description;
         this.doctor = doctor;
-    }
-
-    public AppointmentId getAppointmentId() {
-        return id;
     }
 
     public Name getPatientName() {

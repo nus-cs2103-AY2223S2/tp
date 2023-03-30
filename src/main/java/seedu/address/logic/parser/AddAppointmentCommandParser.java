@@ -14,8 +14,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.Id;
 import seedu.address.model.patient.Name;
 
 
@@ -43,9 +41,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Timeslot timeslot = ParserUtil.parseTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Doctor doctor = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get());
-        AppointmentId appointmentId = new AppointmentId(Id.generateUniqueId());
 
-        Appointment appointment = new Appointment(appointmentId, patientName, timeslot, description, doctor);
+        Appointment appointment = new Appointment(patientName, timeslot, description, doctor);
 
         return new AddAppointmentCommand(appointment);
     }

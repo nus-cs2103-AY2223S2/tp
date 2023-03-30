@@ -5,10 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
-import seedu.address.model.patient.exceptions.PatientNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -56,17 +54,6 @@ public class AddressBook implements ReadOnlyPatientList {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
-    }
-
-    //// patient-level operations
-    public Patient getPatient(PatientId id) {
-        requireNonNull(id);
-        for (Patient patient: patients) {
-            if (patient.getId().equals(id)) {
-                return patient;
-            }
-        }
-        throw new PatientNotFoundException();
     }
 
     /**
