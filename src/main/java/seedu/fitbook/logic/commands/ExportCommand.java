@@ -68,7 +68,7 @@ public class ExportCommand extends Command {
             String email = client.getEmail() != null ? String.valueOf(client.getEmail()) : "";
             String address = client.getAddress() != null
                     ? client.getAddress().toString().replaceAll("[^a-zA-Z0-9]", " ") : "";
-            String weight = client.getWeight() != null ? String.valueOf(client.getWeight()) : "";
+            String weight = client.getWeight() != null ? client.getWeightValue() : "";
             String gender = client.getGender() != null ? String.valueOf(client.getGender()) : "";
 
             pw.printf("%s, %s, %s, %s, %s, %s\n", name, phone, email, address, weight, gender);
