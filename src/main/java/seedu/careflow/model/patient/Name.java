@@ -10,8 +10,9 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces,"
-                    + " it should not be blank and equal or less than 50 characters long";
+            "Names should only contain alphanumeric characters, spaces,"
+                    + " and special character like \" . \", \" - \", \" \' \""
+                    + " it should have a length between 1 and 50 characters and it must not be left blank";
 
     /*
      * The first character of the address must not be a whitespace,

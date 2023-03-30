@@ -47,8 +47,9 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidName_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -n ", "Names should "
-                + "only contain alphanumeric characters and spaces, it should not be blank and equal or "
-                + "less than 50 characters long");
+                + "only contain alphanumeric characters, spaces,"
+                + " and special character like \" . \", \" - \", \" \' \""
+                + " it should have a length between 1 and 50 characters and it must not be left blank");
     }
 
     @Test
@@ -116,7 +117,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidDob_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -dob 999999",
-                "Date of birth should only contain numeric characters and spaces, "
+                "Date of birth should only contain numeric characters and spaces,"
+                        + " the format of date should be dd/mm/yyyy"
                         + "and the date should fall between 01/01/1900 and current date");
     }
 
