@@ -64,7 +64,6 @@ public class KeywordLoader {
      */
     public static KeywordManager load() throws IllegalValueException, IOException {
         KeywordLoader loader = JsonUtil.deserializeFromResource(JSON_FILE_PATH, KeywordLoader.class);
-        System.out.println(loader.keywords);
         return loader.toModelType();
     }
 
