@@ -73,7 +73,7 @@ If you can type fast, FAid can get your client and meeting management tasks done
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `PERSON_INDEX` refers to index number showed in displayed person list
+* `CLIENT_INDEX` refers to index number showed in displayed client list
 
 * `MEETING_INDEX` refers to index number showed in displayed meeting list
 
@@ -89,46 +89,46 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-###  <span style="color:#4B6B94 ;">Adding a person </span>: `add`
+###  Adding a client : `add`
 
-Adds a person to the address book.
+Adds a client to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### <span style="color:#4B6B94 ;">Listing all persons </span>:`list`
+### Listing all clients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in the address book.
+Edits an existing client in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating clients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -136,7 +136,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -144,30 +144,27 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified client from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the client at the specified `INDEX`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 
 ### Add meeting : `meetingAdd`
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
+Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
-* `PERSON_INDEX`: Index of a person in address book
+* `client_INDEX`: Index of a client in address book
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
@@ -180,43 +177,43 @@ with the description "Meeting with Charlotte".
 
 Notes:
 * Meeting must not conflict in timing with other meetings scheduled for the day.
-* Index must be a positive integer (1,2,3,...).
 
 ### Remove meeting : `meetingRemove`
 
 Removes meeting from the address book.
 
-Format: `meetingRemove PERSON_INDEX MEETING_INDEX`
+Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
-* `PERSON_INDEX`: Index of a person already in address book
-* `MEETING_INDEX`: Index of meeting in a person
+* `client_INDEX`: Index of a client already in address book
+* `MEETING_INDEX`: Index of meeting in a client
 
 Examples:
-* `meetingRemove 20 6` Deletes the 6th meeting added from the person with index 20.
-* `meetingRemove 3 1` Deletes the 1st meeting added from the person with index 3.
+* `meetingRemove 20 6` Deletes the 6th meeting added from the client with index 20.
+* `meetingRemove 3 1` Deletes the 1st meeting added from the client with index 3.
 
 ![result for meetingRemove 3 1](images/meetingRemove31.PNG)
 
 ### Updating a meeting : `meetingUpdate`
 
-Updates an existing meeting belonging to a person in the address book.
+Updates an existing meeting belonging to a client in the address book.
 
-Format: `meetingUpdate PERSON_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
+Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
-* Index of a person already in address book
+* Index of a client already in address book
 * Meeting ID
 
 Examples:
-*  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st person to `Policy discussion`
-*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
+*  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st client to `Policy discussion`
+*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd client
 to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10` respectively
 
 Notes:
-* Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
+* Edits the meetings of client at the specified `client_INDEX`. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
 ### Find meeting : `meetingFind`
 
 Gets meetings from the address book
@@ -236,7 +233,7 @@ Lists all meetings scheduled for the day from address book
 
 ### List by region : `listRegion`
 
-Lists all persons living in a given region
+Lists all clients living in a given region
 
 Required information:
 * Region to search for
@@ -247,7 +244,7 @@ Examples:
 
 ### Find people by policy name : `findPolicy`
 
-Lists all person that are under a given policy
+Lists all client that are under a given policy
 
 Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
 
@@ -283,10 +280,7 @@ FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. 
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
-###
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -294,21 +288,25 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: How do I key in my client's region?<br>
+**A**: FAid automatically detects region based on address keyed in
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                                      |
-|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
-| **Clear**              | `clear`                                                                                                                                                               |
-| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                            |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**               | `list`                                                                                                                                                                |
-| **Help**               | `help`                                                                                                                                                                |
-| **Add Meeting**        | `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                              |
-| **Remove Meeting**     | `meetingRemove PERSON_INDEX MEETING_INDEX`                                                                                                                            |
-| **Find Meeting**       | ` meetingFind DATE [PERSON_INDEX]`                                                                                                                                   |
-| **List all meetings**  | `meetingList`                                                                                                                                                        |
-| **List all in Region** | `listRegion REGION`                                                                                                                                   |
+| Action                | Format, Examples                                                                                                                                                     |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+| **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**             | `clear`                                                                                                                                                              |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **List**              | `list`                                                                                                                                                               |
+| **Help**              | `help`                                                                                                                                                               |
+| **Add Meeting**       | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                             |
+| **Remove Meeting**    | `meetingRemove CLIENT_INDEX MEETING_INDEX`                                                                                                                           |
+| **Find Meeting**      | ` meetingFind DATE[CLIENT_INDEX]`                                                                                                                                         |
+| **List all meetings** | `meetingList`                                                                                                                                                        |
+| **List all in Region** | `listRegion REGION`                                                                                                                                                  |
