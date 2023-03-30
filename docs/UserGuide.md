@@ -504,7 +504,7 @@ Examples:
 
 <p align="center">
   <img src="images/SortOrdersExample.png" width="600" />
-  <br>Figure 3: `sort_o` Example
+  <br>Figure 2: `sort_o` Example
 </p>
 
 ## Switch
