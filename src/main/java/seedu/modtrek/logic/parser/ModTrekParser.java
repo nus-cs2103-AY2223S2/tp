@@ -7,14 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.modtrek.logic.commands.AddCommand;
-import seedu.modtrek.logic.commands.ClearCommand;
 import seedu.modtrek.logic.commands.Command;
 import seedu.modtrek.logic.commands.DeleteCommand;
 import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
-import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.TagCommand;
 import seedu.modtrek.logic.commands.ViewCommand;
@@ -56,14 +54,8 @@ public class ModTrekParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

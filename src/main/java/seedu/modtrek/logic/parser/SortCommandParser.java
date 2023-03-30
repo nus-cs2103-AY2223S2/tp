@@ -21,19 +21,19 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
 
         String prefix = args.strip();
-        if (prefix.equals("/g")) {
+        switch (prefix) {
+        case "/g":
             return new SortCommand("grade");
-        } else if (prefix.equals("/c")) {
+        case "/c":
             return new SortCommand("credits");
-        } else if (prefix.equals("/y")) {
+        case "/y":
             return new SortCommand("year");
-        } else if (prefix.equals("/m")) {
+        case "/m":
             return new SortCommand("code");
-        } else if (prefix.equals("/t")) {
+        case "/t":
             return new SortCommand("tag");
-        } else {
+        default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-
     }
 }
