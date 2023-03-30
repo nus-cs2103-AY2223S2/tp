@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":GroupFindCommandParser" as GroupFindCommandParser LOGIC_COLOR
+participant "g:GroupFindCommand" as GroupFindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("group_find CS2103")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("group_find CS2103")
+activate AddressBookParser
+
+create GroupFindCommandParser
+AddressBookParser -> GroupFindCommandParser : parse("CS2103")
+activate GroupFindCommandParser
+
+create GroupFindCommand
+GroupFindCommandParser -> GroupFindCommand : groupPredicate, memberPredicate
+activate GroupFindCommand
+
+GroupFindCommand --> GroupFindCommandParser
+deactivate GroupFindCommand
+
+GroupFindCommandParser --> AddressBookParser : g
+deactivate GroupFindCommandParser
+
+AddressBookParser --> LogicManager : g
+deactivate AddressBookParser
+
+LogicManager -> GroupFindCommand : execute()
+activate GroupFindCommand
+
+GroupFindCommand -> Model : updateFilteredGroupList(groupPredicate);
+activate Model
+
+Model --> GroupFindCommand
+deactivate Model
+
+GroupFindCommand -> Model : updateFilteredPersonList(memberPredicate);
+activate Model
+
+Model --> GroupFindCommand
+deactivate Model
+
+create CommandResult
+GroupFindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GroupFindCommand
+deactivate CommandResult
+
+GroupFindCommand --> LogicManager : result
+deactivate GroupFindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

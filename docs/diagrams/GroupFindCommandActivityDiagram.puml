@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+
+if () then ([command is valid])
+    :Keywords are parsed into Predicates;
+    :Group and person list is filtered using predicate;
+    :GUI display the search results;
+else([else])
+endif
+stop
+@enduml

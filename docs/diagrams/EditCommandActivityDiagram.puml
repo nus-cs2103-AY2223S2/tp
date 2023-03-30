@@ -1,0 +1,18 @@
+@startuml
+
+start
+:User executes command;
+
+if() then ([valid arguments])
+    if() then ([valid index])
+        :Edit person in addressBook;
+
+    else([else])
+        endif
+
+else([else])
+    endif
+
+stop
+
+@enduml

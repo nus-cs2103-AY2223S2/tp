@@ -102,6 +102,7 @@ public class AddressBookParser {
 
         case GroupListCommand.COMMAND_WORD:
             return new GroupListCommand();
+
         case GroupCreateCommand.COMMAND_WORD:
             return new GroupCreateCommandParser().parse(arguments);
 

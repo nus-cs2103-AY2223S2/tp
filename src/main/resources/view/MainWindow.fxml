@@ -13,6 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableView?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Where Got Time" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/clock_32.png" />
@@ -46,7 +49,7 @@
           </padding>
         </StackPane>
 
-                    <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
@@ -75,7 +78,8 @@
 
           <Pane prefHeight="16.0" prefWidth="340.0" styleClass="pane-group-label">
               <children>
-                  <Label styleClass="label-sub-header" text="Time Slots:" textFill="WHITE">
+                  <Label styleClass="label-sub-header" text="Free Time Slots:" textFill="WHITE">
+
                       <padding>
                           <Insets left="10.0" />
                       </padding>
@@ -85,14 +89,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
               </padding>
           </Pane>
-
-          <VBox fx:id="timeSlotList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-              <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
-              <StackPane fx:id="timeSlotListPanelPlaceholder" prefWidth="318.0" VBox.vgrow="ALWAYS" />
-          </VBox>
-
+          <StackPane fx:id="whereGotTimePlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" prefWidth="700" />
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

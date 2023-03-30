@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddIsolatedEventCommandParser" as AddIsolatedEventCommandParser LOGIC_COLOR
+participant "ie:AddIsolatedEventCommand" as AddIsolatedEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("event_create 1 ie/biking \nf/26/03/2023 14:00 t/26/03/2023 15:00")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("event_create 1 ie/biking\n f/26/03/2023 14:00 t/26/03/2023 15:00")
+activate AddressBookParser
+
+create AddIsolatedEventCommandParser
+AddressBookParser -> AddIsolatedEventCommandParser : parse(1 ie/biking f/26/03/2023 14:00\n t/26/03/2023 15:00)
+activate AddIsolatedEventCommandParser
+
+create AddIsolatedEventCommand
+AddIsolatedEventCommandParser -> AddIsolatedEventCommand
+activate AddIsolatedEventCommand
+
+AddIsolatedEventCommand --> AddIsolatedEventCommandParser
+deactivate AddIsolatedEventCommand
+
+AddIsolatedEventCommandParser --> AddressBookParser : ie
+deactivate AddIsolatedEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddIsolatedEventCommandParser -[hidden]-> AddressBookParser
+destroy AddIsolatedEventCommandParser
+
+AddressBookParser --> LogicManager : ie
+deactivate AddressBookParser
+
+LogicManager -> AddIsolatedEventCommand : execute()
+activate AddIsolatedEventCommand
+
+AddIsolatedEventCommand -> Model : addIsolatedEvent(personToEdit, eventToAdd)
+activate Model
+
+Model --> AddIsolatedEventCommand
+deactivate Model
+
+create CommandResult
+AddIsolatedEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddIsolatedEventCommand
+deactivate CommandResult
+
+AddIsolatedEventCommand --> LogicManager : result
+deactivate AddIsolatedEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

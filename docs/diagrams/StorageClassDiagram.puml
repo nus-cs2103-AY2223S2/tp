@@ -20,6 +20,9 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedGroup
+Class JsonAdaptedRecurringEvent
+Class JsonAdaptedIsolatedEvent
 }
 
 }
@@ -39,5 +42,8 @@ JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedGroup
+JsonAdaptedPerson --> "*" JsonAdaptedIsolatedEvent
+JsonAdaptedPerson --> "*" JsonAdaptedRecurringEvent
 
 @enduml
