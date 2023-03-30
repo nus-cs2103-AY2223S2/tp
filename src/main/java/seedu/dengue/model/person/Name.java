@@ -5,6 +5,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's name in the Dengue Hotspot Tracker.
+ * A name can only contain alphabets (capital or otherwise), and whitespaces.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

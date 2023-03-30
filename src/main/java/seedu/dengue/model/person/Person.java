@@ -169,4 +169,8 @@ public class Person {
         }
         return builder.toString();
     }
+
+    public String toStringSimple() {
+        return getName().toString() + " : " + getAge().toString();
+    }
 }
