@@ -28,9 +28,13 @@ import seedu.address.model.jobs.Earning;
  */
 public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobCommand> {
 
-    private static final String MESSAGE_DATE_FORMAT = "Invalid date format!";
-    private static final String MESSAGE_SLOT_FORMAT = "Invalid slot format!";
-    private static final String MESSAGE_EARN_FORMAT = "Invalid earning format!";
+    private static final String MESSAGE_DATE_FORMAT = "Invalid date format!\nDate/ YYYY-MM-DD";
+    private static final String MESSAGE_SLOT_FORMAT = "Invalid slot format!\nSlot/ 1..5";
+    private static final String MESSAGE_EARN_FORMAT = "Invalid earning format!\nearn/ d.f ";
+    private static final String MESSAGE_EMPTY_SENDER_ID = "Sender id missing!\nsi/ id ";
+    private static final String MESSAGE_EMPTY_JOB_ID = "Job id missing!\nji/ id ";
+    private static final String MESSAGE_EMPTY_RECIPIENT_ID = "Recipient id missing!\nri/ id ";
+    private static final String MESSAGE_EMPTY_STATUS = "Invalid status!\nDone/ t | f ";
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values
@@ -63,9 +67,29 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
 
         DeliveryJob.Builder toFind = new DeliveryJob.Builder();
 
-        argMultimap.getValue(PREFIX_JOB_ID).ifPresent(val -> toFind.setJobId(val));
-        argMultimap.getValue(PREFIX_SENDER_ID).ifPresent(val -> toFind.setSender(val));
-        argMultimap.getValue(PREFIX_RECIPIENT_ID).ifPresent(val -> toFind.setRecipient(val));
+        if (argMultimap.getValue(PREFIX_JOB_ID).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_JOB_ID).get();
+            if (val.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_JOB_ID));
+            }
+            toFind.setJobId(val.toUpperCase());
+        }
+
+        if (argMultimap.getValue(PREFIX_SENDER_ID).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_SENDER_ID).get();
+            if (val.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_SENDER_ID));
+            }
+            toFind.setSender(val.toUpperCase());
+        }
+
+        if (argMultimap.getValue(PREFIX_RECIPIENT_ID).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_RECIPIENT_ID).get();
+            if (val.isBlank()) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_RECIPIENT_ID));
+            }
+            toFind.setRecipient(val.toUpperCase());
+        }
 
         if (argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()) {
             try {
@@ -97,8 +121,17 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
             }
         }
 
-        argMultimap.getValue(PREFIX_IS_DELIVERED).ifPresent(val ->
-                toFind.setDeliveredStatus(Boolean.parseBoolean(val)));
+        if (argMultimap.getValue(PREFIX_IS_DELIVERED).isPresent()) {
+            String val = argMultimap.getValue(PREFIX_IS_DELIVERED).get().toLowerCase();
+            if (val.isBlank() || (!val.equals("t") && !val.equals("f"))) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_STATUS));
+            }
+            if (val.startsWith("t")) {
+                toFind.setDeliveredStatus(true);
+            } else {
+                toFind.setDeliveredStatus(false);
+            }
+        }
 
         return new FindDeliveryJobCommand(new DeliveryJobContainsKeywordsPredicate(toFind.buildNullable()));
     }

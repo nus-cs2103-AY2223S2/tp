@@ -65,4 +65,9 @@ public class DeliveryJobContainsKeywordsPredicate implements Predicate<DeliveryJ
                 || (other instanceof DeliveryJobContainsKeywordsPredicate // instanceof handles nulls
                 && toFind.equals(((DeliveryJobContainsKeywordsPredicate) other).toFind)); // state check
     }
+
+    @Override
+    public String toString() {
+        return toFind.toString();
+    }
 }
