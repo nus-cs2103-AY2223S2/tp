@@ -32,6 +32,8 @@ public class TimetableWindow extends UiPart<Stage> {
     private LocalDate focusDate;
     private int focusDayOfWeek;
     private ResultDisplay resultDisplay;
+    private HelpWindow helpWindow;
+
 
     @FXML
     private Scene scene;
@@ -54,7 +56,7 @@ public class TimetableWindow extends UiPart<Stage> {
     /**
      * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public TimetableWindow(Stage primaryStage, Logic logic) {
+    public TimetableWindow(Stage primaryStage, Logic logic, HelpWindow helpWindow) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -64,9 +66,9 @@ public class TimetableWindow extends UiPart<Stage> {
         contentContainer.prefWidthProperty().bind(scene.widthProperty());
 
         this.logic = logic;
+        this.helpWindow = helpWindow;
         focusDate = LocalDate.now();
         focusDayOfWeek = focusDate.getDayOfWeek().getValue();
-
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -153,6 +155,19 @@ public class TimetableWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+            logger.info("Opened help window from Timetable Window.");
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#executeTimetableCommand(String)
@@ -166,11 +181,13 @@ public class TimetableWindow extends UiPart<Stage> {
             focusDate = logic.getFocusDate();
             updateTimetable();
 
-
             if (commandResult.isExit()) {
                 handleExit();
             }
 
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

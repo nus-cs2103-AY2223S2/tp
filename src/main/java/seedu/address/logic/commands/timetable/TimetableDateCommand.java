@@ -55,4 +55,11 @@ public class TimetableDateCommand extends Command {
         return new CommandResult(showTimetableMessage, false, true, false, false, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TimetableDateCommand // instanceof handles nulls
+                && jobDate.equals(((TimetableDateCommand) other).jobDate));
+    }
+
 }

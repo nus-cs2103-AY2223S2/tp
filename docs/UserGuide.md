@@ -18,8 +18,13 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
             * Sort job list by date and slot
             * Display timetable of all scheduled/upcoming jobs in the week
          * Stats dashboard:
-            * List all jobs
-            * Show total number of jobs
+            * Display all-time statistics
+            * Display previous week's statistics
+            * Statistics includes
+              * Total number of jobs 
+              * Total earnings
+              * Total number of completed jobs 
+              * Total number of pending jobs
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -216,7 +221,6 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
-
 ## 4. Features related to Timetable
 ### 4.1. Showing timetable : `timetable`
 
@@ -247,6 +251,18 @@ Jobs are sorted in increasing date and decreasing earning order.
 
 Format: `timetable_unscheduled`
 
+## 5. Features related to Statistics
+### 5.1. Showing Statistics : `stats`
+
+Shows a summary of statistics related to the jobs in the job list
+* Total number of jobs in the job list 
+* Total earnings from all jobs in the job list 
+* Total number of completed jobs in the job list 
+* Total number of pending jobs in the job list 
+
+Similar statistics are shown for jobs in the previous week
+
+Format: `stats`
 
 ## Other features
 ### Clearing all entries : `clear`

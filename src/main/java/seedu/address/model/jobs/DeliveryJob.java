@@ -239,7 +239,8 @@ public class DeliveryJob {
      * @return boolean
      */
     public boolean isScheduled() {
-        return getDeliveryDate().isPresent() && getDeliverySlot().isPresent();
+        return getDeliveryDate().isPresent() && getDeliverySlot().isPresent()
+                && getDeliverySlot().get().isPositive();
     }
 
     /**

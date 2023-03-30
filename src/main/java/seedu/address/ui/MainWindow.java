@@ -201,13 +201,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        timetableWindow = new TimetableWindow(new Stage(), logic);
+        timetableWindow = new TimetableWindow(new Stage(), logic, this.helpWindow);
         unscheduleWindow = new UnscheduleWindow(new Stage(), logic);
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
-
     }
 
     /**
@@ -215,6 +214,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    /**
+     * Returns help window of Main Window
+     */
+    public HelpWindow getHelpWindow() {
+        return helpWindow;
     }
 
     private void setAccelerators() {
