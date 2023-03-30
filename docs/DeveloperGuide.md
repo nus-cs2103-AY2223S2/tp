@@ -328,25 +328,27 @@ The following sequence diagram shows how the statistics operation works:
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Update job feature
+### \[Proposed\] Delivery Job System
+#### Proposed Implementation
 
-Given below is an example usage scenario and how the statistics mechanism behaves at each step.
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
 
-Step 1. The user launches the application for the first time.
-Step 2. The user selects a job to be updated.
-Step 3. The user edits preexisting inputs to update the job.
+GUI Mode:  
+Step 1. The user launches the application for the first time.  
+Step 2. The user selects a job to be updated.  
+Step 3. The user edits preexisting inputs to update the job.  
+
+The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern. 
+
+The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
+
+The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
+
+Operation resume to standard process from this point onwards.
 
 The following sequence diagram shows how the update operation works:
 
-//to be added
-
-The following sequence diagram shows how the update operation works:
-
-//to be added
-
-#### Design considerations:
-
-//to be added
+![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
 
 ### Notification feature
 #### Implementation

@@ -181,9 +181,13 @@ Commands are input in this text field
 
 Adds a delivery job to the delivery job system.
 
-Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`  
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 ![Create Job](images/Addjob.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Description field is only available in GUI mode.
+</div>
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
@@ -197,11 +201,7 @@ Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
-GUI Mode:  
-![add job](images/addJob.png)
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Description field is only available in GUI mode.
-</div>
+
 
 
 ### 2.2. Mass importing jobs
@@ -220,11 +220,10 @@ Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
-GUI Mode:
 ![list job](images/listJob.png)
 
 ### 2.3.1. Sort and filter jobs
-GUI Mode Only:  
+
 ![sort filter job](images/listJobSortFilter.png)
 
 ### 2.4. Edit jobs : `edit_job`
@@ -240,7 +239,7 @@ Examples:
 * `edit_job 1 date/2023-03-01`
 * `edit_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
-GUI Mode:  
+Alternative:  
 ![edit job](images/editJob.png)
 
 ### 2.5. Mark job as in/complete : `com_job` | `uncom_job`
@@ -253,7 +252,7 @@ Incomplete Format: `uncom_job <job id>`
 * `com_job ALBE1989C9`
 * `uncom_job ALBE1989C9`
 
-GUI Mode:  
+Alternative:  
 ![complete job](images/comJob.png)
 
 ### 2.6. Find job : `find_job`
@@ -279,7 +278,7 @@ Format: `delete_job <job_id>`
 Examples:
 * `delete_job <job_id>`
 
-GUI Mode:  
+Alternative:  
 ![delete job](images/delJob.png)
 
 ## 3. Features available for Reminders
@@ -361,6 +360,7 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ## 5. Features available for Statistics
 ### *Can only access from Main Window*
 ### 5.1. Showing Statistics : `stats`
+![Statistics](images/Statistics.png)
 
 Shows a summary of statistics related to the jobs in the job list
 * Total number of jobs in the job list 
@@ -414,28 +414,31 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 
-| Action                                | Format, Examples                                                                                                                                                                                                                       |
-|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ***(C)* Add Customer**                | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| ***(B)* Clear**                       | `clear`                                                                                                                                                                                                                                |
-| ***(C)* Delete Customer**             | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
-| ***(C)* Edit Customer details**       | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| ***(C)* Find Customer**               | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                |
-| ***(B)* List Customer**               | `list` <br/>Or<br/>Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                  |
-| ***(M)* Add Job**                     | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                               |
-| ***(M)* Import Jobs**                 | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                   |
+| Action                                    | Format, Examples                                                                                                                                                                                                                        |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ***(C)* Add Customer**                    | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| ***(B)* Clear**                           | `clear`                                                                                                                                                                                                                                 |
+| ***(C)* Delete Customer**                 | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                        |
+| ***(C)* Edit Customer details**           | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| ***(C)* Find Customer**                   | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                 |
+| ***(B)* List Customer**                   | `list` <br/>Or<br/>Click on `Customers` in menu bar > `Address Book` then input `list`                                                                                                                                                  |
+| ***(M)* Add Job**                         | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`                                                                |
+| ***(M)* Import Jobs**                     | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                    |
+| ***(M)* List reminder**                   | `list_reminder`                                                                                                                                                                                                                         |
+| ***(M)* Add reminder**                    | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                      |
 | ***(M)* List Job**                     | `list_job`                                                     |
 | ***(M)* Edit Job**                     | `edit_job INDEX \| [ji/Job Id] [si/Sender Id] [ri/Recipient] [date/Date] [slot/Slot] [earn/Earn] [done/t \| f]...`                                                               |
 | ***(M)* Complete Job**                     | `com_job <job id>`                                                     |
 | ***(M)* UnComplete Job**                     | `uncom_job <job id>`                                                            |
 | ***(M)* Find Job**                     | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t \| f]`                               |
 | ***(M)* Delete Job**                     | `delete_job <job_id>`<br/>OR<br/>Select from job list > press `del`                                                           |
-| ***(M)* List reminder**               | `list_reminder`                                                                                                                                                                                                                        |
-| ***(M)* Add reminder**                | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                     |
-| ***(M)* Delete reminder**             | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                 |
-| ***(M)* Show Timetable**              | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                             |
-| ***(M)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                    |
-| ***(M)* Show List of Completed Jobs** | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                   |
-| ***(M)* Show List of Unscheduled Jobs** | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                               |
-| ***(B)* Help**                        | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                 |
-| ***(B)* Exit**                        | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                 |
+| ***(M)* Delete reminder**                 | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                  |
+| ***(M)* Show Timetable**                  | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                              |
+| ***(M)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                     |
+| ***(M)* Show List of Completed Jobs**     | `timetable_completed`<br/>OR<br/>Click on `Timetable` in menu bar > `Completed Jobs`                                                                                                                                                    |
+| ***(M)* Show List of Unscheduled Jobs**   | `timetable_unscheduled`<br/>OR<br/>Click on `Timetable` in menu bar > `Unscheduled Jobs`                                                                                                                                                |
+| ***(M)* Show Statistics**                 | `stats`<br/>OR<br/>Click on `Statistics` in menu bar > `Display Statistics`                                                                                                                                                             |
+| ***(B)* Help**                            | `help`<br/>Or<br/>Click on `Help` in menu bar > `Help`                                                                                                                                                                                  |
+| ***(B)* Exit**                            | `exit`<br/>Or<br/>Click on `Exit` in menu bar > `Exit`                                                                                                                                                                                  |
+
+
