@@ -61,6 +61,7 @@ public class PetPalParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FindCommand.SHORTCUT_WORD:
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
