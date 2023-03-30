@@ -163,19 +163,23 @@ public class StudentCard extends UiPart<Region> {
             if (file.exists()) {
                 Image image = new Image(file.toURI().toString());
                 circle.setFill(new ImagePattern(image));
-                return;
+            } else {
+                String path = "images/student/" + student.getName()
+                        + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
+                File files = new File(path);
+                if (!files.exists()) {
+                    Image defaultImage = new Image("images/defaultStudent.png");
+                    circle.setFill(new ImagePattern(defaultImage));
+                } else {
+                    Image newImage = new Image(file.toURI().toString());
+                    circle.setFill(new ImagePattern(newImage));
+                }
             }
-        }
-        String path = "images/student/" + student.getName()
-                + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
-        File file = new File(path);
-        if (!file.exists()) {
+        } else {
             Image defaultImage = new Image("images/defaultStudent.png");
             circle.setFill(new ImagePattern(defaultImage));
-        } else {
-            Image newImage = new Image(file.toURI().toString());
-            circle.setFill(new ImagePattern(newImage));
         }
+
     }
 
     @Override
