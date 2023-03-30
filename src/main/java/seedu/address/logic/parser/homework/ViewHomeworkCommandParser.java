@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ParserUtil.checkNotNullNames;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNullStatus;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.homework.ViewHomeworkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -66,20 +67,9 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-            // for all the names, trim the name and only take the first word
-            for (int i = 0; i < nameKeywords.size(); i++) {
-                String name = nameKeywords.get(i);
-                name = name.trim();
-                nameKeywords.set(i, name);
-            }
+            checkNotNullNames(nameKeywords);
+
             names = nameKeywords;
-
-            // it cannot be an empty string
-            if (!checkEmptyString(nameKeywords)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_EMPTY_STUDENT));
-            }
-
             namePredicate = new NamePredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {
@@ -89,16 +79,7 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
 
         // If status is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            // there can only be one status prefix
-            if (argMultimap.getAllValues(PREFIX_STATUS).size() > 1) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_MULTIPLE_STATUS));
-            }
-            // it cannot be an empty string
-            if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        Messages.MESSAGE_EMPTY_STATUS));
-            }
+            checkUniqueNotNullStatus(argMultimap);
 
             String status = argMultimap.getValue(PREFIX_STATUS).get();
             boolean isCompleted = ParserUtil.parseStatus(status);
