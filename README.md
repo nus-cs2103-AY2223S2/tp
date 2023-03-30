@@ -2,11 +2,18 @@
 
 [![CI Status](https://github.com/AY2223S2-CS2103-F10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-F10-1/tp/actions)
 
-![Ui](docs/images/improvedUI.png)
+![startup.png](docs%2Fimages%2Fproduct-screenshots%2Fstartup.png)
 
 ## Description
+OfficeConnect is a task management tool tailored to meet the needs of managers working in corporate settings. 
+In today's office environment, it can be challenging for managers to keep track of the workload of their subordinates,
+which can lead to work overload and coordination issues among employees. Additionally, administrative tasks such as 
+sending emails can consume valuable time and resources.
 
-OfficeConnect is a task management tool designed specifically for managerial role personnel at companies. The target users are individuals who are responsible for assigning tasks and overseeing the work of a team. The product addresses several challenges faced by managers in the current office environment, such as work overload among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual tasks like typing and sending emails. OfficeConnect offers a solution to these problems by providing better visibility into subordinates' workloads, allowing managers to efficiently delegate tasks in an organized manner. The app also automates the process of planning and communicating with subordinates, making it easier for managers to get things done. Additionally, the app ensures that emails are sent during working hours, so that subordinates will not be disturbed outside of work.
+OfficeConnect addresses these problems by providing managers with enhanced visibility into their subordinates' 
+workloads. This enables managers to delegate tasks efficiently and in an organized manner. With OfficeConnect, 
+managers can streamline their task management process, which leads to improved productivity and a more effective 
+and productive work environment.
 
 ## Features
 

@@ -6,7 +6,7 @@ title: OfficeConnect
 [![CI Status](https://github.com/AY2223S2-CS2103-F10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-F10-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103-F10-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103-F10-1/tp)
 
-![Ui](images/Ui.png)
+![startup.png](images%2Fproduct-screenshots%2Fstartup.png)
 
 **OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.**
 
