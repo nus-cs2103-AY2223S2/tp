@@ -36,32 +36,34 @@ public class ClearCommand extends Command {
         Group selectedGroup = currentSelection.getSelectedGroup();
 
 
+
+
         switch (currentPage) {
         case COURSE_PAGE:
             model.setRoster(new Roster());
             break;
         case GROUP_PAGE:
-            List<Group> groups = selectedCourse.getUnmodifiableFilteredGroupList();
-            for (Group group : groups) {
-                selectedCourse.deleteGroup(group);
+            List<Group> groups = selectedCourse.getModifiableGroupList();
+            while (!groups.isEmpty()) {
+                groups.remove(0);
             }
             break;
         case SESSION_PAGE:
-            List<Session> sessions = selectedGroup.getUnmodifiableFilteredSessionList();
-            for (Session session : sessions) {
-                selectedGroup.deleteSession(session);
+            List<Session> sessions = selectedGroup.getModifiableSessionList();
+            while (!sessions.isEmpty()) {
+                sessions.remove(0);
             }
             break;
         case TASK_PAGE:
-            List<Task> tasks = selectedGroup.getUnmodifiableFilteredTaskList();
-            for (Task task : tasks) {
-                selectedGroup.deleteTask(task);
+            List<Task> tasks = selectedGroup.getModifiableTaskList();
+            while (!tasks.isEmpty()) {
+                tasks.remove(0);
             }
             break;
         case STUDENT_PAGE:
-            List<Student> students = selectedGroup.getUnmodifiableFilteredStudentList();
-            for (Student student : students) {
-                selectedGroup.deleteStudent(student);
+            List<Student> students = selectedGroup.getModifiableStudentList();
+            while (!students.isEmpty()) {
+                students.remove(0);
             }
             break;
         default:

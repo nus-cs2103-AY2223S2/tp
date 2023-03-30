@@ -54,6 +54,11 @@ public class Group {
         return students.asUnmodifiableFilteredList();
     }
 
+    public ObservableList<Student> getModifiableStudentList() {
+        return students.asModifiableObservableList();
+    }
+
+
     /**
      * Returns an unmodifiable view of the list of sessions in this group.
      */
