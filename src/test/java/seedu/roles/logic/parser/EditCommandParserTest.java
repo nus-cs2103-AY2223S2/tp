@@ -11,7 +11,6 @@ import static seedu.roles.logic.commands.CommandTestUtil.INVALID_JOBDESCRIPTION_
 import static seedu.roles.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.roles.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.roles.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.roles.logic.commands.CommandTestUtil.INVALID_WEBSITE;
 import static seedu.roles.logic.commands.CommandTestUtil.JOBDESCRIPTION_DESC_BOB;
 import static seedu.roles.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.roles.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -105,8 +104,6 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_WEBSITE, Phone.MESSAGE_CONSTRAINTS);
-
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Role} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
@@ -189,8 +186,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + WEBSITE
+                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + WEBSITE + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditRoleDescriptor descriptor = new EditRoleDescriptorBuilder().withPhone(VALID_PHONE_BOB)
