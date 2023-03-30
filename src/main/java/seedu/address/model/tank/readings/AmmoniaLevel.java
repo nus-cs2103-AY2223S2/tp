@@ -6,20 +6,24 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.tank.Tank;
 
 /**
- * Represents a Tank's last fed date number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAmmoniaLevel(String)}
+ * Represents an AmmoniaLeve of a Tank's ammonia list.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAmmoniaLevel(String, String)}
  */
 public class AmmoniaLevel extends Reading {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Ammonia Level should be a double, and it should not be blank";
+            "Ammonia Level should be a double, and it should not be blank. Date format is DD/MM/YYYY HH:mm";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^-?\\d+(\\.\\d+)?$";
-    private int value;
+    public static final String VALIDATION_REGEX_VALUE = "^-?\\d+(\\.\\d+)?$";
+
+    public static final String VALIDATION_REGEX_DATE =
+            "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4} (?:[01]\\d|2[0-3]):[0-5]\\d$";
+
+    private double value;
 
     /**
      * Constructs a {@code AmmoniaLevel}.
@@ -30,15 +34,22 @@ public class AmmoniaLevel extends Reading {
     public AmmoniaLevel(String value, String date, Tank tank) {
         super(date, tank);
         requireNonNull(value);
-        checkArgument(isValidAmmoniaLevel(value), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(value);
+        checkArgument(isValidAmmoniaLevel(value, date), MESSAGE_CONSTRAINTS);
+        this.value = Double.parseDouble(value);
     }
 
-    public boolean isValidAmmoniaLevel(String test) {
-        return test.matches(VALIDATION_REGEX);
+    /**
+     * Returns true if the ammonia input is valid
+     * @param value value
+     * @param date date
+     * @return true if valid
+     */
+    public static boolean isValidAmmoniaLevel(String value, String date) {
+        return value.matches(VALIDATION_REGEX_VALUE)
+                && date.matches(VALIDATION_REGEX_DATE);
     }
 
-    public int getValue() {
+    public double getValue() {
         return this.value;
     }
 
@@ -46,11 +57,16 @@ public class AmmoniaLevel extends Reading {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AmmoniaLevel // instanceof handles nulls
-                && localDate.equals(((AmmoniaLevel) other).localDate)); // state check
+                && localDateTime.equals(((AmmoniaLevel) other).localDateTime)); // state check
     }
 
     @Override
     public int hashcode() {
         return (dateString + value).hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%f, %s] [Ammonia]", value, dateString);
     }
 }

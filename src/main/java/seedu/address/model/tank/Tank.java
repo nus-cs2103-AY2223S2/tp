@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  *  Represents a Tank of the user that contains fish.
@@ -13,15 +14,18 @@ import seedu.address.model.fish.Fish;
 public class Tank {
     private final TankName name;
     private final AddressBook fishList;
+    private UniqueIndividualReadingLevels readingLevels;
 
     /**
      * Creates a Tank.
      * @param tankName Name of tank.
      * @param fishList Fish in tank.
+     * @param readingLevels
      */
-    public Tank(TankName tankName, AddressBook fishList) {
+    public Tank(TankName tankName, AddressBook fishList, UniqueIndividualReadingLevels readingLevels) {
         this.name = tankName;
         this.fishList = fishList;
+        this.readingLevels = readingLevels;
     }
 
     public AddressBook getFishList() {
@@ -32,6 +36,13 @@ public class Tank {
         return this.name;
     }
 
+    public UniqueIndividualReadingLevels getReadingLevels() {
+        return this.readingLevels;
+    }
+
+    public void setIndividualReadingLeves(UniqueIndividualReadingLevels readings) {
+        this.readingLevels = readings;
+    }
     /**
      * Returns true if this tank has a fish fue to be feed today
      * @return true if this tank has a fish fue to be feed today
@@ -66,12 +77,12 @@ public class Tank {
 
     /**
      * Sets the lastFedDate field of all fishes in this Tank's {@code fishList} list
-     * with new LastFedDate object with {@code newDate}.
+     * with new LastFedDate object with {@code newDateTime}.
      */
-    public void setLastFedDateFishes(String newDate) {
-        requireNonNull(newDate);
+    public void setLastFedDateTimeFishes(String newDateTime) {
+        requireNonNull(newDateTime);
 
-        fishList.setLastFedDateFishes(newDate);
+        fishList.setLastFedDateTimeFishes(newDateTime);
     }
 
     /**

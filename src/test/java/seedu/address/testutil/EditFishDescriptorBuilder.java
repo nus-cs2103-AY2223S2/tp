@@ -8,12 +8,13 @@ import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * A utility class to help with building EditFishDescriptor objects.
@@ -36,7 +37,7 @@ public class EditFishDescriptorBuilder {
     public EditFishDescriptorBuilder(Fish fish) {
         descriptor = new EditFishDescriptor();
         descriptor.setName(fish.getName());
-        descriptor.setLastFedDate(fish.getLastFedDate());
+        descriptor.setLastFedDate(fish.getLastFedDateTime());
         descriptor.setSpecies(fish.getSpecies());
         descriptor.setFeedingInterval(fish.getFeedingInterval());
         descriptor.setTank(fish.getTank());
@@ -55,7 +56,7 @@ public class EditFishDescriptorBuilder {
      * Sets the {@code LastFedDate} of the {@code EditFishDescriptor} that we are building.
      */
     public EditFishDescriptorBuilder withLastFedDate(String lastFedDate) {
-        descriptor.setLastFedDate(new LastFedDate(lastFedDate));
+        descriptor.setLastFedDate(new LastFedDateTime(lastFedDate));
         return this;
     }
 
@@ -79,7 +80,7 @@ public class EditFishDescriptorBuilder {
      * Sets the {@code Tank} of the {@code EditFishDescriptor} that we are building.
      */
     public EditFishDescriptorBuilder withTank(String tank) {
-        descriptor.setTank(new Tank(new TankName(tank), new AddressBook()));
+        descriptor.setTank(new Tank(new TankName(tank), new AddressBook(), new UniqueIndividualReadingLevels()));
         return this;
     }
 
