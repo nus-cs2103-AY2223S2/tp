@@ -243,6 +243,7 @@ public class ModelManager implements Model {
     public void setCustomer(Customer target, Customer editedPerson) {
         requireAllNonNull(target, editedPerson);
         this.shop.setCustomer(target, editedPerson);
+        resetMaps();
     }
 
     @Override
@@ -289,6 +290,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteVehicle(Vehicle target) {
         this.shop.removeVehicle(target);
+    }
+
+    @Override
+    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+        requireAllNonNull(target, editedVehicle);
+        this.shop.setVehicle(target, editedVehicle);
+        resetMaps();
     }
 
     // ==== For Services ==
@@ -411,6 +419,13 @@ public class ModelManager implements Model {
         this.shop.removeTechnician(target);
     }
 
+    @Override
+    public void setTechnician(Technician target, Technician editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        shop.setTechnician(target, editedPerson);
+        this.resetMaps();
+    }
+
     // ==== Mapped ==
     @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
@@ -471,6 +486,13 @@ public class ModelManager implements Model {
     public void updateFilteredVehicleList(Predicate<? super Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        this.shop.setAppointment(target, editedAppointment);
+        this.resetMaps();
     }
 
     //    @Override
@@ -540,6 +562,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setService(Service target, Service editedService) {
+        requireAllNonNull(target, editedService);
+        this.shop.setService(target, editedService);
+        this.resetMaps();
+    }
+
+    @Override
     public void updateCustomerComparator(Comparator<? super Customer> cmp) {
         this.sortedFilteredCustomers.setComparator(cmp);
     }
@@ -563,5 +592,4 @@ public class ModelManager implements Model {
     public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
         this.sortedFilteredTechnicians.setComparator(cmp);
     }
-
 }

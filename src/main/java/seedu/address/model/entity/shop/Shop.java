@@ -32,6 +32,7 @@ public class Shop implements ReadOnlyShop {
     private final UniqueVehicleList vehicles = new UniqueVehicleList();
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
     private final ServiceList services = new ServiceList();
+
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
     private final PartMap partMap = new PartMap();
 
@@ -113,6 +114,11 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+    public void setService(Service services, Service edit) {
+
+        this.services.setService(services, edit);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -140,6 +146,11 @@ public class Shop implements ReadOnlyShop {
 
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
+    }
+
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+        appointments.setAppointment(target, editedAppointment);
     }
 
     /**

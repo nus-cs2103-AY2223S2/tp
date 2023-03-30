@@ -221,6 +221,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addService(int vehicleId, Service service) {
             throw new AssertionError("This method should not be called.");
         }
@@ -296,6 +301,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTechnician(Technician target, Technician editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -312,6 +322,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredServiceList(Predicate<? super Service> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -346,7 +361,7 @@ public class AddCommandTest {
 
         @Override
         public void selectVehicle(Vehicle vehicle) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -365,29 +380,35 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateCustomerComparator(Comparator<? super Customer> cmp) {
+        public void setService(Service target, Service editedService) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void updateCustomerComparator(Comparator<? super Customer> cmp) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateServiceComparator(Comparator<? super Service> cmp) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
-
+            throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public ReadOnlyShop getShop() {

@@ -187,6 +187,8 @@ public interface Model {
 
     void deleteVehicle(Vehicle target);
 
+    void setVehicle(Vehicle target, Vehicle editedVehicle);
+
     // ==== For Services ==
 
     /**
@@ -281,9 +283,13 @@ public interface Model {
 
     void updateFilteredServiceList(Predicate<? super Service> predicate);
 
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
     void updatePartsMap();
 
     void deleteTechnician(Technician target);
+
+    void setTechnician(Technician target, Technician editedPerson);
 
     CustomerVehicleMap getCustomerVehicleMap();
 
@@ -320,6 +326,8 @@ public interface Model {
      * Returns currently selected service
      */
     Service getSelectedService();
+
+    void setService(Service target, Service editedService);
 
     // Sort helper functions
 
