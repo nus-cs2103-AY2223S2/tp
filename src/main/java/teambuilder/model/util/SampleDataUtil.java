@@ -58,4 +58,13 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a name set containing the list of strings given.
+     */
+    public static Set<Name> getNameSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Name::new)
+                .collect(Collectors.toSet());
+    }
+
 }
