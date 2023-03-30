@@ -1,5 +1,8 @@
 package seedu.calidr.storage;
 
+import static net.fortuna.ical4j.model.Property.DESCRIPTION;
+import static net.fortuna.ical4j.model.Property.LOCATION;
+import static net.fortuna.ical4j.model.Property.CATEGORIES;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_HIGH;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_LOW;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_MEDIUM;
@@ -15,18 +18,23 @@ import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
+import net.fortuna.ical4j.model.TextList;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.component.VToDo;
 import net.fortuna.ical4j.model.property.DateProperty;
 import net.fortuna.ical4j.model.property.Status;
+import net.fortuna.ical4j.model.property.Categories;
+import net.fortuna.ical4j.model.property.Description;
+import net.fortuna.ical4j.model.property.Location;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
-import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.TodoDateTime;
+import seedu.calidr.model.task.params.Tag;
 import seedu.calidr.model.tasklist.TaskList;
 
 /**
@@ -51,7 +59,6 @@ public class CalendarStorage {
 
     /**
      * Read the task list from the stream
-     * @param stream
      * @return Parsed task list
      * @throws ParserException If invalid format for ics file stream
      * @throws IOException Thrown while reading the ics file
@@ -67,17 +74,18 @@ public class CalendarStorage {
         return taskList;
     }
 
-    private CalendarComponent taskToComponent(Task t) {
-        if (t instanceof Event) {
-            var event = (Event) t;
+    private CalendarComponent taskToComponent(Task task) {
+        CalendarComponent component;
+        if (task instanceof Event) {
+            var event = (Event) task;
 
-            var vevent = new VEvent(
+            component = new VEvent(
                 event.getEventDateTimes().from,
                 event.getEventDateTimes().to,
                 event.getTitle().value);
-            return vevent;
-        } else if (t instanceof ToDo) {
-            var todo = (ToDo) t;
+
+        } else if (task instanceof ToDo) {
+            var todo = (ToDo) task;
 
             var vtodo = new VToDo(todo.getBy().value, todo.getTitle().value);
 
@@ -86,18 +94,34 @@ public class CalendarStorage {
             if (todo.isDone()) {
                 vtodo.add(new Status(Status.VALUE_COMPLETED));
             }
-            return vtodo;
+
+            component = vtodo;
         }
-        throw new RuntimeException(""); // TODO
+        else {
+            throw new RuntimeException(); // TODO
+        }
+
+        final CalendarComponent componentRef = component;
+
+        task.getDescription().ifPresent(desc -> componentRef.add(new Description(desc.value)));
+
+        task.getLocation().ifPresent(location -> componentRef.add(new Location(location.value)));
+
+        var tags = task.getTags().stream().map(tag -> tag.tagName).toArray(String[]::new);
+        if (tags.length != 0) {
+            componentRef.add(new Categories(new TextList(tags)));
+        }
+
+        return component;
     }
 
     private Optional<Task> componentToTask(CalendarComponent component) {
+        Optional<Task> task = Optional.empty();
         if (component instanceof VEvent) {
             var vevent = (VEvent) component;
             var dtend = vevent.getEndDate().map(this::convertDateField);
             var dtstart = vevent.getStartDate().map(this::convertDateField);
             var summary = vevent.getSummary();
-            var priority = vevent.getPriority().map(this::convertPriorityField);
 
             var event =
                 dtend.flatMap(dtEnd ->
@@ -110,11 +134,7 @@ public class CalendarStorage {
                     ))
                 )));
 
-            event.ifPresent(e ->
-                e.setPriority(priority.orElse(Priority.MEDIUM))
-            );
-
-            return event.map(id -> id);
+            task = event.map(id -> id);
         } else if (component instanceof VToDo) {
             var vtodo = (VToDo) component;
             var summary = vtodo.getSummary();
@@ -139,10 +159,21 @@ public class CalendarStorage {
                 e.setPriority(priority.orElse(Priority.MEDIUM))
             );
 
-
-            return todo.map(id -> id);
+            task = todo.map(id -> id);
         }
-        return Optional.empty();
+
+        Optional<Description> description = component.getProperty(DESCRIPTION);
+        Optional<Location> location = component.getProperty(LOCATION);
+        Optional<Categories> categories = component.getProperty(CATEGORIES);
+
+        task.ifPresent(t -> {
+            description.ifPresent(desc -> t.setDescription(new seedu.calidr.model.task.params.Description(desc.getValue())));
+            location.ifPresent(loc -> t.setLocation(new seedu.calidr.model.task.params.Location(loc.getValue())));
+            var otags = categories.map(cats -> cats.getCategories().stream().map(Tag::new).collect(Collectors.toSet()));
+            otags.ifPresent(t::setTags);
+        });
+
+        return task;
     }
 
     private LocalDateTime convertDateField(DateProperty<?> field) {
