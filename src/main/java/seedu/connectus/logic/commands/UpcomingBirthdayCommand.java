@@ -1,10 +1,14 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.RecentBirthdayPredicate;
 
+/**
+ * Finds and lists all persons in address book whose birthdays are upcoming (in the next two months).
+ */
 public class UpcomingBirthdayCommand extends Command {
     public static final String COMMAND_WORD = "upcoming-b";
 

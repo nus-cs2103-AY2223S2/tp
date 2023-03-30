@@ -3,9 +3,11 @@ package seedu.connectus.model.person;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Birthday} is upcoming (in the next two
+ * months).
+ */
 public class RecentBirthdayPredicate implements Predicate<Person> {
-    public RecentBirthdayPredicate() {
-    }
 
     @Override
     public boolean test(Person person) {
@@ -16,7 +18,7 @@ public class RecentBirthdayPredicate implements Predicate<Person> {
         }
 
         Birthday birthday = bd.get();
-        return birthday.isRecent();
+        return birthday.isUpcoming();
     }
 
     @Override

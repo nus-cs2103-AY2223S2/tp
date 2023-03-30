@@ -35,25 +35,30 @@ public class Birthday {
         value = LocalDate.of(year, month, day);
     }
 
-
-    public boolean isRecent() {
-        LocalDate today = LocalDate.now();
-        // Check if birthday is in last 2 months
-        
-        if (value.getMonthValue() == today.getMonthValue() || value.getMonthValue() == today.getMonthValue() - 1) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Constructs an {@code Birthday}.
+     *
      * @param birthday A birthday as LocalDate.
      */
     public Birthday(LocalDate birthday) {
         requireNonNull(birthday);
         value = birthday;
+    }
+
+    /**
+     * Returns true if the birthday is in the next 2 months.
+     *
+     * @return boolean True if birthday is in the next 2 months.
+     */
+    public boolean isUpcoming() {
+        LocalDate today = LocalDate.now();
+        // Check if birthday is in this or upcoming month
+
+        if (value.getMonthValue() == today.getMonthValue() || value.getMonthValue() == today.getMonthValue() + 1) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
