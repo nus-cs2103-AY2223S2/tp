@@ -45,7 +45,7 @@ public class RemarkCommand extends Command {
      * Constructor for RemarkCommand
      */
     public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+        requireAllNonNull(index);
 
         this.index = index;
         this.remark = remark;
@@ -60,6 +60,10 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (this.remark == null) {
+            return new CommandResult("Editing remark...", false, false,
+                    personToEdit.getOptionalRemark().map(String::valueOf).orElse(""));
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(),
                 personToEdit.getOptionalPhone().orElse(null),

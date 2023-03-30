@@ -637,13 +637,11 @@ _{more aspects and alternatives to be added}_
 
 ### User stories
 
-> :information_source: **Priorities:**
-> 
-> - **`HIGH`** _(must have)_
-> - `MED` _(nice to have)_
-> - _`Low`_ _(unlikely to have)_
+**Priorities:**
 
-</div>
+- **`HIGH`** _(must have)_
+- `MED` _(nice to have)_
+- _`Low`_ _(unlikely to have)_
 
 | Priority   | As a …​   | I want to …​                                                                                                    | So that I can…​                                                              |
 |:----------:|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
