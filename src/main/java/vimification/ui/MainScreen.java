@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
 import vimification.internal.command.CommandResult;
-import vimification.model.task.Task;
 
 /**
  * The Main Scene. Provides the basic application layout containing a menu bar and space where other
@@ -22,20 +21,30 @@ public class MainScreen extends UiPart<VBox> {
 
     private static final String FXML = "MainScreen.fxml";
 
-    private static ReadOnlyDoubleProperty windowHeight;
-    private static ReadOnlyDoubleProperty windowWidth;
+    private static ReadOnlyDoubleProperty WINDOW_HEIGHT;
+    private static ReadOnlyDoubleProperty WINDOW_WIDTH;
 
-    private static DoubleBinding topComponentHeight; // Height of left and right component
-    private static DoubleBinding bottomComponentHeight;
-    private static DoubleBinding leftComponentWidth;
-    private static DoubleBinding rightComponentWidth;
+
+    private static final double TOP_COMPONENT_HEIGHT_PROPORTION = 0.9;
+    private static final double BOTTOM_COMPONENT_HEIGHT_PROPORTION =
+            1 - TOP_COMPONENT_HEIGHT_PROPORTION;
+
+    private static final double LEFT_COMPONENT_WIDTH_PROPORTION = 0.4;
+    private static final double RIGHT_COMPONENT_WIDTH_PROPORTION =
+            1 - LEFT_COMPONENT_WIDTH_PROPORTION;
+
+    private static DoubleBinding TOP_COMPONENT_HEIGHT;// Height of left and right
+                                                      // component
+    private static DoubleBinding BOTTOM_COMPONENT_HEIGHT;
+    private static DoubleBinding LEFT_COMPONENT_WIDTH;
+    private static DoubleBinding RIGHT_COMPONENT_WIDTH;
 
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private TaskTabPanel taskTabPanel;
-    private TaskCreationPanel taskCreationPanel;
+    // private TaskCreationPanel taskCreationPanel;
     private CommandInput commandInput;
 
     @FXML
@@ -53,14 +62,11 @@ public class MainScreen extends UiPart<VBox> {
     public MainScreen(Logic logic) {
         super(FXML);
         this.logic = logic;
-        windowHeight = this.getRoot().heightProperty();
-        windowWidth = this.getRoot().widthProperty();
-        topComponentHeight = windowHeight.multiply(0.9);
-        bottomComponentHeight = windowHeight.multiply(0.1);
+        WINDOW_HEIGHT = this.getRoot().heightProperty();
+        WINDOW_WIDTH = this.getRoot().widthProperty();
 
-        leftComponentWidth = windowWidth.multiply(0.3);
-        rightComponentWidth = windowWidth.multiply(0.7);
-        setup();
+        bindHeightAndWidth();
+        setupComponents();
     }
 
     /**
@@ -77,13 +83,21 @@ public class MainScreen extends UiPart<VBox> {
         this.getRoot().setFocusTraversable(true); // Important
     }
 
-    private void setup() {
-        leftComponent.prefHeightProperty().bind(topComponentHeight);
-        rightComponent.prefHeightProperty().bind(topComponentHeight);
-        bottomComponent.prefHeightProperty().bind(bottomComponentHeight);
-
+    private void setupComponents() {
         intializeCommandInput();
         initializeTaskListPanel();
+    }
+
+    private void bindHeightAndWidth() {
+        TOP_COMPONENT_HEIGHT = WINDOW_HEIGHT.multiply(TOP_COMPONENT_HEIGHT_PROPORTION);
+        BOTTOM_COMPONENT_HEIGHT = WINDOW_HEIGHT.multiply(BOTTOM_COMPONENT_HEIGHT_PROPORTION);
+        LEFT_COMPONENT_WIDTH = WINDOW_WIDTH.multiply(LEFT_COMPONENT_WIDTH_PROPORTION);
+        RIGHT_COMPONENT_WIDTH = WINDOW_WIDTH.multiply(RIGHT_COMPONENT_WIDTH_PROPORTION);
+
+        leftComponent.prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
+        rightComponent.prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
+
+        bottomComponent.prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
     }
 
     public void initializeTaskListPanel() {
@@ -113,7 +127,7 @@ public class MainScreen extends UiPart<VBox> {
 
         switch (event.getText()) {
         case "i":
-            loadTaskCreationPanelComponent();
+            // loadTaskCreationPanelComponent();
             break;
         case "j":
         case "k":
@@ -122,13 +136,13 @@ public class MainScreen extends UiPart<VBox> {
         }
     }
 
-    private void loadTaskCreationPanelComponent() {
-        taskCreationPanel = new TaskCreationPanel(this.getRoot());
-        loadRightComponent(taskCreationPanel);
-        taskCreationPanel.requestFocus();
-    }
+    // private void loadTaskCreationPanelComponent() {
+    // taskCreationPanel = new TaskCreationPanel(this.getRoot());
+    // loadRightComponent(taskCreationPanel);
+    // taskCreationPanel.requestFocus();
+    // }
 
-    protected void loadCommandInputComponent() {
+    private void loadCommandInputComponent() {
         loadBottomComponent(commandInput);
         commandInput.requestFocus();
     }
@@ -138,41 +152,39 @@ public class MainScreen extends UiPart<VBox> {
         resultPanel.display(result);
     }
 
-    protected void loadDetailedTaskComponent(Task task) {
-        TaskDetailPanel detailTask = new TaskDetailPanel(task);
-        loadRightComponent(detailTask);
-    }
-
     /**
      * Clears the right component.
      */
-    public void clearRightComponent() {
+    protected void clearRightComponent() {
         rightComponent.getChildren().clear();
     }
 
-    public void clearBottomComponent() {
+    /**
+     * Clears the bottom component.
+     */
+    protected void clearBottomComponent() {
         bottomComponent.getChildren().clear();
     }
 
     private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
-        component.getRoot().prefHeightProperty().bind(topComponentHeight);
-        component.getRoot().prefWidthProperty().bind(leftComponentWidth);
+        component.getRoot().prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
+        component.getRoot().prefWidthProperty().bind(LEFT_COMPONENT_WIDTH);
 
     }
 
     protected <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
-        component.getRoot().prefHeightProperty().bind(topComponentHeight);
-        component.getRoot().prefWidthProperty().bind(rightComponentWidth);
+        component.getRoot().prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
+        component.getRoot().prefWidthProperty().bind(RIGHT_COMPONENT_WIDTH);
     }
 
     protected <T extends Pane> void loadBottomComponent(UiPart<T> component) {
         bottomComponent.getChildren().clear();
         bottomComponent.getChildren().add(component.getRoot());
-        component.getRoot().prefHeightProperty().bind(bottomComponentHeight);
-        component.getRoot().prefWidthProperty().bind(windowWidth);
+        component.getRoot().prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
+        component.getRoot().prefWidthProperty().bind(WINDOW_WIDTH);
     }
 }

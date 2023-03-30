@@ -4,29 +4,23 @@
 }
 
 .label {
-  -fx-font-size: 11pt;
-  -fx-font-family: "Segoe UI Semibold";
   -fx-text-fill: #555555;
   -fx-opacity: 0.9;
 }
 
 .label-bright {
-  -fx-font-size: 11pt;
-  -fx-font-family: "Segoe UI Semibold";
   -fx-text-fill: white;
   -fx-opacity: 1;
 }
 
 .label-header {
   -fx-font-size: 32pt;
-  -fx-font-family: "Segoe UI Light";
   -fx-text-fill: white;
   -fx-opacity: 1;
 }
 
 .text-field {
   -fx-font-size: 12pt;
-  -fx-font-family: "Segoe UI Semibold";
 }
 
 .tab-pane {
@@ -205,10 +199,10 @@
 }
 
 /*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
+   * Metro style Push Button
+   * Author: Pedro Duque Vieira
+   * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+   */
 .button {
   -fx-padding: 5 22 5 22;
   -fx-border-color: #e2e2e2;
