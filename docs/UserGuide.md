@@ -27,7 +27,7 @@ SudoHR allows you to manage these components by:
 2. Adding/Removing employees in departments/leaves.
 3. Applying different filters on the data.
 
-<div markdown="span" class="alert alert-danger">**WARNING:**
+<div markdown="span" class="alert alert-warning">:exclamation: **WARNING:**
 SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
 and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
 problems.
@@ -60,13 +60,18 @@ problems.
 
 [//]: # (Explain notations used in the UG)
 
+You will see several types of boxes in the UG:
+1. TIP - Good practices you can follow to enhance your experience using SudoHR
+2. NOTE - Things to remember when using SudoHR so you don't get confused
+3. WARNING - Important things to remember when using SudoHR that may cause problems.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # 6. Quick Reference Guide
 
 ## 6.1. Layout
 
-![Screenshot of SudoHR app](images/Ui.png "SudoHR main page")
+[//]: # (![Screenshot of SudoHR app]&#40;images/Ui.png "SudoHR main page"&#41;)
 
 [//]: # (<-- Insert labelled UI here -->)
 Our app interface consists of 5 main components:
@@ -553,7 +558,7 @@ SudoHR data are saved in the hard disk automatically after any command that chan
 
 SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **WARNING:**
 If your changes to the data file makes its format invalid, SudoHR will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -598,10 +603,10 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 [//]: # (Please add anything you think might be helpful)
 
-## 9. Acknowledgements
+[//]: # (## 9. Acknowledgements)
 
 [//]: # (To be added before Week 13)
 
-## 10. Glossary
+[//]: # (## 10. Glossary)
 
 [//]: # (To be added before Week 13)
