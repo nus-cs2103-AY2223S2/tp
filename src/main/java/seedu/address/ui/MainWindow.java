@@ -36,6 +36,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane clientLabel;
 
     @FXML
+    private StackPane appointmentLabel;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -83,11 +86,14 @@ public class MainWindow extends UiPart<Stage> {
         Client selectedClient = logic.getSelectedClient();
         int selectedClientIndex = logic.getSelectedClientIndex();
         ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
 
         if (clientLabel.getChildren().size() > 0) {
             clientLabel.getChildren().remove(0);
+            appointmentLabel.getChildren().remove(0);
         }
         clientLabel.getChildren().add(selectedClientCard.getRoot());
+        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
 
         // Populate policy list of selected client
         policyListPanel = new PolicyListPanel(logic.getFilteredPolicyList());
@@ -119,11 +125,14 @@ public class MainWindow extends UiPart<Stage> {
         Client selectedClient = logic.getSelectedClient();
         int selectedClientIndex = logic.getSelectedClientIndex();
         ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
 
         if (clientLabel.getChildren().size() > 0) {
             clientLabel.getChildren().remove(0);
+            appointmentLabel.getChildren().remove(0);
         }
         clientLabel.getChildren().add(selectedClientCard.getRoot());
+        appointmentLabel.getChildren().add(selectedAppointmentCard.getRoot());
 
         policyListPanel.updatePolicyList(logic.getFilteredPolicyList());
     }

@@ -18,8 +18,9 @@ public class JsonAdaptedAppointment {
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
+     *
      * @param appointmentName The name of the appointment.
-     * @param meetupDate The meetup date of the appointment.
+     * @param meetupDate      The meetup date of the appointment.
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("appointmentName") String appointmentName,
@@ -30,15 +31,17 @@ public class JsonAdaptedAppointment {
 
     /**
      * Constructs a given {@code Appointment} into this class for Jackson use.
+     *
      * @param source The appointment that we are interested in.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        appointmentName = source.getAppointmentName().appointmentName;
+        appointmentName = source.getAppointmentName().value;
         meetupDate = source.getMeetupDate().toString();
     }
 
     /**
      * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
+     *
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {

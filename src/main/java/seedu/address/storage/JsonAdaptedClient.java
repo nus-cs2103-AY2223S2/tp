@@ -136,7 +136,6 @@ class JsonAdaptedClient {
 
         Appointment modelAppointment = appointment.toModelType();
 
-
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelAppointment);
     }
 
