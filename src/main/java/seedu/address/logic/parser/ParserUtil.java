@@ -152,6 +152,11 @@ public class ParserUtil {
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
+
+        if (dueDate.getMinute() != 0) {
+            throw new ParseException(Event.MESSAGE_EVENT_NOT_HOURLY);
+        }
+
         return dueDate;
     }
 
@@ -203,6 +208,10 @@ public class ParserUtil {
             dueDate = LocalTime.parse(time);
         } catch (DateTimeException e) {
             throw new ParseException(RecurringEvent.MESSAGE_CONSTRAINTS_TIME);
+        }
+
+        if (dueDate.getMinute() != 0) {
+            throw new ParseException(Event.MESSAGE_EVENT_NOT_HOURLY);
         }
         return dueDate;
     }
