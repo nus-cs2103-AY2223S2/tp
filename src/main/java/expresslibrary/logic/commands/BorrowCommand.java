@@ -29,8 +29,6 @@ public class BorrowCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "b/2 d/22/09/2025";
 
-    public static final String MESSAGE_INVALID_DATE = "Date must be provided in the form dd/mm/yyyy";
-    public static final String MESSAGE_EARLY_DATE = "Due date must be after today's date";
 
     public static final String MESSAGE_BORROW_SUCCESS = "Person: %1$s borrowed Book: %2$s";
 
