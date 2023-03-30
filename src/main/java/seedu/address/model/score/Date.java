@@ -14,6 +14,9 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
         "Dates should only be in yyyy-MM-dd format, and it should not be blank";
 
+    public static final String MESSAGE_INVALID_DATE =
+        "The date entered is in the future. Please recheck the date entered.";
+
     // Identity field(s)
     public final LocalDate date;
 
@@ -25,6 +28,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isFutureDate(date), MESSAGE_INVALID_DATE);
         this.date = LocalDate.parse(date);
     }
 
@@ -44,7 +48,17 @@ public class Date {
         }
     }
 
-
+    /**
+     * Returns true if the date is not a future date.
+     */
+    public static boolean isFutureDate(String test) {
+        LocalDate inputDate = LocalDate.parse(test);
+        LocalDate computerDate = LocalDate.now();
+        if (inputDate.isAfter(computerDate)) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public boolean equals(Object other) {
