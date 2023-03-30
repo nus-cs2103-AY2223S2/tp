@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 * Table of Contents
   {:toc}
   
@@ -334,8 +335,6 @@ Example CSV output of  `export sampledata.csv`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Try copying these to a .csv file. Then import them as sample inputs!
 </div>
-
-<div style="page-break-after: always;"></div>
 
 ### Viewing help: `help`
 
