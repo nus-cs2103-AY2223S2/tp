@@ -342,7 +342,7 @@ public class MainWindow extends UiPart<Stage> {
      * Reloads and opens Timetable window.
      */
     @FXML
-    private void handleTimetable() {
+    public void handleTimetable() {
         if (!timetableWindow.isShowing()) {
             logger.info("Opened timetable window of current week.");
             try {
@@ -377,7 +377,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens updated unscheduled jobs window
      */
     @FXML
-    private void handleUnscheduledTimetable() {
+    public void handleUnscheduledTimetable() {
         if (!unscheduleWindow.isShowing()) {
             logger.info("Opened window of unscheduled jobs.");
             try {
@@ -399,7 +399,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens updated completed jobs window
      */
     @FXML
-    private void handleCompletedTimetable() {
+    public void handleCompletedTimetable() {
         if (!completeWindow.isShowing()) {
             logger.info("Opened window of completed jobs.");
             try {
@@ -435,7 +435,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Statistics window.
      */
     @FXML
-    private void handleStats() {
+    public void handleStats() {
         if (!statsWindow.isShowing()) {
             statsWindow.show();
             statsWindow.fillInnerParts();
@@ -449,7 +449,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Address book window.
      */
     @FXML
-    private void handleAddressBook() {
+    public void handleAddressBook() {
         if (addDeliveryJobWindow != null) {
             addDeliveryJobWindow.hide();
         }
@@ -548,9 +548,9 @@ public class MainWindow extends UiPart<Stage> {
                 openTimetable();
             }
 
-            if (commandResult.isShowTimetable()) {
+            /*if (commandResult.isShowTimetable()) {
                 handleTimetable();
-            }
+            }*/
 
             if (commandResult.isShowUnschedule()) {
                 handleUnscheduledTimetable();

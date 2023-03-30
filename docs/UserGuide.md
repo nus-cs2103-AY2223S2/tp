@@ -47,12 +47,12 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    * `list` : Lists all contacts.
    
    * `list_job` : Lists all jobs.
+   
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-  * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `timetable` : Shows timetable of current week.
 
-  * `timetable` : Shows timetable of current week.
-
-  * `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -92,7 +92,8 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## 1. Features related to Customers
+## 1. Features available Customers
+### *Can only access from Customer Window*
 ### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
@@ -162,7 +163,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-## 2. Features related to Delivery Jobs
+## 2. Features available for Delivery Jobs
+### *Can only access from Main Window*
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
@@ -187,8 +189,30 @@ Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
+### 2.3. Listing all customers : `list`
+
+Switch to Customer Window.
+Shows a list of all persons/customers in the address book in Customer Window.
+
+Format: `list`
+
+### 2.4. Deleting a job : `delete_job`
+
+Deletes the specified job by job ID from the address book.
+
+Format: `delete JOB_ID`
+
+* Deletes the job at the specified `JOB_ID`.
+* The job ID refers to the ID of the job shown in the displayed job list.
+* The ID **must be a String containing alphabets and integers** ALBE29E66F, …​
+* The job ID is case sensitive.
+
+Examples:
+* `list_job` followed by `delete_job ALBE29E66F` deletes the job with ID ALBE29E66F in job list.
+
 
 ## 3. Features related to Reminders
+### *Can access from both Main and Customer Window*
 ### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Duke Driver.
@@ -222,6 +246,7 @@ Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
 ## 4. Features related to Timetable
+### *Can access from both Main and Customer Window*
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
@@ -251,7 +276,8 @@ Jobs are sorted in increasing date and decreasing earning order.
 
 Format: `timetable_unscheduled`
 
-## 5. Features related to Statistics
+## 5. Features related to Statistics 
+### *Can access from both Main and Customer Window*
 ### 5.1. Showing Statistics : `stats`
 
 Shows a summary of statistics related to the jobs in the job list
@@ -303,21 +329,29 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+**:information_source: Notes about the command accessibility:**<br>
+
+* Commands that start with *(C)* could only be accessed from Customer Window
+* Commands that start with *(M)* could only be accessed from Main Window
+* Commands that start with *(B)* could be accessed from both Main and Customer Window
+
 
 Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
-**List reminder** | `list_reminder`
-**Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
-**Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
-**Show Timetable** | `timetable`
-**Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
-**Show List of Completed Jobs** | `timetable_completed`
-**Show List of Unscheduled Jobs** | `timetable_unscheduled`
-**Help** | `help`
+--------|-----------------
+***(C)* Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+***(C)* Clear** | `clear`
+***(C)* Delete** | `delete INDEX`<br> e.g., `delete 3`
+***(C)* Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+***(C)* Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+***(B)* List** | `list`
+***(M)* Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+***(M)* Delete Job** | `delete_job JOB_ID` <br> e.g., `delete_job ALBE29E66F`
+***(B)* List reminder** | `list_reminder`
+***(B)* Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
+***(B)* Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
+***(B)* Show Timetable** | `timetable`
+***(B)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
+***(B)* Show List of Completed Jobs** | `timetable_completed`
+***(B)* Show List of Unscheduled Jobs** | `timetable_unscheduled`
+***(B)* Shows Statistics** | `stats`
+***(B)* Help** | `help`

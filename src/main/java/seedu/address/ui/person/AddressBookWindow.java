@@ -16,6 +16,7 @@ import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.ui.HelpWindow;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -30,7 +31,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
-    private final HelpWindow helpWindow;
+    private final MainWindow mainWindow;
     private Stage primaryStage;
     private Logic logic;
 
@@ -59,7 +60,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
-        this.helpWindow = new HelpWindow();
+        this.mainWindow = new MainWindow(primaryStage, logic);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -73,9 +74,9 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic,
                              Consumer<Person> selectHandler,
-                             HelpWindow helpWindow) {
+                             MainWindow mainWindow) {
         super(FXML, primaryStage);
-        this.helpWindow = helpWindow;
+        this.mainWindow = mainWindow;
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -117,12 +118,49 @@ public class AddressBookWindow extends UiPart<Stage> {
      * Opens the help window or focuses on it if it's already opened.
      */
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-            logger.info("Opened help window.");
-        } else {
-            helpWindow.focus();
-        }
+        mainWindow.handleHelp();
+    }
+
+    /**
+     * Reloads and opens Timetable window.
+     */
+    public void handleTimetable() {
+        mainWindow.handleAddressBook();
+    }
+
+    /**
+     * Opens timetable window
+     */
+    public void openTimetable() {
+        mainWindow.openTimetable();
+    }
+
+    /**
+     * Opens updated unscheduled jobs window
+     */
+    public void handleUnscheduledTimetable() {
+        mainWindow.handleUnscheduledTimetable();
+    }
+
+    /**
+     * Opens updated completed jobs window
+     */
+    public void handleCompletedTimetable() {
+        mainWindow.handleCompletedTimetable();
+    }
+
+    /**
+     * Opens Reminder List window.
+     */
+    public void handleReminderList() {
+        mainWindow.handleReminderList();
+    }
+
+    /**
+     * Opens Statistics window.
+     */
+    public void handleStats() {
+        mainWindow.handleStats();
     }
 
     /**
@@ -177,6 +215,31 @@ public class AddressBookWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
+
+            if (commandResult.isShowTimetable()) {
+                openTimetable();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
+            }
+
+            if (commandResult.isShowUnschedule()) {
+                handleUnscheduledTimetable();
+            }
+
+            if (commandResult.isShowComplete()) {
+                handleCompletedTimetable();
+            }
+
+            if (commandResult.isShowStatistics()) {
+                handleStats();
+            }
+
+            if (commandResult.isShowReminderList()) {
+                handleReminderList();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
