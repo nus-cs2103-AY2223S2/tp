@@ -16,7 +16,6 @@ public class TxnContainsPersonPredicate implements Predicate<Transaction> {
 
     @Override
     public boolean test(Transaction transaction) {
-        System.out.println(transaction.getOwner().toString().trim());
         return transaction.getOwner().toString().trim().equalsIgnoreCase(keywords);
     }
 

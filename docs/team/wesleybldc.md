@@ -26,9 +26,7 @@ Implemented the unit tests for findtag
 UG for findtag feature
 
 Wrote the findlead feature
-
 Wrote the findall feature
-
 Wrote the findtxn feature
 
 Contributions to the DG based on each feature that I wrote.
