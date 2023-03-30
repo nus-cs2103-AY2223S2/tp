@@ -33,28 +33,28 @@ public class OrderStatusTest {
     }
 
     @Test
-    public void isValidTaskStatus() {
-        // null task status
-        assertThrows(NullPointerException.class, () -> OrderStatus.isValidOrderStatus(null));
+    public void isValidOrderStatus() {
+        // null order status
+        assertThrows(NullPointerException.class, () -> OrderStatus.isValidStatus(null, OrderStatus.STATUSES));
 
-        // invalid task status
-        assertFalse(OrderStatus.isValidOrderStatus("")); // empty string
-        assertFalse(OrderStatus.isValidOrderStatus(" ")); // spaces only
-        assertFalse(OrderStatus.isValidOrderStatus("^")); // only non-alphanumeric characters
-        assertFalse(OrderStatus.isValidOrderStatus("N*")); // contains non-alphanumeric characters
-        assertFalse(OrderStatus.isValidOrderStatus("M")); // invalid status
-        assertFalse(OrderStatus.isValidOrderStatus("DN")); // both D and N
-        assertFalse(OrderStatus.isValidOrderStatus("N N")); // more than one character
-        assertFalse(OrderStatus.isValidOrderStatus("12345")); // numbers only
-        assertFalse(OrderStatus.isValidOrderStatus("D ")); // white spaces at the back
+        // invalid order status
+        assertFalse(OrderStatus.isValidStatus("", OrderStatus.STATUSES)); // empty string
+        assertFalse(OrderStatus.isValidStatus(" ", OrderStatus.STATUSES)); // spaces only
+        assertFalse(OrderStatus.isValidStatus("^", OrderStatus.STATUSES)); // only non-alphanumeric characters
+        assertFalse(OrderStatus.isValidStatus("N*", OrderStatus.STATUSES)); // contains non-alphanumeric characters
+        assertFalse(OrderStatus.isValidStatus("M", OrderStatus.STATUSES)); // invalid status
+        assertFalse(OrderStatus.isValidStatus("DN", OrderStatus.STATUSES)); // both D and N
+        assertFalse(OrderStatus.isValidStatus("N N", OrderStatus.STATUSES)); // more than one character
+        assertFalse(OrderStatus.isValidStatus("12345", OrderStatus.STATUSES)); // numbers only
+        assertFalse(OrderStatus.isValidStatus("D ", OrderStatus.STATUSES)); // white spaces at the back
 
-        // valid task status
-        assertTrue(OrderStatus.isValidOrderStatus("N")); // not done
-        assertTrue(OrderStatus.isValidOrderStatus("I")); // in progress
-        assertTrue(OrderStatus.isValidOrderStatus("D")); // done
-        assertTrue(OrderStatus.isValidOrderStatus("n")); // small letter
-        assertTrue(OrderStatus.isValidOrderStatus("i")); // small letter
-        assertTrue(OrderStatus.isValidOrderStatus("d")); // small letter
+        // valid order status
+        assertTrue(OrderStatus.isValidStatus("N", OrderStatus.STATUSES)); // not done
+        assertTrue(OrderStatus.isValidStatus("I", OrderStatus.STATUSES)); // in progress
+        assertTrue(OrderStatus.isValidStatus("D", OrderStatus.STATUSES)); // done
+        assertTrue(OrderStatus.isValidStatus("n", OrderStatus.STATUSES)); // small letter
+        assertTrue(OrderStatus.isValidStatus("i", OrderStatus.STATUSES)); // small letter
+        assertTrue(OrderStatus.isValidStatus("d", OrderStatus.STATUSES)); // small letter
     }
 
     @Test

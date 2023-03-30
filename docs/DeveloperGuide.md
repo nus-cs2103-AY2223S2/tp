@@ -3,6 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
+This is a guide for developers looking to contribute to the codebase. There are explanations as to how the project is setup and how each command works.
+
+You can click on the respective links below to read up on the relevant sections.
+
 **Table of Contents**
 
 <!-- TOC -->
@@ -16,10 +20,14 @@ title: Developer Guide
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
+    * [AddXYZCommand](#addxyzcommand)
+    * [DeleteXYZCommand](#deletexyzcommand)
+    * [Edit feature](#edit-feature)
     * [FindXYZCommand](#findxyzcommand)
+    * [ListXYZCommand](#listxyzcommand)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
-      * [Design considerations:](#design-considerations-)
+      * [Design considerations:](#design-considerations)
     * [\[Proposed\] Data archiving](#proposed-data-archiving)
   * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
   * [**Appendix: Requirements**](#appendix-requirements)
@@ -92,7 +100,8 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
 <p align="center">
-  <img src="images/ArchitectureSequenceDiagram.svg" width="650" />
+  <img src="images/ArchitectureSequenceDiagram.svg" width="650"/>
+  <br>Figure 2: Sequence Diagram (Deleting Person)
 </p>
 
 Each of the four main components (also shown in the diagram above),
@@ -104,6 +113,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <p align="center">
   <img src="images/ComponentManagers.svg" width="300" />
+  <br>Figure 3: Logic Class Diagram
 </p>
 
 The sections below give more details of each component.
@@ -114,6 +124,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <p align="center">
   <img src="images/UiClassDiagram.svg" />
+  <br>Figure 4: UI Class Diagram
 </p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
@@ -134,7 +145,8 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <p align="center">
-  <img src="images/LogicClassDiagram.png" width="550"/>
+  <img src="images/LogicClassDiagram.svg" width="550"/>
+  <br>Figure 5: Logic Class Diagram
 </p>
 
 How the `Logic` component works:
@@ -153,7 +165,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <p align="center">
-  <img src="images/ParserClasses.png" width="600"/>
+  <img src="images/ParserClasses.svg" width="600"/>
+  <br>Figure 6: Sequence Diagram (Deleting Order)
 </p>
 
 How the parsing works:
@@ -167,6 +180,7 @@ How the parsing works:
 
 <p align="center">
   <img src="images/ModelClassDiagram.svg" width="450" />
+  <br>Figure 7: Model Class Diagram
 </p>
 
 The `Model` component,
@@ -181,6 +195,7 @@ Here is the `Item` class that is what all model objects depend on.
 
 <p align="center">
   <img src="images/ItemClassDiagram.svg" width="300" />
+  <br>Figure 8: Item Class Diagram
 </p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
@@ -190,6 +205,7 @@ This is the class representation for the `Supplier` and `Customer` class.
 
 <p align="center">
   <img src="images/PersonClassDiagram.svg" width="500" />
+  <br>Figure 9: Person Class Diagram
 </p>
 
 Here is how `Supplier` and `Customer` works:
@@ -202,6 +218,7 @@ This is the class representation for the `Task` class.
 
 <p align="center">
   <img src="images/TaskClassDiagram.svg" width="450" />
+  <br>Figure 10: Task Class Diagram
 </p>
 
 Here is how `Task` works:
@@ -213,22 +230,23 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-   <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
- </p>
+  <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
+  <br>Figure 11: Menu Class Diagram
+</p>
 
 Here is how `Menu` works:
 
 * Each `Menu` contains non-negative and non-zero number of `MenuItem`.
 * Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
-* The value of `ItemProfit` is obtained by taking the value of `ItemPrice` subtracted by the value of `ItemCost`.
+* The`ItemProfit` is obtained using `ItemPrice` and `ItemCost`, meaning that `ItemProfit` depends on `ItemPrice` and `ItemCost`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
 
 **Aspect: Choice to provide a menu package:**
 
 * **Option 1 (our choice):** Separating it into a separate `menu` package.
-    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively.
+    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
     * Advantage 2: Less repeated code
     * Disadvantage: More time required to implement.
 
@@ -239,15 +257,16 @@ Here is how `Menu` works:
 This is the class representation for the `Order` class.
 
 <p align ="center">
-   <img src="images/OrderClassDiagram.svg" width="550" />
- </p>
+  <img src="images/OrderClassDiagram.svg" width="550" />
+  <br>Figure 12: Order Class Diagram
+</p>
 
 Here is how `Order` works:
 
 * Each `OrderList` contains non-negative and non-zero number of `Order`.
 * Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
-* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
+* The `Order`'s `OrderDeadline` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
 ### Storage component
@@ -256,6 +275,7 @@ Here is how `Order` works:
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
+  <br>Figure 13: Storage Class Diagram
 </p>
 
 The `Storage` component,
@@ -287,9 +307,10 @@ The parser for the `add` command would extract out the arguments corresponding t
 
 The following activity diagram summarizes what happens when the user executes the `add` command.
 
- <p align="center">
-     <img src="images/AddCommandActivityDiagram.svg">
- </p>
+<p align="center">
+  <img src="images/AddCommandActivityDiagram.svg">
+  <br>Figure 14: Add Command Activity Diagram
+</p>
 
 #### Why is it implemented this way
 
@@ -306,9 +327,10 @@ The parser for `delete` command extracts the index found in the arguments. If th
 
 The following activity diagram summarizes what happens when the user executes the `delete` command.
 
- <p align="center">
-     <img src="images/DeleteCommandActivityDiagram.svg">
- </p>
+<p align="center">
+  <img src="images/DeleteCommandActivityDiagram.svg">
+  <br>Figure 15: Delete Command Activity Diagram
+</p>
 
 #### Why is it implemented this way
 
@@ -336,8 +358,9 @@ the edited item is saved to the filtered list and `EditXYZCommand#execute()` wil
 
 Lastly, Changes made are saved to local data and success message will be shown.
 
- <p align="center">
-    <img src="images/EditCommandActivityDiagram.svg" width="900" />
+<p align="center">
+  <img src="images/EditCommandActivityDiagram.svg" width="900" />
+  <br>Figure 16: Edit Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
@@ -360,7 +383,8 @@ A `XYZContainsKeywordPredicate` is built upon these fields, which is used to tes
 The following activity diagram summarizes what happens when the user executes the `find` command.
 
 <p align="center">
-    <img src="images/FindCommandActivityDiagram.svg">
+  <img src="images/FindCommandActivityDiagram.svg">
+  <br>Figure 17: Find Command Activity Diagram
 </p>
 
 #### Why is it implemented this way
@@ -380,93 +404,9 @@ The `FilteredXYZList` is then updated to have all `XYZ` objects, it will then to
 The following activity diagram summarizes what happens when the user executes the `list` command.
 
 <p align="center">
-    <img src="images/ListCommandActivityDiagram.svg">
+  <img src="images/ListCommandActivityDiagram.svg">
+  <br>Figure 18: List Command Activity Diagram
 </p>
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedTrackr`. It extends `Trackr` with an undo/redo history, stored internally as a `trackrStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedTrackr#commit()` — Saves the current trackr state in its history.
-* `VersionedTrackr#undo()` — Restores the previous trackr state from its history.
-* `VersionedTrackr#redo()` — Restores a previously undone trackr state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitTrackr()`, `Model#undoTrackr()` and `Model#redoTrackr()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedTrackr` will be initialized with the initial trackr state, and the `currentStatePointer` pointing to that single trackr state.
-
-![UndoRedoState0](images/UndoRedoState0.svg)
-
-Step 2. The user executes `delete_task 5` command to delete the 5th task in the trackr. The `delete_task` command calls `Model#commitTrackr()`, causing the modified state of the trackr after the `delete_task 5` command executes to be saved in the `trackrStateList`, and the `currentStatePointer` is shifted to the newly inserted trackr state.
-
-![UndoRedoState1](images/UndoRedoState1.svg)
-
-Step 3. The user executes `add_task n/Sort Storage …​` to add a new task. The `add_task` command also calls `Model#commitTrackr()`, causing another modified trackr state to be saved into the `trackrStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTrackr()`, so the trackr state will not be saved into the `trackrStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTrackr()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous trackr state, and restores the trackr to that state.
-
-![UndoRedoState3](images/UndoRedoState3.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Trackr state, then there are no previous Trackr states to restore. The `undo` command uses `Model#canUndoTrackr()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.svg)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoTrackr()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the trackr to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `trackrStateList.size() - 1`, pointing to the latest trackr state, then there are no undone Trackr states to restore. The `redo` command uses `Model#canRedoTrackr()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list_task`. Commands that do not modify the trackr, such as `list_task`, will usually not call `Model#commitTrackr()`, `Model#undoTrackr()` or `Model#redoTrackr()`. Thus, the `trackrStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.svg)
-
-Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the `currentStatePointer` is not pointing at the end of the `trackrStateList`, all trackr states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add_task n/Sort Storage …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.svg)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.svg" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

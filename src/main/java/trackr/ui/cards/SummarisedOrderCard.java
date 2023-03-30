@@ -45,7 +45,7 @@ public class SummarisedOrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        orderName.setText(order.getOrderName().value);
+        orderName.setText(order.getOrderName().getName());
         orderQuantity.setText(order.getOrderQuantity().value);
         orderDeadline.setText(order.getOrderDeadline().toString());
         orderStatus.setText(order.getOrderStatus().toString());

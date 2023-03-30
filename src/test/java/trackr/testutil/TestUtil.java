@@ -164,6 +164,11 @@ public class TestUtil {
         }
 
         @Override
+        public void sortFilteredTaskList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyMenu getMenu() {
             throw new AssertionError("This method should not be called.");
         }
@@ -174,17 +179,17 @@ public class TestUtil {
         }
 
         @Override
-        public void sortFilteredTaskList(Comparator<Task> comparator) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyOrderList getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredOrderList(Comparator<Order> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

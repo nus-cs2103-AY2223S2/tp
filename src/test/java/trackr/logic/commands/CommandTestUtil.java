@@ -298,7 +298,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
 
         Order task = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-        final String[] splitOrderName = task.getOrderName().value.split("\\s+");
+        final String[] splitOrderName = task.getOrderName().getName().split("\\s+");
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
         predicate.setOrderNameKeywords(Arrays.asList(splitOrderName[0]));
         model.updateFilteredItemList(predicate, ModelEnum.ORDER);

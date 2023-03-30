@@ -23,6 +23,7 @@ import trackr.logic.commands.order.DeleteOrderCommand;
 import trackr.logic.commands.order.EditOrderCommand;
 import trackr.logic.commands.order.FindOrderCommand;
 import trackr.logic.commands.order.ListOrderCommand;
+import trackr.logic.commands.order.SortOrdersCommand;
 import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.commands.supplier.DeleteSupplierCommand;
@@ -45,6 +46,7 @@ import trackr.logic.parser.order.AddOrderCommandParser;
 import trackr.logic.parser.order.DeleteOrderCommandParser;
 import trackr.logic.parser.order.EditOrderCommandParser;
 import trackr.logic.parser.order.FindOrderCommandParser;
+import trackr.logic.parser.order.SortOrdersCommandParser;
 import trackr.logic.parser.supplier.AddSupplierCommandParser;
 import trackr.logic.parser.supplier.DeleteSupplierCommandParser;
 import trackr.logic.parser.supplier.EditSupplierCommandParser;
@@ -181,6 +183,10 @@ public class TrackrParser {
         case SortTasksCommand.COMMAND_WORD:
         case SortTasksCommand.COMMAND_WORD_SHORTCUT:
             return new SortTasksCommandParser().parse(arguments);
+
+        case SortOrdersCommand.COMMAND_WORD:
+        case SortOrdersCommand.COMMAND_WORD_SHORTCUT:
+            return new SortOrdersCommandParser().parse(arguments);
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);

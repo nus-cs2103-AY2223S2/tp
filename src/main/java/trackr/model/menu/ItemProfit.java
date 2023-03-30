@@ -1,6 +1,9 @@
 package trackr.model.menu;
 
 import static java.util.Objects.requireNonNull;
+import static trackr.commons.util.AppUtil.checkArgument;
+
+import java.text.DecimalFormat;
 //import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,8 +12,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class ItemProfit {
     public static final String MESSAGE_CONSTRAINTS =
-            "Profit should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{1,3}";
+            "Profit should only contain numbers, and it should be at most 2 decimal place";
+    public static final String VALIDATION_REGEX = "^-?\\d+(.\\d{0,2})?$";
+    public static final DecimalFormat DF = new DecimalFormat("0.00");
     public final String value;
 
     /**
@@ -19,8 +23,9 @@ public class ItemProfit {
     public ItemProfit(ItemPrice itemPrice, ItemCost itemCost) {
         requireNonNull(itemPrice);
         requireNonNull(itemCost);
-        this.value = Float.toString(itemPrice.getValue() - itemCost.getValue());
+        this.value = DF.format(itemPrice.getValue() - itemCost.getValue());
         System.out.println(value);
+        checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
     }
 
     /**
