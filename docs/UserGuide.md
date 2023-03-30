@@ -43,7 +43,7 @@ Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (a
 - Tutorial name cannot be just Tutorial alone
 - date and attachment is optional. Date will assume the current time if not specified
 
-Format: `touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -attachment [FULL_FILE_PATH_TO_PDF]`
+Format: `touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -53,7 +53,7 @@ Examples:
 
 * `touch Tutorial/makeUpTutorial`
 * `touch Tutorial/examReview -date 01/01/2023 16:00`
-* `touch Tutorial/examReview -date 01/01/2023 16:00 -attachment /Users/JohnDoe/Desktop/Introduction.pdf`
+* `touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf`
 
 ### Adding a lab: `add lab`
 
