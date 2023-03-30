@@ -38,9 +38,7 @@ public class AddTagToPersonCommand extends Command {
         + PREFIX_MODULE + "CS2103T "
         + PREFIX_MODULE + "CS2101 "
         + PREFIX_CCA + "NES "
-        + PREFIX_CCA + "ICS "
-        + PREFIX_CCA_POSITION + "Director "
-        + PREFIX_CCA_POSITION + "President "
+        + PREFIX_CCA + "ICS#Director "
         + PREFIX_REMARK + "friends "
         + PREFIX_REMARK + "owesMoney";
 
@@ -174,10 +172,10 @@ public class AddTagToPersonCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable CCA set, which throws
+         * Returns an unmodifiable Major set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
+         * Returns {@code Optional#empty()} if {@code majors} is null.
          */
         public Optional<Set<CcaPosition>> getCcaPositions() {
             return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
