@@ -1,5 +1,6 @@
 package seedu.internship.ui;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -65,10 +66,22 @@ public class CommandBox extends UiPart<Region> {
         if (event.getCode().isArrowKey()) {
             switch (event.getCode()) {
             case UP:
-                commandTextField.setText(this.commandHistory.getOlderInput());
+                String olderInput = this.commandHistory.getOlderInput();
+                commandTextField.setText(olderInput);
+                // Reused from
+                // https://stackoverflow.com/q/8293774
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        commandTextField.end();
+                    }
+                });
                 break;
 
             case DOWN:
+//                String newerInput = this.commandHistory.getNewerInput();
+//                commandTextField.setText(newerInput);
+//                commandTextField.positionCaret(newerInput.length());
                 commandTextField.setText(this.commandHistory.getNewerInput());
                 break;
 
