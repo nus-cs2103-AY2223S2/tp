@@ -92,11 +92,15 @@ public class CommandBox extends UiPart<Region> {
             Set<String> allowedCommands = new HashSet<>(Arrays.asList(FindCommand.COMMAND_WORD,
                 FindTaskCommand.COMMAND_WORD));
 
-            if (allowedCommands.contains(commandWord) && !trimmedNewValue.equals(FindCommand.COMMAND_WORD)) {
+            if (allowedCommands.contains(commandWord) && !trimmedNewValue.equals(FindCommand.COMMAND_WORD)
+                    && !trimmedNewValue.equals(FindTaskCommand.COMMAND_WORD)) {
                 executeCommand(newValue);
             } else if (allowedCommands.contains(commandWord) && trimmedNewValue.equals(FindCommand.COMMAND_WORD)
-                && oldValue.length() > newValue.length()) {
+                    || trimmedNewValue.equals(FindTaskCommand.COMMAND_WORD) && oldValue.length() > newValue.length()) {
                 executeCommand(ListAllCommand.COMMAND_WORD);
+            } else if (trimmedNewValue.isEmpty()) {
+                
+                // Do nothing
             }
         }
     }

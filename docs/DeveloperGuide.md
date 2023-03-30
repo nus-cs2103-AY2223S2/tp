@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents 
-   {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -308,7 +308,7 @@ The implementation of this feature is supported by `FindCommand` and `FindComman
 
 Below is an activity diagram that illustrates the control flow for the Find feature.  
 
-![FindTaskActivitySequenceDiagram](images/FindActivityDiagram.png)
+![FindTaskActivityDiagram](images/FindActivityDiagram.png)
 
 ### 3.4 Find a Task's Assignees
 Syntax: `findt TASKNAME` </br>
@@ -319,7 +319,7 @@ The implementation of this feature is supported by `FindTaskCommand` and `FindTa
 
 Below is an activity diagram that illustrates how a user finds who are assigned to a task. </br>
 
-![FindTaskActivitySequenceDiagram](images/FindTaskActivitySequenceDiagram.png)
+![FindTaskSequenceDiagram.png](images/FindTaskSequenceDiagram.png)
 
 #### 3.4.2 Design Considerations
 
