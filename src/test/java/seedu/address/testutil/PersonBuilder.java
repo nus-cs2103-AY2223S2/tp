@@ -7,8 +7,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
@@ -29,7 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COMPANY = "Tesleh";
-    public static final String DEFAULT_INDUSTRY = "automobile";
+    public static final String DEFAULT_LOCATION = "Singapore";
     public static final String DEFAULT_OCCUPATION = "engineer";
     public static final String DEFAULT_JOBTITLE = "industrial engineer";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -40,7 +40,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Company company;
-    private Industry industry;
+    private Location location;
     private Occupation occupation;
     private JobTitle jobTitle;
     private Address address;
@@ -57,7 +57,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         company = new Company(DEFAULT_COMPANY);
-        industry = new Industry(DEFAULT_INDUSTRY);
+        location = new Location(DEFAULT_LOCATION);
         occupation = new Occupation(DEFAULT_OCCUPATION);
         jobTitle = new JobTitle(DEFAULT_JOBTITLE);
         address = new Address(DEFAULT_ADDRESS);
@@ -75,7 +75,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         company = personToCopy.getCompany();
-        industry = personToCopy.getIndustry();
+        location = personToCopy.getLocation();
         occupation = personToCopy.getOccupation();
         jobTitle = personToCopy.getJobTitle();
         address = personToCopy.getAddress();
@@ -109,10 +109,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Industry} of the {@code Person} that we are building.
+     * Sets the {@code Location} of the {@code Person} that we are building.
      */
-    public PersonBuilder withIndustry(String industry) {
-        this.industry = new Industry(industry);
+    public PersonBuilder withLocation(String location) {
+        this.location = new Location(location);
         return this;
     }
 
@@ -183,7 +183,7 @@ public class PersonBuilder {
      * Completes building the {@code Person}
      */
     public Person build() {
-        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
+        return new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
                 remark, tags, tasks);
     }
 }

@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_COMPANY + "COMPANY "
-            + PREFIX_INDUSTRY + "INDUSTRY "
+            + PREFIX_LOCATION + "LOCATION "
             + PREFIX_OCCUPATION + "OCCUPATION "
             + PREFIX_JOBTITLE + "JOBTITLE "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_COMPANY + "NUS "
-            + PREFIX_INDUSTRY + "education "
+            + PREFIX_LOCATION + "Singapore "
             + PREFIX_OCCUPATION + "professor "
             + PREFIX_JOBTITLE + "research instructor "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
