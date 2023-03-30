@@ -20,7 +20,7 @@
     <ScrollPane
             styleClass="root-layout" hbarPolicy="NEVER"
             fitToWidth="true" fitToHeight="true"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0"
+            AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="0.0"
             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" styleClass="root-box"
               spacing="8"
