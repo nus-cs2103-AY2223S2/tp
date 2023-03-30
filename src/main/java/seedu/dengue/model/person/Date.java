@@ -115,7 +115,6 @@ public class Date {
         DateTimeFormatter format = builder.toFormatter()
                 .withResolverStyle(ResolverStyle.STRICT);
 
-
         return format;
     }
 
