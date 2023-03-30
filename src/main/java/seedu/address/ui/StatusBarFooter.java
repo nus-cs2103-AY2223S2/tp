@@ -16,13 +16,19 @@ public class StatusBarFooter extends UiPart<Region> {
 
     @FXML
     private Label saveLocationStatus;
+    @FXML
+    private Label currentOccupancy;
+    @FXML
+    private Label currentCritical;
 
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation) {
+    public StatusBarFooter(Path saveLocation, String currentOccupancy, String currentCritical) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        this.saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        this.currentOccupancy.setText(currentOccupancy);
+        this.currentCritical.setText(currentCritical);
     }
 
 }

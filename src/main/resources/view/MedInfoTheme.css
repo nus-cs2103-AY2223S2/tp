@@ -76,8 +76,8 @@
     -fx-background-color: -fx-focus-color;
 }
 
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#A8C5C9, 20%);
+.split-pane-divider {
+    -fx-background-color: derive(#A8C5C9, 10%);
     -fx-border-color: transparent;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -138,6 +138,7 @@
  */
 .stack-pane {
      -fx-background-color: derive(#A8C5C9, 20%);
+     -fx-border-radius: 100;
 }
 
 /**
@@ -148,6 +149,7 @@
      -fx-background-color: derive(#FFFFFF, 20%);
      -fx-border-color: derive(#FFFFFF, 10%);
      -fx-border-top-width: 1px;
+     -fx-border-radius: 100;
 }
 
 /**
@@ -167,7 +169,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 5px;
+    -fx-padding: 20px;
 }
 
 .status-STABLE {
@@ -175,7 +177,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 5px;
+    -fx-padding: 20px;
 }
 
 .status-SERIOUS {
@@ -183,7 +185,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
-    -fx-padding: 5px;
+    -fx-padding: 20px;
 }
 
 .status-CRITICAL {
@@ -191,7 +193,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-padding: 5px;
+    -fx-padding: 20px;
 }
 
 .status-bar .label {
@@ -323,7 +325,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#A8C5C9, 20%);
 }
 
 .scroll-bar .thumb {
@@ -348,6 +350,8 @@
     -fx-padding: 8 1 8 1;
 }
 
+
+
 /**
  * Patient card
  * PatientListCard.fxml
@@ -357,24 +361,43 @@
     -fx-border-width: 0;
 }
 
+#cardPaneRed {
+    -fx-background-color: red;
+    -fx-border-width: 0;
+}
+
+/**
+ * List for patients/wards
+ * PatientListPanel.fxml
+ * WardListPanel.fxml
+ */
+#listView {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 400;
+    -fx-background-radius: 400;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
 }
 
 /**
- * Command text field
+ * CLI text field
  * MainWindow.fxml
  */
 #commandTextField {
-    -fx-background-color: transparent #0c4270 transparent #0c4270;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
+    -fx-border-radius: 100;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-prompt-text-fill: grey;
 }
 
 #filterField, #patientListPanel, #patientWebpage {
@@ -386,6 +409,15 @@
  * ResultDisplay.fxml
  */
 #resultDisplay .content {
+    -fx-background-color: #A8C5C9;
+    -fx-background-radius: 0;
+}
+
+/**
+ * Results Display
+ * ResultDisplay.fxml
+ */
+#MedInfoStats .content {
     -fx-background-color: #A8C5C9;
     -fx-background-radius: 0;
 }
