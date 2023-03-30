@@ -60,7 +60,7 @@ public class NoteTest {
                 + "And I need to regrade tutorial for @Han.");
 
         assertEquals("Contents: \n"
-                + "This is my first note!! \n"
+                + "This is my first note!! "
                 + "Please remind me that I have to send report to @Jim, @Lin by next meeting \n"
                 + "And I need to regrade tutorial for @Han."
                 + ";\n Relevant personnel: "
