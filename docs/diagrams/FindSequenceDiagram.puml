@@ -21,7 +21,7 @@ LogicManager -> HMHeroParser : parseCommand("find n/John")
 activate HMHeroParser
 
 create FindCommandParser
-HMHeroParser -> FindCommandParser : new FindCommandParser()
+HMHeroParser -> FindCommandParser : FindCommandParser
 activate FindCommandParser
 
 FindCommandParser --> HMHeroParser
@@ -31,14 +31,14 @@ HMHeroParser -> FindCommandParser : parse("n/John")
 activate FindCommandParser
 
 create NameContainsKeywordsPredicate
-FindCommandParser -> NameContainsKeywordsPredicate : new NameContainsKeywordsPredicate
+FindCommandParser -> NameContainsKeywordsPredicate : NameContainsKeywordsPredicate
 activate NameContainsKeywordsPredicate
 
 NameContainsKeywordsPredicate --> FindCommandParser
 deactivate NameContainsKeywordsPredicate
 
 create FindCommand
-FindCommandParser -> FindCommand : new FindCommand(predicate)
+FindCommandParser -> FindCommand : FindCommand(predicate)
 activate FindCommand
 
 FindCommand --> FindCommandParser :
