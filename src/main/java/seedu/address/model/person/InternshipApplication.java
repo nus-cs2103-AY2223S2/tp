@@ -14,7 +14,7 @@ import seedu.address.model.documents.Documents;
  * Represents an InternshipApplication in the tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class InternshipApplication {
+public class InternshipApplication implements Comparable<InternshipApplication> {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
@@ -250,6 +250,11 @@ public class InternshipApplication {
         return otherApplication.getCompanyName().equals(getCompanyName())
                 && otherApplication.getJobTitle().equals(getJobTitle())
                 && otherApplication.getStatus().equals(getStatus());
+    }
+
+    @Override
+    public int compareTo(InternshipApplication internshipApplication) {
+        return this.getCompanyName().compareTo(internshipApplication.getCompanyName());
     }
 
     @Override

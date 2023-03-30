@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -220,11 +221,23 @@ public interface Model {
      */
     ObservableList<InternshipApplication> getFilteredInternshipList();
 
+    /**
+     * Returns an unmodifiable view of the sorted filtered internship list
+     */
+    ObservableList<InternshipApplication> getSortedFilteredInternshipList();
+
     /** Returns an unmodifiable view of the filtered todo list */
     ObservableList<InternshipTodo> getFilteredTodoList();
 
     /** Returns an unmodifiable view of the filtered note list */
     ObservableList<Note> getFilteredNoteList();
+
+    /**
+     * Updates the comparator of the sorted filtered internship list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedFilteredInternshipList(Comparator<InternshipApplication> comparator);
 
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
@@ -251,7 +264,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
     /**
      * Returns an unmodifiable view of the cached internship list.
      */

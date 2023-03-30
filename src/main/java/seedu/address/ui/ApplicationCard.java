@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -9,14 +10,17 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
+import seedu.address.ui.control.PopupEditInternship;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code InternshipApplication}.
  */
 public class ApplicationCard extends UiPart<Region> {
-
     private static final String FXML = "ApplicationListCard.fxml";
-
+    public final InternshipApplication application;
+    private PopupEditInternship popupEditInternship;
+    private int index;
+    private final MainWindow mainWindow;
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -24,8 +28,6 @@ public class ApplicationCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final InternshipApplication application;
 
     @FXML
     private HBox cardPane;
@@ -53,13 +55,18 @@ public class ApplicationCard extends UiPart<Region> {
     private Label resume;
     @FXML
     private Label coverLetter;
+    @FXML
+    private Button editButton;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code InternshipApplicationCode} with the given {@code InternshipApplication} and index to display.
      */
-    public ApplicationCard(InternshipApplication application, int displayedIndex) {
+    public ApplicationCard(InternshipApplication application, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.application = application;
+        this.mainWindow = mainWindow;
+        this.index = displayedIndex;
+        this.popupEditInternship = new PopupEditInternship(mainWindow);
         id.setText(displayedIndex + ". ");
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
@@ -93,9 +100,11 @@ public class ApplicationCard extends UiPart<Region> {
     /**
      * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
      */
-    public ApplicationCard(InternshipApplication application) {
+    public ApplicationCard(InternshipApplication application, MainWindow mainWindow) {
         super(FXML);
         this.application = application;
+        this.mainWindow = mainWindow;
+        this.popupEditInternship = new PopupEditInternship(mainWindow);
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         internshipStatus.setText(application.getStatus().name());
@@ -132,5 +141,17 @@ public class ApplicationCard extends UiPart<Region> {
         ApplicationCard card = (ApplicationCard) other;
         return id.getText().equals(card.id.getText())
                 && application.equals(card.application);
+    }
+
+    /**
+     * Handles the edit internship button clicked event.
+     */
+    @FXML
+    private void handleEditInternshipClicked() {
+        if (!popupEditInternship.isShowing()) {
+            popupEditInternship.show(index, application);
+        } else {
+            popupEditInternship.focus();
+        }
     }
 }

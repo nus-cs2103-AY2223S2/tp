@@ -58,7 +58,7 @@
              <VBox fx:id="mainContainer" spacing="20" styleClass="pane-with-border" GridPane.columnIndex="3">
                      <children>
                         <StackPane fx:id="viewContentPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="summaryPanelPlaceholder" alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="statsInformationListPanelPlaceholder" alignment="BOTTOM_CENTER" style="-fx-background-color: #383838;" AnchorPane.bottomAnchor="3" />
                      </children>
              </VBox>
                </children>
