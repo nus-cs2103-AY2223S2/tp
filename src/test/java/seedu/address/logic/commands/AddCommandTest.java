@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Undoable;
 import seedu.address.model.person.Person;
@@ -150,6 +151,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHashedPassword(String hashedPassword) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getHashedPassword() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNumberOfTimesUsed(int numberOfTimesUsed) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getNumberOfTimesUsed() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyUserData getUserData() {
             throw new AssertionError("This method should not be called.");
         }
 

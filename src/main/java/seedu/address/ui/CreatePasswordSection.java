@@ -42,10 +42,9 @@ public class CreatePasswordSection extends UiPart<Region> {
             String newPassword = firstInputField.getText();
             String reEnterPassword = secondInputField.getText();
             if (newPassword.equals(reEnterPassword)) {
-                // save the password
-
                 // send event to go to loading screen
-                CreatePasswordSuccessfulEvent createPasswordSuccessfulEvent = new CreatePasswordSuccessfulEvent();
+                CreatePasswordSuccessfulEvent createPasswordSuccessfulEvent =
+                        new CreatePasswordSuccessfulEvent(newPassword);
                 Event.fireEvent(tempContainer, createPasswordSuccessfulEvent);
             } else {
                 this.errorMessageLabel.setText("Passwords do not match. Please try again.");
@@ -59,13 +58,14 @@ public class CreatePasswordSection extends UiPart<Region> {
         String newPassword = firstInputField.getText();
         String reEnterPassword = secondInputField.getText();
         if (newPassword.equals(reEnterPassword)) {
-            // save the password
-
             // send event to go to loading screen
-            CreatePasswordSuccessfulEvent createPasswordSuccessfulEvent = new CreatePasswordSuccessfulEvent();
+            CreatePasswordSuccessfulEvent createPasswordSuccessfulEvent =
+                    new CreatePasswordSuccessfulEvent(newPassword);
             Event.fireEvent(tempContainer, createPasswordSuccessfulEvent);
         } else {
             this.errorMessageLabel.setText("Passwords do not match. Please try again.");
         }
     }
+
+
 }

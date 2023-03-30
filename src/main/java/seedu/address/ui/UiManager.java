@@ -125,6 +125,8 @@ public class UiManager implements Ui {
      */
     private void onCreatePasswordSuccess(CreatePasswordSuccessfulEvent event) {
         try {
+            // save the password
+            logic.setUserHashedPassword(event.getHashedPassword());
             loginWindow.fillLoadingSection();
             loginWindow.fillPasswordSuccessLoadingSection();
             PauseTransition delay = new PauseTransition(Duration.seconds(3));

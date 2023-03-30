@@ -93,5 +93,16 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    //=========== UserData ==================================================================================
+
+    void setHashedPassword(String hashedPassword);
+
+    String getHashedPassword();
+
+    void setNumberOfTimesUsed(int numberOfTimesUsed);
+
+    int getNumberOfTimesUsed();
+
+    ReadOnlyUserData getUserData();
 
 }

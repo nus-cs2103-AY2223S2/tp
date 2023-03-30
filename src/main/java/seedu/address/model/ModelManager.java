@@ -31,7 +31,7 @@ public class ModelManager implements Model, Undoable {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, userData);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -39,11 +39,32 @@ public class ModelManager implements Model, Undoable {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.undoManager = new UndoManager(this.addressBook, 5);
-        this.userData = new UserData();
+        this.userData = new UserData(userData);
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new UserData());
+    }
+
+    //=========== UserData ==================================================================================
+    public void setHashedPassword(String hashedPassword) {
+        this.userData.setHashedPassword(hashedPassword);
+    }
+
+    public String getHashedPassword() {
+        return this.userData.getHashedPassword();
+    }
+
+    public void setNumberOfTimesUsed(int numberOfTimesUsed) {
+        this.userData.setNumberOfTimesUsed(numberOfTimesUsed);
+    }
+
+    public int getNumberOfTimesUsed() {
+        return this.userData.getNumberOfTimesUsed();
+    }
+
+    public ReadOnlyUserData getUserData() {
+        return this.userData;
     }
 
     //=========== UserPrefs ==================================================================================

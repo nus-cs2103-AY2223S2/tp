@@ -80,7 +80,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setPassword(String password) {
-        // save to storage
+    public void setUserHashedPassword(String hashedPassword) {
+        model.setHashedPassword(hashedPassword);
     }
 }

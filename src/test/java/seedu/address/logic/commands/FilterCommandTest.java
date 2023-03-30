@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.ContactContainsTagPredicate;
 import seedu.address.model.tag.Tag;
@@ -23,8 +24,8 @@ import seedu.address.model.tag.Tag;
  * Contains integration tests (interaction with the Model) for {@code FilterCommand}.
  */
 public class FilterCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
 
     private Set<Tag> emptyTagSetStub = new HashSet<>();
 

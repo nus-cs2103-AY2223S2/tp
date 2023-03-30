@@ -51,5 +51,5 @@ public interface Logic {
     /**
      * Set the user's password
      */
-    void setPassword(String password);
+    void setUserHashedPassword(String hashedPassword);
 }

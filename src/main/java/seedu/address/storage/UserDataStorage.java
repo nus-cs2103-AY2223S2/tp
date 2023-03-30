@@ -1,11 +1,13 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.UserData;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.UserData;
 
 /**
  * Represents a storage for user password
@@ -31,5 +33,5 @@ public interface UserDataStorage {
      * @param userData cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserData(UserData userData) throws IOException;
+    void saveUserData(ReadOnlyUserData userData) throws IOException;
 }

@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.UserData;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.UserData;
 
 /**
  * A class to access UserData stored in the hard disk as a json file
@@ -33,7 +33,7 @@ public class JsonUserDataStorage implements UserDataStorage {
     }
 
     @Override
-    public void saveUserData(UserData userData) throws IOException {
+    public void saveUserData(ReadOnlyUserData userData) throws IOException {
         JsonUtil.saveJsonFile(userData, this.filepath);
     }
 

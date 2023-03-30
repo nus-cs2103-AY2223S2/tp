@@ -50,7 +50,6 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
-    protected UserData userData;
 
     @Override
     public void init() throws Exception {
@@ -65,7 +64,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         UserDataStorage userDataStorage = new JsonUserDataStorage(Paths.get("userData.json"));
         storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
-        userData = new UserData();
+        UserData userData = initUserData(userDataStorage);
 
         initLogging(config);
 
@@ -173,6 +172,33 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    protected UserData initUserData(UserDataStorage userDataStorage) {
+        Path userDataFilePath = storage.getUserDataFilePath();
+        logger.info("Using prefs file : " + userDataFilePath);
+
+        UserData initializedUserData;
+        try {
+            Optional<UserData> userDataOptional = storage.readUserData();
+            initializedUserData = userDataOptional.orElse(new UserData());
+        } catch (DataConversionException e) {
+            logger.warning("UserData file at " + userDataFilePath + " is not in the correct format. "
+                    + "Using default user prefs");
+            initializedUserData = new UserData();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty user data");
+            initializedUserData = new UserData();
+        }
+
+        // Update userData file in case it was missing to begin with or there are new/unused fields
+        try {
+            storage.saveUserData(initializedUserData);
+        } catch (IOException e) {
+            logger.warning("Failed to save userData file : " + StringUtil.getDetails(e));
+        }
+
+        return initializedUserData;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
@@ -184,6 +210,7 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserData(model.getUserData());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

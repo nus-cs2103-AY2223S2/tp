@@ -10,7 +10,18 @@ public class CreatePasswordSuccessfulEvent extends Event {
     public static final EventType<CreatePasswordSuccessfulEvent> CREATE_PASSWORD_SUCCESSFUL_EVENT =
             new EventType<>("CREATE_PASSWORD_SUCCESSFUL");
 
-    public CreatePasswordSuccessfulEvent() {
+    private String hashedPassword;
+
+    /**
+     * Contructor for CreatePasswordSuccessfulEvent that requires the user's password
+     * @param hashedPassword
+     */
+    public CreatePasswordSuccessfulEvent(String hashedPassword) {
         super(CREATE_PASSWORD_SUCCESSFUL_EVENT);
+        this.hashedPassword = hashedPassword;
+    }
+
+    public String getHashedPassword() {
+        return this.hashedPassword;
     }
 }
