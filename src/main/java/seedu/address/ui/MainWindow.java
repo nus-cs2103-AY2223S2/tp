@@ -217,6 +217,12 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        /* Currently, it is impractical to determine the nature of the command
+         * and update the UI accordingly, so it is reset instead to reduce the chance of bugs.
+         */
+        logic.setSelectedPerson(null);
+        bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -243,11 +249,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
-        } finally {
-            /* Currently, it is impractical to determine the nature of the command
-             * and update the UI accordingly, so it is reset instead to reduce the chance of bugs.
-             */
-            bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
         }
     }
 }

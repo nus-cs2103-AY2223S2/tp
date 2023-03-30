@@ -47,9 +47,9 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
 
-        this.allData = null;
-        this.favData = null;
-        this.selectedIndex = -1;
+        allData = null;
+        favData = null;
+        selectedIndex = -1;
 
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
@@ -60,9 +60,11 @@ public class PersonListPanel extends UiPart<Region> {
             if (selectedIndex == nextIndex) { // clear selection on same selection
                 selectedIndex = -1;
                 logic.setSelectedPerson(null);
+                setSelectedData(null);
             } else {
                 selectedIndex = nextIndex;
-                logic.setSelectedPerson(nextData.getPerson());
+                logic.setSelectedPerson(nextData == null ? null : nextData.getPerson());
+                setSelectedData(nextData);
             }
         });
 
@@ -82,19 +84,24 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     public void setSelectedPerson(Person selectedPerson) {
-        MultipleSelectionModel<PersonListCellData> selectionModel = personListView.getSelectionModel();
         if (allData == null) {
             return;
         }
-        if (Objects.equals(selectedPerson, selectionModel.getSelectedItem().getPerson())) {
-            // Same person is already selected
-            return;
-        }
-        selectionModel.select(allData
+        setSelectedData(allData
                 .stream()
                 .filter(data -> Objects.equals(data.getPerson(), selectedPerson))
                 .findFirst()
                 .orElse(null));
+    }
+
+    private void setSelectedData(PersonListCellData data) {
+        MultipleSelectionModel<PersonListCellData> selectionModel = personListView.getSelectionModel();
+        if (Objects.equals(selectionModel.getSelectedItem(), data)) {
+            // Equivalent person to be selected, so the selection will not be changed
+            return;
+        }
+        selectionModel.select(data);
+        selectedIndex = selectionModel.getSelectedIndex();
     }
 
     private void fillListView(Collection<? extends Person> people) {
