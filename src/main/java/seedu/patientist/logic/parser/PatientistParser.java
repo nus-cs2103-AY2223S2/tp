@@ -6,7 +6,30 @@ import static seedu.patientist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.patientist.logic.commands.*;
+import seedu.patientist.logic.commands.AddPatientCommand;
+import seedu.patientist.logic.commands.AddPatientStatusCommand;
+import seedu.patientist.logic.commands.AddPatientToDoCommand;
+import seedu.patientist.logic.commands.AddStaffCommand;
+import seedu.patientist.logic.commands.AddWardCommand;
+import seedu.patientist.logic.commands.ClearCommand;
+import seedu.patientist.logic.commands.Command;
+import seedu.patientist.logic.commands.DeleteCommand;
+import seedu.patientist.logic.commands.DeletePatientCommand;
+import seedu.patientist.logic.commands.DeletePatientStatusCommand;
+import seedu.patientist.logic.commands.DeleteStaffCommand;
+import seedu.patientist.logic.commands.DeleteWardCommand;
+import seedu.patientist.logic.commands.EditCommand;
+import seedu.patientist.logic.commands.ExitCommand;
+import seedu.patientist.logic.commands.FindCommand;
+import seedu.patientist.logic.commands.FindPatientCommand;
+import seedu.patientist.logic.commands.FindStaffCommand;
+import seedu.patientist.logic.commands.HelpCommand;
+import seedu.patientist.logic.commands.ListCommand;
+import seedu.patientist.logic.commands.ListPatientsCommand;
+import seedu.patientist.logic.commands.ListStaffCommand;
+import seedu.patientist.logic.commands.ListWardPatientsCommand;
+import seedu.patientist.logic.commands.ListWardsCommand;
+import seedu.patientist.logic.commands.ViewCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 
 /**

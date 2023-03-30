@@ -36,9 +36,10 @@ public class Patient extends Person {
      * Every field must be present and not null.
      */
     public Patient(IdNumber id, Name name, Phone phone, Email email,
-                   Address address, List<PatientStatusDetails> details, Set<Tag> tags) {
+                   Address address, List<PatientStatusDetails> details, List<PatientToDo> toDos, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
         this.details.addAll(details);
+        this.toDos.addAll(toDos);
     }
 
     /**

@@ -11,6 +11,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.util.SampleDataUtil;
 
@@ -20,9 +21,11 @@ import seedu.patientist.model.util.SampleDataUtil;
 public class PatientBuilder extends PersonBuilder {
 
     public static final List<PatientStatusDetails> DEFAULT_STATUS = List.of(new PatientStatusDetails("Doing good"));
+    public static final List<PatientToDo> DEFAULT_TODO = List.of(new PatientToDo("Take medicine"));
     public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(List.of(new Tag("Patient")));
 
     private List<PatientStatusDetails> status;
+    private List<PatientToDo> todo;
 
     /**
      * Creates a Patient from default details, with defaults specified here and in PersonBuilder
@@ -30,6 +33,7 @@ public class PatientBuilder extends PersonBuilder {
     public PatientBuilder() {
         super();
         this.status = DEFAULT_STATUS;
+        this.todo = DEFAULT_TODO;
         this.tags = DEFAULT_TAGS;
     }
 
@@ -43,6 +47,7 @@ public class PatientBuilder extends PersonBuilder {
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
         status = new ArrayList<>(patientToCopy.getPatientStatusDetails());
+        todo = new ArrayList<>(patientToCopy.getPatientToDoList());
         tags = new HashSet<>(patientToCopy.getTags());
     }
     /**
@@ -109,7 +114,7 @@ public class PatientBuilder extends PersonBuilder {
 
     @Override
     public Patient build() {
-        return new Patient(idNumber, name, phone, email, address, status, tags);
+        return new Patient(idNumber, name, phone, email, address, status, todo, tags);
     }
 
 }

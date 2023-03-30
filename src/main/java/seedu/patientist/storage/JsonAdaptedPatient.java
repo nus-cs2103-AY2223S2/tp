@@ -146,7 +146,10 @@ class JsonAdaptedPatient {
 
         final List<PatientStatusDetails> modelDetails = new ArrayList<>(personDetails);
 
-        return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
+        final List<PatientToDo> modelToDos = new ArrayList<>(personToDos);
+
+        return new Patient(modelId, modelName, modelPhone, modelEmail,
+                modelAddress, modelDetails, modelToDos, modelTags);
 
     }
 

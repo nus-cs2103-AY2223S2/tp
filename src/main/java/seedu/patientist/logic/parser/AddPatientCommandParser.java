@@ -8,6 +8,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TODO;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.ward.Ward;
 
@@ -56,10 +58,12 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         ArrayList<PatientStatusDetails> details =
                 new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
+        ArrayList<PatientToDo> toDos =
+                new ArrayList<>(ParserUtil.parseToDos(argMultimap.getAllValues(PREFIX_TODO)));
         Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient")));
         tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        Patient patient = new Patient(idNumber, name, phone, email, address, details, tagList);
+        Patient patient = new Patient(idNumber, name, phone, email, address, details, toDos, tagList);
 
         return new AddPatientCommand(ward.getWardName(), patient);
 
