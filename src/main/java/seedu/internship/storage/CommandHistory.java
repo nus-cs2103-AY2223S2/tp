@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Solution below adapted from
+// https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/storage/UserInputHistory.java
+/**
+ * CommandHistory keeps track of past commands inputted.
+ */
 public class CommandHistory {
     private final List<String> list;
     private int index;

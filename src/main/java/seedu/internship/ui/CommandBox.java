@@ -33,6 +33,8 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         this.commandHistory = new CommandHistory();
+        // Reused from
+        // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java
         this.commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleUpDownButtonEvent);
     }
 
@@ -58,6 +60,8 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private void handleUpDownButtonEvent(KeyEvent event) {
+        // Reused from
+        // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java
         if (event.getCode().isArrowKey()) {
             switch (event.getCode()) {
                 case UP:
