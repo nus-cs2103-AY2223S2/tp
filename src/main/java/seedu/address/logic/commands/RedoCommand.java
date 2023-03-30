@@ -9,7 +9,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "The command %s has been redone!";
-    public static final String MESSAGE_FAILURE = "No recent undos to be redone!";
+    public static final String MESSAGE_FAILURE = "TeachMeSenpai is already in the latest version! There is nothing to redo";
     private String commandToRedo;
     private final boolean isModifying = false;
 
@@ -21,7 +21,6 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
-
         if (!model.checkRedoable()) {
             throw new CommandException(MESSAGE_FAILURE);
         } else {
@@ -29,6 +28,7 @@ public class RedoCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             commandToRedo = commandHistory.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
+//            commandHistory.updateCommandHistory(COMMAND_WORD);
             return new CommandResult(message);
         }
     }

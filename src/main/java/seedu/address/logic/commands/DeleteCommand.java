@@ -37,8 +37,6 @@ public class DeleteCommand extends Command {
 
     private final boolean isModifying = true;
 
-    private final Index targetIndex;
-
     private final List<Index> targetIndexes;
 
     public DeleteCommand(List<Index> targetIndexes) {

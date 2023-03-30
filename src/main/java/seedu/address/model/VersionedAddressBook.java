@@ -1,14 +1,17 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+
+import seedu.address.logic.commands.exceptions.CommandException;
 
 import seedu.address.model.AddressBook;
 
 public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> versionStateHistory;
     private int currentStatePointer;
+    public static final String UNDO_VERSION_FAILURE = "Dont have older version to restore";
+    public static final String REDO_VERSION_FAILURE = "Dont have new version to restore";
 
     public VersionedAddressBook(ReadOnlyAddressBook addressbook) {
         super(addressbook); // first version of versionaddressbook
@@ -18,6 +21,9 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     public void commit() {
+        for (int i = currentStatePointer + 1; i < versionStateHistory.size(); i++) {
+            versionStateHistory.remove(i);
+        }
         versionStateHistory.add(new AddressBook(this));
         currentStatePointer++;
     }
@@ -27,7 +33,7 @@ public class VersionedAddressBook extends AddressBook {
             currentStatePointer--;
             resetData(versionStateHistory.get(currentStatePointer));
         } else {
-            // throw exception
+            throw new RuntimeException(UNDO_VERSION_FAILURE);
         }
     }
 
@@ -36,6 +42,8 @@ public class VersionedAddressBook extends AddressBook {
         if (checkRedoable()) {
             currentStatePointer++;
             resetData(versionStateHistory.get(currentStatePointer));
+        } else {
+            throw new RuntimeException(REDO_VERSION_FAILURE);
         }
     }
 
@@ -45,7 +53,7 @@ public class VersionedAddressBook extends AddressBook {
 
     public boolean checkRedoable() {
         int numberOfStates = versionStateHistory.size();
-        return numberOfStates > currentStatePointer;
+        return numberOfStates - 1 > currentStatePointer;
     }
 
     @Override
