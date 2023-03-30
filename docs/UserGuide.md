@@ -817,28 +817,6 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 <br></br>
 
-#### `delete` - Delete an appointment
-
-Removes the specified appointment from the appointment manager.
-
-##### Syntax
-
-```text
-appointment delete INDEX
-```
-
-* <code><var>INDEX</var></code> : `<Index>`
-
-##### Example
-
-* `appointment delete 5`
-
-##### Restrictions
-
-* The index must be an existing index in the appointment manager.
-
-<br></br>
-
 #### `edit` - Edit an appointment
 
 Edits the details of an existing appointment.
@@ -858,7 +836,7 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 ##### Example
 
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Dose 1 (Pfizer)`
+* `appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)`
 
 ##### Restrictions
 
@@ -958,6 +936,28 @@ appointment unmark INDEX
 
 * The index must be an existing index in the appointment manager.
 * The specified appointment should already be done.
+
+<br></br>
+
+#### `delete` - Delete an appointment
+
+Removes the specified appointment from the appointment manager.
+
+##### Syntax
+
+```text
+appointment delete INDEX
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+
+##### Example
+
+* `appointment delete 5`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
 
 <br></br>
 
