@@ -35,6 +35,18 @@ public class Birthday {
         value = LocalDate.of(year, month, day);
     }
 
+
+    public boolean isRecent() {
+        LocalDate today = LocalDate.now();
+        // Check if birthday is in last 2 months
+        
+        if (value.getMonthValue() == today.getMonthValue() || value.getMonthValue() == today.getMonthValue() - 1) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Constructs an {@code Birthday}.
      * @param birthday A birthday as LocalDate.
