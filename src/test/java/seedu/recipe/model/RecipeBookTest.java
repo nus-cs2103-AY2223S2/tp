@@ -22,7 +22,9 @@ import javafx.collections.ObservableList;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.recipe.model.recipe.exceptions.RecipeNotFoundException;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.model.util.SubstitutionsUtil;
 import seedu.recipe.testutil.RecipeBuilder;
 
 public class RecipeBookTest {
@@ -130,6 +132,7 @@ public class RecipeBookTest {
      */
     private static class RecipeBookStub implements ReadOnlyRecipeBook {
         private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
+        private final List<IngredientBuilder> preloadedSubs = SubstitutionsUtil.getPreloadedSubstitutions();
 
         RecipeBookStub(Collection<Recipe> recipes) {
             this.recipes.setAll(recipes);
@@ -138,6 +141,11 @@ public class RecipeBookTest {
         @Override
         public ObservableList<Recipe> getRecipeList() {
             return recipes;
+        }
+
+        @Override
+        public List<IngredientBuilder> getPreloadedSubstitutes() {
+            return preloadedSubs;
         }
     }
 }

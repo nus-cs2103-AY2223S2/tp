@@ -25,6 +25,7 @@ import seedu.recipe.storage.ExportManager;
 import seedu.recipe.storage.ImportManager;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
+
 /**
  * Represents the main window of the application. This class is responsible for
  * initializing and configuring the UI components and managing the primary stage.
