@@ -106,6 +106,9 @@ public class ReminderListWindow extends UiPart<Stage> {
         stage.show();
     }
 
+    /**
+     * Specifies button action. Sorts the reminder list by oldest reminders.
+     */
     @FXML
     public void sortByOldest() {
         logger.info("[Event] sort Reminder List by Oldest");

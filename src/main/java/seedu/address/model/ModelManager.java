@@ -26,7 +26,6 @@ import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderListComparator;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -412,7 +411,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void sortReminderList() {
-       Collections.sort(reminderList, new ReminderListComparator());
+        addressBook.sortReminderList();
     }
 
     @Override
