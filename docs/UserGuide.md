@@ -109,8 +109,23 @@ Format: `view <index>`
 
 Examples: 
 * `view 1` returns the contact details of the first person in the list
+* `view 1 3` returns the contact details of the first and third person in the list
 
 ![viewContactDetails](images/view/viewContactDetails.png)
+
+### Exporting selected person's contact details : `export`
+
+Export a person's contact details.
+
+Format: `export <index>`
+
+Examples:
+* `export 1` exports the contact details of the first person in the list
+* `export 1 4` exports the contact details of the first and fourth person in the list
+
+Exported contacts will be stored inside a text file under the `exports` folder found in the `tp` directory
+
+![viewContactDetails](images/export/exportContacts.png)
 
 ### Editing a person : `edit`
 
@@ -274,14 +289,15 @@ Choose your favourite theme !
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                              |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                           |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                        |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                            |
 | **List**   | `list`                                                                                                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                |
 | **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
 | **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
 | **Redo**   | `redo`                                                                                                                                                                                                                                                                                |
+| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                              |
