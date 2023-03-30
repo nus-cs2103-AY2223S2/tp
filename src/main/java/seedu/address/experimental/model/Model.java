@@ -2,13 +2,15 @@ package seedu.address.experimental.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Template;
+import seedu.address.model.entity.Name;
 
 /**
  * The API of the Model component.
@@ -146,6 +148,7 @@ public interface Model {
      */
     void listMobs();
 
+
     // =============== Edit mode ===================
 
     /**
@@ -164,7 +167,9 @@ public interface Model {
     ObservableList<Entity> getListByClassification(String classification);
 
     /**
-     * Get list of templates
+     * Get new character using template
      */
-    ObservableList<Template> getTemplates();
+    Character createFromTemplate(Name entityName, Name templateName) throws NoSuchElementException;
+
+    List<String> getTemplates();
 }

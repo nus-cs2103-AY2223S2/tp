@@ -1,90 +1,100 @@
 package seedu.address.model.entity;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entity.exceptions.DuplicateTemplateException;
 
 /**
- * A template class to create a new Character.
+ * Class which stores a list of pre-determined character templates
  */
 public class Template {
-
-    private static final int BASE_LEVEL = 1;
-    private static final int BASE_XP = 0;
-    private static final int BASE_POINTS = 10;
-
-    private final Name name;
-    private final float strWeight;
-    private final float dexWeight;
-    private final float intWeight;
-
-    private final Set<Tag> tags = new HashSet<>();
-
-    // May have default inventory.
+    private final ArrayList<Character> templates;
 
     /**
-     * Constructor for Template
+     * Initialize list of character templates
      */
-    public Template(Name name, float strWeight, float dexWeight, float intWeight, Set<Tag> tags) {
-        requireAllNonNull(name, tags);
-        this.name = name;
-        this.dexWeight = dexWeight;
-        this.strWeight = strWeight;
-        this.intWeight = intWeight;
-        this.tags.addAll(tags);
-        // The template always tags its own name
-        // this.tags.add(new Tag(name.toString()));
+    private Template() {
+        this.templates = new ArrayList<>();
     }
 
     /**
-     * Returns name
+     * Fill with pre-determined templates
+     * @return The wrapper class
      */
-    public Name getName() {
-        return name;
+    public static Template getPresetTemplates() {
+        Template presetTemplates = new Template();
+        Stats orcStats = new Stats(15, 6, 1);
+        Stats elfStats = new Stats(6, 10, 10);
+        Stats humanStats = new Stats(7, 9, 9);
+        Character orcTemplate = new Character(new Name("orc"), orcStats);
+        Character elfTemplate = new Character(new Name("elf"), elfStats);
+        Character humanTemplate = new Character(new Name("human"), humanStats);
+        presetTemplates.addTemplate(orcTemplate);
+        presetTemplates.addTemplate(elfTemplate);
+        presetTemplates.addTemplate(humanTemplate);
+        return presetTemplates;
     }
 
-    public float getDexWeight() {
-        return dexWeight;
+    /**
+     * Checks if a template with the given name exists
+     * @param toCheck name of template
+     * @return existence check
+     */
+    public boolean contains(Name toCheck) {
+        requireNonNull(toCheck);
+        return templates.stream().anyMatch(t -> t.getName().equals(toCheck));
     }
 
-    public float getStrWeight() {
-        return strWeight;
+    /**
+     * Checks if a character template with the same name exists
+     * @param toCheck Character to be added
+     * @return existence check
+     */
+    public boolean contains(Character toCheck) {
+        requireAllNonNull(toCheck);
+        return contains(toCheck.getName());
     }
 
-    public float getIntWeight() {
-        return intWeight;
+    /**
+     * Adds a new character template
+     * @param toAdd template to add
+     * @throws DuplicateTemplateException if template with same name already exists
+     */
+    public void addTemplate(Character toAdd) throws DuplicateTemplateException {
+        requireNonNull(toAdd);
+        if (this.contains(toAdd)) {
+            throw new DuplicateTemplateException();
+        } else {
+            templates.add(toAdd);
+        }
     }
 
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    /**
+     * Returns a list of all template names
+     * @return the list
+     */
+    public List<String> list() {
+        ArrayList<String> list = new ArrayList<>();
+        this.templates.forEach(t -> list.add(t.getName().fullName));
+        return list;
     }
-
     /**
      * Primitive version of generating character from template.
      */
-    public Character generateCharacter(Name characterName) {
-        int dexterity = (int) (BASE_POINTS * dexWeight);
-        int strength = (int) (BASE_POINTS * intWeight);
-        int intelligence = (int) (BASE_POINTS * dexWeight);
-        if (dexterity + strength + intelligence < BASE_POINTS) {
-            // just allocate somewhere...
-            dexterity += BASE_POINTS - dexterity - strength - intelligence;
+    public Character generateCharacter(Name characterName, Name templateName) throws NoSuchElementException {
+        requireAllNonNull(characterName, templateName);
+        Character c = templates.stream()
+                .filter(t -> t.getName().equals(templateName))
+                .findFirst()
+                .orElse(null);
+        if (c == null) {
+            throw new NoSuchElementException("Template does not exist!");
         }
-        Stats stats = new Stats(strength, dexterity, intelligence);
-
-        return new Character(characterName, stats, BASE_LEVEL, BASE_XP, tags);
+        return new Character(characterName, c.getStats(), c.getLevel(), c.getXP(), c.getInventory(), c.getTags());
     }
-
-    /**
-     * Returns true if other template has the same name.
-     */
-    public boolean isSameTemplate(Template other) {
-        return other == this
-                || other.getName() == this.getName();
-    }
-
 }

@@ -73,7 +73,7 @@ public class JsonAdaptedCharacter {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Character(new Name(name), stat, level, xp, modelTags, inventory);
+        return new Character(new Name(name), stat, level, xp, inventory, modelTags);
     }
 
 }
