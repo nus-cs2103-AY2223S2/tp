@@ -917,8 +917,6 @@ Use case ends.
 
    Use case resumes at step 2.
 
-<div style="page-break-after: always;"></div>
-
 **Use case: UC17 Removing tag/language(s)**
 
 **MSS**
