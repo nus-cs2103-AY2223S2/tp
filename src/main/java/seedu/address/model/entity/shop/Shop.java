@@ -307,8 +307,8 @@ public class Shop implements ReadOnlyShop {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
-        this.getAppointmentList().stream()
-            .filter(a -> a.getCustomerId() == key.getId())
+        key.getAppointmentIds().stream()
+            .flatMap(i -> this.getAppointment(i).stream())
             .forEach(this::removeAppointment);
         key.getVehicleIds().stream()
             .flatMap(i -> this.getVehicle(i).stream())
@@ -499,6 +499,12 @@ public class Shop implements ReadOnlyShop {
     private Optional<Service> getService(int serviceId) {
         return this.getServiceList().stream()
             .filter(v -> v.getId() == serviceId)
+            .findFirst();
+    }
+
+    private Optional<Appointment> getAppointment(int appointmentId) {
+        return this.getAppointmentList().stream()
+            .filter(a -> a.getId() == appointmentId)
             .findFirst();
     }
 
