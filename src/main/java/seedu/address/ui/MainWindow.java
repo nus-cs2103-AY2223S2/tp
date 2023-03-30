@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.jobs.CompleteDeliveryJobCommand;
@@ -518,7 +519,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText)
             throws CommandException, ParseException, FileNotFoundException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText, g -> !g.equals(CommandGroup.PERSON));
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
