@@ -15,6 +15,27 @@ public class ScheduleWeek {
     private static final int DAYS_IN_A_WEEK = 7;
     private static final ObservableList<ScheduleDay> internalList = FXCollections.observableArrayList();
 
+    /**
+     * Constructor for ScheduleWeek where cells will be filled with empty cells when first loaded
+     */
+    public ScheduleWeek() {
+        internalList.clear();
+        ArrayList<Status> emptyCell = new ArrayList<>();
+        for (int i = 0; i < 24; i++) {
+            emptyCell.add(Status.EMPTY);
+        }
+
+        internalList.add(new ScheduleDay("Monday", emptyCell));
+        internalList.add(new ScheduleDay("Tuesday", emptyCell));
+        internalList.add(new ScheduleDay("Wednesday", emptyCell));
+        internalList.add(new ScheduleDay("Thursday", emptyCell));
+        internalList.add(new ScheduleDay("Friday", emptyCell));
+        internalList.add(new ScheduleDay("Saturday", emptyCell));
+        internalList.add(new ScheduleDay("Sunday", emptyCell));
+
+    }
+
+
     public void setInternalList(ArrayList<ArrayList<Integer>> timetable, DayOfWeek startDay) {
         internalList.clear();
 
