@@ -18,9 +18,9 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
     * [List all events](#list) : `list` command
     * [Retrieve next event](#next) : `next` command
     * [Locate events by keyword](#find) : `find` command
+    * [Undo previous command](#undo) : `undo` command
     * [View help](#help) : `help` command
     * [Exit application](#exit) : `exit` command
-    * [Undo previous command](#undo) : `undo` command
   * [GUI](#gui)
     * [Command Box](#command-box)
     * [Response Box](#response-box)
@@ -45,18 +45,18 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 <h2 id="command-summary">Command Summary</h2>
 
-| Action | Command Format                                               |
-|:-------|:-------------------------------------------------------------|
- | Add    | `add n/<event> d/<date> s/<start time> e/<end time>`         |
-| Repeat | `recur <index> d/<end date> every/<RECUR FACTOR>`            |
-| Edit   | `edit <index> n/<name> d/<date> s/<start time> e/<end time>` |
-| Delete | `delete <index>` or `delete <index index ... index>`         |
-| List   | `list`                                                       |
-| Next   | `next` or `next <count>`                                     |
-| Find   | `find n/<name> d/<date>`                                     |
-| Help   | `help`                                                       |
-| Exit   | `exit`                                                       |
-| Undo   | `undo`                                                       |
+| Action | Command Format                                                    |
+|:-------|:------------------------------------------------------------------|
+ | Add    | `add n/<event> d/<date> s/<start time> e/<end time>`              |
+| Repeat | `recur <index> d/<end date> every/<RECUR FACTOR>`                 |
+| Edit   | `edit <index> n/<name> d/<date> s/<start time> e/<end time>`      |
+| Delete | `delete <index>` or `delete <index index ... index>`              |
+| List   | `list`                                                            |
+| Next   | `next` or `next <count>`                                          |
+| Find   | `find n/<name> d/<date>`                                          |
+| Undo   | `undo`                                                            |
+| Help   | `help`                                                            |
+| Exit   | `exit`                                                            |
 
 [[Back to top](#index)]
 
@@ -178,17 +178,6 @@ Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
 [[Back to top](#index)]
 
 
-<h3 id="help">View Help</h3>
-
-Provide a link to access this website.
-
-Format: `help`
-
-Example: `help`<br><br>
-
-[[Back to top](#index)]
-
-
 <h3 id="undo">Undo Previous Command</h3>
 
 Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` commands).
@@ -196,6 +185,17 @@ Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` com
 Format: `undo`
 
 Example: `undo`<br><br>
+
+[[Back to top](#index)]
+
+
+<h3 id="help">View Help</h3>
+
+Provide a link to access this website.
+
+Format: `help`
+
+Example: `help`<br><br>
 
 [[Back to top](#index)]
 
