@@ -126,7 +126,7 @@ public class Ward {
     }
 
     public String getOccupancyString() {
-        return "Current occupancy rate: " + getOccupancy() + "/" + capacity.getValue();
+        return "Current occupancy: " + getOccupancy() + "/" + capacity.getValue();
     }
 
     public boolean isSameWard(Ward other) {

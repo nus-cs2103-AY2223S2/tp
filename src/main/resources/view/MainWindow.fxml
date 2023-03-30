@@ -7,10 +7,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="MedInfo" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -47,20 +50,14 @@
             </padding>
           </StackPane>
 
-          <SplitPane VBox.vgrow="ALWAYS">
-            <VBox fx:id="patientList" styleClass="pane-with-border" minWidth="200" prefWidth="400" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-            <VBox fx:id="wardList" styleClass="pane-with-border" minWidth="200" prefWidth="400" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="wardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-            </VBox>
-          </SplitPane>
+            <SplitPane VBox.vgrow="ALWAYS">
+              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="400" VBox.vgrow="ALWAYS">
+                <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+              <VBox id="listView" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+                <StackPane fx:id="wardListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </SplitPane>
         </SplitPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
