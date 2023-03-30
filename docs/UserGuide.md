@@ -23,13 +23,13 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 Adds a student to the managing system.
 
-Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE```
+Format: ```add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT sch/SCHEDULE st/START TIME et/END TIME```
 Subject supported: {`Math`, `Physics`, `English`}
 Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`}
 
 Examples:
 
-* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday```
+* ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
 
 ## Delete student <a name="delete"></a>
 
@@ -50,7 +50,27 @@ Format: ```list```
 
 Examples:
 
-* ```list```
+* ```list``` 
+
+## Filter students by any fields <a name='filter'></a>
+
+Filter and list students whose fields contain any of the given keywords.
+
+Format: ```filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SUBJECT] [sch/SCHEDULE] [st/START TIME] [et/END TIME] [t/TAG]```
+
+- Filter is case-insensitive. e.g `n/yeoh` will match `Yeoh`
+- At least one of the optional fields must be provided.
+- The order of the keywords does not matter. e.g. `n/Yeoh Alex` will match `Alex Yeoh`
+- All fields can be searched and filtered.
+- Only full words will be matched e.g. `n/Yeo` will not match `Yeoh`
+- When only one field is specified, tutees matching at least one keyword will be returned(i.e. `OR` search). e.g. `a/blk street` will return `Blk 313`, `street 29`
+- When more than one field is specified, only tutees whose keywords matching all fields provided will be returned
+e.g. `filter s/math sch/monday` will only return tutees whose lessons are on `monday` AND subject `math`
+
+Examples:
+- `filter sch/tuesday` returns tutees whose lessons are on tuesday.
+- `filter a/clementi s/math` returns tutees whose address are in `clementi` and being tutored `math` subject.
+![img.png](images/filterExampleResult.png)
 
 ## Local save <a name="save"></a>
 

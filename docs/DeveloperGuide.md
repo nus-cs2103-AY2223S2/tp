@@ -256,16 +256,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The logic of the filter implementation is found in `FilterCommand` class. The constructor of `FilterCommand` takes in 
 a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
-`FilterTuteeDescription`.  `FilterTuteeDescription` is a similar in implementation to `EditPersonDescription` class which encapsulates 
+`FilterTuteeDescription`.  
+
+`FilterTuteeDescription` implementation is similar to `EditPersonDescription` class which encapsulates 
 the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
 `name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
-By default, they are all an empty string however when no fields are given by the user, an error message is shown. (e.g. filter n/)
+By default, `name`, `address`, `tags` are empty lists while the rest of the fields are empty strings. 
 
 `FilterTuteeDescription` will have its fields updated when the user specifies the fields he/she wants to filter using the
 `filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
-fields that are to be filtered in. This implementation is also similar to `EditCommandParser`. Once 
-`FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), `FieldContainsKeywordPredicate` will take in 
-all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
+fields that are to be filtered in.  Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
+`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
 `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
