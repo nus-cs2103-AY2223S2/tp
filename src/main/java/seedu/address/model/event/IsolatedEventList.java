@@ -100,29 +100,6 @@ public class IsolatedEventList {
     /**
      * This function cross-check with the recurring event list to check for any conflicts
      * @param isolatedEvent is the event to be added
-     * @throws EventConflictException if there is a conflicted event
-     */
-    public void listConflictedEventWithIsolated(IsolatedEvent isolatedEvent) throws EventConflictException {
-
-        LocalDateTime startPeriod = isolatedEvent.getStartDate();
-        LocalDateTime endPeriod = isolatedEvent.getEndDate();
-
-        int index = 1;
-
-        for (IsolatedEvent ie : this.isolatedEvents) {
-            LocalDateTime currStart = ie.getStartDate();
-            LocalDateTime currEnd = ie.getEndDate();
-            if (startPeriod.isAfter(currStart) || startPeriod.isBefore(currEnd)) {
-                throw new EventConflictException("Isolated Event:\n" + index + ". " + ie);
-            }
-            index++;
-        }
-    }
-
-
-    /**
-     * This function cross-check with the recurring event list to check for any conflicts
-     * @param isolatedEvent is the event to be added
      * @param recurringEventList is the event list to be checked with
      * @throws EventConflictException if there is a conflicted event
      */

@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -74,8 +75,8 @@ public class EditIsolatedEventCommand extends Command {
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
         editedIsolatedEvent.checkDateTime();
-        personToEdit.getIsolatedEventList().listConflictedEventWithIsolated(editedIsolatedEvent);
         IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
+
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
