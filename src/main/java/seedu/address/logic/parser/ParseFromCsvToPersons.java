@@ -70,13 +70,13 @@ public class ParseFromCsvToPersons {
 
     private Person getPersonFromRow(int rowNumber) throws ParseException {
         Name name = ParserUtil.parseName(csv.getEntry(rowNumber, "name"));
-        Phone phone = ParserUtil.parsePhone(csv.getEntry(rowNumber, "phone"));
-        Email email = ParserUtil.parseEmail(csv.getEntry(rowNumber, "email"));
-        Address address = ParserUtil.parseAddress(csv.getEntry(rowNumber, "address"));
         Rank rank = ParserUtil.parseRank(csv.getEntry(rowNumber, "rank"));
         Unit unit = ParserUtil.parseUnit(csv.getEntry(rowNumber, "unit"));
         Company company = ParserUtil.parseCompany(csv.getEntry(rowNumber, "company"));
         Platoon platoon = ParserUtil.parsePlatoon(csv.getEntry(rowNumber, "platoon"));
+        Phone phone = ParserUtil.parsePhone(csv.getEntry(rowNumber, "phone"));
+        Email email = ParserUtil.parseEmail(csv.getEntry(rowNumber, "email"));
+        Address address = ParserUtil.parseAddress(csv.getEntry(rowNumber, "address"));
 
         Set<Tag> tags = getTagsFromRow(rowNumber);
 
