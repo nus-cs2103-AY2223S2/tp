@@ -38,7 +38,6 @@ public class SuggestionListPanel extends UiPart<Region> {
         suggestionListView.setItems(filteredCategoryList);
         this.commandBox = commandBox;
         this.suggestionListView.setVisible(false);
-        suggestionListView.setTranslateX(-200);
         initialiseAutocompleteHandlers();
     }
 
