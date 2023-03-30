@@ -36,7 +36,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(indexToDelete);
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        String expectedMessage = DeleteCommand.MESSAGE_DELETE_MULTIPLE_EVENT_SUCCESS + eventToDelete.toString();
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_EVENT_SUCCESS + eventToDelete.toString();
 
         ModelManager expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
@@ -62,7 +62,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(indexToDelete);
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        String expectedMessage = DeleteCommand.MESSAGE_DELETE_MULTIPLE_EVENT_SUCCESS + eventToDelete.toString();
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_EVENT_SUCCESS + eventToDelete.toString();
 
         Model expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);

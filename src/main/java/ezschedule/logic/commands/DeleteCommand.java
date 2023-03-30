@@ -23,8 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
-    public static final String MESSAGE_DELETE_MULTIPLE_EVENT_SUCCESS = "Deleted Events: ";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: ";
 
     private final List<Index> targetIndexes;
 
@@ -36,7 +35,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-        StringBuilder feedback = new StringBuilder(MESSAGE_DELETE_MULTIPLE_EVENT_SUCCESS);
+        StringBuilder feedback = new StringBuilder(MESSAGE_DELETE_EVENT_SUCCESS);
         Collections.sort(targetIndexes); // sort index in order
         Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
 
