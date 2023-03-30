@@ -24,22 +24,16 @@ public class SortCommandParser implements Parser<SortCommand> {
         switch (prefix) {
         case "/g":
             return new SortCommand("grade");
-
         case "/c":
             return new SortCommand("credits");
-
         case "/y":
             return new SortCommand("year");
-
         case "/m":
             return new SortCommand("code");
-
         case "/t":
             return new SortCommand("tag");
-
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-
     }
 }
