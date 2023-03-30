@@ -57,7 +57,7 @@ see in your career.
 
 ```
 java -jar advisio.jar
-``` 
+```
 
 #### command to run the application.<br>
 
@@ -136,7 +136,7 @@ Format: `undo`
 * `Undo Success` will be shown in the display
 * If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
- 
+
 #### **Special Note for undo and redo**
 
 Undo/Redo Command will only work if previous command **modifies the data of Clients or Policies**.
@@ -352,7 +352,7 @@ Format: `sortClientEmail INDEX`
 
 * Sort list of clients based on their email
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number (including fraction)
+* The index can be any number
 
 Examples:
 
@@ -365,7 +365,7 @@ Format: `sortClientName INDEX`
 
 * Sort list of clients based on their name
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number (including fraction)
+* The index can be any number
 
 Examples:
 
@@ -378,7 +378,7 @@ Format: `sortClientPhone INDEX`
 
 * Sort list of clients based on their phone number
 * The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number (including fraction)
+* The index can be any number
 
 Examples:
 
@@ -442,10 +442,10 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                      
+ Action              | Format, Examples                                                                                                                                                  
 ---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                  
+ **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                 
  **Clear**           | `clear`                                                                                                                                                               
  **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
  **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           

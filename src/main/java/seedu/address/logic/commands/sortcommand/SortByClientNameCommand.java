@@ -62,4 +62,11 @@ public class SortByClientNameCommand extends SortCommand {
     public boolean getInorder() {
         return inOrder;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortByClientNameCommand // instanceof handles nulls
+                && inOrder == ((SortByClientNameCommand) other).inOrder); // state check
+    }
 }
