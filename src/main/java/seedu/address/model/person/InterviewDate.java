@@ -78,6 +78,10 @@ public class InterviewDate extends InternshipApplicationAttribute {
         return value.format(FORMATTER);
     }
 
+    public LocalDateTime getDateTime() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
