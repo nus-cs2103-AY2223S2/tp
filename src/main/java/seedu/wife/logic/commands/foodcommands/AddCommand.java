@@ -31,9 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "Broccoli "
             + PREFIX_UNIT + "STALK "
             + PREFIX_QUANTITY + "2 "
-            + PREFIX_EXPIRY_DATE + "03-03-2033 "
-            + PREFIX_TAG + "VEGETABLES "
-            + PREFIX_TAG + "HEALTHY";
+            + PREFIX_EXPIRY_DATE + "03-03-2033 ";
 
     public static final String MESSAGE_SUCCESS = "New food added: %1$s";
     public static final String MESSAGE_DUPLICATE_FOOD = "This food item already exists in WIFE";
