@@ -99,7 +99,9 @@ public class Event {
         return !this.equals(otherEvent) &&
                 (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
-                || this.end.isBetween(otherEvent.start, otherEvent.end));
+                || this.end.isBetween(otherEvent.start, otherEvent.end))
+                || otherEvent.start.isBetween(this.start, this.end)
+                || otherEvent.end.isBetween(this.start, this.end);
     }
 
     public List<LocalDateTime> clashingTimings(Event otherEvent) {
