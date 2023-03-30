@@ -1,6 +1,7 @@
 package seedu.address.model.person.fields;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -31,5 +32,21 @@ public abstract class SuperField<T extends Field> {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.values);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        if (!this.values.isEmpty()) {
+            for (Field value: values) {
+                str.append(value).append(", ");
+            }
+        }
+        return str.toString();
     }
 }

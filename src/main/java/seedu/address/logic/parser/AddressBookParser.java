@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DarkModeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditContactCommand;
@@ -18,8 +19,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightModeCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
+import seedu.address.logic.commands.TagEventCommand;
+import seedu.address.logic.commands.UnTagEventCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
 import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
@@ -82,6 +87,12 @@ public class AddressBookParser {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
+        case TagEventCommand.COMMAND_WORD:
+            return new TagEventCommandParser().parse(arguments);
+
+        case UnTagEventCommand.COMMAND_WORD:
+            return new UnTagEventCommandParser().parse(arguments);
+
         case FavoriteCommand.COMMAND_WORD:
             return new FavoriteCommandParser().parse(arguments);
 
@@ -94,6 +105,13 @@ public class AddressBookParser {
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
 
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+
+        case LightModeCommand.COMMAND_WORD:
+            return new LightModeCommand();
+        case DarkModeCommand.COMMAND_WORD:
+            return new DarkModeCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

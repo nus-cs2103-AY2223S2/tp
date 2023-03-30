@@ -17,7 +17,7 @@ public class UnfavoriteCommand extends Command {
     public static final String COMMAND_WORD = "unfav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unfavourites the person "
-            + "according to the Contact ID provided by user input.\n "
+            + "according to the Contact ID provided by user input.\n"
             + "Parameters: INDEX (must be positive integer).\n"
             + "Example: " + COMMAND_WORD + "1";
 
@@ -54,6 +54,7 @@ public class UnfavoriteCommand extends Command {
         Person unfavoritedPerson = personToUnfav.unfavorite();
 
         model.setPerson(personToUnfav, unfavoritedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNFAVORITE_PERSON_SUCCESS, unfavoritedPerson));
     }

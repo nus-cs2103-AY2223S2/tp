@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -92,6 +93,22 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.setAll(events);
     }
 
+    public Event getEvent(Index index) {
+        requireAllNonNull(index);
+
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
+            throw new PersonNotFoundException();
+        }
+        return this.internalList.get(zeroBasedIndex);
+    }
+
+    public void setEvent(Event oldEvent, Event newEvent) {
+        this.internalList.remove(oldEvent);
+        this.internalList.add(newEvent);
+    }
+
     /**
      * Returns true if {@code events} contains only unique events.
      */
@@ -110,45 +127,34 @@ public class UniqueEventList implements Iterable<Event> {
      * Removes person from all events in the event list.
      */
     public void deletePersonFromAllEvents(Person target) {
-        for (Event event: this.internalList) {
-            if (event.hasTaggedPerson(target)) {
-                event.deleteTaggedPerson(target);
+        ArrayList<Event> toRemove = new ArrayList<>();
+        ArrayList<Event> toAdd = new ArrayList<>();
+        for (Event e: this.internalList) {
+            if (e.hasTaggedPerson(target)) {
+                Event newEvent = e.deleteTaggedPerson(target);
+                toRemove.add(e);
+                toAdd.add(newEvent);
             }
         }
+        this.internalList.removeAll(toRemove);
+        this.internalList.addAll(toAdd);
     }
 
     /**
-     * Tags person to event.
+     * Edits events that have {@code personToEdit} tagged to the {@code editedPerson}.
      */
-    public void tagPersonToEvent(Index index, Person p) {
-        requireAllNonNull(index, p);
-
-        int zeroBasedIndex = index.getZeroBased();
-
-        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
-            throw new PersonNotFoundException();
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        ArrayList<Event> toRemove = new ArrayList<>();
+        ArrayList<Event> toAdd = new ArrayList<>();
+        for (Event e: this.internalList) {
+            if (e.hasTaggedPerson(personToEdit)) {
+                Event newEvent = e.editTaggedPerson(personToEdit, editedPerson);
+                toRemove.add(e);
+                toAdd.add(newEvent);
+            }
         }
-
-        Event eventToBeAddedTo = this.internalList.get(zeroBasedIndex);
-
-        eventToBeAddedTo.addTaggedPerson(p);
-    }
-
-    /**
-     * Untags a person from an event.
-     */
-    public void untagPersonFromEvent(Index index, Person p) {
-        requireAllNonNull(index, p);
-
-        int zeroBasedIndex = index.getZeroBased();
-
-        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
-            throw new PersonNotFoundException();
-        }
-
-        Event eventToBeRemovedFrom = this.internalList.get(zeroBasedIndex);
-
-        eventToBeRemovedFrom.deleteTaggedPerson(p);
+        this.internalList.removeAll(toRemove);
+        this.internalList.addAll(toAdd);
     }
 
     /**
@@ -166,6 +172,28 @@ public class UniqueEventList implements Iterable<Event> {
         Event eventToTagged = this.internalList.get(zeroBasedIndex);
 
         return eventToTagged.hasTaggedPerson(p);
+    }
+
+    /**
+     * Tags the given Person {@code taggingPerson} to the event at {@code index}.
+     */
+    public void tagPersonToEvent(Index index, Person taggingPerson) {
+        Event event = this.getEvent(index);
+        Event copy = event.copy();
+        copy.getTaggedPeople().add(taggingPerson);
+        this.internalList.remove(event);
+        this.internalList.add(copy);
+    }
+
+    /**
+     * Untags the given Person {@code taggingPerson} from the event at {@code index}.
+     */
+    public void untagPersonToEvent(Index index, Person taggingPerson) {
+        Event event = this.getEvent(index);
+        Event copy = event.copy();
+        copy.getTaggedPeople().removeIf(p -> p.equals(taggingPerson));
+        this.internalList.remove(event);
+        this.internalList.add(copy);
     }
 
     /**
