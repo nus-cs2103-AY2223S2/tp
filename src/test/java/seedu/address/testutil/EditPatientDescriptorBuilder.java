@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Remark;
@@ -33,7 +32,6 @@ public class EditPatientDescriptorBuilder {
      */
     public EditPatientDescriptorBuilder(Patient patient) {
         descriptor = new EditPatientDescriptor();
-        descriptor.setName(patient.getName());
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
@@ -43,9 +41,9 @@ public class EditPatientDescriptorBuilder {
 
     /**
      * Sets the {@code Name} of the {@code EditPatientDescriptor} that we are building.
+     * Should not be called since edit commands cannot edit names of patients.
      */
     public EditPatientDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
         return this;
     }
 
