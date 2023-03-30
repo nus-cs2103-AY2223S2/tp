@@ -23,7 +23,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the student identified by the index number in the displayed student list.\n"
-            + " Parameters: INDEX_OF_STUDENT (must be a positive integer) "
+            + "Parameters: INDEX_OF_STUDENT (must be a positive integer) "
             + PREFIX_TASK_TITLE + "TASK_TITLE\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_TITLE + "Complete E Math Paper 1";
