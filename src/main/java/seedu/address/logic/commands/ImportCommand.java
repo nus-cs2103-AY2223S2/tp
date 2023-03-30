@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -20,13 +23,22 @@ public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
     //TODO: CHANGE THIS
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": import specified modules in archive file" + "\n"
-            + "\n"
-            + "*** Command Format *** " + "\n"
-            + COMMAND_WORD + " {file_name}" + "\n"
-            + "\n"
-            + "*** Example *** " + "\n"
-            + COMMAND_WORD + " EG2310";
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
+            + "(1) Import all modules in archive file\n"
+            + "Parameter: "
+            + "{file_name}\n"
+            + "Example: " + COMMAND_WORD + " hello.json\n\n"
+            + "(2) Import specific modules in archive file, no similar modules in Le Tracker\n"
+            + "Parameter: "
+            + "{file_name} "
+            + PREFIX_MODULE + " {module_1}[, {module_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " hello.json /mod EG2310, EG1311 \n\n"
+            + "(2) Import specific modules in archive file, overwrite similar modules in Le Tracker\n"
+            + "Parameter: "
+            + "{file_name} "
+            + PREFIX_MODULE + " {module_1}[, {module_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " hello.json /mod EG2310, EG1311 /overwrite true \n\n";
+
     public static final String MESSAGE_SUCCESS = "Modules %1$s imported to Le Tracker";
 
     private final String fileName;

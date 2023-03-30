@@ -15,13 +15,15 @@ import seedu.address.model.Model;
 
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": archive all modules currently in Le Tracker " + "\n"
-            + "\n"
-            + "*** Command Format *** " + "\n"
-            + COMMAND_WORD + " {file_name}" + "\n"
-            + "\n"
-            + "*** Example *** " + "\n"
-            + COMMAND_WORD + " EG2310";
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
+            + "(1) Archive all modules currently in Le Tracker to a new file.\n"
+            + "Parameter: "
+            + "{file_name}\n"
+            + "Example: " + COMMAND_WORD + " hello.json\n\n"
+            + "(2) Archive all modules currently in Le Tracker to an existing file.\n"
+            + "Parameter: "
+            + "{file_name}\n"
+            + "Example: " + COMMAND_WORD + " hello.json /overwrite true \n\n";
     public static final String MESSAGE_SUCCESS = "All modules archived to %1$s";
 
     private final String fileName;
