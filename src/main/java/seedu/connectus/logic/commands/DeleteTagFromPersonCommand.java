@@ -3,6 +3,8 @@ package seedu.connectus.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.commands.CommandUtil.convertSetToList;
 import static seedu.connectus.logic.commands.CommandUtil.isIndexValid;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -22,16 +24,19 @@ import seedu.connectus.model.person.Person;
  * Deletes a tag from a person using their displayed indexes from ConnectUS.
  */
 public class DeleteTagFromPersonCommand extends Command {
-    public static final String COMMAND_WORD = "deletet";
+    public static final String COMMAND_WORD = "delete-t";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified"
         + "by the index number used in the displayed person list. \n"
         + "Parameters: PERSON_INDEX (must be a positive integer) "
-        + "[" + PREFIX_REMARK + "REMARK_INDEX] "
-        + "[" + PREFIX_MODULE + "MODULE_INDEX]"
-        + "\n"
+        + "[" + PREFIX_MODULE + "MODULE]... "
+        + "[" + PREFIX_CCA + "CCA]... "
+        + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
+        + "[" + PREFIX_REMARK + "REMARK]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_REMARK + "1 "
-        + PREFIX_MODULE + "1";
+        + PREFIX_MODULE + "1 "
+        + PREFIX_CCA + "2 "
+        + PREFIX_CCA_POSITION + "1 "
+        + PREFIX_REMARK + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag from Person: %1$s";
 

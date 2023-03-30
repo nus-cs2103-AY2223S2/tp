@@ -26,7 +26,7 @@ import seedu.connectus.model.tag.Remark;
  * Adds a tag to a person identified using its displayed index from ConnectUS.
  */
 public class AddTagToPersonCommand extends Command {
-    public static final String COMMAND_WORD = "addt";
+    public static final String COMMAND_WORD = "add-t";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
