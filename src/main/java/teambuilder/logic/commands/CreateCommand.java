@@ -5,6 +5,8 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAMDESC;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAMNAME;
 
+import teambuilder.commons.core.Memento;
+import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.team.Team;
@@ -49,6 +51,8 @@ public class CreateCommand extends Command {
         if (model.hasTeam(toCreate)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM);
         }
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + toCreate);
 
         model.addTeam(toCreate);
 

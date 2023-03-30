@@ -26,7 +26,7 @@ public class TeamListPanel extends UiPart<Region> {
     public TeamListPanel(ObservableList<Team> teamList) {
         super(FXML);
         teamListView.setItems(teamList);
-        teamListView.setCellFactory(listView -> new TeamListPanel.TeamListViewCell());
+        teamListView.setCellFactory(listView -> new TeamListViewCell());
     }
 
     /**

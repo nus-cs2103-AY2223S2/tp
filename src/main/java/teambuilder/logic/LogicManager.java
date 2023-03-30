@@ -15,6 +15,7 @@ import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 import teambuilder.storage.Storage;
 
 /**
@@ -46,7 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(model.getTeamBuilder());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +57,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyTeamBuilder getAddressBook() {
-        return model.getAddressBook();
+        return model.getTeamBuilder();
     }
 
     @Override
@@ -77,5 +78,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Team> getFilteredTeamList() {
+        return model.getSortedTeamList();
     }
 }

@@ -31,9 +31,9 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX + "|\\s*";
 
-    private static final Email NO_EMAIL = new Email();
+    private static final Email EMPTY_EMAIL = new Email();
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Email}.
@@ -75,7 +75,7 @@ public class Email {
     }
 
     public static Email getEmptyEmail() {
-        return NO_EMAIL;
+        return EMPTY_EMAIL;
     }
 
     @Override
@@ -88,6 +88,10 @@ public class Email {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
                 && value.equals(((Email) other).value)); // state check
+    }
+
+    public boolean isEmptyEmail() {
+        return this == EMPTY_EMAIL;
     }
 
     @Override

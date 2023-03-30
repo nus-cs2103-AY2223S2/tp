@@ -23,11 +23,12 @@ import teambuilder.model.team.Team;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TeamBuilder addressBook;
+    private final TeamBuilder teamBuilder;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> sortedPersons;
     private final FilteredList<Team> filteredTeams;
+    private final SortedList<Team> sortedTeams;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,12 +38,14 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new TeamBuilder(addressBook);
+        this.teamBuilder = new TeamBuilder(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.teamBuilder.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
-        filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
+        filteredTeams = new FilteredList<>(this.teamBuilder.getTeamList());
+        sortedTeams = new SortedList<>(filteredTeams);
     }
+
 
     public ModelManager() {
         this(new TeamBuilder(), new UserPrefs());
@@ -87,70 +90,66 @@ public class ModelManager implements Model {
 
     @Override
     public Memento save() {
-        return new TeamBuilderMemento(new TeamBuilder(addressBook), this);
+        return new TeamBuilderMemento(new TeamBuilder(teamBuilder), this);
     }
 
     @Override
-    public void setAddressBook(ReadOnlyTeamBuilder addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTeamBuilder(ReadOnlyTeamBuilder teamBuilder) {
+        this.teamBuilder.resetData(teamBuilder);
     }
 
     @Override
-    public ReadOnlyTeamBuilder getAddressBook() {
-        return addressBook;
+    public ReadOnlyTeamBuilder getTeamBuilder() {
+        return teamBuilder;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return teamBuilder.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teamBuilder.hasTeam(team);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        teamBuilder.removePerson(target);
+    }
+
+    @Override
+    public void deleteTeam(Team target) {
+        teamBuilder.removeTeam(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        teamBuilder.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addTeam(Team team) {
+        teamBuilder.addTeam(team);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        teamBuilder.setPerson(target, editedPerson);
     }
 
     @Override
-    public boolean hasTeam(Team team) {
-        requireNonNull(team);
-        return addressBook.hasTeam(team);
-    }
+    public void setTeam(Team target, Team editedTeam) {
+        requireAllNonNull(target, editedTeam);
 
-    @Override
-    public void addTeam(Team team) {
-        addressBook.addTeam(team);
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        teamBuilder.setTeam(target, editedTeam);
     }
-
-    @Override
-    public void deleteTeam(Team target) {
-        addressBook.removeTeam(target);
-    }
-
-    @Override
-    public void updatePersonInTeams(Person person) {
-        addressBook.updatePersonInTeams(person);
-    }
-
-    @Override
-    public void removeFromAllTeams(Person person) {
-        addressBook.removeFromAllTeams(person);
-    }
-
     //=========== Filtered Team List Accessors ===============================================================
 
     /**
@@ -174,15 +173,43 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Team> getSortedTeamList() {
+        return sortedTeams;
+    }
+
+    @Override
+    public void removeFromAllTeams(Person person) {
+        teamBuilder.removeFromAllTeams(person);
+    }
+
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
-    public void updateSort(Comparator<Person> comparator) {
+    public void updateFilteredTeamList(Predicate<Team> predicate) {
+        requireNonNull(predicate);
+        filteredTeams.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortPerson(Comparator<Person> comparator) {
         requireNonNull(comparator);
         sortedPersons.setComparator(comparator);
+    }
+
+    @Override
+    public void updateSortTeam(Comparator<Team> comparator) {
+        requireNonNull(comparator);
+        sortedTeams.setComparator(comparator);
+    }
+
+    @Override
+    public void updatePersonInTeams(Person person) {
+        teamBuilder.updatePersonInTeams(person);
     }
 
     @Override
@@ -199,9 +226,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return teamBuilder.equals(other.teamBuilder)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTeams.equals(other.filteredTeams);
     }
 
 }

@@ -27,7 +27,7 @@ public class TeamBuilderMemento implements Memento {
 
     @Override
     public boolean restore() {
-        origin.setAddressBook(state);
+        origin.setTeamBuilder(state);
         return true;
     }
 

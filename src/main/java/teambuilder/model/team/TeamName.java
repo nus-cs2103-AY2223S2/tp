@@ -37,7 +37,7 @@ public class TeamName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TeamName // instanceof handles nulls
-                && teamName.equals(((TeamName) other).teamName)); // state check
+                && teamName.trim().equalsIgnoreCase(((TeamName) other).teamName.trim())); // state check
     }
 
     @Override

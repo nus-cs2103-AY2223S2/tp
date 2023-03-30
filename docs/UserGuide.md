@@ -91,6 +91,7 @@ Below is the full table of contents, in case you are looking for something very 
   - [Finding the right teammate II : `sort`](#finding-the-right-teammate-ii--sort)
   - [Add a person to a team : `@TODO`](#add-a-person-to-a-team--todo)
   - [List all teammates in a team : `@TODO`](#list-all-teammates-in-a-team--todo)
+  - [Remove a team : `remove`](#remove-a-team--remove)
 - [Extra Team Builder Features](#extra-team-builder-features)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing a command : `undo`](#undoing-a-command--undo)
@@ -108,18 +109,19 @@ Below is the full table of contents, in case you are looking for something very 
 
 ## Full Table of Commands
 
-Action | Type |Format, Examples
-:--------:|:------:|:--------:
-[**Add**](#adding-a-new-contact--add) | Modifying |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
-[**Clear**](#clearing-all-entries--clear) | Modifying |`clear`
-[**Delete**](#deleting-a-contact--delete) | Modifying |`delete INDEX`<br> e.g., `delete 3`
-[**Edit**](#updating-a-contact--edit) | Modifying |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-[**Find**](#finding-the-right-teammate-i--find) | Listing | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Sort**](#finding-the-right-teammate-ii--sort) | Listing |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
-[**List**](#listing-all-contacts--list) | Listing |`list`
+Action |          Type          |Format, Examples
+:--------:|:----------------------:|:--------:
+[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
+[**Clear**](#clearing-all-entries--clear) |       Modifying        |`clear`
+[**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
+[**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
+[**List**](#listing-all-contacts--list) |        Listing         |`list`
+[**Remove**](#remove-a-team--remove) |       Modifying        |`remove`
 [**Undo**](#undoing-a-command--undo) | Special<br/> Modifying | `undo`
-[**Redo**](#redoing-an-undo-command--redo) | Modifying |`redo`
-[**Help**](#help-command) | Window |`help`
+[**Redo**](#redoing-an-undo-command--redo) |       Modifying        |`redo`
+[**Help**](#help-command) |         Window         |`help`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,7 +191,7 @@ This includes:
 
 ### Adding a new contact : `add`
 
-Format: `add n/NAME [p/PHONE_NUMBE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0). Tags are especially useful for keeping track of skills and traits!
@@ -289,13 +291,25 @@ This includes:
 2. Finding the right teammate using `find` and `sort`
 3. Adding a person to a team
 4. Listing all teammates in a team
+5. Remove a team
 
-### Create team: `@TODO`
+### Create team: `create`
+
+Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
+
+You have decided to participate in NUS Hack&Roll hackathon. Let's create a team! Since your idea involves creating 
+a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI 
+person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills 
+are required too.
+
+**What to type**:
+
+`create tn/NUSMeets td/A multidisciplinary team for upcoming HacknRoll in mid Jan. t/JavaScript t/React t/AWS 
+t/Project Management t/UI Design`
+
+**Result**:
 
 `@TODO`
-
-
-
 
 ### Finding the right teammate I : `find`
 
@@ -342,10 +356,39 @@ Finds persons whose names contain any of the given keywords.
 
 
 
-### Add a person to a team : `@TODO`
+### Add a person to a team : `edit`
+
+Format: `edit INDEX [T/TEAMTAG]...`
+
+You recall participating in a Hackathon previously with Adam Tan and knows he is familiar with React. You decide to 
+reach out to him to form your team for HacknRoll. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only add a person to the team if the team has been created beforehand!
+</div>
+
+**What to type**:
+
+`edit 1 T/NUSMeets`
+
+**Result**:
 
 `@TODO`
 
+### Remove a team : `remove`
+
+Format: `remove TEAMNAME`
+
+Oh no, you realised that you have a number of deadlines during the period of time HacknRoll would run. You decide to 
+not participate in it anymore. 
+
+**What to type**:
+
+`remove NUSMeets`
+
+**Result**:
+
+`@TODO`
 
 ### List all teammates in a team : `@TODO`
 

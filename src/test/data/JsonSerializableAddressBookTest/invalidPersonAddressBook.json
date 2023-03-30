@@ -5,5 +5,11 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "major": "computer science"
+  } ],
+  "teams" : [ {
+    "teamName" : "Hacker Gang",
+    "teamDesc" : "Hackathon group for ABC company",
+    "skills" : [ ],
+    "members" : [ ]
   } ]
 }

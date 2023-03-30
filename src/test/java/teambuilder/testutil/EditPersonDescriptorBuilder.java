@@ -70,7 +70,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(Address.of(address));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Major} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withMajor(String major) {
-        descriptor.setMajor(new Major(major));
+        descriptor.setMajor(Major.of(major));
         return this;
     }
 

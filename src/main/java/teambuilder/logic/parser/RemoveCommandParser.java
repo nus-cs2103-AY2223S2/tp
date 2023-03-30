@@ -2,6 +2,7 @@ package teambuilder.logic.parser;
 
 import static teambuilder.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import teambuilder.logic.commands.DeleteCommand;
 import teambuilder.logic.commands.RemoveCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.team.TeamName;
@@ -21,7 +22,7 @@ public class RemoveCommandParser {
             return new RemoveCommand(name);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -9,6 +9,7 @@ import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 /**
  * API of the Logic component
@@ -26,7 +27,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see teambuilder.model.Model#getAddressBook()
+     * @see teambuilder.model.Model#getTeamBuilder()
      */
     ReadOnlyTeamBuilder getAddressBook();
 
@@ -47,4 +48,7 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<Team> getFilteredTeamList();
+
 }

@@ -42,23 +42,6 @@ public class Team {
         return this.teamName;
     }
 
-    public Desc getDesc() {
-        return this.teamDesc;
-    }
-
-    /**
-     * Returns true if both teams have the same name.
-     * This defines a weaker notion of equality between two teams.
-     */
-    public boolean isSameTeam(Team otherTeam) {
-        if (otherTeam == this) {
-            return true;
-        }
-
-        return otherTeam != null
-                && otherTeam.getName().equals(getName());
-    }
-
     public void addPerson(Name name) {
         members.add(name);
     }
@@ -89,6 +72,35 @@ public class Team {
         return other == this // short circuit if same object
                 || (other instanceof Team // instanceof handles nulls
                 && teamName.equals(((Team) other).teamName)); // state check
+    }
+
+    /**
+     * Getter method for the team name of team instance.
+     *
+     * @return TeamName of Team instance.
+     */
+    public TeamName getTeamName() {
+        return teamName;
+    }
+
+    public Desc getDesc() {
+        return teamDesc;
+    }
+
+    public Set<Tag> getSkillTags() {
+        return skillTags;
+    }
+
+    /**
+     * Returns true if both teams have the same name.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        }
+
+        return otherTeam != null
+                && otherTeam.getTeamName().equals(getTeamName());
     }
 
 

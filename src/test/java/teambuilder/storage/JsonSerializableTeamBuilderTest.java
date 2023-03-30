@@ -5,12 +5,17 @@ import static teambuilder.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
 import teambuilder.commons.exceptions.IllegalValueException;
 import teambuilder.commons.util.JsonUtil;
 import teambuilder.model.TeamBuilder;
+import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Desc;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.TeamName;
 import teambuilder.testutil.TypicalPersons;
 
 public class JsonSerializableTeamBuilderTest {
@@ -26,6 +31,8 @@ public class JsonSerializableTeamBuilderTest {
                 JsonSerializableTeamBuilder.class).get();
         TeamBuilder addressBookFromFile = dataFromFile.toModelType();
         TeamBuilder typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        typicalPersonsAddressBook.addTeam(new Team(new TeamName("Hacker Gang"),
+                new Desc("Hackathon group for ABC company"), new HashSet<Tag>()));
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

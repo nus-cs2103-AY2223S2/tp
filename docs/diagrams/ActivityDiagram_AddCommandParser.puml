@@ -1,0 +1,21 @@
+@startuml
+start
+title Activity: AddCommandParser parses input
+:Tokenize prefixes in input;
+:Map prefix token to input;
+repeat
+:Check next prefix-input pair;
+    if () then ([Valid prefix-input pair])
+        :Create respective class instance of input;
+        :Save instance
+        as argument for person creation;
+    else ([Invalid Input | Missing input])
+        : Throw error with
+        appropriate error message;
+        stop
+endif
+repeat while () is ([Has unchecked prefix]) not ([All inputs are valid])
+:Pass all arguments into Person constructor;
+:Return person created;
+stop
+@enduml
