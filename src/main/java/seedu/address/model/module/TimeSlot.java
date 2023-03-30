@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
 /**
- * Represents a Module's timeSlot in the address book.
+ * Represents a Module's timeSlot in the module tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeSlot(String)}
  */
 public class TimeSlot implements Comparable<TimeSlot> {
