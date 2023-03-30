@@ -2,7 +2,7 @@ package seedu.sprint.model.application;
 
 import java.util.Comparator;
 
-import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingSequence;
+import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 import seedu.sprint.model.task.Task;
 
 /**

@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.sprint.logic.commands.AddApplicationCommand;
 import seedu.sprint.logic.commands.AddTaskCommand;
+import seedu.sprint.logic.commands.ClearCommand;
 import seedu.sprint.logic.commands.Command;
-import seedu.sprint.logic.commands.ClearApplicationCommand;
 import seedu.sprint.logic.commands.DeleteApplicationCommand;
 import seedu.sprint.logic.commands.DeleteTaskCommand;
 import seedu.sprint.logic.commands.EditApplicationCommand;
@@ -67,8 +67,8 @@ public class InternshipBookParser {
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 
-        case ClearApplicationCommand.COMMAND_WORD:
-            return new ClearApplicationCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case DeleteApplicationCommand.COMMAND_WORD:
             return new DeleteApplicationCommandParser().parse(arguments);
@@ -77,7 +77,7 @@ public class InternshipBookParser {
             return new EditApplicationCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
-            return new FindApplicationCommandParser().parse(arguments);
+            return new FindCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
@@ -86,7 +86,7 @@ public class InternshipBookParser {
             return new ListCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortApplicationCommandParser().parse(arguments);
+            return new SortCommandParser().parse(arguments);
 
         //=========== Task Commands ==================================================================================
         case AddTaskCommand.COMMAND_WORD:

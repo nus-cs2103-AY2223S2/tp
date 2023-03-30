@@ -11,7 +11,7 @@ import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
 
-public class ClearApplicationCommandTest {
+public class ClearCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -20,8 +20,8 @@ public class ClearApplicationCommandTest {
         ApplicationModel expectedModel = new ApplicationModelManager();
         expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new ClearApplicationCommand(), model, commandHistory,
-                ClearApplicationCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, commandHistory,
+                ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -31,8 +31,8 @@ public class ClearApplicationCommandTest {
         expectedModel.setInternshipBook(new InternshipBook());
         expectedModel.commitInternshipBookChange();
 
-        assertCommandSuccess(new ClearApplicationCommand(), model, commandHistory,
-                ClearApplicationCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, commandHistory,
+                ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

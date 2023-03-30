@@ -1,8 +1,8 @@
 package seedu.sprint.model.application;
 
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.HashMap;
 import java.util.List;

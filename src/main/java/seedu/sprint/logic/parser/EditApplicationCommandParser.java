@@ -2,11 +2,11 @@ package seedu.sprint.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +22,7 @@ import seedu.sprint.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditApplicationCommand object.
  */
-public class EditApplicationCommandParser implements ApplicationParser<EditApplicationCommand> {
+public class EditApplicationCommandParser implements Parser<EditApplicationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -40,7 +40,7 @@ public class EditApplicationCommandParser implements ApplicationParser<EditAppli
         Index index;
 
         try {
-            index = ApplicationParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditApplicationCommand.MESSAGE_USAGE), pe);
@@ -48,19 +48,19 @@ public class EditApplicationCommandParser implements ApplicationParser<EditAppli
 
         EditApplicationDescriptor editApplicationDescriptor = new EditApplicationDescriptor();
         if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
-            editApplicationDescriptor.setRole(ApplicationParserUtil.parseRole(
+            editApplicationDescriptor.setRole(ParserUtil.parseRole(
                     argMultimap.getValue(PREFIX_ROLE).get()));
         }
         if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
-            editApplicationDescriptor.setCompanyName(ApplicationParserUtil.parseCompanyName(
+            editApplicationDescriptor.setCompanyName(ParserUtil.parseCompanyName(
                     argMultimap.getValue(PREFIX_COMPANY_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_COMPANY_EMAIL).isPresent()) {
-            editApplicationDescriptor.setCompanyEmail(ApplicationParserUtil.parseCompanyEmail(
+            editApplicationDescriptor.setCompanyEmail(ParserUtil.parseCompanyEmail(
                     argMultimap.getValue(PREFIX_COMPANY_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            editApplicationDescriptor.setStatus(ApplicationParserUtil.parseStatus(
+            editApplicationDescriptor.setStatus(ParserUtil.parseStatus(
                     argMultimap.getValue(PREFIX_STATUS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editApplicationDescriptor::setTags);

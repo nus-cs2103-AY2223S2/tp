@@ -9,7 +9,7 @@ import seedu.sprint.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object.
  */
-public class DeleteTaskCommandParser implements ApplicationParser<DeleteTaskCommand> {
+public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.
@@ -19,7 +19,7 @@ public class DeleteTaskCommandParser implements ApplicationParser<DeleteTaskComm
         Index index;
 
         try {
-            index = ApplicationParserUtil.parseIndex(args);
+            index = ParserUtil.parseIndex(args);
             return new DeleteTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -1,11 +1,11 @@
 package seedu.sprint.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;

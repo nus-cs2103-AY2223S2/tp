@@ -6,8 +6,8 @@ import java.util.Comparator;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingOrder;
-import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingSequence;
+import seedu.sprint.logic.parser.SortCommandParser.SortingOrder;
+import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 import seedu.sprint.model.ApplicationModel;
 import seedu.sprint.model.application.AlphabeticalComparator;
 import seedu.sprint.model.application.Application;

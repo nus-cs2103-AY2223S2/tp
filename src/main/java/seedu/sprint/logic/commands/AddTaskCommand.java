@@ -2,8 +2,8 @@ package seedu.sprint.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sprint.logic.commands.EditApplicationCommand.createEditedApplication;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;

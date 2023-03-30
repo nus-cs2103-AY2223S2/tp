@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.commands.AddApplicationCommand;
 import seedu.sprint.logic.commands.AddTaskCommand;
-import seedu.sprint.logic.commands.ClearApplicationCommand;
+import seedu.sprint.logic.commands.ClearCommand;
 import seedu.sprint.logic.commands.DeleteApplicationCommand;
 import seedu.sprint.logic.commands.DeleteTaskCommand;
 import seedu.sprint.logic.commands.EditApplicationCommand;
@@ -67,9 +67,9 @@ public class InternshipBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD) instanceof ClearApplicationCommand);
-        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD + " 3")
-                instanceof ClearApplicationCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3")
+                instanceof ClearCommand);
     }
 
     @Test

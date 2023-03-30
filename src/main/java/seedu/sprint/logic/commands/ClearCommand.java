@@ -10,7 +10,7 @@ import seedu.sprint.model.InternshipBook;
 /**
  * Clears the sprint book.
  */
-public class ClearApplicationCommand extends Command {
+public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Your Internship Book has been cleared!\n"

@@ -2,13 +2,13 @@ package seedu.sprint.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.sprint.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -99,7 +99,7 @@ public class ApplicationCommandTestUtil {
         actualCommandHistory.addCommand(command.toString());
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
-        if (command instanceof AddApplicationCommand || command instanceof ClearApplicationCommand
+        if (command instanceof AddApplicationCommand || command instanceof ClearCommand
                 || command instanceof DeleteApplicationCommand || command instanceof EditApplicationCommand
                 || command instanceof DeleteTaskCommand
                 || command instanceof AddTaskCommand || command instanceof EditTaskCommand) {

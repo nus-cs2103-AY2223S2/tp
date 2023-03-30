@@ -1,8 +1,8 @@
 package seedu.sprint.logic.parser;
 
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.stream.Stream;
 
@@ -17,7 +17,7 @@ import seedu.sprint.model.task.Task;
 /**
  * Parses input arguments and creates a new AddTaskCommand object.
  */
-public class AddTaskCommandParser implements ApplicationParser<AddTaskCommand> {
+public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
@@ -30,7 +30,7 @@ public class AddTaskCommandParser implements ApplicationParser<AddTaskCommand> {
         Index index;
 
         try {
-            index = ApplicationParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTaskCommand.MESSAGE_USAGE), pe);
@@ -42,9 +42,9 @@ public class AddTaskCommandParser implements ApplicationParser<AddTaskCommand> {
         }
         EditApplicationDescriptor editApplicationDescriptor = new EditApplicationDescriptor();
 
-        Description description = ApplicationParserUtil.parseDescription(argMultimap
+        Description description = ParserUtil.parseDescription(argMultimap
                 .getValue(PREFIX_DESCRIPTION).get());
-        Deadline deadline = ApplicationParserUtil.parseDeadline(argMultimap
+        Deadline deadline = ParserUtil.parseDeadline(argMultimap
                 .getValue(PREFIX_DEADLINE).get());
 
         Task task = new Task(deadline, description);

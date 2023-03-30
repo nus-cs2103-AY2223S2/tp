@@ -8,7 +8,7 @@ import seedu.sprint.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new SortCommand object.
  */
-public class SortApplicationCommandParser implements ApplicationParser<SortCommand> {
+public class SortCommandParser implements Parser<SortCommand> {
     /**
      * Represents permitted values for the inputted order.
      */
@@ -58,8 +58,8 @@ public class SortApplicationCommandParser implements ApplicationParser<SortComma
         }
         String userInputtedSequence = trimmedArgs[0].toLowerCase();
         String userInputtedOrder = trimmedArgs[1].toLowerCase();
-        SortingOrder sortingOrder = ApplicationParserUtil.parseSortingOrder(userInputtedOrder);
-        SortingSequence sortingSequence = ApplicationParserUtil.parseSortingSequence(userInputtedSequence);
+        SortingOrder sortingOrder = ParserUtil.parseSortingOrder(userInputtedOrder);
+        SortingSequence sortingSequence = ParserUtil.parseSortingSequence(userInputtedSequence);
         return new SortCommand(sortingOrder, sortingSequence);
     }
 }

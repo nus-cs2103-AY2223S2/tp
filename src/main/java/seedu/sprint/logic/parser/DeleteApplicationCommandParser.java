@@ -9,7 +9,7 @@ import seedu.sprint.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteApplicationCommand object.
  */
-public class DeleteApplicationCommandParser implements ApplicationParser<DeleteApplicationCommand> {
+public class DeleteApplicationCommandParser implements Parser<DeleteApplicationCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteApplicationCommand
      * and returns a DeleteApplicationCommand object for execution.

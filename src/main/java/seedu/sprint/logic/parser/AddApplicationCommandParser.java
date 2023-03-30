@@ -1,11 +1,11 @@
 package seedu.sprint.logic.parser;
 
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -22,7 +22,7 @@ import seedu.sprint.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddApplicationCommand object.
  */
-public class AddApplicationCommandParser implements ApplicationParser<AddApplicationCommand> {
+public class AddApplicationCommandParser implements Parser<AddApplicationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddApplicationCommand
@@ -40,14 +40,14 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
                     AddApplicationCommand.MESSAGE_USAGE));
         }
 
-        CompanyName companyName = ApplicationParserUtil.parseCompanyName(
+        CompanyName companyName = ParserUtil.parseCompanyName(
                 argMultimap.getValue(PREFIX_COMPANY_NAME).get());
-        Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        CompanyEmail companyEmail = ApplicationParserUtil.parseCompanyEmail(
+        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        CompanyEmail companyEmail = ParserUtil.parseCompanyEmail(
                 argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
-        Role role = ApplicationParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
-        Set<Tag> tagList = ApplicationParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Application application = new Application(role, companyName, companyEmail, status, null, tagList);
 

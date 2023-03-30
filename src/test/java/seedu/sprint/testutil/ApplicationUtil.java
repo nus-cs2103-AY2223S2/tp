@@ -1,12 +1,12 @@
 package seedu.sprint.testutil;
 
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 

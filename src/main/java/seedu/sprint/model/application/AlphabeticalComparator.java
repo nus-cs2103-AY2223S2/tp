@@ -2,7 +2,7 @@ package seedu.sprint.model.application;
 
 import java.util.Comparator;
 
-import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingSequence;
+import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 
 /**
  * Compares two applications based on alphabetical order of company name and role.

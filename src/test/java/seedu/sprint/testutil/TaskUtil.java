@@ -1,7 +1,7 @@
 package seedu.sprint.testutil;
 
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
-import static seedu.sprint.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import seedu.sprint.logic.commands.EditTaskCommand.EditTaskDescriptor;
 
