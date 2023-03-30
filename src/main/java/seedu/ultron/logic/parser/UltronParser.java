@@ -17,7 +17,9 @@ import seedu.ultron.logic.commands.HelpCommand;
 import seedu.ultron.logic.commands.ListCommand;
 import seedu.ultron.logic.commands.RemarkCommand;
 import seedu.ultron.logic.commands.ShowCommand;
+import seedu.ultron.logic.commands.StatusCommand;
 import seedu.ultron.logic.commands.SortCommand;
+
 import seedu.ultron.logic.parser.exceptions.ParseException;
 
 /**
@@ -76,6 +78,9 @@ public class UltronParser {
         
         case ShowCommand.COMMAND_WORD:
             return new ShowCommandParser().parse(arguments);
+
+        case StatusCommand.COMMAND_WORD:
+            return new StatusCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);

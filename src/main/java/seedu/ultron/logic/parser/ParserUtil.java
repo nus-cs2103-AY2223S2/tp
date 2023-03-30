@@ -95,6 +95,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into an {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException
      */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
