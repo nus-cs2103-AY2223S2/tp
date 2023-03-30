@@ -24,7 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -56,7 +56,7 @@ public class FishEditCommand extends FishCommand {
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book.";
-    public static final String MESSAGE_USE_INDEX = "Use a numerical index of a tank eg. /tk 1";
+    public static final String MESSAGE_USE_INDEX = "Use a numerical index of a tank eg. tk/1";
     private final Index index;
     private final EditFishDescriptor editFishDescriptor;
 
@@ -121,7 +121,7 @@ public class FishEditCommand extends FishCommand {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
-        LastFedDate updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDate());
+        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDateTime());
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
                 .orElse(fishToEdit.getFeedingInterval());
@@ -156,7 +156,7 @@ public class FishEditCommand extends FishCommand {
      */
     public static class EditFishDescriptor {
         private Name name;
-        private LastFedDate lastFedDate;
+        private LastFedDateTime lastFedDate;
         private Species species;
         private FeedingInterval feedingInterval;
         private Tank tank;
@@ -192,11 +192,11 @@ public class FishEditCommand extends FishCommand {
             return Optional.ofNullable(name);
         }
 
-        public void setLastFedDate(LastFedDate lastFedDate) {
+        public void setLastFedDate(LastFedDateTime lastFedDate) {
             this.lastFedDate = lastFedDate;
         }
 
-        public Optional<LastFedDate> getLastFedDate() {
+        public Optional<LastFedDateTime> getLastFedDate() {
             return Optional.ofNullable(lastFedDate);
         }
 

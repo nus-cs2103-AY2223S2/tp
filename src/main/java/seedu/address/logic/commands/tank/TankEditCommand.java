@@ -27,12 +27,13 @@ import seedu.address.model.Model;
 import seedu.address.model.TankList;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Edits the details of an existing fish in the address book.
@@ -53,7 +54,7 @@ public class TankEditCommand extends TankCommand {
     public static final String MESSAGE_EDIT_TANK_SUCCESS = "Edited Tank: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TANK = "This tank already exists in the address book.";
-    public static final String MESSAGE_USE_INDEX = "Use a numerical index of a tank eg. /tk 1";
+    public static final String MESSAGE_USE_INDEX = "Use a numerical index of a tank eg. tk/1";
     private final Index index;
     private final EditTankDescriptor editTankDescriptor;
 
@@ -97,8 +98,9 @@ public class TankEditCommand extends TankCommand {
 
         TankName updatedName = editTankDescriptor.getName().orElse(tankToEdit.getTankName());
         AddressBook fishList = tankToEdit.getFishList();
+        UniqueIndividualReadingLevels readingLevels = tankToEdit.getReadingLevels();
 
-        return new Tank(updatedName, fishList);
+        return new Tank(updatedName, fishList, readingLevels);
     }
 
     @Override
