@@ -11,7 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,7 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getOptionalAddress());
         descriptor.setEducation(person.getOptionalEducation());
         descriptor.setTags(person.getTags());
-        descriptor.setSubjects(person.getSubjects());
+        descriptor.setModules(person.getModules());
     }
 
     /**
@@ -98,12 +98,12 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code subjects} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code modules} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withSubjects(String... subjects) {
-        Set<Subject> subjectSet = Stream.of(subjects).map(Subject::new).collect(Collectors.toSet());
-        descriptor.setSubjects(subjectSet);
+    public EditPersonDescriptorBuilder withModules(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.setModules(moduleSet);
         return this;
     }
 

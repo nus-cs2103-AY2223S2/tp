@@ -19,7 +19,7 @@ Class Education
 Class Email
 Class Name
 Class Phone
-Class Subject
+Class Module
 Class Tag
 
 }
@@ -44,7 +44,7 @@ Student *--> Email
 Student *--> Address
 Student *--> Education
 Student *--> "*" Tag
-Student *--> "*" Subject
+Student *--> "*" Module
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class FindCommand extends Command {
             PREFIX_EDUCATION.asOptional().asRepeatable(),
             PREFIX_REMARK.asOptional().asRepeatable(),
             PREFIX_TAG.asOptional().asRepeatable(),
-            PREFIX_SUBJECT.asOptional().asRepeatable()
+            PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
@@ -45,6 +45,8 @@ public class FindCommand extends Command {
                     .collect(Collectors.joining(" "))
             + "\nExample: " + COMMAND_WORD + " alice bob charlie";
 
+    private final boolean isModifying = false;
+
     private final FullMatchKeywordsPredicate predicate;
 
     public FindCommand(FullMatchKeywordsPredicate predicate) {
@@ -52,9 +54,15 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        commandHistory.updateCommandHistory(COMMAND_WORD);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

@@ -75,7 +75,7 @@ public class FindCommandTest {
      */
     private FullMatchKeywordsPredicate preparePredicate(String userInput) {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_SUBJECT, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_MODULE, PREFIX_TAG);
         return new FullMatchKeywordsPredicate(argMultimap);
     }
 

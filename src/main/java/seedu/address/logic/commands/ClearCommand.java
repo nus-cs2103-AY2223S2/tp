@@ -17,11 +17,19 @@ public class ClearCommand extends Command {
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
+    private final boolean isModifying = true;
 
     @Override
-    public CommandResult execute(Model model) {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.setAddressBook(new AddressBook());
+        model.commitAddressBook();
+        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

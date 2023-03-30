@@ -102,6 +102,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.getExistingTagValues();
     }
 
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingModuleValues() {
+        return persons.getExistingModuleValues();
+    }
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingEducationValues() {
+        return persons.getExistingEducationValues();
+    }
+
     //// util methods
 
     @Override

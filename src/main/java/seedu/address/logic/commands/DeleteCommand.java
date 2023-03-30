@@ -35,6 +35,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
+    private final boolean isModifying = true;
+
     private final List<Index> targetIndexes;
 
     public DeleteCommand(List<Index> targetIndexes) {
@@ -42,7 +44,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -55,6 +62,7 @@ public class DeleteCommand extends Command {
             personsToDelete.add(lastShownList.get(targetIndex.getZeroBased()));
         }
 
+
         for (Person personToDelete : personsToDelete) {
             model.deletePerson(personToDelete);
         }
@@ -62,7 +70,8 @@ public class DeleteCommand extends Command {
         String deletedPersons = String.join(", ", personsToDelete.stream()
                 .map(Person::toString)
                 .toArray(String[]::new));
-
+        model.commitAddressBook();
+        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons));
     }
 

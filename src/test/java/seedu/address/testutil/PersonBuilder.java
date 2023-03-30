@@ -10,7 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Education education;
     private Remark remark;
     private Set<Tag> tags;
-    private Set<Subject> subjects;
+    private Set<Module> modules;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -46,7 +46,7 @@ public class PersonBuilder {
         education = new Education(DEFAULT_EDUCATION);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
-        subjects = new HashSet<>();
+        modules = new HashSet<>();
     }
 
     /**
@@ -60,7 +60,7 @@ public class PersonBuilder {
         education = personToCopy.getOptionalEducation().orElse(null);
         remark = personToCopy.getOptionalRemark().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
-        subjects = new HashSet<>(personToCopy.getSubjects());
+        modules = new HashSet<>(personToCopy.getModules());
     }
 
     /**
@@ -80,10 +80,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code Person} that we are building.
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withSubjects(String ... subjects) {
-        this.subjects = SampleDataUtil.getSubjectSet(subjects);
+    public PersonBuilder withModules(String ... modules) {
+        this.modules = SampleDataUtil.getModuleSet(modules);
         return this;
     }
 
@@ -128,7 +128,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, education, remark, subjects, tags);
+        return new Person(name, phone, email, address, education, remark, modules, tags);
     }
 
 }

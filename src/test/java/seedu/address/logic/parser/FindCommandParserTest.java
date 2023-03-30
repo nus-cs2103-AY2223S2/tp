@@ -26,7 +26,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize("n/Alice n/Bob", PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_SUBJECT, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_MODULE, PREFIX_TAG);
         FindCommand expectedFindCommand =
                 new FindCommand(new FullMatchKeywordsPredicate(argMultimap));
         assertParseSuccess(parser, "n/Alice n/Bob", expectedFindCommand);

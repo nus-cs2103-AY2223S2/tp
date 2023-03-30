@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> targetPerson;
+    private final VersionedAddressBook versionedAddressBook;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,10 +37,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+//        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         targetPerson = new FilteredList<Person>(this.addressBook.getPersonList());
         updateShowPerson(new NameContainsKeywordsPredicate(new ArrayList<>()));
-
+        versionedAddressBook = new VersionedAddressBook(this.addressBook);
+        filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
     public ModelManager() {
@@ -85,28 +87,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -114,8 +116,35 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public boolean checkUndoable() {
+        return versionedAddressBook.checkUndoable();
+    }
+
+    @Override
+    public boolean checkRedoable() {
+        return versionedAddressBook.checkRedoable();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddressBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit();
+    }
+
+
 
 
 
@@ -150,6 +179,16 @@ public class ModelManager implements Model {
     @Override
     public ArrayList<String> getExistingTagValues() {
         return addressBook.getExistingTagValues();
+    }
+
+    @Override
+    public ArrayList<String> getExistingModuleValues() {
+        return addressBook.getExistingModuleValues();
+    }
+
+    @Override
+    public ArrayList<String> getExistingEducationValues() {
+        return addressBook.getExistingEducationValues();
     }
 
     @Override
