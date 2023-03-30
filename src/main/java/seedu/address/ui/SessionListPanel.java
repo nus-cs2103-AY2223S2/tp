@@ -52,6 +52,9 @@ public class SessionListPanel extends UiPart<Region> {
     private Label selectedStudents;
 
     @FXML
+    private Label selectedEarnings;
+
+    @FXML
     private PieChart attendanceChart;
 
     @FXML
@@ -62,6 +65,8 @@ public class SessionListPanel extends UiPart<Region> {
     private Label locationField;
     @FXML
     private Label studentsField;
+    @FXML
+    private Label earningsField;
 
 //Statistics
     @FXML
@@ -241,8 +246,8 @@ public class SessionListPanel extends UiPart<Region> {
      * @param selectedSession the session to be displayed
      */
     public void updateDisplay(Session selectedSession) {
-        Label[] fields = new Label[]{dateField, locationField, studentsField};
-        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation};
+        Label[] fields = new Label[]{dateField, locationField, studentsField, earningsField};
+        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation, selectedEarnings};
         setupStyle();
         setSessionFieldDisplay(fields);
         updateDisplayedSessionDetail(selectedSession, details);
@@ -256,6 +261,7 @@ public class SessionListPanel extends UiPart<Region> {
         locationField.setText("Location");
         dateField.setText("Date");
         studentsField.setText("Students");
+        earningsField.setText("Session Earnings");
         for (Label field: fields) {
             field.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(4),
                     new Insets(-3, -10, -3, -10))));
@@ -277,6 +283,11 @@ public class SessionListPanel extends UiPart<Region> {
 
         attendanceChart.setData(SessionPieChart.generateAttendancePieChart(selectedSession.getAttendanceMap()));
         attendanceChart.setLabelsVisible(false);
+
+        float sessionEarnings = selectedSession.getTotalPay();
+        selectedEarnings.setText("$" + String.format("%.2f", sessionEarnings));
+        selectedEarnings.setPadding(new Insets(5, -10, 5, -10));
+
         try {
             for (Label detail : details) {
                 detail.setWrapText(true);
