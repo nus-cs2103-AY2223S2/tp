@@ -248,7 +248,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param feedback
      * @param commandText
      */
-    public void handleViewPane (String feedback, String commandText) {
+    public void handleViewPane(String feedback, String commandText) {
         if (feedback.startsWith("Edited Person:")) {
             updateViewAfterEdit(commandText);
         }
@@ -269,8 +269,7 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getAddressBook().getPersonList().size() > 0) {
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        }
-        else {
+        } else {
             viewPanePlaceHolder.getChildren().clear();
         }
     }
