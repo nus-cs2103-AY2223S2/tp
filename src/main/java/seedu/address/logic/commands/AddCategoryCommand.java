@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
+import seedu.address.ui.ScreenType;
 
 /**
  * Adds a category to the Expense Tracker.
@@ -41,7 +42,7 @@ public class AddCategoryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
         }
         dataModel.addCategory(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ScreenType.CATEGORY_SCREEN);
     }
 
     @Override

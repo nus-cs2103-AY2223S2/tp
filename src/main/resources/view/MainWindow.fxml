@@ -42,7 +42,7 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <SplitPane dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="pane" VBox.vgrow="ALWAYS">
+               <SplitPane fx:id="splitScreen" dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="pane">
                  <items>
                      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0">
                         <children>

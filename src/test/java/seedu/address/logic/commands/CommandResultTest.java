@@ -7,14 +7,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.ui.ScreenType;
+
 public class CommandResultTest {
     @Test
     public void equals() {
-        CommandResult commandResult = new CommandResult("feedback", true);
+        CommandResult commandResult = new CommandResult(
+            "feedback", ScreenType.EXPENSE_SCREEN);
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback", true)));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertTrue(commandResult.equals(new CommandResult(
+            "feedback", ScreenType.EXPENSE_SCREEN)));
+        assertTrue(commandResult.equals(new CommandResult(
+            "feedback", false, false, ScreenType.EXPENSE_SCREEN)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -26,29 +31,34 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different", true)));
+        assertFalse(commandResult.equals(new CommandResult(
+            "different", ScreenType.EXPENSE_SCREEN)));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, true)));
+        assertFalse(commandResult.equals(new CommandResult(
+            "feedback", true, false, ScreenType.EXPENSE_SCREEN)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, true)));
+        assertFalse(commandResult.equals(new CommandResult(
+            "feedback", false, true, ScreenType.EXPENSE_SCREEN)));
     }
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback", true);
+        CommandResult commandResult = new CommandResult("feedback", ScreenType.EXPENSE_SCREEN);
 
         // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback", true).hashCode());
+        assertEquals(commandResult.hashCode(), new CommandResult("feedback", ScreenType.EXPENSE_SCREEN).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different", true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("different", ScreenType.EXPENSE_SCREEN).hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult(
+            "feedback", true, false, ScreenType.EXPENSE_SCREEN).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult(
+            "feedback", false, true, ScreenType.EXPENSE_SCREEN).hashCode());
     }
 }

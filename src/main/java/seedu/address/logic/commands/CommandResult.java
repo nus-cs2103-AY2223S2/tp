@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.ui.ScreenType;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,25 +19,25 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** Whether the result is from an expense-related or category-related command. */
-    private final boolean isExpenseCommand;
+    /** The screen to display upon execution of the command. */
+    private final ScreenType screenType;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isExpenseCommand) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, ScreenType screenType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.isExpenseCommand = isExpenseCommand;
+        this.screenType = screenType;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean isExpenseCommand) {
-        this(feedbackToUser, false, false, isExpenseCommand);
+    public CommandResult(String feedbackToUser, ScreenType screenType) {
+        this(feedbackToUser, false, false, screenType);
     }
 
     public String getFeedbackToUser() {
@@ -50,8 +52,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isExpenseCommand() {
-        return isExpenseCommand;
+    public ScreenType getScreenType() {
+        return screenType;
     }
 
     @Override

@@ -18,6 +18,7 @@ import seedu.address.model.ExpenseTracker;
 import seedu.address.model.Model;
 import seedu.address.model.expense.Expense;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.ui.ScreenType;
 
 /**
  * Contains helper methods for testing commands.
@@ -93,7 +94,7 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualDataModel, String expectedMessage,
                                             Model expectedDataModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, ScreenType.EXPENSE_SCREEN);
         assertCommandSuccess(command, actualDataModel, expectedCommandResult, expectedDataModel);
     }
 

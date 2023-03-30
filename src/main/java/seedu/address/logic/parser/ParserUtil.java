@@ -32,10 +32,22 @@ public class ParserUtil {
      * Enumerates possibilities for timespans indicated: week, month, year.
      */
     public enum Timespan {
-        WEEK,
-        MONTH,
-        YEAR
+        WEEK("Week"),
+        MONTH("Month"),
+        YEAR("Year"),
+        ALL("All");
+
+        private final String stringRep;
+        Timespan(String stringRep) {
+            this.stringRep = stringRep;
+        }
+        // Return the string representation of the given timeSpan
+        @Override
+        public String toString() {
+            return stringRep;
+        }
     }
+
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 

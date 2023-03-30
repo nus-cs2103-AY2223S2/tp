@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.ui.ScreenType;
 
 /**
  * Edits an Expense in the expense tracker.
@@ -84,13 +85,13 @@ public class EditExpenseCommand extends Command {
 
         Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
         String name = expenseToEdit.getName();
-        Double amount = expenseToEdit.getAmount();
+        double amount = expenseToEdit.getAmount();
         Category category = expenseToEdit.getCategory();
         LocalDate date = expenseToEdit.getDate();
 
         if (toBeAllocated != null) {
             category = toBeAllocated;
-        } else if (this.newExpenseCategoryInString != null && toBeAllocated == null) {
+        } else if (this.newExpenseCategoryInString != null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
@@ -108,6 +109,8 @@ public class EditExpenseCommand extends Command {
 
         Expense newExpense = new Expense(name, amount, date, category);
         model.setExpense(targetIndex.getZeroBased(), newExpense);
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense), true);
+        return new CommandResult(
+            String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense),
+            ScreenType.EXPENSE_SCREEN);
     }
 }
