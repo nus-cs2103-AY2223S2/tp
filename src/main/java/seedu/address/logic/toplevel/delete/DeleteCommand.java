@@ -55,7 +55,7 @@ public class DeleteCommand<T extends Item> implements Command {
                     itemIndex
             ));
         } else {
-            toDelete = getManagerFunction.get(model).getItem(itemIndex);
+            toDelete = getManagerFunction.get(model).getItem(itemIndex - 1);
         }
 
         deleteFunction.delete(model, toDelete);
