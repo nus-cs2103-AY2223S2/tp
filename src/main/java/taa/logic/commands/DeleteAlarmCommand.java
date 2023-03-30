@@ -41,4 +41,3 @@ public class DeleteAlarmCommand extends Command {
         return new CommandResult(MESSAGE_DELETE_ALARM_SUCCESS);
     }
 }
-

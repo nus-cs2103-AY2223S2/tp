@@ -26,6 +26,7 @@ class JsonAdaptedStudent {
     private final String pp;
 
     private final String attendance;
+    private final ArrayList<String> submissionStrArr = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,6 +39,9 @@ class JsonAdaptedStudent {
         this.name = name;
         this.pp = pp;
         this.attendance = attendance;
+        if (submissionStrArr != null) {
+            this.submissionStrArr.addAll(submissionStrArr);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +54,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         attendance = source.getAtd().atdStrorageStr();
         pp = source.getAtd().partPointsStorageStr();
+        submissionStrArr.addAll(source.getSubmissionStorageStrings());
         tagged.addAll(source.getClassTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -78,10 +83,13 @@ class JsonAdaptedStudent {
         if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
         }
+        if (submissionStrArr == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Submissions"));
+        }
         final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, attendance, pp, modelTags);
+        return new Student(modelName, attendance, pp, submissionStrArr, modelTags);
     }
 
 }

@@ -83,10 +83,9 @@ public class AlarmList {
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Alarm a : alarms) {
-            sb.append("Alarm " + i + ">>>>> " + a + "\n");
+            sb.append("Alarm ").append(i).append(">>>>> ").append(a).append("\n");
             i++;
         }
         return sb.toString();
     }
 }
-

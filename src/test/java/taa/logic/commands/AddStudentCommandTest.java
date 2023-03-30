@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
 import taa.model.Model;
@@ -214,7 +215,33 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void deleteStudentSubmission(Student studentToDelete) {
+        }
+
+        @Override
+        public void initAssignmentsFromStorage() {
+        }
+
+        @Override
+        public void addStudentAssignment(Student stu) {
+        }
+
         public String listAlarms() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public int getClassListSize() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasAssignment(String assignmentName) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void displayChart(ChartType chart, String... args) {
             throw new AssertionError("This method should not be called");
         }
 

@@ -8,19 +8,19 @@ import java.util.Objects;
 public class Attendance {
     public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
     public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
-    public static final String ORIGINAL_ATD = "0,0,0,0,0,0,0,0,0,0,0,0";
+    public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
+    public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
+    public static final int NUM_WEEKS = 12;
+    private final boolean[] attendanceList = new boolean[NUM_WEEKS];
 
-    public static final String ORIGINAL_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,";
-    private final boolean[] attendanceList = new boolean[12];
-
-    private final int[] participationPoint = new int[12];
+    private final int[] participationPoint = new int[NUM_WEEKS];
 
     /**
      * constructor for attendance class
      */
     public Attendance(String atd, String pp) {
-        String[] atdArr = atd.split(",");
-        String[] ppArr = pp.split(",");
+        String[] atdArr = atd.split(";");
+        String[] ppArr = pp.split(";");
         for (int i = 0; i < atdArr.length; i++) {
             if (Objects.equals(atdArr[i], "1")) {
                 this.attendanceList[i] = true;
@@ -39,7 +39,7 @@ public class Attendance {
             return false;
         }
         int intWeek = Integer.parseInt(week);
-        if (intWeek <= 0 || intWeek > 12) {
+        if (intWeek <= 0 || intWeek > NUM_WEEKS) {
             System.out.println(week);
             return false;
         }
@@ -51,7 +51,7 @@ public class Attendance {
      */
     public int getNumWeeksPresent() {
         int count = 0;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < NUM_WEEKS; i++) {
             if (this.attendanceList[i]) {
                 count++;
             }
@@ -128,7 +128,7 @@ public class Attendance {
     public float getAveragePP() {
         int pt = 0;
         int weeks = 0;
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < NUM_WEEKS; i++) {
             if (this.attendanceList[i] && this.participationPoint[i] > 0) {
                 pt += this.participationPoint[i];
                 weeks += 1;
@@ -147,9 +147,9 @@ public class Attendance {
         String res = "";
         for (boolean atd : this.attendanceList) {
             if (atd) {
-                res += "1,";
+                res += "1;";
             } else {
-                res += "0,";
+                res += "0;";
             }
         }
         return res.substring(0, 23);
@@ -161,9 +161,18 @@ public class Attendance {
     public String partPointsStorageStr() {
         String res = "";
         for (int val : this.participationPoint) {
-            res += String.valueOf(val) + ",";
+            res += String.valueOf(val) + ";";
         }
         return res.substring(0, res.length() - 1);
+    }
+
+    /**
+     * Updates the attendance counter for the entire class list.
+     */
+    public void updateAttendanceCounter(int[] counter) {
+        for (int i = 0; i < NUM_WEEKS; i++) {
+            counter[i] += attendanceList[i] ? 1 : 0;
+        }
     }
 
     /**

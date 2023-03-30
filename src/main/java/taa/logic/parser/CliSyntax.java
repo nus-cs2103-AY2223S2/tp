@@ -16,11 +16,16 @@ public class CliSyntax {
     public static final Prefix PREFIX_WEEK = new Prefix("w/");
 
     public static final Prefix PREFIX_STUDENT_ID = new Prefix("i/");
+    public static final Prefix PREFIX_ASSIGNMENT_NAME = new Prefix("as/");
 
     public static final Prefix PREFIX_MARK = new Prefix("m/");
 
     public static final Prefix PREFIX_LATE = new Prefix("late/");
 
     public static final Prefix PREFIX_PARTICIPATION_POINTS = new Prefix("pp/");
+    public static final Prefix PREFIX_STAT_TYPE = new Prefix("st/");
+
+    private CliSyntax() {
+    }
 
 }

@@ -1,5 +1,6 @@
 package taa.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,9 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
 
-    public static final String DEFAULT_ATTENDANCE = "0,0,0,0,0,0,0,0,0,0,0,0";
+    public static final String DEFAULT_ATTENDANCE = "0;0;0;0;0;0;0;0;0;0;0;0";
 
-    public static final String DEFAULT_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1";
+    public static final String DEFAULT_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
 
     private Name name;
 
@@ -66,8 +67,12 @@ public class PersonBuilder {
         this.attendance = atd;
         return this;
     }
-    public Student build() {
-        return new Student(name, attendance.atdStrorageStr(), attendance.partPointsStorageStr(), tags);
-    }
 
+    /**
+     * @return built student
+     */
+    public Student build() {
+        return new Student(name, attendance.atdStrorageStr(), attendance.partPointsStorageStr(),
+                new ArrayList<>(), tags);
+    }
 }
