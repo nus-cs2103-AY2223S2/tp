@@ -23,9 +23,12 @@ Let's get you _rizzed_ up in the fastest way possible!
    recipebook.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note that our experienced _Rizzers_ have crafted
 some sample recipes for you already.
-![UI QuickStart](images/UiQuickStart.png) 
-6. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
+![UI QuickStart](images/UiQuickStart.png)
+6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
+7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
 commands, refer to the [Features](#features) Section.
+8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
+the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
 
 <div style="page-break-after: always;"></div>
 
@@ -50,6 +53,10 @@ commands, refer to the [Features](#features) Section.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* :bulb: Important tip: For increased readability, we have included an optional multi-line command format for commands that may require multiple inputs (add, edit). After each input,
+you can include a line break just by simply entering a backslash `\` to move on to the next line to continue writing the next part of your command input! Note that you will not have to delete the backslash that appears
+before continuing to type!
 
 </div>
 
@@ -83,6 +90,22 @@ Example(s) of usage:
 > Similar to parameters, ingredient fields do not have to be input in order (`-a` can come before `-n` etc.).
 >
 > However, for steps, please input the steps in the order that they are intended to be performed.
+>
+
+### Adding a recipe through form: `addf`
+Want to add a delicious new recipe but don't want to type the whole long string of inputs at one go? 
+Use our interactive form feature to add your favorite recipe to the recipe book today!
+
+Format: 
+`addf`
+
+> An empty pop-up form as shown in the image below will appear!
+>
+> Tab to move on to the next input field, and shift+tab to go to the previous field!
+>
+> A new row automatically pops up when you reach the last row for ingredients and steps, and once you're done just click to the next field!
+>
+> Click on Save to add your recipe to the recipe book!
 
 ### Listing all recipes: `list`
 
@@ -100,7 +123,35 @@ Format:
 >
 > In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe.
 
+Keyboard shortcut: 
+To navigate the list, you can use the `up` and `down` arrow keys (as previously mentioned in the QuickStart).
+While the recipe to that you want to zoom in to is being selected, simply type `p` to view that particular recipe's details! 
+
 <div style="page-break-after: always;"></div>
+
+### Editing a recipe: `edit`
+
+Made a mistake or just omitted some important details when you first stored your recipe in the recipe book? 
+Don't fret, for the `edit` command is here for you to supplement these new details to increase the _rizz_ on your recipes!
+
+Format: 
+`edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
+
+> Edits the recipe at the specified index. The index refers to the index number shown in the displayed recipe list. 
+> 
+> The index **must be a positive integer** 1,2,3,...
+> 
+> All existing values will be updated to the new input values!
+> 
+> When editing tags, ingredients and steps, all the existing values for these fields will be removed (i.e. adding of tags, ingredients and steps is not cumulative!)
+> 
+> You can remove the optional fields (all fields except for name) by simply typing the prefix without specifying any details after it (i.e. typing `i/` removes all ingredients)
+> 
+> :bulb: Tip: Alternatively, you can use the edit popup form that can be triggered using the keyboard shortcut displayed below.
+
+Keyboard shortcut:
+As an alternate means to typing the full command, we provide a popup form to edit a recipe!
+While the recipe to that you want to edit is being selected, simply type `f` to display the popup form for that particular recipe!
 
 ### Finding a recipe by name: `find`
 
@@ -149,6 +200,9 @@ Example(s) of usage:
 > Deletes the dish at the specified `INDEX` of the latest list that was displayed.
 >
 > The index **must be a positive integer** 1, 2, 3, …
+
+Keyboard shortcut:
+While the recipe you want to deleted is being selected, simply hit the `delete` or `backspace` key and click on confirm to delete that particular recipe!
 
 ### Searching for substitutions for an ingredient: `sub`
 
@@ -218,9 +272,22 @@ Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`.
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Importing data
 
-_Details coming soon ..._
+The keyboard input `F3` will open an import window from the main window (as shown in the image below). From there, select the JSON
+file to be imported using the selector.
+
+* Only files with correct and non-duplicate recipes will be imported
+* Any imported recipes will be added to your current recipe book!
+* Alternatively, you can access the import function from the `File` option in the top left corner of the main window.
+
+
+### Exporting data
+
+The keyboard input `F4` will open an export window from the main window (as shown in the image below). From there, input the file name of the
+JSON file to be exported and select the desired location for it to be saved!
+
+* Alternatively, you can access the export function from the `File` option in the top left corner of the main window.
 
 ---
 
@@ -238,6 +305,7 @@ _Details coming soon ..._
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                         |
+| **Edit**   | `edit INDEX [n/RECIPE_NAME] [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`<br/> `edit 2 n/Duck Rice p/1 person`                                                                                                 |
 | **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag`, `ingredient` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`, `find ingredient tofu`                                                                                                                                                                             |
 | **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                           |
 | **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                     |
@@ -245,4 +313,4 @@ _Details coming soon ..._
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                         |
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                         |
 
-
+## Keyboard Shortcuts summary
