@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -27,6 +28,12 @@ public class ListCommandParserTest {
         // Empty args
         assertParseSuccess(parser, PREAMBLE_WHITESPACE, new ListCommand());
 
+        // Has args
+        assertParseSuccess(parser, PREAMBLE_NON_EMPTY, new ListCommand());
+
+        // Show all modules
+        assertParseSuccess(parser, PREFIX_ROOT.toString(), new ListCommand(true));
+
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
 
         // Valid module code
@@ -40,9 +47,6 @@ public class ListCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         String invalidFormat = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
-
-        // Has args
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY, invalidFormat);
 
         // Missing module code and invalid lecture name format
         assertParseFailure(parser, INVALID_LECTURE_NAME_DESC, invalidFormat);

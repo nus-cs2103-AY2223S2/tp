@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.MarkAsWatchedCommand;
-import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.mark.MarkAsWatchedCommand;
+import seedu.address.logic.commands.mark.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -41,9 +41,9 @@ public class MarkAsWatchedCommandParser implements Parser<MarkAsWatchedCommand> 
             }
             ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeOptional.get());
             LectureName lectureName = ParserUtil.parseLectureName(lectureNameOptional.get());
-            VideoName videoName = ParserUtil.parseVideoName(preamble);
+            VideoName[] videoNames = MultipleEventsParser.parseVideoNames(preamble);
 
-            return new MarkAsWatchedCommand(videoName, moduleCode, lectureName);
+            return new MarkAsWatchedCommand(moduleCode, lectureName, videoNames);
 
         } catch (ParseException pe) {
             throw new ParseException(

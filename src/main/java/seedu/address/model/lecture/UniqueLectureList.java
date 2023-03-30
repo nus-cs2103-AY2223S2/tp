@@ -2,13 +2,15 @@ package seedu.address.model.lecture;
 
 import java.util.List;
 
-import seedu.address.model.UniqueDataList;
+import seedu.address.model.SortedUniqueDataList;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 
 // TODO: Test this
 /**
- * A list of lectures that enforces uniqueness between its elements and does not allow nulls.<p>
+ * A list of sorted lectures that enforces uniqueness between its elements and does not allow nulls.<p>
+ *
+ * A lecture is sorted by using the {@code Lecture#compareTo(Lecture)} method.
  *
  * A lecture is considered unique by comparing using {@code Lecture#isSameLecture(Lecture)}. As such, adding and
  * updating of lectures uses {@code Lecture#isSameLecture(Lecture)} for equality so as to ensure that the lecture being
@@ -19,9 +21,10 @@ import seedu.address.model.lecture.exceptions.LectureNotFoundException;
  *
  * Supports a minimal set of list operations.<p>
  *
+ * @see Lecture#compareTo(Lecture)
  * @see Lecture#isSameLecture(Lecture)
  */
-public class UniqueLectureList extends UniqueDataList<Lecture> {
+public class UniqueLectureList extends SortedUniqueDataList<Lecture> {
 
     /**
      * Constructs a {@code UniqueLectureList}.

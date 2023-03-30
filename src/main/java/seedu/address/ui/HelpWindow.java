@@ -24,6 +24,9 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    private static final int STAGE_WIDTH = 427;
+    private static final String XDG_OPEN = "xdg-open";
+
     @FXML
     private Button openButton;
 
@@ -38,6 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        root.setMinWidth(STAGE_WIDTH); // This fixes a bug on Linux where the stage sometimes appear with 0 width
     }
 
     /**
@@ -98,11 +102,36 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private void openUrl() {
         try {
+            openUrlWithDesktop();
+        } catch (UnsupportedOperationException e) {
+            logger.warning("Desktop#browse(URL) is not supported on the current platform, falling back to xdg-open");
+            openUrlWithXdgOpen();
+        }
+    }
+
+    private void openUrlWithDesktop() {
+        try {
             Desktop.getDesktop().browse(new URL(USERGUIDE_URL).toURI());
         } catch (IOException e) {
             logger.warning("Cannot open user guide URL");
         } catch (URISyntaxException e) {
             logger.warning("Cannot open user guide URL");
+        }
+    }
+
+    /**
+     * A fallback for when {@code Desktop#browse(URL)} is not supported by the current platform.<p>
+     *
+     * This could occur if the platform is Linux.
+     */
+    private void openUrlWithXdgOpen() {
+        try {
+            String[] command = new String[] {XDG_OPEN, USERGUIDE_URL};
+            Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            logger.warning("Cannot open user guide URL");
+        } catch (SecurityException e) {
+            logger.warning("Cannot open user guide URL due to system's security manager");
         }
     }
 }
