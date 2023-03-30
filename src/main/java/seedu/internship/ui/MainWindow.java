@@ -16,7 +16,8 @@ import seedu.internship.logic.Logic;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
-import seedu.internship.ui.pages.ClashInfoPage;
+import seedu.internship.ui.pages.HomePage;
+import seedu.internship.ui.pages.Page;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private InternshipListPanel internshipListPanel;
-    private InternshipInfoPanel internshipInfoPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane internshipListPanelPlaceholder;
 
     @FXML
-    private StackPane internshipInfoPanelPlaceholder;
+    private StackPane pagePlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,12 +114,10 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    void fillInnerParts() throws CommandException, ParseException {
+
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
-
-        internshipInfoPanel = new InternshipInfoPanel();
-        internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -130,6 +128,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        // obtaining home page by executing "home" command internally
+        HomePage defaultPage = obtainHomePage();
+        pagePlaceholder.getChildren().add(defaultPage.getRoot());
+
     }
 
     /**
@@ -141,6 +144,25 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Obtains the HomePage by executing 'home' command.
+     *
+     * @return HomePage The Home page to be displayed at app launch.
+     * @throws CommandException
+     * @throws ParseException
+     */
+    private HomePage obtainHomePage() throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = executeCommand("home");
+            HomePage homePage = new HomePage(commandResult.getEvents());
+            return homePage;
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to obtain HomePage at app launch.");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 
@@ -176,10 +198,6 @@ public class MainWindow extends UiPart<Stage> {
         return internshipListPanel;
     }
 
-    public InternshipInfoPanel getInternshipInfoPanel() {
-        return internshipInfoPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -191,24 +209,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (!commandResult.isEmptyInternship()) {
-                internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
-                internshipInfoPanelPlaceholder.getChildren().clear();
-                internshipInfoPanelPlaceholder.getChildren().add(internshipInfoPanel.getRoot());
-            }
-            if (commandResult.isShowHelp()) {
+            switch (commandResult.getResultType()) {
+            case HELP:
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+                break;
+            case EXIT:
                 handleExit();
-            }
-
-            if (commandResult.isEmptyInternship()) {
-                ClashInfoPage clashInfoPage = new ClashInfoPage(commandResult.getClashingEvents());
-                internshipInfoPanelPlaceholder.getChildren().clear();
-                internshipInfoPanelPlaceholder.getChildren().add(clashInfoPage.getRoot());
-
+                break;
+            case HOME:
+            case STATS:
+            case CLASH:
+            case SHOW_INFO:
+            case CALENDAR:
+                pagePlaceholder.getChildren().clear();
+                pagePlaceholder.getChildren().add(Page.of(commandResult).getRoot());
+                break;
+            case FIND:
+                break;
+            case NO_CHANGE:
+                break;
+            default:
+                break;
             }
 
             return commandResult;
