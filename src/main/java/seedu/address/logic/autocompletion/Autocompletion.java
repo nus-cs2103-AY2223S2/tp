@@ -54,7 +54,7 @@ public class Autocompletion {
     };
 
     private String query;
-    private List<String> result;
+    private List<String> results;
 
     /**
      * Creates an autocompletion service.
@@ -62,7 +62,7 @@ public class Autocompletion {
      */
     public Autocompletion(String query) {
         this.query = query;
-        this.result = new ArrayList<>();
+        this.results = new ArrayList<>();
     }
 
     /**
@@ -73,9 +73,9 @@ public class Autocompletion {
         addSuggestionsForCommandWord();
         addSuggestionsForCommandWordUsage();
 
-        result.sort(Comparator.comparingInt(String::length));
+        results.sort(Comparator.comparingInt(String::length));
 
-        return result;
+        return results;
     }
 
     private void addSuggestionsForCommandWord() {
@@ -84,9 +84,9 @@ public class Autocompletion {
             for (String command : POSSIBLE_COMMAND_WORDS) {
                 if (command.toLowerCase().equals(trimmedToLowerQuery)
                         && COMMAND_WORD_USAGES.containsKey(trimmedToLowerQuery)) {
-                    result.add(" " + COMMAND_WORD_USAGES.get(trimmedToLowerQuery));
+                    results.add(" " + COMMAND_WORD_USAGES.get(trimmedToLowerQuery));
                 } else if (command.toLowerCase().startsWith(trimmedToLowerQuery)) {
-                    result.add(command.substring(trimmedToLowerQuery.length()));
+                    results.add(command.substring(trimmedToLowerQuery.length()));
                 }
             }
         }
@@ -95,7 +95,7 @@ public class Autocompletion {
     private void addSuggestionsForCommandWordUsage() {
         for (String key : COMMAND_WORD_USAGES.keySet()) {
             if (query.matches("(?i)^\\s*" + key + "\\s+$")) {
-                result.add(COMMAND_WORD_USAGES.get(key));
+                results.add(COMMAND_WORD_USAGES.get(key));
             }
         }
     }
