@@ -366,6 +366,11 @@ Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Adv
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
 
+### Uploading a csv file
+
+Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. Below is an example of a valid csv file
+![Valid csv file](images/CsvFileFormat.png)
+
 ### Archiving data files `[coming in v1.3]`
 
 * Different tabs for `Orders`, `Suppliers`
