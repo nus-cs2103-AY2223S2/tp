@@ -253,11 +253,17 @@ public class AutocompleteEngine {
             assert argPrefixes.size() == 1;
         }
 
+        long numOfNonRepeatingPrefixlessArgs = argPrefixes.stream()
+                .filter(Prefix::isPlaceholder)
+                .filter(prefix -> !prefix.isRepeatable())
+                .count();
         String remainingArgs = argPrefixes.stream()
                 // Skip the filled prefix-less arguments.
-                .skip(numOfWords)
-                // Remove filled prefixed arguments.
-                .filter(prefix -> prefix.isPlaceholder() || argumentMultimap.getValue(prefix).isEmpty())
+                .skip(Math.min(numOfWords, numOfNonRepeatingPrefixlessArgs))
+                // Remove filled non-repeating prefixed arguments.
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty()
+                        || prefix.isPlaceholder()
+                        || prefix.isRepeatable())
                 .map(Prefix::toString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
