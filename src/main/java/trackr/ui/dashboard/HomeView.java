@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
 import trackr.ui.listpanels.MenuListPanel;

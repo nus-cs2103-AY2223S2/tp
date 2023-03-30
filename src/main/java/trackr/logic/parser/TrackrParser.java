@@ -199,4 +199,52 @@ public class TrackrParser {
         }
     }
 
+    public static String getModel(String userInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        switch (commandWord) {
+
+        case ClearOrderCommand.COMMAND_WORD:
+        case ClearOrderCommand.COMMAND_WORD_SHORTCUT:
+        case FindOrderCommand.COMMAND_WORD:
+        case FindOrderCommand.COMMAND_WORD_SHORTCUT:
+        case ListOrderCommand.COMMAND_WORD:
+        case ListOrderCommand.COMMAND_WORD_SHORTCUT:
+            return "ORDERS";
+
+        case ClearSupplierCommand.COMMAND_WORD:
+        case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
+        case FindSupplierCommand.COMMAND_WORD:
+        case FindSupplierCommand.COMMAND_WORD_SHORTCUT:
+        case ListSupplierCommand.COMMAND_WORD:
+        case ListSupplierCommand.COMMAND_WORD_SHORTCUT:
+            return "CONTACTS";
+
+        case ClearTaskCommand.COMMAND_WORD:
+        case ClearTaskCommand.COMMAND_WORD_SHORTCUT:
+        case FindTaskCommand.COMMAND_WORD:
+        case FindTaskCommand.COMMAND_WORD_SHORTCUT:
+        case SortTasksCommand.COMMAND_WORD:
+        case SortTasksCommand.COMMAND_WORD_SHORTCUT:
+        case ListTaskCommand.COMMAND_WORD:
+        case ListTaskCommand.COMMAND_WORD_SHORTCUT:
+            return "TASKS";
+
+        case ClearMenuItemCommand.COMMAND_WORD:
+        case ClearMenuItemCommand.COMMAND_WORD_SHORTCUT:
+        case FindMenuItemCommand.COMMAND_WORD:
+        case FindMenuItemCommand.COMMAND_WORD_SHORTCUT:
+        case ListMenuItemCommand.COMMAND_WORD:
+        case ListMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return "MENU";
+
+        default:
+            return "OTHERS";
+        }
+    }
 }

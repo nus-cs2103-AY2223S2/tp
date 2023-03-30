@@ -5,7 +5,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
@@ -26,7 +25,6 @@ public class TabPanel extends UiPart<Region> {
     private HomeView homeView;
     private SupplierListPanel contactListPanel;
     private TaskListPanel taskListPanel;
-    private TaskListPanel sortedTaskListPanel;
     private OrderListPanel orderListPanel;
     private MenuListPanel menuListPanel;
 

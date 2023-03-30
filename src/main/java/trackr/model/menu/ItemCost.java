@@ -32,7 +32,7 @@ public class ItemCost {
 
     @Override
     public String toString() {
-        return "$" + value;
+        return "Cost Price: $" + value;
     }
 
     public String toJsonString() {

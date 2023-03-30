@@ -1,4 +1,4 @@
-package trackr.model.commons;
+package trackr.model;
 
 /**
  * Enum representing all tabs.
@@ -8,7 +8,8 @@ public enum TabEnum {
     ORDERS,
     TASKS,
     CONTACTS,
-    MENU;
+    MENU,
+    OTHERS;
 
     public static int getTabIndex(String targetStr) {
         return TabEnum.valueOf(targetStr).ordinal();

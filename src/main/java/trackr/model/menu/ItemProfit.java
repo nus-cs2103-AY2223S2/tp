@@ -32,7 +32,7 @@ public class ItemProfit {
 
     @Override
     public String toString() {
-        return "$" + value;
+        return "Profit: $" + value;
     }
 
     public String toJsonString() {

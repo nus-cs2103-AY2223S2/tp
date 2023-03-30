@@ -71,18 +71,18 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks" GridPane.rowIndex="2">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" GridPane.rowIndex="2">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <StackPane fx:id="tasksPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3" styleClass="dashboard-elems"/>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <StackPane fx:id="ordersPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3" styleClass="dashboard-elems"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <StackPane fx:id="ordersPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" styleClass="dashboard-elems" />
+      <StackPane fx:id="tasksPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" styleClass="dashboard-elems" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <font>
             <Font size="26.0" />

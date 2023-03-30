@@ -28,9 +28,11 @@
         </Label>
         <Label fx:id="itemName" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <Label fx:id="itemPrice" styleClass="cell_small_label" text="\$price" />
-      <Label fx:id="itemCost" styleClass="cell_small_label" text="\$cost" />
-      <Label fx:id="itemProfit" styleClass="cell_small_label" text="\$profit" />
+      <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label fx:id="itemPrice" styleClass="cell_small_label" text="\$price" />
+        <Label fx:id="itemCost" styleClass="cell_small_label" text="\$cost" />
+        <Label fx:id="itemProfit" styleClass="cell_small_label" text="\$profit" />
+      </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
