@@ -360,19 +360,19 @@ There are three use cases for the `find` command:
 2. Find by the current status of the application: `find s/STATUS`
 3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
 
-- The search for company name, job title, and status are case-insensitive.
+- The search for company name, job title, and status are case-insensitive. 
 - The order of KEYWORD doesn't matter.
-- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it
-  will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
+- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it 
+will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
 - Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
 
 Examples:
 * `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
 * `find s/PENDING` searches for all application that are pending.
-* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after
-  2023-12-02 12:30 PM (inclusive).
+* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
+2023-12-02 12:30 PM (inclusive).
 
-
+  
 ### Clearing all internship application entries : `clear`
 
 Clears all internship application entries from the internship tracker.
@@ -592,5 +592,3 @@ Action | Format, Examples
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
 **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
-
-

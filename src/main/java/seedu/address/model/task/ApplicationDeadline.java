@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class ApplicationDeadline {
 
-    public static final String MESSAGE_CONSTRAINTS = "Input date is invalid, it should be today(%s) onwards";
+    public static final String MESSAGE_CONSTRAINTS = "Input date is invalid, it should be from today onwards!";
 
     public final LocalDate applicationDeadline;
     public final String fullName;
@@ -24,7 +24,7 @@ public class ApplicationDeadline {
      */
     public ApplicationDeadline(LocalDate date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), String.format(MESSAGE_CONSTRAINTS, LocalDate.now()));
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         applicationDeadline = date;
         fullName = DateTimeFormatter.ofPattern("dd MMM yyyy, EEEE").format(date);
     }
