@@ -8,6 +8,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
+
 DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimized for**
 **use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
@@ -50,10 +51,13 @@ open the help window.<br>
    
 6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below
 for details of each command, or the [Command Summary](#Command summary).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Navigating the User Interface
+
 placeholder
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -72,7 +76,6 @@ placeholder
 | **Help**   | `help`                                                                                                                   |
 | **Undo**   | `undo [INTEGER]`                                                                                                         |
 | **Redo**   | `redo [INTEGER]`                                                                                                         |
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,6 +166,7 @@ The first character of the name must not be a whitespace
   * `DENV2`
   * `DENV3`
   * `DENV4`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
