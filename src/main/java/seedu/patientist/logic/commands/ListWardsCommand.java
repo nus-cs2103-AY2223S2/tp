@@ -1,9 +1,12 @@
 package seedu.patientist.logic.commands;
 
-import seedu.patientist.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.patientist.model.Model;
+
+/**
+ * Lists all wards in the patientist book to the user.
+ */
 public class ListWardsCommand extends Command {
     public static final String COMMAND_WORD = "lsward";
 

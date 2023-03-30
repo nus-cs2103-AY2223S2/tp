@@ -1,5 +1,7 @@
 package seedu.patientist.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -7,8 +9,9 @@ import javafx.scene.control.ListView;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.ward.Ward;
 
-import java.util.logging.Logger;
-
+/**
+ * Panel containing the list of wards.
+ */
 public class WardListPanel extends UiPart<Node> {
     private static final String FXML = "WardListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(WardListPanel.class);
