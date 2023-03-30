@@ -11,8 +11,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.model.recipe.Recipe;
 
 
 /**

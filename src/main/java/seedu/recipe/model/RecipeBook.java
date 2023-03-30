@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.UniqueRecipeList;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.util.SubstitutionsUtil;
 
 /**
  * Wraps all data at the recipe-book level
@@ -15,6 +17,7 @@ import seedu.recipe.model.recipe.UniqueRecipeList;
 public class RecipeBook implements ReadOnlyRecipeBook {
 
     private final UniqueRecipeList recipes;
+    private final List<IngredientBuilder> substitutes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +29,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
 
     {
         recipes = new UniqueRecipeList();
+        substitutes = SubstitutionsUtil.getPreloadedSubstitutions();
     }
 
     public RecipeBook() {
@@ -93,6 +97,15 @@ public class RecipeBook implements ReadOnlyRecipeBook {
      */
     public void removeRecipe(Recipe key) {
         recipes.remove(key);
+    }
+
+
+    /**
+     * Returns the preloaded substitutes in this {@code RecipeBook}.
+     */
+    @Override
+    public List<IngredientBuilder> getPreloadedSubstitutes() {
+        return this.substitutes;
     }
 
     //// util methods

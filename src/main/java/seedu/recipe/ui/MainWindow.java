@@ -16,8 +16,8 @@ import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
