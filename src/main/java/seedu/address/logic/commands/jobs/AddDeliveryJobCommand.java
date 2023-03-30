@@ -29,7 +29,7 @@ public class AddDeliveryJobCommand extends DeliveryJobCommand {
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the delivery job system. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_SENDER_ID + "SENDER ID "
             + PREFIX_RECIPIENT_ID + "RECIPIENT ID "
             + PREFIX_DELIVERY_DATE + "DELIVERY DATE "

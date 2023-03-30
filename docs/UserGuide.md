@@ -17,6 +17,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
             * Linked with list of jobs
             * Sort job list by date and slot
             * Display timetable of all scheduled/upcoming jobs in the week
+            * Display list of invalid and completed jobs
          * Stats dashboard:
             * Display all-time statistics
             * Display previous week's statistics
@@ -47,12 +48,12 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    * `list` : Lists all contacts.
    
    * `list_job` : Lists all jobs.
+   
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-  * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `timetable` : Shows timetable of current week.
 
-  * `timetable` : Shows timetable of current week.
-
-  * `exit` : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -92,7 +93,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## 1. Features related to Customers/Address Book
+## 1. Features available for Customers/Address Book
 ### *Can only access from Customer Window*
 ### 1.1. Adding a person: `add`
 
@@ -163,7 +164,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-## 2. Features related to Delivery Jobs
+
+## 2. Features available for Delivery Jobs
 ### *Can only access from Main Window*
 ### 2.1. Adding a job: `add_job`
 
@@ -189,10 +191,16 @@ Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
+### 2.3. Listing all customers : `list`
 
-## 3. Features related to Reminders
+Switch to Customer Window.
+Shows a list of all persons/customers in the address book in Customer Window.
+
+Format: `list`
+
+
+## 3. Features available for Reminders
 ### *Can only access from Main Window*
-
 ### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Duke Driver.
@@ -225,9 +233,8 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
-## 4. Features related to Timetable
+## 4. Features available for Timetable
 ### *Can only access from Main Window*
-
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
@@ -257,9 +264,8 @@ Jobs are sorted in increasing date and decreasing earning order.
 
 Format: `timetable_unscheduled`
 
-## 5. Features related to Statistics
+## 5. Features available for Statistics
 ### *Can only access from Main Window*
-
 ### 5.1. Showing Statistics : `stats`
 
 Shows a summary of statistics related to the jobs in the job list
@@ -316,8 +322,9 @@ _Details coming soon ..._
 * Commands that start with *(M)* could only be accessed from Main Window 
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
+
 Action | Format, Examples
---------|------------------
+--------|-----------------
 ***(C)* Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 ***(C)* Clear** | `clear`
 ***(C)* Delete** | `delete INDEX`<br> e.g., `delete 3`

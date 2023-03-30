@@ -16,6 +16,7 @@ import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.ui.HelpWindow;
+import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -69,7 +70,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     /**
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and
-     * {@code Logic} with a select handler and {@code MainWindow}.
+     * {@code Logic} with a select handler and {@code HelpWindow}.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic,
                              Consumer<Person> selectHandler,

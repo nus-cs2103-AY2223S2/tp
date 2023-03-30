@@ -17,6 +17,7 @@ public class DeleteDeliveryJobCommandParser implements Parser<DeleteDeliveryJobC
      */
     public DeleteDeliveryJobCommand parse(String args) throws ParseException {
         String jobId = args.trim();
+
         return new DeleteDeliveryJobCommand(jobId);
     }
 
