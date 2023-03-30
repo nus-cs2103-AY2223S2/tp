@@ -344,7 +344,7 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 ##### Example
 
-* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Moderna`
+* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)`
 
 ##### Restrictions
 
