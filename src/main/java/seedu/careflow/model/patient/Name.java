@@ -11,7 +11,7 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters, spaces,"
-                    + "special character like \" . \", \" - \", \" \' \""
+                    + " and special character like \" . \", \" - \", \" \' \""
                     + " it should have a length between 1 and 50 characters and it must not be left blank";
 
     /*
