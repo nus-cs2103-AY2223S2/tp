@@ -260,7 +260,7 @@ E.g `tag g/SoC g/Sailing` <br>
   e.g. `[m/MODULE]…​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
 
 * Unless otherwise specified, arguments can be in any order.<br>
-  e.g. if the command specifies `n/NAME a/ADDRESS`, `a/ADDRESS n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME s/STATION`, `a/STATION n/NAME` is also acceptable.
 
 * If an argument is expected only once in the command, but you specified it multiple times, only the **last** occurrence of the argument will be taken.<br>
   e.g. `p/86544145 p/81353055` will be interpreted as `p/81353055`.
@@ -315,11 +315,11 @@ Rules: `EMAIL` should be of the form `local@domain`, where
 * `domain` {can someone fill up}<br>
   Example: `e/wenli@gmail.com`
 
-### Home Address
+### Home Station
 
 Description: The name of the **closest MRT station** to their home.<br>
-Pattern: `a/ADDRESS`<br>
-Rules: `ADDRESS` should be the name of a valid MRT station.<br>
+Pattern: `a/STATION`<br>
+Rules: `STATION` should be the name of a valid MRT station.<br>
 Example: `a/Boon Lay`
 
 ### Telegram Handle
@@ -357,17 +357,17 @@ Example: `m/CS1234 mon 12 13`
 Adds a contact to the EduMate.
 
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
+* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
-* `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
+* `add n/Wen Li p/89229358 s/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
     * Name: `Wen Li`
     * Phone number: `89229358`
-    * Address: `Boon Lay`
+    * Station: `Boon Lay`
     * Email: `wenli@gmail.com`
     * Telegram handle: `@wenli`
     * Groups: `Groupmate`
@@ -413,7 +413,7 @@ What you should see:<br>
 Examples:
 * `edit 3 n/Wen Qing`: Changes the name of the third contact to `Wen Qing`.
 * `edit 6 p/89229358 t/@wenqing`: Changes the phone number and telegram handle of the sixth contact.
-* `edit a/Bedok`: Updates your address to `Bedok`.
+* `edit s/Bedok`: Updates your station to `Bedok`.
 
 ### Delete a contact `delete`
 
@@ -537,7 +537,7 @@ Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format
 
 :information_source: How we sort the attributes:
 
-* The `NAME`, `EMAIL`, `ADDRESS`, `PHONE` and `TELEGRAM` attributes are sorted by alphabetical order, and is default in **ascending** order.
+* The `NAME`, `EMAIL`, `STATION`, `PHONE` and `TELEGRAM` attributes are sorted by alphabetical order, and is default in **ascending** order.
 * For `GROUP`, we sort the contacts based on the number of groups the contact belongs to. By default, we sort in **descending order**.<br>
   e.g. if Alex has 2 groups (TA, NS), and Ben has one group (TA), Alex will be placed before Ben in the default ordering.
 * For `MODULE`, we sort the contacts based on the number of **common modules** they share with you. By default, we sort in **descending order**.<br>
@@ -648,7 +648,7 @@ suggest new features and it is easily extensible!
 | Prefix | Representation  |
 |--------|-----------------|
 | n/     | Name            |
-| a/     | Address         | 
+| s/     | Station         | 
 | p/     | Telegram Handle | 
 | e/     | Email           | 
 | g/     | Group           | 
@@ -661,7 +661,7 @@ suggest new features and it is easily extensible!
 |----------------------|----------------------------------------------------------------------------------------|-------------------------------------------------------------|
 | **Add a contact**    | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                           |
 | **View a profile**   | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                   |
-| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit a/NUS t/@wenqing`                |
+| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                           | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                |
 | **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
 | **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
 | **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |

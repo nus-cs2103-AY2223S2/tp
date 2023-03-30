@@ -18,7 +18,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -114,18 +114,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String station} into an {@code Station}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code station} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Station parseStation(String station) throws ParseException {
+        requireNonNull(station);
+        String trimmedStation = station.trim();
+        if (!Station.isValidStation(trimmedStation)) {
+            throw new ParseException(Station.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Station(trimmedStation);
     }
 
     /**

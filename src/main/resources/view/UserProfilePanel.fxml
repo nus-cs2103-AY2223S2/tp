@@ -44,7 +44,7 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-        <Label fx:id="address" text="\$address" wrapText="true">
+        <Label fx:id="station" text="\$address" wrapText="true">
          <padding>
             <Insets left="10.0" />
          </padding>

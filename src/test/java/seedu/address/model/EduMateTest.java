@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
@@ -53,7 +53,7 @@ public class EduMateTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
+        Person editedAlbert = new PersonBuilder(ALBERT).withStation(STATION_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         List<Person> newPersons = Arrays.asList(ALBERT, editedAlbert);
         User validUser = TypicalUser.getTypicalUser();
@@ -81,7 +81,7 @@ public class EduMateTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInEduMate_returnsTrue() {
         eduMate.addPerson(ALBERT);
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
+        Person editedAlbert = new PersonBuilder(ALBERT).withStation(STATION_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         assertTrue(eduMate.hasPerson(editedAlbert));
     }

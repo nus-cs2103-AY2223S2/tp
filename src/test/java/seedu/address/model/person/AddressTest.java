@@ -6,46 +6,46 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class AddressTest {
+public class StationTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Address(null));
+        assertThrows(NullPointerException.class, () -> new Station(null));
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+    public void constructor_invalidStation_throwsIllegalArgumentException() {
+        String invalidStation = "";
+        assertThrows(IllegalArgumentException.class, () -> new Station(invalidStation));
     }
 
     @Test
-    public void isValidAddress() {
-        // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
+    public void isValidStation() {
+        // invalid stations
+        assertFalse(Station.isValidStation("")); // empty string
+        assertFalse(Station.isValidStation(" ")); // spaces only
 
-        // valid addresses
-        assertTrue(Address.isValidAddress("Punggol"));
-        assertTrue(Address.isValidAddress("Pasir Ris"));
-        assertTrue(Address.isValidAddress("Sixth Avenue"));
+        // valid stations
+        assertTrue(Station.isValidStation("Punggol"));
+        assertTrue(Station.isValidStation("Pasir Ris"));
+        assertTrue(Station.isValidStation("Sixth Avenue"));
 
         // wrong case but still works
-        assertTrue(Address.isValidAddress("punGGol"));
-        assertTrue(Address.isValidAddress("pasir ris"));
-        assertTrue(Address.isValidAddress("SIXTH avenue"));
+        assertTrue(Station.isValidStation("punGGol"));
+        assertTrue(Station.isValidStation("pasir ris"));
+        assertTrue(Station.isValidStation("SIXTH avenue"));
 
         // untrimmed still works
-        assertTrue(Address.isValidAddress("   Punggol"));
-        assertTrue(Address.isValidAddress("Pasir Ris   "));
+        assertTrue(Station.isValidStation("   Punggol"));
+        assertTrue(Station.isValidStation("Pasir Ris   "));
 
         // wrong spacing
-        assertFalse(Address.isValidAddress("Pasir  Ris"));
-        assertFalse(Address.isValidAddress("   Sixth     Avenue  "));
+        assertFalse(Station.isValidStation("Pasir  Ris"));
+        assertFalse(Station.isValidStation("   Sixth     Avenue  "));
 
         // looks valid, but is wrong
-        assertFalse(Address.isValidAddress("Pungol"));
-        assertFalse(Address.isValidAddress("Paris Ris"));
-        assertFalse(Address.isValidAddress("Fifth Avenue"));
+        assertFalse(Station.isValidStation("Pungol"));
+        assertFalse(Station.isValidStation("Paris Ris"));
+        assertFalse(Station.isValidStation("Fifth Avenue"));
     }
 }
