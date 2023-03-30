@@ -111,7 +111,7 @@
     -fx-background-color: #a08679;
 }
 
-.list-view .list-cell.deadline-date {
+.list-cell:filled:overdue {
     -fx-background-color: #b5651d;
 }
 
@@ -309,6 +309,11 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.due_pane {
+    -fx-background-color: #90EE90;
+    -fx-background-radius: 7px;
 }
 
 #cardPane {

@@ -57,6 +57,6 @@ public class Cost {
      */
     public String toString() {
         double amount = calculate();
-        return "Cost: $" + Math.round(amount * 100.00) / 100.00;
+        return "$" + Math.round(amount * 100.00) / 100.00;
     }
 }
