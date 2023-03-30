@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import trackr.commons.util.CollectionUtil;
 import trackr.model.item.ItemDescriptor;
-import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.
@@ -17,8 +17,8 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
     private OrderQuantity orderQuantity;
     private OrderStatus orderStatus;
     private PersonName customerName;
-    private CustomerPhone customerPhone;
-    private CustomerAddress customerAddress;
+    private PersonPhone customerPhone;
+    private PersonAddress customerAddress;
 
     public OrderDescriptor() {}
 
@@ -43,11 +43,11 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
                 orderStatus, customerAddress, customerName, customerPhone);
     }
 
-    public void setCustomerAddress(CustomerAddress customerAddress) {
+    public void setCustomerAddress(PersonAddress customerAddress) {
         this.customerAddress = customerAddress;
     }
 
-    public Optional<CustomerAddress> getCustomerAddress() {
+    public Optional<PersonAddress> getCustomerAddress() {
         return Optional.ofNullable(customerAddress);
     }
 
@@ -59,11 +59,11 @@ public class OrderDescriptor implements ItemDescriptor<Order> {
         return Optional.ofNullable(customerName);
     }
 
-    public void setCustomerPhone(CustomerPhone customerPhone) {
+    public void setCustomerPhone(PersonPhone customerPhone) {
         this.customerPhone = customerPhone;
     }
 
-    public Optional<CustomerPhone> getCustomerPhone() {
+    public Optional<PersonPhone> getCustomerPhone() {
         return Optional.ofNullable(customerPhone);
     }
 

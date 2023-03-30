@@ -18,8 +18,6 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -293,13 +291,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerPhone} is invalid.
      */
-    public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
+    public static PersonPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
-        if (!CustomerPhone.isValidPersonPhone(trimmedCustomerPhone)) {
-            throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(trimmedCustomerPhone)) {
+            throw new ParseException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerPhone(trimmedCustomerPhone);
+        return new PersonPhone(trimmedCustomerPhone);
     }
 
     /**
@@ -308,13 +306,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerAddress} is invalid.
      */
-    public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
+    public static PersonAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
-        if (!CustomerAddress.isValidPersonAddress(trimmedCustomerAddress)) {
-            throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(trimmedCustomerAddress)) {
+            throw new ParseException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerAddress(trimmedCustomerAddress);
+        return new PersonAddress(trimmedCustomerAddress);
     }
 
     //========================Parse those related to tab==================================

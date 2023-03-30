@@ -6,9 +6,9 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
-import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * A utility class to help with building Order objects.
@@ -28,8 +28,8 @@ public class OrderBuilder {
     private OrderDeadline orderDeadline;
     private OrderStatus orderStatus;
     private PersonName customerName;
-    private CustomerPhone customerPhone;
-    private CustomerAddress customerAddress;
+    private PersonPhone customerPhone;
+    private PersonAddress customerAddress;
 
     /**
      * Creates a {@code OrderBuilder} with the default details.
@@ -40,8 +40,8 @@ public class OrderBuilder {
         orderDeadline = new OrderDeadline(DEFAULT_ORDER_DEADLINE);
         orderStatus = new OrderStatus(DEFAULT_ORDER_STATUS);
         customerName = new PersonName(DEFAULT_CUSTOMER_NAME);
-        customerPhone = new CustomerPhone(DEFAULT_CUSTOMER_PHONE);
-        customerAddress = new CustomerAddress(DEFAULT_CUSTOMER_ADDRESS);
+        customerPhone = new PersonPhone(DEFAULT_CUSTOMER_PHONE);
+        customerAddress = new PersonAddress(DEFAULT_CUSTOMER_ADDRESS);
     }
 
     /**
@@ -109,7 +109,7 @@ public class OrderBuilder {
      * Sets the {@code CustomerPhone} of the {@code Order} that we are building.
      */
     public OrderBuilder withCustomerPhone(String customerPhone) {
-        this.customerPhone = new CustomerPhone(customerPhone);
+        this.customerPhone = new PersonPhone(customerPhone);
         return this;
     }
 
@@ -117,7 +117,7 @@ public class OrderBuilder {
      * Sets the {@code CustomerAddress} of the {@code Order} that we are building.
      */
     public OrderBuilder withCustomerAddress(String customerAddress) {
-        this.customerAddress = new CustomerAddress(customerAddress);
+        this.customerAddress = new PersonAddress(customerAddress);
         return this;
     }
 

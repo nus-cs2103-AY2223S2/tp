@@ -10,9 +10,9 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
-import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -79,21 +79,21 @@ public class JsonAdaptedOrder {
 
         if (customerPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerPhone.class.getSimpleName()));
+                    PersonPhone.class.getSimpleName()));
         }
-        if (!CustomerPhone.isValidPersonPhone(customerPhone)) {
-            throw new IllegalValueException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(customerPhone)) {
+            throw new IllegalValueException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        final CustomerPhone modelPhone = new CustomerPhone(customerPhone);
+        final PersonPhone modelPhone = new PersonPhone(customerPhone);
 
         if (customerAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerAddress.class.getSimpleName()));
+                    PersonAddress.class.getSimpleName()));
         }
-        if (!CustomerAddress.isValidPersonAddress(customerAddress)) {
-            throw new IllegalValueException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(customerAddress)) {
+            throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        final CustomerAddress modelAddress = new CustomerAddress(customerAddress);
+        final PersonAddress modelAddress = new PersonAddress(customerAddress);
 
         if (orderName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

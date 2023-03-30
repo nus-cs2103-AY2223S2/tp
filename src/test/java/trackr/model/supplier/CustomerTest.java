@@ -1,4 +1,4 @@
-package trackr.model.order.customer;
+package trackr.model.supplier;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
