@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -144,12 +145,14 @@ public class AutocompleteEngine {
     public String autocompleteCommand(String userInput, String commandSuggestion) {
         // Command suggested but not yet entered by user
         String remainingSuggestion = commandSuggestion.substring(userInput.length());
-        Pattern nextAutocompleteRegex = Pattern.compile("^ *[a-z0-9_]*\\/*", Pattern.CASE_INSENSITIVE);
+        Pattern nextAutocompleteRegex = Pattern.compile("^ *\\[*[a-z0-9_]*\\/*", Pattern.CASE_INSENSITIVE);
         String nextAutocomplete = Optional.of(nextAutocompleteRegex.matcher(remainingSuggestion))
                 .filter(Matcher::find)
                 .map(Matcher::group)
-                .filter(match -> !match.trim().equals(INDEX_PLACEHOLDER.getPlaceholderText()))
-                .filter(match -> !match.trim().equals(KEYWORD_PLACEHOLDER.getPlaceholderText()))
+                .map(match -> match.replaceAll("[\\[\\]\\.]", "")) // Remove optional/repeating prefix artifacts.
+                .filter(match -> !match.trim().equals(INDEX_PLACEHOLDER.toString()))
+                .filter(match -> !match.trim().equals(KEYWORD_PLACEHOLDER.toString()))
+                .filter(match -> !match.trim().equals(REMARK_PLACEHOLDER.toString()))
                 .orElse("");
         return userInput + nextAutocomplete;
     }
@@ -175,7 +178,7 @@ public class AutocompleteEngine {
 
         if (commmandBody.isBlank()) {
             String allArgs = argPrefixes.stream()
-                    .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
+                    .map(Prefix::toString)
                     .collect(Collectors.joining(" "));
             String leadingPadding = commmandBody.isEmpty() ? " " : "";
             return leadingPadding + allArgs;
@@ -232,13 +235,14 @@ public class AutocompleteEngine {
                     .filter(prefix -> !prefix.isPlaceholder())
                     // Get only unfilled arguments.
                     .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
-                    .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
-                    .filter(str -> str.startsWith(lastWord))
+                    .filter(prefix -> prefix.getPrefix().startsWith(lastWord))
+                    .map(Prefix::toString)
                     .collect(Collectors.joining(" "));
 
             return matchingArgs.isEmpty()
                     ? ""
-                    : matchingArgs.substring(lastWord.length());
+                    : matchingArgs.replaceFirst("^\\[", "") // If first arg is optional, remove it's opening bracket.
+                            .substring(lastWord.length());
         }
 
         boolean isKeywordRequired = argPrefixes.contains(KEYWORD_PLACEHOLDER);
@@ -254,7 +258,7 @@ public class AutocompleteEngine {
                 .skip(numOfWords)
                 // Remove filled prefixed arguments.
                 .filter(prefix -> prefix.isPlaceholder() || argumentMultimap.getValue(prefix).isEmpty())
-                .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
+                .map(Prefix::toString)
                 .collect(Collectors.joining(" "));
         return remainingArgs;
     }
