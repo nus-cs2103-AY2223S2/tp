@@ -458,18 +458,28 @@ appointment mark INDEX
 ##### Restrictions
 
 * The index must be an existing index in the appointment manager.
+* The specified appointment should not already be done.
 
 <br></br>
 
 #### `unmark` - Changes an appointment's status to not done
 
+Changes the completion status to not done.
+
 ```text
-appointment unmark <integer>
+appointment unmark INDEX
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
 
 ##### Example
 
 * `appointment unmark 1`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The specified appointment should already be done.
 
 <br></br>
 
