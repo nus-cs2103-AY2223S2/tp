@@ -1,67 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import java.net.URL?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@ApplicationListCard.css" />
     </stylesheets>
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-          <VBox alignment="CENTER_LEFT" minHeight="105">
-            <padding>
-              <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-              <Label fx:id="id" styleClass="cell_big_label">
-                <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-                </minWidth>
-              </Label>
-              <Label fx:id="companyName" styleClass="cell_big_label" text="\$companyName" />
-            </HBox>
-            <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" />
-            <Label fx:id="internshipStatus" styleClass="cell_small_label" text="\$internshipStatus" />
-            <Label fx:id="interviewDate" managed="false" styleClass="cell_small_label" text="\$interviewDate" visible="false" />
-            <Label fx:id="phone" managed="false" styleClass="cell_small_label" visible="false" />
-            <Label fx:id="email" managed="false" styleClass="cell_small_label" visible="false" />
-            <Label fx:id="resume" managed="false" styleClass="cell_small_label" visible="false" />
-            <Label fx:id="coverLetter" managed="false" styleClass="cell_small_label" visible="false" />
-          </VBox>
-         </children>
-      </HBox>
-      <rowConstraints>
+    <GridPane alignment="CENTER" hgap="0" minWidth="420.0" prefHeight="52.0" prefWidth="414.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="100.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" percentWidth="10.0" />
+         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+        <HBox maxWidth="Infinity" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <VBox alignment="CENTER_LEFT" minHeight="103.0" prefHeight="103.0" prefWidth="386.0">
+                    <padding>
+                        <Insets bottom="5" left="15" right="5" top="5" />
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="5">
+                        <Label fx:id="id" styleClass="cell_big_label">
+                            <minWidth>
+                                <!-- Ensures that the label text is never truncated -->
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                        </Label>
+                        <Label fx:id="companyName" styleClass="cell_big_label" text="\$companyName" wrapText="true" />
+                    </HBox>
+                    <Label fx:id="jobTitle" styleClass="cell_small_label" text="\$jobTitle" />
+                    <Label fx:id="internshipStatus" styleClass="cell_small_label" text="\$internshipStatus" wrapText="true" />
+                    <Label fx:id="interviewDate" managed="false" styleClass="cell_small_label" text="\$interviewDate" visible="false" />
+                    <Label fx:id="phone" managed="false" styleClass="cell_small_label" visible="false" />
+                    <Label fx:id="email" managed="false" styleClass="cell_small_label" visible="false" />
+                    <Label fx:id="resume" managed="false" styleClass="cell_small_label" visible="false" />
+                    <Label fx:id="coverLetter" managed="false" styleClass="cell_small_label" visible="false" />
+                </VBox>
+
+            </children>
+        </HBox>
+           <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleEditInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="primary-button" GridPane.columnIndex="1">
+               <graphic>
+                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/edit_internship.png" />
+                       </image>
+                   </ImageView>
+               </graphic>
+           </Button>
+      <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleDeleteInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="delete-button" GridPane.columnIndex="2">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="archiveButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleArchiveInternshipClicked" prefHeight="28.0" prefWidth="44.0" styleClass="archive-button" GridPane.columnIndex="3">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="archive-button">
+               <image>
+                  <Image url="@../images/archive.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+        <rowConstraints>
+            <RowConstraints />
          <RowConstraints />
-      </rowConstraints>
-  </GridPane>
-   <AnchorPane prefHeight="105.0" prefWidth="13.0">
-      <children>
-         <Button fx:id="editButton" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#handleEditInternshipClicked" prefWidth="61.0" styleClass="primary-button" stylesheets="@PopupAddInternship.css" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
-            <graphic>
-               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/edit_internship.png" />
-                  </image>
-               </ImageView>
-            </graphic>
-         </Button>
-      </children>
-   </AnchorPane>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+        </rowConstraints>
+    </GridPane>
 </HBox>

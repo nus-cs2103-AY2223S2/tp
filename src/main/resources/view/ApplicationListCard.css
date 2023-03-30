@@ -20,3 +20,57 @@
     -fx-fill: white;
     -fx-family: "Segoe UI Light";
 }
+
+#id {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+#companyName {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.primary-button {
+    -fx-background-color: #55CEFF;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2d3f4d;
+}
+
+.primary-button:hover {
+    -fx-background-color: #3769FF;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #0072A0;
+}
+
+.delete-button {
+    -fx-background-color: #B80F0A;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2d3f4d;
+}
+
+.delete-button:hover {
+    -fx-background-color: #420D09;
+}
+
+.delete-button:pressed {
+    -fx-background-color: #0072A0;
+}
+
+.archive-button {
+    -fx-background-color: #EEE8A;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2d3f4d;
+}
+
+.archive-button:hover {
+    -fx-background-color: #EEDD82;
+}
+
+.archive-button:pressed {
+    -fx-background-color: #DAA520;
+}
+
