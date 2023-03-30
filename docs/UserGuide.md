@@ -267,7 +267,7 @@ Deletes a keyword as defined in the command in the system.
 ##### Syntax
 
 <pre>
-keyword delete <var>keyword</var>
+keyword delete <var>KEYWORD</var>
 </pre>
 
 * <code><var>KEYWORD</var></code> : `<keyword>`
