@@ -79,15 +79,17 @@ Examples:
 
 Deletes a person at the specified person list index.
 
-Format: `deletePerson PERSON_INDEX`
+Format: `deletePerson PERSON_INDEX [-f]`
 
 * Deletes the person at the specified PERSON_INDEX.
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
+* The `-f` flag is optional and should be included in the case where the person to delete has borrowed books and you would like to return all books while deleting the person. Else, a warning message will appear when you try to delete the person without the flag.
 
 Examples:
 
 * `listPerson` followed by `deletePerson 2` deletes the 2nd person in the user records.
+* `listPerson` followed by `deletePerson 3 -f` deletes the 3rd person in the user records and returns all books the person has borrowed, if any.
 
 #### Editing a person : `editPerson`
 
@@ -139,7 +141,7 @@ Examples:
 
 Adds a book to the book records.
 
-Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
+Format: `addBook t/TITLE a/AUTHOR i/ISBN​`
 
 Examples:
 
@@ -149,15 +151,17 @@ Examples:
 
 Delete a book given an index in the book list.
 
-Format: `deleteBook BOOK_INDEX`
+Format: `deleteBook BOOK_INDEX [-f]`
 
 * Deletes the book at the specified BOOK_INDEX.
 * The index refers to the index number shown in the displayed book list.
-* The index must be a positive integer 1, 2, 3, …​
+* The index must be a positive integer 1, 2, 3, …
+* The `-f` flag is optional and should be included in the case where the book to delete has been borrowed by a person and you would like to return the book while deleting it. Else, a warning message will appear when you try to delete the book without the flag.​
 
 Examples:
 
 * `listBook` followed by `deleteBook 2` deletes the 2nd book in the user records.
+* `listBook` followed by `deleteBook 3 -f` deletes the 3rd book in the user records and returns it if it is borrowed.
 
 #### Editing a book : `editBook`
 
