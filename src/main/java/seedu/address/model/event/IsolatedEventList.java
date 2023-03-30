@@ -1,10 +1,7 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
@@ -99,6 +96,29 @@ public class IsolatedEventList {
         isolatedEvents.remove(originalEvent);
         isolatedEvents.add(editedEvent);
     }
+
+    /**
+     * This function cross-check with the recurring event list to check for any conflicts
+     * @param isolatedEvent is the event to be added
+     * @throws EventConflictException if there is a conflicted event
+     */
+    public void listConflictedEventWithIsolated(IsolatedEvent isolatedEvent) throws EventConflictException {
+
+        LocalDateTime startPeriod = isolatedEvent.getStartDate();
+        LocalDateTime endPeriod = isolatedEvent.getEndDate();
+
+        int index = 1;
+
+        for (IsolatedEvent ie : this.isolatedEvents) {
+            LocalDateTime currStart = ie.getStartDate();
+            LocalDateTime currEnd = ie.getEndDate();
+            if (startPeriod.isAfter(currStart) || startPeriod.isBefore(currEnd)) {
+                throw new EventConflictException("Isolated Event:\n" + index + ". " + ie);
+            }
+            index++;
+        }
+    }
+
 
     /**
      * This function cross-check with the recurring event list to check for any conflicts

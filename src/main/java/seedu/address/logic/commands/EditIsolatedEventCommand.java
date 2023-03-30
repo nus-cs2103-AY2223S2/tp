@@ -74,9 +74,8 @@ public class EditIsolatedEventCommand extends Command {
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
         editedIsolatedEvent.checkDateTime();
-
+        personToEdit.getIsolatedEventList().listConflictedEventWithIsolated(editedIsolatedEvent);
         IsolatedEventList.listConflictedEventWithRecurring(editedIsolatedEvent, personToEdit.getRecurringEventList());
-
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
