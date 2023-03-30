@@ -16,6 +16,11 @@ public class Messages {
     public static final String MESSAGE_VACCINATION_LISTED_OVERVIEW = "Filter(s) applied %d vaccinations listed";
     public static final String MESSAGE_VACCINATION_FILTER_CLEAR = "Filter(s) cleared %d vaccinations listed";
 
+    public static final String MESSAGE_EXISTING_KEYWORD_EXISTS = "There is an existing keyword mapping for %s! " +
+            "Please delete before creating a new keyword mapping with %s. \n";
+    public static final String MESSAGE_INVALID_MAIN_KEYWORD = "Invalid main keyword! Only %s, %s, and %s are allowed. \n";
+    public static final String MESSAGE_INVALID_SUB_KEYWORD = "Invalid new keyword! %s, %s, and %s are NOT allowed. \n";
+
     public static final String FORMAT_UNEXPECTED_APPOINTMENT_CHANGE = "Unexpected change detected!\n"
             + "The following appointments will become invalid if the change were to happen:%s";
     public static final String MESSAGE_USE_FORCE = "Add [--force true] to the command to force the change";

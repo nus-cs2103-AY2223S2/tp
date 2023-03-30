@@ -47,4 +47,12 @@ public class KeywordManager {
         return keywordMap;
     }
 
+    public static boolean existingMappingExists(String keyword) {
+        if (keywordMap.containsKey(keyword)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

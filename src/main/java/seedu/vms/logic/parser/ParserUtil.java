@@ -2,6 +2,14 @@ package seedu.vms.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.vms.commons.core.Messages.MESSAGE_EXISTING_KEYWORD_EXISTS;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
+import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
+import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
+
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,6 +24,7 @@ import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
@@ -254,6 +263,13 @@ public class ParserUtil {
     public static String parseKeyword(String keyword) throws ParseException {
         requireNonNull(keyword);
         String trimmedKeyword = keyword.trim();
+        if (Keyword.isValidMainKeyword(trimmedKeyword)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_SUB_KEYWORD, 
+            MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING));
+        }
+        if (KeywordManager.existingMappingExists(trimmedKeyword)) {
+            throw new ParseException(String.format(MESSAGE_EXISTING_KEYWORD_EXISTS, trimmedKeyword, trimmedKeyword));
+        }
         return trimmedKeyword;
     }
 
@@ -267,7 +283,8 @@ public class ParserUtil {
         requireNonNull(mainKeyword);
         String trimmedMainKeyword = mainKeyword.trim();
         if (!Keyword.isValidMainKeyword(trimmedMainKeyword)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_MAIN_KEYWORD, 
+            MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING));
         }
         return trimmedMainKeyword;
     }

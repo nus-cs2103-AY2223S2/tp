@@ -4,9 +4,9 @@ package seedu.vms.model.keyword;
  * Represents an Keyword in the vaccine management system.
  */
 public class Keyword {
-    private static final String MAIN_APPOINTMENT_STRING = "appointment";
-    private static final String MAIN_PATIENT_STRING = "patient";
-    private static final String MAIN_VACCINATION_STRING = "vaccination";
+    public static final String MAIN_APPOINTMENT_STRING = "appointment";
+    public static final String MAIN_PATIENT_STRING = "patient";
+    public static final String MAIN_VACCINATION_STRING = "vaccination";
 
     private final String keyword;
     private final String mainKeyword;
