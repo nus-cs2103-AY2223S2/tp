@@ -67,7 +67,11 @@ public class CommandTestUtil {
     public static final String INVALID_COMPANY_DESC_2 = " " + PREFIX_COMPANY + ""; // blanks not allowed in company
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "shopee!yahoo"; // missing '@' symbol
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS; // empty string not allowed for statuses
-    public static final String INVALID_DATE_DESC = " " + PREFIX_KEYDATE + "hubby*"; // '*' not allowed in dates
+    public static final String INVALID_DATE_DESC_1 = " " + PREFIX_KEYDATE + "OA 2023-03-03"; // missing '@' symbol
+    public static final String INVALID_DATE_DESC_2 = " " + PREFIX_KEYDATE + "OA@2023/03/03"; // dates must use '-'
+    public static final String INVALID_DATE_DESC_3 = " " + PREFIX_KEYDATE + "@2023/03/03"; // keydate must have non-blank name
+    public static final String INVALID_DATE_DESC_4 = " " + PREFIX_KEYDATE + "OA@2023/99/03"; // month must be valid
+    public static final String INVALID_DATE_DESC_5 = " " + PREFIX_KEYDATE + "OA@2023/03/99"; // day must be valid
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

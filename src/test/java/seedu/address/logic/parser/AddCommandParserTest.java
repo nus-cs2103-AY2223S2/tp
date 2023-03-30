@@ -8,7 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC_1;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC_1;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC_3;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC_4;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC_5;
 import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.POSITION_DESC_SHOPEE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
@@ -134,8 +139,13 @@ public class AddCommandParserTest {
 //                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
 //                + KEYDATE_DESC_INTERVIEW + KEYDATE_DESC_OA, Position.MESSAGE_CONSTRAINTS);
 //
-//        // invalid company
+//        // invalid company 1
 //        assertParseFailure(parser, POSITION_DESC_SHOPEE + INVALID_COMPANY_DESC_1 + EMAIL_DESC_SHOPEE
+//                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
+//                + KEYDATE_DESC_INTERVIEW + KEYDATE_DESC_OA, Company.MESSAGE_CONSTRAINTS);
+//
+//        // invalid company 2
+//        assertParseFailure(parser, POSITION_DESC_SHOPEE + INVALID_COMPANY_DESC_2 + EMAIL_DESC_SHOPEE
 //                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
 //                + KEYDATE_DESC_INTERVIEW + KEYDATE_DESC_OA, Company.MESSAGE_CONSTRAINTS);
 //
@@ -149,10 +159,30 @@ public class AddCommandParserTest {
 //                + INVALID_STATUS_DESC + REMARK_DESC_SHOPEE
 //                + KEYDATE_DESC_INTERVIEW + KEYDATE_DESC_OA, Status.MESSAGE_CONSTRAINTS);
 //
-//        // invalid date
+//        // invalid date 1
 //        assertParseFailure(parser, POSITION_DESC_SHOPEE + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
 //                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
-//                + INVALID_DATE_DESC + VALID_KEYDATE_FEB_OA, Date.MESSAGE_CONSTRAINTS);
+//                + INVALID_DATE_DESC_1, Date.MESSAGE_CONSTRAINTS);
+//
+//        // invalid date 2
+//        assertParseFailure(parser, POSITION_DESC_SHOPEE + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
+//                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
+//                + INVALID_DATE_DESC_2, Date.MESSAGE_CONSTRAINTS);
+//
+//        // invalid date 3
+//        assertParseFailure(parser, POSITION_DESC_SHOPEE + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
+//                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
+//                + INVALID_DATE_DESC_3, Date.MESSAGE_CONSTRAINTS);
+//
+//        // invalid date 4
+//        assertParseFailure(parser, POSITION_DESC_SHOPEE + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
+//                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
+//                + INVALID_DATE_DESC_4, Date.MESSAGE_CONSTRAINTS);
+//
+//        // invalid date 5
+//        assertParseFailure(parser, POSITION_DESC_SHOPEE + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
+//                + STATUS_DESC_SHOPEE + REMARK_DESC_SHOPEE
+//                + INVALID_DATE_DESC_5, Date.MESSAGE_CONSTRAINTS);
 //
 //        // two invalid values, only first invalid value reported
 //        assertParseFailure(parser, INVALID_POSITION_DESC + COMPANY_DESC_SHOPEE + EMAIL_DESC_SHOPEE
