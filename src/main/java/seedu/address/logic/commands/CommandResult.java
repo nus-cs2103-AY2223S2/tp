@@ -11,13 +11,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Light mode should be shown to the user. */
+    /**
+     * Light mode should be shown to the user.
+     */
     private final boolean showLight;
 
-    /** Dark mode should be shown to the user. */
+    /**
+     * Dark mode should be shown to the user.
+     */
     private final boolean showDark;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean showHelp;
 
     /**
@@ -92,10 +98,11 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && showLight == otherCommandResult.showLight
-                && showDark == otherCommandResult.showDark;
+            && showHelp == otherCommandResult.showHelp
+            && exit == otherCommandResult.exit
+            && showLight == otherCommandResult.showLight
+            && showDark == otherCommandResult.showDark
+            && showBackups == otherCommandResult.showBackups;
     }
 
     @Override
