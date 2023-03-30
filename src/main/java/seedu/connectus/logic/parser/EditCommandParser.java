@@ -4,9 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
@@ -61,6 +65,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         {
             editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
+        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK))
+                .ifPresent(editPersonDescriptor::setRemarks);
+        ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
+                .ifPresent(editPersonDescriptor::setModules);
+        ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(editPersonDescriptor::setCcas);
+        ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR))
+                .ifPresent(editPersonDescriptor::setMajors);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

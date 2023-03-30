@@ -3,6 +3,9 @@ package seedu.connectus.model.person;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 public class BirthdayTest {
@@ -30,6 +33,24 @@ public class BirthdayTest {
 
         Birthday bd = new Birthday(validBirthday);
         assertTrue(bd.toString().equals("January 1, 2000"));
+    }
+
+    @Test
+    public void isUpcoming_working_example() {
+        LocalDate today = LocalDate.now();
+        LocalDate date = today.plusDays(15);
+        String bdStr = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Birthday bd = new Birthday(bdStr);
+        assertTrue(bd.isUpcoming());
+    }
+
+    @Test
+    public void isUpcoming_failing_example() {
+        LocalDate today = LocalDate.now();
+        LocalDate date = today.plusDays(-45);
+        String bdStr = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Birthday bd = new Birthday(bdStr);
+        assertTrue(!bd.isUpcoming());
     }
 
 }

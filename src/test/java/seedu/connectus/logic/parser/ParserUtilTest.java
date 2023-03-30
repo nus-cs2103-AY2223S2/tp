@@ -383,7 +383,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCcaPositions_null_throwsNullPointerException() {
+    public void parseMajors_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseMajors(null));
     }
 

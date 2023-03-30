@@ -351,18 +351,18 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code ccaPositions} to this object's {@code ccaPositions}.
-         * A defensive copy of {@code ccaPositions} is used internally.
+         * Sets {@code majors} to this object's {@code majors}.
+         * A defensive copy of {@code majors} is used internally.
          */
         public void setMajors(Set<Major> majors) {
             this.majors = (majors != null) ? new HashSet<>(majors) : null;
         }
 
         /**
-         * Returns an unmodifiable ccaPositions set, which throws
+         * Returns an unmodifiable majors set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
+         * Returns {@code Optional#empty()} if {@code majors} is null.
          */
         public Optional<Set<Major>> getMajors() {
             return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();

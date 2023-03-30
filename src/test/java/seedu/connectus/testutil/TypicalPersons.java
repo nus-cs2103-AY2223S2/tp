@@ -35,18 +35,18 @@ public class TypicalPersons {
             .withRemarks("friends")
             .withModules("CS2101")
             .withCcas("NES")
-            .withMajors("President").build();
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withRemarks("owesMoney", "friends").withBirthday("30/04/2004")
             .withModules("CS2103T").withCcas("ICS")
-            .withMajors("President").build();
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withRemarks("friends").withCcas("ICS")
-            .withMajors("President").build();
+            .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")

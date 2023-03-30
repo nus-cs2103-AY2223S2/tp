@@ -5,8 +5,12 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.connectus.commons.core.index.Index;
@@ -51,8 +55,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses string containing keywords into an {@code String[]} of keywords and returns it. Leading
+     * and trailing whitespaces will be
+     * trimmed.
+     */
+    public static List<String> parseKeywords(String str) {
+        String trimmedArgs = str.trim();
+        if (trimmedArgs.isEmpty()) {
+            return null;
+        }
+        List<String> fieldKeywords = Arrays.asList(trimmedArgs.split("\\s+"));
+        return fieldKeywords;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -68,6 +87,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -83,6 +103,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
@@ -98,6 +119,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
@@ -111,6 +133,10 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
+     *
      * @throws ParseException
      */
     public static Birthday parseBirthday(String birthday) throws ParseException {
@@ -126,6 +152,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
@@ -141,13 +168,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String module} into a {@code module}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
      *
      * @throws ParseException if the given {@code module} is invalid.
      */
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidTagName(trimmedModule)) {
+        if (!Module.isValidModuleName(trimmedModule)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
         return new Module(trimmedModule);
@@ -156,13 +184,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String cca} into a {@code cca}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
     public static Cca parseCca(String cca) throws ParseException {
         requireNonNull(cca);
         String trimmedCca = cca.trim();
-        if (!Cca.isValidTagName(trimmedCca)) {
+        if (!Cca.isValidCcaName(trimmedCca)) {
             throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
         }
         return new Cca(trimmedCca);
@@ -171,20 +200,26 @@ public class ParserUtil {
     /**
      * Parses a {@code String cca} into a {@code cca}.
      * Leading and trailing whitespaces will be trimmed.
+     * Checks for validity.
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
+
     public static Major parseMajor(String major) throws ParseException {
         requireNonNull(major);
         String trimmedMajor = major.trim();
         if (!Cca.isValidTagName(trimmedMajor)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+
         }
         return new Major(trimmedMajor);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Remark>}.
+     * Checks for validity.
+     *
+     * @throws ParseException if the given {@code remarks} is invalid.
      */
     public static Set<Remark> parseRemarks(Collection<String> remarks) throws ParseException {
         requireNonNull(remarks);
@@ -197,6 +232,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> modules} into a {@code Set<Module>}.
+     * Checks for validity.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
      */
     public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
         requireNonNull(modules);
@@ -209,6 +247,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> ccas} into a {@code Set<Cca>}.
+     * Checks for validity.
+     *
+     * @throws ParseException if the given {@code cca} is invalid.
      */
     public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
         requireNonNull(ccas);
@@ -220,8 +261,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
+     * Parses {@code Collection<String> majors} into a {@code Set<Major>}.
+     * Checks for validity.
+     *
+     * @throws ParseException if the given {@code major} is invalid.
      */
+
     public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
         requireNonNull(majors);
         final Set<Major> majorSet = new HashSet<>();
@@ -281,5 +326,76 @@ public class ParserUtil {
         );
 
         return socialMedia.isBlank() ? null : socialMedia;
+    }
+
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if
+     * {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    public static Optional<Set<Remark>> parseRemarksOptional(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseRemarks(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> modules} into a {@code Set<Module>} if
+     * {@code modules} is non-empty.
+     * If {@code modules} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<module>} containing zero modules.
+     */
+    public static Optional<Set<Module>> parseModulesOptional(Collection<String> modules) throws ParseException {
+        assert modules != null;
+
+        if (modules.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> moduleSet = modules.size() == 1 && modules.contains("") ? Collections.emptySet() : modules;
+        return Optional.of(ParserUtil.parseModules(moduleSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> ccas} into a {@code Set<Cca>} if
+     * {@code ccas} is non-empty.
+     * If {@code ccas} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Cca>} containing zero ccas.
+     */
+    public static Optional<Set<Cca>> parseCcasOptional(Collection<String> ccas) throws ParseException {
+        assert ccas != null;
+
+        if (ccas.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> ccaSet = ccas.size() == 1 && ccas.contains("") ? Collections.emptySet() : ccas;
+        return Optional.of(ParserUtil.parseCcas(ccaSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>} if
+     * {@code ccaPositions} is non-empty.
+     * If {@code ccaPositions} contain only one element which is an empty string, it will be
+     * parsed into a
+     * {@code Set<Cca>} containing zero ccaPositions.
+     */
+    public static Optional<Set<Major>> parseMajorsOptional(Collection<String> majors)
+            throws ParseException {
+        assert majors != null;
+
+        if (majors.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> majorSet = majors.size() == 1 && majors
+                .contains("") ? Collections.emptySet() : majors;
+        return Optional.of(ParserUtil.parseMajors(majorSet));
     }
 }

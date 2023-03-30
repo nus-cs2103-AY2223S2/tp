@@ -119,9 +119,9 @@ public class PersonCard extends UiPart<Region> {
                     tags.getChildren().add(moduleLabel);
                 });
         person.getCcas().stream()
-                .sorted(Comparator.comparing(cca -> cca.tagName))
+                .sorted(Comparator.comparing(cca -> cca.decoupledCcaName))
                 .forEach(cca -> {
-                    Label ccaLabel = new Label(cca.tagName);
+                    Label ccaLabel = new Label(cca.decoupledCcaName);
                     ccaLabel.getStyleClass().add("label");
                     ccaLabel.getStyleClass().add("cca");
                     tags.getChildren().add(ccaLabel);

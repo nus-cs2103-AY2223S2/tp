@@ -2,6 +2,7 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,8 @@ import java.time.format.DateTimeFormatter;
  * Represents a Person's birthday in ConnectUS.
  */
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY\n"
+            + "Format: " + PREFIX_BIRTHDAY + "BIRTHDAY";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$";
 
@@ -35,11 +37,26 @@ public class Birthday {
 
     /**
      * Constructs an {@code Birthday}.
+     *
      * @param birthday A birthday as LocalDate.
      */
     public Birthday(LocalDate birthday) {
         requireNonNull(birthday);
         value = birthday;
+    }
+
+    /**
+     * Returns true if the birthday is in the next 2 months.
+     *
+     * @return boolean True if birthday is in the next 2 months.
+     */
+    public boolean isUpcoming() {
+        LocalDate today = LocalDate.now();
+        LocalDate twoMonthsLater = today.plusMonths(2);
+        if (value.isAfter(today) && value.isBefore(twoMonthsLater)) {
+            return true;
+        }
+        return false;
     }
 
     /**

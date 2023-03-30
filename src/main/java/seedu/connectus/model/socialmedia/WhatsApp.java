@@ -3,16 +3,20 @@ package seedu.connectus.model.socialmedia;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 
 /**
  * Represents a Person's WhatsApp in ConnectUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidWhatsApp(String)}
  */
-public class WhatsApp {
+public class WhatsApp implements Openable, Chatable {
 
     public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number. "
-            + Phone.MESSAGE_CONSTRAINTS;
+        + Phone.MESSAGE_CONSTRAINTS;
 
     public final String value;
 
@@ -42,6 +46,26 @@ public class WhatsApp {
     }
 
     @Override
+    public String getUserLink() {
+        // Singaporean phone number? add +65 prefix.
+        return "whatsapp://send?phone=" + ((value.length() == 8) ? "65" + value : value);
+    }
+
+    public static String getUserLink(Person user) {
+        return user.getSocialMedia().map(SocialMedia::getWhatsapp).map(WhatsApp::getUserLink).orElse("");
+    }
+
+    @Override
+    public String getUserLinkWithPreparedMessage(String message) {
+        return getUserLink() + "&text=" + URLEncoder.encode(message, StandardCharsets.UTF_8);
+    }
+
+    public static String getUserLinkWithPreparedMessage(Person user, String message) {
+        return user.getSocialMedia().map(SocialMedia::getWhatsapp)
+            .map(u -> u.getUserLinkWithPreparedMessage(message)).orElse("");
+    }
+
+    @Override
     public String toString() {
         return value;
     }
@@ -49,8 +73,8 @@ public class WhatsApp {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof WhatsApp // instanceof handles nulls
-                && value.equals(((WhatsApp) other).value)); // state check
+            || (other instanceof WhatsApp // instanceof handles nulls
+            && value.equals(((WhatsApp) other).value)); // state check
     }
 
     @Override
