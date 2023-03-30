@@ -45,7 +45,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_OCCUPATION = BENSON.getOccupation().toString();
     private static final String VALID_JOBTITLE = BENSON.getJobTitle().toString();
     private static final String VALID_REMARK = BENSON.getRemark().toString();
-    private static final String VALID_TASK = BENSON.getTask().toString();
+    private static final String VALID_TASK = BENSON.getTasks().toString();
     private static final JsonAdaptedLeadStatus VALID_LEADSTATUS = new JsonAdaptedLeadStatus(BENSON.getStatus());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)

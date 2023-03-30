@@ -35,7 +35,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -119,12 +119,12 @@ public class EditCommand extends Command {
         Occupation updatedOccupation = editPersonDescriptor.getOccupation().orElse(personToEdit.getOccupation());
         JobTitle updatedJobTitle = editPersonDescriptor.getJobTitle().orElse(personToEdit.getJobTitle());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
+        Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Task updatedTask = personToEdit.getTask(); //edit command does not allow editing tasks
+        TaskList updatedTasks = personToEdit.getTasks();
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updateCompany, updatedLocation,
-                updatedOccupation, updatedJobTitle, updatedAddress, updatedRemark, updatedTags, updatedTask);
+                updatedOccupation, updatedJobTitle, updatedAddress, updatedRemark, updatedTags, updatedTasks);
     }
 
     @Override
