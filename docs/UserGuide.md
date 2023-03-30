@@ -138,7 +138,7 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 :man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
 
-Adds a task to the task book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
+Adds a task to the task book. There are 3 types of tasks. `simpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` `LongDate` field(s) are required.
 
 `LongDate` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid LongDate?](#q2-what-is-a-valid-Longdate))
