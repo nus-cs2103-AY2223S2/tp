@@ -83,7 +83,6 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if more than 1 prefix is present in the given {@code ArgumentMultimap}.
      */
     private static boolean areTooManyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        System.out.println(Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count());
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 1;
     }
 
