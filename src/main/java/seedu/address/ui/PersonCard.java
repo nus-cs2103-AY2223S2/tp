@@ -65,13 +65,14 @@ public class PersonCard extends UiPart<Region> {
         }
 
         nric.setText(person.getNric().nric);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        //phone.setText(person.getPhone().value);
+        //address.setText(person.getAddress().value);
+        //email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+        /*
         if (person.isPatient()) {
             // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
             Patient patient = (Patient) person;
@@ -90,7 +91,7 @@ public class PersonCard extends UiPart<Region> {
             Doctor doctor = (Doctor) person;
             appointments.setText("Appointments: \n" + doctor.drAppointmentsToString());
         }
-
+        */
     }
 
     @Override
