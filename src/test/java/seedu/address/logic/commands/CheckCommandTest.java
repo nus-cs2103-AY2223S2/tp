@@ -33,7 +33,7 @@ class CheckCommandTest {
         Student studentToCheck = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_PERSON_SUCCESS, studentToCheck);
+        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_STUDENT_SUCCESS, studentToCheck);
 
         Model expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
         expectedModel.checkStudent(studentToCheck);

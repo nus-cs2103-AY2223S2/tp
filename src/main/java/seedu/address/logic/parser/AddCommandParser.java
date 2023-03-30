@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone parentPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PARENT_PHONE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new seedu.address.model.student.Student(name, phone, email, address, parentPhone, tagList);
+        Student student = new Student(name, phone, email, address, parentPhone, tagList);
 
         return new AddCommand(student);
     }
