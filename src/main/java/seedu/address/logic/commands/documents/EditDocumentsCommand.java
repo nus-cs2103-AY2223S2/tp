@@ -25,7 +25,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Edits links to the resume and/or cover letter of an application identified using it's displayed index
@@ -101,9 +108,17 @@ public class EditDocumentsCommand extends Command {
         CompanyName companyName = internshipToEditDocuments.getCompanyName();
         JobTitle jobTitle = internshipToEditDocuments.getJobTitle();
         Set<Review> reviews = internshipToEditDocuments.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToEditDocuments.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToEditDocuments.getQualifications();
+        Location location = internshipToEditDocuments.getLocation();
+        Salary salary = internshipToEditDocuments.getSalary();
+        Set<Note> notes = internshipToEditDocuments.getNotes();
+        Rating rating = internshipToEditDocuments.getRating();
+        Set<Reflection> reflections = internshipToEditDocuments.getReflections();
         Contact contact = internshipToEditDocuments.getContact();
         InternshipStatus status = internshipToEditDocuments.getStatus();
         InterviewDate interviewDate = internshipToEditDocuments.getInterviewDate();
+
         ResumeLink resumeLink = editDocumentsDescriptor.getResumeLink()
                 .orElse(internshipToEditDocuments.getDocuments().getResumeLink());
         CoverLetterLink coverLetterLink = editDocumentsDescriptor.getCoverLetterLink()
@@ -111,7 +126,8 @@ public class EditDocumentsCommand extends Command {
 
         Documents newDocuments = new Documents(resumeLink, coverLetterLink);
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, newDocuments);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, interviewDate, newDocuments);
     }
 
     @Override

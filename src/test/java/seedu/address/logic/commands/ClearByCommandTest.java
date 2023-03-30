@@ -97,7 +97,7 @@ public class ClearByCommandTest {
 
     @Test
     public void execute_clearByStatus_success() {
-        InternshipStatus status = InternshipStatus.PENDING;
+        InternshipStatus status = InternshipStatus.NA;
 
         ClearByCommand clearByCommand = new ClearByCommand(status);
 

@@ -21,7 +21,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Adds links to a resume and/or cover letter to an application identified using it's displayed index
@@ -87,11 +94,19 @@ public class AddDocumentsCommand extends Command {
         CompanyName companyName = internshipToAddDocuments.getCompanyName();
         JobTitle jobTitle = internshipToAddDocuments.getJobTitle();
         Set<Review> reviews = internshipToAddDocuments.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToAddDocuments.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToAddDocuments.getQualifications();
+        Location location = internshipToAddDocuments.getLocation();
+        Salary salary = internshipToAddDocuments.getSalary();
+        Set<Note> notes = internshipToAddDocuments.getNotes();
+        Rating rating = internshipToAddDocuments.getRating();
+        Set<Reflection> reflections = internshipToAddDocuments.getReflections();
         Contact contact = internshipToAddDocuments.getContact();
         InternshipStatus status = internshipToAddDocuments.getStatus();
         InterviewDate interviewDate = internshipToAddDocuments.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, interviewDate, documents);
     }
 
     @Override

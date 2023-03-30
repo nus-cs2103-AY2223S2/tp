@@ -18,7 +18,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Delete links to the resume and/or cover letter of an application identified using it's displayed index
@@ -83,11 +90,19 @@ public class DeleteDocumentsCommand extends Command {
         CompanyName companyName = internshipToDeleteDocuments.getCompanyName();
         JobTitle jobTitle = internshipToDeleteDocuments.getJobTitle();
         Set<Review> reviews = internshipToDeleteDocuments.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToDeleteDocuments.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToDeleteDocuments.getQualifications();
+        Location location = internshipToDeleteDocuments.getLocation();
+        Salary salary = internshipToDeleteDocuments.getSalary();
+        Set<Note> notes = internshipToDeleteDocuments.getNotes();
+        Rating rating = internshipToDeleteDocuments.getRating();
+        Set<Reflection> reflections = internshipToDeleteDocuments.getReflections();
         Contact contact = internshipToDeleteDocuments.getContact();
         InternshipStatus status = internshipToDeleteDocuments.getStatus();
         InterviewDate interviewDate = internshipToDeleteDocuments.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, null);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, interviewDate, null);
     }
 
     @Override

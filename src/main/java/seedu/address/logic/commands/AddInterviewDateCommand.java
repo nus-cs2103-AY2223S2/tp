@@ -18,7 +18,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Adds an interview date to an application identified using it's displayed index from the list of internship
@@ -77,11 +84,19 @@ public class AddInterviewDateCommand extends Command {
         CompanyName companyName = internshipToAddInterviewDate.getCompanyName();
         JobTitle jobTitle = internshipToAddInterviewDate.getJobTitle();
         Set<Review> reviews = internshipToAddInterviewDate.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToAddInterviewDate.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToAddInterviewDate.getQualifications();
+        Location location = internshipToAddInterviewDate.getLocation();
+        Salary salary = internshipToAddInterviewDate.getSalary();
+        Set<Note> notes = internshipToAddInterviewDate.getNotes();
+        Rating rating = internshipToAddInterviewDate.getRating();
+        Set<Reflection> reflections = internshipToAddInterviewDate.getReflections();
         Contact contact = internshipToAddInterviewDate.getContact();
         InternshipStatus status = internshipToAddInterviewDate.getStatus();
         Documents documents = internshipToAddInterviewDate.getDocuments();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, interviewDate, documents);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+            salary, notes, rating, reflections, contact, status, interviewDate, documents);
     }
 
     @Override

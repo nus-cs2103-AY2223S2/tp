@@ -71,9 +71,9 @@ public class EditDocumentsCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastApplication = Index.fromOneBased(model.getFilteredInternshipList().size());
+        Index indexSecondLastApplication = Index.fromOneBased(model.getFilteredInternshipList().size() - 1);
         InternshipApplication lastApplication = model.getFilteredInternshipList()
-                .get(indexLastApplication.getZeroBased());
+                .get(indexSecondLastApplication.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastApplication);
         InternshipApplication editedApplication = internshipInList.withCompanyName(VALID_COMPANY_NAME_ORACLE)
@@ -85,7 +85,7 @@ public class EditDocumentsCommandTest {
         EditDocumentsCommand.EditDocumentsDescriptor descriptor = new EditDocumentsDescriptorBuilder()
                 .withResumeLink(VALID_RESUME_LINK_ORACLE)
                 .withCoverLetterLink("https://drive.example.com/coverletter_oracle_2").build();
-        EditDocumentsCommand editDocumentsCommand = new EditDocumentsCommand(indexLastApplication, descriptor);
+        EditDocumentsCommand editDocumentsCommand = new EditDocumentsCommand(indexSecondLastApplication, descriptor);
 
         String expectedMessage = String.format(EditDocumentsCommand.MESSAGE_EDIT_DOCUMENTS_SUCCESS, editedApplication);
 

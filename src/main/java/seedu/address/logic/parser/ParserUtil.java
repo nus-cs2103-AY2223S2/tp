@@ -19,8 +19,15 @@ import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.NoteContent;
@@ -55,7 +62,7 @@ public class ParserUtil {
     public static CompanyName parseCompanyName(String companyName) throws ParseException {
         requireNonNull(companyName);
         String trimmedName = companyName.trim();
-        if (!CompanyName.isValidName(trimmedName)) {
+        if (!CompanyName.isValidCompanyName(trimmedName)) {
             throw new ParseException(CompanyName.MESSAGE_CONSTRAINTS);
         }
         return new CompanyName(trimmedName);
@@ -85,7 +92,7 @@ public class ParserUtil {
     public static Review parseReview(String review) throws ParseException {
         requireNonNull(review);
         String trimmedReview = review.trim();
-        if (!JobTitle.isValidJobTitle(trimmedReview)) {
+        if (!Review.isValidReview(trimmedReview)) {
             throw new ParseException(Review.MESSAGE_CONSTRAINTS);
         }
         return new Review(trimmedReview);
@@ -101,6 +108,166 @@ public class ParserUtil {
             reviewList.add(parseReview(review));
         }
         return reviewList;
+    }
+
+    /**
+     * Parses a {@code String Programming Language} into a {@code Programming Language}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code programmingLanguage} is invalid.
+     */
+    public static ProgrammingLanguage parseProgrammingLanguage(String programmingLanguage) throws ParseException {
+        requireNonNull(programmingLanguage);
+        String trimmedProgrammingLanguage = programmingLanguage.trim();
+        if (!ProgrammingLanguage.isValidProgrammingLanguage(trimmedProgrammingLanguage)) {
+            throw new ParseException(ProgrammingLanguage.MESSAGE_CONSTRAINTS);
+        }
+        return new ProgrammingLanguage(trimmedProgrammingLanguage);
+    }
+
+    /**
+     * Parses {@code Collection<String> programming languages} into a {@code Set<ProgrammingLanguage>}.
+     */
+    public static Set<ProgrammingLanguage> parseProgrammingLanguages(
+                                                    Collection<String> programmingLanguages) throws ParseException {
+        requireNonNull(programmingLanguages);
+        final Set<ProgrammingLanguage> programmingLanguageList = new HashSet<>();
+        for (String programmingLanguage : programmingLanguages) {
+            programmingLanguageList.add(parseProgrammingLanguage(programmingLanguage));
+        }
+        return programmingLanguageList;
+    }
+
+    /**
+     * Parses a {@code String Qualification} into a {@code Qualification}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code qualification} is invalid.
+     */
+    public static Qualification parseQualification(String qualification) throws ParseException {
+        requireNonNull(qualification);
+        String trimmedQualification = qualification.trim();
+        if (!Qualification.isValidQualification(trimmedQualification)) {
+            throw new ParseException(Qualification.MESSAGE_CONSTRAINTS);
+        }
+        return new Qualification(trimmedQualification);
+    }
+
+    /**
+     * Parses {@code Collection<String> qualifications} into a {@code Set<Qualification>}.
+     */
+    public static Set<Qualification> parseQualifications(Collection<String> qualifications) throws ParseException {
+        requireNonNull(qualifications);
+        final Set<Qualification> qualificationList = new HashSet<>();
+        for (String qualification : qualifications) {
+            qualificationList.add(parseQualification(qualification));
+        }
+        return qualificationList;
+    }
+
+    /**
+     * Parses a {@code String location} into a {@code Location}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code location} is invalid.
+     */
+    public static Location parseLocation(String location) throws ParseException {
+        if (location == null) {
+            return new Location(null);
+        }
+        String trimmedLocation = location.trim();
+        if (!Location.isValidLocation(trimmedLocation)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(trimmedLocation);
+    }
+
+    /**
+     * Parses a {@code String salary} into a {@code Salary}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code salary} is invalid.
+     */
+    public static Salary parseSalary(String salary) throws ParseException {
+        if (salary == null) {
+            return new Salary(null);
+        }
+        String trimmedSalary = salary.trim();
+        if (!Salary.isValidSalary(trimmedSalary)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(trimmedSalary);
+    }
+
+    /**
+     * Parses a {@code String Note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses {@code Collection<String> notes} into a {@code Set<Note>}.
+     */
+    public static Set<Note> parseNotes(Collection<String> notes) throws ParseException {
+        requireNonNull(notes);
+        final Set<Note> noteList = new HashSet<>();
+        for (String note : notes) {
+            noteList.add(parseNote(note));
+        }
+        return noteList;
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        if (rating == null) {
+            return new Rating(null);
+        }
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
+    }
+
+    /**
+     * Parses a {@code String Reflection} into a {@code Reflection}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reflection} is invalid.
+     */
+    public static Reflection parseReflection(String reflection) throws ParseException {
+        requireNonNull(reflection);
+        String trimmedReflection = reflection.trim();
+        if (!Reflection.isValidReflection(trimmedReflection)) {
+            throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        return new Reflection(trimmedReflection);
+    }
+
+    /**
+     * Parses {@code Collection<String> reflections} into a {@code Set<Reflection>}.
+     */
+    public static Set<Reflection> parseReflections(Collection<String> reflections) throws ParseException {
+        requireNonNull(reflections);
+        final Set<Reflection> reflectionList = new HashSet<>();
+        for (String reflection : reflections) {
+            reflectionList.add(parseReflection(reflection));
+        }
+        return reflectionList;
     }
 
     /**
