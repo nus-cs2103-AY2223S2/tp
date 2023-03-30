@@ -1,11 +1,8 @@
 package seedu.address.logic.commands.jobs;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_SLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,12 +26,18 @@ public class AddDeliveryJobCommand extends DeliveryJobCommand {
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the delivery job system. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_SENDER_ID + "SENDER ID "
-            + PREFIX_RECIPIENT_ID + "RECIPIENT ID "
-            + PREFIX_DELIVERY_DATE + "DELIVERY DATE "
-            + PREFIX_DELIVERY_SLOT + "DELIVERY SLOT "
-            + PREFIX_EARNING + "Earning ";
+            + PREFIX_RECIPIENT_ID + "RECIPIENT ID ["
+            + PREFIX_DELIVERY_DATE + "DELIVERY DATE] ["
+            + PREFIX_DELIVERY_SLOT + "DELIVERY SLOT] ["
+            + PREFIX_EARNING + "Earning]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_SENDER_ID + "ALE874 "
+            + PREFIX_RECIPIENT_ID + "DAV910 "
+            + PREFIX_DELIVERY_DATE + "2023-03-03 "
+            + PREFIX_DELIVERY_SLOT + "3 "
+            + PREFIX_EARNING + "20";
 
     public static final String MESSAGE_SUCCESS = "New job added: %1$s";
     public static final String MESSAGE_SUCCESS_WITH_NO_DATE = "New job added, with"

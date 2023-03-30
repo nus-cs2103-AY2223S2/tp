@@ -20,7 +20,8 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all jobs which contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " ji/ <job_id>";
+            + "Example: " + COMMAND_WORD + " [ji/JOB_ID]" + " [si/SENDER_ID] [ri/RECIPIENT_ID] "
+            + "[date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]";
 
     private final Predicate<DeliveryJob> predicate;
 
