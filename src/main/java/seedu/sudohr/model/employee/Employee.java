@@ -150,6 +150,26 @@ public class Employee {
         return Objects.hash(id, name, phone, email, address, tags);
     }
 
+    public String toStringAllFields() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("\nEmployee ID:\t")
+                .append(getId())
+                .append("\nPhone:\t")
+                .append(getPhone())
+                .append("\nEmail:\t")
+                .append(getEmail())
+                .append("\nAddress:\t")
+                .append(getAddress());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("\nTags: ");
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
