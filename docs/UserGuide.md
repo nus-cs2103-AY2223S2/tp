@@ -315,7 +315,7 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 
 ## Managing Projects
 
-This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allows users to manage their projects efficiently.
+This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allow you to manage your projects.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -545,8 +545,8 @@ have the following projects in Mycelium:
 <img src="images/Ui.png" />
 
 <div markdown="span" class="alert alert-info">
-:information_source: Recall that Mycelium supports fuzzy search for projects by
-their *names* only!
+:information_source: Recall that :mushroom:Mycelium supports fuzzy search for projects by
+their *names* only.
 </div>
 
 1. First, press (CTRL+F) to toggle to **search mode** (if you are not already in
@@ -562,7 +562,7 @@ listed.
 
 <img src="images/FuzzyDemoSearchingNoResults.png" />
 
-2. Once we are done, pressing (CTRL+F) again switches us back to command mode.
+2. To exit search mode, press (CTRL+F) again. The command box should return to its original dark color.
 
 <div markdown="span" class="alert alert-info">
 :information_source: The example we have here is quite trivial. But you can
