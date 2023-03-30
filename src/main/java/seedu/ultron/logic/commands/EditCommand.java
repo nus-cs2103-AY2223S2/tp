@@ -8,11 +8,10 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.ultron.commons.core.Messages;
 import seedu.ultron.commons.core.index.Index;
@@ -99,7 +98,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editOpeningDescriptor.getEmail().orElse(openingToEdit.getEmail());
         Status updatedStatus = editOpeningDescriptor.getStatus().orElse(openingToEdit.getStatus());
         Remark updatedRemark = editOpeningDescriptor.getRemark().orElse(openingToEdit.getRemark());
-        Set<Date> updatedDates = editOpeningDescriptor.getDates().orElse(openingToEdit.getDates());
+        List<Date> updatedDates = editOpeningDescriptor.getDates().orElse(openingToEdit.getDates());
 
         return new Opening(updatedPosition, updatedCompany, updatedEmail, updatedStatus, updatedRemark, updatedDates);
     }
@@ -132,7 +131,7 @@ public class EditCommand extends Command {
         private Email email;
         private Status status;
         private Remark remark;
-        private Set<Date> keydates;
+        private List<Date> keydates;
 
         public EditOpeningDescriptor() {}
 
@@ -200,8 +199,8 @@ public class EditCommand extends Command {
          * Sets {@code keydates} to this object's {@code keydates}.
          * A defensive copy of {@code keydates} is used internally.
          */
-        public void setDates(Set<Date> keydates) {
-            this.keydates = (keydates != null) ? new HashSet<>(keydates) : null;
+        public void setDates(List<Date> keydates) {
+            this.keydates = (keydates != null) ? new ArrayList<>(keydates) : null;
         }
 
         /**
@@ -209,8 +208,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code keydates} is null.
          */
-        public Optional<Set<Date>> getDates() {
-            return (keydates != null) ? Optional.of(Collections.unmodifiableSet(keydates)) : Optional.empty();
+        public Optional<List<Date>> getDates() {
+            return (keydates != null) ? Optional.of(Collections.unmodifiableList(keydates)) : Optional.empty();
         }
 
         @Override
@@ -232,6 +231,7 @@ public class EditCommand extends Command {
                     && getCompany().equals(e.getCompany())
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
+                    && getRemark().equals(e.getRemark())
                     && getDates().equals(e.getDates());
         }
     }
