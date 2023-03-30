@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -25,7 +24,6 @@ public class PatientBuilder {
     public static final String DEFAULT_ID = "1";
     public static final String DEFAULT_REMARK = "";
 
-    private PatientId id;
     private Name name;
     private Phone phone;
     private Email email;
@@ -37,7 +35,6 @@ public class PatientBuilder {
      * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
-        id = new PatientId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -50,7 +47,6 @@ public class PatientBuilder {
      * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
-        id = patientToCopy.getId();
         name = patientToCopy.getName();
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
@@ -100,14 +96,6 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code PatientId} of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withPatientId(String id) {
-        this.id = new PatientId(id);
-        return this;
-    }
-
-    /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PatientBuilder withRemark(String remark) {
@@ -116,7 +104,7 @@ public class PatientBuilder {
     }
 
     public Patient build() {
-        return new Patient(id, name, phone, email, address, remark, tags);
+        return new Patient(name, phone, email, address, remark, tags);
     }
 
 }

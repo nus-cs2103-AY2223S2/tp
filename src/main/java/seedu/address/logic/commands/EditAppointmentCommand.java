@@ -2,28 +2,24 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing appointment in the address book.
@@ -31,36 +27,36 @@ import seedu.address.model.tag.Tag;
 public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_appt";
-
+    public static final String COMMAND_ALIAS = "ea";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
-            + "by the index number used as their ID. "
+            + "by the index number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: ID (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "[" + PREFIX_DOCTOR + "DOCTOR]\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_TIMESLOT + "01022023 09:00,01022023 11:00"
-            + PREFIX_DESCRIPTION + "irregular checkup ";
+            + PREFIX_TIMESLOT + "01022023 09:00,01022023 11:00 "
+            + PREFIX_DESCRIPTION + "Regular checkup "
+            + PREFIX_DOCTOR + "Xiao Lu";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
 
-    private final AppointmentId appointmentId;
+    private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * @param appointmentId             of the appointment in the filtered appointment list to edit
      * @param editAppointmentDescriptor details to edit the appointment with
      */
-    public EditAppointmentCommand(AppointmentId appointmentId, EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(appointmentId);
+    public EditAppointmentCommand(Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
+        requireNonNull(index);
         requireNonNull(editAppointmentDescriptor);
 
-        this.appointmentId = appointmentId;
+        this.index = index;
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
 
@@ -68,15 +64,12 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
-        List<Appointment> matchingAppointments =
-                lastShownList.stream().filter(appt -> appt.getAppointmentId().equals(appointmentId)).collect(
-                        Collectors.toList());
 
-        if (matchingAppointments.size() != 1) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME);
         }
 
-        Appointment appointmentToEdit = matchingAppointments.get(0);
+        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
@@ -96,16 +89,13 @@ public class EditAppointmentCommand extends Command {
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        AppointmentId updatedAppointmentId =
-                editAppointmentDescriptor.getAppointmentId().orElse(appointmentToEdit.getAppointmentId());
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Description updatedDescription =
                 editAppointmentDescriptor.getDescription().orElse(appointmentToEdit.getDescription());
         Name updatedName = editAppointmentDescriptor.getPatientName().orElse(appointmentToEdit.getPatientName());
-        Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
+        Doctor updatedDoctor = editAppointmentDescriptor.getDoctor().orElse(appointmentToEdit.getDoctor());
 
-        return new Appointment(updatedAppointmentId, updatedName, updatedTimeslot, updatedDescription,
-                updatedTags);
+        return new Appointment(updatedName, updatedTimeslot, updatedDescription, updatedDoctor);
     }
 
     @Override
@@ -122,7 +112,7 @@ public class EditAppointmentCommand extends Command {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return appointmentId.equals(e.appointmentId)
+        return index.equals(e.index)
                 && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
@@ -131,11 +121,10 @@ public class EditAppointmentCommand extends Command {
      * corresponding field value of the appointment.
      */
     public static class EditAppointmentDescriptor {
-        private AppointmentId appointmentId;
         private Timeslot timeslot;
         private Description description;
         private Name patientName;
-        private Set<Tag> tags;
+        private Doctor doctor;
 
         public EditAppointmentDescriptor() {
         }
@@ -145,26 +134,17 @@ public class EditAppointmentCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
-            setAppointmentId(toCopy.appointmentId);
             setTimeslot(toCopy.timeslot);
             setDescription(toCopy.description);
             setPatientName(toCopy.patientName);
-            setTags(toCopy.tags);
+            setDoctor(toCopy.doctor);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(timeslot, description, patientName, tags);
-        }
-
-        public void setAppointmentId(AppointmentId appointmentId) {
-            this.appointmentId = appointmentId;
-        }
-
-        public Optional<AppointmentId> getAppointmentId() {
-            return Optional.ofNullable(appointmentId);
+            return CollectionUtil.isAnyNonNull(timeslot, description, patientName, doctor);
         }
 
         public void setTimeslot(Timeslot timeslot) {
@@ -191,21 +171,12 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(patientName);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setDoctor(Doctor doctor) {
+            this.doctor = doctor;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Doctor> getDoctor() {
+            return Optional.ofNullable(doctor);
         }
 
         @Override
@@ -226,7 +197,7 @@ public class EditAppointmentCommand extends Command {
             return getPatientName().equals(e.getPatientName())
                     && getTimeslot().equals(e.getTimeslot())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getDoctor().equals(e.getDoctor());
         }
     }
 }

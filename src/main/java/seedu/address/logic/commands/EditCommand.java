@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -33,8 +32,8 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
-
+    public static final String COMMAND_WORD = "edit_patient";
+    public static final String COMMAND_ALIAS = "ep";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -95,7 +94,6 @@ public class EditCommand extends Command {
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
-        PatientId id = patientToEdit.getId();
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
@@ -103,7 +101,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = editPatientDescriptor.getRemark().orElse(patientToEdit.getRemark());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
     }
 
     @Override

@@ -10,9 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -112,7 +111,14 @@ public class ParserUtil {
         if (!Timeslot.isValidTimeslot(trimmedTimeslot)) {
             throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
         }
-        return new Timeslot(trimmedTimeslot);
+
+        Timeslot result;
+        try {
+            result = new Timeslot(trimmedTimeslot);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(Timeslot.MESSAGE_CONSTRAINTS);
+        }
+        return result;
     }
 
     /**
@@ -128,6 +134,21 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Doctor}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code doctor} is invalid.
+     */
+    public static Doctor parseDoctor(String doctor) throws ParseException {
+        requireNonNull(doctor);
+        String trimmedDoctor = doctor.trim();
+        if (!Doctor.isValidDoctor(trimmedDoctor)) {
+            throw new ParseException(Doctor.MESSAGE_CONSTRAINTS);
+        }
+        return new Doctor(trimmedDoctor);
     }
 
     /**
@@ -170,29 +191,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses {@code String id} into an {@code PatientId}.
-     */
-    public static PatientId parsePatientId(String id) throws ParseException {
-        requireNonNull(id);
-        String trimmedId = id.trim();
-        if (!PatientId.isValidPatientId(trimmedId)) {
-            throw new ParseException(PatientId.MESSAGE_CONSTRAINTS);
-        }
-        return new PatientId(trimmedId);
-    }
-
-    /**
-     * Parses {@code String id} into an {@code AppointmentId}.
-     */
-    public static AppointmentId parseAppointmentId(String id) throws ParseException {
-        requireNonNull(id);
-        String trimmedId = id.trim();
-        if (!AppointmentId.isValidAppointmentId(trimmedId)) {
-            throw new ParseException(AppointmentId.MESSAGE_CONSTRAINTS);
-        }
-        return new AppointmentId(trimmedId);
     }
 }

@@ -17,7 +17,8 @@ import seedu.address.model.patient.Remark;
  * Changes the remark of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "remark_patient";
+    public static final String COMMAND_ALIAS = "rp";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
@@ -52,7 +53,7 @@ public class RemarkCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        Patient editedPatient = new Patient(patientToEdit.getId(), patientToEdit.getName(), patientToEdit.getPhone(),
+        Patient editedPatient = new Patient(patientToEdit.getName(), patientToEdit.getPhone(),
                 patientToEdit.getEmail(), patientToEdit.getAddress(), remark, patientToEdit.getTags());
 
         model.setPatient(patientToEdit, editedPatient);

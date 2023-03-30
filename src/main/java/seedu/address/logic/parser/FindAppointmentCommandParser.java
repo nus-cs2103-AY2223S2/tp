@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDuringTimePredicate;
+import seedu.address.model.appointment.AppointmentHasOverlapPredicate;
 import seedu.address.model.appointment.TimeInTimeslotPredicate;
 
 /**
@@ -31,7 +31,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         Predicate<Appointment> predicate;
         if (splitArgs.length == 4) {
-            predicate = new AppointmentDuringTimePredicate(trimmedArgs);
+            predicate = new AppointmentHasOverlapPredicate(trimmedArgs);
         } else {
             predicate = new TimeInTimeslotPredicate(trimmedArgs);
         }

@@ -3,42 +3,30 @@ package seedu.address.model.appointment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.chrono.ChronoLocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Appointment in the address book.
  * Guarantees: details except description are present and not null, field values are validated, immutable.
  */
 public class Appointment {
-    private final AppointmentId id;
     private final Name patientName;
     private final Timeslot timeslot;
     private final Description description;
-
-    private final Set<Tag> tags = new HashSet<>();
+    private final Doctor doctor;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(AppointmentId id, Name patientName, Timeslot timeslot, Description description,
-                       Set<Tag> tags) {
-        requireAllNonNull(timeslot, description, patientName, tags);
-        this.id = id;
+    public Appointment(Name patientName, Timeslot timeslot, Description description,
+                       Doctor doctor) {
+        requireAllNonNull(timeslot, description, patientName, doctor);
         this.patientName = patientName;
         this.timeslot = timeslot;
         this.description = description;
-        this.tags.addAll(tags);
-    }
-
-    public AppointmentId getAppointmentId() {
-        return id;
+        this.doctor = doctor;
     }
 
     public Name getPatientName() {
@@ -63,12 +51,8 @@ public class Appointment {
         return description;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Doctor getDoctor() {
+        return doctor;
     }
 
     /**
@@ -77,7 +61,8 @@ public class Appointment {
      * @return If the given time occurs within the timeslot of the appointment
      */
     public boolean duringTime(ChronoLocalDateTime<?> time) {
-        return time.isAfter(timeslot.startingDateTime) && time.isBefore(timeslot.endingDateTime);
+        return (time.isAfter(timeslot.startingDateTime) || time.isEqual(timeslot.startingDateTime))
+            && (time.isBefore(timeslot.endingDateTime) || time.isEqual(timeslot.endingDateTime));
     }
 
     /**
@@ -90,7 +75,7 @@ public class Appointment {
         }
 
         return otherAppointment != null
-                && otherAppointment.getTimeslot().equals(getTimeslot());
+            && otherAppointment.getTimeslot().equals(getTimeslot());
     }
 
     /**
@@ -109,31 +94,28 @@ public class Appointment {
 
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.getPatientName().equals(getPatientName())
-                && otherAppointment.getTimeslot().equals(getTimeslot())
-                && otherAppointment.getDescription().equals(getDescription())
-                && otherAppointment.getTags().equals(getTags());
+            && otherAppointment.getTimeslot().equals(getTimeslot())
+            && otherAppointment.getDescription().equals(getDescription())
+            && otherAppointment.getDoctor().equals(getDoctor());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientName, timeslot, description, tags);
+        return Objects.hash(patientName, timeslot, description, doctor);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTimeslot())
-                .append("; Patient Name: ")
-                .append(getPatientName())
-                .append("; Description: ")
-                .append(getDescription());
+            .append("; Patient Name: ")
+            .append(getPatientName())
+            .append("; Description: ")
+            .append(getDescription())
+            .append("; Doctor: ")
+            .append(getDoctor());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 }
