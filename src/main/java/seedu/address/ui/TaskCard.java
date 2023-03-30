@@ -138,14 +138,16 @@ public class TaskCard extends UiPart<Region> {
         }
     }
 
-    public void setTaskStatus(Task task) throws ParseException {
-        if (task.isDone()) {
-            status.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
-        } else if (task.isDueToday()) {
-            status.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
-        } else if (task.isOverdue()) {
-            status.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-        } else {
+    public void setTaskStatus(Task task) {
+        try {
+            if (task.isDone()) {
+                status.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (task.isDueToday()) {
+                status.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (task.isOverdue()) {
+                status.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        } catch (IndexOutOfBoundsException | ParseException e) {
             status.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
