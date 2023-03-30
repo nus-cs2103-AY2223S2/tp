@@ -6,6 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
@@ -153,5 +158,49 @@ public class ApplicationCard extends UiPart<Region> {
         } else {
             popupEditInternship.focus();
         }
+    }
+
+    /**
+     * Handles the delete internship button clicked event.
+     */
+    @FXML
+    private void handleDeleteInternshipClicked() {
+        try {
+            mainWindow.executeCommand(makeDeleteCommand());
+        } catch (CommandException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Make delete command.
+     */
+    private String makeDeleteCommand() {
+        String commandText = DeleteCommand.COMMAND_WORD + " " + index;
+        return commandText;
+    }
+
+    /**
+     * Handles the archive internship button clicked event.
+     */
+    @FXML
+    private void handleArchiveInternshipClicked() {
+        try {
+            mainWindow.executeCommand(makeArchiveCommand());
+        } catch (CommandException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Make archive command.
+     */
+    private String makeArchiveCommand() {
+        String commandText = ArchiveCommand.COMMAND_WORD + " " + index;
+        return commandText;
     }
 }
