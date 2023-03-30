@@ -37,6 +37,7 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             listOfPeople.add(personToDelete);
         }
+        model.resetPersonHiddenStatus();
         model.deleteMultiplePersons(listOfPeople);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));
     }

@@ -76,7 +76,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as phone field is not compulsory.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -91,7 +91,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as description field is not compulsory.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -106,7 +106,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as email field is not compulsory.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
