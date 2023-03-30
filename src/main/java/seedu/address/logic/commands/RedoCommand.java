@@ -27,7 +27,7 @@ public class RedoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Redone %1$d / %2$d commands";
 
-    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(RedoCommand.class);
 
     private final int numCommands;
     private StateHistory history = null;
