@@ -9,7 +9,7 @@ public enum Tab {
     VEHICLES,
     SERVICES,
     APPOINTMENTS,
-    STAFF,
+    TECHNICIANS,
     UNCHANGED;
 
     @Override

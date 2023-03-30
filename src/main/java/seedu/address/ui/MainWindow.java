@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
     private AppointmentListPanel appointmentListPanel;
+    private TechnicianListPanel technicianListPanel;
     private CustomerDetailsPanel customerDetailsPanel;
     private VehicleDetailsPanel vehicleDetailsPanel;
     private ServiceDetailsPanel serviceDetailsPanel;
@@ -61,8 +62,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane serviceListPanelPlaceholder;
+
     @FXML
     private StackPane appointmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane technicianListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -80,6 +85,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane serviceDetailsPlaceholder;
     @FXML
     private StackPane appointmentDetailsPlaceholder;
+    @FXML
+    private StackPane technicianDetailsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -155,10 +162,17 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getServiceDataMap());
         serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
     }
+
     private void initAppointmentListPanel() {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(),
                 logic.getAppointmentDataMap());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+    }
+
+    private void initTechnicianListPanel() {
+        technicianListPanel = new TechnicianListPanel(logic.getFilteredTechnicianList(),
+                logic.getTechnicianDataMap());
+        technicianListPanelPlaceholder.getChildren().add(technicianListPanel.getRoot());
     }
 
     private void initTabResultDisplayMessages() {
@@ -166,6 +180,7 @@ public class MainWindow extends UiPart<Stage> {
         tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.APPOINTMENTS.ordinal()] = ListAppointmentsCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.TECHNICIANS.ordinal()] = ListTechniciansCommand.MESSAGE_SUCCESS;
     }
 
     /**
@@ -178,6 +193,7 @@ public class MainWindow extends UiPart<Stage> {
         initVehicleListPanel();
         initServiceListPanel();
         initAppointmentListPanel();
+        initTechnicianListPanel();
 
         initSelected();
 

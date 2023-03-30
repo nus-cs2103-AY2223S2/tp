@@ -86,13 +86,13 @@ public class SampleDataUtil {
         return new Technician[]{
             new Technician(IdGenerator.generateStaffId(), new Name("James Tan"), new Phone("89764362"),
                     new Email("jamestan@example.com"), new Address("Blk 586 Bedok Street 23, #08-46"),
-                    getTagSet("big boss")),
+                    getTagSet("big boss"), getIntegerSet(1, 4, 5, 6), getIntegerSet(1, 4)),
             new Technician(IdGenerator.generateStaffId(), new Name("Roy Balakrishnan"), new Phone("92624417"),
                     new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("good technician")),
+                    getTagSet("good technician"), getIntegerSet(3, 7), getIntegerSet(2, 5)),
             new Technician(IdGenerator.generateStaffId(), new Name("Loh Jia Yu"), new Phone("968685152"),
                     new Email("lohjy@example.com"), new Address("Blk 73 Hahn Quay Street 67, #04-45"),
-                    getTagSet("new technician")),
+                    getTagSet("new technician"), getIntegerSet(3, 6), getIntegerSet(4, 5)),
         };
     }
 

@@ -19,10 +19,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.mapping.ServiceDataMap;
-import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.mapping.*;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -61,6 +58,7 @@ public class ModelManager implements Model {
     private final VehicleDataMap vehicleDataMap;
     private final ServiceDataMap serviceDataMap;
     private final AppointmentDataMap appointmentDataMap;
+    private final TechnicianDataMap technicianDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -105,6 +103,8 @@ public class ModelManager implements Model {
                 this.shop.getVehicleList());
         appointmentDataMap = new AppointmentDataMap(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
                 this.shop.getCustomerList());
+        technicianDataMap = new TechnicianDataMap(this.shop.getTechnicianList(), this.shop.getServiceList(),
+                this.shop.getAppointmentList());
 
         if (filteredCustomers.size() > 0) {
             selectedCustomer = filteredCustomers.get(0);
@@ -133,6 +133,8 @@ public class ModelManager implements Model {
                 this.shop.getVehicleList());
         this.appointmentDataMap.reset(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
                 this.shop.getCustomerList());;
+        this.technicianDataMap.reset(this.shop.getTechnicianList(), this.shop.getServiceList(),
+                this.shop.getAppointmentList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -444,6 +446,12 @@ public class ModelManager implements Model {
     public AppointmentDataMap getAppointmentDataMap() {
         return this.appointmentDataMap;
     }
+
+    @Override
+    public TechnicianDataMap getTechnicianDataMap() {
+        return this.technicianDataMap;
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
