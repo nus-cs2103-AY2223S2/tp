@@ -27,6 +27,7 @@ public class ApplicationLogicManager implements ApplicationLogic {
     private final ApplicationModel model;
     private final ApplicationStorage storage;
     private final InternshipBookParser internshipBookParser;
+    private final CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +35,8 @@ public class ApplicationLogicManager implements ApplicationLogic {
     public ApplicationLogicManager(ApplicationModel model, ApplicationStorage storage) {
         this.model = model;
         this.storage = storage;
-        internshipBookParser = new InternshipBookParser();
+        this.internshipBookParser = new InternshipBookParser();
+        this.commandHistory = new CommandHistory();
     }
 
     @Override
@@ -42,8 +44,9 @@ public class ApplicationLogicManager implements ApplicationLogic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        commandHistory.addCommand(commandText);
         ApplicationCommand command = internshipBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, commandHistory);
 
         try {
             storage.saveInternshipBook(model.getInternshipBook());
@@ -62,6 +65,11 @@ public class ApplicationLogicManager implements ApplicationLogic {
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
         return model.getFilteredApplicationList();
+    }
+
+    @Override
+    public ObservableList<Application> getSortedApplicationList() {
+        return model.getSortedApplicationList();
     }
 
     @Override

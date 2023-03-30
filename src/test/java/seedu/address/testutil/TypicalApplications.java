@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_ROLE_GRAB;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_BYTEDANCE;
 import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_STATUS_GRAB;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_TAG_HIGHSALARY;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_TAG_SCHOOL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,16 +25,28 @@ public class TypicalApplications {
 
     public static final Application GOOGLE = new ApplicationBuilder().withRole("Software Engineer")
             .withCompanyName("Google").withCompanyEmail("googlehires@gmail.com")
-            .withStatus("interested").build();
+            .withStatus("interested")
+            .withTags("highSalary").build();
     public static final Application AMAZON = new ApplicationBuilder().withRole("Cloud Engineer Intern")
             .withCompanyName("Amazon").withCompanyEmail("amazonhires@amazon.com")
-            .withStatus("applied").build();
+            .withStatus("applied")
+            .withTags("cloudTechnology").build();
     public static final Application APPLE = new ApplicationBuilder().withRole("Design and Innovation Intern")
             .withCompanyName("Apple").withCompanyEmail("applehires@apple.com")
-            .withStatus("applied").build();
+            .withStatus("applied")
+            .withTags("employeeDiscounts").build();
     public static final Application MICROSOFT = new ApplicationBuilder().withRole("Software Testing Intern")
             .withCompanyName("Microsoft").withCompanyEmail("hrthires@hrt.com")
-            .withStatus("offered").build();
+            .withStatus("offered")
+            .withTags("windowsSupremacy").build();
+    public static final Application META = new ApplicationBuilder().withRole("UX Design Intern")
+            .withCompanyName("Meta").withCompanyEmail("metahires@meta.com")
+            .withStatus("applied").withTask("01-11-2023", "Online Assessment")
+            .build();
+    public static final Application GOVTECH = new ApplicationBuilder().withRole("Cybersecurity Intern")
+            .withCompanyName("Govtech").withCompanyEmail("govtechhires@govtech.sg")
+            .withStatus("applied").withTask("31-10-2023", "Interview")
+            .build();
 
     // Manually added
     public static final Application HUDSON_RIVER = new ApplicationBuilder().withRole("Junior Trader Analyst")
@@ -45,10 +59,10 @@ public class TypicalApplications {
     // Manually added - Application's details found in {@code ApplicationCommandTestUtil}
     public static final Application BYTEDANCE = new ApplicationBuilder().withRole(VALID_ROLE_BYTEDANCE)
             .withCompanyName(VALID_COMPANY_NAME_BYTEDANCE).withCompanyEmail(VALID_COMPANY_EMAIL_BYTEDANCE)
-            .withStatus(VALID_STATUS_BYTEDANCE).build();
+            .withStatus(VALID_STATUS_BYTEDANCE).withTags(VALID_TAG_HIGHSALARY).build();
     public static final Application GRAB = new ApplicationBuilder().withRole(VALID_ROLE_GRAB)
             .withCompanyName(VALID_COMPANY_NAME_GRAB).withCompanyEmail(VALID_COMPANY_EMAIL_GRAB)
-            .withStatus(VALID_STATUS_GRAB).build();
+            .withStatus(VALID_STATUS_GRAB).withTags(VALID_TAG_HIGHSALARY, VALID_TAG_SCHOOL).build();
 
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches Google
 
@@ -66,6 +80,6 @@ public class TypicalApplications {
     }
 
     public static List<Application> getTypicalApplications() {
-        return new ArrayList<>(Arrays.asList(GOOGLE, AMAZON, APPLE, MICROSOFT));
+        return new ArrayList<>(Arrays.asList(GOOGLE, AMAZON, APPLE, MICROSOFT, META, GOVTECH));
     }
 }

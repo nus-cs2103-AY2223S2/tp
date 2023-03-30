@@ -5,8 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a status for an Application in the internship book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
- * Comment to let merge operation detect file. To be deleted subsequently.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}.
  */
 public class Status {
     /**
@@ -14,18 +13,23 @@ public class Status {
      */
     public enum StatusType {
         INTERESTED, APPLIED, OFFERED, REJECTED;
+
+        @Override
+        public String toString() {
+            return super.toString().charAt(0) + super.toString().substring(1).toLowerCase();
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
             "Statuses should only be one of the following: interested, applied, offered or rejected, "
-                    + "and it should not be blank\"";
+                    + "and it should not be left blank.";
 
     public final StatusType value;
 
     /**
      * Constructs a {@code Status}.
      *
-     * @param status A valid status.
+     * @param status A status inputted by user.
      */
     public Status(String status) {
         requireNonNull(status);

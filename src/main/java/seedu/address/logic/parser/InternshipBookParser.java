@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -8,12 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddApplicationCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ApplicationCommand;
+import seedu.address.logic.commands.ClearApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.ExitSprintCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortApplicationCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,9 +36,9 @@ public class InternshipBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput full user input string.
+     * @return the command based on the user input.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public ApplicationCommand parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -46,8 +53,28 @@ public class InternshipBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //=========== Miscellaneous Commands =========================================================================
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case ExitSprintCommand.COMMAND_WORD:
+            return new ExitSprintCommand();
+
+        //=========== Application Commands ===========================================================================
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
+
+        case ClearApplicationCommand.COMMAND_WORD:
+            return new ClearApplicationCommand();
+
+        case DeleteApplicationCommand.COMMAND_WORD:
+            return new DeleteApplicationCommandParser().parse(arguments);
+
+        case EditApplicationCommand.COMMAND_WORD:
+            return new EditApplicationCommandParser().parse(arguments);
 
         case FindApplicationCommand.COMMAND_WORD:
             return new FindApplicationCommandParser().parse(arguments);
@@ -58,11 +85,18 @@ public class InternshipBookParser {
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
 
-        case EditApplicationCommand.COMMAND_WORD:
-            return new EditApplicationCommandParser().parse(arguments);
+        case SortApplicationCommand.COMMAND_WORD:
+            return new SortApplicationCommandParser().parse(arguments);
 
-        case DeleteApplicationCommand.COMMAND_WORD:
-            return new DeleteApplicationCommandParser().parse(arguments);
+        //=========== Task Commands ==================================================================================
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

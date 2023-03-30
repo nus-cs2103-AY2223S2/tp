@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
 
@@ -13,20 +14,21 @@ import seedu.address.model.application.NameContainsKeywordsPredicate;
 public class FindApplicationCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internship applications "
-            + "which has company names containing "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Goggle Mata";
+    public static final String MESSAGE_USAGE = "Formats: find keyword(s) "
+            + "OR find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)] \n"
+            + "Example: " + COMMAND_WORD + " Google c/Meta";
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an FindApplicationCommand to find applications that fulfil the given predicate.
+     */
     public FindApplicationCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredApplicationList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,

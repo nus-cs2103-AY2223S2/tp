@@ -5,12 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the role for an Application in the internship book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
- * Comment to let merge operation detect file. To be deleted subsequently.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}.
  */
 public class Role {
     public static final String MESSAGE_CONSTRAINTS =
-            "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Roles should only contain alphanumeric characters and spaces, and it should not be left blank.";
 
     /*
      * The first character of the role must not be a whitespace,

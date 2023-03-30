@@ -5,7 +5,9 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -15,20 +17,21 @@ import seedu.address.model.application.Application;
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = "Format: "
+            + COMMAND_WORD + " "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_COMPANY_NAME + "COMPANY NAME "
-            + PREFIX_COMPANY_EMAIL + "COMPANY EMAIL "
+            + PREFIX_COMPANY_NAME + "COMPANY_NAME "
+            + PREFIX_COMPANY_EMAIL + "COMPANY_EMAIL "
             + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROLE + "SWE Intern "
-            + PREFIX_COMPANY_NAME + "Google "
-            + PREFIX_COMPANY_EMAIL + "googlehiring@googletalents.com "
-            + PREFIX_STATUS + "interested";
-
+            + PREFIX_COMPANY_NAME + "Goggle "
+            + PREFIX_COMPANY_EMAIL + "gogglehiring@goggletalents.com "
+            + PREFIX_STATUS + "interested "
+            + PREFIX_TAG + "highSalary "
+            + PREFIX_TAG + "bestWelfare";
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in the internship book";
@@ -36,7 +39,7 @@ public class AddApplicationCommand extends ApplicationCommand {
     private final Application toAdd;
 
     /**
-     * Creates an AddApplicationCommand to add the specified {@code Application}
+     * Creates an AddApplicationCommand to add the specified {@code Application}.
      */
     public AddApplicationCommand(Application application) {
         requireNonNull(application);
@@ -44,14 +47,15 @@ public class AddApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
-
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
         model.addApplication(toAdd);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

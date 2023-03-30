@@ -34,10 +34,9 @@
     -fx-max-height: 0;
 }
 
+/* Styling for help window */
+
 .table-view {
-    -fx-base: #545454;
-    -fx-control-inner-background: #545454;
-    -fx-background-color: #545454;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -71,31 +70,23 @@
     -fx-background-color: -fx-focus-color;
 }
 
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#545454, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#545454, 20%);
-}
-
 .list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#545454, 20%);
+    -fx-background-color: derive(#545454, 20%);;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-background-radius: 20;
+    -fx-background-insets: 5 0;
+}
+
+.list-cell:filled {
+    -fx-padding: 10 0 10 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #d9d9d9;
 }
 
 .list-cell:filled:odd {
@@ -103,16 +94,25 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #a6a5a5;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2;
+    -fx-border-image-width: 2;
+    -fx-border-radius: 20;
+    -fx-border-insets: 5 0;
+    -fx-graphic-text-gap : 0;
 }
 
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+.list-cell:even .label {
+    -fx-text-fill: black;
 }
 
-.list-cell .label {
+.list-cell:odd .label {
     -fx-text-fill: white;
+}
+
+.list-cell #status {
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -123,7 +123,7 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
@@ -145,7 +145,6 @@
 
 .pane-with-border {
      -fx-background-color: derive(#545454, 20%);
-     /*-fx-border-color: derive(#545454, 10%);*/
      -fx-border-top-width: 1px;
 }
 
@@ -377,3 +376,53 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#taskDetails {
+    -fx-orientation: vertical;
+}
+
+#taskDetails .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+}
+
+#taskHeader {
+    -fx-font-family: "Segoe UI Semibold" !important;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 2px 3px 2px 3px;
+    -fx-background-radius: 2px;
+    -fx-background-color: #a63232;
+}
+
+#interestedLabel, #appliedLabel, #rejectedLabel, #offeredLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 2px 0px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #010504;
+    -fx-min-width: 80;
+}
+
+.status_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-padding: 2px 15px 2px 15px;
+    -fx-background-radius: 20px;
+}
+
+.task-label {
+    -fx-font-family: "Segoe UI Semibold" !important;
+}
+
+.border-pane {
+    -fx-padding: 0 10 0 0;
+}
+
+/* Styling for statistics panel */
+.default-color0.chart-pie { -fx-pie-color: #91d7ff; } /* interested */
+.default-color1.chart-pie { -fx-pie-color: #ffbd59; } /* applied */
+.default-color2.chart-pie { -fx-pie-color: #5bb288; } /* offered */
+.default-color3.chart-pie { -fx-pie-color: #ff8787; } /* rejected */

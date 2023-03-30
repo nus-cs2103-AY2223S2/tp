@@ -2,28 +2,39 @@ package seedu.address.model.application;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+
 
 /**
  * Represents an Application in the internship book.
  * Guarantees: details are present and not null, field values are validated, immutable.
- * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class Application {
     private final Role role;
     private final CompanyName companyName;
     private final CompanyEmail companyEmail;
     private final Status status;
+    private final Task task;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail, Status status) {
-        requireAllNonNull(role, companyName, companyEmail, status);
+    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail,
+                       Status status, Task task, Set<Tag> tags) {
+        requireAllNonNull(role, companyName, companyEmail, status, tags);
         this.role = role;
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.status = status;
+        this.task = task;
+        this.tags.addAll(tags);
     }
 
     public Role getRole() {
@@ -40,6 +51,26 @@ public class Application {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public Task getTask() {
+        return this.task;
+    }
+
+    public boolean hasTask() {
+        return getTask() != null;
+    }
+
+    public boolean hasOutdatedTask() {
+        return !this.task.hasValidDeadline();
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -60,25 +91,33 @@ public class Application {
         Application otherApplication = (Application) other;
         return otherApplication.getRole().equals(getRole())
                 && otherApplication.getCompanyName().equals(getCompanyName())
-                && otherApplication.getCompanyEmail().equals(getCompanyEmail());
+                && otherApplication.getCompanyEmail().equals(getCompanyEmail())
+                && otherApplication.getTags().equals(getTags())
+                && otherApplication.hasTask() == hasTask();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(role, companyName, companyEmail, status);
+        return Objects.hash(role, companyName, companyEmail, status, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getRole())
+        builder.append("Role: ").append(getRole())
                 .append("; Company: ")
                 .append(getCompanyName())
-                .append("; Company's email: ")
+                .append("; Company Email: ")
                 .append(getCompanyEmail())
-                .append("; Application status: ")
+                .append("; Status: ")
                 .append(getStatus());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }
