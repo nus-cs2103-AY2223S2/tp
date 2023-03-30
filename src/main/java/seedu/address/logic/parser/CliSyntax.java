@@ -33,6 +33,7 @@ public class CliSyntax {
 
     // Prefix internal id == view <ID> <--
     public static final Prefix PREFIX_INTERNAL_ID = new Prefix("i/");
+
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
-    public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
+    public static final Prefix PREFIX_REVERSE_SORT = new Prefix("r/");
 }

@@ -26,6 +26,7 @@ import seedu.address.logic.commands.DeleteVehicleCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCustomerCommand;
+import seedu.address.logic.commands.EditServiceCommand;
 import seedu.address.logic.commands.EditTechnicianCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -35,6 +36,12 @@ import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListServicesCommand;
 import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortAppointmentsCommand;
+import seedu.address.logic.commands.SortCustomersCommand;
+import seedu.address.logic.commands.SortServicesCommand;
+import seedu.address.logic.commands.SortTechniciansCommand;
+import seedu.address.logic.commands.SortVehiclesCommand;
+import seedu.address.logic.commands.TotalAppointmentCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
@@ -104,6 +111,8 @@ public class AddressBookParser {
 
         // AutoM8 commands
 
+        // Add
+
         case AddCustomerCommand.COMMAND_WORD:
             return new AddCustomerCommandParser().parse(arguments);
 
@@ -128,6 +137,8 @@ public class AddressBookParser {
         case AddTechnicianToServiceCommand.COMMAND_WORD:
             return new AddTechnicianToServiceCommandParser().parse(arguments);
 
+        // List
+
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
 
@@ -137,6 +148,7 @@ public class AddressBookParser {
         case ListServicesCommand.COMMAND_WORD:
             return new ListServicesCommand();
 
+        // View
 
         case ViewPartCommand.COMMAND_WORD:
             return new ViewPartCommand(arguments.trim());
@@ -156,6 +168,8 @@ public class AddressBookParser {
         case ViewServiceCommand.COMMAND_WORD:
             return new ViewServiceCommandParser().parse(arguments.trim());
 
+        // Delete
+
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments.trim());
 
@@ -171,7 +185,6 @@ public class AddressBookParser {
         case DeleteTechnicianCommand.COMMAND_WORD:
             return new DeleteTechnicianCommandParser().parse(arguments.trim());
 
-
         case EditAppointmentCommand.COMMAND_WORD:
             return new EditAppointmentCommandParser().parse(arguments.trim());
 
@@ -180,6 +193,29 @@ public class AddressBookParser {
 
         case EditTechnicianCommand.COMMAND_WORD:
             return new EditTechnicianCommandParser().parse(arguments.trim());
+
+        case EditServiceCommand.COMMAND_WORD:
+            return new EditServiceCommandParser().parse(arguments.trim());
+
+        // Sort
+
+        case SortCustomersCommand.COMMAND_WORD:
+            return new SortCustomersCommandParser().parse(arguments);
+
+        case SortVehiclesCommand.COMMAND_WORD:
+            return new SortVehiclesCommandParser().parse(arguments);
+
+        case SortServicesCommand.COMMAND_WORD:
+            return new SortServicesCommandParser().parse(arguments);
+
+        case SortTechniciansCommand.COMMAND_WORD:
+            return new SortTechniciansCommandParser().parse(arguments);
+
+        case SortAppointmentsCommand.COMMAND_WORD:
+            return new SortAppointmentsCommandParser().parse(arguments);
+
+        case TotalAppointmentCommand.COMMAND_WORD:
+            return new TotalAppointmentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

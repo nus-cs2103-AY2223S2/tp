@@ -90,7 +90,8 @@ public class EditAppointmentCommand extends RedoableCommand {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
 
-        if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
+        if (!appointmentToEdit.isSameAppointment(editedAppointment)
+                && model.hasAppointment(editedAppointment.getId())) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 

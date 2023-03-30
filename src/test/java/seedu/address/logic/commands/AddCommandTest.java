@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -235,17 +236,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteAppointment(Appointment target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -257,6 +248,11 @@ public class AddCommandTest {
         @Override
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(int appointmentId) {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -329,6 +325,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -380,8 +381,34 @@ public class AddCommandTest {
 
         @Override
         public void setService(Service target, Service editedService) {
-
+            throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateCustomerComparator(Comparator<? super Customer> cmp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateServiceComparator(Comparator<? super Service> cmp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public ReadOnlyShop getShop() {
