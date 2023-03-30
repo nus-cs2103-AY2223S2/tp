@@ -6,7 +6,7 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 * Table of Contents
-   *	Feature Tracks
+   *	Features
          * Delivery tasking management system:
             * View jobs
             * Add jobs individually
@@ -50,13 +50,13 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    Some example commands you can try:
 
    * `list` : Lists all contacts.
-   
+
    * `list_job` : Lists all jobs.
-   
+
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   
+
    * `timetable` : Shows timetable of current week.
-   
+
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -181,21 +181,28 @@ Commands are input in this text field
 
 Adds a delivery job to the delivery job system.
 
-Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` 
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 ![Create Job](images/Addjob.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Description field is only available in GUI mode.
+</div>
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
-* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
-  * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
-  * Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5.
+* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
 * Earning **must be a double**.
 
 Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+
+
 
 ### 2.2. Mass importing jobs
 
@@ -203,7 +210,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
-* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist. 
+* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
   * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
 
@@ -213,13 +220,66 @@ Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
-### 2.3. Listing all customers : `list`
+![list job](images/listJob.png)
 
-Switch to Customer Window.
-Shows a list of all persons/customers in the address book in Customer Window.
+### 2.3.1. Sort and filter jobs
 
-Format: `list`
+![sort filter job](images/listJobSortFilter.png)
 
+### 2.4. Edit jobs : `edit_job`
+
+Edit a selected job by Index or Job id.
+
+Format: `edit_job INDEX (must be a positive integer) | [ji/Job Id] [si/Sender Id] [ri/Recipient] [date/Date] [slot/Slot] [earn/Earn] [done/t | f]...`
+* The index must be a positive integer 1, 2, 3, ...
+* Refer to `list_job` for argument constrains.
+
+Examples:
+* `edit_job 1 slot/4`
+* `edit_job 1 date/2023-03-01`
+* `edit_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+Alternative: 
+![edit job](images/editJob.png)
+
+### 2.5. Mark job as in/complete : `com_job` | `uncom_job`
+
+Mark a job as completed or not completed.
+
+Complete Format: `com_job <job id>`
+Incomplete Format: `uncom_job <job id>`
+
+* `com_job ALBE1989C9`
+* `uncom_job ALBE1989C9`
+
+Alternative: 
+![complete job](images/comJob.png)
+
+### 2.6. Find job : `find_job`
+
+Find a job that matches all supplied query options.
+
+Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t | f]`
+* Refer to `list_job` for argument constrains.
+
+Examples:
+* `find_job ji/<job_id>`
+* `find_job date/2023-03-01 slot/4`
+* `find_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+### 2.7. Delete job : `delete_job`
+
+Deletes a job from the system. 
+Support `del` key in job list.
+
+Format: `delete_job <job_id>`
+* The job id must be **valid**.
+
+Examples:
+* `delete_job <job_id>`
+
+Alternative: 
+![delete job](images/delJob.png)
 
 ## 3. Features available for Reminders
 ### *Can only access from Main Window*
@@ -303,10 +363,10 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ![Statistics](images/Statistics.png)
 
 Shows a summary of statistics related to the jobs in the job list
-* Total number of jobs in the job list 
-* Total earnings from all jobs in the job list 
-* Total number of completed jobs in the job list 
-* Total number of pending jobs in the job list 
+* Total number of jobs in the job list
+* Total earnings from all jobs in the job list
+* Total number of completed jobs in the job list
+* Total number of pending jobs in the job list
 
 Similar statistics are shown for jobs in the previous week
 
@@ -349,8 +409,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 **:information_source: Notes about the command format:**<br>
-* Commands that start with *(C)* could only be accessed from Customer Window 
-* Commands that start with *(M)* could only be accessed from Main Window 
+* Commands that start with *(C)* could only be accessed from Customer Window
+* Commands that start with *(M)* could only be accessed from Main Window
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 
@@ -366,6 +426,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | ***(M)* Import Jobs**                     | click on `Delivery Job System` in menu bar > `Import Jobs` > select CSV file containing jobs to be imported > `open`                                                                                                                    |
 | ***(M)* List reminder**                   | `list_reminder`                                                                                                                                                                                                                         |
 | ***(M)* Add reminder**                    | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`                                                                                                                      |
+| ***(M)* List Job**                     | `list_job`                                                     |
+| ***(M)* Edit Job**                     | `edit_job INDEX \| [ji/Job Id] [si/Sender Id] [ri/Recipient] [date/Date] [slot/Slot] [earn/Earn] [done/t \| f]...`                                                               |
+| ***(M)* Complete Job**                     | `com_job <job id>`                                                     |
+| ***(M)* UnComplete Job**                     | `uncom_job <job id>`                                                            |
+| ***(M)* Find Job**                     | `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t \| f]`                               |
+| ***(M)* Delete Job**                     | `delete_job <job_id>`<br/>OR<br/>Select from job list > press `del`                                                           |
 | ***(M)* Delete reminder**                 | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`                                                                                                                                                                                  |
 | ***(M)* Show Timetable**                  | `timetable`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs`                                                                                                                                                              |
 | ***(M)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD`<br/>OR<br/>Click on `Timetable` in menu bar > `Scheduled Jobs` > input `timetable_date date/YYYY-mm-DD`<br/>e.g., `timetable_date date/2023-03-30`                                                     |
