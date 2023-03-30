@@ -49,7 +49,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "4. clear: Clears all items on the student list.\n"
             + "5. exit: Closes the application. \n"
             + "\n"
-            + "Addition: The student’s avatar will change if they have a male or female tag. "
+            + "Extra info:\n All commands are case insensitive. e.g. `LIST` will be interpreted as `list`. \n"
+            + "The student’s avatar will change if they have a male or female tag. "
             + "If a student has no or both the tags, his or her avatar will remain as the default.\n";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
