@@ -4,6 +4,7 @@
     {
       "nric": "S1234567A",
       "name": "Alice Pauline",
+      "date" : "15/06/1998",
       "phone": "94351253",
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
@@ -17,6 +18,7 @@
     {
       "nric": "S2345678B",
       "name": "Benson Meier",
+      "date" : "16/01/1998",
       "phone": "98765432",
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
@@ -34,6 +36,7 @@
     {
       "nric": "S3456789C",
       "name": "Carl Kurz",
+      "date" : "27/02/1998",
       "phone": "95352563",
       "email": "heinz@example.com",
       "address": "wall street",
@@ -48,6 +51,7 @@
       "nric": "S0123456D",
       "name": "Daniel Meier",
       "phone": "87652533",
+      "date" : "22/04/1988",
       "email": "cornelia@example.com",
       "address": "10th street",
       "drugAllergy": "Aspirin Panadol",
@@ -61,6 +65,7 @@
       "nric": "S0000000E",
       "name": "Elle Meyer",
       "phone": "9482224",
+      "date" : "25/02/1876",
       "email": "werner@example.com",
       "address": "michegan ave",
       "drugAllergy": "NKDA",
@@ -73,6 +78,7 @@
     {
       "nric": "S1111111F",
       "name": "Fiona Kunz",
+      "date" : "29/07/1999",
       "phone": "9482427",
       "email": "lydia@example.com",
       "address": "little tokyo",
@@ -89,6 +95,7 @@
     {
       "nric": "S2222222G",
       "name": "George Best",
+      "date" : "22/08/2001",
       "phone": "9482442",
       "email": "anna@example.com",
       "address": "4th street",
