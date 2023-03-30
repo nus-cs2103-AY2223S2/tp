@@ -2,6 +2,7 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,16 +18,18 @@ public class ClashCommand extends Command {
 
     public static final String COMMAND_WORD = "clash";
 
+    public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "Displaying all clashing events. "
+            + "There are %1$s days with clashing events.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all event clashes.\n"
             + "Example: " + COMMAND_WORD;
-
-    public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "Displaying all clashing events";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
-        HashMap<Event, List<Event>> hash = eventCatalogue.findClashEvents();
-        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
+        HashMap<LocalDate, List<Event>> hash = eventCatalogue.findClashEvents();
+        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS, hash.keySet().size()),
+                ResultType.CLASH, hash);
     }
 }

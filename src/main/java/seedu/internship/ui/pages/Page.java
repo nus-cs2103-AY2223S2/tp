@@ -4,6 +4,8 @@ import javafx.scene.layout.Region;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.ui.UiPart;
 
+import java.util.HashMap;
+
 /**
  * This class represents UI component shown to the right of the InternshipList.
  */
@@ -27,7 +29,8 @@ public abstract class Page extends UiPart<Region> {
             resultPage = new StatsPage(commandResult.getStatistics());
             break;
         case CLASH:
-            resultPage = new ClashInfoPage(commandResult.getClashingEvents());
+            // Change this to commandResult.getClashingEvents() which returns HashMap<LocalDate, List<Events>>
+            resultPage = new ClashInfoPage(new HashMap<>());
             break;
         case SHOW_INFO:
             resultPage = new InternshipInfoPage(commandResult.getInternship(), commandResult.getEvents());
