@@ -22,7 +22,7 @@ public class ClearCommand extends Command {
         Memento old = model.save();
         HistoryUtil.getInstance().storePast(old, COMMAND_WORD);
 
-        model.setAddressBook(new TeamBuilder());
+        model.setTeamBuilder(new TeamBuilder());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

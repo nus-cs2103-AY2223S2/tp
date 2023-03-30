@@ -58,11 +58,11 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().toString();
         phone = source.getPhone().toString();
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        major = source.getMajor().majorStudy;
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
+        major = source.getMajor().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -116,7 +116,7 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Address modelAddress = Address.of(address);
 
         if (major == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
@@ -124,7 +124,7 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
-        final Major modelMajor = new Major(major);
+        final Major modelMajor = Major.of(major);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 

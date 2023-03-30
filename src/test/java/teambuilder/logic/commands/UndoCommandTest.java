@@ -140,12 +140,12 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTeamBuilder addressBook) {
+        public void setTeamBuilder(ReadOnlyTeamBuilder teamBuilder) {
             throw new UnsupportedOperationException("Unimplemented method 'setAddressBook'");
         }
 
         @Override
-        public ReadOnlyTeamBuilder getAddressBook() {
+        public ReadOnlyTeamBuilder getTeamBuilder() {
             throw new UnsupportedOperationException("Unimplemented method 'getAddressBook'");
         }
 
@@ -199,6 +199,16 @@ public class UndoCommandTest {
         }
 
         @Override
+        public void setTeam(Team team, Team editedTeam) {
+            throw new UnsupportedOperationException("Unimplemented method 'setTeam'");
+        }
+
+        @Override
+        public ObservableList<Team> getSortedTeamList() {
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedTeamList'");
+        }
+
+        @Override
         public ObservableList<Person> getSortedPersonList() {
 
             throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
@@ -210,15 +220,24 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void updateSort(Comparator<Person> comparator) {
-            throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
+        public void updateFilteredTeamList(Predicate<Team> predicate) {
+
+        }
+
+        @Override
+        public void updateSortPerson(Comparator<Person> comparator) {
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortPerson'");
+        }
+
+        @Override
+        public void updateSortTeam(Comparator<Team> comparator) {
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortTeam'");
         }
 
         @Override
         public ObservableList<Team> getTeamList() {
             throw new AssertionError("Unimplemented method 'getTeamList'");
         }
-
     }
 
     private class EmptyMomentoStub implements Memento {

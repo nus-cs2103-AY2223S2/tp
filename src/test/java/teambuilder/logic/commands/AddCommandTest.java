@@ -134,12 +134,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTeamBuilder newData) {
+        public void addTeam(Team team) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTeamBuilder getAddressBook() {
+        public void setTeamBuilder(ReadOnlyTeamBuilder newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTeamBuilder getTeamBuilder() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,6 +152,7 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void deletePerson(Person target) {
@@ -169,17 +175,16 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addTeam(Team team) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updatePersonInTeams(Person person) {
             return;
         }
 
         @Override
         public void removeFromAllTeams(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void setTeam(Team target, Team editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -192,13 +197,28 @@ public class AddCommandTest {
         public ObservableList<Team> getTeamList() {
             return new FilteredList<>(FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
         }
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+
+        public ObservableList<Team> getSortedTeamList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSort(Comparator<Person> comparator) {
+        public void updateFilteredPersonList(Predicate <Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTeamList(Predicate<Team> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortPerson(Comparator <Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortTeam(Comparator <Team> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -240,7 +260,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTeamBuilder getAddressBook() {
+        public ReadOnlyTeamBuilder getTeamBuilder() {
             return new TeamBuilder();
         }
     }

@@ -57,7 +57,7 @@ public class SortCommand extends Command {
                 comparator = comparator.reversed();
             }
 
-            model.updateSort(comparator);
+            model.updateSortPerson(comparator);
             break;
         default:
             break;

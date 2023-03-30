@@ -81,7 +81,7 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return Address.of(trimmedAddress);
     }
 
     /**
@@ -111,7 +111,7 @@ public class ParserUtil {
         if (!Major.isValidMajor(trimmedMajor)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new Major(trimmedMajor);
+        return Major.of(trimmedMajor);
     }
 
     /**

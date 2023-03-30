@@ -64,7 +64,7 @@ public class TeamCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof TeamCard)) {
             return false;
         }
 
@@ -74,3 +74,4 @@ public class TeamCard extends UiPart<Region> {
                 && team.equals(card.team);
     }
 }
+

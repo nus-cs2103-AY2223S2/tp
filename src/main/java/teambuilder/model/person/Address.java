@@ -9,25 +9,50 @@ import static teambuilder.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].*|^\\s*$";
 
-    public final String value;
+    private static final Address EMPTY_ADDRESS = new Address();
+    private final String value;
 
     /**
      * Constructs an {@code Address}.
      *
      * @param address A valid address.
      */
-    public Address(String address) {
+    private Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    private Address() {
+        value = "";
+    }
+
+    /**
+     * Public method to create addresses.
+     * Note that empty string or string containing only white spaces will return the default EMPTY_ADDRESS instance.
+     *
+     * @param address   The address input.
+     * @return          An Address instance with the given input
+     */
+    public static Address of(String address) {
+        requireNonNull(address);
+        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+        if (address.length() == 0) {
+            return getEmptyAddress();
+        }
+        return new Address(address);
+    }
+
+    public static Address getEmptyAddress() {
+        return EMPTY_ADDRESS;
     }
 
     /**
@@ -54,4 +79,7 @@ public class Address {
         return value.hashCode();
     }
 
+    public boolean isEmptyAddress() {
+        return this == EMPTY_ADDRESS;
+    }
 }
