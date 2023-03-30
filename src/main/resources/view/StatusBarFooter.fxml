@@ -4,9 +4,17 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
-  </columnConstraints>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<HBox styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <Label fx:id="saveLocationStatus" />
-</GridPane>
+  <HBox alignment="BASELINE_RIGHT">
+    <Label text="Current Occupancy: "/>
+    <Label fx:id="currentOccupancy"/>
+
+    <Label text="Current Critical: "/>
+    <Label fx:id="currentCritical"/>
+  </HBox>
+
+</HBox>

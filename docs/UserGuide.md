@@ -3,14 +3,25 @@ layout: page
 title: User Guide
 ---
 
-MedInfo is a **desktop app for managing patients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
+MedInfo is a **desktop app for managing patients and wards for private hospitals, 
+optimized for use via a Command Line Interface** (CLI) 
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
 
-- Table of Contents
+This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
+with its features and using it. You might be a **hospital staff member** learning the ropes of 
+MedInfo or **potential customer**.
+
+Navigating this User Guide is simple with the Table of Contents with hyperlinks to every segment below, and a hyperlink
+on every page to take you back to the Table of Contents. To further augment your navigation, press
+<kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
+
+* Table of Contents
   {:toc}
 
 ---
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -37,7 +48,7 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 
 ---
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -64,7 +75,7 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 
 </div>
 
-### Viewing help : `help`
+## Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -74,7 +85,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a patient to the system: `add`
+## Adding a patient to the system: `add`
 
 Adds the patient (NRIC, name and status).
 
@@ -89,13 +100,13 @@ Examples:
 
 - `add nric/S1234567A name/John Doe s/RED`
 
-### Listing all patients in the system: `list`
+## Listing all patients in the system: `list`
 
 Shows a list of all patients with their details in the system.
 
 Format: `list`
 
-### Editing a patient’s details in the system: `edit`
+## Editing a patient’s details in the system: `edit`
 
 Edit an existing patient’s status or ward or discharge date-time.
 
@@ -112,7 +123,7 @@ Examples:
 - `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`.
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
-### Sorting all patients in the system: `sort`
+## Sorting all patients in the system: `sort`
 
 Sorts all the patients with the specified field and order in the system.
 
@@ -122,7 +133,7 @@ Examples:
 
 - `sort s/asc`
 
-### Finding patients by name in the system: `find`
+## Finding patients by name in the system: `find`
 
 Shows a list of all patients with their details that match input name or NRIC.
 
@@ -141,7 +152,7 @@ Examples:
 - `find name/john carlos` returns `John Smith`, `Carlos Lopez`<br>
   ![result for 'find alex david'](images/findJohnCarlosResult.png)
 
-### Deleting a patient from the system: `delete`
+## Deleting a patient from the system: `delete`
 
 Deletes a patient by index.
 
@@ -153,7 +164,7 @@ Examples:
 
 `delete 1`
 
-### Adding a ward to the system: `addward`
+## Adding a ward to the system: `addward`
 
 Adds the ward (name and capacity).
 
@@ -170,6 +181,7 @@ The default capacity is set to 10.
 Examples:
 
 - `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
+
 
 ### Editing a ward's details in the system: `editward`
 
@@ -198,17 +210,16 @@ Examples:
 
 `deleteward 1`
 
-### Exiting the program : `exit`
+## Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
+## Saving the data
 MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+## Editing the data file
 
 MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 

@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private WardListPanel wardListPanel;
     private ResultDisplay resultDisplay;
+    private MedInfoStats medInfoStats;
     private HelpWindow helpWindow;
 
     @FXML
@@ -55,6 +56,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane medInfoStatsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -125,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath(), "20/20", "900");
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -186,43 +189,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-
-            if (commandText.contains("deleteward")) {
-                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Are you sure you want to delete the ward?");
-                Optional<ButtonType> deleteWardResult = confirmationDialog.showAndWait();
-
-                if (deleteWardResult.isPresent() && deleteWardResult.get() == ButtonType.CANCEL) {
-                    CommandResult commandResult = logic.execute("list");
-                    logger.info("Delete ward aborted: " + commandResult.getFeedbackToUser());
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    return commandResult;
-                }
-            } else if (commandText.contains("delete")) {
-                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Are you sure you want to delete the patient?");
-                Optional<ButtonType> deleteResult = confirmationDialog.showAndWait();
-
-                if (deleteResult.isPresent() && deleteResult.get() == ButtonType.CANCEL) {
-                    CommandResult commandResult = logic.execute("list");
-                    logger.info("Delete aborted: " + commandResult.getFeedbackToUser());
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    return commandResult;
-                }
-            }
-
-            if (commandText.contains("clear")) {
-                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
-                        "Are you sure you want to clear ALL patients?");
-                Optional<ButtonType> clearResult = confirmationDialog.showAndWait();
-
-                if (clearResult.isPresent() && clearResult.get() == ButtonType.CANCEL) {
-                    CommandResult commandResult = logic.execute("list");
-                    logger.info("Clear aborted: " + commandResult.getFeedbackToUser());
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    return commandResult;
-                }
-            }
 
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
