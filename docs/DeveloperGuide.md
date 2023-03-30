@@ -258,15 +258,15 @@ main statistics: projects that are due soon, projects that are overdue
 and a pie chart showing progress overview. The goal of this feature is to provide users
 with useful information related to productivity to make adjustments accordingly.
 
-For projects that are due soon, all projects that have deadlines within the current week
-and next week will be displayed (Week starts from Sunday here). For example, if the current
-date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be
+For projects that are due soon, all projects that have deadlines within the current week 
+and next week will be displayed (Week starts from Sunday). For example, if the current 
+date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will be 
 shown on the **Due soon project list**.
 
 For overdue list, all overdue projects will be displayed to make sure that users can
-keep track of all the deadlines they have missed. Any deadlines before the current date will be
-counted as overdue. For example, if current date is 11/04/2023, projects with deadlines on 11/04/2023
-will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue
+keep track of all the deadlines they have missed. Any deadlines before the current date will be 
+counted as overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
+will not be shown in **Overdue project list**, but projects with deadlines on 10/04/2023 will be shown in the **Overdue 
 project list**.
 
 Both of **Due and Overdue project lists** utilize LocalDate library in Java to perform various operations on dates.
