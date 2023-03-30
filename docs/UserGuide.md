@@ -423,33 +423,36 @@ There is no support for mobile devices yet.
 ## Command summary
 
 ### Food Commands
+
 | Feature  | Action                                | Command Format                                                         | Example                                                           |
-|:--------:|:--------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-|   Add    | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
-|   List   | Lists all food items                  | `list`                                                                 | `list`                                                            |
-|   Find   | Finds a food item                     | `find KEYWORD`                                                         | `find Broccoli`                                                   |
-|   Edit   | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
+|----------|---------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
+| List     | Lists all food items                  | `list`                                                                 | `list`                                                            |
+| Find     | Finds a food item                     | `find KEYWORD`                                                         | `find Broccoli`                                                   |
+| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
 | Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                               | `inc 1 q/100`                                                     |
 | Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                               | `dec 1 q/100`                                                     |
-|  Delete  | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
+| Delete   | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
 
 ### Tag Commands
-|    Feature     | Action                                        | Command Format                         | Example                            |
-|:--------------:|-----------------------------------------------|----------------------------------------|------------------------------------|
-|   Create Tag   | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
-|      Tag       | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
-|     Untag      | Remove a tag from a food item                 | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
-|   List tags    | List all the tags created                     | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
+
+| Feature        | Action                                        | Command Format                         | Example                            |
+|----------------|-----------------------------------------------|----------------------------------------|------------------------------------|
+| Create Tag     | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
+| Tag            | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
+| Untag          | Remove a tag from a food item                 | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
+| List tags      | List all the tags created                     | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
 | Delete by tags | Delete food items by their tags               | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
-|  Delete tags   | Delete specified tags.                        | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
+| Delete tags    | Delete specified tags.                        | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
 
 
 ### General Commands
+
 | Feature | Action                                                | Command Format | Example    |
-|:-------:|-------------------------------------------------------|----------------|------------|
-|  Help   | Shows a help message                                  | `help`         | `help add` |
-|  Clear  | Resets all food items <br/>(**Destructive command!**) | `clear`        | `clear`    |
-|  Exit   | Exits WIFE                                            | `exit`         | `exit`     |
+|---------|-------------------------------------------------------|----------------|------------|
+| Help    | Shows a help message                                  | `help`         | `help add` |
+| Clear   | Resets all food items <br/>(**Destructive command!**) | `clear`        | `clear`    |
+| Exit    | Exits WIFE                                            | `exit`         | `exit`     |
 
 
 --------------------------------------------------------------------------------------------------------------------
