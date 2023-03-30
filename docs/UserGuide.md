@@ -144,8 +144,8 @@ Format: `findp KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findp John` returns `john` and `John Doe`
-* `findp alex` returns `Alex Pauline`<br>
-  ![result for 'findp alex p'](images/findAlexPaulineResult.png)
+* `findp alice` returns `alice pauline`<br>
+  ![result for 'findp alex p'](images/findAlicePaulineResult.png)
 
 ### Deleting a person : `deletep`
 
