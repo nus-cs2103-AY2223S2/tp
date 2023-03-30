@@ -219,6 +219,13 @@ public interface Model {
     void addAppointment(Appointment appointment);
 
     /**
+     * Checks if appointment in the system
+     *
+     * @param appointmentId ID of appointment
+     */
+    boolean hasAppointment(int appointmentId);
+
+    /**
      * Adds part
      *
      * @param partName Name of the part to add

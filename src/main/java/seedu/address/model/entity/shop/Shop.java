@@ -153,6 +153,15 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Checks if appointment in the system
+     *
+     * @param appointmentId ID of appointment
+     */
+    public boolean hasAppointment(int appointmentId) {
+        return this.getAppointmentList().stream().anyMatch(a -> a.getId() == appointmentId);
+    }
+
+    /**
      * Replaces the contents of the appointment list with {@code appointments}.
      * {@code appointments} must not contain appointment customers.
      */
@@ -200,7 +209,8 @@ public class Shop implements ReadOnlyShop {
 
     /**
      * Assigns existing technician to existing service
-     * @param serviceId ID of service
+     *
+     * @param serviceId    ID of service
      * @param technicianId ID of technician
      * @throws NoSuchElementException If service or technician doesn't exist
      */
@@ -296,6 +306,12 @@ public class Shop implements ReadOnlyShop {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
+        key.getAppointmentIds().stream()
+            .flatMap(i -> this.getAppointment(i).stream())
+            .forEach(this::removeAppointment);
+        key.getVehicleIds().stream()
+            .flatMap(i -> this.getVehicle(i).stream())
+            .forEach(this::removeVehicle);
         customers.remove(key);
     }
 
@@ -436,6 +452,9 @@ public class Shop implements ReadOnlyShop {
      * {@code key} must exist in the address book.
      */
     public void removeVehicle(Vehicle key) {
+        key.getServiceIds().stream()
+            .flatMap(i -> getService(i).stream())
+            .forEach(this::removeService);
         vehicles.remove(key);
     }
 
@@ -460,6 +479,32 @@ public class Shop implements ReadOnlyShop {
         setTechnicians(newData.getTechnicianList());
         setAppointments(newData.getAppointmentList());
         setTechnicians(newData.getTechnicianList());
+    }
+
+    // Private getters to help in cascading removal
+
+    private Optional<Customer> getCustomer(int customerId) {
+        return this.getCustomerList().stream()
+            .filter(c -> c.getId() == customerId)
+            .findFirst();
+    }
+
+    private Optional<Vehicle> getVehicle(int vehicleId) {
+        return this.getVehicleList().stream()
+            .filter(v -> v.getId() == vehicleId)
+            .findFirst();
+    }
+
+    private Optional<Service> getService(int serviceId) {
+        return this.getServiceList().stream()
+            .filter(v -> v.getId() == serviceId)
+            .findFirst();
+    }
+
+    private Optional<Appointment> getAppointment(int appointmentId) {
+        return this.getAppointmentList().stream()
+            .filter(a -> a.getId() == appointmentId)
+            .findFirst();
     }
 
     //// Delete operations

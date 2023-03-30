@@ -20,7 +20,7 @@ public class AddAppointmentCommand extends RedoableCommand {
             + "Parameters: "
             + PREFIX_CUSTOMER_ID + "CUSTOMER ID "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
+            + PREFIX_TIME + "TIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CUSTOMER_ID + "5 "
             + PREFIX_DATE + "2023-02-03 "
