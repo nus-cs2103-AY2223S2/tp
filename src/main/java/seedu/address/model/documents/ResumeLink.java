@@ -9,11 +9,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import seedu.address.model.person.InternshipApplicationAttribute;
+
 /**
  * Represents a link to a resume in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidResumeLink(String)}
  */
-public class ResumeLink {
+public class ResumeLink extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to resume should be in the form http://domain/path "
             + "or https://domain/path";

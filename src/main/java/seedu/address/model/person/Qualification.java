@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's qualification in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidQualification(String)}
  */
-public class Qualification {
+public class Qualification extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Qualifications can take any values, and it should not be blank";
 

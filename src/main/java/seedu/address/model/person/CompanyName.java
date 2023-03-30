@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an InternshipApplication's companyName in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCompanyName(String)}
  */
-public class CompanyName {
+public class CompanyName extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Company Names should only contain alphanumeric characters and spaces, and it should not be blank";
