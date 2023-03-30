@@ -507,7 +507,7 @@ Format: `delete_note INDEX`
 * **Note that this action is irreversible**
 
 Examples:
-* `delete 2` Deletes the 2nd note in the list of notes.
+* `delete_note 2` Deletes the 2nd note in the list of notes.
 
 ### Clear all notes  : `clear_note`
 
