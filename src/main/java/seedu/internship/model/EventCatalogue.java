@@ -2,6 +2,7 @@ package seedu.internship.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -94,8 +95,9 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
         this.events.remove(key);
     }
 
-    public HashMap<Event, List<Event>> findClashEvents() {
-        return this.events.getClashEventList();
+
+    public HashMap<LocalDate, List<Event>> findClashEvents() {
+        return this.events.getClashEventHash();
     }
 
     //// util methods
