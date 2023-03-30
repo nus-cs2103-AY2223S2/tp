@@ -142,7 +142,7 @@ public class Order extends Item {
     public ItemPrice getTotalRevenue() {
         return OrderUtil.getTotalRevenue(orderQuantity, orderItem);
     }
- 
+
     /**
      * Compares 2 tasks using their time added.
      * @param otherOrder The order to compare with.

@@ -6,6 +6,9 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DecimalFormat;
 
+/**
+ * ItemPrice represents any currency that may be associated.
+ */
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers, and it should be at most 2 decimal place";

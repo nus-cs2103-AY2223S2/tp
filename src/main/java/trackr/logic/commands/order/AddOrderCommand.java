@@ -70,8 +70,8 @@ public class AddOrderCommand extends Command {
                                 .findAny()
                                 .orElseThrow(() ->
                                             new CommandException(MESSAGE_NO_MENU_ITEM));
-        Order validOrder = new Order(existingItem, toAdd.getOrderDeadline(), toAdd.getOrderStatus(), 
-                                    toAdd.getOrderQuantity(), toAdd.getCustomer());
+        Order validOrder = new Order(existingItem, toAdd.getOrderDeadline(), toAdd.getOrderStatus(),
+                                     toAdd.getOrderQuantity(), toAdd.getCustomer());
         if (model.hasItem(validOrder, modelEnum)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, modelEnum, validOrder));
         }
