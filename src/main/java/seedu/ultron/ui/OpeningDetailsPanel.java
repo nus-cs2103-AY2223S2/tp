@@ -43,8 +43,15 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         email.setText("Email: " + opening.getEmail().value);
         remark.setText(String.format("Remark: %s", opening.getRemark().value));
         opening.getKeydates().stream()
-                .forEach(date -> dates.getChildren().add(new KeydateCard(date)));
-
+                .forEach(date -> {
+                    KeydateCard keydateCard = new KeydateCard(date);
+                    keydateCard.setWrapText(true);
+                    dates.getChildren().add(keydateCard);
+                });
+        position.setWrapText(true);
+        company.setWrapText(true);
+        status.setWrapText(true);
+        email.setWrapText(true);
         remark.setWrapText(true);
     }
 }

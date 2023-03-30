@@ -112,22 +112,23 @@ public class Opening {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getPosition())
-                .append(" Company: ")
+        builder.append("Position: ")
+                .append(getPosition())
+                .append(" | Company: ")
                 .append(getCompany())
-                .append(" Email: ")
+                .append(" | Email: ")
                 .append(getEmail())
-                .append(" Status: ")
+                .append(" | Status: ")
                 .append(getStatus());
 
         if (getRemark() != null) {
-            builder.append(" Remark: ")
+            builder.append(" | Remark: ")
                     .append(getRemark());
         }
 
         List<Keydate> keydates = getKeydates();
         if (!keydates.isEmpty()) {
-            builder.append("; Keydates: ");
+            builder.append(" | Keydates: ");
             keydates.forEach(builder::append);
         }
         return builder.toString();
