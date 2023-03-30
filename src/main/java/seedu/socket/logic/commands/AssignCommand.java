@@ -79,6 +79,7 @@ public class AssignCommand extends Command {
                 projectToAssign.getRepoName(), projectToAssign.getDeadline(), projectToAssign.getMeeting(),
                 newMembers);
         model.setProject(projectToAssign, editedProject);
+        model.commitSocket();
         return new CommandResult(String.format(
                 MESSAGE_ASSIGN_SUCCESS, personToAssign.getName(), editedProject.getName()));
     }
