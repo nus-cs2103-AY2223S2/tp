@@ -22,7 +22,7 @@ import seedu.address.model.score.Score;
  */
 public class AddScoreCommand extends Command {
 
-    public static final String COMMAND_WORD = "addScore";
+    public static final String COMMAND_WORD = "addscore";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the specified student. \n"
             + "Parameters: INDEX (must be a positive number) "
