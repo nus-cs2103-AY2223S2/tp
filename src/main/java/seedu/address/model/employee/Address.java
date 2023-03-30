@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
-
+    private static final Address NULL = new Address();
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -33,12 +33,19 @@ public class Address {
      * Bypass input validation, allows actual null values.
      */
     public Address() {
-        this.value = "N/A";
+        this.value = "";
+    }
+
+    public static Address getNullAddress() {
+        return Address.NULL;
     }
     /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
+        if (test == null || test.isEmpty() || test.equals("N/A")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
