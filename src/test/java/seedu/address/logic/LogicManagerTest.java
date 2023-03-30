@@ -62,7 +62,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
+        String listCommand = "list";
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -77,7 +77,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = MakeCommand.COMMAND_WORD + " " + CHAR.label + NAME_DESC_AMY;
+        String addCommand = "make" + " " + CHAR.label + NAME_DESC_AMY;
         Entity expectedEntity = new EntityBuilder(AMY).buildChar();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntity(expectedEntity);

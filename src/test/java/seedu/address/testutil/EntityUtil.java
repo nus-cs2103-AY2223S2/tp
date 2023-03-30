@@ -20,7 +20,7 @@ public class EntityUtil {
      * Returns an add command string for adding the {@code entity}.
      */
     public static String getMakeCommand(Entity entity) {
-        return MakeCommand.COMMAND_WORD + " " + getEntityDetails(entity);
+        return "make" + " " + getEntityDetails(entity);
     }
 
     /**
