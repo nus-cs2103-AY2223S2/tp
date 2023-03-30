@@ -196,10 +196,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Add**    | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
-| **Edit**   | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Status** | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
-| **List**   | `list`                                                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
+| **Edit**     | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Status**   | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
+| **List**     | `list`                                                                                                                                                             |
+| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                              |   
