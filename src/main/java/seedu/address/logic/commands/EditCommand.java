@@ -92,9 +92,9 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (personToEdit.getRole().toString() == "Doctor") {
+        if (personToEdit.getRole().toString().equals("Doctor")) {
             model.setDoctor((Doctor) personToEdit, (Doctor) editedPerson);
-        } else if (personToEdit.getRole().toString() == "Patient") {
+        } else if (personToEdit.getRole().toString().equals("Patient")) {
             model.setPatient((Patient) personToEdit, (Patient) editedPerson);
         } else {
             throw new CommandException(MESSAGE_NOT_EDITED);
