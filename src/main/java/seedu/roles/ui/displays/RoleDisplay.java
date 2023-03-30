@@ -28,7 +28,7 @@ public final class RoleDisplay {
      * @param roleToDisplay The role to be displayed in the UI.
      * @return A VBox Node to be displayed in the UI.
      */
-    public static Node of(Role roleToDisplay) {
+    public static Node of(Role roleToDisplay) throws Exception {
         // Header
         Label role = new Label(roleToDisplay.getName().fullName + " @ ");
         role.getStyleClass().add("role-display-headers");
