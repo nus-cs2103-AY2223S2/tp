@@ -21,4 +21,8 @@ public class ListCommand extends Command {
         model.updateFindEventList(Model.PREDICATE_SHOW_NO_EVENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
 }
