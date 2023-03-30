@@ -20,8 +20,11 @@ for fast typists.
 
 Came up with the idea for SalesPUNCH and how it would be useful to salespeople
 Edited the User Guide to fit description for SalesPUNCH
-Implemented tasks feature linked to contacts
+Implemented adding tasks feature linked to contacts
+Implemented clearing all tasks feature linked to contacts
 Implemented unit tests for adding task
+Implemented unit tests for clearing tasks
+UG for tasks feature
 
 * **Project management**:
 
