@@ -1,10 +1,6 @@
 package seedu.vms.logic.parser.keyword;
 
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
-import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_PATIENT_STRING;
-import static seedu.vms.model.keyword.Keyword.MAIN_VACCINATION_STRING;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_MAIN;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_SUB;
 
@@ -37,11 +33,6 @@ public class AddCommandParser implements CommandParser {
 
         String keywordMain = ParserUtil.parseMainKeyword(argsMap.getValue(PREFIX_KEYWORD_MAIN).get());
         String keywordSub = ParserUtil.parseKeyword(argsMap.getValue(PREFIX_KEYWORD_SUB).get());
-
-        // if (!Keyword.isValidMainKeyword(keywordMain)) {
-        //     throw new ParseException(String.format(MESSAGE_INVALID_MAIN_KEYWORD, 
-        //             MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING));
-        // }
 
         Keyword keyword = new Keyword(keywordMain, keywordSub);
         return new AddCommand(keyword);

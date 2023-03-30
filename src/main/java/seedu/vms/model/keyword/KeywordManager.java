@@ -45,6 +45,11 @@ public class KeywordManager {
         return keywordMap;
     }
 
+    /**
+     * Check if existing mapping exists for given keyword.
+     * @param keyword Keyword string to be checked.
+     * @return True if existing mapping exists else false.
+     */
     public static boolean existingMappingExists(String keyword) {
         if (keywordMap.containsKey(keyword)) {
             return true;

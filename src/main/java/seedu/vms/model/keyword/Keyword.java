@@ -34,7 +34,7 @@ public class Keyword {
      * Method to check if the main keyword is valid.
      *
      * @param word - the word to check.
-     * @return {@code true} if the patient meets the requirements and
+     * @return {@code true} if the keyword meets the requirements and
      *      {@code false} otherwise.
      */
     public static boolean isValidMainKeyword(String word) {
@@ -55,6 +55,13 @@ public class Keyword {
         }
     }
 
+    /**
+     * Method to check if the keyword is not a main keyword.
+     *
+     * @param word - the word to check.
+     * @return {@code true} if the keyword does not meet the requirements and
+     *      {@code false} otherwise.
+     */
     public static boolean isNotMainKeyword(String word) {
         assert word != null;
 
@@ -70,10 +77,10 @@ public class Keyword {
 
         case (MAIN_BASIC_STRING):
             return false;
-        
+
         case (MAIN_EXIT_STRING):
             return false;
-        
+
         case (MAIN_HELP_STRING):
             return false;
 
