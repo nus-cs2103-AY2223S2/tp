@@ -10,7 +10,7 @@ import static seedu.ultron.commons.util.AppUtil.checkArgument;
 public class Company {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Companies should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Companies should not be blank or only contain non-alphanumeric characters.";
 
     /*
      * The first character of the address must not be a whitespace,

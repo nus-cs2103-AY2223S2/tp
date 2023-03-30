@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Keydate implements Comparable<Keydate> {
     public static final String MESSAGE_CONSTRAINTS =
             "Keys should not be blank or only contain whitespaces. Keys and dates should be directly connected by '@'."
-                    + " Dates should only be in the format YYYY-MM-DD e.g. Interview@2023-01-01";
+                    + " Dates should only be in the format yyyy-MM-dd e.g. Interview@2023-01-01";
 
     public final String fullDate;
     public final String fullKey;
