@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: #000101;
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #000101; /* Used in the default.html file */
 }
 
 .label {
@@ -34,6 +34,7 @@
     -fx-font-size: 20pt;
     -fx-background-color: #161616;
     -fx-text-fill: #328930;
+    -fx-alignment: center;
 }
 
 .tab-pane {
@@ -326,6 +327,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-pref-height: 150px;
 }
 
 #commandTypeLabel {
@@ -365,4 +367,12 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+#employees .label {
+    -fx-text-fill: white;
+    -fx-background-color: #3037EF;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 20;
 }
