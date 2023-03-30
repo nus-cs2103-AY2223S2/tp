@@ -1,0 +1,65 @@
+@startuml
+
+--> ":LogicManager"
+activate ":LogicManager"
+
+":LogicManager" --> ":TrackerParser": TrackerParser()
+activate ":TrackerParser"
+
+":TrackerParser" --> ":DeleteCommandParser": parseCommand(String userInput)
+activate ":DeleteCommandParser"
+
+":DeleteCommandParser" --> ":DeleteMultipleModulesCommand": parse(String args)
+activate ":DeleteMultipleModulesCommand"
+
+":DeleteCommandParser" <-- ":DeleteMultipleModulesCommand"
+deactivate ":DeleteMultipleModulesCommand"
+
+":TrackerParser" <-- ":DeleteCommandParser"
+deactivate ":DeleteCommandParser"
+
+":LogicManager" <-- ":TrackerParser"
+deactivate ":TrackerParser"
+
+":LogicManager" --> ":DeleteMultipleModulesCommand": execute(Model m)
+activate ":DeleteMultipleModulesCommand"
+
+loop for each module specified
+    ":DeleteMultipleModulesCommand" --> ":DeleteModuleCommand": DeleteModuleCommand()
+    activate ":DeleteModuleCommand"
+
+    ":DeleteMultipleModulesCommand" <-- ":DeleteModuleCommand"
+    deactivate ":DeleteModuleCommand"
+
+    ":DeleteMultipleModulesCommand" --> ":DeleteModuleCommand": execute(Model m)
+    activate ":DeleteModuleCommand"
+
+    ":DeleteModuleCommand" --> "m:Model" : hasModule()
+    activate "m:Model"
+
+    ":DeleteModuleCommand" <-- "m:Model": true
+    deactivate "m:Model"
+
+    ":DeleteModuleCommand" --> "m:Model": deleteModule()
+    activate "m:Model"
+
+    ":DeleteModuleCommand" <-- "m:Model"
+    deactivate "m:Model"
+
+    ":DeleteModuleCommand" --> "r:CommandResult": CommandResult()
+    activate "r:CommandResult"
+
+    ":DeleteModuleCommand" <-- "r:CommandResult": r
+    deactivate "r:CommandResult"
+
+    ":DeleteMultipleModulesCommand" <-- ":DeleteModuleCommand": r
+    deactivate ":DeleteModuleCommand"
+end
+
+":LogicManager" <-- ":DeleteMultipleModulesCommand"
+deactivate ":DeleteMultipleModulesCommand"
+
+<-- ":LogicManager"
+deactivate ":LogicManager"
+
+@enduml

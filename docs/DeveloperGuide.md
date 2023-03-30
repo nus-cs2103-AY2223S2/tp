@@ -237,7 +237,7 @@ The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
 The following diagram shows the Sequence Diagram of executing a `DeleteMultipleModulesCommand`:
 
-![DeleteMultpleModulesCommandSequential](images/delete/deleteCommandSequenceDiagram.png)
+![DeleteMultpleModulesCommandSequential](images/delete/DeleteModuleSequenceDiagram.png)
 
 The following is a description of the code execution flow
 1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
