@@ -376,12 +376,27 @@ appointment delete INDEX
 #### `edit` - Edit an appointment
 
 ```text
-appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
+appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] [--v VAX_GROUP]
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
 
 ##### Example
 
 * `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The index must be of an appointment that has not yet passed.
+* The patient id must be an existing index in the patient manager.
+* The starting time must be after the current locale time.
+* The ending time must be after the given starting time.
+* The vaccination must be an existing vaccination type in the vaxtype manager.
 
 <br></br>
 
