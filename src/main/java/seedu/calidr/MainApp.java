@@ -22,12 +22,8 @@ import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyUserPrefs;
 import seedu.calidr.model.UserPrefs;
 import seedu.calidr.model.util.SampleDataUtil;
-import seedu.calidr.storage.AddressBookStorage;
-import seedu.calidr.storage.JsonAddressBookStorage;
-import seedu.calidr.storage.JsonUserPrefsStorage;
-import seedu.calidr.storage.Storage;
-import seedu.calidr.storage.StorageManager;
-import seedu.calidr.storage.UserPrefsStorage;
+import seedu.calidr.storage.*;
+import seedu.calidr.storage.AB3StorageComposite;
 import seedu.calidr.ui.Ui;
 import seedu.calidr.ui.UiManager;
 
@@ -42,7 +38,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected AB3StorageComposite AB3StorageComposite;
     protected Model model;
     protected Config config;
 
@@ -57,13 +53,13 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AB3StorageComposite = new AddressBookAB3StorageManagerComposite(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(AB3StorageComposite, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, AB3StorageComposite);
 
         ui = new UiManager(logic);
     }
@@ -73,11 +69,11 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(AB3StorageComposite AB3StorageComposite, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = AB3StorageComposite.readAddressBook();
             if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
@@ -175,7 +171,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            AB3StorageComposite.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

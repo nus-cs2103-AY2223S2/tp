@@ -16,7 +16,7 @@ import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
-import seedu.calidr.storage.Storage;
+import seedu.calidr.storage.AB3StorageComposite;
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final Storage storage;
+    private final AB3StorageComposite AB3StorageComposite;
     // private final AddressBookParser addressBookParser;
 
     private final CalidrParser calidrParser;
@@ -34,9 +34,9 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, AB3StorageComposite AB3StorageComposite) {
         this.model = model;
-        this.storage = storage;
+        this.AB3StorageComposite = AB3StorageComposite;
         // addressBookParser = new AddressBookParser();
         calidrParser = new CalidrParser();
     }

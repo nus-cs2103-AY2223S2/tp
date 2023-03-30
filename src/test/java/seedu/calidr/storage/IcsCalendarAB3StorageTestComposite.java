@@ -21,7 +21,7 @@ import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 import seedu.calidr.model.tasklist.TaskList;
 
-public class IcsCalendarStorageTest {
+public class IcsCalendarAB3StorageTestComposite {
     @Test
     public void saveAndRetrieve() throws ParserException, IOException, CalidrException {
 //        var taskList = new TaskList();
