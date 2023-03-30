@@ -552,7 +552,7 @@ _Here are some important requirements for you to take note:_
 
 Examples:
 *  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
-*  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 2nd event to be `Betsy Crower` and clears all existing tags.
+*  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -612,6 +612,7 @@ _For more advanced users_
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
 | **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
+| **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
