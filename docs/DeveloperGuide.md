@@ -221,14 +221,14 @@ Here is how `Menu` works:
 * Each `Menu` contains non-negative and non-zero number of `MenuItem`.
 * Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
-* The value of `ItemProfit` is obtained by taking the value of `ItemPrice` subtracted by the value of `ItemCost`.
+* The`ItemProfit` is obtained using `ItemPrice` and `ItemCost`, meaning that `ItemProfit` depends on `ItemPrice` and `ItemCost`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
 
 **Aspect: Choice to provide a menu package:**
 
 * **Option 1 (our choice):** Separating it into a separate `menu` package.
-    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively.
+    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively when you add an order.
     * Advantage 2: Less repeated code
     * Disadvantage: More time required to implement.
 
