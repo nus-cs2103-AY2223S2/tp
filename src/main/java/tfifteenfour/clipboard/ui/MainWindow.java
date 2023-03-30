@@ -43,7 +43,6 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
-import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
