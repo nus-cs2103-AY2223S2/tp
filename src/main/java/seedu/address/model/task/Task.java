@@ -82,7 +82,7 @@ public class Task {
      * @return Boolean value of whether task is overdue.
      * @throws ParseException
      */
-    public boolean isOverdue() throws ParseException {
+    public boolean isOverdue() throws IndexOutOfBoundsException, ParseException {
         String date = getDate();
         if (date.length() == 0) {
             return false;
@@ -99,7 +99,7 @@ public class Task {
      * @return Boolean value of whether task is due today
      * @throws ParseException
      */
-    public boolean isDueToday() throws ParseException {
+    public boolean isDueToday() throws IndexOutOfBoundsException, ParseException {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
         String date = getDate();
         String endDate = date.substring(date.length() - 10);
