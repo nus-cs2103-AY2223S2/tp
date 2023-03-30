@@ -177,9 +177,11 @@ public class RecipeCard extends UiPart<Region> {
             Entry<Ingredient, IngredientInformation> nextIngredient = entries.next();
             ingredients.add(createUnorderedListItem(
                 IngredientUtil.ingredientKeyValuePairToString(nextIngredient.getKey(), nextIngredient.getValue())
-                                                   ), 0, count);
+                   ), 0, count);
             count += 1;
         }
+
+        //Truncate for line count longer than 3
         if (count == 3 && entries.hasNext()) {
             ingredients.add(createLabel(
                 "... and " + (ingredientsTable.size() - 3) + " more ingredients"), 0, count);
