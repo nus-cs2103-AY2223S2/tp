@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 
 import seedu.wife.logic.commands.Command;
