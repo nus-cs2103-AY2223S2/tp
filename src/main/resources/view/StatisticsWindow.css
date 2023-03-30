@@ -1,4 +1,4 @@
-#statsMessage, #totalJob {
+#allStats, #lastWeekStats, #header, #titleAllStats, #titleLastWeek {
     -fx-text-fill: white;
 }
 

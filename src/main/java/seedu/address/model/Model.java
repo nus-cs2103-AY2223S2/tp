@@ -13,6 +13,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 
 /**
  * The API of the Model component.
@@ -269,4 +270,31 @@ public interface Model {
      */
     void setHasShown(int i, boolean b);
 
+    // STATISTICS =========================================
+
+    /**
+     * Checks if the given job should be place in weekly stats.
+     */
+    boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats);
+
+    /**
+     * Returns an unmodifiable view of the Delivery Job list with only
+     * jobs that are in the same week as the given date.
+     */
+    ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date);
+
+    /**
+     * Returns the total earnings of delivery jobs in the list.
+     */
+    double getTotalEarnings(ObservableList<DeliveryJob> list);
+
+    /**
+     * Returns the total number of completed delivery jobs in the list.
+     */
+    int getTotalCompleted(ObservableList<DeliveryJob> list);
+
+    /**
+     * Returns the total number of pending delivery jobs in the list.
+     */
+    int getTotalPending(ObservableList<DeliveryJob> list);
 }
