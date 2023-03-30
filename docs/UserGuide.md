@@ -513,6 +513,36 @@ _Examples:_
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
+### Editing An Event : `editevent`
+
+Want to change the details of a particular event?
+
+Use this command to edit the specified event in your NeoBook.
+
+**Syntax:**
+
+`editevent INDEX PREFIX/PARAMETER...`
+
+_Here are some important requirements for you to take note:_
+
+* `INDEX` refers to the index of the event you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+* At least one field must be provided.
+
+| Prefix | Name of Field                 | Optional? |
+|--------|-------------------------------|-----------|
+| d      | Description of Event          | Yes       |
+| s      | Start Date and Time of Event  | Yes       |
+| e      | End Date and Time of Event    | Yes       |
+| r      | Recurrence Interval           | Yes       |
+
+Examples:
+*  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
+*  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 2nd event to be `Betsy Crower` and clears all existing tags.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
 ### Tagging Contacts to an Event: `tagpersonevent`
 
 Want to remember who was a part of a certain event? 
