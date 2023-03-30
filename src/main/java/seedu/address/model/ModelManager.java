@@ -135,7 +135,7 @@ public class ModelManager implements Model {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());
 
-        PetPal archiveTemp = new PetPal(petPalCache);
+        PetPal archiveTemp = new PetPal(archiveCache);
         archiveStorage.setPets(archiveTemp.getPetList());
     }
 
