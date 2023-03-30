@@ -4,32 +4,39 @@ import java.util.logging.Logger;
 
 import vimification.commons.core.LogsCenter;
 import vimification.internal.command.logic.LogicCommand;
+import vimification.model.MacroMap;
 
-public class VimificationParser implements LogicCommandParser<LogicCommand> {
+public class VimificationParser {
 
     private static final Logger LOGGER = LogsCenter.getLogger(VimificationParser.class);
 
-    private static final LogicCommandParser<LogicCommand> INSTANCE =
-            CreateCommandParser.getInstance()
-                    .cast()
+    private static final ApplicativeParser<String> PREPROCESSOR = ApplicativeParser
+            .string(":")
+            .optional()
+            .takeNext(ApplicativeParser.untilEof().map(String::strip));
+
+    private static final CommandParser<LogicCommand> LOGIC_COMMAND_PARSER =
+            AddCommandParser.getInstance()
+                    .<LogicCommand>cast()
                     .or(DeleteCommandParser.getInstance())
-                    .updateInternalParser(parser -> ApplicativeParser
-                            .string(":").optional()
-                            .takeNext(ApplicativeParser.skipWhitespaces())
-                            .takeNext(parser)
-                            .throwIfFail("Unknown command"));
+                    .or(InsertCommandParser.getInstance())
+                    .or(EditCommandParser.getInstance())
+                    .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
-    private static final VimificationParser PROXY_INSTANCE = new VimificationParser();
+    private MacroMap macroMap;
 
-    private VimificationParser() {}
+    private final ApplicativeParser<String> macroPreprocessor =
+            PREPROCESSOR.map(input -> macroMap.get(input).orElse(input));
 
-    public static VimificationParser getInstance() {
-        return PROXY_INSTANCE;
+    private VimificationParser(MacroMap macroMap) {
+        this.macroMap = macroMap;
     }
 
-    @Override
-    public ApplicativeParser<ApplicativeParser<LogicCommand>> getInternalParser() {
-        return INSTANCE.getInternalParser();
+    public static VimificationParser getInstance(MacroMap macroMap) {
+        if (macroMap == null) {
+            macroMap = new MacroMap();
+        }
+        return new VimificationParser(macroMap);
     }
 
     /**
@@ -38,9 +45,9 @@ public class VimificationParser implements LogicCommandParser<LogicCommand> {
      * @param userInput
      * @return
      */
-    @Override
-    public LogicCommand parse(String userInput) {
-        LOGGER.info(userInput);
-        return INSTANCE.parse(userInput);
+    public LogicCommand parse(String input) {
+        LOGGER.info(input);
+        String preprocessedInput = macroPreprocessor.parse(input);
+        return LOGIC_COMMAND_PARSER.parse(preprocessedInput);
     }
 }

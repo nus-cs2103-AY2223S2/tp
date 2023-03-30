@@ -3,7 +3,6 @@ package vimification.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import vimification.commons.core.GuiSettings;
 
@@ -12,8 +11,12 @@ import vimification.commons.core.GuiSettings;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private static final String VIMIFICATION = ".vimification";
+
     private GuiSettings guiSettings = new GuiSettings();
-    private Path taskListFilePath = Paths.get("data" , "tasklist.json");
+    private Path logicTaskListFilePath = Path.of(VIMIFICATION, "tasklist.json");
+    private Path macroMapFilePath = Path.of(VIMIFICATION, "macro.json");
+    private Path commandStackFilePath = Path.of(VIMIFICATION, "oldcommand.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -23,18 +26,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
      */
-    public UserPrefs(ReadOnlyUserPrefs userPrefs) {
-        this();
+    public UserPrefs(UserPrefs userPrefs) {
         resetData(userPrefs);
     }
 
     /**
      * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
      */
-    public void resetData(ReadOnlyUserPrefs newUserPrefs) {
+    public void resetData(UserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setTaskListFilePath(newUserPrefs.getTaskListFilePath());
+        setLogicTaskListFilePath(newUserPrefs.getLogicTaskListFilePath());
+        setMacroMapFilePath(newUserPrefs.getMacroMapFilePath());
+        setCommandStackFilePath(newUserPrefs.getCommandStackFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -46,13 +50,31 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getTaskListFilePath() {
-        return taskListFilePath;
+    public Path getLogicTaskListFilePath() {
+        return logicTaskListFilePath;
     }
 
-    public void setTaskListFilePath(Path taskListFilePath) {
-        requireNonNull(taskListFilePath);
-        this.taskListFilePath = taskListFilePath;
+    public void setLogicTaskListFilePath(Path logicTaskListFilePath) {
+        requireNonNull(logicTaskListFilePath);
+        this.logicTaskListFilePath = logicTaskListFilePath;
+    }
+
+    public Path getMacroMapFilePath() {
+        return macroMapFilePath;
+    }
+
+    public void setMacroMapFilePath(Path macroMapFilePath) {
+        requireNonNull(macroMapFilePath);
+        this.macroMapFilePath = macroMapFilePath;
+    }
+
+    public Path getCommandStackFilePath() {
+        return commandStackFilePath;
+    }
+
+    public void setCommandStackFilePath(Path commandStackFilePath) {
+        requireNonNull(commandStackFilePath);
+        this.commandStackFilePath = commandStackFilePath;
     }
 
     @Override
@@ -60,22 +82,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof UserPrefs)) { //this handles null as well.
+        if (!(other instanceof UserPrefs)) { // this handles null as well.
             return false;
         }
-
-        UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings)
-                && taskListFilePath.equals(o.taskListFilePath);
+        UserPrefs otherUserPrefs = (UserPrefs) other;
+        return guiSettings.equals(otherUserPrefs.guiSettings)
+                && logicTaskListFilePath.equals(otherUserPrefs.logicTaskListFilePath)
+                && macroMapFilePath.equals(otherUserPrefs.macroMapFilePath)
+                && commandStackFilePath.equals(otherUserPrefs.commandStackFilePath);
     }
-
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + taskListFilePath);
+        sb.append("Gui Settings: " + guiSettings);
+        sb.append("\nLocal data file location: " + logicTaskListFilePath);
+        sb.append("\nMacro file location: " + macroMapFilePath);
+        sb.append("\nCommand stack location: " + commandStackFilePath);
         return sb.toString();
     }
 

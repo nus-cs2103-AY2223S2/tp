@@ -84,6 +84,10 @@ public class Task {
         return title.contains(keyword);
     }
 
+    public Set<String> getLabels() {
+        return labels;
+    }
+
     public void addLabel(String label) {
         requireNonNull(label);
         label = label.toLowerCase();

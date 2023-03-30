@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "Vimification"
 theme: minima
 
 header_pages:
@@ -7,8 +7,10 @@ header_pages:
   - AboutUs.md
 
 markdown: kramdown
+kramdown: 
+  parse_block_html: true
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S2-CS2103T-T15-3/tp"
 github_icon: "images/github-icon.png"
 
 plugins:

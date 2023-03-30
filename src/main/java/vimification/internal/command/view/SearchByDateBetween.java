@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
-import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
