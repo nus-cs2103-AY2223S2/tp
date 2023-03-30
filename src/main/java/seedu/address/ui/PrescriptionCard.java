@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Medication;
 import seedu.address.model.person.Patient;
+import seedu.address.model.prescription.Prescription;
 
 /**
  * Creates a {@code PrescriptionCard} with the given {@code Person} and medication to display.
@@ -13,7 +13,7 @@ import seedu.address.model.person.Patient;
 public class PrescriptionCard extends UiPart<Region> {
     private static final String FXML = "PrescriptionListCard.fxml";
 
-    public final Medication medication;
+    public final Prescription prescription;
 
     public final Patient patient;
 
@@ -33,12 +33,12 @@ public class PrescriptionCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PrescriptionCard(Patient patient, Medication medication) {
+    public PrescriptionCard(Patient patient, Prescription prescription) {
         super(FXML);
         this.patient = (Patient) patient;
-        this.medication = medication;
+        this.prescription = prescription;
 
-        meds.setText(patient.getMedication().toString());
+        meds.setText(patient.getPrescriptions().toString());
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PrescriptionCard extends UiPart<Region> {
 
         // state check
         PrescriptionCard card = (PrescriptionCard) other;
-        return medication.equals(card.medication);
+        return prescription.equals(card.prescription);
     }
 
 }
