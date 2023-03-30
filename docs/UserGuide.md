@@ -145,19 +145,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding a remark : `remark`
-
-Adds a remark to any given person stored in the address book.
-
-Format: `remark INDEX [r/REMARK]`
-
-* Adds `REMARK` to the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `remark 2 He is a cheese lover` adds the remark “He is a cheese lover” to the 2nd person.
-
 ### Adding a tag : `tag`
 
 Adds a tag to any given person stored in the address book.
@@ -185,16 +172,73 @@ Format: `delete_tag INDEX [t/TAG]`
 Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag “teacher” from the 2nd person.
 
-### Filter by tag : `filter`
+### Filter by fields : `filter`
 
-Search for all persons with a corresponding tag.
+Search for persons whose fields all match one or more regexes.
 
-Format: `filter [t/TAG]`
+Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`
 
-* Displays the data of persons with the given `tag` name.
+* Displays the data of persons who's every field matches at least one respective regex,
+if such a regex exists for that field.
 
 Examples:
-* `filter banker` will list all persons with the tag “banker”.
+* `filter t/^banker$` will list all persons with exactly the tag “banker”.
+* `filter e/.*\.org$ n/rin e/.*\.net$` will list all persons with the substring "rin" in their name,
+as well as an email that ends in ".org" or ".net".
+
+### Freezing the display : `freeze`
+
+Freezes the current _selection_ of persons displayed. The details of these persons will still be updated,
+if modified.
+
+Format: `freeze`
+
+* Commands that reference indices / the list of persons being displayed will be subject to `freeze`,
+and will act on the display as it appears to you.
+
+### Unfreezing the display : `unfreeze`
+
+Unfreezes the current _selection_ of persons displayed. Any changes to the selection which were previously withheld
+due to a `freeze` will now be applied.
+
+Format: `unfreeze`
+
+### Mass operations : `mass`
+
+Takes in a command typically applied to a single target index, and applies it to all _displayed_ persons.
+
+Format: `mass COMMAND [ARGS_WITHOUT_INDEX]`
+
+Examples:
+* `mass tag Noticed` will tag all displayed persons with "Noticed".
+* `mass edit p/7773354` will edit all displayed persons to have the phone "7773354".
+* `mass delete` will delete all displayed persons.
+  * Contrast with `clear`, which deletes all persons, whether displayed or not.
+
+### Undoing a command : `undo`
+
+Undo one or more of the most recent commands done.
+
+Format: `undo [NUM]`
+
+* Undoes `NUM` of the most recent commands, or the 1 most recent if `NUM` is not specified.
+* Only undoes commands which affect data or the display. E.g.:
+  * `edit`, `filter`, `freeze`, and `import` can be undone
+  * `help` and `export` cannot be undone; `undo` will skip them for the next most recent command.
+
+Examples:
+* `undo 3` will undo the last 3 commands.
+
+### Redoing a command : `redo`
+
+Redo one or more of the most recent commands undone.
+
+Format: `redo [NUM]`
+
+* Redoes `NUM` of the most recent undone commands, or the 1 most recent if `NUM` is not specified.
+
+Examples:
+* `redo 3` will redo 3 commands.
 
 ### Clearing all entries : `clear`
 
@@ -256,9 +300,14 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Export** | `export`
+**Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Freeze** | `freeze`
+**Unfreeze** | `unfreeze`
 **List** | `list`
-**Remark** | `remark INDEX [r/remark]`
-**Tag** | `tag INDEX [t/TAG]`
-**Delete tag** | `delete_tag INDEX` [t/TAG]`
+**Mass** | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
+**Tag** | `tag INDEX t/TAG`
+**Delete Tag** | `delete_tag INDEX t/TAG`
+**Undo** | `undo [NUM]`
+**Redo** | `redo [NUM]`
 **Help** | `help`
