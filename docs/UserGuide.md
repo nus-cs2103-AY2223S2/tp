@@ -354,6 +354,38 @@ Examples:
 - find -name john lee
 - find -id a0123456b
 
+## Alarm
+For Alarm, you can call the following commands:
+- Schedule an alarm: `add_alarm`
+- Remove a scheduled alarm: `delete_alarm`
+- List all scheduled alarms: `list_alarms`
+
+#### Schedule an alarm : `add_alarm`
+Add an alarm to the current application.
+
+Format: `add_alarm t/TIME c/COMMENT`
+- The TIME field must be numbers representing minutes
+- The COMMENT field contains content of the alarm
+
+Examples:
+- add_alarm t/5 c/finish question one
+- The above command adds an alarm that rings in 5 minutes, with comment "finish question 1"
+
+#### Remove a scheduled alarm : `delete_alarm`
+Delete a scheduled alarm from the current alarm list. It will not ring on the scheduled time after deletion.
+
+Format: `delete_alarm INDEX`
+- the INDEX is the number assigned to the alarm in the alarm list when we call the list_alarms command
+
+Examples:
+- delete_alarm 1
+
+#### List all scheduled alarms : `list_alarms`
+List all alarms scheduled, arranged in the order of creation, containing time left and comment of each alarm.
+
+Examples:
+- list_alarms
+
 
 ### CSV Parser
 

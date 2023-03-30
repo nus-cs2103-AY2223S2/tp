@@ -176,4 +176,25 @@ public class Attendance {
         }
     }
 
+    /**
+     * @return String version of participation points for list command
+     */
+    public String listAtdString() {
+        String res = "";
+        for (int i = 0; i < this.attendanceList.length; i++) {
+            res += String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " ");
+        }
+        return res;
+    }
+
+    /**
+     * @return String version of participation points for list command
+     */
+    public String listPpString() {
+        String res = "";
+        for (int i = 0; i < this.participationPoint.length; i++) {
+            res += String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]);
+        }
+        return res;
+    }
 }

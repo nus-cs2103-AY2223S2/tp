@@ -8,6 +8,7 @@ import taa.assignment.exceptions.*;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.alarm.Alarm;
 import taa.model.student.Student;
 
 /**
@@ -138,4 +139,7 @@ public interface Model {
 
     void displayChart(ChartType chartType, String... args)
             throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException;
+    String listAlarms();
+
+    void deleteAlarm(int index) throws CommandException;
 }
