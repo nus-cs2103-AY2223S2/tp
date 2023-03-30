@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import vimification.commons.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.command.macro.MacroCommand;
 import vimification.internal.command.view.ViewCommand;
 import vimification.model.MacroMap;
 
@@ -30,10 +31,14 @@ public class VimificationParser {
                     .<ViewCommand>cast()
                     .or(RefreshCommandParser.getInstance());
 
+    private static final CommandParser<MacroCommand> MACRO_COMMAND_PARSER =
+            MacroCommandParser.getInstance();
+
     private static final CommandParser<Command> COMMAND_PARSER =
             LOGIC_COMMAND_PARSER
                     .<Command>cast()
                     .or(VIEW_COMMAND_PARSER)
+                    .or(MACRO_COMMAND_PARSER)
                     .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;
