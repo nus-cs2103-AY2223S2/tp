@@ -94,10 +94,12 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 ### Notes:
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
-  which can be used as `add n/John Doe`.
+-  Input words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a 
+parameter which can be used as `add n/John Doe`.
 
-- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Commands in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+- Commands separated by `|` within `()` suggest that only one of the commands must be present to be valid
 
 - Items with `…` after them can be used multiple times, including zero. e.g., [t/TAG] …​ can be used
 (i.e. 0 or more times), t/friend t/family etc.
@@ -116,31 +118,31 @@ Format: `help`
 
 Reverts the patient records to the state before the previous command was executed.
 
+Format: `undo`
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
 
-Format: `undo`
-
 ### Redoing previous undo: `redo`
 
-Reverts the patient records to the state before the previous undo was executed. 
+Reverts the patient records to the state before the previous undo was executed.
+
+Format: `redo`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
 has run.
 </div>
 
-Format: `redo`
-
 ### Adding patient record: `add`
 
 Adds a person to the patient records.
 
+Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are 
 optional.
 </div>
-
-Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
 **Tip**:
 
@@ -156,13 +158,11 @@ Examples:
 
 Edits an existing patient in the patient records.
 
+Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
 </div>
-
-Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
-
 
 * You can remove all the patient’s tags/medicine by typing t/ or m/ respectively, without specifying any tags/medicine
   after it.
@@ -176,11 +176,11 @@ Examples:
 
 Deletes the specified patient from the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
-patient detail you would like to edit.
-</div>
-
 Format: `delete i/NRIC…​`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple deletes are made in a single 
+command, `undo` command will not undo all deletes made, but only **one** at a time.
+</div>
 
 Examples:
 
@@ -190,11 +190,11 @@ Examples:
 
 Shows a list of all patients in the patient records.
 
+Format: `list`
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
 that you have loaded.
 </div>
-
-Format: `list`
 
 ### Filter patients by attribute: `find`
 
@@ -207,33 +207,31 @@ Command Prefixes that can be searched:
   * doctor(`ad/`)
   * medicine(`m/`)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** `find` searches by full strings and not substrings. The search will only be carried out for **one** given 
-attribute. 
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
-* The search is case-insensitive. e.g panadol will match pANAdol. 
-* The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
-</div>
-
 Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** `find` searches by **complete strings** and not **substrings**. The search will only be carried out for
+**one** given attribute. 
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The search is **case-insensitive**. The order of the keywords does not matter.
+</div>
 
 
 Examples (The following results are based of the sample data provided):
 
 * `find n/john` returns `John Lim` and `John Doe` who both contain the name `John` in their names.
+* `find n/yu bernice` returns `Bernice Yu` as the order of keywords does not matter
 * `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`.
-* `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio`  
-  or  `serangoon`.
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
-* `find ad/Shannon` returns all persons with attending doctor `Shannon`
+* `find ad/Shannon` returns all persons with attending doctor `Shannon`.
 
 ### Backup patient records: `backup`
 
 Backs up the patient records to a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to access and are not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to be accessed and are not 
 automatically loaded on launch of application.
 </div>
 
