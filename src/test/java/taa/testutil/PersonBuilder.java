@@ -16,9 +16,9 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
 
-    public static final String DEFAULT_ATTENDANCE = "0,0,0,0,0,0,0,0,0,0,0,0";
+    public static final String DEFAULT_ATTENDANCE = "0;0;0;0;0;0;0;0;0;0;0;0";
 
-    public static final String DEFAULT_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1";
+    public static final String DEFAULT_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
 
     private Name name;
 

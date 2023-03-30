@@ -8,9 +8,9 @@ import java.util.Objects;
 public class Attendance {
     public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
     public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
-    public static final String ORIGINAL_ATD = "0,0,0,0,0,0,0,0,0,0,0,0";
+    public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
 
-    public static final String ORIGINAL_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,";
+    public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
     private final boolean[] attendanceList = new boolean[12];
 
     private final int[] participationPoint = new int[12];
