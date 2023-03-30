@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -12,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,7 +34,8 @@ public class EditAppointmentCommand extends RedoableCommand {
             + "by the id number displayed by listappointments. "
             + "Existing values will be overwritten by the input values.\n"
             + "Note that if " + PREFIX_DATE + " is used, then " + PREFIX_TIME + " must accompany it, and vice versa."
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INTERNAL_ID + "APPOINTMENT_ID"
             + "[" + PREFIX_CUSTOMER_ID + "CUSTOMER ID]"
             + "[" + PREFIX_DATE + "DATE  "
             + PREFIX_TIME + "TIME]\n"
@@ -42,14 +46,11 @@ public class EditAppointmentCommand extends RedoableCommand {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in AutoM8";
-    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not in AutoM8";
+    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment %d does not exist";
 
-    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not in AutoM8";
+    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer %d does not exist";
 
     private static final Appointment APPOINTMENT_DOES_NOT_EXIST = null;
-
-    private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
 
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
@@ -74,28 +75,31 @@ public class EditAppointmentCommand extends RedoableCommand {
                 .orElse(APPOINTMENT_DOES_NOT_EXIST);
 
         // If appointment doesn't exist
-        if (appointmentToEdit == null) {
-            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
+        if (appointmentToEdit == APPOINTMENT_DOES_NOT_EXIST) {
+            throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND,
+                this.editAppointmentDescriptor.getId()));
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        // Locate Customer containing id. By right each ID is unique.
-        Customer customer = model.getFilteredCustomerList().stream().filter(person ->
-                        editedAppointment.getCustomerId() == person.getId()).findAny()
-                .orElse(CUSTOMER_DOES_NOT_EXIST);
-
-        // If customer doesn't exist
-        if (customer == null) {
-            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        if (!model.hasCustomer(editedAppointment.getCustomerId())) {
+            throw new CommandException(String.format(MESSAGE_CUSTOMER_NOT_FOUND, editedAppointment.getCustomerId()));
         }
 
-        if (!appointmentToEdit.isSameAppointment(editedAppointment)
-                && model.hasAppointment(editedAppointment.getId())) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        if (editedAppointment.getCustomerId() != appointmentToEdit.getCustomerId()) {
+            Customer oldCustomer = model.getFilteredCustomerList().stream()
+                .filter(c -> c.getId() == appointmentToEdit.getCustomerId())
+                .findFirst().orElseThrow();
+            Customer newCustomer = model.getFilteredCustomerList().stream()
+                .filter(c -> c.getId() == editedAppointment.getCustomerId())
+                .findFirst().orElseThrow();
+            oldCustomer.removeAppointment(appointmentToEdit);
+            newCustomer.addAppointment(editedAppointment);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
+        //model.selectAppointment(editedAppointment);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
@@ -112,7 +116,7 @@ public class EditAppointmentCommand extends RedoableCommand {
         int customerId = editAppointmentDescriptor.getCustomerId().orElse(appointmentToEdit.getCustomerId());
         LocalDateTime timeDate = editAppointmentDescriptor.getTimeDate().orElse(appointmentToEdit.getTimeDate());
         Set<Integer> staffIds = editAppointmentDescriptor.getStaffIds().orElse(
-                (Set<Integer>) appointmentToEdit.getStaffIds());
+            new HashSet<>(appointmentToEdit.getStaffIds()));
 
         return new Appointment(id, customerId, timeDate, staffIds);
     }
@@ -141,7 +145,7 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static class EditAppointmentDescriptor {
         // This is basically a copy of Appointment
         private int id;
-        private int customerId;
+        private int customerId = -1;
         private LocalDateTime timeDate;
         private Set<Integer> staffIds = new HashSet<>();
 
@@ -180,7 +184,10 @@ public class EditAppointmentCommand extends RedoableCommand {
         }
 
         public Optional<Integer> getCustomerId() {
-            return Optional.ofNullable(customerId);
+            if (this.customerId == -1) {
+                return Optional.empty();
+            }
+            return Optional.of(this.customerId);
         }
 
         public void setTimeDate(LocalDateTime timeDate) {

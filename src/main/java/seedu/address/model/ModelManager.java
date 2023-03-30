@@ -491,6 +491,7 @@ public class ModelManager implements Model {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
         this.shop.setAppointment(target, editedAppointment);
+        this.resetMaps();
     }
 
     //    @Override

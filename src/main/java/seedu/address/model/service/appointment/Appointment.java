@@ -11,6 +11,7 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -108,6 +109,23 @@ public class Appointment {
         LocalDate startDate = ldt.toLocalDate().minus(Period.ofDays(1));
         LocalDate endDate = ldt.toLocalDate().plusDays(1);
         return (totalDate.isAfter(startDate) && totalDate.isBefore(endDate));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Appointment) {
+            Appointment other = (Appointment) obj;
+            return this.id == other.id;
+        }
+        return false;
     }
 
     @Override
