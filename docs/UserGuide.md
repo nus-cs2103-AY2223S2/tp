@@ -100,6 +100,8 @@ Format: `help`
 
 To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
 
+![address book](images/Dukedeliveryaddressbook.png)
+
 ### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
@@ -170,12 +172,15 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ## 2. Features related to Delivery Jobs
+Commands are input in this text field
+![input field](images/Inputcommands.png)
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
 
 Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+![Create Job](images/Addjob.png)
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
@@ -239,12 +244,16 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
+
 ## 4. Features related to Timetable
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
 
 Format: `timetable`
+
+Alternative: Click on `Timetable` in menu bar > `Scheduled Jobs`
+![timetable](images/Timetable.png)
 
 ### 4.2. Showing timetable of week containing specific date: `timetable_date`
 
@@ -263,24 +272,18 @@ Shows list of completed jobs, sorted in increasing date and decreasing earning o
 
 Format: `timetable_completed`
 
+Alternative: Click on `Timetable` in menu bar > `Completed Jobs`
+![completed jobs](images/Completedjobs.png)
+
 ### 4.4. Showing list of unscheduled jobs
 Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
 Jobs are sorted in increasing date and decreasing earning order.
 
 Format: `timetable_unscheduled`
 
-## 5. Features related to Statistics
-### 5.1. Showing Statistics : `stats`
+Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
+![Unscheduled jobs](images/Unscheduledjobs.png)
 
-Shows a summary of statistics related to the jobs in the job list
-* Total number of jobs in the job list 
-* Total earnings from all jobs in the job list 
-* Total number of completed jobs in the job list 
-* Total number of pending jobs in the job list 
-
-Similar statistics are shown for jobs in the previous week
-
-Format: `stats`
 
 ## Other features
 ### Clearing all entries : `clear`
