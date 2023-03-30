@@ -17,7 +17,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Messages in this format are important!
 <div/>
 💡**Tip**:
-<br/> Messages in this format information that may be useful to the user.
+<br/> Messages in this format include information that may be useful to the user.
 
 
 # Table of Contents:
