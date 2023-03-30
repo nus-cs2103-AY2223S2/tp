@@ -312,6 +312,10 @@ The feature utilises the following classes:
    - `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
    - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
 
+The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
+
+![MarkAsWatched](diagrams/MarkAsWatchedSequenceDiagram.png)
+
 The following is a description of the code execution flow
 1. `MarkAsWatchedCommandParser#parse(String)` / `MarkAsUnwatchedCommandParser#parse(String` takes the user's input as a `String` argument and determines the target video to be marked. The following table below depicts the command returned against the user's intent
 
