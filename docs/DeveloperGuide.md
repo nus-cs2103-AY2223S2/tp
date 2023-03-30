@@ -307,10 +307,32 @@ The diagram following shows us that the MainWindow is responsible for instantiat
 The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
 will be called to listen for changes in project list. During the initialization of the StatisticsBox instance, data 
 for the **Due soon**, **Overdue** project list and **Pie chart** is also loaded. 
+
 ![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
 
 
 ### Tabs panel
+In Mycelium, there are four main tabs: **Projects**, **Clients**, **Due soon** and **Overdue**. 
+The **Projects** tab will be responsible for displaying all projects created while the **Clients** tab 
+will display all clients created. Each of these two tabs is a `EntityTab` object, and contains a `EntityList` of 
+`Project` for **Projects** tab and `Client` for **Clients** tab. Both will be in the same 
+panel `EntityPanel` on the left side of the application view. 
+
+The **Due soon** tab will be responsible for displaying all projects that are due soon while the **Overdue** tab
+will display all projects that are overdue as mentioned in the [Statistics Dashboard](#statistics-dashboard) section.
+Each of these two tabs is a `StatisticsTab` object, and contains a `EntityList` of `Project`. Both of these two 
+tabs will be in the same panel `StatisticsPanel` on the right side of the application view.
+
+![Tabs](images/Tabs.png)
+
+For demonstration purposes, the following is the Activity Diagram when a `EntityPanel` is initialized:
+
+![EntityTabPanelActivityDiagram](images/TabActivityDiagram.png)
+
+
+For more information about interacting with the tabs using hotkeys, please refer to the 
+[Hotkeys with UiEvents](#hotkeys-with-uievents) section. 
+
 
 ## Keyboard Interaction
 
