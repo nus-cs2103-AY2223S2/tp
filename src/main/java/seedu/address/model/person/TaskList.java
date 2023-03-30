@@ -46,6 +46,10 @@ public class TaskList {
         return new TaskList(newTasks);
     }
 
+    public int size() {
+        return tasks.size();
+    }
+
     public TaskList clear() {
         return new TaskList();
     }
@@ -64,5 +68,39 @@ public class TaskList {
             returnString += String.format("%d. %s\n", i, this.get(i));
         }
         return returnString;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TaskList)) {
+            return false;
+        }
+
+        assert other instanceof TaskList;
+
+        TaskList otherTasks = (TaskList) other;
+
+        if (tasks.size() != otherTasks.size()) {
+            return false;
+        }
+
+        for (int i = 1; i <= tasks.size(); i++) {
+            Task originalTask = tasks.get(i);
+            Task otherTask = otherTasks.get(i);
+            if (!originalTask.equals(otherTask)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return tasks.hashCode();
     }
 }

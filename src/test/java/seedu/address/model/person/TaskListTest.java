@@ -15,7 +15,7 @@ public class TaskListTest {
         assertTrue(tasks.equals(tasks));
 
         // same values -> returns true
-        Task tasksCopy = new TaskList();
+        TaskList tasksCopy = new TaskList();
         assertTrue(tasks.equals(tasksCopy));
 
         // different types -> returns false
