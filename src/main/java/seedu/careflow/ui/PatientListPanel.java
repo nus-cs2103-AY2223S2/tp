@@ -89,7 +89,9 @@ public class PatientListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Patient> c) {
                 Patient selectedPatient = patientListView.getSelectionModel().getSelectedItem();
-                updateDisplay(selectedPatient);
+                if (selectedPatient != null) {
+                    updateDisplay(selectedPatient);
+                }
             }
         });
     }
