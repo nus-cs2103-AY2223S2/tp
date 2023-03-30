@@ -1,10 +1,11 @@
 package taa.model.alarm;
 
+import java.text.DecimalFormat;
+import java.util.Objects;
+
 import javafx.animation.Timeline;
 
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.Objects;
 
 /**
  * Defines the Alarm class
@@ -35,11 +36,12 @@ public class Alarm {
         return this.minutes;
     }
 
+    //credits: adapted from chatGPT3.5 codes
     public double getRemainingTime() {
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.HALF_UP);
-        Double timeLeft = this.timeline.getTotalDuration().
-                subtract(this.timeline.getCurrentTime()).toMinutes();
+        Double timeLeft = this.timeline.getTotalDuration()
+                        .subtract(this.timeline.getCurrentTime()).toMinutes();
         return Double.parseDouble(df.format(timeLeft));
     }
 
@@ -80,10 +82,11 @@ public class Alarm {
     @Override
     public boolean equals(Object other) {
         if (other instanceof Alarm) {
-            return ((Alarm)other).hashCode == this.hashCode;
+            return ((Alarm) other).hashCode == this.hashCode;
         }
         return false;
     }
 
 }
+
 

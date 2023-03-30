@@ -2,32 +2,32 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import taa.commons.core.Messages;
-import taa.commons.core.index.Index;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 import taa.model.alarm.AlarmList;
-import taa.model.student.Student;
+
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes an alarm identified using it's displayed index.
  */
-public class DeleteAlarm extends Command {
+public class DeleteAlarmCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_alarm";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the index number used in the displayed student list.\n"
+            + ": Deletes the alarm identified by the index number used in the displayed alarm list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ALARM_SUCCESS = "Deleted Alarm: %1$s";
+    public static final String MESSAGE_DELETE_ALARM_SUCCESS = "Successfully deleted the alarm";
 
     private final int targetIndex;
 
-    public DeleteAlarm(int targetIndex) {
+    /**
+     * Construct a DeleteAlarmCommand instance with the specified target index
+     * @param targetIndex the target index to delete
+     */
+    public DeleteAlarmCommand(int targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,3 +41,4 @@ public class DeleteAlarm extends Command {
         return new CommandResult(MESSAGE_DELETE_ALARM_SUCCESS);
     }
 }
+
