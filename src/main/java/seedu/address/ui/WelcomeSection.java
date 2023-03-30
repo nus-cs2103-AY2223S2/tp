@@ -12,9 +12,10 @@ import seedu.address.ui.events.ProceedCreatePasswordEvent;
 import seedu.address.ui.events.SkipCreatePasswordEvent;
 
 /**
- * Welcome Section
+ * Ui to display the Welcome Section if it is the first time
+ * the user is using the app
  *
- * @author Haiqel
+ * @author Haiqel Bin Hanaffi
  */
 public class WelcomeSection extends UiPart<Region> {
 

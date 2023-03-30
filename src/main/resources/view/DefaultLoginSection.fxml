@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="tempContainer" alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <Label fx:id="welcomeMessage" text="Welcome To Modcheck!" textAlignment="CENTER" wrapText="true">
+        <VBox.margin>
+            <Insets bottom="20.0" />
+        </VBox.margin>
+      <font>
+         <Font name="Arial" size="40.0" />
+      </font></Label>
+    <Label fx:id="instructionLabel" alignment="CENTER" contentDisplay="CENTER" stylesheets="@WelcomePage.css" text="Type in your password below:" textAlignment="CENTER" wrapText="true">
+        <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" />
+        </opaqueInsets>
+        <VBox.margin>
+            <Insets bottom="20.0" />
+        </VBox.margin>
+      <font>
+         <Font name="Arial" size="20.0" />
+      </font></Label>
+    <TextField fx:id="inputField" alignment="CENTER" maxHeight="50.0" maxWidth="650.0" onKeyPressed="#handleSubmit" prefHeight="40.0">
+        <VBox.margin>
+            <Insets bottom="10.0" />
+        </VBox.margin>
+        <font>
+            <Font name="Arial" size="18.0" />
+        </font>
+    </TextField>
+   <Label fx:id="errorMessageLabel" textFill="RED">
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+      <font>
+         <Font name="Arial" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="orLabel" text="OR" wrapText="true">
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin>
+      <font>
+         <Font name="Arial" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="createNewPasswordLabel" onMouseClicked="#handleCreateNewPassword" text="Create New Password" textAlignment="CENTER" underline="true" wrapText="true">
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin>
+      <font>
+         <Font name="Arial" size="15.0" />
+      </font>
+   </Label>
+   <Label fx:id="hintLabel" text="Hint: if you have no password set up before, you can always enter the app!" textAlignment="CENTER" wrapText="true" />
+    <VBox.margin>
+        <Insets top="20.0" />
+    </VBox.margin>
+</VBox>

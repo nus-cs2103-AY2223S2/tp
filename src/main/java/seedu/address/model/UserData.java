@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class UserData implements ReadOnlyUserData {
 
-    private String hashedPassword;
+    private String hashedPassword = "";
 
     private int numberOfTimesUsed = 0;
 

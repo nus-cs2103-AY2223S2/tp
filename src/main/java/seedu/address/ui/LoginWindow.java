@@ -4,6 +4,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -26,6 +27,7 @@ public class LoginWindow extends UiPart<Stage> {
     private WelcomeSection welcomeSection;
     private LoadingSection loadingSection;
     private CreatePasswordSection createPasswordSection;
+    private DefaultLoginSection defaultLoginSection;
 
     @FXML
     private VBox container;
@@ -36,9 +38,9 @@ public class LoginWindow extends UiPart<Stage> {
      */
     public LoginWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
         // Set dependencies
         this.primaryStage = primaryStage;
+        this.logic = logic;
         setWindowDefaultSize(logic.getGuiSettings());
     }
 
@@ -71,9 +73,23 @@ public class LoginWindow extends UiPart<Stage> {
     /**
      * Fill the Vbox with WelcomeNewUserSection
      */
-    public void fillWelcomeNewUserSection() {
-        welcomeSection = new WelcomeSection();
-        container.getChildren().add(welcomeSection.getRoot());
+    public void fillWelcomeSection() {
+        int numOfTimesUsed = logic.getNumberOfTimesUsed();
+        if (numOfTimesUsed == 0) {
+            welcomeSection = new WelcomeSection();
+            container.getChildren().add(welcomeSection.getRoot());
+        } else {
+            defaultLoginSection = new DefaultLoginSection(this.primaryStage);
+            container.getChildren().add(defaultLoginSection.getRoot());
+            boolean isNoPassword = logic.getUserHashedPassword().equals("");
+            if (!isNoPassword) {
+                // force user to only reset in the json file if the user forgets the password
+                Label tempOrLabel = (Label) container.lookup("#orLabel");
+                Label tempcreateNewPasswordLabel = (Label) container.lookup("#createNewPasswordLabel");
+                tempOrLabel.setVisible(false);
+                tempcreateNewPasswordLabel.setVisible(false);
+            }
+        }
     }
 
     /**

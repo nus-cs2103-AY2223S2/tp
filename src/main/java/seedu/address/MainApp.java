@@ -209,6 +209,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
+            logic.setNumberOfTimesUsed(logic.getNumberOfTimesUsed() + 1);
             storage.saveUserPrefs(model.getUserPrefs());
             storage.saveUserData(model.getUserData());
         } catch (IOException e) {

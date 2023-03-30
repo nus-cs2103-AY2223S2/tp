@@ -52,4 +52,20 @@ public interface Logic {
      * Set the user's password
      */
     void setUserHashedPassword(String hashedPassword);
+
+    /**
+     * Retrieve the user's password
+     */
+    String getUserHashedPassword();
+
+    /**
+     * Retrieves the number of times the user has used MODCheck
+     * @return number of times used
+     */
+    int getNumberOfTimesUsed();
+
+    /**
+     * Set the number of times the user has used MODCheck
+     */
+    void setNumberOfTimesUsed(int numberOfTimesUsed);
 }

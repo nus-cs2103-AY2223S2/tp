@@ -83,4 +83,19 @@ public class LogicManager implements Logic {
     public void setUserHashedPassword(String hashedPassword) {
         model.setHashedPassword(hashedPassword);
     }
+
+    @Override
+    public String getUserHashedPassword() {
+        return model.getHashedPassword();
+    }
+
+    @Override
+    public int getNumberOfTimesUsed() {
+        return model.getNumberOfTimesUsed();
+    }
+
+    @Override
+    public void setNumberOfTimesUsed(int numberOfTimesUsed) {
+        model.setNumberOfTimesUsed(numberOfTimesUsed);
+    }
 }
