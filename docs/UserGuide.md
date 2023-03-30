@@ -14,9 +14,11 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 2. [Delete student](#delete)
 3. [List student](#list)
 4. [Filter student](#filter)
-5. [Local save](#save)
-6. [Local load](#load)
-7. [Exit program](#exit)
+5. [Add a lesson](#learn)
+6. [Remove a lesson](#unlearn)
+7. [Local save](#save)
+8. [Local load](#load)
+9. [Exit program](#exit)
 
 # FEATURES <a name="features"></a>
 
@@ -73,6 +75,28 @@ Examples:
 - `filter sch/tuesday` returns tutees whose lessons are on tuesday.
 - `filter a/clementi s/math` returns tutees whose address are in `clementi` and being tutored `math` subject.
 ![img.png](images/filterExampleResult.png)
+
+## Add a new lesson <a name="learn"></a>
+
+Add a lesson taught to a student.
+
+Format: ```learn [INDEX] [l/LESSON]```
+
+Examples:
+
+* ```learn 1 l/Rational number```
+![learn.png](images/learnExample.PNG)
+
+## Remove a lesson <a name="unlearn"></a>
+
+Remove a lesson taught to a student.
+
+Format: ```unlearn [INDEX] [l/LESSON]```
+
+Examples:
+
+* ```unlearn 1 l/Rational number```
+  ![unlearn.png](images/unlearnExample.PNG)
 
 ## Local save <a name="save"></a>
 
