@@ -4,6 +4,7 @@ title: User Guide
 ---
 * Table of Contents
   {:toc}
+  
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimized for**
@@ -20,7 +21,8 @@ Interface (GUI). If you can type fast, AB3 can get your contact management tasks
 
 3. Copy the file to the folder you want to use as the _home folder_ for your DengueHotspotTracker.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` command to run
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` 
+command to run
 the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -34,6 +36,8 @@ open the help window.<br>
    * `add n/John Tan p/543299 d/2023 February 13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
+   
+   * `find n/John` : Finds all cases with name John (non-case sensitive) and shows it in a filtered list.
 
    * `clear` : Deletes all cases.
 
@@ -57,7 +61,7 @@ for details of each command, or the [Command Summary](#Command summary).
 | **Clear**  | `clear`                                                                                                                        |
 | **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`       |
 | **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
+| **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
 | **List**   | `list`                                                                                                                   |
 | **Sort**   | `sort [n/] [a/] [d/]`<br> e.g.,`sort d/`                                                                                       |
 | **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                     |
@@ -214,29 +218,51 @@ Examples:
 respectively.
 * `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
 
-### Locating cases by name: `find`
+### Finding cases by prefixes: `find` 
 
-Finds cases whose names contain any of the given keywords.
+Find cases which matches the given prefixes. Date ranges and age ranges are also supported using new prefixes
+`sd/` `ed/` `sa/` `ea/`.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT`}
+Format: `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br/> or<br/> `
+find [n/NAME] [sd/START_DATE] [ed/END_DATE] [v/DENGUE_VARIANT]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The name and postal codes are searched.
-  * For names, partial words will be matched e.g. `Han` will match `Hans` and `Abrahan`
-  * For postal codes, the beginning of the postal code will be matched e.g. `10` will match `S101234` but not `S123410`
-  * For postal codes, the user may choose to include an `"S"` or `"s""` character or not e.g.
-    * `S10` will match `S101234`
-    * `s10` will also match `S101234`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all cases whose postal codes begin with `101`.
+* The search is case-insensitive for all tags.
+  * e.g. `n/hans` will match `Hans` or `hAns`
+* Prefixes for date `sd/` `ed/` and age ranges `sa/` `ea/` cannot be used in conjunction with the specific 
+date `d/` or age `a/` prefixes respectively
+  * e.g. `find n/Alex d/2011-11-10 sd/2005-10-10` will throw an error 
+* For names, partial words will be matched 
+  * e.g. `n/Han` will match `Hans` and `Abrahan`
+* For postal codes, the beginning of the postal code will be matched 
+  * e.g. `p/10` will match `S101234` but not `S123410`
+* For postal codes, the user may choose to include an `"S"` or `"s"` character or not
+  * e.g. `p/S10` will match `S101234`
+  * e.g. `p/s10` will also match `S101234`
+* Persons matching all given prefixes will be returned.
+  * e.g. `find n/Alex p/s101` will match only those cases with both name `alex` and of postal code that begins with `s101`
+* For variants, the user may choose to include multiple variant `v/` prefixes.
+  * e.g. `find v/DENV1 v/DENV2` is a valid command 
+* Only those which have the caught the multiple variants of dengue will be filtered by find 
+  * e.g. `find v/DENV1 v/DENV2` will only return all cases of people who have caught both DENV1 and DENV2 before.
+* Date ranges and age ranges will function even if only one of the two prefixes are specified.
+  * e.g `find sd/2010-11-10` is a valid command and will show all cases that happened after and on 2010-11-10.
+  * e.g `find ed/2011-10-10` is a valid command and will show all cases that happened before and on 2011-10-10.
+  * e.g `find sa/10` is a valid command and will show all cases of people who are older and of the same age as 10.
+  * e.g `find ea/50` is a valid command and will show all cases of people who are younger and of the same age as 50.
+* Only valid names, dates, ages, variant names are allowed
+  * e.g `find n/#erwin` will fail since names do not allow for special characters
+  * e.g `find d/2000/13/10` will fail since 13 is not a valid month.
+  * e.g `find a/200` will fail since this application only accepts ages 0 - 199.
+  * e.g `find v/denver` will fail since `denver` is not a valid dengue variant name.
+* Only valid date and age ranges are allowed.
+  * e.g `find sa/50 ea/12` will fail since the end age is earlier than the start age.
+  * e.g `find sd/2000/10/10 ed/1999/10/10` will fail since the end date is earlier than the start date.
 
 Examples:
-* `find Boe` returns `Boeing` and `Wong Boe`
-* `find alex david 101` returns `Alexander Peterson`, `Allison Tan` (postal code), `Davidson Li`<br>
-  ![result for 'find alex david 101'](..%2F..%2F..%2FDownloads%2Fimage%20%281%29.png)
+* `find v/denv1` finds all cases with `DENV1` in their variant tags.
+  ![result for find v/denv1](images/findExample.png)
 
-### Listing all cases : `list`
+### Listing all cases: `list`
 
 Shows a list of all cases in the Dengue Hotspot Tracker.
 
