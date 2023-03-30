@@ -45,7 +45,7 @@ public class UniquePatientList implements Iterable<Patient> {
     /**
      * Returns total number of critical patients.
      */
-    public int critical() {
+    public int numberOfCritical() {
         int critical = 0;
         for (Patient patient:internalList) {
             critical = patient.getStatusDesc().equals("CRITICAL") ? critical + 1 : critical;

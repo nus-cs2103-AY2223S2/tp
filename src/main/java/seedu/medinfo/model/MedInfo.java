@@ -219,7 +219,7 @@ public class MedInfo implements ReadOnlyMedInfo {
     public List<String> getStatsInfo() {
         List<String> statsInfo = new ArrayList<>();
         String currentOccupancy = "Current Occupancy: " + patients.size() + "/" + wards.capacity();
-        String currentCriticals = "Critical Patients: " + patients.critical();
+        String currentCriticals = "Critical Patients: " + patients.numberOfCritical();
         statsInfo.add(currentOccupancy);
         statsInfo.add(currentCriticals);
         return statsInfo;
