@@ -17,11 +17,11 @@ on every page to take you back to the Table of Contents. To further augment your
 <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
-# Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -48,7 +48,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 ---
 
-# Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,7 +75,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 </div>
 
-## Viewing help : `help`
+### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -84,7 +84,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-## Adding a patient to the system: `add`
+### Adding a patient to the system: `add`
 
 Adds the patient (NRIC, name and status).
 
@@ -99,13 +99,13 @@ Examples:
 
 - `add nric/S1234567A name/John Doe s/RED`
 
-## Listing all patients in the system: `list`
+### Listing all patients in the system: `list`
 
 Shows a list of all patients with their details in the system.
 
 Format: `list`
 
-## Editing a patient’s details in the system: `edit`
+### Editing a patient’s details in the system: `edit`
 
 Edit an existing patient’s status or ward or discharge date-time.
 
@@ -122,7 +122,7 @@ Examples:
 - `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`. 
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
-## Sorting all patients in the system: `sort`
+### Sorting all patients in the system: `sort`
 
 Sorts all the patients with the specified field and order in the system.
 
@@ -132,7 +132,7 @@ Examples:
 
 - `sort s/asc`
 
-## Finding patients by name in the system: `find`
+### Finding patients by name in the system: `find`
 
 Shows a list of all patients with their details that match input name or NRIC.
 
@@ -151,7 +151,7 @@ Examples:
 - `find name/john carlos` returns `John Smith`, `Carlos Lopez`<br>
   ![result for 'find alex david'](images/findJohnCarlosResult.png)
 
-## Deleting a patient from the system: `delete`
+### Deleting a patient from the system: `delete`
 
 Delete patient by NRIC.
 
@@ -163,7 +163,7 @@ Examples:
 
 `delete 1`
 
-## Adding a ward to the system: `addward`
+### Adding a ward to the system: `addward`
 
 Adds the ward (name and capacity).
 
@@ -181,16 +181,16 @@ Examples:
 
 - `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
-## Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-## Saving the data
+### Saving the data
 MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## Editing the data file
+### Editing the data file
 
 MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
@@ -200,7 +200,7 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 
 ---
 
-## FAQ :raising_hand:
+### FAQ :raising_hand:
 
 **Q**: I keep forgetting the commands, is there a quick way to get help?<br>
 
@@ -217,16 +217,16 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 
 ---
 
-## Command summary
+### Command summary
 
-| Action          | Format, Examples                                                                           |
-|-----------------|--------------------------------------------------------------------------------------------|
-| **Add**         | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
-| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
-| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
-| **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
-| **List**        | `list`                                                                                     |
-| **Help**        | `help`                                                                                     |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
+| Action          | Format, Examples                                                                          |
+|-----------------|-------------------------------------------------------------------------------------------|
+| **Add**         | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN|
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                       |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`               |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`        |
+| **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                 |
+| **List**        | `list`                                                                                    |
+| **Help**        | `help`                                                                                    |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                             |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                              |
