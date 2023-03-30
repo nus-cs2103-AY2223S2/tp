@@ -5,14 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.logging.Logger;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.util.AnalyticsType;
@@ -22,21 +19,20 @@ import seedu.address.model.util.AnalyticsType;
  * It provides various methods for calculating and retrieving statistics related to user expenses.
  */
 public class AnalyticModelManager implements AnalyticModel {
-    private static final Logger logger = LogsCenter.getLogger(AnalyticModelManager.class);
-
     private final ObservableList<Expense> allExpenses;
     private final ObservableList<Category> allCategories;
-    private final ObjectProperty<Budget> budget;
 
-    private DoubleProperty monthlySpent;
-    private DoubleProperty monthlyRemaining;
-    private DoubleProperty weeklySpent;
-    private DoubleProperty weeklyRemaining;
-    private DoubleProperty monthlyChange;
-    private DoubleProperty weeklyChange;
-    private DoubleProperty totalSpent;
-    private DoubleProperty budgetPercentage;
-    private LocalDate currentDate;
+    private final DoubleProperty monthlySpent;
+    private final DoubleProperty monthlyRemaining;
+    private final DoubleProperty weeklySpent;
+    private final DoubleProperty weeklyRemaining;
+    private final DoubleProperty monthlyChange;
+    private final DoubleProperty weeklyChange;
+    private final DoubleProperty totalSpent;
+    private final DoubleProperty budgetPercentage;
+    private final DoubleProperty monthlyBudget;
+    private final DoubleProperty weeklyBudget;
+    private final LocalDate currentDate;
 
     /**
      * Initializes an AnalyticModelManager with the given expense tracker data
@@ -48,7 +44,8 @@ public class AnalyticModelManager implements AnalyticModel {
         requireNonNull(referenceDate);
         allExpenses = expenseTracker.getExpenseList();
         allCategories = expenseTracker.getCategoryList();
-        budget = expenseTracker.getBudgetForStats();
+        monthlyBudget = new SimpleDoubleProperty(0);
+        weeklyBudget = new SimpleDoubleProperty(0);
         monthlySpent = new SimpleDoubleProperty(0);
         monthlyRemaining = new SimpleDoubleProperty(0);
         weeklySpent = new SimpleDoubleProperty(0);
@@ -58,14 +55,17 @@ public class AnalyticModelManager implements AnalyticModel {
         totalSpent = new SimpleDoubleProperty(0);
         budgetPercentage = new SimpleDoubleProperty(0);
         currentDate = referenceDate;
+
         updateAllStatistics();
+        updateMonthlyBudgetProperty(expenseTracker.getBudgetForStats().get());
+        updateWeeklyBudgetProperty(expenseTracker.getBudgetForStats().get());
+
         allExpenses.addListener((ListChangeListener<Expense>) expenseChange -> {
             updateAllStatistics();
         });
-        budget.addListener((observable, oldValue, newValue) -> {
-            logger.info(String.valueOf(newValue));
-            setBudget(newValue);
-            logger.info(String.valueOf(budget.get().getMonthlyBudget()));
+        expenseTracker.getBudgetForStats().addListener((observable, oldValue, newValue) -> {
+            updateMonthlyBudgetProperty(newValue);
+            updateWeeklyBudgetProperty(newValue);
             updateAllStatistics();
         });
     }
@@ -78,9 +78,6 @@ public class AnalyticModelManager implements AnalyticModel {
         this(expenseTracker, LocalDate.now());
     }
 
-    public void setBudget(Budget budget) {
-        this.budget.set(budget);
-    }
 
     /**
      * Calculates the total amount spent in the current month based
@@ -96,7 +93,7 @@ public class AnalyticModelManager implements AnalyticModel {
         LocalDate endOfMonth = startOfMonth.with(TemporalAdjusters.lastDayOfMonth());
         for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
-            if (expenseDate.isAfter(startOfMonth) && expenseDate.isBefore(endOfMonth)) {
+            if (!expenseDate.isBefore(startOfMonth) && !expenseDate.isAfter(endOfMonth)) {
                 total += expense.getAmount();
             }
         }
@@ -112,7 +109,12 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getMonthlyRemaining() {
-        double remaining = budget.get().getMonthlyBudget() - monthlySpent.get();
+        // Do not calculate monthly remaining if budget is 0
+        if (monthlyBudget.get() == 0) {
+            monthlyRemaining.set(0);
+            return monthlyRemaining;
+        }
+        double remaining = monthlyBudget.get() - monthlySpent.get();
         monthlyRemaining.set(remaining);
         return monthlyRemaining;
     }
@@ -129,7 +131,7 @@ public class AnalyticModelManager implements AnalyticModel {
         LocalDate weekEnd = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
         for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
-            if (expenseDate.isAfter(weekStart) && expenseDate.isBefore(weekEnd)) {
+            if (!expenseDate.isBefore(weekStart) && !expenseDate.isAfter(weekEnd)) {
                 total += expense.getAmount();
             }
         }
@@ -144,7 +146,12 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getWeeklyRemaining() {
-        double remaining = budget.get().getWeeklyBudget() - weeklySpent.get();
+        // Do not calculate weekly remaining if budget is 0
+        if (monthlyBudget.get() == 0) {
+            weeklyRemaining.set(0);
+            return weeklyRemaining;
+        }
+        double remaining = weeklyBudget.get() - weeklySpent.get();
         weeklyRemaining.set(remaining);
         return weeklyRemaining;
     }
@@ -156,6 +163,11 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getWeeklyChange() {
+        // Do not calculate weekly change if budget is 0
+        if (monthlyBudget.get() == 0) {
+            weeklyChange.set(0);
+            return weeklyChange;
+        }
         double previousWeekTotal = 0;
         LocalDate previousWeekStart = currentDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusWeeks(1);
         LocalDate previousWeekEnd = currentDate.with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).minusDays(1);
@@ -182,6 +194,11 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getMonthlyChange() {
+        // Do not calculate monthly change if budget is 0
+        if (monthlyBudget.get() == 0) {
+            monthlyChange.set(0);
+            return monthlyChange;
+        }
         double previousMonthTotal = 0;
         LocalDate previousMonthStart = currentDate.withDayOfMonth(1).minusMonths(1);
         LocalDate previousMonthEnd = previousMonthStart.with(TemporalAdjusters.lastDayOfMonth());
@@ -219,12 +236,45 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getBudgetPercentage() {
-        double percentage = (monthlySpent.get() / budget.get().getMonthlyBudget()) * 100;
+        // Do not calculate budget percentage if budget is 0
+        if (monthlyBudget.get() == 0) {
+            budgetPercentage.set(0);
+            return budgetPercentage;
+        }
+        double percentage = (monthlySpent.get() / monthlyBudget.get()) * 100;
         if (percentage > 100) {
             percentage = 100;
         }
         budgetPercentage.set(percentage);
         return budgetPercentage;
+    }
+
+    /**
+     * Updates the currently referenced monthly budget in the GUI
+     * This method is called when the BudgetProperty in {@code ExpenseTracker} has changed.
+     * @param newBudget the new Budget object value which changed
+     */
+    @Override
+    public void updateMonthlyBudgetProperty(Budget newBudget) {
+        monthlyBudget.set(newBudget.getMonthlyBudget());
+    }
+
+    /**
+     * Updates the currently referenced weekly budget in the GUI
+     * This method is called when the BudgetProperty in {@code ExpenseTracker} has changed.
+     * @param newBudget the new Budget object value which changed
+     */
+    @Override
+    public void updateWeeklyBudgetProperty(Budget newBudget) {
+        weeklyBudget.set(newBudget.getWeeklyBudget());
+    }
+
+    /**
+     * Returns the current value of the user's set monthly budget
+     */
+    @Override
+    public double getBudget() {
+        return monthlyBudget.get();
     }
 
     /**
@@ -235,18 +285,6 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getAnalyticsData(AnalyticsType type) throws IllegalArgumentException {
-        if (this.budget.get().getMonthlyBudget() == 0) {
-            switch (type) {
-            case MONTHLY_SPENT:
-                return getMonthlySpent();
-            case WEEKLY_SPENT:
-                return getWeeklySpent();
-            case TOTAL_SPENT:
-                return getTotalSpent();
-            default:
-                return new SimpleDoubleProperty(0);
-            }
-        }
         switch(type) {
         case MONTHLY_SPENT:
             return getMonthlySpent();
@@ -274,19 +312,6 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public void updateAllStatistics() {
-        if (this.budget.get().getMonthlyBudget() == 0) {
-            logger.info("entered");
-            getTotalSpent();
-            getMonthlySpent();
-            getWeeklySpent();
-            this.weeklyChange.set(0);
-            this.monthlyChange.set(0);
-            this.weeklyRemaining.set(0);
-            this.monthlyRemaining.set(0);
-            this.budgetPercentage.set(0);
-            return;
-        }
-        logger.info("entered 2");
         getTotalSpent();
         getMonthlySpent();
         getWeeklySpent();

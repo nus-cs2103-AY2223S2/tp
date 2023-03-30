@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -11,11 +12,13 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ExpenseTrackerParser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.storage.Storage;
 
 /**
@@ -42,13 +45,11 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(dataModel);
 
         try {
-            logger.info("expense tracker before save " + dataModel.getExpenseTracker().getCategoryList().size());
             storage.saveExpenseTracker(dataModel.getExpenseTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -70,6 +71,21 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
         return dataModel.getFilteredExpenseList();
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseManagerList() {
+        return dataModel.getRecurringExpenseGenerators();
+    }
+
+    @Override
+    public SimpleObjectProperty<ParserUtil.Timespan> getAppliedTimeSpanFilter() {
+        return dataModel.getAppliedTimeSpanFilter();
+    }
+
+    @Override
+    public SimpleObjectProperty<Category> getAppliedCategoryFilter() {
+        return dataModel.getAppliedCategoryFilter();
     }
 
     @Override

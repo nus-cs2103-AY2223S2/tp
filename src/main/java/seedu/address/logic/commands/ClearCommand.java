@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
+import seedu.address.ui.ScreenType;
 
 /**
  * Format full help instructions for every command for display.
@@ -17,6 +18,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model dataModel) {
         dataModel.clearCategory();
         dataModel.clearExpense();
-        return new CommandResult(MESSAGE_SUCCESS, false);
+        dataModel.clearRecurringExpenseGenerator();
+        return new CommandResult(MESSAGE_SUCCESS, ScreenType.EXPENSE_SCREEN);
     }
 }

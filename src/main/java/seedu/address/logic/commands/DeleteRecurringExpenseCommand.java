@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.expense.RecurringExpenseManager;
+import seedu.address.ui.ScreenType;
 
 /**
  * Deletes an expense from the expense tracker.
@@ -45,7 +46,7 @@ public class DeleteRecurringExpenseCommand extends Command {
         RecurringExpenseManager recurringExpenseManager = lastShownList.get(targetIndex.getZeroBased());
         dataModel.deleteRecurringExpense(recurringExpenseManager);
         return new CommandResult(String.format(MESSAGE_DELETE_RECURRING_EXPENSE_SUCCESS, recurringExpenseManager),
-                true);
+                ScreenType.RECURRING_EXPENSE_SCREEN);
     }
 
     @Override

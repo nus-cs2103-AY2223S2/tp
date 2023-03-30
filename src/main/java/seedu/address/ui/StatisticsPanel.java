@@ -37,6 +37,8 @@ public class StatisticsPanel extends UiPart<Region> {
     @FXML
     private Label weeklySign;
     @FXML
+    private Label budgetAdvice;
+    @FXML
     private HBox weeklyChangeBackground;
     @FXML
     private HBox monthlyChangeBackground;
@@ -50,6 +52,10 @@ public class StatisticsPanel extends UiPart<Region> {
         super(FXML);
         this.analyticModel = analyticModel;
         bindAllValuesToStatistics();
+        updateBudgetAdvice(analyticModel.getMonthlySpent().doubleValue());
+        analyticModel.getMonthlySpent().addListener((observable, oldValue, newValue) -> {
+            updateBudgetAdvice(newValue);
+        });
     }
 
     /**
@@ -124,7 +130,6 @@ public class StatisticsPanel extends UiPart<Region> {
         labelToUpdate.getStyleClass().add(textColorClass);
     }
 
-
     private void bindAllValuesToStatistics() {
         bindValueToStatistic(AnalyticsType.MONTHLY_SPENT, monthlySpending, true);
         bindValueToStatistic(AnalyticsType.MONTHLY_REMAINING, monthlyRemaining, true);
@@ -135,6 +140,21 @@ public class StatisticsPanel extends UiPart<Region> {
         bindValueToChangeIndicator(AnalyticsType.WEEKLY_CHANGE);
         bindValueToChangeIndicator(AnalyticsType.MONTHLY_CHANGE);
     }
+
+    /**
+     * Updates the budget advice text based on the new value of the monthly spent.
+     * @param newValue the new value of the monthly spent
+     */
+    private void updateBudgetAdvice(Number newValue) {
+        String adviceText;
+        if (newValue.doubleValue() <= analyticModel.getBudget()) {
+            adviceText = "Great job! You are within your budget!";
+        } else {
+            adviceText = "You have exceeded your monthly budget!";
+        }
+        budgetAdvice.setText(adviceText);
+    }
+
 
     @Override
     public boolean equals(Object other) {

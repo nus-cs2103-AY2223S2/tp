@@ -2,36 +2,61 @@
   "categories" : [ {
     "categoryName" : "t",
     "summary" : ""
+  }, {
+    "categoryName" : "cat",
+    "summary" : ""
+  }, {
+    "categoryName" : "food",
+    "summary" : "svd"
+  }, {
+    "categoryName" : "hello",
+    "summary" : ""
+  }, {
+    "categoryName" : "drinks",
+    "summary" : ""
+  }, {
+    "categoryName" : "swfhishv",
+    "summary" : ""
   } ],
-  "expenses" : [ ],
+  "expenses" : [ {
+    "name" : "adisadi",
+    "amount" : "10.0",
+    "date" : "2023-03-31",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : "svd"
+    }
+  }, {
+    "name" : "dksos",
+    "amount" : "20.0",
+    "date" : "2023-03-31",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : "svd"
+    }
+  }, {
+    "name" : "afiisfsi",
+    "amount" : "30.0",
+    "date" : "2023-03-22",
+    "category" : {
+      "categoryName" : "swfhishv",
+      "summary" : ""
+    }
+  }, {
+    "name" : "fw",
+    "amount" : "2.0",
+    "date" : "2023-03-01",
+    "category" : {
+      "categoryName" : "t",
+      "summary" : ""
+    }
+  } ],
   "budget" : {
-    "amount" : "0.0"
+    "amount" : "500.0"
   },
   "recurringGenerators" : [ {
-    "expenseName" : "fw",
+    "expenseName" : "hi",
     "expenseAmount" : "2.0",
-    "expenseCategory" : {
-      "categoryName" : "t",
-      "summary" : ""
-    },
-    "nextExpenseDate" : "2023-03-01",
-    "startDate" : "2023-03-01",
-    "endDate" : "2023-03-10",
-    "recurringExpenseType" : "MONTHLY"
-  }, {
-    "expenseName" : "fw",
-    "expenseAmount" : "2.0",
-    "expenseCategory" : {
-      "categoryName" : "t",
-      "summary" : ""
-    },
-    "nextExpenseDate" : "2023-04-01",
-    "startDate" : "2023-03-01",
-    "endDate" : "null",
-    "recurringExpenseType" : "MONTHLY"
-  }, {
-    "expenseName" : "fw",
-    "expenseAmount" : "3.0",
     "expenseCategory" : {
       "categoryName" : "t",
       "summary" : ""

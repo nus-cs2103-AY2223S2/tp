@@ -144,7 +144,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" maxWidth="350.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label styleClass="stats_advice" text="Great job! You are within your budget!" />
+                  <Label fx:id="budgetAdvice" styleClass="stats_advice" text="\$budgetAdvice" />
                </children>
                <VBox.margin>
                   <Insets top="10.0" />

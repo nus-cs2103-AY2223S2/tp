@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.expense.RecurringExpenseType;
+import seedu.address.ui.ScreenType;
 
 /**
  * Edits a RecurringExpenseManager in the ExpenseTracker
@@ -94,7 +95,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
 
         if (toBeAllocated != null) {
             generatorToEdit.setExpenseCategory(toBeAllocated);
-        } else if (this.newExpenseCategoryInString != null && toBeAllocated == null) {
+        } else if (this.newExpenseCategoryInString != null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
@@ -119,6 +120,8 @@ public class EditRecurringExpenseManagerCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENUM_FOR_FREQUENCY);
             }
         }
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_RECURRING, generatorToEdit), false);
+        return new CommandResult(
+            String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_RECURRING, generatorToEdit),
+            ScreenType.RECURRING_EXPENSE_SCREEN);
     }
 }

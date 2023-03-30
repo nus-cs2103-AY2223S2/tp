@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.RecurringExpenseManager;
@@ -26,6 +28,11 @@ public class ModelManager implements Model {
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
     private final FilteredList<RecurringExpenseManager> filteredRecurringExpense;
+
+    private SimpleObjectProperty<Category> appliedCategoryFilter =
+            new SimpleObjectProperty<>(null);
+    private SimpleObjectProperty<ParserUtil.Timespan> appliedTimeSpanFilter =
+            new SimpleObjectProperty<>(ParserUtil.Timespan.ALL);
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -114,6 +121,26 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredExpenses.equals(other.filteredExpenses)
                 && filteredCategories.equals(other.filteredCategories);
+    }
+
+    @Override
+    public SimpleObjectProperty<ParserUtil.Timespan> getAppliedTimeSpanFilter() {
+        return appliedTimeSpanFilter;
+    }
+
+    @Override
+    public SimpleObjectProperty<Category> getAppliedCategoryFilter() {
+        return appliedCategoryFilter;
+    }
+
+    @Override
+    public void updateTimeSpanFilter(ParserUtil.Timespan timeSpan) {
+        appliedTimeSpanFilter.set(timeSpan);
+    }
+
+    @Override
+    public void updateCategoryFilter(Category category) {
+        appliedCategoryFilter.set(category);
     }
 
     // =========== Category List Accessors
@@ -253,6 +280,14 @@ public class ModelManager implements Model {
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
         requireNonNull(predicate);
         filteredRecurringExpense.setPredicate(predicate);
+    }
+
+    /**
+     * Delete all recurring expense generators.
+     */
+    @Override
+    public void clearRecurringExpenseGenerator() {
+        expenseTracker.clearRecurringExpense();
     }
 
     @Override

@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Budget;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
@@ -78,6 +80,25 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public SimpleObjectProperty<ParserUtil.Timespan> getAppliedTimeSpanFilter() {
+        return null;
+    }
+
+    @Override
+    public SimpleObjectProperty<Category> getAppliedCategoryFilter() {
+        return null;
+    }
+
+    @Override
+    public void updateTimeSpanFilter(ParserUtil.Timespan timeSpan) {
+
+    }
+
+    @Override
+    public void updateCategoryFilter(Category category) {
+
+    }
 
 
     @Override
@@ -184,6 +205,14 @@ public class ModelStub implements Model {
     @Override
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    /**
+     * Delete all recurring expense generators.
+     */
+    @Override
+    public void clearRecurringExpenseGenerator() {
+
     }
 
     @Override

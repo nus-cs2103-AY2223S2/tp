@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.expense.Expense;
+import seedu.address.ui.ScreenType;
 
 /**
  * Deletes an expense from the expense tracker.
@@ -43,7 +44,7 @@ public class DeleteExpenseCommand extends Command {
 
         Expense expense = lastShownList.get(targetIndex.getZeroBased());
         dataModel.deleteExpense(expense);
-        return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expense), true);
+        return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expense), ScreenType.EXPENSE_SCREEN);
     }
 
     @Override
