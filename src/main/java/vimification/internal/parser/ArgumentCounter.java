@@ -49,7 +49,7 @@ public class ArgumentCounter {
             ComposedArgumentFlag composedFlag = (ComposedArgumentFlag) flag;
             currentCounts.merge(composedFlag.getActualFlag(), 1, Integer::sum);
         }
-        if (count < maximumCounts.get(flag)) {
+        if (count > maximumCounts.get(flag)) {
             throw new ParserException("Number of arguments for flag " + flag + " exceeded limit");
         }
     }
