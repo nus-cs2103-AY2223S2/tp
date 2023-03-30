@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -160,6 +161,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void showPersonContact(List<Person> personList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasUndoableCommand() {
             throw new AssertionError("This method should not be called.");
         }
@@ -175,6 +181,7 @@ public class AddCommandTest {
         public String executeRedo() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
@@ -222,11 +229,14 @@ public class AddCommandTest {
             });
         }
 
+        @Override
+        public void showPersonContact(List<Person> personList) {
+            personList.stream().forEach(x -> x.toggleHidden());
+        }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
     }
-
 }

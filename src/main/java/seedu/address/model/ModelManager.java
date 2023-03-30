@@ -158,6 +158,11 @@ public class ModelManager implements Model, Undoable {
         });
     }
 
+    @Override
+    public void showPersonContact(List<Person> personList) {
+        personList.stream().forEach(x -> x.toggleHidden());
+    }
+
     //=========== Undo management =============================================================================
     public boolean hasUndoableCommand() {
         return undoManager.hasUndoableCommand();
