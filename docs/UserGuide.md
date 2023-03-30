@@ -87,8 +87,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Mark/Unmark
 
-- `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
-- `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
+- `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`: Marks video(s) as watched
+- `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_index}`: Unmarks video(s) as unwatched
 
 ### Delete
 
