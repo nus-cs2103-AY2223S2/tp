@@ -319,25 +319,41 @@ patient clear
 
 ### `appointment` - Appointment functionalities
 
+| Attribute     | Type              | Description                                |
+|---------------|-------------------|--------------------------------------------|
+| Patient id    | `<Index>`         | The patient id of the appointment.         |
+| Starting time | `<localDateTime>` | The starting time of the appointment.      |
+| Ending time   | `<localDateTime>` | The ending time of the appointment.        |
+| Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
+| Status        | `<Boolean>`       | The completion status of the appointment.  |
+
+<br></br>
+
 #### `add` - Add an appointment
 
+Adds an appointment to the appointment manager
+
 ```text
-appointment add --p <integer> --s <date> --e <date> --v <string>
+appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
 
 ##### Example
 
-* `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
+* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Moderna`
 
-#### `edit` - Edit an appointment
+##### Restrictions
 
-```text
-appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
-```
+* The patient id must be an existing index in the patient manager.
+* The starting time must be after the current locale time.
+* The ending time must be after the given starting time.
+* The vaccination must be an existing vaccination type in the vaxtype manager.
 
-##### Example
-
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+<br></br>
 
 #### `delete` - Delete an appointment
 
@@ -349,11 +365,64 @@ appointment delete <integer>
 
 * `appointment delete 5`
 
+<br></br>
+
+#### `edit` - Edit an appointment
+
+```text
+appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
+```
+
+##### Example
+
+* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+
+<br></br>
+
 #### `list` - List all appointments
 
 ```text
 appointment list
 ```
+
+<br></br>
+
+#### `find` - Find all matching appointments
+
+```text
+appointment find --p <integer> --s <date> --e <date> --v <string>`
+```
+
+##### Example
+
+* `appointment find Dose 1`
+* `appointment find --p 1`
+
+<br></br>
+
+#### `mark` - Marks an appointment as completed
+
+```text
+appointment mark <integer>
+```
+
+##### Example
+
+* `appointment mark 1`
+
+<br></br>
+
+#### `unmark` - Changes an appointment's status to not done
+
+```text
+appointment unmark <integer>
+```
+
+##### Example
+
+* `appointment unmark 1`
+
+<br></br>
 
 ### `vaccination` - Vaccination functionalities
 
