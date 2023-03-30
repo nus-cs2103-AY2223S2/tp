@@ -32,6 +32,7 @@
             <Label fx:id="nric" prefHeight="36.0" prefWidth="304.0" styleClass="cell_small_label" text="Label[id=nric, styleClass=label cell_small_label]''" />
             <Label fx:id="gender" prefHeight="34.0" prefWidth="275.0" styleClass="cell_small_label" text="$gender" />
             <Label fx:id="date" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$date" />
+            <Label fx:id="doctor" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$date" />
             <Label fx:id="phone" prefHeight="31.0" prefWidth="316.0" styleClass="cell_small_label" text="$phone">
                 <padding>
                     <Insets top="3.0" />
