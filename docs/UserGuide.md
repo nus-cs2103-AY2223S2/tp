@@ -15,7 +15,7 @@ Our target audience is hospital and clinical administrative staff who deal with 
 
 The purpose of this user guide document is to provide staff with a clear understanding of the features and benefits of HospiSearch. The guide aims to assist users in effectively utilizing HospiSearch's features to streamline their patient management tasks and improve overall efficiency.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Messages in this format are important!
-<div/>
+</div>
 💡**Tip**:
 <br/> Messages in this format include information that may be useful to the user.
 
