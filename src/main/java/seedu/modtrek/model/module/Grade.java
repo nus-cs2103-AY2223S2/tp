@@ -16,6 +16,8 @@ public class Grade implements Comparable<Grade> {
 
     public static final String MESSAGE_MISSING_DETAIL = "Missing grade after /g.";
 
+    public static final String NO_GRADE = "NO GRADE";
+
     private static Map<String, Double> gradeToPoints = Map.ofEntries(
         Map.entry("A+", 5.0),
         Map.entry("A", 5.0),
@@ -30,7 +32,24 @@ public class Grade implements Comparable<Grade> {
         Map.entry("F", 0.0),
         Map.entry("S", 5.0),
         Map.entry("U", 0.0),
-        Map.entry("", -1.0) // Empty grade
+        Map.entry("NO GRADE", -1.0) // Empty grade
+    );
+
+    private static Map<String, Double> gradeToTagPoints = Map.ofEntries(
+            Map.entry("A+", 5.0),
+            Map.entry("A", 4.5),
+            Map.entry("A-", 4.2),
+            Map.entry("B+", 4.0),
+            Map.entry("B", 3.5),
+            Map.entry("B-", 3.0),
+            Map.entry("C+", 2.5),
+            Map.entry("C", 2.0),
+            Map.entry("D+", 1.5),
+            Map.entry("D", 1.0),
+            Map.entry("F", 0.0),
+            Map.entry("S", -1.0),
+            Map.entry("U", -1.1),
+            Map.entry("NO GRADE", -1.2) // Empty grade
     );
 
     private static final Set<String> VALID_GRADES = gradeToPoints.keySet();
@@ -45,7 +64,11 @@ public class Grade implements Comparable<Grade> {
     public Grade(String value) {
         requireNonNull(value);
         checkArgument(isValidGrade(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+        if (value.isEmpty()) {
+            this.value = NO_GRADE;
+        } else {
+            this.value = value;
+        }
     }
 
     /**
@@ -56,15 +79,19 @@ public class Grade implements Comparable<Grade> {
      */
     public static boolean isValidGrade(String test) {
         requireNonNull(test);
-        return VALID_GRADES.contains(test);
+        return test.isEmpty() || test.equals(NO_GRADE) || VALID_GRADES.contains(test);
     }
 
     public double toPoints() {
         return gradeToPoints.get(value);
     }
 
+    public double toTagPoints() {
+        return gradeToTagPoints.get(value);
+    }
+
     public boolean isEmpty() {
-        return value.equals("");
+        return value.equals(NO_GRADE);
     }
 
     public boolean isGradeable() {
@@ -106,11 +133,11 @@ public class Grade implements Comparable<Grade> {
      */
     @Override
     public int compareTo(Grade o) {
-        if (o.toPoints() > this.toPoints()) {
+        if (o.toTagPoints() > this.toTagPoints()) {
             return 1;
-        } else if (o.toPoints() < this.toPoints()) {
+        } else if (o.toTagPoints() < this.toTagPoints()) {
             return -1;
         }
-        return o.toString().compareTo(this.toString());
+        return 0;
     }
 }
