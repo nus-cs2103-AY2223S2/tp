@@ -337,6 +337,12 @@
     -fx-background-radius: 0;
 }
 
+#applicantCount { /* for the applicant counter */
+    -fx-font-size: 14;
+    -fx-border-radius: 2;
+    -fx-background-radius: 3;
+}
+
 #applicants {
     -fx-hgap: 7;
     -fx-vgap: 3;
