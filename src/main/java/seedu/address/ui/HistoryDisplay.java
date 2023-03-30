@@ -11,7 +11,7 @@ import javafx.scene.text.TextFlow;
 import seedu.address.model.history.InputHistory;
 
 /**
- * An ui for the history display.
+ * An ui component for the history display.
  */
 public class HistoryDisplay extends UiPart<Region> {
 

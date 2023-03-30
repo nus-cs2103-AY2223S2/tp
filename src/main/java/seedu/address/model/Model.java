@@ -3,6 +3,7 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -90,11 +91,24 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifable view of the list of applying filters */
+    ObservableList<Filter> getApplyingFilterList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<? super Person> predicate);
+
+    /**
+     * Updates the filter of the fltered person list to filter by the given {@code predicate} and
+     * the current applying filters.
+     *
+     * @param predicate The predicate to update
+     * @param filtersFromPredicate The filters come from the argument predicate.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonList(Predicate<? super Person> predicate, Stream<Filter> filtersFromPredicate);
 
     /**
      * Refreshes the filtered person list to push any changes within contained Persons to the UI,

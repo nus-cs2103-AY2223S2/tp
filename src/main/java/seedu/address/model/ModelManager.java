@@ -9,7 +9,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -31,6 +34,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final InputHistory inputHistory;
     private final FilteredList<Person> filteredPersons;
+    private ArrayList<Filter> applyingFilters;
     private final List<Person> frozenPersons;
 
     private Predicate<? super Person> frozenPredicate = null;
@@ -49,6 +53,7 @@ public class ModelManager implements Model {
         this.inputHistory = new InputHistory(inputHistory);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        applyingFilters = new ArrayList<>();
         frozenPersons = new ArrayList<>();
     }
 
@@ -200,9 +205,24 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of applying {@code Filter}.
+     */
+    @Override
+    public ObservableList<Filter> getApplyingFilterList() {
+        return FXCollections.observableList(applyingFilters);
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
+        updateFilteredPersonList(predicate, Stream.empty());
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<? super Person> predicate, Stream<Filter> filtersFromPredicate) {
+        requireNonNull(predicate);
+        applyingFilters = filtersFromPredicate.collect(Collectors.toCollection(ArrayList::new));
         try {
             unfreezeFilteredPersonList();
         } catch (ModifyFrozenStateException ex) {

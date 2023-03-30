@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private HistoryDisplay historyDisplay;
+    private FiltersDisplay filtersDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -52,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane filtersDisplayPlaceholder;
 
     @FXML
     private StackPane historyDisplayPlaceholder;
@@ -122,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        filtersDisplay = new FiltersDisplay();
+        filtersDisplayPlaceholder.getChildren().add(filtersDisplay.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -188,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            filtersDisplay.setApplyingFilters(model.getApplyingFilterList());
             historyDisplay.displayHistoryToUser(model.getInputHistory());
             if (commandResult.isShowHelp()) {
                 handleHelp();

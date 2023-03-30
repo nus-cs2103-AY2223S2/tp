@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Filter;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -163,6 +165,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Filter> getApplyingFilterList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<? super Person> predicate, Stream<Filter> filtersList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<? super Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -199,12 +211,12 @@ public class AddCommandTest {
 
         @Override
         public void addTag(Person person, Tag tag) {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteTag(Person person, Tag tag) {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
