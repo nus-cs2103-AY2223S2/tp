@@ -370,9 +370,10 @@ Format: `viewunassignedall`
 Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
+
 ---
 
-### Viewing a person : `pi`
+## Viewing a person : `pi`
 
 Shows a list of tasks assigned to a person according to the displayed index.
 
@@ -387,7 +388,7 @@ Example:
 
 ---
 
-### Viewing a task : `ti`
+## Viewing a task : `ti`
 
 Shows a list of persons assigned to a task according to the displayed index.
 
@@ -413,9 +414,11 @@ Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
 
 ---
 
-### Archiving data files `[coming in v1.5]`
+## Archiving data files `[coming in v1.5]`
 
-### Clearing data files `[coming in v1.5]`
+---
+
+## Clearing data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
