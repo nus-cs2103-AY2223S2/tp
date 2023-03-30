@@ -340,6 +340,7 @@ Mouse - Click the "File" on the top menu, then choose "Export" under the drop-do
 Examples:
 * `export` will export the file under the _home folder_.
 
+
 * For Windows user
   * `export` p/C:\bin export `data.json` to bin folder under C disk.
 * For Mac user
