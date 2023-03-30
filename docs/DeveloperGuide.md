@@ -395,14 +395,14 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Implementation**
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 <br>
 
 
-## **UI Implementation**
+### **UI Implementation**
 
 This section describes implementation of features within `ui` package.
 
@@ -419,7 +419,7 @@ explained under [Theme](#theme) section.
 
 Refer to [UI Component](#ui-component) for more information about this package.
 
-## **Main section**
+#### **Main section**
 
 Main section consists of the following components:
 
@@ -430,7 +430,7 @@ Main section consists of the following components:
 
 ![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.PNG)
 
-### **CommandBox**
+#### **CommandBox**
 
 **Main input for the UI.**
 
@@ -441,7 +441,7 @@ Users are able to write their commands into its text field and execute it by pre
 
 <br>
 
-#### Design considerations
+##### Design considerations
 
 Commands may execute successfully or fail throwing exceptions. To increase usability of the `CommandBox`, following are
 implemented:
@@ -451,7 +451,7 @@ modify the command without having to rewrite the whole command.
 
 <br>
 
-### **ResultDisplay**
+#### **ResultDisplay**
 
 **Main output for the UI.**
 
@@ -461,7 +461,7 @@ execution of commands.
 
 <br>
 
-#### Design considerations
+##### Design considerations
 
 Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
 that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
@@ -469,7 +469,7 @@ this update, adhering to the segregation of concerns principle.
 
 <br>
 
-### **PersonListPanel**
+#### **PersonListPanel**
 
 Part of the main section that displays a list of person registered to the CoDoc database.
 
@@ -478,7 +478,7 @@ The list is created as a ListView. More information about ListView
 
 <br>
 
-#### Design considerations
+##### Design considerations
 
 Since the list is updated constantly as program executes, ListView was chosen as the way to display the list since it
 is able to observe changes in its content (as long as it is an 
@@ -491,7 +491,7 @@ in changing how the cells within the ListView look should look into `PersonCard`
 
 <br>
 
-### **StatusBarFooter**
+#### **StatusBarFooter**
 
 Small section at the bottom of the program to show information about the status of the program.
 
@@ -501,7 +501,7 @@ information.
 
 <br>
 
-## **Info Panel**
+### **Info Panel**
 
 Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
 which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
@@ -518,7 +518,7 @@ Info Panel consists of the following components:
 |------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|
 | ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.PNG) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.PNG) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.PNG) |
 
-### **InfoTab**
+#### **InfoTab**
 
 Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
 **main controller** for the right section, Info Panel.
@@ -527,7 +527,7 @@ Similar to how `MainWindow` is the main controller for the primary stage, `InfoT
 
 <br>
 
-#### Design considerations
+##### Design considerations
 
 The Info Panel is implemented to show details of a person as [PersonListPanel](#personlistpanel) is unable to show all
 information about a person given limited space within each cell. This "staged" person is called internally code-wise as
@@ -548,14 +548,14 @@ creates a new `InfoTab` at the end of every execution by referring to the `prota
 
 <br>
 
-### **DetailedInfo**
+#### **DetailedInfo**
 
 Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
 `DetailedSkill`.
 
 <br>
 
-#### Design considerations
+##### Design considerations
 
 `InfoTab` may create either of the children classes, depending on what the user has specified using the
 [ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
@@ -563,21 +563,21 @@ generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlacehold
 
 <br>
 
-### **DetailedContact**
+#### **DetailedContact**
 
 Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
 as GitHub user ID, email address and LinkedIn profile URL.
 
 <br>
 
-### **DetailedModule**
+#### **DetailedModule**
 
 Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
 by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
 
 <br>
 
-### **DetailedSkill**
+#### **DetailedSkill**
 
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
 by a person that is created as a ListView.
@@ -587,7 +587,7 @@ information.
 
 <br>
 
-## **Theme**
+### **Theme**
 
 Most of the Java FXML components follow the style specified by the CSS file `CodocTheme.css`. Refer to this file under
 the `view` package within the `resources` folder when visual design changes are to be made.
