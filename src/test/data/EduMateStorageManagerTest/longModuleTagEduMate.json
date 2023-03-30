@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -114,10 +114,17 @@
   },
   "persons": [
     {
+<<<<<<< HEAD
       "name": "Melania Walker",
       "email": "melaniawalker@gmail.com",
       "telegramHandle": "@melaniawalker",
       "address": "Promenade",
+=======
+      "name": "Joo Rong",
+      "email": "joorong@gmail.com",
+      "telegramHandle": "@joorong",
+      "station": "Jurong East",
+>>>>>>> master
       "groups": [
         "Enemy"
       ],

@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -114,11 +114,21 @@
   },
   "persons": [
     {
+<<<<<<< HEAD
       "name": "Ang De Yi",
       "email": "angdeyi@gmail.com",
       "telegramHandle": "@angdeyi",
       "address": "Teck Ghee",
       "groups": [],
+=======
+      "name": "Amirah Tan",
+      "email": "amirahtan@gmail.com",
+      "telegramHandle": "@amirahtan",
+      "station": "Tanah Merah",
+      "groups": [
+        "Groupmate"
+      ],
+>>>>>>> master
       "phone": "3895as4665",
       "modules": [
         {

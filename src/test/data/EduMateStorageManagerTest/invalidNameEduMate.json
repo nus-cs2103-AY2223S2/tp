@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -115,9 +115,15 @@
   "persons": [
     {
       "name": "Goon Se-Rang",
+<<<<<<< HEAD
       "email": "quincydawson@gmail.com",
       "telegramHandle": "@quincydawson",
       "address": "Queenstown",
+=======
+      "email": "booneleigh@gmail.com",
+      "telegramHandle": "@booneleigh",
+      "station": "Boon Lay",
+>>>>>>> master
       "groups": [
         "Groupmate"
       ],

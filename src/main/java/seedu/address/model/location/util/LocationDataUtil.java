@@ -27,13 +27,13 @@ public class LocationDataUtil {
     public static final Set<Location> MEET_LOCATIONS =
             Stream.concat(EAT_LOCATIONS.stream(), STUDY_LOCATIONS.stream()).collect(Collectors.toSet());
     public static final Set<Location> LESSON_VENUES = readLocationData("venues");
-    public static final Set<Location> ADDRESSES = readLocationData("address");
+    public static final Set<Location> STATIONS = readLocationData("stations");
 
     /**
      * If we need to, we can convert them to hash map.
      * The key will simply be the name of the location.
      */
-    public static final Map<String, Location> ADDRESSES_HASH_MAP = getLocationHashMap(ADDRESSES);
+    public static final Map<String, Location> STATIONS_HASH_MAP = getLocationHashMap(STATIONS);
 
     private static final Logger logger = LogsCenter.getLogger(LocationDataUtil.class);
 

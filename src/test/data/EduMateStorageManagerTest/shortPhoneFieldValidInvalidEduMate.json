@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -114,10 +114,17 @@
   },
   "persons": [
     {
+<<<<<<< HEAD
       "name": "Benjamin DeMeer",
       "email": "benjamindemeer@gmail.com",
       "telegramHandle": "@benjamindemeer",
       "address": "Bendemeer",
+=======
+      "name": "Quincy Dawson",
+      "email": "quincydawson@gmail.com",
+      "telegramHandle": "@quincydawson",
+      "station": "Queenstown",
+>>>>>>> master
       "groups": [
         "TA"
       ],

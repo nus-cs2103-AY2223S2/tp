@@ -123,9 +123,9 @@ public class LocationTracker {
      * Fills the unknown locations based on the last known and next known locations.
      */
     private void fillUnknown() {
-        Location homeAddress = person.getAddress().getValue();
-        Pair<Location, Integer> startPair = new Pair<>(homeAddress, -1);
-        Pair<Location, Integer> endPair = new Pair<>(homeAddress, NUMBER_OF_HOURS);
+        Location homeStation = person.getStation().getValue();
+        Pair<Location, Integer> startPair = new Pair<>(homeStation, -1);
+        Pair<Location, Integer> endPair = new Pair<>(homeStation, NUMBER_OF_HOURS);
 
         for (List<Optional<Location>> dayLocations : locations.values()) {
             List<Pair<Location, Integer>> knownLocationIndices = new ArrayList<>();

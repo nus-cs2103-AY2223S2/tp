@@ -17,12 +17,12 @@
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="46" x="249"
                   y="115.9659">Person
             </text>
-        </g><!--class Address-->
-        <g id="elem_Address">
-            <rect codeLine="8" fill="#D42E12" height="29.0679" id="Address" rx="2.5" ry="2.5"
+        </g><!--class Station-->
+        <g id="elem_Station">
+            <rect codeLine="8" fill="#D42E12" height="29.0679" id="Station" rx="2.5" ry="2.5"
                   style="stroke:#FFFFFF;stroke-width:1.0;" width="61" x="23.5" y="185"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="55" x="26.5"
-                  y="204.9659">Address
+                  y="204.9659">Station
             </text>
         </g><!--class Email-->
         <g id="elem_Email">
@@ -133,10 +133,10 @@
                      points="166.6,183.7,176.2862,181.9177,170.7261,180.876,171.7678,175.3159,166.6,183.7"
                      style="stroke:#D42E12;stroke-width:1.1;"/>
             <line style="stroke:#D42E12;stroke-width:1.1;" x1="170.7261" x2="177.33" y1="180.876" y2="176.355"/>
-        </g><!--link Person to Address-->
-        <g id="link_Person_Address">
+        </g><!--link Person to Station-->
+        <g id="link_Person_Station">
             <path codeLine="26" d="M232.32,127.34 C194.49,142.43 137.61,165.13 98.32,180.81 " fill="none"
-                  id="Person-Address" style="stroke:#D42E12;stroke-width:1.1;"/>
+                  id="Person-Station" style="stroke:#D42E12;stroke-width:1.1;"/>
             <polygon fill="#D42E12"
                      points="244.3,122.56,237.2451,121.0672,233.1537,127.0053,240.2086,128.4981,244.3,122.56"
                      style="stroke:#D42E12;stroke-width:1.1;"/>
@@ -206,9 +206,9 @@
                   id="ModuleTag-to-Tag" style="stroke:#D42E12;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
             <polygon fill="none" points="516.12,349.1,498.82,361.32,504.72,340.97,516.12,349.1"
                      style="stroke:#D42E12;stroke-width:1.1;"/>
-        </g><!--link Address to Location-->
-        <g id="link_Address_Location">
-            <path codeLine="34" d="M54,214.48 C54,228.81 54,251.24 54,267.46 " fill="none" id="Address-to-Location"
+        </g><!--link Station to Location-->
+        <g id="link_Station_Location">
+            <path codeLine="34" d="M54,214.48 C54,228.81 54,251.24 54,267.46 " fill="none" id="Station-to-Location"
                   style="stroke:#D42E12;stroke-width:1.1;"/>
             <polygon fill="#D42E12" points="54,272.04,58,263.04,54,267.04,50,263.04,54,272.04"
                      style="stroke:#D42E12;stroke-width:1.1;"/>

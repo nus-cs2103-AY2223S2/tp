@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -115,9 +115,15 @@
   "persons": [
     {
       "name": "Goon Se-Rang",
+<<<<<<< HEAD
       "email": "weiyi@gmail.com",
       "telegramHandle": "@weiyi",
       "address": "one-north",
+=======
+      "email": "kishantharunika@gmail.com",
+      "telegramHandle": "@kishantharunika",
+      "station": "Bishan",
+>>>>>>> master
       "groups": [
         "CCA"
       ],
