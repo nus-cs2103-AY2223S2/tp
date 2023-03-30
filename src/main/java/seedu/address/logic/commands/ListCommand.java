@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,7 +27,8 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = "Make sure that you are calling this command from the correct context.\n"
-            + COMMAND_WORD + ": List modules or lectures or videos from ANY context.\n"
+            + COMMAND_WORD + " " + PREFIX_ROOT + ": List modules from ANY context.\n"
+            + COMMAND_WORD + ": List modules or lectures or videos depending on current context.\n"
             + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code}: List lectures from MODULE context.\n"
             + COMMAND_WORD + " " + PREFIX_LECTURE + " {lecture_name}: List videos from LECTURE context.\n"
             + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code} "
@@ -45,6 +47,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_FAIL_CODE = "Module code format is invalid";
 
+    private final boolean isRoot;
+
     private ModuleCode moduleCode;
 
     private LectureName lectureName;
@@ -52,7 +56,16 @@ public class ListCommand extends Command {
     /**
      * Creates a ListCommand to list content from current context
      */
-    public ListCommand() {}
+    public ListCommand() {
+        this.isRoot = false;
+    }
+
+    /**
+     * Creates a ListCommand to list module contents from any context
+     */
+    public ListCommand(boolean isRoot) {
+        this.isRoot = isRoot;
+    }
 
     /**
      * Creates a ListCommand to list lecture contents from module context
@@ -60,6 +73,7 @@ public class ListCommand extends Command {
      */
     public ListCommand(ModuleCode moduleCode) {
         this.moduleCode = moduleCode;
+        this.isRoot = false;
     }
 
     /**
@@ -70,11 +84,16 @@ public class ListCommand extends Command {
     public ListCommand(ModuleCode moduleCode, LectureName lectureName) {
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
+        this.isRoot = false;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (isRoot) {
+            return filterByModuleList(model);
+        }
+
         if (moduleCode != null && lectureName != null) {
             if (!model.hasLecture(moduleCode, lectureName)) {
                 throw new CommandException(

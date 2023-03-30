@@ -20,6 +20,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Navigate Relatively](#navigate-relatively)
   - [Navigate Directly](#navigate-directly)
   - [Navigate Backwards](#navigate-backwards)
+  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
   - [List Modules](#list-modules)
   - [List Lectures of Modules](#list-lectures-of-modules)
   - [List Videos of Lectures](#list-videos-of-lectures)
@@ -69,6 +70,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 ### List
 
 - `list`: Lists all modules/lectures/videos based on context
+- `list /r`: Lists all modules from any context
 - `list [/mod {module_code}]`: Lists all the lectures in a specified module
 - `list [/lec {lecture_name}]`: Lists all the videos in a navigated module and specified lecture (:exclamation: only works if you are in `module` context)
 - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in a specified module and lecture
@@ -174,11 +176,17 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
 Format: `navb`
 
+### List Modules or Lectures or Videos
+
+> Root context: modules, Module context: lectures, Lecture context: videos
+
+Format: `list`
+
 ### List Modules
 
 > Lists all modules
 
-Format: `list`
+Format: `list /r`
 
 ### List Lectures of Modules
 
