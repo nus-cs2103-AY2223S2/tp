@@ -25,7 +25,7 @@ public interface Logic {
 
     /**
      * Suggest a possible autocomplete value based on the user input.
-     * The returned suggestion also contains the user input 
+     * The returned suggestion also contains the user input
      * (ie. user input "ad" returns the suggestion "add ..." which includes the input "ad")
      * @param userInput The current user input.
      * @return An autocomplete suggestion.

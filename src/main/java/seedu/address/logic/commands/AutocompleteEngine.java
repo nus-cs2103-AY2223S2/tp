@@ -21,13 +21,12 @@ import seedu.address.model.Model;
 
 //@@author EvitanRelta-reused
 // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
-// with almost complete overhauling, including refactoring, bug-fixing, adding 
+// with almost complete overhauling, including refactoring, bug-fixing, adding
 // of asserts, and changing the behaviour of the feature to suit our needs.
 /**
  * Suggests and autocompletes command/argument based on the user input.
  */
 public class AutocompleteEngine {
-    private final Model model;
 
     private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
             AddCommand.COMMAND_WORD,
@@ -54,6 +53,8 @@ public class AutocompleteEngine {
             ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES
     ));
 
+    private final Model model;
+
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
@@ -71,12 +72,12 @@ public class AutocompleteEngine {
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .filter(argPrefix -> argPrefix.contains(INDEX_PLACEHOLDER))
                 .allMatch(argPrefix -> argPrefix.get(0).equals(INDEX_PLACEHOLDER));
-        
+
         // For commands with keyword arguments, the keyword is assumed to be the only argument.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .filter(argPrefix -> argPrefix.contains(KEYWORD_PLACEHOLDER))
                 .allMatch(argPrefix -> argPrefix.size() == 1);
-        
+
         // All commands are assume to only have at most 1 prefix-less arguments (eg. index/keywords).
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
@@ -148,7 +149,7 @@ public class AutocompleteEngine {
 
     private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
         return new HashMap<>(Map.of(PREFIX_TAG, model.getExistingTagValues()));
-    }    
+    }
 
     /**
      * Suggests prompts for arguments for {@code command} based on the user input.

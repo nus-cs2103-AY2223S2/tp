@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

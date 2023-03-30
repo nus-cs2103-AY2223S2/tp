@@ -107,7 +107,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Represents a function that can suggest a possible autocomplete value 
+     * Represents a function that can suggest a possible autocomplete value
      * based on the user input.
      */
     @FunctionalInterface

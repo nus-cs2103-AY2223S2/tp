@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
