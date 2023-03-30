@@ -112,7 +112,7 @@ public class ParentEditCommand extends ParentCommand {
                 this.newTagList = parent.getTags();
                 Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
-                model.setParent(parent, editParent(parent, newParent));
+                model.setParent(parent, editParent(parent, newParent, model));
                 return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, parent));
             }
         }
@@ -126,11 +126,13 @@ public class ParentEditCommand extends ParentCommand {
      * @param newParent Edited Parent object.
      * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
-    private Parent editParent(Parent parent, Parent newParent) {
+    private Parent editParent(Parent parent, Parent newParent, Model model) {
         if (parent.hasStudents()) {
             List<Student> students = parent.getStudents();
             for (Student student : students) {
+                Student originalStudent = student;
                 student.setParent(newParent);
+                model.setStudent(originalStudent, student);
                 newParent.addStudent(student);
             }
         }
