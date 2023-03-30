@@ -24,5 +24,7 @@ public class Messages {
     public static final String MESSAGE_BOOK_INVALID_BORROWER = "The book is not borrowed by this person";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_BOOK_FOUND_OVERVIEW = "%1$d books found!";
+    public static final String BORROW_DATE_AFTER_CURRENT_DATE = "Borrowed date cannot be past today's date!";
+    public static final String BORROW_DATE_AFTER_DUE_DATE = "Borrowed date cannot be past due date!";
 
 }

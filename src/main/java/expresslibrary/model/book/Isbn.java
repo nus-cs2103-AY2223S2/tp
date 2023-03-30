@@ -8,8 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Isbn {
     public static final String VALIDATION_REGEX = "^\\d{10}(\\d{3})?$";
-    public static final String MESSAGE_CONSTRAINTS = "ISBNs should consist of 10 or 13 digits. The number is divided"
-            + " into four parts of variable length, each part separated by a hyphen.";
+    public static final String MESSAGE_CONSTRAINTS = "ISBNs should consist of 10 or 13 digits.";
     public final String isbn;
 
     /**
