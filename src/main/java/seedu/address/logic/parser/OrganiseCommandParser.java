@@ -123,6 +123,10 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         List<String> time = List.of(argumentMultimap.getValue(Prefix.TIME).get().split(" "));
         LocalTime startHour;
         LocalTime endHour;
+        if (time.size() != 2) {
+            throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
+        }
+
         try {
             startHour = ParserUtil.parseStartHour(Integer.parseInt(time.get(0)));
             endHour = ParserUtil.parseEndHour(Integer.parseInt(time.get(1)));
