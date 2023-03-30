@@ -41,7 +41,7 @@ public class ShowCommand extends Command {
 
         Opening openingToShow = lastShownList.get(targetIndex.getZeroBased());
         model.setSelectedIndex(targetIndex);
-        return new CommandResult(String.format(MESSAGE_SHOW_OPENING_SUCCESS, openingToShow), true, false, false);
+        return new CommandResult(String.format(MESSAGE_SHOW_OPENING_SUCCESS, openingToShow));
     }
 
     @Override

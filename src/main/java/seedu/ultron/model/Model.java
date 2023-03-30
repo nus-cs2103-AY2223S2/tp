@@ -100,6 +100,11 @@ public interface Model {
     Opening getSelectedOpening();
 
     /**
+     * Returns the index of currently selected opening in the filtered opening list.
+     */
+    Index getSelectedIndex();
+
+    /**
      * Sets the index of currently selected opening in the filtered opening list.
      */
     void setSelectedIndex(Index index);

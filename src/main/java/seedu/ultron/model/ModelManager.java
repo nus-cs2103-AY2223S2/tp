@@ -39,7 +39,6 @@ public class ModelManager implements Model {
         this.ultron = new Ultron(ultron);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOpenings = FXCollections.observableArrayList(this.ultron.getOpeningList());
-        this.selectedIndex = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
@@ -154,7 +153,15 @@ public class ModelManager implements Model {
 
     @Override
     public Opening getSelectedOpening() {
+        if (selectedIndex == null) {
+            return null;
+        }
         return filteredOpenings.get(selectedIndex.getZeroBased());
+    }
+
+    @Override
+    public Index getSelectedIndex() {
+        return selectedIndex;
     }
 
     @Override

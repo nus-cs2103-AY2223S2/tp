@@ -41,6 +41,9 @@ public class DeleteCommand extends Command {
 
         Opening openingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOpening(openingToDelete);
+        if (model.getSelectedIndex().equals(targetIndex)) {
+            model.setSelectedIndex(null);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_OPENING_SUCCESS, openingToDelete));
     }
 

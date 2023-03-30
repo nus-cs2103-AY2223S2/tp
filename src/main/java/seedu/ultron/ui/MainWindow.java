@@ -117,8 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         openingListPanel = new OpeningListPanel(logic.getFilteredOpeningList());
         openingListPanelPlaceholder.getChildren().add(openingListPanel.getRoot());
 
-        openingDetailsPanel = new OpeningDetailsPanel(logic.getSelectedOpening());
-        openingDetailsPanelPlaceholder.getChildren().add(openingDetailsPanel.getRoot());
+        handleShow();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -178,7 +177,13 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the opening details panel with the selected opening.
      */
     public void handleShow() {
-        openingDetailsPanel.setOpening(logic.getSelectedOpening());
+        openingDetailsPanelPlaceholder.getChildren().clear();
+        if (logic.getSelectedOpening() == null) {
+            openingDetailsPanel = null;
+            return;
+        }
+        openingDetailsPanel = new OpeningDetailsPanel(logic.getSelectedOpening());
+        openingDetailsPanelPlaceholder.getChildren().add(openingDetailsPanel.getRoot());
     };
 
     /**
@@ -199,9 +204,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShow()) {
-                handleShow();
-            }
+            handleShow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
