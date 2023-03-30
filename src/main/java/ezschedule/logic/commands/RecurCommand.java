@@ -108,8 +108,7 @@ public class RecurCommand extends Command {
 
         for (int i = 0; i < daysDiff; i++) {
             model.addEvent(nextEventToRecur);
-            
-            model.recentEvent().add(nextEventToRecur);
+            model.addRecentEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusDays(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
@@ -135,7 +134,7 @@ public class RecurCommand extends Command {
 
         for (int i = 0; i < weeksDiff; i++) {
             model.addEvent(nextEventToRecur);
-             model.recentEvent().add(nextEventToRecur);
+             model.addRecentEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusWeeks(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
@@ -159,7 +158,7 @@ public class RecurCommand extends Command {
         for (int i = 0; i < monthsDiff; i++) {
             model.addEvent(nextEventToRecur);
             
-            model.recentEvent().add(eventToRecur);
+            model.addRecentEvent(nextEventToRecur);
             
             newDate = new Date(nextEventToRecur.getDate().date.plusMonths(1).toString());
             nextEventToRecur =
@@ -184,7 +183,7 @@ public class RecurCommand extends Command {
         for (int i = 0; i < yearsDiff; i++) {
             model.addEvent(nextEventToRecur);
             
-            model.recentEvent().add(eventToRecur);
+            model.addRecentEvent(nextEventToRecur);
             
             newDate = new Date(nextEventToRecur.getDate().date.plusYears(1).toString());
             nextEventToRecur =

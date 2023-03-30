@@ -96,8 +96,8 @@ public class EditCommand extends Command {
         
         model.clearRecent();
         model.recentCommand().add(this);
-        model.recentEvent().add(editedEvent);
-        model.recentEvent().add(eventToEdit);
+        model.addRecentEvent(eventToEdit);
+        model.addRecentEvent(editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

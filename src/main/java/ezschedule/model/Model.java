@@ -92,6 +92,8 @@ public interface Model {
     
     ArrayList<Event> recentEvent();
     
+    void addRecentEvent(Event event);
+    
     void clearRecent();
     /**
      * Returns an unmodifiable view of the event list

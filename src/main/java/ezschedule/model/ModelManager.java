@@ -138,12 +138,17 @@ public class ModelManager implements Model {
     
     @Override
     public ArrayList<Command> recentCommand() {
-        return recentCommand;
+        return this.recentCommand;
     }
     
     @Override
     public ArrayList<Event> recentEvent() {
-        return recentEvent;
+        return this.recentEvent;
+    }
+    
+    @Override
+    public void addRecentEvent(Event event) {
+        this.recentEvent.add(event);
     }
     
     @Override
