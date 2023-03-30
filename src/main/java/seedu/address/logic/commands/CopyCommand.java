@@ -25,7 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Copies the details of an existing person in the address book to the user's clipboard.
+ * Copies the details of an existing person in the address book to the user's
+ * clipboard.
  */
 public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
