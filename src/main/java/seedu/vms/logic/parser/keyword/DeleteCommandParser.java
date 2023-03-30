@@ -2,7 +2,6 @@ package seedu.vms.logic.parser.keyword;
 
 import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.keyword.DeleteCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CommandParser;

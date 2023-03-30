@@ -1,17 +1,21 @@
 package seedu.vms.storage.keyword;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.commons.util.JsonUtil;
-import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.keyword.KeywordManager;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.JsonUtil;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
+
+/**
+ * KeywordLoader class to load and write keywords.
+ */
 public class KeywordLoader {
     private static final String JSON_FILE_PATH = "/data/keywords.json";
 

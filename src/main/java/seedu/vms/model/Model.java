@@ -63,8 +63,6 @@ public interface Model {
      * ========================================================================
      */
 
-    void setKeywordManager(KeywordManager keywordManager);
-
     /** Returns the {@code KeywordManager} the model is using. */
     KeywordManager getKeywordManager();
 
@@ -90,16 +88,6 @@ public interface Model {
      * The keyword must exist in the keyword manager.
      */
     Keyword deleteKeyword(String keyword);
-
-
-//    /** Returns an unmodifiable view of the filtered keyword list */
-//    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
-//
-//    /**
-//     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
-//     * @throws NullPointerException if {@code predicate} is null.
-//     */
-//    void updateFilteredKeywordList(Predicate<Keyword> predicate);
 
     /*
      * ========================================================================

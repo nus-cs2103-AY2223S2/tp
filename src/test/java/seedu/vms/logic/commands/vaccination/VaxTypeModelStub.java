@@ -187,12 +187,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public void setKeywordManager(KeywordManager manager) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
-    }
-
-    @Override
     public void setPatientFilters(Collection<Predicate<Patient>> filters) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setPatientFilters'");

@@ -56,7 +56,6 @@ public class VmsParser {
 
         final String featureName = matcher.group("featureName");
         final String arguments = matcher.group("arguments");
-//        switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
         switch (keywordManager.getKeyword(featureName)) {
 
         case PatientParser.FEATURE_NAME:

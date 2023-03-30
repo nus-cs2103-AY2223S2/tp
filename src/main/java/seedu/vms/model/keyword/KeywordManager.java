@@ -16,12 +16,20 @@ public class KeywordManager {
         keywordMap = new HashMap<>();
     }
 
+    /**
+     * Adds a keyword mapping to the keyword map.
+     * @param keyword Keyword object to be added.
+     */
     public void add(Keyword keyword) {
         keywordMap.put(keyword.getKeyword(), keyword);
         System.out.println(keyword);
         System.out.println(keywordMap);
     }
 
+    /**
+     * Removes a keyword mapping in the keyword map.
+     * @param keyword String of keyword to be removed.
+     */
     public Keyword remove(String keyword) {
         Keyword keywordKeyword = keywordMap.get(keyword);
         keywordMap.remove(keyword);

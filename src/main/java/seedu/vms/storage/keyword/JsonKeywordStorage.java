@@ -42,9 +42,5 @@ public class JsonKeywordStorage implements KeywordStorage {
 
         FileUtil.createIfMissing(USER_KEYWORD_PATH);
         KeywordLoader.fromModelType(manager).write(USER_KEYWORD_PATH);
-//        HashMap<String, Keyword> keywordMap = manager.getKeywordMap();
-//        for (Keyword keyword : keywordMap.values()) {
-//            JsonUtil.serializeToFile(USER_PATIENT_KEYWORD_PATH, JsonAdaptedKeyword.fromModelType(keyword));
-//        }
     }
 }

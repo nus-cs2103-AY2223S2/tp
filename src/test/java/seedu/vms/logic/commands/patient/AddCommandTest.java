@@ -227,12 +227,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setKeywordManager(KeywordManager manager) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setKeywordManager'");
-        }
-
-        @Override
         public ParseResult parseCommand(String userCommand) throws ParseException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");

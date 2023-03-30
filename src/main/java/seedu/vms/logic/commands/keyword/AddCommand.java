@@ -5,14 +5,10 @@ import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_MAIN;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_KEYWORD_SUB;
 
-import seedu.vms.commons.core.ValueChange;
-import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.Model;
 import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.vaccination.VaxType;
 
 /**
  * Adds a keyword to the patient manager.
@@ -43,20 +39,10 @@ public class AddCommand extends Command {
     @Override
     public CommandMessage execute(Model model) throws NullPointerException {
         requireNonNull(model);
-//        try {
-//            ValueChange<Keyword> change = model.addKeyword(toAdd);
-//            return new CommandMessage(String.format(MESSAGE_SUCCESS, change.toString()));
-//        } catch (IllegalValueException ive) {
-//            throw new CommandException(ive.getMessage(), ive);
-//        }
-        System.out.println(toAdd);
         try {
-
             model.addKeyword(toAdd);
-            System.out.println("after model add");
             return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (NullPointerException e) {
-            System.out.println("caught you bitch");
         }
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }

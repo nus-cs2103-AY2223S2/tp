@@ -53,7 +53,6 @@ public class ModelManager implements Model {
     private final FilteredIdDataMap<Patient> filteredPatientMap;
     private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
-//    private final FilteredIdDataMap<Keyword> filteredKeywordMap;
 
     private final VmsParser vmsParser;
 
@@ -75,7 +74,6 @@ public class ModelManager implements Model {
         filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
 
         this.keywordManager = new KeywordManager();
-//        filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
 
         this.vaxTypeManager = vaxTypeManager;
         filteredVaxTypeMap = new FilteredMapView<>(this.vaxTypeManager.asUnmodifiableObservableMap());
@@ -351,8 +349,6 @@ public class ModelManager implements Model {
     @Override
     public void addKeyword(Keyword keyword) {
         keywordManager.add(keyword);
-//        ValueChange<Keyword> change = new ValueChange<>(null, keyword);
-//        updateFilteredKeywordList(PREDICATE_SHOW_ALL_KEYWORDS);
     }
 
     @Override
@@ -364,11 +360,6 @@ public class ModelManager implements Model {
     @Override
     public KeywordManager getKeywordManager() {
         return keywordManager;
-    }
-
-    @Override
-    public void setKeywordManager(KeywordManager keywordManager) {
-//        this.keywordManager.resetData(keywordManager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================
@@ -427,18 +418,6 @@ public class ModelManager implements Model {
     public AppointmentManager getAppointmentManager() {
         return appointmentManager;
     }
-
-    // =========== Filtered Keyword Map Accessors ==========================================================
-//    @Override
-//    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
-//        return filteredKeywordMap.asUnmodifiableObservableMap();
-//    }
-//
-//    @Override
-//    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
-//        requireNonNull(predicate);
-//        filteredKeywordMap.filter(predicate);
-//    }
 
     // =========== Misc methods ================================================================================
 

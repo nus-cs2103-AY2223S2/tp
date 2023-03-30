@@ -2,14 +2,9 @@ package seedu.vms.logic.commands.keyword;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Map;
-
-import seedu.vms.commons.core.Messages;
-import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.keyword.Keyword;
 
@@ -27,7 +22,6 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_KEYWORD_SUCCESS = "Deleted keyword: %1$s";
 
-//    private final Index targetIndex;
     private final String targetKeyword;
 
     public DeleteCommand(String targetKeyword) {
@@ -37,13 +31,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
-//        Map<Integer, IdData<Keyword>> keywordList = model.getFilteredKeywordList();
-
-//        if (!keywordList.containsKey(targetIndex.getZeroBased())) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_KEYWORD_DISPLAYED_INDEX);
-//        }
-
-//        Keyword keywordToDelete = keywordList.get(targetIndex.getZeroBased()).getValue();
         Keyword keywordToDelete = model.deleteKeyword(targetKeyword);
         return new CommandMessage(String.format(MESSAGE_DELETE_KEYWORD_SUCCESS, keywordToDelete));
     }
