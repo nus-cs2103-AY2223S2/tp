@@ -117,7 +117,7 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
         ObservableList<Person> personList = persons.asUnmodifiableObservableList();
         String toReturn = BAR;
         for (Person p: personList) {
-            toReturn = toReturn + p.toStringSimple();
+            toReturn = toReturn + p.toStringSimple() + "\n";
         }
         return toReturn + BAR;
     }
