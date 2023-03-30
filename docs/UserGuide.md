@@ -135,7 +135,7 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 ### Try it out! (Recommended)
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Important:** <br>
 Ensure you have met the system requirements and installed EduMate properly on a computer. If you have not,
@@ -195,7 +195,7 @@ After getting comfortable trying EduMate, you are now ready to start personalisi
 **Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
 a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** 
 You do not have to enter all your information at once! You can omit some of the information
@@ -211,7 +211,7 @@ can then edit over later!
 **Step 3.** To add the modules that you are studying as such :
 `tag m/[MODULE_CODE] DAY START_TIME END_TIME`
 <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
 E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
@@ -220,7 +220,7 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 **Step 4.** To add groups that you currently belong to as such: 
 `tag g/[GROUP_NAME]`
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
 E.g `tag g/SoC g/Sailing`
@@ -373,9 +373,9 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-sucess">
 
-:bulb: Examples<br>
+:bulb: **Example 1 : All fields are present**<br>
 * `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
   * Name: `Wen Li`
   * Phone number: `89229358`
@@ -384,7 +384,8 @@ What you should see:<br>
   * Telegram handle: `@wenli`
   * Groups: `Groupmate`
   * Modules: `CS2101`, `CS2107`
-
+  
+:bulb: **Example 2 : Some fields are present**<br>
 * `add n/Bryan Lam p/92837819` (Only the name and contact number included)
   * Name: `Bryan Lam`
   * Phone number: `92837819`
@@ -408,7 +409,7 @@ What you should see:<br>
 
 The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `view`: Views your profile.
@@ -420,7 +421,7 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-success">
 
 :bulb: Examples<br>
 * `view 5`: Views the profile of the fifth contact in EduMate.
@@ -444,10 +445,14 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
+<div markdown="block" class="alert alert-primary">
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+
 Examples:
 * `edit 3 n/Wen Qing`: Changes the name of the third contact to `Wen Qing`.
 * `edit 6 p/89229358 t/@wenqing`: Changes the phone number and telegram handle of the sixth contact.
 * `edit a/Bedok`: Updates your address to `Bedok`.
+</div>
 
 ### Delete a contact `delete`
 
