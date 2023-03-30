@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an InternshipApplication's jobTitle in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidJobTitle(String)}
  */
-public class JobTitle extends InternshipApplicationAttribute {
+public class JobTitle extends InternshipApplicationAttribute implements Comparable<JobTitle> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Job titles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -49,6 +49,11 @@ public class JobTitle extends InternshipApplicationAttribute {
         return other == this // short circuit if same object
                 || (other instanceof JobTitle // instanceof handles nulls
                 && fullName.equals(((JobTitle) other).fullName)); // state check
+    }
+
+    @Override
+    public int compareTo(JobTitle jobTitle) {
+        return this.fullName.compareTo(jobTitle.fullName);
     }
 
     @Override

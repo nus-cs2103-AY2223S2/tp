@@ -102,9 +102,12 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
+
+        // Initialise statsInformationListPanel
         statsInformationListPanel = new StatsInformationListPanel(logic.getStatsManager());
         statsInformationListPanelPlaceholder.getChildren().add(statsInformationListPanel.getRoot());
-        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList(), this,
+
+        applicationListPanel = new ApplicationListPanel(logic.getSortedFilteredInternshipList(), this,
                 viewContentPanel);
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList(), viewContentPanel);
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList(), viewContentPanel);
