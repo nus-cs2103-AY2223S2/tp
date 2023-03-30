@@ -25,6 +25,7 @@ import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
 
 /**
@@ -136,12 +137,16 @@ public class RecipeCard extends UiPart<Region> {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
-                try {
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex, commandExecutor);
-                    form.display();
-                } catch (Exception e) {
-                    // catch-em-all is bad!
-                    System.out.println(e);
+                // create and display form
+                StringBuilder data = new StringBuilder();
+                EditRecipeForm form = new EditRecipeForm(recipe, displayedIndex, data);
+                form.display();
+
+                // trigger EditRecipeEvent with form data
+                String commandText = data.toString();
+                if (!commandText.isEmpty()) {
+                    EditRecipeEvent editEvent = new EditRecipeEvent(commandText);
+                    cardPane.fireEvent(editEvent);
                 }
             }
         });

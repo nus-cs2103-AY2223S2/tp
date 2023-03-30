@@ -1,7 +1,5 @@
 package seedu.recipe.ui.events;
 
-import java.util.Map;
-
 import javafx.event.Event;
 import javafx.event.EventType;
 
@@ -16,47 +14,21 @@ public class EditRecipeEvent extends Event {
      */
     public static final EventType<EditRecipeEvent> EDIT_RECIPE_EVENT_TYPE = new EventType<>(Event.ANY, "EDIT_RECIPE");
 
-    /**
-     * The index of the recipe to be edited.
-     */
-    private final int recipeIndex;
-
-    /**
-     * A map of the changed values, where the keys are the field names and
-     * the values are the updated field values.
-     */
-    private final Map<String, String> changedValues;
+    private final String commandText;
 
     /**
      * Constructs an EditRecipeEvent with the EDIT_RECIPE_EVENT_TYPE,
      * specified recipe index, and the map of changed values.
      *
-     * @param recipeIndex The index of the recipe to be edited.
-     * @param changedValues A map of the changed values, with field names as keys
-     *                      and updated field values as values.
+     * @param commandText String representation of the Edit command to be executed.
      */
-    public EditRecipeEvent(int recipeIndex, Map<String, String> changedValues) {
+    public EditRecipeEvent(String commandText) {
         super(EDIT_RECIPE_EVENT_TYPE);
-        this.recipeIndex = recipeIndex;
-        this.changedValues = changedValues;
+        this.commandText = commandText;
     }
 
-    /**
-     * Retrieves the index of the recipe to be edited.
-     *
-     * @return The index of the recipe to be edited.
-     */
-    public int getRecipeIndex() {
-        return recipeIndex;
+    public String getCommandText() {
+        return commandText;
     }
 
-    /**
-     * Retrieves the map of changed values, with field names as keys
-     * and updated field values as values.
-     *
-     * @return The map of changed values.
-     */
-    public Map<String, String> getChangedValues() {
-        return changedValues;
-    }
 }
