@@ -72,6 +72,9 @@ public class ListingBookParser {
         case AddPlatformCommand.COMMAND_WORD:
             return new AddPlatformCommandParser().parse(arguments);
 
+        case DeletePlatformCommand.COMMAND_WORD:
+            return new DeletePlatformCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
