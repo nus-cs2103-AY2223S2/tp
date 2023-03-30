@@ -22,7 +22,7 @@ public class UnTagEventCommand extends Command {
     public static final String COMMAND_WORD = "untagpersonevent";
 
     public static final String MESSAGE_USAGE =
-            ResultDisplay.formatMessage(COMMAND_WORD, "Untags a Person from an Event.")
+            ResultDisplay.formatMessage(COMMAND_WORD, "Untags a contact from an Event.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
                     PREFIX_EVENT_TO_TAG + "INDEX OF EVENT TO TAG",
                     PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG")
@@ -33,7 +33,7 @@ public class UnTagEventCommand extends Command {
     private static final String MESSAGE_SUCCESS = "%1$s is now untagged from Event %2$s";
     private static final String MESSAGE_SUCCESS_2 = "%1$s is already untagged from Event %2$s";
     private static final String MESSAGE_INVALID_EVENT = "This Event doesn't exist in the Calendar!";
-    private static final String MESSAGE_INVALID_PERSON = "This Person doesn't exist in the Calendar!";
+    private static final String MESSAGE_INVALID_PERSON = "This contact doesn't exist in the Calendar!";
 
     private final Index eventIndex;
     private final Name personName;

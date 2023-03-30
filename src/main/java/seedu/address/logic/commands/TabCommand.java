@@ -16,7 +16,7 @@ public class TabCommand extends Command {
 
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD,
-                    "Switches between UI tabs in the application by the index of the tab.")
+                    "Switches between tabs in the application by the index of the tab.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 

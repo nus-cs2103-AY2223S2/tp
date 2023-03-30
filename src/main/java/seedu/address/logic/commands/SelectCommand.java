@@ -23,12 +23,11 @@ public class SelectCommand extends Command {
 
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD,
-                    "Displays the details of the selected contacted",
-                    "by the index of the contact in current displayed list.")
+                    "Displays the details of the selected contact specified by the given index.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
-    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected User: %1$s";
+    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected contact: %1$s";
 
     public static final String MESSAGE_NO_CHANGE = "Already selected contact: %s";
     private final Index index;
