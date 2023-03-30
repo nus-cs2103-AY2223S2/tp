@@ -66,8 +66,6 @@ Brings users to the help page.
 
 Format: `help`
 
- Adding a person: 'add'
-=======
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -110,14 +108,35 @@ Examples:
 
 Filters the contact list by tags.
 
-Format: `filter [t/TAG]`
+Format: `filter TAG [TAG]...`
 
-- The filter keyword must be followed by arguments specifying which tags to filter the contact list by: `[t/TAG]`.
+- The filter keyword must be followed by 1 or more arguments specifying which tags to filter the contact list by: `[TAG]`.
 - It outputs contacts which fully match all tags, i.e have all the tags specified.
 
 Examples:
 
-- `filter` followed by `friend client` retrieves contacts that are both tagged friend and client.
+- `filter friend client` retrieves contacts that are both tagged friend and client.
+
+### Sorting contacts : `sort`
+
+Sorts the contact list according to some specified field and in ascending or descending order.
+
+Format: `sort FIELD DIRECTION`
+
+- The sort keyword **must** be followed by 2 arguments
+- `FIELD` argument can be one of `[name, size, trans, priority]`
+- `size` represents the potential sale size of the client
+- `name` represents the contact's name
+- `trans` represents the contact's count of past transactions
+- `priority` represents the specified priority flag of the contact
+- `DIRECTION` argument can be one of `[asc, desc]`
+
+Examples:
+
+- `sort trans asc` sorts the contacts in ascending order of past transactions.
+- For instance, newer client contacts with 0 past transactions will appear above older clients who may have >0 past transactions.
+
+
 
 ### Marking contacts : `mark`
 

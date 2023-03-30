@@ -44,9 +44,9 @@ public class TransactionCount implements Comparable<TransactionCount>{
      * Returns integer representation of business size value
      * @return Integer
      */
-    public Integer getIntValue() {
+    public int getIntValue() {
         try {
-            return Integer.valueOf(this.value);
+            return Integer.parseInt(this.value);
         } catch (Exception e) {
             return 0;
         }

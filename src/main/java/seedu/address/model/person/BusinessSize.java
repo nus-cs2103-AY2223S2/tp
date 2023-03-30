@@ -31,7 +31,7 @@ public class BusinessSize {
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return String.valueOf(this.value);
     }
 
     /**
@@ -40,8 +40,10 @@ public class BusinessSize {
      */
     public Integer getIntValue() {
         try {
+            System.out.println(Integer.valueOf(this.value));
             return Integer.valueOf(this.value);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return 0;
         }
     }
