@@ -6,6 +6,7 @@ import java.util.TreeMap;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.modtrek.model.module.Module;
@@ -16,6 +17,9 @@ import seedu.modtrek.ui.UiPart;
  */
 public class ModuleList extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleList.fxml";
+
+    @FXML
+    private ScrollPane moduleListScrollContainer;
 
     @FXML
     private VBox moduleList;
@@ -48,6 +52,8 @@ public class ModuleList extends UiPart<Region> {
     public void updateFilteredModules(ObservableList<Module> modules) {
         moduleList.getChildren().clear();
 
+        moduleListScrollContainer.setVvalue(0);
+
         if (modules.size() == 0) {
             displayPlaceholderText("No modules found that match your search query.");
         }
@@ -62,6 +68,8 @@ public class ModuleList extends UiPart<Region> {
      */
     public void updateSortedModules(TreeMap<Object, ObservableList<Module>> moduleGroups) {
         moduleList.getChildren().clear();
+
+        moduleListScrollContainer.setVvalue(0);
 
         if (moduleGroups.size() == 0) {
             displayPlaceholderText("No modules found in the module list.");
