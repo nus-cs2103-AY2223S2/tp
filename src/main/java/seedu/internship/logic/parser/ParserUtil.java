@@ -105,7 +105,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = Pattern.compile("^.").matcher(tag.trim()).replaceFirst(m -> m.group().toUpperCase());
+        String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
