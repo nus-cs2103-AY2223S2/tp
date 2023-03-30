@@ -8,8 +8,8 @@ import static seedu.ultron.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class Status {
-    public static final String MESSAGE_CONSTRAINTS = "Statuses are case-insensitive but should only "
-            + "match the following: FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED, ACCEPTED";
+    public static final String MESSAGE_CONSTRAINTS = "Statuses are case-insensitive and must match predefined values.\n"
+            + "Predefined values: FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED, ACCEPTED";
 
     /**
      * The enum of all possible statuses.
