@@ -123,6 +123,10 @@ public class TimeParser implements Comparable<TimeParser> {
         return this.ld;
     }
 
+    public LocalDateTime getLdt() {
+        return this.ldt;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

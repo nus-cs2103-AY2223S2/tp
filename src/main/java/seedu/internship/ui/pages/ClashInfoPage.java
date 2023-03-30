@@ -1,5 +1,12 @@
 package seedu.internship.ui.pages;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
@@ -8,24 +15,20 @@ import javafx.scene.control.TitledPane;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.event.Event;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Logger;
-
-import static java.util.Objects.isNull;
-
-
+/**
+ * A {@code Page} to be shown to display clashing events as a result of the `clash` command.
+ */
 public class ClashInfoPage extends Page {
 
     private static final String FXML = "ClashInfoPage.fxml";
+    private static final String PAGE_TITLE = "Event clashes";
+    private static final String MESSAGE_TIP = "Click on any date to view a list of events that clash in that day.";
+    private static final String MESSAGE_NO_CLASHES = "No clashes found :)";
+    private static final String DATE_PATTERN = "d MMM uuuu EEE";
+
     private final Logger logger = LogsCenter.getLogger(ClashInfoPage.class);
 
-    private HashMap<Event, List<Event>> clashes;
-
-    private static final String PAGE_TITLE = "Event clashes";
-    private static final String MESSAGE_TIP = "Click on any Event to view a list of events that clash with it.";
-    private static final String MESSAGE_NO_CLASHES = "No clashes found :)";
+    private HashMap<LocalDate, List<Event>> clashes;
 
     @javafx.fxml.FXML
     private ScrollPane pageContainer;
@@ -39,8 +42,12 @@ public class ClashInfoPage extends Page {
     private Accordion clashesBox;
 
 
-
-    public ClashInfoPage(HashMap<Event, List<Event>> clashes) {
+    /**
+     * Constructor for {@code ClashInfoPage}.
+     *
+     * @param clashes A hashmap of clashing events.
+     */
+    public ClashInfoPage(HashMap<LocalDate, List<Event>> clashes) {
         super(FXML);
         this.clashes = clashes;
         setHeadContent();
@@ -61,20 +68,18 @@ public class ClashInfoPage extends Page {
 
 
     /**
-     * Sets the content for the body of HomePage.
-     * The body of HomePage contains the Events Reminder segment and the Useful Commands segment.
+     * Sets the content for the body of ClashInfoPage.
      */
     public void setBodyContent() {
 
         ArrayList<TitledPane> panes = new ArrayList<>();
 
-        for (Event event : clashes.keySet()) {
-            // generate a list of Labels
-            String companyAndPosition = String.format("[%s, %s] ",
-                    event.getInternship().getCompany(),
-                    event.getInternship().getPosition());
-            TitledPane pane = new TitledPane(companyAndPosition + event.getName(),
-                    new ClashInfoItem(event, clashes.get(event)).getRoot());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
+
+        for (LocalDate date : clashes.keySet()) {
+            String title = date.format(formatter);
+            TitledPane pane = new TitledPane(title,
+                    new ClashInfoItem(clashes.get(date)).getRoot());
             panes.add(pane);
 
         }
