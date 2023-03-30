@@ -12,9 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
-import seedu.address.model.timeslot.ScheduleDay;
-import seedu.address.model.timeslot.ScheduleWeek;
-import seedu.address.model.timeslot.Status;
+import seedu.address.model.time.ScheduleDay;
+import seedu.address.model.time.ScheduleWeek;
+import seedu.address.model.time.Status;
 
 /**
  * An UI component that displays information of the FreeTimeSlot

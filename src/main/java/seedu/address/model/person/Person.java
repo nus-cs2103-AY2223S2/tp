@@ -16,7 +16,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.timeslot.TimeMask;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents a Person in the address book.

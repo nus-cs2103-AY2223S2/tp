@@ -14,7 +14,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.timeslot.ScheduleWeek;
+import seedu.address.model.time.ScheduleWeek;
 
 /**
  * Wraps all data at the address-book level
