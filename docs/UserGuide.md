@@ -296,7 +296,6 @@ If your changes to the data file makes its format invalid, FAid will discard all
 ## Command summary
 
 | Action                | Format, Examples                                                                                                                                                     |
-
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
 | **Clear**             | `clear`                                                                                                                                                              |
