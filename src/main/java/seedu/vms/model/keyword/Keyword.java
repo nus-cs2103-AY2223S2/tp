@@ -5,6 +5,9 @@ package seedu.vms.model.keyword;
  */
 public class Keyword {
     public static final String MAIN_APPOINTMENT_STRING = "appointment";
+    public static final String MAIN_BASIC_STRING = "basic";
+    public static final String MAIN_EXIT_STRING = "exit";
+    public static final String MAIN_HELP_STRING = "help";
     public static final String MAIN_PATIENT_STRING = "patient";
     public static final String MAIN_VACCINATION_STRING = "vaccination";
 
@@ -49,6 +52,33 @@ public class Keyword {
 
         default:
             return false;
+        }
+    }
+
+    public static boolean isNotMainKeyword(String word) {
+        assert word != null;
+
+        switch (word) {
+        case (MAIN_PATIENT_STRING):
+            return false;
+
+        case (MAIN_APPOINTMENT_STRING):
+            return false;
+
+        case (MAIN_VACCINATION_STRING):
+            return false;
+
+        case (MAIN_BASIC_STRING):
+            return false;
+        
+        case (MAIN_EXIT_STRING):
+            return false;
+        
+        case (MAIN_HELP_STRING):
+            return false;
+
+        default:
+            return true;
         }
     }
 

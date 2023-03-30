@@ -37,14 +37,9 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandMessage execute(Model model) throws NullPointerException {
+    public CommandMessage execute(Model model) {
         requireNonNull(model);
-        try {
-            model.addKeyword(toAdd);
-            return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
-        } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
-        }
+        model.addKeyword(toAdd);
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

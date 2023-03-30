@@ -22,8 +22,6 @@ public class KeywordManager {
      */
     public void add(Keyword keyword) {
         keywordMap.put(keyword.getKeyword(), keyword);
-        System.out.println(keyword);
-        System.out.println(keywordMap);
     }
 
     /**
