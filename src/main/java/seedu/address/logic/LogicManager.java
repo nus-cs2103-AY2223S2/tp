@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
-        autocompleteEngine = new AutocompleteEngine();
+        autocompleteEngine = new AutocompleteEngine(model);
     }
 
     @Override

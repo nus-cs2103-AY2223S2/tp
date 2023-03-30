@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.Model;
 
 //@@author EvitanRelta-reused
 // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
@@ -25,6 +27,7 @@ import seedu.address.logic.parser.Prefix;
  * Suggests and autocompletes command/argument based on the user input.
  */
 public class AutocompleteEngine {
+    private final Model model;
 
     private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
             AddCommand.COMMAND_WORD,
@@ -54,7 +57,9 @@ public class AutocompleteEngine {
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
-    public AutocompleteEngine() {
+    public AutocompleteEngine(Model model) {
+        this.model = model;
+
         // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
         assert COMMAND_LIST.stream().allMatch(ARGUMENT_PREFIX_MAP::containsKey);
         // and vice versa.
@@ -141,6 +146,10 @@ public class AutocompleteEngine {
         return userInput + nextAutocomplete;
     }
 
+    private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
+        return new HashMap<>(Map.of(PREFIX_TAG, model.getExistingTagValues()));
+    }    
+
     /**
      * Suggests prompts for arguments for {@code command} based on the user input.
      *
@@ -149,12 +158,12 @@ public class AutocompleteEngine {
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
-    private String suggestArguments(String command, String commmandBody)
-            throws CommandException {
+    private String suggestArguments(String command, String commmandBody) throws CommandException {
         ArrayList<Prefix> argPrefixes = ARGUMENT_PREFIX_MAP.get(command);
         assert argPrefixes != null;
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(Prefix[]::new));
+        Map<Prefix, ArrayList<String>> existingArgValues = getExistingArgValuesForAutocomplete();
 
         if (commmandBody.isBlank()) {
             String allArgs = argPrefixes.stream()
@@ -188,6 +197,20 @@ public class AutocompleteEngine {
 
         boolean hasNoTrailingSpace = !commmandBody.endsWith(" ");
         if (hasNoTrailingSpace) {
+            Prefix currPrefix = new Prefix(lastWord.replaceAll("[^\\/]*$", ""));
+            boolean toAutocompleteArgValue = existingArgValues.containsKey(currPrefix);
+
+            if (toAutocompleteArgValue) {
+                String argValue = lastWord.replaceAll("^.*\\/", "");
+                String matchingExistingValues = existingArgValues.get(currPrefix)
+                        .stream()
+                        .filter(value -> value.startsWith(argValue))
+                        .collect(Collectors.joining(" | "));
+                return matchingExistingValues.isEmpty()
+                        ? ""
+                        : matchingExistingValues.substring(argValue.length());
+            }
+
             // User is not filling the value of prefix.
             // Example of filling the value: "add n/Sha" where user is halfway filling the name field.
             // But it's false when: "add n/" where user is not filling it yet.
