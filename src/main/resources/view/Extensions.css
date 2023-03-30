@@ -16,5 +16,15 @@
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
+
+.table-row-cell {
+    -fx-background: transparent;
+}
+
+.table-view .column-header-background .label {
+    -fx-font-size: 9pt;
+}
+
+

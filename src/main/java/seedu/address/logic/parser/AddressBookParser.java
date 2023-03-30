@@ -19,6 +19,7 @@ import seedu.address.logic.commands.EditIsolatedEventCommand;
 import seedu.address.logic.commands.EditRecurringEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTimeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.group.GroupCreateCommand;
@@ -111,6 +112,8 @@ public class AddressBookParser {
         case GroupDeleteCommand.COMMAND_WORD:
             return new GroupDeleteCommandParser().parse(arguments);
 
+        case FindTimeCommand.COMMAND_WORD:
+            return new FindTimeCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

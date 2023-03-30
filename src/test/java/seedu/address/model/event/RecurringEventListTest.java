@@ -56,8 +56,7 @@ class RecurringEventListTest {
         recurringEventList.insert(new RecurringEventStub("Invalid", DayOfWeek.MONDAY,
                 TWELVE_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()));
 
-        assertEquals("Recurring Events\n"
-                + "1. Biking\n" + "2. Canoeing\n" + "3. Skiing\n", recurringEventList.toString());
+        assertEquals("1. Biking\n" + "2. Canoeing\n" + "3. Skiing\n", recurringEventList.toString());
     }
 
     @Test
@@ -78,7 +77,7 @@ class RecurringEventListTest {
         LocalDateTime endPeriod = THURSDAY_TWELVE_O_CLOCK_VALID;
 
         assertEquals("Biking\n" + "Canoeing\n",
-                recurringEventList.listBetweenOccurence(startPeriod, endPeriod));
+                recurringEventList.listBetweenOccurrence(startPeriod, endPeriod));
     }
 
 }
