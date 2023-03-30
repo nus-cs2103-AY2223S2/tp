@@ -1373,6 +1373,10 @@ Expected Output in Person List: All contacts that have the word 'Albert' in thei
 
 Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
+`find n/Albert m/CS2103T`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name and CS2103T tag under `Module`.
+
 ### **Arrange persons by criteria**
 
 `sort`
