@@ -155,8 +155,67 @@ Examples:
 * `delete Tutorial/1`
 * `delete Lab/1-5`
 
+### Open file in events: `Open File`
+
+Opens a file in either Tutorial or Lab if the TA has added one.
+
+- Index starts from 1
+- Valid index for event must be provided
+- Consultation events have no attachments
+- Only .pdf files will be parsed and opened
+
+Format: `openFile [EVENT_TYPE]/index`
+
+Examples:
+
+* `openFile Tutorial/1`
+* `openFile Lab/5`
+
+### Exit from application: `Exit application`
+
+Exits from TrAcker
+
+Format: `:wq`
+
+Examples:
+
+* `:wq`
+
 --------------------------------------------------------------------
 *Student-Event CRUD Features*
+
+### Adding a student: `add student`
+
+Adds a student to the student list.
+
+- Duplicate nus email address is not allowed since each student has a unique nus email
+- Duplicate telegram handle or phone number is not allowed since each student has a
+ unique telegram handle or unique phone number
+- Duplicate names are allowed
+
+Format: `add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]`
+
+```
+Fields with brackets [] are optional. If they are empty, corresponding fields in the student's records will also be empty
+```
+
+Examples:
+
+* `add student n/Dijkstra`
+* `add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
+
+### Deleting a student: `delete student`
+
+Removes a student from the student list.
+
+- Index starts from 1
+- Valid index must be provided
+
+Format: `rm INDEX`
+
+Examples:
+
+* `rm 1`
 
 ### Add student to event: `addStudent`
 
@@ -538,6 +597,7 @@ nr stands for non-recurring
 
 ## Command summary
 
+
 <table>
   <tr>
    <td>Action
@@ -548,50 +608,50 @@ nr stands for non-recurring
    </td>
   </tr>
   <tr>
-   <td><strong>Add recur</strong>
+   <td><strong>Add Tutorial</strong>
    </td>
-   <td><code>touch recur [name] [type] [day] [time] [duration] [period]</code>
+   <td><code>touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
    </td>
    <td>
 <ul>
 
-<li><code>touch recur fortnightLabs Labs Friday 10:00 2 0.5</code>
+<li><code>touch Tutorial/makeUpTutorial</code>
 
-<li><code>touch recur biWeeklyConsults Consultations Thursday 16:00 1 2</code>
+<li><code>touch Tutorial/examReview -date 01/01/2023 16:00</code>
 
-<li><code>touch recur weeklyTutorials Tutorials Wednesday 14:00 1 1</code>
+<li><code>touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Add student</strong>
+   <td><strong>Add Lab</strong>
    </td>
-   <td><code>add student n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]</code>
+   <td><code>vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
    </td>
    <td>
 <ul>
 
-<li><code>add student n/Dijkstra</code>
+<li><code>vim Lab/pancakeSort</code>
+<li><code>vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00</code>
+<li><code>vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf</code>
 
-<li><code>add student n/Tony Hoare p/97482842 e/e0271183@u.nus.edu t/T03 l/B09</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Add normal event</strong>
+   <td><strong>Add Consultation</strong>
    </td>
-   <td><code>touch event [name] [type] [date] [time] [duration]</code>
+   <td><code>mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]</code>
    </td>
    <td>
 <ul>
 
-<li><code>touch event Make-up-Lab Labs 2023-01-14 10:00 2</code>
+<li><code>mkdir Consultation/reviewConnectedComponents</code>
 
-<li><code>touch event Consultation Consultations 2023-04-14 16:00 1</code>
+<li><code>mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00</code>
 
-<li><code>touch event Extra-tutorial Tutorials 2023-04-14 14:00 1</code>
 </li>
 </ul>
    </td>
