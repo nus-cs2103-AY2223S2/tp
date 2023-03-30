@@ -12,12 +12,12 @@ title: Developer Guide
 
 
 ### 1.1 Product Overview
-
 OfficeConnect is a task management tool designed specifically for managerial role personnel at companies.
 
-The product addresses several challenges faced by managers in the current office environment, such as work overload
-among subordinates, difficulties in coordinating tasks with a large number of employees, and time-consuming manual
-tasks like typing and sending emails.
+As managers in the current office environment, it is often not easy to grasp the workload of subordinates. This may result in:
+* work overload among subordinates
+* difficulties in coordinating tasks with a large number of employees
+* inefficient, time-consuming administrative tasks like typing and sending emails.
 
 OfficeConnect offers a solution to these problems by providing better visibility into subordinates’ workloads, allowing
 managers to efficiently delegate tasks in an organised manner. 
