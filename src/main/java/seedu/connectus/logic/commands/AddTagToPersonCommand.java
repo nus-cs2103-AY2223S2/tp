@@ -1,6 +1,7 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.connectus.commons.core.Messages.MESSAGE_PERSON_TOO_MANY_MAJORS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -73,7 +74,7 @@ public class AddTagToPersonCommand extends Command {
         var personToEdit = lastShownList.get(index.getZeroBased());
         var editedPerson = createEditedPerson(personToEdit, addTagDescriptor);
         if (editedPerson.getMajors().size() > Major.MAX_MAJOR_COUNT) {
-            throw new CommandException("Total number of Majors greater than " + Major.MAX_MAJOR_COUNT);
+            throw new CommandException(MESSAGE_PERSON_TOO_MANY_MAJORS);
         }
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
