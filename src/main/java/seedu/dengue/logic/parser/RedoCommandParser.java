@@ -1,5 +1,6 @@
 package seedu.dengue.logic.parser;
 
+import static seedu.dengue.commons.core.Messages.MESSAGE_INDICATE_POSITIVE;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.dengue.logic.commands.RedoCommand;
@@ -8,7 +9,7 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
 /**
  * A parser for the arguments of the redo command.
  */
-public class RedoCommandParser implements Parser<RedoCommand> {
+public class RedoCommandParser extends UndoRedoCommandParser implements Parser<RedoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RedoCommand
      * and returns a RedoCommand object for execution.
@@ -21,10 +22,19 @@ public class RedoCommandParser implements Parser<RedoCommand> {
         }
         try {
             int numberofRedos = Integer.parseInt(trimmedArgs);
+            requirePositive(numberofRedos);
             return new RedoCommand(numberofRedos);
-        } catch (Exception err) {
+        } catch (NumberFormatException err) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RedoCommand.MESSAGE_USAGE));
+        }
+    }
+
+    @Override
+    public void requirePositive(int number) throws ParseException {
+        if (number <= 0) {
+            throw new ParseException(
+                    String.format(MESSAGE_INDICATE_POSITIVE, RedoCommand.MESSAGE_USAGE));
         }
     }
 }
