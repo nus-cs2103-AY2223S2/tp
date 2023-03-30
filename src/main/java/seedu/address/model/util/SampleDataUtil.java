@@ -12,17 +12,17 @@ import seedu.address.model.ReadOnlyNote;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.TodoList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.CompanyName;
-import seedu.address.model.contact.Email;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Location;
-import seedu.address.model.contact.Phone;
 import seedu.address.model.person.ProgrammingLanguage;
 import seedu.address.model.person.Qualification;
 import seedu.address.model.person.Rating;
@@ -42,25 +42,25 @@ public class SampleDataUtil {
     public static InternshipApplication[] getSampleInternshipApplications() {
         return new InternshipApplication[] {
             new InternshipApplication(new CompanyName("Facebook"), new JobTitle("Software Engineer")),
-                new InternshipApplication(new CompanyName("Meta"), new JobTitle("Cloud Engineer")),
-                new InternshipApplication(new CompanyName("Google"), new JobTitle("Frontend Developer")),
-                new InternshipApplication(new CompanyName("Grab"), new JobTitle("Backend Developer"),
-                        getReviewSet("Competitive environment"),
-                        new Contact(new Phone("98765432"), new Email("career@grab.com")), InternshipStatus.RECEIVED,
-                        new Documents(new ResumeLink("https://myowndrive.com/resume_grab"),
-                                new CoverLetterLink("https://myowndrive.com/cover_letter_grab"))),
-                new InternshipApplication(new CompanyName("Foodpanda"), new JobTitle("Fullstack Developer"),
-                        getReviewSet("Interesting people", "Interesting atmosphere"),
-                        getProgrammingLanguageSet("Java", "C++"),
-                        getQualificationSet("Test Qualification", "AWS Cloud Certificate"),
-                        new Location("Holland Village"), new Salary("9999 SGD"),
-                        getNoteSet("Great food available nearby"),
-                        new Rating("5/5"),
-                        getReflectionSet("Can improve on coding speed", "Learn more about the company"),
-                        new Contact(new Phone("12345678"), new Email("hr@foodpanda.com")), InternshipStatus.PENDING,
-                        false, new InterviewDate("2024-01-03 12:31 PM"),
-                        new Documents(new ResumeLink("https://example.com/resume_foodpanda"),
-                                new CoverLetterLink("https://example.com/cover_letter_foodpanda")))
+            new InternshipApplication(new CompanyName("Meta"), new JobTitle("Cloud Engineer")),
+            new InternshipApplication(new CompanyName("Google"), new JobTitle("Frontend Developer")),
+            new InternshipApplication(new CompanyName("Grab"), new JobTitle("Backend Developer"),
+                    getReviewSet("Competitive environment"),
+                    new Contact(new Phone("98765432"), new Email("career@grab.com")), InternshipStatus.RECEIVED,
+                    new Documents(new ResumeLink("https://myowndrive.com/resume_grab"),
+                            new CoverLetterLink("https://myowndrive.com/cover_letter_grab"))),
+            new InternshipApplication(new CompanyName("Foodpanda"), new JobTitle("Fullstack Developer"),
+                    getReviewSet("Interesting people", "Interesting atmosphere"),
+                    getProgrammingLanguageSet("Java", "C++"),
+                    getQualificationSet("Test Qualification", "AWS Cloud Certificate"),
+                    new Location("Holland Village"), new Salary("9999 SGD"),
+                    getNoteSet("Great food available nearby"),
+                    new Rating("5/5"),
+                    getReflectionSet("Can improve on coding speed", "Learn more about the company"),
+                    new Contact(new Phone("12345678"), new Email("hr@foodpanda.com")), InternshipStatus.PENDING,
+                    false, new InterviewDate("2024-01-03 12:31 PM"),
+                    new Documents(new ResumeLink("https://example.com/resume_foodpanda"),
+                            new CoverLetterLink("https://example.com/cover_letter_foodpanda")))
         };
     }
 
