@@ -471,6 +471,7 @@ What you should see:<br>
 
 <center>Diagram 9: Weixiang's profile displayed after execution of the <code>view</code> command</center>
 
+<br>
 
 <div markdown="block" class="alert alert-success">
 
@@ -498,6 +499,8 @@ What you should see:<br>
 <img src="images/ug_cmds_pics/edit_cmd.png" style="width:80%;margin:0 10%">
 
 <center>Diagram 10: MRT station nearest to his home updated to Little India after execution of the <code>edit</code>command.</center>
+
+<br>
 
 ##### Explanation:
 Suppose you realised that Weixiang has just moved house and the nearest MRT station from his house is Little India. Running
@@ -538,7 +541,7 @@ What you should see:<br>
 
 ### Add a label to a contact `tag`
 
-With Edumate's `tag` command, you can tag your existing contacts with groups and modules using this command. You can also assign lessons to the contacts to indicate their availability during specific time periods. This will enable EduMate to suggest more suitable meet up times when using the `meet` command.
+With EduMate's `tag` command, you can tag your existing contacts with groups and modules using this command. You can also assign lessons to the contacts to indicate their availability during specific time periods. This will enable EduMate to suggest more suitable meet up times when using the `meet` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -554,8 +557,16 @@ With Edumate's `tag` command, you can tag your existing contacts with groups and
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/tag_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 12: Amirah tagged with CS2109S Module Tag with a lesson from 4pm - 6pm on a Monday</center>
+
+
+##### Explanation:
+
+Say you know that Amirah has got a CS2109S lesson from 4pm - 6pm, tagging CS2109S with the lesson information will allow you result in
+CS2109S tag displaying at her profile in the Profile Panel.
 
 <div markdown="block" class="alert alert-success">
 
@@ -591,8 +602,17 @@ With EduMate's `untag` command, you can remove groups or modules from your exist
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/untag_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 13: Amirah after removing the CS2109S Module Tag.</center>
+
+<br>
+
+##### Explanation:
+Say you realise that Amirah accidentally told you the wrong information, you can remove the CS2109S module tag
+with the `untag 1 m/CS2109S MONDAY  16 18` command. The tag will disappear from Amirah's profile in the Profile Panel. 
+
 
 <div markdown="block" class="alert alert-success">
 
@@ -621,9 +641,6 @@ With the `list` command, you can get EduMate to display all your contacts in the
 
 </div>
 
-What you should see:<br>
-{GUI}<br>
-{Explanation}
 
 ## Advanced Commands
 
