@@ -30,15 +30,15 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
   <img class="centerImage" src="./images/UserGuide/Ui.png"/>
 
-5. You can start by typing a command in the command panel and presssing Enter to execute it. e.g. 
+5. You can start by typing a command in the command panel and pressing Enter to execute it. e.g. 
    typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`list`** : Lists all employees in the company.
-
-    - **`add`** :`add n/Mark Doe p/98765432 e/markd@example.com a/311, Clementi Ave 2, #02-25 d/Marketing 
+   
+    - **`add`** :`add n/Mark Doe p/98765432 e/markd@example.com a/311, Clementi Ave 2, #02-25 d/Marketing pr/1000 15
    t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, email, address,
-   department and tags to ExecutivePro's database.
+   department, payroll and tags to ExecutivePro's database.
 
     - **`delete 3`** : Deletes employee with ID 3.
 
@@ -378,8 +378,8 @@ This table describes the requirements for the input format of the fields.
 | `DEPARTMENT`               | d/     | Only alphanumeric characters                                                                                                                                                                                                                                                                                                                                                                   | `Sales`, `General Management`            |
 | `PAYROLL`                  | pr/    | Can take any value.                                                                                                                                                                                                                                                                                                                                                                            | `1000 15`                                |
 | `LEAVE`                    | l/     | Must be an integer less than `21`.                                                                                                                                                                                                                                                                                                                                                             | `1`, `10`, `20`                          |
-| `DATE_OF_BIRTH`            | dob/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
-| `DATE_OF_JOINING`          | doj/   | Date in DD-MM-YYYY format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
+| `DATE_OF_BIRTH`            | dob/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
+| `DATE_OF_JOINING`          | doj/   | Date in YYYY-MM-DD format.                                                                                                                                                                                                                                                                                                                                                                     | `10-01-2022`, `15-12-2022`               |
 | `TAG`                      | t/     | Only alphanumeric characters and spaces only.                                                                                                                                                                                                                                                                                                                                                  | `Software Engineer`, `Manager`           |
                                                                                                                                                                                                                                                               
 --------------------------------------------------------------------------------------------------------------------
