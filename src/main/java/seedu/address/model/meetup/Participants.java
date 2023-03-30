@@ -52,6 +52,11 @@ public class Participants {
     }
 
     public Set<ContactIndex> getContactIndices() {
+        if (this.contactIndices.isEmpty()) {
+            for (Person person : this.participants) {
+                contactIndices.add(person.getContactIndex());
+            }
+        }
         return this.contactIndices;
     }
 
@@ -59,4 +64,10 @@ public class Participants {
         return this.participants;
     }
 
+    /**
+     * Compares two Participants to check whether all contact indexes are the same.
+     */
+    public boolean isSameParticipants(Participants other) {
+        return this.getContactIndices().equals(other.getContactIndices());
+    }
 }

@@ -288,4 +288,7 @@ public class EduMate implements ReadOnlyEduMate {
         this.participants = participants;
     }
 
+    public void removeMeetUp(MeetUp meetUp) {
+        meets.remove(meetUp);
+    }
 }
