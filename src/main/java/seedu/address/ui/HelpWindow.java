@@ -118,7 +118,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * A fallback for when {@code Desktop#browse(URL)} fails.<p>
+     * A fallback for when {@code Desktop#browse(URL)} is not supported by the current platform.<p>
      *
      * This could occur if the platform is Linux.
      */
