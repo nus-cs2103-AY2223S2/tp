@@ -1,13 +1,12 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.platform.Platform;
 import seedu.address.model.platform.PlatformName;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Jackson-friendly version of {@link Platform}.

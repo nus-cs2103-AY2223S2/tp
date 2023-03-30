@@ -1,17 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.platform.Platform;
-import seedu.address.commons.core.Messages;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 
 /**
  * Adds a platform to a listing identified using it's displayed index from the listing book.

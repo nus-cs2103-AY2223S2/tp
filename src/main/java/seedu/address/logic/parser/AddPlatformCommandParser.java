@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddPlatformCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.platform.Platform;
-
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 
 /**
  * Parses input arguments and creates a new AddApplicantCommand object

@@ -1,19 +1,19 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.listing.Listing;
-import seedu.address.model.platform.Platform;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
 
 /**
  * Deletes a platform from a listing identified using it's displayed index from the listing book.

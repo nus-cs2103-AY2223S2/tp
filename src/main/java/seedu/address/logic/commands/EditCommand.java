@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +41,7 @@ public class EditCommand extends Command {
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_APPLICANT + "John "
             + PREFIX_APPLICANT + "Sam"
-            + PREFIX_PLATFORM +  "linkedin";
+            + PREFIX_PLATFORM + "linkedin";
 
     public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited listing:%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
