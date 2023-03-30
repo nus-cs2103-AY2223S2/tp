@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Branda Ang
 
-<img src="images/branda.png" width="200px">
+<img src="images/panpannnnn.png" width="200px">
 
 [[github](http://github.com/panpannnnn)]
 [[portfolio](team/panpannnnn.md)]
