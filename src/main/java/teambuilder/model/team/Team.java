@@ -38,6 +38,20 @@ public class Team {
         this.skillTags.addAll(skillTags);
     }
 
+    /**
+     * Constructs a completely new {@code Team} with new members.
+     *
+     * @param t The team to have new members.
+     * @param names The set of names that are the new members.
+     */
+    public Team(Team t, Set<Name> names) {
+        requireNonNull(t);
+        this.teamName = t.teamName;
+        this.teamDesc = t.teamDesc;
+        this.skillTags.addAll(t.skillTags);
+        members.addAll(names);
+    }
+
     public TeamName getName() {
         return this.teamName;
     }

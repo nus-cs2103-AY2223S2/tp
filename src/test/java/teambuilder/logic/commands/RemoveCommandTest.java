@@ -3,7 +3,6 @@ package teambuilder.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static teambuilder.testutil.Assert.assertThrows;
 import static teambuilder.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -20,16 +19,17 @@ import teambuilder.model.team.Desc;
 import teambuilder.model.team.Team;
 import teambuilder.model.team.TeamName;
 
-public class CreateCommandTest {
-
+class RemoveCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allArgumentsSpecifiedSuccessfullyNoTag_success() throws CommandException {
         TeamName validTeamName = new TeamName("Team A");
         Team team = new Team(validTeamName, new Desc("This is a description."), new HashSet<>());
-        CommandResult commandResult = new CreateCommand(team).execute(model);
-        assertEquals(String.format(CreateCommand.MESSAGE_SUCCESS, validTeamName), commandResult.getFeedbackToUser());
+        new CreateCommand(team).execute(model);
+        CommandResult commandResult = new RemoveCommand(team.getName()).execute(model);
+        assertEquals(String.format(RemoveCommand.MESSAGE_DELETE_TEAM_SUCCESS, validTeamName),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -37,18 +37,10 @@ public class CreateCommandTest {
         TeamName validTeamName = new TeamName("Team A");
         Team team = new Team(validTeamName, new Desc("This is a description."),
                 new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
-        CommandResult commandResult = new CreateCommand(team).execute(model);
-        assertEquals(String.format(CreateCommand.MESSAGE_SUCCESS, validTeamName), commandResult.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_throw() throws CommandException {
-        TeamName validTeamName = new TeamName("Team A");
-        Team team = new Team(validTeamName, new Desc("This is a description."),
-                new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
         new CreateCommand(team).execute(model);
-        CreateCommand command = new CreateCommand(team);
-        assertThrows(CommandException.class, CreateCommand.MESSAGE_DUPLICATE_TEAM, () -> command.execute(model));
+        CommandResult commandResult = new RemoveCommand(team.getName()).execute(model);
+        assertEquals(String.format(RemoveCommand.MESSAGE_DELETE_TEAM_SUCCESS, validTeamName),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -56,10 +48,10 @@ public class CreateCommandTest {
         TeamName validTeamName = new TeamName("Team A");
         Team team = new Team(validTeamName, new Desc("This is a description."),
                 new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
-        final CreateCommand standardCommand = new CreateCommand(team);
+        final RemoveCommand standardCommand = new RemoveCommand(team.getName());
 
         // same values -> returns true
-        CreateCommand sameCommand = new CreateCommand(team);
+        RemoveCommand sameCommand = new RemoveCommand(team.getName());
         assertTrue(standardCommand.equals(sameCommand));
 
         // same object -> returns true
@@ -75,8 +67,9 @@ public class CreateCommandTest {
         TeamName anotherValidTeamName = new TeamName("Team B");
         Team anotherTeam = new Team(anotherValidTeamName, new Desc("This is a description."),
                 new HashSet<>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
-        CreateCommand diffCommand = new CreateCommand(anotherTeam);
+        RemoveCommand diffCommand = new RemoveCommand(anotherTeam.getName());
         assertFalse(standardCommand.equals(diffCommand));
 
     }
+
 }

@@ -311,7 +311,7 @@ t/Project Management t/UI Design`
 
 **Result**:
 
-`@TODO`
+<img class="center" alt="result for 'create team'" src="images/CreateTeam.png" width="50%" />
 
 ### Finding the right teammate I : `find`
 
@@ -336,7 +336,7 @@ You still feel your team needs more people, and you decide to find someone who m
 
 **Result**:
 
-`@TODO`
+<img class="center" alt="result for 'find computer science'" src="images/FindComputerScience.png" width="50%" />
 
 Now your team is almost formed, but you still need a person who mastered JavaScript.
 
@@ -346,7 +346,7 @@ Now your team is almost formed, but you still need a person who mastered JavaScr
 
 **Result**:
 
-`@TODO`
+<img class="center" alt="result for 'find javascript'" src="images/FindJavascript.png" width="50%" />
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Specificity of `find`**:
@@ -381,7 +381,7 @@ Now your team is almost formed, but you still need a person who mastered JavaScr
 
 Format: `edit INDEX [T/TEAMTAG]...`
 
-You recall participating in a Hackathon previously with Adam Tan and knows he is familiar with React. You decide to 
+You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to 
 reach out to him to form your team for Hack&Roll. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -394,7 +394,7 @@ You can only add a person to the team if the team has been created beforehand!
 
 **Result**:
 
-`@TODO`
+<img class="center" alt="result for 'edit 1'" src="images/FindReact.png" width="50%" />
 
 ### List all teammates in a team : `show`
 
@@ -409,7 +409,7 @@ NUSMeets team.
 
 **Result**:
 
-`@TODO`
+<img class="center" alt="result for 'edit 1'" src="images/ShowNUSMeets.png" width="50%" />
 
 
 ### Remove a team : `remove`
@@ -425,18 +425,18 @@ not participate in it anymore.
 
 **Result**:
 
-`@TODO`
+NUSMeets will be removed from the team panel.
 
 
 ## Extra Team Builder Features
 
-This section convers on some quality of life features for Team Builder.
+This section covers some quality of life features for Team Builder.
 
 This includes:
 1. Clearing all entries
 2. Undoing a command
 3. Redoing an undo command
-4. Lisiting all Tags
+4. Listing all Tags
 5. Exiting the program
 6. Saving data
 7. Editing the data file
