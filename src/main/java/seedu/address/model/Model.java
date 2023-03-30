@@ -186,12 +186,6 @@ public interface Model {
      */
     Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
 
-    void addMeetUp(MeetUp meetUp);
-
-    MeetUpIndex getMeetUpIndex();
-
-    ObservableList<MeetUp> getObservableMeetUpList();
-
     /** Returns an unmodifiable view of the filtered recommendation list */
     ObservableList<Recommendation> getObservableRecommendationList();
 
@@ -215,13 +209,21 @@ public interface Model {
      */
     void updateObservableRecommendationList();
 
-    Participants getParticipants();
-
     void updateObservableMeetUpList();
 
     Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex);
 
     void deleteMeetUp(MeetUpIndex meetUpIndex);
 
+    void addMeetUp(MeetUp meetUp);
+
+    boolean hasMeetUp(MeetUp meetUp);
+
+    MeetUpIndex getMeetUpIndex();
+
+    ObservableList<MeetUp> getObservableMeetUpList();
+
     void setParticipants(Set<ContactIndex> indices);
+
+    Participants getParticipants();
 }

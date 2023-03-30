@@ -4,8 +4,6 @@ import seedu.address.logic.commands.UnorganiseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meetup.MeetUpIndex;
 
-
-//todo double check
 /**
  * Parses input arguments and creates a new UnorganiseCommand object
  */

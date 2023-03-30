@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class OrganiseCommand extends Command {
     public static final String MESSAGE_ORGANISE_NEW_MEETING_SUCCESS = "Organised a new meeting";
     public static final String MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS = "Added a new meeting from recommendations";
     public static final String MESSAGE_NO_SUCH_RECOMMENDATION = "No recommendation with this index";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This is a duplicate meeting";
+    public static final String MESSAGE_DUPLICATE_MEETING = "Duplicate meetings are not allowed";
     public static final String MESSAGE_NO_SUCH_PERSON = "%s no longer exists in your contacts.";
     public static final String MESSAGE_NO_SUCH_PERSON_ID = "Person with index %s does not exist";
 
@@ -118,7 +119,7 @@ public class OrganiseCommand extends Command {
      */
     private CommandResult organiseRecommendation(Model model) throws CommandException {
         if (model.getRecommendationByIndex(this.index).isEmpty()) {
-            throw new CommandException(MESSAGE_NO_SUCH_RECOMMENDATION);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_SUCH_RECOMMENDATION));
         }
         Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
         Participants participants = model.getParticipants();

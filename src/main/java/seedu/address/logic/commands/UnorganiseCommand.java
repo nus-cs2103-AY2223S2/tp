@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 
-//todo double check
 public class UnorganiseCommand extends Command {
 
     public static final String COMMAND_WORD = "unorganise";

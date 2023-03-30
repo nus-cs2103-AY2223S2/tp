@@ -15,7 +15,9 @@ import seedu.address.logic.commands.OrganiseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.Participants;
+import seedu.address.model.meetup.exceptions.InvalidMeetUpIndexException;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.person.exceptions.InvalidContactIndexException;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
@@ -31,11 +33,12 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
 
-    private static final String MESSAGE_NO_PARTICIPANTS_GIVEN = "No participants were supplied";
-    private static final String MESSAGE_NO_DATE_GIVEN = "No dates were supplied";
-    private static final String MESSAGE_NO_LOCATION_GIVEN = "No location was supplied";
-    private static final String MESSAGE_WRONG_TIME_FORMAT = "Time not in correct format";
-    private static final String MESSAGE_WRONG_DATE_FORMAT = "Date not in correct format";
+    private static final String MESSAGE_NO_PARTICIPANTS_GIVEN = "Participants should not be empty";
+    private static final String MESSAGE_NO_DATE_GIVEN = "Date should not be empty";
+    private static final String MESSAGE_NO_LOCATION_GIVEN = "Location should not be empty";
+    private static final String MESSAGE_WRONG_TIME_FORMAT = "Time should have start hour and end hour";
+    private static final String MESSAGE_WRONG_DATE_FORMAT = "Date should be MONDAY to FRIDAY";
+    private static final String MESSAGE_INVALID_RECOMMENDATION_INDEX = "Recommendation index should be a positive number";
 
     /**
      * Parses the given {@code String} of arguments in the context of the OrganiseCommand
@@ -69,8 +72,8 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         try {
             ContactIndex contactIndex = new ContactIndex(Integer.parseInt(args.trim()));
             return new OrganiseCommand(contactIndex);
-        } catch (NumberFormatException nfe) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        } catch (NumberFormatException | InvalidMeetUpIndexException | InvalidContactIndexException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_RECOMMENDATION_INDEX));
         }
     }
 
@@ -87,7 +90,7 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
 
         Set<ContactIndex> indices = ParserUtil.parseIndices(indexArray);
         if (indices.isEmpty()) {
-            throw new ParseException(MESSAGE_NO_PARTICIPANTS_GIVEN);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_PARTICIPANTS_GIVEN));
         }
 
         Participants participants = new Participants(indices);
@@ -102,13 +105,13 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
      */
     private Day parseDay(ArgumentMultimap argumentMultimap) throws ParseException {
         if (!argumentMultimap.getValue(Prefix.DAY).isPresent()) {
-            throw new ParseException(MESSAGE_NO_DATE_GIVEN);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_DATE_GIVEN));
         }
         Day day;
         try {
             day = Day.valueOf(argumentMultimap.getValue(Prefix.DAY).get());
         } catch (IllegalArgumentException e) {
-            throw new ParseException(MESSAGE_WRONG_DATE_FORMAT);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_WRONG_DATE_FORMAT));
         }
         return day;
     }
@@ -124,14 +127,14 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         LocalTime startHour;
         LocalTime endHour;
         if (time.size() != 2) {
-            throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_WRONG_TIME_FORMAT));
         }
 
         try {
             startHour = ParserUtil.parseStartHour(Integer.parseInt(time.get(0)));
             endHour = ParserUtil.parseEndHour(Integer.parseInt(time.get(1)));
         } catch (NumberFormatException | IllegalFieldValueException | AssertionError e) {
-            throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_WRONG_TIME_FORMAT));
         }
 
         Day day = parseDay(argumentMultimap);
@@ -147,10 +150,10 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
      */
     private Location parseLocation(ArgumentMultimap argumentMultimap) throws ParseException {
         if (argumentMultimap.getValue(Prefix.LOCATION).isEmpty()) {
-            throw new ParseException(MESSAGE_NO_LOCATION_GIVEN);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_LOCATION_GIVEN));
         }
         if (argumentMultimap.getValue(Prefix.LOCATION).get().trim().isEmpty()) {
-            throw new ParseException(MESSAGE_NO_LOCATION_GIVEN);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_LOCATION_GIVEN));
         }
 
         Location location = new Location(argumentMultimap.getValue(Prefix.LOCATION).get(),
