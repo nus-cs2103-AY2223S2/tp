@@ -46,7 +46,7 @@ public class AddTechnicianCommandParser implements Parser<AddTechnicianCommand> 
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Technician technician = new Technician(IdGenerator.generateCustomerId(), name, phone, email, address, tagList);
+        Technician technician = new Technician(IdGenerator.generateStaffId(), name, phone, email, address, tagList);
 
         return new AddTechnicianCommand(technician);
     }

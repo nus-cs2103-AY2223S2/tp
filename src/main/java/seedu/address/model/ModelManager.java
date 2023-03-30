@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -35,18 +36,24 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Customer> filteredCustomers;
-    private final SortedList<Customer> sortedCustomers;
     private final FilteredList<Technician> filteredTechnicians;
-    private final SortedList<Technician> sortedTechnicians;
     private final FilteredList<Service> filteredServices;
-    private final SortedList<Service> sortedServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    private final SortedList<Vehicle> sortedVehicles;
-    private final FilteredList<Appointment> filteredAppointment;
-    private final SortedList<Appointment> sortedAppointments;
+    private final FilteredList<Appointment> filteredAppointments;
+
+    // Comparators for sorting
+    private Comparator<Customer> customerComparator = null;
+    private Comparator<Vehicle> vehicleComparator = null;
+    private Comparator<Service> serviceComparator = null;
+    private Comparator<Appointment> appointmentComparator = null;
+    private Comparator<Technician> technicianComparator = null;
 
     private final PartMap partMap;
     private final Shop shop;
+
+    private Customer selectedCustomer;
+    private Vehicle selectedVehicle;
+    private Service selectedService;
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
@@ -67,30 +74,30 @@ public class ModelManager implements Model {
 
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
         filteredCustomers = new FilteredList<>(this.shop.getCustomerList());
-        sortedCustomers = new SortedList<>(filteredCustomers);
-
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
-        sortedTechnicians = new SortedList<>(filteredTechnicians);
-
         filteredServices = new FilteredList<>(this.shop.getServiceList());
-        sortedServices = new SortedList<>(filteredServices);
-
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        sortedVehicles = new SortedList<>(filteredVehicles);
-
-        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
-        sortedAppointments = new SortedList<>(filteredAppointment);
-
+        filteredAppointments = new FilteredList<>(this.shop.getAppointmentList());
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
-        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
+        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList(),
+                this.shop.getAppointmentList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
-            this.shop.getServiceList());
+                this.shop.getServiceList());
         serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
-            this.shop.getVehicleList());
+                this.shop.getVehicleList());
+
+        if (filteredCustomers.size() > 0) {
+            selectedCustomer = filteredCustomers.get(0);
+        }
+        if (filteredVehicles.size() > 0) {
+            selectedVehicle = filteredVehicles.get(0);
+        }
+        if (filteredServices.size() > 0) {
+            selectedService = filteredServices.get(0);
+        }
     }
 
     public ModelManager() {
@@ -98,11 +105,12 @@ public class ModelManager implements Model {
     }
 
     private void resetMaps() {
-        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList());
+        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList(),
+                this.shop.getAppointmentList());
         this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
-            this.shop.getServiceList());
+                this.shop.getServiceList());
         this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
-            this.shop.getVehicleList());
+                this.shop.getVehicleList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -130,8 +138,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return userPrefs.getShopFilePath();
     }
 
     @Override
@@ -140,11 +148,22 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public void setShopFilePath(Path shopFilePath) {
+        requireNonNull(shopFilePath);
+        userPrefs.setShopFilePath(shopFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+    }
+
+    @Override
+    public void setShop(ReadOnlyShop shop) {
+        this.shop.resetData(shop);
     }
 
     @Override
@@ -164,7 +183,6 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return addressBook.hasPerson(person);
     }
-
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
@@ -220,24 +238,20 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
-        return filteredCustomers;
+        return new SortedList<>(this.filteredCustomers, this.customerComparator);
     }
 
     @Override
-    public ObservableList<Customer> getSortedCustomerList() {
-        return this.sortedCustomers;
+    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
+        requireNonNull(predicate);
+        filteredCustomers.setPredicate(predicate);
     }
 
     // ==== For Vehicles ==
 
     @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
-        return filteredVehicles;
-    }
-
-    @Override
-    public ObservableList<Vehicle> getSortedVehicleList() {
-        return this.sortedVehicles;
+        return new SortedList<>(this.filteredVehicles, this.vehicleComparator);
     }
 
     /**
@@ -250,6 +264,7 @@ public class ModelManager implements Model {
         this.shop.addVehicle(customerId, vehicle);
         resetMaps();
         updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     /**
@@ -271,12 +286,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Service> getFilteredServiceList() {
-        return this.filteredServices;
-    }
-
-    @Override
-    public ObservableList<Service> getSortedServiceList() {
-        return this.sortedServices;
+        return new SortedList<>(this.filteredServices, this.serviceComparator);
     }
 
     /**
@@ -315,7 +325,6 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -325,12 +334,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointment;
-    }
-
-    @Override
-    public ObservableList<Appointment> getSortedAppointmentList() {
-        return sortedAppointments;
+        return new SortedList<>(this.filteredAppointments, this.appointmentComparator);
     }
 
     // ==== For Part ==
@@ -347,6 +351,22 @@ public class ModelManager implements Model {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+        this.shop.addPartToService(serviceId, partName, quantity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
+        this.shop.addTechnicianToService(serviceId, techId);
+    }
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of part to check
@@ -358,19 +378,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Technician> getFilteredTechnicianList() {
-        return filteredTechnicians;
-    }
-
-    @Override
-    public ObservableList<Technician> getSortedTechnicianList() {
-        return sortedTechnicians;
+        return new SortedList<>(this.filteredTechnicians, this.technicianComparator);
     }
 
     // ==== For Technician ==
     @Override
     public void addTechnician(Technician technician) {
         this.shop.addTechnician(technician);
-        updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
     }
 
     @Override
@@ -422,25 +436,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredCustomerList(Predicate<Customer> predicate) {
-        requireNonNull(predicate);
-        filteredCustomers.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateSortedCustomerList(Comparator<? super Customer> comparator) {
-        this.sortedCustomers.sort(comparator);
-    }
-
-    @Override
     public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
         requireNonNull(predicate);
         filteredTechnicians.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateSortedTechnicianList(Comparator<? super Technician> comparator) {
-        this.sortedTechnicians.sort(comparator);
     }
 
     @Override
@@ -450,19 +448,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateSortedServiceList(Comparator<? super Service> comparator) {
-        this.sortedServices.sort(comparator);
-    }
-
-    @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
-        filteredAppointment.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateSortedAppointmentList(Comparator<? super Appointment> comparator) {
-        this.sortedAppointments.sort(comparator);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -470,12 +458,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
     }
-
-    @Override
-    public void updateSortedVehicleList(Comparator<? super Vehicle> comparator) {
-        this.sortedVehicles.sort(comparator);
-    }
-
 
     //    @Override
     //    public void updateFilteredPartList(Predicate<Part> predicate) {
@@ -486,7 +468,7 @@ public class ModelManager implements Model {
     //    @Override
     //    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
     //        requireNonNull(predicate);
-    //        filteredAppointment.setPredicate(predicate);
+    //        filteredAppointments.setPredicate(predicate);
     //    }
 
     @Override
@@ -509,8 +491,63 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public void selectCustomer(Customer customer) {
+        selectedCustomer = customer;
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return selectedCustomer;
+    }
+
+    @Override
+    public void selectVehicle(Vehicle vehicle) {
+        selectedVehicle = vehicle;
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return selectedVehicle;
+    }
+
+    @Override
+    public void selectService(Service service) {
+        selectedService = service;
+    }
+
+    @Override
+    public Service getSelectedService() {
+        return selectedService;
+    }
+
+    @Override
+    public void updateCustomerComparator(Comparator<? super Customer> cmp) {
+
+    }
+
+    @Override
+    public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
+
+    }
+
+    @Override
+    public void updateServiceComparator(Comparator<? super Service> cmp) {
+
+    }
+
+    @Override
+    public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
+
+    }
+
+    @Override
+    public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
+
     }
 
 }

@@ -10,8 +10,10 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCustomerCommand;
 import seedu.address.logic.commands.AddPartCommand;
+import seedu.address.logic.commands.AddPartToServiceCommand;
 import seedu.address.logic.commands.AddServiceCommand;
 import seedu.address.logic.commands.AddTechnicianCommand;
+import seedu.address.logic.commands.AddTechnicianToServiceCommand;
 import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -34,6 +36,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
 import seedu.address.logic.commands.ViewPartCommand;
+import seedu.address.logic.commands.ViewServiceCommand;
 import seedu.address.logic.commands.ViewTechnicianCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -113,8 +116,14 @@ public class AddressBookParser {
         case AddPartCommand.COMMAND_WORD:
             return new AddPartCommandParser().parse(arguments);
 
+        case AddPartToServiceCommand.COMMAND_WORD:
+            return new AddPartToServiceCommandParser().parse(arguments);
+
         case AddTechnicianCommand.COMMAND_WORD:
             return new AddTechnicianCommandParser().parse(arguments);
+
+        case AddTechnicianToServiceCommand.COMMAND_WORD:
+            return new AddTechnicianToServiceCommandParser().parse(arguments);
 
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
@@ -141,6 +150,8 @@ public class AddressBookParser {
         case ViewTechnicianCommand.COMMAND_WORD:
             return new ViewTechnicianCommandParser().parse(arguments.trim());
 
+        case ViewServiceCommand.COMMAND_WORD:
+            return new ViewServiceCommandParser().parse(arguments.trim());
 
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments.trim());

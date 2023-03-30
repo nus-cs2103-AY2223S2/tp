@@ -28,7 +28,7 @@ public class SortVehiclesCommand extends Command{
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateSortedVehicleList(cmp);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.SORT_VEHICLES);
+        model.updateVehicleComparator(cmp);
+        return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
     }
 }

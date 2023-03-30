@@ -18,6 +18,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_PART_NAME = new Prefix("n/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_VEHICLE_ID = new Prefix("v/");
+    public static final Prefix PREFIX_SERVICE_ID = new Prefix("s/");
+    public static final Prefix PREFIX_TECHNICIAN_ID = new Prefix("t/");
     public static final Prefix PREFIX_SERVICE_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_SERVICE_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_SERVICE_DURATION = new Prefix("l/");

@@ -42,9 +42,9 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -62,26 +62,11 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of customers */
     ObservableList<Customer> getFilteredCustomerList();
 
-    /**
-     * @return Unmodifiable view of the sorted list of customers
-     */
-    ObservableList<Customer> getSortedCustomerList();
-
     /** Returns an unmodifiable view of the filtered list of vehicles */
     ObservableList<Vehicle> getFilteredVehicleList();
 
-    /**
-     * @return Unmodifiable view of the sorted list of vehicles
-     */
-    ObservableList<Vehicle> getSortedVehicleList();
-
     /** Returns an unmodifiable view of the filtered list of services */
     ObservableList<Service> getFilteredServiceList();
-
-    /**
-     * @return Unmodifiable view of the sorted list of services
-     */
-    ObservableList<Service> getSortedServiceList();
 
     /**
      * @return Unmodifiable view of the filtered list of appointments
@@ -89,19 +74,9 @@ public interface Logic {
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
-     * @return Unmodifiable view of the sorted list of appointments
-     */
-    ObservableList<Appointment> getSortedAppointmentList();
-
-    /**
      * @return Unmodifiable view of the filtered list of technicians
      */
     ObservableList<Technician> getFilteredTechnicianList();
-
-    /**
-     * @return Unmodifiable view of the sorted list of technicians
-     */
-    ObservableList<Technician> getSortedTechnicianList();
 
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();
@@ -111,4 +86,13 @@ public interface Logic {
 
     /** Returns maps of services and their respective vehicle or technicians */
     ServiceDataMap getServiceDataMap();
+
+    /** Returns currently selected customer*/
+    Customer getSelectedCustomer();
+
+    /** Returns currently selected vehicle*/
+    Vehicle getSelectedVehicle();
+
+    /** Returns currently selected service*/
+    Service getSelectedService();
 }

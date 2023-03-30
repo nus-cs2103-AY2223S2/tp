@@ -1,17 +1,14 @@
 package seedu.address.ui;
 
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.service.Vehicle;
 
 /**
- * An UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a {@code Customer}.
  */
 public class CustomerCard extends UiPart<Region> {
 
@@ -35,27 +32,31 @@ public class CustomerCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label phone;
-    @FXML
-    private Label address;
+
     @FXML
     private Label email;
     @FXML
-    private FlowPane vehicles;
+    private Label numberOfCars;
+    @FXML
+    private Label numberOfMotorbikes;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
      */
-    public CustomerCard(Customer customer, List<Vehicle> customerVehicles, int displayedIndex) {
+    public CustomerCard(Customer customer, int cars, int motorbikes) {
         super(FXML);
         this.customer = customer;
-        id.setText(displayedIndex + ". ");
-        name.setText(customer.getName().fullName);
+        id.setText(customer.getId() + ". ");
+        name.setText(customer.getName().fullName + ", ");
+        numberOfCars.setText(cars + "");
+        numberOfMotorbikes.setText(motorbikes + "");
         phone.setText(customer.getPhone().value);
-        address.setText(customer.getAddress().value);
         email.setText(customer.getEmail().value);
-        customerVehicles.stream()
-                .forEach(vehicle -> vehicles.getChildren()
-                        .add(new Label(vehicle.getType().getValue() + "/" + vehicle.getPlateNumber())));
+        customer.getTags().stream()
+                .forEach(tag -> tags.getChildren()
+                        .add(new Label(tag.tagName)));
     }
 
     @Override

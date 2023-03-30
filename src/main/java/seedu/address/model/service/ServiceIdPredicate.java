@@ -2,17 +2,14 @@ package seedu.address.model.service;
 
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.index.Index;
-
-
 /**
  * Tests that a {@code Service}'s id matches the id given.
  */
 public class ServiceIdPredicate implements Predicate<Service> {
     private final int id;
 
-    public ServiceIdPredicate(Index id) {
-        this.id = id.getZeroBased();
+    public ServiceIdPredicate(int id) {
+        this.id = id;
     }
 
     @Override

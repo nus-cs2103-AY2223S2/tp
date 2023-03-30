@@ -12,13 +12,13 @@ public class ListVehiclesCommand extends Command {
 
     public static final String COMMAND_WORD = "listvehicles";
 
-    public static final String MESSAGE_SUCCESS = "Listed all vehicles.";
+    public static final String MESSAGE_SUCCESS = "Currently listing all vehicles.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.LISTED_VEHICLES);
+        return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
     }
 }
 

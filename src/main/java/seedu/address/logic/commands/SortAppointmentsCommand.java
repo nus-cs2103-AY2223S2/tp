@@ -28,7 +28,7 @@ public class SortAppointmentsCommand extends Command{
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateSortedAppointmentList(cmp);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.SORT_APPOINTMENTS);
+        model.updateAppointmentComparator(cmp);
+        return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
     }
 }

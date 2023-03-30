@@ -78,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return model.getShopFilePath();
     }
 
     @Override
@@ -98,28 +98,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Customer> getSortedCustomerList() {
-        return model.getSortedCustomerList();
-    }
-
-    @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
         return model.getFilteredVehicleList();
     }
 
     @Override
-    public ObservableList<Vehicle> getSortedVehicleList() {
-        return model.getSortedVehicleList();
-    }
-
-    @Override
     public ObservableList<Service> getFilteredServiceList() {
         return model.getFilteredServiceList();
-    }
-
-    @Override
-    public ObservableList<Service> getSortedServiceList() {
-        return this.model.getSortedServiceList();
     }
 
     /**
@@ -131,27 +116,11 @@ public class LogicManager implements Logic {
     }
 
     /**
-     * @return Unmodifiable view of the sorted list of appointments
-     */
-    @Override
-    public ObservableList<Appointment> getSortedAppointmentList() {
-        return model.getSortedAppointmentList();
-    }
-
-    /**
      * @return Unmodifiable view of the filtered list of technicians
      */
     @Override
     public ObservableList<Technician> getFilteredTechnicianList() {
         return model.getFilteredTechnicianList();
-    }
-
-    /**
-     * @return Unmodifiable view of the sorted list of technicians
-     */
-    @Override
-    public ObservableList<Technician> getSortedTechnicianList() {
-        return model.getSortedTechnicianList();
     }
 
     @Override
@@ -167,5 +136,19 @@ public class LogicManager implements Logic {
     @Override
     public ServiceDataMap getServiceDataMap() {
         return model.getServiceDataMap();
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return model.getSelectedCustomer();
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return model.getSelectedVehicle();
+    }
+    @Override
+    public Service getSelectedService() {
+        return model.getSelectedService();
     }
 }

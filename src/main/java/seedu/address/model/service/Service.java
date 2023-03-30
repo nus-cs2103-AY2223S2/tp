@@ -30,6 +30,23 @@ public class Service {
      */
     public Service(int id, int vehicleId, LocalDate entryDate,
                    PartMap requiredParts, String description,
+                   LocalDate estimatedFinishDate, ServiceStatus status,
+                   Set<Integer> assignedToIds) {
+        this.id = id;
+        this.vehicleId = vehicleId;
+        this.entryDate = entryDate;
+        this.description = description;
+        this.estimatedFinishDate = estimatedFinishDate;
+        this.status = status;
+        this.requiredParts.addAll(requiredParts);
+        this.assignedToIds.addAll(assignedToIds);
+    }
+
+    /**
+     * This method is the constructor for a Service.
+     */
+    public Service(int id, int vehicleId, LocalDate entryDate,
+                   PartMap requiredParts, String description,
                    LocalDate estimatedFinishDate, ServiceStatus status) {
         this.id = id;
         this.vehicleId = vehicleId;
@@ -38,20 +55,6 @@ public class Service {
         this.estimatedFinishDate = estimatedFinishDate;
         this.status = status;
         this.requiredParts.addAll(requiredParts);
-    }
-
-    /**
-     * This method is the constructor for a Service.
-     *
-     * @param estimatedDaysRequired The amount of time estimated to be needed for repairs.
-     */
-    public Service(int id, int vehicleId, int estimatedDaysRequired, String description) {
-        this.id = id;
-        this.vehicleId = vehicleId;
-        entryDate = LocalDate.now();
-        this.description = description;
-        estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        this.status = ServiceStatus.TO_REPAIR;
     }
 
     /**
@@ -69,14 +72,6 @@ public class Service {
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
         this.assignedToIds.addAll(assignedToIds);
-    }
-
-    /**
-     * This method is the constructor for a Service.
-     * By default, this method estimates the amount of time needed to be 7 whole days (not working days).
-     */
-    public Service(int id, int vehicleId) {
-        this(id, vehicleId, DEFAULT_SEVEN_DAYS, "");
     }
 
     /**
@@ -211,6 +206,15 @@ public class Service {
      */
     public void assignTechnician(Technician technician) {
         this.assignedToIds.add(technician.getId());
+    }
+
+    /**
+     * Assigns technician ID to this service
+     *
+     * @param technicianId ID of technician
+     */
+    public void assignTechnician(int technicianId) {
+        this.assignedToIds.add(technicianId);
     }
 
     /**

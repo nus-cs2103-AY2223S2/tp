@@ -28,7 +28,7 @@ public class SortServicesCommand extends Command{
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.updateSortedServiceList(cmp);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.SORT_SERVICES);
+        model.updateServiceComparator(cmp);
+        return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
     }
 }
