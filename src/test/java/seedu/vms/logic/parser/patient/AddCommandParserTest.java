@@ -1,6 +1,6 @@
 package seedu.vms.logic.parser.patient;
 
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.vms.commons.core.Messages.MESSAGE_MISSING_PARAMETER_FORMAT;
 import static seedu.vms.logic.commands.CommandTestUtil.ALLERGY_DESC_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.ALLERGY_DESC_SEAFOOD;
 import static seedu.vms.logic.commands.CommandTestUtil.BLOODTYPE_DESC_AMY;
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_MISSING_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + BLOODTYPE_DESC_BOB,

@@ -1,6 +1,6 @@
 package seedu.vms.logic.parser.appointment;
 
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.vms.commons.core.Messages.MESSAGE_MISSING_PARAMETER_FORMAT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
@@ -33,7 +33,7 @@ public class AddCommandParser implements CommandParser {
     @Override
     public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
         if (!arePrefixesPresent(argsMap, PREFIX_PATIENT, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_VACCINATION)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_MISSING_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Index patientId = ParserUtil.parseIndex(argsMap.getValue(PREFIX_PATIENT).get());
