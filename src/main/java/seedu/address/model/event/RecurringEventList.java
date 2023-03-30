@@ -172,15 +172,16 @@ public class RecurringEventList {
                 continue;
             }
 
-            boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getStartTime())
-                    && !curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getStartTime());
+            if(curRecurringEvent.getDayOfWeek().equals(newlyEditedRecurringEvent.getDayOfWeek())) {
+                boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getStartTime())
+                        && !curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getStartTime());
 
-            boolean isEventBack = curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getEndTime())
-                    && !curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getEndTime());
+                boolean isEventBack = curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getEndTime())
+                        && !curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getEndTime());
 
-
-            if (!isEventInFront && !isEventBack) {
-                throw new EventConflictException(curRecurringEvent.toString());
+                if (!isEventInFront && !isEventBack) {
+                    throw new EventConflictException(curRecurringEvent.toString());
+                }
             }
 
         }
