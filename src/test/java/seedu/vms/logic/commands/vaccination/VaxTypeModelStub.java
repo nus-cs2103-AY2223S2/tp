@@ -154,11 +154,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
-        throw new UnsupportedOperationException("Unimplemented method 'getFilteredKeywordList'");
-    }
-
-    @Override
     public void addKeyword(Keyword keyword) {
         throw new UnsupportedOperationException("Unimplemented method 'addKeyword'");
     }
@@ -166,11 +161,6 @@ public class VaxTypeModelStub implements Model {
     @Override
     public Keyword deleteKeyword(String keyword) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteKeyword'");
-    }
-
-    @Override
-    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
-        throw new UnsupportedOperationException("Unimplemented method 'updateFilteredKeywordList'");
     }
 
     @Override

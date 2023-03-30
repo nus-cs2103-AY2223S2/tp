@@ -71,7 +71,7 @@ public class MainApp extends Application {
         PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage();
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
         AppointmentStorage appointmentStorage = new JsonAppointmentStorage();
-       KeywordStorage keywordStorage = new JsonKeywordStorage();
+        KeywordStorage keywordStorage = new JsonKeywordStorage();
         storage = new StorageManager(patientManagerStorage, vaxTypeStorage,
                 appointmentStorage, userPrefsStorage, keywordStorage);
 

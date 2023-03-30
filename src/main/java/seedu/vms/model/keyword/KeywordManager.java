@@ -7,10 +7,6 @@ import java.util.HashMap;
  */
 public class KeywordManager {
 
-    private static final int KEYWORD_LIMIT = 30;
-    private static final String ERROR_FORMAT_DUPLICATE_KEYWORD = "Keyword %s already exist";
-    private static final String ERROR_FORMAT_NONEXISTENT_KEYWORD = "Keyword %s does not exist";
-    private static final String ERROR_FORMAT_LIMIT_EXCEEDED = "Limit of %d exceeded";
     private static HashMap<String, Keyword> keywordMap;
 
     /**
