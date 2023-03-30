@@ -20,6 +20,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
     * [Locate events by keyword](#find) : `find` command
     * [View help](#help) : `help` command
     * [Exit application](#exit) : `exit` command
+    * [Undo previous command](#undo) : `undo` command
   * [GUI](#gui)
     * [Command Box](#command-box)
     * [Response Box](#response-box)
@@ -55,6 +56,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 | Find   | `find n/<name> d/<date>`                                     |
 | Help   | `help`                                                       |
 | Exit   | `exit`                                                       |
+| Undo   | `undo`                                                       |
 
 [[Back to top](#index)]
 
@@ -187,6 +189,17 @@ Example: `help`<br><br>
 [[Back to top](#index)]
 
 
+<h3 id="undo">Undo Previous Command</h3>
+
+Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` commands).
+
+Format: `undo`
+
+Example: `undo`<br><br>
+
+[[Back to top](#index)]
+
+
 <h3 id="exit">Exit Application</h3>
 
 Exits the application.
@@ -194,8 +207,6 @@ Exits the application.
 Format: `exit`
 
 Example: `exit`<br><br>
-
-[[Back to top](#index)]
 
 
 <h2 id="gui">GUI</h2>

@@ -6,7 +6,7 @@ title: EZ-Schedule
 [![CI Status](https://github.com/AY2223S2-CS2103-W17-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-W17-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103-W17-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2223S2-CS2103-W17-3/tp)
 
-![Ui](images/Ui.png)
+![Ui.png](images%2FUi.png)
 
 **_Ez-Schedule_ is a desktop application for managing and scheduling of events.**
 While it has a GUI, majority of the user interactions happen using a CLI (Command Line Interface).
