@@ -16,6 +16,9 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    /** The application is in dark theme mode*/
+    private Boolean darkTheme;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +27,17 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+    }
+
+    /**
+     * For Commands : Light and Dark only
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, Boolean darkTheme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.darkTheme = darkTheme;
     }
 
     /**
@@ -44,6 +58,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public Boolean isDarkTheme() {
+        return darkTheme;
     }
 
     @Override

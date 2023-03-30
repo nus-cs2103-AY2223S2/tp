@@ -16,7 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class ModelManagerTest {
 
@@ -91,6 +94,77 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+    @Test
+    public void combine_differentAddressBook() {
+        modelManager.combine(TypicalPersons.getTypicalAddressBook(), "DUMMY PATH");
+        assertEquals(modelManager.getAddressBook(), TypicalPersons.getTypicalAddressBook());
+    }
+    @Test
+    public void combine_sameAddressBook() {
+        modelManager.setAddressBook(TypicalPersons.getTypicalAddressBook());
+        modelManager.combine(TypicalPersons.getTypicalAddressBook(), "DUMMY PATH");
+        assertEquals(modelManager.getAddressBook(), TypicalPersons.getTypicalAddressBook());
+    }
+    @Test
+    public void combine_partiallySimilarAddressBook() {
+        AddressBook ab1 =
+                new AddressBookBuilder()
+                        .withPerson(TypicalPersons.ALICE)
+                        .withPerson(TypicalPersons.BOB)
+                        .withPerson(TypicalPersons.CARL)
+                        .build();
+
+        AddressBook ab2 =
+                new AddressBookBuilder()
+                        .withPerson(TypicalPersons.CARL)
+                        .withPerson(TypicalPersons.DANIEL)
+                        .withPerson(TypicalPersons.ELLE)
+                        .build();
+
+        AddressBook abExpected =
+                new AddressBookBuilder()
+                        .withPerson(TypicalPersons.ALICE)
+                        .withPerson(TypicalPersons.BOB)
+                        .withPerson(TypicalPersons.CARL)
+                        .withPerson(TypicalPersons.DANIEL)
+                        .withPerson(TypicalPersons.ELLE)
+                        .build();
+        modelManager.setAddressBook(ab1);
+        modelManager.combine(ab2, "DUMMY PATH");
+        assertEquals(modelManager.getAddressBook(), abExpected);
+    }
+    @Test
+    public void combine_sameNameButDifferentDetailsAddressBook() {
+        Person p1 =
+                new PersonBuilder()
+                        .withName("Xiao Ming")
+                        .withPhone("99999999")
+                        .withEmail("XiaoMing@email.com")
+                        .withAddress("Dummy address")
+                        .withTags("friend")
+                        .build();
+        Person p2 =
+                new PersonBuilder()
+                        .withName("Xiao Ming")
+                        .withPhone("90000000")
+                        .withEmail("XiaoMing@yahoo.com")
+                        .withAddress("Dummy address")
+                        .withTags("enemy")
+                        .build();
+        AddressBook ab1 =
+                new AddressBookBuilder()
+                        .withPerson(p1)
+                        .build();
+
+        AddressBook ab2 =
+                new AddressBookBuilder()
+                        .withPerson(p2)
+                        .build();
+
+        modelManager.setAddressBook(ab1);
+        modelManager.combine(ab2, "DUMMY PATH");
+        assertEquals(modelManager.getAddressBook(), ab1);
     }
 
     @Test

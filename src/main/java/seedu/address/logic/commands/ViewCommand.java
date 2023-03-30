@@ -43,16 +43,18 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-
         Optional<Index> maxIndex = this.index.stream().max(Comparator.naturalOrder());
         int max = maxIndex.get().getOneBased();
 
         if (max > lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_VIEW_INVALID_PERSON_CONTACT_DETAILS);
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
         }
 
         List<Name> nameList = index.stream().filter(x -> validateIndex(x, lastShownList))
                 .map(x -> lastShownList.get(x.getZeroBased()).getName()).collect(Collectors.toList());
+        List<Person> updatedPersonList = lastShownList.stream()
+                .filter(x -> nameList.contains(x.getName())).collect(Collectors.toList());
+        model.showPersonContact(updatedPersonList);
         MatchNamePredicate predicate = new MatchNamePredicate(nameList);
         model.updateFilteredPersonList(predicate);
         StringBuilder sb = new StringBuilder();

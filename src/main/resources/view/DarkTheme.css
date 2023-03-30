@@ -364,3 +364,8 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #383838;
+}

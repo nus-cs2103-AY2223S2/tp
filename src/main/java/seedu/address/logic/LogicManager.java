@@ -78,4 +78,14 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public String getCssFilePath() {
+        return model.getCssFilePath();
+    }
+
+    @Override
+    public void setCssFilePath(String cssFilePath) {
+        model.setCssFilePath(cssFilePath);
+    }
 }

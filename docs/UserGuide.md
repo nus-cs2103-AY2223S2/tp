@@ -23,7 +23,7 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to ModCheck.
+   * `add n/John Doe p/98765432 e/johnd@example.com d/John street, block 123, #01-01` : Adds a contact named `John Doe` to ModCheck.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -74,13 +74,13 @@ Format: `help`
 
 Adds a person contact details to ModCheck.
 
-Compulsory Fields:
+Compulsory Field:
 * `n/` : name of the person
-* `d/` : description of the person
-* `e/` : email 
-* `p/` : phone number
 
 Additional Fields:
+* `d/` : description of the person
+* `e/` : email
+* `p/` : phone number
 * `t/` : tags 
 * `m/` : module codes
 
@@ -109,16 +109,31 @@ Format: `view <index>`
 
 Examples: 
 * `view 1` returns the contact details of the first person in the list
+* `view 1 3` returns the contact details of the first and third person in the list
 
 ![viewContactDetails](images/view/viewContactDetails.png)
+
+### Exporting selected person's contact details : `export`
+
+Export a person's contact details.
+
+Format: `export <index>`
+
+Examples:
+* `export 1` exports the contact details of the first person in the list
+* `export 1 4` exports the contact details of the first and fourth person in the list
+
+Exported contacts will be stored inside a text file under the `exports` folder found in the `tp` directory
+
+![viewContactDetails](images/export/exportContacts.png)
 
 ### Editing a person : `edit`
 
 Edits an existing person in ModCheck.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX` or `NAME`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -154,15 +169,16 @@ Examples:
 
 Deletes the specified person from ModCheck.
 
-Format: `delete INDEX`
+Format: `delete INDEX` or `delete INDEXES` or `delete NAME`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index or indexes **must be a positive integer** …​
 
 Examples:
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `list` followed by `delete 3` deletes the 3rd person in the list.
+* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
+* `list` followed by `delete Betsy` deletes Betsy if there is only one Betsy in the list.
 
 ![viewContactDetails](images/delete/deleteContact.png)
 
@@ -253,6 +269,14 @@ Format: `undo`
 
 Use `redo` to reapply the changes undone by undo.
 
+### Dark/Light Mode
+
+Choose your favourite theme !
+
+`light` To change to light mode.
+
+`dark`  To change to dark mode. (default)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -266,14 +290,15 @@ Use `redo` to reapply the changes undone by undo.
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                              |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                           |
+| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
+| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                            |
 | **List**   | `list`                                                                                                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                |
 | **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
 | **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
 | **Redo**   | `redo`                                                                                                                                                                                                                                                                                |
+| **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                              |
