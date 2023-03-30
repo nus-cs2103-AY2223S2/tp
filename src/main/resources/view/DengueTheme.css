@@ -357,18 +357,15 @@
 }
 
 #overviewDisplay {
-    -fx-background-color: #B9C19D;
+    -fx-background-color: #CCD5AE;
 }
 
 .overview-title {
     -fx-font-family: "Verdana";
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-underline: true;
     -fx-padding: 5;
     -fx-text-fill: #3D4A5A;
-    -fx-background-color: #E9EDC9;
-    -fx-background-radius: 10;
 }
 
 .overview-subtitle {
@@ -377,22 +374,20 @@
     -fx-font-size: 14px;
     -fx-font-style: italic;
     -fx-text-fill: #3D4A5A;
-    -fx-background-color: #CCD5AE;
-    -fx-background-radius: 0 0 5 5;
 }
 
 .overview-content {
     -fx-font-family: "Lucida Sans Typewriter";
     -fx-font-size: 12px;
     -fx-padding: 5 0 5 0;
-    -fx-background-color: #FFF5DA;
+    -fx-background-color: #E9EDC9;
 }
 
 #overviewContent .content {
-    -fx-background-color: #FFF5DA;
+    -fx-background-color: #E9EDC9;
 }
 
 #overviewContent .scroll-bar .thumb {
-    -fx-background-color: #CCD5AE;
+    -fx-background-color: #B9C19D;
     -fx-background-insets: 2;
 }
