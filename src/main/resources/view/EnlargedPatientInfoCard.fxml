@@ -12,8 +12,7 @@
   <HBox alignment="CENTER" styleClass="only-bottom-primary-border">
     <Label fx:id="name" text="\$first" styleClass="label-header-3"/>
   </HBox>
-  <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="enlarged-contacts-details-container"
-              xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="enlarged-contacts-details-container">
     <VBox VBox.vgrow="ALWAYS" styleClass="enlarged-contacts-details-pane">
       <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
