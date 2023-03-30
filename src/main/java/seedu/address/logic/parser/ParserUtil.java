@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -138,19 +139,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code LocalDateTime date} into the correct format.
-     * @param date of which the event start/end.
+     * Parses a {@code String dateTime} into a {@code LocalDateTime dateTime} into the correct format.
+     * @param dateTime of which the event start/end.
      * @return LocalDateTime object containing the start/end date and time of the event.
-     * @throws ParseException if the given {@code String date} is in invalid format.
+     * @throws ParseException if the given {@code String dateTime} is in invalid format.
      */
-    public static LocalDateTime parseDate(String date) throws ParseException {
-        requireNonNull(date);
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
 
         LocalDateTime dueDate;
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-            dueDate = LocalDateTime.parse(date, formatter);
-            checkDateExist(dueDate, date.substring(0, 2));
+            dueDate = LocalDateTime.parse(dateTime, formatter);
+            checkDateExist(dueDate, dateTime.substring(0, 2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
@@ -162,7 +163,26 @@ public class ParserUtil {
         return dueDate;
     }
 
-    // TODO: Parse into Local Date
+    /**
+     * Parses a {@code String date} into a {@code LocalDate date} into the correct format.
+     * @param date of which the event start/end.
+     * @return LocalDate object containing the start/end date of the event.
+     * @throws ParseException if the given {@code String date} is in invalid format.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+
+        LocalDate dueDate;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dueDate = LocalDate.parse(date, formatter);
+            checkDateExist(dueDate.atStartOfDay(), date.substring(0, 2));
+        } catch (DateTimeException e) {
+            throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
+        }
+
+        return dueDate;
+    }
 
     /**
      * Check whether the day exists in the month, throw error if it does not exist.

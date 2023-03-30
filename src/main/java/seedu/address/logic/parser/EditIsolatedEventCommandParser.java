@@ -52,10 +52,10 @@ public class EditIsolatedEventCommandParser implements Parser<EditIsolatedEventC
             editEventDescriptor.setEventName(ParserUtil.parseEventName((argMultimap.getValue(PREFIX_ISOEVENT).get())));
         }
         if (argMultimap.getValue(PREFIX_STARTDATETIME).isPresent()) {
-            editEventDescriptor.setStartDate(ParserUtil.parseDate((argMultimap.getValue(PREFIX_STARTDATETIME).get())));
+            editEventDescriptor.setStartDate(ParserUtil.parseDateTime((argMultimap.getValue(PREFIX_STARTDATETIME).get())));
         }
         if (argMultimap.getValue(PREFIX_ENDDATETIME).isPresent()) {
-            editEventDescriptor.setEndDate(ParserUtil.parseDate((argMultimap.getValue(PREFIX_ENDDATETIME).get())));
+            editEventDescriptor.setEndDate(ParserUtil.parseDateTime((argMultimap.getValue(PREFIX_ENDDATETIME).get())));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {
