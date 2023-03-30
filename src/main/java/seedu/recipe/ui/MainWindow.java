@@ -1,9 +1,7 @@
 package seedu.recipe.ui;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -14,15 +12,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.commons.exceptions.DataConversionException;
-import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.Logic;
+import seedu.recipe.logic.commands.Command;
 import seedu.recipe.logic.commands.CommandResult;
+import seedu.recipe.logic.commands.ExportCommand;
+import seedu.recipe.logic.commands.ImportCommand;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.storage.ExportManager;
-import seedu.recipe.storage.ImportManager;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
 
@@ -52,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem importMenuItem;
+
+    @FXML
+    private MenuItem exportMenuItem;
 
     @FXML
     private StackPane recipeListPanelPlaceholder;
@@ -84,8 +83,6 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
-
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
         helpWindow = new HelpWindow();
@@ -106,6 +103,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(importMenuItem, KeyCombination.valueOf("F3"));
+        setAccelerator(exportMenuItem, KeyCombination.valueOf("F4"));
     }
 
     /**
@@ -128,29 +126,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleImport() {
-        ImportManager importManager = new ImportManager(primaryStage);
+        ImportCommand importCommand = new ImportCommand(primaryStage);
         try {
-            ObservableList<Recipe> importedRecipes = importManager.execute();
-            if (importedRecipes == null) {
-                logger.info("No file selected");
-                resultDisplay.setFeedbackToUser("No file selected");
-                return;
-            }
-
-            // Marked for refactor into separate util class
-            // Validate uniqueness
-            ObservableList<Recipe> currentRecipes = logic.getFilteredRecipeList();
-            for (Recipe recipe : importedRecipes) {
-                if (!currentRecipes.stream().anyMatch(recipe::isSameRecipe)) {
-                    String commandText = "add" + importManager.getCommandText(recipe);
-                    logic.execute(commandText);
-                }
-            }
-            logger.info("Import Successfully");
-            resultDisplay.setFeedbackToUser("Import Successfully");
-        } catch (DataConversionException | IOException | IllegalValueException | CommandException e) {
-            logger.info("Invalid import: " + e.getMessage());
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            executeCommand(importCommand);
+        } catch (CommandException e) {
+            logger.warning(e.getMessage());
         }
     }
 
@@ -159,11 +139,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExport() {
-        ExportManager exportManager = new ExportManager(primaryStage);
         try {
-            exportManager.execute();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            executeCommand(new ExportCommand(primaryStage, logic));
+        } catch (CommandException e) {
+            logger.warning(e.getMessage());
         }
     }
 
@@ -277,6 +256,33 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    /**
+     * Executes the command based on the given {@code commandText} and returns the result.
+     * Updates the UI components based on the command result.
+     *
+     * @param command the command instance to execute.
+     * @return the resulting {@code CommandResult} after executing the command.
+     * @throws CommandException if the command execution fails.
+     */
+    private CommandResult executeCommand(Command command) throws CommandException {
+        try {
+            CommandResult commandResult = logic.execute(command);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+            if (commandResult.isExit()) {
+                handleExit();
+            }
+            return commandResult;
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + command.getClass().getSimpleName());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
