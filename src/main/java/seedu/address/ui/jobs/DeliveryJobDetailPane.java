@@ -24,10 +24,10 @@ import seedu.address.ui.person.PersonCard;
 public class DeliveryJobDetailPane extends UiPart<Region> {
 
     private static final String FXML = "DeliveryJobDetailPane.fxml";
-    private static final String BUTTON_LABEL_NOTCOMPLETE = "Mark Pending";
-    private static final String BUTTON_LABEL_COMPLETE = "Mark Delivered";
-    private static final String BUTTON_LABEL_SHOW = "Show";
-    private static final String BUTTON_LABEL_HIDE = "Hide";
+    private static final String BUTTON_LABEL_NOTCOMPLETE = "❌";
+    private static final String BUTTON_LABEL_COMPLETE = "✅";
+    private static final String BUTTON_LABEL_SHOW = "🔓";
+    private static final String BUTTON_LABEL_HIDE = "🔒";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 

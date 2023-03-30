@@ -282,7 +282,7 @@ public class DeliveryJob {
                         getRecipientId(),
                         getSenderId(),
                         getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
-                        getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
+                        getDeliverySlot().isPresent() ? getDeliverySlot().get().getDescription() : "",
                         getEarning().isPresent() ? getEarning().get() : "",
                         getDeliveredStatus() ? "Delivered" : "Pending"));
 

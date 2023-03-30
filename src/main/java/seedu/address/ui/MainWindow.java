@@ -107,7 +107,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Consumer<DeliveryJob> editDeliveryJobHandler = (job) -> {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, commandResult -> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -445,7 +445,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleAddressBook() {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
 
         if (!addressBookWindow.isShowing()) {
@@ -470,7 +470,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleDeliveryJobSystemCreateAction() {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
         addDeliveryJobWindow.show();
@@ -513,6 +513,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         timetableWindow.hide();
         unscheduleWindow.hide();
+        completeWindow.hide();
         statsWindow.hide();
         addressBookWindow.hide();
         if (addDeliveryJobWindow != null) {
