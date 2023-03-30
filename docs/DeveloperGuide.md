@@ -214,7 +214,7 @@ The delete appointment command allows the user to delete an existing appointment
 
 **Design considerations**
 
-We originally wanted to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs. However, 
+We originally wanted to identify Appointments by their `AppointmentId` instead of their index as we expect to identify each appointment by their own unique IDs. However, we chose to use indexes in a similar fashion to patients so that users would not need to confuse themselves with two different types of commands.
 
 ### \[Proposed\] Undo/redo feature
 
