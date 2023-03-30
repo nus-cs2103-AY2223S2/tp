@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.FieldContainsPartialKeywordsPredicate;
 
 /**
- * Lists all persons in the address book, filtering out persons whose fields do not contain
- * the given filters. Keyword matching is case insensitive.
+ * Lists all persons in the address book, filtering out persons whose fields do
+ * not contain the given filters. Keyword matching is case insensitive.
  */
 public class FilterCommand extends Command {
 
@@ -69,16 +69,21 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code FieldContainsKeywordsPredicatePartial} object with
-     * the field values of {@code filterDescriptor}.
+     * Creates and returns a {@code FieldContainsKeywordsPredicatePartial} object
+     * with the field values of {@code filterDescriptor}.
      */
     private static FieldContainsPartialKeywordsPredicate createFilterPredicate(
             FilterDescriptor filterDescriptor) {
-        return new FieldContainsPartialKeywordsPredicate(filterDescriptor.nameValue,
-                filterDescriptor.phoneValue, filterDescriptor.emailValue,
-                filterDescriptor.addressValue, filterDescriptor.rankValue,
-                filterDescriptor.unitValue, filterDescriptor.companyValue,
-                filterDescriptor.platoonValue, filterDescriptor.tagValues.stream().collect(Collectors.toList()));
+        return new FieldContainsPartialKeywordsPredicate(
+                filterDescriptor.rankValue,
+                filterDescriptor.nameValue,
+                filterDescriptor.unitValue,
+                filterDescriptor.companyValue,
+                filterDescriptor.platoonValue,
+                filterDescriptor.phoneValue,
+                filterDescriptor.emailValue,
+                filterDescriptor.addressValue,
+                filterDescriptor.tagValues.stream().collect(Collectors.toList()));
     }
 
     @Override
@@ -110,8 +115,8 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Stores the details to filter with. Each non-empty field value will be used as a
-     * filter, removing contacts that do not match.
+     * Stores the details to filter with. Each non-empty field value will be used as
+     * a filter, removing contacts that do not match.
      */
     public static class FilterDescriptor {
         private static final String BLANK = "";
@@ -126,9 +131,9 @@ public class FilterCommand extends Command {
         private List<String> tagValues;
 
         /**
-         * Constructs default FilterDescriptor that is used to contain details of a filter.
-         * Is created with blanks in all of its fields and an empty set for the set of tag
-         * values.
+         * Constructs default FilterDescriptor that is used to contain details of a
+         * filter. Is created with blanks in all of its fields and an empty set for the
+         * set of tag values.
          */
         public FilterDescriptor() {
             rankValue = BLANK;
@@ -146,8 +151,15 @@ public class FilterCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean hasNonEmptyField() {
-            return (CollectionUtil.isAnyNotBlank(nameValue, phoneValue, emailValue, addressValue, rankValue, unitValue,
-                    companyValue, platoonValue) || !(tagValues.isEmpty()));
+            return (CollectionUtil.isAnyNotBlank(
+                    rankValue,
+                    nameValue,
+                    unitValue,
+                    companyValue,
+                    platoonValue,
+                    phoneValue,
+                    emailValue,
+                    addressValue) || !(tagValues.isEmpty()));
         }
 
         public String getRankValue() {

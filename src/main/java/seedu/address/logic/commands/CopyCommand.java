@@ -15,7 +15,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Copies the details of an existing person in the address book to the user's clipboard.
+ * Copies the details of an existing person in the address book to the user's
+ * clipboard.
  */
 public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
@@ -63,14 +64,16 @@ public class CopyCommand extends Command {
 
     public String getInformation(Person personToCopy) {
         final StringBuilder infoBuilder = new StringBuilder();
-        infoBuilder.append("Name: " + personToCopy.getName() + "\n")
+        infoBuilder.append("Rank: " + personToCopy.getRank() + "\n")
+                .append("Name: " + personToCopy.getName() + "\n")
+                .append("Unit: " + personToCopy.getUnit() + "\n")
+                .append("Company: " + personToCopy.getCompany() + "\n")
+                .append("Platoon: " + personToCopy.getPlatoon() + "\n")
                 .append("Phone: " + personToCopy.getPhone() + "\n")
                 .append("Email: " + personToCopy.getEmail() + "\n")
                 .append("Address: " + personToCopy.getAddress() + "\n")
-                .append("Rank: " + personToCopy.getRank() + "\n")
-                .append("Unit: " + personToCopy.getUnit() + "\n")
-                .append("Company: " + personToCopy.getCompany() + "\n")
-                .append("Platoon: " + personToCopy.getPlatoon() + "\n");
+                .append("Tags: ");
+        personToCopy.getTags().forEach(tag -> infoBuilder.append(tag));
         return infoBuilder.toString();
     }
 
