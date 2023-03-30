@@ -81,6 +81,18 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     }
 
     /**
+     * Adds a list of recipes to the recipe book.
+     * The recipes must not already exist in the recipe book.
+     */
+    public void addRecipes(ObservableList<Recipe> recipeList) {
+        for (Recipe recipe : recipeList) {
+            if (!hasRecipe(recipe)) {
+                recipes.add(recipe);
+            }
+        }
+    }
+
+    /**
      * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
      * {@code target} must exist in the recipe book.
      * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the recipe book.

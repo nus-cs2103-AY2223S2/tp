@@ -67,7 +67,7 @@ public class AddCommand extends Command {
         }
 
         model.addRecipe(recipeToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd.getName()));
     }
 
     @Override

@@ -1,29 +1,42 @@
 package seedu.recipe.ui;
 
+//Core imports
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+//JavaFX imports
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+//Custom imports
+import seedu.recipe.commons.core.LogsCenter;
+import seedu.recipe.logic.commands.CommandResult;
+import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.ui.events.EditRecipeEvent;
+import seedu.recipe.ui.CommandBox.CommandExecutor;
+import seedu.recipe.ui.util.FieldsUtil;
 
 /**
  * Represents the form element for users to edit {@code Recipe}s
  */
 public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
+    private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
 
     @FXML
     private TextField nameField;
@@ -33,12 +46,6 @@ public class RecipeForm extends UiPart<Region> {
 
     @FXML
     private TextField portionField;
-
-    @FXML
-    private TextField ingredientsField;
-
-    @FXML
-    private TextField stepsField;
 
     @FXML
     private TextField tagsField;
@@ -53,20 +60,27 @@ public class RecipeForm extends UiPart<Region> {
     private VBox stepsBox;
 
     @FXML
-    private FlowPane ingredients;
-
-    @FXML
-    private FlowPane steps;
+    private Region buttonCtrLeft;
 
     @FXML
     private Button saveButton;
 
     @FXML
     private Button cancelButton;
-    private int displayedIndex;
-    private Map<String, String> initialValues;
-    private Recipe recipe;
 
+    //Data fields
+    private final int displayedIndex;
+    private Map<String, String> initialValues;
+    private final Recipe recipe;
+
+    //Logic executors and system logging
+    private final CommandExecutor commandExecutor;
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
+    @FunctionalInterface
+    interface CustomFocusChangeListener {
+        void onFocusChange(boolean newValue);
+    }
     /**
      * Creates a new RecipeForm with the given recipe and displayed index.
      * If the recipe is not null, the form fields are pre-populated with the recipe's data.
@@ -74,86 +88,17 @@ public class RecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to edit or null for creating a new recipe.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public RecipeForm(Recipe recipe, int displayedIndex) {
+    public RecipeForm(Recipe recipe, int displayedIndex, CommandExecutor commandExecutor) {
         super(FXML);
         this.recipe = recipe;
+        this.commandExecutor = commandExecutor;
         this.displayedIndex = displayedIndex;
         if (recipe != null) {
             populateFields();
         }
-        assert saveButton != null;
+        HBox.setHgrow(buttonCtrLeft, Priority.ALWAYS);
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
-    }
-
-    /**
-     * Stores the initial values of the form fields in a HashMap.
-     * This is used for comparison when saving the recipe to determine
-     * which fields have been changed.
-     */
-    private void storeInitialValues() {
-        initialValues = new HashMap<>();
-        initialValues.put("name", nameField.getText());
-        initialValues.put("duration", durationField.getText());
-        initialValues.put("portion", portionField.getText());
-        initialValues.put("ingredients", ingredientsBox.getChildren().stream()
-            .map(node -> ((TextField) node).getText())
-            .collect(Collectors.joining(", ")));
-
-        initialValues.put("steps", stepsBox.getChildren().stream()
-            .map(node -> ((TextField) node).getText())
-            .collect(Collectors.joining(", ")));
-
-        initialValues.put("tags", tagsField.getText());
-    }
-
-    /**
-     * Populates the form fields with the data from the existing recipe.
-     * Stores all prepopulated data into a hashmap for comparison later when saving.
-     */
-    private void populateFields() {
-        nameField.setText(recipe.getName().recipeName);
-        //Duration
-        durationField.setText(
-                Optional.ofNullable(recipe.getDurationNullable())
-                        .map(Object::toString)
-                        .orElse("Duration was not added.")
-        );
-        //Portion
-        portionField.setText(
-                Optional.ofNullable(recipe.getPortionNullable())
-                        .map(Object::toString)
-                        .orElse("Portion was not added.")
-        );
-        /*
-        //Ingredients
-        ingredientsField.setText(recipe.getIngredients().stream()
-                .map(Ingredient::toString)
-                .collect(Collectors.joining(", ")));
-
-        //Steps
-        stepsField.setText(recipe.getSteps().stream()
-                .map(Step::toString)
-                .collect(Collectors.joining(", ")));
-        */
-        //Ingredients
-        recipe.getIngredients().forEach((ingredient, information) -> {
-            TextField ingredientField = new TextField(ingredient.toString());
-            ingredientsBox.getChildren().add(ingredientField);
-        });
-
-        //Steps
-        recipe.getSteps().forEach(step -> {
-            TextField stepField = new TextField(step.toString());
-            stepsBox.getChildren().add(stepField);
-        });
-        //Tags
-        tagsField.setText(recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .map(tag -> tag.tagName)
-                .collect(Collectors.joining(", ")));
-
-        storeInitialValues();
     }
 
     /**
@@ -181,19 +126,19 @@ public class RecipeForm extends UiPart<Region> {
                 break;
             case "ingredients":
                 currentValue = ingredientsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
+                    .map(node -> ((TextArea) node).getText())
                     .collect(Collectors.joining(", "));
                 break;
             case "steps":
                 currentValue = stepsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
+                    .map(node -> ((TextArea) node).getText())
                     .collect(Collectors.joining(", "));
                 break;
             case "tags":
                 currentValue = tagsField.getText();
                 break;
             default:
-                currentValue = ""; // or any default value you prefer
+                currentValue = "";
                 break;
             }
 
@@ -201,15 +146,16 @@ public class RecipeForm extends UiPart<Region> {
                 changedValues.put(key, currentValue);
             }
         }
-        /*
-        ...
-        model.saveRecipe(recipe);
-        EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
-        cardPane.fireEvent(editEvent);
-        */
-        System.out.println(changedValues);
-        EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex, changedValues);
-        closeForm();
+        try {
+            // Add Recipe
+            if (initialValues.isEmpty()) {
+                handleAddRecipeEvent(changedValues);
+            }
+            handleEditRecipeEvent(displayedIndex, changedValues);
+            closeForm();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     /**
@@ -230,16 +176,214 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
-        window.setMinWidth(500);
-        window.setMinHeight(700);
-        VBox vbox = new VBox(getRoot());
-        Scene scene = new Scene(vbox);
+        window.setResizable(false);
+
+        //Set dimensions, scene graph
+        VBox pane = new VBox(getRoot());
+        pane.setStyle("-fx-background-color: #3f3f46");
+
+        Scene scene = new Scene(pane);
+
+        //Event handler for Escape Key
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();
             }
         });
+
+        //Display
         window.setScene(scene);
         window.showAndWait();
+    }
+
+    /*----------------------------------------------------------------------------------------------------------- */
+    // The following functions are helper functions used in the main code above.
+    /**
+     * Stores the initial values of the form fields in a HashMap.
+     * This is used for comparison when saving the recipe to determine
+     * which fields have been changed.
+     */
+    private void storeInitialValues() {
+        initialValues = new HashMap<>();
+        initialValues.put("name", nameField.getText());
+        initialValues.put("duration", durationField.getText());
+        initialValues.put("portion", portionField.getText());
+        initialValues.put("ingredients", ingredientsBox.getChildren().stream()
+            .map(node -> ((TextArea) node).getText())
+            .collect(Collectors.joining(", ")));
+
+        initialValues.put("steps", stepsBox.getChildren().stream()
+            .map(node -> ((TextArea) node).getText())
+            .collect(Collectors.joining(", ")));
+
+        initialValues.put("tags", tagsField.getText());
+    }
+
+    /**
+     * Populates the form fields with the data from the existing recipe.
+     * Stores all prepopulated data into a hashmap for comparison later when saving.
+     */
+    private void populateFields() {
+        nameField.setText(recipe.getName().recipeName);
+        //Duration
+        durationField.setText(
+            Optional.ofNullable(recipe.getDurationNullable())
+                .map(Object::toString)
+                .orElse("")
+        );
+        //Portion
+        portionField.setText(
+            Optional.ofNullable(recipe.getPortionNullable())
+                .map(Object::toString)
+                .orElse("")
+        );
+
+        //Ingredients
+        if (!recipe.getIngredients().isEmpty()) {
+            recipe.getIngredients().forEach((ingredient, information) -> {
+                TextArea ingredientField = FieldsUtil.createDynamicTextArea(ingredient.toString());
+                ingredientField.setWrapText(true);
+                ingredientsBox.getChildren().add(ingredientField);
+            });
+        } else {
+            TextArea emptyIngredientField = FieldsUtil.createDynamicTextArea("");
+            emptyIngredientField.setPromptText("Add an ingredient " + INGREDIENT_PROMPT);
+            ingredientsBox.getChildren().add(emptyIngredientField);
+        }
+
+        //Steps
+        if (!recipe.getSteps().isEmpty()) {
+            recipe.getSteps().forEach(step -> {
+                TextArea stepField = FieldsUtil.createDynamicTextArea(step.toString());
+                stepField.setWrapText(true);
+                stepsBox.getChildren().add(stepField);
+            });
+        } else {
+            TextArea emptyStepField = FieldsUtil.createDynamicTextArea("");
+            emptyStepField.setPromptText("Add a step");
+            stepsBox.getChildren().add(emptyStepField);
+        }
+
+        //Tags
+        if (!recipe.getTags().isEmpty()) { //To be set as individual tag pills
+            tagsField.setText(recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .map(tag -> tag.tagName)
+                .collect(Collectors.joining(", ")));
+        } else {
+            tagsField.setText("");
+        }
+
+        storeInitialValues();
+    }
+
+    /**
+     * Helper method to add all the changed field data into an existing StringBuilder instance.
+     *
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
+     */
+    public StringBuilder collectFields(StringBuilder commands, Map<String, String> changedValues) {
+        // Check if the name has been changed and append the name prefix and value.
+        if (changedValues.containsKey("name")) {
+            commands.append(" n/");
+            commands.append(changedValues.get("name"));
+        }
+
+        // Check if the duration has been changed and append the duration prefix and value.
+        if (changedValues.containsKey("duration")) {
+            commands.append(" d/");
+            commands.append(changedValues.get("duration"));
+        }
+
+        // Check if the portion has been changed and append the portion prefix and value.
+        if (changedValues.containsKey("portion")) {
+            commands.append(" p/");
+            commands.append(changedValues.get("portion"));
+        }
+
+        // Check if the ingredients have been changed and append the ingredients prefix and value.
+        if (changedValues.containsKey("ingredients")) {
+            String[] ingredients = changedValues.get("ingredients").split(", ");
+            for (String ingredient : ingredients) {
+                commands.append(" i/");
+                commands.append(ingredient);
+            }
+        }
+
+        // Check if the steps have been changed and append the steps prefix and value.
+        if (changedValues.containsKey("steps")) {
+            String[] steps = changedValues.get("steps").split(", ");
+            for (String step : steps) {
+                commands.append(" s/");
+                commands.append(step);
+            }
+        }
+
+        // Check if the tags have been changed and append the tags prefix and value.
+        if (changedValues.containsKey("tags")) {
+            String[] tags = changedValues.get("tags").split(", ");
+            for (String tag : tags) {
+                commands.append(" t/");
+                commands.append(tag);
+            }
+        }
+        return commands;
+    }
+
+    /**
+     * Handles the add recipe event by adding the recipe with the changed values.
+     *
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
+     */
+    private void handleAddRecipeEvent(Map<String, String> changedValues) {
+        try {
+            StringBuilder commands = new StringBuilder();
+            commands = collectFields(commands, changedValues);
+            String commandText = "add " + commands.toString();
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to edit recipe: ");
+        }
+    }
+
+    /**
+     * Handles the edit recipe event by updating the recipe with the changed values.
+     *
+     * @param index The index of the recipe to be edited.
+     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
+     */
+    private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
+        try {
+            StringBuilder commands = new StringBuilder();
+
+            // Add the index of the item to edit.
+            commands.append(index);
+            commands = collectFields(commands, changedValues);
+            String commandText = "edit " + commands.toString();
+
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to edit recipe: " + index);
+        }
+    }
+
+    /**
+     * Executes the command based on the given {@code commandText} and returns the result.
+     * Updates the UI components based on the command result.
+     *
+     * @param commandText the command text to execute.
+     * @return the resulting {@code CommandResult} after executing the command.
+     * @throws CommandException if the command execution fails.
+     * @throws ParseException if the command text cannot be parsed.
+     */
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = commandExecutor.execute(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            throw e;
+        }
     }
 }

@@ -1,0 +1,66 @@
+* { /* ROOT COLOR VARIABLES */
+    -fx-bg: #3f3f46;
+    -fx-mctr: #e4e4e7;
+    -fx-ctr: #d4d4d8;
+    -fx-gry: #71717a;
+    -fx-rd: #f70d1a;
+    -fx-rsd: derive(-fx-bg, 40%);
+}
+
+
+.background {
+    -fx-background-color: -fx-bg;
+    background-color: #383838;
+}
+
+.root-layout {
+    -fx-background-color: -fx-bg;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
+
+}
+
+.root-box {
+    -fx-background-color: -fx-bg;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
+}
+
+.root-layout .label {
+    -fx-text-fill: -fx-ctr;
+    -fx-font-size: 16px;
+    -fx-font-family: "IBM Plex Sans Medium Italic"
+}
+
+.root-layout .text-area {
+    -fx-background-color: -fx-rsd;
+    -fx-text-fill: -fx-ctr;
+    -fx-font-family: "IBM Plex Sans Regular";
+    -fx-text-size: 12px;
+
+    -fx-background-inset: 5;
+    -fx-border-inset: 5;
+    -fx-padding: 0;
+}
+
+.root-layout .text-area .content {
+    -fx-background-color: -fx-rsd;
+}
+
+.root-layout .text-field {
+    -fx-background-color: -fx-rsd;
+    -fx-text-fill: -fx-ctr;
+    -fx-font-family: "IBM Plex Sans Regular";
+    -fx-text-size: 12px;
+
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.button {
+    -fx-background-color: #d4d4d8;
+    -fx-font-family: "IBM Plex Sans Medium";
+    -fx-text-fill: -fx-bg;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}

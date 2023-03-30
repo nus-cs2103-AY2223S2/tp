@@ -74,8 +74,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
-### Logic
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
+### Logic component
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -115,7 +115,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="500" />
 
@@ -150,12 +150,16 @@ extension feature to this project.<br/><br/>
 
 </div>
 
-### Storage Component
+### Storage component
 
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
-Structure of the Storage Component: (tbc)
+**Structure:**
+
+<img src="images/StorageClassDiagram.png" width="500" />
+
+<img src="images/JsonAdaptersDiagram.png" width="500" />
 
 **The `Storage` component:**
 
@@ -174,21 +178,24 @@ To serialize a recipe, we must necessarily serialize its component fields too: i
 
 The default JSON representation for each component is to express the fields of each component as key-value pairs.
 However, this representation is too verbose and space-inefficient. Hence, we opted to write custom JSON adapters for
-each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters)
-package. The JSON adapters allow us to express how each class should be serialized.
+each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
+package. These JSON adapters allow us to express how each class should be serialized.
+
+### Common classes
+Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit Form Feature
+### Feature: "Edit" Form UI
 
 #### Implementation
 
-The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`,
-that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index.
+The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`, 
+that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index. 
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 In addition, it implements the following operations:
@@ -200,7 +207,7 @@ In addition, it implements the following operations:
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-### Example Usage Scenario
+#### Example Usage Scenario
 
 Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
 
@@ -224,10 +231,34 @@ Notes
 If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
-### Common classes
-Classes used by multiple components are in the `seedu.recipe.commons` package.
+### Feature: Find-by-property
+
+The `find` command allows the user to filter recipes by their properties: 
+e.g. their name, tags, or ingredients.
+
+<img src="images/FindSequenceDiagram.png" width="1000" />
+
+#### Implementation
+As with all commands, the find command goes through the standard command execution pipeline.
+
+In `FindCommandParser`, we determine which is the target property. 
+Keyword validation and predicate creation is then done depending on the target property.
+
+To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
+* `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
+matches any of the keywords
+  * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
+  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match
+* `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
+in a collection of property T matches any of the keywords
+  * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
+  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match
+
+The use of generic types in the above predicates allows it to be implemented independent of the actual type
+of the property, as long as the relevant getters are supplied.
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Requirements**
 
@@ -244,14 +275,19 @@ Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                 | So that I can…​                                        |
-|----------|----------|------------------------------|--------------------------------------------------------|
-| `* * *`  | new user | see usage instructions       | refer to instructions when I forget how to use the app |
-| `* * *`  | user     | add a new recipe             | reference it in the future                             |
-| `* * *`  | user     | list all my existing recipes | get an overview of my whole cook book                  |
-| `* * *`  | user     | view an existing recipe      | recall details of what I have previously added         |
-| `* * *`  | user     | delete an existing recipe    | remove recipes I no longer like                        |
-| `* *  `  | user     | clear my recipe book         | start afresh and save a new set of recipes             |
+| Priority | As a …​  | I want to …​                                                   | So that I can…​                                             |
+|----------|----------|----------------------------------------------------------------|-------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions                                         | refer to instructions when I forget how to use the app      |
+| `* * *`  | user     | add a new recipe                                               | reference it in the future                                  |
+| `* * *`  | user     | list all my existing recipes                                   | get an overview of my whole cook book                       |
+| `* * *`  | user     | view an existing recipe                                        | recall details of what I have previously added              |
+| `* * *`  | user     | search for a recipe by name                                    | refer to a recipe I am thinking about                       |
+| `* *`    | user     | search for recipes by its associated tags                      | refer to a certain type of recipe conveniently              |
+| `* * *`  | chef     | search for ingredient substitutions for my missing ingredients | get an idea of possible replacements for ingredients I lack |
+| `* * *`  | user     | delete an existing recipe                                      | remove recipes I no longer like                             |
+| `* *  `  | user     | clear my recipe book                                           | start afresh and save a new set of recipes                  |
+| `* * *`  | user     | share my recipe book with my friends                           | share my exciting and innovative recipes                    |
+| `* * *`  | user     | import my friends' recipes                                     | have more recipes to refer to in my own recipe book         |
 
 
 *{More to be added soon!}*
@@ -260,11 +296,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **Book** is `RIZZipe` and the **Chef** is the `user`, unless specified otherwise)
 
+#### **Use case: Ask for help**
+
+**MSS (Main Success Scenario)**
+
+1. Chef requests for help
+2. Book shows URL to User Guide of recipe book
+
+    Use case ends.
 
 #### **Use case: List all recipes**
 
-
-**MSS (Main Success Scenario)**
+**MSS**
 
 1.  Chef requests to list recipes
 2.  Book shows a list of ***all*** recipes
@@ -284,36 +327,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b3. Chef clicks the "file fixed" button
 
       Use case resumes from step 2.
-
-
-
+    
 #### **Use case: Add a recipe**
-
 
 **MSS**
 
 1.  Chef requests to add a recipe
-2.  Book prompts the user for the name, ingredients and steps for the recipe
-3.  Chef keys in details for each section one at a time
+2.  Book prompts the user for the name, duration, portion, tags, ingredients and steps for the recipe
+3.  Chef keys in details for each section in a single input, following the specified format
 4.  Book adds the recipe to a database
 
 **Extensions**
 
-* 3a. The name, ingredients or steps typed by Cook are empty.
+* 3a. The name inputted by chef is missing
     * 3a1. Book shows an error message.
-    * 3a2. Book requests for the correct entry or for the Cook to type "/exit" if he/she chooses not to continue.
+    * 3a2. Book requests for the name of the recipe to be keyed in
 
       Use case resumes from step 3.
 
-* 4a. The given recipe is a duplicate. The name, ingredients and steps coincide with another recipe
+* 3b. The fields inputted by chef is in the wrong format
+    * 3b1. Book shows an error message.
+    * 3b2. Book requests for the fields to be input in an appropriate format
+  
+      Use case resumes from step 3.
+
+* 4a. The given recipe is a duplicate. The name, duration, portion, tags, ingredients and steps coincide with another recipe
     * 4a1. Book shows a message that states there already exist such recipe.
     * 4a2. The recipe keyed is not added.
 
       Use case ends.
+    
+#### **Use case: View a recipe**
 
+**MSS**
+
+1. Chef requests to view a specific recipe in the list
+2. Book return the specified recipe
+   Use case ends.
+
+**Extensions**
+
+* 1a. The current list is empty
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. Book shows an error message.
+
+      Use case resumes from step 2.
 
 #### **Use case: Delete a recipe**
-
 
 **MSS**
 
@@ -331,42 +394,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. Book shows an error message.
 
       Use case resumes from step 2.
 
-
-#### **Use case: View a recipe**
-
+#### **Use case: Find a recipe by name**
 
 **MSS**
 
-1. Chef requests to list recipes
-2. Book shows a list of ***all*** recipes
-3. Chef requests to view a specific recipe in the list
-4. Book return the specified recipe
-   Use case ends.
+1. Chef requests to search for all recipes which name matches a keyword
+2. Book shows a list of such recipes
+
+    Use case ends.
 
 **Extensions**
+* 1a. The keyword input is invalid
+    * 1a1. Book shows an error message.
+    
+    Use case resumes from step 1.
 
-* 1a. The current list is empty
+* 2a. The list is empty.
+
+    Use case ends.
+
+#### **Use case: Find a recipe by tag**
+
+**MSS**
+
+1. Chef requests to search for all recipes which contain a specific tag
+2. Book shows a list of such recipes
+
+**Extensions**
+* 1a. The tag input is invalid
+    * 1a1. Book shows an error message.
+
+  Use case resumes from step 1.
+
+* 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
-    * 3a1. Book shows an error message.
-
-      Use case resumes from step 2.
-
-#### **Use case: Ask for help**
+#### **Use case: Find an ingredient substitute**
 
 **MSS**
 
-1. Chef requests for help
-2. Book shows the link to the user guide
+1. Chef requests to find all substitutes for an ingredient
+2. Book shows a list of such substitutes
 
-   Use case ends.
+    Use case ends.
+
+**Extensions**
+* 1a. The ingredient input is invalid
+    * 1a1. Book shows an error message.
+
+  Use case resumes from step 1.
+
+* 2a. The list is empty.
+    * 2a1. Book shows a message that states that no substitutes exist for this ingredient
+
+  Use case ends.
 
 #### **Use case: Clear recipe book**
 

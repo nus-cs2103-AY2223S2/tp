@@ -22,7 +22,6 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonRecipeBookStorage.class);
 
     private final Path filePath;
-
     public JsonRecipeBookStorage(Path filePath) {
         this.filePath = filePath;
     }

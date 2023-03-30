@@ -1,8 +1,9 @@
 package seedu.recipe.ui;
 
-import java.util.Map;
+import java.io.IOException;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,12 +14,17 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
+import seedu.recipe.commons.exceptions.DataConversionException;
+import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.ui.events.EditRecipeEvent;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.storage.ExportManager;
+import seedu.recipe.storage.ImportManager;
+import seedu.recipe.ui.events.DeleteRecipeEvent;
+
 
 /**
  * Represents the main window of the application. This class is responsible for
@@ -34,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Stage primaryStage;
     private final Logic logic;
     private final HelpWindow helpWindow;
+
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
     private ResultDisplay resultDisplay;
@@ -44,13 +51,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem importMenuItem;
+
+    @FXML
     private StackPane recipeListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     /**
      * Constructor that creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -74,9 +84,9 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
+        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
 
-        getRoot().addEventFilter(EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
+        getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
         helpWindow = new HelpWindow();
     }
@@ -95,6 +105,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(importMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -110,6 +121,50 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    /**
+     * Handles the import file action for importing an existing Recipe Book JSON file into the app.
+     */
+    @FXML
+    private void handleImport() {
+        ImportManager importManager = new ImportManager(primaryStage);
+        try {
+            ObservableList<Recipe> importedRecipes = importManager.execute();
+            if (importedRecipes == null) {
+                logger.info("No file selected");
+                resultDisplay.setFeedbackToUser("No file selected");
+                return;
+            }
+
+            // Marked for refactor into separate util class
+            // Validate uniqueness
+            ObservableList<Recipe> currentRecipes = logic.getFilteredRecipeList();
+            for (Recipe recipe : importedRecipes) {
+                if (!currentRecipes.stream().anyMatch(recipe::isSameRecipe)) {
+                    String commandText = "add" + importManager.getCommandText(recipe);
+                    logic.execute(commandText);
+                }
+            }
+            logger.info("Import Successfully");
+            resultDisplay.setFeedbackToUser("Import Successfully");
+        } catch (DataConversionException | IOException | IllegalValueException | CommandException e) {
+            logger.info("Invalid import: " + e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    /**
+     * Handles the export file action for exporting the current Recipe Book JSON file.
+     */
+    @FXML
+    private void handleExport() {
+        ExportManager exportManager = new ExportManager(primaryStage);
+        try {
+            exportManager.execute();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -129,62 +184,17 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles the EditRecipeEvent by executing the appropriate edit command
-     * based on the provided event data. Updates the recipe with the changed values
-     * specified in the event.
-     *
-     * @param event the EditRecipeEvent containing the index of the recipe to be edited
-     *              and a map of the changed values.
-     */
-    private void handleEditRecipeEvent(EditRecipeEvent event) {
-        assert event != null : "EditRecipeEvent cannot be null";
-        int recipeIndex = event.getRecipeIndex();
-        Map<String, String> changedValues = event.getChangedValues();
-        try {
-            StringBuilder commands = new StringBuilder();
-
-            // Add the index of the item to edit.
-            commands.append(recipeIndex);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (changedValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(changedValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (changedValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(changedValues.get("duration"));
-            }
-
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "edit " + commands.toString(); // 1-indexed
-            System.out.println(commandText);
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: " + recipeIndex);
-        }
-    }
-
-    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        // Assertions to check if placeholders are not null
-        assert recipeListPanelPlaceholder != null : "RecipeListPanel placeholder cannot be null";
-        assert resultDisplayPlaceholder != null : "ResultDisplay placeholder cannot be null";
-        assert statusbarPlaceholder != null : "Status bar placeholder cannot be null";
-        assert commandBoxPlaceholder != null : "Command box placeholder cannot be null";
-
-        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
+        recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList(), this::executeCommand);
         recipeListPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRecipeBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -214,11 +224,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
     /**
-     * Makes the primary stage of this main window visible.
+     * Renders the primary stage of this main window visible.
      */
     void show() {
         primaryStage.show();
     }
+
     /**
      * Closes the application.
      */
