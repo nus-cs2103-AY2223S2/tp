@@ -1,11 +1,11 @@
 package seedu.address.model.stats;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents statistics to be displayed for a given week.
