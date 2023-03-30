@@ -1,7 +1,7 @@
 package vimification.model.task;
 
 public enum Status {
-    NOT_DONE, IN_PROGRESS, COMPLETED, OVER_DUE;
+    NOT_DONE, IN_PROGRESS, COMPLETED, OVERDUE;
 
     public static Status fromInt(int level) {
         switch (level) {
@@ -12,7 +12,7 @@ public enum Status {
         case 2:
             return COMPLETED;
         case 3:
-            return OVER_DUE;
+            return OVERDUE;
         default:
             return NOT_DONE;
         }

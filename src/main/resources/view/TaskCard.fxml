@@ -12,6 +12,8 @@
 
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ProgressBar?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane prefWidth="191.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -35,17 +37,14 @@
           </VBox>
           <VBox HBox.hgrow="ALWAYS" spacing="5" >
             <children>
-              <Label fx:id="title" styleClass="cell_big_label" text="\$title" wrapText="true" >
+              <Label fx:id="title" styleClass="cell_big_label" wrapText="true" >
               </Label>
-              <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label" text="\$deadline" wrapText="true">
+              <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label" wrapText="true">
               </Label>
               <FlowPane fx:id="priority">
-                <children>
-                  <Label fx:id = "priorityLevel" styleClass = "priority" text = "\$level">
-                  </Label>
-                </children>
+                <Label fx:id="priorityMessage" styleClass="priorityMessage" wrapText="true">
+                </Label>
               </FlowPane>
-              <FlowPane fx:id="labels" />
             </children>
           </VBox>
         </HBox>
