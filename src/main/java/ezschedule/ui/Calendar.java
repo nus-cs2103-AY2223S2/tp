@@ -136,13 +136,10 @@ public class Calendar extends UiPart<Region> {
                     if (currentDate <= monthMaxDate) {
                         String date = String.valueOf(currentDate);
                         List<Event> eventsForCurrentDate = eventsForMonthMap.get(currentDate);
-                        if (eventsForCurrentDate != null && eventsForCurrentDate.stream().anyMatch(findEventList::contains)) {
-                            calendar.getChildren().add(new CalendarBox(
-                                    true, isToday(currentDate), date, eventsForCurrentDate, filterExecutor).getRoot());
-                        } else {
-                            calendar.getChildren().add(new CalendarBox(
-                                    false, isToday(currentDate), date, eventsForCurrentDate, filterExecutor).getRoot());
-                        }
+                        boolean isFindCommand = eventsForCurrentDate != null
+                                && eventsForCurrentDate.stream().anyMatch(findEventList::contains);
+                        calendar.getChildren().add(new CalendarBox(isFindCommand, isToday(currentDate),
+                                date, eventsForCurrentDate, filterExecutor).getRoot());
                     }
                 } else {
                     calendar.getChildren().add(new CalendarBox().getRoot());

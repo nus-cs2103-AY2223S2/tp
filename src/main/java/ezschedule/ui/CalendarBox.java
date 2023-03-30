@@ -67,7 +67,7 @@ public class CalendarBox extends UiPart<Region> {
 
     private void setHighlight(boolean isFind) {
         if (isFind) {
-            calendarHighlight.setFill(Color.RED);
+            calendarHighlight.setStroke(Color.DARKORANGE);
         }
     }
 
@@ -86,7 +86,6 @@ public class CalendarBox extends UiPart<Region> {
 
     private void setEvents() {
         if (events != null) {
-            // calendarEvents.setStyle("-fx-background-color:GRAY");
             int firstEvent = 0;
             String eventNameOne = getEventName(events.get(firstEvent));
             Label eventOne = new Label(eventNameOne);
