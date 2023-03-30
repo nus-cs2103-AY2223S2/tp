@@ -128,7 +128,7 @@ Each employee can only take a leave once per day. Leaves are unique by date.
 
 Prefixes are delimiters to differentiate between different types of input.
 
-<div markdown="span" class="alert alert-primary">**NOTE:**
+<div markdown="span" class="alert alert-warning">**NOTE:**
 There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 </div>
 
@@ -172,9 +172,20 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 
 [//]: # (Explain the general command format: command, prefixes, placeholders)
 
+Commands are what you will work with in SudoHR, let's learn what a command is made of:
+
+![CommandFormat](images/commandFormat.png)
+
+It consists of:
+1. Command - Decides what your command will do and the arguments that it will accept.
+2. Prefixes - They indicate what type of input to enter.
+3. Placeholders - The actual data you input for the command.
+
 ## 6.4. Trying your first command
 
 [//]: # (<-- Insert example context here -->)
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -188,7 +199,7 @@ Adds an employee to SudoHR.
 
 Format: `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **TIP:**
 An employee can have any number of tags (including 0)
 </div>
 
@@ -240,7 +251,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.1.5. Deleting an employee : `del`
+### 7.1.5. Find employees by ID: `feid`
+
+Finds the employee who has the given ID.
+
+Format: `feid eid/EMPLOYEE_ID`
+
+Examples:
+* `feid eid/100` returns Employee with ID 100.
+
+### 7.1.6. Deleting an employee : `del`
 
 Deletes the specified employee from SudoHR.
 
@@ -315,7 +335,8 @@ Format: `ldep`
 
 ### 7.2.6. Add employee to a department: `aetd`
 
-Adds an employee to a department using his ID.
+Adds an employee to a department using his ID. After adding, the department window will show the department being added
+to and the employee window will contain all the employees in that department.
 
 Format: `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -329,7 +350,8 @@ Examples:
 
 ### 7.2.7. Remove employee from a department: `refd`
 
-Removes an employee from a department using his ID.
+Removes an employee from a department using his ID. After removing, the department window will show the department
+being removed from and the employee window will contain all the employees in that department.
 
 Format: `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
@@ -358,7 +380,8 @@ Examples:
 
 ### 7.2.10 List department headcount: `ldhc`
 
-List all employees present in the given department on a given date.
+List all employees present in the given department on a given date. The department window will display only the given
+department and the leave window will display only the given date.
 
 Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
 * If the date is not specified, employees present on the current date of inputting 
@@ -510,6 +533,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **List all employees**                                   | `list`                                                                            |
 | **Edit an employee**                                     | `edit eid/EMPLOYEE_ID [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Find employee by name**                                | `find KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Find employee by ID**                                  | `feid eid/EMPLOYEE_ID`                                                            |
 | **Delete an employee**                                   | `del eid/EMPLOYEE_ID`                                                             |
 | **Add a department**                                     | `adep n/DEPARTMENT_NAME`                                                          |
 | **List all departments**                                 | `ldep`                                                                            |
