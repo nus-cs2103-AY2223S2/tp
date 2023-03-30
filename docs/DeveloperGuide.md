@@ -213,16 +213,28 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-   <img src="images/MenuClassDiagram.svg" width="450" />
+   <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
  </p>
 
 Here is how `Menu` works:
 
 * Each `Menu` contains non-negative and non-zero number of `MenuItem`.
-* Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
+* Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
+* The value of `ItemProfit` is obtained by taking the value of `ItemPrice` subtracted by the value of `ItemCost`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
+
+**Aspect: Choice to provide a menu package:**
+
+* **Option 1 (our choice):** Separating it into a separate `menu` package.
+    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively.
+    * Advantage 2: Less repeated code
+    * Disadvantage: More time required to implement.
+
+* **Option 2:** Add item name as an attribute in the `Order` class.
+    * Advantage: Convenient to implement.
+    * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
 This is the class representation for the `Order` class.
 
@@ -233,7 +245,7 @@ This is the class representation for the `Order` class.
 Here is how `Order` works:
 
 * Each `OrderList` contains non-negative and non-zero number of `Order`.
-* Each `Order` contains a menu item, customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
+* Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
@@ -279,6 +291,11 @@ The following activity diagram summarizes what happens when the user executes th
      <img src="images/AddCommandActivityDiagram.svg">
  </p>
 
+#### Why is it implemented this way
+
+The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class -`AddItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
+
 ### DeleteXYZCommand
 
 The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
@@ -292,6 +309,11 @@ The following activity diagram summarizes what happens when the user executes th
  <p align="center">
      <img src="images/DeleteCommandActivityDiagram.svg">
  </p>
+
+#### Why is it implemented this way
+
+The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class -`DeleteItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
 
 ### Edit feature
 
@@ -318,6 +340,12 @@ Lastly, Changes made are saved to local data and success message will be shown.
     <img src="images/EditCommandActivityDiagram.svg" width="900" />
 </p>
 
+#### Why is it implemented this way
+
+The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class -`EditItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
+
+
 ### FindXYZCommand
 
 The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
@@ -334,6 +362,12 @@ The following activity diagram summarizes what happens when the user executes th
 <p align="center">
     <img src="images/FindCommandActivityDiagram.svg">
 </p>
+
+#### Why is it implemented this way
+
+The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class -`FindItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
+The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
 
 ### ListXYZCommand
 
