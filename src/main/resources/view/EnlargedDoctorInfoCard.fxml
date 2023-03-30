@@ -13,7 +13,7 @@
     <Label fx:id="name" text="\$first" styleClass="label-header-3"/>
   </HBox>
   <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="enlarged-contacts-details-container">
-    <VBox styleClass="enlarged-contacts-details-pane">
+    <VBox VBox.vgrow="ALWAYS" styleClass="enlarged-contacts-details-pane">
       <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
       </padding>

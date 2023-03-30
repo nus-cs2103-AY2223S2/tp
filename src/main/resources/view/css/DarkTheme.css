@@ -102,7 +102,9 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #FFFFFF;
     -fx-wrap-text: true;
-    -fx-max-width: 300px;
+    -fx-min-width: 250;
+    -fx-max-width: 250;
+    -fx-pref-width: 250;
 }
 
 /*
