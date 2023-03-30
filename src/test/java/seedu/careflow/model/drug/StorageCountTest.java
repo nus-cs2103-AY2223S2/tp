@@ -32,12 +32,13 @@ public class StorageCountTest {
         assertFalse(StorageCount.isValidStorageCount("string")); // non-numeric
         assertFalse(StorageCount.isValidStorageCount("123+")); // with special character
         assertFalse(StorageCount.isValidStorageCount("9011p041")); // alphabets within digits
-        assertFalse(StorageCount.isValidStorageCount("123456789")); // exceed 7 char limit
+        assertFalse(StorageCount.isValidStorageCount("-123")); // -ve value
+        assertFalse(StorageCount.isValidStorageCount("500")); // exceed max limit of storage count(>499)
 
         // valid storage count
         assertTrue(StorageCount.isValidStorageCount("0")); // exactly 1 numbers
         assertTrue(StorageCount.isValidStorageCount("1")); // exactly 1 numbers
-        assertTrue(StorageCount.isValidStorageCount("3121534")); // exactly 7 number
+        assertTrue(StorageCount.isValidStorageCount("499")); // max limit of storage count
     }
 
     @Test
