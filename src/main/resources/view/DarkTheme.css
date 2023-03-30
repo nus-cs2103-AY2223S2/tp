@@ -30,10 +30,23 @@
     -fx-text-fill: #3EA93C;
 }
 
-.header{
+.header-employee{
     -fx-font-size: 20pt;
     -fx-background-color: #161616;
-    -fx-text-fill: #328930;
+    -fx-text-fill: #F8D06A;
+    -fx-alignment: center;
+}
+.header-department{
+    -fx-font-size: 20pt;
+    -fx-background-color: #161616;
+    -fx-text-fill: #CC79FF;
+    -fx-alignment: center;
+}
+
+.header-leave{
+    -fx-font-size: 20pt;
+    -fx-background-color: #161616;
+    -fx-text-fill: #F54A4A;
     -fx-alignment: center;
 }
 
@@ -126,10 +139,22 @@
     -fx-text-fill: #3EA93C;
 }
 
-.cell_bigger_label {
+.cell_bigger_label_leave {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25px;
+    -fx-text-fill: #DF3030;
+}
+
+.cell_bigger_label_employee {
     -fx-font-family: "Lucida Console";
     -fx-font-size: 25px;
     -fx-text-fill: #DD9F00;
+}
+
+.cell_bigger_label_department {
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25px;
+    -fx-text-fill: #D362FB;
 }
 
 .cell_small_label {
@@ -331,13 +356,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-pref-height: 150px;
-}
-
-#cardPane2 {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-    -fx-pref-height: 150px;
+    -fx-pref-height: 120px;
 }
 
 #commandTypeLabel {
@@ -388,4 +407,9 @@
     -fx-pref-width: 300px;
     -fx-wrap-text: true;
     -fx-alignment: center;
+}
+
+#hashId {
+    -fx-text-fill: B88E23;
+    -fx-font-size: 20px;
 }

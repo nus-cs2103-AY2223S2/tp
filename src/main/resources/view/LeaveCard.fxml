@@ -20,7 +20,7 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="date" styleClass="cell_bigger_label">
+                <Label fx:id="date" styleClass="cell_bigger_label_leave">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
