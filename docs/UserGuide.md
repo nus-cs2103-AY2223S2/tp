@@ -803,4 +803,4 @@ Table 8 provides a glossary for the technical terms used in this user guide.
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
   , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (For the purposes of GUI testing and the feature of navigating through past commands)
+  (for the purposes of GUI testing and the feature of navigating through past commands).
