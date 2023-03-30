@@ -47,10 +47,10 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
             filterTuteeDescription.setNameToFilter(Arrays.asList(nameKeywords));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            filterTuteeDescription.setPhoneToFilter(argMultimap.getValue(PREFIX_PHONE).get());
+            filterTuteeDescription.setPhoneToFilter(requireNonNull(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            filterTuteeDescription.setEmailToFilter(argMultimap.getValue(PREFIX_EMAIL).get());
+            filterTuteeDescription.setEmailToFilter(requireNonNull(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_ADDRESS).get().trim();
@@ -62,16 +62,16 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
             filterTuteeDescription.setAddressToFilter(Arrays.asList(addressKeywords));
         }
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            filterTuteeDescription.setSubjectToFilter(argMultimap.getValue(PREFIX_SUBJECT).get());
+            filterTuteeDescription.setSubjectToFilter(requireNonNull(argMultimap.getValue(PREFIX_SUBJECT).get()));
         }
         if (argMultimap.getValue(PREFIX_SCHEDULE).isPresent()) {
-            filterTuteeDescription.setScheduleToFilter(argMultimap.getValue(PREFIX_SCHEDULE).get());
+            filterTuteeDescription.setScheduleToFilter(requireNonNull(argMultimap.getValue(PREFIX_SCHEDULE).get()));
         }
         if (argMultimap.getValue(PREFIX_STARTTIME).isPresent()) {
-            filterTuteeDescription.setStartTimeToFilter(argMultimap.getValue(PREFIX_STARTTIME).get());
+            filterTuteeDescription.setStartTimeToFilter(requireNonNull(argMultimap.getValue(PREFIX_STARTTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
-            filterTuteeDescription.setEndTimeToFilter(argMultimap.getValue(PREFIX_ENDTIME).get());
+            filterTuteeDescription.setEndTimeToFilter(requireNonNull(argMultimap.getValue(PREFIX_ENDTIME).get()));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_TAG).get().trim();

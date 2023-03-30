@@ -267,6 +267,7 @@ By default, `name`, `address`, `tags` are empty lists while the rest of the fiel
 `filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
 fields that are to be filtered in.  Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
 `FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
+
 `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
