@@ -9,11 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+import static seedu.address.logic.parser.ParserUtil.parsePrefixIfPresent;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Education;
@@ -45,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = parsePrefixIfPresent(argMultimap, PREFIX_PHONE, ParserUtil::parsePhone);
+        Phone phone = ParserUtil.parsePrefixIfPresent(argMultimap, PREFIX_PHONE, ParserUtil::parsePhone);
         Email email = parsePrefixIfPresent(argMultimap, PREFIX_EMAIL, ParserUtil::parseEmail);
         Address address = parsePrefixIfPresent(argMultimap, PREFIX_ADDRESS, ParserUtil::parseAddress);
         Education education = parsePrefixIfPresent(argMultimap, PREFIX_EDUCATION, ParserUtil::parseEducation);
@@ -57,22 +60,5 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(person);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
-    private static <T> T parsePrefixIfPresent(ArgumentMultimap argMultimap, Prefix prefix,
-                                              ParserFunction<String,
-                                                      ? extends T> parserFunction) throws ParseException {
-        String retArg = argMultimap.getValue(prefix).orElse(null);
-        if (retArg == null) {
-            return null;
-        }
-
-        return parserFunction.apply(retArg);
-    }
 }

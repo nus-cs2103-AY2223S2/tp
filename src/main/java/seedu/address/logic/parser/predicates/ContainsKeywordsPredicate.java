@@ -9,14 +9,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.CliSyntax;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Subject;
 import seedu.address.model.tag.Tag;
@@ -27,66 +26,79 @@ import seedu.address.model.tag.Tag;
  * Predicate that returns true if all keywords are contained in the Person's fields (Name, Address, Phone).
  */
 public class ContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
-    private Prefix findCategory;
+    private final ArgumentMultimap keywords;
 
     /**
      * Constructs a ContainsKeywordsPredicate.
      *
      * @param keywords list of keywords to match with the Person's fields
      */
-    public ContainsKeywordsPredicate(List<String> keywords) {
-        this.findCategory = CliSyntax.isPrefix(new Prefix(keywords.get(0)))
-                            ? new Prefix(keywords.get(0))
-                            : PREFIX_NAME;
+    public ContainsKeywordsPredicate(ArgumentMultimap keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
-        boolean hasMatching = false;
-        if (findCategory.equals(PREFIX_NAME)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(person.getName().fullName, keyword));
-        } else if (findCategory.equals(PREFIX_PHONE)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+        boolean hasMatching = true;
+        if (keywords.getValue(PREFIX_NAME).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_NAME);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                            person.getName().fullName, keyword));
+        }
+
+        if (keywords.getValue(PREFIX_PHONE).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_PHONE);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalPhone().map(phone -> phone.value).orElse(null), keyword));
-        } else if (findCategory.equals(PREFIX_EMAIL)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+        }
+
+        if (keywords.getValue(PREFIX_EMAIL).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_EMAIL);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalEmail().map(email -> email.value).orElse(null), keyword));
-        } else if (findCategory.equals(PREFIX_ADDRESS)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+        }
+
+        if (keywords.getValue(PREFIX_ADDRESS).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_ADDRESS);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalAddress().map(address -> address.value).orElse(null), keyword));
-        } else if (findCategory.equals(PREFIX_EDUCATION)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+        }
+
+        if (keywords.getValue(PREFIX_EDUCATION).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_EDUCATION);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalEducation().map(education -> education.value)
                                     .orElse(null), keyword));
-        } else if (findCategory.equals(PREFIX_REMARK)) {
-            hasMatching = keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
-                            person.getOptionalRemark().map(remark -> remark.value).orElse(null), keyword));
-        } else if (findCategory.equals(PREFIX_TAG)) {
-            Set<Tag> tags = new HashSet<>();
-            for (int i = 1; i < keywords.size(); i++) {
-                String currKeyword = keywords.get(i);
-                Tag curr = new Tag(currKeyword);
-                tags.add(curr);
-            }
-            hasMatching = tags.stream()
-                    .anyMatch(tag -> person.getTags().contains(tag));
-        } else if (findCategory.equals(PREFIX_SUBJECT)) {
-            Set<Subject> subjects = new HashSet<>();
-            for (int i = 1; i < keywords.size(); i++) {
-                String currKeyword = keywords.get(i);
-                Subject curr = new Subject(currKeyword);
-                subjects.add(curr);
-            }
-            hasMatching = subjects.stream()
-                    .anyMatch(subject -> person.getSubjects().contains(subject));
+        }
+        if (keywords.getValue(PREFIX_REMARK).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_REMARK);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                            person.getOptionalRemark().map(remark -> remark.value)
+                                    .orElse(null), keyword));
+        }
+
+        if (keywords.getValue(PREFIX_TAG).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_TAG);
+            Set<Tag> personTags = person.getTags();
+            List<String> personTagNames = personTags.stream()
+                    .map(tag -> tag.tagName)
+                    .collect(Collectors.toList());
+            hasMatching = hasMatching && values.stream().allMatch(tag -> personTagNames.contains(tag));
+        }
+
+        if (keywords.getValue(PREFIX_SUBJECT).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_SUBJECT);
+            Set<Subject> personSubjects = person.getSubjects();
+            List<String> personSubjectNames = personSubjects.stream()
+                    .map(subject -> subject.subjectName)
+                    .collect(Collectors.toList());
+            hasMatching = hasMatching && values.stream().allMatch(subject -> personSubjectNames.contains(subject));
         }
 
         return hasMatching;
@@ -97,9 +109,6 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
         return other == this
                 || (other instanceof ContainsKeywordsPredicate
                 && keywords.equals(((ContainsKeywordsPredicate) other).keywords));
-        /*
-                && tags.equals(((ContainsKeywordsPredicate) other).tags));
-        */
     }
 
 
