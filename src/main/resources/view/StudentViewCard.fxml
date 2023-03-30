@@ -4,13 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxWidth="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="viewPane" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css" VBox.vgrow="ALWAYS">
          <children>
@@ -19,7 +18,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </Label>
-            <HBox fx:id="infoPane" prefHeight="158.0" prefWidth="624.0" VBox.vgrow="ALWAYS">
+            <HBox fx:id="infoPane" maxWidth="1000.0" prefHeight="158.0" VBox.vgrow="ALWAYS">
                <children>
                   <GridPane HBox.hgrow="ALWAYS">
                      <columnConstraints>
@@ -29,15 +28,9 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <VBox fx:id="studentDetails" prefHeight="142.0" prefWidth="486.0">
+                        <VBox fx:id="studentDetails" prefHeight="142.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                            <children>
                               <Label fx:id="name" text="Name" />
-                              <HBox prefHeight="8.0" prefWidth="486.0">
-                                 <children>
-                                    <FlowPane fx:id="modules" prefHeight="17.0" prefWidth="0.0" />
-                                    <FlowPane fx:id="tags" prefHeight="21.0" prefWidth="0.0" />
-                                 </children>
-                              </HBox>
                               <Label fx:id="studentId" text="StudentId" />
                               <Label fx:id="phone" text="Phone" />
                               <Label fx:id="email" text="Email" />
@@ -60,7 +53,4 @@
          </padding>
       </VBox>
    </children>
-   <padding>
-      <Insets top="8.0" />
-   </padding>
 </VBox>

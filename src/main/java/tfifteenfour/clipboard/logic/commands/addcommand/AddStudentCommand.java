@@ -20,17 +20,17 @@ import tfifteenfour.clipboard.model.student.Student;
 public class AddStudentCommand extends AddCommand {
     public static final String COMMAND_TYPE_WORD = "student";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
-            + ": Adds a student to the address book. "
-            + "Parameters: "
+            + ": Adds a student to the CLIpboard. "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_STUDENTID + "STUDENTID "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENTID + "STUDENTID\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_STUDENTID + "A1234567X ";
+            + PREFIX_STUDENTID + "A1234567X";
 
     public static final String MESSAGE_SUCCESS = "New student added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in this group";

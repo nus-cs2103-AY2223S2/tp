@@ -3,6 +3,7 @@ package tfifteenfour.clipboard.ui;
 import java.io.File;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -26,16 +27,22 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.UploadCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
+import tfifteenfour.clipboard.logic.commands.editcommand.EditStudentCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
+import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
@@ -279,8 +286,14 @@ public class MainWindow extends UiPart<Stage> {
      * Displays currently viewed student in right pane.
      */
     public void refreshViewPane() {
-        studentViewCard = new StudentViewCard(logic.getCurrentSelection().getSelectedStudent());
-        rightPanelPlaceholder.getChildren().add(studentViewCard.getRoot());
+        rightPanelPlaceholder.getChildren().clear();
+        ObservableList<Student> viewedStudent =
+                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+        ObservableList<SessionWithAttendance> sessionList =
+                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren()
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 0).getRoot());
     }
 
     /**
@@ -488,6 +501,22 @@ public class MainWindow extends UiPart<Stage> {
         refreshNavigationBar();
     }
 
+    private void handleAttendanceCommand() {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+            showStudentAttendance();
+        }
+    }
+
+    private void showStudentAttendance() {
+        rightPanelPlaceholder.getChildren().clear();
+        ObservableList<Student> viewedStudent =
+                logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
+                        .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
+        ObservableList<SessionWithAttendance> sessionList =
+                logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren()
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 1).getRoot());
+    }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
 
@@ -516,9 +545,18 @@ public class MainWindow extends UiPart<Stage> {
                 || commandResult.getCommand() instanceof MarkPresentCommand) {
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
 
-        } else if (commandResult.getCommand()instanceof AssignCommand) {
+        } else if (commandResult.getCommand() instanceof AssignCommand) {
             showGradePane(logic.getCurrentSelection().getSelectedTask());
+
+        } else if (commandResult.getCommand() instanceof UploadCommand
+                || commandResult.getCommand() instanceof EditStudentCommand
+                || commandResult.getCommand() instanceof RemarkCommand) {
+            refreshViewPane();
+
+        } else if (commandResult.getCommand() instanceof AttendanceCommand) {
+            handleAttendanceCommand();
         }
+
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {
         //handleUndo();

@@ -2,7 +2,12 @@ package tfifteenfour.clipboard.model.student;
 
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Student in the address book.
@@ -18,8 +23,8 @@ public class Student {
     // Data fields
     private final Remark remark;
     private final StudentId studentId;
-    // private final Set<Tag> tags = new HashSet<>();
-    // private final Set<Course> modules = new HashSet<>();
+    private List<SessionWithAttendance> sessionsWithAttendance = new ArrayList<>();
+
 
     /**
      * With remark and tags field.
@@ -30,9 +35,7 @@ public class Student {
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
-        // this.modules.addAll(modules);
         this.remark = remark;
-        // this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -55,21 +58,6 @@ public class Student {
         return remark;
     }
 
-    /*
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    // public Set<Tag> getTags() {
-    //     return Collections.unmodifiableSet(tags);
-    // }
-
-    /*
-     * Returns an immutable module set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    // public Set<Course> getModules() {
-    //     return Collections.unmodifiableSet(modules);
-    // }
 
 
     /**
@@ -104,7 +92,6 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getStudentId().equals(getStudentId());
-        // && otherStudent.getTags().equals(getTags());
     }
 
     @Override
@@ -122,20 +109,21 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; StudentId: ")
-                .append(getStudentId());
-
-        // Set<Course> modules = getModules();
-        // builder.append("; Modules: ");
-        // modules.forEach(builder::append);
-
-        builder.append("; Remark: ")
+                .append(getStudentId())
+                .append("; Remark: ")
                 .append(getRemark());
 
-        // Set<Tag> tags = getTags();
-        // if (!tags.isEmpty()) {
-        //     builder.append("; Tags: ");
-        //     tags.forEach(builder::append);
-        // }
         return builder.toString();
     }
+
+    public void setSessionAttendanceList(List<SessionWithAttendance> sessions) {
+        this.sessionsWithAttendance = sessions;
+    }
+
+    public ObservableList<SessionWithAttendance> getObservableSessionList() {
+        ObservableList<SessionWithAttendance> observableSessionList = FXCollections.observableArrayList();
+        observableSessionList.addAll(sessionsWithAttendance);
+        return observableSessionList;
+    }
+
 }
