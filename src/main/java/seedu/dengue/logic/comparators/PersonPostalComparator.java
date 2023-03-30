@@ -5,7 +5,7 @@ import java.util.Comparator;
 import seedu.dengue.model.person.Person;
 
 /**
- * Comparator for the class {@Person} that compares by its {@Age} attribute
+ * Comparator for the class {@link Person} that compares by its {@link Postal} attribute
  */
 public class PersonPostalComparator implements Comparator<Person> {
 
