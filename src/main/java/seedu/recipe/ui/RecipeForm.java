@@ -27,6 +27,7 @@ import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.util.FieldsUtil;
@@ -229,7 +230,8 @@ public class RecipeForm extends UiPart<Region> {
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
             recipe.getIngredients().forEach((ingredient, information) -> {
-                TextArea ingredientField = FieldsUtil.createDynamicTextArea(ingredient.toString());
+                String ingredientBuilder = new IngredientBuilder(ingredient, information).name;
+                TextArea ingredientField = FieldsUtil.createDynamicTextArea(ingredientBuilder);
                 ingredientField.setWrapText(true);
                 ingredientsBox.getChildren().add(ingredientField);
             });

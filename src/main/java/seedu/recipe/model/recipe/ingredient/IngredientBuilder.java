@@ -47,6 +47,56 @@ public class IngredientBuilder {
     }
 
     /**
+     * Constructs an {@code IngredientBuilder} instance, from a Recipe instance's Ingredient Key-Value pair.
+     * This is used for UI conversion for the Edit form functionality.
+     * @param mainIngredient The Recipe instance's valid ingredient key.
+     * @param information The Recipe instance's valid IngredientInformation value assigned to the Ingredient key.
+     */
+    public IngredientBuilder(Ingredient mainIngredient, IngredientInformation information) {
+        StringBuilder commandString = new StringBuilder();
+
+        //Quantity
+        information.getQuantity()
+                .map(v -> AMOUNT_PREFIX.getPrefix() + " " + v + " ")
+                .ifPresent(commandString::append);
+        //Estimated Amount
+        information.getEstimatedQuantity()
+                .map(v -> ESTIMATE_PREFIX.getPrefix() + " " + v + " ")
+                .ifPresent(commandString::append);
+        //Name
+        commandString.append(NAME_PREFIX)
+                .append(" ")
+                .append(mainIngredient.getName())
+                .append(" ");
+        //Common Name
+        if (!mainIngredient.getCommonName().isEmpty()) {
+            commandString.append(COMMON_NAME_PREFIX.getPrefix())
+                .append(" ")
+                .append(mainIngredient.getCommonName())
+                .append(" ");
+        }
+        //Remarks
+        information.getRemarks().forEach(remark ->
+            commandString.append(REMARK_PREFIX.getPrefix())
+                .append(" ")
+                .append(remark)
+                .append(" ")
+        );
+        //Substitutions
+        information.getSubstitutions().forEach(ingredient ->
+                commandString.append(SUBSTITUTION_PREFIX.getPrefix())
+                .append(" ")
+                .append(ingredient.getName())
+                .append(" ")
+        );
+
+        HashMap<Prefix, List<String>> tokens = IngredientParser.parse(commandString.toString());
+        checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
+        this.arguments = tokens;
+        this.commandString = commandString.toString();
+    }
+
+    /**
      * Returns true if a given string is a valid ingredient.
      */
     public static boolean isValidIngredient(String test) {
