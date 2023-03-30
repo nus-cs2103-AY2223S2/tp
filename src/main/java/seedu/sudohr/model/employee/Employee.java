@@ -150,6 +150,10 @@ public class Employee {
         return Objects.hash(id, name, phone, email, address, tags);
     }
 
+    /**
+     * Displays all information about an employee in SudoHR.
+     * @return A concatenated string all all information about the employee.
+     */
     public String toStringAllFields() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
