@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes an internship application identified by its displayed index from the internship applications list.
  */
 public class DeleteCommand extends Command {
 
@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@code targetIndex} internship
+     * Creates a DeleteCommand to delete the specified {@code targetIndex} internship applications.
      */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

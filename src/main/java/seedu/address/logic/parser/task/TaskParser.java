@@ -16,12 +16,12 @@ import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.task.note.AddNoteCommandParser;
 import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
-import seedu.address.logic.parser.task.note.NoteCommandParser;
+import seedu.address.logic.parser.task.todo.AddTodoCommandParser;
 import seedu.address.logic.parser.task.todo.DeleteTodoCommandParser;
 import seedu.address.logic.parser.task.todo.EditContentCommandParser;
 import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
-import seedu.address.logic.parser.task.todo.TodoCommandParser;
 
 /**
  * Parses user input related to task package.
@@ -66,7 +66,7 @@ public class TaskParser {
     private Command parseTodoCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
         case AddTodoCommand.COMMAND_WORD:
-            return new TodoCommandParser().parse(arguments);
+            return new AddTodoCommandParser().parse(arguments);
 
         case ListTodoCommand.COMMAND_WORD:
             return new ListTodoCommand();
@@ -91,7 +91,7 @@ public class TaskParser {
     private Command parseNoteCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
         case AddNoteCommand.COMMAND_WORD:
-            return new NoteCommandParser().parse(arguments);
+            return new AddNoteCommandParser().parse(arguments);
 
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();

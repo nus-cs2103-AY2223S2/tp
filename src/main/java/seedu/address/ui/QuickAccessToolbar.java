@@ -36,10 +36,10 @@ public class QuickAccessToolbar extends UiPart<Region> {
     }
 
     /**
-     * Getter method for helpButton.
+     * Set focus back to home button.
      */
-    public Button getHelpButton() {
-        return helpButton;
+    public void focusHomeButton() {
+        setFocusButton(homeButton);
     }
 
     /**
@@ -48,6 +48,7 @@ public class QuickAccessToolbar extends UiPart<Region> {
     @FXML
     private void redirectToHome() {
         try {
+            setFocusButton(homeButton);
             commandExecutor.execute("list");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(homeButton);
@@ -60,8 +61,8 @@ public class QuickAccessToolbar extends UiPart<Region> {
     @FXML
     private void redirectToReminder() {
         try {
-            //todo: replace with command that shows reminder
-            commandExecutor.execute("list_reminder");
+            setFocusButton(notificationButton);
+            commandExecutor.execute("remind");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(notificationButton);
         }
@@ -73,10 +74,15 @@ public class QuickAccessToolbar extends UiPart<Region> {
     @FXML
     private void redirectToHelp() {
         try {
+            setFocusButton(helpButton);
             commandExecutor.execute("help");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure(helpButton);
         }
+    }
+
+    private void setFocusButton(Button focusButton) {
+        focusButton.requestFocus();
     }
 
     /**

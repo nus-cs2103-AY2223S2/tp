@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -29,11 +28,10 @@ public interface Model {
 
     /** {@code Predicate} that evaluate to true for all unarchived applications */
     Predicate<InternshipApplication> PREDICATE_SHOW_ONGOING_APPLICATIONS = internshipApplication ->
-            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
+            !internshipApplication.isArchived();
 
     /** {@code Predicate} that evaluate to true for all archived internship applications */
-    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
-            internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
+    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = InternshipApplication::isArchived;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<InternshipTodo> PREDICATE_SHOW_ALL_TODO = unused -> true;
@@ -199,6 +197,12 @@ public interface Model {
      */
     void setTodo(InternshipTodo target,
                  InternshipTodo editedTodo);
+
+    /** Returns the InternshipApplication with the most imminent interview */
+    InternshipApplication getReminder();
+
+    /** Replaces current reminder with another InternshipApplication with an interview date that is earlier */
+    void updateReminder();
 
     /**
      * Replaces the given note {@code target} with {@code editedNote}.
