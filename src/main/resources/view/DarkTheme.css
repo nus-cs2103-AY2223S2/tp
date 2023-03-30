@@ -1,5 +1,5 @@
 .root {
-  -fx-font-family: 'roboto';
+  -fx-font-family: "Roboto";
 }
 
 .background {
@@ -311,12 +311,12 @@
 .context-label {
   -fx-font-size: 12px;
   -fx-text-fill: white;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .context-label-container {
   -fx-background-color: #5D81DF;
-  -fx-background-radius: 64;
+  -fx-background-radius: 48;
 }
 
 #cardPane {

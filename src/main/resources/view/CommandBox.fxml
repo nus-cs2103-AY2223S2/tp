@@ -17,6 +17,9 @@
             <padding>
                <Insets left="10.0" right="10.0" />
             </padding>
+            <HBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </HBox.margin>
          </HBox>
         <TextField fx:id="commandTextField" onAction="#handleCommandEntered" onKeyPressed="#handleKeyPress" promptText="Hello there! Type &quot;help&quot; for a list of commands. :)" HBox.hgrow="ALWAYS">
             <font>
