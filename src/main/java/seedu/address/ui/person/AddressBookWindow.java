@@ -16,7 +16,6 @@ import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.ui.HelpWindow;
-import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -32,8 +31,6 @@ public class AddressBookWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
     private final HelpWindow helpWindow;
-    private final MainWindow dukeDriverWindow;
-
     private Stage primaryStage;
     private Logic logic;
 
@@ -62,8 +59,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
-        this.dukeDriverWindow = new MainWindow(primaryStage, logic);
-        this.helpWindow = this.dukeDriverWindow.getHelpWindow();
+        this.helpWindow = new HelpWindow();
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -76,10 +72,9 @@ public class AddressBookWindow extends UiPart<Stage> {
      * {@code Logic} with a select handler and {@code MainWindow}.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic,
-                             Consumer<Person> selectHandler, MainWindow dukeDriverWindow,
+                             Consumer<Person> selectHandler,
                              HelpWindow helpWindow) {
         super(FXML, primaryStage);
-        this.dukeDriverWindow = dukeDriverWindow;
         this.helpWindow = helpWindow;
 
         // Set dependencies
@@ -162,10 +157,6 @@ public class AddressBookWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleListJob() {
-        dukeDriverWindow.focus();
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -181,9 +172,6 @@ public class AddressBookWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-            if (commandResult.isShowJobList()) {
-                handleListJob();
             }
 
             if (commandResult.isShowHelp()) {

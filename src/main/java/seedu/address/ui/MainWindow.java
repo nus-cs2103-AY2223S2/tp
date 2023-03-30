@@ -197,8 +197,7 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {},
-                this, this.helpWindow);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, this.helpWindow);
     }
 
     /**
