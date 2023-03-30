@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.roles.commons.core.GuiSettings;
 import seedu.roles.commons.core.LogsCenter;
-import seedu.roles.model.job.Order;
+import seedu.roles.logic.parser.OrderParser;
 import seedu.roles.model.job.Role;
 
 /**
@@ -132,11 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displaySortedSalaryList(Order order) {
+    public void displaySortedSalaryList(OrderParser orderParser) {
         List<Role> roles = filteredRoles.sorted((r1, r2) -> {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
-            if (order.toString().equals("asc")) {
+            if (orderParser.toString().equals("asc")) {
                 return Integer.compare(s1, s2);
             } else {
                 return Integer.compare(s2, s1);
@@ -148,11 +148,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displaySortedDeadlineList(Order order) {
+    public void displaySortedDeadlineList(OrderParser orderParser) {
         List<Role> roles = filteredRoles.sorted((r1, r2) -> {
             LocalDate s1 = LocalDate.parse(r1.getDeadline().toString());
             LocalDate s2 = LocalDate.parse(r2.getDeadline().toString());
-            if (order.toString().equals("asc")) {
+            if (orderParser.toString().equals("asc")) {
                 return s1.compareTo(s2);
             } else {
                 return s2.compareTo(s1);

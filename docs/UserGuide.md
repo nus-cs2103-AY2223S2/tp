@@ -127,7 +127,7 @@ Format: `tag {keyword}`
 Example: `tag Tech`
 
 ### Sorting by Salary
-Sort roles based on salary, in ascending/descending order.
+Sort roles based on salary, in ascending/descending orderParser.
 
 Format: `salary asc/desc`
 
@@ -138,7 +138,7 @@ Example 2: `salary desc`
 ![Deadline](images/SalaryCommand2.png)
 
 ### Sorting by Deadline
-Sort roles based on deadline, in ascending/descending order.
+Sort roles based on deadline, in ascending/descending orderParser.
 
 Format: `deadline asc/desc`
 
