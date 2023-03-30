@@ -120,6 +120,34 @@
     -fx-text-fill: white;
 }
 
+.view-card {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: #3c3e3f;
+}
+
+.view-card:filled:even {
+    -fx-background-color: #3c3e3f;
+}
+
+.view-card:filled:odd {
+    -fx-background-color: #515658;
+}
+
+.view-card:filled:selected {
+    -fx-background-color: #424d5f;
+}
+
+.view-card:filled:selected #cardPane {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 1;
+}
+
+.view-card .label {
+    -fx-text-fill: white;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;

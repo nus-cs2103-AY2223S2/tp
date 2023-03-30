@@ -11,11 +11,14 @@
 <fx:root resizable="true" title="View" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-
-            <HBox alignment="CENTER" fx:id="patientContainer">
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <HBox alignment="CENTER" fx:id="patientContainer" styleClass="view-card">
                 <GridPane HBox.hgrow="ALWAYS">
                 <children>
-                    <Label fx:id="patientViewCard" stylesheets="@PatientViewCard.css" wrapText="true">
+                    <Label fx:id="patientViewCard" wrapText="true" textOverrun="CLIP">
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
