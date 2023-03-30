@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -16,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.UiInputRequiredException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -24,6 +27,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String darkTheme = "view/DarkTheme.css";
+    private static final String lightTheme = "view/LightTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -59,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        //Set up CSS
+        this.primaryStage.getScene().getStylesheets().add(logic.getCssFilePath());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -147,6 +155,23 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes the theme based on the user command
+     */
+    @FXML
+    public void handleTheme(boolean isDarkTheme) {
+        if (isDarkTheme == true) {
+            this.primaryStage.getScene().getStylesheets().remove(lightTheme);
+            this.primaryStage.getScene().getStylesheets().add(darkTheme);
+            logic.setCssFilePath(darkTheme);
+        } else {
+            this.primaryStage.getScene().getStylesheets().remove(darkTheme);
+            this.primaryStage.getScene().getStylesheets().add(lightTheme);
+            logic.setCssFilePath(lightTheme);
+
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -163,6 +188,20 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private String handleChooseFile(String commandText) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().setAll(
+                new FileChooser.ExtensionFilter("JSON file", "*.json"));
+        fileChooser.setTitle("Select ModCheck data file to load!");
+        File f = fileChooser.showOpenDialog(getPrimaryStage());
+        if (f == null) {
+            commandText += " !";
+        } else {
+            commandText += (" " + f.getAbsolutePath());
+        }
+        return commandText;
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -174,12 +213,22 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult;
+            try {
+                commandResult = logic.execute(commandText);
+            } catch (UiInputRequiredException e) {
+                commandText = handleChooseFile(commandText);
+                commandResult = logic.execute(commandText);
+            }
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isDarkTheme() != null) {
+                handleTheme(commandResult.isDarkTheme());
             }
 
             if (commandResult.isExit()) {

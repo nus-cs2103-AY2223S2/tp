@@ -46,6 +46,16 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the user prefs' theme
+     */
+    String getCssFilePath();
+
+    /**
+     * Sets the user prefs' theme
+     */
+    void setCssFilePath(String cssFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
@@ -96,4 +106,11 @@ public interface Model {
     void resetPersonHiddenStatus();
 
 
+    /**
+     * Adds all contacts not already in the address book into the address book.
+     * If there is name collision (but with different fields), the person already in the address book will be retained.
+     * @param toBeCombined The other address book to combine with.
+     * @param path The string representation of the path of the file to be combined with.
+     */
+    void combine(ReadOnlyAddressBook toBeCombined, String path);
 }
