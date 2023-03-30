@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE_SORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
+
 import java.util.Comparator;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,6 +16,11 @@ import seedu.address.model.service.appointment.Appointment;
 public class SortTechniciansCommand extends Command{
     public static final String COMMAND_WORD = "sorttechnicians";
     public static final String MESSAGE_SUCCESS = "Sorted technicians";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts technicians by attribute. "
+        + "Parameters: "
+        + PREFIX_SORT_BY + "[id | name | phone | email | address] "
+        + "Optional: "
+        + PREFIX_REVERSE_SORT;
 
     private final Comparator<Technician> cmp;
 
