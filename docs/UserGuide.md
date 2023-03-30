@@ -50,7 +50,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 <div class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:** <br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
@@ -69,6 +69,8 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
 
 ### Quickstart Guide: `quickstart`
 
