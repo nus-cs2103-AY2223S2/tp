@@ -36,15 +36,13 @@ public abstract class RecipeForm extends UiPart<Region> {
 
     // protected fields for package access
     protected final StringBuilder data;
-    //data fields
-    private final Recipe recipe;
-    private final Map<String, String> initialValues = new HashMap<>();
-    private final String title;
     @FXML
     protected VBox ingredientsBox;
     @FXML
     protected VBox stepsBox;
-    //UI child elements
+    private final Recipe recipe;
+    private final Map<String, String> initialValues = new HashMap<>();
+    private final String title;
     @FXML
     private TextField nameField;
     @FXML
@@ -219,14 +217,12 @@ public abstract class RecipeForm extends UiPart<Region> {
         durationField.setText(
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
-                .orElse("")
-                             );
+                .orElse(""));
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
-                .orElse("")
-                            );
+                .orElse(""));
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
