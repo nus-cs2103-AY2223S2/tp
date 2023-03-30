@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Edit Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Edit Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/edit_internship.png" />
     </icons>
@@ -119,7 +119,7 @@
                                         <children>
                                             <HBox prefHeight="31.0" prefWidth="433.0">
                                                 <children>
-                                                    <Label prefHeight="20.0" prefWidth="515.0" text="Qualifications">
+                                                    <Label prefHeight="20.0" prefWidth="471.0" text="Qualifications">
                                                         <font>
                                                             <Font size="14.0" />
                                                         </font>
@@ -129,6 +129,12 @@
                                                             <Font name="Berlin Sans FB" size="15.0" />
                                                         </font>
                                                     </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delQualificationButton" mnemonicParsing="false" onMouseClicked="#handleDelQualification" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
                                                 </children>
                                             </HBox>
                                             <TextField fx:id="qualification" prefHeight="25.0" prefWidth="516.0" promptText="Currently enrolled in a University Degree in Computer Science" />
@@ -143,7 +149,7 @@
                                         <children>
                                             <HBox prefHeight="31.0" prefWidth="433.0">
                                                 <children>
-                                                    <Label prefHeight="20.0" prefWidth="515.0" text="Programming Languages">
+                                                    <Label prefHeight="20.0" prefWidth="472.0" text="Programming Languages">
                                                         <font>
                                                             <Font size="14.0" />
                                                         </font>
@@ -153,6 +159,12 @@
                                                             <Font name="Berlin Sans FB" size="15.0" />
                                                         </font>
                                                     </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delProgrammingLanguageButton" mnemonicParsing="false" onMouseClicked="#handleDelProgrammingLanguage" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
                                                 </children>
                                             </HBox>
                                             <TextField fx:id="programmingLanguage" prefHeight="25.0" prefWidth="516.0" promptText="C++" />
@@ -167,7 +179,7 @@
                                         <children>
                                             <HBox prefHeight="31.0" prefWidth="433.0">
                                                 <children>
-                                                    <Label prefHeight="20.0" prefWidth="515.0" text="Reviews">
+                                                    <Label prefHeight="20.0" prefWidth="472.0" text="Reviews">
                                                         <font>
                                                             <Font size="14.0" />
                                                         </font>
@@ -177,6 +189,12 @@
                                                             <Font name="Berlin Sans FB" size="15.0" />
                                                         </font>
                                                     </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delReviewButton" mnemonicParsing="false" onMouseClicked="#handleDelReview" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
                                                 </children>
                                             </HBox>
                                             <TextField fx:id="review" prefHeight="25.0" prefWidth="516.0" promptText="Offers great flexibility in work" />
@@ -191,7 +209,7 @@
                                         <children>
                                             <HBox prefHeight="31.0" prefWidth="433.0">
                                                 <children>
-                                                    <Label prefHeight="20.0" prefWidth="515.0" text="Notes">
+                                                    <Label prefHeight="20.0" prefWidth="474.0" text="Notes">
                                                         <font>
                                                             <Font size="14.0" />
                                                         </font>
@@ -201,6 +219,12 @@
                                                             <Font name="Berlin Sans FB" size="15.0" />
                                                         </font>
                                                     </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delNoteButton" mnemonicParsing="false" onMouseClicked="#handleDelNote" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
                                                 </children>
                                             </HBox>
                                             <TextField fx:id="note" prefHeight="25.0" prefWidth="516.0" promptText="Recruiter will visit campus on 21 / 3" />
@@ -215,7 +239,7 @@
                                         <children>
                                             <HBox prefHeight="31.0" prefWidth="433.0">
                                                 <children>
-                                                    <Label prefHeight="20.0" prefWidth="515.0" text="Reflections">
+                                                    <Label prefHeight="20.0" prefWidth="472.0" text="Reflections">
                                                         <font>
                                                             <Font size="14.0" />
                                                         </font>
@@ -225,6 +249,12 @@
                                                             <Font name="Berlin Sans FB" size="15.0" />
                                                         </font>
                                                     </Button>
+                                       <Label prefHeight="17.0" prefWidth="4.0" />
+                                       <Button fx:id="delReflectionButton" mnemonicParsing="false" onMouseClicked="#handleDelReflection" prefHeight="26.0" prefWidth="33.0" styleClass="add-button" stylesheets="@PopupAddInternship.css" text="-">
+                                          <font>
+                                             <Font name="Berlin Sans FB" size="15.0" />
+                                          </font>
+                                       </Button>
                                                 </children>
                                             </HBox>
                                             <TextField fx:id="reflection" prefHeight="25.0" prefWidth="516.0" promptText="Should tailor cover letter to match the company's core values" />
