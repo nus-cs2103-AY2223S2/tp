@@ -259,4 +259,9 @@ public class ModelManager implements Model {
     public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
         expenseTracker.removeRecurringExpense(recurringExpenseManager);
     }
+
+    @Override
+    public void addRetroactiveExpenses() {
+        expenseTracker.generateRetroactiveExpenses();
+    }
 }

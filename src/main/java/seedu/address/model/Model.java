@@ -183,4 +183,6 @@ public interface Model {
      * @param recurringExpenseManager the recurring expense to be deleted.
      */
     void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager);
+
+    void addRetroactiveExpenses();
 }

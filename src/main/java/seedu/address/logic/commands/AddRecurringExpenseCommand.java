@@ -65,6 +65,7 @@ public class AddRecurringExpenseCommand extends Command {
         }
 
         dataModel.addRecurringGenerator(toAdd);
+        dataModel.addRetroactiveExpenses();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);
     }
 

@@ -40,6 +40,7 @@ public class RecurringExpenseList {
         return recurringExpenseList;
     }
 
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}
      * @return The unmodifiable list.

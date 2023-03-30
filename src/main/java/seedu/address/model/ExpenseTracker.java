@@ -90,6 +90,18 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         setCategories(newData.getCategoryList());
         setBudget(newData.getBudget());
         setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
+        generateRetroactiveExpenses();
+    }
+
+    /**
+     * Adds expenses retroactively for recurring expenses which have starting dates that need to be added.
+     */
+    public void generateRetroactiveExpenses() {
+        for (RecurringExpenseManager generators : recurringGenerators.getRecurringExpenseList()) {
+            for (Expense expense : generators.getExpenses()) {
+                addExpense(expense);
+            }
+        }
     }
 
     //// category-level operations
