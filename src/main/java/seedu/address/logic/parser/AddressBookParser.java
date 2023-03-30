@@ -29,6 +29,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OpenFileCommand;
 import seedu.address.logic.commands.PerformanceCommand;
 import seedu.address.logic.commands.PhotoCommand;
 import seedu.address.logic.commands.RemarkCommand;

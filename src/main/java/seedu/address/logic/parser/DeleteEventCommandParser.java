@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -48,7 +47,7 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
                 || arePrefixesPresent(argMultimap, PREFIX_TUTORIAL))
                 || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddLabCommand.MESSAGE_USAGE));
+                    DeleteEventCommand.MESSAGE_USAGE));
         }
 
         Index[] index;

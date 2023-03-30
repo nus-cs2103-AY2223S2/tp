@@ -18,20 +18,20 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddLabCommand;
-import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.OpenFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteEventCommand object
+ * Parses input arguments and creates a new OpenFileCommand object
  */
-public class OpenFileCommandParser implements Parser<DeleteEventCommand> {
+public class OpenFileCommandParser implements Parser<OpenFileCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
-     * and returns a DeleteEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the OpenFileCommand
+     * and returns a OpenFileCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteEventCommand parse(String args) throws ParseException {
+    public OpenFileCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenizeFirstPrefix(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
 
@@ -40,7 +40,7 @@ public class OpenFileCommandParser implements Parser<DeleteEventCommand> {
                 PREFIX_PHOTO, PREFIX_DATE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteEventCommand.MESSAGE_USAGE));
+                    OpenFileCommand.MESSAGE_USAGE));
         }
 
         if ((!(arePrefixesPresent(argMultimap, PREFIX_LAB)
@@ -48,29 +48,27 @@ public class OpenFileCommandParser implements Parser<DeleteEventCommand> {
                 || arePrefixesPresent(argMultimap, PREFIX_TUTORIAL))
                 || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddLabCommand.MESSAGE_USAGE));
+                    OpenFileCommand.MESSAGE_USAGE));
         }
 
-        Index[] index;
-        DeleteEventCommand deleteEventCommand;
+        Index index;
+        OpenFileCommand openFileCommand;
+
+        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            throw new ParseException("Consultation events do not have files attached to them");
+        }
 
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_TUTORIAL).get());
-            deleteEventCommand = new DeleteEventCommand(index);
-            deleteEventCommand.markTutorial();
-        } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_CONSULTATION).get());
-            deleteEventCommand = new DeleteEventCommand(index);
-            deleteEventCommand.markConsultation();
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL).get());
+            openFileCommand = new OpenFileCommand(index);
+            openFileCommand.markTutorial();
         } else {
             //If it is not tutorial and not a consultation, it has to be a lab
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_LAB).get());
-            deleteEventCommand = new DeleteEventCommand(index);
-            deleteEventCommand.markLab();
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LAB).get());
+            openFileCommand = new OpenFileCommand(index);
+            openFileCommand.markLab();
         }
-
-        return deleteEventCommand;
-
+        return openFileCommand;
     }
 
     /**

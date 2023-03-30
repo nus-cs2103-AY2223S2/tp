@@ -25,7 +25,7 @@ public class OpenFileCommand extends Command {
             + ": Opens a file for the tutorial or lab identified by the index number used"
             + " in the displayed event list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "Tutorial/1";
+            + "Example: " + COMMAND_WORD + " Tutorial/1";
 
     public static final String MESSAGE_OPEN_FILE_SUCCESS = "Opened file for Event: %1$s";
     public static final String CONSULTATION_OPEN_FILE_FAILURE = "Consultation events do not have attachments!";
@@ -162,6 +162,8 @@ public class OpenFileCommand extends Command {
             } catch (IOException e) {
                 throw new CommandException(Messages.MESSAGE_INVALID_FILE);
             }
+        } else {
+            throw new CommandException(Messages.MESSAGE_NO_FILE);
         }
     }
 
