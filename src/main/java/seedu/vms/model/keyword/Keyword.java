@@ -1,5 +1,7 @@
 package seedu.vms.model.keyword;
 
+import java.util.Objects;
+
 /**
  * Represents an Keyword in the vaccine management system.
  */
@@ -18,8 +20,8 @@ public class Keyword {
      * Both fields must be present and not null.
      */
     public Keyword(String mainKeyword, String keyword) {
-        this.keyword = keyword;
-        this.mainKeyword = mainKeyword;
+        this.keyword = Objects.requireNonNull(keyword);
+        this.mainKeyword = Objects.requireNonNull(mainKeyword);
     }
 
     public String getKeyword() {
