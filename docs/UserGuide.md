@@ -21,12 +21,12 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 2. [**Table of Contents**](#table-of-contents)
 3. [**Overview**](#overview)
     1. [**What is EduMate?**](#what-is-edumate)
-    2. [**Understanding the Colours**](#understanding-the-colours)
+    2. [**Understanding the Colours**](#understanding-the-symbols)
     3. [**Glossary**](#glossary)
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out! (Recommended)**](#try-it-out-recommended)
+    3. [**Try it out! (Recommended)**](#try-it-out---recommended-)
     4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
@@ -73,7 +73,7 @@ EduMate is a desktop app designed for NUS students to manage their academic and 
 but has other interesting features as well. It works mostly by commands and can behave like a
 Command Line Interface (CLI).
 
-### Understanding the Colours
+### Understanding the Symbols
 
 Here is a breakdown of the different symbols and colours we will use throughout this guide.
 
