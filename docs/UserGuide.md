@@ -220,6 +220,73 @@ exit
 help
 ```
 
+### `keyword` - Keyword functionalities
+
+Keywords are identified by their sub and main keywords. Following is the list of the attributes that a keyword has.
+
+* **Keyword name** : `<keyword>` - the name of the user-defined keyword.
+* **Main Keyword** : `<mainKeyword>` - the main keyword that the user-defined keyword is paired to.
+
+Default keywords implemented are shown in the list below.
+* pat-->patient
+* appt-->appointment
+* vacc-->vaccination
+
+#### `add` - Add a keyword
+
+Adds a new keyword as defined in the command into the system.
+
+##### Syntax
+
+<pre>
+keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
+</pre>
+
+* <code><var>MAIN_KEYWORD</var></code> : `<mainKeyword>`
+* <code><var>KEYWORD</var></code> : `<keyword>`
+
+##### Example
+
+Example assumes that the keyword does not exist yet.
+
+```text
+keyword add --k patient --n pa 
+```
+
+<br><br>
+Output:<br>
+
+```text
+[INFO] New keyword added: pa-->patient
+```
+
+#### `delete` - Delete a keyword
+
+Deletes a keyword as defined in the command in the system.
+
+##### Syntax
+
+<pre>
+keyword delete <var>KEYWORD</var>
+</pre>
+
+* <code><var>KEYWORD</var></code> : `<keyword>`
+
+##### Example
+
+Example assumes that the keyword already exists.
+
+```text
+keyword delete pat
+```
+
+<br><br>
+Output:<br>
+
+```text
+[INFO] Deleted keyword: pa-->patient
+```
+
 ### `patient` - Patient functionalities
 
 ##### Patient data
