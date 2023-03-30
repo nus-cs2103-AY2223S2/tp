@@ -390,31 +390,31 @@ Format: `help`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `fish add` `tank add` `task add` <br>`tank addReadings`
-**Clear** | `clear` **Coming soon**
-**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3`
-**Edit** | **Coming soon**
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**
-**Sort** | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`
-**List** | `list tanks` `list fishes`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                        |
+|------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `fish add` `tank add` `task add` <br>`tank addReadings`                                                                 |
+| **Clear**  | `clear` **Coming soon**                                                                                                 |
+| **Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3` |
+| **Edit**   | **Coming soon**                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**                                                                      |
+| **Sort**   | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`                                                              |
+| **List**   | `list tanks` `list fishes`                                                                                              |
+| **Help**   | `help`                                                                                                                  |
 
 ## Command prefix summary
 
- Type              | Attribute             | Prefix
--------------------|-----------------------|------------------
- Fish              | **Name**              | **n/**
-    Fish| **Last fed date**     | **lfd/**
-**Fish**| **Species**               |**s/**
-**Fish**| **Feeding Interval**      |**fi/**
-**Fish**| **Tag**                   |**tg/**
-**Fish**| **Sorting**               |**by/**
-**Tank**| **Description**           |**d/**
-**Tank**| **Ammonia level reading** |**al/**
-**Tank**|**PH reading**|**ph/**
-**Tank**|**Temperature reading**|**tp/**
-**All**|**Tank**|**tk/**
+| Type     | Attribute                 | Prefix   |
+|----------|---------------------------|----------|
+| Fish     | **Name**                  | **n/**   |
+| Fish     | **Last fed date**         | **lfd/** |
+| **Fish** | **Species**               | **s/**   |
+| **Fish** | **Feeding Interval**      | **fi/**  |
+| **Fish** | **Tag**                   | **tg/**  |
+| **Fish** | **Sorting**               | **by/**  |
+| **Tank** | **Description**           | **d/**   |
+| **Tank** | **Ammonia level reading** | **al/**  |
+| **Tank** | **PH reading**            | **ph/**  |
+| **Tank** | **Temperature reading**   | **tp/**  |
+| **All**  | **Tank**                  | **tk/**  |
 
 []: #listing-tanks-list-tank
