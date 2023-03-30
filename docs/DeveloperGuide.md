@@ -303,7 +303,7 @@ Step 1. The user launches the application for the first time.
 Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
 
 Step 3. The user now wants to view a summary of the statistics of the jobs in the deliveryJobList.
-The `statistics` command will open up the statistics window, where a list of statistics will be shown.
+The `stats` command will open up the statistics window, where a list of statistics will be shown.
 
 The following sequence diagram shows how the statistics operation works:
 
