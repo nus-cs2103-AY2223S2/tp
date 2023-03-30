@@ -21,6 +21,7 @@ public class Pet {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private boolean isMarked;
 
     // Data fields
     private final Address address;
@@ -44,6 +45,7 @@ public class Pet {
         this.cost = new Cost(timestamp);
         this.deadline = deadline;
         this.tags.addAll(tags);
+        this.isMarked = false;
     }
     public OwnerName getOwnerName() {
         return ownerName;
