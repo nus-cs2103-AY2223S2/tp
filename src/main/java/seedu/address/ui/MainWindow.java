@@ -78,7 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         quickAccessToolbar = new QuickAccessToolbar(this::executeCommand);
         quickAccessToolbarPlaceholder.getChildren().add(quickAccessToolbar.getRoot());
 
-        reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication());
+        reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication(), this);
 
         helpWindow = new HelpWindow();
         headerGridPane.maxWidthProperty().bind(primaryStage.widthProperty());
@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
-            reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication());
+            reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication(), this);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

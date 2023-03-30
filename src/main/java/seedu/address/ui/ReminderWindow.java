@@ -24,12 +24,12 @@ public class ReminderWindow extends UiPart<Stage> {
     /**
      * Creates a {@code ReminderWindow} with the given {@code InternshipApplication}
      */
-    public ReminderWindow(Stage root, InternshipApplication application) {
+    public ReminderWindow(Stage root, InternshipApplication application, MainWindow mainWindow) {
         super(FXML, root);
         if (application == null) {
             reminderApplication.setText(EMPTY_REMINDER);
         } else {
-            reminderApplication.setGraphic(new ApplicationCard(application).getRoot());
+            reminderApplication.setGraphic(new ApplicationCard(application, mainWindow).getRoot());
         }
     }
 
