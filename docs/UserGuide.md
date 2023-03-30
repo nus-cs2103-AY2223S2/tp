@@ -561,9 +561,9 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 ## 4.9 Searching for contact information: `search`
 
-Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [ccapos/CCA_POSITION_KEYWORD]...`
+Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [maj/MAJOR_KEYWORD]...`
 
-> For keywords without a specified field, finds all contacts whose information from any field contains the given keywords. For keywords in a specified field, finds all contacts whose field contains given keyword.
+> For keywords without a specified field, finds all contacts whose information from any field contains the given keywords.<br>For keywords in a specified field, finds all contacts whose field contains given keyword.
 
 There are 2 methods in which you can search for a contact. 
 
@@ -573,7 +573,13 @@ Using `search KEYWORD` will return a list of all the contacts that match the `KE
 
 For example, if you have 2 contacts, one with the name January, and another with a birthday in January, `search January` will return both those contacts.
 
-Examples:
+**Method 2:**
+
+Using `search` with prefixes (e.g. `search n/NAME_KEYWORD`) will return a list of contacts with that match the information field given by the prefix.
+
+From the earlier example, if you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will only return the contact whose name is January.
+
+**Additional Examples:**
 * `search january` returns all contacts whose information fields contain the keyword `january`.
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
 * `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
@@ -590,11 +596,17 @@ Examples:
 
 <div style="page-break-after: always"></div>
 
+**Search Example 1:**
+
+**Input in Command Box:** `search cs`
+
+**Result:**<br>![SearchCommandExample1](images/SearchCommandExample1.png)
+
 **Search Example 2:**
 
-**Input in Command Box:** `search january`
+**Input in Command Box:** `search mod/![img.png](img.png)cs`
 
-**Result:**<br>![SearchCommandExample2](images/johndoe.png)
+**Result:**<br>![SearchCommandExample2](images/SearchCommandExample2.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
@@ -613,7 +625,8 @@ Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
 > Opens the respective social media platform of an existing contact.
 
 You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
-For WhatsApp, if handle stored is an 8-digit phone number, it will be assumed to be a Singaporean number and `65` country code will be automatically filled. 
+
+For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
@@ -621,9 +634,9 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 
 **Open Example:**
 
-**Input in Command Box:** `open 1 tg/`
+**Input in Command Box:** `open 2 tg/`
 
-**Result:**<br>![OpenContactExample](images/johndoe.png)
+**Result:**<br>![OpenContactExample](images/OpenContactExample.png)
 
 [↑ Back to feature list](#4-features)
 
@@ -636,7 +649,8 @@ Format: `chat PERSON_INDEX wa/ m/`
 > Sends a chat to an existing contact.
 
 Due to platform constraints, only WhatsApp is supported.
-Same as `open`, if WhatsApp handle stored is an 8-digit phone number, it will be assumed to be a Singaporean number and `65` country code will be automatically filled.
+
+Similar to `open`, if a WhatsApp handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
@@ -644,9 +658,9 @@ You'll need to download the desktop application for <a href="https://www.whatsap
 
 **Chat Example:**
 
-**Input in Command Box:** `chat 1 [wa/] [tg/] m/hello world!`
+**Input in Command Box:** `chat 1 wa/ m/hello world!`
 
-**Result:**<br>![ChatContactExample](images/johndoe.png)
+**Result:**<br>![ChatContactExample](images/ChatContactExample.png)
 
 [↑ Back to feature list](#4-features)
 
