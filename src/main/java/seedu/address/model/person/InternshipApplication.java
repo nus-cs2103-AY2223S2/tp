@@ -107,6 +107,8 @@ public class InternshipApplication {
         // Data field
         this.contact = contact;
         this.status = status;
+
+        //Interview field
         this.interviewDate = interviewDate;
     }
 

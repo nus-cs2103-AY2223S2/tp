@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's reflection in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidReflection(String)}
  */
-public class Reflection {
+public class Reflection extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Reflections can take any values, and it should not be blank";
 

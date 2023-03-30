@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -12,10 +13,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.InternshipApplicationAttribute;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
@@ -31,6 +33,8 @@ public class ViewContentPanel extends UiPart<Region> {
     private VBox container;
     @FXML
     private Pane contentContainer;
+    @FXML
+    private VBox headingContainer;
 
     @FXML
     private AnchorPane emptyAnchorPane;
@@ -38,9 +42,11 @@ public class ViewContentPanel extends UiPart<Region> {
     private Label emptyLabel;
 
     @FXML
-    private Label title;
+    private Text title;
     @FXML
-    private Label description;
+    private TextFlow titleTextFlow;
+    @FXML
+    private Text description;
     @FXML
     private Label sideLabel;
     @FXML
@@ -63,40 +69,30 @@ public class ViewContentPanel extends UiPart<Region> {
         return container;
     }
 
-    private void addReviews(InternshipApplication internshipApplication) {
-        if (internshipApplication.getReviews().size() > 0) {
-            VBox reviewsContainer = new VBox();
-            reviewsContainer.setSpacing(3);
-            Label reviewLabel = new Label("Reviews:");
-            reviewLabel.getStyleClass().add("cell_small_label");
-            FlowPane reviews = new FlowPane();
-            reviews.getStyleClass().add("reviews");
-            reviews.getChildren().clear();
-            internshipApplication.getReviews().stream()
-                    .sorted(Comparator.comparing(review -> review.value))
-                    .forEach(review -> reviews.getChildren().add(new Label(review.value)));
-            reviewsContainer.getChildren().addAll(reviewLabel, reviews);
-            pane.getItems().add(reviewsContainer);
+    private void addLabel(String labelString, InternshipApplicationAttribute attribute) {
+        if (attribute != null && attribute.toString() != null) {
+            Label label = new Label(labelString + ": " + attribute.toString());
+            label.getStyleClass().add("cell_small_label");
+            label.setWrapText(true);
+            label.maxWidthProperty().bind(pane.widthProperty());
+            pane.getItems().add(label);
         }
     }
 
-    private void addContact(InternshipApplication internshipApplication) {
-        Contact companyContact = internshipApplication.getContact();
-        if (companyContact != null) {
-            Label companyPhone = new Label("Company phone: " + companyContact.getPhone().value);
-            companyPhone.getStyleClass().add("cell_small_label");
-            Label companyEmail = new Label("Company email: " + companyContact.getEmail().value);
-            companyEmail.getStyleClass().add("cell_small_label");
-            pane.getItems().addAll(companyPhone, companyEmail);
-        }
-    }
-
-    private void addInterviewDate(InternshipApplication internshipApplication) {
-        InterviewDate interviewDateStr = internshipApplication.getInterviewDate();
-        if (interviewDateStr != null) {
-            Label interviewDate = new Label("Company phone: " + interviewDateStr);
-            interviewDate.getStyleClass().add("cell_small_label");
-            pane.getItems().add(interviewDate);
+    private void addFlowPane(String labelString, Set<? extends InternshipApplicationAttribute> attributesSet) {
+        if (attributesSet.size() > 0) {
+            VBox flowPaneContainer = new VBox();
+            flowPaneContainer.setSpacing(3);
+            Label label = new Label(labelString + ":");
+            label.getStyleClass().add("cell_small_label");
+            FlowPane flowPane = new FlowPane();
+            flowPane.getStyleClass().add("multiple-items");
+            flowPane.getChildren().clear();
+            attributesSet.stream()
+                    .sorted(Comparator.comparing(InternshipApplicationAttribute::toString))
+                    .forEach(review -> flowPane.getChildren().add(new Label(review.toString())));
+            flowPaneContainer.getChildren().addAll(label, flowPane);
+            pane.getItems().add(flowPaneContainer);
         }
     }
 
@@ -114,17 +110,47 @@ public class ViewContentPanel extends UiPart<Region> {
         contentContainer.setManaged(true);
     }
 
+    private void showCompulsoryAttributes(InternshipApplication internshipApplication) {
+        title.setText(internshipApplication.getCompanyName().fullName);
+        description.setText(internshipApplication.getJobTitle().fullName);
+        sideLabel.setText(internshipApplication.getStatus().label);
+        sideLabel.setStyle("-fx-background-color: " + internshipApplication.getStatus().labelColour);
+    }
+
+    private void showOptionalAttributes(InternshipApplication internshipApplication) {
+        pane.getItems().clear();
+        if (internshipApplication.getContact() != null) {
+            addLabel("Company Phone", internshipApplication.getContact().getPhone());
+            addLabel("Company Email", internshipApplication.getContact().getEmail());
+        }
+        addLabel("Interview Date", internshipApplication.getInterviewDate());
+        addLabel("Location", internshipApplication.getLocation());
+        addLabel("Salary", internshipApplication.getSalary());
+        addLabel("Rating", internshipApplication.getRating());
+        addFlowPane("Reviews", internshipApplication.getReviews());
+        addFlowPane("Programming Languages", internshipApplication.getProgrammingLanguages());
+        addFlowPane("Qualifications", internshipApplication.getQualifications());
+        addFlowPane("Notes", internshipApplication.getNotes());
+        addFlowPane("Reflections", internshipApplication.getReflections());
+    }
+
     private void addInternshipTodoDetails(InternshipTodo internshipTodo) {
         Label deadline = new Label("Deadline: " + internshipTodo.getDeadline());
         deadline.getStyleClass().add("cell_small_label");
-
-        Label note = new Label("Note: " + internshipTodo.getNote());
-        note.getStyleClass().add("cell_small_label");
+        deadline.maxWidthProperty().bind(pane.widthProperty());
 
         Label createdOn = new Label("Created on: " + internshipTodo.getDateString());
         createdOn.getStyleClass().add("cell_small_label");
+        createdOn.maxWidthProperty().bind(pane.widthProperty());
 
-        pane.getItems().addAll(deadline, note, createdOn);
+        if (internshipTodo.getNote() != null) {
+            Label note = new Label("Note: " + internshipTodo.getNote());
+            note.getStyleClass().add("cell_small_label");
+            note.maxWidthProperty().bind(pane.widthProperty());
+            pane.getItems().addAll(deadline, note, createdOn);
+        } else {
+            pane.getItems().addAll(deadline, createdOn);
+        }
     }
 
     public void clearPanel() {
@@ -134,14 +160,8 @@ public class ViewContentPanel extends UiPart<Region> {
     public void setInternshipApplication(InternshipApplication internshipApplication) {
         if (internshipApplication != null) {
             showActualPanel();
-            title.setText(internshipApplication.getCompanyName().fullName);
-            description.setText(internshipApplication.getJobTitle().fullName);
-            sideLabel.setText(internshipApplication.getStatus().label);
-            sideLabel.setStyle("-fx-background-color: " + internshipApplication.getStatus().labelColour);
-            pane.getItems().clear();
-            addContact(internshipApplication);
-            addReviews(internshipApplication);
-            addInterviewDate(internshipApplication);
+            showCompulsoryAttributes(internshipApplication);
+            showOptionalAttributes(internshipApplication);
         } else {
             displayEmptyPanel();
         }
