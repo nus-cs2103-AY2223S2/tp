@@ -21,7 +21,7 @@ import seedu.address.model.person.parent.ReadOnlyParents;
 import seedu.address.model.person.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PowerConnect data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     private final FilteredList<Parent> filteredParents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
      */
 
     public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
