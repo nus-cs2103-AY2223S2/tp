@@ -90,13 +90,6 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 
 [Back To Contents](#table-of-contents)
 
-### UI Breakdown For `Me`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
-</div>
-
-[Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
 ## NeoBook Features
 
