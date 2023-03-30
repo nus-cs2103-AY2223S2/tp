@@ -183,7 +183,7 @@ Examples:
 
 - `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
-## Editing a ward's details in the system: `editward`
+### Editing a ward's details in the system: `editward`
 
 Edit an existing ward's name or capacity.
 
@@ -198,7 +198,7 @@ Examples:
 - `editward 1 w/A02` Edits the name of the first currently displayed ward to be `A02`.
 - `editward 5 c/35` Edits the capacity of the fifth currently displayed ward to be `35`.
 
-## Deleting a ward from the system: `deleteward`
+### Deleting a ward from the system: `deleteward`
 
 Deletes a ward by index.
 
