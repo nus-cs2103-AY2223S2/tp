@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -67,7 +68,7 @@ public class ArchiveCommand extends Command {
         InternshipApplication archivedApplication = createdArchivedApplication(internshipToArchive);
 
         model.setApplication(internshipToArchive, archivedApplication);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ARCHIVED_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, archivedApplication));
     }
 
@@ -88,10 +89,13 @@ public class ArchiveCommand extends Command {
         Rating rating = internshipApplication.getRating();
         Set<Reflection> reflections = internshipApplication.getReflections();
         Contact contact = internshipApplication.getContact();
+        InternshipStatus status = internshipApplication.getStatus();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
+        Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, interviewDate);
+                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, true, interviewDate,
+                documents);
     }
 
     @Override

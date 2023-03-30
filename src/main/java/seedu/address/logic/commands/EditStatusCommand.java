@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -92,10 +93,12 @@ public class EditStatusCommand extends Command {
         Rating rating = internshipApplication.getRating();
         Set<Reflection> reflections = internshipApplication.getReflections();
         Contact contact = internshipApplication.getContact();
+        boolean isArchived = internshipApplication.isArchived();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
+        Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

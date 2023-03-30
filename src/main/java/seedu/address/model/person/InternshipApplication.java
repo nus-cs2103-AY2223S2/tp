@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,10 +31,12 @@ public class InternshipApplication {
     // Interview fields
     private final InterviewDate interviewDate;
     private final InternshipStatus status;
+    private final boolean isArchived;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final Contact contact;
+    private final Documents documents;
 
     /**
      * Every field must be present and not null.
@@ -52,11 +55,33 @@ public class InternshipApplication {
         this.contact = null;
         //Interview field
         this.status = InternshipStatus.NA;
+        this.isArchived = false;
         this.interviewDate = null;
+        this.documents = null;
     }
 
     /**
-     * The company name and job title field must be present and not null.
+     * Company name and job title field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews, InternshipStatus status,
+                                 Documents documents) {
+        requireAllNonNull(name, job);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.location = null;
+        this.salary = null;
+        this.rating = null;
+
+        this.reviews.addAll(reviews);
+        this.contact = null;
+        this.status = status;
+        this.isArchived = false;
+        this.interviewDate = null;
+        this.documents = documents;
+    }
+
+    /**
+     * Company name and job title field must be present and not null.
      */
     public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews,
         Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
@@ -77,8 +102,11 @@ public class InternshipApplication {
 
         // Data field
         this.contact = null;
-        //Interview field
         this.status = InternshipStatus.NA;
+        this.isArchived = false;
+        this.documents = null;
+
+        //Interview field
         this.interviewDate = null;
     }
 
@@ -86,7 +114,7 @@ public class InternshipApplication {
      * Every field must be present and not null.
      */
     public InternshipApplication(CompanyName name, JobTitle job, Set<Review> reviews, Contact contact,
-                                 InternshipStatus status) {
+                                 InternshipStatus status, Documents documents) {
         requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
@@ -97,6 +125,8 @@ public class InternshipApplication {
         this.location = null;
         this.salary = null;
         this.rating = null;
+        this.isArchived = false;
+        this.documents = documents;
     }
 
     /**
@@ -105,8 +135,7 @@ public class InternshipApplication {
     public InternshipApplication(CompanyName companyName, JobTitle job, Set<Review> reviews,
         Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
         Salary salary, Set<Note> notes, Rating rating, Set<Reflection> reflections, Contact contact,
-        InternshipStatus status, InterviewDate interviewDate) {
-
+        InternshipStatus status, boolean isArchived, InterviewDate interviewDate, Documents documents) {
         requireAllNonNull(companyName, job);
         //Identity field
         this.companyName = companyName;
@@ -123,36 +152,47 @@ public class InternshipApplication {
         // Data field
         this.contact = contact;
         this.status = status;
+        this.isArchived = isArchived;
         this.interviewDate = interviewDate;
+        this.documents = documents;
     }
 
     public CompanyName getCompanyName() {
         return companyName;
     }
+
     public JobTitle getJobTitle() {
         return jobTitle;
     }
+
     public Set<Review> getReviews() {
         return Collections.unmodifiableSet(reviews);
     }
+
     public Set<ProgrammingLanguage> getProgrammingLanguages() {
         return Collections.unmodifiableSet(programmingLanguages);
     }
+
     public Set<Qualification> getQualifications() {
         return Collections.unmodifiableSet(qualifications);
     }
+
     public Location getLocation() {
         return location;
     }
+
     public Salary getSalary() {
         return salary;
     }
+
     public Set<Note> getNotes() {
         return Collections.unmodifiableSet(notes);
     }
+
     public Rating getRating() {
         return rating;
     }
+
     public Set<Reflection> getReflections() {
         return Collections.unmodifiableSet(reflections);
     }
@@ -175,6 +215,14 @@ public class InternshipApplication {
 
     public InterviewDate getInterviewDate() {
         return interviewDate;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public Documents getDocuments() {
+        return documents;
     }
 
     /**
@@ -224,7 +272,9 @@ public class InternshipApplication {
                 .append("; Job Title: ")
                 .append(getJobTitle())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Archived: ")
+                .append(isArchived());
 
         if (!reviews.isEmpty()) {
             builder.append("; Review: ");

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -97,10 +98,12 @@ public class DeleteContactCommand extends Command {
         Rating rating = internshipToDeleteContact.getRating();
         Set<Reflection> reflections = internshipToDeleteContact.getReflections();
         InternshipStatus status = internshipToDeleteContact.getStatus();
+        boolean isArchived = internshipToDeleteContact.isArchived();
         InterviewDate interviewDate = internshipToDeleteContact.getInterviewDate();
+        Documents documents = internshipToDeleteContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, null, status, interviewDate);
+                salary, notes, rating, reflections, null, status, isArchived, interviewDate, documents);
     }
 
     @Override
