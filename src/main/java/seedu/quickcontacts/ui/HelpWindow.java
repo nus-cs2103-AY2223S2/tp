@@ -16,19 +16,15 @@ import seedu.quickcontacts.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "The following are required prefix for addm"
-            + " and add command and what they stand for. \n"
+    public static final String HELP_MESSAGE = "The following are summary of prefixes and what they represent. \n"
             + "You can press the tab key to fill in the next parameter, \n"
-            + "if you forget what comes next. The other commands use the \n"
-            + "same prefixes to refer to a meeting/person property\n"
-            + "addm: \n"
-            + "Prefix: m/ dt/ p/ l/ des/\n"
+            + "if you forget what comes next."
+            + "Meeting Related Prefix: m/ dt/ p/ l/ des/\n"
             + "m/ : meeting title\n"
             + "dt/ : datetime\n"
             + "p/ : person attending the meeting (use this tag for each person attending)\n"
             + "des/ : description of the meeting\n\n"
-            + "add: \n"
-            + "Prefix required: n/ p/ e/ a/ t/\n"
+            + "Contact Related Prefix: n/ p/ e/ a/ t/\n"
             + "n/: name\n"
             + "p/: phone number\n"
             + "e/: email\n"
