@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCategoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListRecurringExpensesCommand;
 import seedu.address.logic.commands.SetBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -104,6 +105,9 @@ public class ExpenseTrackerParser {
 
         case DeleteRecurringExpenseCommand.COMMAND_WORD:
             return new DeleteRecurringExpenseParser().parse(arguments);
+
+        case ListRecurringExpensesCommand.COMMAND_WORD:
+            return new ListRecurringExpensesCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
