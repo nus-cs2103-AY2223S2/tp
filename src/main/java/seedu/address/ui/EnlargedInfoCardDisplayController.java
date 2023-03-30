@@ -24,7 +24,7 @@ public class EnlargedInfoCardDisplayController {
     public void displayDoctor() {
         shouldDisplayDoctorInfoCard = true;
         shouldDisplayPatientInfoCard = false;
-        parent.setFeedbackToUser(true);
+        parent.updateEnlargedInfoCard();
     }
 
     /**
@@ -33,7 +33,7 @@ public class EnlargedInfoCardDisplayController {
     public void displayPatient() {
         shouldDisplayDoctorInfoCard = false;
         shouldDisplayPatientInfoCard = true;
-        parent.setFeedbackToUser(true);
+        parent.updateEnlargedInfoCard();
     }
 
     public boolean shouldDisplayDoctorInfoCard() {
