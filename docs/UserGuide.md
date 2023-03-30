@@ -299,8 +299,8 @@ hospital is missing from our directory, please feel free to [contact us](https:/
 
 ### View help : `g help`
 * Shows all valid command formats and their functionalities.
-  <p align="center">
-    <img src="images/UIscreenshots/helpMessage.png" style="zoom:80%">
+  <p align="left">
+    <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
   <p align="center">
     <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
@@ -308,6 +308,7 @@ hospital is missing from our directory, please feel free to [contact us](https:/
   <br>
 * **Format:** `g help`
 
+<br>
 
 [🠉 Back to top](#top)
 
@@ -318,6 +319,8 @@ hospital is missing from our directory, please feel free to [contact us](https:/
   \
   &nbsp;
 * **Format:** `g exit`
+
+<br>
 
 [🠉 Back to top](#top)
 
