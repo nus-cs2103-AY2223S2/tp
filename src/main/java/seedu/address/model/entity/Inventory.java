@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents an inventory, belonging to an Entity.
@@ -40,13 +40,33 @@ public class Inventory {
     /**
      * Delete item from the inventory
      */
-    public void deleteItem(Item item) throws ParseException {
+    public void deleteItem(Item item) {
         if (items.contains(item)) {
             items.remove(item);
         } else {
-            throw new ParseException("The item does not exist in the inventory!");
+            throw new PersonNotFoundException();
         }
     }
+
+    /**
+     * Given the name of the item, delete the item from the inventory.
+     */
+    public void deleteItem(String itemName) {
+        if (hasItem(itemName)) {
+            Item item = items.stream().filter(entity -> entity.getName().fullName.equals(itemName)).findFirst().get();
+            deleteItem(item);
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
+    /**
+     * Given the name of the item, return true if item exist inside inventory.
+     */
+    public boolean hasItem(String itemName) {
+        return items.stream().filter(entity -> entity.getName().fullName.equals(itemName)).findAny().isPresent();
+    }
+
 
     /**
      * Returns unmodifiable list of items contained by the inventory.

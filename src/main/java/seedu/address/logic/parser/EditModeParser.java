@@ -234,14 +234,18 @@ public class EditModeParser {
                                                         .stream()
                                                         .filter(entity -> entity.getName().fullName.equals(itemName))
                                                         .findFirst();
-        if (item.isPresent()) {
-            if (actionWord.equalsIgnoreCase("add")) {
+        if (actionWord.equalsIgnoreCase("add")) {
+            if (item.isPresent()) {
                 editInventory.addItem((Item) item.get());
-            } else if (actionWord.equalsIgnoreCase("remove")) {
-                editInventory.deleteItem((Item) item.get());
+            } else {
+                throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
             }
-        } else {
-            throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
+        } else if (actionWord.equalsIgnoreCase("remove")) {
+            if (editInventory.hasItem(itemName)) {
+                editInventory.deleteItem(itemName);
+            } else {
+                throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
+            }
         }
     }
 }
