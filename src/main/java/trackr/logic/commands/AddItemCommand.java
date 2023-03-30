@@ -27,6 +27,10 @@ public abstract class AddItemCommand<T extends Item> extends Command {
         this.modelEnum = modelEnum;
     }
 
+    public T getItemToAdd() {
+        return toAdd;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

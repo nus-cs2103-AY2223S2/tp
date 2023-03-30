@@ -7,9 +7,11 @@ import java.util.Objects;
 
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
-import trackr.model.order.OrderUtil;
 import trackr.model.person.Customer;
 
 /**
@@ -52,6 +54,39 @@ public class Order extends Item {
     /**
      * Every field must be present and not null
      */
+    public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer) {
+        super(ModelEnum.ORDER);
+        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
+        this.orderName = orderName;
+        this.orderDeadline = orderDeadline;
+        this.orderStatus = orderStatus;
+        this.orderQuantity = orderQuantity;
+        this.customer = customer;
+        timeAdded = LocalDateTime.now();
+    }
+
+    /**
+     * Every field must be present and not null
+     */
+    public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
+        super(ModelEnum.ORDER);
+        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
+        this.orderName = orderName;
+        this.orderDeadline = orderDeadline;
+        this.orderStatus = orderStatus;
+        this.orderQuantity = orderQuantity;
+        this.customer = customer;
+        this.timeAdded = timeAdded;
+    }
+
+
+    /**
+     * Every field must be present and not null
+     */
     public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
         super(ModelEnum.ORDER);
@@ -67,6 +102,9 @@ public class Order extends Item {
         this.timeAdded = timeAdded;
     }
 
+    public MenuItem getOrderItem() {
+        return orderItem;
+    }
 
     public OrderName getOrderName() {
         return orderName;
@@ -188,6 +226,7 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
+                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
     }
@@ -211,6 +250,7 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
+                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderStatus().equals(this.getOrderStatus())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());

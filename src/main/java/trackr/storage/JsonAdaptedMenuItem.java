@@ -65,7 +65,7 @@ class JsonAdaptedMenuItem {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemCost.class.getSimpleName()));
         }
-        if (!ItemCost.isValidCost(itemCost)) {
+        if (!ItemCost.isValidPrice(itemCost)) {
             throw new IllegalValueException(ItemCost.MESSAGE_CONSTRAINTS);
         }
         final ItemCost modelItemCost = new ItemCost(itemCost);

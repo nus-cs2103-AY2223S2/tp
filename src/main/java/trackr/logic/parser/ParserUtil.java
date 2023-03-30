@@ -247,7 +247,7 @@ public class ParserUtil {
     public static ItemCost parseItemCost(String itemCost) throws ParseException {
         requireNonNull(itemCost);
         String trimmedItemCost = itemCost.trim();
-        if (!ItemCost.isValidCost(trimmedItemCost)) {
+        if (!ItemCost.isValidPrice(trimmedItemCost)) {
             throw new ParseException(ItemCost.MESSAGE_CONSTRAINTS);
         }
         return new ItemCost(trimmedItemCost);
