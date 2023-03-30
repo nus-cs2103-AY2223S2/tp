@@ -13,8 +13,8 @@ import seedu.sprint.commons.core.Version;
 import seedu.sprint.commons.exceptions.DataConversionException;
 import seedu.sprint.commons.util.ConfigUtil;
 import seedu.sprint.commons.util.StringUtil;
-import seedu.sprint.logic.ApplicationLogic;
-import seedu.sprint.logic.ApplicationLogicManager;
+import seedu.sprint.logic.Logic;
+import seedu.sprint.logic.LogicManager;
 import seedu.sprint.model.ApplicationModel;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.InternshipBook;
@@ -42,7 +42,7 @@ public class ApplicationMainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(ApplicationMainApp.class);
 
     protected Ui ui;
-    protected ApplicationLogic logic;
+    protected Logic logic;
     protected ApplicationStorage storage;
     protected ApplicationModel model;
     protected Config config;
@@ -67,7 +67,7 @@ public class ApplicationMainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new ApplicationLogicManager(model, storage);
+        logic = new LogicManager(model, storage);
 
         ui = new ApplicationUiManager(logic);
     }

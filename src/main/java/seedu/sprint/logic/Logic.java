@@ -7,11 +7,11 @@ import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
-import seedu.sprint.model.ReadOnlyAddressBook;
-import seedu.sprint.model.person.Person;
+import seedu.sprint.model.ReadOnlyInternshipBook;
+import seedu.sprint.model.application.Application;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
@@ -24,19 +24,22 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the InternshipBook.
      *
-     * @see seedu.sprint.model.Model#getAddressBook()
+     * @see seedu.sprint.model.ApplicationModel#getInternshipBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyInternshipBook getInternshipBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of applications */
+    ObservableList<Application> getFilteredApplicationList();
+
+    /** Returns an unmodifiable view of the sorted list of applications */
+    ObservableList<Application> getSortedApplicationList();
 
     /**
-     * Returns the user prefs' sprint book file path.
+     * Returns the user prefs' internship book file path.
      */
-    Path getAddressBookFilePath();
+    Path getInternshipBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

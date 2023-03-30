@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import seedu.sprint.MainApp;
 import seedu.sprint.commons.core.LogsCenter;
 import seedu.sprint.commons.util.StringUtil;
-import seedu.sprint.logic.Logic;
 
 /**
  * The manager of the UI component.

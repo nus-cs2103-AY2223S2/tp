@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import seedu.sprint.ApplicationMainApp;
 import seedu.sprint.commons.core.LogsCenter;
 import seedu.sprint.commons.util.StringUtil;
-import seedu.sprint.logic.ApplicationLogic;
+import seedu.sprint.logic.Logic;
 
 /**
  * The manager of the UI component.
@@ -22,13 +22,13 @@ public class ApplicationUiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(ApplicationUiManager.class);
     private static final String ICON_APPLICATION = "/images/sprint.png";
 
-    private ApplicationLogic logic;
+    private Logic logic;
     private ApplicationMainWindow mainWindow;
 
     /**
      * Creates an {@code ApplicationUiManager} with the given {@code ApplicationLogic}.
      */
-    public ApplicationUiManager(ApplicationLogic logic) {
+    public ApplicationUiManager(Logic logic) {
         this.logic = logic;
     }
 

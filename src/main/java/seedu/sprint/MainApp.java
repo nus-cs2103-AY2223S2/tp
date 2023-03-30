@@ -13,8 +13,6 @@ import seedu.sprint.commons.core.Version;
 import seedu.sprint.commons.exceptions.DataConversionException;
 import seedu.sprint.commons.util.ConfigUtil;
 import seedu.sprint.commons.util.StringUtil;
-import seedu.sprint.logic.Logic;
-import seedu.sprint.logic.LogicManager;
 import seedu.sprint.model.AddressBook;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;

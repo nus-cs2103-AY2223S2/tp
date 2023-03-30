@@ -33,14 +33,14 @@ import seedu.sprint.storage.JsonInternshipBookStorage;
 import seedu.sprint.storage.JsonUserPrefsStorage;
 //import seedu.sprint.testutil.ApplicationBuilder;
 
-public class ApplicationLogicManagerTest {
+public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir
     public Path temporaryFolder;
 
     private ApplicationModel model = new ApplicationModelManager();
-    private ApplicationLogic logic;
+    private Logic logic;
 
     @BeforeEach
     public void setUp() {
@@ -48,7 +48,7 @@ public class ApplicationLogicManagerTest {
                 new JsonInternshipBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         ApplicationStorageManager storage = new ApplicationStorageManager(internshipBookStorage, userPrefsStorage);
-        logic = new ApplicationLogicManager(model, storage);
+        logic = new LogicManager(model, storage);
     }
 
     @Test
@@ -72,13 +72,13 @@ public class ApplicationLogicManagerTest {
     /*
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup ApplicationLogicManager with JsonInternshipBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonInternshipBookIoExceptionThrowingStub
         JsonInternshipBookStorage internshipBookStorage =
                 new JsonInternshipBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         ApplicationStorageManager storage = new ApplicationStorageManager(internshipBookStorage, userPrefsStorage);
-        logic = new ApplicationLogicManager(model, storage);
+        logic = new LogicManager(model, storage);
 
         // Execute add command
         String addApplicationCommand = AddApplicationCommand.COMMAND_WORD
@@ -87,7 +87,7 @@ public class ApplicationLogicManagerTest {
         Application expectedApplication = new ApplicationBuilder(BYTEDANCE).build();
         ApplicationModelManager expectedModel = new ApplicationModelManager();
         expectedModel.addApplication(expectedApplication);
-        String expectedMessage = ApplicationLogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addApplicationCommand, CommandException.class, expectedMessage, expectedModel);
     }
     */

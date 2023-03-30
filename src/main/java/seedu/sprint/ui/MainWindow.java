@@ -12,7 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
-import seedu.sprint.logic.Logic;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;

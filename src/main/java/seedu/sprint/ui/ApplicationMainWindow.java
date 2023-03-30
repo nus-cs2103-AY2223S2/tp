@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
-import seedu.sprint.logic.ApplicationLogic;
+import seedu.sprint.logic.Logic;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
@@ -28,7 +28,7 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private ApplicationLogic logic;
+    private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private ApplicationListPanel applicationListPanel;
@@ -57,7 +57,7 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public ApplicationMainWindow(Stage primaryStage, ApplicationLogic logic) {
+    public ApplicationMainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -177,7 +177,7 @@ public class ApplicationMainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see ApplicationLogic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
