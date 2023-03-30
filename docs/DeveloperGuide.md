@@ -270,12 +270,20 @@ Each of the four core components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Implementing the core component's API through an interface prevent outside component's from being coupled to it.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Implementing the core component's API through an interface prevent outside component's from being coupled to it.
 </div>
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+[Scroll back to top](#table-of-contents)
+
+### Common classes
+
+Classes used by multiple components are in the `codoc.commons` package.
 
 [Scroll back to top](#table-of-contents)
 
@@ -385,11 +393,6 @@ The `Storage` component,
 
 [Scroll back to top](#table-of-contents)
 
-### Common classes
-
-Classes used by multiple components are in the `codoc.commons` package.
-
-[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
