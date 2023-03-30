@@ -37,7 +37,8 @@ public class AdvanceCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_DATETIME + "08-03-2023 18:00";
 
-    public static final String MESSAGE_ADVANCE_PERSON_SUCCESS = "Advanced Applicant: %1$s";
+    public static final String MESSAGE_ADVANCE_PERSON_SUCCESS = "Advanced Applicant: %s\n\n"
+            + "Old Status: %s\nNew Status: %s";
 
     public static final String MESSAGE_PERSON_CANNOT_BE_ADVANCED = "%s's status cannot be advanced!";
 
@@ -68,18 +69,14 @@ public class AdvanceCommand extends Command {
         }
 
         Person personToAdvance = personList.get(0);
-        Person advancedPerson;
 
-        /* this if-statement will check whether the applicant can be advanced and also whether
-        the interview datetime input is valid.
-        If any exception occurs along the way, then CommandException will be thrown */
-        if (canAdvanceApplicant(personToAdvance)
-                && isValidInterviewDateInput(model, personToAdvance, this.interviewDateTime)) {
-            advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
-            model.setPerson(personToAdvance, advancedPerson);
-        }
+        checkAdvanceApplicant(personToAdvance);
+        checkValidInterviewDateInput(model, personToAdvance, this.interviewDateTime);
+        Person advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
+        model.setPerson(personToAdvance, advancedPerson);
         model.refreshListWithPredicate(predicate);
-        return new CommandResult(String.format(MESSAGE_ADVANCE_PERSON_SUCCESS, personToAdvance.getName()));
+        return new CommandResult(String.format(MESSAGE_ADVANCE_PERSON_SUCCESS,
+                personToAdvance.getName(), personToAdvance.getStatus(), advancedPerson.getStatus()));
     }
 
     /**
@@ -89,22 +86,19 @@ public class AdvanceCommand extends Command {
      * @param interviewDateTime the interview date-time input
      * @throws CommandException if there is a mismatch of whether interview date-time is required
      */
-    private boolean isValidInterviewDateInput(Model model, Person personToAdvance,
+    private void checkValidInterviewDateInput(Model model, Person personToAdvance,
             Optional<InterviewDateTime> interviewDateTime) throws CommandException {
-
+        model.refreshListWithPredicate(predicate);
         // interviewDateTime is only required if the applicant's status is Applied
         if (interviewDateTime.isPresent()) {
             if (!isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_NOT_REQUIRED);
             } else if (!isAfterApplicationDateTime(personToAdvance, interviewDateTime.get())) {
-                throw new CommandException(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION);
-            } else {
-                return true;
+                throw new CommandException(String.format(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION,
+                        personToAdvance.getName(), personToAdvance.getApplicationDateTime()));
             }
         } else {
-            if (personToAdvance.getStatus() != Status.APPLIED) {
-                return true;
-            } else {
+            if (personToAdvance.getStatus() == Status.APPLIED) {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_IS_REQUIRED);
             }
         }
@@ -161,13 +155,12 @@ public class AdvanceCommand extends Command {
     /**
      * Checks whether applicant can be advanced
      */
-    private boolean canAdvanceApplicant(Person personToAdvance) throws CommandException {
+    private void checkAdvanceApplicant(Person personToAdvance) throws CommandException {
         Status status = personToAdvance.getStatus();
         if (status.equals(Status.ACCEPTED) || status.equals(Status.REJECTED)) {
             throw new CommandException(String.format(MESSAGE_PERSON_CANNOT_BE_ADVANCED,
                     personToAdvance.getName().fullName));
         }
-        return true;
     }
 
     /**

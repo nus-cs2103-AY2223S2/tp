@@ -30,6 +30,6 @@ time given])
     :Error: Interview date time not required;
     stop
 else ([else])
-    :Advance command succesfully executes;
+    :Advance command successfully executes;
     stop
 @enduml

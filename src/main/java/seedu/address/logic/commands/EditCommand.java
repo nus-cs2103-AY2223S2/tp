@@ -111,8 +111,9 @@ public class EditCommand extends Command {
             updatedInterviewDateTime = personToEdit.getInterviewDateTime();
         } else if (personToEdit.getStatus() != Status.SHORTLISTED) {
             throw new CommandException(Messages.MESSAGE_INVALID_STATUS_WITH_INTERVIEW);
-        } else if (!isAfterApplicationDateTime(personToEdit, personToEdit.getInterviewDateTime().get())) {
-            throw new CommandException(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION);
+        } else if (!isAfterApplicationDateTime(personToEdit, updatedInterviewDateTime.get())) {
+            throw new CommandException(String.format(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION,
+                    personToEdit.getName(), personToEdit.getApplicationDateTime()));
         }
 
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
