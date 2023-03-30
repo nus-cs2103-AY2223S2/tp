@@ -1,7 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +26,13 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            KEYWORD_PLACEHOLDER.asRepeatable()
+            PREFIX_NAME.asOptional().asRepeatable(),
+            PREFIX_PHONE.asOptional().asRepeatable(),
+            PREFIX_EMAIL.asOptional().asRepeatable(),
+            PREFIX_ADDRESS.asOptional().asRepeatable(),
+            PREFIX_EDUCATION.asOptional().asRepeatable(),
+            PREFIX_TAG.asOptional().asRepeatable(),
+            PREFIX_SUBJECT.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
