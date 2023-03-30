@@ -22,10 +22,12 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
@@ -79,7 +81,17 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " " + keywords);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(keywords, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_SUBJECT, PREFIX_TAG);
-        assertEquals(new FindCommand(new ContainsKeywordsPredicate(argMultimap)), command);
+        assertEquals(new FindCommand(new FullMatchKeywordsPredicate(argMultimap)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        String keywords = "n/foo n/bar n/baz";
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + keywords);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(keywords, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_SUBJECT, PREFIX_TAG);
+        assertEquals(new FilterCommand(new ContainsKeywordsPredicate(argMultimap)), command);
     }
 
     @Test
