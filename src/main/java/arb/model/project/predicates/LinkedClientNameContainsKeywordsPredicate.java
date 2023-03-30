@@ -1,6 +1,7 @@
 package arb.model.project.predicates;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -35,5 +36,13 @@ public class LinkedClientNameContainsKeywordsPredicate implements Predicate<Proj
     @Override
     public int hashCode() {
         return keywords.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Client name keywords: ");
+        Iterator<String> iterator = keywords.iterator();
+        iterator.forEachRemaining(c -> sb.append(c + ", "));
+        return sb.delete(sb.length() - 2, sb.length() + 1).toString();
     }
 }

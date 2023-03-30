@@ -1,5 +1,6 @@
 package arb.model.project.predicates;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -34,5 +35,13 @@ public class ProjectContainsTagsPredicate implements Predicate<Project> {
     @Override
     public int hashCode() {
         return tags.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Tags: ");
+        Iterator<Tag> iterator = tags.iterator();
+        iterator.forEachRemaining(t -> sb.append(t + ", "));
+        return sb.delete(sb.length() - 2, sb.length() + 1).toString();
     }
 }
