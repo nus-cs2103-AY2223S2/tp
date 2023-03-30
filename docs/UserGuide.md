@@ -88,6 +88,8 @@ Without further ado, let's get started!
 
 7. Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <a name="glossary"/>
@@ -224,8 +226,6 @@ This section aims to provide a brief overview of the features available in Power
 
 * For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.<br>
 * Compulsory field are inside <> while optional fields are in []
-
-<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -376,6 +376,8 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ----------------------------------------------------------------------------------------------------------------
 
 <a name = "editstudent" />
@@ -425,6 +427,8 @@ Examples:
 * Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan <br><br>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -481,6 +485,8 @@ Examples of Full Command:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ----------------------------------------------------------------------------------------------------------------
 
 <a name = "listparent" />
@@ -520,6 +526,8 @@ Examples of Full Command:
 * `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567…` <br><br>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ----------------------------------------------------------------------------------------------------------------
 
@@ -617,6 +625,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ----------------------------------------------------------------------------------------------------------------
 
 <a name = "images"/>
@@ -646,7 +656,7 @@ Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "faq" /></a>
+<a name = "faq" />
 
 ## FAQ
 
@@ -676,7 +686,7 @@ program. Essentially you do not need a mouse to run this program at all!
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "summary" /> </a>
+<a name = "summary" />
 
 ## Command Summary
 
@@ -703,7 +713,5 @@ program. Essentially you do not need a mouse to run this program at all!
 | **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]` |
 
 [Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
