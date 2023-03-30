@@ -198,39 +198,34 @@ Format: `list`
 
 ### Find patients by nric, name, address, doctor or tags: `find`
 
-Find patients according to a particular attribute stated followed by the change.
+Find patients according to a particular command prefix stated followed by the change.
 
-Command Prefixes that can be searched: 
-* name(`n/`)
-* nric(`i/`)
-* tag(`t/`)
-* doctor(`ad/`)
-* medicine(`m/`)
+Command Prefixes that can be searched:
+  * name(`n/`)
+  * nric(`i/`)
+  * tag(`t/`)
+  * doctor(`ad/`)
+  * medicine(`m/`)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
-  - `find` searches by full strings and not substrings.
-  - You may only search for a few attributes.
-  - Only one attribute can be searched at one time.
+**Note:** `find` searches by full strings and not substrings. The search will only be carried out for **one** given 
+attribute. 
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: 
+* The search is case-insensitive. e.g panadol will match pANAdol. 
+* The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
 </div>
 
 Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
 
-* The search will only be carried out for the given attribute.
-* The search is case-insensitive. e.g panadol will match pANAdol.
-* The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
-* Multiple keywords for a given attribute can be inputted. All matching persons will be returned.
-  * e.g., `find n/David Alex Jon` will return persons with name containing `David` or `Alex` or `Jon` or any
-  combination of the three.
 
 Examples (The following results are based of the sample data provided):
 
 * `find n/john` returns `John Lim` and `John Doe` who both contain the name `John` in their names.
-* `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`.
 * `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`.
 * `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio`  
   or  `serangoon`.
-* `find t/Diabetic` returns all persons with the tag `Diabetic`.
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 * `find ad/Shannon` returns all persons with attending doctor `Shannon`
 
