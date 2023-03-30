@@ -15,6 +15,7 @@ import seedu.dengue.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
+    private static final String BAR = "\n=================================================================\n";
 
     private final UniquePersonList persons;
 
@@ -100,12 +101,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
     //// util methods
 
     @Override
-    public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
-    }
-
-    @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
@@ -115,6 +110,16 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
         return other == this // short circuit if same object
                 || (other instanceof DengueHotspotTracker // instanceof handles nulls
                 && persons.equals(((DengueHotspotTracker) other).persons));
+    }
+
+    @Override
+    public String toString() {
+        ObservableList<Person> personList = persons.asUnmodifiableObservableList();
+        String toReturn = BAR;
+        for (Person p: personList) {
+            toReturn = toReturn + p.toStringSimple() + "\n";
+        }
+        return toReturn + BAR;
     }
 
     @Override

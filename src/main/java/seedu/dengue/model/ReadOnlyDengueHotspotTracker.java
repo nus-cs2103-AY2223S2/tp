@@ -15,8 +15,8 @@ public interface ReadOnlyDengueHotspotTracker {
     ObservableList<Person> getPersonList();
 
     /**
-     * Generates a deep copy of an unmodifiable list.
-     * @return A deep copy of the list.
+     * Generates a deep copy of a {@code ReadOnlyDengueHotspotTracker}.
+     * @return A deep copy of the {@code ReadOnlyDengueHotspotTracker}.
      */
     ReadOnlyDengueHotspotTracker generateDeepCopy();
 
