@@ -24,6 +24,7 @@ import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentComman
 import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
+import seedu.sudohr.logic.commands.employee.FindByIdCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
@@ -44,6 +45,7 @@ import seedu.sudohr.logic.parser.department.RemoveEmployeeFromDepartmentCommandP
 import seedu.sudohr.logic.parser.employee.AddCommandParser;
 import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
+import seedu.sudohr.logic.parser.employee.FindByIdCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
@@ -124,6 +126,9 @@ public class SudoHrParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindByIdCommand.COMMAND_WORD:
+            return new FindByIdCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
