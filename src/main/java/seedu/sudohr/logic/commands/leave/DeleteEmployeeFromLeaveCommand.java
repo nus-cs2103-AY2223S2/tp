@@ -71,7 +71,8 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
-        model.updateFilteredLeaveList(l -> l.hasEmployee(employeeToDelete));
+        final Leave leaveToFilter = leaveToDelete;
+        model.updateFilteredLeaveList(l -> l.equals(leaveToFilter));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, employeeToDelete, leaveToDelete));
     }
