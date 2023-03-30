@@ -307,8 +307,8 @@ Format: `stats`
 
 :man_technologist: Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!
 
-Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
-On opening of app, the **alert window** will open to show **Tasks** which have deadlines within the **latest** window specified.
+Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
+On opening of app, the **alert panel** will open to show **Tasks** which have deadlines within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:

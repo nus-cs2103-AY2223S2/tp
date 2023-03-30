@@ -4,11 +4,13 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.commons.core.LogsCenter;
@@ -34,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private AlertWindow alertWindow;
+    private AlertListPanel alertList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,7 +51,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private StackPane alertListPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label alertStatus;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -67,7 +75,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        alertWindow = new AlertWindow(logic);
         handleAlert();
     }
 
@@ -119,6 +126,12 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        alertList = new AlertListPanel(logic.getAlertTaskList());
+        alertListPlaceholder.getChildren().add(alertList.getRoot());
+        alertStatus.setText("Alerts");
+        alertStatus.setFont(new Font("Segoe UI Light", 32));
+        alertStatus.setStyle("-fx-text-fill: white; -fx-opacity: 1; -fx-font-size: 15pt");
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -155,12 +168,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleAlert() {
-        if (!alertWindow.isShowing()) {
-            alertWindow.show();
-            alertWindow.fillInnerParts();
-        } else {
-            alertWindow.focus();
-        }
+        alertList = new AlertListPanel(logic.getAlertTaskList());
+        alertListPlaceholder.getChildren().add(alertList.getRoot());
     }
 
     void show() {
@@ -176,7 +185,6 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        alertWindow.hide();
         primaryStage.hide();
     }
 
