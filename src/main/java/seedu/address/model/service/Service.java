@@ -285,11 +285,11 @@ public class Service implements Findable {
         return String.format(formatter,
                 this.getId(),
                 this.getDescription(),
+                this.status,
                 this.getEntryDate(),
                 this.getEstimatedFinishDate(),
                 StringUtil.indent(parts, 2),
-                StringUtil.indent(technicians, 2),
-                status);
+                StringUtil.indent(technicians, 2));
     }
 
     @Override

@@ -100,7 +100,7 @@ public class EditAppointmentCommand extends RedoableCommand {
         //model.selectAppointment(editedAppointment);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment), Tab.APPOINTMENTS);
     }
 
     /**

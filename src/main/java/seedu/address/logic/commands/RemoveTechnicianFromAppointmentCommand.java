@@ -53,6 +53,6 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
         }
         appointment.removeTechnician(this.techId);
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
-                Tab.SERVICES);
+                Tab.APPOINTMENTS);
     }
 }

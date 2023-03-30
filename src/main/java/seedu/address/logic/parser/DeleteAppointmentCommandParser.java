@@ -18,8 +18,8 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
      */
     public DeleteAppointmentCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteAppointmentCommand(index);
+            int id = ParserUtil.parseInt(args);
+            return new DeleteAppointmentCommand(id);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAppointmentCommand.MESSAGE_USAGE), pe);

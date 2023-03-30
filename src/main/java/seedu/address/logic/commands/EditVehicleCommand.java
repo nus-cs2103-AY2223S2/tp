@@ -99,7 +99,7 @@ public class EditVehicleCommand extends RedoableCommand {
         model.selectVehicle(editedVehicle);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, editedVehicle));
+        return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, editedVehicle), Tab.VEHICLES);
     }
 
     /**

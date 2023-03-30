@@ -23,11 +23,13 @@ public class DeleteAppointmentCommand extends RedoableCommand {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
+    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not found";
 
-    private final Index targetIndex;
 
-    public DeleteAppointmentCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    private final int id;
+
+    public DeleteAppointmentCommand(int id) {
+        this.id = id;
     }
 
     @Override
@@ -35,17 +37,22 @@ public class DeleteAppointmentCommand extends RedoableCommand {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
-        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
-        int id = appointmentToDelete.getId();
+        Appointment appointmentToDelete = lastShownList.stream().filter(appointment ->
+                id == appointment.getId()).findFirst().orElse(null);
+
+        if (appointmentToDelete == null) {
+            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
+        }
+
         model.deleteAppointment(appointmentToDelete);
         IdGenerator.setAppointmentIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete), Tab.APPOINTMENTS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteAppointmentCommand) other).targetIndex)); // state check
+                && id == ((DeleteAppointmentCommand) other).id); // state check
     }
 }

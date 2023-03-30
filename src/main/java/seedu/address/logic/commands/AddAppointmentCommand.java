@@ -55,7 +55,7 @@ public class AddAppointmentCommand extends RedoableCommand {
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.APPOINTMENTS);
     }
 
     @Override
