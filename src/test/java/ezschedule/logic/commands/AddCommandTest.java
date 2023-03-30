@@ -142,7 +142,20 @@ public class AddCommandTest {
         public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public ArrayList<Command> recentCommand() {
+            return null;
+        }
+        @Override
+        public ArrayList<Event> recentEvent() {
+            return null;
+        }
+        @Override
+        public void addRecentEvent(Event event) {
+        }
+        @Override
+        public void clearRecent() {
+        }
         @Override
         public ObservableList<Event> getEventList() {
             throw new AssertionError("This method should not be called.");
