@@ -6,8 +6,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
 
 <fx:root resizable="false" title="Help Page" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -16,15 +18,20 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@DengueTheme.css" />
       </stylesheets>
 
       <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <Label fx:id="helpMessage" text="Label">
-          <HBox.margin>
-            <Insets right="5.0" />
-          </HBox.margin>
-        </Label>
+        <VBox alignment="CENTER_LEFT" styleClass="pane-with-border-help" minHeight="200" HBox.hgrow="ALWAYS">
+          <padding>
+            <Insets right="5" left="15" />
+          </padding>
+          <Label fx:id="helpMessage" text="Label">
+            <HBox.margin>
+              <Insets left="10.0" right="5.0" />
+            </HBox.margin>
+          </Label>
+        </VBox>
         <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
           <HBox.margin>
             <Insets left="5.0" />

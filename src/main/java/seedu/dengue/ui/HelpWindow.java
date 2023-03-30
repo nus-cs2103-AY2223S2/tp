@@ -16,20 +16,29 @@ import seedu.dengue.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "The following are the available commands for this application:\n"
-            + "add, list, edit, find, delete, clear, help, exit\n"
+    public static final String HELP_MESSAGE = "If you want more information, you can refer to the user guide:\n"
+            + USERGUIDE_URL + "\n"
+            + "For a brief summary, the following are the available commands for this application:\n"
+            + "add, list, edit, find, delete, clear, undo, redo, sort, overview, import, export, help, exit\n"
             + "Formatting:\n"
             + "add: add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]...\n"
             + "list: list\n"
             + "edit: edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]...\n"
-            + "find: find KEYWORD [MORE_KEYWORDS]\n"
-            + "delete: delete INDEX\n"
+            + "find: find [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]...\n"
+            + "or find [n/NAME] [p/POSTAL] [sd/STARTDATE] [ed/ENDDATE] [a/AGE] [v/DENGUE_VARIANT]...\n"
+            + "or find [n/NAME] [p/POSTAL] [d/DATE] [sa/STARTAGE] [ea/ENDAGE] [v/DENGUE_VARIANT]...\n"
+            + "delete INDEX…\n"
+            + "or delete [d/DATE]\n"
+            + "or delete [sd/STARTDATE] [ed/ENDDATE]\n"
             + "clear: clear\n"
+            + "undo: undo [INTEGER]\n"
+            + "redo: redo [INTEGER]\n"
+            + "sort: sort [n/] [a/] [d/]\n"
+            + "overview: overview [p/] [a/] [v/]"
+            + "import: import [FILENAME]\n"
+            + "export: export [FILENAME]\n"
             + "help: help\n"
-            + "exit: exit\n"
-            + "If you want more information, you can refer to the user guide:\n"
-            + USERGUIDE_URL;
-
+            + "exit: exit";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
