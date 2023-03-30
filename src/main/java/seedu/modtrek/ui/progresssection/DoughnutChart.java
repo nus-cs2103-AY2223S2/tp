@@ -321,7 +321,7 @@ public class DoughnutChart extends PieChart {
             double offset = totalCredits / 2;
             offset += accCredits;
 
-            double angle = (offset / DegreeProgressionData.TOTALCREDIT) * fullAngle;
+            double angle = (offset / degreeProgressionData.getTotalWithDuplicatedCredit()) * fullAngle;
             angles.put(tag, angle);
 
             accCredits += totalCredits;

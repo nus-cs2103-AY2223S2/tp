@@ -60,6 +60,10 @@ public class DegreeProgressionData {
         return totalRequirementCredits;
     }
 
+    public int getTotalWithDuplicatedCredit() {
+        return TOTALCREDIT + duplicatedCredits;
+    }
+
     public int getCompletedCredit() {
         return completedCredit;
     }
