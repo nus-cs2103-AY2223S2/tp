@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+hide footbox
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DengueHotspotTrackerParser" as DengueHotspotTrackerParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort n/")
+activate LogicManager
+
+LogicManager -> DengueHotspotTrackerParser : parseCommand("sort n/")
+activate DengueHotspotTrackerParser
+
+create SortCommandParser
+DengueHotspotTrackerParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> DengueHotspotTrackerParser
+deactivate SortCommandParser
+
+DengueHotspotTrackerParser -> SortCommandParser : parse("n/")
+activate SortCommandParser
+
+create SortCommand
+SortCommandParser -> SortCommand
+activate SortCommand
+
+SortCommand --> SortCommandParser : s
+deactivate SortCommand
+
+SortCommandParser --> DengueHotspotTrackerParser : s
+deactivate SortCommandParser
+
+DengueHotspotTrackerParser --> LogicManager : s
+deactivate DengueHotspotTrackerParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> Model : model.sort(toSort)
+activate Model
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortCommand : result
+deactivate CommandResult
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

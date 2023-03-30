@@ -1,5 +1,4 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
 
 start
 :User requests to delete multiple indexes;

@@ -1,13 +1,6 @@
 @startuml
+!include style.puml
 hide footbox
-
-!define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #7777DB
-!define LOGIC_COLOR_T2 #5252CE
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
-!define MODEL_COLOR #C43333
-!define MODEL_COLOR_T1 #DB7777
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -37,36 +30,46 @@ deactivate DeleteCommandParser
 DengueHotspotTrackerParser -> DeleteCommandParser : parse("1 3")
 activate DeleteCommandParser
 
+DeleteCommandParser -> DeleteCommandParser : parseIndex("1 3")
+activate DeleteCommandParser
+
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : List<Index>
+DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> DengueHotspotTrackerParser : List<Index>
+DeleteCommandParser --> DeleteCommandParser : d
 deactivate DeleteCommandParser
 
-DengueHotspotTrackerParser --> LogicManager : List<Index>
+DeleteCommandParser --> DengueHotspotTrackerParser : d
+deactivate DeleteCommandParser
+
+DengueHotspotTrackerParser --> LogicManager : d
 deactivate DengueHotspotTrackerParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-loop size of List<Index>
-DeleteCommand -> Model : deletePerson(index)
+DeleteCommand -> DeleteCommand : executeIndexes(model, lastShownList)
+activate DeleteCommand
+
+DeleteCommand -> Model : model.setPersons(remainingPersons)
 activate Model
 
 Model --> DeleteCommand
 deactivate Model
-end
 
 create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : result
 deactivate CommandResult
+
+DeleteCommand --> DeleteCommand : result
+deactivate DeleteCommand
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
