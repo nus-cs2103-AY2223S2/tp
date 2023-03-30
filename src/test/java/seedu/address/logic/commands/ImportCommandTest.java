@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +20,6 @@ import seedu.address.model.Tracker;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.storage.JsonTrackerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.StorageStub;
@@ -72,7 +70,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_moduleExistInTracker_importAllModules_throwCommandException() {
+    public void execute_allModuleExistInTracker_throwCommandException() {
         ImportCommand importCommand = new ImportCommand("letracker.json", storage,
                 new HashSet<>(List.of(TypicalModules.getCs2040s().getCode())),
                 false,
@@ -82,7 +80,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_moduleExistInTracker_importSomeModules_throwCommandException() {
+    public void execute_someModuleExistInTracker_throwCommandException() {
         ImportCommand importCommand = new ImportCommand("letracker.json", storage,
                 new HashSet<>(),
                 false,
@@ -102,7 +100,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_DoNotOverwriteModule_successful() throws CommandException {
+    public void execute_doNotOverwriteModule_successful() throws CommandException {
         ImportCommand importCommand = new ImportCommand("letracker.json", storage,
                 new HashSet<>(List.of(TypicalModules.getCs2040s().getCode())),
                 false,
@@ -115,7 +113,7 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_OverwriteModule_successful() throws CommandException {
+    public void execute_overwriteModule_successful() throws CommandException {
         ImportCommand importCommand = new ImportCommand("letracker.json", storage,
                 new HashSet<>(List.of(TypicalModules.getCs2040s().getCode())),
                 true,
