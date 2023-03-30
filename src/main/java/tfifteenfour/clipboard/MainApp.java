@@ -52,8 +52,6 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        System.out.println("URLLLL:"+this.getClass().getResource("/assets/sampleRoster.json"));
-
         logger.info("=============================[ Initializing Roster ]===========================");
         super.init();
 
@@ -92,8 +90,8 @@ public class MainApp extends Application {
                 logger.info("Data file not found. " + MESSAGE_SAMPLE);
                 new File("data").mkdir();
             }
-            initialData = addressBookOptional.orElseGet(
-                    () -> SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream));
+            initialData = addressBookOptional.orElseGet(() ->
+                    SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. " + MESSAGE_SAMPLE);
             initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
