@@ -24,7 +24,8 @@ class SelectCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         SelectCommand selectCommand = new SelectCommand(INDEX_FIRST_CLIENT);
 
-        CommandResult expectedCommandResult = new CommandResult(SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS);
+        CommandResult expectedCommandResult =
+                new CommandResult(String.format(SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS, INDEX_FIRST_CLIENT));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 

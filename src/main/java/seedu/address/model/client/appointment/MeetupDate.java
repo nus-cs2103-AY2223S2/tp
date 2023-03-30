@@ -20,24 +20,24 @@ public class MeetupDate {
     public static final String MESSAGE_PAST_DATE = "Appointment dates have to be scheduled in advanced."
             + " Today's date is " + LocalDate.now();
 
-    public final LocalDate meetupDate;
+    public final LocalDate value;
 
     /**
      * Constructs an empty {@code MeetupDate}.
      */
     public MeetupDate() {
-        meetupDate = null;
+        value = null;
     }
 
     /**
      * Constructs a {@code MeetupDate}
-     * @param meetupDate The meetup date of the appointment.
+     * @param value The meetup date of the appointment.
      */
-    public MeetupDate(String meetupDate) {
-        requireNonNull(meetupDate);
-        checkArgument(isValidDate(meetupDate), MESSAGE_CONSTRAINTS);
-        checkArgument(!isFutureDate(meetupDate), MESSAGE_PAST_DATE);
-        this.meetupDate = stringToDate(meetupDate);
+    public MeetupDate(String value) {
+        requireNonNull(value);
+        checkArgument(isValidDate(value), MESSAGE_CONSTRAINTS);
+        checkArgument(!isFutureDate(value), MESSAGE_PAST_DATE);
+        this.value = stringToDate(value);
     }
 
 
@@ -78,20 +78,20 @@ public class MeetupDate {
     }
 
     public String getDisplayString() {
-        if (meetupDate == null) {
+        if (value == null) {
             return null;
         }
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
-        return outputFormat.format(meetupDate);
+        return outputFormat.format(value);
     }
 
     @Override
     public String toString() {
-        if (meetupDate == null) {
+        if (value == null) {
             return null;
         }
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return outputFormat.format(meetupDate);
+        return outputFormat.format(value);
     }
 
     @Override
@@ -104,18 +104,18 @@ public class MeetupDate {
         }
 
         MeetupDate md = (MeetupDate) other;
-        if (md.meetupDate == null && meetupDate == null) {
+        if (md.value == null && value == null) {
             return true;
         }
-        if (md.meetupDate == null || meetupDate == null) {
+        if (md.value == null || value == null) {
             return false;
         }
-        return meetupDate.equals(md.meetupDate);
+        return value.equals(md.value);
     }
 
     @Override
     public int hashCode() {
-        return meetupDate.hashCode();
+        return value.hashCode();
     }
 
 }

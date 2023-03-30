@@ -125,8 +125,17 @@
                                              <String fx:value="rounded" />
                                           </styleClass>
                                           <VBox.margin>
-                                             <Insets left="16.0" right="16.0" top="16.0" />
+                                             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                           </VBox.margin></StackPane>
+                                       <StackPane fx:id="appointmentLabel">
+                                          <styleClass>
+                                             <String fx:value="light-color" />
+                                             <String fx:value="rounded" />
+                                          </styleClass>
+                                          <VBox.margin>
+                                             <Insets left="16.0" right="16.0" />
+                                          </VBox.margin>
+                                       </StackPane>
                                                 <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS">
                                           <VBox.margin>
                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
