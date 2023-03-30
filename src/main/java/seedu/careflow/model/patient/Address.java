@@ -10,7 +10,7 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, "
-            + "it should not be blank and less than 200 characters long";
+            + "it should not be blank and equal or less than 200 characters long";
 
     /*
      * The first character of the address must not be a whitespace,
