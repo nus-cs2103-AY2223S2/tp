@@ -30,6 +30,7 @@ import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
+import arb.model.project.Status;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -142,6 +143,7 @@ public class EditProjectCommand extends Command {
         if (optionalUpdatedDeadline.isPresent()) {
             updatedDeadline = optionalUpdatedDeadline.get().orElse(null);
         }
+        Status status = projectToEdit.getStatus();
 
         Optional<Optional<Price>> optionalUpdatedPrice = editProjectDescriptor.getPrice();
         Price updatedPrice = projectToEdit.getPrice();
@@ -151,7 +153,7 @@ public class EditProjectCommand extends Command {
 
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedTitle, updatedDeadline, updatedPrice, updatedTags);
+        return new Project(updatedTitle, status, updatedDeadline, updatedPrice, updatedTags);
     }
 
     @Override
@@ -238,6 +240,7 @@ public class EditProjectCommand extends Command {
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
+
 
         public Optional<Optional<Deadline>> getDeadline() {
             return Optional.ofNullable(this.deadline);

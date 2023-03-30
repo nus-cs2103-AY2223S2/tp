@@ -45,7 +45,23 @@ public class Project {
         this.deadline = Optional.ofNullable(deadline);
         this.price = Optional.ofNullable(price);
         this.tags.addAll(tags);
+
         this.status = new Status();
+        this.linkedClient = Optional.empty();
+    }
+
+    /**
+     * Contructs a {@code Project}.
+     * Only to be used when created a new edited {@code Project}.
+     */
+    public Project(Title title, Status status, Deadline deadline, Price price, Set<Tag> tags) {
+        requireAllNonNull(title, tags);
+        this.title = title;
+        this.status = status;
+        this.deadline = Optional.ofNullable(deadline);
+        this.price = Optional.ofNullable(price);
+        this.tags.addAll(tags);
+
         this.linkedClient = Optional.empty();
     }
 
