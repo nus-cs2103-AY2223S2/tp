@@ -31,6 +31,10 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    public void showLastItem() {
+        personListView.scrollTo(personListView.getItems().size() - 1);
+    }
+
     /**
      * Set UiEventListener for InfoTab.
      * @param listener

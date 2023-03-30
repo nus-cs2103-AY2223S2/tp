@@ -20,6 +20,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** New person added by user. Scroll to the latest added person */
+    private boolean justAdded;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -47,6 +50,19 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Instantiates a new Command result.
+     *
+     * @param feedbackToUser the feedback to user
+     * @param justAdded      whether a new person is added
+     */
+    public CommandResult(String feedbackToUser, boolean justAdded) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.justAdded = justAdded;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -61,6 +77,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isJustAdded() {
+        return justAdded;
     }
 
     @Override
