@@ -114,8 +114,13 @@ department of the same name.
 
 ### 6.2.3. Leave
 
-[//]: # (To be done by Jer En)
+[//]: # 
 A leave represents a day on which an employee would be absent from the company. It is not possible for the employee to take more than 1 leave in a day.
+
+The following attributes are stored for each leave:
+1. Date
+
+Each employee can only take a leave once per day. Leaves are unique by date.
 
 ### 6.2.4. Prefixes
 
@@ -144,7 +149,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 ### 6.2.5. Placeholders
 
 [//]: # (List placeholders in the command)
-| Placeholder             | Corresponding Flag | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Placeholder             | Corresponding Prefix | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |-------------------------|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ID**                  | id/                | ID is the unique identifier for an employee. Leading zeroes are ignored. <br/> **Note: This flag is only used when adding an employee into the app**. <br/> It has the following constraints: <li> Must be a positive integer <ol> <li> 0 is often reserved for administrative use </li> <li> negative numbers are not conventionally used </li> </ol> </li> <li> Cannot be empty </li> <br/> Valid Examples: <li>1</li> <li>100</li> Invalid Examples: <li>Bob</li> <li>0</li> <li>-1</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | **EMPLOYEE_ID**         | eid/               | Similar to ID, The EMPLOYEE_ID represents the ID of an employee. <br/> It is used for any commands that require referencing an employee. <br/> It follows the same constraints as ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
@@ -155,9 +160,9 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | **TAG**                 | t/                 | TAG represents a tag of an employee. This field is optional and is not restrictive in usage. <br/> For example, it can be used to indicate an employee's position in the department or simple remarks about the employee. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **DEPARTMENT_NAME**     | n/                 | DEPARTMENT_NAME is the unique identifier for a department. It is used when creating, editing and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **OLD_DEPARTMENT_NAME** | NA                 | OLD_DEPARTMENT_NAME represents the original name before editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **DATE**                | d/                 | DATE represents the date of the leave.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **START_DATE**          | s/                 | START_DATE represents the start of a range of days where leave is taken.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **END_DATE**            | e/                 | START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the end_date must be chronologically after the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **DATE**                | d/                 | DATE represents the date of the leave. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. </li><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **START_DATE**          | s/                 | START_DATE represents the start of a range of days where leave is taken. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD.</li><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **END_DATE**            | e/                 | START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the end_date must be chronologically after the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><li>The date provided must be of the form YYYY-MM-DD.</li><br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
 
@@ -353,9 +358,9 @@ Examples:
 
 ## 7.3. Leave Commands
 
-### Adding a leave: `aetl`
+### 7.3.1. Adding a leave: `aetl`
 
-Add a person's leave on a specifc day for SudoHr to track.
+Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave view.
 
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
@@ -363,14 +368,19 @@ Format: `aetl eid/EMPLOYEE_ID d/DATE`
 The employee shouldn't have taken leave on the date provided
 </div>
 
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The input date must be of the form YYYY-MM-DD
+</div>
+
+
 Examples:
 * `aetl eid/1 d/2023-03-05`
 * `aetl eid/2 d/2023-03-05`
 
 
-### Adding all leaves in range : `aelr`
+### 7.3.2. Adding all leaves in range : `aelr`
 
-Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date
+Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave view.
 
 Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
@@ -382,20 +392,28 @@ The start date must be before the end date.
 The employee must not have taken leave in any of the days within the range provided.
 </div>
 
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The input start and end dates must be of the form YYYY-MM-DD
+</div>
+
 Examples:
 * `aelr eid/1 s/2023-03-05 e/2023-03-08`
 * `aelr eid/2 s/2023-03-05 e/2023-03-06`
 
 
-### Deleting a leave: `defl`
-Delete a employee's leave on a specific day.
+### 7.3.3. Deleting a leave: `defl`
+Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave view.
+
 Format: `defl eid/EMPLOYEE_ID d/DATE`
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-The employee shouldn't have taken leave on the specific day</div>
+The employee must have taken leave on the specific date provided</div>
 
+<div markdown="span" class="alert alert-warning">**NOTE:**
+The input start and end dates must be of the form YYYY-MM-DD
+</div>
 
-### Listing all employees on leave for a given date: `leol`
+### 7.3.4. Listing all employees on leave for a given date: `leol`
 
 Lists all employees that are on leave on a given date.
 
@@ -408,14 +426,14 @@ Examples:
 * `leol d/2023-03-05`
 * `leol d/2023-03-08`
 
-### Listing all leave dates: `llve`
+### 7.3.5. Listing all leave dates: `llve`
 
-Lists all days where there are employees are on leave.
+Displays all days where there are employees are on leave.
 
 Format: `llve`
 
 
-### Listing all leaves for a person: `andre`
+### 7.3.6. Listing all leaves for a person: `andre`
 
 Lists all the leave date(s) of an employee.
 
