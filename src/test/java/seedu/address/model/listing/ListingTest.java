@@ -3,7 +3,10 @@ package seedu.address.model.listing;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_PLATFORMS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
 import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
 

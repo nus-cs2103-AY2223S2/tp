@@ -1,13 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_APPLICANTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NO_PLATFORMS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ListingBook;
 import seedu.address.model.listing.Listing;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 
 /**

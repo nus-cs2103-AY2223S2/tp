@@ -1,13 +1,14 @@
 package seedu.address.testutil;
 
-import seedu.address.model.applicant.Applicant;
-import seedu.address.model.platform.Platform;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_INDEED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import seedu.address.model.platform.Platform;
+
 
 /**
  * A utility class containing a list of {@code Platform} objects to be used in tests.

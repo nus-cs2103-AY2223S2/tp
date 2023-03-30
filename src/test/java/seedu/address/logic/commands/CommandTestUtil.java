@@ -67,7 +67,7 @@ public class CommandTestUtil {
                     + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
                     + "Remote work is possible.";
     public static final ArrayList<Applicant> VALID_NO_APPLICANTS = new ArrayList<>();
-    public static final ArrayList<Platform>  VALID_NO_PLATFORMS = new ArrayList<>();
+    public static final ArrayList<Platform> VALID_NO_PLATFORMS = new ArrayList<>();
     public static final String VALID_TITLE_DESC = " " + PREFIX_TITLE + VALID_TITLE;
     public static final String VALID_TITLE_DESC_ALT = " " + PREFIX_TITLE + VALID_TITLE_ALT;
     public static final String VALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
