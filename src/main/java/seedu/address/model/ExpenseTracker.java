@@ -231,4 +231,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     public void addRecurringGenerator(RecurringExpenseManager generator) {
         recurringGenerators.addRecurringExpense(generator);
     }
+
+    public void removeRecurringGenerator(RecurringExpenseManager generator) {
+        recurringGenerators.removeRecurringExpense(generator);
+    }
 }

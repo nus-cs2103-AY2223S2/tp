@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Represents the in-memory model of the expense tracker data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
+    private final FilteredList<RecurringExpenseManager> filteredRecurringGenerators;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenses = new FilteredList<>(this.expenseTracker.getExpenseList());
         filteredCategories = new FilteredList<>(this.expenseTracker.getCategoryList());
+        filteredRecurringGenerators = new FilteredList<>(this.expenseTracker.getRecurringExpenseGenerators());
     }
 
     public ModelManager() {
@@ -227,4 +230,32 @@ public class ModelManager implements Model {
     public void setBudget(Budget budget) {
         expenseTracker.setBudget(budget);
     }
+
+    // =========== Recurring Expense Manager List Accessors
+    // =============================================================
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators() {
+        return this.filteredRecurringGenerators;
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
+        requireNonNull(predicate);
+        filteredRecurringGenerators.setPredicate(predicate);
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager toAdd) {
+        requireNonNull(toAdd);
+        filteredRecurringGenerators.add(toAdd);
+    }
+
+    @Override
+    public void removeRecurringGenerator(RecurringExpenseManager toRemove) {
+        requireNonNull(toRemove);
+        filteredRecurringGenerators.remove(toRemove);
+    }
+
+
 }

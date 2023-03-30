@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * The API of the DataModel component.
@@ -154,4 +155,19 @@ public interface Model {
      * @param budget
      */
     void setBudget(Budget budget);
+
+    /** Returns an unmodifiable view of the recurring expense manager list */
+    ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators();
+
+    /**
+     * Updates the filter of the filtered recurring expense manager list to filter by the given
+     * {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate);
+
+    void addRecurringGenerator(RecurringExpenseManager toAdd);
+
+    void removeRecurringGenerator(RecurringExpenseManager toRemove);
+
 }

@@ -84,6 +84,22 @@ public class RecurringExpenseManager {
         this.expenseCategory = expenseCategory;
     }
 
+    public void setExpenseName(String expenseName) {
+        this.expenseName = expenseName;
+    }
+
+    public void setExpenseAmount(double expenseAmount) {
+        this.expenseAmount = expenseAmount;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setRecurringExpenseType(RecurringExpenseType recurringExpenseType) {
+        this.recurringExpenseType = recurringExpenseType;
+    }
+
     public void editRecurringExpenseName(String name) {
         expenseName = name;
     }

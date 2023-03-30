@@ -17,10 +17,10 @@ import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
 /**
- * JavaDoc
+ * Edits an Expense in the expense tracker.
  */
 public class EditExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "eexp";
+    public static final String COMMAND_WORD = "edexp";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the expense identified by the index number used in the displayed expenses list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"

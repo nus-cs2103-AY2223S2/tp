@@ -15,6 +15,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * A default model stub that have some methods failing.
@@ -22,6 +23,7 @@ import seedu.address.model.expense.Expense;
 public class ModelStub implements Model {
     private ObservableList<Category> categories = FXCollections.observableArrayList();
     private ObservableList<Expense> expenses = FXCollections.observableArrayList();
+    private ObservableList<RecurringExpenseManager> recurringGenerators = FXCollections.observableArrayList();
 
     @Override
     public void addCategory(Category toAdd) {
@@ -163,5 +165,26 @@ public class ModelStub implements Model {
     public void setBudget(Budget budget) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators() {
+        return this.recurringGenerators;
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
+        this.recurringGenerators.removeIf(predicate);
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager toAdd) {
+        this.recurringGenerators.add(toAdd);
+    }
+
+    @Override
+    public void removeRecurringGenerator(RecurringExpenseManager toRemove) {
+        this.recurringGenerators.remove(toRemove);
+    }
+
 
 }
