@@ -48,6 +48,8 @@ public class Messages {
             + "End Time: %s\n";
     public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s**."
             + "\nPlease enter full name(s)";
+    public static final String MESSAGE_RESULT_IN_DUPLICATE = "The result of the command will result in duplicate "
+            + "%s.\nPlease check the name(s) entered";
     public static final String MESSAGE_NO_SUCH_STUDENT = "No student found: **%s**.\nPlease check the name entered";
     public static final String MESSAGE_INVALID_LESSON_TIME = "Start time cannot be after end time";
     public static final String MESSAGE_INVALID_LESSON_DURATION =
@@ -64,6 +66,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_INDEX = "Index cannot be empty!";
     public static final String MESSAGE_ONLY_ONE_DEADLINE = "Only one deadline is allowed!";
     public static final String MESSAGE_EMPTY_DEADLINE = "Deadline cannot be empty!";
-    public static final Object MESSAGE_MULTIPLE_STATUS = "Only one status is allowed!";
+    public static final Object MESSAGE_ONLY_ONE_STATUS = "Only one status is allowed!";
     public static final Object MESSAGE_EMPTY_STATUS = "Status cannot be empty!";
+
 }

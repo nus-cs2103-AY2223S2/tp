@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.homework;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.handleDuplicateName;
+import static seedu.address.logic.commands.CommandUtil.handleNonExistName;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -80,26 +82,8 @@ public class ViewHomeworkCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        StringBuilder nonExistNames = new StringBuilder();
-        for (String name : names) {
-            if (model.noSuchStudent(name)) {
-                nonExistNames.append(name).append(", ");
-            }
-        }
-        if (nonExistNames.length() != 0) {
-            nonExistNames = new StringBuilder(nonExistNames.substring(0, nonExistNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_NO_SUCH_STUDENT, nonExistNames));
-        }
-        StringBuilder dupNames = new StringBuilder();
-        for (String name : names) {
-            if (model.hasDuplicateName(name)) {
-                dupNames.append(name).append(", ");
-            }
-        }
-        if (dupNames.length() != 0) {
-            dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-        }
+        handleNonExistName(model, names);
+        handleDuplicateName(model, names);
         model.updateFilteredStudentList(namePredicate);
 
         List<Student> studentList = model.getFilteredStudentList();
@@ -119,10 +103,7 @@ public class ViewHomeworkCommand extends Command {
             }
         }
 
-        // If no homework is found, throw an exception
-        if (numberOfHomework == 0) {
-            throw new CommandException(Messages.MESSAGE_NO_HOMEWORK_FOUND);
-        }
+        handleNoHomework(numberOfHomework);
 
         // If the default predicate is used, display a different message
         if (defaultPredicateFlag) {
@@ -147,6 +128,19 @@ public class ViewHomeworkCommand extends Command {
             sb.append(DOT);
             sb.append(homeworkList.get(i).toString());
             sb.append(LINE_BREAK);
+        }
+    }
+
+    /**
+     * Handles the case where no homework is found.
+     *
+     * @param numberOfHomework Number of homework found.
+     * @throws CommandException If no homework is found.
+     */
+    public void handleNoHomework(int numberOfHomework) throws CommandException {
+        // If no homework is found, throw an exception
+        if (numberOfHomework == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_HOMEWORK_FOUND);
         }
     }
 

@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -264,12 +265,12 @@ public class ParserUtil {
         // only one deadline keyword is allowed
         if (argMultimap.getAllValues(PREFIX_DEADLINE).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one deadline is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_DEADLINE));
         }
         // it cannot be empty
         if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Deadline cannot be empty."));
+                    Messages.MESSAGE_EMPTY_DEADLINE));
         }
     }
 
@@ -283,12 +284,12 @@ public class ParserUtil {
         // only one name keyword is allowed
         if (argMultimap.getAllValues(PREFIX_NAME).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one student name is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_STUDENT));
         }
         // it cannot be empty
         if (argMultimap.getValue(PREFIX_NAME).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Name cannot be empty."));
+                    Messages.MESSAGE_EMPTY_STUDENT));
         }
     }
 
@@ -302,12 +303,12 @@ public class ParserUtil {
         // only one homework keyword is allowed
         if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one homework name is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_HOMEWORK));
         }
         // it cannot be empty
         if (argMultimap.getValue(PREFIX_HOMEWORK).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Homework name cannot be empty."));
+                    Messages.MESSAGE_EMPTY_HOMEWORK));
         }
     }
 
@@ -321,12 +322,12 @@ public class ParserUtil {
         // only one index keyword is allowed
         if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one index is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_INDEX));
         }
         // it cannot be empty
         if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Index cannot be empty."));
+                    Messages.MESSAGE_EMPTY_INDEX));
         }
     }
 
@@ -340,12 +341,12 @@ public class ParserUtil {
         // only one index keyword is allowed
         if (argMultimap.getAllValues(PREFIX_STATUS).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one status is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_STATUS));
         }
         // it cannot be empty
         if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Status cannot be empty."));
+                    Messages.MESSAGE_EMPTY_STATUS));
         }
     }
 
@@ -359,7 +360,7 @@ public class ParserUtil {
         // only one homework keyword is allowed
         if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one homework name is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_HOMEWORK));
         }
     }
 
@@ -373,7 +374,7 @@ public class ParserUtil {
         // it cannot be empty
         if (homework.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Homework name cannot be empty."));
+                    Messages.MESSAGE_EMPTY_HOMEWORK));
         }
     }
 
@@ -387,7 +388,7 @@ public class ParserUtil {
         for (String name : names) {
             if (name.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Name cannot be empty."));
+                        Messages.MESSAGE_EMPTY_STUDENT));
             }
         }
     }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.homework;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.handleDuplicateName;
+import static seedu.address.logic.commands.CommandUtil.handleNonExistName;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -56,36 +58,14 @@ public class DeleteHomeworkCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        StringBuilder nonExistNames = new StringBuilder();
-        for (String name : names) {
-            if (model.noSuchStudent(name)) {
-                nonExistNames.append(name).append(", ");
-            }
-        }
-        if (nonExistNames.length() != 0) {
-            nonExistNames = new StringBuilder(nonExistNames.substring(0, nonExistNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_NO_SUCH_STUDENT, nonExistNames));
-        }
-        StringBuilder dupNames = new StringBuilder();
-        for (String name : names) {
-            if (model.hasDuplicateName(name)) {
-                dupNames.append(name).append(", ");
-            }
-        }
-        if (dupNames.length() != 0) {
-            dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
-            throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
-        }
+        handleNonExistName(model, names);
+        handleDuplicateName(model, names);
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
 
-        StringBuilder sb = new StringBuilder();
-        for (Student student : studentList) {
-            formatString(sb, student);
-        }
-
-        return new CommandResult(sb.toString());
+        String message = formatMessage(studentList);
+        return new CommandResult(message);
     }
 
     /**
@@ -95,7 +75,7 @@ public class DeleteHomeworkCommand extends Command {
      * @param student Student to be formatted.
      * @throws CommandException if the command's preconditions are not met
      */
-    public void formatString(StringBuilder sb, Student student) throws CommandException {
+    public void removeHomework(StringBuilder sb, Student student) throws CommandException {
         try {
             sb.append(String.format(Messages.MESSAGE_HOMEWORK_DELETED_SUCCESS, targetIndex.getOneBased(),
                     student.getHomework(targetIndex).toString(), student.getName().toString()));
@@ -104,6 +84,21 @@ public class DeleteHomeworkCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
         }
+    }
+
+    /**
+     * Formats the string to be displayed.
+     *
+     * @param studentList List of students to be formatted.
+     * @return String to be displayed.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public String formatMessage(List<Student> studentList) throws CommandException {
+        StringBuilder sb = new StringBuilder();
+        for (Student student : studentList) {
+            removeHomework(sb, student);
+        }
+        return sb.toString();
     }
 
     @Override
