@@ -21,8 +21,8 @@ public enum HelpMenu {
     EDIT("edit") {
         @Override
         public String getCommandUsage() {
-            return "Edit a food item - edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]" +
-                    OPTIONAL_MESSAGE;
+            return "Edit a food item - edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]"
+                    + OPTIONAL_MESSAGE;
         }
     },
     DECREMENT("dec") {
@@ -61,6 +61,12 @@ public enum HelpMenu {
             return "View a food item - view INDEX";
         }
     },
+    SORTBYEXPIRY("expiring") {
+        @Override
+        public String getCommandUsage() {
+            return "Sort food items by expiry date - expiry";
+        }
+    },
     TAG("tag") {
         @Override
         public String getCommandUsage() {
@@ -76,15 +82,15 @@ public enum HelpMenu {
     DELETEBYTAG("delbytag") {
         @Override
         public String getCommandUsage() {
-            return "Deletes food items containing the specified tag(s) - delbytag n/TAG NAME [n/ANOTHER TAG NAME]" +
-                    OPTIONAL_MESSAGE;
+            return "Deletes food items containing the specified tag(s) - delbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+                    + OPTIONAL_MESSAGE;
         }
     },
     LISTBYTAG("listbytag") {
         @Override
         public String getCommandUsage() {
-            return "Lists food items containing the specified tag(s) - listbytag n/TAG NAME [n/ANOTHER TAG NAME]" +
-                    OPTIONAL_MESSAGE;
+            return "Lists food items containing the specified tag(s) - listbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+                    + OPTIONAL_MESSAGE;
         }
     },
     CREATETAG("createtag") {
