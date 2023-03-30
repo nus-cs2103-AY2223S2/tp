@@ -151,8 +151,8 @@ public class ScoreList implements Iterable<Score> {
         Double minValue = scoreSummary.getMin();
         Double oldValue = recentScoreList.get(0).getValue().value;
         Double newValue = recentScoreList.get(recentScoreList.size() - 1).getValue().value;
-        Double percentage = newValue - oldValue == 0 ? 0 : oldValue == 0 ? (newValue - oldValue) / 1   : (newValue - oldValue) / oldValue * 100; 
-        System.out.println("new value " + newValue.toString() + " old value " + oldValue.toString() + " percentage " + percentage.toString());
+        Double percentage = newValue - oldValue == 0 ? 0 : oldValue == 0 ? (newValue - oldValue) / 1
+            : (newValue - oldValue) / oldValue * 100;
         average = Double.valueOf(df.format(average));
         percentage = Double.valueOf(df.format(percentage));
         ScoreSummary ss = new ScoreSummary(maxValue, minValue, average, percentage);
