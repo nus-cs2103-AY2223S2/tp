@@ -15,4 +15,4 @@ plugins:
   - jemoji
   
 minima:
-  skin: solarized
+  skin: classic
