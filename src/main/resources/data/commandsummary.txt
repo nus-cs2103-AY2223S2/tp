@@ -7,7 +7,7 @@ e/EMAIL
 t/TELEGRAM
 g/[GROUP...] : Accepts multiple keywords
 m/[MODULE…] : Accepts multiple keywords
-=========================================================
+====================================================================
 
 Command Usage:
 ------------------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ load FILENAME : Loads your data from a file at FILENAME.json
 meet [INDEX]... : Suggests locations to meet with contacts at the indexes
 eat [INDEX]... : Suggests locations to eat with contacts at the indexes
 study [INDEX]... : Suggests locations to study with contacts at the indexes
-=========================================================
+====================================================================
 
 Tips:
 ------------------------------------------------------------------------------------------------
