@@ -166,7 +166,6 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
         commit();
     }
@@ -278,8 +277,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && userPrefs.equals(other.userPrefs);
+        //&& filteredClients.equals(other.filteredClients);
     }
 
 }

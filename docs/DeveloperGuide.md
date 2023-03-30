@@ -308,6 +308,30 @@ The logic of this class follows this sequence.
 The following sequence diagram shows how the select operation works:
 ![SelectSequenceDiagram.png](images/SelectSequenceDiagram.png)
 
+### Sort Feature
+
+There are three sorting features available. 
+
+Their mechanisms are similar. So only take `SortByClientName` as an example
+
+The SortByClientName mechanism is facilitated by `SortByClientNameCommand` 
+and `SortByClientNameCommandParser`.
+
+`SortByClientNameCommand` extends from `sortCommand` by overriding methods from its parent class.
+The logic of this class follows the sequence.
+
+1. Get the most updated client list in the `Model`.
+2. Sort the list based on given `INDEX` details.
+3. Updated the new sorted client List in the `Model`.
+
+`SortByClientNameCommandParser` implements `Parser<SortByClientNameCommand>`.
+The logic of this class follows this sequence.
+
+1. Get the instruction index from the preamble of the input
+   
+The following sequence diagram shows how the sort operation works:
+![SortCommand.png](images/SortCommand.png)
+
 ### Add Policy Feature
 
 The add policy mechanism is facilitated by `AddPolicyCommand` and `AddPolicyCommandParser`.

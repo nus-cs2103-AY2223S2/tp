@@ -55,8 +55,6 @@ public class DeletePolicyCommand extends Command {
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
         Client deletedPolicyClient = clientToDeletePolicy.cloneClient();
-        // Work with titus on how to select the client that we are interested in first.
-        CommandResult cr = new SelectCommand(clientIndex).execute(model);
 
         List<Policy> lastShownPolicyList = clientToDeletePolicy.getFilteredPolicyList();
 

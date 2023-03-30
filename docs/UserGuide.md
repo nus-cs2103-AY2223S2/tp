@@ -2,8 +2,6 @@
 
 # User Guide
 
----
-
 ## What is Advis.io?
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
@@ -32,15 +30,15 @@ see in your career.
         * Editing a client : `edit`
         * Filtering clients by name: `find`
         * Deleting a client : `delete`
+        * Sorting Clients by Email address : `sortClientEmail`
+        * Sorting Clients by Name : `sortClientName`
+        * Sorting Clients by Phone Number : `sortClientPhone`
     * #### Policy Management
         * Adding a policy: `addPolicy`
-        * Listing all policies : `listPolicy`
         * Editing a policy : `editPolicy`
         * Deleting a policy : `deletePolicy`
 * ### FAQ
 * ### Command Summary
-
---------------------------------------------------------------------------------------------------------------------
 
 ## How to Get Started
 
@@ -54,7 +52,7 @@ see in your career.
 
 ```
 java -jar advisio.jar
-``` 
+```
 
 #### command to run the application.<br>
 
@@ -134,6 +132,18 @@ Format: `undo`
 * If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
 
+#### **Special Note for undo and redo**
+
+Undo/Redo Command will only work if previous command **modifies the data of Clients or Policies**.
+
+Thus following commands can't be called to Undo/Redo
+
+* Exit
+* Help
+* List
+* Select
+
+
 ### Redo previous command : `redo`
 
 Redo one previous command and restore that version of address book
@@ -190,9 +200,16 @@ Examples:
 
 ### Selecting a client: `select`
 
-Selects a client to display on the client dashboard.
+Selects a client to display on the client dashboard, as well as their corresponding policies on the policy dashboard.
 
 Format: `select INDEX`
+
+Examples:
+
+- `select 1` returns client with index 1 (`Alex Yeoh`), displaying his policies in the policy dashboard
+
+![result for 'find alex david'](images/selectexample.png)
+
 
 ### Listing all clients: `list`
 
@@ -239,7 +256,7 @@ Examples:
 
 - `find alex david` returns `Alex Yeoh, David Li`
 
-![result for 'find alex david'](images/findAlexDavidResult.png)
+![result for 'find alex david'](images/findalexdavid.png)
 
 ### Deleting a client : `delete`
 
@@ -256,80 +273,109 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Adding a client: `add`
 
-Adds a client to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
 
-Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+## Policy Management 
 
-### Listing all clients : `list`
+While you can manage your clients, we also provide a way to manage the client's policies. 
 
-Shows a list of all clients in the address book.
+Policy refers to the insurance plan/contract that the client has purchased from you.
 
-Format: `list`
+The policy contains the following fields:
+- Policy Name
+- Policy Start Date 
+- Policy Premium (The amount of money the client pays you for the policy)
+- Policy Frequency (The frequency of the premium payment)
 
-### Editing a client : `edit`
+Using Advis.io, you can add, edit, delete, and view the policies for your clients very easily! Here's how.
 
-Edits an existing client in the address book.
+### Adding a policy : `addPolicy`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Adds a policy to a specific client
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
-  The index **must be a positive integer** 1, 2, 3, …​
+Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
+
+* Do note that the Policy Name should be from the following list:
+  - Health Insurance
+  - Life Insurance
+  - Medical Insurance
+  - Fire Insurance
+  - Car Insurance
+  - Travel Insurance
+
+* The Policy Start Date should be in the following format: `dd.mm.yyyy`
+
+* The Policy Premium should be a positive integer.
+
+* The Policy Frequency should be one of the following: `weekly`, `monthly`,`yearly`
+
+Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
+
+
+You will then be able to view the policies on the right side under 'Policies'
+
+![img.png](img.png)
+
+
+### Editing a policy : `editPolicy`
+
+Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
+  list. The index **must be a positive integer** 1, 2, 3, …​
+* The `POLICY_INDEX` refers to the index number shown in the displayed policy list. The same constraints as `INDEX` apply. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
 
 Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-
-### Filtering clients by name: `find`
-
-Finds clients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a client : `delete`
-
-Deletes the specified client from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
+- `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
+- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
+policy information`
 
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Sorting clients by their email : `sortClientEmail`
+
+Format: `sortClientEmail INDEX`
+
+* Sort list of clients based on their email
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
+* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
+
+### Sorting clients by their name : `sortClientName`
+
+Format: `sortClientName INDEX`
+
+* Sort list of clients based on their name
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientName 1` sorts the client list based on client's name in **ascending** order
+* `sortClientName 0` sorts the client list based on client's name in **descending** order
+
+### Sorting clients by their email : `sortClientPhone`
+
+Format: `sortClientPhone INDEX`
+
+* Sort list of clients based on their phone number
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
+* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
 
 ## Policy Management (todo)
 
@@ -368,30 +414,44 @@ Format: `findPolicy`
 
 Deletes the indexed policy from a specific client
 
-Format: `deletePolicy n/NAME INDEX`
+Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
-Examples: `deletePolicy n/John Doe 1`
 
-### Adding a claim. `[coming in v2.0]`
+Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
+**Q**: My computer doesn't have Java 11 installed, what should I do?<br>
+**A**: You can install Java 11 from [Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html). All you have to do now is find your operating systems and follow the steps given! Alternatively, you can also install Java 11 from [OpenJDK](https://openjdk.org). 
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
+**Q**: Do I need an internet connection use Advisio?<br>
+**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application anywhere and anytime as you see fit!
+
+**Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
+**A**:Unfortunately, Advisio does not  support cloud support. However, you can follow these steps to store your data safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service. 
+
+**Q**: I would like to add a new policy, however the application doesn't allow me to add a policy other than those that are supported by the application. What should I do?<br>
+**A**: We restricted the policies to a limited few for the convenience of Financial Advisors so that they wouldn't find themselves in a situation where they can't remember the policy that was added. The engineering team for your company should be able to add a new general policy if it's required.
+
+**Q**: Is there a limit to the number of clients or policies that I can add?<br>
+**A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed those thresholds. However, the limit can be expanded in the future if necessary.
+
+**Q**: If I
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                      
+ Action              | Format, Examples                                                                                                                                                  
 ---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                  
+ **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                 
  **Clear**           | `clear`                                                                                                                                                               
  **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
  **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
@@ -401,4 +461,9 @@ the data of your previous AddressBook home folder.
  **Redo**            | `redo`                                                                                                                                                                
  **Help**            | `help`                                                                                                                                                                
  **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    
+ **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
+ **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
+ **Select**          | `select INDEX`<br> e.g.,`select 1`
+ **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
+ **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
+ **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`

@@ -24,6 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
@@ -55,7 +56,7 @@ public class EditCommand extends Command {
     private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index                of the client in the filtered client list to edit
+     * @param index of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
      */
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
@@ -81,7 +82,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
         UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
+        Appointment appointment = clientToEdit.getAppointment();
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
+                appointment);
     }
 
     @Override
@@ -156,36 +159,44 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
         public void setName(Name name) {
             this.name = name;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
             this.email = email;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
@@ -195,14 +206,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         @Override

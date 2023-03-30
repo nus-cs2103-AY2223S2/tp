@@ -20,7 +20,7 @@ public class SortByClientPhoneCommand extends SortCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the client by their phone number.\n"
             + "Parameters: Integer value, 0 means reverse order and any other value means in order\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_SORT_BY_CLIENT_PHONE_SUCCESS = "Sort By Client Phone Number ";
     private boolean inOrder;
 
@@ -60,5 +60,12 @@ public class SortByClientPhoneCommand extends SortCommand {
     @Override
     public boolean getInorder() {
         return inOrder;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortByClientPhoneCommand // instanceof handles nulls
+                && inOrder == ((SortByClientPhoneCommand) other).inOrder); // state check
     }
 }
