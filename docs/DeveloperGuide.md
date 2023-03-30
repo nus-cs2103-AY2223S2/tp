@@ -386,15 +386,6 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 
 <br>
 
-#### How data is saved
-<img src="images/SaveSequenceDiagram.png" width="550" />
-<br>
-<br>
-
-#### How data is retrieved
-<img src="images/ReadStorageSequenceDiagram.png" width="550" />
-<br>
-<br>
 
 #### Additional Information
 * The sequence for user preference save and retrieval is similar to data
@@ -915,6 +906,16 @@ in our `Storage` as well as the courses displayed in the application.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Storage Implementation
+
+### How data is saved
+<img src="images/SaveSequenceDiagram.png" />
+<br>
+<br>
+
+### How data is retrieved
+<img src="images/ReadStorageSequenceDiagram.png" width="550" />
+<br>
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
