@@ -38,7 +38,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Fields: INDEX (must be a positive integer) "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME] "
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_STATUS + "STATUS] "
@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROLE + "Backend Engineer "
-            + PREFIX_STATUS + "interview";
+            + PREFIX_STATUS + "Interview";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
