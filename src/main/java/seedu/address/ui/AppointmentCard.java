@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * An UI component that displays appointment information of a {@code Person}.
@@ -13,6 +14,8 @@ public class AppointmentCard extends UiPart<Region> {
     private static final String FXML = "AppointmentListCard.fxml";
 
     public final Appointment appointment;
+
+    public final Person person;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,23 +28,25 @@ public class AppointmentCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label id;
-    @FXML
-    private Label patientNric;
 
     @FXML
-    private Label drNric;
+    private Label nric;
     @FXML
     private Label booking;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public AppointmentCard(Appointment appointment, int displayedIndex) {
+    public AppointmentCard(Person person, Appointment appointment, int displayedIndex) {
         super(FXML);
+        this.person = person;
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
-        patientNric.setText(appointment.getPatientNric().nric);
-        drNric.setText(appointment.getDrNric().nric);
+        if (person.isPatient()) {
+            nric.setText(appointment.getDrNric().nric);
+        } else {
+            nric.setText(appointment.getPatientNric().nric);
+        }
         booking.setText(appointment.getBooking().toString());
     }
 

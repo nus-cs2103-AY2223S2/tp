@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox minWidth="340.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
@@ -58,6 +59,26 @@
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></Label>
+               <HBox>
+                  <children>
+                     <Label fx:id="date" alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Date" textAlignment="CENTER">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font size="8.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="appmtWith" alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Doctor" textAlignment="CENTER">
+                        <HBox.margin>
+                           <Insets left="160.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font size="8.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
             <ListView id="appointments" fx:id="appointments" style="-fx-background-color: white;">
                   <VBox.margin>
                      <Insets bottom="10.0" />

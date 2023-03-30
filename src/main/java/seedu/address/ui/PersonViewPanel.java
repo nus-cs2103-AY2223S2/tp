@@ -45,6 +45,12 @@ public class PersonViewPanel extends UiPart<Region> {
     @FXML
     private VBox prescriptionBox;
 
+    @FXML
+    private Label date;
+
+    @FXML
+    private Label appmtWith;
+
     /**
      * Generates a Person View Panel.
      * @param person Person to generate the panel about.
@@ -79,6 +85,11 @@ public class PersonViewPanel extends UiPart<Region> {
     }
 
     private void setAppointmentDetails() {
+        if (person.isPatient()) {
+            appmtWith.setText("Doctor");
+        } else {
+            appmtWith.setText("Patient");
+        }
         ObservableList<Appointment> appointmentsObservableList =
                 new ObservableListWrapper<>(person.getPatientAppointments());
         appointments.setItems(appointmentsObservableList);
@@ -104,7 +115,7 @@ public class PersonViewPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(person, appointment, getIndex() + 1).getRoot());
             }
         }
     }
