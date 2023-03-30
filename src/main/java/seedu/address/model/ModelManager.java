@@ -173,6 +173,9 @@ public class ModelManager implements Model, Undoable {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * resets each person contact status to be hidden.
+     */
     @Override
     public void resetPersonHiddenStatus() {
         List<Person> personlist = getFilteredPersonList();
@@ -181,6 +184,15 @@ public class ModelManager implements Model, Undoable {
                 x.toggleHidden();
             }
         });
+    }
+
+    /**
+     * Sets each person's contact in the person list to be visible.
+     * @param personList list of person.
+     */
+    @Override
+    public void showPersonContact(List<Person> personList) {
+        personList.stream().forEach(x -> x.toggleHidden());
     }
 
     //=========== Undo management =============================================================================

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -12,7 +13,9 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -60,7 +63,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -77,6 +82,7 @@ public interface Model {
     /**
      * Deletes all the people in the list.
      * All the people in the list must exist in the address book.
+     *
      * @param listOfPeople ArrayList of Person.
      */
     void deleteMultiplePersons(ArrayList<Person> listOfPeople);
@@ -94,17 +100,28 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * resets each person contact status to be hidden.
+     */
     void resetPersonHiddenStatus();
 
+    /**
+     * Sets each person's contact in the person list to be visible.
+     * @param personList list of person.
+     */
+    void showPersonContact(List<Person> personList);
 
     /**
      * Adds all contacts not already in the address book into the address book.

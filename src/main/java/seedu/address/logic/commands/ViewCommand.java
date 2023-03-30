@@ -52,6 +52,9 @@ public class ViewCommand extends Command {
 
         List<Name> nameList = index.stream().filter(x -> validateIndex(x, lastShownList))
                 .map(x -> lastShownList.get(x.getZeroBased()).getName()).collect(Collectors.toList());
+        List<Person> updatedPersonList = lastShownList.stream()
+                .filter(x -> nameList.contains(x.getName())).collect(Collectors.toList());
+        model.showPersonContact(updatedPersonList);
         MatchNamePredicate predicate = new MatchNamePredicate(nameList);
         model.updateFilteredPersonList(predicate);
         StringBuilder sb = new StringBuilder();
