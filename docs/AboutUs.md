@@ -27,17 +27,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zeli0.md)]
 
 - Role: Developer
-- Responsibilities: 
+- Responsibilities:
 
 ### Leonard Yam
 
 <img src="images/leonardyam.png" width="200px">
 
-[[github](http://github.com/leonardyam)] 
+[[github](http://github.com/leonardyam)]
 [[portfolio](team/leonardyam.md)]
 
 - Role: Developer
-- Responsibilities: 
+- Responsibilities:
 
 ### Chai Jiexuan
 

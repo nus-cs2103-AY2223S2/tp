@@ -15,6 +15,7 @@ public class Mob extends Entity {
     // A higher challenge rating (CR) represents an increased difficulty to defeat a mob
     private final float challengeRating;
     private final boolean isLegendary;
+    private final Inventory inventory;
 
     /**
      * Every field should be present and non-null.
@@ -30,6 +31,7 @@ public class Mob extends Entity {
         this.stats = stats;
         this.challengeRating = challengeRating;
         this.isLegendary = isLegendary;
+        this.inventory = Inventory.emptyInventory();
     }
 
     /**
@@ -43,7 +45,21 @@ public class Mob extends Entity {
         this.stats = new Stats(22, 11, 33);
         this.challengeRating = 2;
         this.isLegendary = false;
+        this.inventory = Inventory.emptyInventory();
     }
+
+    /**
+     * Constructor for Mobs with inventory
+     */
+
+    public Mob(Name name, Stats stats, float challengeRating, boolean isLegendary, Set<Tag> tags, Inventory inventory) {
+        super(name, tags);
+        this.stats = stats;
+        this.challengeRating = challengeRating;
+        this.isLegendary = isLegendary;
+        this.inventory = inventory;
+    }
+
 
     public float getChallengeRating() {
         return this.challengeRating;
@@ -55,6 +71,10 @@ public class Mob extends Entity {
 
     public Stats getStats() {
         return this.stats;
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     @Override

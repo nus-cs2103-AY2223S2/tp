@@ -67,8 +67,11 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 
    * `make char John Cena` : Adds a character sheet named `John Cena` to the database.
 
-   * `kill char John Cena` : Deletes previously created character `John Cena`.
-
+   * `delete char John Cena` : Deletes previously created character `John Cena`.
+   
+   * `template Wrestler|John Cena`: Create a character sheet named `John Cena` based on 
+   a pre-existing character template
+   
    * `clear` : Deletes all entity sheets.
 
    * `exit` : Exits the app.
@@ -88,9 +91,9 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
   e.g. in `make CLASSIFICATION NAME`, `CLASSIFICATION` and `NAME` are parameters which can be used as `add item gilded dagger`.
 
 * CLASSIFICATION can be the following: .<br>
-  Item: `item`, Monster:`mob`, Character: `char`.
+  Item: `item`, Monster:`mob`, Character: `char` Template: `template`
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -106,30 +109,37 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
-### Adding an entity: `make`
+### Making an entity: `make`
 
 Adds a new entity into the database.
 
 Format: `make CLASSIFICATION NAME`
 
-
 Examples:
 * `make char John Cena `
 * `make item Sword`
 
-### Listing all entities of a classification : `view`
+### Listing all entities of a classification : `list`
 
 Shows a list of all entities in Reroll's database.
 
-Format: `view CLASSIFICATION`
+Format: `list CLASSIFICATION`
 
-A detailed view of a single entity may be entered when specified.
+Examples:
+* `list char` shows a list of all characters
+
+### View an entity's details: `view`
+
+A detailed view of a single entity which shows all fields.
+
+Examples:
+* `view char John Cena` shows a detailed view of the character named John Cena.
 
 Format: `view CLASSFICIATION NAME`
 
 Detailed view may be left by entering the command: `back` or `b` while in detailed view.
-### Editing a entity : `edit`
+
+### Editing an entity : `edit`
 
 Enter into edit mode for the specified entity.
 
@@ -137,7 +147,7 @@ Format: `edit CLASSIFICATION NAME`
 
 * In edit mode, changes can be made with the following format: <br>
   * `FIELD NEW_VALUE`
-  * e.g. `name gilded staff` or `hp 100`
+  * e.g. `name gilded staff` or `level 9000`
   * If the specified field is unavailable (i.e. hp of an item), no values will be changed.
 * Edit mode may be left by entering the command: `back` or `b` while in edit mode.
 
@@ -159,16 +169,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting an entity : `kill`
+### Deleting an entity : `delete`
 
 Deletes the specified entity from Reroll's database.
 
-Format: `kill CLASSIFICATION NAME`
+Format: `delete CLASSIFICATION NAME`
 
 * Deletes the entity with both the specified `CLASSIFICATION` and `NAME`.
 
 Examples:
-* `kill item black sword` will delete only exactly an `item` with the name `black sword`.
+* `delete char John Cena` will delete only exactly a `Character` with the name `John Cena`.
 
 ### Clearing all entries : `clear`
 
@@ -210,9 +220,13 @@ _Details coming soon ..._
 <h2 id="summary"></h2>
 
 ## Entity classifications
-There are 3 different entity classifications in Reroll, each with their own set of fields to track.
+There are 4 different entity classifications in Reroll, each with their own set of fields to track.
 
 `Character` or `char` in short refers to characters whose actions are controlled by players instead of the game master.
+
+`Template` refers to pre-determined characters that can be used to quickly generate characters 
+with a preferred stat distribution. Templates are pre-determined and 
+cannot be created/edited/deleted by the user.
 
 `Mob` refers to hostile non-playable characters which are controlled by the game master, 
 meant to be defeated by player characters.
@@ -222,25 +236,26 @@ can be used by the player characters.
 
 The definitive list of the different values each entity has:
 
-| Character    | Mob              | Item   |
-|--------------|------------------|--------|
-| Name         | Name             | Name   | 
-| Strength     | Strength         | Cost   |
-| Dexterity    | Dexterity        | Weight | 
-| Intelligence | Intelligence     | Tags   |
-| Level        | Challenge Rating |        |
-| XP           | Legendary        |        |
-| Tags         | Tags             |        |
+| Character (template) | Mob              | Item   |
+|----------------------|------------------|--------|
+| Name                 | Name             | Name   | 
+| Strength             | Strength         | Cost   |
+| Dexterity            | Dexterity        | Weight | 
+| Intelligence         | Intelligence     | Tags   |
+| Level                | Challenge Rating |        |
+| XP                   | Legendary        |        |
+| Tags                 | Tags             |        |
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action                        | Format, Examples                                                  |
-|-------------------------------|-------------------------------------------------------------------|
-| **Make**                      | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`  |
-| **Clear**                     | `clear`                                                           |
-| **Delete**                    | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge` |
-| **Enter Edit Mode**           | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`    |
-| **Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`              |
-| **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`             |
-| **List entities**             | `view CLASSIFICATION` <br> e.g., `view items`                     |
-| **Help**                      | `help`                                                            |
+| Action                        | Format, Examples                                                      |
+|-------------------------------|-----------------------------------------------------------------------|
+| **Make**                      | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`      |
+| **Clear**                     | `clear`                                                               |
+| **Delete**                    | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge`     |
+| **Enter Edit Mode**           | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`        |
+| **Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`                  |
+| **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`                 |
+| **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template Wrestler John Cena` |`                                        |NAME`                                         | NAME`                                        |`                                         |`                                         |
+| **List entities**             | `view CLASSIFICATION` <br> e.g., `view items`                         |
+| **Help**                      | `help`                                                                |

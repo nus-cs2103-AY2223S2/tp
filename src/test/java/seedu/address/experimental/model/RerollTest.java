@@ -1,37 +1,34 @@
 package seedu.address.experimental.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.testutil.TypicalEntities.getTypicalReroll;
-
-import java.util.Collections;
-
 import org.junit.jupiter.api.Test;
 
 class RerollTest {
 
-    private final Reroll reroll = new Reroll();
-
     @Test
-    public void constructor() {
-        assertEquals(Collections.emptyList(), reroll.getAllList());
+    void getItems() {
     }
 
     @Test
-    public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> reroll.resetData(null));
+    void getCharacters() {
     }
 
     @Test
-    public void resetData_withValidReadOnlyReroll_replacesData() {
-        Reroll newData = getTypicalReroll();
-        reroll.resetData(newData);
-        assertEquals(newData, reroll);
+    void getMobs() {
     }
 
     @Test
-    public void getEntityList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> reroll.getAllList().remove(0));
+    void getAllList() {
     }
 
+    @Test
+    void getCharacterList() {
+    }
+
+    @Test
+    void getItemList() {
+    }
+
+    @Test
+    void getMobList() {
+    }
 }

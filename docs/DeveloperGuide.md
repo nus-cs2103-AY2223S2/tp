@@ -1,8 +1,35 @@
-<img src="images/Reroll_Banner.png" />
 ---
 layout: page title: Developer Guide
 
 ---
+<br />
+<div align="center">
+  <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp">
+    <img alt="Banner" src="images/Reroll_Banner.png" alt="Logo" width="1000">
+  </a>
+<h3 align="center">TTRPG Entity Management Solution</h3>
+  <p align="center">
+    An all-in-one developer's guide to Reroll!
+    <br />
+    <a href="https://nus-cs2103-ay2223s2.github.io/tp/"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md">Meet the Team</a>
+    <br />
+    🎉 Version 1.2.1 is out. Check out the latest release
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">here</a>.
+    <br />
+    <br />
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/v/release/AY2223S2-CS2103T-T15-1/tp" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/watchers/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/stars/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+  </p>
+</div>
 
 * Table of Contents {:toc}
 
@@ -494,17 +521,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### Deleting a entity
 
@@ -512,17 +538,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all entities using the `list` command. Multiple entities in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 

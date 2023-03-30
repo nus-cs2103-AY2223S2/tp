@@ -12,6 +12,7 @@ import seedu.address.model.tag.Tag;
 public class Character extends Entity {
 
     private final Stats stats;
+    private final Inventory inventory;
     private final int level;
     // Represents the amount of experience points (xp) needed for the next level-up
     private final int xp;
@@ -30,6 +31,7 @@ public class Character extends Entity {
         this.stats = stats;
         this.level = level;
         this.xp = xp;
+        this.inventory = Inventory.emptyInventory();
     }
 
     /**
@@ -43,6 +45,18 @@ public class Character extends Entity {
         this.stats = new Stats(10, 20, 30);
         this.level = 12;
         this.xp = 1;
+        this.inventory = Inventory.emptyInventory();
+    }
+
+    /**
+     * Constructor for character with inventory
+     */
+    public Character(Name name, Stats stats, int level, int xp, Set<Tag> tags, Inventory inventory) {
+        super(name, tags);
+        this.stats = stats;
+        this.level = level;
+        this.xp = xp;
+        this.inventory = inventory;
     }
 
     public int getLevel() {
@@ -55,6 +69,10 @@ public class Character extends Entity {
 
     public Stats getStats() {
         return this.stats;
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     @Override

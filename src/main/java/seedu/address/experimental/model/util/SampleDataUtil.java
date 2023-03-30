@@ -43,6 +43,7 @@ public class SampleDataUtil {
         for (Character character : sampleCharacter) {
             sampleRr.addEntity(character);
         }
+        sampleRr.resetTemplates(BasicTemplates.getBasicTemplates());
         return sampleRr;
     }
 }
