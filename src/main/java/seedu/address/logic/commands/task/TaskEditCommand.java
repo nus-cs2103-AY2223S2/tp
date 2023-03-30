@@ -2,9 +2,12 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,11 +20,11 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-import java.util.Optional;
-
+/**
+ * Edits the details of an existing task in the task list.
+ */
 public class TaskEditCommand extends TaskCommand {
-    
+
     public static final String TASK_COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TASK_COMMAND_WORD
@@ -45,6 +48,11 @@ public class TaskEditCommand extends TaskCommand {
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
+    /**
+     * Constructor for task edit command
+     * @param index index of task of interest
+     * @param editTaskDescriptor the new task after being edited
+     */
     public TaskEditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
         requireNonNull(editTaskDescriptor);
@@ -64,7 +72,7 @@ public class TaskEditCommand extends TaskCommand {
 
         Task taskToEdit = lastShownTasks.get(index.getZeroBased());
         try {
-            editTaskDescriptor.UpdateTankInstance(model);
+            editTaskDescriptor.updateTankInstance(model);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_BAD_TANK_INDEX);
         }
@@ -78,6 +86,12 @@ public class TaskEditCommand extends TaskCommand {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
+    /**
+     * Creates the edited task
+     * @param taskToEdit original task
+     * @param editTaskDescriptor task descriptor of the new task
+     * @return new Task instance
+     */
     public static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
@@ -151,7 +165,11 @@ public class TaskEditCommand extends TaskCommand {
             return Optional.ofNullable(tank);
         }
 
-        public void UpdateTankInstance(Model model) {
+        /**
+         * Updates the tank of this editTaskDescriptor to the real instance
+         * @param model model of Fish Ahoy!
+         */
+        public void updateTankInstance(Model model) {
             if (tankIndex == null) {
                 return;
             }
