@@ -1,7 +1,6 @@
 package seedu.dengue.model.predicate;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.variant.Variant;
@@ -10,7 +9,7 @@ import seedu.dengue.model.variant.Variant;
  * Represents the predicate which tests for whether the person in the persons list has a valid variant based
  * on the variant made using the user input.
  */
-public class PersonContainsVariantsPredicate implements Predicate<Person> {
+public class PersonContainsVariantsPredicate extends PredicateUtil<Person> {
 
     private final Set<Variant> variants;
 

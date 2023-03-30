@@ -1,7 +1,6 @@
 package seedu.dengue.model.predicate;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
@@ -10,7 +9,7 @@ import seedu.dengue.model.person.Person;
  * Represents the predicate which tests for whether the person in the persons list is reported on the
  * date based on the user input.
  */
-public class PersonContainsDatePredicate implements Predicate<Person> {
+public class PersonContainsDatePredicate extends PredicateUtil<Person> {
     private final Optional<Date> date;
 
     public PersonContainsDatePredicate(Optional<Date> date) {
