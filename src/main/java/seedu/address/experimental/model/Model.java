@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 
@@ -48,6 +49,8 @@ public interface Model {
      * Sets the user prefs' Reroll file path.
      */
     void setRerollFilePath(Path rerollFilePath);
+
+    Predicate<Entity> getClassificationPredicate(Classification classification);
 
     /**
      * Returns Reroll
