@@ -177,7 +177,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Adding an Applicant
 
-#### Overview
+##### Overview
 
 The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
 
@@ -192,7 +192,7 @@ The activity diagram is as such:
 
 ![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
 
-#### Feature Details
+##### Feature Details
 
 1. The user specifies Applicants details to create. Compulsory fields are name, phone, address, and email. Optional
 fields include application date time and notes about the applicant.
@@ -205,7 +205,7 @@ fields include application date time and notes about the applicant.
 to inform the user.
 1. If step 5 completes without any exceptions, the new `Person` is created and stored inside HMHero.
 
-#### Feature Considerations
+##### Feature Considerations
 
 When checking for duplicates in the `UniquePersonList` inside `Model`, any `Person` cannot have the same name and phone
 as another. While it is unlikely applicants have the same full name, it is still possible in reality. However, it is
@@ -296,7 +296,7 @@ Additionally, we realised that it is common for hiring managers to reject applic
 
 #### Finding an Applicant
 
-#### Overview
+##### Overview
 
 The `find` command filters applicants based on fields specified by the user. 
 Fields have to be denoted by flags. Allowed fields for filtering are `name` and `phone`.
@@ -324,12 +324,12 @@ The lifeline for `FindCommandParser` should end at the destroy marker (X) but du
 Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
 
-#### Feature Details
+##### Feature Details
 1. The user specifies one or more fields to filter through the applicant list.
 2. If the user specifies more than one field, the filtered applicant list has to match all fields.
 3. If the user specifies a field more than once, only the last argument is considered when filtering applicants.
 
-#### Feature considerations
+##### Feature considerations
 The UI displays a `FilteredList` obtained from an immutable applicant list.
 The `FindCommandParser` creates the `Predicate` used to filter the applicant list. When the `FindCommand` is executed,
 the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI shows the new `FilteredList`.
@@ -404,6 +404,9 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 2. The applicant list is filtered for shortlisted applicants.
 3. The resulting filtered applicant list is sorted by interview date, from earliest to latest.
 4. HMHero displays the resulting `SortedList` to the user.
+
+#### Filter applicants based on notes
+
 
 
 --------------------------------------------------------------------------------------------------------------------
