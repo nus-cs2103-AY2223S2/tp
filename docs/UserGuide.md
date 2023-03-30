@@ -44,6 +44,7 @@ If you like our product and want to contribute to it, consider looking at the [D
     * [3.2 editing the data](#32-editing-the-data-file)
   * [4. FAQ](#4-faq)
   * [5. Command summary](#5-command-summary)
+  * [6. Glossary](#6-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
