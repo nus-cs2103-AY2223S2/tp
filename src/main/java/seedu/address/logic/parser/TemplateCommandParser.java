@@ -19,7 +19,7 @@ public class TemplateCommandParser implements Parser<TemplateCommand> {
         if (!isValidCommand) {
             throw new ParseException("To add");
         }
-        String[] split = args.trim().split(" ");
+        String[] split = args.trim().split(" ", 2);
         return new TemplateCommand(new Name(split[0]), new Name(split[1]));
     }
 }

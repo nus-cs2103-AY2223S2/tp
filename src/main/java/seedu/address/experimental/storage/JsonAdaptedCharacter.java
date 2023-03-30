@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
@@ -21,6 +22,7 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedCharacter {
     private final String name;
     private final JsonAdaptedStats stats;
+    private final JsonAdaptedInventory inventory;
     private final int level;
     private final int xp;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -30,12 +32,14 @@ public class JsonAdaptedCharacter {
      */
     @JsonCreator
     JsonAdaptedCharacter(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
+                         @JsonProperty("inventory") JsonAdaptedInventory inventory,
                          @JsonProperty("level") int level, @JsonProperty("xp") int xp,
                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.stats = stats;
         this.level = level;
         this.xp = xp;
+        this.inventory = inventory;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -47,6 +51,7 @@ public class JsonAdaptedCharacter {
     public JsonAdaptedCharacter(Character source) {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
+        inventory = new JsonAdaptedInventory(source.getInventory());
         level = source.getLevel();
         xp = source.getXP();
         tagged.addAll(source.getTags().stream()
@@ -62,12 +67,13 @@ public class JsonAdaptedCharacter {
     public Character toModelType() throws IllegalValueException {
         // dont care about error...
         Stats stat = stats.toModalType();
+        Inventory inventory = this.inventory.toModelType();
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             tags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Character(new Name(name), stat, level, xp, modelTags);
+        return new Character(new Name(name), stat, level, xp, inventory, modelTags);
     }
 
 }

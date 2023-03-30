@@ -23,6 +23,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
@@ -44,6 +45,7 @@ public class EditModeParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<fieldWord>\\S+)(?<arguments>.*)");
+    private static final Pattern INVENTORY_COMMAND_FORMAT = Pattern.compile("(?<actionWord>\\S+)(?<name>.*)");
 
     private final Model model;
 
@@ -72,6 +74,7 @@ public class EditModeParser {
             return new BackCommand();
         }
 
+
         EditEntityDescriptor editData = new EditEntityDescriptor();
         Entity toEdit = model.getCurrentSelectedEntity();
         if (toEdit instanceof Character) {
@@ -88,6 +91,7 @@ public class EditModeParser {
 
     private EditCharacterDescriptor generateCharacterData(Character toEdit,
             String fieldWord, String value) throws ParseException, NumberFormatException {
+        // Where all the edits are stored and sent over to the EditValueCommand
         EditCharacterDescriptor outData = new EditCharacterDescriptor();
         switch (fieldWord.toLowerCase()) {
         case "name":
@@ -117,6 +121,12 @@ public class EditModeParser {
         case "xp":
         case "exp":
             outData.setXp(Integer.valueOf(value));
+            break;
+        case "inventory":
+            // Check if add or delete
+            Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
+            parseInventoryCommand(value, editedInventory);
+            outData.setInventory(editedInventory);
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
@@ -156,6 +166,12 @@ public class EditModeParser {
         case "legend":
         case "l":
             outData.setIsLegendary(Boolean.valueOf(value));
+            break;
+        case "inventory":
+            // Check if add or delete
+            Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
+            parseInventoryCommand(value, editedInventory);
+            outData.setInventory(editedInventory);
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
@@ -203,5 +219,22 @@ public class EditModeParser {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    private void parseInventoryCommand(String args, Inventory editInventory) throws ParseException {
+        final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(args);
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        final String actionWord = matcher.group("actionWord");
+        final String itemName = matcher.group("name");
+        final Item item = (Item) model.getEntityFromName(itemName);
+        if (actionWord.equalsIgnoreCase("add")) {
+            editInventory.addItem(item);
+        } else if (actionWord.equalsIgnoreCase("remove")) {
+            editInventory.deleteItem(item);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
     }
 }

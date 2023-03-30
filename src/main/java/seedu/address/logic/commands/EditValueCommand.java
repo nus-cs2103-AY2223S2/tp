@@ -18,6 +18,7 @@ import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
@@ -106,8 +107,9 @@ public class EditValueCommand extends Command {
         Integer updatedLevel = editCharacterDescriptor.getLevel().orElse(charToEdit.getLevel());
         Integer updatedXp = editCharacterDescriptor.getXp().orElse(charToEdit.getXP());
         Set<Tag> updatedTags = editCharacterDescriptor.getTags().orElse(charToEdit.getTags());
+        Inventory updatedInventory = editCharacterDescriptor.getInventory().orElse(charToEdit.getInventory());
 
-        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedTags);
+        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedInventory, updatedTags);
     }
 
     /**
@@ -121,8 +123,10 @@ public class EditValueCommand extends Command {
         Float updatedChallengeRating = editMobDescriptor.getChallengeRating().orElse(mobToEdit.getChallengeRating());
         Boolean updatedIsLegendary = editMobDescriptor.getWeight().orElse(mobToEdit.getLegendaryStatus());
         Set<Tag> updatedTags = editMobDescriptor.getTags().orElse(mobToEdit.getTags());
+        Inventory updatedInventory = editMobDescriptor.getInventory().orElse(mobToEdit.getInventory());
 
-        return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary, updatedTags);
+        return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary,
+                                                                    updatedTags, updatedInventory);
     }
 
     /**
@@ -236,6 +240,7 @@ public class EditValueCommand extends Command {
         private Stats stats;
         private Integer level;
         private Integer xp;
+        private Inventory inventory;
 
         /**
          * Creates a character detail storage container to be edited.
@@ -251,6 +256,7 @@ public class EditValueCommand extends Command {
             setStats(toCopy.stats);
             setLevel(toCopy.level);
             setXp(toCopy.xp);
+            setInventory(toCopy.inventory);
         }
 
         public void setStats(Stats stats) {
@@ -275,6 +281,22 @@ public class EditValueCommand extends Command {
 
         public Optional<Integer> getXp() {
             return Optional.ofNullable(xp);
+        }
+
+        public Optional<Inventory> getInventory() {
+            return Optional.ofNullable(inventory);
+        }
+
+        public void setInventory(Inventory inventory) {
+            this.inventory = inventory;
+        }
+
+        public void addItemToInventory(Item item) {
+            this.inventory.addItem(item);
+        }
+
+        public void removeItemFromInventory(Item item) {
+            this.inventory.deleteItem(item);
         }
 
         @Override
@@ -304,6 +326,7 @@ public class EditValueCommand extends Command {
         private Stats stats;
         private Float challengeRating;
         private Boolean isLegendary;
+        private Inventory inventory;
 
         /**
          * Creates a Mob detail storage container to be edited.
@@ -319,6 +342,7 @@ public class EditValueCommand extends Command {
             setStats(toCopy.stats);
             setChallengeRating(toCopy.challengeRating);
             setIsLegendary(toCopy.isLegendary);
+            setInventory(toCopy.inventory);
         }
 
         public void setStats(Stats stats) {
@@ -343,6 +367,22 @@ public class EditValueCommand extends Command {
 
         public Optional<Boolean> getWeight() {
             return Optional.ofNullable(isLegendary);
+        }
+
+        public void setInventory(Inventory inventory) {
+            this.inventory = inventory;
+        }
+
+        public Optional<Inventory> getInventory() {
+            return Optional.ofNullable(inventory);
+        }
+
+        public void addItemToInventory(Item item) {
+            this.inventory.addItem(item);
+        }
+
+        public void removeItemFromInventory(Item item) {
+            this.inventory.deleteItem(item);
         }
 
         @Override
