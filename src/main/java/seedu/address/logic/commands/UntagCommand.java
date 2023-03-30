@@ -147,7 +147,8 @@ public class UntagCommand extends Command {
         Module untaggedModule = new Module(untaggingModule.getCode(),
                 untaggingModule.getName(), newTags, untaggingModule.getLectureList());
         model.setModule(untaggingModule, untaggedModule);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode),
+                new CommandResult.ModuleEditInfo(untaggingModule, untaggedModule));
     }
 
     private CommandResult untagLecture(Model model) throws CommandException {
@@ -181,7 +182,8 @@ public class UntagCommand extends Command {
 
         Lecture untaggedLecture = new Lecture(untaggingLecture.getName(), newTags, untaggingLecture.getVideoList());
         model.setLecture(targetModule, untaggingLecture, untaggedLecture);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName),
+                new CommandResult.LectureEditInfo(moduleCode, untaggingLecture, untaggedLecture));
     }
 
     private CommandResult untagVideo(Model model) throws CommandException {
@@ -220,10 +222,11 @@ public class UntagCommand extends Command {
         newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
                 .collect(Collectors.toSet());
 
-        Video taggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(),
+        Video untaggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(),
                 untaggingVideo.getTimestamp(), newTags);
-        model.setVideo(targetLecture, untaggingVideo, taggedVideo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
+        model.setVideo(targetLecture, untaggingVideo, untaggedVideo);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName),
+                new CommandResult.VideoEditInfo(moduleCode, lectureName, untaggingVideo, untaggedVideo));
     }
 
     @Override
