@@ -451,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Person**: A person who has contracted Dengue fever.
-* **CSV file: Comma-separated values file
+* **CSV file**: Comma-separated values file
 
 --------------------------------------------------------------------------------------------------------------------
 
