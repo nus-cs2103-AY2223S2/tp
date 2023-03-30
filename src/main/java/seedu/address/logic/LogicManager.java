@@ -31,12 +31,9 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-<<<<<<< HEAD
-    private final AddressBookParser addressBookParser;
     private final StatsManager statsManager;
-=======
     private final InternEaseParser internEaseParser;
->>>>>>> fdd433264b91f9e7fe641c4454a163517b43f0f0
+
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
