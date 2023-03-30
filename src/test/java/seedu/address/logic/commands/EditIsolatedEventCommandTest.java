@@ -11,6 +11,7 @@ import static seedu.address.testutil.SampleEventUtil.SKIING_ISOLATED_EVENT;
 import static seedu.address.testutil.SampleEventUtil.SLEEPING_ISOLATED_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +48,7 @@ public class EditIsolatedEventCommandTest {
     }
 
     @Test
-    public void execute_conflictRecurringEvent() throws CommandException {
+    public void execute_conflictRecurringEvent() {
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
         model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
@@ -62,6 +63,20 @@ public class EditIsolatedEventCommandTest {
                 INDEX_FIRST_EVENT, editEventDescriptor);
 
         assertThrows(EventConflictException.class, () ->command.execute(model));
+    }
+    @Test
+    public void execute_invalidEventIndex() throws CommandException {
+        Person editedPerson = new PersonBuilder().build();
+        Model model = new ModelManager(new AddressBook(), new UserPrefs());
+        model.addPerson(editedPerson);
+        model.addIsolatedEvent(editedPerson, SKIING_ISOLATED_EVENT);
 
+        EditEventDescriptor editEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
+                FOUR_O_CLOCK_VALID).build();
+
+        EditIsolatedEventCommand command = new EditIsolatedEventCommand(INDEX_FIRST_PERSON,
+                INDEX_THIRD_EVENT, editEventDescriptor);
+
+        assertThrows(CommandException.class, () ->command.execute(model));
     }
 }
