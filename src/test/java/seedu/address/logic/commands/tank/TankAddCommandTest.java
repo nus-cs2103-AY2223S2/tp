@@ -23,6 +23,11 @@ import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 import seedu.address.testutil.TankBuilder;
@@ -233,7 +238,7 @@ public class TankAddCommandTest {
         public void updateFilteredTankList(Predicate<Tank> predicate) {}
 
         @Override
-        public void setLastFedDateFishes(Tank tankToFeed, String formattedDate) {
+        public void setLastFedDateTimeFishes(Tank tankToFeed, String formattedDate) {
             //TODO tests
         }
 
@@ -241,6 +246,52 @@ public class TankAddCommandTest {
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
+        }
+
+        @Override
+        public void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH ph, Temperature temp, Tank t) {
+
+        }
+
+        @Override
+        public void setFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels) {
+
+        }
+
+        @Override
+        public ReadOnlyReadingLevels getFullReadingLevels() {
+            return null;
+        }
+
+        @Override
+        public boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+            return false;
+        }
+
+        @Override
+        public void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target) {
+
+        }
+
+        @Override
+        public void addIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+
+        }
+
+        @Override
+        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
+                                               UniqueIndividualReadingLevels editedList) {
+
+        }
+
+        @Override
+        public ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
+
         }
     }
 

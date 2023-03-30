@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.fish;
 
 import static java.util.Objects.requireNonNull;
 

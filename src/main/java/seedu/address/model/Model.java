@@ -10,6 +10,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -173,11 +178,30 @@ public interface Model {
 
     void updateFilteredTankList(Predicate<Tank> predicate);
 
-    void setLastFedDateFishes(Tank tankToFeed, String formattedDate);
+    void setLastFedDateTimeFishes(Tank tankToFeed, String formattedDate);
 
     /**
      * Executes the auto feeding reminder feature for Model
      */
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel();
 
+    //=========== FullReadingLevels  =============================================================
+    void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH ph, Temperature temp, Tank t);
+
+    void setFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels);
+
+    ReadOnlyReadingLevels getFullReadingLevels();
+
+    boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
+
+    void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target);
+
+    void addIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevels);
+
+    void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
+                                    UniqueIndividualReadingLevels editedList);
+
+    ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels();
+
+    void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate);
 }

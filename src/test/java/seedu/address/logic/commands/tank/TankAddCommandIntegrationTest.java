@@ -3,6 +3,7 @@ package seedu.address.logic.commands.tank;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReadings.getTypicalFullReadingLevels;
 import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
@@ -24,7 +25,8 @@ public class TankAddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList(),
+                getTypicalFullReadingLevels());
     }
 
     @Test
@@ -32,7 +34,7 @@ public class TankAddCommandIntegrationTest {
         Tank validTank = new TankBuilder().build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                getTypicalTankList());
+                getTypicalTankList(), getTypicalFullReadingLevels());
         expectedModel.addTank(validTank);
 
         assertCommandSuccess(new TankAddCommand(validTank), model,

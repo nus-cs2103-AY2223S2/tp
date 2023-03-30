@@ -23,7 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -119,7 +119,8 @@ public class EditCommand extends Command {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
-        LastFedDate updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDate());
+        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate()
+                .orElse(fishToEdit.getLastFedDateTime());
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
                 .orElse(fishToEdit.getFeedingInterval());
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
      */
     public static class EditFishDescriptor {
         private Name name;
-        private LastFedDate lastFedDate;
+        private LastFedDateTime lastFedDate;
         private Species species;
         private FeedingInterval feedingInterval;
         private Tank tank;
@@ -190,11 +191,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setLastFedDate(LastFedDate lastFedDate) {
+        public void setLastFedDate(LastFedDateTime lastFedDate) {
             this.lastFedDate = lastFedDate;
         }
 
-        public Optional<LastFedDate> getLastFedDate() {
+        public Optional<LastFedDateTime> getLastFedDate() {
             return Optional.ofNullable(lastFedDate);
         }
 

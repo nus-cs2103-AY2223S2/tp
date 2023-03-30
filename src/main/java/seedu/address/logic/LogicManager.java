@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveTaskList(model.getTaskList());
             storage.saveTankList(model.getTankList());
+            storage.saveFullReadingLevels(model.getFullReadingLevels());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -118,6 +119,7 @@ public class LogicManager implements Logic {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveTaskList(model.getTaskList());
             storage.saveTankList(model.getTankList());
+            storage.saveFullReadingLevels(model.getFullReadingLevels());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

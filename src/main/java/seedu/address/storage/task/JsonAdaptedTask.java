@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.task;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -15,7 +16,7 @@ import seedu.address.model.task.TaskFeedingReminder;
 /**
  * Jackson-friendly version of {@link Task}.
  */
-class JsonAdaptedTask {
+public class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
@@ -48,7 +49,7 @@ class JsonAdaptedTask {
 
         description = source.getDescription().description;
         if (source.hasPriority()) {
-            priority = source.getPriority().priority;
+            priority = source.getPriority().toString();
         } else {
             priority = null;
         }
@@ -76,7 +77,7 @@ class JsonAdaptedTask {
         Tank modelTank = null;
 
         if (this.tank != null) {
-            modelTank = new Tank(new TankName(this.tank), new AddressBook());
+            modelTank = new Tank(new TankName(this.tank), new AddressBook(), new UniqueIndividualReadingLevels());
         }
 
         Priority modelPriority = null;

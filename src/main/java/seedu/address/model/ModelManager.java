@@ -16,6 +16,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -42,12 +48,14 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final TankList tankList;
     private final FilteredList<Tank> filteredTanks;
+    private final FullReadingLevels fullReadingLevels;
+    private final FilteredList<UniqueIndividualReadingLevels> filteredReadingLevels;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyTaskList taskList, ReadOnlyTankList tankList) {
+                        ReadOnlyTaskList taskList, ReadOnlyTankList tankList, ReadOnlyReadingLevels fullReadings) {
         requireAllNonNull(addressBook, userPrefs, taskList);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -62,13 +70,32 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(sortedTasks);
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
+        this.fullReadingLevels = new FullReadingLevels(fullReadings);
+        filteredReadingLevels = new FilteredList<>(this.fullReadingLevels.getFullReadingLevels());
 
         updateTanksOfEachFishAndFishListOfEachTank();
         updateTankOfEachTask();
+        updateTankOfEachIndividualReadings();
     }
 
+    /**
+     * Another constructor for model manager
+     */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList());
+        this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList(),
+                new FullReadingLevels());
+    }
+
+    /**
+     * Sets the Tank attribute of each tank's UniqueIndividualReadings to the correct real instance
+     */
+    public void updateTankOfEachIndividualReadings() {
+        for (UniqueIndividualReadingLevels r : fullReadingLevels.getFullReadingLevels()) {
+            Tank duplicateTank = r.getTank();
+            Tank realTankInstance = getTankListTankInstance(duplicateTank);
+            realTankInstance.setIndividualReadingLeves(r);
+            r.setTank(realTankInstance);
+        }
     }
 
     /**
@@ -346,10 +373,10 @@ public class ModelManager implements Model {
      * with new LastFedDate object with {@code newDate}.
      */
     @Override
-    public void setLastFedDateFishes(Tank tankToFeed, String newDate) {
-        requireAllNonNull(tankToFeed, newDate);
+    public void setLastFedDateTimeFishes(Tank tankToFeed, String newDateTime) {
+        requireAllNonNull(tankToFeed, newDateTime);
 
-        tankToFeed.setLastFedDateFishes(newDate);
+        tankToFeed.setLastFedDateTimeFishes(newDateTime);
         updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
     }
 
@@ -369,6 +396,7 @@ public class ModelManager implements Model {
         filteredTanks.setPredicate(predicate);
     }
 
+    //=========== Feeding reminders =============================================================
     @Override
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
         //create new Feeding reminders and returns it
@@ -377,4 +405,60 @@ public class ModelManager implements Model {
                 .createListOfFeedingReminders(tanksWithUnfedFish);
         return reminders;
     }
+
+    //=========== FullReadingLevels  =============================================================
+    @Override
+    public void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH pH, Temperature temp, Tank t) {
+        this.fullReadingLevels.addReadingsToIndividualReadingLevels(a, pH, temp, t);
+    }
+
+    @Override
+    public void setFullReadingLevels(ReadOnlyReadingLevels readingLevels) {
+        this.fullReadingLevels.resetData(readingLevels);
+    }
+
+    @Override
+    public ReadOnlyReadingLevels getFullReadingLevels() {
+        return fullReadingLevels;
+    }
+
+    @Override
+    public boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels readingLevels) {
+        requireNonNull(readingLevels);
+        return fullReadingLevels.hasIndividualReadingLevels(readingLevels);
+    }
+
+    @Override
+    public void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target) {
+        fullReadingLevels.removeIndividualReadingLevel(target);
+    }
+
+    @Override
+    public void addIndividualReadingLevels(UniqueIndividualReadingLevels readingLevels) {
+        fullReadingLevels.addIndividualReadingLevel(readingLevels);
+    }
+
+    @Override
+    public void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
+                                           UniqueIndividualReadingLevels editedList) {
+        requireAllNonNull(target, editedList);
+        fullReadingLevels.setIndividualReadingLevel(target, editedList);
+    }
+
+    //=========== Filtered FullReadingLevels Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the {@code FullReadingLevels}.
+     */
+    @Override
+    public ObservableList<UniqueIndividualReadingLevels> getFilteredReadingLevels() {
+        return filteredReadingLevels;
+    }
+
+    @Override
+    public void updateFilteredReadingLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
+        requireNonNull(predicate);
+        filteredReadingLevels.setPredicate(predicate);
+    }
+
 }

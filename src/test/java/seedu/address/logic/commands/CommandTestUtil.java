@@ -43,8 +43,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_LAST_FED_DATE_AMY = "01/01/2000";
-    public static final String VALID_LAST_FED_DATE_BOB = "02/01/2000";
+    public static final String VALID_LAST_FED_DATE_AMY = "01/01/2000 00:00";
+    public static final String VALID_LAST_FED_DATE_BOB = "02/01/2000 00:00";
     public static final String VALID_SPECIES_AMY = "Guppy";
     public static final String VALID_SPECIES_BOB = "Tetra";
     public static final String VALID_FEEDING_INTERVAL_AMY = "0d15h";
@@ -69,7 +69,8 @@ public class CommandTestUtil {
 
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_LAST_FED_DATE_DESC = " " + PREFIX_LAST_FED_DATE + "11 Mar 2000"; //not dd/mm/yyyy
+    public static final String INVALID_LAST_FED_DATE_DESC =
+            " " + PREFIX_LAST_FED_DATE + "11 Mar 2000 00:00"; //not dd/mm/yyyy
     public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES + "guppy!"; // '!' not allowed in species
     public static final String INVALID_FEEDING_INTERVAL_DESC = " "
             + PREFIX_FEEDING_INTERVAL; // empty string not allowed for feeding intervals

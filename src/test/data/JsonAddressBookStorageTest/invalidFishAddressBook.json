@@ -1,7 +1,7 @@
 {
   "Fishes": [ {
     "name": "Fish with invalid name field: Ha!ns Mu@ster",
-    "lastFedDate": "9482424",
+    "lastFedDateTime": "9482424",
     "species": "Guppy",
     "feedingInterval": "0d12h",
     "tank": "tank 1"

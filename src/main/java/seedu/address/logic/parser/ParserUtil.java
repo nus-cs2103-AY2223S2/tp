@@ -11,12 +11,16 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.AmmoniaLevel;
+import seedu.address.model.tank.readings.PH;
+import seedu.address.model.tank.readings.Temperature;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 
@@ -61,13 +65,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code lastFedDate} is invalid.
      */
-    public static LastFedDate parseLastFedDate(String lastFedDate) throws ParseException {
+    public static LastFedDateTime parseLastFedDate(String lastFedDate) throws ParseException {
         requireNonNull(lastFedDate);
         String trimmedLastFedDate = lastFedDate.trim();
-        if (!LastFedDate.isValidLastFedDate(trimmedLastFedDate)) {
-            throw new ParseException(LastFedDate.MESSAGE_CONSTRAINTS);
+        System.out.println(trimmedLastFedDate);
+        if (!LastFedDateTime.isValidLastFedDateTime(trimmedLastFedDate)) {
+            throw new ParseException(LastFedDateTime.MESSAGE_CONSTRAINTS);
         }
-        return new LastFedDate(trimmedLastFedDate);
+        return new LastFedDateTime(trimmedLastFedDate);
     }
 
     /**
@@ -183,7 +188,52 @@ public class ParserUtil {
         if (!TankName.isValidTankName(trimmedTank)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Tank(new TankName(trimmedTank), new AddressBook());
+        Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
+        return retTank;
+    }
 
+    /**
+     * Parses a {@code String} into an {@code AmmoniaLevel}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code ammoniaLevelValue} or {@code date} is invalid.
+     */
+    public static AmmoniaLevel parseAmmoniaLevel(String ammoniaLevelValue, String date) throws ParseException {
+        requireNonNull(ammoniaLevelValue);
+        String trimmedValue = ammoniaLevelValue.trim();
+        if (!AmmoniaLevel.isValidAmmoniaLevel(trimmedValue, date)) {
+            throw new ParseException(AmmoniaLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new AmmoniaLevel(trimmedValue, date, null);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code PH}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code pHLevelValue} or {@code date} is invalid.
+     */
+    public static PH parsePH(String pHLevelValue, String date) throws ParseException {
+        requireNonNull(pHLevelValue);
+        String trimmedValue = pHLevelValue.trim();
+        if (!PH.isValidPH(trimmedValue, date)) {
+            throw new ParseException(PH.MESSAGE_CONSTRAINTS);
+        }
+        return new PH(trimmedValue, date, null);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Temperature}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code tempLevelValue} or {@code date} is invalid.
+     */
+    public static Temperature parseTemperature(String tempLevelValue, String date) throws ParseException {
+        requireNonNull(tempLevelValue);
+        String trimmedValue = tempLevelValue.trim();
+        if (!Temperature.isValidTemperature(trimmedValue, date)) {
+            throw new ParseException(Temperature.MESSAGE_CONSTRAINTS);
+        }
+        return new Temperature(trimmedValue, date, null);
     }
 }

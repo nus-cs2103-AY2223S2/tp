@@ -6,42 +6,52 @@ title: Developer Guide
 <img src="images/logo_DG.png" width="300">
 </p>
 
-## About Fish Ahoy!
+# Table of Contents
+* [About](#about)
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#Getting-started)
+* [Design](#Design)
+  * [Architecture](#Architecture)
+  * [UI component](#UI-component)
+  * [Model component](#Model-component)
+  * [Storage component](#Storage-component)
+  * [Common classes](#Common-classes)
+* [Feature Implementations](#Feature-Implementations)
+  * [Automatic Feeding Reminders](#Automatic-Feeding-Reminders)
+  * [FishSortCommand feature](#FishSortCommand-feature)
+  * [TankFeedCommand feature](#TankFeedCommand-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
-Fish Ahoy! is a desktop CLI-focused application, designed to help users take better care of their 
+## About
+
+*Fish Ahoy!* is a desktop CLI-focused application, designed to help users take better care of their
 aquatic pets. It allows fish keepers to:
 
 1. Keep track of their tanks and fishes in a hierarchical view, sorted by tanks.
-2. Keep track of their fishes' attributes like the last time it was fed and how often it needs to be fed
+2. Keep track of their fishes' attributes such as the last time it was fed and how often it needs to be fed
 3. Consolidate fish-up-keeping tasks and automatically remind users to feed their fish according to information
 given by the user
 
 This developer guide aims to provide instructions and guidelines for developers to understand how to
-effectively use and contribute to this project by explaining design considerations for certain key features. Moreover, 
+effectively use and contribute to this project by explaining design considerations for certain key features. Moreover,
 new developers can use this guide as an entry point for navigating this extensive code base.
-* Table of Contents
-  * Acknowledgements
-  * Setting up, getting started
-  * Design
-  * Implementation
-  * Documentation, logging, testing, configuration, dev-ops
-  * Appendix
---------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * AY22/23 S1 CS2103T W15-1 [[Github repo]](https://github.com/AY2223S1-CS2103T-W15-1/tp) - Task implementation 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -174,12 +184,73 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## Feature Implementations
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### TankFeedCommand feature
+### Automatic Feeding Reminders
+#### Implementation
 
+The entrypoint of this feature is in the `start()` method of MainApp, which is automatically called when the user opens
+*Fish Ahoy!*. We then access the `Logic` component to access the `Model` component to find out which `Tank` have unfed
+`Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
+`TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
+each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
+if the various lists. 
+
+![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
+
+#### Design considerations:
+* Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
+  * Pros: user can update Reminders without opening the app
+  * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
+command, the reminders likely do not need to be updated.
+
+### FishSortCommand feature
+
+#### Implementation
+The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
+attributes, we are able to make a `SortedList` sort its list by the specified order.
+Specifically, it currently sorts by the five compulsory fields of a fish:
+
+* Name
+* Last Fed Interval
+* Species
+* Feeding Interval
+* Tank
+
+Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
+a `SortedList` is created based off the same `Filteredlist`. Hence, when we perform sorting operations, we are able to manipulate
+the filtered list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
+
+Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
+in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
+is passed to `FishSortCommand` and returned.
+
+![FishSortCommmandDiagram](images/FishSortDiagram.png)
+
+Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
+This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
+
+Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
+
+#### Design considerations:
+
+**Aspect: Where Sorting takes place :**
+
+* **Alternative 1 (current choice):** Use a SortedList and comparators to sort within the list.
+    * Pros: Easy to implement.
+    * Cons: Requires a separate list or wrapping.
+
+* **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
+    * Pros: More customization and control over sorting.
+    * Cons: Requires a duplicate list to be made each time.
+
+### TankFeedCommand feature
 #### Motivation
 As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDates` of all their fishes,
 as having multiple tanks and fishes makes feeding difficult to keep track of without a tracking system.
@@ -187,7 +258,7 @@ as having multiple tanks and fishes makes feeding difficult to keep track of wit
 #### Implementation summary
 As such, every `Fish` contains a `LastFedDate` object, which contains a date field which records their `lastFedDate`.
 
-When the fishkeeper decides to feed a particular tank by invoking the command `tank feed <index>`, 
+When the fishkeeper decides to feed a particular tank by invoking the command `tank feed <index>`,
 the program will feed all fishes in that tank, changing `LastFedDate`  of all fishes in that tank.
 
 #### How `TankFeedCommand` is executed
@@ -196,9 +267,9 @@ before being delegated to command-specific parsers, namely `TankParser` -> `Tank
 which returns a `TankFeedCommand` to `LogicManager`.
 
 With this, `LogicManager` will invoke `execute` on `TankFeedCommand` with the following code `command.execute(model);`,
-where `model.setLastFedDateFishes(tankToFeed, formattedDate);` will be called. 
+where `model.setLastFedDateFishes(tankToFeed, formattedDate);` will be called.
 
-The `setLastFedDateFishes(tankToFeed, formattedDate)` function will be called down the chain of classes 
+The `setLastFedDateFishes(tankToFeed, formattedDate)` function will be called down the chain of classes
 [`ModelManager` -> `Tank` -> `AddressBook` -> `UniqueFishList`].
 
 `UniqueFishList#setLastFedDateFishes(String newDate)` will then call
@@ -207,7 +278,6 @@ creating a new stream from `internalList` containing references to all Fish obje
 
 Every `Fish` object will call `fish.setLastFedDate(newDate)`, where a new `LastFedDate` object with the updated date
 will be created and replace the `Fish`'s `lastFedDate` field.
-
 
 
 ### \[Proposed\] Undo/redo feature
@@ -280,13 +350,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the fish being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the fish being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -294,90 +364,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Automatic Feeding Reminders
-#### Implementation
-
-The entrypoint of this feature is in the `start()` method of MainApp, which is automatically called when the user opens
-Fish Ahoy!. We then access the `Logic` component to access the `Model` component to find out which `Tank` have unfed
-`Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
-`TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
-each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
-if the various lists. 
-
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
-
-Step 1. User opens app and the `Application`'s `init()` method is called. The sequence to create Reminders is started.
-
-Step 2. Ui component signals MainWindow to create Reminders. 
-
-Step 3. Logic component requests for the list of reminders, which is created by the model component after checking which tanks
-have hungry fishes.
-
-Step 4. MainWindow has acquired the list of feeding reminders to be created and requests
-the logic component to create and execute a `TaskFeedingReminderCommand` for each feeding reminder required.
-
-Step 5. Storage components are updated.
-
-Step 6. GUI changes are reflect.
-
-![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
-
-#### Design considerations:
-* Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
-  * Pros: user can update Reminders without opening the app
-  * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
-command, the reminders likely do not need to be updated.
-  
-* Entry point for automatic feeding reminder feature is the Ui component. Since this feature do not require user inputs,
-we manually start the feature in the Ui component.
-
-### Fish Sort feature
-
-#### Implementation
-The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
-attributes, we are able to make a `SortedList` sort its list by the specified order.
-Specifically, it currently sorts by the five compulsory fields of a fish:
-
-* Name
-* Last Fed Interval
-* Species
-* Feeding Interval
-* Tank
-
-Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
-a `SortedList` is created based off the same `Filteredlist`. Hence, when we perform sorting operations, we are able to manipulate
-the filtered list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
-
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
-
-Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
-
-Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
-in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
-is passed to `FishSortCommand` and returned.
-
-![FishSortCommmandDiagram](images/FishSortDiagram.png)
-
-Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
-This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
-
-Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
-
-#### Design considerations:
-
-**Aspect: Where Sorting takes place :**
-
-* **Alternative 1 (current choice):** Use a SortedList and comparators to sort within the list.
-    * Pros: Easy to implement.
-    * Cons: Requires a separate list or wrapping.
-
-* **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
-    * Pros: More customization and control over sorting.
-    * Cons: Requires a duplicate list to be made each time.
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -387,7 +376,7 @@ Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which trigg
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -432,14 +421,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Fish Ahoy!` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `*Fish Ahoy!*` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add a fish**
 
 **MSS**
 
 1. User adds a fish
-2. Fish is added to Fish Ahoy!
+2. Fish is added to *Fish Ahoy!*
 
     Use case ends.
 
@@ -456,7 +445,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds a tank
-2. Tank is added to Fish Ahoy!
+2. Tank is added to *Fish Ahoy!*
 
   Use case ends.
 
@@ -466,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User adds a task
-2. Task is added to Fish Ahoy!
+2. Task is added to *Fish Ahoy!*
 
    Use case ends.
 
@@ -505,13 +494,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Fish**: A fish owned by the user to be added to Fish Ahoy!
-* **Tank**: A fish tank owned by the user to house fish to be added to Fish Ahoy!
-* **Task**: A weekly task of the user regarding fish-keeping to be added to Fish Ahoy!
+* **Fish**: A fish owned by the user to be added to *Fish Ahoy!*
+* **Tank**: A fish tank owned by the user to house fish to be added to *Fish Ahoy!*
+* **Task**: A weekly task of the user regarding fish-keeping to be added to *Fish Ahoy!*
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -543,13 +532,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all fish using the `list` command. Multiple fish in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `fish delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `fish delete 0`<br>
       Expected: No fish is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

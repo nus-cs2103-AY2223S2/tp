@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  * Parses input arguments and creates a new TaskAddCommand object
@@ -37,7 +38,7 @@ public class TankAddCommandParser {
 
         TankName tankName = ParserUtil.parseTankName(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Tank tank = new Tank(tankName, new AddressBook());
+        Tank tank = new Tank(tankName, new AddressBook(), new UniqueIndividualReadingLevels());
 
         return new TankAddCommand(tank);
     }

@@ -21,7 +21,7 @@ public class Fish {
     private final Species species;
 
     // Data fields
-    private LastFedDate lastFedDate;
+    private LastFedDateTime lastFedDateTime;
     private final FeedingInterval feedingInterval;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -30,11 +30,11 @@ public class Fish {
     /**
      * Every field must be present and not null.
      */
-    public Fish(Name name, LastFedDate lastFedDate, Species species, FeedingInterval feedingInterval, Tank tank,
+    public Fish(Name name, LastFedDateTime lastFedDateTime, Species species, FeedingInterval feedingInterval, Tank tank,
                 Set<Tag> tags) {
-        requireAllNonNull(name, lastFedDate, species, feedingInterval, tags);
+        requireAllNonNull(name, lastFedDateTime, species, feedingInterval, tags);
         this.name = name;
-        this.lastFedDate = lastFedDate;
+        this.lastFedDateTime = lastFedDateTime;
         this.species = species;
         this.feedingInterval = feedingInterval;
         this.tank = tank;
@@ -45,13 +45,13 @@ public class Fish {
         return name;
     }
 
-    public LastFedDate getLastFedDate() {
-        return lastFedDate;
+    public LastFedDateTime getLastFedDateTime() {
+        return lastFedDateTime;
     }
 
-    public void setLastFedDate(String date) {
-        LastFedDate newLastFedDate = new LastFedDate(date);
-        this.lastFedDate = newLastFedDate;
+    public void setLastFedDateTime(String dateTime) {
+        LastFedDateTime newLastFedDateTime = new LastFedDateTime(dateTime);
+        this.lastFedDateTime = newLastFedDateTime;
     }
 
     public Species getSpecies() {
@@ -100,7 +100,7 @@ public class Fish {
      * @return true if Fish needs to be fed
      */
     public boolean needsToBeFed() {
-        return DateUtil.checkFishNeedsToBeFed(lastFedDate, feedingInterval);
+        return DateUtil.checkFishNeedsToBeFed(lastFedDateTime, feedingInterval);
     }
 
     /**
@@ -108,7 +108,7 @@ public class Fish {
      * @return formatted string of the last time this fish was fed on
      */
     public String getLastFedString() {
-        String ret = this.getName() + " last fed on " + lastFedDate.getAlphaNumericDate();
+        String ret = this.getName() + " last fed on " + lastFedDateTime.getAlphaNumericDateTime();
         return ret;
     }
 
@@ -132,7 +132,7 @@ public class Fish {
 
         Fish otherFish = (Fish) other;
         return otherFish.getName().equals(getName())
-                && otherFish.getLastFedDate().equals(getLastFedDate())
+                && otherFish.getLastFedDateTime().equals(getLastFedDateTime())
                 && otherFish.getSpecies().equals(getSpecies())
                 && otherFish.getFeedingInterval().equals(getFeedingInterval())
                 && otherFish.getTags().equals(getTags());
@@ -141,18 +141,18 @@ public class Fish {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, lastFedDate, species, feedingInterval, tags);
+        return Objects.hash(name, lastFedDateTime, species, feedingInterval, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Last Fed Date: ")
-                .append(getLastFedDate())
+                .append("; Last Fed Date Time: ")
+                .append(getLastFedDateTime())
                 .append("; Species: ")
                 .append(getSpecies())
-                .append("; FeedingInterval: ")
+                .append("; Feeding Interval: ")
                 .append(getFeedingInterval())
                 .append("; Tank: ")
                 .append(getTank());

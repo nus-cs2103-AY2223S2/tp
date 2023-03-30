@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedFish.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.fish.JsonAdaptedFish.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.BENSON;
 
@@ -13,9 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
+import seedu.address.storage.fish.JsonAdaptedFish;
+import seedu.address.storage.fish.JsonAdaptedTag;
 
 public class JsonAdaptedFishTest {
     private static final String INVALID_NAME = "R@chel";
@@ -26,7 +28,7 @@ public class JsonAdaptedFishTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_LAST_FED_DATE = BENSON.getLastFedDate().toString();
+    private static final String VALID_LAST_FED_DATE = BENSON.getLastFedDateTime().toString();
     private static final String VALID_SPECIES = BENSON.getSpecies().toString();
     private static final String VALID_FEEDING_INTERVAL = BENSON.getFeedingInterval().toString();
     private static final String VALID_TANK = BENSON.getTank().getTankName().fullTankName;
@@ -62,7 +64,7 @@ public class JsonAdaptedFishTest {
         JsonAdaptedFish fish =
                 new JsonAdaptedFish(VALID_NAME, INVALID_LAST_FED_DATE, VALID_SPECIES, VALID_FEEDING_INTERVAL,
                         VALID_TANK, VALID_TAGS);
-        String expectedMessage = LastFedDate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = LastFedDateTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, fish::toModelType);
     }
 
@@ -70,7 +72,7 @@ public class JsonAdaptedFishTest {
     public void toModelType_nullLastFedDate_throwsIllegalValueException() {
         JsonAdaptedFish fish = new JsonAdaptedFish(VALID_NAME, null, VALID_SPECIES, VALID_FEEDING_INTERVAL,
                 VALID_TANK, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LastFedDate.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LastFedDateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, fish::toModelType);
     }
 

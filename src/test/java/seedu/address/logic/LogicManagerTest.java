@@ -30,11 +30,13 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonTankListStorage;
-import seedu.address.storage.JsonTaskListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
 import seedu.address.testutil.FishBuilder;
 
 public class LogicManagerTest {
@@ -53,8 +55,10 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
         JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(temporaryFolder
+                .resolve("ammonialevels"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                taskListStorage, tankListStorage);
+                taskListStorage, tankListStorage, ammoniaLevelsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -85,8 +89,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
         JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(temporaryFolder
+                .resolve("ammonialevels"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                taskListStorage, tankListStorage);
+                taskListStorage, tankListStorage, ammoniaLevelsStorage);
         // Initializes Tanks
         TankList tankList = new TankList();
         tankList.setTanks(getTypicalTanks());
@@ -148,7 +154,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getTaskList(),
-                new TankList());
+                model.getTankList(), model.getFullReadingLevels());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

@@ -12,6 +12,12 @@ import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.storage.fish.AddressBookStorage;
+import seedu.address.storage.tank.TankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.task.TaskListStorage;
+import seedu.address.storage.userprefs.UserPrefsStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -23,17 +29,20 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private final TaskListStorage taskListStorage;
     private final TankListStorage tankListStorage;
+    private final FullReadingLevelsStorage fullReadingLevelsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
-                          TaskListStorage taskListStorage, TankListStorage tankListStorage) {
+                          TaskListStorage taskListStorage, TankListStorage tankListStorage,
+                          FullReadingLevelsStorage ammoniaLevelsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.taskListStorage = taskListStorage;
         this.tankListStorage = tankListStorage;
+        this.fullReadingLevelsStorage = ammoniaLevelsStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -146,9 +155,34 @@ public class StorageManager implements Storage {
         tankListStorage.saveTankList(tankList, filePath);
     }
 
+    // ================ Readings methods ==============================
     @Override
-    public void executeFeedingReminderInitStorage() {
-
+    public Path getFullReadingLevelsFilePath() {
+        return fullReadingLevelsStorage.getFullReadingLevelsFilePath();
     }
 
+    @Override
+    public Optional<ReadOnlyReadingLevels> readFullReadingLevels()
+            throws DataConversionException,
+            IOException {
+        return readFullReadingLevels(fullReadingLevelsStorage.getFullReadingLevelsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyReadingLevels> readFullReadingLevels(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return fullReadingLevelsStorage.readFullReadingLevels(filePath);
+    }
+
+    @Override
+    public void saveFullReadingLevels(ReadOnlyReadingLevels fullReadingLevels) throws IOException {
+        saveFullReadingLevels(fullReadingLevels, fullReadingLevelsStorage.getFullReadingLevelsFilePath());
+    }
+
+    @Override
+    public void saveFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        fullReadingLevelsStorage.saveFullReadingLevels(ammoniaLevels, filePath);
+    }
 }
