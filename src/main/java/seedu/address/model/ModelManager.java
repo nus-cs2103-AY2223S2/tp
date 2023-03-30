@@ -20,7 +20,7 @@ import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.model.timeslot.TimeMask;
+import seedu.address.model.timeSlot.TimeMask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -257,7 +257,6 @@ public class ModelManager implements Model {
 
         // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
-//        System.out.println(timetable);
 
         // TODO: INSERT CALL TO TIMETABLE UI
         addressBook.getScheduleWeek().setInternalList(timetable);

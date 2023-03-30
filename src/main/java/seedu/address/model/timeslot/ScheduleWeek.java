@@ -1,4 +1,4 @@
-package seedu.address.model.timeslot;
+package seedu.address.model.timeSlot;
 
 import static java.util.Arrays.asList;
 
@@ -48,7 +48,7 @@ public class ScheduleWeek {
             }
         }
 
-        System.out.println(timeSlot.toString());
+//        System.out.println(timeSlot.toString());
         return timeSlot;
     }
 

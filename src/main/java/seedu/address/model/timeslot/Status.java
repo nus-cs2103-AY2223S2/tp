@@ -1,4 +1,4 @@
-package seedu.address.model.timeslot;
+package seedu.address.model.timeSlot;
 
 /**
  * An enum to represent the status of a timeslot
