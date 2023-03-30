@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -15,6 +16,8 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 public class LectureCard extends UiPart<Region> {
 
     private static final String FXML = "LectureListCard.fxml";
+    private static final String NO_VIDEOS_FOUND_TEXT = "No videos watched";
+    private static final String VIDEO_PROGRESS_FORMAT = "Watched %o/%o videos";
 
     private final ReadOnlyLecture lecture;
 
@@ -24,6 +27,8 @@ public class LectureCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label lectureName;
+    @FXML
+    private ProgressBar progressBar;
     @FXML
     private Label progress;
     @FXML
@@ -45,12 +50,17 @@ public class LectureCard extends UiPart<Region> {
 
     private String getProgressText(ReadOnlyLecture lecture) {
         int videoCount = lecture.getVideoList().size();
-        String progressText = "No videos added";
+        String progressText = NO_VIDEOS_FOUND_TEXT;
+
+        double progressPerc = 0;
 
         if (videoCount > 0) {
             int watched = lecture.getVideoList().filtered(vid -> vid.hasWatched()).size();
-            progressText = String.format("Progress: %o/%o videos watched", watched, videoCount);
+            progressText = String.format(VIDEO_PROGRESS_FORMAT, watched, videoCount);
+            progressPerc = (double) watched / videoCount;
         }
+
+        progressBar.setProgress(progressPerc);
         return progressText;
     }
 

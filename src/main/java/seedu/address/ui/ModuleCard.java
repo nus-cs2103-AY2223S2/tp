@@ -16,8 +16,9 @@ import seedu.address.model.module.ReadOnlyModule;
 public class ModuleCard extends UiPart<Region> {
 
     private static final String FXML = "ModuleListCard.fxml";
-    private static final String NO_LECTURES_FOUND_TEXT = "No lectures found!";
-    private static final String LECTURE_PROGRESS_FORMAT = "Progress: %o/%o lectures covered";
+    private static final String NO_LECTURES_FOUND_TEXT = "No lectures found";
+    private static final String LECTURE_PROGRESS_FORMAT = "Covered %o/%o lectures";
+
     private final ReadOnlyModule module;
 
     @FXML
