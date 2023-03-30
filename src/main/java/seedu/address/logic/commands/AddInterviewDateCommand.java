@@ -38,9 +38,9 @@ public class AddInterviewDateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds interview date to the specified application from the list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE] (DATE must be in 'MM/dd/yyyy hh:mm a' format, where a can be AM or PM)"
+            + "[" + PREFIX_DATE + "DATE] (DATE must be in 'yyyy-MM-dd hh:mm a' format, where a can be AM or PM)"
             + "\nExample: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "06/07/2023 12:00 PM";
+            + PREFIX_DATE + "2023-06-07 12:00 PM";
 
 
     public static final String MESSAGE_ADD_INTERVIEW_DATE_SUCCESS = "Interview date added to application: %1$s";
