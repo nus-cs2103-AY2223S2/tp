@@ -138,18 +138,6 @@ Shows user the link to user guide.
 
 Format: help
 
-### Display a list of ongoing internship applications : `list`
-
-Displays a list of applied internships which are ongoing
-
-Format: `list`
-
-Examples:
-
-* `list` shows all the ongoing internship applications for with 1 indexing.
-* If there are no ongoing internship applications at the moment,
-  "No applications at the moment" will be shown.
-
 ### Adding an application : `add`
 
 Adds an application to the internship tracker
@@ -333,6 +321,34 @@ Examples:
 * `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
 
+### Display a list of ongoing internship applications : `list`
+
+Displays a list of applied internships which are ongoing
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the ongoing internship applications for with 1 indexing.
+* If there are no ongoing internship applications at the moment,
+  "No applications at the moment" will be shown.
+
+
+### Sort all internship applications : `sort`
+
+Sorts internship applications according to either company name, job title, status or interview date in ascending order.
+
+Format: `sort PREFIX`
+1. Sort by company name: `sort n/`
+2. Sort by job title: `sort j/`
+3. Sort by status: `sort s/`
+4. Sort by interview date `sort d/`
+
+Example:
+* `sort d/` sorts all applications with their interview date in ascending order, those without interview date available
+  yet will be placed at the end of the list.
+
+
 ### Find internship applications by the company name, job title, status, or interview date : `find`
 
 Find all internship applications (including those that have been archived) by its company name, job title,
@@ -351,16 +367,12 @@ will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword 
 - Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
 
 Examples:
-1. `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
-2. `find s/PENDING` searches for all application that are pending.
-3. `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
+* `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
+* `find s/PENDING` searches for all application that are pending.
+* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
 2023-12-02 12:30 PM (inclusive).
 
-### Sort all internship applications : `sort`
-
-Sorts internship applications according to either company name, job title, status or interview date.
-
-
+  
 ### Clearing all internship application entries : `clear`
 
 Clears all internship application entries from the internship tracker.
@@ -539,6 +551,9 @@ Format: `clear_note`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: How do I update the Statistics at bottom right corner?<br>
+**A**: It's automatically update after you execute every command / action via either CLI or GUI.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -547,24 +562,29 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
+
+
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
 **Clear**  | `clear`                             
-**Clear_by**  | `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
+**Clear_by**  | `clear_by n/COMPANY_NAME` <br> `clear_by j/JOB_TITLE` <br> `clear_by s/STATUS`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Delete Contact** | `delete_contact INDEX` <br> e.g., `delete_contact 2`
 **Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
 **Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
 **Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
-**Exit**   | `exit` 
+**Exit**   | `exit`
+**Find Applications** | `find KEYWORD [MORE KEYWORDS]` <br> e.g., `find Google` <br> `find s/STATUS` <br> e.g., `find s/PENDING` <br> `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2` <br> e.g., find before/2023-01-31 12:45 PM
 **List** |`list`
 **List Archived Applications** |`list_archived`
 **Revert**   | `revert` 
-**Revert All**   | `revert_all` 
+**Revert All**   | `revert_all`
+**Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
 **Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
 **Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
 **List Task** |`list_task`
-**Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
+
 **Clear Todo** |`clear_todo`
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
@@ -574,3 +594,4 @@ Action | Format, Examples
 **Clear Note** |`clear_note`
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
 **List Note** |`list_note`
+**Help** | `help`
