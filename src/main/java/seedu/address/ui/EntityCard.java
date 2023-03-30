@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -30,11 +33,11 @@ public class EntityCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label classification;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView logoImageView;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
@@ -42,12 +45,31 @@ public class EntityCard extends UiPart<Region> {
     public EntityCard(Entity entity, int displayedIndex) {
         super(FXML);
         this.entity = entity;
-        id.setText(displayedIndex + ". ");
         name.setText(entity.getName().fullName);
         classification.setText(entity.getClass().getSimpleName());
         entity.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        setLogo();
+    }
+
+    private void setLogo() {
+        File file;
+        switch (entity.getClass().getSimpleName()) {
+        case "Character":
+            file = new File("src/main/resources/images/Monster4.png");
+            break;
+        case "Mob":
+            file = new File("src/main/resources/images/Ghost1.png");
+            break;
+        case "Item":
+            file = new File("src/main/resources/images/Potion1.png");
+            break;
+        default:
+            file = new File("src/main/resources/images/address_book_32.png");
+        }
+        Image image = new Image(file.toURI().toString());
+        logoImageView.setImage(image);
     }
 
     @Override
@@ -64,7 +86,6 @@ public class EntityCard extends UiPart<Region> {
 
         // state check
         EntityCard card = (EntityCard) other;
-        return id.getText().equals(card.id.getText())
-            && entity.equals(card.entity);
+        return entity.equals(card.entity);
     }
 }
