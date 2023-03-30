@@ -80,7 +80,7 @@ ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
-| Doctor               | ad/    | 
+| Doctor               | ad/    |  
 | Email                | e/     |  
 | Address              | a/     | 
 | Tag                  | t/     |
@@ -190,13 +190,14 @@ that you have loaded.
 
 Format: `list`
 
-### Find patients by nric, name, address or tags: `find`
+### Find patients by nric, name, address, doctor or tags: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
+
 <div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
 substrings. You may only search for a few attributes.
-
 
 Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
 
@@ -217,7 +218,7 @@ Examples (The following results are based of the sample data provided):
   or  `serangoon`.
 * `find t/Diabetic` returns all persons with the tag `Diabetic`.
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
-* `find ad/Alex` returns all persons with attending doctor 'Alex'.
+* `find ad/Shannon` returns all persons with attending doctor `Shannon`
 
 ### Backup patient records: `backup`
 

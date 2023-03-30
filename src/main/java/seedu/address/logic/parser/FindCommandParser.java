@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -11,6 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DoctorContainsKeywordsPredicate;
 import seedu.address.model.person.MedicineContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
@@ -32,11 +34,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] names;
         String[] medicines;
         String[] tags;
+        String[] doctors;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE, PREFIX_DOCTOR, PREFIX_TAG);
 
-        if (moreThanOnePrefixPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE, PREFIX_TAG)) {
+        if (moreThanOnePrefixPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE,
+                PREFIX_DOCTOR, PREFIX_TAG)) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -52,6 +56,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             names = getKeywords(argMultimap.getValue(PREFIX_NAME).get());
 
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(names)));
+
+        } else if (isPrefixesPresent(argMultimap, PREFIX_DOCTOR)
+                && argMultimap.getPreamble().isEmpty()) {
+            doctors = getKeywords(argMultimap.getValue(PREFIX_DOCTOR).get());
+
+            return new FindCommand(new DoctorContainsKeywordsPredicate(Arrays.asList(doctors)));
 
         } else if (isPrefixesPresent(argMultimap, PREFIX_MEDICINE)
                 && argMultimap.getPreamble().isEmpty()) {
