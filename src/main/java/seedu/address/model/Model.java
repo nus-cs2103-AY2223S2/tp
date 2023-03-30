@@ -16,6 +16,7 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_FAVORITED = person -> person.getIsFavorite();
 
     /**
      * Returns the user prefs.
@@ -129,6 +130,11 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Returns an unmodifiable view of the favorited person list
+     */
+    ObservableList<Person> getFavoritedPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

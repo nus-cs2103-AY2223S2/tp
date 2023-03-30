@@ -25,6 +25,7 @@ public class Person {
     private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Boolean isFavorite = false;
 
     /**
      * Every field must be present and not null.
@@ -90,6 +91,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(Boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 
     /**
