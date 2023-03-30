@@ -62,20 +62,20 @@ placeholder
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
-| **Clear**  | `clear`                                                                                                                        |
-| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`       |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| Action     | Format, Examples                                                                                                                          |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1`            |
+| **Clear**  | `clear`                                                                                                                                   |
+| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`                |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`                    |
 | **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
-| **List**   | `list`                                                                                                                   |
-| **Sort**   | `sort [n/] [a/] [d/]`<br> e.g.,`sort d/`                                                                                       |
-| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                     |
-| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                     |
-| **Help**   | `help`                                                                                                                   |
-| **Undo**   | `undo [INTEGER]`                                                                                                         |
-| **Redo**   | `redo [INTEGER]`                                                                                                         |
+| **List**   | `list`                                                                                                                                    |
+| **Sort**   | `sort [n/] [a/] [p/] [d/]`<br> e.g.,`sort d/`                                                                                             |
+| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                      |
+| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                      |
+| **Help**   | `help`                                                                                                                                    |
+| **Undo**   | `undo [INTEGER]`                                                                                                                          |
+| **Redo**   | `redo [INTEGER]`                                                                                                                          |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -282,10 +282,10 @@ Format: `list`
 
 Sorts the entire case list based on the specified criteria.
 
-Format: `sort [n/] [a/] [d/]`
+Format: `sort [n/] [a/] [p/] [d/]`
 
 * Sorts cases based on the specified criteria.
-* One and only one of the criteria must be specified; `n/` for name, `a/` for age, and `d/` for date.
+* One and only one of the criteria must be specified; `n/` for name, `a/` for age, `p/` for postal, and `d/` for date.
 
 ### Importing data from CSV file : `import`
 

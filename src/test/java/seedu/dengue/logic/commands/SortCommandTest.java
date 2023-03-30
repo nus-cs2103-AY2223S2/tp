@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dengue.logic.comparators.PersonAgeComparator;
 import seedu.dengue.logic.comparators.PersonDateComparator;
 import seedu.dengue.logic.comparators.PersonNameComparator;
+import seedu.dengue.logic.comparators.PersonPostalComparator;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
@@ -61,6 +62,20 @@ public class SortCommandTest {
         List<Person> toSort = new ArrayList<>(lastShownList);
 
         toSort.sort(new PersonAgeComparator());
+        expectedModel.sort(toSort);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByPostal_success() {
+
+        SortCommand command = new SortCommand(new PersonPostalComparator(), "POSTAL");
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "POSTAL");
+
+        List<Person> lastShownList = model.getDengueHotspotTracker().getPersonList();
+        List<Person> toSort = new ArrayList<>(lastShownList);
+
+        toSort.sort(new PersonPostalComparator());
         expectedModel.sort(toSort);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
