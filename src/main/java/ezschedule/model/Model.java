@@ -91,14 +91,9 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
-    
-    
     ArrayList<Command> recentCommand();
-    
     ArrayList<Event> recentEvent();
-    
     void addRecentEvent(Event event);
-    
     void clearRecent();
     /**
      * Returns an unmodifiable view of the event list

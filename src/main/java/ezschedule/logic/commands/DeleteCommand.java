@@ -30,9 +30,10 @@ public class DeleteCommand extends Command {
     public DeleteCommand(List<Index> targetIndexes) {
         this.targetIndexes = targetIndexes;
     }
-    
     @Override
-    public String commandWord() {return COMMAND_WORD;}
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -41,10 +42,8 @@ public class DeleteCommand extends Command {
         StringBuilder feedback = new StringBuilder(MESSAGE_DELETE_EVENT_SUCCESS);
         Collections.sort(targetIndexes); // sort index in order
         Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
-    
         model.clearRecent();
         model.recentCommand().add(this);
-        
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(

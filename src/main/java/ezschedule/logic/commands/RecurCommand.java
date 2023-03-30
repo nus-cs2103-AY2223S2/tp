@@ -46,7 +46,6 @@ public class RecurCommand extends Command {
         this.endDate = endDate;
         this.factor = factor;
     }
-    
     @Override
     public String commandWord() {
         return COMMAND_WORD;
@@ -62,7 +61,6 @@ public class RecurCommand extends Command {
         }
 
         Event eventToRecur = lastShownList.get(index.getZeroBased());
-        
         model.clearRecent();
 
         switch (factor.toString()) {
@@ -87,7 +85,6 @@ public class RecurCommand extends Command {
             break;
         }
         model.recentCommand().add(this);
-        
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToRecur));
@@ -134,7 +131,7 @@ public class RecurCommand extends Command {
 
         for (int i = 0; i < weeksDiff; i++) {
             model.addEvent(nextEventToRecur);
-             model.addRecentEvent(nextEventToRecur);
+            model.addRecentEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusWeeks(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
@@ -157,9 +154,7 @@ public class RecurCommand extends Command {
 
         for (int i = 0; i < monthsDiff; i++) {
             model.addEvent(nextEventToRecur);
-            
             model.addRecentEvent(nextEventToRecur);
-            
             newDate = new Date(nextEventToRecur.getDate().date.plusMonths(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
@@ -182,9 +177,7 @@ public class RecurCommand extends Command {
 
         for (int i = 0; i < yearsDiff; i++) {
             model.addEvent(nextEventToRecur);
-            
             model.addRecentEvent(nextEventToRecur);
-            
             newDate = new Date(nextEventToRecur.getDate().date.plusYears(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
