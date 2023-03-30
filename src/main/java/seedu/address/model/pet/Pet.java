@@ -79,6 +79,10 @@ public class Pet {
         return deadline;
     }
 
+    public void setMarked() {
+        this.isMarked = true;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -124,6 +124,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markPet(Pet target) {
+        this.petPalCache = new PetPal(petPal);
+        petPal.markPet(target);
+    }
+
+    @Override
     public void undo() {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());

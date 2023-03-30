@@ -103,6 +103,12 @@ public class PetPal implements ReadOnlyPetPal {
 
     //// util methods
 
+    public void markPet(Pet pet) {
+        Pet markedPet = pet;
+        markedPet.setMarked();
+        pets.setPet(pet, markedPet);
+    }
+
     @Override
     public String toString() {
         return pets.asUnmodifiableObservableList().size() + " pets";
