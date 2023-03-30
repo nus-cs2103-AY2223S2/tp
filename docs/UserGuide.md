@@ -15,7 +15,7 @@ title: User Guide
     - [Adding Lab](#adding-lab--add-lab)
     - [Adding Consultation](#adding-consultation--add-consultation)
     - [Adding Recurring Event](#adding-recurring-event--add-recur)
-    - [Edit An Event](#edit-an-event--editEvent-event)
+    - [Edit An Event](#edit-event)
     - [Delete Events](#delete-events--delete-events)
     - [Open File in Event](#open-file)
 - [Student Features](#student-features)
@@ -27,7 +27,7 @@ title: User Guide
     - [Add Note For Event](#add-note-for-event)
     - [Delete Note From Event](#delete-note-from-event)
     - [Edit Note in Event](#edit-note-in-event)
-- [Sort Features](#sort-features)
+- [Sort Features](#sort-students)
     - [Sort Students](#sort-students)
     - [Filter Students](#filter-students)
 - [Help Features](#help-features)
@@ -187,6 +187,8 @@ Examples:
 
 * `schedule Recur/Tutorial/weeklyWrapUp -n 3`
 * `schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8`
+
+<div id='edit-event'></div>
 
 ### Edit an event: `editEvent event`
 
@@ -375,9 +377,28 @@ Examples:
 * `edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0`
 
 --------------------------------------------------------------------
-## Sort Features
+<div id='help'></div>
 
+## Help Features
+=======
+### Help for events: `help`
+
+Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
+
+This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
+
+Format: `help [TYPE]`
+
+Examples:
+* `help`
+* `help student`
+* `help event`
+* `help organisation`
+
+--------------------------------------------------------------------
 <div id='sort-students'></div>
+
+## Sort / Filter features*
 
 ### Sort students in recurring events: `Sort Students`
 
