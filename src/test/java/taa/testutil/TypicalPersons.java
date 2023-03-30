@@ -17,8 +17,8 @@ import taa.model.student.Student;
  * A utility class containing a list of {@code Student} objects to be used in tests.
  */
 public class TypicalPersons {
-    private static final Attendance atd = new Attendance("0,0,0,0,0,0,0,0,0,0,0,0",
-            "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1");
+    private static final Attendance atd = new Attendance("0;0;0;0;0;0;0;0;0;0;0;0",
+            "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1");
     public static final Student ALICE = new PersonBuilder().withName("Alice Pauline").withAttendance(atd)
             .withTags("friends").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier").withAttendance(atd)

@@ -20,9 +20,9 @@ public class JsonAdaptedPersonTest {
 
     private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
 
-    private static final String VALID_ATTENDANCE = "0,0,0,0,0,0,0,0,0,0,0,0";
+    private static final String VALID_ATTENDANCE = "0;0;0;0;0;0;0;0;0;0;0;0";
 
-    private static final String VALID_PART_POINTS = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1";
+    private static final String VALID_PART_POINTS = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getClassTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

@@ -8,9 +8,8 @@ import java.util.Objects;
 public class Attendance {
     public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
     public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
-    public static final String ORIGINAL_ATD = "0,0,0,0,0,0,0,0,0,0,0,0";
-
-    public static final String ORIGINAL_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,";
+    public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
+    public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
     public static final int NUM_WEEKS = 12;
     private final boolean[] attendanceList = new boolean[NUM_WEEKS];
 
@@ -20,8 +19,8 @@ public class Attendance {
      * constructor for attendance class
      */
     public Attendance(String atd, String pp) {
-        String[] atdArr = atd.split(",");
-        String[] ppArr = pp.split(",");
+        String[] atdArr = atd.split(";");
+        String[] ppArr = pp.split(";");
         for (int i = 0; i < atdArr.length; i++) {
             if (Objects.equals(atdArr[i], "1")) {
                 this.attendanceList[i] = true;
@@ -148,9 +147,9 @@ public class Attendance {
         String res = "";
         for (boolean atd : this.attendanceList) {
             if (atd) {
-                res += "1,";
+                res += "1;";
             } else {
-                res += "0,";
+                res += "0;";
             }
         }
         return res.substring(0, 23);
@@ -162,7 +161,7 @@ public class Attendance {
     public String partPointsStorageStr() {
         String res = "";
         for (int val : this.participationPoint) {
-            res += String.valueOf(val) + ",";
+            res += String.valueOf(val) + ";";
         }
         return res.substring(0, res.length() - 1);
     }
