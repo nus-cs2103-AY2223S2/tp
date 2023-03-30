@@ -14,7 +14,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.ui.control.ControlBox;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of applications.
  */
 public class ApplicationListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicationListPanel.fxml";

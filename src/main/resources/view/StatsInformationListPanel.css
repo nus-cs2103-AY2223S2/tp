@@ -1,0 +1,35 @@
+.list-view {
+    -fx-background-color: #170945;
+}
+
+.list-view .scroll-bar:vertical {
+    width: 0;
+    -fx-background-color: transparent;
+}
+
+.list-view .scroll-bar:horizontal {
+    width: 0;
+    height: 1;
+    -fx-background-color: transparent;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #062c33;
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #022126;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #424d5f;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 1;
+}
+
+.list-cell .label {
+    -fx-text-fill: #daeaed;
+}

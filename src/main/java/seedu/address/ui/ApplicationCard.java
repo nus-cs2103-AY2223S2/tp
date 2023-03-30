@@ -13,7 +13,7 @@ import seedu.address.model.person.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code InternshipApplication}.
  */
 public class ApplicationCard extends UiPart<Region> {
     private static final String FXML = "ApplicationListCard.fxml";
@@ -59,7 +59,7 @@ public class ApplicationCard extends UiPart<Region> {
     private Button editButton;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code InternshipApplicationCode} with the given {@code InternshipApplication} and index to display.
      */
     public ApplicationCard(InternshipApplication application, int displayedIndex, MainWindow mainWindow) {
         super(FXML);

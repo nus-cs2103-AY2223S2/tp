@@ -3,7 +3,12 @@ layout: page
 title: User Guide
 ---
 
-InternEase is a powerful and innovative desktop app designed to streamline the internship application process for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. Whether you're a seasoned CLI user or a first-time applicant, InternEase makes it easy to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
+InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily 
+for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) 
+and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI 
+for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. 
+Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy 
+to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
 
 ## Features Menu
 - [Quick start](#quick-start)

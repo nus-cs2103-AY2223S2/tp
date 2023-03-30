@@ -36,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private TodoListPanel todoListPanel;
     private NoteListPanel noteListPanel;
     private ViewContentPanel viewContentPanel;
-    private SummaryPanel summaryPanel;
+    private StatsInformationListPanel statsInformationListPanel;
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
 
@@ -52,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane viewContentPanelPlaceholder;
 
     @FXML
-    private StackPane summaryPanelPlaceholder;
+    private StackPane statsInformationListPanelPlaceholder;
 
     @FXML
     private StackPane quickAccessToolbarPlaceholder;
@@ -102,7 +102,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
-
+        statsInformationListPanel = new StatsInformationListPanel(logic.getStatsManager());
+        statsInformationListPanelPlaceholder.getChildren().add(statsInformationListPanel.getRoot());
         applicationListPanel = new ApplicationListPanel(logic.getSortedFilteredInternshipList(), this,
                 viewContentPanel);
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList(), viewContentPanel);
@@ -110,9 +111,6 @@ public class MainWindow extends UiPart<Stage> {
         mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList(), viewContentPanel);
         applicationListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
                 mixedPanel.getRoot(), applicationListPanel.getRoot());
-
-        summaryPanel = new SummaryPanel();
-        summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         setHeightConstraints();
     }
@@ -127,9 +125,9 @@ public class MainWindow extends UiPart<Stage> {
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
         viewContentPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.73));
-        summaryPanel.getContainer().maxHeightProperty().bind(
+        statsInformationListPanel.getContainer().maxHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
-        summaryPanel.getContainer().prefHeightProperty().bind(
+        statsInformationListPanel.getContainer().prefHeightProperty().bind(
                 primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
@@ -238,10 +236,14 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+
             changePanelPlaceholder(this, commandResult.getType());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
             reminderWindow = new ReminderWindow(new Stage(), logic.getReminderApplication(), this);
+
+            // Update StatsInformationListPanel UI
+            statsInformationListPanel.updateDisplay();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

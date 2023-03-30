@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -30,14 +31,20 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+<<<<<<< HEAD
+    private final AddressBookParser addressBookParser;
+    private final StatsManager statsManager;
+=======
     private final InternEaseParser internEaseParser;
+>>>>>>> fdd433264b91f9e7fe641c4454a163517b43f0f0
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, StatsManager statsManager) {
         this.model = model;
         this.storage = storage;
+        this.statsManager = statsManager;
         internEaseParser = new InternEaseParser();
     }
 
@@ -48,6 +55,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = internEaseParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        statsManager.updateAllStatsInformation();
 
         try {
             if (commandResult.getType() == TaskType.NONE) {
@@ -68,6 +76,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
+    }
+
+    @Override
+    public StatsManager getStatsManager() {
+        return statsManager;
     }
 
     @Override
