@@ -29,7 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
             + INDENT + "        { [d/DATE] | [sd/START_DATE] [ed/END_DATE] } \\\n"
             + INDENT + "        { [a/AGE] | [sa/START_AGE] [ea/END_AGE] }\n\n"
             + INDENT + "delete INDEX...\n"
-            + INDENT + "delete { [d/DATE] | [sd/START_DATE] [ed/END_DATE] }\n\n"
+            + INDENT + "delete { d/DATE | [sd/START_DATE] [ed/END_DATE] }\n\n"
             + INDENT + "clear\n\n"
             + INDENT + "undo [INTEGER]\n\n"
             + INDENT + "redo [INTEGER]\n\n"
