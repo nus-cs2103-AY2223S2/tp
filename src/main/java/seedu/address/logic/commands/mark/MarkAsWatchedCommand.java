@@ -2,9 +2,13 @@ package seedu.address.logic.commands.mark;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.MultipleEventsParser;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -22,7 +26,7 @@ public class MarkAsWatchedCommand extends MarkCommand {
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
-    private final VideoName targetVideoName;
+    private final VideoName[] targetVideoNames;
 
     /**
      * Creates a Mark As Watched Command that marks a video with {@code targetVideoName}
@@ -32,15 +36,19 @@ public class MarkAsWatchedCommand extends MarkCommand {
      * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
-    public MarkAsWatchedCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
-        this.targetVideoName = targetVideoName;
+    public MarkAsWatchedCommand(ModuleCode moduleCode, LectureName lectureName, VideoName... videoNames) {
+
+        requireNonNull(moduleCode);
+        requireNonNull(lectureName);
+        requireNonNull(videoNames);
+
+        this.targetVideoNames = videoNames;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO: could try to encapsulate this to reuse
         requireNonNull(model);
 
         if (!model.hasModule(moduleCode)) {
@@ -53,25 +61,71 @@ public class MarkAsWatchedCommand extends MarkCommand {
 
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
 
-        if (!model.hasVideo(moduleCode, lectureName, targetVideoName)) {
-            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST,
-                                                        targetVideoName,
-                                                        lectureName,
-                                                        moduleCode));
+        int inputLength = targetVideoNames.length;
+        ArrayList<VideoName> nonExistentVideosNames = new ArrayList<>();
+        ArrayList<VideoName> alreadyMarkedVideosNames = new ArrayList<>();
+        Video[] originalVideos = new Video[inputLength];
+        Video[] newVideos = new Video[inputLength];
+        for (int i = 0; i < targetVideoNames.length; i++) {
+
+            VideoName videoName = targetVideoNames[i];
+            if (!model.hasVideo(moduleCode, lectureName, videoName)) {
+                nonExistentVideosNames.add(targetVideoNames[i]);
+                continue;
+            }
+
+            Video targetVideo = model.getVideo(moduleCode, lectureName, videoName);
+            originalVideos[i] = targetVideo;
+
+            if (targetVideo.hasWatched()) {
+                alreadyMarkedVideosNames.add(videoName);
+                continue;
+            }
+
+            Video newVideo = new Video(videoName, true, targetVideo.getTimestamp(), targetVideo.getTags());
+            newVideos[i] = newVideo;
         }
 
-        Video targetVideo = model.getVideo(moduleCode, lectureName, targetVideoName);
 
-        // TODO: ends here
-
-        if (targetVideo.hasWatched()) {
-            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED, targetVideoName, COMMAND_WORD));
+        if (nonExistentVideosNames.size() != 0) {
+            throw new CommandException(String.format((
+                    nonExistentVideosNames.size() == 1
+                            ? Messages.MESSAGE_VIDEO_DOES_NOT_EXIST
+                            : Messages.MESSAGE_VIDEOS_DO_NOT_EXIST
+                    ),
+                    MultipleEventsParser.convertArrayListToString(nonExistentVideosNames),
+                    this.moduleCode,
+                    this.lectureName));
         }
 
-        Video newVideo = new Video(targetVideoName, true, targetVideo.getTimestamp(), targetVideo.getTags());
-        model.setVideo(lecture, targetVideo, newVideo);
+        if (alreadyMarkedVideosNames.size() != 0) {
+            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED,
+                    MultipleEventsParser.convertArrayListToString(alreadyMarkedVideosNames),
+                    COMMAND_WORD,
+                    lectureName,
+                    moduleCode));
+        }
 
-        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
+        ArrayList<VideoName> videoNamesArrayList = new ArrayList<>();
+        VideoEditInfo[] editedVideosInfos = new VideoEditInfo[inputLength];
+        for (int i = 0; i < inputLength; i++) {
+            videoNamesArrayList.add(targetVideoNames[i]);
+
+            Video targetVideo = originalVideos[i];
+            Video newVideo = newVideos[i];
+
+            model.setVideo(lecture, targetVideo, newVideo);
+            editedVideosInfos[i] = new VideoEditInfo(this.moduleCode, this.lectureName, targetVideo, newVideo);
+        }
+
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
+                        MultipleEventsParser.convertArrayListToString(videoNamesArrayList),
+                        COMMAND_WORD,
+                        inputLength == 1 ? "" : inputLength + " ",
+                        inputLength == 1 ? "" : "s",
+                        lectureName,
+                        moduleCode),
+                editedVideosInfos);
     }
 
     @Override
@@ -81,7 +135,7 @@ public class MarkAsWatchedCommand extends MarkCommand {
         }
 
         MarkAsWatchedCommand command = (MarkAsWatchedCommand) other;
-        return this.targetVideoName.equals(command.targetVideoName)
+        return this.targetVideoNames.equals(command.targetVideoNames)
                 && this.moduleCode.equals(command.moduleCode)
                 && this.lectureName.equals(command.lectureName);
     }

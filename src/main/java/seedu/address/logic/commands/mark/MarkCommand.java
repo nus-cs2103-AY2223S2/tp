@@ -29,8 +29,18 @@ public abstract class MarkCommand extends Command {
             + Messages.MESSAGE_CAN_DO_MULTIPLE;
 
     public static final String MESSAGE_VIDEO_MARK_NOT_CHANGED = "Video %1$s in Lecture %3$s Module %4$s already %2$s"
-            + "ed! No change...";
+            + "ed! No changes made to all specified videos...";
 
+    /**
+     * Skeletal string for successful mark / unmark command
+     *
+     * @param 1 Video Names
+     * @param 2 Command Word (mark / unmark)
+     * @param 3 Number of videos + " "
+     * @param 4 "s" or "". For grammatical correctness
+     * @param 5 Lecture Name
+     * @param 6 Module Code
+     */
     public static final String MESSAGE_MARK_VIDEO_SUCCESS = "Successfully %2$s"
             + "ed %3$sVideo%4$s in Lecture %5$s Module %6$s: %1$s";
 

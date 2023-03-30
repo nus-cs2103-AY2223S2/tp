@@ -21,8 +21,9 @@ public class MarkAsWatchedCommandParserTest {
         assertParseSuccess(parser, "Vid 1 "
                         + CliSyntax.PREFIX_MODULE + " CS2040S "
                         + CliSyntax.PREFIX_LECTURE + " Week 1",
-                new MarkAsWatchedCommand(TypicalVideos.CONTENT_VIDEO.getName(),
+                new MarkAsWatchedCommand(
                         TypicalModules.getCs2040s().getCode(),
-                        TypicalLectures.getCs2040sWeek1().getName()));
+                        TypicalLectures.getCs2040sWeek1().getName(),
+                        TypicalVideos.CONTENT_VIDEO.getName()));
     }
 }

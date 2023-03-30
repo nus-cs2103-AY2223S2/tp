@@ -41,9 +41,9 @@ public class MarkAsWatchedCommandParser implements Parser<MarkAsWatchedCommand> 
             }
             ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeOptional.get());
             LectureName lectureName = ParserUtil.parseLectureName(lectureNameOptional.get());
-            VideoName videoName = ParserUtil.parseVideoName(preamble);
+            VideoName[] videoNames = MultipleEventsParser.parseVideoNames(preamble);
 
-            return new MarkAsWatchedCommand(videoName, moduleCode, lectureName);
+            return new MarkAsWatchedCommand(moduleCode, lectureName, videoNames);
 
         } catch (ParseException pe) {
             throw new ParseException(
