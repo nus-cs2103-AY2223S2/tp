@@ -90,7 +90,9 @@ public class MarkMultipleAsUnwatchedCommand extends MarkCommand {
                         this.videoNames.size() + " ",
                         this.videoNames.size() == 1
                                 ? ""
-                                : "s"),
+                                : "s",
+                        lectureName,
+                        moduleCode),
                 editedVideos);
     }
 

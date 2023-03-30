@@ -69,7 +69,13 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
         // TODO: ends here
 
         if (!targetVideo.hasWatched()) {
-            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED, targetVideoName, COMMAND_WORD));
+            throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED,
+                    targetVideoName,
+                    COMMAND_WORD,
+                    "",
+                    "",
+                    lectureName,
+                    moduleCode));
         }
 
         Video newVideo = new Video(targetVideoName, false, targetVideo.getTimestamp(), targetVideo.getTags());

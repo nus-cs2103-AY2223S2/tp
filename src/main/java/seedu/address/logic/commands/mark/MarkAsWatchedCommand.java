@@ -26,13 +26,13 @@ public class MarkAsWatchedCommand extends MarkCommand {
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
-    private final VideoName[] targetVideoNames;
+    private final ArrayList<VideoName> targetVideoNames;
 
     /**
      * Creates a Mark As Watched Command that marks a video with {@code targetVideoName}
      * from lecture with {@code lectureName} in module of {@code moduleCode} as watched.
      *
-     * @param targetVideoName Name of the Video to mark
+     * @param videoNames Names of the Videos to mark
      * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
@@ -42,7 +42,11 @@ public class MarkAsWatchedCommand extends MarkCommand {
         requireNonNull(lectureName);
         requireNonNull(videoNames);
 
-        this.targetVideoNames = videoNames;
+        ArrayList<VideoName> videoNamesArrayList = new ArrayList<>();
+        for (VideoName each: videoNames) {
+            videoNamesArrayList.add(each);
+        }
+        this.targetVideoNames = videoNamesArrayList;
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
     }
@@ -61,16 +65,16 @@ public class MarkAsWatchedCommand extends MarkCommand {
 
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
 
-        int inputLength = targetVideoNames.length;
+        int inputLength = targetVideoNames.size();
         ArrayList<VideoName> nonExistentVideosNames = new ArrayList<>();
         ArrayList<VideoName> alreadyMarkedVideosNames = new ArrayList<>();
         Video[] originalVideos = new Video[inputLength];
         Video[] newVideos = new Video[inputLength];
-        for (int i = 0; i < targetVideoNames.length; i++) {
+        for (int i = 0; i < inputLength; i++) {
 
-            VideoName videoName = targetVideoNames[i];
+            VideoName videoName = targetVideoNames.get(i);
             if (!model.hasVideo(moduleCode, lectureName, videoName)) {
-                nonExistentVideosNames.add(targetVideoNames[i]);
+                nonExistentVideosNames.add(targetVideoNames.get(i));
                 continue;
             }
 
@@ -102,6 +106,8 @@ public class MarkAsWatchedCommand extends MarkCommand {
             throw new CommandException(String.format(MESSAGE_VIDEO_MARK_NOT_CHANGED,
                     MultipleEventsParser.convertArrayListToString(alreadyMarkedVideosNames),
                     COMMAND_WORD,
+                    "",
+                    alreadyMarkedVideosNames.size() == 1 ? "" : "s",
                     lectureName,
                     moduleCode));
         }
@@ -109,7 +115,7 @@ public class MarkAsWatchedCommand extends MarkCommand {
         ArrayList<VideoName> videoNamesArrayList = new ArrayList<>();
         VideoEditInfo[] editedVideosInfos = new VideoEditInfo[inputLength];
         for (int i = 0; i < inputLength; i++) {
-            videoNamesArrayList.add(targetVideoNames[i]);
+            videoNamesArrayList.add(targetVideoNames.get(i));
 
             Video targetVideo = originalVideos[i];
             Video newVideo = newVideos[i];
@@ -121,7 +127,7 @@ public class MarkAsWatchedCommand extends MarkCommand {
         return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS,
                         MultipleEventsParser.convertArrayListToString(videoNamesArrayList),
                         COMMAND_WORD,
-                        inputLength == 1 ? "" : inputLength + " ",
+                        inputLength + " ",
                         inputLength == 1 ? "" : "s",
                         lectureName,
                         moduleCode),
