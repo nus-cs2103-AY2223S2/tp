@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Subject;
 
+//@@author wendy0107
 /**
  * Jackson-friendly version of {@link Subject}.
  */
@@ -47,3 +48,4 @@ public class JsonAdaptedSubject {
     }
 
 }
+//@@author

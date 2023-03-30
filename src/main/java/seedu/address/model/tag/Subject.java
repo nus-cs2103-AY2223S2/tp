@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wendy0107
 /**
  * Represents a Subject in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSubjectName(String)}
@@ -52,3 +53,4 @@ public class Subject {
     }
 
 }
+//@@author
