@@ -23,6 +23,7 @@ public class RerollItems implements ReadOnlyEntities {
         return items;
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this
