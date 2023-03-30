@@ -21,8 +21,7 @@ public class DeleteDeliveryJobCommand extends DeliveryJobCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the job identified by the job id.\n"
             + "Parameters: STRING job id\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
+            + "Example: " + COMMAND_WORD + " ALBE29E66F";
     public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted Job: %1$s";
 
     private final String jobId;

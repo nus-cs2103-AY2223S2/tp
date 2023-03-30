@@ -92,7 +92,8 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## 1. Features related to Customers
+## 1. Features related to Customers/Address Book
+### *Can only access from Customer Window*
 ### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
@@ -163,6 +164,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ## 2. Features related to Delivery Jobs
+### *Can only access from Main Window*
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
@@ -189,6 +191,8 @@ Format: `list_job`
 
 
 ## 3. Features related to Reminders
+### *Can only access from Main Window*
+
 ### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Duke Driver.
@@ -222,6 +226,8 @@ Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
 ## 4. Features related to Timetable
+### *Can only access from Main Window*
+
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
@@ -235,7 +241,7 @@ Shows timetable of specific week containing a specific date
 Format: `timetable_date date/YYYY-mm-DD`
 
 * Shows timetable of the week containing the given date.
-* This is the one and only command that Timetable Window can parse/proceed/understand.
+* This is the one and only command that Timetable Window can access (identical format).
 
 Examples:
 * `timetable_date date/2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
@@ -252,6 +258,8 @@ Jobs are sorted in increasing date and decreasing earning order.
 Format: `timetable_unscheduled`
 
 ## 5. Features related to Statistics
+### *Can only access from Main Window*
+
 ### 5.1. Showing Statistics : `stats`
 
 Shows a summary of statistics related to the jobs in the job list
@@ -303,21 +311,27 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+**:information_source: Notes about the command format:**<br>
+* Commands that start with *(C)* could only be accessed from Customer Window 
+* Commands that start with *(M)* could only be accessed from Main Window 
+* Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
-**List reminder** | `list_reminder`
-**Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
-**Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
-**Show Timetable** | `timetable`
-**Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
-**Show List of Completed Jobs** | `timetable_completed`
-**Show List of Unscheduled Jobs** | `timetable_unscheduled`
-**Help** | `help`
+***(C)* Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+***(C)* Clear** | `clear`
+***(C)* Delete** | `delete INDEX`<br> e.g., `delete 3`
+***(C)* Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+***(C)* Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+***(C)* List** | `list`
+***(M)* Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+***(M)* List reminder** | `list_reminder`
+***(M)* Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
+***(M)* Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
+***(M)* Show Timetable** | `timetable`
+***(M)* Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
+***(M)* Show List of Completed Jobs** | `timetable_completed`
+***(M)* Show List of Unscheduled Jobs** | `timetable_unscheduled`
+***(M)* Show Statistics** | `stats`
+***(B)* Help** | `help`
+***(B)* Exit** | `exit`

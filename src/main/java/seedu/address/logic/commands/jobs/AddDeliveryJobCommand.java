@@ -34,7 +34,13 @@ public class AddDeliveryJobCommand extends DeliveryJobCommand {
             + PREFIX_RECIPIENT_ID + "RECIPIENT ID "
             + PREFIX_DELIVERY_DATE + "DELIVERY DATE "
             + PREFIX_DELIVERY_SLOT + "DELIVERY SLOT "
-            + PREFIX_EARNING + "Earning ";
+            + PREFIX_EARNING + "Earning "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_SENDER_ID + "ALE874 "
+            + PREFIX_RECIPIENT_ID + "DAV910 "
+            + PREFIX_DELIVERY_DATE + "2023-03-03 "
+            + PREFIX_DELIVERY_SLOT + "3 "
+            + PREFIX_EARNING + "20";
 
     public static final String MESSAGE_SUCCESS = "New job added: %1$s";
     public static final String MESSAGE_SUCCESS_WITH_NO_DATE = "New job added, with"
