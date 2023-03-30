@@ -1,6 +1,6 @@
 package vimification.internal.parser;
 
-import vimification.internal.command.view.RefreshCommand;
+import vimification.internal.command.ui.RefreshCommand;
 
 public class RefreshCommandParser implements CommandParser<RefreshCommand> {
 

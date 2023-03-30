@@ -1,17 +1,18 @@
 package vimification.internal.command.ui;
 
+import vimification.commons.core.Index;
 import vimification.internal.command.CommandResult;
 import vimification.ui.MainScreen;
 
 public class JumpCommand extends UiCommand {
-    private int jumpIndex;
+    private Index jumpIndex;
 
-    public JumpCommand(int jumpIndex) {
+    public JumpCommand(Index jumpIndex) {
         this.jumpIndex = jumpIndex;
     }
 
     public CommandResult execute(MainScreen mainScreen) {
-        mainScreen.getTaskTabPanel().scrollToTaskIndex(jumpIndex);
+        mainScreen.getTaskTabPanel().scrollToTaskIndex(jumpIndex.getOneBased());
         return new CommandResult("");
     }
 }

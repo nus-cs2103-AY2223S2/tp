@@ -1,13 +1,7 @@
 package vimification.internal.parser;
 
-import vimification.internal.command.view.ComposedSearchCommand;
-import vimification.internal.command.view.SearchByDeadlineAfterCommand;
-import vimification.internal.command.view.SearchByDeadlineBeforeCommand;
-import vimification.internal.command.view.SearchByKeywordCommand;
-import vimification.internal.command.view.SearchByLabelCommand;
-import vimification.internal.command.view.SearchByPriorityCommand;
-import vimification.internal.command.view.SearchByStatusCommand;
-import vimification.internal.command.view.SearchCommand;
+import vimification.internal.command.ui.SearchCommand;
+import vimification.internal.command.ui.SearchRequest;
 
 public class SearchCommandParser implements CommandParser<SearchCommand> {
 
@@ -21,6 +15,7 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
     private SearchCommandParser() {}
 
     private static ApplicativeParser<SearchCommand> parseArguments(Object ignore) {
+        SearchRequest request = new SearchRequest();
         ArgumentCounter counter = new ArgumentCounter(
                 Pair.of(CommandParserUtil.KEYWORD_FLAG, 1),
                 Pair.of(CommandParserUtil.STATUS_FLAG, 1),
@@ -29,42 +24,42 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
                 Pair.of(CommandParserUtil.AFTER_FLAG, 1));
 
-        ApplicativeParser<SearchCommand> flagParser = ApplicativeParser.choice(
+        ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.WORD_PARSER)
-                        .map(SearchByKeywordCommand::new),
+                        .consume(request::setSearchedKeyword),
                 CommandParserUtil.STATUS_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.STATUS_PARSER)
-                        .map(SearchByStatusCommand::new),
+                        .consume(request::setSearchedStatus),
                 CommandParserUtil.LABEL_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.LABEL_PARSER)
-                        .map(SearchByLabelCommand::new),
+                        .consume(label -> request.getSearchedLabels().add(label)),
                 CommandParserUtil.PRIORITY_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.PRIORITY_PARSER)
-                        .map(SearchByPriorityCommand::new),
+                        .consume(request::setSearchedPriority),
                 CommandParserUtil.BEFORE_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
-                        .map(SearchByDeadlineBeforeCommand::new),
+                        .consume(request::setSearchedDeadlineBefore),
                 CommandParserUtil.AFTER_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
-                        .map(SearchByDeadlineAfterCommand::new));
+                        .consume(request::setSearchedDeadlineAfter));
 
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .<SearchCommand>map(ComposedSearchCommand::new)
+                .constMap(new SearchCommand(request))
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .dropNext(ApplicativeParser.eof());
     }
