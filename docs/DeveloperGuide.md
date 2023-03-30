@@ -289,13 +289,16 @@ Otherwise, this list of Predicate classes include:
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
+The following sequence diagram shows how the `list` operation works:
+![ListSequenceDiagram.png](images%2FListSequenceDiagram.png)
+
 #### Design considerations
 
 **Aspect: Filtering by other fields** 
 
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
   * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
-  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
+  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields only.
 
 <div style="page-break-after: always;"></div>
 
@@ -1035,9 +1038,37 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `edit 0`<br>
       Expected: No contact is edited. An error message is shown as an invalid index was given. An error is logged in the console.
 
-    1. Other incorrect edit commands to try: `edit`, `edit John Doe`
+    1. Other incorrect edit commands to try: `edit`, `edit John Doe`<br>
        Expected: No contact is edited. An error message is shown as an invalid command was given.
 
+### Listing contacts
+1. Listing contacts while all contacts are being shown.
+   1. Prerequisites: At least one contact in the list.
+   
+   1. Test case: `list t/friend`<br>
+      Expected: Contacts tagged with `friend` is shown.
+   
+   1. Test case: `list l/Java` <br>
+      Expected: Contacts with language `Java` is shown.
+   
+   2. Test case: `list t/friend l/Java`<br>
+      Expected: Contacts with tag `friend` and language `Java` is shown.
+   
+   4. Test case: `list l/`<br>
+      Expected: An error is message is shown as an invalid syntax for language is given.
+   
+   5. Test case: `list 12345`<br>
+      Expected: Same list of contacts is shown as this would be regarded as a `list` command.<br>
+   
+2. Listing contacts while some contacts are being shown. 
+   1. Prerequisites: Filter the contact list with `find` or `list [l/LANGUAGE] [t/TAG]`. At least one contact in the list. 
+   
+   2. Test case: `list`<br>
+      Expected: All contacts from the unfiltered list is shown.
+   
+   3. Test case: `list t/friend`<br>
+      Expected: Contacts tagged with `friend` in the filtered list is shown.
+   
 ### Removing a contact's field
 
 1. _{ more test cases …​ }_
@@ -1075,7 +1106,26 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a project
 
-1. _{ more test cases …​ }_
+1. Editing a project while all projects are being shown
+    1. Prerequisites: At least one project in the list.
+
+    1. Test case: `editpj 1 n/Project Bravo`<br>
+       Expected: First project in the list is edited with the project name `Project Bravo`
+
+    1. Test case: `editpj 1 r/BravoRepo`<br>
+       Expected: Existing repo name of the first project in the list are replaced with the repo name `BravoRepo`
+
+    1. Test case: `editpj 1`<br>
+       Expected: No project is edited. An error message is shown as no fields to edit were provided. An error is logged in the console.
+
+    1. Test case: `editpj 0`<br>
+       Expected: No project is edited. An error message is shown as an invalid index was given. An error is logged in the console.
+
+    1. Other incorrect edit commands to try: `editpj`, `editpj Project Alpha`<br>
+       Expected: No project is edited. An error message is shown as an invalid command was given.
+
+
+
 
 ### Deleting a project
 
@@ -1094,7 +1144,23 @@ testers are expected to do more *exploratory* testing.
 
 ### Removing a project's field
 
-1. _{ more test cases …​ }_
+1. Removing a project while all projects are being shown
+   2. Prerequisites: At least one project in the shown list.
+   
+   3. Test case: `removepj 1 h/`<br>
+      Expected: First project repo host field is removed. Repo host in the project card becomes `Not Available`.
+   
+   4. Test case: `removepj 1 h/ r/`<br>
+      Expected: First project repo host and repo name fields are removed. Repo host and Repo name in the project card becomes `Not Available`.
+   
+   5. Test case: `removepj 1 r/first-project`<br>
+      Expected: First project repo name field is removed only if its repo name previously was `first-project`. Otherwise, an error message is shown as the field does not exist in the project.
+   
+   5. Test case: `removepj 0 h/`<br>
+      Expected: No project field is removed. An error message is shown as the given index is invalid. An error is logged in the console.
+   
+   6. Test case: `removepj 0`<br>
+      Expected: No project field is removed. An error message is shown as the given syntax is invalid. An error is logged in the console.
 
 ### Clearing all projects
 
