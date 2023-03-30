@@ -81,7 +81,8 @@ class JsonAdaptedTechnician extends JsonAdaptedPerson {
         final Set<Integer> modelServiceIds = new HashSet<>(technicianServiceIds);
         final Set<Integer> modelAppointmentIds = new HashSet<>(technicianAppointmentIds);
 
-        return new Technician(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getTags(), modelServiceIds, modelAppointmentIds);
+        return new Technician(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getTags(),
+                modelServiceIds, modelAppointmentIds);
     }
 
 }

@@ -1,15 +1,15 @@
 package seedu.address.model.mapping;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Technician;
-import seedu.address.model.service.*;
-import seedu.address.model.service.appointment.Appointment;
-import seedu.address.model.service.appointment.UniqueAppointmentList;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.entity.person.Technician;
+import seedu.address.model.service.Service;
+import seedu.address.model.service.ServiceList;
+import seedu.address.model.service.appointment.Appointment;
+import seedu.address.model.service.appointment.UniqueAppointmentList;
 
 /**
  * Represents a mapping between technicians with their associated services and appointments.

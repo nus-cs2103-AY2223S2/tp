@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TECHNICIANS;
+
+import seedu.address.model.Model;
 
 /**
  * Lists all customers in the AutoM8 system to the user.

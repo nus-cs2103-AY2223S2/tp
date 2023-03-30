@@ -2,16 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.service.Vehicle;
-import seedu.address.model.service.appointment.Appointment;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * A UI component that displays PlaceHolder UI for empty/null detail panels.

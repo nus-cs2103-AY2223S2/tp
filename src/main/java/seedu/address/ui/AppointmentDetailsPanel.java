@@ -1,24 +1,16 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.AppointmentDataMap;
-import seedu.address.model.mapping.ServiceDataMap;
-import seedu.address.model.service.PartMap;
-import seedu.address.model.service.Service;
-import seedu.address.model.service.ServiceStatus;
-import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
 
 /**
  * An UI component that displays information of a {@code Vehicle}.
@@ -27,7 +19,8 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "AppointmentDetailsPanel.fxml";
     public final Appointment appointment;
-    @FXML VBox parentContainer;
+    @FXML
+    private VBox parentContainer;
     @FXML
     private Label id;
     @FXML
@@ -83,17 +76,17 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
 
     private void setDateStatus(Appointment.DateStatus status) {
         switch (status) {
-            case PASSED:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("passed-tag");
-                break;
-            case UPCOMING:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("upcoming-tag");
-                break;
-            default:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("today-tag");
+        case PASSED:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("passed-tag");
+            break;
+        case UPCOMING:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("upcoming-tag");
+            break;
+        default:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("today-tag");
         }
     }
 

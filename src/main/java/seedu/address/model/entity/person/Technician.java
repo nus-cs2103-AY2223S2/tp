@@ -20,6 +20,9 @@ public class Technician extends Staff {
         super(id, name, phone, email, address, tags);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Technician(int id, Name name, Phone phone, Email email, Address address,
                       Set<Tag> tags, Set<Integer> serviceIds, Set<Integer> appointmentIds) {
         super(id, name, phone, email, address, tags);

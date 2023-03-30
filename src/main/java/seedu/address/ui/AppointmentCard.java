@@ -1,23 +1,14 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Technician;
-import seedu.address.model.service.Service;
-import seedu.address.model.service.ServiceStatus;
-import seedu.address.model.service.Vehicle;
-import seedu.address.model.service.VehicleType;
 import seedu.address.model.service.appointment.Appointment;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * A UI component that displays information of a {@code Appointment}.
@@ -70,17 +61,17 @@ public class AppointmentCard extends UiPart<Region> {
 
     private void setDateStatus(Appointment.DateStatus status) {
         switch (status) {
-            case PASSED:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("passed-tag");
-                break;
-            case UPCOMING:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("upcoming-tag");
-                break;
-            default:
-                dateStatus.setText(status.name());
-                dateStatus.getStyleClass().add("today-tag");
+        case PASSED:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("passed-tag");
+            break;
+        case UPCOMING:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("upcoming-tag");
+            break;
+        default:
+            dateStatus.setText(status.name());
+            dateStatus.getStyleClass().add("today-tag");
         }
     }
 

@@ -1,22 +1,15 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.mapping.CustomerVehicleMap;
-import seedu.address.model.service.PartMap;
-import seedu.address.model.service.Vehicle;
-import seedu.address.model.service.appointment.Appointment;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.service.PartMap;
+
 /**
- * A UI component that displays information of a {@code Customer}.
+ * A UI component that displays information of a part.
  */
 public class PartListPanel extends UiPart<Region> {
 
@@ -27,7 +20,7 @@ public class PartListPanel extends UiPart<Region> {
     private VBox partListPanel;
 
     /**
-     * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
+     * Creates a part listing.
      */
     public PartListPanel(PartMap parts) {
         super(FXML);

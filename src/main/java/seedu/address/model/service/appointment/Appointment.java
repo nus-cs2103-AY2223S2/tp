@@ -21,6 +21,9 @@ import seedu.address.model.Findable;
  * The appointment class containing a meeting with a customer at a particular date.
  */
 public class Appointment implements Findable {
+    /**
+     * Represents the status of the appointment date base on current date time
+     */
     public enum DateStatus {
         NOW,
         UPCOMING,

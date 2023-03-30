@@ -16,7 +16,14 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListAppointmentsCommand;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListPartsCommand;
+import seedu.address.logic.commands.ListServicesCommand;
+import seedu.address.logic.commands.ListTechniciansCommand;
+import seedu.address.logic.commands.ListVehiclesCommand;
+import seedu.address.logic.commands.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -220,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
 
         tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
-            if(newValue.intValue() == Tab.PARTS.ordinal()) {
+            if (newValue.intValue() == Tab.PARTS.ordinal()) {
                 initPartListPanel();
             }
         });
@@ -272,10 +279,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updateSelectedTab(CommandResult commandResult) {
         int tabIndex = commandResult.getType().ordinal();
-        if(commandResult.getType() != Tab.UNCHANGED && commandResult.getType() != Tab.ALL) {
+        if (commandResult.getType() != Tab.UNCHANGED && commandResult.getType() != Tab.ALL) {
             tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
         }
-        if(commandResult.getType() == Tab.ALL) {
+        if (commandResult.getType() == Tab.ALL) {
             for (int i = 0; i < tabResultDisplayMessages.length; i++) {
                 tabResultDisplayMessages[i] = commandResult.getFeedbackToUser();
             }
@@ -299,11 +306,13 @@ public class MainWindow extends UiPart<Stage> {
         serviceDetailsPlaceholder.getChildren().add(serviceDetailsPanel.getRoot());
 
         appointmentDetailsPlaceholder.getChildren().clear();
-        appointmentDetailsPanel = new AppointmentDetailsPanel(logic.getSelectedAppointment(), logic.getAppointmentDataMap());
+        appointmentDetailsPanel = new AppointmentDetailsPanel(logic.getSelectedAppointment(),
+                logic.getAppointmentDataMap());
         appointmentDetailsPlaceholder.getChildren().add(appointmentDetailsPanel.getRoot());
 
         technicianDetailsPlaceholder.getChildren().clear();
-        technicianDetailsPanel = new TechnicianDetailsPanel(logic.getSelectedTechnician(), logic.getTechnicianDataMap());
+        technicianDetailsPanel = new TechnicianDetailsPanel(logic.getSelectedTechnician(),
+                logic.getTechnicianDataMap());
         technicianDetailsPlaceholder.getChildren().add(technicianDetailsPanel.getRoot());
     }
 

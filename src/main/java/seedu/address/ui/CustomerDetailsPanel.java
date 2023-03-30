@@ -21,7 +21,8 @@ public class CustomerDetailsPanel extends UiPart<Region> {
     private static final String FXML = "CustomerDetailsPanel.fxml";
 
     public final Customer customer;
-    @FXML VBox parentContainer;
+    @FXML
+    private VBox parentContainer;
     @FXML
     private Label id;
     @FXML

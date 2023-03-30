@@ -30,7 +30,8 @@ public class ServiceDetailsPanel extends UiPart<Region> {
     private static final Color onHold = Color.rgb(255, 230, 0);
 
     public final Service service;
-    @FXML VBox parentContainer;
+    @FXML
+    private VBox parentContainer;
     @FXML
     private Label id;
     @FXML

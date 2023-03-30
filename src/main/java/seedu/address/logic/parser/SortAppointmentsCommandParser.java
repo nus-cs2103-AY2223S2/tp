@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.commons.util.DateStatusComparator;
 import seedu.address.commons.util.SharedComparatorsUtil;
 import seedu.address.logic.commands.SortAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

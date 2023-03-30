@@ -58,7 +58,7 @@ This diagram is applicable also for other commands such as the add equivalent.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Omitted from this image is that the `XCommand`, being an  instance of`RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below. 
+Omitted from this image is that the `XCommand`, being an  instance of`RedoableCommand`, methods related to it is handled here. For more information, scroll down to the relevant section below.
 
 Each of the four main components (also shown in the diagram above),
 
@@ -288,7 +288,7 @@ to be cleared.  Commands that are not undoable are not added into the `undoStack
 
 * **Alternative 2:** Use `HistoryManager` for undo/redo.
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
-    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application. 
+    * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle more than one thing. For example, it would need to handle the undo and redo as well as the history of the application. This is in contrast with a HistoryManager which is only responsible for the history of the application.
 
 ### Update Service Priority Feature
 This feature updates the priority of a service by increasing or decreasing it by 1 level. Priority levels are defined: low, medium, high

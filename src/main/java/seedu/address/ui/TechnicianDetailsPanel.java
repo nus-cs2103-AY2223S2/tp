@@ -1,20 +1,17 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Technician;
-import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.service.Service;
-import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * A UI component that displays information of a {@code Technician}.
@@ -24,7 +21,8 @@ public class TechnicianDetailsPanel extends UiPart<Region> {
     private static final String FXML = "TechnicianDetailsPanel.fxml";
 
     public final Technician technician;
-    @FXML VBox parentContainer;
+    @FXML
+    private VBox parentContainer;
     @FXML
     private Label id;
     @FXML
