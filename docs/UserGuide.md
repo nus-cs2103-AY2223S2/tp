@@ -66,17 +66,17 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 
 **The prefixes and their respective parameters are as follows:**
 
-| Required | Prefix | Parameter            | Restrictions                                                        |
-|----------|--------|----------------------|---------------------------------------------------------------------|
-| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                            |
-| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                                 |
-| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.   |
-| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                  |
-| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                  |
-| `No`     | t      | TAG                  | -                                                                   |
-| `Yes`    | $      | SALARY               | Positive integers only.                                             |
-| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                                |
+| Required | Prefix | Parameter            | Restrictions                                                      |
+|----------|--------|----------------------|-------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                          |
+| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
+| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                |
+| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                |
+| `No`     | t      | TAG                  | -                                                                 |
+| `Yes`    | $      | SALARY               | Positive integers only.                                           |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                              |
 
 
 ### Editing a Role: `edit`:
