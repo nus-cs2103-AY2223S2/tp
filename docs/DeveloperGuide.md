@@ -6,6 +6,7 @@ title: Developer Guide
 - [Acknowledgements](#acknowledgements)
 - [Introduction](#introduction)
   - [Intended Audience](#intended-audience)
+  - [Target Audience](#target-audience)
   - [Navigating the Developer Guide](#navigating-the-developer-guide)
   - [Glossary](#glossary)
 - [Setting up](#setting-up-getting-started)
@@ -49,15 +50,6 @@ title: Developer Guide
 ## **Introduction**
 
 ### Intended Audience
-
-CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
-of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
-while still having the benefits of a **Graphical User Interface** (GUI).
-
-For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience, 
-so you can spend less time searching through chats, and spend more time making
-meaningful connections and engaging in productive work.
-
 The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
 in the deciding the implementation of various features offered by CoDoc.
@@ -65,6 +57,15 @@ in the deciding the implementation of various features offered by CoDoc.
 You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 Developer Guide and help you navigate it with ease.
+
+### Target Audience
+CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
+of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a **Graphical User Interface** (GUI).
+
+For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience,
+so you can spend less time searching through chats, and spend more time making
+meaningful connections and engaging in productive work.
 
 ### Navigating the Developer Guide
 
