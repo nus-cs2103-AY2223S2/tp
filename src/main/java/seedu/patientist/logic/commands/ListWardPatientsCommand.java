@@ -17,8 +17,8 @@ public class ListWardPatientsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose wards matches any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Keywords must be alphanumeric.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Block1WardA Block2WardC";
+            + "Parameters: KEYWORD WARD_NAME\n"
+            + "Example: " + COMMAND_WORD + " Block 1 Ward A";
 
     public static final String MESSAGE_WARD_NOT_FOUND = "Ward [%1$s] not found.";
 
