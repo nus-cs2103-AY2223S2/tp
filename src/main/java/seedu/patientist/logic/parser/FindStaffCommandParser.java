@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import seedu.patientist.logic.commands.FindStaffCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.staff.StaffNameContainsKeywordsPredicate;
 import seedu.patientist.model.person.staff.StaffIdContainsKeywordsPredicate;
+import seedu.patientist.model.person.staff.StaffNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindStaffCommand object

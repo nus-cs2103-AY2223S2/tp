@@ -1,9 +1,8 @@
 package seedu.patientist.model.person.staff;
 
-import seedu.patientist.model.person.IdContainsKeywordsPredicate;
-
 import java.util.List;
 
+import seedu.patientist.model.person.IdContainsKeywordsPredicate;
 import seedu.patientist.model.person.Person;
 
 /**

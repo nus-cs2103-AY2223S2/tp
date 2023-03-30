@@ -10,7 +10,6 @@ import seedu.patientist.commons.core.Messages;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.person.patient.PatientIdContainsKeywordsPredicate;
 import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
-import seedu.patientist.model.person.IdContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindPatientCommand object
@@ -60,7 +59,7 @@ public class FindPatientCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                || (other instanceof FindPatientCommand // instanceof handles nulls
-                   && Objects.equals(patientNamePredicate, ((FindPatientCommand) other).patientNamePredicate)// state check
+                   && Objects.equals(patientNamePredicate, ((FindPatientCommand) other).patientNamePredicate)
                    && Objects.equals(patientIdPredicate, ((FindPatientCommand) other).patientIdPredicate));
     }
 }
