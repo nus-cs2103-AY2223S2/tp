@@ -1,6 +1,5 @@
 package tfifteenfour.clipboard.ui;
 
-import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
