@@ -1,11 +1,11 @@
 package seedu.connectus.logic.parser;
 
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.connectus.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
-
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.DeleteTagFromPersonCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
@@ -40,7 +40,7 @@ public class DeleteTagFromPersonCommandParser implements Parser<DeleteTagFromPer
                 ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_POSITION).get())
                 : null;
 
-            if (remarkIndex == null && moduleIndex == null) {
+            if (!isAnyNonNull(remarkIndex, moduleIndex, ccaIndex, ccaPositionIndex)) {
                 throw new ParseException("");
             }
         } catch (ParseException pe) {
