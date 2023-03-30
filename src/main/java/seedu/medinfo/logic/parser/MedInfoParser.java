@@ -75,7 +75,7 @@ public class MedInfoParser {
 
         case ClearCommand.COMMAND_WORD:
             confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
-                    "Are you sure you want to clear ALL patients?");
+                    "Are you sure you want to clear ALL patients and wards?");
             result = confirmationDialog.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 return new ClearCommand();
