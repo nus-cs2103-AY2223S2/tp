@@ -48,6 +48,7 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.add(toAdd);
+        this.sortEvents();
     }
 
     private HashMap<LocalDate, List<Event>> dateEventListHasher(Event currEvent, Event otherEvent,
@@ -119,6 +120,7 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.set(index, editedEvent);
+        this.sortEvents();
     }
 
     /**
@@ -135,6 +137,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        this.sortEvents();
     }
 
     /**
@@ -148,6 +151,11 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.setAll(events);
+        this.sortEvents();
+    }
+
+    public void sortEvents() {
+        internalList.setAll(internalList.sorted((e1, e2) -> e1.compareTo(e2)));
     }
 
     /**
