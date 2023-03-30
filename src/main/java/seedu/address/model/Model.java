@@ -165,7 +165,12 @@ public interface Model {
     /** Sets the tab to the one specified in {@code index} */
     void setSelectedTab(Index index);
 
+    /** Gets the selected person */
     ReadOnlyObjectProperty<Person> getSelectedPerson();
+
+    /** Sets the selected Person to be the one specified by {@code index} */
     void setSelectedPerson(Index index);
 
+    /** Updates all events to its next earlier occurences. */
+    void updateAllDateTimes();
 }

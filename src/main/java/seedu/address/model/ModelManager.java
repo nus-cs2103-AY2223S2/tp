@@ -139,6 +139,7 @@ public class ModelManager implements Model {
     public ReadOnlyObjectProperty<Person> getSelectedPerson() {
         return addressBook.getSelectedPerson();
     }
+
     @Override
     public void setSelectedPerson(Index index) {
         Person selectedPerson = filteredPersons.get(index.getZeroBased());
@@ -219,6 +220,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isPersonTaggedToEvent(Index index, Person p) {
         return this.userData.isPersonTaggedToEvent(index, p);
+    }
+
+    @Override
+    public void updateAllDateTimes() {
+        this.userData.updateAllDateTimes();
     }
 
     //=========== Filtered Person List Accessors =============================================================

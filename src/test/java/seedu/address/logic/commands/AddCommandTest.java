@@ -264,6 +264,14 @@ public class AddCommandTest {
         public void setSelectedPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateAllDateTimes() {
+            // This method might be called if you use this ModelStub as part of the NeoBook and you execute a
+            // command.
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
             throw new AssertionError("This method should not be called.");

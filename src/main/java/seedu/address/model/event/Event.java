@@ -2,6 +2,8 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,6 +52,23 @@ public abstract class Event {
 
     public Recurrence getRecurrence() {
         return recurrence;
+    }
+
+    /**
+     * Returns a copy of the event where all the dates and times of the event
+     * are updated to reflect the next earliest occurrence.
+     */
+    public Event updateDateTime() {
+        if (!this.recurrence.isRecurring()) {
+            return this;
+        }
+        Event event = this.copy();
+        ChronoUnit timeUnit = event.getRecurrence().getIncrementUnit();
+        while (event.endDateTime.getDateTime().isBefore(LocalDateTime.now())) {
+            event.startDateTime.plus(timeUnit);
+            event.endDateTime.plus(timeUnit);
+        }
+        return event;
     }
 
     /**

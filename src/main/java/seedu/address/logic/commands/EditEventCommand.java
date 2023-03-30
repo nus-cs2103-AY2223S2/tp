@@ -67,12 +67,11 @@ public class EditEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO
         requireNonNull(model);
         List<Event> eventList = model.getEvents();
 
         if (index.getZeroBased() >= eventList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToEdit = eventList.get(index.getZeroBased());

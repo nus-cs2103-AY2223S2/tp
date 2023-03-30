@@ -181,6 +181,18 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Updates all events to their next earliest occurence.
+     */
+    public void updateAllDateTimes() {
+        ArrayList<Event> eventsReplacements = new ArrayList<>();
+        for (int i = 0; i < this.internalList.size(); i++) {
+            eventsReplacements.add(this.internalList.get(i).updateDateTime());
+        }
+        this.internalList.clear();
+        this.internalList.addAll(eventsReplacements);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {

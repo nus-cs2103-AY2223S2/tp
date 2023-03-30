@@ -99,6 +99,10 @@ public class UserData implements ReadOnlyUserData {
         this.user.getValue().untagPersonToEvent(event, taggingPerson);
     }
 
+    public void updateAllDateTimes() {
+        this.user.getValue().updateAllDateTimes();
+    }
+
     //// util methods
 
     @Override
