@@ -1,10 +1,10 @@
 package trackr.testutil;
 
-import trackr.model.menu.MenuItem;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
+import trackr.model.menu.MenuItem;
 
 /**
  * A utility class to help with building Task objects.
