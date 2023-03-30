@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
 
-    private DetailsPopup detailsPopup = new DetailsPopup(null);;
+    private DetailsPopup detailsPopup;
     private Person personToView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -77,6 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        detailsPopup = new DetailsPopup(null);
     }
 
     public Stage getPrimaryStage() {

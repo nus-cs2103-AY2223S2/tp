@@ -6,21 +6,15 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
-
-import static java.util.Objects.requireNonNull;
-
 
 /**
  * The UI component that is responsible for a pop-up to show details of Person.
@@ -38,7 +32,7 @@ public class DetailsPopup extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on Patientist level 4</a>
      */
 
-    public Person person;
+    public final Person person;
 
     @FXML
     private HBox detailsPane;
