@@ -13,7 +13,7 @@ public class HomeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Back to homepage, listed all courses";
 
     public HomeCommand() {
-        super(false);
+        super(true);
     }
 
     @Override

@@ -22,6 +22,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
@@ -306,8 +307,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleUndoCommand() {
+    private void handleUndoCommand(CommandResult commandResult) {
+        UndoCommand command = (UndoCommand) commandResult.getCommand();
+        Command prevCommand = command.getPrevModel().getCommandExecuted();
 
+        if (prevCommand instanceof SelectCommand) {
+                System.out.println("doing back");
+                handleBackCommand();
+        } else {
+            // handleSelectCommand acts like refreshing whatever page you're on
+            // undo needs to refresh the page after restoring previous state
+            handleSelectCommand();
+        }
     }
 
     /**
@@ -416,6 +427,10 @@ public class MainWindow extends UiPart<Stage> {
 
         switch (currentPage) {
         case COURSE_PAGE:
+            showCoursePane();
+            showModuleTab();
+            closeGroupTab();
+            refreshNavigationBar();
             break;
         case GROUP_PAGE:
             showGroupPane(logic.getModel().getCurrentSelection().getSelectedCourse());
@@ -427,6 +442,7 @@ public class MainWindow extends UiPart<Stage> {
             if (logic.getModel().getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
                 showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
                 showStudentTab();
+                refreshViewPane();
                 refreshNavigationBar();
             } else {
                 showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
@@ -454,8 +470,9 @@ public class MainWindow extends UiPart<Stage> {
      * Handles UI for back command.
      * @param backCommand
      */
-    private void handleBackCommand(BackCommand backCommand) {
-        PageType currentPage = logic.getModel().getCurrentSelection().getCurrentPage();
+    private void handleBackCommand() {
+        CurrentSelection currentSelection = logic.getModel().getCurrentSelection();
+        PageType currentPage = currentSelection.getCurrentPage();
 
         switch (currentPage) {
         case COURSE_PAGE:
@@ -465,7 +482,7 @@ public class MainWindow extends UiPart<Stage> {
             refreshNavigationBar();
             break;
         case GROUP_PAGE:
-            showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+            showGroupPane(currentSelection.getSelectedCourse());
             showGroupTab();
             closeViewPane();
             closeStudentTab();
@@ -473,14 +490,22 @@ public class MainWindow extends UiPart<Stage> {
             closeTaskTab();
             refreshNavigationBar();
             break;
+        case STUDENT_PAGE:
+            if (currentSelection.getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+                closeViewPane();
+            } else {
+                showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+                refreshViewPane();
+            }
+            break;
         case SESSION_PAGE:
-            logic.getModel().getCurrentSelection().getSelectedGroup().unMarkAllSessions();
+            currentSelection.getSelectedGroup().unMarkAllSessions();
             showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
             break;
         case TASK_PAGE:
-            logic.getModel().getCurrentSelection().getSelectedGroup().unMarkAllTasks();
+            currentSelection.getSelectedGroup().unMarkAllTasks();
             showTaskPane(logic.getModel().getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
@@ -525,7 +550,7 @@ public class MainWindow extends UiPart<Stage> {
             handleSelectCommand();
 
         } else if (commandResult.getCommand() instanceof BackCommand) {
-            handleBackCommand((BackCommand) commandResult.getCommand());
+            handleBackCommand();
 
         } else if (commandResult.getCommand() instanceof ExitCommand) {
             handleExit();
@@ -557,7 +582,7 @@ public class MainWindow extends UiPart<Stage> {
         } else if (commandResult.getCommand() instanceof AttendanceCommand) {
             handleAttendanceCommand();
         } else if (commandResult.getCommand() instanceof UndoCommand) {
-            handleUndoCommand();
+            handleUndoCommand(commandResult);
         }
     }
 

@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
     public ClearCommand() {
-        super(false);
+        super(true);
     }
 
     @Override

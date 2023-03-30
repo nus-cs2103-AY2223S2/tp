@@ -29,7 +29,7 @@ public class AttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public AttendanceCommand() {
-        super(false);
+        super(true);
     }
 
     /**
