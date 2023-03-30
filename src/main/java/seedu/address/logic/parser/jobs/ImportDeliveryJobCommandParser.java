@@ -33,7 +33,7 @@ public class ImportDeliveryJobCommandParser {
      * @param file CSV file containing delivery jobs
      * @return List of delivery jobs to be added
      * @throws ParseException if the user input does not conform to
-     * the expected format
+     *     the expected format
      */
     public static List<DeliveryJob> parse(File file, List<Person> listOfCustomers)
             throws ParseException, FileNotFoundException {
@@ -73,7 +73,7 @@ public class ImportDeliveryJobCommandParser {
      * @param index index of array
      * @return Person object using the details
      * @throws ParseException if the user input does not conform to
-     * the expected format
+     *     the expected format
      */
     public static Person recipientOrSender(String[] arrOfStr, int index) throws ParseException {
         String personID = arrOfStr[index];
