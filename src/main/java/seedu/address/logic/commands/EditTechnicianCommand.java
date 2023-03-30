@@ -75,7 +75,7 @@ public class EditTechnicianCommand extends RedoableCommand {
             throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setTechnician(personToEdit, editedPerson);
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

@@ -33,10 +33,8 @@ public class EditVehicleCommandParser implements Parser<EditVehicleCommand> {
     public EditVehicleCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INTERNAL_ID, PREFIX_PLATE_NUM, PREFIX_BRAND, PREFIX_CUSTOMER_ID,
-                        PREFIX_VEHICLE_TYPE, PREFIX_VEHICLE_COLOR);
-
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INTERNAL_ID, PREFIX_PLATE_NUM,
+                PREFIX_BRAND, PREFIX_CUSTOMER_ID, PREFIX_VEHICLE_TYPE, PREFIX_VEHICLE_COLOR);
         // If no id present, don't know what to edit, throw error.
         if (!argMultimap.getValue(PREFIX_INTERNAL_ID).isPresent()) {
             throw new ParseException(

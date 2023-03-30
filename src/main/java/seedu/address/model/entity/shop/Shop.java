@@ -114,6 +114,11 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+    public void setService(Service services, Service edit) {
+
+        this.services.setService(services, edit);
+    }
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.

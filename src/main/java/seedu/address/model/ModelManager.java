@@ -403,6 +403,12 @@ public class ModelManager implements Model {
         this.shop.removeTechnician(target);
     }
 
+    @Override
+    public void setTechnician(Technician target, Technician editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        shop.setTechnician(target, editedPerson);
+    }
+
     // ==== Mapped ==
     @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
@@ -530,5 +536,13 @@ public class ModelManager implements Model {
     public Service getSelectedService() {
         return selectedService;
     }
+
+    @Override
+    public void setService(Service target, Service editedService) {
+        requireAllNonNull(target, editedService);
+        this.shop.setService(target, editedService);
+    }
+
+
 
 }

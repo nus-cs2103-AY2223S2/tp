@@ -305,6 +305,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTechnician(Technician target, Technician editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -355,7 +360,7 @@ public class AddCommandTest {
 
         @Override
         public void selectVehicle(Vehicle vehicle) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -371,6 +376,11 @@ public class AddCommandTest {
         @Override
         public Service getSelectedService() {
             return null;
+        }
+
+        @Override
+        public void setService(Service target, Service editedService) {
+
         }
 
         @Override

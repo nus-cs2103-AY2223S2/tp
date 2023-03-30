@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BRAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATE_NUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -29,6 +32,11 @@ public class EditVehicleCommand extends RedoableCommand {
             + "by the id number displayed by listvehicle. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_PLATE_NUM + "PLATE NUMBER] "
+            + "[" + PREFIX_BRAND + "VEHICLE BRAND] "
+            + "[" + PREFIX_CUSTOMER_ID + "OWNER ID] "
+            + "[" + PREFIX_VEHICLE_COLOR + "COLOR]"
+            + "[" + PREFIX_VEHICLE_TYPE + "VEHICLE TYPE]"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PLATE_NUM + "SBA1234A "
             + PREFIX_VEHICLE_COLOR + "blue";

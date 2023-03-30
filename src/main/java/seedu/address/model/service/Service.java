@@ -190,6 +190,10 @@ public class Service {
         return new ArrayList<>(this.assignedToIds);
     }
 
+    public Set<Integer> getAssignedToIdsSet() {
+        return this.assignedToIds;
+    }
+
     /**
      * This method returns the status of this service.
      *

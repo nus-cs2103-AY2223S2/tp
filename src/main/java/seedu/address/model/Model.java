@@ -281,6 +281,8 @@ public interface Model {
 
     void deleteTechnician(Technician target);
 
+    void setTechnician(Technician target, Technician editedPerson);
+
     CustomerVehicleMap getCustomerVehicleMap();
 
     VehicleDataMap getVehicleDataMap();
@@ -316,4 +318,6 @@ public interface Model {
      * Returns currently selected service
      */
     Service getSelectedService();
+
+    void setService(Service target, Service editedService);
 }
