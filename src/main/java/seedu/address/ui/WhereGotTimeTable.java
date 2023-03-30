@@ -146,10 +146,10 @@ public class WhereGotTimeTable extends UiPart<Region> {
                             setStyle("-fx-text-fill:black;");
                         } else if (item.equals(Status.FREE)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: #71A89D;" + "-fx-text-fill:black;");
+                            setStyle("-fx-background-color: #C1E1C1;" + "-fx-text-fill:black;");
                         } else if (item.equals(Status.BUSY)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: transparent;" + "-fx-text-fill:black;");
+                            setStyle("-fx-background-color: #D88C9A;" + "-fx-text-fill:black;");
                         } else {
                             setStyle("-fx-background-color: transparent;");
                         }

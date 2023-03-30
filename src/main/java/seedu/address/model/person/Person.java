@@ -196,24 +196,35 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
 
         Set<Group> groups = getGroups();
         if (!groups.isEmpty()) {
-            builder.append("; Groups: ");
+            builder.append("\nGroups: ");
             groups.forEach(builder::append);
         }
+
+        if (isolatedEventList.getSize() > 0) {
+            builder.append("\n");
+            builder.append(isolatedEventList);
+        }
+
+        if (recurringEventList.getSize() > 0) {
+            builder.append("\n");
+            builder.append(recurringEventList);
+        }
+
         return builder.toString();
     }
 }
