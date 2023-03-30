@@ -19,7 +19,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -155,17 +154,14 @@ public class ClearByCommandTest {
 
     @Test
     public void execute_clearByEmptyFilteredList_error() {
-        model.setInternEase(new AddressBook());
+        model = new ModelManager();
         InternshipStatus status = InternshipStatus.PENDING;
 
         ClearByCommand clearByCommand = new ClearByCommand(status);
 
         CommandResult expectedMessage = new CommandResult(MESSAGE_NULL);
 
-        ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTodoList(),
-                getTypicalNoteList());
-        expectedModel.setInternEase(new AddressBook());
-
+        ModelManager expectedModel = new ModelManager();
         try {
             CommandResult clearByMessage = clearByCommand.execute(model);
             assertCommandSuccess(clearByMessage, model, expectedMessage, expectedModel);
