@@ -25,7 +25,7 @@ public class TimetableDateCommand extends Command {
             + "based on user's input date\n"
             + "Parameters: "
             + PREFIX_DATE + "DATE "
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_DATE + "2023-03-15";
 
     public static final String SHOWING_TIMETABLE_MESSAGE = "Show timetable of the week containing day: %s.";
