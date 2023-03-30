@@ -84,16 +84,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a student to a specific tutorial.
      *
      * @param toAdd the student to be added.
-     * @param name the name of the tutorial that the student will be added into.
+     * @param index the index of the tutorial that the student will be added into.
      */
-    public void addStudentToTutorial(Person toAdd, String name) throws ParseException {
-        Tutorial original = tutorials.get(0);
+    public void addStudentToTutorial(Person toAdd, Index index) throws ParseException {
+        Tutorial original = tutorials.get(index.getZeroBased());
+        /*
         for (int i = 0; i < tutorials.size(); i++) {
             if (tutorials.get(i).hasMatchByName(name)) {
                 original = tutorials.get(i);
                 break;
             }
         }
+
+         */
         if (original.hasStudent(toAdd)) {
             throw new ParseException("Student already in event!");
         }
@@ -104,36 +107,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Deletes a student from an event.
      *
      * @param toDel the index of the student within the event's student list to be deleted.
-     * @param name the name of the event from which the student will be deleted.
+     * @param eventIndex the index of the event from which the student will be deleted.
      * @param type the type of the event from which the student will be deleted.
      */
-    public void deleteStudentFromEvent(Index toDel, String name, String type) {
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String type) {
         Optional<Event> target = Optional.empty();
         if (type.equals(PREFIX_TUTORIAL.getPrefix())) {
-            for (int i = 0; i < tutorials.size(); i++) {
-                if (tutorials.get(i).hasMatchByName(name)) {
-                    target = Optional.of(tutorials.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(tutorials.get(eventIndex.getZeroBased()));
         }
 
         if (type.equals(PREFIX_LAB.getPrefix())) {
-            for (int i = 0; i < labs.size(); i++) {
-                if (labs.get(i).hasMatchByName(name)) {
-                    target = Optional.of(labs.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(labs.get(eventIndex.getZeroBased()));
         }
 
         if (type.equals(PREFIX_CONSULTATION.getPrefix())) {
-            for (int i = 0; i < consultations.size(); i++) {
-                if (consultations.get(i).hasMatchByName(name)) {
-                    target = Optional.of(consultations.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(consultations.get(eventIndex.getZeroBased()));
         }
 
         if (target.isEmpty()) {
@@ -148,16 +136,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a student to a specific lab.
      *
      * @param toAdd the student to be added.
-     * @param name the name of the lab that the student will be added into.
+     * @param index the index of the lab that the student will be added into.
      */
-    public void addStudentToLab(Person toAdd, String name) throws ParseException {
-        Lab original = labs.get(0);
+    public void addStudentToLab(Person toAdd, Index index) throws ParseException {
+        Lab original = labs.get(index.getZeroBased());
+        /*
         for (int i = 0; i < labs.size(); i++) {
             if (labs.get(i).hasMatchByName(name)) {
                 original = labs.get(i);
                 break;
             }
         }
+
+         */
         Lab added = original;
         if (added.hasStudent(toAdd)) {
             throw new ParseException("Student already in event!");
@@ -170,16 +161,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a student to a specific consultation
      *
      * @param toAdd the student to be added.
-     * @param name the name of the consultation that the student will be added into.
+     * @param index the index of the consultation that the student will be added into.
      */
-    public void addStudentToConsultation(Person toAdd, String name) throws ParseException {
-        Consultation original = consultations.get(0);
+    public void addStudentToConsultation(Person toAdd, Index index) throws ParseException {
+        Consultation original = consultations.get(index.getZeroBased());
+        /*
         for (int i = 0; i < consultations.size(); i++) {
             if (consultations.get(i).hasMatchByName(name)) {
                 original = consultations.get(i);
                 break;
             }
         }
+        */
         Consultation added = original;
         if (added.hasStudent(toAdd)) {
             throw new ParseException("Student already in event!");

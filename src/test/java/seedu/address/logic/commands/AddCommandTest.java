@@ -130,22 +130,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudentToTutorial(Index toAdd, String tutName) {
+        public void addStudentToTutorial(Index toAdd, Index tutorialIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addStudentToLab(Index toAdd, String tutName) {
+        public void addStudentToLab(Index toAdd, Index labIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addStudentToConsultation(Index toAdd, String tutName) {
+        public void addStudentToConsultation(Index toAdd, Index labIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteStudentFromEvent(Index index, String eventName, String eventType) {
+        public void deleteStudentFromEvent(Index index, Index eventIndex, String eventType) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -261,6 +261,21 @@ public class AddCommandTest {
 
         @Override
         public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortLabPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -49,28 +49,28 @@ class AddStudentToEventCommandTest {
         modifiedModel.addConsultation(new Consultation(SAMPLE_CONSULTATION.getName()));
 
         Model supposedlySameModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        supposedlySameModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
+        supposedlySameModel.addStudentToTutorial(first, first);
 
-        modifiedModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
+        modifiedModel.addStudentToTutorial(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                second, SAMPLE_TUTORIAL.getName(), TUTORIAL_STRING),
+                second, first, TUTORIAL_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
-        modifiedModel.addStudentToLab(first, SAMPLE_LAB.getName());
+        modifiedModel.addStudentToLab(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                        second, SAMPLE_LAB.getName(), LAB_STRING),
+                        second, first, LAB_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
-        modifiedModel.addStudentToConsultation(first, SAMPLE_CONSULTATION.getName());
+        modifiedModel.addStudentToConsultation(first, first);
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                        second, SAMPLE_CONSULTATION.getName(), CONSULTATION_STRING),
+                        second, first, CONSULTATION_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
     }
 
     @Test
     void execute_eventTypeNotRecognized_throwsCommandException() {
-        assertCommandFailure(new AddStudentToEventCommand(first, SAMPLE_TUTORIAL.getName(), WRONG_TYPE),
+        assertCommandFailure(new AddStudentToEventCommand(first, first, WRONG_TYPE),
                 model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
     }
 }

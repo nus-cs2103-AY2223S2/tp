@@ -30,10 +30,10 @@ public class HelpLabCommand extends HelpCommand {
             + "editEvent EVENT_INDEX Lab/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
 
     public static final String ADD_STUDENT = "Add Student:            "
-            + "addStudent INDEX Lab/LAB_NAME";
+            + "addStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";
 
     public static final String DELETE_STUDENT = "Delete Student:        "
-            + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_NAME";
+            + "deleteStudent STUDENT_INDEX_IN_LIST Lab/LAB_INDEX_IN_LAB_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
             + "addNote note -content [NOTE] -type Lab -name [LAB_NAME]";

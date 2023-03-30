@@ -30,10 +30,10 @@ public class HelpTutorialCommand extends HelpCommand {
             + "editEvent EVENT_INDEX Tutorial/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
 
     public static final String ADD_STUDENT = "Add Student:            "
-            + "addStudent INDEX Tutorial/TUTORIAL_NAME";
+            + "addStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_INDEX_IN_TUTORIAL_LIST";
 
     public static final String DELETE_STUDENT = "Delete Student:        "
-            + "deleteStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_NAME";
+            + "deleteStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_INDEX_IN_TUTORIAL_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
             + "addNote note -content [NOTE] -type Tutorial -name [TUTORIAL_NAME]";

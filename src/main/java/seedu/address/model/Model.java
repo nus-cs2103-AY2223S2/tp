@@ -125,18 +125,18 @@ public interface Model {
      * Adds a student to a tutorial.
      *
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
-     * @param tutName The name of the tutorial that the student will be added into.
+     * @param tutIndex The index of the tutorial that the student will be added into.
      */
-    void addStudentToTutorial(Index toAdd, String tutName) throws ParseException;
+    void addStudentToTutorial(Index toAdd, Index tutIndex) throws ParseException;
 
     /**
      * Deletes a student from an event
      *
      * @param toDel the index of the student within the AddressBook's internal UniquePersonList to be deleted.
-     * @param eventName the name of the event that the student will be deleted from.
+     * @param eventIndex the index of the event that the student will be deleted from.
      * @param eventType the type of event that the student will be deleted from.
      */
-    void deleteStudentFromEvent(Index toDel, String eventName, String eventType);
+    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
@@ -176,9 +176,9 @@ public interface Model {
      * Adds a student to a lab session.
      *
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
-     * @param labName The name of the lab session that the student will be added into.
+     * @param labIndex The index of the lab session that the student will be added into.
      */
-    void addStudentToLab(Index toAdd, String labName) throws ParseException;
+    void addStudentToLab(Index toAdd, Index labIndex) throws ParseException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Lab> getFilteredLabList();
@@ -218,9 +218,9 @@ public interface Model {
      * Adds a student to a consultation session.
      *
      * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
-     * @param consultationName The name of the consultation session that the student will be added into.
+     * @param consultationIndex The index of the consultation session that the student will be added into.
      */
-    void addStudentToConsultation(Index toAdd, String consultationName) throws ParseException;
+    void addStudentToConsultation(Index toAdd, Index consultationIndex) throws ParseException;
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Consultation> getFilteredConsultationList();

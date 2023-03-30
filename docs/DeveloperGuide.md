@@ -323,12 +323,12 @@ The current Add Students to Events (addStudent) feature is facilitated by the `E
 
 The addStudent feature implements the following operations:
 * `Event#addStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
-* `AddressBook#addStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
-* `AddressBook#addStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
-* `AddressBook#addStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
-* `Model#addStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
-* `Model#addStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
-* `Model#addStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+* `AddressBook#addStudentToTutorial(Person toAdd, Index index)` Adds toAdd to the Tutorial in `index` of the tutorial list.
+* `AddressBook#addStudentToLab(Person toAdd, Index index)` Adds toAdd to the Lab in `index` of the lab list.
+* `AddressBook#addStudentToConsultation(Person toAdd, Index index)` Adds toAdd to the Consultation in `index` of the consultation list.
+* `Model#addStudentToTutorial(Index toAdd, Index index)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial in `index` of the tutorial list.
+* `Model#addStudenttoLab(Index toAdd, Index index)` Adds the student at index toAdd in the AddressBook's Person list to the Lab in `index` of the lab list.
+* `Model#addStudentToConsultation(Index toAdd, Index index)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation in `index` of the consultation list.
 
 These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#addStudent(Person student)` operation is also implemented in all `Event` subclasses.
 
@@ -336,11 +336,11 @@ Given below is an example usage scenario and how the addStudent mechanism behave
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialised to be empty.
 
-Step 2. The user executes `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665` to add a student.
+Step 2. The user executes `add n/James Ho telegram/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 score/1` to add a student.
 
-Step 3. The user executes `touch tutorial Tutorial/tut` to add an Event.
+Step 3. The user executes `touch Tutorial/tut` to add an Event.
 
-Step 4. The user executes `addStudent 1 Tutorial/tut` to add the first student in the Person list into the Event(tutorial) called "tut". 
+Step 4. The user executes `addStudent 1 Tutorial/1` to add the first student in the Person list into the tutorial at first index of the tutorial list. 
 
 The following activity diagram summarizes what happens when a TA executes an add student to event:
 
@@ -366,22 +366,20 @@ _{more aspects and alternatives to be added}_
 
 The proposed mechanism is facilitated by the `Event` subclasses as well as the `ModelManager` and `AddressBook` classes.
 
-The addStudent feature implements the following operations:
-* `Event#deleteStudent(Person student)` Adds the student to the event that the method is called from. Adds the student into the Event's student list, implemented as List<Person>.
-* `AddressBook#deleteStudentToTutorial(Person toAdd, String name)` Adds toAdd to the Tutorial
-* `AddressBook#deleteStudentToLab(Person toAdd, String name)` Adds toAdd to the Lab
-* `AddressBook#deleteStudentToConsultation(Person toAdd, String name)` Adds toAdd to the Consultation
-* `Model#deleteStudentToTutorial(Index toAdd, String tutName)` Adds the student at index toAdd in the AddressBook's Person list to the Tutorial named tutName
-* `Model#deleteStudenttoLab(Index toAdd, String labName)` Adds the student at index toAdd in the AddressBook's Person list to the Lab named labName
-* `Model#deleteStudentToConsultation(Index toAdd, String consultationName)` Adds the student at index toAdd in the AddressBook's Person list to the Consultation named consultationName
+The deleteStudent feature makes use of the existing operation:
+* `Event#removeIndexStudent(int Index)` Deletes the student at `index` of the caller event's student list.
 
-These operations are exposed in the `Model` interface and `AddressBook` class. The `Event#deleteStudent(Person student)` operation is also implemented in all `Event` subclasses.
+The deleteStudent feature implements/ the following operations:
+* `AddressBook#deleteStudentFromEvent(Index toDel, Index eventIndex, String type)` Deletes student at index `toDel` from the student list of the event at index `eventIndex` of the event list with type `type`.
+* `Model#deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType)` Calls `AddressBook#deleteStudentFromEvent(Index toDel, Index eventIndex, String type)`. 
+
+These operations are exposed in the `Model` interface and `AddressBook` class.
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application. The user has already used the application before and has an `Event` established with a non-empty student list.
 
-Step 2. The user executes `deleteStudent 1 Tutorial/tut` to delete the student at index 1 (1-based) of the student list in the `Tutorial` named tut.
+Step 2. The user executes `deleteStudent 1 Tutorial/1` to delete the student at index 1 (1-based) of the student list of the tutorial at index 1 (1-based) of the `Tutorial` list.
 
 The following activity diagram summarizes what happens when a TA executes an delete student from event:
 

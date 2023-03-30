@@ -21,19 +21,19 @@ public class DeleteStudentFromEventCommand extends Command {
     public static final String LAB_STRING = PREFIX_LAB.getPrefix();
     public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
     private final Index index;
-    private final String eventName;
+    private final Index eventIndex;
     private final String eventType;
 
     /**
      * Constructs a DeleteStudentFromEventCommand object to delete a student from an event.
      *
-     * @param index the index of the student within the event's student list to be deleted.
-     * @param name the name of the event the student will be deleted from.
+     * @param studentIndex the index of the student within the event's student list to be deleted.
+     * @param eventIndex the index of the event the student will be deleted from.
      * @param type the type of the event the student will be deleted from.
      */
-    public DeleteStudentFromEventCommand(Index index, String name, String type) {
-        this.index = index;
-        this.eventName = name;
+    public DeleteStudentFromEventCommand(Index studentIndex, Index eventIndex, String type) {
+        this.index = studentIndex;
+        this.eventIndex = eventIndex;
         this.eventType = type;
     }
 
@@ -47,7 +47,7 @@ public class DeleteStudentFromEventCommand extends Command {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
 
-        model.deleteStudentFromEvent(this.index, this.eventName, this.eventType);
+        model.deleteStudentFromEvent(this.index, this.eventIndex, this.eventType);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }

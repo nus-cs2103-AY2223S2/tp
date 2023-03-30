@@ -30,10 +30,10 @@ public class HelpConsultationCommand extends HelpCommand {
             + "editEvent EVENT_INDEX Consultation/NEW_NAME -date NEW_DATE -file NEW_FILEPATH";
 
     public static final String ADD_STUDENT = "Add Student:            "
-            + "addStudent INDEX Consultation/CONSULTATION_NAME";
+            + "addStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_INDEX_IN_CONSULTATION_LIST";
 
     public static final String DELETE_STUDENT = "Delete Student:        "
-            + "deleteStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_NAME";
+            + "deleteStudent STUDENT_INDEX_IN_LIST Consultation/CONSULTATION_INDEX_IN_CONSULTATION_LIST";
 
     public static final String ADD_NOTE = "Add Note:         "
             + "addNote note -content [NOTE] -type Consultation -name [CONSULTATION_NAME]";

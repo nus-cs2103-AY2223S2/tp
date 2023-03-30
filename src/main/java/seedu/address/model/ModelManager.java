@@ -157,14 +157,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToTutorial(Index toAdd, String tutName) throws ParseException {
+    public void addStudentToTutorial(Index toAdd, Index tutIndex) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
-        addressBook.addStudentToTutorial(toAddPerson, tutName);
+        addressBook.addStudentToTutorial(toAddPerson, tutIndex);
     }
 
     @Override
-    public void deleteStudentFromEvent(Index toDel, String eventName, String eventType) {
-        addressBook.deleteStudentFromEvent(toDel, eventName, eventType);
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) {
+        addressBook.deleteStudentFromEvent(toDel, eventIndex, eventType);
     }
 
     @Override
@@ -192,9 +192,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToLab(Index toAdd, String labName) throws ParseException {
+    public void addStudentToLab(Index toAdd, Index labIndex) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
-        addressBook.addStudentToLab(toAddPerson, labName);
+        addressBook.addStudentToLab(toAddPerson, labIndex);
     }
 
     @Override
@@ -221,9 +221,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToConsultation(Index toAdd, String consultationName) throws ParseException {
+    public void addStudentToConsultation(Index toAdd, Index consultationIndex) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
-        addressBook.addStudentToConsultation(toAddPerson, consultationName);
+        addressBook.addStudentToConsultation(toAddPerson, consultationIndex);
     }
 
     @Override

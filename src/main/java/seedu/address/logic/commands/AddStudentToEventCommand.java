@@ -18,21 +18,21 @@ public class AddStudentToEventCommand extends Command {
     public static final String TUTORIAL_STRING = "tutorial";
     public static final String LAB_STRING = "lab";
     public static final String CONSULTATION_STRING = "consultation";
-    private final Index index;
-    private final String eventName;
+    private final Index studentIndex;
+    private final Index eventIndex;
     private final String eventType;
 
     /**
      * Constructs an AddStudentToEventCommand object to add the student at the specified index
      * to an event of the specified type and name.
      *
-     * @param index the index of the student within the student list to be added.
-     * @param name the name of the event the student will be added into.
+     * @param studentIndex the index of the student within the student list to be added.
+     * @param eventIndex the index of the event the student will be added into.
      * @param type the type of the event the student will be added into.
      */
-    public AddStudentToEventCommand(Index index, String name, String type) {
-        this.index = index;
-        this.eventName = name;
+    public AddStudentToEventCommand(Index studentIndex, Index eventIndex, String type) {
+        this.studentIndex = studentIndex;
+        this.eventIndex = eventIndex;
         this.eventType = type;
     }
 
@@ -41,14 +41,15 @@ public class AddStudentToEventCommand extends Command {
         requireNonNull(model);
 
         if (this.eventType.equals(TUTORIAL_STRING)) {
-            model.addStudentToTutorial(this.index, this.eventName);
+            model.addStudentToTutorial(this.studentIndex, this.eventIndex);
         } else if (this.eventType.equals(LAB_STRING)) {
-            model.addStudentToLab(this.index, this.eventName);
+            model.addStudentToLab(this.studentIndex, this.eventIndex);
         } else if (this.eventType.equals(CONSULTATION_STRING)) {
-            model.addStudentToConsultation(this.index, this.eventName);
+            model.addStudentToConsultation(this.studentIndex, this.eventIndex);
         } else {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS),
+                false, false, false, true);
     }
 }
