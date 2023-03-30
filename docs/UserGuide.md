@@ -227,6 +227,11 @@ Keywords are identified by their sub and main keywords. Following is the list of
 * **Keyword name** : `<keyword>` - the name of the user-defined keyword.
 * **Main Keyword** : `<mainKeyword>` - the main keyword that the user-defined keyword is paired to.
 
+Default keywords implemented are shown in the list below.
+* pat-->patient
+* appt-->appointment
+* vacc-->vaccination
+
 #### `add` - Add a keyword
 
 Adds a new keyword as defined in the command into the system.
@@ -234,7 +239,7 @@ Adds a new keyword as defined in the command into the system.
 ##### Syntax
 
 <pre>
-keyword add [--k ...<var>MAIN_KEYWORD</var>...] [--n <var>KEYWORD</var>]
+keyword add [--k <var>MAIN_KEYWORD</var>] [--n <var>KEYWORD</var>]
 </pre>
 
 * <code><var>MAIN_KEYWORD</var></code> : `<mainKeyword>`
@@ -248,8 +253,6 @@ Example assumes that the keyword does not exist yet.
 keyword add --k patient --n pa 
 ```
 
-Copy and paste:<br>
-`keyword add --k patient --n pa`
 <br><br>
 Output:<br>
 
@@ -277,8 +280,6 @@ Example assumes that the keyword already exists.
 keyword delete pat
 ```
 
-Copy and paste:<br>
-`keyword delete pat`
 <br><br>
 Output:<br>
 
