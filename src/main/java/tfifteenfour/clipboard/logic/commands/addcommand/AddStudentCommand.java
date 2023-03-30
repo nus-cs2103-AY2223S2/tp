@@ -5,7 +5,6 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_NAME;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_STUDENTID;
-import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
