@@ -103,6 +103,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void resetPersonHiddenStatus();
+
 
     /**
      * Adds all contacts not already in the address book into the address book.

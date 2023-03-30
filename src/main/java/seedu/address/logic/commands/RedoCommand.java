@@ -19,12 +19,14 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.resetPersonHiddenStatus();
         if (model instanceof Undoable) {
             Undoable undoableModel = (Undoable) model;
             if (!undoableModel.hasRedoableCommand()) {
                 throw new CommandException(MESSAGE_NO_REDOABLE_COMMAND);
             }
             String returnMessage = undoableModel.executeRedo();
+            model.resetPersonHiddenStatus();
             return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
         } else {
             throw new IllegalArgumentException("Model passed does not support undo!");

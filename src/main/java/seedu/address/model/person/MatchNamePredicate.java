@@ -16,8 +16,13 @@ public class MatchNamePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return names.stream()
-                .anyMatch(name -> person.getName().equals(name));
+        boolean res = names.stream().anyMatch(name -> person.getName().equals(name));
+
+        if (res && person.getHidden() == true) {
+            person.toggleHidden();
+        }
+
+        return res;
     }
 
     @Override
