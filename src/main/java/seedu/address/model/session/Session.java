@@ -122,6 +122,7 @@ public class Session implements Comparable<Session> {
      * @param name String name of person
      */
     public void markStudentPresent(String name) {
+        attendanceMap.remove(name);
         attendanceMap.put(name, true);
     }
 
@@ -130,6 +131,7 @@ public class Session implements Comparable<Session> {
      * @param name String name of person
      */
     public void markStudentAbsent(String name) {
+        attendanceMap.remove(name);
         attendanceMap.put(name, false);
     }
 
