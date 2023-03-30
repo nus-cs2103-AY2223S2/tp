@@ -2,10 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_ABORT_DELETE;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.scene.control.Alert;
+
+import javafx.scene.control.ButtonType;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddWardCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -46,6 +51,11 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        // for confirmation window
+        Alert confirmationDialog;
+        Optional<ButtonType> result;
+
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -54,10 +64,24 @@ public class AddressBookParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the patient?");
+            result = confirmationDialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                return new DeleteCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(MESSAGE_ABORT_DELETE); // cancel the deletion command
+            }
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to clear ALL patients?");
+            result = confirmationDialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                return new ClearCommand();
+            } else {
+                throw new ParseException(MESSAGE_ABORT_DELETE); // cancel the deletion command
+            }
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -78,7 +102,14 @@ public class AddressBookParser {
             return new EditWardCommandParser().parse(arguments);
 
         case DeleteWardCommand.COMMAND_WORD:
-            return new DeleteWardCommandParser().parse(arguments);
+            confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                    "Are you sure you want to delete the ward?");
+            result = confirmationDialog.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                return new DeleteWardCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(MESSAGE_ABORT_DELETE); // cancel the deletion command
+            }
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
