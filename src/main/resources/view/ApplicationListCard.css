@@ -7,11 +7,11 @@
     -fx-background-color: #143D4D;
     -fx-background-radius: 8;
     -fx-effect: dropshadow(gaussian, rgba(24, 87, 87, 1.0), 0, 0, 5, 5);
-    -fx-text-fill: #dbd8d0;
+    -fx-text-fill: #DBD8D0;
 }
 
-#cardPane : hover {
-    -fx-background-color: #1884a8;
+#cardPane:hover {
+    -fx-background-color: #1884A8;
     -fx-background-radius: 8;
     -fx-text-fill: whitesmoke;
 }
@@ -63,7 +63,7 @@
 .archive-button {
     -fx-background-color: #EEE8AA;
     -fx-background-radius: 8;
-    -fx-text-fill: #2d3f4d;
+    -fx-text-fill: #2D3F4D;
 }
 
 .archive-button:hover {

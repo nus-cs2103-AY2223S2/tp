@@ -117,12 +117,24 @@ public class JsonAdaptedInternshipApplication {
         qualifications.addAll(source.getQualifications().stream()
                         .map(Qualification::toString)
                         .collect(Collectors.toList()));
-        location = source.getLocation().value;
-        salary = source.getSalary().value;
+        if (source.getLocation() != null) {
+            location = source.getLocation().value;
+        } else {
+            location = null;
+        }
+        if (source.getSalary() != null) {
+            salary = source.getSalary().value;
+        } else {
+            salary = null;
+        }
         notes.addAll(source.getNotes().stream()
                 .map(Note::toString)
                 .collect(Collectors.toList()));
-        rating = source.getRating().value;
+        if (source.getRating() != null) {
+            rating = source.getRating().value;
+        } else {
+            rating = null;
+        }
         reflections.addAll(source.getReflections().stream()
                 .map(Reflection::toString)
                 .collect(Collectors.toList()));
