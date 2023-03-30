@@ -19,7 +19,7 @@ public class UnfavoriteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unfavourites the person "
             + "according to the Contact ID provided by user input.\n"
             + "Parameters: INDEX (must be positive integer).\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_NOT_EXISTS = "Person doesn't exist in the address book";
 
