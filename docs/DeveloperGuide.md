@@ -837,7 +837,6 @@ All `Person` must have a `Name`, `Email`, `Course` and `Year`.
 `Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
 
 ##### Handling Duplicates
-
 For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The class is design in such a way where no two person can have the same email.
@@ -845,7 +844,6 @@ For duplicate persons, instead of checking whether they had the same `Name`, we 
 
 ##### Skills Attribute
 We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
-
 
 ##### Design Consideration
 
@@ -864,9 +862,9 @@ We included the `Skills` attribute to remind the user to add in the person's ski
 
 [Scroll back to top](#table-of-contents)
 
-### **Module Class**
+#### **Module Class**
 Each module in CoDoc have a string representing its module.
-#### Regex and validation
+##### Regex and validation
 All module string should satisfy the following regex pattern,
 
 `^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
@@ -876,27 +874,26 @@ For example, a valid Module string is "AY2223S1 CS1101S"
 Additionally, a final validation is required to ensure that the 4 digit after
 the "AY" is valid.
 
-The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
+The following are **valid** 4 digit sequence (last 2 digits are increments of first 2 digits)
 - 2223
 - 9900
 - 0102
 
-The following are invalid (the last 2 digit number is not an increment of the first)
+The following are **invalid** (the last 2 digit number is not an increment of the first)
 - 2224
 - 1111
 - 2019
 
 [Scroll back to top](#table-of-contents)
 
-### **Course and CourseList Class**
+#### **Course and CourseList Class**
 Each `Course` in CoDoc is implemented in the following way:
 
 ![Course Class Diagram](images/CourseClassDiagram.png)
 
 All `Course` hava a `String` representing the name of the course.
 
-#### Design Considerations
-
+##### Design Considerations
 The `Course` constructor accepts a `String` input that represents the index of the course name
 residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel
 of the GUI, along with the corresponding index of the course name.
