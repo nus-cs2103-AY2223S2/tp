@@ -138,15 +138,10 @@ _typically_ followed by the corresponding input data.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
-There are some input parameters that do not require any corresponding input data.
 
-</div>
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-There are some input data that share the same prefix. For example: `CONTACT_PHONE_NUMBER` and `MEETING_ATTENDEE`
-share the same prefix `p/`.
+* There are some input parameters that do not require any corresponding input data.
+* There are some input data that share the same prefix. For example: `CONTACT_PHONE_NUMBER` and `MEETING_ATTENDEE`
+  share the same prefix `p/`.
 
 </div>
 
@@ -172,18 +167,18 @@ a command works. Take the following as an example:
 
 Command: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
 
-| Command Component                                                                                        | Component Type  | Description                                                     |
-|----------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------|
-| `add`                                                                                                    | Command Keyword | Represents the action executed by QuickContacts                 |
-| `n/`, `p/`, `e/`, `a/`, `t/`                                                                             | Prefix          | Uniquely identifies the corresponding input data                |
-| `CONTACT_NAME`<br/>`CONTACT_PHONE_NUMBER/`<br/>`CONTACT_EMAIL`<br/>`CONTACT_ADDRESS/`<br/>`CONTACT_TAG/` | Input Data      | Placeholders for the actual data to be supplied for the command |
+| Command Component                                                                                     | Component Type  | Description                                                     |
+|-------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------|
+| `add`                                                                                                 | Command Keyword | Represents the action executed by QuickContacts                 |
+| `n/`, `p/`, `e/`, `a/`, `t/`                                                                          | Prefix          | Uniquely identifies the corresponding input data                |
+| `CONTACT_NAME`<br/>`CONTACT_PHONE_NUMBER`<br/>`CONTACT_EMAIL`<br/>`CONTACT_ADDRESS`<br/>`CONTACT_TAG` | Input Data      | Placeholders for the actual data to be supplied for the command |
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note**<br>
-`[]` means that the parameter is **optional**.
+**:information_source: Note**
 
-`...` means that the parameter can be **supplied multiple times** in the same command input. 
+* `[]` means that the parameter is **optional**.
+* `...` means that the parameter can be **supplied multiple times** in the same command input. 
 
 </div>
 
@@ -204,11 +199,10 @@ example above.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br
+**:information_source: Note:**
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
 the parameter will be taken.<br>e.g. if you specify `n/Noah n/Peter`, only `n/Peter` will be taken.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
 be ignored.<br>e.g. `help 123` will be interpreted as `help`.
 
