@@ -10,7 +10,7 @@ import seedu.address.model.person.fields.Field;
  */
 public class Tag extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and space";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private static final int MAX_VALUE_LENGTH = 16;
