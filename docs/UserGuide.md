@@ -351,6 +351,20 @@ Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
 
+### 7.2.10 List department headcount: `ldhc`
+
+List all employees present in the given department on a given date.
+
+Format: `ldhc n/DEPARTMENT_NAME [d/DATE]`
+* If the date is not specified, employees present on the current date of inputting 
+the command will be shown for the given department.
+* The given date must not be before the current date of inputting the command and must be within one year 
+of the current date of inputting the command. 
+
+Examples:
+* `ldhc n/Human Resources`
+* `ldhc n/Engineering d/2023-03-30`
+
 ## 7.3. Leave Commands
 
 ### Adding a leave: `aetl`
@@ -415,16 +429,14 @@ Lists all days where there are employees are on leave.
 Format: `llve`
 
 
-### Listing all leaves for a person: `andre`
+### Listing all leaves taken by an employee: `llbe`
 
 Lists all the leave date(s) of an employee.
 
-Format: `ls_leave n/NAME`
-
+Format: `llbe eid/EMPLOYEE_ID`
 
 Examples:
-* `ls_leave n/John Doe `
-* `ls_leave n/Betsy Crowe`
+* `llbe eid/1`
 
 ## 7.4. General Commands
 
@@ -479,12 +491,14 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **Add employee to department**                      | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
 | **Remove employee from department**                 | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
 | **List an employee's department**                   | `led eid/EMPLOYEE_ID`                                                             |
-| **List all employees in a department**              | `leid n/DEPARTMENT_NAME`                                                          |
+| **List all employees in a department**              | `leid n/DEPARTMENT_NAME`                                                          |  
+| **List department headcount**                       | `ldhc n/DEPARTMENT_NAME [d/DATE]`                                                 |  
 | **Add employee to leave**                           | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
 | **Add employee to range of leaves**                 | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
 | **Remove an employee from leave**                   | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
 | **Listing all employees on leave for a given date** | `leol d/DATE`                                                                     |
 | **Listing all days where employees are on leave**   | `llve`                                                                            |
+| **List all leaves taken by an employee**            | `llbe eid/EMPLOYEE_ID`                                                            |
 
 [//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
 
