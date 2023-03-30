@@ -171,4 +171,6 @@ public interface Model {
     /** Sets the selected person to {@code person} */
     void setSelectedPerson(Person person);
 
+    /** Updates all events to its next earlier occurences. */
+    void updateAllDateTimes();
 }

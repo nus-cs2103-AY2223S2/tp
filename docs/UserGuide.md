@@ -5,7 +5,7 @@ title: User Guide
 
 NeoBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
-Apart from being your all-encompassing address book, NeoBook also has a calendar function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, NeoBook also has a Events function for you to keep track of your daily schedule.
 
 ## Table Of Contents
 * Table of Contents
@@ -47,45 +47,49 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-1. Use these tabs to toggle between the NeoBook, Calendar and your own information!
+1. Use these tabs to toggle between the NeoBook, Events and your own information!
 
-![highlightTabs](images/userguide/highlightTab.png)
+![uitabs](images/userguide/uitabs.png)
 
 ### UI Breakdown For `NeoBook`
 
-![addressBkUI](images/userguide/addressBkUI.png)
+![neobook](images/userguide/neobook.png)
 
 1. Current Displayed List
-   * show contacts based on command input
+   * show contacts based on command parameters
    * contains the `index` you should use to refer to each contact
+   * A : Contains favorite contacts for easy access
+   * B : Contains all contacts
 2. Information Of Specific Contact
    * displays all the saved information related to contact
-   * toggle between different contacts by _clicking on them in the displayed list_
+   * toggle between different contacts by _clicking on them in the displayed list_ or using the [select command](#select-contact-to-expand-details--select)
 3. Command Results:
    * displays the result of input command
 4. Command Line:
    * type command and press enter to execute it
    * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
-### UI Breakdown For `Calendar`
+### UI Breakdown For `Events`
 
-![calendar](images/userguide/calendarUI.png)
+![events](images/userguide/events.png)
 
-1. Calender Display
-   * displays all lessons and events you have saved
+1. Events Display
+   * displays all events you have saved and their respective details
 2. Command Results:
    * displays the result of input command
 3. Command Line
    * type command and press enter to execute it
-   * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+   * refer to the [Events Features](#events-features) below for possible commands to execute
 
 ### UI Breakdown For `Me`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
-</div>
+![me](images/userguide/me.png)
+
+1. Display
+    * contains your personal details
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 ## NeoBook Features
 
@@ -125,7 +129,7 @@ Simply use this command to get access to our help page!
 
 `help`
 
-![help message](images/helpMessage.png)
+![help](images/userguide/help.png)
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -138,31 +142,31 @@ Use this command to add him/her to your NeoBook.
 
 **Syntax:**
 
-`add n/NAME SPECIFIER/INPUT...`
+`add n/NAME PREFIX/PARAMETER...`
 
-Here are all the specifiers that can be used:
+Here are all the prefixes that can be used:
 
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | Name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
-| f         | Faculty                         | Yes       |
+| Prefix  | Name of Field                   | Optional? |
+|---------|---------------------------------|-----------|
+| n       | Name                            | No        |
+| e       | Email address                   | Yes       |
+| a       | Address                         | Yes       |
+| m       | Major                           | Yes       |
+| mt      | Mods Taken                      | Yes       |
+| f       | Faculty                         | Yes       |
+| g       | Gender                          | Yes       |
+| t       | Tags                            | Yes       |
+| c       | Preferred Communication Channel | Yes       |
+| f       | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
 
 IMPT: If you want to add multiple tags or modules in one statement,
-every tag or module has to have its corresponding specifier.
+every tag or module has to have its corresponding prefix.
 
 Only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for future syncing with the calendar.
+to prevent any messiness and also allows for future syncing with the Events.
 </div>
 
 Examples:
@@ -201,6 +205,12 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
+Here's how NeoBook would look like after you favourite a contact!
+![Fav](images/userguide/fav.png)
+
+1. The contact will appear in the `Favourites` section.
+2. A :star: will appear next to the index in the detail panel.
+
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
@@ -228,7 +238,7 @@ Use this command to edit his/her details easily!
 
 **Syntax:**
 
-`edit INDEX SPECIFIER/DATA...`
+`edit INDEX PREFIX/PARAMETER...`
 
 _Here are some important requirements for you to take note:_
 
@@ -240,14 +250,14 @@ For the following fields, they are considered a `SuperField`.
 * Modules
 * Tags
 
-A `SuperField` can contain many inputs in that single field.
-When using edit, the command looks for each input in the `SuperField`:
-* If the input already exists in the `SuperField` it will be removed.
-* Otherwise, the input will be added into the `SuperField`.
+A `SuperField` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `SuperField`:
+* If the parameter already exists in the `SuperField` it will be removed.
+* Otherwise, the parameter will be added into the `SuperField`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
 of a person if it already exists and adds it if it does not.
   
-| Specifier | Name of Field                   | Optional? |
+| Prefix | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
 | n         | name                            | No        |
 | e         | Email address                   | Yes       |
@@ -270,7 +280,9 @@ Want to see the details of a particular contact?
 
 You can either use your cursor to click on the contact or use this command!
 
-> Command: `select INDEX`
+**Syntax:**
+
+`select INDEX`
 
 Here are some important requirements for you to take note:
 
@@ -288,19 +300,19 @@ Use this command to find contacts using keywords and fields you specify!
 
 **Syntax:**
 
-`find KEYWORD SPECIFIER/KEYWORDS...`
+`find KEYWORD PREFIX/KEYWORDS...`
 
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
+| Prefix   | Name of Field                   | Optional? |
+|----------|---------------------------------|-----------|
+| n        | name                            | No        |
+| e        | Email address                   | Yes       |
+| a        | Address                         | Yes       |
+| m        | Major                           | Yes       |
+| mt       | Mods Taken                      | Yes       |
+| f        | Faculty                         | Yes       |
+| g        | Gender                          | Yes       |
+| t        | Tags                            | Yes       |
+| c        | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
 * The keywords are case-insensitive.
@@ -388,7 +400,7 @@ Simply use this command to clear all contacts from your NeoBook.
 
 ### Switching between UI tabs: `tab`
 
-Looking for a faster way to switch between NeoBook and the Calendar?
+Looking for a faster way to switch between NeoBook and the Events?
 
 Use this command to navigate to the specified tab.
 
@@ -402,7 +414,7 @@ _Here are some important requirements for you to take note:_
 
 _Examples:_
 * `tab 1` switches to the NeoBook tab.
-* `tab 2` switches to the Calendar tab.
+* `tab 2` switches to the Events tab.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -422,24 +434,25 @@ Use this command to exit the application!
 
 ### NeoBook Command Summary
 
-| Action      | Format, Examples                                                                                                                                                      |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**   | `clear`                                                                                                                                                               |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**     | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
-| **Unfav**   | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
-| **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                                                  |
-| **List**    | `list`                                                                                                                                                                |
-| **Help**    | `help`                                                                                                                                                                |
-| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
-| **Exit**    | `exit`                                                                                                                                                                |                                                                                                                                |
+| Action      | Format, Examples                                                                                                                                 |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME [PREFIX/PARAMETERS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**   | `clear`                                                                                                                                          |
+| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
+| **Edit**    | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |  
+| **Fav**     | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
+| **Unfav**   | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
+| **Find**    | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
+| **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                             |
+| **List**    | `list`                                                                                                                                           |
+| **Help**    | `help`                                                                                                                                           |
+| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                    |
+| **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
-## Calendar Features
+
+## Events Features
 <hr style="border:2px solid gray">
 
 ### Adding an Event : `addevent`
@@ -483,12 +496,12 @@ _Examples:_
 * `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
 
 
-| Specifier | Name of Field                 | Optional? |
-|-----------|-------------------------------|-----------|
-| d         | Description of Event          | No        |
-| s         | Start Date and Time of Event  | No        |
-| e         | End Date and Time of Event    | No        |
-| r         | Recurrence Interval           | Yes       |
+| Prefix   | Name of Field                 | Optional? |
+|----------|-------------------------------|-----------|
+| d        | Description of Event          | No        |
+| s        | Start Date and Time of Event  | No        |
+| e        | End Date and Time of Event    | No        |
+| r        | Recurrence Interval           | Yes       |
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -509,6 +522,36 @@ _Here are some important requirements for you to take note:_
 
 _Examples:_
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Editing An Event : `editevent`
+
+Want to change the details of a particular event?
+
+Use this command to edit the specified event in your NeoBook.
+
+**Syntax:**
+
+`editevent INDEX PREFIX/PARAMETER...`
+
+_Here are some important requirements for you to take note:_
+
+* `INDEX` refers to the index of the event you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+* At least one field must be provided.
+
+| Prefix | Name of Field                 | Optional? |
+|--------|-------------------------------|-----------|
+| d      | Description of Event          | Yes       |
+| s      | Start Date and Time of Event  | Yes       |
+| e      | End Date and Time of Event    | Yes       |
+| r      | Recurrence Interval           | Yes       |
+
+Examples:
+*  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
+*  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -568,6 +611,7 @@ _For more advanced users_
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
 | **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
+| **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
@@ -619,7 +663,7 @@ If you edit the taggedPerson in User data, beware that you may end up unlinking 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NeoBook will discard all data and start with an empty data file at the next run.
 </div>
 
 [Back To Contents](#table-of-contents)

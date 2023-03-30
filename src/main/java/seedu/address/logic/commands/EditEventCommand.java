@@ -67,7 +67,6 @@ public class EditEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // TODO
         requireNonNull(model);
         List<Event> eventList = model.getEvents();
 

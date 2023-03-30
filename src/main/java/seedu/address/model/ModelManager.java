@@ -221,6 +221,11 @@ public class ModelManager implements Model {
         return this.userData.isPersonTaggedToEvent(index, p);
     }
 
+    @Override
+    public void updateAllDateTimes() {
+        this.userData.updateAllDateTimes();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

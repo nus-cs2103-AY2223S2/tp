@@ -122,5 +122,9 @@ public class User extends Person {
     public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
         this.events.untagPersonToEvent(eventIndex, taggingPerson);
     }
+
+    public void updateAllDateTimes() {
+        this.events.updateAllDateTimes();
+    }
 }
 

@@ -1,14 +1,15 @@
 package seedu.address.model.person.fields.subfields;
 
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Reader;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.fields.Field;
 
@@ -17,24 +18,32 @@ import seedu.address.model.person.fields.Field;
  */
 public class NusMod extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
-    public static final String MODULELIST_FILE_PATH = "data/moduleList.json";
-    private static final Map<String, Boolean> MODULE_MAP = new HashMap<>();
+    public static final String MESSAGE_CONSTRAINTS = "Module codes should exist in NUS' NUSMods list";
+    public static final String MODULES_FILE_PATH = "/data/modules.json";
+    private static final Set<String> MODULE_MAP = new HashSet<>();
 
     static {
-        try {
-            FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains("\"moduleCode\":")) {
-                    String moduleCode = line.split(":")[1].trim().replace("\"", "");
-                    MODULE_MAP.put(moduleCode, true);
+        InputStream inputStream = Objects.requireNonNull(NusMod.class.getResourceAsStream(MODULES_FILE_PATH));
+        try (Reader reader = new InputStreamReader(inputStream)) {
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            bufferedReader.lines().forEach(line -> {
+                if (line == null || !line.contains("moduleCode")) {
+                    // not a line with a module code
+                    return;
                 }
-            }
-            reader.close();
-        } catch (IOException e) {
+                String[] parts = line.split(":");
+                if (parts.length < 2) {
+                    return;
+                }
+
+                String moduleCode = parts[1].replace("\"", "").trim();
+                if (moduleCode.isBlank()) {
+                    return;
+                }
+                MODULE_MAP.add(moduleCode);
+            });
+            bufferedReader.close();
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -45,17 +54,18 @@ public class NusMod extends Field {
      */
     public NusMod(String modsString) {
         super(modsString);
-        checkArgument(isValidModName(modsString), MESSAGE_CONSTRAINTS);
+        checkArgument(isModuleCodeValid(modsString), MESSAGE_CONSTRAINTS);
     }
 
     /**
-     * Checks whether a module is a valid NUSMod by comparing the String name to the module list data
+     * Checks whether a module is a valid NUSMod by comparing with the module list data.
      *
-     * @param trimmedMod The module name to be checked
-     * @return false if the module does not exist in NUSMods
+     * @param moduleCode The module code to be checked.
+     * @return true if the module exists in NUSMods;
+     *         false otherwise.
      */
-    public static boolean isValidModName(String trimmedMod) {
-        return MODULE_MAP.containsKey(trimmedMod);
+    public static boolean isModuleCodeValid(String moduleCode) {
+        return MODULE_MAP.contains(moduleCode);
     }
 
 

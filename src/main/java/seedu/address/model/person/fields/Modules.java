@@ -25,7 +25,7 @@ public class Modules extends SuperField<NusMod> {
      */
     public static boolean isValidModules(Set<NusMod> mods) {
         for (NusMod mod : mods) {
-            if (!NusMod.isValidModName(mod.value)) {
+            if (!NusMod.isModuleCodeValid(mod.value)) {
                 return false;
             }
         }
