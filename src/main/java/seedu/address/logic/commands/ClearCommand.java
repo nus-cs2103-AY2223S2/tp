@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.ModuleTracker;
 import seedu.address.model.Model;
+import seedu.address.model.ModuleTracker;
 
 /**
  * Clears the module tracker.

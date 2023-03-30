@@ -77,7 +77,8 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the module tracker.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the module tracker.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the
+     * module tracker.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
