@@ -18,8 +18,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
@@ -35,7 +35,7 @@ public class ParserUtilTest {
     private static final String INVALID_GENDER = "girl";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_COMPANY = "T@sleh";
-    private static final String INVALID_INDUSTRY = "@utomobile";
+    private static final String INVALID_LOCATION = "@ustralia";
     private static final String INVALID_OCCUPATION = "@gent";
     private static final String INVALID_JOBTITLE = "5t@ff";
     private static final String INVALID_EMAIL = "example.com";
@@ -46,7 +46,7 @@ public class ParserUtilTest {
     private static final String VALID_GENDER = "female";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_COMPANY = "Tesleh";
-    private static final String VALID_INDUSTRY = "automobile";
+    private static final String VALID_LOCATION = "Australia";
     private static final String VALID_OCCUPATION = "engineer";
     private static final String VALID_JOBTITLE = "industrial engineer";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -255,19 +255,19 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndustry_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIndustry((String) null));
+    public void parseLocation_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation((String) null));
     }
 
     @Test
-    public void parseIndustry_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndustry(INVALID_INDUSTRY));
+    public void parseLocation_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLocation(INVALID_LOCATION));
     }
 
     @Test
-    public void parseIndustry_validValue_throwsParseException() throws Exception {
-        Industry expectedIndustry = new Industry(VALID_INDUSTRY);
-        assertEquals(expectedIndustry, ParserUtil.parseIndustry(VALID_INDUSTRY));
+    public void parseLocation_validValue_throwsParseException() throws Exception {
+        Location expectedLocation = new Location(VALID_LOCATION);
+        assertEquals(expectedLocation, ParserUtil.parseLocation(VALID_LOCATION));
     }
 
     @Test
