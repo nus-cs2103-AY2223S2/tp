@@ -3,14 +3,11 @@ package seedu.fitbook.ui;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.util.Duration;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Client;
@@ -32,19 +29,14 @@ public class ClientListPanel extends UiPart<Region> {
         super(FXML);
         clientListView.setItems(clientList);
         clientListView.setCellFactory(listView -> new ClientListViewCell());
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            LocalDateTime now = LocalDateTime.now();
-            for (Client client : clientList) {
-                for (Appointment appointment : client.getAppointments()) {
-                    if (now.isAfter(appointment.getDateTime())) {
-                        client.removeAppointment(appointment);
-                    }
+        LocalDateTime now = LocalDateTime.now();
+        for (Client client : clientList) {
+            for (Appointment appointment : client.getAppointments()) {
+                if (now.isAfter(appointment.getDateTime())) {
+                    client.removeAppointment(appointment);
                 }
             }
-            clientListView.refresh();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        }
     }
 
     /**
