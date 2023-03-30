@@ -20,7 +20,7 @@ public class SortByClientNameCommand extends SortCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the client by their name in lexicographical order.\n"
             + "Parameters: Integer value, 0 means reverse order and any other value means in order\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_SORT_BY_CLIENT_NAME_SUCCESS = "Sort By Client Name ";
     private boolean inOrder;
 
@@ -61,5 +61,12 @@ public class SortByClientNameCommand extends SortCommand {
     @Override
     public boolean getInorder() {
         return inOrder;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortByClientNameCommand // instanceof handles nulls
+                && inOrder == ((SortByClientNameCommand) other).inOrder); // state check
     }
 }
