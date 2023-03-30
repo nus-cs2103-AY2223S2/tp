@@ -1,0 +1,22 @@
+#commandTextField {
+    -fx-control-inner-background: #463f3a;
+    -fx-text-box-border: transparent;
+    fx-border-radius: 8px;
+
+    -fx-prompt-text-fill: #bcbcbc;
+    -fx-prompt-text-size: 15px;
+
+    -fx-text-fill: whitesmoke;
+    -fx-font-size: 15px;
+    -fx-font-family: consolas;
+}
+
+#enterButton {
+    -fx-background-color: #219ebc;
+    -fx-border-radius: 8px;
+
+    -fx-text-fill: whitesmoke;
+    -fx-font-size: 18px;
+    -fx-font-family: stencil;
+}
+

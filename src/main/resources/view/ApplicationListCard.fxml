@@ -30,6 +30,8 @@
       <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$interviewDate" visible="false" managed="false"/>
       <Label fx:id="phone" styleClass="cell_small_label" visible="false" managed="false" />
       <Label fx:id="email" styleClass="cell_small_label" visible="false" managed="false" />
+      <Label fx:id="resume" styleClass="cell_small_label" visible="false" managed="false" />
+      <Label fx:id="coverLetter" styleClass="cell_small_label" visible="false" managed="false" />
       <VBox fx:id="reviews" />
     </VBox>
   </GridPane>
