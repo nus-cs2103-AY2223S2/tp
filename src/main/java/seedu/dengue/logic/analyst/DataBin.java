@@ -60,21 +60,23 @@ public class DataBin implements Comparable<DataBin> {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == this) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
             return true;
         }
 
-        if (!(other instanceof DataBin)) {
+        if (!(obj instanceof DataBin)) {
             return false;
         }
 
-        return compareTo((DataBin) other) == 0;
+        DataBin other = (DataBin) obj;
+        return this.binName.equals(other.binName)
+                && this.binSize == other.binSize;
     }
 
     @Override
     public int compareTo(DataBin other) {
-        return getSize() - other.getSize();
+        return this.binSize - other.binSize;
     }
 
     @Override
