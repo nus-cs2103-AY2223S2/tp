@@ -123,7 +123,6 @@ The UI is split into 4 main parts
 
 --------------------------------------------------------------------------------------------------------------------
 
-[//]: # (Perhaps we could explain the difference between event and contact here?)
 ## Features
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
