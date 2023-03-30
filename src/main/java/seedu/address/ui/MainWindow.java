@@ -196,8 +196,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException,
-            ParseException, IllegalValueException {
+    private CommandResult executeCommand(String commandText) throws CommandException, IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -230,13 +229,7 @@ public class MainWindow extends UiPart<Stage> {
                 applyLightTheme();
             }
 
-            if (feedback.startsWith("Edited Person:")) {
-                updateView(commandText);
-            }
-
-            if (feedback.equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
-                applyView();
-            }
+            handleViewPane(feedback, commandText);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -248,6 +241,38 @@ public class MainWindow extends UiPart<Stage> {
 
     public CommandResult execute(String commandText) throws CommandException, IllegalValueException {
         return executeCommand(commandText);
+    }
+
+    /**
+     * Handles all view pane actions.
+     * @param feedback
+     * @param commandText
+     */
+    public void handleViewPane (String feedback, String commandText) {
+        if (feedback.startsWith("Edited Person:")) {
+            updateViewAfterEdit(commandText);
+        }
+
+        if (feedback.startsWith("Deleted Persons: ")) {
+            updateViewAfterDelete();
+        }
+
+        if (feedback.equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
+            applyView();
+        }
+    }
+
+    /**
+     * Updates the view pane to the first person after successfully deletion.
+     */
+    private void updateViewAfterDelete() {
+        if (logic.getAddressBook().getPersonList().size() > 0) {
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
+            viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+        }
+        else {
+            viewPanePlaceHolder.getChildren().clear();
+        }
     }
 
     private void applyTheme(Theme newTheme) {
@@ -279,7 +304,7 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the view pane after successfully edition.
      * @param commandText
      */
-    private void updateView(String commandText) {
+    private void updateViewAfterEdit(String commandText) {
         int index = Character.getNumericValue(commandText.charAt(5));
         viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
