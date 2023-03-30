@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 
 /**

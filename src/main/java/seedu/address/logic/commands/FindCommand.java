@@ -60,23 +60,6 @@ public class FindCommand extends Command {
             + PREFIX_BY_TAG + "\n\n"
             + MESSAGE_CONTEXT_USAGE;
 
-    // public static final String MESSAGE_USAGE = COMMAND_WORD
-    //         + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName or tagNames contain any of "
-    //         + "the specified keywords (case-insensitive) separated with a comma "
-    //         + "and displays them as a list with index numbers.\n"
-    //         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-    //         + "Example: \n"
-    //         + "Find by moduleCode/lectureName/videoName: \n"
-    //         + "1." + COMMAND_WORD + " CS2040S\n"
-    //         + "2." + COMMAND_WORD + " Week 1, Week 2\n"
-    //         + "3." + COMMAND_WORD + " Video 1, Video 2, Video 3\n"
-    //         + "4." + COMMAND_WORD + " Topic 1, Topic 2 /mod ST2334\n"
-    //         + "5." + COMMAND_WORD + " Video 1 /mod ST2334 /lec Week 1\n"
-    //         + "Find by tagName: \n"
-    //         + "1." + COMMAND_WORD + " Heavy /byTag\n"
-    //         + "2." + COMMAND_WORD + " Heavy /byTag /mod ST2334\n"
-    //         + "3." + COMMAND_WORD + " Heavy /byTag /mod ST2334 /lec Week 1\n";
-
     private List<String> keywords;
 
     private boolean hasByTag;

@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.add;
 
+import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
-import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 
 import seedu.address.logic.commands.Command;
 
