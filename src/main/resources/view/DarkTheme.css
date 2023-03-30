@@ -109,7 +109,7 @@ ListView contains `cells`. Contents of `cells` are populated from `{Object}Card`
 .list-cell {
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-padding: 3
+    -fx-padding: 3;
 }
 
 .list-cell:empty {
