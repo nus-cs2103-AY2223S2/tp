@@ -1,10 +1,10 @@
 .root {
-  -fx-font-family: 'Arial';
+  -fx-font-family: 'roboto';
 }
 
 .background {
   -fx-background-color: derive(#1d1d1d, 20%);
-  background-color: #383838; /* Used in the default.html file */
+  background-color: #292929; /* Used in the default.html file */
 }
 
 .label {
@@ -126,19 +126,14 @@
   -fx-text-fill: #010504;
 }
 
-.context_label {
-  -fx-font-size: 13px;
-  -fx-text-fill: white;
-}
-
 .stack-pane {
   -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
   -fx-background-color: derive(#1d1d1d, 20%);
-  -fx-border-color: derive(#1d1d1d, 10%);
-  -fx-border-top-width: 1px;
+  -fx-border-color: derive(#1d1d1d, 0%);
+  -fx-border-top-width: px;
 }
 
 .status-bar {
@@ -313,6 +308,17 @@
   -fx-background-color: transparent;
 }
 
+.context-label {
+  -fx-font-size: 12px;
+  -fx-text-fill: white;
+  -fx-font-weight: bolder;
+}
+
+.context-label-container {
+  -fx-background-color: #5D81DF;
+  -fx-background-radius: 64;
+}
+
 #cardPane {
   -fx-background-color: transparent;
   -fx-border-width: 0;
@@ -323,12 +329,17 @@
   -fx-text-fill: #f70d1a;
 }
 
+#contextLabel {
+  -fx-background-insets: 0;
+}
+
 #commandTextField {
+  -fx-background-insets: 0;
+  -fx-border-color: #4E4E4E;
+  -fx-border-width: 1.5;
+  -fx-border-radius: 64;
   -fx-background-color: transparent #383838 transparent #383838;
   -fx-background-insets: 0;
-  -fx-border-color: #383838 #383838 #ffffff #383838;
-  -fx-border-insets: 0;
-  -fx-border-width: 1;
   -fx-font-size: 13pt;
   -fx-text-fill: white;
 }

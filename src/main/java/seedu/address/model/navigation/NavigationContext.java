@@ -2,6 +2,7 @@ package seedu.address.model.navigation;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -11,7 +12,7 @@ import seedu.address.model.module.ModuleCode;
  */
 public class NavigationContext {
 
-    private static final String ROOT_LEVEL_NAME = "mods";
+    private static final String ROOT_LEVEL_NAME = "/r";
 
     private final ModuleCode moduleCode;
     private final LectureName lectureName;
@@ -116,6 +117,14 @@ public class NavigationContext {
         }
 
         return PREFIX_LECTURE + " " + lectureName;
+    }
+
+    public String getCommandPrefixes() {
+        if (getLayer() == NavLayer.ROOT) {
+            return ROOT_LEVEL_NAME;
+        } else {
+            return getModulePrefixArg() + " " + getLecturePrefixArg();
+        }
     }
 
     @Override
