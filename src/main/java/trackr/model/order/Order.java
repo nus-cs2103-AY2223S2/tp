@@ -29,7 +29,7 @@ public class Order extends Item {
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer) {
         super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
+        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
         this.orderName = orderName;
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;

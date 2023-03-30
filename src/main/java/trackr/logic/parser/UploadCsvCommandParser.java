@@ -2,12 +2,14 @@ package trackr.logic.parser;
 
 import static trackr.commons.core.Messages.MESSAGE_INVALID_CSV_FILE;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static trackr.logic.parser.CliSyntax.PREFIX_COST;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static trackr.logic.parser.CliSyntax.PREFIX_PRICE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -30,14 +32,14 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
         String[] raw = args.split(",");
         String[] components = Arrays.copyOfRange(raw, 1, raw.length);
         for (int i = 0; i < components.length; i++) {
-            if (components[i].equals("Orders")) {
+            if (components[i].equals("Orders")) {;
                 listOfCommands.addAll(parseOrders(Arrays.copyOfRange(components, i + 1, components.length)));
             } else if (components[i].equals("Tasks")) {
                 listOfCommands.addAll(parseTasks(Arrays.copyOfRange(components, i + 1, components.length)));
             } else if (components[i].equals("Suppliers")) {
                 listOfCommands.addAll(parseSuppliers(Arrays.copyOfRange(components, i + 1, components.length)));
-            } else {
-                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
+            } else if (components[i].equals("MenuItems")) {
+                listOfCommands.addAll(parseItems(Arrays.copyOfRange(components, i + 1, components.length)));
             }
         }
         return new UploadCsvCommand(listOfCommands);
@@ -76,14 +78,19 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
 
         String orderCommand = "add_order ";
         for (int i = 7; i < components.length; i++) {
-            if (components[i] == null || components[i].equals("Suppliers") || components[i].equals("Tasks")) {
+            if (components[i] == null || components[i].equals("Suppliers")
+                || components[i].equals("Tasks") || components[i].equals("MenuItems")) {
                 break;
             } else if (i % 7 == 6) {
-                orderCommand = orderCommand + pattern.get(i % 7) + components[i];
+                if (!components[i].equals("-")) {
+                    orderCommand = orderCommand + pattern.get(i % 7) + components[i];
+                }
                 orderCommands.add(orderCommand);
                 orderCommand = "add_order ";
-            } else {
+            } else if (!components[i].equals("-")) {
                 orderCommand = orderCommand + pattern.get(i % 7) + components[i] + " ";
+            } else {
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
         return orderCommands;
@@ -110,14 +117,19 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
 
         String taskCommand = "add_task ";
         for (int i = 3; i < components.length; i++) {
-            if (components[i] == null || components[i].equals("Suppliers") || components[i].equals("Orders")) {
+            if (components[i] == null || components[i].equals("Suppliers")
+                || components[i].equals("Orders") || components[i].equals("MenuItems")) {
                 break;
             } else if (i % 3 == 2) {
-                taskCommand = taskCommand + pattern.get(i % 3) + components[i];
+                if (!components[i].equals("-")) {
+                    taskCommand = taskCommand + pattern.get(i % 3) + components[i];
+                }
                 taskCommands.add(taskCommand);
                 taskCommand = "add_task ";
-            } else {
+            } else if (!components[i].equals("-")) {
                 taskCommand = taskCommand + pattern.get(i % 3) + components[i] + " ";
+            } else {
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
         return taskCommands;
@@ -140,7 +152,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
             case "Address":
                 pattern.add(PREFIX_ADDRESS.getPrefix());
                 break;
-            case "Tags":
+            case "Tag":
                 pattern.add(PREFIX_TAG.getPrefix());
                 break;
             default:
@@ -150,16 +162,59 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
 
         String supplierCommand = "add_supplier ";
         for (int i = 5; i < components.length; i++) {
-            if (components[i] == null || components[i].equals("Tasks") || components[i].equals("Orders")) {
+            if (components[i] == null || components[i].equals("Tasks") || components[i].equals("Orders") || components[i].equals("MenuItems")) {
                 break;
             } else if (i % 5 == 4) {
-                supplierCommand = supplierCommand + pattern.get(i % 5) + components[i];
+                if (!components[i].equals("-")) {
+                    supplierCommand = supplierCommand + pattern.get(i % 5) + components[i];
+                }
                 supplierCommands.add(supplierCommand);
                 supplierCommand = "add_supplier ";
-            } else {
+            } else if (!components[i].equals("-")) {
                 supplierCommand = supplierCommand + pattern.get(i % 5) + components[i] + " ";
+            } else {
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
         return supplierCommands;
+    }
+
+    private List<String> parseItems(String[] components) throws ParseException {
+        List<String> menuItemsCommands = new ArrayList<String>();
+        List<String> pattern = new ArrayList<String>();
+        for (int i = 0; i < 3; i++) {
+            switch(components[i]) {
+            case "ItemName":
+                pattern.add(PREFIX_NAME.getPrefix());
+                break;
+            case "Cost":
+                pattern.add(PREFIX_COST.getPrefix());
+                break;
+            case "Price":
+                pattern.add(PREFIX_PRICE.getPrefix());
+                break;
+            default:
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
+            }
+        }
+
+        String menuItemCommand = "add_item ";
+        for (int i = 3; i < components.length; i++) {
+            if (components[i] == null || components[i].equals("Tasks")
+                || components[i].equals("Orders") || components[i].equals("Suppliers")) {
+                break;
+            } else if (i % 3 == 2) {
+                if (!components[i].equals("-")) {
+                    menuItemCommand = menuItemCommand + pattern.get(i % 3) + components[i];
+                }
+                menuItemsCommands.add(menuItemCommand);
+                menuItemCommand = "add_item ";
+            } else if (!components[i].equals("-")){
+                menuItemCommand = menuItemCommand + pattern.get(i % 3) + components[i] + " ";
+            } else {
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
+            }
+        }
+        return menuItemsCommands;
     }
 }
