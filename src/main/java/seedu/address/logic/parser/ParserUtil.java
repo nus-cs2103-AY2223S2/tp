@@ -364,10 +364,6 @@ public class ParserUtil {
     public static Comment parseComment(String comment) throws ParseException {
         requireNonNull(comment);
         String trimmedComment = comment.trim();
-        if (!Comment.isValidComment(trimmedComment)) {
-            throw new ParseException(Homework.MESSAGE_CONSTRAINTS);
-        }
-        //Please edit this
         return new Comment(trimmedComment);
     }
 }
