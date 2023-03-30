@@ -145,7 +145,17 @@ Information on the Java version installed should appear in the command terminal.
 
 5. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar teambuilder.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/ui_startup.png)<br>
+    As you can see there are two main panels. The left panels shows your contacts, and the right panel shows the teams that you have in TeamBuilder.<br>
+    
+    - The _blue_ tags are the **skill tags** of a person, to denote the skills or specialisation of the person.
+    - The _red_ tags are the **team tags**, which tell you which team a person is in
+    - The _yellow-orange_ tags are the **members** of a team, which tells you the names of the team members in a team
+    - The _green_ tags are the **skill tags** of a team, which are the skills that you think this team needs.
+
+   You will find more details below the tags of the respective person/team, such as the team description or the contact's phone number.
+
+
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -279,8 +289,8 @@ Again, we see **John** is index 1 in our display.
 
 **Result**:
 
-**deletus maximus**
-
+**deletus maximus**<br>
+John is no longer in your TeamBuilder contact list!
 
 <div style="page-break-after: always;"></div>
 
