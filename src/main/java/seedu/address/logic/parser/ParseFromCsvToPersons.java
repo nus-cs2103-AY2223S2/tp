@@ -80,7 +80,7 @@ public class ParseFromCsvToPersons {
 
         Set<Tag> tags = getTagsFromRow(rowNumber);
 
-        return new Person(name, phone, email, address, rank, unit, company, platoon, tags);
+        return new Person(rank, name, unit, company, platoon, phone, email, address, tags);
     }
 
     private void requireAllFieldsPresent() throws ParseException {
