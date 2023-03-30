@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.exceptions.TaskNotFoundException;
-
 import java.util.ArrayList;
+
+import seedu.address.model.person.exceptions.TaskNotFoundException;
 
 /**
  * Represents a Person's Tasklist in the address book.
@@ -39,6 +39,11 @@ public class TaskList {
         return newTasks;
     }
 
+    /**
+     * Adds the {@code Task} into a copy of TaskList for immutability
+     * @param task Task to be added
+     * @return TaskList new updated TaskList with the Task added
+     */
     public TaskList add(Task task) {
         ArrayList<Task> newTasks = getTaskList();
         newTasks.add(task);

@@ -12,6 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TaskList;
 
+/**
+ * Clears the tasks of an existing person in the address book.
+ */
 public class ClearTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "cleartask";
