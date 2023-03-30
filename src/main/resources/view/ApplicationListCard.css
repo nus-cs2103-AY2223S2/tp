@@ -20,3 +20,16 @@
     -fx-fill: white;
     -fx-family: "Segoe UI Light";
 }
+
+#id {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+#companyName {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+
