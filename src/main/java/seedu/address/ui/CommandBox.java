@@ -57,7 +57,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
+        if (commandText.isEmpty()) {
             return;
         }
 
@@ -108,30 +108,25 @@ public class CommandBox extends UiPart<Region> {
      * Auto-completes user input when the user presses the Tab key.
      */
     public void handleKeyPressed(KeyEvent e) {
-        try {
-            String userInput = commandTextField.getText();
-            if (e.getCode() == KeyCode.TAB) {
-                String commandSuggestion = commandSuggestor.suggestCommand(userInput);
-                String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
-                if (!autocompletedCommand.equals("")) {
-                    commandTextField.setText(autocompletedCommand);
-                    commandTextField.end();
-                }
-                updateCommandSuggestion(commandTextField.getText());
-                e.consume();
-            }
-        } catch (CommandException ce) {
-            // logger.info("Invalid Command Entered");
-            setStyleToIndicateCommandFailure();
-            e.consume();
+        if (e.getCode() != KeyCode.TAB) {
+            return;
         }
+        String userInput = commandTextField.getText();
+        String commandSuggestion = commandSuggestionTextField.getText();
+        String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
+        if (!autocompletedCommand.isEmpty()) {
+            commandTextField.setText(autocompletedCommand);
+            commandTextField.end();
+        }
+        updateCommandSuggestion(commandTextField.getText());
+        e.consume();
     }
 
     /**
      * Updates the command suggestion text field.
      */
     private void updateCommandSuggestion(String commandText) {
-        if (commandText.equals("") || isOverflow()) {
+        if (commandText.isEmpty() || isOverflow()) {
             commandSuggestionTextField.setText("");
             return;
         }
