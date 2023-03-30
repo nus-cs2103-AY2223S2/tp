@@ -94,7 +94,7 @@
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
          </VBox>
-         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minHeight="100.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
                <ScrollPane>
