@@ -307,6 +307,46 @@
     -fx-padding: 8 1 8 1;
 }
 
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-zero-line {
+    -fx-stroke: transparent;
+}
+.chart-horizontal-zero-line {
+    -fx-stroke: transparent;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: transparent;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 1;
+}
+
+.axis {
+    -fx-stroke: transparent;
+    -fx-fill: transparent;
+    -fx-tick-label-fill: white;
+    -fx-tick-length: 0;
+    -fx-minor-tick-length: 0;
+    -fx-opacity: .1;
+}
+
+.axis-label {
+    -fx-font-size: 8;
+}
+
+#ammoniaChart.chart-series-line {
+    -fx-fill: blue;
+    -fx-stroke: blue
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

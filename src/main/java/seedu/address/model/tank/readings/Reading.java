@@ -42,6 +42,7 @@ public abstract class Reading {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public abstract double getValue();
 
     public abstract boolean equals(Object other);
 
