@@ -1,8 +1,10 @@
 package seedu.loyaltylift.model.customer;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
+
+import java.util.Objects;
 
 /**
  * Represents a Customer's points in the address book.
@@ -36,7 +38,7 @@ public class Points implements Comparable<Points> {
      * @param points A valid amount of points.
      */
     public Points(Integer points, Integer maxPoints) {
-        requireNonNull(points);
+        requireAllNonNull(points, maxPoints);
         value = points;
         cumulative = maxPoints;
     }
@@ -88,6 +90,10 @@ public class Points implements Comparable<Points> {
         return (test >= MAXIMUM_POINTS_SUBTRACT && test <= MAXIMUM_POINTS_ADD);
     }
 
+    public boolean isCumulativeEqualToOrHigher(Points p) {
+        return this.cumulative >= p.cumulative;
+    }
+
     @Override
     public String toString() {
         return value.toString()
@@ -106,7 +112,7 @@ public class Points implements Comparable<Points> {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Objects.hash(value, cumulative);
     }
 
     @Override
