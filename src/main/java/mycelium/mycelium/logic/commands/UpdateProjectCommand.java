@@ -19,7 +19,7 @@ import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;

@@ -9,7 +9,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;

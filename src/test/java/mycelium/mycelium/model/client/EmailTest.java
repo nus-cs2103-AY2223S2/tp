@@ -1,10 +1,12 @@
-package mycelium.mycelium.model.person;
+package mycelium.mycelium.model.client;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
+import mycelium.mycelium.model.client.Email;
 
 public class EmailTest {
 

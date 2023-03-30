@@ -16,9 +16,9 @@ import java.util.Optional;
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
