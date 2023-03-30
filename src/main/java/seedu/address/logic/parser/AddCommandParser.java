@@ -52,7 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         LocalDateTime timestamp = ParserUtil.parseTimeStamp(argMultimap.getValue(PREFIX_TIMESTAMP).get());
-        Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        Deadline deadline = argMultimap.containsPrefix(PREFIX_DEADLINE)
+                ? ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get())
+                : null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 

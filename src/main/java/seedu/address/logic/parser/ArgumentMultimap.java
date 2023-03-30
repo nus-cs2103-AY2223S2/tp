@@ -57,4 +57,8 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    public boolean containsPrefix(Prefix prefixDeadline) {
+        return getValue(prefixDeadline).isPresent();
+    }
 }
