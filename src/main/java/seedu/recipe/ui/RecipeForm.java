@@ -30,6 +30,8 @@ public abstract class RecipeForm extends UiPart<Region> {
     // constants
     private static final String FXML = "RecipeForm.fxml";
     private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
+    private static final String DELIMITER = "``";
+    private static final String TAG_DELIMITER = ", ";
     private static final double DEFAULT_HEIGHT = 500;
 
     // protected fields for package access
@@ -123,13 +125,13 @@ public abstract class RecipeForm extends UiPart<Region> {
                 currentValue = ingredientsBox.getChildren().stream()
                     .map(node -> ((TextArea) node).getText().trim())
                     .filter(str -> !str.isEmpty())
-                    .collect(Collectors.joining(", "));
+                    .collect(Collectors.joining(DELIMITER));
                 break;
             case "steps":
                 currentValue = stepsBox.getChildren().stream()
                     .map(node -> ((TextArea) node).getText().trim())
                     .filter(str -> !str.isEmpty())
-                    .collect(Collectors.joining(", "));
+                    .collect(Collectors.joining(DELIMITER));
                 break;
             case "tags":
                 currentValue = tagsField.getText().trim();
@@ -196,11 +198,11 @@ public abstract class RecipeForm extends UiPart<Region> {
         initialValues.put("portion", portionField.getText().trim());
         initialValues.put("ingredients", ingredientsBox.getChildren().stream()
             .map(node -> ((TextArea) node).getText().trim())
-            .collect(Collectors.joining(", ")));
+            .collect(Collectors.joining(DELIMITER)));
 
         initialValues.put("steps", stepsBox.getChildren().stream()
             .map(node -> ((TextArea) node).getText().trim())
-            .collect(Collectors.joining(", ")));
+            .collect(Collectors.joining(DELIMITER)));
 
         initialValues.put("tags", tagsField.getText().trim());
     }
@@ -258,7 +260,7 @@ public abstract class RecipeForm extends UiPart<Region> {
             tagsField.setText(recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .map(tag -> tag.tagName)
-                .collect(Collectors.joining(", ")));
+                .collect(Collectors.joining(TAG_DELIMITER)));
         } else {
             tagsField.setText("");
         }
@@ -290,7 +292,7 @@ public abstract class RecipeForm extends UiPart<Region> {
 
         // Check if the ingredients have been changed and append the ingredients prefix and value.
         if (changedValues.containsKey("ingredients")) {
-            String[] ingredients = changedValues.get("ingredients").split(", ");
+            String[] ingredients = changedValues.get("ingredients").split(DELIMITER);
             for (String ingredient : ingredients) {
                 data.append(" i/");
                 data.append(ingredient);
@@ -299,7 +301,7 @@ public abstract class RecipeForm extends UiPart<Region> {
 
         // Check if the steps have been changed and append the steps prefix and value.
         if (changedValues.containsKey("steps")) {
-            String[] steps = changedValues.get("steps").split(", ");
+            String[] steps = changedValues.get("steps").split(DELIMITER);
             for (String step : steps) {
                 data.append(" s/");
                 data.append(step);
@@ -308,7 +310,7 @@ public abstract class RecipeForm extends UiPart<Region> {
 
         // Check if the tags have been changed and append the tags prefix and value.
         if (changedValues.containsKey("tags")) {
-            String[] tags = changedValues.get("tags").split(", ");
+            String[] tags = changedValues.get("tags").split(TAG_DELIMITER);
             for (String tag : tags) {
                 data.append(" t/");
                 data.append(tag);
