@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.CommandResult;
 import seedu.ultron.logic.commands.exceptions.CommandException;
 import seedu.ultron.logic.parser.exceptions.ParseException;
@@ -32,6 +33,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of openings */
     ObservableList<Opening> getFilteredOpeningList();
+
+    /** Returns the currently selected Opening */
+    Opening getSelectedOpening();
+
+    /** Sets the currently selected Opening */
+    void setSelectedOpening(Index index);
 
     /**
      * Returns the user prefs' ultron file path.

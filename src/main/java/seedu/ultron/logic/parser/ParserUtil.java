@@ -2,9 +2,9 @@ package seedu.ultron.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.util.StringUtil;
@@ -126,9 +126,9 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> dates} into a {@code Set<Date>}.
      */
-    public static Set<Date> parseDates(Collection<String> dates) throws ParseException {
+    public static List<Date> parseDates(Collection<String> dates) throws ParseException {
         requireNonNull(dates);
-        final Set<Date> dateSet = new HashSet<>();
+        final List<Date> dateSet = new ArrayList<>();
         for (String date : dates) {
             dateSet.add(parseDate(date));
         }
