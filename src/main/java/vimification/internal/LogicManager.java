@@ -12,6 +12,8 @@ import vimification.internal.command.Command;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.command.macro.MacroCommand;
+import vimification.internal.command.misc.MiscCommand;
 import vimification.internal.command.view.ViewCommand;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
@@ -26,7 +28,7 @@ import vimification.storage.Storage;
  */
 public class LogicManager implements Logic {
 
-    private static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file";
     private static final Logger LOGGER = LogsCenter.getLogger(LogicManager.class);
 
 
@@ -63,33 +65,32 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParserException {
         LOGGER.info("[USER COMMAND] " + commandText);
-
         Command command = vimificationParser.parse(commandText);
         CommandResult result = null;
-        if (command instanceof LogicCommand) {
-            try {
+        try {
+            if (command instanceof LogicCommand) {
                 LogicCommand logicCommand = (LogicCommand) command;
                 result = logicCommand.execute(logicTaskList, commandStack);
                 storage.saveLogicTaskList(logicTaskList);
-            } catch (RuntimeException ex) {
-                throw new CommandException(ex.getMessage(), ex);
-            } catch (IOException ex) {
-                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
-            }
-        } else if (command instanceof ViewCommand) {
-            ViewCommand viewCommand = (ViewCommand) command;
-            result = viewCommand.execute(viewTaskList);
-        } else {
+            } else if (command instanceof ViewCommand) {
+                ViewCommand viewCommand = (ViewCommand) command;
+                result = viewCommand.execute(viewTaskList);
+            } else if (command instanceof MacroCommand) {
+                MacroCommand macroCommand = (MacroCommand) command;
+                result = macroCommand.execute(macroMap);
+            } else if (command instanceof MiscCommand) {
 
+            } else {
+                LOGGER.warning("Unknown command type: " + command.getClass().getSimpleName());
+                result = new CommandResult("Nothing happened");
+            }
+        } catch (RuntimeException ex) {
+            result = new CommandResult(ex.getMessage());
+        } catch (IOException ex) {
+            result = new CommandResult(FILE_OPS_ERROR_MESSAGE);
         }
         // CommandResult result = command.execute(logicTaskList);
         // updateViewTaskList(command);
-
-        // if command is related to logic task list and command stack, pass these 2
-        // if command is related to macro, pass the macro map
-        // if command is related to the view, pass the view task list
-
-        // TODO: Fix this later
         // Only save when the result indicates that the task list should be saved
         return result;
     }
