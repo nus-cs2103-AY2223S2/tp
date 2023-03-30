@@ -47,45 +47,49 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-1. Use these tabs to toggle between the NeoBook, Calendar and your own information!
+1. Use these tabs to toggle between the NeoBook, Events and your own information!
 
-![highlightTabs](images/userguide/highlightTab.png)
+![uitabs](images/userguide/uitabs.png)
 
 ### UI Breakdown For `NeoBook`
 
-![addressBkUI](images/userguide/addressBkUI.png)
+![neobook](images/userguide/neobook.png)
 
 1. Current Displayed List
    * show contacts based on command input
    * contains the `index` you should use to refer to each contact
+   * A : Contains favorite contacts for easy access
+   * B : Contains all contacts
 2. Information Of Specific Contact
    * displays all the saved information related to contact
-   * toggle between different contacts by _clicking on them in the displayed list_
+   * toggle between different contacts by _clicking on them in the displayed list_ or using the [select command](#select-contact-to-expand-details--select)
 3. Command Results:
    * displays the result of input command
 4. Command Line:
    * type command and press enter to execute it
    * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
-### UI Breakdown For `Calendar`
+### UI Breakdown For `Events`
 
-![calendar](images/userguide/calendarUI.png)
+![events](images/userguide/events.png)
 
-1. Calender Display
-   * displays all lessons and events you have saved
+1. Events Display
+   * displays all events you have saved and their respective details
 2. Command Results:
    * displays the result of input command
 3. Command Line
    * type command and press enter to execute it
-   * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+   * refer to the [Events Features](#events-features) below for possible commands to execute
 
 ### UI Breakdown For `Me`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
-</div>
+![me](images/userguide/me.png)
+
+1. Display
+    * contains your personal details
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 ## NeoBook Features
 
@@ -125,7 +129,7 @@ Simply use this command to get access to our help page!
 
 `help`
 
-![help message](images/helpMessage.png)
+![help](images/userguide/help.png)
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -201,6 +205,12 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
+Here's how NeoBook would look like after you favourite a contact!
+![Fav](images/userguide/fav.png)
+
+1. The contact will appear in the `Favourites` section.
+2. A :star: will appear next to the index in the detail panel.
+
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
@@ -270,7 +280,9 @@ Want to see the details of a particular contact?
 
 You can either use your cursor to click on the contact or use this command!
 
-> Command: `select INDEX`
+**Syntax:**
+
+`select INDEX`
 
 Here are some important requirements for you to take note:
 
@@ -439,7 +451,8 @@ Use this command to exit the application!
 
 [Back To Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
-## Calendar Features
+
+## Events Features
 <hr style="border:2px solid gray">
 
 ### Adding an Event : `addevent`
@@ -489,6 +502,7 @@ _Examples:_
 | s         | Start Date and Time of Event  | No        |
 | e         | End Date and Time of Event    | No        |
 | r         | Recurrence Interval           | Yes       |
+>>>>>>> 6c2571badb8299bcb80616959f5499a70671b8df
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
