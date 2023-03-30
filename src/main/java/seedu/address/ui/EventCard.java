@@ -144,25 +144,8 @@ public class EventCard extends UiPart<Region> {
         }
 
         displayStudentNames();
-        handleAttachmentClick();
         handleNoteClick();
 
-    }
-
-    private void handleAttachmentClick() {
-        //bind a click to open the attachment (only works for single attachment for now
-        //Only prints error message for now
-        if (event.getAttachments().size() > 0 && event.getAttachments().get(0).exists()) {
-            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-                Desktop desktop = Desktop.getDesktop();
-                try {
-                    desktop.open(event.getAttachments().get(0));
-                } catch (IOException e) {
-                    System.out.println("file processing error!");
-                }
-                click.consume();
-            });
-        }
     }
 
     private void displayStudentNames() {
