@@ -20,6 +20,7 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 - [Quick Start](#quick-start)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
+    - [General Commands](#general-commands)
     - [Course Page Commands](#course-page-commands)
     - [Group Page Commands](#group-page-commands)
     - [Students Page Commands](#students-page-commands)
@@ -27,7 +28,6 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
     - [Attendance Page Commands](#attendance-page-commands)
     - [Task Page Commands](#task-page-commands)
     - [Grades Page Commands](#grades-page-commands)
-    - [General Commands](#general-commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -118,8 +118,7 @@ List of commands:
 
 --------------------------------------------------------------------------------------------------------------
 ## General Commands
-Before navigating through pages in CLIpboard, you may familiarise yourself with general commands that can be used on any page.
-
+Before navigating through pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
 
 
 ### Displaying the home page (Course Page): `home`
