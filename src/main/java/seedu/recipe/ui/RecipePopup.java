@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
@@ -26,9 +27,8 @@ import seedu.recipe.model.util.IngredientUtil;
  */
 public class RecipePopup extends UiPart<Region> {
     private static final String FXML = "RecipePopup.fxml";
-
+    private static final double DEFAULT_HEIGHT = 500;
     public final Recipe recipe;
-
     @FXML
     private HBox cardPane;
     @FXML
@@ -68,15 +68,15 @@ public class RecipePopup extends UiPart<Region> {
 
         //Duration
         duration.setText(
-                Optional.ofNullable(recipe.getDurationNullable())
-                        .map(Object::toString)
-                        .orElse("Duration was not added."));
+            Optional.ofNullable(recipe.getDurationNullable())
+                .map(Object::toString)
+                .orElse("Duration was not added."));
 
         //Portion
         portion.setText(
-                Optional.ofNullable(recipe.getPortionNullable())
-                        .map(Object::toString)
-                        .orElse("Portion was not added."));
+            Optional.ofNullable(recipe.getPortionNullable())
+                .map(Object::toString)
+                .orElse("Portion was not added."));
 
         // Ingredients
         createIngredientList(recipe);
@@ -86,8 +86,8 @@ public class RecipePopup extends UiPart<Region> {
 
         //Tags
         recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (recipe.getTags().size() == 0) {
             emptyTags.getChildren().add(new Label("No Tags were added. Add some!"));
         }
@@ -104,6 +104,7 @@ public class RecipePopup extends UiPart<Region> {
             String ingredientLabelText = IngredientUtil.ingredientKeyValuePairToString(ingredient, information);
             Label ingredientLabel = new Label("• " + ingredientLabelText);
             ingredientLabel.setWrapText(true);
+            ingredientLabel.setMinHeight(Region.USE_PREF_SIZE);
             ingredients.getChildren().add(ingredientLabel);
         });
     }
@@ -119,8 +120,10 @@ public class RecipePopup extends UiPart<Region> {
                 i + 1) + ". " + stepList.get(i).toString()
             );
             stepLabel.setWrapText(true);
+            stepLabel.setMinHeight(Region.USE_PREF_SIZE);
             steps.getChildren().add(stepLabel);
         }
+
     }
 
     /**
@@ -130,10 +133,15 @@ public class RecipePopup extends UiPart<Region> {
         Stage window = new Stage();
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
+
+        // init window
         window.setTitle("Recipe Details");
-        VBox vbox = new VBox(getRoot());
-        vbox.setStyle("-fx-background-color: #3f3f46");
-        Scene scene = new Scene(vbox);
+        double maxHeight = Screen.getPrimary().getBounds().getMaxY();
+        window.setMaxHeight(maxHeight);
+        window.setHeight(Math.min(maxHeight, DEFAULT_HEIGHT));
+
+        // init scene
+        Scene scene = new Scene(getRoot());
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();

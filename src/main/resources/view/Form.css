@@ -7,7 +7,6 @@
     -fx-rsd: derive(-fx-bg, 40%);
 }
 
-
 .background {
     -fx-background-color: -fx-bg;
     background-color: #383838;
@@ -17,13 +16,13 @@
     -fx-background-color: -fx-bg;
     -fx-background-inset: 0;
     -fx-border-inset: 0;
-
 }
 
 .root-box {
     -fx-background-color: -fx-bg;
     -fx-background-inset: 0;
     -fx-border-inset: 0;
+    -fx-padding: 15 15 45 15;
 }
 
 .root-layout .label {
@@ -38,9 +37,12 @@
     -fx-font-family: "IBM Plex Sans Regular";
     -fx-text-size: 12px;
 
-    -fx-background-inset: 5;
-    -fx-border-inset: 5;
+    /*-fx-background-inset: 0;
+    -fx-border-inset: 0; */
     -fx-padding: 0;
+    -fx-wrap-text: true;
+    -fx-max-height: 14;
+    -fx-pref-height: 14;
 }
 
 .root-layout .text-area .content {
@@ -64,3 +66,26 @@
     -fx-border-radius: 6;
     -fx-background-radius: 6;
 }
+
+.scroll-bar {
+    -fx-background-color: derive(-fx-bg, 20%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(-fx-bg, 50%);
+    -fx-background-insets: 1;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 4 1 4;
+}
+

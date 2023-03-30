@@ -20,7 +20,7 @@ import seedu.recipe.logic.commands.ImportCommand;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
-
+import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
  * Represents the main window of the application. This class is responsible for
@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
      * Initializes and configures the UI components.
      *
      * @param primaryStage the primary stage for this main window.
-     * @param logic the main logic instance of the application.
+     * @param logic        the main logic instance of the application.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -163,6 +163,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Handles the EditRecipeEvent by executing the appropriate edit command
+     * based on the provided command string.
+     *
+     * @param event the EditRecipeEvent containing the command string to be executed.
+     */
+    private void handleEditRecipeEvent(EditRecipeEvent event) {
+        String commandText = event.getCommandText();
+        try {
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to edit recipe with command: " + commandText);
+        }
+    }
+
+    /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
@@ -202,6 +217,7 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
     /**
      * Renders the primary stage of this main window visible.
      */
@@ -215,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                                                  (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -237,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param commandText the command text to execute.
      * @return the resulting {@code CommandResult} after executing the command.
      * @throws CommandException if the command execution fails.
-     * @throws ParseException if the command text cannot be parsed.
+     * @throws ParseException   if the command text cannot be parsed.
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {

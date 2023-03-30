@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<AnchorPane
+        xmlns:fx="http://javafx.com/fxml/1" maxWidth="Infinity"
+        maxHeight="Infinity" xmlns="http://javafx.com/javafx/8">
+    <stylesheets>
+        <URL value="@Popup.css"/>
+    </stylesheets>
+    <ScrollPane
+            styleClass="root-layout" hbarPolicy="NEVER"
+            fitToWidth="true" fitToHeight="true"
+            AnchorPane.bottomAnchor="-1.0" AnchorPane.topAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-<?import java.net.URL?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      minWidth="300" minHeight="500" prefWidth="500" prefHeight="500" maxHeight="700"
-      styleClass="root-layout"
-      >
-  <stylesheets>
-    <URL value="@Popup.css"/>
-  </stylesheets>
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="5">
-      <padding>
-        <Insets top="5" right="5" bottom="10" left="15" />
-      </padding>
+        <VBox
+                styleClass="root-box"
+                spacing="8">
+            <stylesheets>
+                <URL value="@Popup.css"/>
+            </stylesheets>
+            <padding>
+                <Insets top="5" right="5" bottom="10" left="15"/>
+            </padding>
 
-      <!-- NAME AND ID GROUP -->
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-      </HBox>
+            <!-- NAME AND ID GROUP -->
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minWidth>
+                </Label>
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+            </HBox>
 
-      <!-- DETAILS -->
-      <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
-      <Label fx:id="portion" styleClass="cell_small_label" text="\$portion" />
+            <!-- DETAILS -->
+            <Label fx:id="duration" styleClass="cell_small_label" text="\$duration"/>
+            <Label fx:id="portion" styleClass="cell_small_label" text="\$portion"/>
 
-      <!-- INGREDIENTS GROUP -->
-      <VBox spacing="2">
-        <Label fx:id="ingredientsTitle" styleClass="cell_small_label" text="Ingredients: " />
-        <VBox fx:id="ingredients" styleClass="list-container"/>
-      </VBox>
+            <!-- INGREDIENTS GROUP -->
+            <VBox spacing="2">
+                <Label fx:id="ingredientsTitle" styleClass="cell_small_label" text="Ingredients: "/>
+                <VBox fx:id="ingredients" styleClass="list-container"/>
+            </VBox>
 
-      <!-- STEPS GROUP -->
-      <VBox>
-        <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
-        <VBox fx:id="steps" styleClass="list-container" prefWidth="500"/>
-      </VBox>
+            <!-- STEPS GROUP -->
+            <VBox>
+                <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: "/>
+                <VBox fx:id="steps" styleClass="list-container" prefWidth="500"/>
+            </VBox>
 
-      <!-- TAGS GROUP -->
-      <VBox spacing="2">
-        <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
-        <HBox fx:id="tags" styleClass="tag-container"/>
-        <HBox fx:id="emptyTags" styleClass="list-container"/>
-      </VBox>
-    </VBox>
-  </GridPane>
-</HBox>
+            <!-- TAGS GROUP -->
+            <VBox spacing="2">
+                <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: "/>
+                <HBox fx:id="tags" styleClass="tag-container"/>
+                <HBox fx:id="emptyTags" styleClass="list-container"/>
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</AnchorPane>

@@ -7,37 +7,51 @@
     -fx-rsd: derive(-fx-bg, 40%);
 }
 
-.root-layout {
+.background {
     -fx-background-color: -fx-bg;
+    background-color: #383838;
 }
 
-.cell_big_label {
+.root-layout {
+    -fx-background-color: -fx-bg;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
+}
+
+.root-box {
+    -fx-background-color: -fx-bg;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
+    -fx-padding: 15 15 45 15;
+}
+
+.root-box .cell_big_label {
     -fx-font-family: "IBM Plex Sans Bold";
     -fx-font-size: 20px;
     -fx-text-fill: -fx-mctr;
 }
 
-.cell_small_label {
+.root-box .cell_small_label {
     -fx-font-family: "IBM Plex Sans Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: -fx-ctr;
 }
 
-.list-container {
+.root-box .list-container {
     -fx-pref-width: 500;
 }
 
-.list-container .label {
+.root-box .list-container .label {
     -fx-font-family: "IBM Plex Sans Light";
     -fx-font-size: 14px;
     -fx-text-fill: -fx-ctr;
 }
 
-.tag-container {
+.root-box .tag-container {
     -fx-spacing: 5;
 }
 
-.tag-container .label {
+.root-box .tag-container .label {
     -fx-padding: 1 4 1 4;
     -fx-background-color: #047857;
     -fx-text-fill: -fx-ctr;

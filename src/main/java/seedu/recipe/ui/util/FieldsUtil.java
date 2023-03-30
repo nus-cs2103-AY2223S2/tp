@@ -1,7 +1,10 @@
 package seedu.recipe.ui.util;
 
 import javafx.collections.ObservableList;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,12 +26,12 @@ public class FieldsUtil {
     public static TextArea createDynamicTextArea(String text) {
         //Styling
         TextArea textArea = new TextArea(text);
-        textArea.setWrapText(true);
-        textArea.setMaxHeight(5.0);
-        textArea.setPrefHeight(5.0);
-        //Keyboard listener for navigation
+
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.BACK_SPACE) {
+            if (event.getCode() == KeyCode.BACK_SPACE
+                    || event.getCode() == KeyCode.LEFT
+                    || event.getCode() == KeyCode.RIGHT
+            ) {
                 return;
             }
             int currentIndex = ((VBox) textArea.getParent()).getChildren().indexOf(textArea);
@@ -116,6 +119,7 @@ public class FieldsUtil {
                 }
             }
         }
+        scrollToFocusedNode(textArea);
         event.consume();
     }
 
@@ -148,4 +152,43 @@ public class FieldsUtil {
             parentBox.getChildren().remove(getNextTextArea(textArea));
         }
     }
+
+    /**
+     * Scrolls the ScrollPane to the TextArea if the TextArea is near the viewport boundaries.
+     * If the TextArea's top position is close to the top boundary or the bottom position is close
+     * to the bottom boundary of the viewport, adjust the vertical scroll value by one row height.
+     *
+     * @param textArea The TextArea that may be near the viewport boundaries.
+     */
+    private static void scrollToFocusedNode(TextArea textArea) {
+        VBox parentBox = (VBox) textArea.getParent();
+        Parent parent = parentBox.getParent();
+        while (parent != null && !(parent instanceof ScrollPane)) {
+            parent = parent.getParent();
+        }
+        if (parent instanceof ScrollPane) {
+            ScrollPane scrollPane = (ScrollPane) parent;
+            Bounds textAreaBounds = textArea.localToScene(textArea.getBoundsInLocal());
+            double textAreaTopY = textAreaBounds.getMinY();
+            double textAreaBottomY = textAreaBounds.getMaxY();
+            double scrollPaneTopY = scrollPane.localToScene(0, 0).getY();
+            double scrollPaneBottomY = scrollPaneTopY + scrollPane.getHeight();
+
+            double rowHeight = textArea.getHeight();
+
+            // Check if the TextArea's top or bottom position is 2 rows from being out of the viewport
+            boolean nearViewportTop = textAreaTopY - 2 * rowHeight < scrollPaneTopY;
+            boolean nearViewportBottom = textAreaBottomY + 2 * rowHeight > scrollPaneBottomY;
+
+            if (nearViewportTop || nearViewportBottom) {
+                // Adjust scroll value by one row height
+                double scrollValueAdjustment = rowHeight / scrollPane.getContent().getBoundsInLocal().getHeight();
+                double newVvalue = nearViewportTop
+                    ? scrollPane.getVvalue() - scrollValueAdjustment
+                    : scrollPane.getVvalue() + scrollValueAdjustment;
+                scrollPane.setVvalue(newVvalue);
+            }
+        }
+    }
+
 }

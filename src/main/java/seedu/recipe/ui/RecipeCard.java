@@ -1,6 +1,7 @@
 package seedu.recipe.ui;
 
 //Core Java Imports
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
-//JavaFX libraries
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -17,7 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-//Custom Imports
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
@@ -26,6 +25,7 @@ import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
 
 /**
@@ -44,49 +44,38 @@ public class RecipeCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/recipebook-level4/issues/336">The issue on RecipeBook level 4</a>
      */
     public final Recipe recipe;
-
+    private final CommandExecutor commandExecutor;
     @FXML
     private HBox cardPane;
-
     @FXML
     private Label name;
     @FXML
     private Label id;
-
     @FXML
     private Label duration;
-
     @FXML
     private Label portion;
-
     @FXML
     private Label ingredientsTitle;
-
     @FXML
     private Label stepsTitle;
-
     @FXML
     private Label tagsTitle;
-
     @FXML
     private FlowPane tags;
-
     @FXML
     private FlowPane emptyTags;
-
     @FXML
     private GridPane ingredients;
-
     @FXML
     private GridPane steps;
-
     @FXML
     private VBox borderContainer;
 
-    private final CommandExecutor commandExecutor;
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
-     * @param recipe the {@code Recipe} to display
+     *
+     * @param recipe         the {@code Recipe} to display
      * @param displayedIndex the index of the {@code Recipe} in the list
      */
     public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor) {
@@ -101,15 +90,15 @@ public class RecipeCard extends UiPart<Region> {
 
         //Duration
         duration.setText("Duration: "
-                + Optional.ofNullable(recipe.getDurationNullable())
-                        .map(Object::toString)
-                        .orElse(String.format(MESSAGE_EMPTY_FIELD_SHORT, "duration")));
+            + Optional.ofNullable(recipe.getDurationNullable())
+            .map(Object::toString)
+            .orElse(String.format(MESSAGE_EMPTY_FIELD_SHORT, "duration")));
 
         //Portion
         portion.setText("Portion: "
-                + Optional.ofNullable(recipe.getPortionNullable())
-                        .map(Object::toString)
-                        .orElse(String.format(MESSAGE_EMPTY_FIELD_SHORT, "portion")));
+            + Optional.ofNullable(recipe.getPortionNullable())
+            .map(Object::toString)
+            .orElse(String.format(MESSAGE_EMPTY_FIELD_SHORT, "portion")));
 
         //Ingredients
         setIngredients(recipe.getIngredients());
@@ -138,8 +127,8 @@ public class RecipeCard extends UiPart<Region> {
             KeyCode input = event.getCode();
             ConfirmationDialog deleteConfirmation = new ConfirmationDialog();
             if (input == KeyCode.DELETE
-                    || input == KeyCode.D
-                    || input == KeyCode.BACK_SPACE) {
+                || input == KeyCode.D
+                || input == KeyCode.BACK_SPACE) {
                 if (deleteConfirmation.getConfirmation()) {
                     DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
                     cardPane.fireEvent(deleteEvent);
@@ -148,11 +137,16 @@ public class RecipeCard extends UiPart<Region> {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
-                try {
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex, commandExecutor);
-                    form.display();
-                } catch (Exception e) {
-                    System.out.println(e);
+                // create and display form
+                StringBuilder data = new StringBuilder();
+                EditRecipeForm form = new EditRecipeForm(recipe, displayedIndex, data);
+                form.display();
+
+                // trigger EditRecipeEvent with form data
+                String commandText = data.toString();
+                if (!commandText.isEmpty()) {
+                    EditRecipeEvent editEvent = new EditRecipeEvent(commandText);
+                    cardPane.fireEvent(editEvent);
                 }
             }
         });
@@ -183,12 +177,14 @@ public class RecipeCard extends UiPart<Region> {
             Entry<Ingredient, IngredientInformation> nextIngredient = entries.next();
             ingredients.add(createUnorderedListItem(
                 IngredientUtil.ingredientKeyValuePairToString(nextIngredient.getKey(), nextIngredient.getValue())
-            ), 0, count);
+                   ), 0, count);
             count += 1;
         }
+
+        //Truncate for line count longer than 3
         if (count == 3 && entries.hasNext()) {
             ingredients.add(createLabel(
-                    "... and " + (ingredientsTable.size() - 3) + " more ingredients"), 0, count);
+                "... and " + (ingredientsTable.size() - 3) + " more ingredients"), 0, count);
         }
     }
 
@@ -232,7 +228,7 @@ public class RecipeCard extends UiPart<Region> {
         // state check
         RecipeCard card = (RecipeCard) other;
         return id.getText().equals(card.id.getText())
-                && recipe.equals(card.recipe);
+            && recipe.equals(card.recipe);
     }
 
 }
