@@ -233,18 +233,18 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Architecture of CoDoc**
+## **Architecture**
+
+<img src="images/ArchitectureDiagram.png" width="280" />
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-<img src="images/ArchitectureDiagram.png" width="280" />
-
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of each components and how they interact with each other.
+Given below is a quick overview of each component and how they interact with each other.
 
 **Components of the architecture**
 
@@ -270,7 +270,7 @@ Each of the four core components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
-> The rationale for implementing the core component's API through an interface is to prevent outside component's being coupled to the implementation of a component.
+> ℹ️ Implementing the core component's API through an interface prevent outside component's from being coupled to it.
 
 <img src="images/ComponentManagers.png" width="300" />
 
