@@ -69,8 +69,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getOptionalPhone().map(Phone::toString).orElse(null));
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
-        remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
-        truncateRemark();
+        remark.setText(person.getOptionalRemark().map(Remark::truncateRemark).orElse(null));
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(setStyleEducationLabel(label)));
@@ -105,19 +104,6 @@ public class PersonCard extends UiPart<Region> {
                 label.setManaged(false);
             }
         }
-    }
-
-    public void truncateRemark() {
-        String fullRemark = remark.getText();
-        if (fullRemark == null) {return;}
-        if (fullRemark.contains("\n")) {
-            String firstLine = fullRemark.split("\n", 2)[0];
-            remark.setText(firstLine + "...");
-        } else if (fullRemark.length() > 30) {
-            String substring = fullRemark.substring(0, 30);
-            remark.setText(substring + "...");
-        }
-
     }
 
     public void resizeFlowPane(FlowPane flowpane) {
