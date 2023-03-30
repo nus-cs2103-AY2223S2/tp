@@ -1,6 +1,7 @@
 package seedu.ultron.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
 import java.util.List;
 
@@ -41,9 +42,10 @@ public class DeleteCommand extends Command {
 
         Opening openingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOpening(openingToDelete);
-        if (model.getSelectedIndex().equals(targetIndex)) {
+        if (model.hasSelectedIndex() && model.getSelectedIndex().equals(targetIndex)) {
             model.setSelectedIndex(null);
         }
+        model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
         return new CommandResult(String.format(MESSAGE_DELETE_OPENING_SUCCESS, openingToDelete));
     }
 
