@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -23,6 +24,9 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 
 /**
  * Tag a video, a lecture, or a module.
@@ -148,7 +152,7 @@ public class UntagCommand extends Command {
                 untaggingModule.getName(), newTags, untaggingModule.getLectureList());
         model.setModule(untaggingModule, untaggedModule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode),
-                new CommandResult.ModuleEditInfo(untaggingModule, untaggedModule));
+                new ModuleEditInfo(untaggingModule, untaggedModule));
     }
 
     private CommandResult untagLecture(Model model) throws CommandException {
@@ -183,7 +187,7 @@ public class UntagCommand extends Command {
         Lecture untaggedLecture = new Lecture(untaggingLecture.getName(), newTags, untaggingLecture.getVideoList());
         model.setLecture(targetModule, untaggingLecture, untaggedLecture);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName),
-                new CommandResult.LectureEditInfo(moduleCode, untaggingLecture, untaggedLecture));
+                new LectureEditInfo(moduleCode, untaggingLecture, untaggedLecture));
     }
 
     private CommandResult untagVideo(Model model) throws CommandException {
@@ -226,7 +230,7 @@ public class UntagCommand extends Command {
                 untaggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, untaggingVideo, untaggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName),
-                new CommandResult.VideoEditInfo(moduleCode, lectureName, untaggingVideo, untaggedVideo));
+                new VideoEditInfo(moduleCode, lectureName, untaggingVideo, untaggedVideo));
     }
 
     @Override

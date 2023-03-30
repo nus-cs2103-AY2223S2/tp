@@ -48,10 +48,10 @@ public class Messages {
     public static final String MESSAGE_EMPTY_MODULE = "No module is provided";
     public static final String MESSAGE_ARCHIVE_FILE_ALREADY_EXIST = "File already exist. If you want to "
             + "overwrite this file, insert /overwrite true in the command";
-    public static final String MESSAGE_FILE_DOES_NOT_EXIST = "File %1$s does not exist";
+    public static final String MESSAGE_FILE_DOES_NOT_EXIST = "File does not exist";
     public static final String MESSAGE_MODULE_ALREADY_EXIST_IN_TRACKER = "%1$s already exist in tracker. If you want "
             + "to overwrite data in this module, insert /overwrite true in the command";
-    public static final String MESSAGE_MODULE_DOES_NOT_EXIST_IN_ARCHIVE = "%1$s not found in %2$s";
+    public static final String MESSAGE_MODULE_DOES_NOT_EXIST_IN_ARCHIVE = "%1$s not found in this file";
     public static final String MESSAGE_EMPTY_TIMESTAMP_COMMENT = "No comment is provided";
     public static final String MESSAGE_TIMESTAMP_COMMENT_DOES_NOT_EXIST = "Comment(s) %1$s does not exist";
 }

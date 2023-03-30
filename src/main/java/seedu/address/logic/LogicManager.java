@@ -88,12 +88,14 @@ public class LogicManager implements Logic {
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
 
-        if (commandResult.isExporting()) {
-            archive.export(commandResult.getPath().get(), model.getTracker(), commandResult.isOverwriting());
-        }
-
-        if (commandResult.isImporting()) {
-
+        if (!commandResult.getPath().isEmpty()) {
+            if (commandResult.isExporting()) {
+                archive.exportToArchive(commandResult.getPath().get(), model.getTracker(), commandResult.isOverwriting());
+            } else {
+                archive.importFromArchive(commandResult.getPath().get(), model,
+                        commandResult.isImportingWholeArchive(),
+                        commandResult.isOverwriting(), commandResult.getModuleCodesToImport());
+            }
         }
 
         try {

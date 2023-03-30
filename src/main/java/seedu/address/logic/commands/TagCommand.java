@@ -21,6 +21,9 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 
 /**
  * Tag a video, a lecture, or a module.
@@ -137,7 +140,7 @@ public class TagCommand extends Command {
                 taggingModule.getName(), newTags, taggingModule.getLectureList());
         model.setModule(taggingModule, taggedModule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode),
-                new CommandResult.ModuleEditInfo(taggingModule, taggedModule));
+                new ModuleEditInfo(taggingModule, taggedModule));
     }
 
     private CommandResult tagLecture(Model model) throws CommandException {
@@ -162,7 +165,7 @@ public class TagCommand extends Command {
         Lecture taggedLecture = new Lecture(taggingLecture.getName(), newTags, taggingLecture.getVideoList());
         model.setLecture(targetModule, taggingLecture, taggedLecture);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName),
-                new CommandResult.LectureEditInfo(moduleCode, taggingLecture, taggedLecture));
+                new LectureEditInfo(moduleCode, taggingLecture, taggedLecture));
     }
 
     private CommandResult tagVideo(Model model) throws CommandException {
@@ -195,7 +198,7 @@ public class TagCommand extends Command {
                 taggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName),
-                new CommandResult.VideoEditInfo(moduleCode, lectureName,
+                new VideoEditInfo(moduleCode, lectureName,
                 taggingVideo, taggedVideo));
     }
 

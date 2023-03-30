@@ -49,8 +49,8 @@ public class CommandResult {
 
     /** Information on whether the command is to export tracker to archive */
     private final boolean isExporting;
-    /** Information on whether the command is to importing modules from archive to current tracker */
-    private final boolean isImporting;
+    /** Information on whether the command is to importing all modules from archive to current tracker */
+    private final boolean isImportingWholeArchive;
     /** Information on whether the command to importing modules/ export modules will overwrite existing data */
     private final boolean isOverwriting;
 
@@ -67,7 +67,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DisplayListLevel level, String context,
             List<ModuleEditInfo> moduleEditInfoList, List<LectureEditInfo> lectureEditInfoList,
-            List<VideoEditInfo> videoEditInfoList, Path archivePath, boolean isExporting, boolean isImporting,
+            List<VideoEditInfo> videoEditInfoList, Path archivePath, boolean isExporting, boolean isImportingWholeArchive,
                          boolean isOverwriting, Set<ModuleCode> moduleCodesToImport) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -78,9 +78,9 @@ public class CommandResult {
         this.moduleEditInfoList.addAll(requireNonNull(moduleEditInfoList));
         this.lectureEditInfoList.addAll(requireNonNull(lectureEditInfoList));
         this.videoEditInfoList.addAll(requireNonNull(videoEditInfoList));
-        this.path = Optional.of(archivePath);
+        this.path = Optional.ofNullable(archivePath);
         this.isExporting = isExporting;
-        this.isImporting = isImporting;
+        this.isImportingWholeArchive = isImportingWholeArchive;
         this.isOverwriting = isOverwriting;
         this.moduleCodesToImport = moduleCodesToImport;
     }
@@ -120,7 +120,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, ModuleEditInfo... moduleEditInfos) {
         this(feedbackToUser, false, false, null, "", Arrays.asList(moduleEditInfos),
-                Collections.emptyList(), Collections.emptyList(), Path.of(""), false,
+                Collections.emptyList(), Collections.emptyList(), null, false,
                 false, false, new HashSet<>());
     }
 
@@ -130,7 +130,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, LectureEditInfo... lectureEditInfos) {
         this(feedbackToUser, false, false, null, "", Collections.emptyList(),
-                Arrays.asList(lectureEditInfos), Collections.emptyList(), Path.of(""),
+                Arrays.asList(lectureEditInfos), Collections.emptyList(), null,
                 false, false, false, new HashSet<>());
     }
 
@@ -140,7 +140,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, VideoEditInfo... videoEditInfos) {
         this(feedbackToUser, false, false, null, "", Collections.emptyList(),
-                Collections.emptyList(), Arrays.asList(videoEditInfos), Path.of(""),
+                Collections.emptyList(), Arrays.asList(videoEditInfos), null,
                 false, false, false, new HashSet<>());
     }
 
@@ -161,15 +161,16 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} to alert logic manager to import specific modules
+     * Constructs a {@code CommandResult} to alert logic manager to import modules
      */
-    public CommandResult(String feedbackToUser, Path archivedPath, boolean isImporting, boolean isOverwriting,
+    public CommandResult(String feedbackToUser, Path archivedPath, boolean isImportingWholeArchive,
+                         boolean isOverwriting,
                          Set<ModuleCode> moduleCodesToImport) {
         this(feedbackToUser, false, false, null, "",
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
-                archivedPath, false, isImporting, isOverwriting, moduleCodesToImport);
+                archivedPath, false, isImportingWholeArchive, isOverwriting, moduleCodesToImport);
     }
 
     public String getFeedbackToUser() {
@@ -407,13 +408,13 @@ public class CommandResult {
     }
 
     /**
-     * Information on whether the command is to importing modules from archive to current tracker
+     * Information on whether the command is to importing all modules from archive to current tracker
      *
      * @return whether the command wants to import files
      */
 
-    public boolean isImporting() {
-        return isImporting;
+    public boolean isImportingWholeArchive() {
+        return isImportingWholeArchive;
     }
 
     /**
@@ -434,5 +435,15 @@ public class CommandResult {
 
     public Optional<Path> getPath() {
         return path;
+    }
+
+    /**
+     * Return the set of specified modules to import from the archive file
+     *
+     * @return a set of module codes of specified modules to import from the archive file
+     */
+
+    public Set<ModuleCode> getModuleCodesToImport() {
+        return moduleCodesToImport;
     }
 }

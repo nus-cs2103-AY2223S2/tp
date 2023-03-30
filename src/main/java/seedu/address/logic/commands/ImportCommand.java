@@ -61,69 +61,11 @@ public class ImportCommand extends Command {
 
         Path archivePath = Paths.get("data", fileName);
 
-        if (!Files.exists(archivePath) || !Files.isRegularFile(archivePath)) {
-            throw new CommandException(String.format(Messages.MESSAGE_FILE_DOES_NOT_EXIST, fileName));
-        }
-
         List<String> moduleCodeList = moduleCodeSet.stream()
                 .map(moduleCode -> moduleCode.code).collect(Collectors.toList());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(", ", moduleCodeList)));
-    }
-
-    private void importModule(Set<ModuleCode> moduleCodeSet, ReadOnlyTracker tracker, Model model)
-            throws CommandException {
-        checkIfModuleExistInArchive(moduleCodeSet, tracker);
-        checkIfModuleExistInCurrentTracker(moduleCodeSet, model);
-
-        for (ModuleCode moduleCode : moduleCodeSet) {
-            ReadOnlyModule module = tracker.getModule(moduleCode);
-            Module moduleToAdd = new Module(module.getCode(),
-                    module.getName(), module.getTags(), module.getLectureList());
-            if (model.hasModule(moduleToAdd.getCode())) {
-                ReadOnlyModule replacedModule = model.getModule(moduleToAdd.getCode());
-                model.setModule(replacedModule, moduleToAdd);
-            } else {
-                model.addModule(moduleToAdd);
-            }
-        }
-    }
-
-    private void checkIfModuleExistInCurrentTracker(Set<ModuleCode> moduleCodeSet, Model model)
-            throws CommandException {
-        ReadOnlyTracker currentTracker = model.getTracker();
-
-        List<ModuleCode> currentModuleList =
-                currentTracker.getModuleList().stream().map(ReadOnlyModule::getCode).collect(Collectors.toList());
-
-        List<String> moduleExistInCurrentTracker =
-                moduleCodeSet.stream().filter(moduleCode -> currentModuleList.contains(moduleCode))
-                        .map(moduleCode -> moduleCode.code)
-                        .collect(Collectors.toList());
-
-        if (!moduleExistInCurrentTracker.isEmpty() && !isOverwritingExistingModule) {
-            throw new CommandException(
-                    String.format(Messages.MESSAGE_MODULE_ALREADY_EXIST_IN_TRACKER, String.join(", ",
-                            moduleExistInCurrentTracker)));
-        }
-    }
-
-    private void checkIfModuleExistInArchive(Set<ModuleCode> moduleCodeSet, ReadOnlyTracker tracker)
-            throws CommandException {
-
-        List<ModuleCode> archivedModuleList =
-                tracker.getModuleList().stream().map(ReadOnlyModule::getCode).collect(Collectors.toList());
-
-        List<String> moduleDoesNotExistInTracker =
-                moduleCodeSet.stream().filter(moduleCode -> !archivedModuleList.contains(moduleCode))
-                        .map(moduleCode -> moduleCode.code)
-                        .collect(Collectors.toList());
-
-        if (!moduleDoesNotExistInTracker.isEmpty()) {
-            throw new CommandException(
-                    String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST_IN_ARCHIVE, String.join(", ",
-                            moduleDoesNotExistInTracker), fileName));
-        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(", ", moduleCodeList)), archivePath,
+                isImportingAllModules, isOverwritingExistingModule, moduleCodeSet);
     }
 
     @Override
