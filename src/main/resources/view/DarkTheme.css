@@ -8,7 +8,7 @@
 }
 
 .background {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: #292929;
   background-color: #292929; /* Used in the default.html file */
 }
 
@@ -97,7 +97,9 @@
 .list-cell {
   -fx-label-padding: 0 0 0 0;
   -fx-graphic-text-gap: 0;
-  -fx-padding: 0 0 0 0;
+  -fx-margins: 2 2 2 2;
+  -fx-padding: 2 2 2 2;
+  -fx-background-color: #1B1B1B;
 }
 
 .list-cell:filled:even {
@@ -109,12 +111,13 @@
 }
 
 .list-cell:filled:selected {
-  -fx-background-color: #424d5f;
+  -fx-background-color: #292929;
 }
 
 .list-cell:filled:selected #cardPane {
   -fx-border-color: #3e7b91;
   -fx-border-width: 1;
+  -fx-border-radius: 20px;
 }
 
 .list-cell .label {
