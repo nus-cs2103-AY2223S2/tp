@@ -2,9 +2,9 @@ package seedu.loyaltylift.model.customer;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.loyaltylift.commons.exceptions.IllegalValueException;
-
 import java.util.Objects;
+
+import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Customer's points in the address book.
@@ -16,6 +16,13 @@ public class Points implements Comparable<Points> {
 
     public static final Integer MAXIMUM_POINTS_ADD = 999999;
     public static final Integer MAXIMUM_POINTS_SUBTRACT = -999999;
+
+    /**
+     * The tier a customer would belong to for having a certain amount of cumulative points
+     * 1000 for Bronze
+     * 5000 for Silver
+     * 100000 for Gold
+     */
     public enum Tier {
         NONE("No Tier"),
         BRONZE("Bronze"),
