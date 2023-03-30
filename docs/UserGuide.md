@@ -2,15 +2,15 @@
 
 * Quick Start
 * Features
-  * Viewing help: `help`
   * Adding a person: `add`
   * Deleting a person: `delete`
-  * Listing all contacts: `list`
+  * Editing a person: `edit`
   * Locating persons by keywords: `find`
+  * Listing all contacts: `list`
+  * Viewing help: `help`
   * Add an image for contacts: `add-image`
   * Delete an image for contacts: `delete-image`
   * Quick import admin contacts: `import`
-* FAQ
 * Command summary
 
 ---
@@ -30,15 +30,9 @@ Experienced users can delete the sample data and proceed with regular usage.
 
 ## Features
 
-### Help command: `help`
-
-Shows a link to the user guide to help new users get familiar with the commands for the application.
-
-Format: `help`
-
 ### Add user contacts: `add`
 
-Format: `add [name] [year/course] [phone number] [email] [address]` Optional to add: `t/TAGS`
+Format: `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
 
 * User is *required* to enter **name, status, phone number, email, address**
 * Tags can be optional
@@ -67,14 +61,22 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 * Extra: Will prompt user to re-confirm again before the contact is erased from BookFace
+
   Example:
 * `delete 2` Brings up the 2nd person in the address book and prompt user to confirm before deleting.
 
-### Listing all contacts: `list`
+### Edit user contacts: `edit`
 
-List all contacts in the address book.
+Edit a contact.
+Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]`
 
-Format: `list`
+* Show contact details specified by `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index *must* be a positive integer 1, 2, 3, …
+
+  Example:
+* `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+  mt/cs2103` Brings up the 2nd person in the address book and edits the specified information.
 
 ### Locating persons by keywords: `find`
 
@@ -102,6 +104,19 @@ Example:
 
 `find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
 has a tag labeled `cs2103`, and whose emails contain `gmail`.
+
+### Listing all contacts: `list`
+
+List all contacts in the address book.
+
+Format: `list`
+
+
+### Help command: `help`
+
+Shows a link to the user guide to help new users get familiar with the commands for the application.
+
+Format: `help`
 
 ### Add an image for contacts
 
@@ -155,15 +170,15 @@ Example:
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                   |
-|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME y/YEAR COURSE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho y/y2-science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                        |
-| **Find**         | `find [PREFIX]/Keyword [MORE [PREFIX]/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                         |
-| **List**         | `list`                                                                                                                                                                                                                             |
-| **Help**         | `help`                                                                                                                                                                                                                             |
-| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                               |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                  |                                                                                                                       |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                            |
+| Action           | Format, Examples                                                                                                                                                                                                                        |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                             |
+| **Find**         | `find [PREFIX]/Keyword [MORE [PREFIX]/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                              |
+| **List**         | `list`                                                                                                                                                                                                                                  |
+| **Help**         | `help`                                                                                                                                                                                                                                  |
+| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                    |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                       |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                                 |
 
