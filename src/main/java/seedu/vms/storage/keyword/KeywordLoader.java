@@ -3,6 +3,7 @@ package seedu.vms.storage.keyword;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +25,7 @@ public class KeywordLoader {
     /** Constructs a {@code KeywordLoader}. */
     @JsonCreator
     public KeywordLoader(@JsonProperty("keywords") List<JsonAdaptedKeyword> keywords) {
-        this.keywords = keywords;
+        this.keywords = Objects.requireNonNull(keywords);
     }
 
     /**
