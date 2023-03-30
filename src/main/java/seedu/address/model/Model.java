@@ -37,44 +37,45 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' module tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleTrackerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' module tracker file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setModuleTrackerFilePath(Path moduleTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces module tracker data with the data in {@code moduleTracker}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setModuleTracker(ReadOnlyModuleTracker moduleTracker);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ModuleTracker */
+    ReadOnlyModuleTracker getModuleTracker();
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the module tracker.
      */
     boolean hasModule(Module module);
 
     /**
      * Deletes the given module.
-     * The module must exist in the address book.
+     * The module must exist in the module tracker.
      */
     void deleteModule(Module target);
 
     /**
      * Adds the given module.
-     * {@code module} must not already exist in the address book.
+     * {@code module} must not already exist in the module tracker.
      */
     void addModule(Module module);
 
     /**
      * Replaces the given module {@code target} with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
+     * {@code target} must exist in the module tracker.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the
+     * module tracker.
      */
     void setModule(Module target, Module editedModule);
 

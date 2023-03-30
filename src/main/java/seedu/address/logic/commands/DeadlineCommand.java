@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
 
 
 /**
- * Changes the deadline of an existing module in the address book.
+ * Changes the deadline of an existing module in the module tracker.
  */
 public class DeadlineCommand extends Command {
 

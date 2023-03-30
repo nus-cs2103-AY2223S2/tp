@@ -16,31 +16,31 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the module tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private final AddressBook addressBook;
+    private final ModuleTracker moduleTracker;
     private final UserPrefs userPrefs;
     private final SortedList<Module> sortedModules;
     private final FilteredList<Module> displayedModules;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given moduleTracker and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyModuleTracker moduleTracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(moduleTracker, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module tracker: " + moduleTracker + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.moduleTracker = new ModuleTracker(moduleTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        sortedModules = new SortedList(this.addressBook.getModuleList());
+        sortedModules = new SortedList(this.moduleTracker.getModuleList());
         displayedModules = new FilteredList<>(sortedModules);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ModuleTracker(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,42 +68,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getModuleTrackerFilePath() {
+        return userPrefs.getModuleTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setModuleTrackerFilePath(Path moduleTrackerFilePath) {
+        requireNonNull(moduleTrackerFilePath);
+        userPrefs.setModuleTrackerFilePath(moduleTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ModuleTracker ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setModuleTracker(ReadOnlyModuleTracker moduleTracker) {
+        this.moduleTracker.resetData(moduleTracker);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyModuleTracker getModuleTracker() {
+        return moduleTracker;
     }
 
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return addressBook.hasModule(module);
+        return moduleTracker.hasModule(module);
     }
 
     @Override
     public void deleteModule(Module target) {
-        addressBook.removeModule(target);
+        moduleTracker.removeModule(target);
     }
 
     @Override
     public void addModule(Module module) {
-        addressBook.addModule(module);
+        moduleTracker.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
@@ -111,14 +111,14 @@ public class ModelManager implements Model {
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
-        addressBook.setModule(target, editedModule);
+        moduleTracker.setModule(target, editedModule);
     }
 
     //=========== Filtered Module List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModuleTracker}
      */
     @Override
     public ObservableList<Module> getDisplayedModuleList() {
@@ -151,7 +151,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return moduleTracker.equals(other.moduleTracker)
                 && userPrefs.equals(other.userPrefs)
                 && displayedModules.equals(other.displayedModules);
     }

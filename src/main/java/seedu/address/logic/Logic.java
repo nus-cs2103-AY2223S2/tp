@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModuleTracker;
 import seedu.address.model.module.Module;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ModuleTracker.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getModuleTracker()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyModuleTracker getModuleTracker();
 
     /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getDisplayedModuleList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' module tracker file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleTrackerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

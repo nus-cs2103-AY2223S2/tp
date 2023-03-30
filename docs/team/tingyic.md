@@ -5,7 +5,7 @@ title: Chew Ting Yi's Project Portfolio Page
 
 ### Project: contact nUS
 
-contact nUS is a desktop address book application used for students to keep track of their NUS modular components.
+contact nUS is a desktop module tracker application used for students to keep track of their NUS modular components.
 The user interacts with it usign a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.

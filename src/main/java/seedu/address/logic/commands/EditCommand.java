@@ -33,7 +33,7 @@ import seedu.address.model.module.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing module in the address book.
+ * Edits the details of an existing module in the module tracker.
  */
 public class EditCommand extends Command {
 
@@ -57,7 +57,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module tracker.";
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;

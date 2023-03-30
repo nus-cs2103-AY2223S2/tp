@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import seedu.address.model.Model;
 
 /**
- * Lists all modules in the address book to the user.
+ * Lists all modules in the module tracker to the user.
  */
 public class ListCommand extends Command {
 
