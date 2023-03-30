@@ -95,8 +95,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ModuleTracker moduleTracker = new ModuleTrackerBuilder().
-                withModule(CS2106_TUT).withModule(CS2103T_LEC).build();
+        ModuleTracker moduleTracker = new ModuleTrackerBuilder()
+                .withModule(CS2106_TUT).withModule(CS2103T_LEC).build();
         ModuleTracker differentModuleTracker = new ModuleTracker();
         UserPrefs userPrefs = new UserPrefs();
 

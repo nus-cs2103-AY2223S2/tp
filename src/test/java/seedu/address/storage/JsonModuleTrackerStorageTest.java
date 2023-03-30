@@ -49,20 +49,20 @@ public class JsonModuleTrackerStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class,
-                () -> readModuleTracker("notJsonFormatModuleTracker.json"));
+        assertThrows(DataConversionException.class, () ->
+                readModuleTracker("notJsonFormatModuleTracker.json"));
     }
 
     @Test
     public void readModuleTracker_invalidModuleModuleTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readModuleTracker("invalidModuleModuleTracker.json"));
+        assertThrows(DataConversionException.class, () ->
+                readModuleTracker("invalidModuleModuleTracker.json"));
     }
 
     @Test
     public void readModuleTracker_invalidAndValidModuleModuleTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readModuleTracker("invalidAndValidModuleModuleTracker.json"));
+        assertThrows(DataConversionException.class, () ->
+                readModuleTracker("invalidAndValidModuleModuleTracker.json"));
     }
 
     @Test

@@ -18,8 +18,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ModuleTracker;
 import seedu.address.model.Model;
+import seedu.address.model.ModuleTracker;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
