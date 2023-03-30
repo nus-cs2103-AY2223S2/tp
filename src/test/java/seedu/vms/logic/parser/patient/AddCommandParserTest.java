@@ -16,7 +16,6 @@ import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_SEAFOOD;
@@ -139,11 +138,6 @@ public class AddCommandParserTest {
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + DOB_DESC_BOB + INVALID_BLOODTYPE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB
-                + BLOODTYPE_DESC_BOB + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
     @Test
     public void execute_groupOverLimit_exceptionThrown() {

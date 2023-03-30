@@ -1,6 +1,7 @@
 package seedu.vms.logic;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import javafx.beans.property.ObjectProperty;
@@ -34,7 +35,7 @@ public interface Logic {
     void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete);
 
 
-    void loadManagers();
+    void loadManagers(BiConsumer<String, String> beyondDeathErrHandler);
 
 
     /**

@@ -148,14 +148,6 @@ public class MainApp extends Application {
             logger.warning("Default user preference will be used due to: " + e.getMessage());
             initializedPrefs = new UserPrefs();
         }
-
-        // Update prefs file in case it was missing to begin with or there are new/unused fields
-        try {
-            storage.saveUserPrefs(initializedPrefs);
-        } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
-        }
-
         return initializedPrefs;
     }
 
@@ -164,7 +156,7 @@ public class MainApp extends Application {
         logger.info("Starting PatientManager " + MainApp.VERSION);
         ui.start(primaryStage);
         startRefreshLoop();
-        logic.loadManagers();
+        logic.loadManagers(ui::showErrorDialogAndShutdown);
     }
 
 

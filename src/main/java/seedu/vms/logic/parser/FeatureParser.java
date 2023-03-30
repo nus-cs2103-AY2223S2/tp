@@ -51,11 +51,15 @@ public abstract class FeatureParser {
             for (String arg : entry.getValue()) {
                 if (prefix.equals(new Prefix("")) && arg.isBlank()) {
                     continue;
+                } else if (prefix.equals(new Prefix(""))) {
+                    builder.append(String.format("\n[PREAMBLE] %s",
+                            arg));
+                } else {
+                    builder.append(String.format("\n%s%s %s",
+                            CliSyntax.DELIMITER,
+                            prefix.toString(),
+                            arg));
                 }
-                builder.append(String.format("\n%s%s %s",
-                        CliSyntax.DELIMITER,
-                        prefix.toString(),
-                        arg));
             }
         }
 
