@@ -2,10 +2,13 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_EFFORT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG,
+                    PREFIX_EFFORT, PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO);
 
         Index index;
 
@@ -54,7 +58,18 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .setEffort((ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get())));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
-
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            editTaskDescriptor
+                    .setDeadline((ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE).get())));
+        }
+        if (argMultimap.getValue(PREFIX_FROM).isPresent()) {
+            editTaskDescriptor
+                .setFrom((ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get())));
+        }
+        if (argMultimap.getValue(PREFIX_TO).isPresent()) {
+            editTaskDescriptor
+                .setTo((ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get())));
+        }
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

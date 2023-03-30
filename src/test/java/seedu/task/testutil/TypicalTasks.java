@@ -26,6 +26,7 @@ public class TypicalTasks {
             .withTags("friends")
             .withEffort(2)
             .build();
+
     public static final Task BENSON = new SimpleTaskBuilder().withName("Benson Meier")
             .withDescription("Benson's description")
             .withTags("owesMoney", "friends")

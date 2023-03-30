@@ -19,7 +19,16 @@ Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
 Class JsonTaskBookStorage
 Class JsonSerializableTaskBook
 Class JsonAdaptedTask
+Class JsonAdaptedSubtask
 Class JsonAdaptedTag
+}
+
+package "Planner Storage" #F4F6F6{
+Class "<<interface>>\nPlannerStorage" as PlannerStorage
+Class JsonPlannerStorage
+Class JsonSerializablePlanner
+Class JsonAdaptedDailyPlan
+Class JsonAdaptedTask
 }
 
 }
@@ -33,11 +42,23 @@ StorageManager -up-> "1" TaskBookStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> TaskBookStorage
+Storage -right-|> PlannerStorage
 
+
+UserPrefsStorage -[hidden]down|>StorageManager
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTaskBookStorage .up.|> TaskBookStorage
 JsonTaskBookStorage ..> JsonSerializableTaskBook
 JsonSerializableTaskBook --> "*" JsonAdaptedTask
 JsonAdaptedTask --> "*" JsonAdaptedTag
+JsonAdaptedTask --> "*" JsonAdaptedSubtask
+
+TaskBookStorage -[hidden]up|> PlannerStorage
+
+StorageManager -down-> "1" PlannerStorage
+JsonPlannerStorage .up.|> PlannerStorage
+JsonPlannerStorage ..> JsonSerializablePlanner
+JsonSerializablePlanner --> "*" JsonAdaptedDailyPlan
+JsonAdaptedDailyPlan --> "*" JsonAdaptedTask
 
 @enduml
