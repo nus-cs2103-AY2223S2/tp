@@ -169,7 +169,7 @@ Examples:
 
 Adds the ward (name and capacity).
 
-Format: `addward name/NAME [c/CAPACITY]`
+Format: `addward w/WARD [c/CAPACITY]`
 
 - The ward name is represented as an alphanumeric string. E.g `A01`.
 - The capacity is a positive integer. E.g `50`.
@@ -181,7 +181,7 @@ The default capacity is set to 10.
 
 Examples:
 
-- `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
+- `addward w/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
 ### Editing a ward's details in the system: `editward`
 
@@ -242,11 +242,6 @@ If your changes to the data file make its format invalid, MedInfo will not be ab
 to start entering patients into the system, the waiting room is made un-deletable.<br>
 <br>
 
-**Q**: I keep forgetting the commands, is there a quick way to get help?<br>
-
-**A**: Yes! Entering the `help` command will show a message explaining how to access the help page.<br>
-<br>
-
 **Q**: How do I transfer my data to another device/computer?<br>
 
 **A**: Install the app in the other device/ computer and overwrite the empty data file it creates with 
@@ -257,16 +252,16 @@ the file that contains the data of your previous MedInfo home folder.<br>
 
 ## Command summary
 
-| Action          | Format, Examples                                                                          |
-|-----------------|-------------------------------------------------------------------------------------------|
+| Action          | Format, Examples                                                                           |
+|-----------------|--------------------------------------------------------------------------------------------|
 | **Add**         | `add nric/NRIC name/NAME [s/STATUS]` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN` |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                       |
-| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                  |
-| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`        |
-| **Add Ward**    | `addward name/WARDNAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`             |
-| **Edit Ward**   | `editward INDEX [name/WARDNAME] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`          |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                              |
-| **List**        | `list`                                                                                    |
-| **Help**        | `help`                                                                                    |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                             |
-| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                              |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
+| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]`<br> e.g.,`edit 1 s/GREEN`                   |
+| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
+| **Add Ward**    | `addward w/WARD [c/CAPACITY]` <br> e.g., `addward w/S1234567A c/25`                        |
+| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
+| **List**        | `list`                                                                                     |
+| **Help**        | `help`                                                                                     |
+| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
+| **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
