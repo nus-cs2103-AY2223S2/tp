@@ -182,6 +182,7 @@ will reside in.
 
 ![ui.png](images%2Fui.png)
 
+
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero
 is launched for the first time in your computer!
@@ -513,19 +514,10 @@ What you should expect to find:
 
 **Assumption:**
 
-HMHero does not already contain an applicant with the name "Thomas".
+HMHero does not already contain an applicant with the name "Adam" and phone number 91918153.
 
-**Command Input Box:**
+![add_command.png](images%2Fadd_command.png)
 
-```
-add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230
-```
-
-**Command Output Box:**
-```
-New person added: Thomas; Phone: 91918153; Email: thomas@gmail.com; 
-Address: 6 Sims Drive (s)543230; Status: APPLIED
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -553,41 +545,21 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li> The <code>find</code> command only finds <code>Applicants</code> which has a name, phone or both 
+    <li> The <code>find</code> command only finds applicants which has a name, phone or both 
 that fully matches the specified search of the full name, phone or both!</li>
     <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
 executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
     <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
 executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
-    <li> If you try to find <code>Applicants</code> using both <code>NAME</code> and <code>PHONE</code>,
+    <li> If you try to find applicants using both <code>NAME</code> and <code>PHONE</code>,
 it will work the same as finding individually! 
 </li>
 </ul> </div>
 
 **Example:**
 
-**Assumption:**
+![find_command.png](images%2Ffind_command.png)
 
-HMHero contains the following applicants:
-
-1. Thomas Tan, 91918153
-2. Thomas, 98765432
-3. Marry, 98765432
-4. Thoma, 98231234
-
-**Command Input Box:**
-
-```
-find n/Thomas p/98765432
-```
-
-**Command Output Box:**
-
-```
-1 persons listed
-
-1. Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -606,35 +578,8 @@ find n/Thomas p/98765432
 
 **Example:**
 
-**Assumption:**
+![list_command.png](images%2Flist_command.png)
 
-HMHero contains the following applicants, each with their own attributes:
-
-1. Thomas Tan, 91918153
-2. Thomas, 98765432
-3. Marry, 98765432
-4. Thoma, 98231234
-
-**Command Input Box:**
-
-```
-list
-```
-
-**Command Output Box:**
-```
-Listed all applicants
-Total Applicants: 4
-- Applied: 1
-- Shortlisted: 1
-- Accepted: 1
-- Rejected: 1
-
-1. Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
-2. Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
-3. Thomas Tan, ACCEPTED, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231
-4. Thoma, SHORTLISTED, 98231234, thoma@gmail.com, 7 Sims Drive (s)543521
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -660,27 +605,14 @@ that fully matches the specified search.</li>
 
 **Example:**
 
-**Assumption:**
+Applicant list before deleting the applicant Bernice Yu with phone number 99272758:
 
-HMHero contains the following applicants, each with their own attributes:
+![delete_command_before.png](images%2Fdelete_command_before.png)
 
-1. Thomas Tan, 91918153
-2. Thomas, 91918153
-3. John, 98765432
-4. Amy, 98231234
+After:
 
-**Command Input Box:**
+![delete_command_after.png](images%2Fdelete_command_after.png)
 
-```
-delete n/Thomas p/91918153
-```
-
-**Command Output Box:**
-
-```
-Deleted Person: Thomas; Phone: 91918153; Email: thomas@gmail.com; 
-Address: 6 Sims Drive (s)543230; Status: REJECTED`
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -692,11 +624,6 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
 > Advances an applicant in HMHero using name, phone and interview datetime
-
-**Info**
-* All fields except [INTERVIEW DATETIME] are compulsory.
-* [INTERVIEW DATETIME] is compulsory when the initial `status` is `APPLIED`.
-
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
@@ -724,29 +651,15 @@ hour.</li>
 
 **Example:**
 
-**Assumption:**
+Advancing an applicant with the status `APPLIED` requires an interview date and time.
 
-HMHero contains the following applicants, each with their own attributes:
+![advance_command_applied.png](images%2Fadvance_command_applied.png)
 
-1. Thomas Tan, 91918153, SHORTLISTED
-2. Thomas, 91818153, APPLIED
 
-**Command Input Box:**
+Advancing an applicant with the status `SHORLISTED` does not require an interview date and time.
 
-1. `advance n/Thomas p/91918153 d/20-03-2023 12:12`, followed by
+![advance_command_shortlisted.png](images%2Fadvance_command_shortlisted.png)
 
-2. `advance n/Thomas Tan p/91818153`
-
-**Command Output Box:**
-```
-1. Advanced Applicant: Thomas
-
-Thomas, SHORTLISTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
-
-2. Advanced Applicant: Thomas Tan
-
-Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -775,26 +688,11 @@ fully matches the specified search.</li>
 
 **Example:**
 
-**Assumption:**
+![reject_command.png](images%2Freject_command.png)
 
-HMHero contains the following applicants, each with their own attributes:
-
-1. Thomas Tan, 91918153, SHORTLISTED 
-2. Thomas, 91818153, APPLIED
-
-**Command Input Box:**
-
-```
-reject n/Thomas p/91918153
-```
-
-**Command Output Box:**
-
-```
-Rejected Applicant: Thomas
-
-1. Thomas, REJECTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
-```
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+Applicants with the status <code>REJECTED</code> cannot be rejected!
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -813,28 +711,7 @@ Rejected Applicant: Thomas
 
 **Example:**
 
-**Assumption:**
-
-HMHero contains the following applicants, each with their own attributes:
-
-1. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, 
-2. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432 
-3. Amy, SHORTLISTED 21-03-2023 12:12, 98765432
-
-**Command Input Box:**
-
-```
-interview
-```
-
-**Command Output Box:**
-```
-Listed all shortlisted applicants
-
-1. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
-2. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231
-3. Amy, SHORTLISTED 21-03-2023 12:12, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
-```
+![interview_command.png](images%2Finterview_command.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -872,28 +749,12 @@ For example, "15" would represent 15th hour of the day. </li>
 
 **Example:**
 
-**Assumption:**
+Applicant list before editing:
+![edit_command_before.png](images%2Fedit_command_before.png)
 
-* The currently displayed `list` in HMHero shows the applicant named "Thomas Tan" at INDEX value 1.
-* Initially, the "Thomas Tan" applicant has the following values:
-  * Phone: 91918153
-  * Email: thomastan@gmail.com
-  * Address: 7 Sims Drive (s)543212
-  * Interview DateTime: 24-06-2023 15:15
-  * Note: C
+After editing Bernice Yu's phone and notes:
+![edit_command_after.png](images%2Fedit_command_after.png)
 
-
-**Command Input Box:**
-
-```
-edit 1 p/97833468 n/Amy note/Python note/Java
-```
-
-**Command Output Box:**
-```
-Edited Person: Amy; Phone: 97833468; Email: thomastan@gmail.com;
-Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
-```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -901,7 +762,14 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 
 
 #### 6.1.9. Remind upcoming interviews `remind`
-- Will update soon
+
+**Format:** `remind`
+
+> Lists all applicants with interviews within the next three days.
+
+**Example:**
+
+![remind_command.png](images%2Fremind_command.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -909,7 +777,16 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 
 ### 6.2. Statistics Commands
 
-- Will update soon
+#### 6.4.1. Summary Statistics `summary`
+
+**Format:** `summary`
+
+> Shows a statistical summary of the company's hiring processes.
+
+**Example:**
+
+![summary_command.png](images%2Fsummary_command.png)
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -922,6 +799,10 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 **Format**: `help`
 
 > Displays help window for HMHero which contains link to User Guide.
+
+**Example:**
+
+![help_command.png](images%2Fhelp_command.png)
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -967,17 +848,18 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.1. Applicant Commands
 
-| Action                                 | Format                                                                                                                                                                           | Example                                                                     |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                               | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [KEY]` <br> (Minimally one `KEY` must be provided) <br> <br> **Note:** You can provide multiple key to find an applicant using `NAME` . For example, `find n/Thomas Marry` | `find n/Thomas p/98764321`                                                  |
-| List all applicants                    | `list`                                                                                                                                                                           | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                                          | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED`             | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                                          | `reject n/Thomas p/98765432`                                                |
-| View the interview dates of applicants | `interview`                                                                                                                                                                      | `interview`                                                                 |
-| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date   | TO BE UPDATED                                                                                                                                                                    | To be updated                                                               |
+| Action                                 | Format                                                                                                                                                               | Example                                                                     |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Thomas p/98764321`                                                  |
+| List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Thomas p/98765432`                                                |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Thomas p/98765432`                                                |
+| View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
+| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
+| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -985,9 +867,9 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.2. Statistics Commands
 
-| Action                                  | Format   | Example |
-|-----------------------------------------|----------|---------|
-| Displays statistics collected by HMHero | `stats`  | `stats` | 
+| Action                                  | Format    | Example   |
+|-----------------------------------------|-----------|-----------|
+| Displays statistics collected by HMHero | `summary` | `summary` | 
 
 [Back to Table of Contents](#table-of-contents)
 

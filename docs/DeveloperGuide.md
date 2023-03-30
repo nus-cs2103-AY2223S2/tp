@@ -487,15 +487,13 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 
 ### User stories
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The following legend describes the symbols used in this section:
+**Note:** The following legend describes the symbols used in this section:
 
 | Priority | Symbol  | Meaning          | 
 |----------|---------|------------------|
 | High     | `* * *` | Must have        | 
 | Medium   | `* *`   | Nice to have     | 
 | Low      | `*`     | Unlikely to have | 
-</div>
 
 
 | Priority | As a …                                | I want to …                                                       | So that …                                                                            |
@@ -786,8 +784,7 @@ Precondition: There are applicants added into HMHero.
 9.  The product is not required to handle the screening of resume for each applicant.
 
 ### Glossary
-
-### Quick Reference
+#### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
 - [Admonitions](#admonitions)
@@ -930,7 +927,7 @@ Precondition: There are applicants added into HMHero.
 
 Given below are instructions to test the app manually.
 
-<div> markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
