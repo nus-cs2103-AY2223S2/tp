@@ -65,6 +65,7 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        model.updateObservablePersonList();
 
         logic = new LogicManager(model, storage);
 
