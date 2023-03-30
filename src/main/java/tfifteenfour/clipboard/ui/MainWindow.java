@@ -293,11 +293,13 @@ public class MainWindow extends UiPart<Stage> {
         rightPanelPlaceholder.getChildren().clear();
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
-                        .filtered(student -> student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
+                        .filtered(student -> student.isSameStudent(logic.getModel()
+                        .getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()
-                .add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList, 0).getRoot());
+                .add(new StudentViewCardWithAttendance(viewedStudent.get(0),
+                sessionList, 0).getRoot());
     }
 
     /**
@@ -314,8 +316,7 @@ public class MainWindow extends UiPart<Stage> {
         Command prevCommand = command.getPrevModel().getCommandExecuted();
 
         if (prevCommand instanceof SelectCommand) {
-                System.out.println("doing back");
-                handleBackCommand();
+            handleBackCommand();
         } else {
             // handleSelectCommand acts like refreshing whatever page you're on
             // undo needs to refresh the page after restoring previous state
@@ -441,7 +442,8 @@ public class MainWindow extends UiPart<Stage> {
             refreshNavigationBar();
             break;
         case STUDENT_PAGE:
-            if (logic.getModel().getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+            if (logic.getModel().getCurrentSelection().getSelectedStudent()
+                    .equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
                 showStudentPane(logic.getModel().getCurrentSelection().getSelectedGroup());
                 showStudentTab();
                 refreshViewPane();
@@ -539,7 +541,8 @@ public class MainWindow extends UiPart<Stage> {
         rightPanelPlaceholder.getChildren().clear();
         ObservableList<Student> viewedStudent =
                 logic.getModel().getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
-                        .filtered(student -> student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
+                        .filtered(student ->
+                        student.isSameStudent(logic.getModel().getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
         rightPanelPlaceholder.getChildren()

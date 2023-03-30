@@ -177,6 +177,10 @@ public class CurrentSelection {
         selectedStudent = emptyStudentBuilder();
     }
 
+    /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
     public CurrentSelection copy() {
         CurrentSelection copy = new CurrentSelection();
 

@@ -33,6 +33,10 @@ public class Course {
         this.courseCode = courseCode;
     }
 
+    /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
     public Course copy() {
         Course copy = new Course(this.courseCode);
         UniqueGroupsList groupsCopy = new UniqueGroupsList();

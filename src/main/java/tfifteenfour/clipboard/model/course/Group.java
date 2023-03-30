@@ -35,6 +35,18 @@ public class Group {
         tasks = new UniqueTasksList();
     }
 
+    /**
+     * Constructs a group with the given group name.
+     * @param groupName A valid group name.
+     */
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
+
+    /**
+     * Creates a copy of this instance. Used for saving states by undo command.
+     * @return a copy of this instance.
+     */
     public Group copy() {
         Group copy = new Group(this.groupName);
         UniqueStudentList studentsCopy = new UniqueStudentList();
@@ -62,14 +74,6 @@ public class Group {
 
     public void setTasks(UniqueTasksList tasks) {
         this.tasks.setInternalList(tasks.asUnmodifiableObservableList());;
-    }
-
-    /**
-     * Constructs a group with the given group name.
-     * @param groupName A valid group name.
-     */
-    public Group(String groupName) {
-        this.groupName = groupName;
     }
 
     /**

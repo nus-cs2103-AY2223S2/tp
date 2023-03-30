@@ -39,7 +39,6 @@ public class AddTaskCommand extends AddCommand {
      * Executes the AddTaskCommand to add a task to the selected group.
      *
      * @param model The model of the application.
-     * @param currentSelection The current selection of the user.
      * @return The result of the command execution.
      * @throws CommandException If the task already exists in the group or if the user is not on the task page.
      */

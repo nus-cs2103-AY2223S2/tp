@@ -44,6 +44,10 @@ public class Task {
         isSelected = false;
     }
 
+    /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
     public Task copy() {
         Task copy = new Task(this.taskName);
         copy.setGrades(new HashMap<>(gradeList));
