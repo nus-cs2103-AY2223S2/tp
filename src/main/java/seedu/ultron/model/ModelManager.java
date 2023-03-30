@@ -159,6 +159,10 @@ public class ModelManager implements Model {
         return filteredOpenings.get(selectedIndex.getZeroBased());
     }
 
+    public boolean hasSelectedIndex() {
+        return selectedIndex != null;
+    }
+
     @Override
     public Index getSelectedIndex() {
         return selectedIndex;

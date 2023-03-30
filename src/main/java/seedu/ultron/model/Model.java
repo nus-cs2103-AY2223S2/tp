@@ -109,4 +109,5 @@ public interface Model {
      */
     void setSelectedIndex(Index index);
 
+    boolean hasSelectedIndex();
 }

@@ -2,7 +2,10 @@ package seedu.ultron.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -133,5 +136,19 @@ public class ParserUtil {
             keydateSet.add(parseKeydate(keydate));
         }
         return keydateSet;
+    }
+
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+        String trimmedDays = days.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(days);
+    }
+
+    public static LocalDate getTime(String str) {
+        LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return date;
     }
 }
