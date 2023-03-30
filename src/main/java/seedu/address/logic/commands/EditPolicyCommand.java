@@ -91,8 +91,8 @@ public class EditPolicyCommand extends Command {
         if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
-        clientPolicyList.setPolicy(policyToEdit, editedPolicy);
 
+        clientPolicyList.setPolicy(policyToEdit, editedPolicy);
         model.setClient(clientToEditPolicy, editedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(generateSuccessMessage(clientToEditPolicy, editedPolicy));
