@@ -14,6 +14,8 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.prescription.Prescription;
 
+import java.util.ArrayList;
+
 //code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
 /**
  * Panel containing the detailed info of person.
@@ -22,6 +24,8 @@ public class PersonViewPanel extends UiPart<Region> {
     private static final String FXML = "PersonViewPanel.fxml";
 
     private final Person person;
+
+    private Patient patient;
 
     @FXML
     private Label name;
@@ -41,10 +45,10 @@ public class PersonViewPanel extends UiPart<Region> {
     private ListView<Appointment> appointments;
 
     @FXML
-    private Label medication;
+    private VBox prescriptionBox;
 
     @FXML
-    private VBox prescriptionBox;
+    private Label medication;
 
     @FXML
     private Label date;
@@ -104,16 +108,30 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private void setMedicationDetails() {
         if (person.isPatient()) {
-            Patient patient = (Patient) person;
+            Patient pt = (Patient) person;
+            this.patient = pt;
             prescriptionBox.setVisible(true);
             //medication.setText(patient.getMedication().toString());
-            StringBuilder prescriptionText = new StringBuilder("Prescription:\n");
+            StringBuilder prescriptionText = new StringBuilder("");
 
             int i = 1;
             for (Prescription prescription: patient.getPrescriptions()) {
-                prescriptionText.append(String.format("%d. %s\n", i++, prescription.toString()));
+                prescriptionText.append(String.format("%d.  %s\n", i++, prescription.toString()));
             }
             medication.setText(prescriptionText.toString());
+
+            /*
+            ArrayList<Prescription> p = new ArrayList<>();
+            for (Prescription prescription: patient.getPrescriptions()) {
+                p.add(prescription);
+            }
+            ObservableList<Prescription> prescriptionObservableList =
+                    new ObservableListWrapper<>(p);
+            prescriptions.setItems(prescriptionObservableList);
+            prescriptions.setCellFactory(item -> new PrescriptionListViewCell());
+
+             */
+
         }
         if (person.isDoctor()) {
             prescriptionBox.setVisible(false);
@@ -129,6 +147,19 @@ public class PersonViewPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new AppointmentCard(person, appointment, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    class PrescriptionListViewCell extends ListCell<Prescription> {
+        @Override
+        protected void updateItem(Prescription prescription, boolean empty) {
+            super.updateItem(prescription, empty);
+            if (empty || prescription == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new PrescriptionCard(patient, prescription).getRoot());
             }
         }
     }

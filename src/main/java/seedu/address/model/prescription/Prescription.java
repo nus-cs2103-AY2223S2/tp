@@ -23,7 +23,7 @@ public class Prescription {
     }
     @Override
     public String toString() {
-        return String.format("%s[$%s]", medication.toString(), cost.toString());
+        return String.format("%s  [$%s]", medication.toString(), cost.toString());
     }
 
     @Override
