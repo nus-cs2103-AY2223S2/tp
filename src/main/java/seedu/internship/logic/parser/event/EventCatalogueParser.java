@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.event.EventAddCommand;
+import seedu.internship.logic.commands.event.EventFindCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,6 +38,8 @@ public class EventCatalogueParser {
         switch (commandWord) {
         case EventAddCommand.COMMAND_WORD:
             return new EventAddCommandParser().parse(arguments);
+        case EventFindCommand.COMMAND_WORD:
+            return new EventFindCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
