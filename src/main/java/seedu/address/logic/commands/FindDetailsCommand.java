@@ -13,7 +13,7 @@ import seedu.address.model.patient.DetailsContainKeywordsPredicate;
 public class FindDetailsCommand extends Command {
 
     public static final String COMMAND_WORD = "find_details";
-
+    public static final String COMMAND_ALIAS = "fd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose details contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
         + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
