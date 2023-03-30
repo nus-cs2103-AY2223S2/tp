@@ -248,7 +248,7 @@ Table 1. Symbols and formats used in this User Guide.
 ## 4.1 General Operations
 ### View help : `g help`
 * Shows all valid command formats and their functionalities.
-  <p align="center">
+  <p align="left">
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
   <br>
