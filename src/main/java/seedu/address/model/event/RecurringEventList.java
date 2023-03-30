@@ -8,6 +8,7 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -150,6 +151,40 @@ public class RecurringEventList {
             }
 
         }
+    }
+
+    /**
+     * Checks if the newly edited recurring event clashes with any preexisting recurring events
+     * @param person that the recurring event below
+     * @param newlyEditedRecurringEvent the new event to replace the original event
+     * @param original recurring event to be replaced
+     * @throws EventConflictException
+     */
+    public static void checkForClashesInRecurringEvent(Person person, RecurringEvent newlyEditedRecurringEvent,
+                                                       RecurringEvent original) throws EventConflictException {
+        RecurringEventList recurringEventList = person.getRecurringEventList();
+
+        for (int i = 0; i < recurringEventList.getSize(); i++) {
+
+            RecurringEvent curRecurringEvent = recurringEventList.getRecurringEvent(i);
+
+            if (curRecurringEvent.equals(original)) {
+                continue;
+            }
+
+            boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getStartTime())
+                    && !curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getStartTime());
+
+            boolean isEventBack = curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getEndTime())
+                    && !curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getEndTime());
+
+
+            if (!isEventInFront && !isEventBack) {
+                throw new EventConflictException(curRecurringEvent.toString());
+            }
+
+        }
+
     }
 
     public void addAll(Set<RecurringEvent> recurringEvents) {
