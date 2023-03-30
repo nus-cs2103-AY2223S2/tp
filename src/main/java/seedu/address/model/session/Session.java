@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-//import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.AddressBook;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
@@ -201,12 +200,15 @@ public class Session implements Comparable<Session> {
         return endDateTime;
     }
 
+    public SessionName getSessionName() {
+        return name;
+    }
     public String getName() {
         return name.toString();
     }
 
-    public String getLocation() {
-        return location.toString();
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -262,7 +264,7 @@ public class Session implements Comparable<Session> {
                         .ofPattern("dd-MM-yyyy HH:mm"))
                 .isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter
                         .ofPattern("dd-MM-yyyy HH:mm")))
-                && Name.isValidName(getName()) && Location.isValidLocation(getLocation());
+                && Name.isValidName(getName()) && Location.isValidLocation(getLocation().toString());
     }
 
     /**

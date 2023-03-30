@@ -52,7 +52,7 @@ public class JsonAdaptedSession {
         name = source.getName();
         startDateTime = source.getStartDateTime();
         endDateTime = source.getEndDateTime();
-        location = source.getLocation();
+        location = source.getLocation().toString();
         id = source.getId();
         attendanceMap.addAll(source.getMap().stream()
                 .map(JsonAdaptedNameBooleanPair::new)

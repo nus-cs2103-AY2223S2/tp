@@ -36,7 +36,7 @@ public class CalendarEvent implements Comparable<CalendarEvent> {
     }
 
     public String getAddress() {
-        return session.getLocation();
+        return session.getLocation().toString();
     }
 
     public String getDate() {

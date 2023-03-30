@@ -135,7 +135,7 @@ public class SessionListPanel extends UiPart<Region> {
         selectedName.setText(selectedSession.getName());
         selectedName.setPadding(new Insets(0, -10, 0, -10));
         selectedDate.setText(selectedSession.getStartDateTime());
-        selectedLocation.setText(selectedSession.getLocation());
+        selectedLocation.setText(selectedSession.getLocation().toString());
 
         attendanceChart.setData(SessionPieChart.generateAttendancePieChart(selectedSession.getAttendanceMap()));
         attendanceChart.setLabelsVisible(false);

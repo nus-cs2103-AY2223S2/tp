@@ -49,7 +49,7 @@ public class SessionCard extends UiPart<Region> {
         this.session = session;
         id.setText(displayedIndex + ". ");
         name.setText(session.getName());
-        locationField.setText(session.getLocation());
+        locationField.setText(session.getLocation().toString());
         startDate.setText(session.getStartDateTime());
         endDate.setText(session.getEndDateTime());
         session.getMap().stream()
