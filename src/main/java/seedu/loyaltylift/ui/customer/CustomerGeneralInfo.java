@@ -21,6 +21,8 @@ public class CustomerGeneralInfo extends UiPart<VBox> {
     private Label email;
     @FXML
     private Label points;
+    @FXML
+    private Label tier;
 
     /**
      * Creates a {@code CustomerGeneralInfo} with the given {@code Customer}.
@@ -38,5 +40,7 @@ public class CustomerGeneralInfo extends UiPart<VBox> {
                 + customer.getPoints().cumulative.toString()
                 + " cumulative points";
         points.setText(pointsString);
+        tier.setText("Tier: "
+                + customer.getPoints().getLoyaltyTier().toString());
     }
 }

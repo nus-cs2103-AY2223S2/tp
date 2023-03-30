@@ -49,5 +49,15 @@
             <Label fx:id="points" text="\$points" />
          </children>
       </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="4.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/tier.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="tier" text="\$tier" />
+         </children>
+      </HBox>
    </children>
 </VBox>
