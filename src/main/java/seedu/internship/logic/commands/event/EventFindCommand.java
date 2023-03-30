@@ -21,10 +21,10 @@ public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
-            + "Parameters: [" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_COMPANY + "COMPANY] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + "c/ Grab" ;
+            + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
+            + "[" + PREFIX_EVENT_START + "START] "
+            + "[" + PREFIX_EVENT_END + "END] "
+            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500" ;
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
 

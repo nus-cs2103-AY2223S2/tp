@@ -28,7 +28,7 @@ public class EventFindCommandParser implements Parser<EventFindCommand> {
         if (argMultimap.getValue(PREFIX_EVENT_START).isPresent()) {
             filterEventDescriptor.setStart(EventParserUtil.parseEventStart(argMultimap.getValue(PREFIX_EVENT_START).get()));
         }
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+        if (argMultimap.getValue(PREFIX_EVENT_END).isPresent()) {
             filterEventDescriptor.setEnd(EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_END).get()));
         }
         if (!filterEventDescriptor.isAnyFieldEdited()) {
