@@ -54,22 +54,16 @@ public class ImportDeliveryJobCommandParser {
                 String ded = arrOfStr[2];
                 String des = arrOfStr[3];
                 String ear = arrOfStr[4];
+                String description = arrOfStr[5];
 
-                if (arrOfStr.length > 5) {
+                if (arrOfStr.length > 6) {
                     recipient = recipientOrSender(sid, arrOfStr, 5);
-                    System.out.println(recipient);
                 }
-                if (arrOfStr.length > 11) {
+                if (arrOfStr.length > 12) {
                     sender = recipientOrSender(sid, arrOfStr, 11);
-                    System.out.println(sender);
                 }
 
-                DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
-                listOfAddDeliveryJob.add(job);
-                System.out.println(listOfAddDeliveryJob);
-
-                DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
-
+                DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, description);
                 listOfAddDeliveryJob.add(job);
             }
             sc.close();

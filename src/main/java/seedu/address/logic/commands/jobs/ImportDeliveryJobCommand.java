@@ -37,7 +37,6 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException, FileNotFoundException {
         requireNonNull(model);
-
         Person recipient = new Person();
         Person sender = new Person();
 

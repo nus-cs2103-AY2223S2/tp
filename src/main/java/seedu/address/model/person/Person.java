@@ -46,7 +46,7 @@ public class Person {
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         this(genPersonId(name, phone), name, phone, email, address, tags);
     }
-    
+
     /**
      * Empty initialisation for ImportDeliveryJobCommand.
      */
