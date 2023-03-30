@@ -378,3 +378,10 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.list_label {
+    -fx-font-size: 32;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-max-width: 1000px;
+}
