@@ -61,7 +61,7 @@ public class SampleDataUtil {
         p3.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
         p3.setSocialMedia(new SocialMedia(Instagram.of("charlotte.oliveriro"), Telegram.of("charlotteoliveriro"),
             WhatsApp.of("93210283")));
-        p3.setBirthday(new Birthday("07/07/1993"));
+        p3.setBirthday(new Birthday("10/01/2000"));
         p3.setRemarks(getRemarkSet("neighbours"));
         p3.setModules(getModuleSet("CS2105", "ES2660"));
         p3.setCcas(getCcaSet("NUS Chess Club", "NUS Computing Club"));

@@ -78,7 +78,8 @@ public class ConnectUsParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " "
+                + ListCommand.COMMAND_WORD) instanceof HelpCommand);
     }
 
     @Test
@@ -89,8 +90,8 @@ public class ConnectUsParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

@@ -68,7 +68,7 @@ public class ConnectUsParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case AddTagToPersonCommand.COMMAND_WORD:
             return new AddTagToPersonCommandParser().parse(arguments);

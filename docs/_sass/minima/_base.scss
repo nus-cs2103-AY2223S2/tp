@@ -66,6 +66,8 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 
@@ -103,9 +105,8 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $base-font-weight;
+  font-weight: $bold-font-weight;
 }
-
 
 
 /**
@@ -288,7 +289,7 @@ table {
     text-align: center;
   }
   .site-header:before {
-    content: "AB-3";
+    content: "ConnectUS";
     font-size: 32px;
   }
 }
