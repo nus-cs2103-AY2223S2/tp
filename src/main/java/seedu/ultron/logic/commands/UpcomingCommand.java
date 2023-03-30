@@ -15,6 +15,8 @@ public class UpcomingCommand extends Command {
             + "Parameters: DAYS (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    private static final String MESSAGE_SUCCESS = "%1$d openings are upcoming!";
+
     private final OpeningsBeforeDaysPredicate predicate;
 
 
@@ -28,7 +30,7 @@ public class UpcomingCommand extends Command {
         model.updateFilteredOpeningList(predicate);
         model.sortFilteredOpeningList(new KeydateSort("asc"));
         return new CommandResult(
-                String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredOpeningList().size()));
     }
 
     @Override
