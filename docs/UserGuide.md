@@ -25,8 +25,7 @@ Let's get you _rizzed_ up in the fastest way possible!
 some sample recipes for you already.
 ![UI QuickStart](images/UiQuickStart.png)
 6. Navigate through the main window easily using just your keyboard! Toggle between recipes simply by using `up` and `down` arrow keys!
-7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
-commands, refer to the [Features](#features) Section.
+7. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) Section.
 8. Some of the previously mentioned executable commands may have keyboard shortcuts to make your life easier! Refer to each command within
 the [Features](#features) Section, or take a look at the [Keyboard Shortcuts summary](#keyboard-shortcuts-summary) to learn more about how to use them!
 
@@ -283,9 +282,9 @@ file to be imported using the selector.
 
 ![ImportDataWindow](images/ImportWindow.jpg)
 
-* Only files with correct and non-duplicate recipes will be imported
+* Only files with recipes that pass our formatting checks, and files with no duplicate recipes will be imported
 * Any imported recipes will be added to your current recipe book!
-* Alternatively, you can access the import function from the `File` option in the top left corner of the main window.
+* Alternatively, you can access the import function from the `File` tab in the top left corner of the main window.
 
 ![ImportExportFromTopLeftOfWindow](images/ImportExportDisplay.jpg)
 
@@ -295,7 +294,7 @@ file to be imported using the selector.
 The keyboard input `F4` will open an export window from the main window (as shown in the image below). From there, input the file name of the
 JSON file to be exported and select the desired location for it to be saved!
 
-* Alternatively, like the import function, you can access the export function from the `File` option in the top left corner of the main window.
+* Alternatively, like the import function, you can access the export function from the `File` tab in the top left corner of the main window.
 
 ![ExportDataWindow](images/ExportWindow.jpg)
 ---
@@ -323,4 +322,12 @@ JSON file to be exported and select the desired location for it to be saved!
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Keyboard Shortcuts summary
-
+| Shortcut                                            | Functionality                                      |
+|-----------------------------------------------------|----------------------------------------------------|
+| **`up` and `down` arrow keys in Main Window**       | Navigate through different recipes                 |
+| **`backslash \` while inputting a long command**    | Provide line break for increased readability       |
+| **`p` while a recipe is selected**                  | Open recipe details of selected recipe             |
+| **`f` while a recipe is selected**                  | Open edit recipe form to edit the selected recipe  |
+| **`delete`/`backspace` while a recipe is selected** | Delete the selected recipe (requires confirmation) |
+| **`F3` while in Main Window**                       | Import a recipe book                               |
+| **`F4` while in Main Window**                       | Export the current recipe book                     |
