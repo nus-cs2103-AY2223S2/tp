@@ -10,8 +10,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
+import seedu.address.model.mapping.TechnicianDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -306,6 +308,10 @@ public interface Model {
 
     ServiceDataMap getServiceDataMap();
 
+    AppointmentDataMap getAppointmentDataMap();
+
+    TechnicianDataMap getTechnicianDataMap();
+
     /**
      * Sets currently selected customer
      */
@@ -334,7 +340,27 @@ public interface Model {
     /**
      * Returns currently selected service
      */
+    Appointment getSelectedAppointment();
+
+    /**
+     * Sets currently selected appointment
+     */
+    void selectAppointment(Appointment appointment);
+
+    /**
+     * Returns currently selected service
+     */
     Service getSelectedService();
+
+    /**
+     * Returns currently selected technician
+     */
+    Technician getSelectedTechnician();
+
+    /**
+     * Sets currently selected technician
+     */
+    void selectTechnician(Technician technician);
 
     void setService(Service target, Service editedService);
 

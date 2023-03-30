@@ -42,7 +42,7 @@ public class FindCommand extends RedoableCommand {
         return new CommandResult(
             String.format(MESSAGE_SUCCESS, model.getFilteredCustomerList().size(),
                 model.getFilteredVehicleList().size(), model.getFilteredServiceList().size(),
-                model.getFilteredAppointmentList().size(), model.getFilteredTechnicianList().size()));
+                model.getFilteredAppointmentList().size(), model.getFilteredTechnicianList().size()), Tab.ALL);
     }
 
     @Override

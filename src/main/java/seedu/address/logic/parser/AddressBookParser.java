@@ -33,8 +33,10 @@ import seedu.address.logic.commands.EditVehicleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListPartsCommand;
 import seedu.address.logic.commands.ListServicesCommand;
 import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -50,7 +52,6 @@ import seedu.address.logic.commands.TotalAppointmentCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
-import seedu.address.logic.commands.ViewPartCommand;
 import seedu.address.logic.commands.ViewServiceCommand;
 import seedu.address.logic.commands.ViewTechnicianCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
@@ -156,10 +157,13 @@ public class AddressBookParser {
         case ListServicesCommand.COMMAND_WORD:
             return new ListServicesCommand();
 
-        // View
+        case ListAppointmentsCommand.COMMAND_WORD:
+            return new ListAppointmentsCommand();
 
-        case ViewPartCommand.COMMAND_WORD:
-            return new ViewPartCommand(arguments.trim());
+        case ListPartsCommand.COMMAND_WORD:
+            return new ListPartsCommand();
+
+        // View
 
         case ViewVehicleCommand.COMMAND_WORD:
             return new ViewVehicleCommandParser().parse(arguments.trim());

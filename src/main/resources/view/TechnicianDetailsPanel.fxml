@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="customerDetailsPane" fx:id="customerDetailsPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="technicianDetailsPanel" fx:id="technicianDetailsPanel" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
     <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <VBox fx:id="parentContainer" alignment="CENTER_LEFT" styleClass="details-box" GridPane.columnIndex="0" HBox.hgrow="ALWAYS">
         <padding>
           <Insets bottom="5" left="15" right="15" top="5" />
         </padding>
-        <Label fx:id="title" style="-fx-text-fill: #62DDEB;" styleClass="details-heading" text="Customer Details">
+        <Label fx:id="title" style="-fx-text-fill: #62DDEB;" styleClass="details-heading" text="Technician Details">
           <minHeight>
             <Region fx:constant="USE_PREF_SIZE" />
           </minHeight>
         </Label>
-        <Label id="detailsPaneName" fx:id="id" maxWidth="Infinity" styleClass="details-id" text="Customer ID: " wrapText="true">
+        <Label id="detailsPaneName" fx:id="id" maxWidth="Infinity" styleClass="details-id" text="Technician ID: " wrapText="true">
           <minHeight>
             <Region fx:constant="USE_PREF_SIZE" />
           </minHeight>
@@ -88,34 +88,30 @@
             <Insets bottom="8.0" />
           </VBox.margin>
         </FlowPane>
-        <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-          <children>
-            <VBox fx:id="customerVehicles" HBox.hgrow="SOMETIMES">
-              <children>
-                <Label fx:id="vehiclesLabel" styleClass="cell_title_label" text="Vehicles" underline="true">
-                  <minHeight>
-                    <Region fx:constant="USE_PREF_SIZE" />
-                  </minHeight>
-                </Label>
-              </children>
-              <HBox.margin>
-                <Insets right="10.0" />
-              </HBox.margin>
-            </VBox>
-            <VBox fx:id="customerAppointments" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-              <children>
-                <Label fx:id="appointmentsLabel" styleClass="cell_title_label" text="Appointments" underline="true" VBox.vgrow="SOMETIMES">
-                  <minHeight>
-                    <Region fx:constant="USE_PREF_SIZE" />
-                  </minHeight>
-                </Label>
-              </children>
-            </VBox>
-          </children>
+      <VBox fx:id="technicianServices">
+        <children>
+          <Label fx:id="servicesLabel" styleClass="cell_title_label" text="Services" underline="true">
+            <minHeight>
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minHeight>
+          </Label>
+        </children>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
-        </HBox>
+      </VBox>
+      <VBox fx:id="technicianAppointments" prefHeight="200.0" prefWidth="100.0">
+        <children>
+          <Label fx:id="appointmentsLabel" styleClass="cell_title_label" text="Appointments" underline="true" VBox.vgrow="SOMETIMES">
+            <minHeight>
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minHeight>
+          </Label>
+        </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+      </VBox>
       </VBox>
     </ScrollPane>
   </AnchorPane>

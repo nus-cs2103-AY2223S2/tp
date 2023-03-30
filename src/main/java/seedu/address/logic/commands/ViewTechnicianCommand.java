@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.entity.person.Technician;
 
 /**
  * Finds and returns the customer details of the provided id.
@@ -32,8 +33,10 @@ public class ViewTechnicianCommand extends Command {
             throw new CommandException(String.format(MESSAGE_TECHNICIAN_NOT_FOUND, this.technicianId));
         }
         model.updateFilteredTechnicianList(t -> t.getId() == this.technicianId);
+        Technician current = model.getFilteredTechnicianList().get(0);
+        model.selectTechnician(current);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, this.technicianId)); // TODO Tab.TECHNICIAN
+                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, this.technicianId, Tab.TECHNICIANS));
     }
 
     @Override

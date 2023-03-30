@@ -135,8 +135,15 @@ public class Shop implements ReadOnlyShop {
      *
      * @param appointment Appointment to be added
      */
-    public void addAppointment(Appointment appointment) {
-        this.appointments.add(appointment);
+    public void addAppointment(Appointment appointment) throws PersonNotFoundException {
+        for (var customer : customers) {
+            if (customer.getId() == appointment.getCustomerId()) {
+                customer.addAppointment(appointment);
+                this.appointments.add(appointment);
+                return;
+            }
+        }
+        throw new PersonNotFoundException();
     }
 
     @Override

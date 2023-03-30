@@ -77,7 +77,7 @@ Assigns an existing technician to an existing service
 
 Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
 
-Example: `addservicetech s/1 t/3` 
+Example: `addservicetech s/1 t/3`
 
 ### Adding a vehicle: `add vehicle`
 Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
@@ -100,7 +100,7 @@ Service and part must be registered in the system and part must have sufficient 
 
 Format: `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY`
 
-Example: `addservicepart s/2 n/Cylinder Head q/20` 
+Example: `addservicepart s/2 n/Cylinder Head q/20`
 
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
