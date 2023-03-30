@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.connectus.testutil.TypicalPersons.CARL;
+import static seedu.connectus.testutil.TypicalPersons.BENSON;
+import static seedu.connectus.testutil.TypicalPersons.DANIEL;
 import static seedu.connectus.testutil.TypicalPersons.ELLE;
-import static seedu.connectus.testutil.TypicalPersons.FIONA;
 import static seedu.connectus.testutil.TypicalPersons.getTypicalConnectUs;
 
 import java.util.Arrays;
@@ -55,9 +55,10 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_wrongKeywords_noPersonFound() {
+        //when keyword is not present in any contact
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        FieldsContainKeywordsPredicate predicate = preparePredicate(" ");
+        FieldsContainKeywordsPredicate predicate = preparePredicate("xqdie");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,11 +68,11 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        FieldsContainKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FieldsContainKeywordsPredicate predicate = preparePredicate("Meier");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE), model.getFilteredPersonList());
     }
 
     /**
