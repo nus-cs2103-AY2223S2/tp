@@ -154,7 +154,9 @@ public class Pet {
                 .append("; Cost: ")
                 .append(getCost())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append("; Status: ")
+                .append(getIsMarked()? "Marked" : "Unmarked");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

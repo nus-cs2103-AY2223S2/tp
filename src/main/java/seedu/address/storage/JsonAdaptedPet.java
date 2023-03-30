@@ -36,6 +36,7 @@ class JsonAdaptedPet {
     private final String email;
     private final String address;
     private final String deadline;
+    private String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     private String timestamp;
@@ -47,7 +48,7 @@ class JsonAdaptedPet {
     public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("address") String address, @JsonProperty("timestamp") String timestamp,
-                          @JsonProperty("deadline") String deadline,
+                          @JsonProperty("deadline") String deadline, @JsonProperty("status") String status,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.ownerName = ownerName;
@@ -57,6 +58,7 @@ class JsonAdaptedPet {
         this.timestamp = timestamp;
         this.address = address;
         this.deadline = deadline;
+        this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -72,6 +74,7 @@ class JsonAdaptedPet {
         email = source.getEmail().value;
         address = source.getAddress().value;
         timestamp = source.getTimeStamp().toString();
+        status = source.getIsMarked() ? "Marked" : "Unmarked";
 
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -136,6 +139,12 @@ class JsonAdaptedPet {
         Instant i = Instant.parse(timestamp + "Z");
         final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneOffset.UTC);
 
+        if (status == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    boolean.class.getSimpleName()));
+        }
+        boolean isMarked = status.equals("Marked");
+
         if (deadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Deadline.class.getSimpleName()));
@@ -149,8 +158,12 @@ class JsonAdaptedPet {
 
         final Set<Tag> modelTags = new HashSet<>(petTags);
 
-        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail,
+        Pet pet = new Pet(modelOwnerName, modelName, modelPhone, modelEmail,
                 modelAddress, modelTimeStamp, modelDeadline, modelTags);
+        if (isMarked) {
+            pet.setMarked();
+        }
+        return pet;
     }
 
 }
