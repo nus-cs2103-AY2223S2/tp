@@ -276,10 +276,10 @@ Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the followin
     * Pros: Easy to manage TaskList functionalities. 
     * Cons: May have performance issues due to numerous calls down command-specific parsers
 
-* Alternative 2 : Use a simple
+* Alternative 2 : Do not abstract task command parsing to a `TaskParser`
     * Pros: Easy to implement
     * Cons: Not well abstracted. Difficult to implement other task commands in the future like marking / deleting of
-    tasks
+    tasks. Will also result in an extremely long parser of all types of commands which may be difficult to maintain.
 
 
 
