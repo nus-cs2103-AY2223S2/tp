@@ -15,34 +15,34 @@ Our target audience is hospital and clinical administrative staff who deal with 
 
 The purpose of this user guide document is to provide staff with a clear understanding of the features and benefits of HospiSearch. The guide aims to assist users in effectively utilizing HospiSearch's features to streamline their patient management tasks and improve overall efficiency.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Messages in this format are important!
-<div/>
+</div>
 💡**Tip**:
 <br/> Messages in this format include information that may be useful to the user.
 
 
 # Table of Contents:
 
-- [Setup](#setup)
-- [GUI Information](#gui-information)
-- [Command Prefixes](#command-prefixes)
-- [Features](#features)
-    - [Help](#viewing-help--help) `help`
-    - [Undo](#undoing-previous-command-undo) `undo`
-    - [Redo](#redoing-previous-undo-redo) `redo`
-    - [Add patient](#adding-patient-record-add): `add`
-    - [Edit patient](#editing-a-patient-record-edit): `edit`
-    - [Delete patient](#deleting-a-patient-record-delete): `delete`
-    - [List all patients](#listing-all-patients-list): `list`
-    - [Filter patients](#filter-patients-by-attribute-find): `find`
-    - [Backup patient records](#backup-patient-records-backup): `backup`
-    - [Load backups](#load-data-load): `load`
-    - [View backups](#view-backup-data-viewbackup): `viewbackups`
-    - [Delete backup](#delete-backup-data-deletebackup): `deletebackup`
-    - [Clear all data](#clearing-all-data-clear): `clear`
-    - [Light mode](#switch-to-light-mode-light): `light`
-    - [Dark mode](#switch-to-dark-mode-dark): `dark`
-    - [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [Setup](#setup)  
+- [GUI Information](#gui-information)  
+- [Command Prefixes](#command-prefixes)  
+- [Features](#features)  
+ - [Help](#viewing-help--help) `help`  
+ - [Undo](#undoing-previous-command-undo) `undo`  
+ - [Redo](#redoing-previous-undo-redo) `redo`  
+ - [Add patient](#adding-a-patient-record-add): `add`  
+ - [Edit patient](#editing-a-patient-record-edit): `edit`  
+ - [Delete patient](#deleting-a-patient-record-delete): `delete`  
+ - [List all patients](#listing-all-patients-list): `list`  
+ - [Filter patients](#filtering-patients-by-attribute-find): `find`  
+ - [Backup patient records](#backing-up-patient-records-backup): `backup`  
+ - [Load backups](#loading-data-load): `load`  
+ - [View backups](#view-backup-data-viewbackups): `viewbackups`  
+ - [Delete backup](#deleting-backup-data-deletebackup): `deletebackup`  
+ - [Clear all data](#clearing-all-data-clear): `clear`  
+ - [Light mode](#switching-to-light-mode-light): `light`  
+ - [Dark mode](#switching-to-dark-mode-dark): `dark`  
+ - [FAQ](#faq)  
+- [Command Summary](#command-summary)  
 
 --------------------------------------------------------------------------------------------------------------------  
 
