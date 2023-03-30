@@ -19,7 +19,7 @@ CareFlow is a **desktop application for patient and drug inventory management, o
   <img src="images/Ui.png" style="zoom:35%"/>
 </p>
 <p align="center">
-Figure 1. Graphical User Interface (GUI) of CareFlow*
+  <i>Figure 1. Graphical User Interface (GUI) of CareFlow</i>
 </p>
 
 [Back to top](#top)
@@ -94,11 +94,17 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
       <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
        </p>
+      <p align="center">
+        <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
        <br>
 
    - Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
      <p align="center">
         <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
+       </p>
+       <p align="center">
+        <i>Figure 3. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
        </p>
            <br>
 
@@ -106,6 +112,9 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
        <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
      </p>
+     <p align="center">
+        <i>Figure 4. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
      <br>
 
    - Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
@@ -113,7 +122,14 @@ Throughout this user guide, you may come across different formatting styles and 
       <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
       </p>
       <p align="center">
+        <i>Figure 5. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
+      <br>
+      <p align="center">
       <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
+      </p>
+      <p align="center">
+        <i>Figure 6. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
       </p>
       <br>
 
@@ -121,6 +137,9 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
        <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
      </p>
+     <p align="center">
+        <i>Figure 7. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
      <br> 
      </details>
 
@@ -131,6 +150,9 @@ Throughout this user guide, you may come across different formatting styles and 
        <p align="center">
        <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
        </p>
+       <p align="center">
+        <i>Figure 8. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
        <br>
        </details>
        </details>
@@ -148,16 +170,25 @@ Throughout this user guide, you may come across different formatting styles and 
         <p align="center">
           <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
         </p>
+        <p align="center">
+        <i>Figure 9. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
         <br>
     - Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
         <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
         </p>
+        <p align="center">
+        <i>Figure 10. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
         <br>
     -Step 3: You're now looking at the `command terminal`, good job!
           <p align="center">
             <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
           </p>
+          <p align="center">
+        <i>Figure 11. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+      </p>
           <br>
       </details>
     <details> 
@@ -178,7 +209,10 @@ Throughout this user guide, you may come across different formatting styles and 
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
     <img src="images/UGscreenshots/careflow_home.png" style="zoom:20%">
-  </p>   
+  </p>
+  <p align="center">
+    <i>Figure 12. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+  </p>
 
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
    <details> 
@@ -205,16 +239,64 @@ Throughout this user guide, you may come across different formatting styles and 
 [Back to top](#top)
 
 <br>
-
-
 --------------------------------------------------------------------------------------------------------------------
 # 4. Features
 
-## General Operations
+If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually 
+manage patient information and medicine inventory. That is why we have created a software specifically designed to 
+assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
+
+## 4.1 Patient Information Management
+
+If you are a busy clinic receptionist who finds it challenging to manage patient information, CareFlow is the 
+solution for you.
+
+CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes! 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Visit Section [5.2 Patient Commands](#52-patient-commands) for more information on how to manage patient data in our 
+software.
+
+</div>
+
+## 4.2 Drug Inventory Management
+
+If you find  struggle to keep track of your drug inventory, CareFlow is here to help.
+
+With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. 
+You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no 
+longer have to waste time manually counting pills or reading scribbled notes.
+
+<div markdown="block" class="alert alert-info">
+
+Visit Section [5.3 Drug Commands](#52-drug-commands) for more information on how to manage drug inventory in 
+our software.
+
+</div>
+
+## 4.3 Hospital Information Directory
+
+if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
+
+<div markdown="block" class="alert alert-info">
+
+Please note that you are not allowed to edit or change the hospital list in CareFlow. However, if you believe that a 
+hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+# 5. Commands
+
+## 5.1 General Commands
 ### View help : `g help`
 * Shows all valid command formats and their functionalities.
   <p align="center">
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:80%">
+  </p>
+  <p align="center">
+    <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
   </p>
   <br>
 * **Format:** `g help`
@@ -235,7 +317,7 @@ Throughout this user guide, you may come across different formatting styles and 
 
 ___
 
-## Patient Operations
+## 5.2 Patient Commands
 ### Add a Patient record:  `p add`
 * You can use this command to add a new patient to the patient record, if it is the first time that this patient visit your clinic.
   \
@@ -267,7 +349,7 @@ ___
 
 <br>
 
-### Delete a Patient record by NRIC: `p delete`
+### Delete a patient record by NRIC: `p delete`
 * Deletes the specified patient from the patient list.
   \
   &nbsp;
@@ -299,7 +381,7 @@ ___
 
 <br>
 
-### Delete a Patient record by index: `p delete`
+### Delete a patient record by index: `p delete`
 * You can also delete a patient by specifying the patient's index in the patient list you are currently looking at.
     * The index refers to the index number shown in the displayed person list.
     * The index must be a positive integer 1, 2, 3, …​
@@ -353,7 +435,7 @@ ___
 
 <br>
 
-### Retrieve a Patient record by name: `p find`
+### Retrieve a patient record by name: `p find`
 * You can quickly retrieve the information of a patient by searching with his or her name.
   \
   &nbsp;
@@ -394,9 +476,9 @@ ___
 <br>
 
 
-### Clear all Patient records : `p clear`
+### Clear all patient records : `p clear`
 
-* You can also clears all patient records  in case you wish to terminate your subscription with CareFlow and move on to another system. Run this command with caution!
+* You can also clear all patient records  in case you wish to terminate your subscription with CareFlow and move on to another system. Run this command with caution!
   \
   &nbsp;
 * **Format:** `p clear`
@@ -414,7 +496,7 @@ ___
 <br> 
 
 
-### List all Patient records : `p list`
+### List all patient records : `p list`
 
 * You can use the `list` command to see the list of all patients currently stored in the CareFlow system. Patient records will be presented in alphabetical order.
   \
@@ -435,9 +517,9 @@ ___
 
 ___
 
-## Drug Operations
+## 5.3 Drug Commands
 
-### Add a Drug entry: `d add`
+### Add a drug entry: `d add`
 * You can add a new drug to the list of drugs in case your clinic decides to start prescribing a new drug.
   \
   &nbsp;
@@ -461,7 +543,7 @@ ___
 <br>
 
 
-### Delete a Drug entry by TRADE_NAME: `d delete`
+### Delete a drug entry by TRADE_NAME: `d delete`
 * If your clinic decides to stop prescribing a certain drug, you can also deletes the specified drug with the `d delete` command by specifying the trade name of the drug.
   \
   &nbsp;
@@ -490,7 +572,7 @@ ___
 <br>
 
 
-### Delete a Drug entry by INDEX : `d delete`
+### Delete a drug entry by INDEX : `d delete`
 * You can also delete a specified drug from the drug list by specifying its index in the drug list.
   \
   &nbsp;
@@ -519,7 +601,7 @@ ___
 <br>
 
 
-### Update storage count of a Drug entry: `d update`
+### Update storage count of a drug entry: `d update`
 * You can update the storage count of specified drug entry by specifying the trade name.
 * NOTE: you need to prefix the value with + or - for addition and subtraction respectively
   \
@@ -553,7 +635,7 @@ ___
 <br>
 
 
-### Retrieve a Drug entry by TRADE_NAME: `d find`
+### Retrieve a drug entry by TRADE_NAME: `d find`
 * You can quickly retrieve the information of a drug by using the `d find` command and specify the trade name of the drug you want to search.
   \
   &nbsp;
@@ -578,7 +660,7 @@ ___
 <br>
 
 
-### Clear all Drug entries : `d clear`
+### Clear all drug entries : `d clear`
 * You can clear all records of drugs. Use this with caution!
   \
   &nbsp;
@@ -597,7 +679,7 @@ ___
 <br>
 
 
-### List all Drug entries: `d list`
+### List all drug entries: `d list`
 * You can view all drug records currently stored in the CareFlow system by using the `d list` command, drug records will be presented in alphabetical order.
   \
   &nbsp;
@@ -665,7 +747,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. FAQ
+# 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -675,11 +757,11 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 6. Command Summary
+# 7. Command Summary
 
 If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
 
-## 6.1 General Commands
+## 7.1 General Commands
 
 The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
 
@@ -692,7 +774,7 @@ The following are the general commands that are available in Careflow for you to
   <i>Table 2. Command table for general commands.</i>
 </p>
 
-## 6.2 Patient Commands
+## 7.2 Patient Commands
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
@@ -711,7 +793,7 @@ The following commands are patient-related commands that are available in Carefl
   <i>Table 3. Command table for patient commands.</i>
 </p>
 
-## 6.3 Drug Commands
+## 7.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
