@@ -78,6 +78,7 @@ public class CommandTestUtil {
     // For help command tests
     public static final String VALID_HELP_COMMAND_ADD = "add";
     public static final String VALID_HELP_COMMAND_ADD_T = "add-t";
+    public static final String VALID_HELP_COMMAND_CHAT = "chat";
     public static final String VALID_HELP_COMMAND_CLEAR = "clear";
     public static final String VALID_HELP_COMMAND_DELETE = "delete";
     public static final String VALID_HELP_COMMAND_DELETE_T = "delete-t";
@@ -85,7 +86,9 @@ public class CommandTestUtil {
     public static final String VALID_HELP_COMMAND_EXIT = "exit";
     public static final String VALID_HELP_COMMAND_HELP = "help";
     public static final String VALID_HELP_COMMAND_LIST = "list";
+    public static final String VALID_HELP_COMMAND_OPEN = "open";
     public static final String VALID_HELP_COMMAND_SEARCH = "search";
+    public static final String VALID_HELP_COMMAND_UPCOMING_B = "upcoming-b";
     public static final String VALID_HELP_COMMAND_EMPTY = "";
     public static final String VALID_HELP_COMMAND_WITH_WHITESPACE = "\t   \n clear   ";
     public static final String VALID_HELP_COMMAND_WHITESPACE = "              ";

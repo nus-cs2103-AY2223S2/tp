@@ -39,7 +39,7 @@ public class AddTagToPersonCommand extends Command {
         + PREFIX_MODULE + "CS2103T "
         + PREFIX_MODULE + "CS2101 "
         + PREFIX_CCA + "NES "
-        + PREFIX_CCA + "ICS#Director"
+        + PREFIX_CCA + "ICS#Director "
         + PREFIX_MAJOR + "Computer Science "
         + PREFIX_MAJOR + "BBA "
         + PREFIX_REMARK + "friends "
@@ -177,7 +177,7 @@ public class AddTagToPersonCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable CCA set, which throws
+         * Returns an unmodifiable Major set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code majors} is null.
