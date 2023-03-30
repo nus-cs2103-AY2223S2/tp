@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import seedu.connectus.commons.util.CollectionUtil;
 import seedu.connectus.commons.util.StringUtil;
+import seedu.connectus.model.tag.Cca;
 
 /**
  * Tests that a {@code Person}'s information fields matches any of the keywords given.
@@ -305,8 +306,19 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
             }
         }
         if (getCcas().isPresent()) {
-            if (!ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca ->
-                    StringUtil.containsKeywordsListIgnoreCase(cca.toString(), ccaKey)))) {
+            boolean result = ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca -> {
+                String[] decoupledCcaKey = Cca.decouple(ccaKey);
+                boolean check = true;
+                check = check
+                        && (decoupledCcaKey[0].trim().isEmpty()
+                                    || StringUtil.containsKeywordsListIgnoreCase(cca.ccaName, decoupledCcaKey[0]));
+                if (decoupledCcaKey.length > 1) {
+                    check = check && cca.hasPosition() && StringUtil.containsKeywordsListIgnoreCase(cca.ccaPositionName,
+                            decoupledCcaKey[1]);
+                }
+                return check;
+            }));
+            if (!result) {
                 return false;
             }
         }
