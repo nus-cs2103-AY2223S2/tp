@@ -26,11 +26,12 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
+import tfifteenfour.clipboard.logic.commands.sortcommand.SortCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.Model;
 
 
 /**
@@ -50,7 +51,7 @@ public class RosterParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static Command parseCommand(String userInput, CurrentSelection currentSelection)
+    public static Command parseCommand(String userInput, Model model)
             throws ParseException, CommandException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -59,6 +60,8 @@ public class RosterParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         switch (commandWord) {
 
@@ -93,7 +96,7 @@ public class RosterParser {
             return new UndoCommand();
 
         case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+            return new SortCommandParser(currentSelection).parse(arguments);
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);

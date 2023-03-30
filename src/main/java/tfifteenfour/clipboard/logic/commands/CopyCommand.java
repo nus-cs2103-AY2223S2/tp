@@ -38,8 +38,10 @@ public class CopyCommand extends Command {
         this.index = index;
     }
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to student page to copy selected student email");

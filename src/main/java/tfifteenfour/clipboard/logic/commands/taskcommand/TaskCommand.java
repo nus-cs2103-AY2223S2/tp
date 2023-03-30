@@ -33,7 +33,7 @@ public class TaskCommand extends Command {
      * @param targetIndex the index of the group to select
      */
     public TaskCommand(Index targetIndex) {
-        super(false);
+        super(true);
         this.targetIndex = targetIndex;
     }
 
@@ -41,13 +41,13 @@ public class TaskCommand extends Command {
      * Executes the command to select a group and view its tasks
      *
      * @param model the model to execute the command on
-     * @param currentSelection the current selection of the user
      * @return a CommandResult indicating the result of the command
      * @throws CommandException if there is an error executing the command
      */
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
             throw new CommandException("Wrong page. Navigate to group page to choose group you want to view tasks for");

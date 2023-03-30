@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
@@ -59,9 +58,9 @@ public class UploadCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
 
-        if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
+        if (model.getCurrentSelection().getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to student page to upload a file.");
         }
 

@@ -1,6 +1,5 @@
 package tfifteenfour.clipboard.logic.commands;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.model.Model;
 
 /**
@@ -17,7 +16,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
         return new CommandResult(this, MESSAGE_EXIT_ACKNOWLEDGEMENT, willModifyState);
     }
 
