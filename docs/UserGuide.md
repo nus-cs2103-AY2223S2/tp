@@ -466,6 +466,16 @@ Shows a message explaining how to access the help page for SudoHR.
 
 Format: `help`
 
+### 7.4.1. Viewing help : `sa`
+
+Shows all employees, departments and leaves in SudoHR.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use this command to refresh SudoHR if your filters get too complicated!
+</div>
+
+Format: `sa`
+
 ### 7.4.2. Clearing all entries : `clear`
 
 Clears all entries from SudoHR.
@@ -494,29 +504,32 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 ## 7.6. Command summary
 
-| Action                                              | Format                                                                            |
-|-----------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Add an employee**                                 | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                     |
-| **List all employees**                              | `list`                                                                            |
-| **Edit an employee**                                | `edit eid/EMPLOYEE_ID [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Find employee by name**                           | `find KEYWORD [MORE_KEYWORDS]`                                                    |
-| **Delete an employee**                              | `del eid/EMPLOYEE_ID`                                                             |
-| **Add a department**                                | `adep n/DEPARTMENT_NAME`                                                          |
-| **List all departments**                            | `ldep`                                                                            |
-| **Edit a department**                               | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                                  |
-| **Find department by name**                         | `fdep KEYWORD [MORE_KEYWORDS]`                                                    |
-| **Delete a department**                             | `ddep n/DEPARTMENT_NAME`                                                          |
-| **Add employee to department**                      | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
-| **Remove employee from department**                 | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
-| **List an employee's department**                   | `led eid/EMPLOYEE_ID`                                                             |
-| **List all employees in a department**              | `leid n/DEPARTMENT_NAME`                                                          |  
-| **List department headcount**                       | `ldhc n/DEPARTMENT_NAME [d/DATE]`                                                 |  
-| **Add employee to leave**                           | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
-| **Add employee to range of leaves**                 | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
-| **Remove an employee from leave**                   | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
-| **Listing all employees on leave for a given date** | `leol d/DATE`                                                                     |
-| **Listing all days where employees are on leave**   | `llve`                                                                            |
-| **List all leaves taken by an employee**            | `llbe eid/EMPLOYEE_ID`                                                            |
+| Action                                                   | Format                                                                            |
+|----------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Add an employee**                                      | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                     |
+| **List all employees**                                   | `list`                                                                            |
+| **Edit an employee**                                     | `edit eid/EMPLOYEE_ID [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Find employee by name**                                | `find KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Delete an employee**                                   | `del eid/EMPLOYEE_ID`                                                             |
+| **Add a department**                                     | `adep n/DEPARTMENT_NAME`                                                          |
+| **List all departments**                                 | `ldep`                                                                            |
+| **Edit a department**                                    | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                                  |
+| **Find department by name**                              | `fdep KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Delete a department**                                  | `ddep n/DEPARTMENT_NAME`                                                          |
+| **Add employee to department**                           | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
+| **Remove employee from department**                      | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                                          |
+| **List an employee's department**                        | `led eid/EMPLOYEE_ID`                                                             |
+| **List all employees in a department**                   | `leid n/DEPARTMENT_NAME`                                                          |  
+| **List department headcount**                            | `ldhc n/DEPARTMENT_NAME [d/DATE]`                                                 |  
+| **Add employee to leave**                                | `aetl eid/EMPLOYEE_ID d/DATE`                                                     |
+| **Add employee to range of leaves**                      | `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`                                    |
+| **Remove an employee from leave**                        | `defl eid/EMPLOYEE_ID d/DATE`                                                     |
+| **Listing all employees on leave for a given date**      | `leol d/DATE`                                                                     |
+| **Listing all days where employees are on leave**        | `llve`                                                                            |
+| **Get help for SudoHR**                                  | `help`                                                                            |
+| **Show all employees, departments and leaves in SudoHR** | `sa`                                                                              |
+| **Clear all entries in SudoHR**                          | `clear`                                                                           |
+| **Exit SudoHR**                                          | `exit`                                                                            |
 
 [//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
 
