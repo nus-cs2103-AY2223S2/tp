@@ -14,16 +14,27 @@ public class CommandHistory {
     private int index;
     private final String emptyString = "";
 
+    /**
+     * Creates new CommandHistory object
+     */
     public CommandHistory() {
         this.list = new ArrayList<>(Arrays.asList(this.emptyString));
         this.index = 0;
     }
 
+    /**
+     * Add new input to CommandHistory object
+     * @param newInput The string representing the new input
+     */
     public void addInput(String newInput) {
         this.list.add(this.list.size() - 1, newInput);
         this.index = this.list.size() - 1;
     }
 
+    /**
+     * Gets the next older input. If there is not older input, the oldest input is returned again.
+     * @return The next older input or if that doesn't exist, the oldest input.
+     */
     public String getOlderInput() {
         if (this.index > 0) {
             this.index--;
@@ -31,6 +42,10 @@ public class CommandHistory {
         return this.list.get(this.index);
     }
 
+    /**
+     * Gets the next most recent input. If there isn't any more recent inputs, the most recent input is returned again.
+     * @return The next most recent input or if that doesn't exist, the most recent input.
+     */
     public String getNewerInput() {
         if (this.index < this.list.size() - 1) {
             this.index++;

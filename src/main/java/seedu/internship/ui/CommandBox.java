@@ -64,16 +64,16 @@ public class CommandBox extends UiPart<Region> {
         // https://github.com/AY2122S2-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/address/ui/CommandBox.java
         if (event.getCode().isArrowKey()) {
             switch (event.getCode()) {
-                case UP:
-                    commandTextField.setText(this.commandHistory.getOlderInput());
-                    break;
+            case UP:
+                commandTextField.setText(this.commandHistory.getOlderInput());
+                break;
 
-                case DOWN:
-                    commandTextField.setText(this.commandHistory.getNewerInput());
-                    break;
+            case DOWN:
+                commandTextField.setText(this.commandHistory.getNewerInput());
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
         }
     }
