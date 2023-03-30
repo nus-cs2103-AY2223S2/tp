@@ -12,7 +12,11 @@
       <children>
          <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" styleClass="context-label-container">
             <children>
-               <Label id="context" fx:id="contextLabel" maxHeight="1.7976931348623157E308" styleClass="context-label" text="/r" HBox.hgrow="ALWAYS" />
+               <Label id="context" fx:id="contextLabel" maxHeight="1.7976931348623157E308" styleClass="context-label" text="/r" HBox.hgrow="ALWAYS">
+                  <font>
+                     <Font name="Roboto" size="12.0" />
+                  </font>
+               </Label>
             </children>
             <padding>
                <Insets left="10.0" right="10.0" />
