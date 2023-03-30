@@ -37,7 +37,7 @@ public class EditCustomerCommand extends RedoableCommand {
         + "by the id number displayed by listcustomer. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: "
-        +  PREFIX_INTERNAL_ID + "CUSTOMER_ID "
+        + PREFIX_INTERNAL_ID + "CUSTOMER_ID "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -100,7 +100,7 @@ public class EditCustomerCommand extends RedoableCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Customer newCustomer =  new Customer(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Customer newCustomer = new Customer(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         personToEdit.getVehicleIds().forEach(newCustomer::addVehicle);
         return newCustomer;
     }

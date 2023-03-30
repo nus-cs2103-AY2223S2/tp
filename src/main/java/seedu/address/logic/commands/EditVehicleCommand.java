@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATE_NUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 
 import java.util.Collections;

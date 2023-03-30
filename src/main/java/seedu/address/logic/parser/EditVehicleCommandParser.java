@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BRAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATE_NUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
