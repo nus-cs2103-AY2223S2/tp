@@ -32,7 +32,6 @@ see in your career.
         * Deleting a client : `delete`
     * #### Policy Management
         * Adding a policy: `addPolicy`
-        * Listing all policies : `listPolicy`
         * Editing a policy : `editPolicy`
         * Deleting a policy : `deletePolicy`
 * ### FAQ
@@ -327,50 +326,73 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-## Policy Management (todo)
+## Policy Management 
+
+While you can manage your clients, we also provide a way to manage the client's policies. 
+
+Policy refers to the insurance plan/contract that the client has purchased from you.
+
+The policy contains the following fields:
+- Policy Name
+- Policy Start Date 
+- Policy Premium (The amount of money the client pays you for the policy)
+- Policy Frequency (The frequency of the premium payment)
+
+Using Advis.io, you can add, edit, delete, and view the policies for your clients very easily! Here's how.
 
 ### Adding a policy : `addPolicy`
 
 Adds a policy to a specific client
 
-Do note that the Policy Name should be from the following list:
+Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
-- Health Insurance
-- Life Insurance
-- Medical Insurance
-- Fire Insurance
-- Car Insurance
-- Travel Insurance
+* Do note that the Policy Name should be from the following list:
+  - Health Insurance
+  - Life Insurance
+  - Medical Insurance
+  - Fire Insurance
+  - Car Insurance
+  - Travel Insurance
 
-The frequency should be one of the following: `weekly`, `monthly`,`yearly`
+* The Policy Start Date should be in the following format: `dd.mm.yyyy`
 
-Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
+* The Policy Premium should be a positive integer.
 
-Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
+* The Policy Frequency should be one of the following: `weekly`, `monthly`,`yearly`
 
-### Listing all policies : `listPolicy`
+Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
-Format: `listPolicy`
+
+You will then be able to view the policies on the right side under 'Policies'
+
+![img.png](img.png)
+
 
 ### Editing a policy : `editPolicy`
 
-Format: `editPolicy`
+Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
-### Filtering policies by name : `findPolicy`
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
+  list. The index **must be a positive integer** 1, 2, 3, …​
+* The `POLICY_INDEX` refers to the index number shown in the displayed policy list. The same constraints as `INDEX` apply. 
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
-Format: `findPolicy`
+Examples:
+- `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
+- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
+policy information`
+
 
 ### Deleting a policy `deletePolicy`
 
 Deletes the indexed policy from a specific client
 
-Format: `deletePolicy n/NAME INDEX`
+Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
-Examples: `deletePolicy n/John Doe 1`
 
-### Adding a claim. `[coming in v2.0]`
+Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
