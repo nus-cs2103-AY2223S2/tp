@@ -5,8 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object

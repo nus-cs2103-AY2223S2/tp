@@ -1,14 +1,18 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
@@ -20,15 +24,20 @@ import seedu.address.model.person.Remark;
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            INDEX_PLACEHOLDER,
+            REMARK_PLACEHOLDER.asOptional()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_REMARK + "REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Likes to swim.";
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " 1 Likes to swim.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";

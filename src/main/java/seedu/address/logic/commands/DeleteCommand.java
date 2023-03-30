@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -17,10 +20,17 @@ import seedu.address.model.person.Person;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            INDEX_PLACEHOLDER,
+            INDEX_PLACEHOLDER.asOptional().asRepeatable()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the persons identified by the index numbers used in the displayed person list.\n"
-            + "Parameters: INDEXES (must be positive integers separated by spaces)\n"
+            + ": Delete the persons identified by the index numbers used in the displayed person list.\n"
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";

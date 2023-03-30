@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
