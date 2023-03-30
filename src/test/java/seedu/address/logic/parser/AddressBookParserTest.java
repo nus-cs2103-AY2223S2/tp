@@ -150,4 +150,11 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_TASK + task.value);
         assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
     }
+
+    @Test
+    public void parseCommand_clearTask() throws Exception {
+        ClearTaskCommand command = (ClearTaskCommand) parser.parseCommand(ClearTaskCommand.COMMAND_WORD + ""
+                + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ClearTaskCommand(INDEX_FIRST_PERSON), command);
+    }
 }

@@ -175,7 +175,7 @@ public class PersonBuilder {
      * Sets the {@code Task} of the {@code Person} that we are building.
      */
     public PersonBuilder withTask(String task) {
-        this.tasks = new TaskList().add(new Task(task));
+        this.tasks = this.tasks.add(new Task(task));
         return this;
     }
 
