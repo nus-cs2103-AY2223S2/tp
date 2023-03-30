@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
  * Exports a student's progress.
  */
 public class ExportProgressCommand extends Command {
-    public static final String COMMAND_WORD = "exportP";
+    public static final String COMMAND_WORD = "exportp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports a student's progress.\n"
             + "Parameters: INDEX (must be a positive integer) "
