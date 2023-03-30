@@ -16,7 +16,7 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI). With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
 
 <p align="center">
-  <img src="images/Ui.png" style="zoom:35%"/>
+  <img src="images/Ui.png" style="zoom:100%"/>
 </p>
 <p align="center">
 Figure 1. Graphical User Interface (GUI) of CareFlow*
@@ -61,15 +61,19 @@ To make the most of this user guide, we recommend reading through it in order, s
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-| <p>**Symbol/**<p>**Format** | **Meaning**                                                                                                                                                                                                                                                                                                      |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| :exclamation:                 | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                                 |
-| UPPER_CASE                    | Words in UPPER CASE are the parameters that you need to supply to the system.<p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.</p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
-| [brackets]                    | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as</p>`update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                  |
-| `command`                     | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                            |
-| [2. About](#2-about)          | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                                     |
+| <p>**Symbol/**<p>**Format** | **Meaning**                                                                                                                                                                                                                                                                                               |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :exclamation:                 | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
+| UPPER_CASE                    | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
+| [brackets]                    | Items in square brackets are optional. E.g. update -n NAME [-ph PHONE] can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
+| `command`                     | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
+| [2. About](#2-about)          | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
 
+<p align="center"> 
 Table 1. Symbols and formats used in this User Guide.
+</p>
+
+<br>
 
 [Back to top](#top)
 
@@ -118,10 +122,10 @@ Table 1. Symbols and formats used in this User Guide.
    <li>
     Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
       <p align="center">
-      <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:15%">
+      <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:16.1%">
       </p>
       <p align="center">
-      <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:14%">
+      <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:15%">
       </p>
    </li>
    
@@ -147,7 +151,7 @@ Table 1. Symbols and formats used in this User Guide.
        </p>
    </li>
    
-       <br>
+   <br>
    </ul>
        </details>
        </details>
@@ -170,16 +174,16 @@ Table 1. Symbols and formats used in this User Guide.
    </li>
         <br>
    <li>
-    Step 2: Type <code>terminal.app</code> into the search bar, and simply hit `Enter`
+    Step 2: Type <code>terminal.app</code> into the search bar, and simply hit <code>Enter</code>
         <p align="center">
-             <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
+             <img src="images/UGscreenshots/terminal.png" style="zoom:25%">
         </p>
    </li>
         <br>
    <li>
     Step 3: You're now looking at the <code>command terminal</code>, good job!
         <p align="center">
-            <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
+            <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:29.5%">
         </p>
    </li>
         <br>
@@ -215,7 +219,7 @@ Table 1. Symbols and formats used in this User Guide.
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
-    <img src="images/UGscreenshots/careflow_home.png" style="zoom:20%">
+    <img src="images/UGscreenshots/careflow_home.png" style="zoom:100%">
   </p>   
 
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
@@ -224,7 +228,7 @@ Table 1. Symbols and formats used in this User Guide.
     <ul>
         <li><code>p list </code> : Lists all patients. </li> 
         <li><code>d list</code> : Lists all drugs.</li>
-        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named `John Lo` to the patient records.</li>
+        <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
         <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
         <li><code>p clear</code> : Deletes all patient records.</li>
         <li><code>d clear</code> : Deletes all drug records.</li>
@@ -249,6 +253,7 @@ Table 1. Symbols and formats used in this User Guide.
   </p>
   <br>
 * **Format:** `g help`
+
 
 [Back to top](#top)
 
@@ -289,7 +294,7 @@ ___
 
     * John Doe is now added to the patient record. Click on John Doe and you will see his information being displayed at the right side.
       <p align="center">
-        <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:60%">
+        <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:100%">
       </p>
       <br>    
 
@@ -308,19 +313,19 @@ ___
 * **Example:** `p delete -ic S9284729C`
     * Type the command into the command box and hit `Enter`
         <p align="center">
-              <img src="images/UIscreenshots/patientSS/pdeleteic.png" style="zoom:80%">
+              <img src="images/UIscreenshots/patientSS/pdeleteic.png" style="zoom:100%">
         </p>
         <br>
 
     * Patient to be deleted:
-        <p align="center">
+        <p align="left">
       <img src="images/UIscreenshots/patientSS/pIC.png" style="zoom:25%">
         </p>
         <br>
 
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
         <p align="center">
-        <img src="images/UIscreenshots/patientSS/pdeleteICres.png" style="zoom:80%">
+        <img src="images/UIscreenshots/patientSS/pdeleteICres.png" style="zoom:100%">
         </p>
         <br>
 
@@ -342,17 +347,18 @@ ___
 * **Example:** `p delete -i 8`
     * Then, scroll through the displayed list of patient record, and identify the index of the patient you wish to delete. Suppose we want to delete the 8th patient in the list, John Doe.
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/8p.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/8p.png" style="zoom:100%">
       </p>
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/pdelete.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/pdelete.png" style="zoom:100%">
       </p>
       <br>
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
         <p align="center">
-             <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:60%">
+             <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:100%">
         </p>
-          <br>    
+      
+      <br>    
 
 [Back to top](#top)
 
@@ -370,15 +376,17 @@ ___
 * **Example:**
     * Suppose we wish to update the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 98765432 respectively. The command would be:`p update John Doe -ph 91234567 -em johndoe@example.com -ec 98765432`
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/pupdate.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/pupdate.png" style="zoom:100%">
       </p>
       <br>
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/pupdateres.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/pupdateres.png" style="zoom:100%">
       </p>
       <br>
     * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
+
+    <br>
 
 [Back to top](#top)
 
@@ -395,10 +403,12 @@ ___
 * **Examples:**
     * `p find Doe` returns David Doe and John Doe
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/patientFindresult.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/patientFindresult.png" style="zoom:100%">
       </p>
       <br>
     * You can click on either record to see detailed information.
+
+<br>
 
 [Back to top](#top)
 
@@ -416,8 +426,9 @@ ___
 * **Example:** `p view -i 1`
     * You can enter `p view -i 1` to see the information of the first patient in the list.
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:100%">
       </p>
+      
       <br>
 
 [Back to top](#top)
@@ -436,8 +447,9 @@ ___
 * **Example:** `p clear`
     * All patient records will be permanantly removed from the system
       <p align="center">
-            <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:80%">
+            <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:100%">
       </p>
+      
       <br>
 
 [Back to top](#top)
@@ -455,8 +467,9 @@ ___
   &nbsp;
 * **Example:**
     <p align="center">
-          <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:80%">
+          <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:100%">
     </p>
+  
     <br>
 
 [Back to top](#top)
@@ -478,13 +491,14 @@ ___
 * **Example:**
     * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:`d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dadd.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dadd.png" style="zoom:100%">
       </p>
       <br>
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:100%">
       </p>
+      
       <br>
 
 [Back to top](#top)
@@ -502,17 +516,17 @@ ___
 * **Example:**
     * Suppose for some reason, you wish to delete Panadol, your command should look something like:`d delete -tn Panadol`
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/ddeletetn.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/ddeletetn.png" style="zoom:100%">
       </p>
       <br>
     * Drug to be Deleted:
-      <p align="center">
+      <p align="left">
           <img src="images/UIscreenshots/drugSS/dpanadol.png" style="zoom:25%">
       </p>
       <br>
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
       <br>
 
@@ -531,17 +545,17 @@ ___
 * **Example:**
     * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like:`d delete -i 4`
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/ddeleteindex.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/ddeleteindex.png" style="zoom:100%">
       </p>
       <br>
     * Drug to be Deleted:
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/d4.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/d4.png" style="zoom:100%">
       </p>
       <br>
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:100%">
       </p>
       <br>
 
@@ -560,23 +574,21 @@ ___
   &nbsp;
 * **Examples:**
     * If your clinic has prescribed 10 boxes of Panadol and you wish to reduce the storage of Panadol accordingly, your command should look something like: `d update Panadol -by -10`
-    * Drug to be Updated:
-      <p align="center">
+    * Drug to be Updated (The storage is currently 55 boxes.):
+      <p align="left">
             <img src="images/UIscreenshots/drugSS/drugPrevCount.png" style="zoom:25%"> <br>
-
-      (The storage is currently 55 boxes.)
       </p>
       <br>
     * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dupdate.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dupdate.png" style="zoom:100%">
       </p>
       <br>
       
     * The storage of Panadol is now 45
-    <p align="center">
+        <p align="left">
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
-    </p>
+        </p>
     <br>
 
 [Back to top](#top)
@@ -595,13 +607,14 @@ ___
 * **Examples:**
     * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dfind.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dfind.png" style="zoom:100%">
       </p>
       <br>
     * You should see Panadol being shown on the drug list as well as the display window on the right
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:100%">
       </p>
+      
       <br>
 
 [Back to top](#top)
@@ -619,7 +632,7 @@ ___
 * **Example:**
     * Enter the command `d clear` and all drug information will be permanantly removed.
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:100%">
       </p>
       <br>
 
@@ -638,7 +651,7 @@ ___
 * **Example:** `d list`
     * Enter `d list` and all drug records will be shown on the screen.
       <p align="center">
-            <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:80%">
+            <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:100%">
       </p>
       <br>
 
