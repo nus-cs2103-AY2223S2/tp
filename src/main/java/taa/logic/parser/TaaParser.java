@@ -20,8 +20,10 @@ import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ImportCommand;
 import taa.logic.commands.InsertParticipationCommand;
 import taa.logic.commands.ListAssignmentCommand;
+import taa.logic.commands.ListAttendanceCommand;
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
+import taa.logic.commands.ListParticipationCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
 import taa.logic.commands.UngradeCommand;
@@ -66,6 +68,12 @@ public class TaaParser {
 
         case InsertParticipationCommand.COMMAND_WORD:
             return new InsertParticipationParser().parse(arguments);
+
+        case ListAttendanceCommand.COMMAND_WORD:
+            return new ListAttendanceParser().parse(arguments);
+
+        case ListParticipationCommand.COMMAND_WORD:
+            return new ListParticipationParser().parse(arguments);
 
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
