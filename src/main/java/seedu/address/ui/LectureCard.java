@@ -25,7 +25,7 @@ public class LectureCard extends UiPart<Region> {
     @FXML
     private Label lectureName;
     @FXML
-    private Label videoCount;
+    private Label progress;
     @FXML
     private FlowPane tags;
 
@@ -38,9 +38,20 @@ public class LectureCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         lectureName.setText(lecture.getName().toString());
 
-        videoCount.setText("Videos: " + lecture.getVideoList().size());
+        progress.setText(getProgressText(lecture));
         lecture.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String getProgressText(ReadOnlyLecture lecture) {
+        int videoCount = lecture.getVideoList().size();
+        String progressText = "No videos added";
+
+        if (videoCount > 0) {
+            int watched = lecture.getVideoList().filtered(vid -> vid.hasWatched()).size();
+            progressText = String.format("Progress: %o/%o videos watched", watched, videoCount);
+        }
+        return progressText;
     }
 
     @Override
