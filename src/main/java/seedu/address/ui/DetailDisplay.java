@@ -95,7 +95,7 @@ public class DetailDisplay extends UiPart<Region> {
         }
 
         if (person.hasAge()) {
-            age.setText("Age: " + person.getAge().toString());
+            age.setText(person.getAge().toString());
         } else {
             age.setText("Age: " + "N.A.");
         }
