@@ -60,7 +60,7 @@ public class ClearTaskCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether the tasks are cleared from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {

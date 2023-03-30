@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        TaskList tasks = new TaskList();
+        TaskList tasks = new TaskList(); //add command does not allow adding tasks straight away
 
         Person person = new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
                 remark, tagList, tasks);

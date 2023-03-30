@@ -22,7 +22,7 @@ import seedu.address.model.person.Task;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddTaskCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ClearTaskCommand.
  */
 public class ClearTaskCommandTest {
 
