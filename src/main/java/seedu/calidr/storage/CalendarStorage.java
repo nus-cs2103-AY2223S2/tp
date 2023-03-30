@@ -98,7 +98,7 @@ public class CalendarStorage {
             component = vtodo;
         }
         else {
-            throw new RuntimeException(); // TODO
+            throw new UnsupportedOperationException();
         }
 
         final CalendarComponent componentRef = component;
@@ -203,7 +203,7 @@ public class CalendarStorage {
         case LOW:
             return VALUE_LOW;
         default:
-            throw new RuntimeException(); // TODO
+            return VALUE_MEDIUM;
         }
     }
 }
