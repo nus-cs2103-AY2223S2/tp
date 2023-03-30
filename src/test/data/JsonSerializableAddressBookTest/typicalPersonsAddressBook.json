@@ -65,12 +65,12 @@
   }, {
     "teamName" : "TeamB",
     "teamDesc" : "Project group TeamB",
-    "skills" : [ ],
+    "skills" : ["Java", "ReactNative"],
     "members" : ["Daniel Meier", "Elle Meyer"]
   }, {
     "teamName" : "TeamC",
     "teamDesc" : "Project group TeamC",
-    "skills" : [ ],
+    "skills" : ["PgSQL", "C"],
     "members" : ["Fiona Kunz"]
   }
   ]
