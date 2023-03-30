@@ -156,7 +156,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Field Validation
 Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
-when loading from a JSON file field validation is performed automatically.\
+when loading from a JSON file field validation is performed differently.\
 The automatic validation of a tutee field requires the following three elements to be defined,
 an example implementation of a tutee field is shown below:
 ```java
@@ -167,7 +167,7 @@ public class Phone {
    }
 
    // Message to display to the user if the stored JSON data is invalid for the given field
-   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!"
+   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!";
 
    // Validation method that will return true if the value is valid for the field, false otherwise
    // If your field is named differently this method is named differently too, e.g. isValidRemark
@@ -265,7 +265,7 @@ By default, they are all an empty string however when no fields are given by the
 `filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
 fields that are to be filtered in. This implementation is also similar to `EditCommandParser`. Once 
 `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), `FieldContainsKeywordPredicate` will take in 
-all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object. 
+all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
 `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
@@ -277,10 +277,10 @@ that are equal to what the user has provided.
 ### Copy feature
 
 #### Copy Implementation
-The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in 
-an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in 
-`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including: 
-`subject`, `schedule`, `start time`, `end time` of a tutee. 
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including:
+`subject`, `schedule`, `start time`, `end time` of a tutee.
 All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
 
 --------------------------------------------------------------------------------------------------------------------

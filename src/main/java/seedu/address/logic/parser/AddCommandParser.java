@@ -18,6 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.TuteeBuilder;
 import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Lesson;
 import seedu.address.model.tutee.fields.Remark;
 
 /**
@@ -73,7 +74,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         )
         .withTags(
             ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
-        ).withAttendance(new Attendance());
+        ).withAttendance(new Attendance())
+        .withLessons(new Lesson());
 
         Tutee tutee = builder.build();
 
