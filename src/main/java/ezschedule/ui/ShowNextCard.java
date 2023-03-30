@@ -1,5 +1,7 @@
 package ezschedule.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import ezschedule.model.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -18,11 +20,9 @@ public class ShowNextCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
-    @FXML
-    private Label completed;
-    @FXML
     private Label id;
+    @FXML
+    private Label name;
     @FXML
     private Label date;
     @FXML
@@ -33,16 +33,16 @@ public class ShowNextCard extends UiPart<Region> {
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
-    public ShowNextCard(Event event, int displayedIndex) {
+    public ShowNextCard(Event event, String displayedIndex) {
         super(FXML);
         this.event = event;
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        completed.setText(event.getCompletedStatus());
-        date.setText("Date: " + event.getDate().toString());
-        startTime.setText("Start Time: " + event.getStartTime().toString());
-        endTime.setText("End Time: " + event.getEndTime().toString());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM, yyyy");
+        date.setText(dateTimeFormatter.format(event.getDate().date));
+        startTime.setText(event.getStartTime().toString());
+        endTime.setText(event.getEndTime().toString());
     }
 
     @Override

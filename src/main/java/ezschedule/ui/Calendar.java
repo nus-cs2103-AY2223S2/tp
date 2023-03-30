@@ -23,6 +23,7 @@ public class Calendar extends UiPart<Region> {
     private static final String FXML = "Calendar.fxml";
 
     private final ObservableList<Event> eventList;
+    private final ObservableList<Event> findEventList;
     private final FilterExecutor filterExecutor;
     private final ZonedDateTime today;
     private ZonedDateTime date;
@@ -38,14 +39,17 @@ public class Calendar extends UiPart<Region> {
     /**
      * Creates a {@code Calender} with the given {@code ObservableList}{@code CommandExecutor}}.
      */
-    public Calendar(ObservableList<Event> eventList, FilterExecutor filterExecutor) {
+    public Calendar(ObservableList<Event> eventList, ObservableList<Event> findEventList,
+                    FilterExecutor filterExecutor) {
         super(FXML);
         this.eventList = eventList;
+        this.findEventList = findEventList;
         this.filterExecutor = filterExecutor;
         date = ZonedDateTime.now();
         today = ZonedDateTime.now();
         monthMaxDate = date.getMonth().maxLength();
         eventList.addListener((ListChangeListener<Event>) c -> refreshCalendar());
+        findEventList.addListener((ListChangeListener<Event>) c -> refreshCalendar());
         drawCalendar();
     }
 
@@ -132,8 +136,10 @@ public class Calendar extends UiPart<Region> {
                     if (currentDate <= monthMaxDate) {
                         String date = String.valueOf(currentDate);
                         List<Event> eventsForCurrentDate = eventsForMonthMap.get(currentDate);
-                        calendar.getChildren().add(new CalendarBox(
-                                isToday(currentDate), date, eventsForCurrentDate, filterExecutor).getRoot());
+                        boolean isFindCommand = eventsForCurrentDate != null
+                                && eventsForCurrentDate.stream().anyMatch(findEventList::contains);
+                        calendar.getChildren().add(new CalendarBox(isFindCommand, isToday(currentDate),
+                                date, eventsForCurrentDate, filterExecutor).getRoot());
                     }
                 } else {
                     calendar.getChildren().add(new CalendarBox().getRoot());

@@ -2,7 +2,7 @@ package ezschedule.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ezschedule.commons.core.Messages;
@@ -23,12 +23,12 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: ";
 
-    private final Index targetIndex;
+    private final List<Index> targetIndexes;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(List<Index> targetIndexes) {
+        this.targetIndexes = targetIndexes;
     }
     
     @Override
@@ -38,24 +38,30 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
-
-        Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEvent(eventToDelete);
+        StringBuilder feedback = new StringBuilder(MESSAGE_DELETE_EVENT_SUCCESS);
+        Collections.sort(targetIndexes); // sort index in order
+        Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
     
         model.clearRecent();
         model.recentCommand().add(this);
-        model.recentEvent().add(eventToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
+        
+        for (Index targetIndex : targetIndexes) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, targetIndex.getZeroBased() + 1));
+            }
+            Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteEvent(eventToDelete);
+            model.addRecentEvent(eventToDelete);
+            feedback.append(eventToDelete.toString());
+        }
+        return new CommandResult(feedback.toString());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetIndexes.equals(((DeleteCommand) other).targetIndexes)); // state check
     }
 }

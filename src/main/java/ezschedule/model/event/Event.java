@@ -37,10 +37,6 @@ public class Event implements Comparable<Event> {
         return endTime;
     }
 
-    public String getCompletedStatus() {
-        return isCompleted() ? "Event completed" : "";
-    }
-
     /**
      * Returns true if the event has been completed/is over.
      *
@@ -144,7 +140,7 @@ public class Event implements Comparable<Event> {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(getName())
+        sb.append("\n" + getName())
                 .append("\nDate: ")
                 .append(getDate())
                 .append("\nStart Time: ")

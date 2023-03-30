@@ -19,6 +19,11 @@ public interface Model {
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to false
+     */
+    Predicate<Event> PREDICATE_SHOW_NO_EVENTS = unused -> false;
+
+    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
@@ -112,6 +117,11 @@ public interface Model {
     ObservableList<Event> getUpcomingEventList();
 
     /**
+     * Returns an unmodifiable view of the find command event list
+     */
+    ObservableList<Event> getFindEventList();
+
+    /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -124,4 +134,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateUpcomingEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the find event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFindEventList(Predicate<Event> predicate);
 }

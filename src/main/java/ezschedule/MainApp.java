@@ -166,6 +166,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting Scheduler " + ezschedule.MainApp.VERSION);
+        primaryStage.setMaximized(true);
         ui.start(primaryStage);
     }
 

@@ -49,6 +49,11 @@ public interface Logic {
     ObservableList<Event> getUpcomingEventList();
 
     /**
+     * Returns an unmodifiable view of the find command list of events
+     */
+    ObservableList<Event> getFindEventList();
+
+    /**
      * Updates the filtered list of events
      */
     void updateFilteredEventList(Predicate<Event> predicate);
