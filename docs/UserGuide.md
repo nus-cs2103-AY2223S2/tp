@@ -1,6 +1,4 @@
----
-layout: page
-title: User Guide
+# TrAcker User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +18,7 @@ title: User Guide
    ![Ui](images/Ui4.png)
 
 --------------------------------------------------------------------------------------------------------------------
-User Guide
+Brief Overview of TrAcker
 
 TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
 It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI).
@@ -42,14 +40,39 @@ Let's clear a little confusion that might arise:
 - How do I use the UG?
   - Commands in [] with words capitalized, for example [INDEX], means it is a user's variable.
   - So, if the command is `rm [INDEX]`, it can be `rm 1`. Of course, the parameters have to abide by TrAcker's restrictions
-      
+
+
+# Table of Contents
+- [Event Features](#event-features)
+  - [Adding Tutorial](#adding-tutorial--add-tutorial)
+  - [Adding Lab](#adding-lab--add-lab)
+  - [Adding Consultation](#adding-consultation--add-consultation)
+  - [Adding Recurring Event](#adding-recurring-event--add-recur)
+  - [Edit An Event](#edit-an-event--editEvent-event)
+  - [Delete Events](#delete-events--delete-events)
+  - [Open File in Event](#open-file)
+- [Student Features](#student-features)
+  - [Adding Student](#adding-student--add-student)
+  - [Deleting Student](#deleting-student--delete-student)
+  - [Add Student to Event](#add-student-to-event)
+  - [Delete Student from Event](#delete-student-from-event)
+- [Note Features](#note-features)
+  - [Add Note For Event](#add-note-for-event)
+  - [Delete Note From Event](#delete-note-from-event)
+  - [Edit Note in Event](#edit-note-in-event)
+- [Sort Features](#sort-features)
+  - 
+- [Help Features](#help-features)
+- [Application Features](#application-features)
+- [Command Summary](#command-summary)
 
 **Features**
 --------------------------------------------------------------------
 --------------------------------------------------------------------
-*Event CRUD Features*
 
-### Adding a tutorial: `add tutorial`
+## Event Features
+
+### Adding tutorial: `add tutorial`
 
 Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) and no modification of duration is allowed
 
@@ -74,7 +97,7 @@ Examples:
 * `touch Tutorial/examReview -date 01/01/2023 16:00`
 * `touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf`
 
-### Adding a lab: `add lab`
+### Adding lab: `add lab`
 
 Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to CS2040 Lab timing) and no modification of duration is allowed
 
@@ -99,7 +122,7 @@ Examples:
 * `vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00`
 * `vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf`
 
-### Adding a consultation: `add consultation`
+### Adding consultation: `add consultation`
 
 Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
 
@@ -122,7 +145,7 @@ Examples:
 * `mkdir Consultation/reviewConnectedComponents`
 * `mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00`
 
-### Adding a recurring event: `add recur`
+### Adding recurring event: `add recur`
 
 Adds a recurring event to the TA’s schedule. Recurring event is assumed to be 1 hour long (adhering to CS2040 timing) and no modification of duration is allowed
 
@@ -174,7 +197,9 @@ Examples:
 * `delete Tutorial/1`
 * `delete Lab/1-5`
 
-### Open file in events: `Open File`
+<div id='open-file'></div>
+
+### Open file in event: `open file`
 
 Opens a file in either Tutorial or Lab if the TA has added one.
 
@@ -191,9 +216,9 @@ Examples:
 * `openFile Lab/5`
 
 --------------------------------------------------------------------
-*Student-Event CRUD Features*
+## Student Features
 
-### Adding a student: `add student`
+### Adding student: `add student`
 
 Adds a student to the student list.
 
@@ -208,7 +233,7 @@ Examples:
 
 * `add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
 
-### Deleting a student: `delete student`
+### Deleting student: `delete student`
 
 Removes a student from the student list.
 
@@ -220,6 +245,8 @@ Format: `rm [INDEX]`
 Examples:
 
 * `rm 1`
+
+<div id='add-student-to-event'></div>
 
 ### Add student to event: `addStudent to Event`
 
@@ -237,6 +264,8 @@ Examples:
 
 * `addStudent 1 Tutorial/tut1`
 * `addStudent 4 Lab/mock_lab_session`
+
+<div id='delete-student-from-event'></div>
 
 ### Delete student from event: `deleteStudent from Event`
 
@@ -256,7 +285,9 @@ Examples:
 * `deleteStudent 4 Lab/mock_lab_session`
 
 --------------------------------------------------------------------
-*Note Features*
+## Note Features
+
+<div id='add-note-for-event'></div>
 
 ### Add note for event: `Add Note`
 
@@ -274,8 +305,9 @@ Examples:
 * `add-note -content grade student labs timely\n -type Lab -name 2`
 * `add-note -content solve this student's query via email\n -type Recur -name 2`
 
+<div id='delete-note-from-event'></div>
 
-### Delete note for event: `delete note`
+### Delete note from event: `delete note`
 
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
@@ -287,8 +319,9 @@ Examples:
 * `rm-note -type Lab -name 2 -index 1`
 * `rm-note -type Recur -name 2 -index 0`
 
+<div id='edit-note-in-event'></div>
 
-### Edit note for event: `edit note`
+### Edit note in event: `edit note`
 
 Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
@@ -308,24 +341,7 @@ Examples:
 * `edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0`
 
 --------------------------------------------------------------------
-*Help Features*
-
-### Help for events: `help`
-
-Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
-
-This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
-
-Format: `help [TYPE]`
-
-Examples:
-* `help`
-* `help lab`
-* `help tutorial`
-* `help consultation`
-
---------------------------------------------------------------------
-*Sort / Filter features*
+## Sort Features
 
 ### Sort students in recurring events: `Sort Students`
 
@@ -364,7 +380,26 @@ Examples:
 * `filter all urgency 90`
 
 --------------------------------------------------------------------
-*Application Level features*
+## Help Features
+
+### Help for events: `help`
+
+Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
+
+This should help new TAs understand the syntax better and also reduces the need to memorise the syntax or refer to any external documentations.
+
+Format: `help [TYPE]`
+
+Examples:
+* `help`
+* `help lab`
+* `help tutorial`
+* `help consultation`
+
+--------------------------------------------------------------------
+
+## Application Features
+
 ### Exit from application: `Exit application`
 
 Exits from TrAcker
@@ -388,7 +423,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 <table>
    <tr>
