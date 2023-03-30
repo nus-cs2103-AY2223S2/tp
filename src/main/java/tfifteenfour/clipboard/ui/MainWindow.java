@@ -179,13 +179,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void initClippy() {
-        String imageUrl = "docs/Images/CommandSuccess.GIF";
-        File file = new File(imageUrl);
-        clippySuccess = new Image(file.toURI().toString());
+        clippySuccess = new Image(this.getClass().getResourceAsStream("/images/CommandSuccess.GIF"));
 
-        imageUrl = "docs/Images/CommandFail.GIF";
-        file = new File(imageUrl);
-        clippyFailure = new Image(file.toURI().toString());
+        clippyFailure = new Image(this.getClass().getResourceAsStream("/images/CommandFail.GIF"));
     }
 
     /**
