@@ -52,7 +52,6 @@ public class FindCommand extends Command {
         requireAllNonNull(model, officeConnectModel);
 
         List<Person> personList = model.filterReadOnlyPersonList(predicate);
-
         if (personList.size() < 1) {
             logger.warning("Invalid keywords used to initialize predicate: " + predicate);
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON);
@@ -64,7 +63,7 @@ public class FindCommand extends Command {
 
         displayAssignedTaskAndPerson(model, officeConnectModel, assignedTaskList, pIdList);
 
-        if (assignedTaskList.isEmpty()) {
+        if (personList.isEmpty()) {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         } else {
             int numOfPersonFound = model.getFilteredPersonList().size();

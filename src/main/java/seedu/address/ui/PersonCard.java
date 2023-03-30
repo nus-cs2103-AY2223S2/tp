@@ -55,13 +55,15 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> {
                 Label label = new Label(tag.tagName);
                 label.getStyleClass().add("cell_small_label");
                 label.getStyleClass().add("tag");
-
+                label.setMaxWidth(200);
+                label.setWrapText(true);
                 FlowPane.setMargin(label, new Insets(0, 5, 5, 0));
                 tags.getChildren().add(label);
             });
