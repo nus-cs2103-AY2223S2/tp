@@ -24,6 +24,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
@@ -73,25 +74,27 @@ public class ImportCommand extends CsvCommand {
         }
 
         if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
+                    + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
         }
-        final String atd = record.get(CsvUtil.KW_ATTENDANCE).trim();
+        final String atdStr = record.get(CsvUtil.KW_ATTENDANCE);
+        final String atd = atdStr.isBlank() ? Attendance.ORIGINAL_ATD : atdStr.trim();
 
         if (!record.isMapped(CsvUtil.KW_PP)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
         }
-        final String pp = record.get(CsvUtil.KW_ATTENDANCE).trim();
+        final String ppStr = record.get(CsvUtil.KW_PP);
+        final String pp = ppStr.isBlank() ? Attendance.ORIGINAL_PP : ppStr.trim();
 
-        if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+        final ArrayList<String> submissions = new ArrayList<>();
+        if (!record.isMapped(CsvUtil.KW_SUBMISSIONS)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
+                    + mkMsgNoColumn(CsvUtil.KW_SUBMISSIONS));
         }
-
-        ArrayList<String> submissions = new ArrayList<>();
-        Collections.addAll(submissions, record.get(CsvUtil.KW_SUBMISSION).trim().split(","));
-
+        final String submitStr = record.get(CsvUtil.KW_SUBMISSIONS);
+        if (!submitStr.isBlank()) {
+            Collections.addAll(submissions, submitStr.trim().split(";"));
+        }
 
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
@@ -102,7 +105,7 @@ public class ImportCommand extends CsvCommand {
         try {
             //ignore all tokens that are empty strings.
             parsedTags = ParserUtil.parseTags(
-                    Arrays.stream(tags.split(" ")).filter(IS_UNEMPTY).collect(Collectors.toList()));
+                    Arrays.stream(tags.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
         }
@@ -127,22 +130,18 @@ public class ImportCommand extends CsvCommand {
             throw new CommandException(FileUtil.MSG_FILE_ACCESS_DENIED);
         }
 
-        FileReader reader = null;
+        final FileReader reader;
         try {
             reader = new FileReader(f);
         } catch (FileNotFoundException e) {
             throw new CommandException(MSG_FILE_NOT_FOUND);
-        } finally {
-            AppUtil.closeIfClosable(reader);
         }
 
         CSVParser parser = null;
         try {
-            parser = CsvUtil.STU_FMT.parse(reader);
+            parser = CsvUtil.IN_FMT.parse(reader);
         } catch (IOException e) {
             throwIoExceptionAsCmdException();
-        } finally {
-            AppUtil.closeIfClosable(parser);
         }
 
         final HashMap<Name, Student> nameToStu = UniqueStudentList.getNameToStuMap(model.getFilteredStudentList());
@@ -159,17 +158,16 @@ public class ImportCommand extends CsvCommand {
                 }
             } else {
                 if (isNotForced) {
-                    throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu);
+                    throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu
+                            + "\nUse -force to overwrite.");
                 }
                 toDel.add(stuInList);
             }
         }
-        for (Student stuInList : toDel) {
-            model.deleteStudent(stuInList);
-        }
-        for (Student stu : toAdd) {
-            model.addStudent(stu);
-        }
+        AppUtil.closeIfClosable(parser);
+        AppUtil.closeIfClosable(reader);
+        toDel.forEach(model::deleteStudent);
+        toAdd.forEach(model::addStudent);
         return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }

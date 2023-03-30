@@ -2,6 +2,7 @@ package taa.logic.commands;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Set;
 
 import org.apache.commons.csv.CSVPrinter;
 
@@ -12,10 +13,9 @@ import taa.commons.util.FileUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 import taa.model.student.Attendance;
-import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
-
+/** Export data in CSV format.*/
 public class ExportCommand extends CsvCommand {
     public static final String COMMAND_WORD = "export";
     public static final String MSG_USAGE = COMMAND_WORD + ": Export data in CSV format from file. Parameter: FILE_PATH";
@@ -28,6 +28,13 @@ public class ExportCommand extends CsvCommand {
         super(f.endsWith(CsvUtil.FILE_PREFIX) ? f : f + CsvUtil.FILE_PREFIX, isForced);
     }
 
+    private static String toStorageString(Set<Tag> s) {
+        StringBuilder tags = new StringBuilder();
+        for (Tag tag : s) {
+            tags.append(tag.tagName).append(';');
+        }
+        return tags.toString();
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -47,24 +54,21 @@ public class ExportCommand extends CsvCommand {
         }
 
         final ObservableList<Student> toSave = model.getFilteredStudentList();
-        FileWriter fw = null;
+        FileWriter writer = null;
         CSVPrinter printer = null;
         try {
-            fw = new FileWriter(f);
-            printer = new CSVPrinter(fw, CsvUtil.STU_FMT);
+            writer = new FileWriter(f);
+            printer = new CSVPrinter(writer, CsvUtil.OUT_FMT);
             for (Student stu : toSave) {
-                final Attendance atd=stu.getAtd();
-                StringBuilder tags=new StringBuilder();
-                for(Tag tag:stu.getClassTags()){
-                    tags.append(tag.tagName).append(' ');
-                }
-                printer.printRecord(stu.getName(), atd.listAtdString(),atd.listPpString(),tags);
+                final Attendance atd = stu.getAtd();
+                printer.printRecord(stu.getName(), atd.atdStrorageStr(), atd.partPointsStorageStr(),
+                        stu.getSubmissionStorageString(), toStorageString(stu.getClassTags()));
             }
         } catch (IOException e) {
             throwIoExceptionAsCmdException();
         } finally {
             AppUtil.closeIfClosable(printer);
-            AppUtil.closeIfClosable(fw);
+            AppUtil.closeIfClosable(writer);
         }
         return new CommandResult(String.format(MSG_SUCC, toSave.size(), f));
     }

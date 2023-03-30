@@ -6,7 +6,7 @@ import java.io.File;
 
 import taa.commons.util.FileUtil;
 import taa.logic.commands.exceptions.CommandException;
-
+/** The elements shared by import and export command.*/
 public abstract class CsvCommand extends Command {
     final File f;
     final boolean isNotForced;

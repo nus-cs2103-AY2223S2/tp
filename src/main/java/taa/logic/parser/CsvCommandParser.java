@@ -5,10 +5,10 @@ import java.util.function.BiFunction;
 import taa.commons.util.StringUtil;
 import taa.logic.commands.CsvCommand;
 import taa.logic.parser.exceptions.ParseException;
-
+/** The shared elements of {@link ImportCommandParser} and {@link ExportCommandParser}.*/
 public abstract class CsvCommandParser implements Parser<CsvCommand> {
     private static final String FORCE_FLAG = "-force";
-    final private BiFunction<String, Boolean, CsvCommand> mkCmd;
+    private final BiFunction<String, Boolean, CsvCommand> mkCmd;
 
 
     protected CsvCommandParser(BiFunction<String, Boolean, CsvCommand> mkCmd) {

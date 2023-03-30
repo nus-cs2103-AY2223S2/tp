@@ -46,14 +46,14 @@ public class Submissions {
     }
 
     /**
-     * @return ArrayList of storage string representation for the submissions
+     * @return Storage string representation for the submissions
      */
-    public ArrayList<String> submissionStorageString() {
-        ArrayList<String> res = new ArrayList<>();
-        for (Submission sub: this.submissions) {
-            res.add(sub.toStorageString());
+    public String getStorageString() {
+        StringBuilder ans = new StringBuilder();
+        for (Submission sub : this.submissions) {
+            ans.append(sub.toStorageString()).append(';');
         }
-        return res;
+        return ans.toString();
     }
 
     /**

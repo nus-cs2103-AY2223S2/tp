@@ -43,6 +43,7 @@ public class AppUtil {
         }
     }
 
+    /** Closes the closable if it is non-null to save resource.*/
     public static void closeIfClosable(Closeable c) {
         if (c != null) {
             try {

@@ -10,6 +10,7 @@ import taa.model.ClassList;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -19,25 +20,19 @@ import taa.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
-        return new Student[] {
-            new Student(new Name("Alex Yeoh"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Tut_T01")),
-            new Student(new Name("Bernice Yu"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Tut_T01", "Lab_L01")),
-            new Student(new Name("Charlotte Oliveiro"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Tut_T02")),
-            new Student(new Name("David Li"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Lab_L02")),
-            new Student(new Name("Irfan Ibrahim"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Rec_R03")),
-            new Student(new Name("Roy Balakrishnan"), "0,0,0,0,0,0,0,0,0,0,0,0",
-                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1", new ArrayList<String>(),
-                getTagSet("Lab_L12"))
+        return new Student[]{
+            new Student(new Name("Alex Yeoh"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, new ArrayList<>(),
+                    getTagSet("Tut_T01")),
+            new Student(new Name("Bernice Yu"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, new ArrayList<>(),
+                    getTagSet("Tut_T01", "Lab_L01")),
+            new Student(new Name("Charlotte Oliveiro"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
+                    new ArrayList<>(), getTagSet("Tut_T02")),
+            new Student(new Name("David Li"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, new ArrayList<>(),
+                    getTagSet("Lab_L02")),
+            new Student(new Name("Irfan Ibrahim"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, new ArrayList<>(),
+                    getTagSet("Rec_R03")),
+            new Student(new Name("Roy Balakrishnan"), Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
+                    new ArrayList<>(), getTagSet("Lab_L12"))
         };
     }
 
