@@ -77,7 +77,7 @@ public class FindCommandTest {
     }
     @Test
     public void execute_validKeywords_noTaskAssigned() {
-        String expectedMessage = String.format(FindCommand.MESSAGE_NO_PERSON_FOUND, "Alice Pauline");
+        String expectedMessage = String.format(FindCommand.MESSAGE_PERSON_FOUND, "1");
         NameContainsInOrderKeywordsPredicate predicate = preparePredicate("Alice Pauline");
         FindCommand command = new FindCommand(predicate);
 
