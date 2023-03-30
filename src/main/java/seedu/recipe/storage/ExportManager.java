@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,24 +15,29 @@ import javafx.stage.Stage;
  */
 public class ExportManager {
 
-    private final Path recipeBookFilePath = Paths.get("data", "recipebook.json");
+    private final Path recipeBookFilePath;
     private final Stage owner;
 
-    public ExportManager(Stage owner) {
+    /**
+     * Creates an instance of the ExportManager that is responsible for exporting the RecipeBook to a JSON file.
+     *
+     * @param owner the owner stage of MainWindow
+     * @param recipeBookFilePath the file path to the RecipeBook to be exported.
+     */
+    public ExportManager(Stage owner, Path recipeBookFilePath) {
         this.owner = owner;
+        this.recipeBookFilePath = recipeBookFilePath;
     }
 
     /**
-     * Displays a file chooser dialog and exports the recipebook to a JSON file.
+     * Displays a file chooser dialog and exports the RecipeBook to a JSON file.
      * If file exists, there will be a prompt asking whether to overwrite it.
      *
      * @throws IOException if there is an error while writing to the file.
      */
-
     public void execute() throws IOException {
         FileChooser fileChooser = createFile();
         File selectedFile = fileChooser.showSaveDialog(this.owner);
-
         if (selectedFile != null) {
             writeToFile(selectedFile);
         }
@@ -53,7 +57,7 @@ public class ExportManager {
     }
 
     /**
-     * Writes the contents of the recipebook JSON file to the selected file.
+     * Writes the contents of the RecipeBook JSON file to the selected file.
      *
      * @param selectedFile the selected file to write to.
      * @throws IOException if there is an error while writing to the file.
