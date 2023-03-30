@@ -40,7 +40,7 @@ public class Person {
      * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, 
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark,
                   Set<Tag> tags, Tasklist tasks) {
         requireAllNonNull(name, gender, phone, email, company, location,
                 occupation, jobTitle, address, tags, remark, tasks);
@@ -63,7 +63,7 @@ public class Person {
      * Constructor for a person with a given LeadStatus.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, 
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark,
                   Set<Tag> tags, TaskList tasks,
                   LeadStatus status) {
         requireAllNonNull(name, gender, phone, email, company, location,

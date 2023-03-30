@@ -231,7 +231,7 @@ The Tasks feature aims to provide information about the tasks to be done for con
 #### Implementation
 
 Tasks are represented by a `Task` object that is stored as an attribute of `Person`, currently containing a String for
-the description of the task. In the future, it is possible to include various types of tasks such as events or 
+the description of the task. In the future, it is possible to include various types of tasks such as events or
 deadlines.
 
 Under the `Model` for `Person`, created an attribute `Task` to store the description of the task.
