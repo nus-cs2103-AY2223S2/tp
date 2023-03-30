@@ -17,7 +17,8 @@ public class AddConsultationCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the address book. "
             + "Parameters: "
             + PREFIX_CONSULTATION + "CONSULTATION_NAME "
-            + "Restrictions: Not allowed to add consultation and student with the same command!";
+            + "Restrictions: Not allowed to add consultation and student with the same command! \n"
+            + "Example: " + COMMAND_WORD + " Consultation/consultWithEmily -date 10/10/2024 10:00";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation already exists in the address book";

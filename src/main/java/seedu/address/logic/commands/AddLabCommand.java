@@ -17,7 +17,8 @@ public class AddLabCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lab to the address book. "
             + "Parameters: "
             + PREFIX_LAB + "LAB_NAME "
-            + "Restrictions: Not allowed to add lab and student with the same command!";
+            + "Restrictions: Not allowed to add lab and student with the same command! \n"
+            + "Example: " + COMMAND_WORD + " Lab/TreeMap -date 10/10/2024 10:00";
 
     public static final String MESSAGE_SUCCESS = "New lab added: %1$s";
     public static final String MESSAGE_DUPLICATE_LAB = "This lab already exists in the address book";

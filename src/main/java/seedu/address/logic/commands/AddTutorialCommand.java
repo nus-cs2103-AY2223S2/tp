@@ -17,7 +17,8 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the address book. "
             + "Parameters: "
             + PREFIX_TUTORIAL + "TUTORIAL_NAME "
-            + "Restrictions: Not allowed to add tutorial and student with the same command!";
+            + "Restrictions: Not allowed to add tutorial and student with the same command! \n"
+            + "Example: " + COMMAND_WORD + " Tutorial/Dijkstra -date 10/10/2024 10:00";;
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the address book";
