@@ -358,12 +358,18 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 #### `delete` - Delete an appointment
 
 ```text
-appointment delete <integer>
+appointment delete INDEX
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
 
 ##### Example
 
 * `appointment delete 5`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
 
 <br></br>
 
