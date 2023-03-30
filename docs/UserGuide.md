@@ -443,13 +443,21 @@ appointment find [...KEYWORDS...]
 
 #### `mark` - Marks an appointment as completed
 
+Marks an existing appointment as completed.
+
 ```text
-appointment mark <integer>
+appointment mark INDEX
 ```
+
+* <code><var>INDEX</var></code> : `<Index>`
 
 ##### Example
 
 * `appointment mark 1`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
 
 <br></br>
 
