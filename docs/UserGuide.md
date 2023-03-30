@@ -268,7 +268,7 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating persons using filters on fields: `filter`
+### Locating persons using filters on fields : `filter`
 
 Filters all persons to only show those whose fields contain all of the given keywords.
 
@@ -331,6 +331,10 @@ Format: `favorite INDEX`
 - Running this command on a person who is already in the favorite list will him from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+- `favorite 3` will pin the third person in the favorites panel.
+![result for `favorite 3`](images/favorite3.png)
 
 ### Exiting the program : `exit`
 
