@@ -119,9 +119,6 @@ public class Client {
     public List<Weight> getWeightList() {
         return weightHistory.weights;
     }
-    public String getWeightValue() {
-        return weight.value;
-    }
     public boolean isAppointmentEmpty() {
         return appointments.isEmpty();
     }
