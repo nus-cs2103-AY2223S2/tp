@@ -131,9 +131,8 @@ public class Leave implements Comparable<Leave> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(";Date: ")
-                .append(getDate())
-                .append("\n");
+        builder.append("leave on ")
+                .append(getDate());
         return builder.toString();
     }
 

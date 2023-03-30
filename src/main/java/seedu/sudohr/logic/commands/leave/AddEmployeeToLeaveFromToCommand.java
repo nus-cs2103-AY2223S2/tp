@@ -42,13 +42,13 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
     // maybe rename to duplicate leave? not sure if the right naming is used here
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on one of the days "
             + "in SudoHR";
-    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "Employee %1$s leave is added on %2$s";
+    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken a new %2$s";
 
     private final List<LeaveDate> leaveDatesToAdd;
     private final Id employeeId;
 
     /**
-     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for a employee at a
+     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for an employee at a
      * specified
      * {@code employeeIndex} on the specified {@code date}
      */
@@ -88,6 +88,8 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             model.addEmployeeToLeave(leavesToAdd.get(i), employeeToAdd);
             builder.append(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leavesToAdd.get(i)) + "\n");
         }
+
+        model.updateFilteredLeaveList(l -> l.hasEmployee(employeeToAdd));
 
         return new CommandResult(builder.toString());
     }

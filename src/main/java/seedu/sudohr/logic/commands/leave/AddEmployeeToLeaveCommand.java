@@ -33,9 +33,9 @@ public class AddEmployeeToLeaveCommand extends Command {
             + PREFIX_DATE + "2022-03-04 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has leave on this day "
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already taken leave on this day "
             + "in SudoHR";
-    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken leave on %2$s";
+    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken a new %2$s";
 
     private final LeaveDate leaveDate;
     private final Id employeeId;
@@ -75,6 +75,7 @@ public class AddEmployeeToLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
+        model.updateFilteredLeaveList(l -> l.hasEmployee(employeeToAdd));
 
         return new CommandResult(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leaveToAdd));
     }

@@ -389,6 +389,11 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
+        public void addEmployeeToDepartment(Employee p, Department d) {
+            sudoHr.addEmployeeToDepartment(p, d);
+        }
+
+        @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
 
         }
@@ -397,6 +402,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
 
         }
+
 
         @Override
         public void removeEmployeeFromDepartment(Employee p, Department d) {
