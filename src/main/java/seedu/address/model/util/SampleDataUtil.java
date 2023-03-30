@@ -136,7 +136,7 @@ public class SampleDataUtil {
         return new User(new Name("Linus Richards"),
                 new Phone("90102030"),
                 new Email("linusrichards@gmail.com"),
-                new Station("National University of Singapore"),
+                new Station("Kent Ridge"),
                 new TelegramHandle("@linusrichards"),
                 new ContactIndex(0),
                 getGroupTagSet(),

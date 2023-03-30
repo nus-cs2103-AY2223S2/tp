@@ -23,7 +23,7 @@ import seedu.address.model.tag.ModuleTag;
 public class AddCommandParser implements Parser<AddCommand> {
 
     private static final String DEFAULT_PHONE = "00000000";
-    private static final String DEFAULT_STATION = "National University of Singapore";
+    private static final String DEFAULT_STATION = "Kent Ridge";
     private static final Function<Name, String> DEFAULT_EMAIL_MAPPER =
             name -> String.format("%s@gmail.com", name.getValue().toLowerCase().replace(" ", ""));
     private static final Function<Name, String> DEFAULT_TELEGRAM_HANDLE_MAPPER =
