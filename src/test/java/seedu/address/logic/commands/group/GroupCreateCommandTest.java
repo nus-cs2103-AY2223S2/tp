@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -182,12 +183,22 @@ class GroupCreateCommandTest {
         }
 
         @Override
+        public ObservableList<String> getFilteredTimeSlotList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredGroupList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTimeSlotList(Group group, LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -219,6 +230,11 @@ class GroupCreateCommandTest {
         @Override
         public void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
                                       RecurringEvent editedRecurringEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExpiredEvent() {
             throw new AssertionError("This method should not be called.");
         }
     }

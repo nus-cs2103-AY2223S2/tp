@@ -16,10 +16,11 @@ Fret not because _WGT_ got your back! This desktop app aims to **automate the pr
 you all the pain and "scratching head moment" you face when trying to find a time that all of you are free!
 
 Not just that, WGT allows you to **keep track of all your events** such as your weekly tutorials,
-lectures and cca timings. No more digging through your pinned messages or photo album to find your timetale
+lectures and cca timings. No more digging through your pinned messages or photo album to find your timetable
+>>>>>>> 4208ba1b47695106530b1d263869995ba3541951
 anymore!
 
-Useful links: 
+Useful links:
 - [User Guide](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/UserGuide.md) to start your journey with WGT
 - [Developer Guide](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/DeveloperGuide.md)
 - [About us](https://github.com/AY2223S2-CS2103T-T09-2/tp/blob/master/docs/AboutUs.md)

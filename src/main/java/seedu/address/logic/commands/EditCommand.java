@@ -81,6 +81,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        // TODO: Refactor
         List<Group> groups = model.getAddressBook().getGroupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

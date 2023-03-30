@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -89,6 +90,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Group> getFilteredGroupList();
 
+    /** Returns an unmodifiable view of the filtered time slot list */
+    ObservableList<String> getFilteredTimeSlotList();
+
     /**
      * Adds the given person into a group.
      * {@code person} must not already exist in the {@code group}
@@ -122,6 +126,9 @@ public interface Model {
 
     void updateFilteredGroupList(Predicate<Group> predicate);
 
+    // TODO: Change type
+    void updateFilteredTimeSlotList(Group group, LocalDate date);
+
     /**
      * Add IsolatedEvent object to the person's isolated event list.
      * @param person
@@ -143,4 +150,6 @@ public interface Model {
     void deleteRecurringEvent(Person personToEdit, RecurringEvent event);
 
     void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent);
+
+    void deleteExpiredEvent();
 }

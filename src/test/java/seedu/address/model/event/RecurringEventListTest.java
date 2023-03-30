@@ -77,7 +77,7 @@ class RecurringEventListTest {
         LocalDateTime endPeriod = THURSDAY_TWELVE_O_CLOCK_VALID;
 
         assertEquals("Biking\n" + "Canoeing\n",
-                recurringEventList.listBetweenOccurence(startPeriod, endPeriod));
+                recurringEventList.listBetweenOccurrence(startPeriod, endPeriod));
     }
 
 }
