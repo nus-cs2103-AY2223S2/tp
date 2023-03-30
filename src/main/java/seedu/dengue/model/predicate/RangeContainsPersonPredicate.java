@@ -9,7 +9,7 @@ import seedu.dengue.model.range.Range;
  * Represents the predicate which tests for whether the person in the persons list is reported on the
  * range based on the user input.
  */
-public class RangeContainsPersonPredicate implements Predicate<Person> {
+public class RangeContainsPersonPredicate extends PredicateUtil<Person> {
 
     private final Range range;
 

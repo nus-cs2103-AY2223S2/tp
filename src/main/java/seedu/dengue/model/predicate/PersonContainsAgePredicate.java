@@ -10,7 +10,7 @@ import seedu.dengue.model.person.Person;
  * Represents the predicate which tests for whether the person in the persons list is of the age based
  * on the user input.
  */
-public class PersonContainsAgePredicate implements Predicate<Person> {
+public class PersonContainsAgePredicate extends PredicateUtil<Person> {
 
     private final Optional<Age> age;
 

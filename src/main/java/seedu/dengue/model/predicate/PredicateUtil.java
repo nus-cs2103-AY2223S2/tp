@@ -2,9 +2,11 @@ package seedu.dengue.model.predicate;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
+import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.variant.Variant;
@@ -12,7 +14,7 @@ import seedu.dengue.model.variant.Variant;
 /**
  * Contains utility methods used for checking string validity in the various Predicate classes.
  */
-public class PredicateUtil {
+public abstract class PredicateUtil<T> implements Predicate<T> {
 
     /**
      * Checks for whether the {@code String name} is valid.
@@ -74,4 +76,22 @@ public class PredicateUtil {
         String trimmedVariant = variant.trim();
         return Variant.isValidVariantName(trimmedVariant);
     }
+
+    /**
+     * Composes all predicates with "and".
+     * @param predicates Predicates to be composed.
+     * @return A new predicate.
+     * @param <R> Any data-type.
+     */
+    public static <R> Predicate<R> andAll(Predicate<R>... predicates) {
+        Predicate<R> initial = x -> true;
+        for (Predicate<R> predicate : predicates) {
+            initial = initial.and(predicate);
+        }
+        return initial;
+    }
+
+
+    @Override
+    public abstract boolean test(T thing);
 }
