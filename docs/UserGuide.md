@@ -47,7 +47,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 | Action | Command Format                                               |
 |:-------|:-------------------------------------------------------------|
  | Add    | `add n/<event> d/<date> s/<start time> e/<end time>`         |
-| Repeat | `recur <index> d/<end date> every/<recur factor>`            |
+| Repeat | `recur <index> d/<end date> every/<RECUR FACTOR>`            |
 | Edit   | `edit <index> n/<name> d/<date> s/<start time> e/<end time>` |
 | Delete | `delete <index>` or `delete <index index ... index>`         |
 | List   | `list`                                                       |
@@ -85,7 +85,7 @@ Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 
 Recurs an event from the Scheduler until an end date.
 
-Format: `recur <index> d/<date> every/<RECUR_FACTOR>`
+Format: `recur <index> d/<end date> every/<RECUR FACTOR>`
 
 Parameters:  
 `d/`: Date of the event in `YYYY-MM-DD` format  
