@@ -15,4 +15,5 @@ plugins:
   - jemoji
   
 minima:
-  skin: classic
+  skin: dark
+  
