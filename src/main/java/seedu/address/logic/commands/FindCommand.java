@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
@@ -19,12 +20,16 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-        KEYWORD_PLACEHOLDER));
+            KEYWORD_PLACEHOLDER.asRepeatable()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " alice bob charlie";
 
     private final ContainsKeywordsPredicate predicate;
 

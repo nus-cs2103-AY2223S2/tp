@@ -58,7 +58,10 @@ public class Prefix {
 
     @Override
     public String toString() {
-        return getPrefix();
+        String output = getPrefix() + getPlaceholderText();
+        output = isOptional() ? String.format("[%s]", output) : output;
+        output = isRepeatable() ? output + "..." : output;
+        return output;
     }
 
     /**

@@ -21,6 +21,9 @@ public class CliSyntax {
     /** Not a prefix, but a placeholder for a index argument. */
     public static final Prefix INDEX_PLACEHOLDER = new Prefix("", "INDEX");
 
+    /** Not a prefix, but a placeholder for a index argument. */
+    public static final Prefix REMARK_PLACEHOLDER = new Prefix("", PREFIX_REMARK.getPlaceholderText());
+
     private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
         PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
 

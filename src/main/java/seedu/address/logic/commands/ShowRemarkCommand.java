@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -25,8 +26,11 @@ public class ShowRemarkCommand extends Command {
             INDEX_PLACEHOLDER));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the remarks added to a person.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: show 2";
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Remarks: %1$s";
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
