@@ -134,7 +134,8 @@ public class InputHistory {
                 dataString += t + "\n";
             }
         }
-        for (String s : future) {
+        List<String> orderedFuture = getFuture();
+        for (String s : orderedFuture) {
             String[] lines = s.split("\n");
             dataString += lines.length + "\n";
             for (String t : lines) {
