@@ -1,14 +1,5 @@
 package seedu.vms.model.keyword;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
-import seedu.vms.commons.core.ValueChange;
-import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.commons.exceptions.LimitExceededException;
-import seedu.vms.model.StorageModel;
-import seedu.vms.model.vaccination.VaxType;
-
-import java.security.Key;
 import java.util.HashMap;
 
 /**
