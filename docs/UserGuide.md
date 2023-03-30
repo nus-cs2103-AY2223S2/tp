@@ -26,23 +26,23 @@ The purpose of this user guide document is to provide staff with a clear underst
 - [GUI Information](#gui-information)  
 - [Command Prefixes](#command-prefixes)  
 - [Features](#features)  
- - [Help](#viewing-help--help) `help`  
- - [Undo](#undoing-previous-command-undo) `undo`  
- - [Redo](#redoing-previous-undo-redo) `redo`  
- - [Add patient](#adding-a-patient-record-add): `add`  
- - [Edit patient](#editing-a-patient-record-edit): `edit`  
- - [Delete patient](#deleting-a-patient-record-delete): `delete`  
- - [List all patients](#listing-all-patients-list): `list`  
- - [Filter patients](#filtering-patients-by-attribute-find): `find`  
- - [Backup patient records](#backing-up-patient-records-backup): `backup`  
- - [Load backups](#loading-data-load): `load`  
- - [View backups](#view-backup-data-viewbackups): `viewbackups`  
- - [Delete backup](#deleting-backup-data-deletebackup): `deletebackup`  
- - [Clear all data](#clearing-all-data-clear): `clear`  
- - [Light mode](#switching-to-light-mode-light): `light`  
- - [Dark mode](#switching-to-dark-mode-dark): `dark`  
- - [FAQ](#faq)  
-- [Command Summary](#command-summary)  
+  - [Help](#viewing-help--help) `help`  
+  - [Undo](#undoing-previous-command-undo) `undo`  
+  - [Redo](#redoing-previous-undo-redo) `redo`  
+  - [Add patient](#adding-a-patient-record-add): `add`  
+  - [Edit patient](#editing-a-patient-record-edit): `edit`  
+  - [Delete patient](#deleting-a-patient-record-delete): `delete`  
+  - [List all patients](#listing-all-patients-list): `list`  
+  - [Filter patients](#filtering-patients-by-attribute-find): `find`  
+  - [Backup patient records](#backing-up-patient-records-backup): `backup`  
+  - [Load backups](#loading-data-load): `load`  
+  - [View backups](#viewing-backup-data-viewbackups): `viewbackups`  
+  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup`  
+  - [Clear all data](#clearing-all-data-clear): `clear`  
+  - [Light mode](#switching-to-light-mode-light): `light`  
+  - [Dark mode](#switching-to-dark-mode-dark): `dark`  
+  - [FAQ](#faq)  
+  - [Command Summary](#command-summary)  
 
 --------------------------------------------------------------------------------------------------------------------  
 
@@ -54,8 +54,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HospiSearch.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`  
-   command to run the application.<br>  
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar hospisearch.jar`command to run the application.<br>  
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>  
    ![Ui](images/Ui.png)
 5. Type in a command in the command box to execute it. Some commands to try:
@@ -64,7 +63,7 @@ The purpose of this user guide document is to provide staff with a clear underst
 
 Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## GUI Information
 
@@ -98,7 +97,7 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 - Commands in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Commands separated by `|` within `()` suggest that only one of the commands must be present to be valid
+- Commands separated by `|` within `()` suggest that only one of the commands must be present to be valid.
 
 - Items with `…` after them can be used multiple times, including zero. e.g., [t/TAG] …​ can be used
   (i.e. 0 or more times), t/friend t/family etc.
@@ -113,7 +112,7 @@ Format: `help`
 
 ![Help](images/command_result/Help.png)
 
-Above is the view of help window after inputting `help`.
+Above is the view of help window after the input `help`.
 
 ### Undoing previous command: `undo`
 
@@ -129,7 +128,7 @@ Format: `undo`
 
 ![Undo](images/command_result/Undo.png)
 
-Above is the execution result of input `undo` (the list has been cleared).
+Above is the execution result of the input `undo` (the list has been cleared).
 
 ### Redoing previous undo: `redo`
 
@@ -141,18 +140,11 @@ has run.
 
 Format: `redo`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
-has run.
-</div>
-
-
-Format: `redo`
-
 ![Redo](images/command_result/Redo.png)
 
-Above is the execution result of input `redo` (the list is cleared again).
+Above is the execution result of the input `redo` (the list is cleared again).
 
-### Adding patient record: `add`
+### Adding a patient record: `add`
 
 Adds a person to the patient records.
 
@@ -163,8 +155,8 @@ optional.
 </div>
 
 💡**Tip**:
-<br/>A patient can have any number of tags and medicine (including 0)
-<br/>A patient can leave out the email prefix should they not want to share it
+<br/>A patient can have any number of tags and medicine (including 0).
+<br/>A patient can leave out the email prefix should they not want to share it.
 
 Examples:
 
@@ -173,7 +165,7 @@ Examples:
 
 ![Add](images/command_result/Add.png)
 
-Above is the execution result of input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
+Above is the execution result of the input `add i/S1234567H n/Cedric Pei p/84655284 a/PGPR g/Male d/NKDA ad/Shannon t/Diabetic m/Lantus m/Soliqua`.
 
 ### Editing a patient record: `edit`
 
@@ -194,7 +186,7 @@ Examples:
 
 ![Edit](images/command_result/Edit.png)
 
-Above is the execution result of input `edit 2 i/G3787219P`
+Above is the execution result of the input `edit 2 i/G3787219P`.
 
 ### Viewing a patient detailed particulars: `view`
 
@@ -207,7 +199,7 @@ Examples:
 
 ![View](images/command_result/View.png)
 
-Above is the execution result of input `view i/S1234567H`.
+Above is the execution result of the input `view i/S1234567H`.
 
 ### Deleting a patient record: `delete`
 
@@ -225,7 +217,7 @@ Examples:
 
 ![Delete](images/command_result/Delete.png)
 
-Above is the execution result of input `delete i/S1234567A`.
+Above is the execution result of the input `delete i/S1234567A`.
 
 
 ### Listing all patients: `list`
@@ -243,7 +235,7 @@ Format: `list`
 
 ![List](images/command_result/List.png)
 
-Above is the execution result of input `list`.
+Above is the execution result of the input `list`.
 
 ### Filtering patients by attribute: `find`
 
@@ -279,7 +271,7 @@ Examples (The following results are based of the sample data provided):
 
 ![Find](images/command_result/Find.png)
 
-Above is the execution result of input `find i/S1234567A`.
+Above is the execution result of the input `find i/S1234567A`.
 
 ### Backing up patient records: `backup`
 
@@ -302,10 +294,11 @@ Examples:
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**: INDEX_NO can only be an integer between 1 and 10
+</div>
 
 ![Backup](images/command_result/Backup.png)
 
-Above is the execution result of input `backup 1`.
+Above is the execution result of the input `backup 1`.
 
 ### Loading data: `load`
 
@@ -322,9 +315,9 @@ Example:
 
 ![Load](images/command_result/Load.png)
 
-Above is the execution result of input `load 1`.
+Above is the execution result of the input `load 1`.
 
-### View backup data: `viewbackups`
+### Viewing backup data: `viewbackups`
 
 Shows all the backups available.
 
@@ -335,7 +328,7 @@ Format: `viewbackups`
 
 ![Viewbackup](images/command_result/Viewbackup.png)
 
-Above is the execution result of input `viewbackups`.
+Above is the execution result of the input `viewbackups`.
 
 ### Deleting backup data: `deletebackup`
 
@@ -353,7 +346,7 @@ Example:
 
 ![DeleteBackUp](images/command_result/Deletebackup.png)
 
-Above is the execution result of input `deletebackup 1`
+Above is the execution result of the input `deletebackup 1`.
 
 ### Clearing all data: `clear`
 
@@ -367,7 +360,7 @@ Format: `clear`
 
 ![Clear](images/command_result/Clear.png)
 
-Above is the execution result of input `clear`.
+Above is the execution result of the input `clear`.
 
 ### Switching to light mode: `light`
 
@@ -377,7 +370,7 @@ Format: `light`
 
 ![Light](images/command_result/Light.png)
 
-Above is the execution result of input `light`.
+Above is the execution result of the input `light`.
 
 ### Switching to dark mode: `dark`
 
@@ -391,7 +384,7 @@ Format: `dark`
 
 ![Dark](images/command_result/Dark.png)
 
-Above is the execution result of input `dark`.
+Above is the execution result of the input `dark`.
 
   
 --------------------------------------------------------------------------------------------------------------------  
@@ -410,21 +403,21 @@ Above is the execution result of input `dark`.
 
 ## Command summary
 
-|    Action         | Format, Examples                                                                                                                                                                                                                  |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
-| **Help**          | `help`                                                                                                                                                                                                                            |  
-| **Undo**          | `undo`                                                                                                                                                                                                                            |  
-| **Redo**          | `redo`                                                                                                                                                                                                                            |  
-| **Add**           | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male ad/Alex d/NKDA | 
-| **Edit**          | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                |  
-| **Delete**        | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                   |  
-| **List**          | `list`                                                                                                                                                                                                                            |  
-| **Find**          | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                       |  
-| **Backup**        | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                             |  
-| **Load**          | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                 |  
-| **Viewbackups**   | `viewbackups`                                                                                                                                                                                                                     |  
-| **Deletebackups** | `deletebackups INDEX_NO` <br/> e.g. deletebackups 3                                                                                                                                                                               |  
-| **Clearall**      | `clear`                                                                                                                                                                                                                           |  
+| Action             | Format, Examples                                                                                                                                                                                                                  |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| **Help**           | `help`                                                                                                                                                                                                                            |  
+| **Undo**           | `undo`                                                                                                                                                                                                                            |  
+| **Redo**           | `redo`                                                                                                                                                                                                                            |  
+| **Add**            | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male ad/Alex d/NKDA | 
+| **Edit**           | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                                |  
+| **Delete**         | `delete i/NRIC…​` <br/> e.g. delete i/T0012345A                                                                                                                                                                                   |  
+| **List**           | `list`                                                                                                                                                                                                                            |  
+| **Find**           | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                                       |  
+| **Backup**         | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                                             |  
+| **Load**           | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                                                 |  
+| **View backups**   | `viewbackups`                                                                                                                                                                                                                     |  
+| **Delete backups** | `deletebackups INDEX_NO` <br/> e.g. deletebackups 3                                                                                                                                                                               |  
+| **Clear all**      | `clear`                                                                                                                                                                                                                           |  
 | **Light**          | `light`                                                                                                                                                                                                                           |  
 | **Dark**           | `dark`                                                                                                                                                                                                                            |
 
