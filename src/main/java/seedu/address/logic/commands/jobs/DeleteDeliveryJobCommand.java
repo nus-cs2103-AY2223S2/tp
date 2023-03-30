@@ -19,10 +19,14 @@ public class DeleteDeliveryJobCommand extends DeliveryJobCommand {
     public static final String COMMAND_WORD = "delete_job";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the job identified by the job id.\n"
-            + "Parameters: STRING job id\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
+            + ": Deletes the job identified by the job ID.\n"
+            + "Parameters: STRING job ID\n"
+            + "Example: " + COMMAND_WORD + " ALBE29E66F\n"
+            + "Tip: you can copy the job ID by\n"
+            + "     selecting the job and press\n"
+            + "     Ctrl+C\n"
+            + "Tip: you can delete job directly by\n"
+            + "     selecting and press DEL key";
     public static final String MESSAGE_DELETE_JOB_SUCCESS = "Deleted Job: %1$s";
 
     private final String jobId;

@@ -9,6 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteDeliveryJobCommandParser implements Parser<DeleteDeliveryJobCommand> {
 
+    private static final String EMPTY_CMD = "Job ID cannot be empty!\n";
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -17,6 +18,9 @@ public class DeleteDeliveryJobCommandParser implements Parser<DeleteDeliveryJobC
      */
     public DeleteDeliveryJobCommand parse(String args) throws ParseException {
         String jobId = args.trim();
+        if (jobId.isEmpty()) {
+            throw new ParseException(EMPTY_CMD + DeleteDeliveryJobCommand.MESSAGE_USAGE);
+        }
         return new DeleteDeliveryJobCommand(jobId);
     }
 
