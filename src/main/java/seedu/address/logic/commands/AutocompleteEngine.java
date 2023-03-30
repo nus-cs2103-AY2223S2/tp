@@ -222,6 +222,8 @@ public class AutocompleteEngine {
                 String matchingExistingValues = existingArgValues.get(currPrefix)
                         .stream()
                         .filter(value -> value.startsWith(argValue))
+                        .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
+                                .noneMatch(value::equals))
                         .collect(Collectors.joining(" | "));
                 return matchingExistingValues.isEmpty()
                         ? ""
