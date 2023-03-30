@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,11 +15,18 @@ import javafx.stage.Stage;
  */
 public class ExportManager {
 
-    private final Path recipeBookFilePath = Paths.get("data", "recipebook.json");
+    private final Path recipeBookFilePath;
     private final Stage owner;
 
-    public ExportManager(Stage owner) {
+    /**
+     * Creates an instance of the ExportManager that is responsible for exporting the RecipeBook to a JSON file.
+     *
+     * @param owner the owner stage of MainWindow
+     * @param recipeBookFilePath the file path to the RecipeBook to be exported.
+     */
+    public ExportManager(Stage owner, Path recipeBookFilePath) {
         this.owner = owner;
+        this.recipeBookFilePath = recipeBookFilePath;
     }
 
     /**

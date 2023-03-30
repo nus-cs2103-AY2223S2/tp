@@ -160,11 +160,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExport() {
-        ExportManager exportManager = new ExportManager(primaryStage);
+        ExportManager exportManager = new ExportManager(primaryStage, logic.getRecipeBookFilePath());
         try {
             exportManager.execute();
+            logger.info("Export Successfully");
+            resultDisplay.setFeedbackToUser("Export Successfully");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            logger.info("Invalid export: " + e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage());
         }
     }
 

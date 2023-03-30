@@ -52,23 +52,6 @@ public class ImportManager {
         return importedRecipes;
     }
 
-    //Dont remove might be required for a fix
-    //    public ObservableList<Recipe> uniqueImportedRecipes(ObservableList<Recipe> importedRecipes) throws
-    //            DataConversionException {
-    //        JsonRecipeBookStorage currentStorage = new JsonRecipeBookStorage((recipeBookFilePath));
-    //        Optional<ReadOnlyRecipeBook> currentRecipeBook;
-    //        try {
-    //            currentRecipeBook = currentStorage.readRecipeBook();
-    //        } catch (DataConversionException e) {
-    //            throw e;
-    //        }
-    //        ObservableList<Recipe> currentRecipes = currentRecipeBook.get().getRecipeList();
-    //        for (Recipe importedRecipe : importedRecipes) {
-    //            if (currentRecipes.stream().anyMatch())
-    //        }
-    //
-    //    }`
-
     /**
      * Prompts the user to select a JSON file to import and returns the selected File object.
      *
@@ -127,6 +110,16 @@ public class ImportManager {
         return importedRecipeBook.get().getRecipeList();
     }
 
+    /**
+     * Returns a string representation of the given Recipe object in the format of a command string to add the recipe
+     * to the RecipeBook.
+     * The command string format is as follows:
+     * n/RECIPE_NAME [d/DURATION] [p/PORTION] [t/TAG]... [i/INGREDIENT]... [s/STEPS]...
+     *
+     * @param recipe The Recipe object to convert to a command string.
+     * @return A string representation of the Recipe object in the format of a command string to add the recipe to the
+     *     RecipeBook.
+     */
     public String getCommandText(Recipe recipe) {
         StringBuilder stringBuilder = new StringBuilder();
 
