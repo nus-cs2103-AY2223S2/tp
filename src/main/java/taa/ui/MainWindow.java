@@ -7,15 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import taa.Main;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.logic.Logic;
@@ -24,8 +19,8 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
 
 /**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
+ * can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -35,12 +30,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Stage primaryStage;
     private final Logic logic;
-
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
-    private final HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -87,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -132,18 +126,17 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         mainScene.setOnKeyPressed(event -> {
-            System.out.println("Woomy");
-            String newCmd=null;
-            switch (event.getCode()){
-                case UP:
-                newCmd= logic.getPrevCmd();
+            String newCmd = null;
+            switch (event.getCode()) {
+            case UP:
+                newCmd = logic.getPrevCmd();
                 break;
-                case DOWN:
-                newCmd= logic.getNextCmd();
+            case DOWN:
+                newCmd = logic.getNextCmd();
                 break;
-                default:
+            default:
             }
-            if(newCmd!=null){
+            if (newCmd != null) {
                 commandBox.setCommand(newCmd);
             }
         });

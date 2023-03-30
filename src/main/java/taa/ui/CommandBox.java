@@ -83,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
-    public void setCommand(String cmd){
+    public void setCommand(String cmd) {
         commandTextField.setText(cmd);
     }
 }
