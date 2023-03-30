@@ -15,7 +15,7 @@ import seedu.connectus.model.person.Phone;
  */
 public class WhatsApp implements Openable, Chatable {
 
-    public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number. "
+    public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number.\n"
         + Phone.MESSAGE_CONSTRAINTS;
 
     public final String value;

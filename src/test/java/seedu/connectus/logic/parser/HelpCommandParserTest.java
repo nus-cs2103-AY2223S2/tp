@@ -1,20 +1,8 @@
 package seedu.connectus.logic.parser;
 
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_HELP;
-import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_COMMAND_DESC;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADDT;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETET;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EDIT;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EMPTY;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EXIT;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_HELP;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_LIST;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_SEARCH;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WHITESPACE;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WITH_WHITESPACE;
+
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.connectus.testutil.Assert.assertThrows;
@@ -23,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
+import seedu.connectus.logic.commands.ChatCommand;
 import seedu.connectus.logic.commands.ClearCommand;
 import seedu.connectus.logic.commands.DeleteCommand;
 import seedu.connectus.logic.commands.DeleteTagFromPersonCommand;
@@ -30,7 +19,9 @@ import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.commands.ExitCommand;
 import seedu.connectus.logic.commands.HelpCommand;
 import seedu.connectus.logic.commands.ListCommand;
+import seedu.connectus.logic.commands.OpenCommand;
 import seedu.connectus.logic.commands.SearchCommand;
+import seedu.connectus.logic.commands.UpcomingBirthdayCommand;
 
 
 public class HelpCommandParserTest {
@@ -51,13 +42,13 @@ public class HelpCommandParserTest {
     public void parse_validArgs_returnsHelpCommandWithArgs() {
         assertParseSuccess(parser, VALID_HELP_COMMAND_ADD,
                 new HelpCommand(AddCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_ADDT,
+        assertParseSuccess(parser, VALID_HELP_COMMAND_ADD_T,
                 new HelpCommand(AddTagToPersonCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_CLEAR,
                 new HelpCommand(ClearCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_DELETE,
                 new HelpCommand(DeleteCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_DELETET,
+        assertParseSuccess(parser, VALID_HELP_COMMAND_DELETE_T,
                 new HelpCommand(DeleteTagFromPersonCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_EDIT,
                 new HelpCommand(EditCommand.MESSAGE_USAGE));
@@ -71,6 +62,12 @@ public class HelpCommandParserTest {
                 new HelpCommand(SearchCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_WITH_WHITESPACE,
                 new HelpCommand(ClearCommand.MESSAGE_USAGE));
+        assertParseSuccess(parser, VALID_HELP_COMMAND_CHAT,
+                new HelpCommand(ChatCommand.MESSAGE_USAGE));
+        assertParseSuccess(parser, VALID_HELP_COMMAND_OPEN,
+                new HelpCommand(OpenCommand.MESSAGE_USAGE));
+        assertParseSuccess(parser, VALID_HELP_COMMAND_UPCOMING_B,
+                new HelpCommand(UpcomingBirthdayCommand.MESSAGE_USAGE));
     }
 
     @Test
