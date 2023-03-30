@@ -2,11 +2,11 @@ package seedu.address.testutil;
 
 import java.util.HashSet;
 
-import seedu.address.model.person.Station;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;

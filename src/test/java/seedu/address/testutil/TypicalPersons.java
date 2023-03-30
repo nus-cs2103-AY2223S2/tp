@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.STATION_ALEX;
-import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;

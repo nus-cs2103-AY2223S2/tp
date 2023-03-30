@@ -27,7 +27,7 @@ public class LocationDataUtil {
     public static final Set<Location> MEET_LOCATIONS =
             Stream.concat(EAT_LOCATIONS.stream(), STUDY_LOCATIONS.stream()).collect(Collectors.toSet());
     public static final Set<Location> LESSON_VENUES = readLocationData("venues");
-    public static final Set<Location> STATIONS = readLocationData("station");
+    public static final Set<Location> STATIONS = readLocationData("stations");
 
     /**
      * If we need to, we can convert them to hash map.
