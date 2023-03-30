@@ -199,7 +199,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: Past data will be overridden and not be saved
+:exclamation: **Caution:** Past data will be overridden and not be saved
 </div>
 
 **Example:** 
@@ -285,7 +285,12 @@ Saves the modified data regarding the modules into the hard disk automatically a
 
 #### 4.10 Editing MODTrek data <a name="edit-data"></a>
 
-ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
+ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
+</div>
 
 [Back to Table of Contents](#toc)
 
@@ -320,9 +325,9 @@ are provided only by NUS.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** 
-* Parameters encapsulated in between brackets `()` are optional.
-* For `edit`, at least one optional parameter has to be specified.
+:information_source: **Note:** Parameters encapsulated in between brackets `()` are optional.
+
+For `edit`, at least one optional parameter has to be specified.
 </div>
 
 [Back to Table of Contents](#toc)
