@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.Pane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -33,8 +34,11 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="amountDue" styleClass="cell_small_label" text="\$AmountDue" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$Deadline" />
+      <HBox>
+        <Label fx:id="amountDue" text="Cost: "/>
+        <Pane fx:id="amountDuePane" styleClass="due_pane"/>
+      </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

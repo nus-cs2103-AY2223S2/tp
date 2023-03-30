@@ -21,6 +21,7 @@ public class Pet {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private boolean isMarked;
 
     // Data fields
     private final Address address;
@@ -44,6 +45,7 @@ public class Pet {
         this.cost = new Cost(timestamp);
         this.deadline = deadline;
         this.tags.addAll(tags);
+        this.isMarked = false;
     }
     public OwnerName getOwnerName() {
         return ownerName;
@@ -75,6 +77,14 @@ public class Pet {
 
     public Deadline getDeadline() {
         return deadline;
+    }
+
+    public void setMarked() {
+        this.isMarked = true;
+    }
+
+    public boolean getIsMarked() {
+        return this.isMarked;
     }
 
     /**
@@ -144,7 +154,9 @@ public class Pet {
                 .append("; Cost: ")
                 .append(getCost())
                 .append("; Deadline: ")
-                .append(getDeadline());
+                .append(getDeadline())
+                .append("; Status: ")
+                .append(getIsMarked()? "Marked" : "Unmarked");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

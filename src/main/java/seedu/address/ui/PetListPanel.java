@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -15,6 +16,7 @@ import seedu.address.model.pet.Pet;
  * Panel containing the list of pets.
  */
 public class PetListPanel extends UiPart<Region> {
+    private static final PseudoClass OVERDUE_PSEUDOCLASS = PseudoClass.getPseudoClass("overdue");
     private static final String FXML = "PetListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PetListPanel.class);
 
@@ -47,10 +49,10 @@ public class PetListPanel extends UiPart<Region> {
                 LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
                 LocalDateTime currTime = LocalDateTime.now();
 
-                if (currTime.isAfter(deadline)) {
-                    getStyleClass().add("deadline-date");
+                if (currTime.isAfter(deadline) && !(pet.getIsMarked())) {
+                    pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, true);
                 } else {
-                    getStyleClass().remove("deadline-date");
+                    pseudoClassStateChanged(OVERDUE_PSEUDOCLASS, false);
                 }
             }
         }

@@ -5,8 +5,10 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.address.model.pet.Pet;
 
@@ -44,6 +46,8 @@ public class PetCard extends UiPart<Region> {
     @FXML
     private Label amountDue;
     @FXML
+    private Pane amountDuePane;
+    @FXML
     private Label deadline;
     @FXML
     private FlowPane tags;
@@ -63,7 +67,11 @@ public class PetCard extends UiPart<Region> {
 
         LocalDateTime arrival = pet.getTimeStamp();
         System.out.println(arrival);
-        amountDue.setText(pet.getCost().toString());
+        Label amountDueValueLabel = new Label(pet.getCost().toString());
+        amountDueValueLabel.setLayoutX(amountDue.getLayoutX() + amountDue.prefWidth(-1));
+        amountDueValueLabel.setLayoutY(amountDue.getLayoutY());
+        amountDueValueLabel.setStyle("-fx-text-fill: black; -fx-font-size: 13px;");
+        amountDuePane.getChildren().add(amountDueValueLabel);
 
         deadline.setText(pet.getDeadline().toString());
         pet.getTags().stream()
