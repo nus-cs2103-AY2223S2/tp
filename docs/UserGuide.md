@@ -35,13 +35,13 @@ If you can type fast, FAid can get your client and meeting management tasks done
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to FAid.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to FAid.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd client shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all clients.
 
    * `exit` : Exits the app.
 
@@ -240,11 +240,11 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-* `listRegion Central` lists all people from the Central region in the address book
+* `listRegion Central` lists all clients from the Central region in the address book
 
-### Find people by policy name : `findPolicy`
+### Find clients by policy name : `findPolicy`
 
-Lists all client that are under a given policy
+Lists all clients that are under a given policy
 
 Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
 
@@ -252,7 +252,7 @@ Required information:
 * Name of policy to search for
 
 Examples:
-* `findPolicy Insurance` Finds people with Insurance Policy as their tag
+* `findPolicy Insurance` Find clients with Insurance Policy as their tag
 
 ![result for findPolicy Insurance](images/findPolicyInsurance.PNG)
 
@@ -296,8 +296,8 @@ If your changes to the data file makes its format invalid, FAid will discard all
 ## Command summary
 
 | Action                | Format, Examples                                                                                                                                                     |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**             | `clear`                                                                                                                                                              |
 | **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
