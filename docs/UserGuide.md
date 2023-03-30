@@ -7,8 +7,7 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 
 CareFlow is a **desktop application for [patient management](#41-patient-information-management) and [drug inventory 
 management](#42-drug-inventory-management), optimised for use 
-via a 
-Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -41,7 +40,8 @@ To help you navigate the guide, we've divided it into several sections, each cov
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
 3. Section [3. Overview of features](#3-overview-of-features)
-    - If you're looking for information on specific features, check out Section 3, "Overview of features". Here you'll find a detailed explanation of each feature and how to use it.
+    - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of 
+      features". This section provides a explanation of three main feature of CareFlow and how to use them.
 
 4. Section [4. Commands](#4-commands)
     - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
@@ -53,7 +53,8 @@ To help you navigate the guide, we've divided it into several sections, each cov
     - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
 7. Section [7. Glossary](#7-glossary)
-    - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+    - If you come across a term you're not familiar with, the glossary in Section 7 is a useful resource. It 
+      provides clear definitions and explanations for all the terminology used in the user guide.
 
 To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of 
 CareFlow and working your way through each section. You can also use the [table of contents](#top) to jump to specific 
@@ -65,11 +66,12 @@ Throughout this user guide, you may come across different formatting styles and 
 
 | **Symbol/ Format**   | **Meaning**                                                                                                                                                                                                                                                                                               |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :information_source: | This symbol is used to indicate information that you should know when using CareFlow.                                                                                                                                                                                                                     |
 | :exclamation:        | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                          |
 | UPPER_CASE           | Words in UPPER CASE are the parameters that you need to supply to the system. E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
 | [brackets]           | Items in square brackets are optional. E.g. update -n NAME [-ph PHONE] can be used as `update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                 |
 | `command`            | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                     |
-| [2. About](#2-about) | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
+| [1. About](#1-about) | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                              |
 
 <p align="center">
   <i>Table 1. Symbols and formats used in this User Guide.</i>
@@ -77,13 +79,13 @@ Throughout this user guide, you may come across different formatting styles and 
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
  
-# **3. Quick start**
+# **2. Quick start**
 
 1. Ensure you have Java 11 installed in your Computer.
    <details>
@@ -271,57 +273,53 @@ Throughout this user guide, you may come across different formatting styles and 
       </details>
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 --------------------------------------------------------------------------------------------------------------------
-# **4. Overview of Features**
+# **3. Overview of Features**
 
 If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually 
 manage patient information and medicine inventory. That is why we have created CareFlow specifically designed to assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
 
-## 4.1 Patient Information Management
+## 3.1 Patient Information Management
 
 If you are a busy clinic receptionist who finds it challenging to manage patient information, CareFlow is the 
 solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes! 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 
-:information_source: Visit Section [5.2 Patient Commands](#52-patient-commands) for more information on how to 
+Visit Section [4.2 Patient Commands](#42-patient-commands) for more information on how to 
 manage patient data in CareFlow.
-
 </div>
 
-## 4.2 Drug Inventory Management
+## 3.2 Drug Inventory Management
 
 If you find struggle to keep track of your drug inventory, CareFlow is here to help.
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 
-:information_source: Visit Section [5.3 Drug Commands](#53-drug-commands) for more information on how to manage drug 
-inventory in CareFlow.
-
+Visit Section [4.3 Drug Commands](#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
 </div>
 
-## 4.3 Hospital Information Directory
+## 3.3 Hospital Information Directory
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source:
 
-:information_source: Please note that you are not allowed to edit or change the hospital list in CareFlow. However, 
+Please note that you are not allowed to edit or change the hospital list in CareFlow. However, 
 if you believe that a hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
-
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-# **5. Commands**
+# **4. Commands**
 
-## 5.1 General Commands
+## 4.1 General Commands
 
 This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or 
 drug of CareFlow.
@@ -339,7 +337,7 @@ drug of CareFlow.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -351,13 +349,13 @@ drug of CareFlow.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
 ___
 
-## 5.2 Patient Commands
+## 4.2 Patient Commands
 
 ### Add a Patient record:  `p add`
 * You can use this command to add a new patient to the patient record, if it is the first time that this patient visit your clinic.
@@ -386,7 +384,7 @@ ___
       <br>    
 
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -420,7 +418,7 @@ ___
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -449,7 +447,7 @@ ___
       
       <br>    
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -477,7 +475,7 @@ ___
 
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -499,7 +497,7 @@ ___
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -520,7 +518,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -541,7 +539,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br> 
 
@@ -561,14 +559,14 @@ ___
   
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
 
 ___
 
-## 5.3 Drug Commands
+## 4.3 Drug Commands
 
 ### Add a drug entry: `d add`
 * You can add a new drug to the list of drugs in case your clinic decides to start prescribing a new drug.
@@ -590,7 +588,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -619,7 +617,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -648,7 +646,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -680,7 +678,7 @@ ___
         </p>
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -706,7 +704,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -725,7 +723,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -744,7 +742,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -765,7 +763,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -776,7 +774,7 @@ ___
   
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -791,7 +789,7 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -802,24 +800,24 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **6. FAQ**
+# **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 
-# 7. **Command Summary**
+# 6. **Command Summary**
 
 If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
 
-## 7.1 General Commands
+## 6.1 General Commands
 
 The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
 
@@ -832,7 +830,7 @@ The following are the general commands that are available in Careflow for you to
   <i>Table 2. Command table for general commands.</i>
 </p>
 
-## 7.2 Patient Commands
+## 6.2 Patient Commands
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
@@ -851,7 +849,7 @@ The following commands are patient-related commands that are available in Carefl
   <i>Table 3. Command table for patient commands.</i>
 </p>
 
-## 7.3 Drug Commands
+## 6.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
@@ -871,11 +869,18 @@ The following commands are drug-related commands that are available in Careflow 
 
 [🠉 Back to top](#top)
 
-# 8. Glossary
-<a id="1">
-1. Command Line Interface (CLI)
-</a>
-<br>
-<a id="2">
-2. Graphic User Interface (GUI)
-</a>
+# 7. Glossary
+<span id="1">
+1. Command Line Interface (CLI) <br>
+A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think 
+of it like texting your computer to get it to do things.
+</span>
+<br><br>
+<span id="2">
+2. Graphical User Interface (GUI) <br>
+A way to interact with a computer using pictures and graphics like buttons, icons, and menus. You can see everything on the screen and can usually click on things to make them happen.
+</span>
+<br><br>
+
+[🠉 Back to top](#top)
+

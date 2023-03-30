@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.careflow.model.drug.Drug;
 
 /**
@@ -37,7 +38,13 @@ public class DrugCard extends UiPart<Region> {
         super(FXML);
         this.drug = drug;
         id.setText(displayedIndex + ". ");
-        tradeName.setText(this.drug.getTradeName().tradeName);
+        StringBuilder text = new StringBuilder(this.drug.getTradeName().tradeName);
+        if(drug.getStorageCount().isBelowThreshold()) {
+            text.append("   ***Low Storage!***");
+            tradeName.setStyle("-fx-text-fill:maroon");
+            id.setStyle("-fx-text-fill:maroon");
+        }
+        tradeName.setText(text.toString());
     }
 
     @Override
