@@ -234,8 +234,6 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 Shows a message explaining how to access the help page.
 
-[//]: # (Need to update help message pic)
-
 ![help message](images/helpMessage1.PNG)
 
 Format: `help`
@@ -310,7 +308,7 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 <div markdown="block" class="alert alert-info">
    
-**:information_source: Warnings when pairing volunteer and elderly:**<br>
+**:information_source: Info:**<br>
 * A warning will be given when:
    * there are clashes in availability between the volunteer and elderly; or
    * the volunteer and elderly lives in different regions
