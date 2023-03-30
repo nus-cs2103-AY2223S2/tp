@@ -3,11 +3,11 @@ layout: page
 title: User Guide
 ---
 
-InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily 
-for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) 
-and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI 
-for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. 
-Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy 
+InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily
+for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI)
+and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI
+for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface.
+Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy
 to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
 
 ## Features Menu
@@ -15,25 +15,26 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
-    - [View guide](#)
+    - [View guide](###view-help--help)
     - [Add an internship application](#)
         - [Add](#)
     - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
+    - [Sort all internship applications](########TODO)
+    - [Find internship applications by the company name, job title, status, or interview date](###find-internship-applications-by-the-company-name,-job-title,-status,-or-interview-date-:-find)
     - [Manage company contact for an internship application](#add-contact-details--add_contact)
         - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
         - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
         - [Delete a company contact : `delete_contact`](#delete-contact-details--delete_contact)
     - [Edit the status of an internship application : `edit_status`](#edit-application-status--edit_status)
     - [Manage documents for an internship application](#add-documents--add_docs)
-      - [Add documents : `add_docs`](#add-documents--add_docs)
-      - [Edit documents : `edit_docs`](#edit-documents--edit_docs)
-      - [Delete documents : `delete_docs`](#delete-documents--delete_docs)
+        - [Add documents : `add_docs`](#add-documents--add_docs)
+        - [Edit documents : `edit_docs`](#edit-documents--edit_docs)
+        - [Delete documents : `delete_docs`](#delete-documents--delete_docs)
     - [Archive and unarchive an internship application](#archive-an-internship-application--archive)
-      - [Archive an application : `archive`](#archive-an-internship-application--archive)
-      - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
-      - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
+        - [Archive an application : `archive`](#archive-an-internship-application--archive)
+        - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
+        - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
-    - [Search](#search-for-an-application--find)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
         - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
@@ -42,7 +43,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
-  
+
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -59,8 +60,8 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-        - 
-- [FAQ](#faq)    
+        -
+- [FAQ](#faq)
 
 - [Command Summary](#command-summary)
 
@@ -73,7 +74,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 1. Have Java `11` or above installed in local laptop or Computer.
 
-2. Download the latest version (InternEase v0.0) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
+2. Download the latest version (InternEase v1.3) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
@@ -133,21 +134,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 ## Main features: Tracking applied internships
 
 ### View help : `help`
-Shows a user guide message on how to use the internship tracker
+Shows user the link to user guide.
 
 Format: help
-
-### Display a list of ongoing internship applications : `list`
-
-Displays a list of applied internships which are ongoing
-
-Format: `list`
-
-Examples:
-
-* `list` shows all the ongoing internship applications for with 1 indexing.
-* If there are no ongoing internship applications at the moment,
-  "No applications at the moment" will be shown.
 
 ### Adding an application : `add`
 
@@ -332,17 +321,56 @@ Examples:
 * `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
 
-### Search for an application : `find`
+### Display a list of ongoing internship applications : `list`
 
-Searches the list of internships applied by keyword (status, role, company)
+Displays a list of applied internships which are ongoing
 
-Format: `find KEYWORD`
-
-Searches for the application with the specified `KEYWORD`.
-The keyword refers to the status, role or company that the user intends to look for.
+Format: `list`
 
 Examples:
-`find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
+
+* `list` shows all the ongoing internship applications for with 1 indexing.
+* If there are no ongoing internship applications at the moment,
+  "No applications at the moment" will be shown.
+
+
+### Sort all internship applications : `sort`
+
+Sorts internship applications according to either company name, job title, status or interview date in ascending order.
+
+Format: `sort PREFIX`
+1. Sort by company name: `sort n/`
+2. Sort by job title: `sort j/`
+3. Sort by status: `sort s/`
+4. Sort by interview date `sort d/`
+
+Example:
+* `sort d/` sorts all applications with their interview date in ascending order, those without interview date available
+  yet will be placed at the end of the list.
+
+
+### Find internship applications by the company name, job title, status, or interview date : `find`
+
+Find all internship applications (including those that have been archived) by its company name, job title,
+status and/or interview date.
+
+Format:
+There are three use cases for the `find` command:
+1. Find by the application's company name and/or job title: `find KEYWORD [MORE KEYWORDS]`
+2. Find by the current status of the application: `find s/STATUS`
+3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
+
+- The search for company name, job title, and status are case-insensitive.
+- The order of KEYWORD doesn't matter.
+- In use case 1, as long as a single word in company name and/or job title matches one of the KEYWORD's, it
+  will be shown to user. E.g. `JP Morgan` and `goldman Sachs` matches the keyword in `find JP Morgan Goldman Sachs`.
+- Only full word will be matched. E.g. `goldman Sachs` won't match `find GOLD`.
+
+Examples:
+* `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
+* `find s/PENDING` searches for all application that are pending.
+* `find after/2023-12-02 12:30 PM` searches for all application that are having interview after
+  2023-12-02 12:30 PM (inclusive).
 
 
 ### Clearing all internship application entries : `clear`
@@ -507,7 +535,7 @@ Format: `delete_note INDEX`
 * **Note that this action is irreversible**
 
 Examples:
-* `delete 2` Deletes the 2nd note in the list of notes.
+* `delete_note 2` Deletes the 2nd note in the list of notes.
 
 ### Clear all notes  : `clear_note`
 
@@ -523,6 +551,9 @@ Format: `clear_note`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: How do I update the Statistics at bottom right corner?<br>
+**A**: It's automatically update after you execute every command / action via either CLI or GUI.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -531,30 +562,35 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
+**Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
-**Clear**  | `clear`                             
-**Clear_by**  | `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
+**Clear**  | `clear`
+**Clear_by**  | `clear_by n/COMPANY_NAME` <br> `clear_by j/JOB_TITLE` <br> `clear_by s/STATUS`
+**Clear Note** |`clear_note`
+**Clear Todo** |`clear_todo`
 **Delete** | `delete INDEX`<br> e.g., `delete 2`
 **Delete Contact** | `delete_contact INDEX` <br> e.g., `delete_contact 2`
 **Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
+**Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
+**Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
 **Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
-**Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
-**Exit**   | `exit` 
-**List** |`list`
-**List Archived Applications** |`list_archived`
-**Revert**   | `revert` 
-**Revert All**   | `revert_all` 
-**Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
-**Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
-**List Task** |`list_task`
-**Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
-**Clear Todo** |`clear_todo`
-**Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
-**List Todo** |`list_todo`
-**Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
-**Clear Note** |`clear_note`
-**Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
+**Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
+**Exit**   | `exit`
+**Find Applications** | `find KEYWORD [MORE KEYWORDS]` <br> e.g., `find Google` <br> `find s/STATUS` <br> e.g., `find s/PENDING` <br> `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2` <br> e.g., find before/2023-01-31 12:45 PM
+**Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
+**Help** | `help`
+**List** |`list`
+**List Archived Applications** |`list_archived`
 **List Note** |`list_note`
+**List Task** |`list_task`
+**List Todo** |`list_todo`
+**Revert**   | `revert`
+**Revert All**   | `revert_all`
+**Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
+**Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 2`
+
+
