@@ -1,8 +1,8 @@
 #reminderApplicationContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #02203d;
 }
 
 #reminderApplication *.text {
     -fx-fill: white;
-    -fx-family: "Segoe UI Light";
+    -fx-family: "Segoe UI semibold";
 }
