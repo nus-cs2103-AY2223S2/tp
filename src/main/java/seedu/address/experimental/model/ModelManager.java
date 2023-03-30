@@ -138,10 +138,11 @@ public class ModelManager implements Model {
     @Override
     public Entity getEntityFromName(String name) {
         requireNonNull(name);
+        String trimName = name.trim();
         Entity toReturn = null;
-        ObservableList<Entity> entities = reroll.getEntities().getEntityList();
+        ObservableList<Entity> entities = reroll.getItemList();
         for (Entity entity : entities) {
-            if (entity.getName().fullName.equals(name)) {
+            if (entity.getName().fullName.equals(trimName)) {
                 toReturn = entity;
                 break;
             }
