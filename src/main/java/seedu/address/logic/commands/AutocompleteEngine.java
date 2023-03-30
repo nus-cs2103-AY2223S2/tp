@@ -219,10 +219,9 @@ public class AutocompleteEngine {
                         : matchingExistingValues.substring(argValue.length());
             }
 
-            // User is not filling the value of prefix.
-            // Example of filling the value: "add n/Sha" where user is halfway filling the name field.
-            // But it's false when: "add n/" where user is not filling it yet.
-            boolean isFillingPrefixValue = lastWord.contains("/") && !lastWord.endsWith("/");
+            // Example of filling the value:
+            // "add n/Sha" or "add n/", where user is halfway filling the name field.
+            boolean isFillingPrefixValue = lastWord.contains("/");
             if (isFillingPrefixValue) {
                 // Don't suggest anything if user is filling.
                 return "";
