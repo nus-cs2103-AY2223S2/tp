@@ -69,7 +69,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     /**
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and
-     * {@code Logic} with a select handler and {@code MainWindow}.
+     * {@code Logic} with a select handler and {@code HelpWindow}.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic,
                              Consumer<Person> selectHandler,

@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteDeliveryJobCommandParser implements Parser<DeleteDeliveryJobCommand> {
 
-    private static final String EMPTY_CMD = "Job id missing\n";
+    private static final String EMPTY_CMD = "Job ID cannot be empty!\n";
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
