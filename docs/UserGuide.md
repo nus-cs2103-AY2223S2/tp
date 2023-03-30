@@ -139,15 +139,33 @@ Shows user the link to user guide.
 
 Format: help
 
-### Adding an application : `add`
+### Adding an internship : `add`
 
-Adds an application to the internship tracker
+Adds an internship application to the tracker
 
-Format: ` add n/COMPANY_NAME j/JOB_TITLE`
+Format: ` add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
 
+- `Salary` should be in the form of amount followed by space currency in upper case.
+- 
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
-* `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+* `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
+
+### Edit an internship : `edit`
+
+Edits the internship .
+
+Format: `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
+
+- Edits the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- If `COMPANY_NAME` or `JOB_TITLE` is empty, they will retain the former value.
+- Other attribute can be left as empty string.
+
+Examples:
+* `edit 1 q/Singapore citizen q/Pursuing CS degree` updates the qualification of the internship with first index to `Singapore citizen` and `Pursuing CS degree`.
+* `edit 2 n/ j/Data Engineer` updates the second internship job title to `Data Engineer` and retains the original name.
 
 ### Adding an interview date : `add_date`
 
