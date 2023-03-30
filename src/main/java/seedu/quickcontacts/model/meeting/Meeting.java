@@ -106,7 +106,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if {@code Meeting} has passed based on the current DateTime.
+     * Returns true if {@code Meeting} has been marked as done.
      */
     public boolean getIsDone() {
         return isDone;
