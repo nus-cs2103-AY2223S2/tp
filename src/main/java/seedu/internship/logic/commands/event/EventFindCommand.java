@@ -3,6 +3,7 @@ package seedu.internship.logic.commands.event;
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.FindCommand;
+import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
@@ -20,10 +21,10 @@ public class EventFindCommand extends EventCommand {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + COMMAND_WORD
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
-            + "Parameters: [" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_COMPANY + "COMPANY] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + "c/ Grab" ;
+            + "Parameters: [" + PREFIX_EVENT_NAME + "NAME] "
+            + "[" + PREFIX_EVENT_START + "START] "
+            + "[" + PREFIX_EVENT_END + "END] "
+            + "Example: " + COMMAND_WORD + " na/Technical Interview" + "st/10/09/2023 1500" ;
 
     public static final String MESSAGE_SUCCESS = "Found events : %1$s";
 
@@ -44,7 +45,8 @@ public class EventFindCommand extends EventCommand {
         Predicate<Event> filterStart = unused -> true;
         Predicate<Event> filterEnd = unused -> true;
         if (filterEventDescriptor.getName().isPresent()) {
-            filterName = x -> x.getName().equals(filterEventDescriptor.getName().get());
+            filterName = x -> x.getName().name.toLowerCase().contains(filterEventDescriptor.getName()
+                    .get().name.toLowerCase());
         }
         if (filterEventDescriptor.getStart().isPresent()) {
             filterStart = x -> x.getStart().equals(filterEventDescriptor.getStart().get());
@@ -58,7 +60,8 @@ public class EventFindCommand extends EventCommand {
         Predicate<Event> filter = x -> finalFilterName.test(x) && finalFilterStart.test(x) && finalFilterEnd.test(x);
         model.updateFilteredEventList(filter);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredEventList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredEventList().size()),
+                ResultType.FIND_EVENT, model.getFilteredEventList());
     }
 
     @Override
