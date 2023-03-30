@@ -384,7 +384,7 @@ empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon ...
 
 --------------------------------------------------------------------------------------------------------------------
 
