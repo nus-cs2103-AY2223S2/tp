@@ -4,8 +4,8 @@ title: User Guide
 ---
 
 * Table of Contents
-  {:toc}
-  
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -50,8 +50,7 @@ open the help window.<br>
 
    * `redo 5` : Redo 5 previous actions.
    
-6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below
-for details of each command, or the [Command Summary](#Command summary).
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -335,8 +334,6 @@ Example CSV output of  `export sampledata.csv`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Try copying these to a .csv file. Then import them as sample inputs!
 </div>
-
-<div style="page-break-after: always;"></div>
 
 ### Viewing help: `help`
 
