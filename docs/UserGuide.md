@@ -19,6 +19,8 @@ Paidlancers can get your freelancing event management tasks done faster than tra
 This user guide will help you get up to speed in no time!
 
 ## Table of Contents
+- [Using the examples in this Guide](#using-the-examples-in-this-guide)
+- [User Interface](#user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
   <details>
@@ -76,23 +78,25 @@ At Paidlancers, we understand that time is money, and every second matters for f
 That's why we've designed our app with a user interface (UI) that optimizes productivity, streamlines workflows,
 and ensures freelancers can get the most out of every moment.
 
-![Ui_Callout](images/Callout_UI.png)
+![Ui_Callout](images/Ui_Callout.png)
 The UI is split into 4 main parts
 - Eventbook
   - This is where the events that you specified are displayed. 
-- Contact
+- Contactbook
   - This is where the contacts you have stored are displayed.
 - Message Box
   - This is where the messages regarding the status of your commands are displayed.
 - Command Box
-  - This is where you can type in your commands.
+  - This is where you can enter your commands. Press `Enter` to execute the command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    * Run `java -version` to display current version of java installed.
-    * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
+    * If you think that you have Java installed. you can input command `java -version` into the command terminal to display current version of java installed.
+      * If the command is not recognized, you can install Java `11` from this link [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+      * Any version that is under the Java version `11` will work. (E.G. `11.0.1`, `11.1.5`).
+    * Mac Users are encouraged to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
     * Choose the `JDK FX` version and not any other version.
 
@@ -101,8 +105,8 @@ The UI is split into 4 main parts
 3. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   - A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+      ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
@@ -121,7 +125,6 @@ The UI is split into 4 main parts
 
 --------------------------------------------------------------------------------------------------------------------
 
-[//]: # (Perhaps we could explain the difference between event and contact here?)
 ## Features
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
