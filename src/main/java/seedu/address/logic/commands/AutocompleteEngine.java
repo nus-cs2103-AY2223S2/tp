@@ -42,7 +42,8 @@ public class AutocompleteEngine {
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             RemarkCommand.COMMAND_WORD,
-            ShowRemarkCommand.COMMAND_WORD
+            ShowRemarkCommand.COMMAND_WORD,
+            RedoCommand.COMMAND_WORD
     ));
     private static final Map<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
             Map.entry(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES),
@@ -54,7 +55,8 @@ public class AutocompleteEngine {
             Map.entry(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES),
             Map.entry(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES),
             Map.entry(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES),
-            Map.entry(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES)
+            Map.entry(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES),
+            Map.entry(RedoCommand.COMMAND_WORD, RedoCommand.ARGUMENT_PREFIXES)
     );
 
 
