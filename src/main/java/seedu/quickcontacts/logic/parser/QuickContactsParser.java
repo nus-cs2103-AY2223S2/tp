@@ -166,7 +166,7 @@ public class QuickContactsParser {
             return new MarkAsNotDoneParser().getAutocompleteSuggestion(arguments);
         default:
             for (String word : AVAILABLE_COMMAND_WORDS) {
-                if (word.startsWith(commandWord)) {
+                if (word.startsWith(commandWord) && !word.equals(commandWord)) {
                     return new AutocompleteResult(word, true);
                 }
             }
