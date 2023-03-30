@@ -592,511 +592,401 @@ nr stands for non-recurring
 
 ## Command summary
 
-
 <table>
-  <tr>
-   <td>Action
-   </td>
-   <td>Format
-   </td>
-   <td>Examples
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Tutorial</strong>
-   </td>
-   <td><code>touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>touch Tutorial/makeUpTutorial</code>
-
-<li><code>touch Tutorial/examReview -date 01/01/2023 16:00</code>
-
-<li><code>touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Lab</strong>
-   </td>
-   <td><code>vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>vim Lab/pancakeSort</code>
-<li><code>vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00</code>
-<li><code>vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Consultation</strong>
-   </td>
-   <td><code>mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>mkdir Consultation/reviewConnectedComponents</code>
-
-<li><code>mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Recurring Event</strong>
-   </td>
-   <td><code>schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>schedule Recur/Tutorial/weeklyWrapUp -n 3</code>
-
-<li><code>schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Edit event</strong>
-   </td>
-   <td><code>editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>editEvent 2 Lab/VisuAlgo</code>
-
-<li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00</code>
-
-<li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete Events</strong>
-   </td>
-   <td><code>delete [EVENT_TYPE]/index</code>
-
-   </td>
-   <td>
-<ul>
-
-<li><code>delete Tutorial/1</code>
-<li><code>delete Lab/1-5</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Open File in Events</strong>
-   </td>
-   <td><code>openFile [EVENT_TYPE]/index</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>openFile Tutorial/1</code>
-
-<li><code>openFile Lab/5</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Exit application</strong>
-   </td>
-   <td><code>:wq</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>:wq</code>
-
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Student</strong>
-   </td>
-   <td>
-<ol>
-
-<li><code>add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
-
-</li>
-</ol>
-   </td>
-   <td>
-<ul>
-
-<li><code>add student n/Dijkstra</code>
-
-<li><code>add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code>
-</li>
-</ul>
-
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Remove Student</strong>
-   </td>
-   <td>
-<ul>
-
-<li><code>rm INDEX</code>
-
-</li>
-</ul>
-   </td>
-   <td>
-<ul>
-
-<li><code>rm 1</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add Student To Event</strong>
-   </td>
-   <td>
-<ul>
-
-<li><code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
-
-</li>
-</ul>
-   </td>
-   <td>
-<ul>
-
-<li><code>addStudent 1 Tutorial/tut1</code>
-
-<li><code>addStudent 4 Lab/mock_lab_session</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete Student From Event</strong>
-   </td>
-   <td><code>deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>deleteStudent 1 Tutorial/tut1</code>
-
-<li><code>deleteStudent 4 Lab/mock_lab_session</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Find recur</strong>
-   </td>
-   <td><code>/ recur [timeframe] [startTime] [endTime]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>/ recur Wednesday</code>
-
-<li><code>/ recur Wednesday 8:00 10:00</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Find non-recurring event</strong>
-   </td>
-   <td><code>/ event [date] [startTime] [endTime]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>/ event 2023-04-01</code>
-
-<li><code>/ event 2023-03-12 8:00 10:00</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Show recur</strong>
-   </td>
-   <td>
-<ul>
-
-<li><code>:cd [name] or [index] calendar</code>
-
-<li><code>:cd [name] or [index] students</code>
-</li>
-</ul>
-   </td>
-   <td>
-<ul>
-
-<li><code>:cd 1</code>
-
-<li><code>:cd weeklyTutorials</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Show non-recurring event</strong>
-   </td>
-   <td>
-<ul>
-
-<li><code>cd nr [name] or [index] calendar</code>
-</li>
-</ul>
-   </td>
-   <td>
-<ul>
-
-<li><code>:cd nr 1</code>
-
-<li><code>:cd nr Make-up-Tutorial</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Sort student </strong>
-   </td>
-   <td><code>sort student [type] [sorting order]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>sort students labs reverse</code>
-
-<li><code>sort students tutorials nonreverse</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Move recur</strong>
-   </td>
-   <td><code>:mv [name] or [index]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>:mv 1</code>
-
-<li><code>:mv weeklyTutorials</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Stop recur</strong>
-   </td>
-   <td><code>stop [name] or [index]  </code>
-   </td>
-   <td>
-<ul>
-
-<li><code>:stop 1</code>
-
-<li><code>:stop weeklyTutorials</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Sort recur</strong>
-   </td>
-   <td><code>sort [type] [sorting method]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>sort labs alphabetical reverse</code>
-
-<li><code>sort consultation date nonreverse</code>
-
-<li><code>sort tutorial duration nonreverse</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Replace sort recur</strong>
-   </td>
-   <td><code>replace sort [type] [sorting method]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>replace sort labs alphabetical reverse</code>
-
-<li><code>replace sort consultation date nonreverse</code>
-
-<li><code>replace sort tutorial duration nonreverse</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Help recur</strong>
-   </td>
-   <td><code>help [type]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>help labs</code>
-
-<li><code>help tutorial</code>
-
-<li><code>help consultation</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Sort student</strong>
-   </td>
-   <td><code>sort student [type] [sorting method] [sorting order]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>sort student lab alphabetical reverse</code>
-
-<li><code>sort student tutorial participation nonreverse</code>
-
-<li><code>sort student consultation urgency nonreverse</code>
-
-<li><code>sort student all urgency nonreverse</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Filter student</strong>
-   </td>
-   <td><code>filter student [type] [metric] [threshold]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>filter student lab urgency 60 </code>
-
-<li><code>filter student tutorial participation 50</code>
-
-<li><code>filter student consultation urgency 20</code>
-
-<li><code>filter student all participation 90</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Alert student</strong>
-   </td>
-   <td><code>alert student [type] [metric]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>alert student lab urgency </code>
-
-<li><code>alert student tutorial participation</code>
-
-<li><code>alert student consultation urgency</code>
-
-<li><code>alert student all participation</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Add note</strong>
-   </td>
-   <td><code>touch note [type] [name or index] [content]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>touch note recur weeklyTutorials "rmb to bring along apple pencil\n"</code>
-
-<li><code>touch note recur 2 "grade student labs timely\n"</code>
-
-<li><code>touch note student Eldon "solve this student's query via email\n"</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Edit note</strong>
-   </td>
-   <td><code>edit note [type] [name or index] [note-index] [newcontent]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>edit note recur weeklyTutorials 0 "no new tasks lol\n"</code>
-
-<li><code>edit note recur 2 0 "bring my lab cheat-sheet\n"</code>
-
-<li><code>edit note student Eldon 1 ""</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete note</strong>
-   </td>
-   <td><code>delete note [type] [name or index] [note-index]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>delete note recur weeklyTutorials 3</code>
-
-<li><code>delete note recur 2 0</code>
-
-<li><code>delete note student Eldon 0</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>List note</strong>
-   </td>
-   <td><code>ls note [type] [name or index]</code>
-   </td>
-   <td>
-<ul>
-
-<li><code>ls note recur weeklyTutorials</code>
-</li>
-</ul>
-   </td>
-  </tr>
+   <tr>
+      <td>Action
+      </td>
+      <td>Format
+      </td>
+      <td>Examples
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Tutorial</strong>
+      </td>
+      <td><code>touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>touch Tutorial/makeUpTutorial</code>
+            <li><code>touch Tutorial/examReview -date 01/01/2023 16:00</code>
+            <li><code>touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Lab</strong>
+      </td>
+      <td><code>vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>vim Lab/pancakeSort</code>
+            <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00</code>
+            <li><code>vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Consultation</strong>
+      </td>
+      <td><code>mkdir Consultation/[name] -date [dd/MM/yyyy HH:mm]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>mkdir Consultation/reviewConnectedComponents</code>
+            <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Recurring Event</strong>
+      </td>
+      <td><code>schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>schedule Recur/Tutorial/weeklyWrapUp -n 3</code>
+            <li><code>schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Edit event</strong>
+      </td>
+      <td><code>editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>editEvent 2 Lab/VisuAlgo</code>
+            <li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00</code>
+            <li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Delete Events</strong>
+      </td>
+      <td><code>delete [EVENT_TYPE]/index</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>delete Tutorial/1</code>
+            <li><code>delete Lab/1-5</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Open File in Events</strong>
+      </td>
+      <td><code>openFile [EVENT_TYPE]/index</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>openFile Tutorial/1</code>
+            <li><code>openFile Lab/5</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Exit application</strong>
+      </td>
+      <td><code>:wq</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>:wq</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Student</strong>
+      </td>
+      <td>
+         <ol>
+            <li><code>add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
+            </li>
+         </ol>
+      </td>
+      <td>
+         <ul>
+            <li><code>add student n/Dijkstra</code>
+            <li><code>add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Remove Student</strong>
+      </td>
+      <td>
+         <ul>
+            <li><code>rm INDEX</code>
+            </li>
+         </ul>
+      </td>
+      <td>
+         <ul>
+            <li><code>rm 1</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add Student To Event</strong>
+      </td>
+      <td>
+         <ul>
+            <li><code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
+            </li>
+         </ul>
+      </td>
+      <td>
+         <ul>
+            <li><code>addStudent 1 Tutorial/tut1</code>
+            <li><code>addStudent 4 Lab/mock_lab_session</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Delete Student From Event</strong>
+      </td>
+      <td><code>deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>deleteStudent 1 Tutorial/tut1</code>
+            <li><code>deleteStudent 4 Lab/mock_lab_session</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Find recur</strong>
+      </td>
+      <td><code>/ recur [timeframe] [startTime] [endTime]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>/ recur Wednesday</code>
+            <li><code>/ recur Wednesday 8:00 10:00</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Find non-recurring event</strong>
+      </td>
+      <td><code>/ event [date] [startTime] [endTime]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>/ event 2023-04-01</code>
+            <li><code>/ event 2023-03-12 8:00 10:00</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Show recur</strong>
+      </td>
+      <td>
+         <ul>
+            <li><code>:cd [name] or [index] calendar</code>
+            <li><code>:cd [name] or [index] students</code></li>
+         </ul>
+      </td>
+      <td>
+         <ul>
+            <li><code>:cd 1</code>
+            <li><code>:cd weeklyTutorials</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Show non-recurring event</strong>
+      </td>
+      <td>
+         <ul>
+            <li><code>cd nr [name] or [index] calendar</code></li>
+         </ul>
+      </td>
+      <td>
+         <ul>
+            <li><code>:cd nr 1</code>
+            <li><code>:cd nr Make-up-Tutorial</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Sort student </strong>
+      </td>
+      <td><code>sort student [type] [sorting order]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>sort students labs reverse</code>
+            <li><code>sort students tutorials nonreverse</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Move recur</strong>
+      </td>
+      <td><code>:mv [name] or [index]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>:mv 1</code>
+            <li><code>:mv weeklyTutorials</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Stop recur</strong>
+      </td>
+      <td><code>stop [name] or [index]  </code>
+      </td>
+      <td>
+         <ul>
+            <li><code>:stop 1</code>
+            <li><code>:stop weeklyTutorials</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Sort recur</strong>
+      </td>
+      <td><code>sort [type] [sorting method]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>sort labs alphabetical reverse</code>
+            <li><code>sort consultation date nonreverse</code>
+            <li><code>sort tutorial duration nonreverse</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Replace sort recur</strong>
+      </td>
+      <td><code>replace sort [type] [sorting method]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>replace sort labs alphabetical reverse</code>
+            <li><code>replace sort consultation date nonreverse</code>
+            <li><code>replace sort tutorial duration nonreverse</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Help recur</strong>
+      </td>
+      <td><code>help [type]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>help labs</code>
+            <li><code>help tutorial</code>
+            <li><code>help consultation</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Sort student</strong>
+      </td>
+      <td><code>sort student [type] [sorting method] [sorting order]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>sort student lab alphabetical reverse</code>
+            <li><code>sort student tutorial participation nonreverse</code>
+            <li><code>sort student consultation urgency nonreverse</code>
+            <li><code>sort student all urgency nonreverse</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Filter student</strong>
+      </td>
+      <td><code>filter student [type] [metric] [threshold]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>filter student lab urgency 60 </code>
+            <li><code>filter student tutorial participation 50</code>
+            <li><code>filter student consultation urgency 20</code>
+            <li><code>filter student all participation 90</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Alert student</strong>
+      </td>
+      <td><code>alert student [type] [metric]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>alert student lab urgency </code>
+            <li><code>alert student tutorial participation</code>
+            <li><code>alert student consultation urgency</code>
+            <li><code>alert student all participation</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Add note</strong>
+      </td>
+      <td><code>touch note [type] [name or index] [content]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>touch note recur weeklyTutorials "rmb to bring along apple pencil\n"</code>
+            <li><code>touch note recur 2 "grade student labs timely\n"</code>
+            <li><code>touch note student Eldon "solve this student's query via email\n"</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Edit note</strong>
+      </td>
+      <td><code>edit note [type] [name or index] [note-index] [newcontent]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>edit note recur weeklyTutorials 0 "no new tasks lol\n"</code>
+            <li><code>edit note recur 2 0 "bring my lab cheat-sheet\n"</code>
+            <li><code>edit note student Eldon 1 ""</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Delete note</strong>
+      </td>
+      <td><code>delete note [type] [name or index] [note-index]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>delete note recur weeklyTutorials 3</code>
+            <li><code>delete note recur 2 0</code>
+            <li><code>delete note student Eldon 0</code></li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>List note</strong>
+      </td>
+      <td><code>ls note [type] [name or index]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>ls note recur weeklyTutorials</code></li>
+         </ul>
+      </td>
+   </tr>
 </table>
 
 
