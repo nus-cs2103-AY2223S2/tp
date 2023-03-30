@@ -50,7 +50,9 @@ public class CalendarCard extends UiPart<Region> {
         }
         Calendar calendar = new Calendar("Task");
         for (int i = 0; i < appointmentList.getAppointmentList().size(); i++) {
-            Entry<String> entry = new Entry<>(appointmentList.getAppointmentList().get(i).getDescription().description);
+            String entryTitle = appointmentList.getAppointmentList().get(i).getPatientName().fullName + ", "
+                    + appointmentList.getAppointmentList().get(i).getTimeslot().toString();
+            Entry<String> entry = new Entry<>(entryTitle);
             entry.setInterval(appointmentList.getAppointmentList().get(i).getTimeslot().startingDateTime,
                     appointmentList.getAppointmentList().get(i).getTimeslot().endingDateTime);
             calendar.addEntry(entry);
