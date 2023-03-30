@@ -239,7 +239,7 @@ Adds a new keyword as defined in the command into the system.
 ##### Syntax
 
 <pre>
-keyword add [--k <var>MAIN_KEYWORD</var>] [--n <var>KEYWORD</var>]
+keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 </pre>
 
 * <code><var>MAIN_KEYWORD</var></code> : `<mainKeyword>`
