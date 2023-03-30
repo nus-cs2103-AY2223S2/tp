@@ -6,8 +6,10 @@ import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleEventUtil.BIKING_RECURRING_EVENT;
 import static seedu.address.testutil.SampleEventUtil.GYM_ISOLATED_EVENT;
+import static seedu.address.testutil.SampleEventUtil.SWIMMING_RECURRING_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 
 import java.time.DayOfWeek;
 
@@ -44,9 +46,10 @@ public class EditRecurringEventCommandTest {
         RecurringEvent expectedEvent = new RecurringEvent("Jogging", DayOfWeek.WEDNESDAY,
                 TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime());
 
-        String expectedMessage = String.format(editCommand.MESSAGE_SUCCESS, expectedEvent)
-                + " for " + editedPerson.getName() + "\n"
-                + "Original Event: " + BIKING_RECURRING_EVENT + " for " + editedPerson.getName();
+        String expectedMessage = String.format("Original Event: " + BIKING_RECURRING_EVENT + " for "
+                + editedPerson.getName() + "\n" + editCommand.MESSAGE_SUCCESS, expectedEvent + " for "
+                + editedPerson.getName());
+
 
         assertEquals(expectedMessage, editCommand.execute(model).getFeedbackToUser());
 
@@ -66,6 +69,25 @@ public class EditRecurringEventCommandTest {
                         TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()).recurringbuild();
 
         EditRecurringEventCommand editCommand = new EditRecurringEventCommand(INDEX_FIRST_PERSON, INDEX_FIRST_EVENT,
+                editEventDescriptor);
+
+        assertThrows(EventConflictException.class, () ->editCommand.execute(model));
+
+    }
+
+    @Test
+    public void execute_recurringEvent() throws CommandException {
+        Person editedPerson = new PersonBuilder().build();
+
+        model.addPerson(editedPerson);
+        model.addRecurringEvent(editedPerson, BIKING_RECURRING_EVENT);
+        model.addRecurringEvent(editedPerson, SWIMMING_RECURRING_EVENT);
+
+        EditRecurringEventCommand.EditEventDescriptor editEventDescriptor =
+                new EditEventDescriptorBuilder("Jogging", DayOfWeek.MONDAY,
+                        TWO_O_CLOCK_VALID.toLocalTime(), THREE_O_CLOCK_VALID.toLocalTime()).recurringbuild();
+
+        EditRecurringEventCommand editCommand = new EditRecurringEventCommand(INDEX_FIRST_PERSON, INDEX_SECOND_EVENT,
                 editEventDescriptor);
 
         assertThrows(EventConflictException.class, () ->editCommand.execute(model));
