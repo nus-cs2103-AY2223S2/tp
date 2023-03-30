@@ -25,7 +25,7 @@ on every page to take you back to the Table of Contents. To further augment your
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp).
+1. Download the latest `medinfo.jar` from [here](https://github.com/AY2223S2-CS2103T-T12-2/tp/releases/tag/v1.3-trial).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
 
@@ -91,8 +91,10 @@ Adds the patient (NRIC, name and status).
 Format: `add nric/NRIC name/NAME [s/STATUS]​`
 
 <!-- EXAMPLE OF TIP -->
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The default condition is set to `GRAY`.
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+- The default condition is set to `GRAY`. <br/>
+- The default ward is set to `Waiting Room`. <br/>
+- No discharge date is added by default.
 </div>
 
 Examples:
@@ -200,7 +202,7 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 
 ---
 
-### FAQ :raising_hand:
+## FAQ :raising_hand:
 
 **Q**: I keep forgetting the commands, is there a quick way to get help?<br>
 
@@ -217,7 +219,7 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 
 ---
 
-### Command summary
+## Command summary
 
 | Action          | Format, Examples                                                                          |
 |-----------------|-------------------------------------------------------------------------------------------|
