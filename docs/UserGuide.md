@@ -681,9 +681,9 @@ You'll need to download the desktop application for <a href="https://www.whatsap
 
 Format: `upcoming-b`
 
-> Lists all contacts who have upcoming birthdays within the next 2 months.
+> Lists all contacts who have upcoming birthdays within the next 60 days.
 
-Never forget a birthday again! With `upcoming-b`, you can check which of your friends has birthdays in the next 2 months.
+Never forget a birthday again! With `upcoming-b`, you can check which of your friends has birthdays in the next 60 days (approx. 2 months).
 
 **Upcoming Birthday Example:**
 
