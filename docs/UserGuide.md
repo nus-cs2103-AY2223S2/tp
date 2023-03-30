@@ -412,7 +412,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX added
 ```
 
-![Vaccination Add Detail Card](images/VaccinationAddDetailCard.png)
+![Vaccination Add Detail Card](images/vaccination/ug/VaccinationAddDetailCard.png)
 
 ##### Restrictions
 
@@ -459,7 +459,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX updated
 ```
 
-![Vaccination Edit Detail Card 1](images/VaccinationEditDetailCard_1.png)
+![Vaccination Edit Detail Card 1](images/vaccination/ug/VaccinationEditDetailCard_1.png)
 
 ###### Append example
 
@@ -473,7 +473,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX updated
 ```
 
-![Vaccination Edit Detail Card 2](images/VaccinationEditDetailCard_2.png)
+![Vaccination Edit Detail Card 2](images/vaccination/ug/VaccinationEditDetailCard_2.png)
 
 ##### Restrictions
 
@@ -583,7 +583,7 @@ Output:<br>
 [INFO] 3 vaccinations listed!
 ```
 
-![Vaccination Find Example](images/VaccinationFindExample.png)
+![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
 
 ##### Restrictions
 
@@ -623,7 +623,7 @@ Output:<br>
 [INFO] Detailing vaccination: Dose 1 (Moderna)
 ```
 
-![Vaccination Detail Example](images/VaccinationDetailExample.png)
+![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
 
 ##### Restrictions
 
