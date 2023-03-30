@@ -116,8 +116,8 @@ Format: `schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat`
 
 Examples:
 
-* `schedule Recur/Tutorial/weeklyWrapUp`
-* `schedule Recur/Lab/weeklyVisuAlgoQuiz`
+* `schedule Recur/Tutorial/weeklyWrapUp -n 3`
+* `schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8`
 
 ### Edit an event: `editEvent event`
 
@@ -541,11 +541,6 @@ Examples:
 
 
 
-
-
-
-
-
 * `/ event 2023-04-01`
 * `/ event 2023-03-12 8:00 10:00`
 
@@ -657,193 +652,158 @@ nr stands for non-recurring
    </td>
   </tr>
   <tr>
-   <td><strong>List recur</strong>
+   <td><strong>Add Recurring Event</strong>
    </td>
-   <td><code>ls recur [task]</code>
+   <td><code>schedule Recur/[event_type]/[event_name] -n number_of_times_to_repeat</code>
    </td>
    <td>
 <ul>
 
-<li><code>ls recur</code>
+<li><code>schedule Recur/Tutorial/weeklyWrapUp -n 3</code>
 
-<li><code>ls recur labs</code>
+<li><code>schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8</code>
 
-<li><code>ls recur consultations</code>
-
-<li><code>ls recur tutorials</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>List non-recurring event</strong>
+   <td><strong>Edit event</strong>
    </td>
-   <td><code>ls event [task]</code>
+   <td><code>editEvent [index] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
    </td>
    <td>
 <ul>
 
-<li><code>ls event</code>
+<li><code>editEvent 2 Lab/VisuAlgo</code>
 
-<li><code>ls event labs</code>
+<li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00</code>
 
-<li><code>ls event consultations</code>
+<li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf</code>
 
-<li><code>ls event tutorials</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>List students</strong>
+   <td><strong>Delete Events</strong>
    </td>
-   <td><code>ls student [task] </code>
+   <td><code>delete [EVENT_TYPE]/index</code>
+
    </td>
    <td>
 <ul>
 
-<li><code>ls student</code>
+<li><code>delete Tutorial/1</code>
+<li><code>delete Lab/1-5</code>
 
-<li><code>ls student Tutorials</code>
-
-<li><code>ls student Labs</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Delete recur</strong>
+   <td><strong>Open File in Events</strong>
    </td>
-   <td><code>:[start],[end]d</code>
+   <td><code>openFile [EVENT_TYPE]/index</code>
    </td>
    <td>
 <ul>
 
-<li><code>:5d</code>
+<li><code>openFile Tutorial/1</code>
 
-<li><code>:5,10d</code>
+<li><code>openFile Lab/5</code>
 
-<li><code>:%d</code>
-
-<li><code>:.,10d</code>
-
-<li><code>:1d,$</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Delete non-recurring event</strong>
+   <td><strong>Exit application</strong>
    </td>
-   <td><code>:delete event [start],[end]d</code>
+   <td><code>:wq</code>
    </td>
    <td>
 <ul>
 
-<li><code>:delete event 5d</code>
+<li><code>:wq</code>
 
-<li><code>:delete event 5,10d</code>
-
-<li><code>:delete event %d</code>
-
-<li><code>:delete event .,10d</code>
-
-<li><code>:delete event 1d,$</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Delete student</strong>
+   <td><strong>Add Student</strong>
    </td>
    <td>
 <ol>
 
-<li><code>:cd EVENT students</code>
+<li><code>add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
 
-<li><code>:delete student INDEX</code>
 </li>
 </ol>
    </td>
    <td>
 <ul>
 
-<li><code>example 1</code>
-<ul>
+<li><code>add student n/Dijkstra</code>
 
-<li><code>:cd weeklyTutorials students</code>
-
-<li><code>:delete student 5</code>
+<li><code>add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code>
 </li>
 </ul>
 
-<li><code>example 2</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Remove Student</strong>
+   </td>
+   <td>
 <ul>
 
-<li><code>:cd weeklyLabs students</code>
+<li><code>rm INDEX</code>
 
-<li><code>:delete student 1</code>
 </li>
 </ul>
+   </td>
+   <td>
+<ul>
+
+<li><code>rm 1</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Edit recur</strong>
+   <td><strong>Add Student To Event</strong>
    </td>
    <td>
 <ul>
 
-<li><code>:/%s/[name] or [index]/[new recurring task details]/g</code>
+<li><code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
 
-<li><code>:/%s/[name] or [index]/[new recurring task details]/gc</code>
 </li>
 </ul>
    </td>
    <td>
 <ul>
 
-<li><code>:/%s/weeklyTutorials/weeklyTutorials Tutorials Wednesday 18:00 1 1/g</code>
+<li><code>addStudent 1 Tutorial/tut1</code>
 
-<li><code>:/%s/1/weeklyTutorials Tutorials Wednesday 18:00 1 1/g</code>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Edit non-recurring event</strong>
-   </td>
-   <td>
-<ul>
-
-<li><code>:/%s/nr/[name] or [index]/[new task details]/g</code>
-
-<li><code>:/%s/nr/[name] or [index]/[new task details]/gc</code>
-</li>
-</ul>
-   </td>
-   <td>
-<ul>
-
-<li><code>:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g</code>
-
-<li><code>:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g</code>
+<li><code>addStudent 4 Lab/mock_lab_session</code>
 </li>
 </ul>
    </td>
   </tr>
   <tr>
-   <td><strong>Edit student</strong>
+   <td><strong>Delete Student From Event</strong>
    </td>
-   <td><code>edit INDEX n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]</code>
+   <td><code>deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
    </td>
    <td>
 <ul>
 
-<li><code>edit 1 n/Dijkstra</code>
+<li><code>deleteStudent 1 Tutorial/tut1</code>
 
-<li><code>edit 2 n/Tony Hoare p/97482842 t/T03 l/B09</code>
+<li><code>deleteStudent 4 Lab/mock_lab_session</code>
 </li>
 </ul>
    </td>
