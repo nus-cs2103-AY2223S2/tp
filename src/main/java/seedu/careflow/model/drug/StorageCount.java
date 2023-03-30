@@ -8,10 +8,11 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
 public class StorageCount {
     public static final String MESSAGE_CONSTRAINTS =
             "Storage Count should only contain positive integers, "
-                    + "it should be at least 1 digit long but no more than 7 digits";
-    public static final String VALIDATION_REGEX = "[\\d][\\d]{0,6}";
+                    + "it should be at least 1 digit long but no more than 3 digits";
+    public static final String VALIDATION_REGEX = "[1-4]?[0-9]?[0-9]";
 
     private static final int THRESHOLD_VALUE = 10;
+    private static final int UPPER_LIMIT = 499;
     private Integer count;
 
     /**
@@ -48,7 +49,11 @@ public class StorageCount {
      * @param amount the increase value
      */
     public void incStorage(Integer amount) {
-        count += amount;
+        if (isAboveUpperLimit(amount)) {
+            count = UPPER_LIMIT;
+        } else {
+            count += amount;
+        }
     }
 
     /**
@@ -56,6 +61,10 @@ public class StorageCount {
      */
     public boolean isBelowThreshold() {
         return getCount() < THRESHOLD_VALUE;
+    }
+
+    public boolean isAboveUpperLimit(int increment) {
+        return increment + getCount() > UPPER_LIMIT;
     }
 
     @Override
