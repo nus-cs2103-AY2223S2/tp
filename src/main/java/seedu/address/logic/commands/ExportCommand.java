@@ -62,4 +62,21 @@ public class ExportCommand extends Command {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExportCommand)) {
+            return false;
+        }
+
+        ExportCommand otherCommand = (ExportCommand) other;
+
+        return fileName.equals(otherCommand.fileName)
+                && storage.equals(otherCommand.storage)
+                && isOverwritingExistingFile == otherCommand.isOverwritingExistingFile;
+    }
 }

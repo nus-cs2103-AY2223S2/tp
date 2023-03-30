@@ -146,5 +146,24 @@ public class ImportCommand extends Command {
                             moduleDoesNotExistInTracker), fileName));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ImportCommand)) {
+            return false;
+        }
+
+        ImportCommand otherCommand = (ImportCommand) other;
+
+        return fileName.equals(otherCommand.fileName)
+                && storage.equals(otherCommand.storage)
+                && moduleCodeSet.equals(otherCommand.moduleCodeSet)
+                && (isOverwritingExistingModule == otherCommand.isOverwritingExistingModule)
+                && (isImportingAllModules == otherCommand.isImportingAllModules);
+    }
 }
 
