@@ -27,17 +27,36 @@ public class Assignment {
         this.name = name;
         this.totalMarks = totalMarks;
         for (Student stu : sl) {
-            Submission sub = new Submission(stu, this);
-            submissions.add(sub);
-            stu.addSubmission(sub);
-            submissionMap.put(stu, sub);
+            addStudent(stu);
         }
     }
+
+    /**
+     * Called when in storage
+     * @param name
+     * @param totalMarks
+     */
     public Assignment(String name, int totalMarks) {
         this.name = name;
         this.totalMarks = totalMarks;
     }
 
+    /**
+     * Adds a new assignment to a student
+     * @param stu
+     */
+    public void addStudent(Student stu) {
+        Submission sub = new Submission(stu, this);
+        submissions.add(sub);
+        stu.addSubmission(sub);
+        submissionMap.put(stu, sub);
+    }
+
+    /**
+     * Adds a student submission using the submission string from storage.
+     * @param stu
+     * @param submissionString
+     */
     public void addStudentSubmission(Student stu, String submissionString) {
         String[] words = submissionString.split(",");
         boolean isGraded = Integer.parseInt(words[1]) == 1;
@@ -76,6 +95,7 @@ public class Assignment {
         }
     }
 
+
     public ArrayList<Submission> getSubmissions() {
         return this.submissions;
     }
@@ -98,6 +118,10 @@ public class Assignment {
         return this.name;
     }
 
+    /**
+     * Deletes a student submission from the submission list
+     * @param s the student
+     */
     public void deleteStudentSubmission(Student s) {
         Submission toDelete = null;
         for (Submission sub : submissions) {
@@ -113,4 +137,5 @@ public class Assignment {
     public String getName() {
         return this.name;
     }
+
 }

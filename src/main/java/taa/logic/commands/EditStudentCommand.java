@@ -4,7 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import taa.commons.core.Messages;
 import taa.commons.core.index.Index;

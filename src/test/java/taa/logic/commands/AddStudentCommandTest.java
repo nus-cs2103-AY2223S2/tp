@@ -212,6 +212,19 @@ public class AddStudentCommandTest {
         public void addAlarm(Alarm alarm) throws CommandException {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public void deleteStudentSubmission(Student studentToDelete) {
+        }
+
+        @Override
+        public void initAssignmentsFromStorage() {
+        }
+
+        @Override
+        public void addStudentAssignment(Student stu) {
+        }
+
     }
 
     /**

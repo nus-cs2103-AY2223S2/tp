@@ -8,7 +8,7 @@ import org.apache.commons.csv.CSVFormat;
 public class CsvUtil {
     public static final String KW_NAME = "name";
 
-    public static final String KW_Attendance = "attendance";
+    public static final String KW_ATTENDANCE = "attendance";
 
     public static final String KW_PP = "pp";
     public static final String KW_TAGS = "tags";

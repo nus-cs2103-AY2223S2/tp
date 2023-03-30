@@ -271,7 +271,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteStudentSubmission(Student studentToDelete) {
-        assignmentList.deleteStudentSubmission(studentToDelete);
+        assignmentList.deleteStudent(studentToDelete);
+        updateStudent(studentToDelete);
+    }
+
+    /**
+     * @param stu student to be added to assignmentList
+     */
+    public void addStudentAssignment(Student stu) {
+        assignmentList.addStudent(stu);
+        updateStudent(stu);
     }
 
     //Solution below adapted from ChatGPT
@@ -295,5 +304,8 @@ public class ModelManager implements Model {
     @Override
     public void initAssignmentsFromStorage() {
         assignmentList.initFromStorage(filteredStudents);
+        for (Student stu : filteredStudents) {
+            updateStudent(stu);
+        }
     }
 }

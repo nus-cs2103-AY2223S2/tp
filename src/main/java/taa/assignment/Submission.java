@@ -1,20 +1,17 @@
 package taa.assignment;
 
-import java.util.Date;
-
 import taa.assignment.exceptions.InvalidGradeException;
 import taa.model.student.Student;
 
 /**
  * An assignment submission
  */
-public class Submission implements Comparable<Submission> {
+public class Submission {
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
     private int marks = 0;
     private final Assignment assignment;
     private final Student student;
-    private Date timeCreated;
 
 
     /**
@@ -23,7 +20,6 @@ public class Submission implements Comparable<Submission> {
     public Submission(Student student, Assignment assignment) {
         this.student = student;
         this.assignment = assignment;
-        this.timeCreated = new Date();
     }
 
     /**
@@ -41,7 +37,6 @@ public class Submission implements Comparable<Submission> {
         this.isGraded = isGraded;
         this.isLateSubmission = isLateSubmission;
         this.marks = marks;
-        this.timeCreated = new Date();
     }
 
     public Student getStudent() {
@@ -92,16 +87,15 @@ public class Submission implements Comparable<Submission> {
                 marks, assignment.getTotalMarks(), late);
     }
 
-    @Override
-    public int compareTo(Submission otherSubmission) {
-        return this.timeCreated.compareTo(otherSubmission.timeCreated);
-    }
-
+    /**
+     * Creates a string for a submission to store into our storage.
+     * @return The storage string
+     */
     public String toStorageString() {
         String assignmentName = assignment.getName();
         int graded = isGraded ? 1 : 0;
         int late = isLateSubmission ? 1 : 0;
-        return String.format("%s,%d,%d,%d,%d",assignmentName,graded,late,marks,assignment.getTotalMarks());
+        return String.format("%s,%d,%d,%d,%d", assignmentName, graded, late, marks, assignment.getTotalMarks());
     }
 
 }

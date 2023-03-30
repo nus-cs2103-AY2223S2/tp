@@ -35,7 +35,6 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("attendance") String attendance,
                               @JsonProperty("pp") String pp,
-                              @JsonProperty("submissions") List<String> submissionStrArr,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.pp = pp;
@@ -81,7 +80,7 @@ class JsonAdaptedStudent {
         if (pp == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
         }
-        if (attendance == null ) {
+        if (attendance == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
         }
         if (submissionStrArr == null) {

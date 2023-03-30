@@ -128,4 +128,6 @@ public interface Model {
     void deleteStudentSubmission(Student studentToDelete);
 
     void initAssignmentsFromStorage();
+
+    void addStudentAssignment(Student toAdd);
 }

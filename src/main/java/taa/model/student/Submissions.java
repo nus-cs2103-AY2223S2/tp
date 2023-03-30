@@ -36,15 +36,15 @@ public class Submissions {
      * Returns the latest submission.
      */
     public Submission getLatestSubmission() {
-        Submission latestSubmission = null;
-        for (Submission submission : this.submissions) {
-            if (latestSubmission == null || submission.compareTo(latestSubmission) > 0) {
-                latestSubmission = submission;
-            }
+        if (submissions.isEmpty()) {
+            return null;
         }
-        return latestSubmission;
+        return submissions.get(submissions.size() - 1);
     }
 
+    /**
+     * @return ArrayList of storage string representation for the submissions
+     */
     public ArrayList<String> submissionStorageString() {
         ArrayList<String> res = new ArrayList<>();
         for (Submission sub: this.submissions) {

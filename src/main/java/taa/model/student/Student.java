@@ -1,6 +1,10 @@
 package taa.model.student;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import taa.assignment.Submission;
 import taa.commons.util.CollectionUtil;
@@ -20,7 +24,7 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private Submissions submissions = new Submissions(new ArrayList<>());
+    private final Submissions submissions = new Submissions(new ArrayList<>());
     private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;
@@ -76,13 +80,18 @@ public class Student {
      */
     public void addSubmission(Submission submission) {
         this.submissions.addSubmission(submission);
+        if (!submissionStringArr.contains(submission.toStorageString())) { // if doesn't exist in storage.
+            submissionStringArr.add(submission.toStorageString());
+        }
     }
 
     /**
      * Removes a submission attributed to this student.
      */
     public void deleteSubmission(Submission submission) {
+
         this.submissions.deleteSubmission(submission);
+        submissionStringArr.remove(submission.toStorageString());
     }
 
     /**
