@@ -377,15 +377,18 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 <br>
 
 **The `Storage` component:** 
-* can save both CoDoc data and user preference data in json format, and read them back into corresponding objects.
+* can save both CoDoc data and user preference in `json` format, and read them back to corresponding objects.
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being
-  * ReadOnlyUserPrefs: to obtain gui settings and file path of data
-  * ReadOnlyReadOnlyCodoc: contains an unmodifiable view of the persons list
-  * Person
-  * Module
-  * Skill
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being:
+  * `model.ReadOnlyUserPrefs`: for gui settings and data file path
+  * `model.ReadOnlyReadOnlyCodoc`: an unmodifiable list of all person added
+  * `model.person.Person`: information of a person
+  * `model.module.Module`: a module object 
+  * `model.skill.Skill` : a skill object
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The location in which both files are saved are specified in `commons.core.config`.
+</div>
 <br>
 
 
