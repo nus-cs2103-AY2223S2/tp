@@ -424,7 +424,7 @@ Examples:
 
 ### Delete a contact `delete`
 
-If you no longer need a contact in EduMate, you can remove them using the `remove` command.
+If you no longer need a contact in EduMate, you can remove them using the `delete` command.
 
 Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `delete INDEX`: Deletes the contact at index `INDEX`.
