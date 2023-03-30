@@ -230,7 +230,7 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-* `find Central` Finds people from Central region in the address book
+* `listRegion Central` Finds people from Central region in the address book
 
 ### Find people by policy name : `findPolicy`
 
@@ -296,6 +296,6 @@ _Details coming soon ..._
 | **Help**               | `help`                                                                                                                                                                |
 | **Add Meeting**        | `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                              |
 | **Remove Meeting**     | `meetingRemove PERSON_INDEX MEETING_INDEX`                                                                                                                            |
-| **Find Meeting**       | ` meeting find DATE [PERSON_INDEX]`                                                                                                                                   |
-| **List all meetings**  | `meeting list`                                                                                                                                                        |
-| **List all in Region** | `region find REGION [PERSON_INDEX]`                                                                                                                                   |
+| **Find Meeting**       | ` meetingFind DATE [PERSON_INDEX]`                                                                                                                                   |
+| **List all meetings**  | `meetingList`                                                                                                                                                        |
+| **List all in Region** | `listRegion REGION`                                                                                                                                   |
