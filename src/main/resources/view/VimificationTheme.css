@@ -110,7 +110,6 @@
   -fx-border-width: 1;
 }
 
-
 .cell_big_label {
   -fx-font-family: "Consolas";
   -fx-font-size: 16px;
@@ -125,7 +124,7 @@
 
 .progress_bar_status {
   -fx-padding: 0, 5, 0, 0;
-  -fx-accent:#8abc79
+  -fx-accent: #8abc79;
 }
 
 .priorityMessage {
@@ -365,12 +364,10 @@
   -fx-background-radius: 2;
 }
 
-
-
 #detailPane {
   -fx-background-color: #2b303b;
   -fx-border-width: 0;
-  -fx-padding: 60, 0, 0, 30
+  -fx-padding: 60, 0, 0, 30;
 }
 #detailPane .cell_big_label {
   -fx-font-family: "Consolas";
@@ -386,7 +383,7 @@
 
 #detailPane .progress_bar_status {
   -fx-padding: 0, 5, 0, 0;
-  -fx-accent:#8abc79
+  -fx-accent: #8abc79;
 }
 
 #detailPane .priorityMessage {
@@ -404,4 +401,3 @@
   -fx-font-family: "Calibri";
   -fx-font-size: 16px;
 }
-
