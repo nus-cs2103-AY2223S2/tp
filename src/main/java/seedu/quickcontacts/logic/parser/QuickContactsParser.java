@@ -163,7 +163,7 @@ public class QuickContactsParser {
         case MarkAsDoneCommand.COMMAND_WORD:
             return new MarkAsDoneParser().getAutocompleteSuggestion(arguments);
         case MarkAsNotDoneCommand.COMMAND_WORD:
-            return new MarkAsDoneParser().getAutocompleteSuggestion(arguments);
+            return new MarkAsNotDoneParser().getAutocompleteSuggestion(arguments);
         default:
             for (String word : AVAILABLE_COMMAND_WORDS) {
                 if (word.startsWith(commandWord)) {
