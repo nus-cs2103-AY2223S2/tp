@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -116,6 +117,33 @@ public class UniquePersonList implements Iterable<Person> {
                 .flatMap(set -> set.stream())
                 .distinct()
                 .map(tag -> tag.tagName)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingModuleValues() {
+        return internalList.stream()
+                .map(Person::getModules)
+                .flatMap(set -> set.stream())
+                .distinct()
+                .map(module -> module.moduleName)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingEducationValues() {
+        return internalList.stream()
+                .map(Person::getOptionalEducation)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .map(education -> education.value)
+                .distinct()
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

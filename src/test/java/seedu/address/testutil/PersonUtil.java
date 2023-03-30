@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
@@ -18,7 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,8 +44,8 @@ public class PersonUtil {
         person.getOptionalAddress().map(Address::toString)
                 .ifPresent(address -> sb.append(PREFIX_ADDRESS + address + " "));
         person.getOptionalRemark().map(Remark::toString).ifPresent(remark -> sb.append(PREFIX_REMARK + remark + " "));
-        person.getSubjects().stream().forEach(
-                s -> sb.append(PREFIX_SUBJECT + s.subjectName + " ")
+        person.getModules().stream().forEach(
+                s -> sb.append(PREFIX_MODULE + s.moduleName + " ")
         );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -67,12 +67,12 @@ public class PersonUtil {
                 .ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getRemark().orElseGet(Optional::empty)
                 .ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark.value).append("  "));
-        if (descriptor.getSubjects().isPresent()) {
-            Set<Subject> subjects = descriptor.getSubjects().get();
-            if (subjects.isEmpty()) {
-                sb.append(PREFIX_SUBJECT + " ");
+        if (descriptor.getModules().isPresent()) {
+            Set<Module> modules = descriptor.getModules().get();
+            if (modules.isEmpty()) {
+                sb.append(PREFIX_MODULE + " ");
             } else {
-                subjects.forEach(s -> sb.append(PREFIX_SUBJECT).append(s.subjectName).append(" "));
+                modules.forEach(s -> sb.append(PREFIX_MODULE).append(s.moduleName).append(" "));
             }
         }
 

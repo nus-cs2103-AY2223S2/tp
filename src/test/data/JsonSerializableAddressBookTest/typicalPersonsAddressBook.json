@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "education" : "P1",
     "remark" : "She hates bob.",
-    "subjects" : [ "Mathematics" ],
+    "modules" : [ "CS2101" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "education" : "P2",
     "remark" : "He can't take beer!",
-    "subjects" : [ "English", "Science" ],
+    "modules" : [ "CS2103T", "CS2030" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "address" : "wall street",
     "education" : "P3",
     "remark" : "Needs help with algebra.",
-    "subjects" : [ ],
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "address" : "10th street",
     "education" : "P4",
     "remark" : "Needs help with compo.",
-    "subjects" : [ ],
+    "modules" : [ ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "address" : "michegan ave",
     "education" : "P5",
     "remark" : "Needs more time on limits",
-    "subjects" : [ ],
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "address" : "little tokyo",
     "education" : "P6",
     "remark" : "Is good at algebra",
-    "subjects" : [ ],
+    "modules" : [ ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "address" : "4th street",
     "education" : "Sec 2",
     "remark" : "Is bad at argumentative essays",
-    "subjects" : [ ],
+    "modules" : [ ],
     "tagged" : [ ]
   } ]
 }

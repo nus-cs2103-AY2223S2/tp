@@ -17,7 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -53,7 +53,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane subjects;
+    private FlowPane modules;
     @FXML
     private Label remark;
 
@@ -72,9 +72,9 @@ public class PersonCard extends UiPart<Region> {
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(setStyleEducationLabel(label)));
-        person.getSubjects().stream()
-                .sorted(Comparator.comparing(subject -> subject.subjectName))
-                .forEach(subject -> tags.getChildren().add(createSubjectLabel(subject)));
+        person.getModules().stream()
+                .sorted(Comparator.comparing(module -> module.moduleName))
+                .forEach(module -> tags.getChildren().add(createModuleLabel(module)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -88,10 +88,10 @@ public class PersonCard extends UiPart<Region> {
         return label;
     }
 
-    public Label createSubjectLabel(Subject s) {
-        Label subjectLabel = new Label(s.subjectName);
-        subjectLabel.setStyle("-fx-background-color : #829356;");
-        return subjectLabel;
+    public Label createModuleLabel(Module s) {
+        Label moduleLabel = new Label(s.moduleName);
+        moduleLabel.setStyle("-fx-background-color : #829356;");
+        return moduleLabel;
     }
 
     public void resizeLabels(List<Label> labels) {

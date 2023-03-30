@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
@@ -40,20 +42,25 @@ public class AutocompleteEngine {
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             RemarkCommand.COMMAND_WORD,
-            ShowRemarkCommand.COMMAND_WORD
+            ShowRemarkCommand.COMMAND_WORD,
+            RedoCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD
     ));
-    private static final HashMap<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = new HashMap<>(Map.of(
-            AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES,
-            ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES,
-            DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES,
-            EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES,
-            ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES,
-            FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES,
-            HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES,
-            ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES,
-            RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES,
-            ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES
-    ));
+    private static final Map<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
+            Map.entry(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES),
+            Map.entry(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES),
+            Map.entry(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES),
+            Map.entry(EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES),
+            Map.entry(ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES),
+            Map.entry(FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES),
+            Map.entry(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES),
+            Map.entry(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES),
+            Map.entry(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES),
+            Map.entry(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES),
+            Map.entry(RedoCommand.COMMAND_WORD, RedoCommand.ARGUMENT_PREFIXES),
+            Map.entry(UndoCommand.COMMAND_WORD, UndoCommand.ARGUMENT_PREFIXES)
+    );
+
 
     private final Model model;
 
@@ -158,7 +165,11 @@ public class AutocompleteEngine {
     }
 
     private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
-        return new HashMap<>(Map.of(PREFIX_TAG, model.getExistingTagValues()));
+        return new HashMap<>(Map.of(
+                PREFIX_TAG, model.getExistingTagValues(),
+                PREFIX_MODULE, model.getExistingModuleValues(),
+                PREFIX_EDUCATION, model.getExistingEducationValues()
+        ));
     }
 
     /**
@@ -216,6 +227,8 @@ public class AutocompleteEngine {
                 String matchingExistingValues = existingArgValues.get(currPrefix)
                         .stream()
                         .filter(value -> value.startsWith(argValue))
+                        .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
+                                .noneMatch(value::equals))
                         .collect(Collectors.joining(" | "));
                 return matchingExistingValues.isEmpty()
                         ? ""

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             PREFIX_EDUCATION.asOptional(),
             PREFIX_REMARK.asOptional(),
             PREFIX_TAG.asOptional().asRepeatable(),
-            PREFIX_SUBJECT.asOptional().asRepeatable()
+            PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
@@ -50,11 +50,12 @@ public class AddCommand extends Command {
             + PREFIX_REMARK + "Needs help with algebra"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_SUBJECT + "Math";
+            + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
+    private final boolean isModifying = true;
     private final Person toAdd;
 
     /**
@@ -66,7 +67,12 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
@@ -74,6 +80,8 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitAddressBook();
+        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
