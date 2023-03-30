@@ -54,7 +54,9 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    * `list_job` : Lists all jobs.
    
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   
    * `timetable` : Shows timetable of current week.
+   
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -95,10 +97,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-## 1. Features available for Customers/Address Book
-### *Can only access from Customer Window*
 
+## 1. Features related to Customers
+### *Can only access from Customer Window*
 To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
+![address book](images/Dukedeliveryaddressbook.png)
 
 ### 1.1. Adding a person: `add`
 
@@ -169,15 +172,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-
-## 2. Features available for Delivery Jobs
+## 2. Features related to Delivery Jobs
 ### *Can only access from Main Window*
+Commands are input in this text field
+![input field](images/Inputcommands.png)
+
 ### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
 
 Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
+![Create Job](images/Addjob.png)
 
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
@@ -249,13 +255,18 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
+
 ## 4. Features available for Timetable
 ### *Can only access from Main Window*
+
 ### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
 
 Format: `timetable`
+
+Alternative: Click on `Timetable` in menu bar > `Scheduled Jobs`
+![timetable](images/Timetable.png)
 
 ### 4.2. Showing timetable of week containing specific date: `timetable_date`
 
@@ -274,11 +285,17 @@ Shows list of completed jobs, sorted in increasing date and decreasing earning o
 
 Format: `timetable_completed`
 
+Alternative: Click on `Timetable` in menu bar > `Completed Jobs`
+![completed jobs](images/Completedjobs.png)
+
 ### 4.4. Showing list of unscheduled jobs
 Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
 Jobs are sorted in increasing date and decreasing earning order.
 
 Format: `timetable_unscheduled`
+
+Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
+![Unscheduled jobs](images/Unscheduledjobs.png)
 
 ## 5. Features available for Statistics
 ### *Can only access from Main Window*
@@ -292,7 +309,6 @@ Shows a summary of statistics related to the jobs in the job list
 
 Similar statistics are shown for jobs in the previous week
 
-Format: `stats`
 
 ## Other features
 ### Clearing all entries : `clear`
@@ -340,7 +356,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | Action                                | Format, Examples                                                                                                                                                                                                                       |
 |---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ***(C)* Add Customer**                | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                             | `clear`                                                                                                                                                                                                                                |
+| ***(B)* Clear**                       | `clear`                                                                                                                                                                                                                                |
 | ***(C)* Delete Customer**             | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
 | ***(C)* Edit Customer details**       | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
 | ***(C)* Find Customer**               | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                |
