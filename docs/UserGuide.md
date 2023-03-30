@@ -290,8 +290,8 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section [4.2 Patient Commands]
-(#42-patient-commands) for more information on how to manage patient data in CareFlow.
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a 
+href="#42-patient-commands">4.2 Patient Commands</a> for more information on how to manage patient data in CareFlow.
 </div>
 
 ## 3.2 Drug Inventory Management
@@ -300,8 +300,8 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-warning">:information_source: Visit Section [4.3 Drug Commands]
-(#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section <a href="#43-drug-commands">4.3 
+Drug Commands</a> for more information on how to manage drug inventory in CareFlow.
 </div>
 
 ## 3.3 Hospital Information Directory
@@ -310,8 +310,8 @@ if you encounter an emergency or serious medical issue that your clinic can't ha
 
 <div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or 
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please 
-feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are 
-committed to constantly improving our software to meet your needs.
+feel free to <a href="https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html">contact us</a> and let us know. We 
+are committed to constantly improving our software to meet your needs.
 </div>
 
 [↑ Back to top](#top)
