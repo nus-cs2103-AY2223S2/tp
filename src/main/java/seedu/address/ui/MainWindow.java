@@ -98,13 +98,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        applicationListPanel = new ApplicationListPanel(logic.getSortedFilteredInternshipList());
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
-        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList(), this,
+        applicationListPanel = new ApplicationListPanel(logic.getSortedFilteredInternshipList(), this,
                 viewContentPanel);
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList(), viewContentPanel);
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList(), viewContentPanel);
