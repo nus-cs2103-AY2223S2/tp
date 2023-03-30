@@ -118,8 +118,8 @@ class UpdateCommandParserTest {
     void parse_changeInvalidDob_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -dob 999999",
                 "Date of birth should only contain numeric characters and spaces,"
-                        + " the format of date should be dd/mm/yyyy"
-                        + "and the date should fall between 01/01/1900 and current date");
+                        + " the format of date should be dd/mm/yyyy or dd.mm.yyyy or dd-mm-yyyy"
+                        + " and the date should fall between 01/01/1900 and current date");
     }
 
     @Test
@@ -149,8 +149,8 @@ class UpdateCommandParserTest {
     @Test
     void parse_changeInvalidIc_failure() {
         assertParseFailure(updateCommandParser, "Roy Balakrishnan -ic 123",
-                "IC number should only contain alphanumeric characters, "
-                        + "and it should be exactly 8 digits and characters long");
+                "The IC number begins with a letter followed "
+                        + "by 7 digits and concludes with another letter");
     }
 
     @Test
