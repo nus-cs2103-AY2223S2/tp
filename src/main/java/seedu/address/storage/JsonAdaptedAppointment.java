@@ -8,7 +8,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
 
 /**
@@ -18,7 +17,6 @@ class JsonAdaptedAppointment {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final String appointmentId;
     private final String patientName;
     private final String timeslot;
     private final String description;
@@ -28,12 +26,10 @@ class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("id") String appointmentId,
-                                  @JsonProperty("timeslot") String timeslot,
+    public JsonAdaptedAppointment(@JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
                                   @JsonProperty("name") String patientName,
                                   @JsonProperty("doctor") String doctor) {
-        this.appointmentId = appointmentId;
         this.timeslot = timeslot;
         this.description = description;
         this.patientName = patientName;
@@ -44,7 +40,6 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        appointmentId = source.getAppointmentId().getId();
         timeslot = source.getTimeslot().timeslotString;
         description = source.getDescription().description;
         patientName = source.getPatientName().fullName;
@@ -93,8 +88,7 @@ class JsonAdaptedAppointment {
         }
         final Doctor modelDoctor = new Doctor(doctor);
 
-        final AppointmentId modelId = new AppointmentId(appointmentId);
-        return new Appointment(modelId, modelPatientName, modelTimeslot, modelDescription, modelDoctor);
+        return new Appointment(modelPatientName, modelTimeslot, modelDescription, modelDoctor);
     }
 
 }

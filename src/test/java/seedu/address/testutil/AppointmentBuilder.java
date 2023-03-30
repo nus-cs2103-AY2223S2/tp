@@ -4,7 +4,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
-import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
 
 /**
@@ -17,7 +16,6 @@ public class AppointmentBuilder {
     public static final String DEFAULT_APPOINTMENT_ID = "1";
     public static final String DEFAULT_DOCTOR = "Xiao Lu";
 
-    private AppointmentId appointmentId;
     private Name patientName;
     private Timeslot timeslot;
     private Description description;
@@ -27,19 +25,10 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        appointmentId = new AppointmentId(DEFAULT_APPOINTMENT_ID);
         timeslot = new Timeslot(DEFAULT_TIMESLOT);
         description = new Description(DEFAULT_DESCRIPTION);
         patientName = new Name(DEFAULT_NAME);
         doctor = new Doctor(DEFAULT_DOCTOR);
-    }
-
-    /**
-     * Sets the {@code AppointmentId} of the {@code Appointment} that we are building.
-     */
-    public AppointmentBuilder withAppointmentId(String appointmentId) {
-        this.appointmentId = new AppointmentId(appointmentId);
-        return this;
     }
 
     /**
@@ -75,6 +64,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(appointmentId, patientName, timeslot, description, doctor);
+        return new Appointment(patientName, timeslot, description, doctor);
     }
 }
