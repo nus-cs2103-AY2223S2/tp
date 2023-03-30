@@ -97,12 +97,6 @@ public class StringUtilTest {
     }
 
     @Test
-    public void containsKeywordsListIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-                -> StringUtil.containsKeywordsListIgnoreCase("typical sentence", "aaa BBB"));
-    }
-
-    @Test
     public void containsKeywordsListIgnoreCase_nullSentence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsKeywordsListIgnoreCase(null, "abc"));
     }

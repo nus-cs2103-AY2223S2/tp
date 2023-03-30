@@ -33,7 +33,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SearchCommand parse(String args) throws ParseException {
-
+        args = " " + args;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_BIRTHDAY, PREFIX_MODULE, PREFIX_SOCMED_INSTAGRAM,
                 PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
@@ -78,19 +78,19 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             if (argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get().trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
             }
-            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get());
+            predicate.setInstagram(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get());
         }
         if (argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).isPresent()) {
             if (argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get().trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
             }
-            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get());
+            predicate.setTelegram(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get());
         }
         if (argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).isPresent()) {
             if (argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get().trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
             }
-            predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get());
+            predicate.setWhatsapp(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get());
         }
         Set<String> remarks = new HashSet<>();
         for (String s : argMultimap.getAllValues(PREFIX_REMARK)) {
