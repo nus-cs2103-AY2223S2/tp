@@ -185,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY(), theme.toString());
+            (int) primaryStage.getX(), (int) primaryStage.getY(), theme.toString());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -196,7 +196,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, IllegalValueException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+                                                                        ParseException, IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -216,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
                 isShowBackup = true;
             }
 
-            if (isShowBackup) {
+            if (!commandResult.isShowBackups()) {
                 newFillInnerParts();
                 isShowBackup = false;
             }
