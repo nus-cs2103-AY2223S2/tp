@@ -14,8 +14,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.prescription.Prescription;
 
-import java.util.ArrayList;
-
 //code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
 /**
  * Panel containing the detailed info of person.
