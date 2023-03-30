@@ -17,12 +17,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String HELP_MESSAGE = "The following are summary of prefixes and what they represent. \n"
-            + "You can press the tab key to fill in the next parameter, \n"
-            + "if you forget what comes next."
+            + "You can press the tab key to fill in the next parameter, "
+            + "if you forget what comes next.\n\n"
             + "Meeting Related Prefix: m/ dt/ p/ l/ des/\n"
             + "m/ : meeting title\n"
             + "dt/ : datetime\n"
             + "p/ : person attending the meeting (use this tag for each person attending)\n"
+            + "l/ : location of the meeting\n"
             + "des/ : description of the meeting\n\n"
             + "Contact Related Prefix: n/ p/ e/ a/ t/\n"
             + "n/: name\n"
