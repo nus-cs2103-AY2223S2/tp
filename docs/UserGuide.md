@@ -283,8 +283,6 @@ Format: `list [l/LANGUAGE] [t/TAG]`
 * Each contact is accompanied by an index number in the list.
 * The list by default is sorted by time added (i.e most recently added contact being last in the list).
 
-<div style="page-break-after: always;"></div>
-
 #### Locating contacts by keyword(s): `find`
 
 Find contacts stored in SOCket based on the given keyword(s) for the respective fields.
@@ -561,6 +559,8 @@ Examples:
   <br>
   </p>
 
+
+<div style="page-break-after: always;"></div>
 
 * After Unassigning:<br/><br/>
   <p align="center"><img src="images/UnassignAfter.png" width="600"/></p>

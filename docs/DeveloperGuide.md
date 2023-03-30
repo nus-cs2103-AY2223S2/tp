@@ -619,6 +619,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC04 Sort contacts**
 
 **MSS:**
@@ -717,6 +719,8 @@ Use case ends.
     * *a1. SOCKet stops the operation.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 List contacts**
 
@@ -835,6 +839,8 @@ Use case ends.
     
    Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC13 Undo recent changes**
 
 **MSS:**
@@ -878,6 +884,8 @@ Use case ends.
 3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user.
 
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC16 Set deadlines & responsibilities**
 
@@ -932,6 +940,8 @@ Use case ends.
 4. SOCket displays all the person's information at the detail display window.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Use case: UC19 Sorting project list**
 
