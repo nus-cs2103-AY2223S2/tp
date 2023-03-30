@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Docedex" minWidth="1000" minHeight="650" onCloseRequest="#handleExit">
+         title="Docedex" minWidth="1000" minHeight="750" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -40,14 +40,14 @@
             </StackPane>
 
             <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder"
-                       minHeight="100" prefHeight="100" maxHeight="100">
+                       minHeight="150">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
             </StackPane>
 
-            <StackPane VBox.vgrow="ALWAYS" fx:id="contactDisplayPlaceholder"
-                       minHeight="300" >
+            <StackPane VBox.vgrow="SOMETIMES" fx:id="contactDisplayPlaceholder"
+                       minHeight="250">
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
