@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.FlowPane?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Label fx:id="title" styleClass="cell_big_label" text="\$title" wrapText="true" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="600.0">
+            <children>
+                <HBox fillHeight="false" prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <Label prefHeight="50.0" prefWidth="80.0" text="Status">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <HBox spacing="5">
+                            <ProgressBar fx:id="status" styleClass = "progress_bar_status" progress="0.0"/>
+                            <Label fx:id="statusMessage" styleClass="cell_small_label" text="\$statusMessage" wrapText="true">
+                            </Label>
+                        </HBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <Label prefHeight="50.0" prefWidth="80.0" text="Priority">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <FlowPane fx:id="priority">
+                            <Label fx:id="priorityMessage" styleClass="priorityMessage" text="\$priorityMessage" wrapText="true">
+                            </Label>
+                        </FlowPane>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+
+
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <HBox prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <Label prefHeight="52.0" prefWidth="80.0" text="Deadline">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <HBox spacing = "5">
+                            <Label fx:id="deadline" prefHeight="17.0" styleClass="cell_small_label" text="\$deadline" wrapText="true"/>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+            <children>
+                <HBox fillHeight="false" prefHeight="100.0" prefWidth="300.0">
+                    <children>
+                        <Label prefHeight="17.0" prefWidth="80.0" text="Labels">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
+                        </Label>
+                        <HBox spacing = "5">
+                            <FlowPane fx:id="labels" />
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>

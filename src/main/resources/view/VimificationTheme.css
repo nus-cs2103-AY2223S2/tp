@@ -1,5 +1,5 @@
 .background {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
   background-color: #383838; /* Used in the default.html file */
 }
 
@@ -68,20 +68,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
   -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
   -fx-border-radius: 1;
   -fx-border-width: 1;
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
 }
 
 .list-view {
   -fx-background-insets: 0;
   -fx-padding: 0;
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
 }
 
 .list-cell {
@@ -101,7 +101,7 @@
 }
 
 .list-cell:filled:selected {
-  -fx-background-color: #363c49;
+  -fx-background-color: #363c4a;
   -fx-background-radius: 10;
 }
 
@@ -123,9 +123,13 @@
   -fx-text-fill: #c5cad3;
 }
 
-.priority {
-  -fx-text-fill: #c5cad3;
-  -fx-background-color: #3e7b91;
+.progress_bar_status {
+  -fx-padding: 0, 5, 0, 0;
+  -fx-accent:#8abc79
+}
+
+.priorityMessage {
+  -fx-text-fill: #2b303b;
   -fx-padding: 1 3 1 3;
   -fx-border-radius: 2;
   -fx-background-radius: 2;
@@ -134,11 +138,11 @@
 }
 
 .stack-pane {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
 }
 
 .pane-with-border {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
   -fx-border-color: derive(#1d1d1d, 10%);
   -fx-border-top-width: 1px;
 }
@@ -194,7 +198,7 @@
 }
 
 .menu-bar {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
 }
 
 .menu-bar .label {
@@ -285,7 +289,7 @@
 }
 
 .scroll-bar {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: black;
 }
 
 .scroll-bar .thumb {
@@ -352,11 +356,52 @@
 }
 
 #labels .label {
-  -fx-text-fill: #c5cad3;
-  -fx-background-color: #3e7b91;
+  -fx-text-fill: #2b303b;
+  -fx-background-color: #c5cad3;
   -fx-font-family: "Consolas";
   -fx-font-size: 13px;
   -fx-padding: 1 3 1 3;
   -fx-border-radius: 2;
   -fx-background-radius: 2;
 }
+
+
+
+#detailPane {
+  -fx-background-color: #2b303b;
+  -fx-border-width: 0;
+  -fx-padding: 60, 0, 0, 30
+}
+#detailPane .cell_big_label {
+  -fx-font-family: "Consolas";
+  -fx-font-size: 23px;
+  -fx-text-fill: #55a5ef;
+}
+
+#detailPane .cell_small_label {
+  -fx-font-family: "Consolas";
+  -fx-font-size: 16px;
+  -fx-text-fill: #c5cad3;
+}
+
+#detailPane .progress_bar_status {
+  -fx-padding: 0, 5, 0, 0;
+  -fx-accent:#8abc79
+}
+
+#detailPane .priorityMessage {
+  -fx-text-fill: #2b303b;
+  -fx-padding: 1 3 1 3;
+  -fx-border-radius: 2;
+  -fx-background-radius: 2;
+  -fx-font-family: "Consolas";
+  -fx-font-size: 16px;
+}
+
+#detailPane .descriptionStyle {
+  -fx-text-fill: #c5cad3;
+  -fx-padding: 5;
+  -fx-font-family: "Calibri";
+  -fx-font-size: 16px;
+}
+
