@@ -3,8 +3,8 @@ package seedu.sprint.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.Model;
 import seedu.sprint.model.InternshipBook;
+import seedu.sprint.model.Model;
 
 
 /**

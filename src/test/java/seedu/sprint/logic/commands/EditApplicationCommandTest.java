@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.InternshipBook;
+import seedu.sprint.model.Model;
+import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.testutil.ApplicationBuilder;
@@ -33,7 +33,7 @@ public class EditApplicationCommandTest {
 
 
     private Model model =
-            new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+            new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
 
@@ -49,7 +49,7 @@ public class EditApplicationCommandTest {
         String expectedMessage =
                 String.format(EditApplicationCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(model.getSortedApplicationList().get(0), editedApplication);
         expectedModel.commitInternshipBookChange();
@@ -77,7 +77,7 @@ public class EditApplicationCommandTest {
         String expectedMessage = String.format(
                 EditApplicationCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
-        Model expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(lastApplication, editedApplication);
         expectedModel.commitInternshipBookChange();
@@ -95,7 +95,7 @@ public class EditApplicationCommandTest {
         String expectedMessage = String.format(EditApplicationCommand
                 .MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
-        Model expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.commitInternshipBookChange();
 
@@ -117,7 +117,7 @@ public class EditApplicationCommandTest {
         String expectedMessage = String.format(
                 EditApplicationCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
 
-        Model expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()),
                 new UserPrefs());
         expectedModel.setApplication(model.getFilteredApplicationList().get(0), editedApplication);

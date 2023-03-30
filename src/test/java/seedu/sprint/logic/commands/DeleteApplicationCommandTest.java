@@ -15,16 +15,16 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
+import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.Application;
 
 /**
- * Contains integration tests (interaction with the ApplicationModel) and unit tests for
+ * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteApplicationCommand}.
  */
 public class DeleteApplicationCommandTest {
-    private Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
 
@@ -37,7 +37,7 @@ public class DeleteApplicationCommandTest {
         String expectedMessage = String.format(DeleteApplicationCommand.MESSAGE_DELETE_APPLICATION_SUCCESS,
                 applicationToDelete);
 
-        ApplicationModelManager expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
         expectedModel.commitInternshipBookChange();
 
@@ -66,7 +66,7 @@ public class DeleteApplicationCommandTest {
         String expectedMessage = String.format(DeleteApplicationCommand.MESSAGE_DELETE_APPLICATION_SUCCESS,
                 applicationToDelete);
 
-        Model expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
         expectedModel.commitInternshipBookChange();
         showNoApplication(expectedModel);

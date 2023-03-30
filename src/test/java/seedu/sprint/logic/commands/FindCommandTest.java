@@ -3,27 +3,31 @@ package seedu.sprint.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sprint.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.sprint.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.sprint.testutil.TypicalPersons.CARL;
-import static seedu.sprint.testutil.TypicalPersons.ELLE;
-import static seedu.sprint.testutil.TypicalPersons.FIONA;
-import static seedu.sprint.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.sprint.commons.core.Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW;
+import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
+import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.model.Model;
+import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
-import seedu.sprint.model.person.NameContainsKeywordsPredicate;
+import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(
+            getTypicalInternshipBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(
+            getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void equals() {
@@ -52,25 +56,27 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+    public void execute_invalidKeywords_noApplicationFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 0);
+        NameContainsKeywordsPredicate predicate = preparePredicate("?");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        expectedModel.updateFilteredApplicationList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getSortedApplicationList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+    public void execute_oneKeywords_oneApplicationFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Google");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        expectedModel.updateFilteredApplicationList(predicate);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(GOOGLE), model.getSortedApplicationList());
     }
+
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.

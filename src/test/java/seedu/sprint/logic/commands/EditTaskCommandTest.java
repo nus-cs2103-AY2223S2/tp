@@ -19,7 +19,7 @@ import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
+import seedu.sprint.model.ModelManager;
 //import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
 //import seedu.sprint.model.application.Application;
@@ -28,7 +28,7 @@ import seedu.sprint.model.UserPrefs;
 import seedu.sprint.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandTest {
-    private Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     /*
@@ -57,7 +57,7 @@ public class EditTaskCommandTest {
                 applicationInList.withTask(VALID_DEADLINE, VALID_DESCRIPTION).build();
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS, editedApplication.getTask());
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
@@ -80,7 +80,7 @@ public class EditTaskCommandTest {
                 applicationInList.withDeadline(VALID_DEADLINE).build();
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS, editedApplication.getTask());
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);
@@ -104,7 +104,7 @@ public class EditTaskCommandTest {
                 applicationInList.withTask(VALID_DEADLINE, VALID_DESCRIPTION).build();
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_SUCCESS, editedApplication.getTask());
 
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs()
         );
         expectedModel.setApplication(applicationToEditTask, editedApplication);

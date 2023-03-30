@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
+import seedu.sprint.model.ModelManager;
 
 public class ExitCommandTest {
-    private Model model = new ApplicationModelManager();
-    private Model expectedModel = new ApplicationModelManager();
+    private Model model = new ModelManager();
+    private Model expectedModel = new ModelManager();
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

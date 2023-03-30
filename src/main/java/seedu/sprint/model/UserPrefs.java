@@ -14,7 +14,7 @@ import seedu.sprint.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path internshipBookFilePath = Paths.get("data" , "internshipbook.json");
+    private Path internshipBookFilePath = Paths.get("data" , "sprint.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

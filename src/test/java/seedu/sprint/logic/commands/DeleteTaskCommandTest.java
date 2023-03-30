@@ -15,14 +15,14 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
+import seedu.sprint.model.ModelManager;
 //import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
 //import seedu.sprint.model.application.Application;
 //import seedu.sprint.testutil.ApplicationBuilder;
 
 public class DeleteTaskCommandTest {
-    private Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     /*
@@ -39,7 +39,7 @@ public class DeleteTaskCommandTest {
         ApplicationBuilder applicationInList = new ApplicationBuilder(applicationToDeleteTask);
         Application editedApplication = applicationInList.withoutTask().build();
 
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(applicationToDeleteTask, editedApplication);
         expectedModel.commitInternshipBookChange();
@@ -60,7 +60,7 @@ public class DeleteTaskCommandTest {
         ApplicationBuilder applicationInList = new ApplicationBuilder(applicationToDeleteTask);
         Application editedApplication = applicationInList.withoutTask().build();
 
-        ApplicationModel expectedModel = new ApplicationModelManager(
+        Model expectedModel = new ModelManager(
                 new InternshipBook(model.getInternshipBook()), new UserPrefs());
         expectedModel.setApplication(applicationToDeleteTask, editedApplication);
         expectedModel.commitInternshipBookChange();

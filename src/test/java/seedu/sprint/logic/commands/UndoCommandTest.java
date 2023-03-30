@@ -11,19 +11,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
-import seedu.sprint.model.ApplicationModelManager;
+import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 
 
 public class UndoCommandTest {
     private Model model;
-    private ApplicationModelManager expectedModel;
+    private ModelManager expectedModel;
     private CommandHistory commandHistory;
 
     @BeforeEach
     public void setUp() {
-        model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
-        expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
+        model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         commandHistory = new CommandHistory();
     }
 
