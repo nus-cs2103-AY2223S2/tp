@@ -135,7 +135,7 @@ public class AddressBookParser {
 
         case CancelOrderCommand.COMMAND_WORD:
             return new CancelOrderCommandParser().parse(arguments);
-            
+
         case ViewOrderCommand.COMMAND_WORD:
             return new ViewOrderCommandParser().parse(arguments);
 
