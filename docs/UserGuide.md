@@ -18,6 +18,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [View guide](#view-help--help)
     - [Add an internship application](#)
         - [Add](#)
+    - [Add an interview date to an internship application](#adding-an-interview-date--adddate)
     - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications](########TODO)
     - [Find internship applications by the company name, job title, status, or interview date](###find-internship-applications-by-the-company-name,-job-title,-status,-or-interview-date-:-find)
@@ -35,6 +36,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
+    - [Remind](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
         - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
@@ -147,6 +149,21 @@ Format: ` add n/COMPANY_NAME j/JOB_TITLE`
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+
+### Adding an interview date : `add_date`
+
+Adds an interview date and time to an internship application
+
+Format: `add_date INDEX d/DATE_TIME`
+
+- Adds an interview date to the internship application at the specified `INDEX`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- `DATE_TIME` should be a valid date time of the format `yyyy-MM-dd hh:mm a`, where `a` is either `AM` or `PM`, and the date and time must be before the current date and time.
+
+Examples:
+* `add_date 1 d/2023-05-02 11:30 AM` adds the date and time 2023-05-02 11:30 AM to the first application in the list of applications.
+* `add_date 2 d/2023-07-03 12:30 PM` adds the date and time 2023-07-03 12:30 PM to the second application in the list of applications.
 
 ### Add contact details : `add_contact`
 
@@ -372,7 +389,13 @@ Examples:
 * `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
 2023-12-02 12:30 PM (inclusive).
 
+### Displaying the internship application with the most imminent interview : `remind`
+
+Displays the details of an internship application with the earliest date in a pop up window, with reference to the 
+current date and time.
   
+Format: `remind`
+
 ### Clearing all internship application entries : `clear`
 
 Clears all internship application entries from the internship tracker.
@@ -562,6 +585,7 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
+**Add Date** | `add_date INDEX d/DATE_TIME` <br> e.g., `add_date 1 d/2023-05-02 11:30 AM`
 **Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
@@ -588,6 +612,7 @@ Action | Format, Examples
 **List Note** |`list_note`
 **List Task** |`list_task`
 **List Todo** |`list_todo`
+**Remind** |`remind`
 **Revert**   | `revert`
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
