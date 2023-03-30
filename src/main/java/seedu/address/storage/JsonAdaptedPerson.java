@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
 
     private final String nric;
     private final String name;
+    private final String date;
     private final String phone;
     private final String email;
     private final String address;
@@ -45,8 +47,11 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("nric") String nric, @JsonProperty("name") String name,
-                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+    public JsonAdaptedPerson(@JsonProperty("nric") String nric,
+                             @JsonProperty("name") String name,
+                             @JsonProperty("date") String date,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("drugAllergy") String drugAllergy,
                              @JsonProperty("gender") String gender,
@@ -55,6 +60,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("medicines") List<JsonAdaptedMedicine> medicines) {
         this.nric = nric;
         this.name = name;
+        this.date = date;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -76,6 +82,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         nric = source.getNric().fullNric;
         name = source.getName().fullName;
+        date = source.getDate().toString();
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
@@ -122,6 +129,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                            DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDate(date)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDate = new DateOfBirth(date);
 
         if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
@@ -174,8 +190,10 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Medicine> modelMedicines = new HashSet<>(personMedicines);
-        return new Person(modelNric, modelName, modelPhone, modelEmail,
-                modelAddress, modelAllergy, modelGender, modelDoctor, modelTags, modelMedicines);
+        return new Person(modelNric, modelName, modelDate,
+                            modelPhone, modelEmail,
+                            modelAddress, modelAllergy, modelGender,
+                            modelDoctor, modelTags, modelMedicines);
     }
 
 }
