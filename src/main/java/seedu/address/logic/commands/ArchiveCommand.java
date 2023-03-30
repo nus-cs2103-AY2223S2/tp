@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -49,5 +50,10 @@ public class ArchiveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof ArchiveCommand // instanceof handles nulls
                 && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetIndex);
     }
 }

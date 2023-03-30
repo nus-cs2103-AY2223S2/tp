@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Pet {
 
-    private final static Deadline NO_DEADLINE = new NoDeadline();
+    private static final Deadline NO_DEADLINE = new NoDeadline();
 
     // Identity fields
     private final OwnerName ownerName;
@@ -37,7 +37,7 @@ public class Pet {
      */
     public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address,
                LocalDateTime timestamp, Deadline deadline, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, timestamp, tags);
+        requireAllNonNull(ownerName, name, phone, email, address, timestamp, tags);
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
@@ -158,7 +158,7 @@ public class Pet {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Status: ")
-                .append(getIsMarked()? "Marked" : "Unmarked");
+                .append(getIsMarked() ? "Marked" : "Unmarked");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

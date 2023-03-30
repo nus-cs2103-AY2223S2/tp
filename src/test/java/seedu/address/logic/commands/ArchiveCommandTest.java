@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PET;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PET;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PET;
 import static seedu.address.testutil.TypicalPets.getTypicalArchive;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
@@ -78,9 +79,9 @@ public class ArchiveCommandTest {
     @Test
     public void equals() {
         ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PET);
-        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PET);
+        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_THIRD_PET);
 
-        // same object -> returns true
+//         same object -> returns true
         assertEquals(archiveFirstCommand, archiveSecondCommand);
 
         // same values -> returns true
