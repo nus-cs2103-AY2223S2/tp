@@ -17,5 +17,3 @@ public class ListAlarmsCommand extends Command {
         return new CommandResult(model.listAlarms());
     }
 }
-
-

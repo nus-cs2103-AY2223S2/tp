@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import taa.assignment.Assignment;
 import taa.assignment.Submission;
 import taa.assignment.exceptions.AssignmentNotFoundException;
-import taa.assignment.exceptions.SubmissionNotFoundException;
 
 /**
  * A list of Submissions belonging to a Student.

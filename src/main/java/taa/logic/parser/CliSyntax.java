@@ -25,4 +25,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PARTICIPATION_POINTS = new Prefix("pp/");
     public static final Prefix PREFIX_STAT_TYPE = new Prefix("st/");
 
+    private CliSyntax() {
+    }
+
 }

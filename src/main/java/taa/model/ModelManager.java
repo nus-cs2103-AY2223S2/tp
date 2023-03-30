@@ -2,7 +2,8 @@ package taa.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,12 +16,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.scene.control.Alert;
-import javafx.util.Duration;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -36,16 +31,27 @@ import org.jfree.data.function.Function2D;
 import org.jfree.data.function.NormalDistributionFunction2D;
 import org.jfree.data.general.DatasetUtils;
 import org.jfree.data.xy.XYDataset;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert;
+import javafx.util.Duration;
 import taa.assignment.AssignmentList;
-import taa.assignment.exceptions.*;
+import taa.assignment.exceptions.AssignmentException;
+import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.DuplicateAssignmentException;
+import taa.assignment.exceptions.NoGradeVarianceException;
+import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.enums.ChartType;
-import taa.model.student.Attendance;
 import taa.model.alarm.Alarm;
 import taa.model.alarm.AlarmList;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
@@ -233,7 +239,7 @@ public class ModelManager implements Model {
         if (filtered.size() > 0) {
             filteredStudents.setPredicate(new SameStudentPredicate(filtered.get(0)));
         } else {
-            filteredStudents.setPredicate(p->false);
+            filteredStudents.setPredicate(p -> false);
         }
     }
 
@@ -382,8 +388,8 @@ public class ModelManager implements Model {
             throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException {
         requireNonNull(assignmentName);
 
-        final int NUM_STD_TO_SHOW = 4;
-        final int NUM_POINTS_TO_SAMPLE = 300;
+        final int numStdToShow = 4;
+        final int numPointsToSample = 300;
 
         IntStatistics statistics = getGradeStatistics(assignmentName);
         double mean = statistics.getMean();
@@ -397,9 +403,9 @@ public class ModelManager implements Model {
         Function2D bellCurve = new NormalDistributionFunction2D(mean, std);
         XYDataset dataset = DatasetUtils.sampleFunction2D(
                 bellCurve,
-                mean - NUM_STD_TO_SHOW * std,
-                mean + NUM_STD_TO_SHOW * std,
-                NUM_POINTS_TO_SAMPLE,
+                mean - numStdToShow * std,
+                mean + numStdToShow * std,
+                numPointsToSample,
                 "Normal"
         );
 
@@ -414,22 +420,22 @@ public class ModelManager implements Model {
                 false
         );
 
-        double max_Y = result.getXYPlot().getRangeAxis().getRange().getUpperBound();
-        final Marker mean_info = new ValueMarker(max_Y);
-        mean_info.setLabel(String.format("Mean: %.2f", mean));
-        mean_info.setLabelPaint(Color.blue);
-        mean_info.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
-        mean_info.setLabelTextAnchor(TextAnchor.TOP_LEFT);
-        mean_info.setLabelFont(new Font("Arial", 0, 24));
-        result.getXYPlot().addRangeMarker(mean_info);
+        double maxY = result.getXYPlot().getRangeAxis().getRange().getUpperBound();
+        final Marker meanInfo = new ValueMarker(maxY);
+        meanInfo.setLabel(String.format("Mean: %.2f", mean));
+        meanInfo.setLabelPaint(Color.blue);
+        meanInfo.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        meanInfo.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        meanInfo.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(meanInfo);
 
-        final Marker std_info = new ValueMarker(0.95 * max_Y);
-        std_info.setLabel(String.format("Std. Dev: %.4f", std));
-        std_info.setLabelPaint(Color.blue);
-        std_info.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
-        std_info.setLabelTextAnchor(TextAnchor.TOP_LEFT);
-        std_info.setLabelFont(new Font("Arial", 0, 24));
-        result.getXYPlot().addRangeMarker(std_info);
+        final Marker stdInfo = new ValueMarker(0.95 * maxY);
+        stdInfo.setLabel(String.format("Std. Dev: %.4f", std));
+        stdInfo.setLabelPaint(Color.blue);
+        stdInfo.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        stdInfo.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        stdInfo.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(stdInfo);
 
         return result;
     }
@@ -443,18 +449,18 @@ public class ModelManager implements Model {
             attendanceData.setValue(
                     studentAttendance[i],
                     "Present",
-                    String.format("W%d", i+1));
+                    String.format("W%d", i + 1));
         }
 
         result = ChartFactory.createBarChart(
-                "Attendance",     //Chart title
-                "Week",     //Domain axis label
-                "Number of Students",         //Range axis label
-                attendanceData,         //Chart Data
-                PlotOrientation.VERTICAL, // orientation
-                true,             // include legend?
-                true,             // include tooltips?
-                false             // include URLs?
+                "Attendance",
+                "Week",
+                "Number of Students",
+                attendanceData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
         );
         ValueAxis axis = result.getCategoryPlot().getRangeAxis();
         axis.setRange(0, filteredStudents.size());

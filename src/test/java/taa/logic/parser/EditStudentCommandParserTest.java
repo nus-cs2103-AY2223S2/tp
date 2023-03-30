@@ -18,7 +18,7 @@ public class EditStudentCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE);
 
-    private EditStudentCommandParser parser = new EditStudentCommandParser();
+    private final EditStudentCommandParser parser = new EditStudentCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

@@ -2,7 +2,6 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taa.assignment.exceptions.AssignmentNotFoundException;
 import taa.assignment.exceptions.DuplicateAssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;

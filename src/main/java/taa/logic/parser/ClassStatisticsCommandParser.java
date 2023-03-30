@@ -1,26 +1,26 @@
 package taa.logic.parser;
 
+import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
+
+import java.util.stream.Stream;
+
 import taa.commons.core.Messages;
 import taa.logic.commands.ClassStatisticsCommand;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
-
-import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
-import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 
 /**
  * Parses input arguments and creates a new ClassStatisticsCommand object
  */
 public class ClassStatisticsCommandParser implements Parser<ClassStatisticsCommand> {
 
-    @Override
     /**
      * Parses the given {@code String} of arguments in the context of the ClassStatisticsCommand
      * and returns an ClassStatisticsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public ClassStatisticsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STAT_TYPE, PREFIX_ASSIGNMENT_NAME);

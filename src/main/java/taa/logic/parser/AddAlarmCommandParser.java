@@ -44,4 +44,3 @@ public class AddAlarmCommandParser {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-

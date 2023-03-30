@@ -1,10 +1,13 @@
 package taa.model.student;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import taa.assignment.Submission;
 import taa.assignment.exceptions.AssignmentNotFoundException;
-import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
@@ -14,7 +17,7 @@ import taa.model.tag.Tag;
  */
 public class Student {
 
-    private static int lastId = 0;
+    private static int lastId;
     // Identity fields
     private final Name name;
     private final int id;

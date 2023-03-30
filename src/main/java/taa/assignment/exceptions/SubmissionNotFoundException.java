@@ -1,7 +1,5 @@
 package taa.assignment.exceptions;
 
-import taa.logic.commands.exceptions.CommandException;
-
 /**
  * Submission is not found.
  */

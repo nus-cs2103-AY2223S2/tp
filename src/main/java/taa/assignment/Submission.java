@@ -6,18 +6,16 @@ import java.util.Optional;
 import taa.assignment.exceptions.InvalidGradeException;
 import taa.model.student.Student;
 
-import javax.swing.text.html.Option;
-
 /**
  * An assignment submission
  */
 public class Submission implements Comparable<Submission> {
-    private boolean isGraded = false;
-    private boolean isLateSubmission = false;
-    private int marks = 0;
+    private boolean isGraded;
+    private boolean isLateSubmission;
+    private int marks;
     private final Assignment assignment;
     private final Student student;
-    private Date timeCreated;
+    private final Date timeCreated;
 
 
     /**

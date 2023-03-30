@@ -81,9 +81,9 @@ public class AssignmentList {
     public String list() {
         StringBuilder sb = new StringBuilder();
         for (Assignment a : assignments) {
-            sb.append("Assignment " + a + ":\n");
+            sb.append("Assignment ").append(a).append(":\n");
             for (Submission s : a.getSubmissions()) {
-                sb.append("  " + s + "\n");
+                sb.append("  ").append(s).append("\n");
             }
         }
         return sb.toString();

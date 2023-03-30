@@ -1,5 +1,6 @@
 package taa.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
@@ -10,7 +11,6 @@ import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 
-import static java.util.Objects.requireNonNull;
 
 /**
  * Displays the statistics for the active class list.
@@ -19,8 +19,8 @@ public class ClassStatisticsCommand extends Command {
 
     public static final String COMMAND_WORD = "class_stats";
     public static final String EXAMPLE_USAGE = "Examples: \n"
-                    + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "attendance\n"
-                    + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades " + PREFIX_ASSIGNMENT_NAME + "Homework 1\n";
+            + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "attendance\n"
+            + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades " + PREFIX_ASSIGNMENT_NAME + "Homework 1\n";
     public static final String SAVE_IMAGE_HINT = "Tip: Want to save the chart? \n"
             + "Right click on it, select 'Save As' and click on 'PNG'!";
 
@@ -30,7 +30,7 @@ public class ClassStatisticsCommand extends Command {
             + "Parameters: " + PREFIX_STAT_TYPE + "FIELD [" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT_NAME]\n"
             + "where FIELD is either '"
             + ChartType.CLASS_ATTENDANCE.toString().toLowerCase() + "' or '"
-            + ChartType.CLASS_GRADES.toString().toLowerCase() +"'. \n\n"
+            + ChartType.CLASS_GRADES.toString().toLowerCase() + "'. \n\n"
             + EXAMPLE_USAGE;
     public static final String MESSAGE_EMPTY_CLASSLIST = "The class list cannot be empty!";
     public static final String MESSAGE_UNKNOWN_FIELD = "The FIELD parameter passed in is not recognised. \n"
