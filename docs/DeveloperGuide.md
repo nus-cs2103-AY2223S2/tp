@@ -20,7 +20,7 @@ title: Developer Guide
     - [Add patient feature](#add-patient-feature)
     - [Edit patient feature](#edit-patient-feature)
     - [Delete patient feature](#delete-patient-record-by-nric-feature)
-    - [Find patients feature](#find-patient-record-by-nric-health-conditions-medicine-feature)
+    - [Find patients feature](#filter-patient-record-by-attribute)
     - [Light/Dark theme](#light--dark-theme)
     - [Adding NRIC as unique identifier](#adding-nric-as-identifier)
     - [Adding health conditions](#adding-health-conditions)
@@ -49,7 +49,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## **Design**
 
@@ -61,7 +61,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Architecture
 
@@ -112,7 +112,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### UI component
 
@@ -138,7 +138,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Logic component
 
@@ -180,7 +180,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Model component
 
@@ -207,7 +207,7 @@ The `Model` component,
 
 </div>
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Storage component
 
@@ -225,7 +225,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Common classes
 
@@ -255,7 +255,7 @@ Steps of its execution are as follows:
 
 <img src="images/BackupSequenceDiagram.png" />
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Undo/redo feature
 
@@ -360,7 +360,7 @@ executes `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01
 . The `AddCommand` is executed and `Model#hasPerson` is called and followed by a call to `Model#addPerson()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Edit patient feature
 
@@ -387,7 +387,7 @@ and `Model#hasPerson()` to check for possible duplicates. `Model#setPerson` is c
 by `Model#updateFilteredPersonList()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Delete patient record by NRIC feature
 
@@ -428,9 +428,9 @@ The following sequence diagram shows how the delete command works:
     * Cons: If the record we are searching for does not appear in the top few records, we would have to execute a find
       command and then get corresponding INDEX to carry out deletion.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
-### Find patient record by NRIC, Name, Health conditions, Medicine feature
+### Filter patient record by attribute
 
 #### Implementation
 
@@ -475,7 +475,7 @@ The following sequence diagram shows how the delete command works:
     * Pros: More convenient for clinical administrator to search by any attributes that he deem easy to type
     * Cons: Unlikely for the clinical administrator to use other attributes to find a particular patient.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Light / Dark Theme
 
@@ -507,7 +507,7 @@ The following activity diagram summarizes what happens when a user executes thes
     * Pros: Less resource space and no need to change the file path.
     * Cons: Not easy to implement and require more FXML changes.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Adding Nric as identifier
 
@@ -545,7 +545,7 @@ Given below is an updated `Model` component diagram.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Adding Health Conditions
 
@@ -596,7 +596,7 @@ what doctor is in charge of him/her.
       database more messy.
 
 --------------------------------------------------------------------------------------------------------------------
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -642,7 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Use cases
 
@@ -727,7 +727,7 @@ otherwise)
 
 *{More to be added}*
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Non-Functional Requirements
 
@@ -745,7 +745,7 @@ otherwise)
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -847,4 +847,4 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
