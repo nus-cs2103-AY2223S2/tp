@@ -212,6 +212,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void refreshFilteredPersonList() {
+        Predicate<? super Person> predicate = filteredPersons.getPredicate();
+        filteredPersons.setPredicate(null);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
     public void freezeFilteredPersonList() throws ModifyFrozenStateException {
         if (isFrozen) {
             throw new ModifyFrozenStateException("Model is already frozen");

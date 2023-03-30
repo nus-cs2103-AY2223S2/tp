@@ -97,6 +97,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<? super Person> predicate);
 
     /**
+     * Refreshes the filtered person list to push any changes within contained Persons to the UI,
+     * if the appropriate observers are not otherwise triggered.
+     */
+    void refreshFilteredPersonList();
+
+    /**
      * Freezes the visible list of filtered persons, temporarily halting reactive updates
      * from Predicate checks.
      * @throws ModifyFrozenStateException if this Model is already frozen
