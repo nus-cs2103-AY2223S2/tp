@@ -66,6 +66,7 @@ public class RemovePartFromServiceCommand extends RedoableCommand {
             throw new CommandException(MESSAGE_INSUFFICIENT_PART);
         }
         service.getRequiredParts().decreasePartQuantity(this.partName, this.quantity);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.partName, this.quantity, this.serviceId), Tab.SERVICES);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.partName, this.quantity,
+                this.serviceId), Tab.SERVICES);
     }
 }

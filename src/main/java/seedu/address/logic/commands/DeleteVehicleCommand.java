@@ -12,8 +12,7 @@ import seedu.address.model.service.Vehicle;
 /**
  * Deletes a vehicle identified using it's displayed index from viewvehicle.
  */
-public class
-DeleteVehicleCommand extends RedoableCommand {
+public class DeleteVehicleCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "deletevehicle";
 
