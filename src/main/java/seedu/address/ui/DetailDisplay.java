@@ -129,7 +129,6 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
-                filesManager.addFile();
                 try {
                     filesManager.addFile();
                 } catch (RuntimeException e) {
@@ -138,6 +137,7 @@ public class DetailDisplay extends UiPart<Region> {
                 medicalCondition.setText("click the person gain to see updated file list");
             }
         });
+
     }
 
     public void setGenerateButton(FilesManager filesManager) {
