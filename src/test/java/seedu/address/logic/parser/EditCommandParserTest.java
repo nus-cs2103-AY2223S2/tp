@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTH_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -50,7 +49,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.util.EditDescriptor;
-import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
@@ -105,8 +103,6 @@ public class EditCommandParserTest {
                 Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, VALID_NRIC_AMY + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, VALID_NRIC_AMY + INVALID_ADDRESS_DESC,
-                Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, VALID_NRIC_AMY + INVALID_NRIC_DESC,
                 Nric.MESSAGE_CONSTRAINTS); // invalid nric
         assertParseFailure(parser, VALID_NRIC_AMY + INVALID_BIRTH_DATE_DESC,

@@ -61,12 +61,12 @@ public class FindCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTH DATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK LEVEL] "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
+            + "[" + PREFIX_AVAILABILITY + "AVAILABLE_DATE_START,AVAILABLE_DATE_END]...\n"
             + "Example: " + COMMAND_WORD + " n/John";
 
     private final List<Predicate<Person>> sharedFilterList;
