@@ -212,6 +212,17 @@ public class AddStudentCommandTest {
         public void addAlarm(Alarm alarm) throws CommandException {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public String listAlarms() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void deleteAlarm(int index) throws CommandException {
+            throw new AssertionError("This method should not be called");
+
+        }
     }
 
     /**
@@ -254,6 +265,7 @@ public class AddStudentCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new ClassList();
         }
+
     }
 
 }
