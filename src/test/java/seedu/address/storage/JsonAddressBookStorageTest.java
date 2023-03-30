@@ -31,7 +31,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyModuleTracker> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonAddressBookStorage(Paths.get(filePath)).readModuleTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -67,21 +67,21 @@ public class JsonAddressBookStorageTest {
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyModuleTracker readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveModuleTracker(original, filePath);
+        ReadOnlyModuleTracker readBack = jsonAddressBookStorage.readModuleTracker(filePath).get();
         assertEquals(original, new ModuleTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addModule(CS1231S_LEC);
         original.removeModule(CS2106_TUT);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveModuleTracker(original, filePath);
+        readBack = jsonAddressBookStorage.readModuleTracker(filePath).get();
         assertEquals(original, new ModuleTracker(readBack));
 
         // Save and read without specifying file path
         original.addModule(CS2030S_LAB);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveModuleTracker(original); // file path not specified
+        readBack = jsonAddressBookStorage.readModuleTracker().get(); // file path not specified
         assertEquals(original, new ModuleTracker(readBack));
 
     }
@@ -97,7 +97,7 @@ public class JsonAddressBookStorageTest {
     private void saveAddressBook(ReadOnlyModuleTracker addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveModuleTracker(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

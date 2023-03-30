@@ -17,13 +17,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ModuleTrackerStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ModuleTrackerStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getModuleTrackerFilePath() {
+        return addressBookStorage.getModuleTrackerFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyModuleTracker> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyModuleTracker> readModuleTracker() throws DataConversionException, IOException {
+        return readModuleTracker(addressBookStorage.getModuleTrackerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyModuleTracker> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyModuleTracker> readModuleTracker(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return addressBookStorage.readModuleTracker(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyModuleTracker addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveModuleTracker(ReadOnlyModuleTracker moduleTracker) throws IOException {
+        saveModuleTracker(moduleTracker, addressBookStorage.getModuleTrackerFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyModuleTracker addressBook, Path filePath) throws IOException {
+    public void saveModuleTracker(ReadOnlyModuleTracker moduleTracker, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        addressBookStorage.saveModuleTracker(moduleTracker, filePath);
     }
 
 }

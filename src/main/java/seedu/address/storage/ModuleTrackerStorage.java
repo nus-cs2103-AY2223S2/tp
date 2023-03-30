@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyModuleTracker;
 /**
  * Represents a storage for {@link ModuleTracker}.
  */
-public interface AddressBookStorage {
+public interface ModuleTrackerStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getModuleTrackerFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyModuleTracker}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyModuleTracker> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyModuleTracker> readModuleTracker() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getModuleTrackerFilePath()
      */
-    Optional<ReadOnlyModuleTracker> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyModuleTracker> readModuleTracker(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyModuleTracker} to the storage.
-     * @param addressBook cannot be null.
+     * @param moduleTracker cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyModuleTracker addressBook) throws IOException;
+    void saveModuleTracker(ReadOnlyModuleTracker moduleTracker) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyModuleTracker)
+     * @see #saveModuleTracker(ReadOnlyModuleTracker)
      */
-    void saveAddressBook(ReadOnlyModuleTracker addressBook, Path filePath) throws IOException;
+    void saveModuleTracker(ReadOnlyModuleTracker moduleTracker, Path filePath) throws IOException;
 
 }

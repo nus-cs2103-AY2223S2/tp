@@ -55,14 +55,14 @@ public class StorageManagerTest {
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
         ModuleTracker original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyModuleTracker retrieved = storageManager.readAddressBook().get();
+        storageManager.saveModuleTracker(original);
+        ReadOnlyModuleTracker retrieved = storageManager.readModuleTracker().get();
         assertEquals(original, new ModuleTracker(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getModuleTrackerFilePath());
     }
 
 }

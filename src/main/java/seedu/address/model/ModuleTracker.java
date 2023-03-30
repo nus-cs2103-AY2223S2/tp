@@ -30,7 +30,7 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     public ModuleTracker() {}
 
     /**
-     * Creates an AddressBook using the Modules in the {@code toBeCopied}
+     * Creates an ModuleTracker using the Modules in the {@code toBeCopied}
      */
     public ModuleTracker(ReadOnlyModuleTracker toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ModuleTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyModuleTracker newData) {
         requireNonNull(newData);
@@ -59,7 +59,7 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     //// module-level operations
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the module tracker.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -67,8 +67,8 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     }
 
     /**
-     * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * Adds a module to the module tracker.
+     * The module must not already exist in the module tracker.
      */
     public void addModule(Module p) {
         modules.add(p);
@@ -76,8 +76,8 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
 
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
+     * {@code target} must exist in the module tracker.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module tracker.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -86,8 +86,8 @@ public class ModuleTracker implements ReadOnlyModuleTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ModuleTracker}.
+     * {@code key} must exist in the module tracker.
      */
     public void removeModule(Module key) {
         modules.remove(key);

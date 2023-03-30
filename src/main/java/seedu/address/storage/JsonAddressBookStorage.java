@@ -17,7 +17,7 @@ import seedu.address.model.ReadOnlyModuleTracker;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonAddressBookStorage implements ModuleTrackerStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
@@ -27,22 +27,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getModuleTrackerFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyModuleTracker> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyModuleTracker> readModuleTracker() throws DataConversionException {
+        return readModuleTracker(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readModuleTracker()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyModuleTracker> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyModuleTracker> readModuleTracker(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyModuleTracker addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveModuleTracker(ReadOnlyModuleTracker moduleTracker) throws IOException {
+        saveModuleTracker(moduleTracker, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyModuleTracker)}.
+     * Similar to {@link #saveModuleTracker(ReadOnlyModuleTracker)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyModuleTracker addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveModuleTracker(ReadOnlyModuleTracker moduleTracker, Path filePath) throws IOException {
+        requireNonNull(moduleTracker);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(moduleTracker), filePath);
     }
 
 }
