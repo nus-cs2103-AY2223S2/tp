@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 public class LeaveCounter {
     public static final String MESSAGE_CONSTRAINTS =
             "Leave count has to be a non negative integer, please try again.";
+    public static final String FILTER_PARAMETER = "l";
     private static final int DEFAULT_LEAVE_COUNT = 21;
     private int leaveCount;
 
