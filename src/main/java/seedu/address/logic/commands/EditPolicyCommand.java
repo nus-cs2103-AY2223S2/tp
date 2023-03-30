@@ -90,8 +90,7 @@ public class EditPolicyCommand extends Command {
         }
 
         clientPolicyList.setPolicy(policyToEdit, editedPolicy);
-        return new CommandResult(generateSuccessMessage(clientToEditPolicy, policyToEdit),
-                clientToEditPolicy, true, false, false);
+        return new CommandResult(generateSuccessMessage(clientToEditPolicy, policyToEdit));
     }
 
     private String generateSuccessMessage(Client client, Policy policy) {
