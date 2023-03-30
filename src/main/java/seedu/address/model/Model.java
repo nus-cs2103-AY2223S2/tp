@@ -45,7 +45,7 @@ public interface Model {
     void setPetPalFilePath(Path petPalFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces pet pal data with the data in {@code addressBook}.
      */
     void setPetPal(ReadOnlyPetPal petPal);
 
@@ -53,21 +53,27 @@ public interface Model {
     ReadOnlyPetPal getPetPal();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a pet with the same identity as {@code pet} exists in the pet list.
      */
     boolean hasPet(Pet pet);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given pet.
+     * The pet must exist in the pet list.
      */
     void deletePet(Pet target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code pet} must not already exist in the pet list.
      */
     void addPet(Pet pet);
+
+    /**
+     * Marks the given pet
+     * The pet must exist in the pet list.
+     */
+    void markPet(Pet target);
 
     void undo();
 
