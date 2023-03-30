@@ -32,6 +32,9 @@ see in your career.
         * Editing a client : `edit`
         * Filtering clients by name: `find`
         * Deleting a client : `delete`
+        * Sorting Clients by Email address : `sortClientEmail`
+        * Sorting Clients by Name : `sortClientName`
+        * Sorting Clients by Phone Number : `sortClientPhone`
     * #### Policy Management
         * Adding a policy: `addPolicy`
         * Listing all policies : `listPolicy`
@@ -133,6 +136,18 @@ Format: `undo`
 * `Undo Success` will be shown in the display
 * If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
+ 
+#### **Special Note for undo and redo**
+
+Undo/Redo Command will only work if previous command **modifies the data of Clients or Policies**.
+
+Thus following commands can't be called to Undo/Redo
+
+* Exit
+* Help
+* List
+* Select
+
 
 ### Redo previous command : `redo`
 
@@ -330,6 +345,45 @@ Examples:
 
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Sorting clients by their email : `sortClientEmail`
+
+Format: `sortClientEmail INDEX`
+
+* Sort list of clients based on their email
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number (including fraction)
+
+Examples:
+
+* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
+* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
+
+### Sorting clients by their name : `sortClientName`
+
+Format: `sortClientName INDEX`
+
+* Sort list of clients based on their name
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number (including fraction)
+
+Examples:
+
+* `sortClientName 1` sorts the client list based on client's name in **ascending** order
+* `sortClientName 0` sorts the client list based on client's name in **descending** order
+
+### Sorting clients by their email : `sortClientPhone`
+
+Format: `sortClientPhone INDEX`
+
+* Sort list of clients based on their phone number
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number (including fraction)
+
+Examples:
+
+* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
+* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
 
 ## Policy Management (todo)
 
