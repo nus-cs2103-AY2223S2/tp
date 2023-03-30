@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane minWidth="400.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+   <children>
+      <Label id="name" fx:id="name" styleClass="cell_big_label" />
+         <VBox style="-fx-border-color: black; -fx-background-color: white;">
+            <children>
+                              <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
+               <HBox>
+                  <children>
+                     <Label fx:id="email111" prefWidth="106.0" styleClass="cell_small_label" text="NRIC" />
+                  <Label fx:id="nric" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="email11" prefWidth="106.0" styleClass="cell_small_label" text="Phone number" />
+                  <Label fx:id="phone" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="email1" prefWidth="106.0" styleClass="cell_small_label" text="Email" />
+                  <Label fx:id="email" prefHeight="17.0" prefWidth="261.0" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="email1111" prefWidth="106.0" styleClass="cell_small_label" text="Address" />
+                  <Label fx:id="address" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="phone111" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+         <VBox prefWidth="369.0" style="-fx-border-color: black;">
+            <children>
+               <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER" />
+            <ListView id="appointments" fx:id="appointments" prefWidth="367.0" />
+            </children>
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
+         </VBox>
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" style="-fx-border-color: black;">
+            <children>
+               <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
+               <HBox>
+                  <children>
+                     <Label fx:id="medication" styleClass="cell_small_label" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+   </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding></VBox>
+</ScrollPane>

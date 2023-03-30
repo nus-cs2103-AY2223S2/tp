@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PersonViewPanel personViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane personViewPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +117,10 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //handleView();
+        personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -135,6 +143,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+    /**
+     * Displays the detailed person window.
+     */
+    @FXML
+    public void handleView() {
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+        //personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
+    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -185,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            handleView();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

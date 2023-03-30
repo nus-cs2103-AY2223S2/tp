@@ -211,6 +211,16 @@ public class AddDoctorCommandTest {
         public void deleteAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updatePersonView(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getPersonDisplay() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

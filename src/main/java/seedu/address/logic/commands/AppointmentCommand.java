@@ -21,7 +21,7 @@ public class AppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "appointment";
 
-    public static final String MESSAGE_USAGE = "";
+    public static final String MESSAGE_USAGE = ""; // todo usage
     public static final String MESSAGE_SUCCESS = "New appointment booked: %1$s"; // todo patient name
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment slot is already booked";
 
@@ -95,6 +95,9 @@ public class AppointmentCommand extends Command {
         model.setPerson(appointmentPatient, editedPatient);
         model.setPerson(appointmentDoctor, editedDoctor);
 
+        //todo confirm
+        //model.updatePersonView(editedPatient);
+        //model.updatePersonView(editedDoctor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS

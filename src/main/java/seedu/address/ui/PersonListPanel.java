@@ -27,6 +27,8 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        //personListView.setCellFactory(listView -> new PersonInfoViewCell());
     }
 
     /**
@@ -45,5 +47,22 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
+
+    /*
+    class PersonInfoViewCell extends ListCell<Person> {
+        @Override
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
+
+            if (empty || person == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new PersonInfoCard(person, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+     */
 
 }
