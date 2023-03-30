@@ -16,7 +16,7 @@ public class Grade implements Comparable<Grade> {
 
     public static final String MESSAGE_MISSING_DETAIL = "Missing grade after /g.";
 
-    public static final String NO_GRADE = "No grade";
+    public static final String NO_GRADE = "NO GRADE";
 
     private static Map<String, Double> gradeToPoints = Map.ofEntries(
         Map.entry("A+", 5.0),
@@ -32,7 +32,7 @@ public class Grade implements Comparable<Grade> {
         Map.entry("F", 0.0),
         Map.entry("S", 5.0),
         Map.entry("U", 0.0),
-        Map.entry("No grade", -1.0) // Empty grade
+        Map.entry("NO GRADE", -1.0) // Empty grade
     );
 
     private static Map<String, Double> gradeToTagPoints = Map.ofEntries(
@@ -49,7 +49,7 @@ public class Grade implements Comparable<Grade> {
             Map.entry("F", 0.0),
             Map.entry("S", -1.0),
             Map.entry("U", -1.1),
-            Map.entry("No grade", -1.2) // Empty grade
+            Map.entry("NO GRADE", -1.2) // Empty grade
     );
 
     private static final Set<String> VALID_GRADES = gradeToPoints.keySet();
@@ -79,7 +79,7 @@ public class Grade implements Comparable<Grade> {
      */
     public static boolean isValidGrade(String test) {
         requireNonNull(test);
-        return test.isEmpty() || VALID_GRADES.contains(test);
+        return test.isEmpty() || test.equals(NO_GRADE) || VALID_GRADES.contains(test);
     }
 
     public double toPoints() {
