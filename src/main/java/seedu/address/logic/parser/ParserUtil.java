@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
-
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -211,5 +213,22 @@ public class ParserUtil {
         }
 
         return parserFunction.apply(retArg);
+
+     * Parses {@code oneBasedIndexes} into a list of {@code Index} and returns it.
+     *
+     * @throws ParseException if any of the
+     * specified indexes are invalid (not positive integers).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String[] indexStrings = oneBasedIndexes.trim().split("\\s+");
+        try {
+            return Arrays.stream(indexStrings)
+                    .map(Integer::parseInt)
+                    .map(Index::fromOneBased)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new ParseException("One or more index values are not a positive integer.");
+        }
+
     }
 }
