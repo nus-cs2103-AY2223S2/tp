@@ -454,9 +454,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 4. 
   
 * 3b. User request an unassigned patient’s information 
+
+  * 3b1. MC denies the request.
   
-  * 3b1. MC denies the request. 
-    
     Use case ends.
 
 **Use case: UC04 - Delete patient's information**
@@ -469,38 +469,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. MC request for the patient's nric number.
 3. User enters the requested details
 4. MC displays the confirmation of the deleted patient.
-   Use case ends. 
+   Use case ends.
 
 **Extensions**
 * 3a. MC cannot find the patient's nric in the list
 
   * 3a1. MC informs the user that the patient cannot be found
-  
+
   * 3a2. User enters the corrected nric.
-  
+
     Steps 3a1-3a2 are repeated until the data entered are correct.
-  
+
     Use case resumes from step 4.
-  
+
 * 3b. User does not enter the `ic/` field after the `delete` command.
 
   * 3b1. MC informs the user that it is an invalid command format.
-  
+
   * 3b2. User enters the correct command format.
-  
+
     Steps 3b1-3b2 are repeated until the data entered are correct.
-  
+
     Use case resumes from step 4.
-  
+
 * 3c. User does not enter a nric number or enters an invalid nric format number after the `ic/` field.
 
   * 3c1. MC informs the user that NRIC must follow a specific format.
-  
+
   * User enters the correct nric format number.
-  
+
     Steps 3c1-3c2 are repeated until the data entered are correct.
-  
-    Use case resumes from step 4. 
+
+    Use case resumes from step 4.
 
 
 *{More to be added}*
