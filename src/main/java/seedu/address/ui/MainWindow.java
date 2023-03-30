@@ -270,24 +270,39 @@ public class MainWindow extends UiPart<Stage> {
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
     }
 
+    /**
+     * Gets the argument from a command
+     */
     private String getArgs(String commandText){
         return commandText.split(" ")[1];
     }
 
+    /**
+     * Displays the find parameters of cards
+     */
     public void handleFindCards(String commandText) {
         Text args = new Text(FILTER_CARD_PREFIX + getArgs(commandText));
         rightFilterText.getChildren().add(args);
     }
 
+    /**
+     * Displays the find parameters of decks
+     */
     public void handleFindDecks(String commandText) {
         Text args = new Text(FILTER_DECK_PREFIX + getArgs(commandText));
         leftFilterText.getChildren().add(args);
     }
 
+    /**
+     * Hides the find parameters of cards
+     */
     public void handleShowCards() {
         rightFilterText.getChildren().clear();
     }
 
+    /**
+     * Hides the find parameters of decks
+     */
     public void handleShowDecks() {
         leftFilterText.getChildren().clear();
     }

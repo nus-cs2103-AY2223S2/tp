@@ -135,7 +135,11 @@ public class CommandResult {
                 && startReview == otherCommandResult.startReview
                 && endReview == otherCommandResult.endReview
                 && selectDeck == otherCommandResult.selectDeck
-                && unselectDeck == otherCommandResult.unselectDeck;
+                && unselectDeck == otherCommandResult.unselectDeck
+                && findCards == otherCommandResult.findCards
+                && findDecks == otherCommandResult.findDecks
+                && showCards == otherCommandResult.showCards
+                && showDecks == otherCommandResult.showDecks;
 
     }
 
