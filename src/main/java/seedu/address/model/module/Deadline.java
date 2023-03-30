@@ -58,6 +58,10 @@ public class Deadline implements Comparable<Deadline> {
         return dateTimeFormatter.format(value);
     }
 
+    /**
+     * Displays the Deadline in an appropriate format for the UI.
+     * @return a String to be displayed in UI.
+     */
     public String displayInUI() {
         if (value == null) {
             return EMPTY_INPUT;

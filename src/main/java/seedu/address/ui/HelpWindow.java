@@ -50,8 +50,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String LIST = "\n\n7. List all entries.\n" + "Example: list";
     public static final String EXIT = "\n\n8. Exit the application.\n" + "Example: exit";
     public static final String HELP = "\n\n9. Getting help.\n" + "Example: help";
-    public static final String HELP_MESSAGE =  ADD + DELETE + EDIT + FIND + SORT
-            + CLEAR + LIST + EXIT + HELP;
+    public static final String HELP_MESSAGE =  ADD + DELETE + EDIT + FIND + SORT + CLEAR + LIST + EXIT + HELP;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
     @FXML
