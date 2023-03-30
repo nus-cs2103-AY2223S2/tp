@@ -245,14 +245,6 @@ public class AutocompleteEngine {
                             .substring(lastWord.length());
         }
 
-        boolean isKeywordRequired = argPrefixes.contains(KEYWORD_PLACEHOLDER);
-        if (isKeywordRequired) {
-            // Commands with keyword argument are assumed to only require that keyword as argument.
-            // If the keyword isn't the only arg., then more checks/parsing needs to be done when
-            // gettingt he suggestions.
-            assert argPrefixes.size() == 1;
-        }
-
         long numOfNonRepeatingPrefixlessArgs = argPrefixes.stream()
                 .filter(Prefix::isPlaceholder)
                 .filter(prefix -> !prefix.isRepeatable())
