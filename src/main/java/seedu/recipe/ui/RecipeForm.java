@@ -169,10 +169,7 @@ public class RecipeForm extends UiPart<Region> {
         window.setHeight(Math.min(maxHeight, DEFAULT_HEIGHT));
 
         //Set dimensions, scene graph
-        VBox pane = new VBox(getRoot());
-        pane.setStyle("-fx-background-color: #3f3f46");
-
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(getRoot());
 
         //Event handler for Escape Key
         scene.setOnKeyPressed(event -> {
