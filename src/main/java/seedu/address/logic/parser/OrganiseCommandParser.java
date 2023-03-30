@@ -124,9 +124,9 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
         LocalTime startHour;
         LocalTime endHour;
         try {
-            startHour = new LocalTime(Integer.parseInt(time.get(0)), 0);
-            endHour = new LocalTime(Integer.parseInt(time.get(1)), 0);
-        } catch (NumberFormatException | IllegalFieldValueException nfe) {
+            startHour = ParserUtil.parseStartHour(Integer.parseInt(time.get(0)));
+            endHour = ParserUtil.parseEndHour(Integer.parseInt(time.get(1)));
+        } catch (NumberFormatException | IllegalFieldValueException | AssertionError e) {
             throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
         }
 
