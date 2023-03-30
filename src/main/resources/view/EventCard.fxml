@@ -8,7 +8,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox fx:id="wrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="eventCard" minHeight="200.0" prefWidth="300.0">
@@ -39,6 +38,7 @@
                   <Separator fx:id="separator2" prefWidth="200.0" />
                   <HBox>
                      <children>
+                        <Label fx:id="eventId" />
                         <Label styleClass="event-card-h1" text="Event title: ">
                            <font>
                               <Font name="System Bold" size="12.0" />

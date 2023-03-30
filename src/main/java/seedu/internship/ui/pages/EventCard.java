@@ -49,6 +49,8 @@ public class EventCard extends UiPart<Region> {
     private Separator separator2;
     @FXML
     private HBox wrapper;
+    @FXML
+    private Label eventId;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -117,5 +119,13 @@ public class EventCard extends UiPart<Region> {
         // state check
         EventCard card = (EventCard) other;
         return event.equals(card.event);
+    }
+
+    /**
+     * Sets id for this EventCard
+     * @param i Integer for the index
+     */
+    public void setEventId(int i) {
+        this.eventId.setText(String.format("%d. ", i));
     }
 }
