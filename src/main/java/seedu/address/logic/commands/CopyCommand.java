@@ -50,8 +50,6 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_NO_CLIPBOARD_FOUND = "Clipboard does not exist in your environment! "
             + "Displaying information for you:\n\n";
 
-    public static final String MESSAGE_NO_FIELDS_SELECTED = "At least 1 field to copy must be provided!";
-
     private final Index targetIndex;
     private final CopyInformationSelector copyInformationSelector;
 

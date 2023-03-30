@@ -15,6 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_UNIT = new Prefix("u/");
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_PLATOON = new Prefix("pl/");
-    public static final Prefix PREFIX_ALL = new Prefix("/all");
 
 }

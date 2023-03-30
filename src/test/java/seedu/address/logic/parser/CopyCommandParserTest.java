@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,8 +26,6 @@ import seedu.address.testutil.CopyInformationSelectorBuilder;
 
 public class CopyCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE);
 
@@ -38,9 +35,6 @@ public class CopyCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
-
-        // no field specified
-        assertParseFailure(parser, "1", CopyCommand.MESSAGE_NO_FIELDS_SELECTED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -147,21 +141,9 @@ public class CopyCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // all
-        userInput = targetIndex.getOneBased() + " " + PREFIX_ALL;
+        userInput = targetIndex.getOneBased() + " ";
         informationSelector = new CopyInformationSelectorBuilder().selectAll().build();
         expectedCommand = new CopyCommand(targetIndex, informationSelector);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    /*
-    @Test
-    public void parse_validArgs_returnCopyCommand() {
-        assertParseSuccess(parser, "1", new CopyCommand(INDEX_FIRST_PERSON));
-    }
-
-    @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "x", String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
-    }
-    */
 }
