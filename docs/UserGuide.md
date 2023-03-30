@@ -383,8 +383,8 @@ Format: `pi INDEX`
 
 Example:
 - `pi 2` displays person 2 and all tasks assigned to that person
----
 
+---
 ### Viewing a task : `ti`
 
 Shows a list of persons assigned to a task according to the displayed index.
@@ -397,8 +397,8 @@ Format: `ti INDEX`
 
 Example:
 - `task 1` displays task 1 and all persons assigned to that task
----
 
+---
 ## Filtering Persons: `filterp tag/TAG`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input. 
@@ -408,7 +408,9 @@ Format: `filterp tag/TAG`
 Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
 
 
+
 ### Archiving data files `[coming in v1.5]`
+### Clearing data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
