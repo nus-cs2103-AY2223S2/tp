@@ -3,6 +3,7 @@ package seedu.address.model.timeslot;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,24 @@ import javafx.collections.ObservableList;
  */
 public class ScheduleWeek {
     private static final ObservableList<ScheduleDay> internalList = FXCollections.observableArrayList();
+
+    public ScheduleWeek() {
+
+        internalList.clear();
+        ArrayList<Status> emptyCell = new ArrayList<>();
+        for(int i = 0; i < 24; i++) {
+            emptyCell.add(Status.EMPTY);
+        }
+
+        internalList.add(new ScheduleDay("Monday", emptyCell));
+        internalList.add(new ScheduleDay("Tuesday", emptyCell));
+        internalList.add(new ScheduleDay("Wednesday", emptyCell));
+        internalList.add(new ScheduleDay("Thursday", emptyCell));
+        internalList.add(new ScheduleDay("Friday", emptyCell));
+        internalList.add(new ScheduleDay("Saturday", emptyCell));
+        internalList.add(new ScheduleDay("Sunday", emptyCell));
+
+    }
 
     public void setInternalList(ArrayList<ArrayList<Integer>> timetable) {
         internalList.clear();
