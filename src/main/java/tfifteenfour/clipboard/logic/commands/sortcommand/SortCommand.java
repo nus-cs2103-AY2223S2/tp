@@ -1,4 +1,6 @@
-package tfifteenfour.clipboard.logic.commands.studentcommands;
+package tfifteenfour.clipboard.logic.commands.sortcommand;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
@@ -37,15 +39,10 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) {
-        // requireNonNull(model);
-        // try {
-        //     model.getModifiableFilteredStudentList().sort(categoryComparator);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        // return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
-        return new CommandResult(this, "PLACEHOLDER", willModifyState);
+        requireNonNull(model);
 
+        currentSelection.getSelectedGroup().getModifiableStudentList().sort(categoryComparator);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
     }
 
     @Override
