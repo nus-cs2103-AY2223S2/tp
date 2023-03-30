@@ -1,7 +1,6 @@
 package seedu.library.ui;
 
 import java.awt.Desktop;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -49,19 +48,16 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label labelHeader;
 
+
     /**
      * Constructs a ZoomView that is empty
      *
      */
     public ZoomView() {
         super(FXML);
-        try {
-            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
-            avatar.setImage(new Image(image));
-            hideFields();
-        } catch (IOException e) {
-            System.out.println("IO error");
-        }
+        InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
+        avatar.setImage(new Image(image));
+        hideFields();
 
     }
 
@@ -72,27 +68,23 @@ public class ZoomView extends UiPart<Region> {
      */
     public ZoomView(Bookmark bookmark) {
         super(FXML);
+        this.bookmark = bookmark;
+        viewTitle.setText("Title: " + bookmark.getTitle().value);
+        String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
+        authorView.setText("Author: " + authorString);
+        genreView.setText("Genre: " + bookmark.getGenre().value);
+        String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
+        progressView.setText("Progress: " + progressString);
+        urlLink.setText(bookmark.getUrl().value);
+        bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+        InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
+        avatar.setImage(new Image(image));
+        urlLink.setOnAction(e -> {
+            openLink(urlLink.getText());
+        });
+        rate(bookmark);
 
-        try {
-            this.bookmark = bookmark;
-            viewTitle.setText("Title: " + bookmark.getTitle().value);
-            String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
-            authorView.setText("Author: " + authorString);
-            genreView.setText("Genre: " + bookmark.getGenre().value);
-            String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
-            progressView.setText("Progress: " + progressString);
-            urlLink.setText(bookmark.getUrl().value);
-            bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
-                    .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
-            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
-            avatar.setImage(new Image(image));
-            urlLink.setOnAction(e -> {
-                openLink(urlLink.getText());
-            });
-            rate(bookmark);
-        } catch (IOException e) {
-            throw new AssertionError(e);
-        }
 
     }
 
@@ -113,42 +105,38 @@ public class ZoomView extends UiPart<Region> {
      * @param bookmark book to get rating value from
      */
     public void rate(Bookmark bookmark) {
-        try {
-            InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
-            InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
-            InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
-            InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
-            InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
-            InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+        InputStream rating0 = this.getClass().getResourceAsStream("/images/Rating0.png");
+        InputStream rating1 = this.getClass().getResourceAsStream("/images/Rating1.png");
+        InputStream rating2 = this.getClass().getResourceAsStream("/images/Rating2.png");
+        InputStream rating3 = this.getClass().getResourceAsStream("/images/Rating3.png");
+        InputStream rating4 = this.getClass().getResourceAsStream("/images/Rating4.png");
+        InputStream rating5 = this.getClass().getResourceAsStream("/images/Rating5.png");
 
-            if (bookmark.getRating() == null) {
-                ratingStar.setImage(new Image(rating0));
-                ratingStar.setVisible(true);
-                return;
-            }
+        if (bookmark.getRating() == null) {
+            ratingStar.setImage(new Image(rating0));
+            ratingStar.setVisible(true);
+            return;
+        }
 
-            String rating = bookmark.getRating().toString();
+        String rating = bookmark.getRating().toString();
 
-            if (rating.equals("1")) {
-                ratingStar.setImage(new Image(rating1));
-                ratingStar.setVisible(true);
-            } else if (rating.equals("2")) {
-                ratingStar.setImage(new Image(rating2));
-                ratingStar.setVisible(true);
-            } else if (rating.equals("3")) {
-                ratingStar.setImage(new Image(rating3));
-                ratingStar.setVisible(true);
-            } else if (rating.equals("4")) {
-                ratingStar.setImage(new Image(rating4));
-                ratingStar.setVisible(true);
-            } else if (rating.equals("5")) {
-                ratingStar.setImage(new Image(rating5));
-                ratingStar.setVisible(true);
-            } else {
-                ratingStar.setVisible(false);
-            }
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        if (rating.equals("1")) {
+            ratingStar.setImage(new Image(rating1));
+            ratingStar.setVisible(true);
+        } else if (rating.equals("2")) {
+            ratingStar.setImage(new Image(rating2));
+            ratingStar.setVisible(true);
+        } else if (rating.equals("3")) {
+            ratingStar.setImage(new Image(rating3));
+            ratingStar.setVisible(true);
+        } else if (rating.equals("4")) {
+            ratingStar.setImage(new Image(rating4));
+            ratingStar.setVisible(true);
+        } else if (rating.equals("5")) {
+            ratingStar.setImage(new Image(rating5));
+            ratingStar.setVisible(true);
+        } else {
+            ratingStar.setVisible(false);
         }
 
     }

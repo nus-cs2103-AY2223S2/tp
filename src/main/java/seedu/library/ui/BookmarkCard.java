@@ -1,6 +1,5 @@
 package seedu.library.ui;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Comparator;
@@ -74,10 +73,10 @@ public class BookmarkCard extends UiPart<Region> {
      */
     public BookmarkCard(Bookmark bookmark, int displayedIndex) throws IOException {
         super(FXML);
-        InputStream svol = new FileInputStream("src/main/resources/images/volume.png");
-        InputStream schap = new FileInputStream("src/main/resources/images/chapter.png");
-        InputStream spage = new FileInputStream("src/main/resources/images/page.png");
-        InputStream ratingImage = new FileInputStream("src/main/resources/images/ratingHead.png");
+        InputStream svol = this.getClass().getResourceAsStream("/images/volume.png");
+        InputStream schap = this.getClass().getResourceAsStream("/images/chapter.png");
+        InputStream spage = this.getClass().getResourceAsStream("/images/page.png");
+        InputStream ratingImage = this.getClass().getResourceAsStream("/images/ratingHead.png");
         this.bookmark = bookmark;
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
@@ -114,12 +113,12 @@ public class BookmarkCard extends UiPart<Region> {
      * @param bookmark
      */
     public void rateCard(Bookmark bookmark) throws IOException {
-        InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
-        InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
-        InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
-        InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
-        InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
-        InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+        InputStream rating0 = this.getClass().getResourceAsStream("/images/Rating0.png");
+        InputStream rating1 = this.getClass().getResourceAsStream("images/Rating1.png");
+        InputStream rating2 = this.getClass().getResourceAsStream("/images/Rating2.png");
+        InputStream rating3 = this.getClass().getResourceAsStream("/images/Rating3.png");
+        InputStream rating4 = this.getClass().getResourceAsStream("/images/Rating4.png");
+        InputStream rating5 = this.getClass().getResourceAsStream("/images/Rating5.png");
 
         if (bookmark.getRating().equals(Rating.DEFAULT_RATING)) {
             ratingI.setImage(new Image(rating0));
