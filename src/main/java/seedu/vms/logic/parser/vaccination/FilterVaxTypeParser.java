@@ -17,6 +17,12 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 public class FilterVaxTypeParser implements CommandParser {
     public static final String COMMAND_WORD = "find";
 
+    public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
+            + ": Finds a vaccination by its name\n"
+            + "Syntax: "
+            + "vaccination find VAX_NAME\n"
+            + "Example: vaccination find dose 1";
+
 
     @Override
     public Command parse(ArgumentMultimap args) throws ParseException {
@@ -25,7 +31,10 @@ public class FilterVaxTypeParser implements CommandParser {
     }
 
 
-    private List<String> parseNamePatterns(String namePatternString) {
+    private List<String> parseNamePatterns(String namePatternString) throws ParseException {
+        if (namePatternString.isBlank()) {
+            throw new ParseException(String.format("VAX_NAME: Argument is blank\n%s", MESSAGE_USAGE));
+        }
         ArrayList<String> namePatterns = new ArrayList<>();
         try (Scanner scanner = new Scanner(namePatternString)) {
             while (scanner.hasNext()) {
