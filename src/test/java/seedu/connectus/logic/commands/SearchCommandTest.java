@@ -76,7 +76,7 @@ public class SearchCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code FieldsContainKeywordsPredicate}.
      */
     private FieldsContainKeywordsPredicate preparePredicate(String userInput) {
         return new FieldsContainKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
