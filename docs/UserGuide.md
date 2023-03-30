@@ -16,6 +16,10 @@ title: User Guide
       * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
       * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
       * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+      * [Adding readings `tank addReadings`](#listing-tanks-list-tanks)
+      * [Deleting readings `tank delLastReadings`](#listing-tanks-list-tanks)
+
+
     * [Fishes](#fishes)
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
@@ -148,6 +152,36 @@ This command will list all the existing tanks.
 
 Format: `list tanks`
 
+## Tank readings
+:exclamation: Experienced fish-keepers
+
+If the species of fish you are keeping require close monitoring of environmental conditions, this feature is for you. Each 
+tank keep tracks of 3 types of reading levels- `AmmoniaLevel`, `PH` and `Temperature`. Use the following commands
+to log down the respective readings.
+
+:bulb: You are required to log all 3 types of readings when addings a set of readings! If you do not
+own equipment to track that type of reading, enter `0` for that type of reading!
+
+### Adding a set of readings: `tank addReadings`
+
+Adds a set of `AmmoniaLevel`, `PH` and `Temperature` readings to the specified tank.
+
+:exclamation: Experienced fish-keepers
+
+If your tanks have ammonia level, pH and temperature tracking equipment, use this command to log down the current readings.
+The date and time of the readings logged will be the current date and time.
+
+Format: `tank addReadings <TANK_INDEX>`
+
+### Deleting the most recent set of readings: `tank delLastReadings`
+
+Deletes the most recent set of readings from a specified tank
+
+:exclamation: Experienced fish-keepers
+
+If you accidentally inputed a wrong set of readings, use this command to undo the mistake.
+
+Format: `tank delLastReadings <TANK_INDEX>`
 ## Fishes
 
 Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
