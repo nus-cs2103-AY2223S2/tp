@@ -6,7 +6,7 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 * Table of Contents
-   *	Feature Tracks
+   *	Features
          * Delivery tasking management system:
             * View jobs
             * Add jobs individually
@@ -50,13 +50,13 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    Some example commands you can try:
 
    * `list` : Lists all contacts.
-   
+
    * `list_job` : Lists all jobs.
-   
+
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   
+
    * `timetable` : Shows timetable of current week.
-   
+
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -186,17 +186,24 @@ Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVE
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 ![Create Job](images/Addjob.png)
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Description field is only available in GUI mode.
+</div>
+
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
-* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
-  * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
-  * Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5.
+* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
 * Earning **must be a double**.
 
 Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+
+
 
 ### 2.2. Mass importing jobs
 
@@ -204,7 +211,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
-* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist. 
+* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
   * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
 
@@ -214,42 +221,58 @@ Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
+![list job](images/listJob.png)
+
+### 2.3.1. Sort and filter jobs
+
+![sort filter job](images/listJobSortFilter.png)
+
+
 ### 2.4 Edit job : `edit_job`
 
-Edits the details of the job identified by the index number/job id used in the displayed job list. 
+Edit a selected job by Index or Job id.
 
-Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/Complete]`
+Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t | f]`
 
 Alternative: Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
+
 
 * Existing values will be overwritten by the input values.
 * Edits the delivery job at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Refer to `list_job` for argument constrains.
 
-Example:
-* `edit_job 1 si/ALE874`
+Examples:
+* `edit_job 1 slot/4`
+* `edit_job 1 date/2023-03-01`
+* `edit_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
 
 ### 2.5 Find job : `find_job`
 
 Finds all jobs which contain any of the specified keywords and displays them as a list with index numbers.
 
-Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]...`
+Format: `find_job [ji/JOB_ID] [si/SENDER_ID] [ri/RECIPIENT_ID] [date/DELIVER_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/ t | f]`
 
 * There can be multiple keywords.
 * Keywords are case-sensitive.
+* Refer to `list_job` for argument constrains.
 
-Example: 
-
-* `find_job si/ALE874`
+Examples:
+* `find_job ji/<job_id>`
+* `find_job date/2023-03-01 slot/4`
+* `find_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
 ### 2.6 Delete job : `delete_job`
 
-Deletes the job identified by the job ID.
+Deletes the job identified by the job ID. Support `del` key in job list.
 
 Format: `delete_job ji/JOB_ID`
 
 Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
+
+* The job id must be **valid**.
 
 Example:
 * `delete_job ALBE29E66F`
@@ -352,10 +375,10 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ![Statistics](images/Statistics.png)
 
 Shows a summary of statistics related to the jobs in the job list
-* Total number of jobs in the job list 
-* Total earnings from all jobs in the job list 
-* Total number of completed jobs in the job list 
-* Total number of pending jobs in the job list 
+* Total number of jobs in the job list
+* Total earnings from all jobs in the job list
+* Total number of completed jobs in the job list
+* Total number of pending jobs in the job list
 
 Similar statistics are shown for jobs in the previous week
 
@@ -399,8 +422,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 **:information_source: Notes about the command format:**<br>
-* Commands that start with *(C)* could only be accessed from Customer Window 
-* Commands that start with *(M)* could only be accessed from Main Window 
+* Commands that start with *(C)* could only be accessed from Customer Window
+* Commands that start with *(M)* could only be accessed from Main Window
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 

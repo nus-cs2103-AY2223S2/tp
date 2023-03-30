@@ -26,7 +26,7 @@ import seedu.address.ui.main.StatusBarFooter;
  */
 public class AddressBookWindow extends UiPart<Stage> {
 
-    private static final String FXML = "AddressBookWindow.fxml";
+    private static final String FXML = "AddressBookWIndow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;

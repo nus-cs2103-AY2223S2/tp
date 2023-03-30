@@ -306,7 +306,7 @@ Step 3. The user now wants to view a summary of the statistics of the jobs in th
 The `stats` command will open up the statistics window, where a list of statistics will be shown.
 
 The `stats` command will call `Logic#getFilteredDeliveryJobList()` which will return a list of delivery jobs.
-The statistics is then generated based on the list of delivery jobs and shown to the user in the Statistics Window. 
+The statistics is then generated based on the list of delivery jobs and shown to the user in the Statistics Window.
 
 The following sequence diagram shows how the statistics operation works:
 
@@ -318,35 +318,37 @@ The following sequence diagram shows how the statistics operation works:
 **Aspect: How statistics are stored:**
 
 * **Alternative 1 (current choice):** Saves each statistic as a Statistic object in the list
-    * Pros: Easy to store and display statistics 
+    * Pros: Easy to store and display statistics
     * Cons: May have performance issues in terms of memory usage and execution delay.
 
-* **Alternative 2:** Display each statistic individually 
+* **Alternative 2:** Display each statistic individually
     * Pros: Will use less memory and faster to execute
     * Cons: Will make code longer and increases coupling
 
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Update job feature
+### \[Proposed\] Delivery Job System
+#### Proposed Implementation
 
-Given below is an example usage scenario and how the statistics mechanism behaves at each step.
+Given below is an example usage scenario and how the update job mechanism behaves at each step. The other job system commands follow a similar excution pattern with their own command logics.
 
-Step 1. The user launches the application for the first time.
-Step 2. The user selects a job to be updated.
-Step 3. The user edits preexisting inputs to update the job.
+GUI Mode: 
+Step 1. The user launches the application for the first time. 
+Step 2. The user selects a job to be updated. 
+Step 3. The user edits preexisting inputs to update the job. 
+
+The command pattern was followed closely with difference only in the execution layer where the `EditDeliveryJobCommand` constructs a `DeliveryJob` object through a builder pattern.
+
+The builder construct was initially introduced to handle optional and null arguments from `find_job` command and GUI. Here, we are reusing the builder to construct a `DeliveryJob` class.
+
+The builder class returns a `DeliveryJob` object only when `EditDeliveryJobCommand` calls the `DeliveryJob.Builder#build()` method.
+
+Operation resume to standard process from this point onwards.
 
 The following sequence diagram shows how the update operation works:
 
-//to be added
-
-The following sequence diagram shows how the update operation works:
-
-//to be added
-
-#### Design considerations:
-
-//to be added
+![EditDeliveryJobSequenceDiagram](images/EditDeliveryJobSequenceDiagram.png)
 
 ### Notification feature
 #### Implementation
