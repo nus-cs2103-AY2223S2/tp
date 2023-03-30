@@ -131,9 +131,9 @@ Exported contacts will be stored inside a text file under the `exports` folder f
 
 Edits an existing person in ModCheck.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` or `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX` or `NAME`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -169,15 +169,16 @@ Examples:
 
 Deletes the specified person from ModCheck.
 
-Format: `delete INDEX`
+Format: `delete INDEX` or `delete INDEXES` or `delete NAME`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index or indexes **must be a positive integer** …​
 
 Examples:
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `list` followed by `delete 3` deletes the 3rd person in the list.
+* `list` followed by `delete 1,2,3` deletes the 1st, 2nd and 3rd person in the list.
+* `list` followed by `delete Betsy` deletes Betsy if there is only one Betsy in the list.
 
 ![viewContactDetails](images/delete/deleteContact.png)
 
@@ -292,8 +293,8 @@ Choose your favourite theme !
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                              |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                        |
+| **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
+| **Edit**   | `edit {INDEX or NAME} [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` or `edit James e/jameslee@example.com`                                                                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                            |
 | **List**   | `list`                                                                                                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                |
