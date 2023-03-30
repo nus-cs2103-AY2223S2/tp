@@ -562,7 +562,7 @@ listed.
 
 <img src="images/FuzzyDemoSearchingNoResults.png" />
 
-2. Once we are done, pressing (CTRL+F) again switches us back to command mode.
+2. To exit search mode, press (CTRL+F) again. The command box should return to its original dark color.
 
 <div markdown="span" class="alert alert-info">
 :information_source: The example we have here is quite trivial. But you can
