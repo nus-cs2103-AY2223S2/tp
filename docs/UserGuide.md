@@ -10,18 +10,19 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
 
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Prerequisites
+Ensure that you have Java 11 or above installed on your computer. If you don't have Java installed, you can download it from the official Java website [here](https://www.oracle.com/java/technologies/downloads/).
 
-2. Download the latest `sportsync.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-2/tp/releases).
+1. Download the latest `sportsync.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your SportSync.
+2. Copy the file to the folder you want to use as the _home folder_ for your SportSync.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    e.g. `cd Desktop\New_Folder` and then `java -jar sportsync.jar`<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all athletes.
@@ -43,8 +44,9 @@ Refer to the [Features](#features) below for details of each command.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+* Parameters are used to specify information that is required for the command to be executed correctly.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the coach.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the coach. <br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe…​`.
 
 * Items in square brackets are optional.<br>
@@ -274,7 +276,12 @@ If your changes to the data file makes its format invalid, SportSync will discar
 ## **Glossary**
 
 * **Pay rate**: The amount of fees paid by the athlete per training session.
+* **Athlete**: A student of the Coach.
+* **Attendance**: A record of the presence or absence of an athlete at a training session.
+* **Coach**: A person who trains and directs athletes or a team.
+* **Session**: A training period for athletes conducted by a coach.
 
+Tag: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
