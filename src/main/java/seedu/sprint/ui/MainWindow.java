@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
+import seedu.sprint.logic.Logic;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
@@ -30,9 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ApplicationListPanel applicationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private StatisticPanel statisticPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -41,13 +43,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane applicationListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane statisticsPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -77,7 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -109,17 +114,20 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        applicationListPanel = new ApplicationListPanel(logic.getSortedApplicationList());
+        applicationListPanelPlaceholder.getChildren().add(applicationListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInternshipBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        statisticPanel = new StatisticPanel(logic.getSortedApplicationList());
+        statisticsPanelPlaceholder.getChildren().add(statisticPanel.getRoot());
     }
 
     /**
@@ -162,20 +170,21 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ApplicationListPanel getApplicationListPanel() {
+        return applicationListPanel;
     }
 
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.sprint.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            statisticPanel.setNewStatistics(logic.getSortedApplicationList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

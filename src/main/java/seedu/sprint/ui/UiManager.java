@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import seedu.sprint.MainApp;
 import seedu.sprint.commons.core.LogsCenter;
 import seedu.sprint.commons.util.StringUtil;
+import seedu.sprint.logic.Logic;
 
 /**
  * The manager of the UI component.
@@ -19,13 +20,13 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/sprint.png";
 
     private Logic logic;
     private MainWindow mainWindow;
 
     /**
-     * Creates a {@code UiManager} with the given {@code Logic}.
+     * Creates an {@code UiManager} with the given {@code ApplicationLogic}.
      */
     public UiManager(Logic logic) {
         this.logic = logic;
@@ -53,7 +54,7 @@ public class UiManager implements Ui {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
-    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+    void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
 
@@ -79,7 +80,7 @@ public class UiManager implements Ui {
      */
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
         logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
-        showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());
+        showAlertDialogAndWait(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
     }

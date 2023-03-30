@@ -13,9 +13,20 @@ import seedu.sprint.commons.core.Version;
 import seedu.sprint.commons.exceptions.DataConversionException;
 import seedu.sprint.commons.util.ConfigUtil;
 import seedu.sprint.commons.util.StringUtil;
+import seedu.sprint.logic.Logic;
+import seedu.sprint.logic.LogicManager;
+import seedu.sprint.model.InternshipBook;
+import seedu.sprint.model.Model;
+import seedu.sprint.model.ModelManager;
+import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
 import seedu.sprint.model.UserPrefs;
+import seedu.sprint.model.util.SampleDataUtil;
+import seedu.sprint.storage.InternshipBookStorage;
+import seedu.sprint.storage.JsonInternshipBookStorage;
 import seedu.sprint.storage.JsonUserPrefsStorage;
+import seedu.sprint.storage.Storage;
+import seedu.sprint.storage.StorageManager;
 import seedu.sprint.storage.UserPrefsStorage;
 import seedu.sprint.ui.Ui;
 import seedu.sprint.ui.UiManager;
@@ -37,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing InternshipBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -47,8 +58,9 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         // Remark: the following line was edited to allow compilation,
         // but the program might no longer behave as intended. Proceed with caution.
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getInternshipBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        InternshipBookStorage internshipBookStorage =
+                new JsonInternshipBookStorage(userPrefs.getInternshipBookFilePath());
+        storage = new StorageManager(internshipBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -60,25 +72,26 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s sprint book and {@code userPrefs}. <br>
-     * The data from the sample sprint book will be used instead if {@code storage}'s sprint book is not found,
-     * or an empty sprint book will be used instead if errors occur when reading {@code storage}'s sprint book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s
+     * internship book and {@code userPrefs}. <br>
+     * The data from the sample internship book will be used instead if {@code storage}'s internship book is not found,
+     * or an empty internship book will be used instead if errors occur when reading {@code storage}'s internship book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyInternshipBook> internshipBookOptional;
+        ReadOnlyInternshipBook initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            internshipBookOptional = storage.readInternshipBook();
+            if (!internshipBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample InternshipBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = internshipBookOptional.orElseGet(SampleDataUtil::getSampleInternshipBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty InternshipBook");
+            initialData = new InternshipBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty InternshipBook");
+            initialData = new InternshipBook();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -115,7 +128,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields.
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -142,11 +155,11 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty InternshipBook");
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields.
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -158,13 +171,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting InternshipBook " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Internship Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
