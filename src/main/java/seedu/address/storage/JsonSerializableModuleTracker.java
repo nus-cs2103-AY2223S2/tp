@@ -34,14 +34,14 @@ class JsonSerializableModuleTracker {
     /**
      * Converts a given {@code ReadOnlyModuleTracker} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableModuleTracker}.
      */
     public JsonSerializableModuleTracker(ReadOnlyModuleTracker source) {
         modules.addAll(source.getModuleList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this module tracker into the model's {@code AddressBook} object.
+     * Converts this module tracker into the model's {@code ModuleTracker} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

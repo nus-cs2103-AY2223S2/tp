@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Module values as in TypicalModules#getTypicalAddressBook()",
+  "_comment": "ModuleTracker save file which contains the same Module values as in TypicalModules#getTypicalModuleTracker()",
   "modules" : [ {
     "name" : "CS2101",
     "timeSlot" : "120323 12:00",

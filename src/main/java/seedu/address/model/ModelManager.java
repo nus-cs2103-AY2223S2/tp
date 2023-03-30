@@ -78,7 +78,7 @@ public class ModelManager implements Model {
         userPrefs.setModuleTrackerFilePath(moduleTrackerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ModuleTracker ================================================================================
 
     @Override
     public void setModuleTracker(ReadOnlyModuleTracker moduleTracker) {
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedModuleTracker}
      */
     @Override
     public ObservableList<Module> getDisplayedModuleList() {

@@ -21,7 +21,7 @@ public class ModuleTrackerBuilder {
     }
 
     /**
-     * Adds a new {@code Module} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Module} to the {@code ModuleTracker} that we are building.
      */
     public ModuleTrackerBuilder withModule(Module module) {
         moduleTracker.addModule(module);

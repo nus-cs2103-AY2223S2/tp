@@ -17,7 +17,7 @@ import seedu.address.model.module.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ModuleTracker} with sample data.
  */
 public class SampleDataUtil {
     public static final String EMPTY_INPUT = "None.";

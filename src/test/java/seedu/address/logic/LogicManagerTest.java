@@ -70,12 +70,13 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonModuleTrackerStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonModuleTrackerIoExceptionThrowingStub
+        JsonModuleTrackerStorage moduleTrackerStorage =
+                new JsonModuleTrackerIoExceptionThrowingStub(temporaryFolder.resolve(
+                        "ioExceptionModuleTracker.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(moduleTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -149,8 +150,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonModuleTrackerStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonModuleTrackerIoExceptionThrowingStub extends JsonModuleTrackerStorage {
+        private JsonModuleTrackerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
