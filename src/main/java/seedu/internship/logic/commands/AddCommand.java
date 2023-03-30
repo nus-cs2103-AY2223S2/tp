@@ -20,8 +20,8 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship to InternBuddy. "
-            + "Parameters: "
-            + PREFIX_COMPANY_NAME + "COMPANY NAME "
+            + "Fields: "
+            + PREFIX_COMPANY_NAME + "COMPANY_NAME "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_DATE + "DATE "
@@ -30,9 +30,9 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "Google "
             + PREFIX_ROLE + "Software Engineer "
-            + PREFIX_STATUS + "applied "
+            + PREFIX_STATUS + "Applied "
             + PREFIX_DATE + "2023-02-01 "
-            + PREFIX_COMMENT + "I like the company culture "
+            + PREFIX_COMMENT + "I like the company culture! "
             + PREFIX_TAG + "Go "
             + PREFIX_TAG + "Java";
 

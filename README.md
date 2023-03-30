@@ -24,7 +24,8 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 9. Delete internships by fields
 10. Clear all internships
 11. Get help
-12. Exit
+12. Navigating through past commands
+13. Exit
 
 In InternBuddy, internship data is auto-saved whenever changes are made.
 
@@ -59,4 +60,5 @@ out the [InternBuddy Developer Guide](https://ay2223s2-cs2103t-t14-3.github.io/t
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) (Primarily for the purpose of GUI testing).
+  , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
+  (for the purposes of GUI testing and the feature of navigating through past commands).

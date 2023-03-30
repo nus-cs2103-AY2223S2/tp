@@ -32,15 +32,15 @@ public class DeleteFieldCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes all internships containing at least one of the inputs for every different field "
-            + "(name, role, status, date or tag) given by the user.\n"
-            + "Parameters: [" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
+            + "(COMPANY_NAME, ROLE, STATUS, DATE or TAG) that you have provided.\n"
+            + "Fields: [" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
             + "[" + PREFIX_ROLE + "ROLE]... "
             + "[" + PREFIX_DATE + "DATE]... "
             + "[" + PREFIX_STATUS + "STATUS]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_COMPANY_NAME + "apple "
-            + PREFIX_COMPANY_NAME + "google ";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COMPANY_NAME + "Apple "
+            + PREFIX_COMPANY_NAME + "Google ";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internship/s have been deleted!";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
