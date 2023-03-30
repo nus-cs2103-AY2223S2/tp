@@ -16,6 +16,9 @@ public class Messages {
             "Please provide an interview date and time! (dd-MM-yyyy HH:mm)";
     public static final String MESSAGE_DUPLICATE_INTERVIEW_DATE =
             "There is a clash of interview date and time with %s!";
-
-
+    public static final String MESSAGE_INTERVIEW_BEFORE_APPLICATION =
+            "Interview date and time should be after application date and time!\n\n"
+                    + "%s's application date and time: %s";
+    public static final String MESSAGE_INVALID_STATUS_WITH_INTERVIEW =
+            "Interview date and time not required for this status!";
 }

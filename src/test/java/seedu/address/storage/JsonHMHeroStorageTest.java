@@ -31,7 +31,7 @@ public class JsonHMHeroStorageTest {
     }
 
     private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonHMHeroStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,7 +64,7 @@ public class JsonHMHeroStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         HMHero original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonHMHeroStorage jsonAddressBookStorage = new JsonHMHeroStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -96,7 +96,7 @@ public class JsonHMHeroStorageTest {
      */
     private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
+            new JsonHMHeroStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

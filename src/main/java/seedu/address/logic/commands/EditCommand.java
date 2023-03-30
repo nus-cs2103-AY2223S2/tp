@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +55,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -95,7 +95,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToReject}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -104,14 +105,32 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Status updatedStatus = personToEdit.getStatus(); //User not allowed to edit applicant status directly
         ApplicationDateTime applicationDateTime = personToEdit.getApplicationDateTime();
+
         Optional<InterviewDateTime> updatedInterviewDateTime = editPersonDescriptor.getDateTime();
         if (!updatedInterviewDateTime.isPresent()) {
             updatedInterviewDateTime = personToEdit.getInterviewDateTime();
+        } else if (personToEdit.getStatus() != Status.SHORTLISTED) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STATUS_WITH_INTERVIEW);
+        } else if (!isAfterApplicationDateTime(personToEdit, updatedInterviewDateTime.get())) {
+            throw new CommandException(String.format(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION,
+                    personToEdit.getName(), personToEdit.getApplicationDateTime()));
         }
+
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
                 applicationDateTime, updatedInterviewDateTime, updatedNotes);
+    }
+
+    /**
+     * Checks whether applicant's interviewDateTime is after applicationDateTime
+     * @param personToEdit Applicant that user wants to edit
+     * @param interviewDateTime date and time of the interview for the applicant
+     * @return true if interviewDateTime is after applicationDateTime
+     */
+    private static boolean isAfterApplicationDateTime(Person personToEdit, InterviewDateTime interviewDateTime) {
+        LocalDateTime applicationDateTime = personToEdit.getApplicationDateTime().getApplicationDateTime();
+        return interviewDateTime.getDateTime().isAfter(applicationDateTime);
     }
 
     @Override

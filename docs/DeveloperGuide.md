@@ -50,6 +50,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.1</b> Architecture diagram for high-design of the App
+</div>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -76,27 +79,47 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete n/Alex p/91234567`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
+</div>
+<br>
+
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
+
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
+
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.1.3</b> Class Diagram for Component Managers
+</div>
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.2.1</b> Class Diagram for UI Components
+</div>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. 
+
+Steps to start making changes to the UI:
+1. The layout of these UI parts are defined in matching `.fxml` files that are in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/resources/view) folder.
+2. The managing classes of these UI parts are defined in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/java/seedu/address/ui) folder.
+3. The stylesheets for these UI parts can be found in `Extensions.css`, `HMHero.css`, and `Mainwindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-4/tp/tree/master/src/main/resources/view) folder.
+4. For instance, the layout of the `HelpWindow` is specified in [`HelpWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/resources/view/HelpWindow.fxml) with managing class at [`HelpWindow.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/HelpWindow.java) and CSS file at [`HelpWindow.css`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/resources/view/HelpWindow.css).
+ 
 
 The `UI` component,
 
@@ -112,6 +135,9 @@ The `UI` component,
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.1</b> Class diagram for Logic Components
+</div>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HMHeroParser` class to parse the user command.
@@ -122,6 +148,9 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/John p/91234567")` API call.
 
 ![Interactions Inside the Logic Component for the `delete n/John p/91234567` Command](images/DeleteSequenceDiagram.png)
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.2</b> Sequence Diagram for the command <code>delete n/Alex p/91234567</code>
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -129,6 +158,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.3.3</b> Class diagram for Parser Components
+</div>
 
 How the parsing works:
 * When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
@@ -138,7 +170,9 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.4.1</b> Class diagram for Model Component
+</div>
 
 The `Model` component,
 
@@ -150,15 +184,21 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.4.2</b> Class diagram for Model Components
+</div>
 
 </div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 1.5.1</b> Class diagram for Storage Components
+</div>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -190,7 +230,7 @@ Refer to [Glossary](#glossary) for more information on Command format.
 
 The activity diagram is as such:
 
-![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
+![AddCommand activity diagram](images/AddApplicantActivityDiagram.png)
 
 ##### Feature Details
 
@@ -235,7 +275,7 @@ The activity diagram is as such:
 ![Advance activity diagram](diagrams/AdvanceActivityDiagram.puml)
 
 Here is the activity diagram showing the process of the `advance` command:
-[Add in later]()
+![Advance activity diagram](images/AdvanceActivityDiagram.png)
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents a `Person` to be advanced.
@@ -270,6 +310,8 @@ The `reject` command rejects a `Person` in HMHero, which changes the `status` of
 `reject n/NAME p/PHONE` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
+Here is the activity diagram showing the process of the `reject` command:
+![RejectApplicantActivityDiagram](images/RejectApplicantActivityDiagram.png)
 
 The activity diagram is as such:
 [Add in later]()
@@ -308,10 +350,17 @@ Fields have to be denoted by flags. Allowed fields for filtering are `name` and 
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
 
+<div markdown="span" class="alert alert-info" role="alert">
 
-The activity diagram is as such:
+:information_source: <strong>Command Format:<strong>
+`find [n/NAME] [p/PHONE]` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
 
-![FindCommandActivityDiagram](diagrams/FindCommandActivityDiagram.puml)
+
+Here is the activity diagram showing the process of the `find` command:
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 The sequence diagram for `find n/John` in HMHero is as such:
 
@@ -354,7 +403,7 @@ The activity diagram is as such:
 [add in later]()
 
 Here is the activity diagram showing the process of the `edit` command:
-[add in later]()
+[EditApplicantActivityDiagram]()
 
 
 ##### Feature Details
@@ -382,6 +431,10 @@ the last instance of the repeat delimiter is taken during the `parse` command.
 
 ##### Overview
 The `list` command displays the full list by HMHero.
+
+Here is the activity diagram showing the process of the `list` command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
 
 ##### Feature Details
 
@@ -442,35 +495,32 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 
 ### User stories
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The following legend describes the symbols used in this section:
+**Note:** The following legend describes the symbols used in this section:
 
 | Priority | Symbol  | Meaning          | 
 |----------|---------|------------------|
 | High     | `* * *` | Must have        | 
 | Medium   | `* *`   | Nice to have     | 
 | Low      | `*`     | Unlikely to have | 
-</div>
 
 
-| Priority | As a …                   | I want to …                                                          | So that …                                                                            |
-|----------|--------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | Hiring Manager           | List out all existing applicants                                     | I can have a glance of the status of the application cycle of all applicants.        |
-| `* * *`  | Hiring Manager           | View the number of applicants in each stage of the application cycle | I can have a glance of the status at each stage in the application cycle.            |
-| `* * *`  | Hiring Manager           | Advance the status of applicants in the application cycle            | I can move an applicant into the next stage of the application cycle                 |
-| `* * *`  | Hiring Manager           | Add applicants into HMHero                                           | I can track applicants who have applied to the department.                           |
-| `* * *`  | Hiring Manager           | Delete single applicant                                              | I can remove applicants that I do not wish to track in the application anymore.      |
-| `* * *`  | Busy Hiring Manager      | Filter for applicants by name or phone or both                       | I can view filter down from the entire list of applicants.                           |
-| `* * * ` | Senior Hiring Manager    | Identify duplicate applications of the same applicant                | I can identify whether applicants are sending multiple applications                  |
-| `* * `   | Busy Hiring Manager      | View the dates of interviews for all shortlisted applicants          | I can better schedule my future working days                                         |
-| `* * `   | Hiring Manager           | Take down some additional notes for each applicant                   | I can note down the skills that the particular applicant has.                        |
-| `* * `   | Forgetful Hiring Manager | Remind myself of interviews that coming up                           | I will not forget to attend any interview that I have scheduled                      |
-| `* * `   | Clumsy Hiring Manager    | Check whether there are any clashes in interview date and timings    | I can prevent myself from scheduling more than 1 interview in the same date and time |
-| `* `     | Clumsy Hiring Manager    | Get a confirmation message when deleting an applicant                | I can prevent accidental deletions of applicants                                     |
-| `* `     | Old Hiring Manager       | Highlight and enlarge the keywords that I am looking for             | I can easily see the keywords that I am looking for                                  |
-| `* `     | Careless Hiring Manager  | Undo recent actions or commands                                      | I can reverse commands that I have mistakenly carried out                            |
-| `* `     | Picky Hiring Manager     | Rank my applicants                                                   | It is easier for me to decide which applicant I want to hire most                    |
-
+| Priority | As a …                                | I want to …                                                       | So that …                                                                            |
+|:---------|---------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | Hiring Manager                        | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
+| `* * *`  | Hiring Manager                        | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager                        | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the department.                          |
+| `* * *`  | Hiring Manager                        | Delete single applicant                                           | I can delete applicants that I do not wish to track in the application anymore.      |
+| `* * *`  | Busy Hiring Manager                   | Search for applicants                                             | I can view details of specific applicants                                            |
+| `* * * ` | Senior Hiring Manager                 | Identify duplicate applications from the same applicant           | I can prevent applicants from sending multiple applications                          |
+| `* * `   | Busy Hiring Manager                   | View the dates of interviews for all shortlisted applicants       | I can better schedule future working days                                            |
+| `* * `   | Hiring Manager                        | Take down some additional notes for each applicant                | I can note down additional details of an applicant, for future reference             |
+| `* * `   | Forgetful Hiring Manager              | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
+| `* * `   | Clumsy Hiring Manager                 | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
+| `* `     | Clumsy Hiring Manager                 | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
+| `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
+| `* `     | Careless Hiring Manager               | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
+| `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                 | I can keep track of skill-sets needed for each job to match applicants               |
 
 ### Use cases
 
@@ -742,8 +792,7 @@ Precondition: There are applicants added into HMHero.
 9.  The product is not required to handle the screening of resume for each applicant.
 
 ### Glossary
-
-### Quick Reference
+#### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
 - [Admonitions](#admonitions)
@@ -886,7 +935,7 @@ Precondition: There are applicants added into HMHero.
 
 Given below are instructions to test the app manually.
 
-<div> markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 

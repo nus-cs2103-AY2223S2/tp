@@ -1,0 +1,36 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters advance command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Name and phone provided]) elseif () then ([else])
+  :Error: Applicant cannot be found;
+  stop
+([Applicant exists]) elseif () then ([else])
+    :Error: Applicant cannot be advanced;
+    stop
+else ( [APPLIED or SHORTLISTED applicant])
+endif
+if () then ([APPLIED])
+    if () then ([else])
+        :Error: Invalid argument;
+        stop
+    ([Interview date time given]) elseif () then ([else])
+        :Error: Duplicate interview date time;
+        stop
+    else ([Interview date time not duplicate])
+        :Advance command successfully executes;
+        stop
+endif
+else ([SHORTLISTED])
+if () then ([Interview date
+time given])
+    :Error: Interview date time not required;
+    stop
+else ([else])
+    :Advance command successfully executes;
+    stop
+@enduml
+
