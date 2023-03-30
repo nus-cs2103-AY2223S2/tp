@@ -5,10 +5,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
+import trackr.ui.listpanels.MenuListPanel;
 import trackr.ui.listpanels.OrderListPanel;
 import trackr.ui.listpanels.SupplierListPanel;
 import trackr.ui.listpanels.TaskListPanel;
@@ -25,8 +25,8 @@ public class TabPanel extends UiPart<Region> {
     private HomeView homeView;
     private SupplierListPanel contactListPanel;
     private TaskListPanel taskListPanel;
-    private TaskListPanel sortedTaskListPanel;
     private OrderListPanel orderListPanel;
+    private MenuListPanel menuListPanel;
 
     @FXML
     private Tab homeTab;
@@ -54,6 +54,9 @@ public class TabPanel extends UiPart<Region> {
 
     @FXML
     private StackPane contactListPanelPlaceholder;
+
+    @FXML
+    private StackPane menuListPanelPlaceholder;
 
     /**
      * Creates an empty TabPane
@@ -92,10 +95,11 @@ public class TabPanel extends UiPart<Region> {
         addNewTab(contactTab, contactListPanelPlaceholder, "Contacts");
 
         // Create placeholder with text for menu
-        menuTab.setClosable(false);
-        menuTab.setText("Menu");
-        menuTab.setContent(new Text("Menu Items here."));
-        tabPanel.getTabs().add(menuTab);
+        menuListPanel = new MenuListPanel(logic.getFilteredMenu());
+        menuListPanelPlaceholder
+                .getChildren()
+                .add(menuListPanel.getRoot());
+        addNewTab(menuTab, menuListPanelPlaceholder, "Menu");
     }
 
     /**

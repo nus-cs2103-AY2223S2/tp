@@ -8,7 +8,7 @@
     <tabs>
         <Tab fx:id="homeTab" closable="false">
             <content>
-                <StackPane fx:id="homePanelPlaceholder" alignment="TOP_CENTER" styleClass="pane-with-border" />
+                <StackPane fx:id="homePanelPlaceholder" alignment="TOP_CENTER" />
             </content>
         </Tab>
         <Tab fx:id="orderTab">
@@ -27,6 +27,9 @@
             </content>
         </Tab>
         <Tab fx:id="menuTab">
+            <content>
+                <StackPane fx:id="menuListPanelPlaceholder" />
+            </content>
         </Tab>
     </tabs>
 </TabPane>

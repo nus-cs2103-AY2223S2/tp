@@ -1,5 +1,10 @@
 package trackr.ui;
 
+import static trackr.commons.core.index.Index.fromZeroBased;
+import static trackr.logic.parser.TrackrParser.getModel;
+import static trackr.model.TabEnum.getTabIndex;
+import static trackr.ui.dashboard.TabPanel.switchToTab;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -212,6 +217,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            switchToTab(fromZeroBased(getTabIndex(getModel(commandText))));
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -4,9 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import trackr.logic.Logic;
 import trackr.ui.UiPart;
+import trackr.ui.listpanels.MenuListPanel;
 import trackr.ui.listpanels.SummarisedOrderListPanel;
 import trackr.ui.listpanels.TaskListPanel;
 
@@ -18,6 +18,7 @@ public class HomeView extends UiPart<Region> {
     private Logic logic;
     private TaskListPanel taskListPanel;
     private SummarisedOrderListPanel summarisedOrderListPanel;
+    private MenuListPanel menuListPanel;
 
 
     @FXML
@@ -29,6 +30,8 @@ public class HomeView extends UiPart<Region> {
     @FXML
     private StackPane ordersPlaceholder;
 
+    @FXML
+    private StackPane menuPlaceholder;
 
     /**
      * Creates the landing page
@@ -45,11 +48,6 @@ public class HomeView extends UiPart<Region> {
      */
     public void fillParts() {
         homeWindow = new GridPane();
-        // Title text
-        homeWindow.add(new Text("Sales"), 0, 0);
-        homeWindow.add(new Text("At a glance..."), 0, 1, 2, 1);
-
-
         // Add tasks
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         tasksPlaceholder.getChildren().add(taskListPanel.getRoot());
@@ -57,5 +55,9 @@ public class HomeView extends UiPart<Region> {
         // Add summarised orders
         summarisedOrderListPanel = new SummarisedOrderListPanel(logic.getFilteredOrderList());
         ordersPlaceholder.getChildren().add(summarisedOrderListPanel.getRoot());
+
+        // Add menu items
+        menuListPanel = new MenuListPanel(logic.getFilteredMenu());
+        menuPlaceholder.getChildren().add(menuListPanel.getRoot());
     }
 }
