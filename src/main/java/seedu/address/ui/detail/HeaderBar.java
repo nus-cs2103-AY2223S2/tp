@@ -19,7 +19,6 @@ public class HeaderBar extends UiPart<Region> {
 
     @FXML
     private ImageView icon;
-
     @FXML
     private Label title;
 

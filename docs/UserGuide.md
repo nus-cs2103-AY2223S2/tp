@@ -56,9 +56,9 @@ of the terms commonly used in PetCode.
 
 ## Features
 
+### Student Commands
 
-
-### Create a new student profile
+#### Create a new student profile
 
 Creates a new profile for a student given the student’s name.
 
@@ -71,7 +71,7 @@ Example:
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
 
 
-### Update Student Information
+#### Update Student Information
 
 Updates the student's information given the student's label, field to change, and updated field value 
 
@@ -86,8 +86,9 @@ Examples:
 * `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
+### Homework Commands
 
-### Assign Homework to a Student
+#### Assign Homework to a Student
 
 Creates a homework assignment with a deadline for a student
 
@@ -99,7 +100,7 @@ Examples:
 * `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
 
 
-### View the Homework of Students
+#### View the Homework of Students
 
 Displays a list of homework with the ability to filter by student name and homework status.
 
@@ -117,7 +118,7 @@ Examples:
 * `view-homework status/completed` displays all completed homework.
 * `view-homework name/John status/pending` displays pending homework for a student named `John`.
 
-### Delete Homework from a Student
+#### Delete Homework from a Student
 
 Deletes a homework assignment for a student.
 
@@ -132,7 +133,7 @@ Examples:
 * `delete-homework name/John index/1` deletes the first homework assignment for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework assignment for the student named Susan.
 
-### Mark the Homework of a Student as Done
+#### Mark the Homework of a Student as Done
 
 Marks homework of a student as done.
 
@@ -148,7 +149,7 @@ Examples:
 * `mark-homework name/Susan index/3` marks the third homework assignment for the student named Susan.
 
 
-### Unmark Homework of a Student as Undone
+#### Unmark Homework of a Student as Undone
 
 Marks homework of a student as undone.
 
@@ -164,7 +165,7 @@ Examples:
 * `unmark-homework name/Susan index/3` unmarks the third homework assignment for the student named Susan.
 
 
-### Update Homework of a Student
+#### Update Homework of a Student
 
 Updates the information on a homework of a student
 
@@ -181,8 +182,9 @@ Examples:
 * `updates-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `updates-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
 
+### Lessons Commands
 
-### Create a New Lesson for a Student
+#### Create a New Lesson for a Student
 
 Creates a new lesson for a given student, with a lesson title, start time, and end time.
 
@@ -194,7 +196,7 @@ Examples:
 `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
 
 
-### View Lessons
+#### View Lessons
 
 Displays the lessons for a given student/all students, filtered by subject and/or student name and/or date and/or whether the lesson has been completed
 
@@ -209,7 +211,7 @@ Examples:
 * `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
 * `view-lesson done/done` Displays all lessons that have been completed
 
-### Remove a Lesson
+#### Remove a Lesson
 Deletes a lesson for a given student.
 
 Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
@@ -220,7 +222,7 @@ Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
 Example:
 * `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
 
-### Update a Lesson
+#### Update a Lesson
 Updates a lesson for a given student. This includes the lesson title, start time, and end time.
 
 Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
@@ -232,7 +234,9 @@ Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TI
 Example:
 * `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` updates the lesson for John Doe with the new information.
 
-### Add an Exam to be tracked: `add-exam`
+### Exams Commands
+
+#### Add an Exam to be tracked: `add-exam`
 
 Creates an Exam within TutorPro to be tracked for a given student.
 
@@ -251,7 +255,7 @@ Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00` creates an exam named `Math MYE` for the student named John Doe, which starts at 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
 * `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00` creates an exam named `Science MYE` for the students named John Doe and Faye Doe, which starts at 12:00 on 22 May 2023 and ends at 14:00 on 22 May 2023.
 
-### Remove an exam: `delete-exam`
+#### Remove an exam: `delete-exam`
 
 Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`
 
@@ -264,7 +268,7 @@ Examples:
 * `delete-exam name/John Doe index/1` deletes the first exam for the student named John Doe.
 * `delete-exam name/John Doe name/Faye Doe index/1` deletes the first exam for the students named John Doe and Faye Doe.
 
-### View exams tracked by TutorPro: `view-exam`
+#### View exams tracked by TutorPro: `view-exam`
 
 Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
 [done/IS_DONE]`
@@ -279,7 +283,7 @@ Examples:
 * `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01' 
 with description 'MYE' which are undone.
 
-### Edit exam details: `update-exam`
+#### Edit exam details: `update-exam`
 
 Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] 
 (optional)[end/END_TIME] (optional)[grade/GRADE]`
@@ -295,7 +299,7 @@ Examples:
 * `update-exam name/John index/1 exam/Science MYE` updates the name of the first exam for the student named John Doe to Science MYE.
 * `update-exam name/John index/1 start/2023-05-21 12:00 end/2023-05-21 14:00` updates the start and end time of the first exam for the student named John Doe to 12:00 on 21 May 2023 and ends at 14:00 on 21 May 2023.
 
-### Calculate grade:  `calculate-grade`
+#### Calculate grade:  `calculate-grade`
 
 Format: `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`
 
