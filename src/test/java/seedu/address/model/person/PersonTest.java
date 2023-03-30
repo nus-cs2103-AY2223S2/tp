@@ -3,10 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
@@ -38,7 +38,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlbert = new PersonBuilder(ALBERT).withPhone(PHONE_BEN).withEmail(EMAIL_BEN)
-                .withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1).build();
+                .withStation(STATION_BEN).withGroupTags(VALID_GROUP_1).build();
         assertTrue(ALBERT.isSamePerson(editedAlbert));
 
         // different name, all other attributes same -> returns false
@@ -85,8 +85,8 @@ public class PersonTest {
         editedAlbert = new PersonBuilder(ALBERT).withEmail(EMAIL_BEN).build();
         assertFalse(ALBERT.equals(editedAlbert));
 
-        // different address -> returns false
-        editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).build();
+        // different station -> returns false
+        editedAlbert = new PersonBuilder(ALBERT).withStation(STATION_BEN).build();
         assertFalse(ALBERT.equals(editedAlbert));
 
         // different tags -> returns false
@@ -98,7 +98,7 @@ public class PersonTest {
     public void hashCode_validPerson_success() {
         Person albert = ALBERT;
         assertEquals(albert.hashCode(), Objects.hash(ALBERT.getName(),
-                ALBERT.getPhone(), ALBERT.getEmail(), ALBERT.getAddress(),
+                ALBERT.getPhone(), ALBERT.getEmail(), ALBERT.getStation(),
                 ALBERT.getTelegramHandle(), ALBERT.getGroupTags(),
                 ALBERT.getModuleTags()));
     }

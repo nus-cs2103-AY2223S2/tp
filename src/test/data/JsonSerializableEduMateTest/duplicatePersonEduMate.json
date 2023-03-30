@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -117,7 +117,7 @@
       "name": "Samantha Kee",
       "email": "samanthakee@gmail.com",
       "telegramHandle": "@samanthakee",
-      "address": "Sam Kee",
+      "station": "Sam Kee",
       "groups": [],
       "phone": "88544089",
       "modules": [
@@ -223,7 +223,7 @@
       "name": "Samantha Kee",
       "email": "samanthakee@gmail.com",
       "telegramHandle": "@samanthakee",
-      "address": "Sam Kee",
+      "station": "Sam Kee",
       "groups": [],
       "phone": "88544089",
       "modules": [

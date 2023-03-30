@@ -7,7 +7,7 @@ package seedu.address.logic.parser;
 public enum Prefix {
     BLANK("", ""),
     NAME("n/", "Name"),
-    ADDRESS("a/", "Address"),
+    STATION("s/", "Station"),
     PHONE("p/", "Phone"),
     TELEGRAM_HANDLE("t/", "Telegram Handle"),
     EMAIL("e/", "Email"),
