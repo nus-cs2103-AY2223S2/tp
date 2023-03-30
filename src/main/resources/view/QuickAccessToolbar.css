@@ -1,0 +1,17 @@
+.button {
+    -fx-background-radius: 17;
+    -fx-background-color: transparent;
+}
+
+#quickAccessToolbar {
+    -fx-background-color: rgba(200, 200, 200, 0.4);
+    -fx-background-radius: 500 0 0 500;
+}
+
+.button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+}
+
+.button:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}

@@ -18,10 +18,12 @@ import seedu.address.model.task.NoteContent;
 /**
  * Parses input arguments and creates a new AddNoteCommand object
  */
-public class NoteCommandParser implements Parser<AddNoteCommand> {
+public class AddNoteCommandParser implements Parser<AddNoteCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddNoteCommand
      * and returns an AddNoteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddNoteCommand parse(String args) throws ParseException {

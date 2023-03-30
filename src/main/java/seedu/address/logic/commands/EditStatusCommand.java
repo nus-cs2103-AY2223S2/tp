@@ -17,7 +17,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Edits the status of an application identified using it's displayed index from the list of internship applications.
@@ -77,11 +84,19 @@ public class EditStatusCommand extends Command {
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
         Set<Review> reviews = internshipApplication.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipApplication.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipApplication.getQualifications();
+        Location location = internshipApplication.getLocation();
+        Salary salary = internshipApplication.getSalary();
+        Set<Note> notes = internshipApplication.getNotes();
+        Rating rating = internshipApplication.getRating();
+        Set<Reflection> reflections = internshipApplication.getReflections();
         Contact contact = internshipApplication.getContact();
         boolean isArchived = internshipApplication.isArchived();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, isArchived, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate);
     }
 
     @Override

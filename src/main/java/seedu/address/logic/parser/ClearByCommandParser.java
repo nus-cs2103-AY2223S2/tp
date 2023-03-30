@@ -17,9 +17,11 @@ import seedu.address.model.person.JobTitle;
  * Parses input arguments and creates a new ClearByCommand object
  */
 public class ClearByCommandParser {
+
     /**
      * Parses the given {@code String} of arguments in the context of the ClearByCommand
      * and returns an ClearByCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ClearByCommand parse(String args) throws ParseException {

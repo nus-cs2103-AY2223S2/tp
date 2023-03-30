@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +10,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
@@ -18,7 +20,14 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.ProgrammingLanguage;
+import seedu.address.model.person.Qualification;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Reflection;
 import seedu.address.model.person.Review;
+import seedu.address.model.person.Salary;
 
 /**
  * Adds a contact to an application identified using it's displayed index from the list of internship applications.
@@ -81,11 +90,19 @@ public class AddContactCommand extends Command {
         CompanyName companyName = internshipToAddContact.getCompanyName();
         JobTitle jobTitle = internshipToAddContact.getJobTitle();
         Set<Review> reviews = internshipToAddContact.getReviews();
+        Set<ProgrammingLanguage> programmingLanguages = internshipToAddContact.getProgrammingLanguages();
+        Set<Qualification> qualifications = internshipToAddContact.getQualifications();
+        Location location = internshipToAddContact.getLocation();
+        Salary salary = internshipToAddContact.getSalary();
+        Set<Note> notes = internshipToAddContact.getNotes();
+        Rating rating = internshipToAddContact.getRating();
+        Set<Reflection> reflections = internshipToAddContact.getReflections();
         InternshipStatus status = internshipToAddContact.getStatus();
         boolean isArchived = internshipToAddContact.isArchived();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, reviews, contact, status, isArchived, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate);
     }
 
     @Override

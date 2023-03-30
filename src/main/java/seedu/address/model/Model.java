@@ -197,6 +197,12 @@ public interface Model {
     void setTodo(InternshipTodo target,
                  InternshipTodo editedTodo);
 
+    /** Returns the InternshipApplication with the most imminent interview */
+    InternshipApplication getReminder();
+
+    /** Replaces current reminder with another InternshipApplication with an interview date that is earlier */
+    void updateReminder();
+
     /**
      * Replaces the given note {@code target} with {@code editedNote}.
      * {@code target} must exist in the tracker.
