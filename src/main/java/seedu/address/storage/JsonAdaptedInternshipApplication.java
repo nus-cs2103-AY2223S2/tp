@@ -13,6 +13,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.CoverLetterLink;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -46,6 +49,7 @@ public class JsonAdaptedInternshipApplication {
     private final List<String> contact = new ArrayList<>();
     private final String status;
     private final String interviewDate;
+    private final List<String> documents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
@@ -63,7 +67,8 @@ public class JsonAdaptedInternshipApplication {
                                             @JsonProperty("reflection") List<String> reflections,
                                             @JsonProperty("status") String status,
                                             @JsonProperty("interviewDate") String interviewDate,
-                                            @JsonProperty("contact") List<String> contact) {
+                                            @JsonProperty("contact") List<String> contact,
+                                            @JsonProperty("documents") List<String> documents) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
         if (reviews != null) {
@@ -89,6 +94,9 @@ public class JsonAdaptedInternshipApplication {
         }
         this.status = status;
         this.interviewDate = interviewDate;
+        if (documents != null) {
+            this.documents.addAll(documents);
+        }
     }
 
     /**
@@ -125,78 +133,96 @@ public class JsonAdaptedInternshipApplication {
         } else {
             interviewDate = null;
         }
+        if (source.getDocuments() != null) {
+            documents.add(source.getDocuments().getResumeLink().value);
+            documents.add(source.getDocuments().getCoverLetterLink().value);
+        }
     }
 
-    /**
-     * Converts this Jackson-friendly adapted InternshipApplication object
-     * into the model's {@code InternshipApplication} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted InternshipApplication.
-     */
-    public InternshipApplication toModelType() throws IllegalValueException {
+    private CompanyName getModelCompanyName() throws IllegalValueException {
         if (companyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            CompanyName.class.getSimpleName()));
+                    CompanyName.class.getSimpleName()));
         }
         if (!CompanyName.isValidCompanyName(companyName)) {
             throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
         }
-        final CompanyName modelCompanyName = new CompanyName(companyName);
+        return new CompanyName(companyName);
+    }
 
+    private JobTitle getModelJobTitle() throws IllegalValueException {
         if (jobTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                                            JobTitle.class.getSimpleName()));
+                    JobTitle.class.getSimpleName()));
         }
         if (!JobTitle.isValidJobTitle(jobTitle)) {
             throw new IllegalValueException(JobTitle.MESSAGE_CONSTRAINTS);
         }
-        final JobTitle modelJobTitle = new JobTitle(jobTitle);
+        return new JobTitle(jobTitle);
+    }
 
+    private Location getModelLocation() throws IllegalValueException {
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(location);
+    }
+
+    private Salary getModelSalary() throws IllegalValueException {
+        if (!Salary.isValidSalary(salary)) {
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(salary);
+    }
+
+    private Rating getModelRating() throws IllegalValueException {
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(rating);
+    }
+
+    private List<Review> getReviewList() {
         final List<Review> reviewList = new ArrayList<>();
         for (String review : reviews) {
             reviewList.add(new Review(review));
         }
-        final Set<Review> modelReviews = new HashSet<>(reviewList);
+        return reviewList;
+    }
 
+    private List<ProgrammingLanguage> getProgrammingLanguageList() {
         final List<ProgrammingLanguage> programmingLanguageList = new ArrayList<>();
         for (String programmingLanguage : programmingLanguages) {
             programmingLanguageList.add(new ProgrammingLanguage(programmingLanguage));
         }
-        final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(programmingLanguageList);
+        return programmingLanguageList;
+    }
 
+    private List<Qualification> getQualificationList() {
         final List<Qualification> qualificationList = new ArrayList<>();
         for (String qualification : qualifications) {
             qualificationList.add(new Qualification(qualification));
         }
-        final Set<Qualification> modelQualifications = new HashSet<>(qualificationList);
+        return qualificationList;
+    }
 
-        if (!Location.isValidLocation(location)) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-        final Location modelLocation = new Location(location);
-
-        if (!Salary.isValidSalary(salary)) {
-            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
-        }
-        final Salary modelSalary = new Salary(salary);
-
+    private List<Note> getNoteList() {
         final List<Note> noteList = new ArrayList<>();
         for (String note : notes) {
             noteList.add(new Note(note));
         }
-        final Set<Note> modelNotes = new HashSet<>(noteList);
+        return noteList;
+    }
 
-        if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
-        }
-        final Rating modelRating = new Rating(rating);
-
+    private List<Reflection> getReflectionList() {
         final List<Reflection> reflectionList = new ArrayList<>();
         for (String reflection : reflections) {
             reflectionList.add(new Reflection(reflection));
         }
-        final Set<Reflection> modelReflections = new HashSet<>(reflectionList);
+        return reflectionList;
+    }
 
+    private InternshipStatus getInternshipStatus() throws IllegalValueException {
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     InternshipStatus.class.getSimpleName()));
@@ -204,14 +230,20 @@ public class JsonAdaptedInternshipApplication {
         if (!InternshipStatus.isValidStatus(status)) {
             throw new IllegalValueException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
-        final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
+        return InternshipStatus.valueOf(status);
+    }
 
+    private InterviewDate getInterviewDate() throws IllegalValueException {
         if (!InterviewDate.isValidInterviewDate(interviewDate)) {
             throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
         }
-        final InterviewDate modelInterviewDate = interviewDate == null ? null : new InterviewDate(interviewDate);
+        return interviewDate == null ? null : new InterviewDate(interviewDate);
+    }
 
-        if (contact.size() == 2) {
+    private Contact getContact() throws IllegalValueException {
+        if (contact.size() == 1) {
+            throw new IllegalValueException(Contact.MESSAGE_CONSTRAINTS);
+        } else if (contact.size() == 2) {
             if (!Phone.isValidPhone(contact.get(0))) {
                 throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
             }
@@ -223,13 +255,57 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelProgrammingLanguages,
-                modelQualifications, modelLocation, modelSalary, modelNotes, modelRating, modelReflections,
-                modelContact, modelStatus, modelInterviewDate);
+            return modelContact;
+        } else {
+            return null;
         }
+    }
 
-        return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews, modelProgrammingLanguages,
-                modelQualifications, modelLocation, modelSalary, modelNotes, modelRating, modelReflections,
-                null, modelStatus, modelInterviewDate);
+    private Documents getDocuments() throws IllegalValueException {
+        if (documents.size() == 1) {
+            throw new IllegalValueException(Documents.MESSAGE_CONSTRAINTS);
+        } else if (documents.size() == 2) {
+            if (!ResumeLink.isValidResumeLink(documents.get(0))) {
+                throw new IllegalValueException(ResumeLink.MESSAGE_CONSTRAINTS);
+            }
+            final ResumeLink modelResumeLink = new ResumeLink(documents.get(0));
+
+            if (!CoverLetterLink.isValidCoverLetterLink(documents.get(1))) {
+                throw new IllegalValueException(CoverLetterLink.MESSAGE_CONSTRAINTS);
+            }
+            final CoverLetterLink modelCoverLetterLink = new CoverLetterLink(documents.get(1));
+            final Documents modelDocuments = new Documents(modelResumeLink, modelCoverLetterLink);
+
+            return modelDocuments;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Converts this Jackson-friendly adapted InternshipApplication object
+     * into the model's {@code InternshipApplication} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted InternshipApplication.
+     */
+    public InternshipApplication toModelType() throws IllegalValueException {
+        final CompanyName modelCompanyName = getModelCompanyName();
+        final JobTitle modelJobTitle = getModelJobTitle();
+        final Location modelLocation = getModelLocation();
+        final Salary modelSalary = getModelSalary();
+        final Rating modelRating = getModelRating();
+        final Set<Review> modelReviews = new HashSet<>(getReviewList());
+        final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(getProgrammingLanguageList());
+        final Set<Qualification> modelQualifications = new HashSet<>(getQualificationList());
+        final Set<Note> modelNotes = new HashSet<>(getNoteList());
+        final Set<Reflection> modelReflections = new HashSet<>(getReflectionList());
+        final InternshipStatus modelStatus = getInternshipStatus();
+        final InterviewDate modelInterviewDate = getInterviewDate();
+        final Contact modelContact = getContact();
+        final Documents modelDocuments = getDocuments();
+
+        return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews,
+                modelProgrammingLanguages, modelQualifications, modelLocation, modelSalary, modelNotes,
+                modelRating, modelReflections, modelContact, modelStatus, modelInterviewDate, modelDocuments);
     }
 }
