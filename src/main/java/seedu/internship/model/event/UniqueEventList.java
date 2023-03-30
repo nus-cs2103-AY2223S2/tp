@@ -3,6 +3,9 @@ package seedu.internship.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -45,20 +48,54 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.add(toAdd);
+        this.sortEvents();
     }
 
-    private List<Event> getClashEvents(Event clashEvent) {
-        requireNonNull(clashEvent);
-        return internalList.stream().filter(e -> !e.isDeadline()).filter(e -> clashEvent.isClash(e))
-                .collect(Collectors.toList());
+    private HashMap<LocalDate, List<Event>> dateEventListHasher(Event currEvent, Event otherEvent,
+                                                                List<LocalDateTime> timings,
+                                                                HashMap<LocalDate, List<Event>> hash) {
+        LocalDate start = timings.get(0).toLocalDate();
+        LocalDate end = timings.get(1).toLocalDate();
+        List<LocalDate> keys = start.datesUntil(end.plusDays(1)).collect(Collectors.toList());
+        for (LocalDate key : keys) {
+            if (hash.containsKey(key)) {
+                List<Event> currList = hash.get(key);
+                if (!currList.contains(currEvent)) {
+                    currList.add(currEvent);
+                }
+                if (!currList.contains(otherEvent)) {
+                    currList.add(otherEvent);
+                }
+                hash.replace(key, currList);
+            } else {
+                List<Event> currList = new ArrayList<>();
+                currList.add(currEvent);
+                currList.add(otherEvent);
+                hash.put(key, currList);
+            }
+        }
+        return hash;
     }
 
-    public HashMap<Event, List<Event>> getClashEventList() {
-        HashMap<Event, List<Event>> hash = new HashMap<>();
-        for(Event event : internalList) {
-            List<Event> lst = getClashEvents(event);
-            if (!lst.isEmpty() && !hash.containsKey(event)) {
-                hash.put(event, lst);
+
+
+    public HashMap<LocalDate, List<Event>> getClashEventHash() {
+        HashMap<LocalDate, List<Event>> hash = new HashMap<>();
+        ArrayList<Event> events = new ArrayList<>();
+        for (Event event: internalList) {
+            if (!event.isDeadline()) {
+                events.add(event);
+            }
+        }
+
+        for (int i = 0; i < events.size(); i++) {
+            Event currEvent = events.get(i);
+            for (int j = i + 1; j < events.size(); j++) {
+                Event otherEvent = events.get(j);
+                List<LocalDateTime> timings = currEvent.clashingTimings(otherEvent);
+                if (timings != null) {
+                    hash = dateEventListHasher(currEvent, otherEvent, timings, hash);
+                }
             }
         }
         return hash;
@@ -83,6 +120,7 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.set(index, editedEvent);
+        this.sortEvents();
     }
 
     /**
@@ -99,6 +137,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        this.sortEvents();
     }
 
     /**
@@ -112,6 +151,11 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.setAll(events);
+        this.sortEvents();
+    }
+
+    public void sortEvents() {
+        internalList.setAll(internalList.sorted((e1, e2) -> e1.compareTo(e2)));
     }
 
     /**

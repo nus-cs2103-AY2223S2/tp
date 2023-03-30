@@ -2,6 +2,10 @@ package seedu.internship.model.event;
 
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.internship.model.internship.Internship;
@@ -71,9 +75,9 @@ public class Event {
     /**
      * Returns True if both events have the same start, end and internship
      */
-    public boolean isSameInternship(Internship internship) {
+    public boolean isSameInternship(Internship intern) {
         return internship != null
-                && this.internship.equals(internship);
+                && this.internship.equals(intern);
     }
 
     /**
@@ -98,7 +102,31 @@ public class Event {
                 || this.end.isBetween(otherEvent.start, otherEvent.end));
     }
 
+    public List<LocalDateTime> clashingTimings(Event otherEvent) {
+        if (!this.isClash(otherEvent)) {
+            return null;
+        } else {
+            List<LocalDateTime> timings = new ArrayList<>();
+            if (this.start.compareTo(otherEvent.start) >= 0) {
+                timings.add(this.start.getLdt());
+            } else {
+                timings.add(otherEvent.start.getLdt());
+            }
+            if (this.end.compareTo(otherEvent.end) <= 0) {
+                timings.add(this.end.getLdt());
+            } else {
+                timings.add(otherEvent.end.getLdt());
+            }
+            return timings;
+        }
+    }
 
+    /**
+     * Returns true if start date of event lies between the specified date inclusive.
+     */
+    public boolean isBetweenDate(LocalDate start, LocalDate end) {
+        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
+    }
 
     /**
      * Returns true if both events have the same identity and data fields.
@@ -121,6 +149,15 @@ public class Event {
                 && otherEvent.getInternship().equals(getInternship())
                 && otherEvent.getDescription().equals(getDescription())
                 && otherEvent.getName().equals(getName());
+    }
+
+    public int compareTo(Event otherEvent) {
+        if (this.start.compareTo(otherEvent.start) == 0) {
+            // Start Timings are the same, if one event ends earlier than the other put it first
+            return this.end.compareTo(otherEvent.end);
+        } else {
+            return this.start.compareTo(otherEvent.start);
+        }
     }
 
     @Override

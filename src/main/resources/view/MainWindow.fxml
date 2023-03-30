@@ -52,7 +52,7 @@
                   <SplitPane dividerPositions="0.0" minWidth="450.0" VBox.vgrow="ALWAYS">
                      <items>
                         <StackPane fx:id="internshipListPanelPlaceholder" alignment="TOP_LEFT" />
-                        <StackPane fx:id="internshipInfoPanelPlaceholder" alignment="TOP_LEFT" />
+                        <StackPane fx:id="pagePlaceholder" alignment="TOP_LEFT" />
                      </items>
                   </SplitPane>
                        <StackPane fx:id="statusbarPlaceholder" />

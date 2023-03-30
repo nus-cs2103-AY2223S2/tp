@@ -2,6 +2,7 @@ package seedu.internship.logic.commands;
 
 import seedu.internship.commons.util.CollectionUtil;
 import seedu.internship.logic.commands.exceptions.CommandException;
+import seedu.internship.logic.parser.CliSyntax;
 import seedu.internship.model.Model;
 import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Internship;
@@ -9,11 +10,11 @@ import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.internship.logic.parser.CliSyntax.*;
 
 /**
  * Finds internships from the catalogue based on predicates provided by the user.
@@ -22,10 +23,10 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
-            + "Parameters: [" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_COMPANY + "COMPANY] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + "c/ Grab" ;
+            + "Parameters: [" + CliSyntax.PREFIX_POSITION + "POSITION] "
+            + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY]"
+            + "[" + CliSyntax.PREFIX_STATUS + "STATUS]\n"
+            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + " c/ Grab";
 
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";
 
@@ -69,7 +70,8 @@ public class FindCommand extends Command {
         Predicate<Internship> filter = x -> finalFilterPos.test(x) && finalFilterCom.test(x) && finalFilterStat.test(x)
                 && finalFilterTags.test(x);
         model.updateFilteredInternshipList(filter);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()),
+                ResultType.FIND);
     }
 
     @Override
