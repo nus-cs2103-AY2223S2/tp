@@ -10,7 +10,7 @@ import static seedu.medinfo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medinfo.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.medinfo.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.medinfo.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.medinfo.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.medinfo.testutil.PatientBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
 
     /*
     @Test
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new MedInfo(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -61,7 +61,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new MedInfo(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
         expectedModel.setPatient(lastPatient, editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -74,7 +74,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new MedInfo(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -90,7 +90,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new MedInfo(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new MedInfo(model.getMedInfo()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -110,7 +110,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit patient in filtered list into a duplicate in medinfo book
-        Patient patientInList = model.getAddressBook().getPatientList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientInList = model.getMedInfo().getPatientList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder(patientInList).build());
 
@@ -135,7 +135,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of medinfo book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPatientList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMedInfo().getPatientList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());

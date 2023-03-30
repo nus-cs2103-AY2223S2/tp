@@ -12,7 +12,7 @@ import static seedu.medinfo.testutil.TypicalPatients.DANIEL;
 import static seedu.medinfo.testutil.TypicalPatients.ELLE;
 import static seedu.medinfo.testutil.TypicalPatients.FIONA;
 import static seedu.medinfo.testutil.TypicalPatients.GEORGE;
-import static seedu.medinfo.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,8 +30,8 @@ import seedu.medinfo.model.patient.StatusContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalMedInfo(), new UserPrefs());
 
     @Test
     public void equals() {

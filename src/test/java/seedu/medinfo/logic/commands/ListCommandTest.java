@@ -3,7 +3,7 @@ package seedu.medinfo.logic.commands;
 import static seedu.medinfo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medinfo.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.medinfo.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.medinfo.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 import static seedu.medinfo.commons.core.Messages.MESSAGE_ALL_PATIENTS_LISTED_OVERVIEW;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +24,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
+        expectedModel = new ModelManager(model.getMedInfo(), new UserPrefs());
     }
 
     @Test

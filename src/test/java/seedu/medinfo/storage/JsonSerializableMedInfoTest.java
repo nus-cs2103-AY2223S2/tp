@@ -25,7 +25,7 @@ public class JsonSerializableMedInfoTest {
         JsonSerializableMedInfo dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
                 JsonSerializableMedInfo.class).get();
         MedInfo medInfoFromFile = dataFromFile.toModelType();
-        MedInfo typicalPatientsMedInfo = TypicalPatients.getTypicalAddressBook();
+        MedInfo typicalPatientsMedInfo = TypicalPatients.getTypicalMedInfo();
         assertEquals(medInfoFromFile, typicalPatientsMedInfo);
     }
 

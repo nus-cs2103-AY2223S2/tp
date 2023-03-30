@@ -2,7 +2,7 @@ package seedu.medinfo.logic.commands;
 
 import static seedu.medinfo.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medinfo.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medinfo.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.medinfo.testutil.TypicalPatients.getTypicalMedInfo;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMedInfo(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Patient validPatient = new PatientBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMedInfo(), new UserPrefs());
         expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddCommand(validPatient), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient patientInList = model.getAddressBook().getPatientList().get(0);
+        Patient patientInList = model.getMedInfo().getPatientList().get(0);
         assertCommandFailure(new AddCommand(patientInList), model, AddCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
