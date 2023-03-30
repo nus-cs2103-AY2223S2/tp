@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -62,6 +63,25 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if one of the persons given has the same identity as a {@code persons} that exists in the address
+     * book.
+     */
+    boolean hasPersons(List<Person> persons);
+
+    /**
+     * Returns the index of the first duplicate found between the given {@code person}s and the address book.
+     * Returns -1 if no duplicates are found.
+     */
+    int findDuplicateIndex(List<Person> persons);
+
+    /**
+     * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the
+     * address book.
+     * Returns empty {@code String} if no duplicates are found.
+     */
+    String findDuplicateString(Person duplicatePerson);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -72,6 +92,12 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given persons.
+     * All the elements in {@code persons} must not already exist in the address book.
+     */
+    void addPersons(List<Person> persons);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -110,4 +136,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

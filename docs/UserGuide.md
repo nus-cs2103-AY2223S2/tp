@@ -6,7 +6,7 @@ title: User Guide
 Army Information Management System (AIMS) is a **desktop app for managing the personal information of military personnel,
 optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. 
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
 
@@ -16,11 +16,12 @@ This user guide shows you how to get started using AIMS and how to make use of t
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person--add)
+  - [Importing multiple persons from a CSV file: `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Locating persons by name: `find`](#locating-persons-by-name--find)
-  - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters-on-fields-filter)
+  - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters-on-fields--filter)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undo last modification : `undo`](#undo-last-modification--undo)
@@ -137,6 +138,33 @@ Examples:
   | address      | 124 Drummond Street   |
   | tag          | platoon-sergeant      |
   | tag          | allergy-seafood       |
+
+### Importing multiple persons from a CSV file : `importcsv`
+
+Adds all persons from a given valid CSV file to AIMS.
+
+Format: `importcsv PATH_TO_CSV_FILE`
+
+The given CSV file must fulfill the following conditions:
+1. File given must end with '.csv'. 
+2. Each row in the CSV File must have the same number of rows 
+3. The first row of the CSV file must be reserved for headers. 
+4. Each field, namely `rank, name, unit, phone, email, address, tags`, must appear as a header in this exact form (but in any order, except tag which has to be the last header). 
+5. Each person cannot have blank entries for any of the fields (except tag)
+6. If a person has more than one tag, they are to be listed horizontally. (Additional tags cannot have a header)
+
+
+Examples:
+- example of a Google Sheet that would be valid once converted to CSV.
+  ![demo sheets](images/demoSheets.png)
+- valid CSV file:
+    ![demo CSV](images/demoCsv.png)
+
+- `importcsv C:\file\6coy_platoon_four_data.csv`
+
+
+![importcsv success](images/importcsvSuccess.png)
+
 
 ### Listing all persons : `list`
 
