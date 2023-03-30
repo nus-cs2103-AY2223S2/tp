@@ -3,6 +3,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" />
+<VBox stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="moduleListView" styleClass="pane-with-border-2" VBox.vgrow="ALWAYS" />
 </VBox>
