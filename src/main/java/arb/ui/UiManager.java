@@ -6,6 +6,7 @@ import arb.MainApp;
 import arb.commons.core.LogsCenter;
 import arb.commons.util.StringUtil;
 import arb.logic.Logic;
+import arb.storage.JsonStorageState;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -24,12 +25,14 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private JsonStorageState initialStorageState;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, JsonStorageState initialStorageState) {
         this.logic = logic;
+        this.initialStorageState = initialStorageState;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
+            mainWindow.setInitialMessage(initialStorageState);
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
