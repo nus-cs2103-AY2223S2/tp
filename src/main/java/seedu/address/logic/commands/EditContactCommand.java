@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -19,15 +20,21 @@ public class EditContactCommand extends EditPersonCommand {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values other than for Modules and Tags.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "{SPECIFIER}/{INPUT}...\n"
-            + "More Info: For more information on specifiers, use the help command. Note that Modules and Tags "
-            + "have a different behaviour. Editting a mod or tag, will remove the module or tag if they already "
-            + "exist in the Person's Modules field or Tags field and will add it if it does not exist. For more "
-            + "information, check out the user guide in the link that appears in the help command.";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD,
+                    "Edits the details of the person identified",
+                    "by the index number used in the displayed person list.",
+                    "Existing values will be overwritten by the input values other than for Modules and Tags.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
+                    "INDEX (must be a positive integer)",
+                    "{SPECIFIER}/{INPUT}...")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
+                    "For more information on specifiers, use the help command.",
+                    "Note that Modules and Tags have a different behaviour from the other fields.",
+                    "Editing a mod or tag will remove the module or tag",
+                    "if they already exist in the Person's Modules field or Tags field,",
+                    "and will add it if it does not exist.",
+                    "For more information, check out the user guide in the link that appears in the help command.");
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
