@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private String commandTextExecuted;
     private Command commandExecuted;
-    private final CurrentSelection currentSelection;
+    private CurrentSelection currentSelection;
 
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
@@ -48,12 +48,9 @@ public class ModelManager implements Model {
      * @param userPrefs The user preferences to use in the ModelManager.
      * @param commandTextExecuted The previous state modifying command to use in the ModelManager.
      */
-    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted,
-            Command commandExecuted, CurrentSelection currentSelection) {
+    public ModelManager(Roster roster, UserPrefs userPrefs, CurrentSelection currentSelection) {
         this.roster = roster;
         this.userPrefs = userPrefs;
-        this.commandTextExecuted = commandTextExecuted;
-        this.commandExecuted = commandExecuted;
         this.currentSelection = currentSelection;
     }
 
@@ -126,7 +123,7 @@ public class ModelManager implements Model {
 
     @Override
     public Model copy() {
-        return new ModelManager(this.roster.copy(), this.userPrefs, this.commandTextExecuted, this.commandExecuted, this.currentSelection);
+        return new ModelManager(this.roster.copy(), this.userPrefs, this.currentSelection.copy());
     }
 
     @Override

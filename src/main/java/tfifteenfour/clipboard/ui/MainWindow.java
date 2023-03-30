@@ -27,6 +27,7 @@ import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
 import tfifteenfour.clipboard.logic.commands.HomeCommand;
 import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.AttendanceCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
@@ -304,10 +305,10 @@ public class MainWindow extends UiPart<Stage> {
         logic.getModel().getCurrentSelection().emptySelectedStudent();
     }
 
-    //@FXML
-    //private void handleUndo() {
-    //    studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
-    //}
+    @FXML
+    private void handleUndoCommand() {
+
+    }
 
     /**
      * Shows course pane.
@@ -555,11 +556,9 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof AttendanceCommand) {
             handleAttendanceCommand();
+        } else if (commandResult.getCommand() instanceof UndoCommand) {
+            handleUndoCommand();
         }
-
-
-        //} else if (commandResult.getCommand() instanceof UndoCommand) {
-        //handleUndo();
     }
 
     private void showClippySuccess() {

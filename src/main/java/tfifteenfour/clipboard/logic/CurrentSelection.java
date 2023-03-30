@@ -176,4 +176,17 @@ public class CurrentSelection {
     public void emptySelectedStudent() {
         selectedStudent = emptyStudentBuilder();
     }
+
+    public CurrentSelection copy() {
+        CurrentSelection copy = new CurrentSelection();
+
+        copy.selectCourse(this.selectedCourse);
+        copy.selectGroup(this.selectedGroup);
+        copy.selectStudent(this.selectedStudent);
+        copy.selectSession(this.selectedSession);
+        copy.selectTask(this.selectedTask);
+        copy.setCurrentPage(this.currentPage);
+
+        return copy;
+    }
 }
