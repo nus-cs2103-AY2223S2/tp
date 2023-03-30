@@ -1,11 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -16,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -24,22 +20,24 @@ public class EditContactCommand extends EditPersonCommand {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD,
+                    "Edits the details of the contact specified by the given index.",
+                    "Existing values will be overwritten by the given parameters",
+                    "for all fields except Modules and Tags.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
+                    "INDEX",
+                    "[PREFIX/PARAMETER]...")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
+                    "Note that INDEX must be a positive integer.",
+                    "For more information on prefixes, refer to the user guide using the help command.",
+                    "Editing Modules and Tags have a different behaviour from editing the other fields.",
+                    "If a module or tag already exists in the contact, it will be removed.",
+                    "Otherwise, it will be added to the contact.");
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited contact: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This contact already exists in the address book.";
 
     protected final PersonDescriptor editPersonDescriptor;
     private final Index index;

@@ -43,7 +43,9 @@ public abstract class SuperField<T extends Field> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         if (!this.values.isEmpty()) {
-            this.values.forEach(str::append);
+            for (Field value: values) {
+                str.append(value).append(", ");
+            }
         }
         return str.toString();
     }

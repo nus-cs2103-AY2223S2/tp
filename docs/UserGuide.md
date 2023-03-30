@@ -17,11 +17,11 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases/tag/v1.2.1).
+2. Download the latest `neobook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases/tag/v1.2.1).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NeoBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar neobook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -111,7 +111,7 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -152,7 +152,7 @@ Use this command to add him/her to your NeoBook.
 
 **Syntax:**
 
-`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+`add n/NAME SPECIFIER/INPUT...`
 
 Here are all the specifiers that can be used:
 
@@ -175,8 +175,8 @@ A person can have any number of tags and modules taken(including 0).
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
 
-In the future, only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for syncing with the calendar.
+Only modules that are a part of NUS' mod systems will be allowed. This is
+to prevent any messiness and also allows for future syncing with the calendar.
 </div>
 
 Examples:
@@ -242,19 +242,25 @@ Use this command to edit his/her details easily!
 
 **Syntax:**
 
-`edit INDEX [{SPECIFIER}/{DATA}]`
+`edit INDEX SPECIFIER/DATA...`
 
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
 
-  _[i.e  adding of tags and mods taken are not cumulative]_
-  * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
-* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
+For the following fields, they are considered a `SuperField`.
+* Modules
+* Tags
 
+A `SuperField` can contain many inputs in that single field.
+When using edit, the command looks for each input in the `SuperField`:
+* If the input already exists in the `SuperField` it will be removed.
+* Otherwise, the input will be added into the `SuperField`.
+  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
+of a person if it already exists and adds it if it does not.
+  
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
 | n         | name                            | No        |
@@ -292,31 +298,49 @@ Here are some important requirements for you to take note:
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts whose names contain any of the given keywords!
+Use this command to find contacts using keywords and fields you specify!
 
 **Syntax:**
 
-`find KEYWORD [MORE_KEYWORDS]`
+`find KEYWORD SPECIFIER/KEYWORDS...`
+
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
-* Only the name is searched.
-* The search is **case-insensitive**.
+* The keywords are case-insensitive.
+  * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
-    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
-* The order of the keywords does not matter.
 
-    _[e.g. `Hans Bo` will match `Bo Hans`]_
+* For each field specified, as long as one of the keywords is contained
+in that field, then the person will be returned.
+  * i.e. `find n/John n/Peter James`
+    * Can return:
+      * people with names of 'John', 'Peter James', 'Peter James John'
+    * Cannot return:
+      * A person with name of 'Peter'.
 
-* Only full words will be matched
+* All fields specified must have at least one keyword contained within that
+field for that person to be returned.
+  * i.e. `find n/Caleb p/9123 p/456`
+    * Can return: 
+      * A person with a name of 'Caleb' who
+has a phone number of '91234567', 
+    * Cannot return:
+      * A person whose name is 'Caleb' but has
+a phone number of '98765432'
+      * A person whose name is 'Joshua' even though
+his phone number is '91234567'
 
-    _[e.g. `Han` will not match `Hans`]_
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
-
-    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
-
-_Examples:_
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -360,6 +384,7 @@ _Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+[Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
 ### Clearing all contacts : `clear`
@@ -428,16 +453,168 @@ Use this command to exit the application!
 
 [Back To Contents](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Event Features
+<hr style="border:2px solid gray">
+
+### Adding an Event : `addevent`
+
+Want to keep track of current events?
+
+Use this command to add events into your Event Section of your NeoBook.
+
+Moreover, you can add 2 types of Events:
+1. One Time Events
+2. Recurring Events (of various Intervals):
+    * Daily Events
+    * Weekly Events
+    * Monthly Events
+    * Yearly Events
+
+You can specify the Recurrence Intervals within the Command as well!
+
+Accepted Intervals:
+1. None
+2. Daily
+3. Weekly
+4. Monthly
+5. Yearly
+
+**Syntax:**
+
+`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
+
+_Here are some important requirements for you to take note:_
+
+* `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
+    * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
+    * `START DATE & START TIME` must be before `END DATE & END TIME`
+* `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
+    *  Event will be automatically added as a `One Time Event`.
+
+_Examples:_
+* `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
+* `addevent d/Catchup with John s/2023-03-30 1600 e/2023-03-30 1800 r/None` will add a One Time Event of Catchup with John that occurs from 1600 to 1800, on 2023-03-30.
+* `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
+
+
+| Specifier | Name of Field                 | Optional? |
+|-----------|-------------------------------|-----------|
+| d         | Description of Event          | No        |
+| s         | Start Date and Time of Event  | No        |
+| e         | End Date and Time of Event    | No        |
+| r         | Recurrence Interval           | Yes       |
+>>>>>>> 6c2571badb8299bcb80616959f5499a70671b8df
+
 [Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Deleting An Event : `delevent`
+
+You no longer need to track this particular event?
+
+Use this command to delete the specified event from your NeoBook.
+
+**Syntax:**
+
+`delevent INDEX`
+
+_Here are some important requirements for you to take note:_
+* `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
+    * `INDEX` must be a **positive integer**.
+
+_Examples:_
+* `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Tagging Contacts to an Event: `tagpersonevent`
+
+Want to remember who was a part of a certain event? 
+
+Tag their contacts
+to the event using this command!
+
+**Syntax:**
+
+`tagpersonevent et/EVENT INDEX pt/NAME`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+  * NAME is **case_sensitive**.
+  * NAME must be the name of a contact already registered in NeoBook
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+It may cause the person to become unlinked from the event completely.
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
+
+
+### Untagging Contacts from an Event: `untagpersonevent`
+
+Want to remove somebody who was a part of a certain event?
+
+Untag their contacts from the event using this command!
+
+**Syntax:**
+
+`untagpersonevent et/EVENT INDEX pt/NAME`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+    * NAME is **case_sensitive**.
+    * NAME must be the name of a contact already registered in NeoBook and
+tagged to that event.
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+  It may cause the person to become unlinked from the event completely.
+
+[Back To Contents](#table-of-contents)
+
+### Events Command Summary
+
+| Action                     | Format, Examples                                                                                                                                                                                |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
+| **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
+| **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
+| **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
-## Event Features
+## UI Features
+<hr style="border:2px solid gray">
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of events commands is still a work in progress. Stay tune!**<br>
-</div>
+### Light Mode: `light`
 
-[Back To Contents](#table-of-contents)
+Want to use a brighter version of our UI?
+
+Use Light mode!
+
+**Syntax:**
+
+`light`
+
+
+<hr style="border:2px solid gray">
+
+### Dark Mode: `dark`
+
+Want to use a darker version of our UI?
+
+Use Dark mode!
+
+**Syntax:**
+
+`dark`
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data
@@ -448,9 +625,15 @@ NeoBook data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-NeoBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+NeoBook data are saved as JSON files. Two of which will be of interest to you:
+- `[JAR file location]/data/addressbook.json`.
+- `[JAR file location]/data/userdata.json`.
 
 You are welcome to update the data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you edit the taggedPerson in User data, beware that you may end up unlinking the person from any changes to the original contact in NeoBook
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.

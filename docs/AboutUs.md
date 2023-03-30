@@ -7,13 +7,14 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## Project Team
 
 ### Pierce Ng Wei Sheng
 
 <img src="images/igezt.png" width="200px">
 
 [[github](https://github.com/igezt)]
+[[portfolio](team/igezt.md)]
 
 * Role: Team lead
 * Responsibilities: Model
@@ -37,7 +38,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/nicljr.png" width="200px">
 
-[[github](http://github.com/nicljr)] [[portfolio](team/nicljr.md)]
+[[github](http://github.com/nicljr)]
+[[portfolio](team/nicljr.md)]
 
 * Role:
   * Code Quality
@@ -61,6 +63,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/shuggan.png" width="200px">
 
 [[github](http://github.com/shuggan)]
+[[portfolio](team/Shuggan.md)]
 
 * Role: Documentation
 * Responsibilities: Storage

@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DarkModeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditContactCommand;
@@ -23,7 +24,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightModeCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UnTagEventCommand;
@@ -129,6 +132,7 @@ public class HelpWindow extends UiPart<Stage> {
                 AddCommand.MESSAGE_USAGE,
                 AddEventCommand.MESSAGE_USAGE,
                 ClearCommand.MESSAGE_USAGE,
+                DarkModeCommand.MESSAGE_USAGE,
                 DeleteCommand.MESSAGE_USAGE,
                 DeleteEventCommand.MESSAGE_USAGE,
                 EditContactCommand.MESSAGE_USAGE,
@@ -137,7 +141,9 @@ public class HelpWindow extends UiPart<Stage> {
                 FavoriteCommand.MESSAGE_USAGE,
                 FindCommand.MESSAGE_USAGE,
                 HelpCommand.MESSAGE_USAGE,
+                LightModeCommand.MESSAGE_USAGE,
                 ListCommand.MESSAGE_USAGE,
+                SelectCommand.MESSAGE_USAGE,
                 TabCommand.MESSAGE_USAGE,
                 TagEventCommand.MESSAGE_USAGE,
                 UnfavoriteCommand.MESSAGE_USAGE,

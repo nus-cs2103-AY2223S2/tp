@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Favorites a Person in the Address Book
@@ -17,16 +18,17 @@ public class FavoriteCommand extends Command {
 
     public static final String COMMAND_WORD = "fav";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Favourites the person according "
-            + "to the Contact ID provided by user input.\n"
-            + "Parameters: INDEX (must be positive integer).\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD,
+                    "Favorites the contact specified by the given index.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be positive integer)")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
-    public static final String MESSAGE_NOT_EXISTS = "Person doesn't exist in the address book";
+    public static final String MESSAGE_NOT_EXISTS = "Contact doesn't exist in the address book";
 
-    public static final String MESSAGE_ISFAVORITED = "Person is already favorited in this address book: %1s";
+    public static final String MESSAGE_ISFAVORITED = "Contact is already a favorite: %1s";
 
-    public static final String MESSAGE_FAVORITE_PERSON_SUCCESS = "Favourited Person: %1$s";
+    public static final String MESSAGE_FAVORITE_PERSON_SUCCESS = "Contact marked as favorite: %1$s";
 
     public final Index index;
 

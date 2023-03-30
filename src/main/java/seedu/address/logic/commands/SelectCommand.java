@@ -10,7 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
+import seedu.address.ui.enums.LightDarkMode;
+import seedu.address.ui.result.ResultDisplay;
 
 
 /**
@@ -20,12 +21,13 @@ public class SelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the details of the selected contacted "
-            + "by the index of the contact in current displayed list.\n "
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected User: %1$s";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD,
+                    "Displays the details of the selected contact specified by the given index.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
+
+    public static final String MESSAGE_SELECT_PERSON_SUCCESS = "Selected contact: %1$s";
 
     public static final String MESSAGE_NO_CHANGE = "Already selected contact: %s";
     private final Index index;
@@ -50,10 +52,11 @@ public class SelectCommand extends Command {
         model.setSelectedPerson(index);
         Person currPerson = model.getSelectedPerson().get();
         if (Objects.equals(prevPerson, currPerson)) {
-            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false);
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false,
+                    LightDarkMode.NO_CHANGE);
         } else {
             return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson),
-                    false, false);
+                    false, false, LightDarkMode.NO_CHANGE);
         }
     }
 

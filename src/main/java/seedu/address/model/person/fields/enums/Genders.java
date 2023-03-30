@@ -1,7 +1,7 @@
 package seedu.address.model.person.fields.enums;
 
 /**
- * Contains list of general genders to be specified in the addressbook.
+ * Contains list of general genders to be specified in the address book.
  */
 public enum Genders {
 
