@@ -28,8 +28,8 @@ public class HelpWindow extends UiPart<Stage> {
                                                         + "Format: redo";
 
     public static final String ADD_COMMAND_MESSAGE = "3) Add a person to the patient records:\n"
-                                                        + "Format: add n/NAME i/NRIC "
-                                                        + "dob/DATE OF BIRTH"
+                                                        + "Format: add n/NAME i/NRIC"
+                                                        + " dob/DATE OF BIRTH"
                                                         + " p/PHONE_NUMBER a/ADDRESS"
                                                         + " d/DRUG ALLERGIES g/GENDER"
                                                         + " ad/DOCTOR"
@@ -37,9 +37,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String EDIT_COMMAND_MESSAGE = "4) Edit an existing person in patient records"
                                                         + " based on the person's INDEX number:\n"
-                                                        + "Format: edit INDEX [n/NAME] [p/PHONE]"
-                                                        + " [dob/DATE OF BIRTH]"
-                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES] [g/GENDER]"
+                                                        + "Format: edit INDEX [n/NAME] [dob/DATE OF BIRTH]"
+                                                        + " [p/PHONE]"
+                                                        + " [a/ADDRESS] [d/DRUG ALLERGIES]"
+                                                        + " [g/GENDER] [ad/DOCTOR]"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
     public static final String DELETE_COMMAND_MESSAGE = "5) Deletes patient with the specified NRIC from"
