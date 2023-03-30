@@ -55,7 +55,7 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
+        + "[" + PREFIX_DRUG_ALLERGY + "DRUGALLERGIES] "
         + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_DOCTOR + "DOCTOR] "
         + "[" + PREFIX_TAG + "TAG]...\n"

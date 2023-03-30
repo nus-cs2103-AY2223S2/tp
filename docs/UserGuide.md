@@ -68,7 +68,7 @@ Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
 
 ## GUI Information
 
-ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
+![DefinedGUI](images/DefinedGUI.png)
   
 --------------------------------------------------------------------------------------------------------------------  
 
@@ -80,7 +80,7 @@ ADD PICS N STUFF HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
 | Name                 | n/     |  
 | Phone                | p/     |  
 | Gender               | g/     |  
-| Doctor               | ad/    | 
+| Doctor               | ad/    |  
 | Email                | e/     |  
 | Address              | a/     | 
 | Tag                  | t/     |
@@ -120,7 +120,7 @@ Above is the view of help window after inputting `help`.
 
 Reverts the patient records to the state before the previous command was executed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
+<div markdown="span" class="alert alert-info">:information_source:**Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 
 Format: `undo`
@@ -133,6 +133,9 @@ Above is the execution result of input `undo` (the list has been cleared).
 
 Reverts the patient records to the state before the previous undo was executed. 
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
+has run.
+
 Format: `redo`
 
 ![Redo](images/command_result/Redo.png)
@@ -142,7 +145,10 @@ Above is the execution result of input `redo` (the list is cleared again).
 
 Adds a person to the patient records.
 
-Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Do take note which patient details are 
+optional
+
+Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
 **Tip**:
 
@@ -162,7 +168,12 @@ Above is the execution result of input `add i/S1234567H n/Cedric Pei p/84655284 
 
 Edits an existing patient in the patient records.
 
-.Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+patient detail you would like to edit.
+
+Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
+
 
 * You can remove all the patient’s tags/medicine by typing t/ or m/ respectively, without specifying any tags/medicine
   after it.
@@ -193,6 +204,9 @@ Above is the execution result of input `view i/S1234567H`.
 
 Deletes the specified patient from the patient records.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+patient detail you would like to edit.
+
 Format: `delete i/NRIC…​`
 
 Examples:
@@ -208,19 +222,25 @@ Above is the execution result of input `delete i/S1234567A`.
 
 Shows a list of all patients in the patient records.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** List returns the entire current database
+that you have loaded.
+
 Format: `list`
 
 ![List](images/command_result/List.png)
 
 Above is the execution result of input `list`.
 
-### Find patients by nric, name, address or tags: `find`
+### Finding patients by nric, name, address, doctor or tags: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`).
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
 
-Format: `find attribute/keyword [MORE_KEYWORDS]`
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
+substrings. You may only search for a few attributes.
+
+Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
 
 * The search will only be carried out for the given attribute.
 * Only one attribute can be searched at one time.
@@ -239,15 +259,18 @@ Examples (The following results are based of the sample data provided):
   or  `serangoon`.
 * `find t/Diabetic` returns all persons with the tag `Diabetic`.
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
-* `find ad/Alex` returns all persons with attending doctor 'Alex'.
+* `find ad/Shannon` returns all persons with attending doctor `Shannon`
 
 ![Find](images/command_result/Find.png)
 
 Above is the execution result of input `find i/S1234567A`.
 
-### Backup patient records: `backup`
+### Backuping patient records: `backup`
 
 Backs up the patient records to a specified slot represented by an index.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Backups need to access and are not 
+automatically loaded on launch of application.
 
 Format: `backup INDEX_NO`
 
@@ -261,9 +284,11 @@ Tip: INDEX_NO can only be an integer between 1 and 10 inclusive.
 
 Above is the execution result of input `backup 1`.
 
-### Load data: `load`
+### Loading data: `load`
 
 Loads the data from a specified slot represented by an index.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Allows access to a specific backup.
 
 Format: `load INDEX_NO`
 
@@ -275,15 +300,18 @@ Example:
 
 Above is the execution result of input `load 1`.
 
-### View backup data: `viewbackup`
+### Viewing backup data: `viewbackup`
 
 Shows all the backups available.
 
 Format: `viewbackup`
 
-### Delete backup data: `deletebackup`
+### Deleting backup data: `deletebackup`
 
 Deletes the data from a specified slot represented by an index.
+
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Deleted backups cannot be retrieved after 
+deletion.
 
 Format: `deletebackup INDEX_NO`
 
@@ -299,13 +327,15 @@ Above is the execution result of input `deletebackup 1`
 
 Purges all data from the database.
 
+<div markdown="span" class="alert alert-info">:information_source:**Note:** Data cannot be retrieved after clearing.
+
 Format: `clear`
 
 ![Clear](images/command_result/Clear.png)
 
 Above is the execution result of input `clear`.
 
-### Switch to light mode: `light`
+### Switching to light mode: `light`
 
 Switches the GUI to light mode.
 
@@ -315,7 +345,7 @@ Format: `light`
 
 Above is the execution result of input `light`.
 
-### Switch to dark mode: `dark`
+### Switching to dark mode: `dark`
 
 Switches the GUI to dark mode.
 

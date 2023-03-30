@@ -13,18 +13,18 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Deletes a person identified by his/her NRIC from the address book.
+ * Deletes person(s) identified by their NRIC from the address book. (at least one NRIC to be supplied)
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by his/her NRIC in the displayed person list.\n"
-            + "Parameters: " + PREFIX_NRIC + "NRIC\n"
+            + ": Deletes person(s) identified by their NRIC in the displayed person list.\n"
+            + "Parameters: " + PREFIX_NRIC + "NRIC...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + "S1234567A";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: \n";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person List: \n";
 
     private final Set<Nric> nricList;
 
