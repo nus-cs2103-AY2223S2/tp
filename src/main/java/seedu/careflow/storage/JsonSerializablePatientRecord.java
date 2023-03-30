@@ -18,7 +18,8 @@ import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
  */
 @JsonRootName(value = "patientrecord")
 public class JsonSerializablePatientRecord {
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Patient list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT_NAME = "Patient list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT_IC = "Patient list contains duplicate IC(s).";
 
     private final List<JsonAdaptedPatient> patients;
 
@@ -52,8 +53,11 @@ public class JsonSerializablePatientRecord {
         PatientRecord patientRecord = new PatientRecord();
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (patientRecord.hasPatient(patient)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
+            if (patientRecord.hasSamePatientName(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT_NAME);
+            }
+            if (patientRecord.hasSamePatientIc(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT_IC);
             }
             patientRecord.addPatient(patient);
         }

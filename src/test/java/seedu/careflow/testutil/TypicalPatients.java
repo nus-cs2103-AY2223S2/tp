@@ -1,23 +1,23 @@
 package seedu.careflow.testutil;
 
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_BIRTHDATE_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_BIRTHDATE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_DRUG_ALLERGY_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMERGENCY_CONTACT_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_GENDER_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_GENDER_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_NAME_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_PHONE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,22 +54,22 @@ public class TypicalPatients {
             .withGender("female").withIc("W9164411S").build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withDob("01-08-1991")
-            .withGender("male").withIc("B9965511S").withEmergencyContact("83704433")
+            .withGender("male").withIc("B9532511S").withEmergencyContact("83704433")
             .build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withIc("P1292372A").build();
     public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withIc("P1234214A").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withDob(VALID_DOB_AMY)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withDob(VALID_BIRTHDATE_AMY)
             .withGender(VALID_GENDER_AMY).withIc(VALID_IC_AMY).withDrugAllergy(VALID_DRUG_ALLERGY_AMY)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY).build();
     public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withDob(VALID_BIRTHDATE_BOB)
             .withGender(VALID_GENDER_BOB).withIc(VALID_IC_BOB).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
 

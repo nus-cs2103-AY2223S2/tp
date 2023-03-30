@@ -1,7 +1,7 @@
 package seedu.careflow.logic.commands.drugcommands;
 
-import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.careflow.logic.commands.CommandTestUtil.assertDrugCommandFailure;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertDrugCommandFailure;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newPatient_success() {
         Drug validDrug = new DrugBuilder().build();
 
         CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(),

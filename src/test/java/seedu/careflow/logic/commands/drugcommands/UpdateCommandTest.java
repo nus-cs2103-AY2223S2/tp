@@ -1,7 +1,7 @@
 package seedu.careflow.logic.commands.drugcommands;
 
-import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.careflow.logic.commands.CommandTestUtil.assertDrugCommandFailure;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertDrugCommandFailure;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalDrugs.PROZAC;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;

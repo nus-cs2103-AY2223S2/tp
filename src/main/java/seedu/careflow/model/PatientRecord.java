@@ -42,11 +42,19 @@ public class PatientRecord implements ReadOnlyPatientRecord {
     }
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the patient record.
+     * Returns true if a patient with the same name as {@code patient} exists in the patient record.
      */
-    public boolean hasPatient(Patient patient) {
+    public boolean hasSamePatientName(Patient patient) {
         requireNonNull(patient);
-        return patients.contains(patient);
+        return patients.containName(patient);
+    }
+
+    /**
+     * Returns true if a patient with the same ic as {@code patient} exists in the patient record.
+     */
+    public boolean hasSamePatientIc(Patient patient) {
+        requireNonNull(patient);
+        return patients.containIc(patient);
     }
 
     /**

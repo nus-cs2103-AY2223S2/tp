@@ -3,17 +3,19 @@ package seedu.careflow.model.patient;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_BIRTHDATE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_GENDER_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_PHONE_BOB;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalPatients.ALICE;
+import static seedu.careflow.testutil.TypicalPatients.AMY;
 import static seedu.careflow.testutil.TypicalPatients.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -42,7 +44,7 @@ public class PatientTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSamePatient() {
         // same object -> returns true
         assertTrue(ALICE.isSamePatient(ALICE));
 
@@ -55,13 +57,13 @@ public class PatientTest {
 
         // same name, all others required attributes different -> returns true
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB).withGender(VALID_GENDER_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withDob(VALID_BIRTHDATE_BOB).withGender(VALID_GENDER_BOB)
                 .withIc(VALID_IC_BOB).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, all others required and optional attributes different -> returns true
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB).withGender(VALID_GENDER_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withDob(VALID_BIRTHDATE_BOB).withGender(VALID_GENDER_BOB)
                 .withIc(VALID_IC_BOB).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
                 .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
@@ -79,6 +81,35 @@ public class PatientTest {
         editedBob = new PatientBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePatient(editedBob));
     }
+
+    @Test
+    public void isSameIc() {
+        // null -> returns false
+        assertFalse(ALICE.isSameIc(null));
+
+        // same ic, all others attributes same(except for name) -> returns true
+        Patient editedPatient = new PatientBuilder(AMY)
+                .withName(VALID_NAME_BOB).withIc(VALID_IC_AMY.toUpperCase()).build();
+        assertTrue(AMY.isSameIc(editedPatient));
+
+        // same ic, all other attributes different -> returns true
+        editedPatient = new PatientBuilder(BOB).withIc(VALID_IC_AMY.toUpperCase()).build();
+        assertTrue(AMY.isSameIc(editedPatient));
+
+        // same ic but differs in case -> return true
+        Patient amyWithCapitalIC = new PatientBuilder().withIc(VALID_IC_AMY.toUpperCase()).build();
+        editedPatient = new PatientBuilder(BOB).withIc(VALID_IC_AMY.toLowerCase()).build();
+        assertTrue(amyWithCapitalIC.isSameIc(editedPatient));
+
+        // different ic, all others attributes same -> return false
+        editedPatient = new PatientBuilder(AMY).withIc(VALID_IC_BOB).build();
+        assertFalse(AMY.isSameIc(editedPatient));
+
+        // different ic, all others attributes different -> return false
+        editedPatient = new PatientBuilder(BOB).build();
+        assertFalse(AMY.isSameIc(editedPatient));
+    }
+
 
     @Test
     public void equals() {
@@ -115,7 +146,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different dob -> returns false
-        editedAlice = new PatientBuilder(ALICE).withDob(VALID_DOB_BOB).build();
+        editedAlice = new PatientBuilder(ALICE).withDob(VALID_BIRTHDATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different gender -> returns false
