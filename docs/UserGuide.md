@@ -497,7 +497,9 @@ Format:
 ```
 attendance
 ```
-- To mark a student's attendance for a particular session, you can navigate to the [Attendance page](#attendance-page-commands).
+- To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
+
+[Back to list of commands](#commands)
 
 
 
