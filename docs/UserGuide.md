@@ -104,40 +104,39 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
 ## Installation
 
 1. Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
-1. Copy the file to the folder where you will use Trackr.
-1. Double-click on the `trackr.jar` file.
+2. Copy the file to the folder where you will use Trackr.
+3. Double-click on the `trackr.jar` file.
 
-  <div markdown="block" class="alert alert-tip">
+<div markdown="block" class="alert alert-tip">
+    
+  :bulb: **Trackr does not open?**<br>
+  1. Open a command terminal.
+  1. Type in `java -jar ` (Keep in mind of the space at the end).
+  1. Drag and drop `trackr.jar` into the command terminal.
+  1. Press enter and execute the command.
 
-    :bulb: **Trackr does not open?**<br>
-    1. Open a command terminal.
-    1. Type in `java -jar ` (Keep in mind of the space at the end).
-    1. Drag and drop `trackr.jar` into the command terminal.
-    1. Press enter and execute the command.
+  An example of the final command is displayed below.
+  ```
+  > java -jar xxxx/xxxx/trackr.jar
+  ```
+
+</div>
+
+A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
   
-    An example of the final command is displayed below.
-    ```
-    > java -jar xxxx/xxxx/trackr.jar
-    ```
+<p align="center">
+  <img src="images/Ui.png" />
+  <br>Figure 1: Initial Setup UI
+</p>
 
-  </div>
-
-  A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
-  
-  <p align="center">
-      <img src="images/Ui.png" />
-      <br>Figure 1: Initial Setup UI
-  </p>
-
-1. Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
+4. Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
    
    Some example commands you can try:
 
    * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
-
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
