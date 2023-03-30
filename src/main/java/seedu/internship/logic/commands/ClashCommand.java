@@ -17,6 +17,9 @@ public class ClashCommand extends Command {
 
     public static final String COMMAND_WORD = "clash";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all event clashes.\n"
+            + "Example: " + COMMAND_WORD;
+
     public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "Displaying all clashing events";
 
     @Override
