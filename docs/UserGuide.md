@@ -243,7 +243,7 @@ In the list, each fish has an [index](#faq). Use these indexes to perform certai
 Currently, there are three operations around tasks:
 * [Adding a task `task add`](#adding-a-task-task-add)
 * [Deleting a task `task delete`](#deleting-a-task-task-delete)
-* [Listing tasks `list task`](#listing-tasks-list-task)
+* [Listing tasks `list tasks`](#listing-tasks-list-task)
 
 ### Adding a task: `task add`
 
@@ -268,7 +268,7 @@ Use this command to delete a task from *Fish Ahoy!*, when you have completed the
 
 Format: `task delete <TASK_INDEX>`
 
-### Listing tasks: `list task`
+### Listing tasks: `list tasks`
 
 Lists all tasks created.
 

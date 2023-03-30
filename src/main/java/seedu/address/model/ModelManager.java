@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     public static final Comparator<Task> PRIORITY_COMPARATOR = (t1, t2) -> {
         return t1.hasPriority()
                 ? t2.hasPriority()
-                    ? t1.getPriority().toString().compareTo(t2.getPriority().toString())
+                    ? t1.getPriority().compare(t2.getPriority())
                     : -1 /* if t2 has no priority, order behind t1*/
                 : -1; /* if t1 has no priority, order behind t2 regardless*/
 
