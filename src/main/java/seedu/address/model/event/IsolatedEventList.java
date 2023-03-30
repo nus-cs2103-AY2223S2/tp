@@ -56,6 +56,25 @@ public class IsolatedEventList {
         return null;
     }
 
+    public void isOverlapping(IsolatedEvent event, int index) throws EventConflictException {
+        Iterator<IsolatedEvent> it = isolatedEvents.iterator();
+        LocalDateTime start = event.getStartDate();
+        LocalDateTime end = event.getEndDate();
+        IsolatedEvent currEvent;
+        int counter = 0;
+
+        while (it.hasNext()) {
+            currEvent = it.next();
+            if (counter == index) {
+                continue;
+            }
+            if (start.isBefore(currEvent.getEndDate()) && currEvent.getStartDate().isBefore(end)) {
+                throw new EventConflictException("Isolated Event List:\n" + index + ". " + currEvent);
+            }
+            counter++;
+        }
+    }
+
     public boolean contain(IsolatedEvent event) {
         return this.isolatedEvents.contains(event);
     }
