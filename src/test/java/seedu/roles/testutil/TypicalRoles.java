@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.roles.model.AddressBook;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Role;
 
 /**
@@ -93,8 +93,8 @@ public class TypicalRoles {
     /**
      * Returns an {@code AddressBook} with all the typical roles.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static RoleBook getTypicalRoleBook() {
+        RoleBook ab = new RoleBook();
         for (Role role : getTypicalRoles()) {
             ab.addRole(role);
         }

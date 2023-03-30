@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.roles.commons.core.GuiSettings;
 import seedu.roles.logic.commands.exceptions.CommandException;
-import seedu.roles.model.AddressBook;
 import seedu.roles.model.Model;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.ReadOnlyUserPrefs;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.Order;
 import seedu.roles.model.job.Role;
 import seedu.roles.testutil.RoleBuilder;
@@ -100,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getRoleBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setRoleBookFilePath(Path roleBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setRoleBook(ReadOnlyRoleBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyRoleBook getRoleBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,8 +197,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyRoleBook getRoleBook() {
+            return new RoleBook();
         }
     }
 

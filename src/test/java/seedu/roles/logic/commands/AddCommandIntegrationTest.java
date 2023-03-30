@@ -2,7 +2,7 @@ package seedu.roles.logic.commands;
 
 import static seedu.roles.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.roles.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.roles.testutil.TypicalRoles.getTypicalAddressBook;
+import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalRoleBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newRole_success() {
         Role validRole = new RoleBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getRoleBook(), new UserPrefs());
         expectedModel.addRole(validRole);
 
         assertCommandSuccess(new AddCommand(validRole), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateRole_throwsCommandException() {
-        Role roleInList = model.getAddressBook().getRoleList().get(0);
+        Role roleInList = model.getRoleBook().getRoleList().get(0);
         assertCommandFailure(new AddCommand(roleInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

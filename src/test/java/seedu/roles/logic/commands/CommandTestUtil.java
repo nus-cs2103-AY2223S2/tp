@@ -20,8 +20,8 @@ import java.util.List;
 
 import seedu.roles.commons.core.index.Index;
 import seedu.roles.logic.commands.exceptions.CommandException;
-import seedu.roles.model.AddressBook;
 import seedu.roles.model.Model;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.job.NameContainsKeywordsPredicate;
 import seedu.roles.model.job.Role;
 import seedu.roles.testutil.EditRoleDescriptorBuilder;
@@ -138,11 +138,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        RoleBook expectedRoleBook = new RoleBook(actualModel.getRoleBook());
         List<Role> expectedFilteredList = new ArrayList<>(actualModel.getFilteredRoleList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedRoleBook, actualModel.getRoleBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredRoleList());
     }
 

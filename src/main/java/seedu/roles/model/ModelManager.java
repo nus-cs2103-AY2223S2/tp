@@ -22,25 +22,25 @@ import seedu.roles.model.job.Role;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final RoleBook roleBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Role> filteredRoles;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyRoleBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.roleBook = new RoleBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredRoles = new FilteredList<>(this.addressBook.getRoleList());
+        filteredRoles = new FilteredList<>(this.roleBook.getRoleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new RoleBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,42 +68,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getRoleBookFilePath() {
+        return userPrefs.getRoleBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setRoleBookFilePath(Path roleBookFilePath) {
+        requireNonNull(roleBookFilePath);
+        userPrefs.setRoleBookFilePath(roleBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setRoleBook(ReadOnlyRoleBook roleBook) {
+        this.roleBook.resetData(roleBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyRoleBook getRoleBook() {
+        return roleBook;
     }
 
     @Override
     public boolean hasRole(Role role) {
         requireNonNull(role);
-        return addressBook.hasRole(role);
+        return roleBook.hasRole(role);
     }
 
     @Override
     public void deleteRole(Role target) {
-        addressBook.removeRole(target);
+        roleBook.removeRole(target);
     }
 
     @Override
     public void addRole(Role role) {
-        addressBook.addRole(role);
+        roleBook.addRole(role);
         updateFilteredRoleList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -111,7 +111,7 @@ public class ModelManager implements Model {
     public void setRole(Role target, Role editedRole) {
         requireAllNonNull(target, editedRole);
 
-        addressBook.setRole(target, editedRole);
+        roleBook.setRole(target, editedRole);
     }
 
     //=========== Filtered Role List Accessors =============================================================
@@ -142,9 +142,9 @@ public class ModelManager implements Model {
                 return Integer.compare(s2, s1);
             }
         });
-        logger.info("AddressBook is sorted: " + this.addressBook);
+        logger.info("AddressBook is sorted: " + this.roleBook);
 
-        this.addressBook.setRoles(roles);
+        this.roleBook.setRoles(roles);
     }
 
     @Override
@@ -158,7 +158,7 @@ public class ModelManager implements Model {
                 return s2.compareTo(s1);
             }
         });
-        this.addressBook.setRoles(roles);
+        this.roleBook.setRoles(roles);
     }
 
     @Override
@@ -175,7 +175,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return roleBook.equals(other.roleBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredRoles.equals(other.filteredRoles);
     }
