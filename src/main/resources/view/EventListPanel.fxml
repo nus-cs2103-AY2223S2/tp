@@ -3,17 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.ImageView?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <HBox prefWidth="400.0" VBox.vgrow="ALWAYS">
         <children>
          <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
            <HBox>
-           <Label id="tutorialLabel" alignment="CENTER" contentDisplay="CENTER" text="Tutorials" textFill="WHITE"/>
-           <ImageView fx:id="tutorial"></ImageView>
+           <Label id="tutorialLabel" alignment="CENTER" contentDisplay="CENTER" text="Tutorials" textFill="WHITE">
+                  <padding>
+                     <Insets left="15.0" />
+                  </padding></Label>
+           <ImageView fx:id="tutorial" />
            </HBox>
            <children>
                   <ListView fx:id="eventListViewLeftCol" prefHeight="6662.0" prefWidth="70.0">
@@ -26,8 +29,11 @@
           <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
             <children>
               <HBox>
-                <Label id="labLabel" alignment="CENTER" contentDisplay="CENTER" text="Labs" textFill="WHITE" HBox.hgrow="ALWAYS" />
-                <ImageView fx:id="lab"></ImageView>
+                <Label id="labLabel" alignment="CENTER" contentDisplay="CENTER" text="Labs" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding></Label>
+                <ImageView fx:id="lab" />
               </HBox>
               <ListView fx:id="eventListViewMidCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
                 <padding>
@@ -42,8 +48,11 @@
           <VBox prefHeight="400.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
             <children>
               <HBox>
-              <Label id="consultationLabel" alignment="CENTER" contentDisplay="CENTER" text="Consultations" textFill="WHITE" HBox.hgrow="ALWAYS" />
-              <ImageView fx:id="consultation"></ImageView>
+              <Label id="consultationLabel" alignment="CENTER" contentDisplay="CENTER" text="Consultations" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding></Label>
+              <ImageView fx:id="consultation" />
               </HBox>
               <ListView fx:id="eventListViewRightCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
                 <HBox.margin>

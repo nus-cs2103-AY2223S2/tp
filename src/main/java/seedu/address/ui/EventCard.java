@@ -131,7 +131,7 @@ public class EventCard extends UiPart<Region> {
         }
 
         //Ensures plus icon is rendered if more than 5 students are present
-        if (event.countStudents() > 5) {
+        if (event.countStudents() > 4) {
             ImageView newImageView = setImageIcon(guiSettings.getMorePhoto(), size);
             studentProfiles.getChildren().addAll(newImageView);
         }
