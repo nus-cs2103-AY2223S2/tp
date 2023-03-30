@@ -10,7 +10,11 @@ if () then ([else])
     :Error: Applicant cannot be found;
     stop
 else ([Applicant is found])
-    :Applicant specified is rejected;
+    if () then ([Applicant not rejected yet])
+    :Reject command successfully executes;
     stop
+    else ([else])
+    :Error: Applicant is already rejected;
+    stop;
 endif
 @enduml

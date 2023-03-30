@@ -11,9 +11,15 @@ if () then ([else])
 else ( [Arguments are valid])
 endif
 if () is ([Application date time provided]) then
-  :Use given date time;
+
+if () then ([else])
+:Error: Application date time cannot be in the future;
+stop
+else ([Date time is valid])
+:Use given date time;
+endif
 else ([else])
-  :Use current time as application date time;
+:Use current time as application date time;
 endif
 if () is ([Applicant not duplicate]) then
   :Add command successfully executes;
