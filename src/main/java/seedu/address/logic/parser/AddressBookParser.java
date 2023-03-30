@@ -32,6 +32,7 @@ import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListServicesCommand;
 import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortAppointmentsCommand;
 import seedu.address.logic.commands.SortCustomersCommand;
 import seedu.address.logic.commands.SortServicesCommand;
 import seedu.address.logic.commands.SortTechniciansCommand;
@@ -193,6 +194,8 @@ public class AddressBookParser {
         case SortTechniciansCommand.COMMAND_WORD:
             return new SortTechniciansCommandParser().parse(arguments);
 
+        case SortAppointmentsCommand.COMMAND_WORD:
+            return new SortAppointmentsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
