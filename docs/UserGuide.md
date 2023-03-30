@@ -551,9 +551,9 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 ## 4.9 Searching for contact information: `search`
 
-Format: `search KEYWORDS`, `search [n/NAME} [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​`
+Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [ccapos/CCA_POSITION_KEYWORD]...`
 
-> Finds all contacts whose information fields and tags contain any of the given keywords.
+> For keywords without a specified field, finds all contacts whose information from any field contains the given keywords. For keywords in a specified field, finds all contacts whose field contains given keyword.
 
 There are 2 methods in which you can search for a contact. 
 
@@ -566,21 +566,16 @@ For example, if you have 2 contacts, one with the name January, and another with
 Examples:
 * `search january` returns all contacts whose information fields contain the keyword `january`.
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
-
-**Search Example 1:**
-
-**Input in Command Box:** `search january`
-
-**Result:**<br>![SearchCommandExample1](images/SearchCommandExample.png)
-
-**Method 2:**
-
-Using `search` followed by a [prefixed information field](#5-information-fields--prefixes) will return a list of the contacts whose prefixed information fields match the prefix.
-
-For example, if you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
+* `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
+* `search n\lex y`returns all contacts whose name contains the keyword `lex y`
+* `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
+* `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
+* `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-The keywords are case-insensitive! This means that <code>search january</code>, <code>search JANUARY</code> and <code>search jAnUaRy</code> will all return the contacts whose information fields contain the keyword <code>january</code>january.
+* The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
+* Only unspecified keywords treat space as a separator. This means `search yu alex` will search for a contact that contains both `yu` and `alex` in the information, but `search n/yu alex` will search for a contact that contains the string `yu alex` in its name. 
+* If you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
 </div>
 
 <div style="page-break-after: always"></div>
