@@ -223,12 +223,16 @@ Examples (The following results are based of the sample data provided):
 
 ### Backup patient records: `backup`
 
-Backs up the patient records to a specified slot represented by an index.
+Backs up the patient records to a specified slot represented by an index. Can add a description to the backup.
 
 Format: `backup INDEX_NO [b/DESCRIPTION]`
 
+
 💡**Tip**:
 <br/>Backing up without a description will leave the description field empty.
+
+Format: `backup INDEX_NO [b/DESCRIPTION]`
+
 
 Examples:
 
@@ -249,11 +253,11 @@ Example:
 
 * `load 3` loads the data from the 3rd slot.
 
-### View backup data: `viewbackup`
+### View backup data: `viewbackups`
 
 Shows all the backups available.
 
-Format: `viewbackup`
+Format: `viewbackups`
 
 💡**Tip**:
 <br/>You can exit the backups page by typing the command `list`.
