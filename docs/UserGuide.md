@@ -514,6 +514,12 @@ Format: "mark INDEX" or "unmark INDEX"
 
 * The index refers to the index number shown in the displayed meetings list.
 * The index must be a positive integer 1, 2, 3...
+* 
+### Showing meetings that are done or over: `undone`
+
+Shows meetings that either have dates that are in the past or not marked as done.
+
+Format: "undone"
 
 --------------------------------------------------------------------------------------------------------------------
 
