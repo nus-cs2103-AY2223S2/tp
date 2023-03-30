@@ -4,7 +4,10 @@ import taa.model.Model;
 
 import static java.util.Objects.requireNonNull;
 
-public class ListAlarms extends Command {
+/**
+ * Defines the command class for listing of alarms.
+ */
+public class ListAlarmsCommand extends Command {
         public static final String COMMAND_WORD = "list_alarms";
 
         @Override
@@ -13,3 +16,4 @@ public class ListAlarms extends Command {
             return new CommandResult(model.listAlarms());
         }
 }
+

@@ -14,6 +14,7 @@ public class Alarm {
     private final String message;
     private final int hashCode;
     private Timeline timeline;
+
     /**
      * Construct an alarm instance with the specified minutes and message
      * @param minutes the minutes
@@ -26,6 +27,10 @@ public class Alarm {
         this.timeline = null;
     }
 
+    /**
+     * Return the preset time of the alarm
+     * @return the preset time of the alarm in integer minutes
+     */
     public int getTime() {
         return this.minutes;
     }
@@ -38,14 +43,25 @@ public class Alarm {
         return Double.parseDouble(df.format(timeLeft));
     }
 
+    /**
+     * Stops the timeline of the alarm
+     */
     public void stopTimeLine() {
         this.timeline.stop();
     }
 
+    /**
+     * Return the message of the alarm
+     * @return the message of the alarm
+     */
     public String getMessage() {
         return this.message;
     }
 
+    /**
+     * Add the new timeline to the alarm
+     * @param timeline the timeline to add
+     */
     public void addTimeline(Timeline timeline) {
         this.timeline = timeline;
     }
@@ -63,7 +79,11 @@ public class Alarm {
 
     @Override
     public boolean equals(Object other) {
-        return ((Alarm)other).hashCode == this.hashCode;
+        if (other instanceof Alarm) {
+            return ((Alarm)other).hashCode == this.hashCode;
+        }
+        return false;
     }
 
 }
+

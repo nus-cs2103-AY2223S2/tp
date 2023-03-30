@@ -97,8 +97,8 @@ public class TaaParser {
         case AddAlarmCommand.COMMAND_WORD:
             return new AddAlarmCommandParser().parse(arguments);
 
-        case ListAlarms.COMMAND_WORD:
-            return new ListAlarms();
+        case ListAlarmsCommand.COMMAND_WORD:
+            return new ListAlarmsCommand();
 
         case DeleteAlarm.COMMAND_WORD:
             return new DeleteAlarmParser().parse(arguments);
