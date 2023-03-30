@@ -114,6 +114,7 @@ public class Listing {
             }
         }
 
+        ArrayList<Platform> platforms = getPlatforms();
         if (!platforms.isEmpty()) {
             builder.append("\nPlatforms: ");
             for (int index = 0; index < platforms.size(); index++) {

@@ -42,6 +42,7 @@ public class ListingBuilder {
         jobTitle = listingToCopy.getTitle();
         jobDescription = listingToCopy.getDescription();
         applicants = new ArrayList<>(listingToCopy.getApplicants());
+        platforms = new ArrayList<>(listingToCopy.getPlatforms());
     }
 
     /**
