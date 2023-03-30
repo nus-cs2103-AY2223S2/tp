@@ -3,26 +3,148 @@ layout: page
 title: User Guide
 ---
 
-Team Builder (TB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TB can help you build your team through your contacts much faster than traditional GUI apps.
+<style>
+   img.center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+   }
+</style>
 
-* Table of Contents
-{:toc}
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Preface:**
+
+* This guide is on the **usage** of Team Builder. 
+* For a guide on **developing** Team Builder with us, see our [developer guide](DeveloperGuide.html).
+* We are **still working** on making our user guide as user friendly as possible. You can help us by providing feedback [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/new)
+</div>
+
+**Team Builder (TB)** is a desktop app for students to manage their contacts and build a multidisciplinary team based on soft skills and technical skills.
+
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TB can help you build your team through your contacts much faster than traditional GUI apps.
+
+## About this guide <!-- omit in toc -->
+
+<div markdown = "span" class="alert alert-primary">
+:bulb: <a id="help-command" style="color:black"> **Tip:** </a>
+Access this guide quickly through the `help` command or by clicking the **help** menu icon.
+<br/>
+<img src="images/helpMessage.png" alt="help message" width="75%" class="center"/>
+</div>
+
+Welcome to Team Builder, we hope that this product will allow you 
+to manage your contacts to build fantastic teams for your events/competitions.
+
+This guide is designed to be followed narratively from top to bottom. If you are looking for a specific command, you can view the [table of commands here](#full-table-of-commands).
+
+<div markdown="block" class="alert alert-info">
+:information_source: **What do the symbols and formatting mean?:**
+
+* :information_source: - are important specific information to note
+
+* :bulb: - are usage tips/shortcuts
+
+* :exclamation: - are some warnings about certain actions
+
+* `keyword` - are command/special character to be typed.
+
+* `UPPER_CASE` - are the parameters to be supplied by the user.<br/>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* `[]` - are optional parameters that can be used or not used at all.<br/>
+  e.g. `[e/optional]` can be used like ` ` (i.e. not used) or `e/lmao@lmao.com` 
+
+* `[]...` - are parameters that can be used multiple times including zero times.<br/>
+  e.g. `[t/multi]...` can be used like ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+</div>
+
+**LABLED WINDOW IMAGE**
+
+### This guide is split into 6 sections: <!-- omit in toc -->
+
+1. [Full Table of Commands](#full-table-of-commands)
+2. [Quick Start](#quick-start)
+3. [Managing Contacts](#managing-contacts)
+4. [Making a Team](#making-a-team)
+5. [Extra Team Builder Features](#extra-team-builder-features)
+6. [FAQ](#faq)
+
+These 6 sections are the way in which we believe Team Builder can be used.
+
+Below is the full table of contents, in case you are looking for something very specific.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Full Table of Content:**
+
+- [Full Table of Commands](#full-table-of-commands)
+- [Quick start](#quick-start)
+- [Managing Contacts](#managing-contacts)
+  - [Adding a new contact : `add`](#adding-a-new-contact--add)
+  - [Listing all contacts : `list`](#listing-all-contacts--list)
+  - [Updating a contact : `edit`](#updating-a-contact--edit)
+  - [Deleting a contact : `delete`](#deleting-a-contact--delete)
+- [Making a Team](#making-a-team)
+  - [Create team: `@TODO`](#create-team-todo)
+  - [Finding the right teammate I : `find`](#finding-the-right-teammate-i--find)
+  - [Finding the right teammate II : `sort`](#finding-the-right-teammate-ii--sort)
+  - [Add a person to a team : `@TODO`](#add-a-person-to-a-team--todo)
+  - [List all teammates in a team : `@TODO`](#list-all-teammates-in-a-team--todo)
+- [Extra Team Builder Features](#extra-team-builder-features)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Undoing a command : `undo`](#undoing-a-command--undo)
+  - [Redoing an undo command : `redo`](#redoing-an-undo-command--redo)
+  - [Listing all tags : `@TODO`](#listing-all-tags--todo)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+  - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+- [FAQ](#faq)
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Full Table of Commands
+
+Action | Type |Format, Examples
+:--------:|:------:|:--------:
+[**Add**](#adding-a-new-contact--add) | Modifying |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
+[**Clear**](#clearing-all-entries--clear) | Modifying |`clear`
+[**Delete**](#deleting-a-contact--delete) | Modifying |`delete INDEX`<br> e.g., `delete 3`
+[**Edit**](#updating-a-contact--edit) | Modifying |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Find**](#finding-the-right-teammate-i--find) | Listing | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+[**Sort**](#finding-the-right-teammate-ii--sort) | Listing |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
+[**List**](#listing-all-contacts--list) | Listing |`list`
+[**Undo**](#undoing-a-command--undo) | Special<br/> Modifying | `undo`
+[**Redo**](#redoing-an-undo-command--redo) | Modifying |`redo`
+[**Help**](#help-command) | Window |`help`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Prerequisite:
 
-1. Download the latest `teambuilder.jar` from [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/releases).
+1. Downloaded [Java JDK 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TeamBuilder.
+Team Builder Installation:
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar teambuilder.jar` command to run the application.<br>
+1. Open a command terminal
+
+2. Ensure you have **Java 11** or above installed in your Computer by typing `java --version` in the command terminal.
+Information on the Java version installed should appear in the command terminal. Otherwise, [click here to troubleshoot](https://www.java.com/download/help/troubleshoot_java.html#:~:text=Temporarily%20turn%20off%20firewall%20or,successfully%20completed%20the%20Java%20install.).
+
+3. Download the latest **teambuilder.jar** from [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/releases).
+
+4. Copy the file to the folder you want to use as the _home folder_ for your TeamBuilder.
+
+5. In the command terminal, `cd` into the folder you put the jar file in, and use the `java -jar teambuilder.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -35,24 +157,24 @@ Team Builder (TB) is a **desktop app for managing contacts, optimized for use vi
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Full Table of Commands](UserGuide.html#full-table-of-commands) above for details of each command.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Managing Contacts
+
+This section convers on how to manage potential teammates in your Team Builder.
+
+This includes:
+1. Adding new potential teammates
+2. Updating existing teammates' information and tags
+3. Deleting contacts that you no longer want to be teammates with or have lost contact.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -65,40 +187,69 @@ Team Builder (TB) is a **desktop app for managing contacts, optimized for use vi
 
 </div>
 
-### Viewing help : `help`
+### Adding a new contact : `add`
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the team builder.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MAJOR [t/TAG]…​`
+Format: `add n/NAME [p/PHONE_NUMBE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A contact can have any number of tags (including 0). Tags are especially useful for keeping track of skills and traits!
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/computer science`
-* `add n/Betsy Crowe t/friend m/accounting e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+<img class="center" alt="**John Pic**" src="images/JohnContactCardFront.png" width="60%" />
 
-### Listing all persons : `list`
+You have exchanged contacts with a person named **John** at a Computer Science Event.
+He seems like a nice guy that you might want to do projects with. You note that he is a business major with **great presentations skills**.
 
-Shows a list of all persons in the team builder.
+Let's add his contacts to Team Builder as a new potential teammate for future events and projects!
+
+**What to type**:
+
+`add n/John p/98765432 m/Business t/Good Presentor`
+
+**Result**: **Image**
+
+
+### Listing all contacts : `list`
 
 Format: `list`
 
-### Editing a person : `edit`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`list` is automatically called after every command except `sort` in the Graphical App. Hence, you don't need to keep typing `list` after each command!
+</div>
 
-Edits an existing person in the team builder.
+Now that we have added **John**, we should be able to see him in the Team Builder.
+
+**What you can type**:
+
+`list`, `list 123`, `list ada adw v zklw`, etc.
+
+These are all acceptable as anything after `list` is discarded.
+
+
+### Updating a contact : `edit`
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]…​`
+
+<img class="center" alt="**BACK OF JOHN'S CARD**" src="images/JohnContactCardBack.jpg" width="60%" />
+
+It seems that we forgot to add some information about **John**.
+
+We missed out the back of his card that has his **email**.
+
+Let's use the `edit` command to update his information.
+
+**Image of John in Team Builder, circled index** We see **John** is index 1 in our display.
+
+**What to type**:
+
+`edit 1 e/john@example.com`
+
+**Result**:
+
+**Screen Cap**
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the edit command:**<br>
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -106,16 +257,63 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]�
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+</div>
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### Deleting a contact : `delete`
 
-### Locating persons by name: `find`
+Format: `delete INDEX`
+
+You hear from your friends that **John** is actually a **snake** :snake: and we do not want a snake as a teammate.
+
+Let's delete him from our Team Builder.
+
+Again, we see **John** is index 1 in our display.
+
+**What to type**:
+
+`delete 1 `
+
+**Result**:
+
+**deletus maximus**
+
+
+<div style="page-break-after: always;"></div>
+
+## Making a Team
+
+This section convers on how to make a team in your Team Builder.
+
+This includes:
+1. Creating a team
+2. Finding the right teammate using `find` and `sort`
+3. Adding a person to a team
+4. Listing all teammates in a team
+
+### Create team: `@TODO`
+
+`@TODO`
+
+
+
+
+### Finding the right teammate I : `find`
+
+<a id="find-command" style="color:black"> Format: `find KEYWORD [MORE_KEYWORDS]...` </a>
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+**What to type**:
+
+`find alex david`
+
+**Result**:
+
+<img class="center" alt="result for 'find alex david'" src="images/findAlexDavidResult.png" width="50%" />
+
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Specificity of `find`**:
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -124,78 +322,106 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Sorting persons: `sort`
+</div>
 
-Sorts persons according to the specified order and sort by.
+### Finding the right teammate II : `sort`
 
-Format: `sort ORDER SORT_BY`
+<a id="sort-command" style="color:black"> Format: `sort ORDER SORT_BY` </a>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Specificity of `sort`**:
 
 * The order and sort by are case-insensitive. e.g `tcount` will match `tCount`
 * The order can only be either ascending (`asc`) or descending (`desc`)
 * The following sort by are implemented:
   * `tcount` Sorts by person's tag count
 
-Examples:
-* `sort desc tcount` returns the persons with highest tag counts to lowest
-### Deleting a person : `delete`
+</div>
 
-Deletes the specified person from the team builder.
 
-Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the team builder.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Undoing a command : `undo`
-
-Undo the latest command and restore the team builder before that command.
-
-Format: `undo`
-
-### Undoing a command : `redo`
-
-Revoke the latest undo command and restore the team builder before that command.
-Redo will not work if any non-undo commands are entered after the desired undo command to revoke.
-
-Format: `redo`
-
-### List all persons in a team: `@TODO`
+### Add a person to a team : `@TODO`
 
 `@TODO`
 
-### List all tags: `@TODO`
+
+### List all teammates in a team : `@TODO`
 
 `@TODO`
 
-### Create team: `@TODO`
+## Extra Team Builder Features
 
-`@TODO`
+This section convers on some quality of life features for Team Builder.
 
-### Add a person to a team: `@TODO`
-
-`@TODO`
+This includes:
+1. Clearing all entries
+2. Undoing a command
+3. Redoing an undo command
+4. Lisiting all Tags
+5. Exiting the program
+6. Saving data
+7. Editing the data file
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the team builder.
-
 Format: `clear`
+
+Clears all entries from the Team Builder.
+
+**What you can type**:
+
+`clear`, `clear 123`, `clear ada adw v zklw`, etc.
+
+These are all acceptable as anything after `clear` is discarded.
+
+### Undoing a command : `undo`
+
+Format: `undo`
+
+Oops! It looks like we accidentally used the `clear` command to remove all our contacts.
+
+Let's use the `undo` command to revert our Team Builder back to before we typed the `clear` command.
+
+**What you can type**:
+
+`undo`, `undo 123`, `undo ada adw v zklw`, etc.
+
+These are all acceptable as anything after `undo` is discarded.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only `undo` up to 10 times in a row! After the 10th `undo`, no more `undo` is possible.
+</div>
+
+### Redoing an undo command : `redo`
+
+Format: `redo`
+
+Perhaps we want to `clear` the example contacts after all.
+
+Let's use the `redo` command to revert our Team Builder back to before we typed the `undo` command.
+
+**What you can type**:
+
+`redo`, `redo 123`, `redo ada adw v zklw`, etc.
+
+These are all acceptable as anything after `redo` is discarded.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Typing any [modifying command](#full-table-of-commands) (other than an undo) after an `undo` makes it impossible to `redo` that `undo` command!
+</div>
+
+### Listing all tags : `@TODO`
+
+`@TODO`
 
 ### Exiting the program : `exit`
 
+Format: `exit`
+
 Exits the program.
 
-Format: `exit`
 
 ### Saving the data
 
@@ -222,16 +448,4 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Sort** | `sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
-**List** | `list`
-**Undo** | `undo`
-**Help** | `help`
