@@ -56,10 +56,10 @@ OfficeConnect offers a solution to these problems by providing better visibility
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…` can be used as (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+  e.g. `[t/TAG]…` can be used as (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -69,8 +69,6 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Datetime format for DEADLINE for tasks should be of the format `YYYY-MM-DD HH:MM:SS`. e.g `dl/2023-01-01 23:11:01`. Time(HH:MM:SS) is optional! There must be trailing zeros for digits less than 10. 
 
 </div>
 
@@ -92,11 +90,12 @@ Presents a hierarchical view which lists the different available commands, along
 
 Format: `help`
 
+
 ### Adding a person: `addp`
 
 Adds a person to OfficeConnect.
 
-Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…`
+Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -104,7 +103,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `listp`
 
@@ -116,19 +115,19 @@ Format: `listp`
 
 Edits an existing person in OfficeConnect.
 
-Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. 
   The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `tag/` without
+* You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
 *  `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `editp 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editp 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `findp`
 
@@ -162,6 +161,12 @@ Examples:
 * `listp` followed by `deletep 2` deletes the 2nd person in the address book.
 * `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `findp` command.
 
+### Clearing all entries : `clear`
+
+Clears all entries from OfficeConnect.
+
+Format: `clear`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -184,12 +189,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Adding a Task: `addt`
 
-Adds a task to OfficeConnect. Take note of the datetime format for DEADLINE mentioned above.
+Adds a task to OfficeConnect.
 
-Format: `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`
+Format: `addt title/TITLE c/CONTENT st/STATUS`
 
 Examples:
-- `addt t/Complete slides c/Finish slides for meeting st/false dl/2024-01-01 20:02:01` 
+- `addt title/Complete slides c/Finish slides for meeting st/false`
 
 ## Deleting a Task: `deletet`
 
@@ -212,7 +217,7 @@ Finds the task based on given keyword.
 Format: `findt KEYWORD [MORE_KEYWORDS]`
 
 Examples:
-- `findt complete` 
+- `findt complete`
 
 ## Listing the Tasks: `listt`
 
@@ -358,14 +363,6 @@ Examples:
 
 ---
 
-## Filter Persons: `filterp tag/TAG`
-
-Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input. 
-
-Format: `filterp tag/TAG`
-
-Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
-
 
 ### Archiving data files `[coming in v1.5]`
 
@@ -381,28 +378,28 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                      | Format, Examples                                                                                                                                                             |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Person**              | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 tag/friend tag/colleague` |
-| **Add Task**                | `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]` <br> e.g., `addt t/Draft proposal c/Complete proposal by 1st March st/false dl/2024-01-03 23:02:03`                         |
-| **Assign**                  | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                       |
-| **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
-| **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
-| **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
-| **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
-| **Find Task**               | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                                    |
-| **Help**                    | `help`                                                                                                                                                                       |
-| **List All**                | `listall`                                                                                                                                                                    |
-| **List Persons**            | `listp`                                                                                                                                                                      |
-| **List Tasks**              | `listt`                                                                                                                                                                      |
-| **Mark Task**               | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                              |
-| **Quick Start**             | `quickstart`                                                                                                                                                                 |
-| **Unassign**                | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                                  |
-| **Unmark Task**             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                         |
-| **View Assigned All**       | `viewassignedall`                                                                                                                                                            |
-| **View Assigned Persons**   | `viewassignedp`                                                                                                                                                              |
-| **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                              |
-| **View Unassigned All**     | `viewunassignedall`                                                                                                                                                          |
-| **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                            |
-| **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                            |
+| Action                      | Format, Examples                                                                                                                                                       |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Person**              | `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Task**                | `addt title/TITLE c/CONTENT st/STATUS` <br> e.g., `addt title/Draft proposal c/Complete proposal by 1st March st/false`                                                |
+| **Assign**                  | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                                 |
+| **Clear**                   | `clear`                                                                                                                                                                |
+| **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                  |
+| **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                  |
+| **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                              |
+| **Find Task**               | `findt TITLE`<br> e.g., `findt CS2103 TP`                                                                                                                              |
+| **Help**                    | `help`                                                                                                                                                                 |
+| **List All**                | `listall`                                                                                                                                                              |
+| **List Persons**            | `listp`                                                                                                                                                                |
+| **List Tasks**              | `listt`                                                                                                                                                                |
+| **Mark Task**               | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                        |
+| **Quick Start**             | `quickstart`                                                                                                                                                           |
+| **Unassign**                | `unassign pi/INDEX ti/INDEX`<br/> e.g. `unassign pi/1 ti/3`                                                                                                            |
+| **Unmark Task**             | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                   |
+| **View Assigned All**       | `viewassignedall`                                                                                                                                                      |
+| **View Assigned Persons**   | `viewassignedp`                                                                                                                                                        |
+| **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                        |
+| **View Unassigned All**     | `viewunassignedall`                                                                                                                                                    |
+| **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                      |
+| **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                      |
