@@ -260,6 +260,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<InternshipApplication> getSortedFilteredInternshipList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<InternshipTodo> getFilteredTodoList() {
             return null;
         }
