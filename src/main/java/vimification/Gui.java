@@ -17,6 +17,7 @@ import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
 import vimification.model.UserPrefs;
+import vimification.model.util.SampleDataUtil;
 import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonMacroMapStorage;
 import vimification.storage.JsonUserPrefsStorage;
@@ -86,7 +87,7 @@ public class Gui extends Application {
             initialData = new LogicTaskList();
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the file.");
-            initialData = new LogicTaskList();
+            initialData = SampleDataUtil.getSampleData();
         }
         return initialData;
     }
