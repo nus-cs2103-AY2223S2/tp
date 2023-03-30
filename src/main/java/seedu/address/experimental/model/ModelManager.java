@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,11 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Template;
 import seedu.address.model.util.ComposedPredicate;
 
 /**
@@ -25,16 +24,13 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character
-                && !(entity instanceof Template);
+    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character;
     private static final Predicate<Entity> PREDICATE_IS_MOB = entity -> entity instanceof Mob;
     private static final Predicate<Entity> PREDICATE_IS_ITEM = entity -> entity instanceof Item;
-    private static final Predicate<Entity> PREDICATE_IS_TEMPLATE = entity -> entity instanceof Template;
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
     private FilteredList<Entity> filteredActive;
-
     private Entity currentSelectedEntity;
 
     /**
@@ -159,11 +155,6 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_IS_MOB);
     }
 
-    @Override
-    public void listTemplates() {
-        updateFilteredEntityList(PREDICATE_IS_TEMPLATE);
-    }
-
     //=========== Filtered Entity List Accessors =============================================================
 
     @Override
@@ -215,9 +206,6 @@ public class ModelManager implements Model {
         case "item":
             entities = this.reroll.getItemList();
             break;
-        case "template":
-            entities = this.reroll.getTemplateList();
-            break;
         default:
             logger.info("What have you done");
         }
@@ -225,7 +213,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Entity> getTemplates() {
-        return reroll.getTemplateList();
+    public Character createFromTemplate(Name entityName, Name templateName) throws NoSuchElementException {
+        return this.reroll.createFromTemplate(entityName, templateName);
+    }
+
+    @Override
+    public List<String> getTemplates() {
+        return this.reroll.getTemplates();
     }
 }

@@ -39,8 +39,6 @@ public class ListCommand extends Command {
             model.listItems();
         } else if (classification.isMob()) {
             model.listMobs();
-        } else if (classification.isTemplate()) {
-            model.listTemplates();
         } else {
             throw new CommandException(MESSAGE_INVALID_ENTITY_TYPE);
         }

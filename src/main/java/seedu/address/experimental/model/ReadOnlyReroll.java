@@ -1,5 +1,7 @@
 package seedu.address.experimental.model;
 
+import java.util.List;
+
 /**
  * Unmodifiable view of Reroll.
  */
@@ -25,7 +27,7 @@ public interface ReadOnlyReroll {
     ReadOnlyEntities getEntities();
 
     /**
-     * Returns an unmodifiable view of all templates.
+     * Returns list of template names.
      */
-    ReadOnlyEntities getTemplates();
+    List<String> getTemplates();
 }

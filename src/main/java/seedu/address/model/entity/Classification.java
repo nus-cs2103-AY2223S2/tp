@@ -13,15 +13,13 @@ public class Classification {
     public static final String MESSAGE_CONSTRAINTS =
         "Classifications can only be char, item or mob, and should not be left blank.";
 
-    public static final String VALIDATION_REGEX = "(char|item|mob|template)";
+    public static final String VALIDATION_REGEX = "(char|item|mob)";
 
     public static final String CHAR_STRING = "char";
 
     public static final String CHAR_ITEM = "item";
 
     public static final String CHAR_MOB = "mob";
-
-    public static final String CHAR_TEMPLATE = "template";
 
     public final String classification;
 
@@ -71,10 +69,6 @@ public class Classification {
 
     public boolean isMob() {
         return Objects.equals(classification, "mob");
-    }
-
-    public boolean isTemplate() {
-        return Objects.equals(classification, "template");
     }
 
 }

@@ -15,11 +15,11 @@ import seedu.address.model.entity.Name;
 public class TemplateCommandParser implements Parser<TemplateCommand> {
     @Override
     public TemplateCommand parse(String args) throws ParseException {
-        boolean isValidCommand = Pattern.matches("^(\\s+[\\w]+)+\\|(\\s+[\\w]+)+$", args.trim());
+        boolean isValidCommand = Pattern.matches("^([\\w]+)(\\s+[\\w]+)+$", args.trim());
         if (!isValidCommand) {
             throw new ParseException("To add");
         }
-        String[] split = args.trim().split("\\|");
+        String[] split = args.trim().split(" ");
         return new TemplateCommand(new Name(split[0]), new Name(split[1]));
     }
 }

@@ -2,33 +2,30 @@ package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Template;
 
 /**
  * Wraps all data at Reroll level.
  */
 public class Reroll implements ReadOnlyReroll {
 
-    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character
-            && !(entity instanceof Template);
+    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character;
     private final Predicate<Entity> isMob = entity -> entity instanceof Mob;
     private final Predicate<Entity> isItem = entity -> entity instanceof Item;
-    private final Predicate<Entity> isTemplate = entity -> entity instanceof Template;
 
     // Abstracting the entity list gives more flexibility for further functionality of Reroll.
     private final RerollAllEntities entities;
     private final ReadOnlyEntities characters;
     private final ReadOnlyEntities items;
     private final ReadOnlyEntities mobs;
-    private final ReadOnlyEntities templates;
+    private final Template templates;
 
     // Initializer
     {
@@ -36,7 +33,7 @@ public class Reroll implements ReadOnlyReroll {
         characters = new RerollCharacters(new FilteredList<>(entities.getEntityList(), isCharacter));
         items = new RerollItems(new FilteredList<>(entities.getEntityList(), isItem));
         mobs = new RerollMobs(new FilteredList<>(entities.getEntityList(), isMob));
-        templates = new RerollTemplates(new FilteredList<>(entities.getEntityList(), isTemplate));
+        templates = Template.getPresetTemplates();
     }
 
     public Reroll() {}
@@ -81,9 +78,7 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     @Override
-    public ReadOnlyEntities getTemplates() {
-        return templates;
-    }
+    public List<String> getTemplates() { return templates.list(); }
 
     // Entity level operations ===============
 
@@ -125,8 +120,8 @@ public class Reroll implements ReadOnlyReroll {
         return mobs.getEntityList();
     }
 
-    public ObservableList<Entity> getTemplateList() {
-        return templates.getEntityList();
+    public Character createFromTemplate(Name newEntity, Name templateName) throws NoSuchElementException {
+        return this.templates.generateCharacter(newEntity, templateName);
     }
 
     @Override

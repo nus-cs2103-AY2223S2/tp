@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -39,16 +40,13 @@ public class TemplateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entity> templates = model.getListByClassification("template");
-        // TODO: Look into removing casting
-        Template templateToUse = (Template) templates.stream()
-                .filter(t -> t.getName().equals(templateName))
-                .findFirst()
-                .orElse(null);
-        if (templateToUse == null) {
-            throw new CommandException(MESSAGE_NO_TEMPLATE);
+        Entity toAdd = null;
+        try {
+            toAdd = model.createFromTemplate(newName, templateName);
+        } catch (NoSuchElementException e) {
+            throw new CommandException(e.getMessage());
         }
-        Entity toAdd = templateToUse.generateCharacter(newName);
+        requireNonNull(toAdd);
         if (model.hasEntity(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTITY);
         }

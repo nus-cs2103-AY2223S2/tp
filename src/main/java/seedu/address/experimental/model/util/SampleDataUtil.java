@@ -9,7 +9,6 @@ import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
-import seedu.address.model.entity.Template;
 import seedu.address.model.tag.Tag;
 
 /***
@@ -43,9 +42,6 @@ public class SampleDataUtil {
         }
         for (Character character : sampleCharacter) {
             sampleRr.addEntity(character);
-        }
-        for (Template t : BasicTemplates.getBasicTemplates()) {
-            sampleRr.addEntity(t);
         }
 
         return sampleRr;
