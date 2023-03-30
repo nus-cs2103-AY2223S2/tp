@@ -27,6 +27,10 @@ public abstract class DetailedInfo extends UiPart<Region> {
         this.listener = listener;
     }
 
+    public MainWindow.ClickListener getListener() {
+        return listener;
+    }
+
     @FXML
     private void viewContactTab() throws CommandException, ParseException {
         listener.viewContact();

@@ -56,6 +56,7 @@ public class DetailedContact extends DetailedInfo {
         final ClipboardContent url = new ClipboardContent();
         url.putString(protagonist.getEmail().value);
         clipboard.setContent(url);
+        getListener().copyText("email address");
     }
     @FXML
     private void copyGithubUrl() {
@@ -63,6 +64,7 @@ public class DetailedContact extends DetailedInfo {
         final ClipboardContent url = new ClipboardContent();
         url.putString(protagonist.getGithub().value == null ? "" : "@" + protagonist.getGithub().value);
         clipboard.setContent(url);
+        getListener().copyText("GitHub URL");
     }
     @FXML
     private void copyLinkedinUrl() {
@@ -70,6 +72,7 @@ public class DetailedContact extends DetailedInfo {
         final ClipboardContent url = new ClipboardContent();
         url.putString(protagonist.getLinkedin().value == null ? "" : protagonist.getLinkedin().value);
         clipboard.setContent(url);
+        getListener().copyText("LinkedIn URL");
     }
 
 }

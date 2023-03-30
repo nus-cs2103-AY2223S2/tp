@@ -31,10 +31,17 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
+    /**
+     * Scrolls itself to last person.
+     */
     public void showLastItem() {
         personListView.scrollTo(personListView.getItems().size() - 1);
     }
 
+    /**
+     * Scrolls itself to the given {@code index}. Selects and highlights the {@code index} too.
+     * @param index
+     */
     public void showIndex(int index) {
         personListView.scrollTo(index);
         personListView.getSelectionModel().select(index);

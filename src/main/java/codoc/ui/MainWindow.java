@@ -267,6 +267,10 @@ public class MainWindow extends UiPart<Stage> {
             executeCommand("view " + index);
         }
 
+        public void copyText(String attribute) {
+            resultDisplay.setFeedbackToUser("Copied " + attribute + " to clipboard!");
+        }
+
     }
 
 }
