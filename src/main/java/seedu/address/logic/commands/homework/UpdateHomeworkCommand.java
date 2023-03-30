@@ -26,7 +26,6 @@ import seedu.address.model.student.exceptions.DuplicateEntryException;
  * Update the information of an existing homework.
  */
 public class UpdateHomeworkCommand extends Command {
-
     public static final String COMMAND_WORD = "update-homework";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing homework.\n"

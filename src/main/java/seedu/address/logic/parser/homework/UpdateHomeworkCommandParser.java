@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.homework.UpdateHomeworkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -60,48 +61,61 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one student one be updated at a time."));
+                    Messages.MESSAGE_ONLY_ONE_STUDENT));
         }
         // name cannot be an empty string
         if (nameKeywords.get(0).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Name cannot be empty."));
+                    Messages.MESSAGE_EMPTY_STUDENT));
         }
 
         if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one index is allowed for update homework command."));
+                    Messages.MESSAGE_ONLY_ONE_INDEX));
         }
         // index cannot be an empty string
         if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Index cannot be empty."));
+                    Messages.MESSAGE_EMPTY_INDEX));
         }
 
         // if homework name is not present, set it to null, else parse it
         Optional<String> homeworkName = Optional.empty();
         if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
+            // there should only be one homework prefix
+            if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_ONLY_ONE_HOMEWORK));
+            }
+
             homeworkName = Optional.of(argMultimap.getValue(PREFIX_HOMEWORK).get());
             // homework name cannot be an empty string
             if (homeworkName.get().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Homework name cannot be empty."));
+                        Messages.MESSAGE_EMPTY_HOMEWORK));
             }
         }
 
         // if deadline is not present, set it to null, else parse it
         Optional<LocalDateTime> deadline = Optional.empty();
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            // there should only be one deadline prefix
+            if (argMultimap.getAllValues(PREFIX_DEADLINE).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_ONLY_ONE_DEADLINE));
+            }
+
             deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
             // deadline cannot be an empty string
             if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Deadline cannot be empty."));
+                        Messages.MESSAGE_EMPTY_DEADLINE));
             }
 
             // deadline must be in the future
             if (deadline.get().isBefore(LocalDateTime.now())) {
-                throw new ParseException(String.format("Deadline must be in the future."));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_DEADLINE_IN_PAST));
             }
         }
 

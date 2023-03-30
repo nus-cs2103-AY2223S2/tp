@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.homework.CreateHomeworkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -68,6 +69,9 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
                     "Deadline cannot be empty."));
         }
         LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        if (deadline.isBefore(LocalDateTime.now())) {
+            throw new ParseException(Messages.MESSAGE_DEADLINE_IN_PAST);
+        }
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
 

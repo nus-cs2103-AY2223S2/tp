@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.homework.MarkHomeworkAsDoneCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -56,23 +57,23 @@ public class MarkHomeworkAsDoneCommandParser implements Parser<MarkHomeworkAsDon
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one student name is allowed."));
+                    Messages.MESSAGE_ONLY_ONE_STUDENT));
         }
         // name cannot be an empty string
         if (nameKeywords.get(0).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Name cannot be empty."));
+                    Messages.MESSAGE_EMPTY_STUDENT));
         }
 
         // there should also be one index keyword
         if (argMultimap.getAllValues(PREFIX_INDEX).size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one index is allowed for mark homework as done command."));
+                    Messages.MESSAGE_ONLY_ONE_INDEX));
         }
         // index cannot be an empty string
         if (argMultimap.getValue(PREFIX_INDEX).get().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Index cannot be empty."));
+                    Messages.MESSAGE_EMPTY_INDEX));
         }
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
