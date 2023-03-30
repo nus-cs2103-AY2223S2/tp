@@ -69,9 +69,8 @@ public class LogicManager implements Logic {
             throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        Command command = addressBookParser.parseCommand(commandText);
-        if (condition.test(command.getGroup())) {
-            return execute(command);
+        if (condition.test(addressBookParser.parseCommandGroup(commandText))) {
+            return execute(addressBookParser.parseCommand(commandText));
         } else {
             return new CommandResult(String.format(Messages.COMMAND_NOT_ALLOW));
         }

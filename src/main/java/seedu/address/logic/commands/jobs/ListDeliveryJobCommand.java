@@ -15,7 +15,6 @@ public class ListDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all jobs";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
