@@ -17,7 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TUTORIAL = new Prefix("Tutorial/");
     public static final Prefix PREFIX_LAB = new Prefix("Lab/");
     public static final Prefix PREFIX_CONSULTATION = new Prefix("Consultation/");
-    public static final Prefix PREFIX_GENERAL_INDEX = new Prefix("Index/");
     public static final Prefix PREFIX_RECUR = new Prefix("Recur/");
     public static final Prefix PREFIX_SORT_STUDENT = new Prefix("sort student/");
     public static final Prefix PREFIX_FILTER = new Prefix("Filter/");

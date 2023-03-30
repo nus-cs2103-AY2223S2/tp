@@ -145,7 +145,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteStudentFromEvent(Index index, String eventName, String eventType) {
+        public void deleteStudentFromEvent(Index index, Index eventIndex, String eventType) {
             throw new AssertionError("This method should not be called.");
         }
 

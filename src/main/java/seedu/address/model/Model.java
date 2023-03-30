@@ -133,10 +133,10 @@ public interface Model {
      * Deletes a student from an event
      *
      * @param toDel the index of the student within the AddressBook's internal UniquePersonList to be deleted.
-     * @param eventName the name of the event that the student will be deleted from.
+     * @param eventIndex the index of the event that the student will be deleted from.
      * @param eventType the type of event that the student will be deleted from.
      */
-    void deleteStudentFromEvent(Index toDel, String eventName, String eventType);
+    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType);
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();

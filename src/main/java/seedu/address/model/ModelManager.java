@@ -161,8 +161,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudentFromEvent(Index toDel, String eventName, String eventType) {
-        addressBook.deleteStudentFromEvent(toDel, eventName, eventType);
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) {
+        addressBook.deleteStudentFromEvent(toDel, eventIndex, eventType);
     }
 
     @Override

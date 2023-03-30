@@ -49,6 +49,7 @@ public class AddStudentToEventCommand extends Command {
         } else {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS),
+                false, false, false, true);
     }
 }

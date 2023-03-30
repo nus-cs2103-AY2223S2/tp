@@ -107,36 +107,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Deletes a student from an event.
      *
      * @param toDel the index of the student within the event's student list to be deleted.
-     * @param name the name of the event from which the student will be deleted.
+     * @param eventIndex the index of the event from which the student will be deleted.
      * @param type the type of the event from which the student will be deleted.
      */
-    public void deleteStudentFromEvent(Index toDel, String name, String type) {
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String type) {
         Optional<Event> target = Optional.empty();
         if (type.equals(PREFIX_TUTORIAL.getPrefix())) {
-            for (int i = 0; i < tutorials.size(); i++) {
-                if (tutorials.get(i).hasMatchByName(name)) {
-                    target = Optional.of(tutorials.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(tutorials.get(eventIndex.getZeroBased()));
         }
 
         if (type.equals(PREFIX_LAB.getPrefix())) {
-            for (int i = 0; i < labs.size(); i++) {
-                if (labs.get(i).hasMatchByName(name)) {
-                    target = Optional.of(labs.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(labs.get(eventIndex.getZeroBased()));
         }
 
         if (type.equals(PREFIX_CONSULTATION.getPrefix())) {
-            for (int i = 0; i < consultations.size(); i++) {
-                if (consultations.get(i).hasMatchByName(name)) {
-                    target = Optional.of(consultations.get(i));
-                    break;
-                }
-            }
+            target = Optional.of(consultations.get(eventIndex.getZeroBased()));
         }
 
         if (target.isEmpty()) {
