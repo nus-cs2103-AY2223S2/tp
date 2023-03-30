@@ -221,14 +221,14 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 
 ## Command summary
 
-| Action          | Format, Examples                                                                          |
-|-----------------|-------------------------------------------------------------------------------------------|
-| **Add**         | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN|
-| **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                       |
-| **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`               |
-| **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`        |
-| **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                 |
-| **List**        | `list`                                                                                    |
-| **Help**        | `help`                                                                                    |
-| **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                             |
+| Action         | Format, Examples                                                                          |
+|----------------|-------------------------------------------------------------------------------------------|
+| **Add**        | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN`|
+| **Delete**     | `delete INDEX`<br> e.g., `delete 1`                                                       |
+| **Edit**       | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`               |
+| **Find**       | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`        |
+| **Add Ward**   | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                 |
+| **List**       | `list`                                                                                    |
+| **Help**       | `help`                                                                                    |
+| **Sort**       | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                             |
 | **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                              |
