@@ -2,13 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PrescribeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Medication;
+import seedu.address.model.person.Nric;
+import seedu.address.model.prescription.Cost;
+import seedu.address.model.prescription.Medication;
+import seedu.address.model.prescription.Prescription;
 
 /**
  * Parses input arguments and creates a new PrescribeCommand object
@@ -24,18 +27,19 @@ public class PrescribeCommandParser implements Parser<PrescribeCommand> {
      */
     public PrescribeCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEDICATION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_MEDICATION, PREFIX_COST);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        if (!argMultimap.getValue(PREFIX_NRIC).isPresent() || !argMultimap.getValue(PREFIX_MEDICATION).isPresent()
+                || !argMultimap.getValue(PREFIX_COST).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrescribeCommand.MESSAGE_USAGE));
         }
 
-        Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).get());
+        Cost cost = ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get());
+        Prescription prescription = new Prescription(medication, cost);
 
-        return new PrescribeCommand(index, medication);
+        return new PrescribeCommand(nric, prescription);
     }
     //@@author Jeffry Lum
 }
