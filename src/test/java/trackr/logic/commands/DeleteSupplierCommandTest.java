@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -30,7 +31,7 @@ import trackr.model.person.Supplier;
 public class DeleteSupplierCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws ParseException {
@@ -42,7 +43,7 @@ public class DeleteSupplierCommandTest {
                 supplierToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
@@ -67,8 +68,8 @@ public class DeleteSupplierCommandTest {
                 ModelEnum.SUPPLIER,
                 supplierToDelete);
 
-        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
         showNoSupplier(expectedModel);
 

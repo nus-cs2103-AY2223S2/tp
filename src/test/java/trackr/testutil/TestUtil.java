@@ -12,12 +12,14 @@ import trackr.commons.core.GuiSettings;
 import trackr.commons.core.index.Index;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -158,6 +160,16 @@ public class TestUtil {
 
         @Override
         public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMenu getMenu() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<MenuItem> getFilteredMenu() {
             throw new AssertionError("This method should not be called.");
         }
 

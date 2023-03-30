@@ -5,13 +5,19 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import trackr.model.Menu;
 import trackr.model.OrderList;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.commons.Tag;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
+import trackr.model.menu.ItemPrice;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
@@ -92,6 +98,22 @@ public class SampleDataUtil {
             sampleTl.addItem(sampleTask);
         }
         return sampleTl;
+    }
+
+    public static MenuItem[] getSampleMenuItems() {
+        return new MenuItem[] {
+            new MenuItem(new ItemName("Chocolate Cookies"), new ItemPrice("5"), new ItemCost("1")),
+            new MenuItem(new ItemName("Cupcake"), new ItemPrice("6"), new ItemCost("1")),
+            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("0.5")),
+        };
+    }
+
+    public static ReadOnlyMenu getSampleMenu() {
+        Menu sampleM = new Menu();
+        for (MenuItem sampleMenuItem : getSampleMenuItems()) {
+            sampleM.addItem(sampleMenuItem);
+        }
+        return sampleM;
     }
 
     public static Order[] getSampleOrders() {

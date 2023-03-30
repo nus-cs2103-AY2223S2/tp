@@ -14,6 +14,9 @@ import trackr.model.commons.Deadline;
 import trackr.model.commons.Name;
 import trackr.model.commons.TabEnum;
 import trackr.model.commons.Tag;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
+import trackr.model.menu.ItemPrice;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -205,6 +208,52 @@ public class ParserUtil {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return new TaskStatus(trimmedTaskStatus);
+    }
+    //========================Parse those related to menu item==================================
+
+    /**
+     * Parses a {@code String itemName} into a {@code ItemName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemName parseItemName(String itemName) throws ParseException {
+        requireNonNull(itemName);
+        String trimmedItemName = itemName.trim();
+        if (!ItemName.isValidName(trimmedItemName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemName(trimmedItemName);
+    }
+
+    /**
+     * Parses a {@code String itemPrice} into a {@code ItemPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemPrice parseItemPrice(String itemPrice) throws ParseException {
+        requireNonNull(itemPrice);
+        String trimmedItemPrice = itemPrice.trim();
+        if (!ItemPrice.isValidPrice(trimmedItemPrice)) {
+            throw new ParseException(ItemPrice.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemPrice(trimmedItemPrice);
+    }
+
+    /**
+     * Parses a {@code String itemPrice} into a {@code ItemPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code itemName} is invalid.
+     */
+    public static ItemCost parseItemCost(String itemCost) throws ParseException {
+        requireNonNull(itemCost);
+        String trimmedItemCost = itemCost.trim();
+        if (!ItemCost.isValidCost(trimmedItemCost)) {
+            throw new ParseException(ItemCost.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemCost(trimmedItemCost);
     }
 
     //========================Parse those related to order==================================

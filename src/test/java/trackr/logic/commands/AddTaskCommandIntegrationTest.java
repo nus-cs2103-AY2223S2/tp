@@ -3,6 +3,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -29,14 +30,14 @@ public class AddTaskCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-                getTypicalOrderList(), new UserPrefs());
+                getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
     public void execute_newTask_success() throws ParseException {
         Task validTask = new TaskBuilder().build();
         Model expectedModel = new ModelManager(model.getSupplierList(),
-                model.getTaskList(), getTypicalOrderList(), new UserPrefs());
+                model.getTaskList(), getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
         expectedModel.addItem(validTask, ModelEnum.TASK);
 
         assertCommandSuccess(new AddTaskCommand(validTask), model,

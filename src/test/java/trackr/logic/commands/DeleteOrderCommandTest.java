@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -29,7 +30,7 @@ import trackr.model.order.Order;
  */
 public class DeleteOrderCommandTest {
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredOrderList_success() throws ParseException {
@@ -41,7 +42,7 @@ public class DeleteOrderCommandTest {
                 orderToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         expectedModel.deleteItem(orderToDelete, ModelEnum.ORDER);
 
@@ -68,7 +69,7 @@ public class DeleteOrderCommandTest {
                 orderToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(orderToDelete, ModelEnum.ORDER);
         showNoOrder(expectedModel);
 

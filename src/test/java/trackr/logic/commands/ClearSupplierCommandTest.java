@@ -1,6 +1,7 @@
 package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -30,9 +31,9 @@ public class ClearSupplierCommandTest {
     @Test
     public void execute_nonEmptySupplierList_success() throws ParseException {
         Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-                getTypicalOrderList(), new UserPrefs());
+                getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-                getTypicalOrderList(), new UserPrefs());
+                getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
         expectedModel.setItemList(ModelEnum.SUPPLIER);
 
         assertCommandSuccess(new ClearSupplierCommand(),

@@ -12,6 +12,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -23,6 +24,7 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.commands.supplier.EditSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.Menu;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -41,7 +43,7 @@ import trackr.testutil.SupplierBuilder;
 public class EditSupplierCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
@@ -54,7 +56,8 @@ public class EditSupplierCommandTest {
                 editedSupplier);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new Menu(model.getMenu()),
+                new OrderList(model.getOrderList()), new UserPrefs());
         expectedModel.setItem(model.getFilteredSupplierList().get(0), editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +81,8 @@ public class EditSupplierCommandTest {
                 editedSupplier);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new Menu(model.getMenu()),
+                new OrderList(model.getOrderList()), new UserPrefs());
         expectedModel.setItem(lastSupplier, editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -94,7 +98,8 @@ public class EditSupplierCommandTest {
                 editedSupplier);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new Menu(model.getMenu()),
+                new OrderList(model.getOrderList()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -113,7 +118,8 @@ public class EditSupplierCommandTest {
                 editedSupplier);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+                new TaskList(model.getTaskList()), new Menu(model.getMenu()),
+                new OrderList(model.getOrderList()), new UserPrefs());
         expectedModel.setItem(model.getFilteredSupplierList().get(0), editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

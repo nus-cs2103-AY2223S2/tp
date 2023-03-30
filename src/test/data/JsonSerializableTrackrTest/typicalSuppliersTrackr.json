@@ -44,5 +44,6 @@
     "tagged" : [ ]
   } ],
   "tasks": [ ],
-  "orders": [ ]
+  "orders": [ ],
+  "menuItems": [ ]
 }

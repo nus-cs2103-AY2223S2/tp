@@ -13,9 +13,11 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -49,7 +51,7 @@ public class LogicManager implements Logic {
         Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
-            storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getOrderList());
+            storage.saveTrackr(model.getSupplierList(), model.getTaskList(), model.getMenu(), model.getOrderList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -75,6 +77,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
+    }
+
+    @Override
+    public ReadOnlyMenu getMenu() {
+        return model.getMenu();
+    }
+
+    @Override
+    public ObservableList<MenuItem> getFilteredMenu() {
+        return model.getFilteredMenu();
     }
 
     @Override
