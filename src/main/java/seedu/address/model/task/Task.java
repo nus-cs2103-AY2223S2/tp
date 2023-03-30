@@ -1,12 +1,11 @@
 package seedu.address.model.task;
 
-import javafx.scene.paint.Color;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.person.Person;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Person;
 
 /**
  * This class is the parent class of tasks that make up the tasklist.
@@ -77,6 +76,12 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * Returns whether task is done or not
+     *
+     * @return Boolean value of whether task is overdue.
+     * @throws ParseException
+     */
     public boolean isOverdue() throws ParseException {
         String date = getDate();
         if (date.length() == 0) {
@@ -88,6 +93,12 @@ public class Task {
         return currentDate.after(deadlineDate);
     }
 
+    /**
+     * Returns whether task is due today or not
+     *
+     * @return Boolean value of whether task is due today
+     * @throws ParseException
+     */
     public boolean isDueToday() throws ParseException {
         SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
         String date = getDate();
