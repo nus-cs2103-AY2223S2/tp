@@ -262,7 +262,7 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getClass().equals(getClass())
+                && otherStudent.getStudentClass().equals(getStudentClass())
                 && otherStudent.getIndexNumber().equals(getIndexNumber())
                 && otherStudent.getSex().equals(getSex());
     }
