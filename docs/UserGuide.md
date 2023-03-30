@@ -156,7 +156,7 @@ Format:
 
 Examples:
 `status 1` or `status David` Returns the status of ID `1` or the status of `David`
-`status David closed-won` Assigns the status of `David` to be `closed-won`
+`status David s/Q` Assigns the status of `David` to be `Qualified`
 
 ### Finding a contact name: `find`
 
@@ -193,7 +193,7 @@ Examples:
 
 ### Finding a contact tag: `findlead`
 
-Search for a contact based on their tags.
+Search for a contact based on their leads.
 
 Format: `findlead <valid lead status>`
 
