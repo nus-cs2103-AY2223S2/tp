@@ -91,7 +91,6 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
         return initial;
     }
 
-
     @Override
     public abstract boolean test(T thing);
 }
