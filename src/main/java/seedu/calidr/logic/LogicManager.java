@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final AB3StorageComposite AB3StorageComposite;
+    private final AB3StorageComposite aB3StorageComposite;
     // private final AddressBookParser addressBookParser;
 
     private final CalidrParser calidrParser;
@@ -34,9 +34,9 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, AB3StorageComposite AB3StorageComposite) {
+    public LogicManager(Model model, AB3StorageComposite aB3StorageComposite) {
         this.model = model;
-        this.AB3StorageComposite = AB3StorageComposite;
+        this.aB3StorageComposite = aB3StorageComposite;
         // addressBookParser = new AddressBookParser();
         calidrParser = new CalidrParser();
     }

@@ -1,14 +1,16 @@
 package seedu.calidr.storage;
 
 import static java.util.Objects.requireNonNull;
+import static net.fortuna.ical4j.model.Property.CATEGORIES;
 import static net.fortuna.ical4j.model.Property.DESCRIPTION;
 import static net.fortuna.ical4j.model.Property.LOCATION;
-import static net.fortuna.ical4j.model.Property.CATEGORIES;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_HIGH;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_LOW;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_MEDIUM;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -24,11 +26,11 @@ import net.fortuna.ical4j.model.TextList;
 import net.fortuna.ical4j.model.component.CalendarComponent;
 import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.component.VToDo;
-import net.fortuna.ical4j.model.property.DateProperty;
-import net.fortuna.ical4j.model.property.Status;
 import net.fortuna.ical4j.model.property.Categories;
+import net.fortuna.ical4j.model.property.DateProperty;
 import net.fortuna.ical4j.model.property.Description;
 import net.fortuna.ical4j.model.property.Location;
+import net.fortuna.ical4j.model.property.Status;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.exceptions.DataConversionException;
 import seedu.calidr.commons.util.FileUtil;
@@ -36,11 +38,11 @@ import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
-import seedu.calidr.model.task.params.Priority;
-import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.EventDateTimes;
-import seedu.calidr.model.task.params.TodoDateTime;
+import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Tag;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
 import seedu.calidr.model.tasklist.TaskList;
 
 /**
@@ -69,8 +71,6 @@ public class IcsCalendarStorage implements TaskListStorage {
 
     /**
      * @see #saveTaskList(ReadOnlyTaskList, Path)
-     * @param taskList Task List
-     * @throws IOException Thrown while writing to the output stream
      */
     @Override
     public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
@@ -99,9 +99,6 @@ public class IcsCalendarStorage implements TaskListStorage {
 
     /**
      * @see #readTaskList(Path)
-     * @return Parsed task list
-     * @throws DataConversionException If invalid format for ics file stream
-     * @throws IOException Thrown while reading the ics file
      */
     @Override
     public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
@@ -162,8 +159,7 @@ public class IcsCalendarStorage implements TaskListStorage {
             }
 
             component = vtodo;
-        }
-        else {
+        } else {
             throw new UnsupportedOperationException();
         }
 
@@ -233,9 +229,12 @@ public class IcsCalendarStorage implements TaskListStorage {
         Optional<Categories> categories = component.getProperty(CATEGORIES);
 
         task.ifPresent(t -> {
-            description.ifPresent(desc -> t.setDescription(new seedu.calidr.model.task.params.Description(desc.getValue())));
-            location.ifPresent(loc -> t.setLocation(new seedu.calidr.model.task.params.Location(loc.getValue())));
-            var otags = categories.map(cats -> cats.getCategories().stream().map(Tag::new).collect(Collectors.toSet()));
+            description.ifPresent(desc ->
+                t.setDescription(new seedu.calidr.model.task.params.Description(desc.getValue())));
+            location.ifPresent(loc ->
+                t.setLocation(new seedu.calidr.model.task.params.Location(loc.getValue())));
+            var otags = categories.map(cats ->
+                cats.getCategories().stream().map(Tag::new).collect(Collectors.toSet()));
             otags.ifPresent(t::setTags);
         });
 

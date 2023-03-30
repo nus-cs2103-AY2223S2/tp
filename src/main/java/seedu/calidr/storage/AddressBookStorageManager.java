@@ -14,16 +14,16 @@ import seedu.calidr.model.UserPrefs;
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class AddressBookAB3StorageManagerComposite implements AB3StorageComposite {
+public class AddressBookStorageManager implements AB3StorageComposite {
 
-    private static final Logger logger = LogsCenter.getLogger(AddressBookAB3StorageManagerComposite.class);
+    private static final Logger logger = LogsCenter.getLogger(AddressBookStorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public AddressBookAB3StorageManagerComposite(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public AddressBookStorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }

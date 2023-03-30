@@ -20,13 +20,13 @@ public class AddressBookAB3StorageManagerTestComposite {
     @TempDir
     public Path testFolder;
 
-    private AddressBookAB3StorageManagerComposite addressBookStorageManager;
+    private AddressBookStorageManager addressBookStorageManager;
 
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        addressBookStorageManager = new AddressBookAB3StorageManagerComposite(addressBookStorage, userPrefsStorage);
+        addressBookStorageManager = new AddressBookStorageManager(addressBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

@@ -19,7 +19,7 @@ import seedu.calidr.model.Model;
 import seedu.calidr.model.ModelManager;
 import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.UserPrefs;
-import seedu.calidr.storage.AddressBookAB3StorageManagerComposite;
+import seedu.calidr.storage.AddressBookStorageManager;
 import seedu.calidr.storage.JsonAddressBookStorage;
 import seedu.calidr.storage.JsonUserPrefsStorage;
 
@@ -37,7 +37,7 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        AddressBookAB3StorageManagerComposite storage = new AddressBookAB3StorageManagerComposite(addressBookStorage, userPrefsStorage);
+        AddressBookStorageManager storage = new AddressBookStorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
