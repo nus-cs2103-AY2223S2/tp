@@ -275,9 +275,13 @@ Examples:
 * `list` followed by `deleteScore 2 1` deletes first score of the 2nd student in the student list.
 * `find Betsy` followed by `deleteScore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
-### Exporting a student's progress : `exportP`
+### Exporting a student's progress : `exportp`
 
-Exports the specified student's progress into a pdf file.
+Exports the specified student's progress into a PDF file.
+
+Format: `exportp INDEX [p/FILE PATH TO DIRECTORY]`
+
+* Exports the specified student's scores list and task list in the form of a PDF file.
 
 ### Clearing all entries : `clear`
 
