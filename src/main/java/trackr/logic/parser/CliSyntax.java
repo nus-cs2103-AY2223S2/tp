@@ -19,4 +19,5 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_TAB = new Prefix("t/");
 
+    public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
 }
