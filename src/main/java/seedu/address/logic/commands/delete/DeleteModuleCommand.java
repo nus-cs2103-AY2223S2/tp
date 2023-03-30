@@ -1,8 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCode;
@@ -16,7 +18,7 @@ public class DeleteModuleCommand extends DeleteCommand {
     public static final String MESSAGE_USAGE =
             "(1) Deletes the module identified by the module code.\n"
             + "Parameters: module code\n"
-            + "Example: " + COMMAND_WORD + " CS2040S\n";
+            + "Example: " + COMMAND_WORD + " CS2040S";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
@@ -39,7 +41,9 @@ public class DeleteModuleCommand extends DeleteCommand {
 
             ReadOnlyModule moduleToDelete = model.getModule(targetModuleCode);
             model.deleteModule(moduleToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
+
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetModuleCode),
+                    new ModuleEditInfo(moduleToDelete, null));
 
         } else {
 

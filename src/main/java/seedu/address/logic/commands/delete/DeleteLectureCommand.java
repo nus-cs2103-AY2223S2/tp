@@ -1,9 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -19,7 +21,7 @@ public class DeleteLectureCommand extends DeleteCommand {
     public static final String MESSAGE_USAGE =
             "(2) Deletes the lecture of the module identified by the lecture name and module code.\n"
             + "Parameters: lecture name, module code\n"
-            + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103/T\n";
+            + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103/T";
 
     public static final String MESSAGE_DELETE_LECTURE_SUCCESS = "Deleted Lecture: %1$s from Module %2$s";
 
@@ -33,7 +35,7 @@ public class DeleteLectureCommand extends DeleteCommand {
      * @param targetLectureName Name of lecture to delete
      * @param moduleCode Module Code of module that lecture is within
      */
-    public DeleteLectureCommand(LectureName targetLectureName, ModuleCode moduleCode) {
+    public DeleteLectureCommand(ModuleCode moduleCode, LectureName targetLectureName) {
         this.moduleCode = moduleCode;
         this.targetLectureName = targetLectureName;
     }
@@ -56,7 +58,8 @@ public class DeleteLectureCommand extends DeleteCommand {
 
         model.deleteLecture(module, lectureToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, lectureToDelete, moduleCode));
+        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, targetLectureName, moduleCode),
+                new LectureEditInfo(moduleCode, lectureToDelete, null));
 
     }
 

@@ -1,10 +1,12 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -37,7 +39,7 @@ public class DeleteVideoCommand extends DeleteCommand {
      * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
-    public DeleteVideoCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
+    public DeleteVideoCommand(ModuleCode moduleCode, LectureName lectureName, VideoName targetVideoName) {
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
         this.targetVideoName = targetVideoName;
@@ -72,9 +74,10 @@ public class DeleteVideoCommand extends DeleteCommand {
         model.deleteVideo(lecture, targetVideo);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VIDEO_SUCCESS,
-                                                    targetVideoName,
-                                                    lectureName,
-                                                    moduleCode));
+                        targetVideoName,
+                        lectureName,
+                        moduleCode),
+                new VideoEditInfo(moduleCode, lectureName, targetVideo, null));
     }
 
     @Override

@@ -55,7 +55,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Type the command in the command box.
+2. Type the command in the command box. Use the `UP` and `DOWN` arrow to toggle through previous commands that you have executed.
 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -86,14 +86,15 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 - `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
 
 ### Mark/Unmark
-  - `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
-  - `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
+
+- `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
+- `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
 
 ### Delete
 
-- `delete-module {module_code}`: Deletes a module from Le Tracker
-- `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
-- `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
+- `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`: Deletes module(s) from Le Tracker
+- `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`: Deletes the specified lecture(s) from the specified module
+- `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] [/mod {module_code}] [/lec {lecture_name}]`: Deletes the specified video(s) from the specified lecture from the specified module
 
 ### Tag
 
@@ -284,6 +285,7 @@ Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags
 - `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
+
 - `edit CS2040 /code CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 ### Edit a Lecture
@@ -340,45 +342,53 @@ Examples:
 - `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
 - `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
 
-### Delete a Module
+### Delete Module(s)
 
-> Deletes the specified module and all its embodied content from the application
+> Deletes the specified module(s) and all its embodied content from the application
 
-Format: `delete-module CS2040`
+Format: `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-- Deletes the module of the specified `module_code`
-- If the module does not exist, nothing happens
-
-Examples:
-
-- `delete-module CS2040`
-
-### Delete a Lecture
-
-> Deletes the specified lecture from the specified module
-
-Format: `delete-lecture /module {module_code} /lecture {lecture_id}`
-
-- Deletes the lecture of the specified `lecture_id` from the specified `module_code`
-- The `lecture_id` **must be a positive integer** 1, 2, 3, ...
+- `module_code_1`, `module_code_2`, `module_code_3`, ...: Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
+- Module codes must be of valid format
+- If any module specified does not exist, nothing changes within the model
 
 Examples:
 
-- `delete-lecture CS2040 /lecture 1` deletes the 1st lecture in the results of the `list /module CS2040` command
+- `delete CS2040`
+- `delete CS2040, ST2334`
 
-### Delete a Video
+### Delete Lecture(s)
 
-> Deletes the specified video from the specified lecture from the specified module
+> Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-Format: `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`
+Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
 
-- Deletes the video of the specified `video_id` from the specified `lecture_id` of the specified `module_code`
-- `video_id` refers to the index number shown when listing the videos of the specified lecture using the `lecture_id` in the specified module using the `module_code`
-- the `video_id` **must be a positive integer** 1, 2, 3, ...
+- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
+- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
+- Lecture names must be of valid format
+- If any lecture specified does not exist within specified module, nothing changes within the model
 
 Examples:
 
-- `delete-video /module CS2040 /lecture 1 /video 3` deletes the 3rd video in the results of the `list /module CS2040 /lecture 1` command
+- `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
+- `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
+
+### Delete Video(s)
+
+> Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
+
+Format: `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
+
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
+- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
+- `lecture_name` must be of valid format and have a lecture of `lecture_name` exist in module of `module_code`
+- Video names must be of valid format
+- If any video specified does not exist within the specified lecture of the specified module, nothing changes within the model
+
+Examples:
+
+- `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
+- `delete video 1, video 3 /mod CS2040 /leclecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
 
 ### Tag a module
 

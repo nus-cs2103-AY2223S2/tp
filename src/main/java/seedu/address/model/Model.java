@@ -295,20 +295,27 @@ public interface Model {
      * Updates the filter of the filtered video list to filter by the given {@code predicate}.
      *
      * @param predicate The predicate to filter video by.
+     * @param moduleCode The module code that the lecture belongs to.
      * @param lecture The lecture that the video list belongs to.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture);
-
-    /**
-     * Updates the filter to hide all the contents of a list.
-     */
-    void updateAllFilteredListAsHidden();
+    void updateFilteredVideoList(Predicate<Video> predicate,
+            ModuleCode moduleCode, ReadOnlyLecture lecture);
 
     /**
      * Returns the last list type to displayed to user.
      */
-    Level getLastListLevel();
+    DisplayListLevel getLastListLevel();
+
+    /**
+     * Returns the module of the listed lectures or listed videos.
+     */
+    ReadOnlyModule getListedLecturesByModule();
+
+    /**
+     * Returns the lecture of the listed videos.
+     */
+    ReadOnlyLecture getListedVideosByLecture();
 
     /**
      * Navigates to the parent layer.
