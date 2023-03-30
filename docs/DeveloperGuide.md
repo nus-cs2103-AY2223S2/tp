@@ -47,7 +47,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds tqgiothe data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to various platforms of storage.
 
 
