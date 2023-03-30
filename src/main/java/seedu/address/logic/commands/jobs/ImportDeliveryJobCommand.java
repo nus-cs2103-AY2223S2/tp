@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.CommandResult;
@@ -37,23 +38,21 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException, FileNotFoundException {
         requireNonNull(model);
-        Person recipient = new Person();
-        Person sender = new Person();
+        List<Person> listOfCustomers = new ArrayList<>();
 
         if (toAdd.length() == 0) {
             throw new CommandException(MESSAGE_EMPTY_FILE);
         }
 
         List<DeliveryJob> listOfAddDeliveryJob;
+        listOfAddDeliveryJob = ImportDeliveryJobCommandParser.parse(toAdd, listOfCustomers);
 
-        listOfAddDeliveryJob = ImportDeliveryJobCommandParser.parse(toAdd, recipient, sender);
-
-        if (!model.hasPerson(recipient) && !recipient.getPersonId().equals("null")) {
-            model.addPerson(recipient);
-        }
-
-        if (!model.hasPerson(sender) && !sender.getPersonId().equals("null")) {
-            model.addPerson(sender);
+        for (int i = 0; i < listOfCustomers.size(); i++) {
+            Person customer = listOfCustomers.get(i);
+            if (!model.hasPerson(customer) && !customer.getPersonId().equals("null")) {
+                model.addPerson(customer);
+                System.out.println(customer);
+            }
         }
 
         for (int i = 0; i < listOfAddDeliveryJob.size(); i++) {

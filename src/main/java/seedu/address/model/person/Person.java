@@ -56,7 +56,7 @@ public class Person {
         this.phone = null;
         this.email = null;
         this.address = null;
-        this.tags.addAll(null);
+        this.tags.add(null);
     }
 
 

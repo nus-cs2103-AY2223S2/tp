@@ -34,35 +34,31 @@ public class ImportDeliveryJobCommandParser {
      * @return List of delivery jobs to be added
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static List<DeliveryJob> parse(File file, Person recipient, Person sender)
+    public static List<DeliveryJob> parse(File file, List<Person> listOfCustomers)
             throws ParseException, FileNotFoundException {
-
         try (Scanner sc = new Scanner(file)) {
             List<DeliveryJob> listOfAddDeliveryJob = new ArrayList<>();
-
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] arrOfStr = line.split(",");
-
-                if (arrOfStr.length != 5) {
+                if (arrOfStr.length < 5) {
                     throw new ParseException(
                             String.format(MESSAGE_MISSING_ELEMENT_IN_IMPORT, AddDeliveryJobCommand.MESSAGE_USAGE));
                 }
-
                 String sid = arrOfStr[0];
                 String rid = arrOfStr[1];
                 String ded = arrOfStr[2];
                 String des = arrOfStr[3];
                 String ear = arrOfStr[4];
                 String description = arrOfStr[5];
-
                 if (arrOfStr.length > 6) {
-                    recipient = recipientOrSender(sid, arrOfStr, 5);
+                    Person recipient = recipientOrSender(sid, arrOfStr, 6);
+                    listOfCustomers.add(recipient);
                 }
                 if (arrOfStr.length > 12) {
-                    sender = recipientOrSender(sid, arrOfStr, 11);
+                    Person sender = recipientOrSender(sid, arrOfStr, 12);
+                    listOfCustomers.add(sender);
                 }
-
                 DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, description);
                 listOfAddDeliveryJob.add(job);
             }
