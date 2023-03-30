@@ -26,7 +26,7 @@ title: Developer Guide
    * [Model Component](#model-component)
      * [Person](#person)
          * [Name](#name)
-         * [Address](#address)
+         * [Station](#station)
          * [Phone](#phone)
          * [Email](#email)
          * [Telegram Handle](#telegram-handle)
@@ -257,7 +257,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
- | Address         | 200 Bishan Road                         |
+ | Station         | 200 Bishan Road                         |
  | Telegram Handle | @beeshan                                |
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
@@ -402,7 +402,7 @@ The `Model` component,
 
 Represents the name of the user or the contact in `EduMate`.
 
-#### **Address**
+#### **Station**
 
 Represents the nearest MRT station to the user or contact's home.
 
@@ -590,7 +590,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 :information_source: **Command Formats:** <br>
 
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
@@ -937,7 +937,7 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 #### **Prefix**
 
-The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
 ## **Recommenders**
 
@@ -950,7 +950,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 <br>
 
 The `Recommender` component,
-* consists of 3 sub-components (modules) : `TimingRecommender`, `LocationRecommender` and `LocationTracker`.
+* consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
 * recommends timing and location of meetups for relevant participants and the user.
 
 How the `Recommender` Component works:
@@ -976,7 +976,7 @@ will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6.2</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -989,35 +989,7 @@ the participants could meet up.
 
 #### Location Recommender
 
-The `LocationRecommender`'s role is to recommend a **central location** where persons can meet. It accepts two sets of locations:
-1. A set of `destinations` to be suggested. They could be places to study, eat or both.
-2. A set of `sources` representing the participants' locations given a particular time.
-
-The midpoint of these `sources` is calculated, and then we compare the `destinations` based on how close they are to this midpoint. In this way, we recommend the locations that are the closest for everybody.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **DistanceUtil**
-As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
-
-</div>
-
-#### Location Tracker
-
-The `LocationTracker`'s role is to give an approximate location of a person given a certain timing. These approximations are then fed into the `LocationRecommender` to give more accurate recommendations.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **How we approximate a location**
-A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
-
-</div>
-
-The process of getting a recommendation is as follows:
-1. From the person's timetable, we gather their set of **known locations**. For example, if the person has a lesson at NUS on Monday 8AM to 9AM, we know their location at that time period.
-2. Next, between any two **consecutive known locations**, we calculate the number of unknown locations between them.
-3. Based on this calculation, the `DistanceUtil` will return a list of approximations that achieve what was mentioned earlier.
-4. Finally, these locations are put in their respective places in the `LocationTracker`.
+{to be filled by Hafeez}
 
 ---
 
@@ -1407,7 +1379,7 @@ testers are expected to do more *exploratory* testing.
 
 ### **Add a new person**
 
-`add n/Thomas a/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
+`add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
 Expected Output in the Person List: New person added to EduMate.
 
@@ -1444,7 +1416,7 @@ Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
 
-`delete 4`, `add n/James e/james@gmail.com t/@james a/Bishan p/87654321`
+`delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
 Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
 

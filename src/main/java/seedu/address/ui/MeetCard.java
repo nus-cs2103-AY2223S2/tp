@@ -26,12 +26,12 @@ public class MeetCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label place;
     @FXML
     private Label id;
 
     @FXML
-    private FlowPane allTimings;
+    private FlowPane time;
 
     /**
      * Creates a {@code Recommendation} with the given {@code Recommendation} and index to display.
@@ -40,7 +40,7 @@ public class MeetCard extends UiPart<Region> {
         super(FXML);
         this.recommendation = recommendation;
         id.setText(recommendation.getContactIndex().toString() + ". ");
-        name.setText(recommendation.getLocation().getName() + " : " + recommendation.getTimePeriod().getUiDisplay());
+        place.setText(recommendation.getLocation().getName() + " : " + recommendation.getTimePeriod().getUiDisplay());
     }
 
     @Override

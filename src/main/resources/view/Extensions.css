@@ -20,16 +20,44 @@
 
 .list-view .list-cell:filled:focused:selected {
     -fx-background-color: black;
+    -fx-background-radius:5;
 }
 
-.list-view .list-cell:filled:focused:selected > * > * > * > HBox > Label {
-    -fx-text-fill: white;
+.list-view .list-cell:filled {
+    -fx-background-color: transparent;
 }
+
+/* For meet list and person list */
+.list-view .list-cell:filled:focused:selected > * > * > * > HBox > Label {
+    -fx-text-fill: black;
+}
+
 
 .list-view .list-cell:filled:focused:selected > * > * > * > Label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
+.list-view .list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+/* For organised list */
+.list-view .list-cell:filled:focused:selected > * > * > * > HBox > * > HBox > * > Label {
+    -fx-text-fill: black;
+}
+
+.list-view .list-cell:filled:focused:selected > * > * > * > * > VBox  {
+    -fx-background-color: white;
+}
+
+.list-view .list-cell:filled:focused:selected > * > * > * > * > * > * > Label  {
+    -fx-text-fill: black;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
 .list-view .scroll-bar:vertical {
     -fx-background-color: transparent;

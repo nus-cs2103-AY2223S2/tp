@@ -24,7 +24,7 @@ public class UserProfilePanel extends UiPart<Region> {
 
     private static final String PHONE_NUMBER = "Phone number: ";
     private static final String EMAIL = "Email: ";
-    private static final String ADDRESS = "Address: ";
+    private static final String STATION = "Station: ";
     private static final String TELEGRAM = "Telegram: ";
     private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
             + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
@@ -61,7 +61,7 @@ public class UserProfilePanel extends UiPart<Region> {
         name.setText(String.valueOf(this.user.getName()));
         phone.setText(PHONE_NUMBER + this.user.getPhone());
         email.setText(EMAIL + this.user.getEmail());
-        address.setText(ADDRESS + this.user.getAddress());
+        address.setText(STATION + this.user.getStation());
         address.setWrapText(true);
         telegramHandle.setText(TELEGRAM + this.user.getTelegramHandle());
 
@@ -89,7 +89,7 @@ public class UserProfilePanel extends UiPart<Region> {
         name.setText(String.valueOf(person.getName()));
         phone.setText(PHONE_NUMBER + person.getPhone());
         email.setText(EMAIL + person.getEmail());
-        address.setText(ADDRESS + person.getAddress());
+        address.setText(STATION + person.getStation());
         telegramHandle.setText(TELEGRAM + person.getTelegramHandle());
 
         person.getImmutableGroupTags().forEach(groupTag -> {

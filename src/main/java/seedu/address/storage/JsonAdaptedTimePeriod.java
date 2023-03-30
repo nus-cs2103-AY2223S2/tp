@@ -52,20 +52,19 @@ public class JsonAdaptedTimePeriod {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TimePeriod toModelType() throws IllegalValueException {
-        if (TimeUtil.isValidStartHour(startHour)) {
-            System.out.println(startHour);
+        if (!TimeUtil.isValidStartHour(startHour)) {
             throw new IllegalValueException(
                     String.format(ParserUtil.MESSAGE_INVALID_START_HOUR, LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelStartTime = new LocalTime(startHour);
+        final LocalTime modelStartTime = new LocalTime(startHour, 0);
 
-        if (TimeUtil.isValidEndHour(endHour)) {
+        if (!TimeUtil.isValidEndHour(endHour)) {
             throw new IllegalValueException(
                     String.format(ParserUtil.MESSAGE_INVALID_END_HOUR, LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelEndTime = new LocalTime(endHour);
+        final LocalTime modelEndTime = new LocalTime(endHour, 0);
 
         if (Arrays.stream(Day.values()).map(Day::name).noneMatch(day::equals)) {
             throw new IllegalValueException(
