@@ -14,29 +14,32 @@ see in your career.
 ## Table of Contents
 
 * ### How to Get Started
-* ### Features
-    * #### General Management
-        * Viewing help : `help`
-        * Undo previous operation : `undo`
-        * Redo previous operation : `redo`
-        * Clear all entries : `clear`
-        * Exiting the program : `exit`
-        * Saving the data
-        * Editing the data file
-    * #### Client Management
-        * Adding a client: `add`
-        * Selecting a client: `select`
-        * Listing all clients : `list`
-        * Editing a client : `edit`
-        * Filtering clients by name: `find`
-        * Deleting a client : `delete`
-        * Sorting Clients by Email address : `sortClientEmail`
-        * Sorting Clients by Name : `sortClientName`
-        * Sorting Clients by Phone Number : `sortClientPhone`
-    * #### Policy Management
-        * Adding a policy: `addPolicy`
-        * Editing a policy : `editPolicy`
-        * Deleting a policy : `deletePolicy`
+  * ### Features
+      * #### General Management
+          * Viewing help : `help`
+          * Undo previous operation : `undo`
+          * Redo previous operation : `redo`
+          * Clear all entries : `clear`
+          * Exiting the program : `exit`
+          * Saving the data
+          * Editing the data file
+      * #### Client Management
+          * Adding a client: `add`
+          * Selecting a client: `select`
+          * Listing all clients : `list`
+          * Editing a client : `edit`
+          * Filtering clients by name: `find`
+          * Deleting a client : `delete`
+          * Sorting Clients by Email address : `sortClientEmail`
+          * Sorting Clients by Name : `sortClientName`
+          * Sorting Clients by Phone Number : `sortClientPhone`
+      * #### Policy Management
+          * Adding a policy: `addPolicy`
+          * Editing a policy : `editPolicy`
+          * Deleting a policy : `deletePolicy`
+      * #### Policy Management
+          * Adding an appointment: `addApt`
+          * Deleting an appointment: `deleteApt`
 * ### FAQ
 * ### Command Summary
 
@@ -78,6 +81,9 @@ Some example commands you can try:
 * `clear` : Deletes all contacts.
 
 * `exit` : Exits the app.
+* `select 1` : Selects the client indexed as `#0001`.
+* `addPolicy 1 pn/Fire Insurance pd/01.01.2023 pp/1000 pf/monthly` : Adds a policy named `Fire Insurance` into the client indexed as `#0001`.
+* `addApt 1 an/Discussion ad/05.07.2023` : Adds an appointment called Discussion on 5 July 2023.
 
 #### 6. Refer to the [Features](#features) below for details of each command.
 
@@ -331,10 +337,8 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/P
 * Existing values will be updated to the input values.
 
 Examples:
-- `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
-- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
-policy information`
-
+* `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`.
+* `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd policy information.
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
@@ -420,6 +424,41 @@ Format: `deletePolicy INDEX pi/POLICY_INDEX`
 Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 
 
+
+## Appointment Management
+
+While you can manage your clients, we also provide a way to manage client appointments.
+
+Appointment refers to the meeting that the client or the financial advisor scheduled to discuss their goals on a scheduled date.
+
+The appointment contains the following fields:
+* Appointment Name
+* Appointment Meetup Date
+
+Using Advis.io, you can add, delete and view the appointments for your clients very easily! Here's how.
+
+### Adding an appointment: `addApt`
+Adds an appointment to a specific client
+
+Format: `addApt INDEX an/APPOINTMENT_NAME ad/MEETUP_DATE`
+* The Meetup Date should be in the following format: `dd.mm.yyyy`.
+* The Meetup Date should be after the present date.
+
+Examples: `addApt 1 an/Review on goals ad/05.06.2023`
+
+You will then be able to view the appointments under
+
+### Deleting an appointment: `deleteApt`
+Deletes an appointment from a specific client
+
+Format: `deleteApt INDEX`
+* Deletes the appointment from the client at the specified `INDEX`
+* The index refers to the index number shown in the displayed client list
+* The index **must be a positive integer** 1,2,3,...
+
+Examples: `deleteApt 1`
+* `list` followed by `deleteApt 1` deletes the appointment from the 1st client in the list of clients list.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -443,7 +482,6 @@ the data of your previous AddressBook home folder.
 **Q**: Is there a limit to the number of clients or policies that I can add?<br>
 **A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed those thresholds. However, the limit can be expanded in the future if necessary.
 
-**Q**: If I
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -463,6 +501,8 @@ the data of your previous AddressBook home folder.
  **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
  **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
  **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
+ **Add an appointment** | `addApt INDEX an/APPOINTMENT_NAME ad/APPOINTMENT_MEETUP_DATE` <br> eg., `addApt 1 an/Review of goals ad/01.01.2024`
+ **Delete an appointment** | `deleteApt INDEX`<br> eg., `deleteApt 1`
  **Select**          | `select INDEX`<br> e.g.,`select 1`
  **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
  **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
