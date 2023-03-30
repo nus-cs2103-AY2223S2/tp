@@ -13,10 +13,8 @@ import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 import static seedu.address.logic.parser.ParserUtil.parsePrefixIfPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Education;

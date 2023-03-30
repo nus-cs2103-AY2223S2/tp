@@ -2,6 +2,10 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s entire {@code Name} exactly matches the
+ * {@code fullname}.
+ */
 public class FullNamePredicate implements Predicate<Person> {
     private final String fullName;
 

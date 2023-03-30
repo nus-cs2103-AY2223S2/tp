@@ -205,9 +205,16 @@ public class ParserUtil {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Parse a prefix in {@code argMultimap} with {@code parserFunction} only if
+     * it's present in {@code argMultimap}.
+     * {@code Optional} class can't be used for this, as {@code parserFunction}
+     * throws a checked exception.
+     *
+     * @throws ParseException if {@code parserFunction} throws one.
+     */
     public static <T> T parsePrefixIfPresent(ArgumentMultimap argMultimap, Prefix prefix,
-                                              ParserFunction<String,
-                                                      ? extends T> parserFunction) throws ParseException {
+            ParserFunction<String, ? extends T> parserFunction) throws ParseException {
         String retArg = argMultimap.getValue(prefix).orElse(null);
         if (retArg == null) {
             return null;
