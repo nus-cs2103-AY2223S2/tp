@@ -17,7 +17,7 @@ public class SortAppointmentsCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Sorted appointments";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts appointments by attribute. "
         + "Parameters: "
-        + PREFIX_SORT_BY + "[id | customer id | date] "
+        + PREFIX_SORT_BY + "[id | customer id | date | date status] "
         + "Optional: "
         + PREFIX_REVERSE_SORT;
 
