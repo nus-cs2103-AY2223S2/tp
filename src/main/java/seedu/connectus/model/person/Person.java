@@ -49,16 +49,13 @@ public class Person {
         this.address = Optional.empty();
         this.socialMedia = Optional.empty();
         this.birthday = Optional.empty();
-        this.modules.addAll(modules);
-        this.remarks.addAll(remarks);
-        this.ccas.addAll(ccas);
-        this.ccaPositions.addAll(ccaPositions);
     }
 
     /**
-     * Copy constructor allowing modifications to tag list.
+     * Copy constructor allowing additions to tag list.
      */
-    public Person(Person toCopy, Set<Remark> remarks, Set<Module> modules) {
+    public Person(Person toCopy, Set<Remark> remarks, Set<Module> modules,
+                  Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
         requireNonNull(toCopy);
         this.name = toCopy.name;
         this.phone = toCopy.phone;
@@ -68,6 +65,8 @@ public class Person {
         this.birthday = toCopy.birthday;
         this.remarks.addAll(remarks);
         this.modules.addAll(modules);
+        this.ccas.addAll(ccas);
+        this.ccaPositions.addAll(ccaPositions);
     }
 
     public void setPhone(Phone phone) {
@@ -131,8 +130,8 @@ public class Person {
     }
 
     public String getAllFieldsAsString() {
-        return String.format("%s %s %s %s %s %s %s %s",
-                name, phone, email, address, birthday, socialMedia, remarks, modules);
+        return String.format("%s %s %s %s %s %s %s %s %s %s",
+                name, phone, email, address, birthday, socialMedia, remarks, modules, ccas, ccaPositions);
     }
 
     /**

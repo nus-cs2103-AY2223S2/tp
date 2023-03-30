@@ -18,7 +18,7 @@ public class DeleteTagFromPersonCommandParserTest {
     @Test
     public void parse_validArgs_returnsCommand() {
         assertParseSuccess(parser, "1 r/1 mod/1", new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON,
-            Index.fromZeroBased(0), Index.fromZeroBased(0)
+            Index.fromZeroBased(0), null, null, Index.fromZeroBased(0)
         ));
     }
 

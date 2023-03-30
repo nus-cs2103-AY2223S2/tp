@@ -2,6 +2,7 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,8 @@ import java.time.format.DateTimeFormatter;
  * Represents a Person's birthday in ConnectUS.
  */
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY\n"
+            + "Format: " + PREFIX_BIRTHDAY + "BIRTHDAY";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/([0-9]{4})$";
 
