@@ -410,8 +410,13 @@ You can easily add a new contact to EduMate using the `add` command. This allows
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/add_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 8: A new contact: Weixiang is added to <code>EduMate</code>.</center>
+
+##### Explanation:
+The `add` command creates a new contact for a friend named Weixiang whose information does not exist in `EduMate` yet. The contact will be assigned index 101 and his information profile will be shown on the Profile Panel.
 
 <div markdown="block" class="alert alert-success">
 
@@ -459,9 +464,13 @@ The `view` command retrieves either the user's information or the contact's info
 * `view n/NAME`: Views the contact with name `NAME`.
 
 </div>
+
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/view_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 9: Weixiang's profile displayed after execution of the <code>view</code> command</center>
+
 
 <div markdown="block" class="alert alert-success">
 
@@ -485,8 +494,14 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 
 </div>
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/edit_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 10: MRT station nearest to his home updated to Little India after execution of the <code>edit</code>command.</center>
+
+##### Explanation:
+Suppose you realised that Weixiang has just moved house and the nearest MRT station from his house is Little India. Running
+`edit 101 s/Little India` will update the nearest station recorded on his profile.
 
 <div markdown="block" class="alert alert-success">
 
@@ -509,8 +524,10 @@ If you no longer need a contact in EduMate, you can remove them using the `delet
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/delete_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 11: Weixiang's contact deleted after execution of the <code>delete</code>command.</center>
 
 <div markdown="block" class="alert alert-success">
 
