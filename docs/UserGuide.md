@@ -19,6 +19,8 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [Add an internship application](#)
         - [Add](#)
     - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
+    - [Sort all internship applications](########TODO)
+    - [Find internship applications by the company name, job title, status, or interview date](#######TODO)
     - [Manage company contact for an internship application](#add-contact-details--add_contact)
         - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
         - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
@@ -41,6 +43,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - [Revert delete or clear](#revert-a-recent-deleted-internship-application--revert)
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
+    - [Help](#########TODO)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
   
 - [Side Features](#side-features-planning-to-apply-internships)
@@ -73,7 +76,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 1. Have Java `11` or above installed in local laptop or Computer.
 
-2. Download the latest version (InternEase v0.0) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
+2. Download the latest version (InternEase v1.3) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
@@ -332,17 +335,24 @@ Examples:
 * `clear_by j/Software engineer` Clears all application with JOB_TITLE as Software Engineer.
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
 
-### Search for an application : `find`
+### Find internship applications by the company name, job title, status, or interview date : `find`
 
-Searches the list of internships applied by keyword (status, role, company)
+Find all internship applications (including those that have been archived) by its company name, job title,
+status and/or interview date.
 
-Format: `find KEYWORD`
+Format:
+There are three use cases for the `find` command:
+1. Find by the application's company name and/or job title: `find KEYWORD [MORE KEYWORDS]`
+2. Find by the current status of the application: `find s/STATUS`
+3. Find by upcoming interview date: `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2`
 
-Searches for the application with the specified `KEYWORD`.
-The keyword refers to the status, role or company that the user intends to look for.
+- The search 
 
 Examples:
-`find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
+1. `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google.
+2. `find s/PENDING` searches for all application that are pending.
+3. `find after/2023-12-02 12:30 PM` searches for all application that are having interview after 
+2023-12-02 12:30 PM (inclusive).
 
 
 ### Clearing all internship application entries : `clear`
