@@ -207,6 +207,54 @@
                   </AnchorPane>
                 </content>
               </Tab>
+              <Tab disable="false" text="Appointments">
+                <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0">
+                    <children>
+                      <SplitPane dividerPositions="0.2" AnchorPane.bottomAnchor="0.0"
+                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                 AnchorPane.topAnchor="0.0" styleClass="split-pane">
+                        <items>
+                          <AnchorPane minHeight="0.0" minWidth="360.0" styleClass="anchor-pane">
+                            <children>
+                              <VBox fx:id="appointmentList" minHeight="380.0"
+                                    minWidth="360.0" prefWidth="360"
+                                    AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.leftAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0"
+                                    AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                <padding>
+                                  <Insets bottom="10" left="10" right="10" top="10"/>
+                                </padding>
+                                <StackPane fx:id="appointmentListPanelPlaceholder"
+                                           VBox.vgrow="ALWAYS"/>
+                              </VBox>
+                            </children>
+                          </AnchorPane>
+                          <AnchorPane minHeight="0.0" minWidth="360.0" styleClass="anchor-pane">
+                            <children>
+                              <VBox fx:id="appointmentDetails" minWidth="360"
+                                    prefWidth="360" styleClass="detailsPane"
+                                    AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.leftAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0"
+                                    AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                                <padding>
+                                  <Insets bottom="10" left="10" right="10" top="10"/>
+                                </padding>
+                                <children>
+                                  <StackPane fx:id="appointmentDetailsPlaceholder"
+                                             VBox.vgrow="ALWAYS"/>
+                                </children>
+                              </VBox>
+                            </children>
+                          </AnchorPane>
+                        </items>
+                      </SplitPane>
+                    </children>
+                  </AnchorPane>
+                </content>
+              </Tab>
             </tabs>
             <VBox.margin>
               <Insets bottom="25.0" left="20.0" right="20.0" top="15.0"/>
