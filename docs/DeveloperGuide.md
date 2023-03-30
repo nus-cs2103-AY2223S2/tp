@@ -10,7 +10,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
 
 ---
 
@@ -212,7 +212,6 @@ Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, 
 
 This sorting feature can only be executed when there are more than 1 event listed on the UI.
 It will only sort the event list based on the last String entered in the user input.
-Moreover, the sorting is preserved until this command is executed again to sort the events by another variable or the program stops running.
 
 ### \[Implemented] List persons from an event feature
 
@@ -245,35 +244,36 @@ The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand`
 **Target user profile**:
 
 - has a need to manage a significant number of contacts and events
-- prefer desktop apps over other types
+- prefers desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 - does not have much storage space for multiple apps to support their work
 
-**Value proposition**: efficient centralised platform for users to manage their event planning work through typing
+**Value proposition**: Efficient centralised platform for users to manage their event planning work through typing.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                               | So that I can…​                                        |
-| -------- | ----------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
-| `* * *`  | event planner           | add my own event                                           | refer to instructions when I forget how to use the App |
-| `* * *`  | event planner           | view all my events                                         | track all the upcoming events I have                   |
-| `* * *`  | event planner           | delete an existing event                                   | delete event that have ended                           |
-| `* * *`  | event planner           | add an existing event to a new contact                     | -                                                      |
-| `* *`    | event planner           | search for events via names                                | locate events easily                                   |
-| `* *`    | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name                       |
-| `* *`    | new event planner       | sort upcoming events according to dates                    | prioritize events when I am planning                   |
-| `* *`    | event planner           | list all contacts from a particular event                  | know the people associated to this event               |
-| `* *`    | event planner           | edit events                                                | change details                                         |
-| `* *`    | event planner           | list all events and contacts                               | conveniently view everything                           |
-| `*`      | event planner           | add overall-in-charge for every event                      | know who to approach for issues related to the event   |
-| `*`      | event planner           | set up a checklist of customer’s requirements              | account for every need                                 |
-| `*`      | forgetful event planner | set reminders conveniently                                 | be on track with things                                |
-| `*`      | forgetful event planner | receive reminders for upcoming events                      | avoid forgetting about the event                       |
-| `*`      | event planner           | archive old events                                         | view and take reference from old events                |
+| Priority | As a …​              | I want to …​                                            | So that I can…​                                                    |
+| -------- |-------------------------|------------------------------------------------------------|--------------------------------------------------------------------------|
+| `* * *`  | event planner           | add my own event                                           | refer to instructions when I forget how to use the App                   |
+| `* * *`  | event planner           | view all my events                                         | track all the upcoming events I have                                     |
+| `* * *`  | event planner           | delete an existing event                                   | delete event that have ended                                             |
+| `* * *`  | event planner           | add an existing event to a new contact                     | -                                                                        |
+| `* *`    | event planner           | search for events via names                                | locate events easily                                                     |
+| `* *`    | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name                                         |
+| `* *`    | new event planner       | sort events according to dates                             | prioritize events when I am planning                                     |
+| `* *`    | event planner           | sort events according to their names                       | browse through a large list of events in a logical and consistent order  |
+| `* *`    | event planner           | list all contacts from a particular event                  | know the people associated to this event                                 |
+| `* *`    | event planner           | edit events                                                | change details                                                           |
+| `* *`    | event planner           | list all events and contacts                               | conveniently view everything                                             |
+| `*`      | event planner           | add overall-in-charge for every event                      | know who to approach for issues related to the event                     |
+| `*`      | event planner           | set up a checklist of customer’s requirements              | account for every need                                                   |
+| `*`      | forgetful event planner | set reminders conveniently                                 | be on track with things                                                  |
+| `*`      | forgetful event planner | receive reminders for upcoming events                      | avoid forgetting about the event                                         |
+| `*`      | event planner           | archive old events                                         | view and take reference from old events                                  |
 
 ### Use cases
 
@@ -417,16 +417,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   
+2. Shutting down
 
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   1. Enter `exit` in the app's input box or click on the cancel button on the top right of the app.
 
 ### Deleting a person
 
