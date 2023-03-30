@@ -66,8 +66,7 @@ meet instead of having to manually compare timetables with each other.
 
 </div>
 
-## Person-related commands 
-
+## Person-related commands
 ### Adding a person: `add` 
 Adds a person to the address book.
 
