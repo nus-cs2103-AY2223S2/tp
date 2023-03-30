@@ -119,6 +119,19 @@ public class UniquePersonList implements Iterable<Person> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingModuleValues() {
+        return internalList.stream()
+                .map(Person::getModules)
+                .flatMap(set -> set.stream())
+                .distinct()
+                .map(module -> module.moduleName)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();
