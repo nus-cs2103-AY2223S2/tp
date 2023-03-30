@@ -10,8 +10,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;

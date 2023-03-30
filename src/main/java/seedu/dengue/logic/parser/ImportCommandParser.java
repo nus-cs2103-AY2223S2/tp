@@ -1,8 +1,8 @@
 package seedu.dengue.logic.parser;
 
-import java.nio.file.Paths;
-
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.nio.file.Paths;
 
 import seedu.dengue.logic.commands.ImportCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;

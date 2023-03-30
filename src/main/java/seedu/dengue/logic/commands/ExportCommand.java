@@ -2,9 +2,8 @@ package seedu.dengue.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.nio.file.Path;
-
 import java.io.IOException;
+import java.nio.file.Path;
 
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.Model;

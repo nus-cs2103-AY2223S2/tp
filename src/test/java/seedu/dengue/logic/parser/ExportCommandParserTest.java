@@ -5,15 +5,15 @@ import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.logic.commands.ImportCommand;
+import seedu.dengue.logic.commands.ExportCommand;
 
 
-public class ImportCommandParserTest {
+public class ExportCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE);
 
-    private ImportCommandParser parser = new ImportCommandParser();
+    private ExportCommandParser parser = new ExportCommandParser();
 
     @Test
     public void parse_missingValue_failure() {
