@@ -117,30 +117,17 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSingleTag(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMultiTags((String) null));
     }
 
     @Test
     public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSingleTag(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(INVALID_TAG));
     }
 
     @Test
     public void parseTag_invalidValueWithWhitespace_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSingleTag(WHITESPACE + INVALID_TAG + WHITESPACE));
-    }
-
-    @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseSingleTag(VALID_TAG_1));
-    }
-
-    @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseSingleTag(tagWithWhitespace));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(WHITESPACE + INVALID_TAG + WHITESPACE));
     }
 
     @Test

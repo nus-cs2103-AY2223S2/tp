@@ -37,36 +37,36 @@ public class ImportCommandParserTest {
 
     @Test
     public void parseCommand_doNotOverwriteModule_successful() throws ParseException {
-        ImportCommand expectedCommand = new ImportCommand(TEST_FILE, storage, new HashSet<>(),
+        ImportCommand expectedCommand = new ImportCommand(TEST_FILE, new HashSet<>(),
                 false, true);
-        assertEquals(expectedCommand, parser.parse(TEST_FILE, storage));
+        assertEquals(expectedCommand, parser.parse(TEST_FILE));
     }
 
     @Test
     public void parseCommand_overwriteModule_successful() throws ParseException {
         String argument = TEST_FILE + " /overwrite true";
-        ImportCommand expectedCommand = new ImportCommand(TEST_FILE, storage, new HashSet<>(),
+        ImportCommand expectedCommand = new ImportCommand(TEST_FILE, new HashSet<>(),
                 true, true);
-        assertEquals(expectedCommand, parser.parse(argument, storage));
+        assertEquals(expectedCommand, parser.parse(argument));
     }
 
     @Test
     public void parseCommand_importSomeModule_successful() throws ParseException {
         String argument = TEST_FILE + " " + PREFIX_MODULE + " " + MODULE_1 + ", " + MODULE_2 + " /overwrite true";
-        ImportCommand expectedCommand = new ImportCommand(TEST_FILE, storage,
+        ImportCommand expectedCommand = new ImportCommand(TEST_FILE,
                 new HashSet<>(List.of(new ModuleCode(MODULE_1), new ModuleCode(MODULE_2))),
                 true, false);
-        assertEquals(expectedCommand, parser.parse(argument, storage));
+        assertEquals(expectedCommand, parser.parse(argument));
     }
 
     @Test
     public void parseCommand_emptyFileName_throwParseException() {
-        assertThrows(ParseException.class, () -> parser.parse("", storage));
+        assertThrows(ParseException.class, () -> parser.parse(""));
     }
 
     @Test
     public void parseCommand_emptyModule_throwParseException() {
         String argument = TEST_FILE + " " + PREFIX_MODULE;
-        assertThrows(ParseException.class, () -> parser.parse(argument, storage));
+        assertThrows(ParseException.class, () -> parser.parse(argument));
     }
 }

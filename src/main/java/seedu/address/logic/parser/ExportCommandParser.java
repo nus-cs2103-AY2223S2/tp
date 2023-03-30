@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.storage.Storage;
 
 /**
  * Parses input arguments and creates a new ExportCommand object
@@ -18,7 +17,7 @@ public class ExportCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
 
-    public ExportCommand parse(String args, Storage storage) throws ParseException {
+    public ExportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE);
         boolean isOverwritingExistingFile = false;
 
@@ -34,6 +33,6 @@ public class ExportCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));
         }
 
-        return new ExportCommand(fileName, storage, isOverwritingExistingFile);
+        return new ExportCommand(fileName, isOverwritingExistingFile);
     }
 }

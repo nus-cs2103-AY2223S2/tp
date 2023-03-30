@@ -31,16 +31,14 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "All modules archived to %1$s";
 
     private final String fileName;
-    private final Storage storage;
     private final boolean isOverwritingExistingFile;
 
     /**
      * Creates an ExportCommand to archive all modules in the current tracker
      */
 
-    public ExportCommand(String fileName, Storage storage, boolean isOverwritingExistingFile) {
+    public ExportCommand(String fileName, boolean isOverwritingExistingFile) {
         this.fileName = fileName;
-        this.storage = storage;
         this.isOverwritingExistingFile = isOverwritingExistingFile;
     }
 
@@ -49,18 +47,11 @@ public class ExportCommand extends Command {
         requireNonNull(model);
 
         Path archivePath = Paths.get("data", fileName);
-        ReadOnlyTracker tracker = model.getTracker();
 
-        if (Files.exists(archivePath) && Files.isRegularFile(archivePath) && !isOverwritingExistingFile) {
-            throw new CommandException(String.format(Messages.MESSAGE_ARCHIVE_FILE_ALREADY_EXIST, fileName));
-        }
+        boolean isExporting = true;
 
-        try {
-            storage.saveTracker(tracker, archivePath);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
-        } catch (IOException ioe) {
-            throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, fileName),
+                archivePath, isExporting, isOverwritingExistingFile);
     }
 
     @Override
@@ -76,7 +67,6 @@ public class ExportCommand extends Command {
         ExportCommand otherCommand = (ExportCommand) other;
 
         return fileName.equals(otherCommand.fileName)
-                && storage.equals(otherCommand.storage)
                 && isOverwritingExistingFile == otherCommand.isOverwritingExistingFile;
     }
 }

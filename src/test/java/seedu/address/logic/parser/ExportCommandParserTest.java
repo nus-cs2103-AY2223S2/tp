@@ -30,19 +30,19 @@ public class ExportCommandParserTest {
 
     @Test
     public void parseCommand_doNotOverwriteFile_successful() throws ParseException {
-        ExportCommand expectedCommand = new ExportCommand(TEST_FILE, storage, false);
-        assertEquals(expectedCommand, parser.parse(TEST_FILE, storage));
+        ExportCommand expectedCommand = new ExportCommand(TEST_FILE, false);
+        assertEquals(expectedCommand, parser.parse(TEST_FILE));
     }
 
     @Test
     public void parseCommand_overwriteFileCommand_successful() throws ParseException {
         String argument = TEST_FILE + " /overwrite true";
-        ExportCommand expectedCommand = new ExportCommand(TEST_FILE, storage, true);
-        assertEquals(expectedCommand, parser.parse(argument, storage));
+        ExportCommand expectedCommand = new ExportCommand(TEST_FILE, true);
+        assertEquals(expectedCommand, parser.parse(argument));
     }
 
     @Test
     public void parseCommand_emptyFileName_throwParseException() {
-        assertThrows(ParseException.class, () -> parser.parse("", storage));
+        assertThrows(ParseException.class, () -> parser.parse(""));
     }
 }

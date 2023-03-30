@@ -16,7 +16,6 @@ import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
-import seedu.address.logic.parser.ArchiveParser;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.trackereventsystem.TrackerEventSystem;
@@ -29,6 +28,7 @@ import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
+import seedu.address.storage.Archive;
 import seedu.address.storage.Storage;
 
 /**
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TrackerParser trackerParser;
-    private final ArchiveParser archiveParser;
+    private final Archive archive;
     private final Injector navigationInjector;
     private final TrackerEventSystem trackerEventSystem;
 
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
         this.navigationInjector = new NavigationInjector();
         trackerParser = new TrackerParser();
         trackerEventSystem = new TrackerEventSystem();
-        archiveParser = new ArchiveParser(storage);
+        archive = new Archive(storage);
     }
 
     @Override
@@ -74,15 +74,10 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command;
 
+        commandText = navigationInjector.inject(commandText, model);
 
-        if (archiveParser.isArchiveCommand(commandText)) {
-            logger.info("----------------[ARCHIVE COMMAND][" + commandText + "]");
-            command = archiveParser.parseCommand(commandText);
-        } else {
-            commandText = navigationInjector.inject(commandText, model);
-            logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
-            command = trackerParser.parseCommand(commandText);
-        }
+        logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+        command = trackerParser.parseCommand(commandText);
 
         commandResult = command.execute(model);
 
@@ -93,6 +88,13 @@ public class LogicManager implements Logic {
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
 
+        if (commandResult.isExporting()) {
+            archive.export(commandResult.getPath().get(), model.getTracker(), commandResult.isOverwriting());
+        }
+
+        if (commandResult.isImporting()) {
+
+        }
 
         try {
             storage.saveTracker(model.getTracker());

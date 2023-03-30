@@ -24,7 +24,7 @@ public class ImportCommandParser {
      * @throws ParseException if the user input does not conform the expected format
      */
 
-    public ImportCommand parse(String args, Storage storage) throws ParseException {
+    public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE, PREFIX_MODULE);
         boolean isOverwritingExistingModule = false;
         boolean isImportingAllModules = false;
@@ -51,6 +51,6 @@ public class ImportCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
 
-        return new ImportCommand(fileName, storage, moduleCodeSet, isOverwritingExistingModule, isImportingAllModules);
+        return new ImportCommand(fileName, moduleCodeSet, isOverwritingExistingModule, isImportingAllModules);
     }
 }
