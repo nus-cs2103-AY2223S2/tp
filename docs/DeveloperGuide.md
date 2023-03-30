@@ -15,6 +15,10 @@ Advis.io (AIO) is a all-in-one solution for financial advisors with problems man
     * [Model component](#model-component)
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
+* [**Implementation**](#implementation)
+* [**Documentation**](#documentation-logging-testing-configuration-dev-ops)
+* [**Appendix: Requirements**](#appendix-requirements)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
