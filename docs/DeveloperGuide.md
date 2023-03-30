@@ -58,6 +58,8 @@ You are recommended to read the [Navigating the Developer Guide](#navigating-the
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 Developer Guide and help you navigate it with ease.
 
+[Scroll back to top](#table-of-contents)
+
 ### Target Audience
 CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
 of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
@@ -66,6 +68,8 @@ while still having the benefits of a **Graphical User Interface** (GUI).
 For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience,
 so you can spend less time searching through chats, and spend more time making
 meaningful connections and engaging in productive work.
+
+[Scroll back to top](#table-of-contents)
 
 ### Navigating the Developer Guide
 
@@ -620,14 +624,14 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Logic Implementation**
+### **Logic Implementation**
 
 This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
 for more information about this package.
 
 <br>
 
-### **Edit Command**
+#### **Edit Command**
 
 Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
 For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
@@ -648,7 +652,7 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 * `s+/` for adding a new skill
 * `s-/` for deleting an existing skill
 
-#### Implementation Flow
+##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
 person.
@@ -661,7 +665,7 @@ Given below is an activity diagram to illustrate the behaviour of editing Person
 
 ![Edit Activity Diagram](images/EditActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
 We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes.
 However, we realised the behaviour is similar to simply deleting and adding new modules and skills.
@@ -669,7 +673,7 @@ Hence, we removed the implementation of the old and new prefixes.
 
 [Scroll back to top](#table-of-contents)
 
-### Find Command
+#### Find Command
 
 Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
 
@@ -698,7 +702,7 @@ Given below is the activity diagram to illustrate what happens when the user cal
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
 We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
 
@@ -733,9 +737,9 @@ We also chose to make our find command case-insensitive to increase the speed of
 <div style="page-break-after: always;"></div>
 
 
-### \[Proposed\] Undo/redo feature
+#### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+##### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedCodoc`. It extends `Codoc` with an undo/redo history, stored internally as an `codocStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -800,7 +804,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 [Scroll back to top](#table-of-contents)
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -817,7 +821,7 @@ _{more aspects and alternatives to be added}_
 
 [Scroll back to top](#table-of-contents)
 
-### \[Proposed\] Data archiving
+#### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
