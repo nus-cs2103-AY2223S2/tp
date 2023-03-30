@@ -125,7 +125,6 @@ public class Client {
     public boolean isAppointmentEmpty() {
         return appointments.isEmpty();
     }
-    
     /**
      * Copies a routine set to this instance object's {@code routine}.
      */
