@@ -46,7 +46,7 @@ public class PersonListPanel extends UiPart<Region> {
 
         allData = null;
         favData = null;
-        selectedIndex = -1;
+        selectedIndex = EMPTY_INDEX;
 
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
@@ -55,7 +55,7 @@ public class PersonListPanel extends UiPart<Region> {
             PersonListCellData nextData = personListView.getSelectionModel().getSelectedItem();
             int nextIndex = personListView.getSelectionModel().getSelectedIndex();
             if (selectedIndex == nextIndex) { // clear selection on same selection
-                selectedIndex = -1;
+                selectedIndex = EMPTY_INDEX;
                 logic.setSelectedPerson(null);
                 setSelectedData(null);
             } else {
