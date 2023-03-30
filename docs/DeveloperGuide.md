@@ -962,7 +962,7 @@ How the `Recommender` Component works:
 7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
 8. Feedbacks to user the recommended meetup locations and timings.
 
-<img src="images/RecommenderSequenceDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6.1</b> Sequence Diagram for Recommender Module
 </div>
