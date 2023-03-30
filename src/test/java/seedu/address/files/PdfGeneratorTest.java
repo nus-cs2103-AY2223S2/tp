@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-class FileGeneratorTest {
+class PdfGeneratorTest {
 
     private Person person;
     private String doctorName;
@@ -51,11 +51,11 @@ class FileGeneratorTest {
         FilesManager filesManager = new FilesManager(person);
         filesManager.initFile();
 
-        FileGenerator fileGenerator = new FileGenerator(person, doctorName, description, days);
+        PdfGenerator pdfGenerator = new PdfGenerator(person, doctorName, description, days);
 
         // Call the createMcForm() method
         try {
-            fileGenerator.createMcForm("");
+            pdfGenerator.generate("");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +100,7 @@ class FileGeneratorTest {
                         assertEquals(doctorName, field.getValueAsString());
                         break;
                     default:
-                        assertEquals(fileGenerator.getFormId(), field.getValueAsString());
+                        assertEquals(pdfGenerator.getFormId(), field.getValueAsString());
                         break;
                     }
                 }

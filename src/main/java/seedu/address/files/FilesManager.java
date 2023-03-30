@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -20,19 +19,16 @@ import seedu.address.model.person.Person;
 /**
  * The type Files manager.
  */
-public class FilesManager {
+public class FilesManager implements seedu.address.files.Files {
 
     private static final Logger logger = Logger.getLogger(FilesManager.class.getName());
 
     private Person person;
-    private Path reportsDir = Paths.get("reports");
     private FileStorage store;
-    private FileGenerator create;
+    private PdfGenerator create;
     private String path;
     private List<Path> files;
     private List<String> fileNames;
-    private String errorMessage = "";
-    private boolean hasError = false;
 
     /**
      * Instantiates a new Files manager.
@@ -72,7 +68,6 @@ public class FilesManager {
         try {
             store.uploadFile();
             setAllFiles();
-            hasError = false;
         } catch (RuntimeException e) {
             logger.log(Level.WARNING, e.getMessage());
         }
@@ -86,14 +81,8 @@ public class FilesManager {
     public void displayFile(String fileName) {
         String filePath = this.path + "/" + fileName;
         Path path1 = Paths.get(filePath);
-        String extension = getFileExtension(fileName);
-        if (isImage(extension)) {
-            displayImage(path1);
-        } else if (extension.equalsIgnoreCase("pdf")) {
-            displayPdf(path1);
-        } else {
-            logger.log(Level.SEVERE, "Invalid file type");
-        }
+        FileReaderManager fileReaderManager = new FileReaderManager(path1);
+        fileReaderManager.displayFile();
     }
 
     /**
@@ -136,14 +125,12 @@ public class FilesManager {
     public void generateMc(String doctorName, String description, int days) {
         Path path2 = Paths.get(path);
         FileStorage.createDrc(path);
-        create = new FileGenerator(person,
+        create = new PdfGenerator(person,
                 doctorName, description, days);
-        hasError = false;
         try {
-            create.createMcForm(Integer.toString(nextMcNumber(path2)));
+            create.generate(Integer.toString(nextMcNumber(path2)));
         } catch (IOException e) {
-            errorMessage = "GF";
-            hasError = true;
+            logger.log(Level.WARNING, e.getMessage());
         }
         updateList();
     }
@@ -241,33 +228,5 @@ public class FilesManager {
     private void updateList() {
         setAllFiles();
         setFileNames();
-    }
-
-    private String getFileExtension(String fileName) {
-        return fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
-    }
-
-    private boolean isImage(String extension) {
-        return "jpg".equalsIgnoreCase(extension)
-                || "jpeg".equalsIgnoreCase(extension)
-                || "png".equalsIgnoreCase(extension);
-    }
-
-    private void displayImage(Path path1) {
-        ImageReader imageReader = new ImageReader(path1);
-        imageReader.displayImage();
-    }
-
-    private void displayPdf(Path path1) {
-        PdfReader pdfReader = new PdfReader(path1);
-        pdfReader.displayPdf();
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public boolean isHasError() {
-        return hasError;
     }
 }
