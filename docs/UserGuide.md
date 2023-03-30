@@ -114,19 +114,71 @@ TinS command can be found [here](#features).
 
 <h3>Feature List</h3>
 
-1. Adding an Internship Application: [`add`](#add_function)
-2. Listing all Internship Applications in TinS: [`list`](#list_function)
-3. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-4. Editing Details of an Internship Application: [`edit`](#edit_function)
-5. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-6. Deleting an Internship Application: [`delete`](#delete_function)
-7. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-8. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-9. Finding all Clashing Events: [`clash`](#clash_function)
-10. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-11. Getting help: [`help`](#help_function)
-12. Exiting the program: [`exit`](#exit_function)
-13. [Saving data in TinS](#save_function)
+1. Opening Home Page: [`home`](#home_function)
+2. Opening Statistics Page: [`stats`](#stats_function)
+3. Opening Calendar Page: [`calendar`](#calendar_function)
+4. Adding an Internship Application: [`add`](#add_function)
+5. Listing all Internship Applications in TinS: [`list`](#list_function)
+6. Finding a Particular Internship Application in TinS: [`find`](#find_function)
+7. Editing Details of an Internship Application: [`edit`](#edit_function)
+8. Viewing Details of a Particular Internship Application: [`select`](#select_function)
+9. Deleting an Internship Application: [`delete`](#delete_function)
+10. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
+11. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
+12. Finding all Clashing Events: [`clash`](#clash_function)
+13. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
+14. Getting help: [`help`](#help_function)
+15. Exiting the program: [`exit`](#exit_function)
+16. [Saving data in TinS](#save_function)
+</div>
+
+
+
+<div style="page-break-after:always; break-after: page;">
+<h3 id="home_function"> Opens the Home Page : `home`</h3>
+
+Returns user to the home page. 
+
+> Note: Command can also be used to refresh home page.
+
+* After keying in the `home` command, TinS displays the home page.
+* Home page shows the today's events and useful commands.
+
+Example: `home`
+
+![home_page](images/home_page.png)
+
+</div>
+
+<div style="page-break-after:always; break-after: page;">
+<h3 id="stats_function"> Opens the Statistics Page : `stats`</h3>
+
+Displays the user's statistics.
+
+> Note: Command can also be used to refresh stats page.
+
+* After keying in the `stats` command, TinS displays users statistics on the stats page.
+* Summary shows pie chart of current internships' statuses.
+
+Example: `stats`
+
+![stats_page](images/stats_page.jpeg)
+
+</div>
+
+<div style="page-break-after:always; break-after: page;">
+<h3 id="calendar_function"> Opens the Calendar Page : `calendar`</h3>
+
+Displays the user's events on a Calendar.
+
+> Note: Command can also be used to refresh calendar page.
+
+* After keying in the `calendar` command, TinS displays user's events on the calendar page.
+
+Example: `calendar`
+
+![calendar_page](images/calendar_page.png)
+
 </div>
 
 <div style="page-break-after:always; break-after: page;">
@@ -147,18 +199,18 @@ Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG
 > * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab 1` is valid
 
 * `APPLICATION_STATUS` : Status of Application
-  * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer
-  values:
-    * `0` : Interested
-    * `1` : Applied
-    * `2` : Offered
-    * `3` : Rejected
+    * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer
+      values:
+        * `0` : Interested
+        * `1` : Applied
+        * `2` : Offered
+        * `3` : Rejected
 * `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details, Link to Webpage, Requirements of
-Internship)
+  Internship)
 * `TAG` : Customised Tag
-  * This is optional.
-  * An Internship can have more than one tag.
-  * Example of commonly used Tags: `Important`, `Priority`
+    * This is optional.
+    * An Internship can have more than one tag.
+    * Example of commonly used Tags: `Important`, `Priority`
 
 </div>
 
