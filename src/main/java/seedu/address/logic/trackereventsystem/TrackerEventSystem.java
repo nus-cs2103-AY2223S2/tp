@@ -143,7 +143,8 @@ public class TrackerEventSystem {
     public void triggerOnVideoEditedEvent(ModuleCode moduleCode, LectureName lectureName, Video originalVideo,
             Video editedVideo) {
 
-        logger.info(String.format("Trigger \"on video edited\" event on module %s lecture %s:\noriginal: %s\nedited: %s",
+        logger.info(String.format("Trigger \"on video edited\" event on module %s lecture %s:"
+                    + "\noriginal: %s\nedited: %s",
                 moduleCode, lectureName, originalVideo, editedVideo));
 
         for (OnVideoEditedEventObserver observer : onVideoEditedEventObservers) {
