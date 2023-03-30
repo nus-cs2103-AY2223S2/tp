@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -159,18 +159,18 @@ public interface Model {
     /**
      * Returns the user prefs' history storage file path.
      */
-    Path getHistoryStoragePath();
+    Path getInputHistoryStoragePath();
 
     /**
      * Sets the user prefs' history storage file path.
      */
-    void setHistoryStoragePath(Path filePath);
+    void setInputHistoryStoragePath(Path filePath);
 
     /**
      * Sets new {@code History} object to the model.
      */
-    void setHistory(History history);
+    void setInputHistory(InputHistory inputHistory);
 
     /** Returns the {@code History}*/
-    History getHistory();
+    InputHistory getInputHistory();
 }

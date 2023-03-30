@@ -15,7 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.ParticularPersonsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final History history;
+    private final InputHistory inputHistory;
     private final FilteredList<Person> filteredPersons;
     private final List<Person> frozenPersons;
 
@@ -39,25 +39,25 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, History history) {
-        requireAllNonNull(addressBook, userPrefs, history);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, InputHistory inputHistory) {
+        requireAllNonNull(addressBook, userPrefs, inputHistory);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.history = new History(history);
+        this.inputHistory = new InputHistory(inputHistory);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
         frozenPersons = new ArrayList<>();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        this(addressBook, userPrefs, new History());
+        this(addressBook, userPrefs, new InputHistory());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new History());
+        this(new AddressBook(), new UserPrefs(), new InputHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -170,23 +170,23 @@ public class ModelManager implements Model {
     //=========== History ================================================================================
 
     @Override
-    public Path getHistoryStoragePath() {
-        return history.getHistoryStoragePath();
+    public Path getInputHistoryStoragePath() {
+        return inputHistory.getHistoryStoragePath();
     }
 
     @Override
-    public void setHistoryStoragePath(Path newPath) {
-        history.setHistoryStoragePath(newPath);
+    public void setInputHistoryStoragePath(Path newPath) {
+        inputHistory.setHistoryStoragePath(newPath);
     }
 
     @Override
-    public History getHistory() {
-        return history;
+    public InputHistory getInputHistory() {
+        return inputHistory;
     }
 
     @Override
-    public void setHistory(History newHistory) {
-        history.resetData(newHistory);
+    public void setInputHistory(InputHistory newInputHistory) {
+        inputHistory.resetData(newInputHistory);
     }
 
     //=========== Filtered Person List Accessors =============================================================

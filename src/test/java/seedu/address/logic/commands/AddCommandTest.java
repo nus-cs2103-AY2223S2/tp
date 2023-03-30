@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exceptions.ModifyFrozenStateException;
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -203,22 +203,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getHistoryStoragePath() {
+        public Path getInputHistoryStoragePath() {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void setHistoryStoragePath(Path filePath) {
+        public void setInputHistoryStoragePath(Path filePath) {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public void setHistory(History history) {
+        public void setInputHistory(InputHistory inputHistory) {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public History getHistory() {
+        public InputHistory getInputHistory() {
             throw new AssertionError("This method should not be called");
         }
 
