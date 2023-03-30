@@ -93,13 +93,13 @@ public class ViewContentPanel extends UiPart<Region> {
             flowPaneContainer.setSpacing(3);
             Label label = new Label(labelString + ":");
             label.getStyleClass().add("cell_small_label");
-            FlowPane flowPane = new FlowPane();
-            flowPane.getStyleClass().add("multiple-items");
-            flowPane.getChildren().clear();
+            VBox vbox = new VBox(2);
+            vbox.getStyleClass().add("multiple-items");
+            vbox.getChildren().clear();
             attributesSet.stream()
                     .sorted(Comparator.comparing(InternshipApplicationAttribute::toString))
-                    .forEach(review -> flowPane.getChildren().add(new Label(review.toString())));
-            flowPaneContainer.getChildren().addAll(label, flowPane);
+                    .forEach(review -> vbox.getChildren().add(new Label(review.toString())));
+            flowPaneContainer.getChildren().addAll(label, vbox);
             pane.getItems().add(flowPaneContainer);
         }
     }

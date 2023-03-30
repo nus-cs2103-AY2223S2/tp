@@ -29,7 +29,7 @@ public class ReminderWindow extends UiPart<Stage> {
         if (application == null) {
             reminderApplication.setText(EMPTY_REMINDER);
         } else {
-            reminderApplication.setGraphic(new ApplicationCard(application, mainWindow).getRoot());
+            reminderApplication.setGraphic(new ReminderApplicationCard(application, mainWindow).getRoot());
         }
     }
 
