@@ -24,6 +24,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TankList;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
@@ -80,8 +81,8 @@ public class TankEditCommand extends TankCommand {
         Tank tankToEdit = lastShownList.get(index.getZeroBased());
         Tank editedTank = createEditedTank(tankToEdit, editTankDescriptor);
 
-
-        model.getTankList().setTank(tankToEdit, editedTank);
+        TankList tankList = (TankList) model.getTankList();
+        tankList.setTank(tankToEdit, editedTank);
 
         model.updateFilteredTankList(PREDICATE_SHOW_ALL_TANKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TANK_SUCCESS, editedTank));
