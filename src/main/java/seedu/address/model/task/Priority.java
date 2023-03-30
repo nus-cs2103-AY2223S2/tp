@@ -46,8 +46,13 @@ public class Priority {
         return test.equals("low") || test.equals("medium") || test.equals("high");
     }
 
+    /**
+     * Inverts natural order and returns comparison.
+     * @param p priority to compare against.
+     * @return int value of ordering.
+     */
     public int compare(Priority p) {
-        return this.priority.compareTo(p.priority);
+        return -1 * this.priority.compareTo(p.priority);
     }
 
     @Override
