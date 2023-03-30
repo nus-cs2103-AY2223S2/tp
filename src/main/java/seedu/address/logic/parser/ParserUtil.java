@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -151,13 +150,19 @@ public class ParserUtil {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dueDate = LocalDateTime.parse(date, formatter);
-            checkDateExist(dueDate, date.substring(0,2));
+            checkDateExist(dueDate, date.substring(0, 2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
         return dueDate;
     }
 
+    /**
+     * Check whether the day exists in the month, throw error if it does not exist.
+     * @param date to be checked
+     * @param day to be checked
+     * @throws ParseException to be thrown if there is error.
+     */
     public static void checkDateExist(LocalDateTime date, String day) throws ParseException {
         int lastDay = date.getMonth().maxLength();
 

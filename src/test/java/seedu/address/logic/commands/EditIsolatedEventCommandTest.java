@@ -42,7 +42,8 @@ public class EditIsolatedEventCommandTest {
                 INDEX_FIRST_EVENT, editEventDescriptor);
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, SLEEPING_ISOLATED_EVENT)
-                + " from " + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
+                + " for " + editedPerson.getName()
+                + "\nOriginal Event: " + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
     }
