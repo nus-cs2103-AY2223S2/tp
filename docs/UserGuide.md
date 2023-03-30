@@ -853,16 +853,17 @@ The following commands are patient-related commands that are available in Carefl
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
-| Action                        | Format                                                                                                                                                                                                                                         | Expected Outcome                                                         |
-|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered.           |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   | Removes drug record at the index you have selected.                      |
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             | Removes drug record associated with the provided trade name.             |
-| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                              | Edit drug's storage count with the provided trade name.                  |
-| **View drug by index**        | `d view -i DRUG_INDEX` <br> e.g. `d view -i 1`                                                                                                                                                                                                 | Shows the drug record located at the i-th position in the drug list.     |
-| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided. |
-| **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow.                 |
-| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow                              |
+| Action  | Format | Expected Outcome |
+|---|---|---|
+| **Add a drug** | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered. |
+| **Delete drug by index** | `d delete -i INDEX`<br> e.g.,`d delete -i 7` | Removes drug record at the index you have selected. |
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max` | Removes drug record associated with the provided trade name. |
+| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90` | Edit drug's storage count with the provided trade name. |
+| **View drug by index** | `d view -i DRUG_INDEX` <br> e.g. `d view -i 1` | Shows the drug record located at the i-th position in the drug list. |
+| **Find drug by trade name** | `d find TRADE_NAME` <br> e.g., `d find Panadol` | Shows drug(s) record that match the drugs' trade name you have provided. |
+| **List drug** | `d list` | Lists all the drugs that have been recorded in CareFlow. |
+| **Clear all drugs** | `d clear` | Removes all drug records stored in CareFlow |
+
 <p align="center">
   <i>Table 4. Command table for drug commands.</i>
 </p>
