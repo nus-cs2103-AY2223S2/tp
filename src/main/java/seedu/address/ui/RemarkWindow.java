@@ -60,27 +60,19 @@ public class RemarkWindow extends UiPart<Stage> {
     public String showAndGetText(String existingRemark) {
         final String[] content = new String[1];
         logger.fine("Showing help page about the application.");
-//        textArea.setOnKeyPressed(ctrlSHandler);
         textArea.setText(existingRemark);
         textArea.positionCaret(existingRemark.length());
-//        textArea.setOnKeyPressed(ctrlSHandler);
-//        getRoot().showAndWait();
-//        getRoot().showAndWait();
-//        getRoot().show();
         EventHandler<KeyEvent> ctrlSHandler = new EventHandler<>() {
             @Override
             public void handle(KeyEvent event) {
                 if (ctrlS.match(event)) {
                     event.consume();
-//                    content[0] = textArea.getText();
                     getRoot().close();
                 }
             }
         };
         textArea.setOnKeyPressed(ctrlSHandler);
-//        getRoot().showAndWait();
         getRoot().showAndWait();
-//        return textArea.getText();
         return textArea.getText();
     }
 
