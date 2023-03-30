@@ -340,7 +340,7 @@ Example:
 
 * `deletebackup 3` deletes the data from the 3rd slot.
 
-![DeleteBackUp](images/command_result/DeleteBackUp.jpg)
+![DeleteBackUp](images/command_result/Deletebackup.png)
 
 Above is the execution result of input `deletebackup 1`
 
