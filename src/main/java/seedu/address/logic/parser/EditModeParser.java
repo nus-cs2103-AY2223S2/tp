@@ -1,16 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_ENTITY_NONEXISTENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.EditValueCommand.MESSAGE_INVALID_ENTITY_TYPE;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.collections.ObservableList;
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
@@ -224,17 +222,23 @@ public class EditModeParser {
     private void parseInventoryCommand(String args, Inventory editInventory) throws ParseException {
         final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(args);
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditValueCommand.MESSAGE_USAGE));
         }
         final String actionWord = matcher.group("actionWord");
-        final String itemName = matcher.group("name");
-        final Item item = (Item) model.getEntityFromName(itemName);
-        if (actionWord.equalsIgnoreCase("add")) {
-            editInventory.addItem(item);
-        } else if (actionWord.equalsIgnoreCase("remove")) {
-            editInventory.deleteItem(item);
+        final String itemName = matcher.group("name").trim();
+        final Optional<Entity> item = model.getReroll().getItems()
+                                                        .getEntityList()
+                                                        .stream()
+                                                        .filter(entity -> entity.getName().fullName.equals(itemName))
+                                                        .findFirst();
+        if (item.isPresent()) {
+            if (actionWord.equalsIgnoreCase("add")) {
+                item.ifPresent(entity -> editInventory.addItem((Item) entity));
+            } else if (actionWord.equalsIgnoreCase("remove")) {
+                item.ifPresent(entity -> editInventory.deleteItem((Item) entity));
+            }
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
         }
     }
 }
