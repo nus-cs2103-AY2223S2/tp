@@ -28,12 +28,12 @@ public class TypicalOpenings {
     public static final Opening MICROSOFT = new OpeningBuilder().withPosition("Software Engineer")
             .withStatus("APPLIED").withEmail("microsoft@outlook.com")
             .withCompany("Microsoft").withRemark("Dream job")
-            .withDates(new ArrayList<String>(Arrays.asList("OA", "2022-03-01"))).build();
+            .withKeydates(new ArrayList<String>(Arrays.asList("OA", "2022-03-01"))).build();
     public static final Opening APPLE = new OpeningBuilder().withPosition("Frontend Engineer")
             .withStatus("INTERVIEWING")
             .withEmail("apple@apple.com").withCompany("Apple")
             .withRemark("I love apple")
-            .withDates(new ArrayList<String>(Arrays.asList("OA", "2022-03-01")),
+            .withKeydates(new ArrayList<String>(Arrays.asList("OA", "2022-03-01")),
                         new ArrayList<String>(Arrays.asList("Interview", "2022-02-01"))).build();
     public static final Opening GRAB = new OpeningBuilder().withPosition("Backend Engineer").withCompany("Grab")
             .withEmail("grab@grab.com").withStatus("REJECTED")
@@ -41,7 +41,7 @@ public class TypicalOpenings {
     public static final Opening BYTEDANCE = new OpeningBuilder().withPosition("Fullstack engineer").withCompany("Bytedance")
             .withEmail("bytedance@bytedance.com").withStatus("INTERVIEWING")
             .withRemark("I want to meet tiktok influencers")
-            .withDates(new ArrayList<String>(Arrays.asList("Interview", "2022-03-05"))).build();
+            .withKeydates(new ArrayList<String>(Arrays.asList("Interview", "2022-03-05"))).build();
     public static final Opening META = new OpeningBuilder().withPosition("Game Developer").withCompany("Meta")
             .withEmail("meta@meta.com").withStatus("FOUND")
             .withRemark("Is the metaverse bad?").build();
@@ -61,10 +61,10 @@ public class TypicalOpenings {
     // Manually added - Opening's details found in {@code CommandTestUtil}
     public static final Opening GOOGLE = new OpeningBuilder().withPosition(VALID_POSITION_GOOGLE).withCompany(VALID_COMPANY_GOOGLE)
             .withEmail(VALID_EMAIL_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
-            .withRemark(VALID_REMARK_GOOGLE).withDates(VALID_KEYDATE_FEB_OA).build();
+            .withRemark(VALID_REMARK_GOOGLE).withKeydates(VALID_KEYDATE_FEB_OA).build();
     public static final Opening SHOPEE = new OpeningBuilder().withPosition(VALID_POSITION_SHOPEE).withCompany(VALID_COMPANY_SHOPEE)
             .withEmail(VALID_EMAIL_SHOPEE).withStatus(VALID_STATUS_SHOPEE)
-            .withRemark(VALID_REMARK_SHOPEE).withDates(VALID_KEYDATE_MARCH_INTERVIEW, VALID_KEYDATE_FEB_OA)
+            .withRemark(VALID_REMARK_SHOPEE).withKeydates(VALID_KEYDATE_MARCH_INTERVIEW, VALID_KEYDATE_FEB_OA)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

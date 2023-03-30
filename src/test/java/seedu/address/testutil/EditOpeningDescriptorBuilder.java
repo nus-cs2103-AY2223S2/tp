@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
-import seedu.ultron.model.opening.Status;
-import seedu.ultron.model.opening.Email;
-import seedu.ultron.model.opening.Position;
-import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
+import seedu.ultron.model.opening.Opening;
+import seedu.ultron.model.opening.Position;
+import seedu.ultron.model.opening.Status;
 
 /**
  * A utility class to help with building EditOpeningDescriptor objects.
@@ -37,7 +37,7 @@ public class EditOpeningDescriptorBuilder {
         descriptor.setCompany(opening.getCompany());
         descriptor.setEmail(opening.getEmail());
         descriptor.setStatus(opening.getStatus());
-        descriptor.setDates(opening.getDates());
+        descriptor.setKeydates(opening.getKeydates());
     }
 
     /**
@@ -77,8 +77,8 @@ public class EditOpeningDescriptorBuilder {
      * that we are building.
      */
     public EditOpeningDescriptorBuilder withDates(ArrayList<String>... dates) {
-        List<Date> dateSet = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toList());
-        descriptor.setDates(dateSet);
+        List<Keydate> dateSet = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1))).collect(Collectors.toList());
+        descriptor.setKeydates(dateSet);
         return this;
     }
 

@@ -10,11 +10,11 @@ public class ContainsKeydatePredicate implements Predicate<Opening> {
 
     @Override
     public boolean test(Opening opening) {
-        if (opening.getDates() == null || opening.getDates().isEmpty()) {
+        if (opening.getKeydates() == null || opening.getKeydates().isEmpty()) {
             return false;
         }
-        for (Date date : opening.getDates()) {
-            if (date.isPastDate()) {
+        for (Keydate date : opening.getKeydates()) {
+            if (date.isPastKeydate()) {
                 return true;
             }
         }

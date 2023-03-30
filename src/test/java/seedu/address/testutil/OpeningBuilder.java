@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.ultron.model.opening.Email;
-import seedu.ultron.model.opening.Position;
-import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Company;
+import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
+import seedu.ultron.model.opening.Opening;
+import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
 import seedu.ultron.model.opening.Status;
-import seedu.ultron.model.opening.Date;
-import seedu.ultron.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Opening objects.
@@ -30,7 +29,7 @@ public class OpeningBuilder {
     private Email email;
     private Status status;
     private Remark remark;
-    private List<Date> dates;
+    private List<Keydate> keydates;
 
     /**
      * Creates a {@code OpeningBuilder} with the default details.
@@ -41,7 +40,7 @@ public class OpeningBuilder {
         email = new Email(DEFAULT_EMAIL);
         status = new Status(DEFAULT_STATUS);
         remark = new Remark(DEFAULT_REMARK);
-        dates = new ArrayList<>();
+        keydates = new ArrayList<>();
     }
 
     /**
@@ -53,7 +52,7 @@ public class OpeningBuilder {
         email = openingToCopy.getEmail();
         status = openingToCopy.getStatus();
         remark = openingToCopy.getRemark();
-        dates = new ArrayList<>(openingToCopy.getDates());
+        keydates = new ArrayList<>(openingToCopy.getKeydates());
     }
 
     /**
@@ -65,10 +64,11 @@ public class OpeningBuilder {
     }
 
     /**
-     * Parses the {@code dates} into a {@code Set<Date>} and set it to the {@code Opening} that we are building.
+     * Parses the {@code keydates} into a {@code Set<Keydate>} and set it to the {@code Opening} that we are building.
      */
-    public OpeningBuilder withDates(ArrayList<String>... dates) {
-        this.dates = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toList());
+    public OpeningBuilder withKeydates(ArrayList<String>... dates) {
+        this.keydates = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1)))
+                .collect(Collectors.toList());
         return this;
     }
 
@@ -105,6 +105,6 @@ public class OpeningBuilder {
     }
 
     public Opening build() {
-        return new Opening(position, company, email, status, remark, dates);
+        return new Opening(position, company, email, status, remark, keydates);
     }
 }

@@ -1,12 +1,12 @@
 package seedu.ultron.ui;
 
 import javafx.scene.control.Label;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 
 /**
- * An UI component that displays information of a {@code DateCard}.
+ * An UI component that displays information of a {@code KeydateCard}.
  */
-public class DateCard extends Label {
+public class KeydateCard extends Label {
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -16,16 +16,16 @@ public class DateCard extends Label {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Date date;
+    public final Keydate keydate;
 
     /**
-     * Creates a {@code DateCardCode} with the given {@code DateCard} and index to display.
+     * Creates a {@code DateCardCode} with the given {@code KeydateCard} and index to display.
      */
-    public DateCard(Date date) {
-        super(date.fullName + ": " + date.fullDate);
-        this.date = date;
-        this.getStyleClass().add("date");
-        if (date.isPastDate()) {
+    public KeydateCard(Keydate keydate) {
+        super(keydate.fullKey + ": " + keydate.fullDate);
+        this.keydate = keydate;
+        this.getStyleClass().add("keydate");
+        if (keydate.isPastKeydate()) {
             this.getStyleClass().add("past");
         }
     }

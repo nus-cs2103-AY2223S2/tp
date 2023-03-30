@@ -1,18 +1,18 @@
 package seedu.address.testutil;
 
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.ultron.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_KEYDATE;
+import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
 
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Opening;
-import seedu.ultron.model.opening.Date;
 
 /**
  * A utility class for Opening.
@@ -36,8 +36,8 @@ public class OpeningUtil {
         sb.append(PREFIX_EMAIL + opening.getEmail().value + " ");
         sb.append(PREFIX_STATUS + opening.getStatus().fullStatus + " ");
         sb.append(PREFIX_REMARK + opening.getRemark().value + " ");
-        opening.getDates().stream().forEach(
-            s -> sb.append(PREFIX_KEYDATE + s.fullName + "@" + s.fullDate + " ")
+        opening.getKeydates().stream().forEach(
+            s -> sb.append(PREFIX_KEYDATE + s.fullKey + "@" + s.fullDate + " ")
         );
         return sb.toString();
     }
@@ -47,16 +47,19 @@ public class OpeningUtil {
      */
     public static String getEditOpeningDescriptorDetails(EditOpeningDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION).append(position.fullPosition).append(" "));
-        descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.fullCompany).append(" "));
+        descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION)
+                .append(position.fullPosition).append(" "));
+        descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.fullCompany)
+                .append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.fullStatus).append(" "));
-        if (descriptor.getDates().isPresent()) {
-            List<Date> dates = descriptor.getDates().get();
+        if (descriptor.getKeydates().isPresent()) {
+            List<Keydate> dates = descriptor.getKeydates().get();
             if (dates.isEmpty()) {
                 sb.append(PREFIX_KEYDATE);
             } else {
-                dates.forEach(s -> sb.append(PREFIX_KEYDATE).append(s.fullName).append("@").append(s.fullDate).append(" "));
+                dates.forEach(s -> sb.append(PREFIX_KEYDATE).append(s.fullKey).append("@")
+                        .append(s.fullDate).append(" "));
             }
         }
         return sb.toString();
