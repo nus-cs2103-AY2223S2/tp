@@ -5,34 +5,16 @@ title: User Guide
 # Welcome to PetPal!
 ![Logo](images/UI/Logo.png)
 
-PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
+PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI!
+You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
 
-**PetPal is optimized for a Pet DayCare owner to use via the GUI (Graphical user interface)** while still having the benefits of a Command Line Interface (CLI). PetPal can help get your pet management tasks done without being tech-savvy and good at typing in the CLI.
+**PetPal is optimized for a Pet DayCare owner to use via the Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
+PetPal can help get your pet administrative tasks done without needing to be tech-savvy.
 
 This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet caring duties**.
 
 # Table of Contents
-
-1. [Quick Start](#quick-start)
-2. [Getting Familiar With Your User Interface](#getting-familiar-with-your-user-interface)
-3. [Legend](#legend)
-4. [Feature](#features)
-   1. [General](#general)
-      1. [Viewing help : `help`](#viewing-help--help)
-      2. [Listing your pets : `list`](#listing-your-pets--list)
-   2. [Add](#add)
-      1. [Adding a pet's information : `add`](#adding-a-pets-information--add)
-      2. [Filtering out reminders that are due soon : `remind`](#filtering-out-reminders-that-are-due-soon--remind)
-      3. [Indicate amount owed by pet owners](#amount indicaation)
-   3. [Retrieving](#retrieving)
-   4. [Updating](#updating)
-   5. [Deletion](#deletion)
-      1. [Deleting a pet : `delete`](#deleting-a-pet--delete)
-      2. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-   6. [Command Flow](#command-flow)
-5. [FAQ](#faq)
-6. [Glossary](#glossary)
-7. [Command Summary](#command-summary)
+ {:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -53,7 +35,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 
     * **`list`** : Lists all pets currently stored.
 
-    * **`add`**`o/Petricia n/Whiskers p/98746333 e/petricia@petpal.com a/311 Beach Road 2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/MaineCoon`
+    * **`add`**`o/Petricia n/Whiskers p/98746333 e/petricia@petpal.com a/311 Beach Road 2023-03-27 21:09:09 d/Feed cat - 2023-03-27 21:09:09 t/MaineCoon`
       : Adds a `Pet` named `Whiskers` to your PetPal.
 
     * **`exit`** : Exits the app.
@@ -78,12 +60,12 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend
+## How to use the User Guide
 
 ### General formatting conventions
-* Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
-* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
-* Text in `code snippets such as this` are used to show inputs and their format
+* Text in [blue](#How-to-use-the-user-guide) are hyperlinks that direct you to the relevant section of the page or to other websites.
+* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text.
+* Text in `code snippets such as this` are used to show inputs and their format.
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -100,28 +82,33 @@ Information that might be useful to know to enhance your PetPal experience, migh
 <div markdown="block" class="alert alert-block alert-danger">
 
 * :heavy_exclamation_mark: **Caution:**
-Important information to note which might negatively impact your experience in using PetPal
+Important information to note which might negatively impact your experience in using PetPal as it might cause fatal
+errors
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
 * :information_source: **Information**
 
+Information that you need to know
+
 </div>
+
+
 
 ### Command formatting conventions:
 * Words in `UPPER_CASE` are the information supplied by you.
-  e.g `OWNER_NAME` is a parameter in `add o/NAME`, where you can input `add o/John Doe`.
+  e.g. `OWNER_NAME` is a parameter in `add o/OWNER_NAME`, where you can input `add o/John Doe`.
 * Parameters in `[]` are optional.
-  e.g `DEADLINE` is an optional parameter in `create o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/d/Feed dog - 2023-03-27 21:09:09` or just `create n/John Doe`.
-* Items with `…`​ after them can be used multiple times.
-  e.g `TAG…​` can be used as `Pomeranian`, `Pomeranian Vegetarian` etc.
+  e.g. `DEADLINE` is an optional parameter in `create o/OWNER_NAME [d/DEADLINE]`, where you can input `add on/John Doe d/Feed dog - 2023-03-27 21:09:09` or just `create n/John Doe`.
+* Items with `...` after them can be used multiple times.
+  e.g. `TAG...` can be used as `Pomeranian`, `Pomeranian Vegetarian` etc.
 * `INDEX` represents the index of a specific pet in PetPal.
-  e.g You can use the command `delete INDEX` as `delete 2`.
+  e.g. You can use the command `delete INDEX` as `delete 2`.
 * Parameters can be in **any order**.
-  e.g You can input either `add o/OWNER_NAME p/HP_NUMBER` or ` create p/HP_NUMBER o/OWNER_NAME`.
+  e.g. You can input either `add o/OWNER_NAME p/PHONE_NUMBER` or ` create p/PHONE_NUMBER o/OWNER_NAME`.
 * Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**
-  e.g Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, `redo` and `undo`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -141,6 +128,8 @@ Format: `help`, `h` or Press `F1`
 
 ![help](images/UG/help.png)
 
+
+
 #### Listing your pets : `list`
 
 Shows a list of all pets stored in your PetPal.
@@ -149,11 +138,13 @@ Format: `list` or `l`
 
 ![list](images/UG/list.png)
 
+
+
 ### Adding
 
 #### Adding a pet's information : `add`
 
-Adds all the relevant information of a pet to your PetPal.
+If you have new pet client(s) and need to add your new furry friends into PetPal, you can make use of the `add` command.
 
 Format: `add n/PET_NAME o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...] `
 
@@ -162,7 +153,7 @@ Format: `add n/PET_NAME o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_ST
 * :information_source: **Information**
 
 Note:
-1. The field `n/PET_NAME` is **case sensitive**. That is `n/Doggo` and `n/doggo` will be treated as 2 different pets
+1. The field `n/PET_NAME` is **case-sensitive**. That is `n/Doggo` and `n/doggo` will be treated as 2 different pets
 2. There certain constraints which might differ for each parameter, please refer to **Figure 1** below for details on each constraint
 3. Pets with the `PET_NAME` **cannot** be created.
 4. There can be multiple tags associated with each pet, simply repeat the tag prefix e.g. `t/Dog t/BichonFrise`
@@ -198,6 +189,8 @@ Other examples:
 * `add o/Petricia n/Whiskers p/98746333 e/petricia@petpal.com a/311 Beach Road 2023-03-27 21:09:09 d/Feed cat - 2023-03-27 21:09:09 t/MaineCoon`
 * `add o/Robert n/Fluffy p/98746333 e/rob@bmail.com a/622 Rose Road ts/2023-03-27 21:09:09 d/Feed rabbit - 2023-03-27 21:09:09 t/Vegetarian t/Rabbit`
 
+
+
 #### Filtering out reminders that are due soon : `remind`
 
 Get a filtered list of things you should do soon!
@@ -219,6 +212,9 @@ The pets highlighted in bright orange are reminders that are due within a day!<b
 Pet Card information indicates the amount of money owed to you for taking good care of their pets!
 ![](images/UG/amount.png)
 
+
+
+
 ### Retrieving
 
 #### Finding your pet by name : `find`
@@ -228,7 +224,7 @@ Find your pets whose name contain any of the given keywords.
 **Constraints**
 * The search is case-insensitive. e.g. `woofers` will match `Woofers`
 * The order of the keywords does not matter. e.g. `Ardent Tyrant` will match `Tyrant Ardent`
-* Only the name is searched. e.g. `find Alex` will not return owner names, addresses or emails with
+* Only the **pet name** is searched. e.g. `find Alex` will not return owner names, addresses or emails with `Alex`
 * Partial words will be matched. e.g. `Jack` will match `Jackson`.
 * Pets matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -245,27 +241,30 @@ Other examples:
 <div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
-Format: `f n/NAME`
+Format: `f n/PET_NAME`
 
 </div>
+
+
 
 ### Updating
 
 #### Updating your pet information : `edit`
 
-Edit the pet information of a pet in PetPal
+A pet owner changed their contact information? or did you find out new information about your pet client?
+
+You can edit these changes with the `edit` command. This command can be used to edit: phone number, address, email, tags
+
 If you accidentally invoked this command with the wrong parameters, you can use the `edit` command to re-edit the wrong fields or
 the `undo` command to revert the wrong changes.
 
-This command can be used to edit: phone number, address, email, tags
-
 **Constraints**
 * Edits the pet with the provided index.
-* `INDEX` is the index of the pet in the currently displayed list.<br>
-* You must provide **at least one** of the optional fields .
-* Does not allow you to update a pet to have the same name and phone number as a current person in the PetPal.
+* `INDEX` is the index of the pet in the currently displayed list.
+* You must provide **at least one** of the optional fields.
 * Allows you to update a pet to have same owner name but different phone number or, same number but different owner name as a current pet in the PetPal.
-* Person profiles do not refresh when person is updated, they are only updated when we re-click the person card
+* Pet profiles are auto saved in PetPal and are reflected in the PetPal list.
+* Cost is constantly being updated in PetPal but the latest information may not be reflected to you. To get the latest information, either click on the pet profile or run a command (e.g. `list` or `l`)
 
 Format: `edit INDEX [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [t/TAG...]`
 
@@ -275,8 +274,9 @@ Example given: `edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-
 <div markdown="block" class="alert alert-block alert-success">
 
 :bulb: **Note:**
-If you wish to add tags to the pet, take note to include all previous tags in the edit or it will be overridden
-Only parameters provided will be changed
+If you wish to add tags to the pet, take note to include all previous tags in the edit, or they will be overridden.
+
+Only parameters provided will be changed.
 
 </div>
 
@@ -286,17 +286,21 @@ and address to `21 Beach Rd`
 * `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
 the edit will override the existing tag
 
+
+
 #### Changing the cost : `changecost` or `cc`
 
 Changes the parameters for cost calculation for each dog
-Cost is updated every 10 seconds and is calculated based on `FLAT_RATE + (TIMESTAMP * RATE)`.
+Cost is incremented in 10 seconds intervals and is calculated based on `FLAT_RATE + (TIMESTAMP * RATE)`.
+Note that the cost will only update in your PetPal list when you click on the PetPal entry or execute a command
 
-Format: `changecost INDEX [RATE] [FLAT_RATE]`
+Format: `changecost INDEX RATE FLAT_RATE`
 
 ![update](images/UG/changecost.png)
 Example given `changecost 1 0.1 0.5`
 Additional example:
 * `cc 2 1.0 1.5`
+
 
 
 ### Deletion
@@ -320,11 +324,17 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
 
+
+
 #### Archiving a pet: `archive`
 
+Sometimes a client may become inactive or stop using your services. To keep a record of the pet whilst not cluttering
+your active PetPal list, you can use the `archive` command to move these records to another save file.
+
 Archives the specified pet into the `archive.json` file in the `data` folder.
+
 Note that:
-* The specified pet will be removed from your PetPal.
+* The specified pet will be removed from your PetPal list.
 * The index is based on the **currently displayed** PetPal list, which might change depending on prior commands used
   (e.g. `find`)
 
@@ -352,7 +362,8 @@ Format: `clear`
 If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore the previous state of PetPal.
 </div>
 
-### Command Flow
+### Undo
+
 #### Undoing a previous command : `undo`
 
 Undos your last command.
@@ -378,6 +389,8 @@ You can `undo` an `undo` command
 </div>
 
 
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -391,22 +404,30 @@ You can replace `exit` with `e` for convenience.
 
 </div>
 
+
+
+
 ### Saving the data
 
-Your PetPal data are saved in the hard disk automatically after any command that changes the data. This means hassle free saving.
+Your PetPal and archive data are both automatically saved after executing any command that changes the data.
+This means hassle-free saving.
+
+
 
 ### Editing the data file
 
-PetPal data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
+PetPal data are saved as a JSON file `[JAR file location]/data/PetPal.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
+Archive data is also in a JSON format and can be found `[JAR file location]/data/archive.json`. You can also
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PetPal will discard all data and start with an empty data file at the next run.
-
+If your changes to either data files makes its format invalid, PetPal will **discard all data** and start with an empty data file at the next run,
+which is **IRREVERSIBLE**.
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,7 +451,7 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 **Q**: How do I view the entire pet list after a `find` command?
 
-**A**: Run `list` to view the entire unfiltered list.
+**A**: Run `list` or `l` to view the entire unfiltered list.
 
 
 **Q**: When I run the `archive` command, nothing happens
@@ -441,7 +462,7 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
-or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
+or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -463,6 +484,8 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 [Return to Table of Contents](#table-of-contents)
 
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut              |
@@ -470,10 +493,10 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 | **Help**        | `help`                                                                                                                                                                                                                                                                  | `h` or **PRESS** `F1` |
 | **List**        | `list`                                                                                                                                                                                                                                                                  | `l`                   |
 | **Add**         | `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...]`<br> e.g `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` |                       |
-| **Edit**        | `clear`                                                                                                                                                                                                                                                                 |                       |
+| **Edit**        | `edit p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG...]`<br> e.g `Example: edit 6 t/Golden Retriever t/Dog a/Blk 235 Ang Mo Kio Ave 8, #11-312 e/alextoh@gmail.com`                                                                                                       |                       |
 | **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
 | **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
-| **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    |                       |
+| **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    | `f`                   |
 | **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
 | **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |
 | **Archive**     | `archive INDEX`<br>e.g. `archive 1`                                                                                                                                                                                                                                     ||                                                                                                                                                                                                                                     

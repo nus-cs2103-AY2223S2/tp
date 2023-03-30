@@ -9,14 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.PetPal;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pet.Pet;
 
 public class UndoCommandTest {
 
     @Test
-    public void undo_AddCommand_success() {
+    public void undo_addCommand_success() {
         Model model = new ModelManager();
         model.addPet(getTypicalPet().get(1));
 

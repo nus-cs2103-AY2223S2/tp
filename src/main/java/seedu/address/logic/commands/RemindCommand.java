@@ -31,4 +31,11 @@ public class RemindCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RemindCommand // instanceof handles nulls
+                && predicate.equals(((RemindCommand) other).predicate)); // state check
+    }
 }
