@@ -24,7 +24,7 @@ If you like our product and want to contribute to it, consider looking at the [D
 * Table of Contents
   * [1. Quick start](#1-quick-start)
   * [2. Features and commands](#2-features-and-commands)
-    * [2.1 add](#21-adding-a-task--add)
+    * [2.1 add](#21-adding-a-task--add) 
     * [2.2 edit](#22-editing-a-task--edit)
     * [2.3 delete](#23-deleting-a-task--delete)
     * [2.4 list](#24-listing-all-tasks--list)
