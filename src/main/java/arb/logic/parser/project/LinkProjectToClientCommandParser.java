@@ -19,7 +19,7 @@ public class LinkProjectToClientCommandParser implements Parser<LinkProjectToCli
      */
     public LinkProjectToClientCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndexWithZero(args);
             return new LinkProjectToClientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

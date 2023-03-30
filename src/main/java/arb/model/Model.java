@@ -159,6 +159,11 @@ public interface Model {
     void setProjectToLink(Project project);
 
     /**
+     * Resets the {@code project} to be linked to a client.
+     */
+    void resetProjectToLink();
+
+    /**
      * Links a project to {@code client}.
      */
     void linkProjectToClient(Client client);
