@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
@@ -158,7 +159,10 @@ public class AutocompleteEngine {
     }
 
     private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
-        return new HashMap<>(Map.of(PREFIX_TAG, model.getExistingTagValues()));
+        return new HashMap<>(Map.of(
+                PREFIX_TAG, model.getExistingTagValues(),
+                PREFIX_MODULE, model.getExistingModuleValues()
+        ));
     }
 
     /**
