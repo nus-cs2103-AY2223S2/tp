@@ -61,11 +61,11 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all patients.
+   * `list_patient` : Lists all patients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to MediMeet.
+   * `add_patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to MediMeet.
 
-   * `delete 3` : Deletes the 3rd patient shown in the current list.
+   * `delete_patient 3` : Deletes the 3rd patient shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -110,31 +110,31 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a patient: `add`
+### Adding a patient: `add_patient`
 
 Adds a patient to MediMeet.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add_patient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all patients : `list`
+### Listing all patients : `list_patient`
 
 Shows a list of all patients in MediMeet.
 
-Format: `list`
+Format: `list_patient`
 
-### Editing a patient : `edit`
+### Editing a patient : `edit_patient`
 
 Edits an existing patient in MediMeet.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit_patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -144,14 +144,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+*  `edit_patient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit_patient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Locating patients by name: `find`
+### Locating patients by name: `find_patient`
 
 Finds patients whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find_patient KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -161,15 +161,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find_patient John` returns `john` and `John Doe`
+* `find_patient alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating patients by details: `find_details`
+### Locating patients by details: `find_patient_details`
 
 Finds patients whose details contain any of the given keywords.
 
-Format: `find_details KEYWORD [MORE_KEYWORDS]`
+Format: `find_patient_details KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -179,45 +179,40 @@ Format: `find_details KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find 22224444` returns the patient with a phone number `22224444`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find_patient_details 22224444` returns the patient with a phone number `22224444`
 
-### Deleting a patient : `delete`
+### Deleting a patient : `delete_patient`
 
 Deletes the specified patient from MediMeet.
 
-Format: `delete INDEX`
+Format: `delete_patient INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the MediMeet.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list_patient` followed by `delete_patient 2` deletes the 2nd patient in the MediMeet.
+* `find_patient Betsy` followed by `delete_patient 1` deletes the 1st patient in the results of the `find_patient` command.
 
-### Adding patient notes: `remark`
+### Adding patient notes: `remark_patient`
 
 Adds a remark to a patient in MediMeet.
 
-Format: `remark INDEX [r/REMARK]`
+Format: `remark_patient INDEX [r/REMARK]`
 
 * Remarks cannot be edited and can only be overwritten.
-* In order to remove notes from a patient, use `remark INDEX` without the optional `[r\REMARK]`.
+* In order to remove notes from a patient, use `remark_patient INDEX` without the optional `[r\REMARK]`.
 
 * Example:
-* `remark 1 r/Immunocompromised` Adds a note `Immunocompromised` to the patient.
-* `remark 1` Removes any existing note from the patient.
+* `remark_patient 1 r/Immunocompromised` Adds a note `Immunocompromised` to the patient.
+* `remark_patient 1` Removes any existing note from the patient.
 
 ### Adding an appointment: `add_appt`
 
 Adds an appointment for an existing patient in MediMeet.
 
-Format: `add n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div>
+Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​`
 
 Example:
 * `add_appt n/John Doe ts/01012023 00:00,01012023 01:00 d/Regular checkup`
@@ -256,7 +251,7 @@ Examples:
 
 Deletes an existing appointment in MediMeet.
 
-Format: `delete APPOINTMENT_INDEX`
+Format: `delete_appt APPOINTMENT_INDEX`
 
 Example:
 * `delete_appt 1`
