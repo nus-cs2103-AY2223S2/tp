@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Unfavorites a Person in the Address Book
@@ -16,16 +17,16 @@ import seedu.address.model.person.Person;
 public class UnfavoriteCommand extends Command {
     public static final String COMMAND_WORD = "unfav";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unfavourites the person "
-            + "according to the Contact ID provided by user input.\n"
-            + "Parameters: INDEX (must be positive integer).\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD, "Removes the person from favorites according to the given index.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be positive integer)")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
     public static final String MESSAGE_NOT_EXISTS = "Person doesn't exist in the address book";
 
-    public static final String MESSAGE_ISUNFAVORITED = "Person is already unfavorited in this address book: %1$s";
+    public static final String MESSAGE_ISUNFAVORITED = "Person is already not a favorite: %1$s";
 
-    public static final String MESSAGE_UNFAVORITE_PERSON_SUCCESS = "Unfavourited Person: %1$s";
+    public static final String MESSAGE_UNFAVORITE_PERSON_SUCCESS = "Person removed from favorites: %1$s";
 
     public final Index index;
 

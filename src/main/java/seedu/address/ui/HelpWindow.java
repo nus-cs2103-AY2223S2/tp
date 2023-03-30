@@ -26,6 +26,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LightModeCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UnTagEventCommand;
@@ -142,6 +143,7 @@ public class HelpWindow extends UiPart<Stage> {
                 HelpCommand.MESSAGE_USAGE,
                 LightModeCommand.MESSAGE_USAGE,
                 ListCommand.MESSAGE_USAGE,
+                SelectCommand.MESSAGE_USAGE,
                 TabCommand.MESSAGE_USAGE,
                 TagEventCommand.MESSAGE_USAGE,
                 UnfavoriteCommand.MESSAGE_USAGE,
