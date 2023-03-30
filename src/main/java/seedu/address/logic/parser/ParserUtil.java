@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMPARISON_AMOUNT;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -10,6 +12,8 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Address;
@@ -273,4 +277,53 @@ public class ParserUtil {
         return trimmedFileName;
     }
 
+    /**
+     * Parses {@code String[] parameters} and returns the sort parameter.
+     * @param parameters the array of parameters
+     * @return first element of array
+     */
+    public static String parseSortParameter(String[] parameters) {
+        return parameters[0];
+    }
+
+    /**
+     * Parses {@code String[] parameters} and returns whether the comparison sign is {@code >} or {@code <}
+     * @param parameters the string array of parameters.
+     * @return whether comparison sign is greater than or less than.
+     * @throws ParseException if format is wrong.
+     */
+    public static boolean parseComparisonSign(String[] parameters) throws ParseException {
+        String comparisonSign = parameters[1];
+        boolean isGreaterThan;
+        if (comparisonSign.compareTo(">") == 0) {
+            isGreaterThan = true;
+        } else if (comparisonSign.compareTo("<") == 0) {
+            isGreaterThan = false;
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE)
+            );
+        }
+        return isGreaterThan;
+    }
+
+    /**
+     * Parses {@code String[] parameters} and returns the amount to be compared to.
+     * @param parameters {@code String[] array} of parameters.
+     * @return the amount to be compared to.
+     * @throws ParseException if amount is not a non-negative integer.
+     */
+    public static int parseComparisonAmount(String[] parameters) throws ParseException {
+        String stringComparisonAmount = parameters[2];
+        int comparisonAmount;
+        try {
+            comparisonAmount = Integer.parseInt(stringComparisonAmount);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_COMPARISON_AMOUNT);
+        }
+        if (comparisonAmount < 0) {
+            throw new ParseException(MESSAGE_INVALID_COMPARISON_AMOUNT);
+        }
+        return comparisonAmount;
+    }
 }
