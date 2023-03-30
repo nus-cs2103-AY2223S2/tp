@@ -77,7 +77,7 @@ public class ListingBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-            
+
         case EditApplicantCommand.COMMAND_WORD:
             return new EditApplicantCommandParser().parse(arguments);
 
