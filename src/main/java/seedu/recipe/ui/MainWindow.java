@@ -22,7 +22,6 @@ import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.ui.events.EditRecipeEvent;
 
-
 /**
  * Represents the main window of the application. This class is responsible for
  * initializing and configuring the UI components and managing the primary stage.
@@ -37,7 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     private final Stage primaryStage;
     private final Logic logic;
     private final HelpWindow helpWindow;
-
 
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
