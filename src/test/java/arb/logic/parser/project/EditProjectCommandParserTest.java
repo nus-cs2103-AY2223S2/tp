@@ -41,6 +41,8 @@ import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND;
 import static arb.testutil.TypicalIndexes.INDEX_THIRD;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import arb.commons.core.index.Index;
@@ -119,7 +121,7 @@ public class EditProjectCommandParserTest {
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .withPrice(VALID_PRICE_SKY_PAINTING)
                 .withTags(VALID_TAG_PAINTING)
-                .withLinkedClient(VALID_CLIENT_NAME_ALICE)
+                .withLinkedClientNameKeywords(Arrays.asList(VALID_CLIENT_NAME_ALICE))
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
@@ -199,13 +201,15 @@ public class EditProjectCommandParserTest {
 
         // client, using main prefix
         userInput = targetIndex.getOneBased() + CLIENT_DESC_ALICE;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(VALID_CLIENT_NAME_ALICE).build();
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays
+                .asList(VALID_CLIENT_NAME_ALICE)).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // client, using alias prefix
         userInput = targetIndex.getOneBased() + CLIENT_DESC_ALIAS_ALICE;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(VALID_CLIENT_NAME_ALICE).build();
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays
+                .asList(VALID_CLIENT_NAME_ALICE)).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -293,7 +297,7 @@ public class EditProjectCommandParserTest {
 
         // empty client, main prefix
         userInput = targetIndex.getOneBased() + EMPTY_CLIENT;
-        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(null).build();
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClientNameKeywords(Arrays.asList()).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

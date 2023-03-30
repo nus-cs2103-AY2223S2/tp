@@ -33,8 +33,8 @@ public class FindProjectCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindProjectCommand() {
         List<String> expectedTags = Arrays.asList("painting");
-        List<String> expectedTitles = Arrays.asList("Sky Painting");
-        List<String> expectedClientNames = Arrays.asList("Alice Wheeler");
+        List<String> expectedTitles = Arrays.asList("Sky", "Painting");
+        List<String> expectedClientNames = Arrays.asList("Alice", "Wheeler");
         ProjectContainsTagsPredicate expectedTagsPredicate = new ProjectContainsTagsPredicate(expectedTags);
         TitleContainsKeywordsPredicate expectedTitlesPredicate = new TitleContainsKeywordsPredicate(expectedTitles);
         IsOfStatusPredicate expectedStatusPredicate = new IsOfStatusPredicate(new Status(false));

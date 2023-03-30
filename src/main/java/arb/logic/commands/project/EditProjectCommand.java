@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -40,7 +41,8 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
-    public static final String MESSAGE_CANNOT_FIND_CLIENT = "Cannot find client %1$s";
+    public static final String MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS =
+            "Cannot find any client with given keywords: %1$s";
 
     private static final String MAIN_COMMAND_WORD = "edit-project";
     private static final String ALIAS_COMMAND_WORD = "ep";
@@ -95,21 +97,16 @@ public class EditProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
-        Optional<Optional<String>> optionalUpdatedClient = editProjectDescriptor.getClient();
-        String updatedClientName = projectToEdit.getClientName();
-        if (optionalUpdatedClient.isPresent()) {
-            updatedClientName = optionalUpdatedClient.get().orElse(null);
-        }
+        Optional<List<String>> optionalClientNameKeywords = editProjectDescriptor.getClientNameKeywords();
 
-        if (updatedClientName == null) {
+        if (optionalClientNameKeywords.isPresent() && optionalClientNameKeywords.get().isEmpty()) {
             model.unlinkClientFromProject(projectToEdit);
-        } else {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
-                    .asList(updatedClientName)));
+        } else if (optionalClientNameKeywords.isPresent()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(optionalClientNameKeywords.get()));
             if (model.getFilteredClientList().size() == 0) {
                 model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
-                        updatedClientName));
+                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS,
+                        keywordsToString(optionalClientNameKeywords.get())));
             }
             model.setProjectToLink(editedProject);
         }
@@ -118,17 +115,17 @@ public class EditProjectCommand extends Command {
 
         String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
         ListType toBeShown = ListType.PROJECT;
-        if (updatedClientName != null) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
-                    .asList(updatedClientName)));
-            message = LinkProjectToClientCommand.MESSAGE_USAGE;
+        if (optionalClientNameKeywords.isPresent() && !optionalClientNameKeywords.get().isEmpty()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(optionalClientNameKeywords.get()));
+            message += "\n" + LinkProjectToClientCommand.MESSAGE_USAGE;
             toBeShown = ListType.CLIENT;
         } else {
             model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
             model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         }
 
-        return new CommandResult(message, updatedClientName != null, toBeShown);
+        return new CommandResult(message, optionalClientNameKeywords.isPresent()
+                && !optionalClientNameKeywords.get().isEmpty(), toBeShown);
     }
 
     /**
@@ -183,6 +180,13 @@ public class EditProjectCommand extends Command {
         return new ArrayList<>(COMMAND_WORDS);
     }
 
+    private String keywordsToString(List<String> keywords) {
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> keywordsIterator = keywords.iterator();
+        keywordsIterator.forEachRemaining(s -> sb.append(s + ", "));
+        return sb.delete(sb.length() - 2, sb.length()).toString();
+    }
+
     /**
      * Stores the details to edit the project with. Each non-empty field value will replace the
      * corresponding field value of the project.
@@ -191,7 +195,7 @@ public class EditProjectCommand extends Command {
         private Title title;
         private Optional<Deadline> deadline;
         private Optional<Price> price;
-        private Optional<String> clientName;
+        private List<String> clientNameKeywords;
 
         private Set<Tag> tags;
 
@@ -204,7 +208,7 @@ public class EditProjectCommand extends Command {
             setTitle(toCopy.title);
             this.deadline = toCopy.deadline;
             this.price = toCopy.price;
-            this.clientName = toCopy.clientName;
+            this.clientNameKeywords = toCopy.clientNameKeywords;
             setTags(toCopy.tags);
         }
 
@@ -212,7 +216,7 @@ public class EditProjectCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientName);
+            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientNameKeywords);
         }
 
         public void setTitle(Title title) {
@@ -227,8 +231,8 @@ public class EditProjectCommand extends Command {
             this.price = Optional.ofNullable(price);
         }
 
-        public void setClient(String clientName) {
-            this.clientName = Optional.ofNullable(clientName).filter(c -> !c.isBlank());
+        public void setClientNameKeywords(List<String> clientNameKeywords) {
+            this.clientNameKeywords = clientNameKeywords;
         }
 
         public Optional<Title> getTitle() {
@@ -243,8 +247,8 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(price);
         }
 
-        public Optional<Optional<String>> getClient() {
-            return Optional.ofNullable(clientName);
+        public Optional<List<String>> getClientNameKeywords() {
+            return Optional.ofNullable(clientNameKeywords);
         }
 
         /**
@@ -283,7 +287,8 @@ public class EditProjectCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags())
-                    && getClient().equals(e.getClient());
+                    && getClientNameKeywords().equals(e.getClientNameKeywords());
         }
     }
+
 }

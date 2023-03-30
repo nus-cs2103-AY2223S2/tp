@@ -1,6 +1,5 @@
 package arb.logic.parser.project;
 
-import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -28,6 +27,6 @@ public class LinkProjectToClientCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkProjectToClientCommand.MESSAGE_USAGE));
+                "Invalid index! " + LinkProjectToClientCommand.MESSAGE_USAGE);
     }
 }
