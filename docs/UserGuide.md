@@ -317,44 +317,6 @@ patient clear
 
 * `patent clear`
 
-### `appointment` - Appointment functionalities
-
-#### `add` - Add an appointment
-
-```text
-appointment add --p <integer> --s <date> --e <date> --v <string>
-```
-
-##### Example
-
-* `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
-
-#### `edit` - Edit an appointment
-
-```text
-appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
-```
-
-##### Example
-
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
-
-#### `delete` - Delete an appointment
-
-```text
-appointment delete <integer>
-```
-
-##### Example
-
-* `appointment delete 5`
-
-#### `list` - List all appointments
-
-```text
-appointment list
-```
-
 ### `vaccination` - Vaccination functionalities
 
 Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
@@ -466,6 +428,179 @@ vaccination delete Pfizer (Dose 1)
 ```
 Output:<br>
 {some ss}
+
+<br></br>
+
+### `appointment` - Appointment functionalities
+
+| Attribute     | Type              | Description                                |
+|---------------|-------------------|--------------------------------------------|
+| Patient id    | `<Index>`         | The patient id of the appointment.         |
+| Starting time | `<localDateTime>` | The starting time of the appointment.      |
+| Ending time   | `<localDateTime>` | The ending time of the appointment.        |
+| Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
+| Status        | `<Boolean>`       | The completion status of the appointment.  |
+
+<br></br>
+
+#### `add` - Add an appointment
+
+Adds a new appointment to the appointment manager
+
+```text
+appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+
+##### Example
+
+* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)`
+
+##### Restrictions
+
+* The patient id must be an existing index in the patient manager.
+* The patient id must for a patient that does not already have an upcoming appointment.
+* The starting time must be after the current locale time.
+* The ending time must be after the given starting time.
+* The vaccination must be an existing vaccination type in the vaxtype manager.
+
+<br></br>
+
+#### `delete` - Delete an appointment
+
+Removes the specified appointment from the appointment manager.
+
+```text
+appointment delete INDEX
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+
+##### Example
+
+* `appointment delete 5`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+
+<br></br>
+
+#### `edit` - Edit an appointment
+
+Edits the details of an existing appointment.
+
+```text
+appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
+    [--v VAX_GROUP]
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+
+##### Example
+
+* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The index must be of an appointment that has not yet passed.
+* The patient id must be an existing index in the patient manager.
+* The starting time must be after the current locale time.
+* The ending time must be after the given starting time.
+* The vaccination must be an existing vaccination type in the vaxtype manager.
+
+<br></br>
+
+#### `list` - List all appointments
+
+Resets the view of the appointment pane to display all the appointments. Useful command after using the find command.
+
+```text
+appointment list
+```
+
+<br></br>
+
+#### `find` - Find all matching appointments
+
+List all the appointments that matches the predicates provided.
+
+* <code><var>INDEX</var></code> : List appointments of a specific patient
+* <code><var>STARTING_TIME</var></code> : List appointments after the starting time
+* <code><var>ENDING_TIME</var></code> : List appointments before the ending time
+* <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
+* <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
+
+```text
+appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
+    [--v ...VAX_GROUP...]`
+
+appointment find [...KEYWORDS...]
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+* <code><var>KEYWORDS</var></code> : `<String>`
+
+##### Example
+
+* `appointment find --p 1`
+* `appointment find Dose 1`
+
+<br></br>
+
+#### `mark` - Marks an appointment as completed
+
+Marks an existing appointment as completed.
+
+```text
+appointment mark INDEX
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+
+##### Example
+
+* `appointment mark 1`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The specified appointment should not already be done.
+
+<br></br>
+
+#### `unmark` - Changes an appointment's status to not done
+
+Changes the completion status to not done.
+
+```text
+appointment unmark INDEX
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+
+##### Example
+
+* `appointment unmark 1`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The specified appointment should already be done.
+
+<br></br>
 
 ## Advance
 
