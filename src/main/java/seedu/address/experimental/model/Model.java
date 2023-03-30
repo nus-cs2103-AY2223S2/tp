@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 
@@ -49,6 +50,8 @@ public interface Model {
      */
     void setRerollFilePath(Path rerollFilePath);
 
+    Predicate<Entity> getClassificationPredicate(Classification classification);
+
     /**
      * Returns Reroll
      */
@@ -82,6 +85,13 @@ public interface Model {
      * The entity identity of {@code editedEntity} must not be the same as another existing entity in Reroll.
      */
     void setEntity(Entity target, Entity editedEntity);
+
+    /**
+     * Gets the entity with name matching the provided name.
+     * @param name the name of the entity to be found
+     * @return the found entity
+     */
+    Entity getEntityFromName(String name);
 
     // ============== Filtered entity list =================
     /**
