@@ -17,11 +17,11 @@ public class Instagram implements Openable {
         + "and adhere to the following constraints:\n"
         + "1. The username should only contain alphanumeric characters and the special character, excluding "
         + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
-        + "2. The dots must not be consecutive or at the end.\n"
+        + "2. The dots must not be consecutive, at the start, or at the end.\n"
         + "3. The username should contain at most 30 characters."
         + "Format: " + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM";
 
-    // alphanumeric and dot; no consecutive dots, not ending with dot
+    // alphanumeric and dot; no consecutive dots, not starting and ending with dot
     private static final String USERNAME_REGEX = "([a-zA-Z0-9]\\.?)*[a-zA-Z0-9]";
 
     public final String value;
