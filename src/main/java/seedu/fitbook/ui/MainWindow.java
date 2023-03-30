@@ -1,14 +1,24 @@
 package seedu.fitbook.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +33,7 @@ import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.WeightHistory;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,9 +43,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String TITLE = "FitBook";
     private static final String EXERCISE = "Exercise";
     private static final String SCHEDULE = "Schedule";
-    private static final String STATISTIC = "Statistic";
     private static final String SUMMARY = "Summary";
     private static final String FXML = "MainWindow.fxml";
+    private static final String ICON_APPLICATION = "/images/FitBook.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -54,10 +65,21 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private SchedulePanel schedulePanel;
     private ExercisePanel exercisePanel;
+    private ExerciseListPanel exerciseListPanel;
     private SummaryPanel summaryPanel;
     private SummaryListPanel summaryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private int tabNumber = 0;
+    private CategoryAxis xAxis;
+    private NumberAxis yAxis;
+    private LineChart<String, Number> lineChart;
+    private XYChart.Series<String, Number> series;
+    private Scene scene;
+    private Pane pane;
+    private List<Double> graphYAxis;
+    private List<String> graphXAxis;
+
     @FXML
     private Label exercisePanelTitle;
 
@@ -201,6 +223,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void setTabNumber(int tabNumber) {
+        this.tabNumber = tabNumber;
+    }
+
     /**
      * Closes the application.
      */
@@ -225,23 +251,74 @@ public class MainWindow extends UiPart<Stage> {
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
         rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
         rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
 
+        exerciseListPanel = new ExerciseListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
+
         rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
     }
 
     @FXML
-    private void handleStatistics() {
-        setMainTitleText(STATISTIC);
-        setSubTitle(STATISTIC);
-        rightPanelPlaceholder.setManaged(false);
+    private void handleStatistics(Client client) {
+        xAxis = new CategoryAxis();
+        yAxis = new NumberAxis();
+        lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        series = new XYChart.Series<String, Number>();
 
-        exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
-        rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
+        updateSeries(client);
+        setSettingsGraph();
 
-        rightPanelPlaceholder.setManaged(true);
+        pane = new Pane();
+        pane.setPadding(new Insets(10, 10, 10, 10));
+        pane.getChildren().add(lineChart);
+        scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.getIcons().add(new Image(ICON_APPLICATION));
+        stage.setTitle(client.getName().toString() + "'s Weight History");
+        stage.show();
+    }
+
+    private void setSettingsGraph() {
+        xAxis.setLabel("Day Time");
+        yAxis.setLabel("Weight");
+        yAxis.setAutoRanging(false);
+
+        List<Double> sortWeight = new ArrayList<>(graphYAxis).stream().sorted().collect(Collectors.toList());
+        yAxis.setLowerBound(sortWeight.get(0) - 5);
+        yAxis.setUpperBound(sortWeight.get(sortWeight.size() - 1) + 5);
+        yAxis.setTickUnit(1);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void updateSeries(Client client) {
+        series.getData().clear();
+        graphXAxis = new ArrayList<>();
+        graphYAxis = new ArrayList<>();
+        WeightHistory weights = client.getWeightHistory().refineGraphWeightHistory().sortByDate();
+
+        for (int i = 0; i < weights.getListSize(); i++) {
+            double weightValue = Double.parseDouble(weights.getWeightValue(i));
+            graphYAxis.add(weightValue);
+        }
+
+
+        for (int i = 0; i < weights.getListSize(); i++) {
+            String dateValue = weights.getDateValue(i).toString();
+            graphXAxis.add(dateValue);
+        }
+
+        // add data to the series
+        for (int i = 0; i < graphXAxis.size(); i++) {
+            series.getData().add(new XYChart.Data(graphXAxis.get(i), graphYAxis.get(i)));
+        }
+        series.setName("1 Month's Weight History");
+        lineChart.getData().add(series);
     }
 
     @FXML
@@ -340,6 +417,9 @@ public class MainWindow extends UiPart<Stage> {
             }
             if (commandResult.isShowRoutine()) {
                 handleExercise();
+            }
+            if (commandResult.isShowGraph()) {
+                handleStatistics(commandResult.getClientToView());
             }
             return commandResult;
         } catch (CommandException | ParseException e) {
