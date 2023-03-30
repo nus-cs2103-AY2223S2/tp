@@ -2,10 +2,12 @@ package seedu.address.logic.trackereventsystem;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
@@ -17,6 +19,8 @@ import seedu.address.model.video.Video;
  * An event system that is triggered when a command makes modifications to the {@code Tracker}.
  */
 public class TrackerEventSystem {
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final List<OnModuleEditedEventObserver> onModuleEditedEventObservers = new ArrayList<>();
     private final List<OnLectureEditedEventObserver> onLectureEditedEventObservers = new ArrayList<>();
@@ -97,6 +101,10 @@ public class TrackerEventSystem {
      * @param editedModule The edited module. {@code null} if the event was triggered by a module being deletd.
      */
     public void triggerOnModuleEditedEvent(ReadOnlyModule originalModule, ReadOnlyModule editedModule) {
+
+        logger.info(String.format("Trigger \"on module edited\" event:\noriginal: %s\nedited: %s",
+                originalModule, editedModule));
+
         for (OnModuleEditedEventObserver observer : onModuleEditedEventObservers) {
             observer.onModuleEdited(originalModule, editedModule);
         }
@@ -113,6 +121,9 @@ public class TrackerEventSystem {
      */
     public void triggerOnLectureEditedEvent(ModuleCode moduleCode, ReadOnlyLecture originalLecture,
             ReadOnlyLecture editedLecture) {
+
+        logger.info(String.format("Trigger \"on lecture edited\" event on module %s:\noriginal: %s\nedited: %s",
+                moduleCode, originalLecture, editedLecture));
 
         for (OnLectureEditedEventObserver observer : onLectureEditedEventObservers) {
             observer.onLectureEdited(moduleCode, originalLecture, editedLecture);
@@ -131,6 +142,10 @@ public class TrackerEventSystem {
      */
     public void triggerOnVideoEditedEvent(ModuleCode moduleCode, LectureName lectureName, Video originalVideo,
             Video editedVideo) {
+
+        logger.info(String.format("Trigger \"on video edited\" event on module %s lecture %s:\noriginal: %s\nedited: %s",
+                moduleCode, lectureName, originalVideo, editedVideo));
+
         for (OnVideoEditedEventObserver observer : onVideoEditedEventObservers) {
             observer.onVideoEdited(moduleCode, lectureName, originalVideo, editedVideo);
         }
