@@ -292,7 +292,7 @@ public class ParserUtil {
 
     private static Telegram parseTelegram(String telegram) throws ParseException {
         if (telegram == null || telegram.isEmpty()) {
-            throw new ParseException(Instagram.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         if (!Telegram.isValid(telegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
@@ -302,7 +302,7 @@ public class ParserUtil {
 
     private static WhatsApp parseWhatsApp(String whatsApp) throws ParseException {
         if (whatsApp == null || whatsApp.isEmpty()) {
-            throw new ParseException(Instagram.MESSAGE_CONSTRAINTS);
+            throw new ParseException(WhatsApp.MESSAGE_CONSTRAINTS);
         }
         if (!WhatsApp.isValidWhatsApp(whatsApp)) {
             throw new ParseException(WhatsApp.MESSAGE_CONSTRAINTS);
