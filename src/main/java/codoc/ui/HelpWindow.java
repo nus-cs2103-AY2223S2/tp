@@ -54,7 +54,7 @@ public class HelpWindow extends UiPart<Stage> {
         new CommandExample("View contact", "view 3"),
         new CommandExample("View tab", "view c, view m, view s"),
         new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
-        new CommandExample("Find by attributes", "find n/David c/2 m/CS2109S s/java"),
+        new CommandExample("Find by attributes", "find n/David c/Computer Science m/CS2109S s/java"),
         new CommandExample("List the full list of contacts", "list"),
         new CommandExample("Delete contact", "delete 3"),
         new CommandExample("Clear all contacts", "clear"),
