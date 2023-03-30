@@ -377,7 +377,6 @@ public class Class {
             return false;
         }
         Class aClass = (Class) o;
-        System.out.println("yo");
         return className.equals(aClass.className);
     }
 

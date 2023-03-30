@@ -119,10 +119,8 @@ public class Parent extends Person {
      * @param student Student who is related to this Parent object.
      */
     public void removeStudent(Student student) {
-        System.out.println(children);
         if (children.contains(student)) {
             children.remove(student);
-            System.out.println(children);
         }
     }
 
