@@ -254,6 +254,7 @@ Copy and paste:<br>
 Output:<br>
 
 ```text
+[INFO] New keyword added: pa-->patient
 ```
 
 #### `delete` - Delete a keyword
@@ -282,6 +283,7 @@ Copy and paste:<br>
 Output:<br>
 
 ```text
+[INFO] Deleted keyword: pa-->patient
 ```
 
 ### `patient` - Patient functionalities
