@@ -41,8 +41,8 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Clear all data](#clearing-all-data-clear): `clear`  
   - [Light mode](#switching-to-light-mode-light): `light`  
   - [Dark mode](#switching-to-dark-mode-dark): `dark`  
-  - [FAQ](#faq)  
-  - [Command Summary](#command-summary)  
+- [FAQ](#faq)  
+- [Command Summary](#command-summary)  
 
 --------------------------------------------------------------------------------------------------------------------  
 
