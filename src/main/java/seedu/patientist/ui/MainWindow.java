@@ -77,6 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        detailsPopup = new DetailsPopup(null);
     }
 
     public Stage getPrimaryStage() {
@@ -158,7 +159,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleDetails(int index) {
         personToView = logic.getFilteredPersonList().get(index);
         detailsPopup = new DetailsPopup(personToView);
-        detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
+        detailsPopupPlaceholder.getChildren().setAll(detailsPopup.getRoot());
     }
 
     /**

@@ -16,7 +16,6 @@ import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
 
-
 /**
  * The UI component that is responsible for a pop-up to show details of Person.
  */
