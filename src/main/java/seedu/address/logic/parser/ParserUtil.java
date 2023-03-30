@@ -170,6 +170,7 @@ public class ParserUtil {
         return tagSet;
     }
 
+    //@@author wendy0107
     /**
      * Parses a {@code String module} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
@@ -196,6 +197,7 @@ public class ParserUtil {
         }
         return moduleSet;
     }
+    //@@author
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

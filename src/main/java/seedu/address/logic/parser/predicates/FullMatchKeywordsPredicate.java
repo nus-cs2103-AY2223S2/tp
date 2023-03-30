@@ -92,6 +92,7 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
             hasMatching = hasMatching && values.stream().allMatch(tag -> personTagNames.contains(tag));
         }
 
+        //@@author Bentimate
         if (keywords.getValue(PREFIX_MODULE).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_MODULE);
             Set<Module> personModules = person.getModules();
@@ -100,6 +101,7 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
                     .collect(Collectors.toList());
             hasMatching = hasMatching && values.stream().allMatch(module -> personModuleNames.contains(module));
         }
+        //@@author
 
         return hasMatching;
     }
