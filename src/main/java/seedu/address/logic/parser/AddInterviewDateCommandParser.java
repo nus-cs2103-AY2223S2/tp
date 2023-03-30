@@ -35,7 +35,7 @@ public class AddInterviewDateCommandParser implements Parser<AddInterviewDateCom
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStatusCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewDateCommand.MESSAGE_USAGE));
         }
 
         InterviewDate interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_DATE).get());
