@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete ic/S9876543K`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -86,6 +86,7 @@ The `UI` component,
 
 ### Logic component
 
+
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -98,9 +99,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete ic/S9876543K")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete ic/S9876543K` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -240,7 +241,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete ic/S9876543K` command to delete the person with the `NRIC S9876543K` in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete ic/S9876543K` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -339,40 +340,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                      | So that …​                                              |
-| -------- |--------------------------| ---                                                     |----------------------------------------------------------- |
-| `* * *`  | healthcare provider | access a dashboard to keep track of my patients' information, medical history, and appointment schedules | I can provide better care. |
-|          | healthcare provider | view bed availability in real-time | I can make informed decisions about patient admission and discharge. |
-| `* * *`  | healthcare provider      | update patient information and medical history after each appointment | I have a complete and accurate record of the patient's health.          |
-|          | healthcare provider      | generate and send prescription orders to the pharmacy directly from the application | I can streamline the process for my patients.                           |
-|          | healthcare provider      | access real-time data on the patient's vital signs and monitor the patient's health remotely | I can quickly respond to changes in the patient's health.               |
-|          | healthcare provider      | access and update my own schedule and availability through the application | I can manage my workload and provide better care for my patients.       |
-|          | healthcare provider      | view and manage patient waiting times | I can minimize wait times and improve patient satisfaction.             |
-| `* * *`  | healthcare provider      | access a directory of specialist doctors and referral information | I can quickly and easily connect my patients with the right care.       |
-|          | healthcare provider      | provide virtual consultations and appointments through the application | I can reach more patients and provide better access to care.            |
-|          | healthcare provider      | access a library of patient education materials and resources | I can provide better information and support to my patients.            |
-|          | healthcare provider      | view and manage patient waitlists and triage patient needs | I can prioritize the most urgent cases and provide better access to care. |
-|          | healthcare provider      | access and view patient insurance information and make necessary updates | I can accurately bill patients and manage healthcare costs. |
-|          | healthcare provider      | send appointment confirmations and reminders to patients | they can arrive prepared for their appointments. |
-|          | healthcare administrator | access analytics and metrics on patient engagement, appointment booking, and resource utilization | I can make data-driven decisions to improve the hospital's operations. |
-|          | healthcare administrator | access real-time data on hospital utilization and resource allocation | I can optimize the hospital's operations and improve patient outcomes. |
-| `* * *`  | healthcare administrator | access patients' records on the go/at home any time when it's necessary to provide admin support anytime. | |
-|          | healthcare administrator | manage the hospital staff and workload better using the app | there are sufficient people during each shift. |
-|          | patient | chat 1-to-1 with my doctor | I can seek advice on my medical condition without having to visit the doctor's office. |
-|          | patient | retrieve my invoices and pay my bills through the application | I can manage my healthcare expenses more efficiently. |
-|          | patient | receive reminders for appointments and medication | I don't forget important events related to my healthcare. |
-|          | patient | provide feedback and rate my experience with the hospital and its services | the hospital can continuously improve its offerings. |
-|          | patient | access my test results and medical records through the application | I can keep track of my health history. |
-|          | patient | create an account | I can easily book appointments and keep track of my medical information. |
-|          | patient | view and manage my medical history and health records | I can keep track of my health status and history. |
-|          | patient | communicate with my healthcare team and provide updates on my health status | I can receive better care and improve my health outcomes. |
-|          | patient | view the hospital's facilities and services and make informed decisions about which hospital to visit for my medical needs. | |
-|          | patient | provide consent for my medical information to be shared with other healthcare providers as needed, | I can receive coordinated care from a team of specialists. |
-|          | patient | schedule and reschedule appointments through the application | I can easily manage my schedule. |
-|          | patient | provide emergency contact information through the application | my healthcare providers can quickly reach out to my designated emergency contacts in case of an emergency. |
-|          | patient | request and receive referrals for specialist consultations through the application | I can receive the best care for my medical needs. |
-|          | patient | view and manage my lab results and diagnostic reports through the application | I can keep track of my health status. |
-|          | tech illiterate patient | navigate through the app easily without help. | |
+| Priority | As a …​                  | I want to …​                                                                                                                | So that …​                                                                              |
+| -------- |--------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | healthcare provider | access a dashboard to keep track of my patients' information, medical history, and appointment schedules                    | I can provide better care.                                                              |
+|          | healthcare provider | view bed availability in real-time                                                                                          | I can make informed decisions about patient admission and discharge.                    |
+| `* * *`  | healthcare provider      | update patient information and medical history after each appointment                                                       | I have a complete and accurate record of the patient's health.                          |
+|          | healthcare provider      | generate and send prescription orders to the pharmacy directly from the application                                         | I can streamline the process for my patients.                                           |
+|          | healthcare provider      | access real-time data on the patient's vital signs and monitor the patient's health remotely                                | I can quickly respond to changes in the patient's health.                               |
+|          | healthcare provider      | access and update my own schedule and availability through the application                                                  | I can manage my workload and provide better care for my patients.                       | 
+|          | healthcare provider      | view and manage patient waiting times                                                                                       | I can minimize wait times and improve patient satisfaction.                             |
+| `* * *`  | healthcare provider      | access a directory of specialist doctors and referral information                                                           | I can quickly and easily connect my patients with the right care.                       |
+|          | healthcare provider      | provide virtual consultations and appointments through the application                                                      | I can reach more patients and provide better access to care.                            |
+|          | healthcare provider      | access a library of patient education materials and resources                                                               | I can provide better information and support to my patients.                            |
+|          | healthcare provider      | view and manage patient waitlists and triage patient needs                                                                  | I can prioritize the most urgent cases and provide better access to care.               |
+|          | healthcare provider      | access and view patient insurance information and make necessary updates                                                    | I can accurately bill patients and manage healthcare costs.                             |
+|          | healthcare provider      | send appointment confirmations and reminders to patients                                                                    | they can arrive prepared for their appointments.                                        |
+|          | healthcare administrator | access analytics and metrics on patient engagement, appointment booking, and resource utilization                           | I can make data-driven decisions to improve the hospital's operations.                  |
+|          | healthcare administrator | access real-time data on hospital utilization and resource allocation                                                       | I can optimize the hospital's operations and improve patient outcomes.                  |
+| `* * *`  | healthcare administrator | access patients' records on the go/at home any time when it's necessary to provide admin support anytime.                   |                                                                                         |
+|          | healthcare administrator | manage the hospital staff and workload better using the app                                                                 | there are sufficient people during each shift.                                          |
+|          | healthcare administrator | quickly retrieve patient's bill through the application                                                                     | I can send invoices to the patients more efficiently.                                   |
+|          | healthcare administrator | receive reminders for appointments and medication                                                                           | I don't forget to inform any patients.                                                  |
+|          | healthcare administrator | provide feedback and rate my experience with the application                                                                | I can improve the application to better suit my needs.                                  |
+|          | healthcare administrator | access patient's test results and medical records through the application                                                   | I can provide doctors with the patient's health history.                                |
+|          | healthcare administrator | create an account                                                                                                           | I can login and handle patient's and doctor's information.                              |
+|          | healthcare administrator | communicate with the rest of the healthcare team and provide updates on patient's health status                             | I can provide better healthcare to the patients.                                        |
+|          | healthcare administrator | schedule and reschedule appointments through the application                                                                | I can accomodate to the patients and doctors availability.                              |
+|          | healthcare administrator | provide emergency contact information through the application                                                               | I can quickly find the patient's designated emergency contacts in case of an emergency. |
+|          | healthcare administrator | view and manage patient's bills and medication through the application                                                      | I can keep track of patient bills and medical records.                                  |
+|          | tech illiterate healthcare administrator | navigate through the app easily without help.                                                                               |                                                                                         |
 
 *{More to be added}*
 
