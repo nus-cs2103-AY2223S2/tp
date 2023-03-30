@@ -48,4 +48,7 @@ public class EndAge implements End<Age> {
         int a2 = Integer.parseInt(start.age.get().value);
         return a1 >= a2;
     }
+    public Age get() {
+        return age.get();
+    }
 }

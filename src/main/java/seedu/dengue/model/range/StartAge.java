@@ -49,4 +49,7 @@ public class StartAge implements Start<Age> {
         int a2 = Integer.parseInt(end.age.get().value);
         return a1 <= a2;
     }
+    public Age get() {
+        return age.get();
+    }
 }

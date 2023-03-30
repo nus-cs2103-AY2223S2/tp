@@ -95,8 +95,24 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         return indexBeforeDate | indexAfterDate;
     }
 
+    /**
+     * Tests whether the user has input an index after the date, which should be rejected.
+     * Returns true if there is an index after the date, false otherwise.
+     * @param date The argument to be tested.
+     * @return A boolean.
+     */
     private static boolean indexAfterDate(Optional<String> date) {
-        return !date.isEmpty() ? (date.get().trim().split("\\s+").length > 1) : false;
+        if (date.isEmpty()) {
+            return false;
+        }
+        String test = date.get();
+        int lastSpace = test.lastIndexOf(" ");
+        if (lastSpace == -1) {
+            return false;
+        } else {
+            String slicedDate = test.substring(0, lastSpace);
+            return Date.isValidDate(slicedDate) ? true : false;
+        }
     }
 
     /**

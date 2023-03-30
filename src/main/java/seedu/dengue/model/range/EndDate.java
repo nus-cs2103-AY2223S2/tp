@@ -49,4 +49,7 @@ public class EndDate implements End<Date> {
         LocalDate d2 = LocalDate.parse(start.date.get().value);
         return d1.compareTo(d2) >= 0;
     }
+    public Date get() {
+        return date.get();
+    }
 }

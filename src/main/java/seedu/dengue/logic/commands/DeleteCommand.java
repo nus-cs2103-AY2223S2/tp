@@ -151,7 +151,7 @@ public class DeleteCommand extends Command {
 
         deleteAll(model, toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
-                toDelete.size(), range.get().getStart(), range.get().getEnd()));
+                toDelete.size(), range.get().getStart().get(), range.get().getEnd().get()));
     }
 
     private List<Person> getPersonsToDelete(List<Person> reference, Predicate<Person> predicate) {
