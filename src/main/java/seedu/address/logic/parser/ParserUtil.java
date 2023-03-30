@@ -332,7 +332,7 @@ public class ParserUtil {
                 throw new ParseException("You are already busy during that period!");
             }
             //Ensures user cannot create event in the past
-            if (currentRange[0].isBefore(LocalDateTime.now()) || currentRange[1].isBefore(LocalDateTime.now())) {
+            if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
                 throw new ParseException("You cannot create a historical event!");
             }
         }
