@@ -1,7 +1,12 @@
 package seedu.address.model.task;
 
+import javafx.scene.paint.Color;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This class is the parent class of tasks that make up the tasklist.
@@ -19,6 +24,8 @@ public class Task {
     private String date;
     private String taskType;
 
+    private Boolean isOverdue;
+
     /**
      * The constructor of the Task that takes in description of the task.
      */
@@ -32,6 +39,7 @@ public class Task {
         this.taskComment = null;
         this.date = date;
         this.taskType = taskType;
+        this.isOverdue = null;
     }
 
     /**
@@ -67,6 +75,26 @@ public class Task {
      */
     public boolean isDone() {
         return isDone;
+    }
+
+    public boolean isOverdue() throws ParseException {
+        String date = getDate();
+        if (date.length() == 0) {
+            return false;
+        }
+        String endDate = date.substring(date.length() - 10);
+        Date currentDate = new Date();
+        Date deadlineDate = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+        return currentDate.after(deadlineDate);
+    }
+
+    public boolean isDueToday() throws ParseException {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+        String date = getDate();
+        String endDate = date.substring(date.length() - 10);
+        Date currentDate = new Date();
+        Date deadlineDate = new SimpleDateFormat("dd/MM/yyyy").parse(endDate);
+        return fmt.format(currentDate).equals(fmt.format(deadlineDate));
     }
 
     /**
@@ -261,4 +289,6 @@ public class Task {
 
         return false;
     }
+
+
 }

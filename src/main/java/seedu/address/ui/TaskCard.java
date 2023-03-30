@@ -1,14 +1,24 @@
 package seedu.address.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.EventTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
@@ -61,12 +71,12 @@ public class TaskCard extends UiPart<Region> {
     private Circle circle5;
 
     @FXML
-    private GridPane gridPane;
+    private Label status;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex) throws ParseException {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
@@ -88,6 +98,11 @@ public class TaskCard extends UiPart<Region> {
         } else {
             taskComment.setText(task.getTaskComment().toString());
         }
+        setScore(task);
+        setTaskStatus(task);
+    }
+
+    public void setScore(Task task) {
         if (task.isDone()) {
             Score score = task.getScore();
             if (score == null) {
@@ -120,7 +135,6 @@ public class TaskCard extends UiPart<Region> {
                 }
             }
         }
-
         if (!task.isDone()) {
             circle1.setFill(Paint.valueOf("#ffffff"));
             circle2.setFill(Paint.valueOf("#ffffff"));
@@ -129,6 +143,19 @@ public class TaskCard extends UiPart<Region> {
             circle5.setFill(Paint.valueOf("#ffffff"));
         }
     }
+
+    public void setTaskStatus(Task task) throws ParseException {
+        if (task.isDone()) {
+            status.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        } else if (task.isDueToday()) {
+            status.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
+        } else if (task.isOverdue()) {
+            status.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        } else {
+            status.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    }
+
 
     @Override
     public boolean equals(Object other) {
