@@ -21,16 +21,12 @@ import seedu.address.model.application.DefaultComparator;
 public class SortApplicationCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " Sorts applications in the order you prefer.\n"
+    public static final String MESSAGE_USAGE = "Format: "
             + COMMAND_WORD
             + " <a/d> <alphabetical/deadline>\n"
-            + "For example, \n"
+            + "Example: "
             + COMMAND_WORD
-            + " d alphabetical: Sorts applications in descending alphabetical order (Z to A).\n"
-            + COMMAND_WORD
-            + " a deadline: Sorts applications in order of deadline of their upcoming task, with earlier deadlines"
-            + " being shown first.";
+            + " d alphabetical";
 
     public static final String MESSAGE_CONSTRAINTS = "You can only sort alphabetically or by deadline.\n"
             + "You also need to specify whether to sort in ascending or descending order.";

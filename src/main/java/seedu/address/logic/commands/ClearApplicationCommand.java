@@ -13,7 +13,8 @@ import seedu.address.model.InternshipBook;
 public class ClearApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Internship Book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Your Internship Book has been cleared!\n"
+            + "If this was a mistake, you can enter the undo command.";;
 
     @Override
     public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {

@@ -18,9 +18,7 @@ public class DeleteApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "delete-app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the application identified by the index number used in the displayed application list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = "Format: delete-app INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Application: %1$s";

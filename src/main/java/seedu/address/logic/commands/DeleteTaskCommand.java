@@ -19,10 +19,7 @@ import seedu.address.model.application.Application;
 public class DeleteTaskCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "delete-task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the task associated with the application identified by the index number "
-            + "used in the displayed application list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = "Format: delete-task INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";

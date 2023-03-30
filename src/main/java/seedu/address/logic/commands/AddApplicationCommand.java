@@ -19,11 +19,11 @@ public class AddApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "add-app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = "Format: "
+            + COMMAND_WORD + " "
             + PREFIX_ROLE + "ROLE "
-            + PREFIX_COMPANY_NAME + "COMPANY NAME "
-            + PREFIX_COMPANY_EMAIL + "COMPANY EMAIL "
+            + PREFIX_COMPANY_NAME + "COMPANY_NAME "
+            + PREFIX_COMPANY_EMAIL + "COMPANY_EMAIL "
             + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROLE + "SWE Intern "

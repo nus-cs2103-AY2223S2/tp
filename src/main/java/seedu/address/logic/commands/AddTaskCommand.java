@@ -23,9 +23,7 @@ import seedu.address.model.task.Deadline;
 public class AddTaskCommand extends ApplicationCommand {
     public static final String COMMAND_WORD = "add-task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to an existing application "
-            + "in the internship book. "
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -33,8 +31,8 @@ public class AddTaskCommand extends ApplicationCommand {
             + PREFIX_DEADLINE + "01-04-2023 ";
 
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_TASK_EXISTS = "This application already has an existing task ";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s.";
+    public static final String MESSAGE_TASK_EXISTS = "This application already has an existing task.";
 
     private final Index targetIndex;
     private final EditApplicationDescriptor editApplicationDescriptor;

@@ -105,12 +105,12 @@ public class Application {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getRole())
+        builder.append("Role: ").append(getRole())
                 .append("; Company: ")
                 .append(getCompanyName())
-                .append("; Company's email: ")
+                .append("; Company Email: ")
                 .append(getCompanyEmail())
-                .append("; Application status: ")
+                .append("; Status: ")
                 .append(getStatus());
 
         Set<Tag> tags = getTags();

@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task descriptions should only contain alphanumeric characters and spaces, and it should not be left blank";
 
     /*
      * The first character of the role must not be a whitespace,
