@@ -16,44 +16,44 @@ You can click on any of the links below to navigate to the respective sections f
 **Table of Contents**
 
 <!-- TOC -->
-  * [Quick start](#quick-start)
-  * [Features](#features)
+* [Quick start](#quick-start)
+* [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
-* [Add](#add)
+  * [Add](#add)
     * [Adding a supplier: `add_supplier` or `add_s`](#adding-a-supplier-addsupplier-or-adds)
     * [Adding an order: `add_order` or `add_o`](#adding-an-order-addorder-or-addo)
     * [Adding a task: `add_task` or `add_t`](#adding-a-task-addtask-or-addt)
     * [Adding a menu item: `add_item` / `add_i`](#adding-a-menu-item-additem--addi)
-* [Edit](#edit)
+  * [Edit](#edit)
     * [Editing a supplier: `edit_supplier` or `edit_s`](#editing-a-supplier-editsupplier-or-edits)
     * [Editing an order: `edit_order` or `edit_o`](#editing-an-order-editorder-or-edito)
     * [Editing a task: `edit_task` or `edit_t`](#editing-a-task-edittask-or-editt)
     * [Editing a menu item : `edit_item` / `edit_i`](#editing-a-menu-item--edititem--editi)
-* [Find](#find)
+  * [Find](#find)
     * [Finding a supplier: `find_supplier` or `find_s`](#finding-a-supplier-findsupplier-or-finds)
     * [Finding a task: `find_task` or `find_t`](#finding-a-task-findtask-or-findt)
     * [Finding a menu item : `find_item` / `find_i`](#finding-a-menu-item--finditem--findi)
-* [Delete](#delete)
+  * [Delete](#delete)
     * [Deleting a supplier: `delete_supplier` or `delete_s`](#deleting-a-supplier-deletesupplier-or-deletes)
     * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
     * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
     * [Deleting a menu item: `delete_item` / `delete_i`](#deleting-a-menu-item-deleteitem--deletei)
-* [Switch](#switch)
+  * [Switch](#switch)
     * [Sorting a task: `sort_task` / `sort_t`](#sorting-a-task-sorttask--sortt)
     * [Switching tabs: `tab`](#switching-tabs-tab)
-* [Others](#others)
+  * [Others](#others)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Uploading a csv file](#uploading-a-csv-file)
     * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
-  * [FAQ](#faq)
-  * [Command summary](#command-summary)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -76,7 +76,7 @@ You can click on any of the links below to navigate to the respective sections f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -119,7 +119,7 @@ Shows a message explaining how to access the help page.
 
 Syntax: `help`
 
-# Add
+## Add
 
 ### Adding a supplier: `add_supplier` or `add_s`
 
@@ -180,7 +180,7 @@ Examples:
 * `add_item n/Chocolate cookie pr/5 c/2.50
 * `add_i n/Harley Davidson Shirt pr/40 c/8.50`
 
-# Edit
+## Edit
 
 ### Editing a supplier: `edit_supplier` or `edit_s`
 
@@ -250,7 +250,7 @@ Examples:
 * edit_item 1 n/Coffee pr/2.50 c/1.50 edits the name of the first menu item to "Coffee", sets the price to $2.50 and the cost to $1.50.
 * edit_i 3 d/Our signature burger p/8.99 c/2 edits the description of the third menu item to "Our signature burger", sets the price to $8.99 and the cost to $2.
 
-# Find
+## Find
 
 ### Finding a supplier: `find_supplier` or `find_s`
 
@@ -308,7 +308,7 @@ Examples:
 * `find_item n/vanilla cupcake` returns `vanilla ice cream` and `Disney cupcake`
 * `find_i n/shirt d/2023-02-17` returns menu items with `shirt`
 
-# Delete
+## Delete
 
 ### Deleting a supplier: `delete_supplier` or `delete_s`
 
@@ -368,7 +368,7 @@ Examples:
 * `delete_menu 2` deletes the first task
 * `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
 
-# Switch
+## Switch
 
 ### Sorting a task: `sort_task` / `sort_t`
 
@@ -400,7 +400,7 @@ Examples:
 
 * `tab t/HOME` switches the tab to the `Home` tab
 
-# Others
+## Others
 
 ### Exiting the program: `exit`
 
@@ -435,14 +435,14 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trackr home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                  |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
