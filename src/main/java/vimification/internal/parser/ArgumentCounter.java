@@ -59,7 +59,7 @@ public class ArgumentCounter {
         return currentCounts.get(flag);
     }
 
-    public boolean isEmpty() {
-        return currentCounts.isEmpty();
+    public int totalCount() {
+        return currentCounts.values().stream().mapToInt(Integer::valueOf).sum();
     }
 }

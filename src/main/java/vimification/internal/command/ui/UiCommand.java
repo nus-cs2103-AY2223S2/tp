@@ -1,13 +1,14 @@
-package vimification.internal.command.misc;
+package vimification.internal.command.ui;
 
 import vimification.internal.command.Command;
 import vimification.internal.command.CommandResult;
+import vimification.ui.MainScreen;
 
 /**
  * Common class for {@code Command}s that do not change the state of the application when executed.
  */
-public abstract class MiscCommand implements Command {
+public abstract class UiCommand implements Command {
 
-    public abstract CommandResult execute();
+    public abstract CommandResult execute(MainScreen mainSreen);
 
 }

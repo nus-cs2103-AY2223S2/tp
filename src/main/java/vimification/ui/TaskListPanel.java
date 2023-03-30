@@ -2,8 +2,12 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+
+import java.util.function.Predicate;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import vimification.model.task.Task;
@@ -16,6 +20,8 @@ import vimification.model.task.Task;
 public class TaskListPanel extends UiPart<VBox> {
     private static final String FXML = "TaskListPanel.fxml";
 
+    private FilteredList<Task> filteredList;
+
     private MainScreen mainScreen;
 
     @FXML
@@ -26,6 +32,7 @@ public class TaskListPanel extends UiPart<VBox> {
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
+        filteredList = new FilteredList<>(taskList);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
@@ -110,5 +117,9 @@ public class TaskListPanel extends UiPart<VBox> {
             taskListView.getSelectionModel().select(currIndex - 1);
             taskListView.scrollTo(currIndex - 1);
         }
+    }
+
+    public void searchForTask(Predicate<? super Task> predicate) {
+        filteredList.setPredicate(predicate);
     }
 }

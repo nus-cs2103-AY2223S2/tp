@@ -1,10 +1,13 @@
 package vimification.internal;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
+import vimification.model.UiTaskList;
 import vimification.model.task.Task;
+import vimification.ui.MainScreen;
 
 /**
  * API of the Logic component
@@ -44,4 +47,10 @@ public interface Logic {
     // * Set the user prefs' GUI settings.
     // */
     // void setGuiSettings(GuiSettings guiSettings);
+
+    FilteredList<Task> getFilteredTaskList();
+
+    UiTaskList getUiTaskList();
+
+    void setMainScreen(MainScreen mainScreen);
 }

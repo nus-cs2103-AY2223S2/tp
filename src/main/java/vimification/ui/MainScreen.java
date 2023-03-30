@@ -165,7 +165,7 @@ public class MainScreen extends UiPart<VBox> {
         bottomComponent.getChildren().clear();
     }
 
-    private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
+    public <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
@@ -173,14 +173,14 @@ public class MainScreen extends UiPart<VBox> {
 
     }
 
-    protected <T extends Pane> void loadRightComponent(UiPart<T> component) {
+    public <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(TOP_COMPONENT_HEIGHT);
         component.getRoot().prefWidthProperty().bind(RIGHT_COMPONENT_WIDTH);
     }
 
-    protected <T extends Pane> void loadBottomComponent(UiPart<T> component) {
+    public <T extends Pane> void loadBottomComponent(UiPart<T> component) {
         bottomComponent.getChildren().clear();
         bottomComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(BOTTOM_COMPONENT_HEIGHT);
