@@ -300,7 +300,7 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 
 This is a tutorial for **first-time** Docedex users.
 1. Launch Docedex. You may refer to the instructions [here](#quick-start)
-![NewUi](images/Ui.png)
+![NewUi](images/NewUi.png)
 2. Let us try **adding a doctor** to our Docedex. Enter the command `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon` in the command box.
 ![AddDoc](images/AddDoc.png)
 3. Let us try **adding a patient** to our Docedex. Enter the command `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother` in the command box.
