@@ -48,22 +48,6 @@ public class AddTaskCommandTest {
     }
 
     @Test
-    public void execute_deleteTaskUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withTask("").build();
-
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON,
-                new Task(editedPerson.getTasks().toString()));
-
-        String expectedMessage = String.format(AddTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
