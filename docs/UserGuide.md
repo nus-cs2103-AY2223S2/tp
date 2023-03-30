@@ -333,14 +333,17 @@ Examples:
 
 > Marks/Unmarks a video as watched/unwatched in a lecture of its specified module
 
-Format: `mark /module {module_name} /lecture {lecture_index} /video {video_name}`
+Format: `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-Format: `unmark /module {module_name} /lecture {lecture_index} /video {video_name}`
+Format: `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
+
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be deleted by specying multiple video namese, separating them by commas(",")
+- Video Names must be of valid format
+- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
 
 Examples:
-
-- `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
-- `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
+- `mark Vid 1 /mod CS2040 /lec Week 1`
+- `unmark Vid 2, Vid 5 /module ST2334 /lecture Topic 4`
 
 ### Delete Module(s)
 
