@@ -28,7 +28,7 @@ Designed for computing students and professionals, TechTrack helps you manage yo
 # Quick Start
 Ensure you have Java `11` or above installed in your Computer.
 Download the latest `TechTrack.jar` from here.
-Copy the file to the folder you want to use as the home folder for your RoleBook.
+Copy the file to the folder you want to use as the home folder for your AddressBook.
 Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TechTrack.jar` command to run the application.
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
@@ -66,25 +66,25 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 
 **The prefixes and their respective parameters are as follows:**
 
-| Required | Prefix | Parameter            | Restrictions                                                        |
-|----------|--------|----------------------|---------------------------------------------------------------------|
-| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                            |
-| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                                 |
-| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.   |
-| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                  |
-| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                  |
-| `No`     | t      | TAG                  | -                                                                   |
-| `Yes`    | $      | SALARY               | Positive integers only.                                             |
-| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                                |
+| Required | Prefix | Parameter            | Restrictions                                                      |
+|----------|--------|----------------------|-------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                          |
+| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
+| `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                |
+| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                |
+| `No`     | t      | TAG                  | -                                                                 |
+| `Yes`    | $      | SALARY               | Positive integers only.                                           |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                              |
 
 
 ### Editing a Role: `edit`:
-Edit any parameters of a preexisting role.
+Edit any parameters of a preexisting role. 
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
-Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed
+Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
 $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
 ### Deleting a role `delete`:
@@ -123,10 +123,8 @@ Example: `company Google`
 Searches for roles with the provided tag.
 
 Format: `tag {keyword}`
-![Tag](images/startUp.png)
 
 Example: `tag Tech`
-![TagCommand](images/TagCommand.png)
 
 ### Sorting by Salary
 Sort roles based on salary, in ascending/descending order.
