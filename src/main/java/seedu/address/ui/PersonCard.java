@@ -47,7 +47,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label task;
     @FXML
-    private Label industry;
+    private Label locationn;
     @FXML
     private Label company;
     @FXML
@@ -73,7 +73,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        industry.setText(person.getIndustry().value);
+        locationn.setText(person.getLocation().value);
         company.setText(person.getCompany().value);
         occupation.setText(person.getOccupation().value);
         jobTitle.setText(person.getJobTitle().value);

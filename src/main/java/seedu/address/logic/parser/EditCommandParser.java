@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -38,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COMPANY,
-                        PREFIX_INDUSTRY, PREFIX_OCCUPATION, PREFIX_JOBTITLE, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_LOCATION, PREFIX_OCCUPATION, PREFIX_JOBTITLE, PREFIX_ADDRESS, PREFIX_TAG);
 
         Index index;
 
@@ -64,8 +64,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
         }
-        if (argMultimap.getValue(PREFIX_INDUSTRY).isPresent()) {
-            editPersonDescriptor.setIndustry(ParserUtil.parseIndustry(argMultimap.getValue(PREFIX_INDUSTRY).get()));
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            editPersonDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_OCCUPATION).isPresent()) {
             editPersonDescriptor.setOccupation(

@@ -69,7 +69,7 @@ public class PersonTest {
         assertEquals(person.getPhone().toString(), person.getAttribute("phone number"));
         assertEquals(person.getEmail().toString(), person.getAttribute("email"));
         assertEquals(person.getCompany().toString(), person.getAttribute("company"));
-        assertEquals(person.getIndustry().toString(), person.getAttribute("industry"));
+        assertEquals(person.getLocation().toString(), person.getAttribute("location"));
         assertEquals(person.getOccupation().toString(), person.getAttribute("occupation"));
         assertEquals(person.getJobTitle().toString(), person.getAttribute("job title"));
         assertEquals(person.getAddress().toString(), person.getAttribute("address"));

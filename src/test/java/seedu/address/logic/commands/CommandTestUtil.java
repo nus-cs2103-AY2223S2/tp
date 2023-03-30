@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -46,8 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_COMPANY_AMY = "Tesleh";
     public static final String VALID_COMPANY_BOB = "NUS";
-    public static final String VALID_INDUSTRY_AMY = "automobile";
-    public static final String VALID_INDUSTRY_BOB = "education";
+    public static final String VALID_LOCATION_AMY = "Singapore";
+    public static final String VALID_LOCATION_BOB = "Singapore";
     public static final String VALID_OCCUPATION_AMY = "engineer";
     public static final String VALID_OCCUPATION_BOB = "professor";
     public static final String VALID_JOBTITLE_AMY = "industrial engineer";
@@ -71,8 +71,8 @@ public class CommandTestUtil {
 
     public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
-    public static final String INDUSTRY_DESC_AMY = " " + PREFIX_INDUSTRY + VALID_INDUSTRY_AMY;
-    public static final String INDUSTRY_DESC_BOB = " " + PREFIX_INDUSTRY + VALID_INDUSTRY_BOB;
+    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
+    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
     public static final String OCCUPATION_DESC_AMY = " " + PREFIX_OCCUPATION + VALID_OCCUPATION_AMY;
     public static final String OCCUPATION_DESC_BOB = " " + PREFIX_OCCUPATION + VALID_OCCUPATION_BOB;
     public static final String JOBTITLE_DESC_AMY = " " + PREFIX_JOBTITLE + VALID_JOBTITLE_AMY;
@@ -88,7 +88,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY; // empty string not allowed
-    public static final String INVALID_INDUSTRY_DESC = " " + PREFIX_INDUSTRY; // empty string not allowed
+    public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed
     public static final String INVALID_JOBTITLE_DESC = " " + PREFIX_JOBTITLE; // empty string not allowed
     public static final String INVALID_OCCUPATION_DESC = " " + PREFIX_OCCUPATION; // empty string not allowed
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed
@@ -115,11 +115,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
-                .withIndustry(VALID_INDUSTRY_AMY).withOccupation(VALID_OCCUPATION_AMY).withJobTitle(VALID_JOBTITLE_AMY)
+                .withLocation(VALID_LOCATION_AMY).withOccupation(VALID_OCCUPATION_AMY).withJobTitle(VALID_JOBTITLE_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withGender(VALID_GENDER_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
-                .withIndustry(VALID_INDUSTRY_BOB).withOccupation(VALID_OCCUPATION_BOB).withJobTitle(VALID_JOBTITLE_BOB)
+                .withLocation(VALID_LOCATION_BOB).withOccupation(VALID_OCCUPATION_BOB).withJobTitle(VALID_JOBTITLE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
         VALID_LEAD_STATUS_UNCONTACTED = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());

@@ -14,8 +14,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String company;
-    private final String industry;
+    private final String location;
     private final String occupation;
     private final String jobTitle;
     private final String address;
@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
             @JsonProperty("company") String company,
-            @JsonProperty("industry") String industry,
+            @JsonProperty("location") String location,
             @JsonProperty("occupation") String occupation,
             @JsonProperty("jobTitle") String jobTitle,
             @JsonProperty("remark") String remark,
@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.company = company;
-        this.industry = industry;
+        this.location = location;
         this.occupation = occupation;
         this.jobTitle = jobTitle;
         this.address = address;
@@ -88,7 +88,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         company = source.getCompany().value;
-        industry = source.getIndustry().value;
+        location = source.getLocation().value;
         occupation = source.getOccupation().value;
         jobTitle = source.getJobTitle().value;
         address = source.getAddress().value;
@@ -157,14 +157,14 @@ class JsonAdaptedPerson {
         }
         final Company modelCompany = new Company(company);
 
-        if (industry == null) {
+        if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Industry.class.getSimpleName()));
+                    Location.class.getSimpleName()));
         }
-        if (!Industry.isValidIndustry(industry)) {
-            throw new IllegalValueException(Industry.MESSAGE_CONSTRAINTS);
+        if (!Location.isValidLocation(location)) {
+            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
         }
-        final Industry modelIndustry = new Industry(industry);
+        final Location modelLocation = new Location(location);
 
         if (occupation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -204,7 +204,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelGender, modelPhone, modelEmail, modelCompany, modelIndustry,
+        return new Person(modelName, modelGender, modelPhone, modelEmail, modelCompany, modelLocation,
                 modelOccupation, modelJobTitle, modelAddress, modelRemark, modelTags, modelTask, modelLeadStatus);
 
     }
