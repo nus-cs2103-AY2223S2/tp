@@ -290,7 +290,7 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.2 Patient Commands]
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section [4.2 Patient Commands]
 (#42-patient-commands) for more information on how to manage patient data in CareFlow.
 </div>
 
@@ -300,7 +300,7 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.3 Drug Commands]
+<div markdown="block" class="alert alert-warning">:information_source: Visit Section [4.3 Drug Commands]
 (#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
 </div>
 
@@ -308,7 +308,7 @@ With CareFlow, you can easily keep track of your stock and avoid the risk of run
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-info">:information_source: Please note that you are not allowed to edit or 
+<div markdown="block" class="alert alert-warning">:information_source: Please note that you are not allowed to edit or 
 change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please 
 feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are 
 committed to constantly improving our software to meet your needs.
@@ -783,7 +783,7 @@ ___
 
 * All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -821,10 +821,10 @@ If you need a quick and easy way to find the commands available in CareFlow, sim
 
 The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
 
-| Action | Format, Example | Expected Outcome |
-| -------|--------|------------------|
-| **Help** | `g help` | Opens up a window with a link to the User Guide. |
-| **Exit** | `g exit` | Saves all data and safely exits. |
+| Action   | Format, Example | Expected Outcome                                 |
+|----------|-----------------|--------------------------------------------------|
+| **Help** | `g help`        | Opens up a window with a link to the User Guide. |
+| **Exit** | `g exit`        | Saves all data and safely exits.                 |
 
 <p align="center">
   <i>Table 2. Command table for general commands.</i>
@@ -834,16 +834,16 @@ The following are the general commands that are available in Careflow for you to
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
-| Action | Format, Example                                                                                                                                                                                                                                                                                | Expected Outcome |
-| -------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
-| **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
-| **Delete patient by index**   | `p delete -i PATIENT_INDEX` e.g., `p delete -i 3`                                                                                                                                                                                                                                              | Removes patient record at the index you have selected.|
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` e.g., `p delete -ic T0021248C`                                                                                                                                                                                                                                  | Removes patient record associated with the provided IC number.|
-| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789`                                                                    | Edit patient details located at the i-th position in the patient list with your given arguments.|
-| **View patient by index**     | `p view -i PATIENT_INDEX` e.g. `p view -i 1`                                                                                                                                                                                                                                                | Shows the patient record located at the i-th position in the patient list.|
-| **Find patient by name**      | `p find PATIENT_NAME` e.g., `p find John`                                                                                                                                                                                                                                                   | Shows patient(s) record that match the patient name you have provided.|
-| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                      | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list`                                                                                                                                                                                                                                                                                       | Lists all the patients that have been recorded in CareFlow.|
+| Action                      | Format, Example                                                                                                                                                                                                                                                                                  | Expected Outcome                                                                                 |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **Add patient**             | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.                                |
+| **Delete patient by index** | `p delete -i PATIENT_INDEX` e.g., `p delete -i 3`                                                                                                                                                                                                                                                | Removes patient record at the index you have selected.                                           |
+| **Delete patient by NRIC**  | `p delete -ic PATIENT_NRIC` e.g., `p delete -ic T0021248C`                                                                                                                                                                                                                                       | Removes patient record associated with the provided IC number.                                   |
+| **Update patient by name**  | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789`                                                                      | Edit patient details located at the i-th position in the patient list with your given arguments. |
+| **View patient by index**   | `p view -i PATIENT_INDEX` e.g. `p view -i 1`                                                                                                                                                                                                                                                     | Shows the patient record located at the i-th position in the patient list.                       |
+| **Find patient by name**    | `p find PATIENT_NAME` e.g., `p find John`                                                                                                                                                                                                                                                        | Shows patient(s) record that match the patient name you have provided.                           |
+| **Clear all patient**       | `p clear`                                                                                                                                                                                                                                                                                        | Removes all patient records stored in CareFlow.                                                  |
+| **List patient**            | `p list`                                                                                                                                                                                                                                                                                         | Lists all the patients that have been recorded in CareFlow.                                      |
 
 <p align="center">
   <i>Table 3. Command table for patient commands.</i>
