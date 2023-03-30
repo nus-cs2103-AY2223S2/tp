@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DecimalFormat;
-import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
 import java.util.List;
