@@ -20,12 +20,9 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Address;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Homework;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -391,5 +388,33 @@ public class ParserUtil {
                         Messages.MESSAGE_EMPTY_STUDENT));
             }
         }
+    }
+
+    public static double parseWeightage(String weight) throws ParseException {
+        if (!weight.matches("^[0-9]+(?:\\.[0-9]+)?%?$")) {
+            throw new ParseException("Weightage is in an invalid format!");
+        }
+        weight = weight.replace("%", ""); //removes % sign if it exists
+        Double res = null;
+        try {
+            res = Double.parseDouble(weight);
+        }
+        catch (NumberFormatException e) {
+            throw new ParseException("unexpected error occurred when parsing weightage", e);
+        }
+        return res;
+    }
+
+    public static Grade parseGrade(String grade) throws ParseException {
+        if (!grade.matches("^[0-9]+/[0-9]+$")) {
+            throw new ParseException("Grade is in an invalid format!");
+        }
+        Grade res;
+        try {
+            res = new Grade(Double.parseDouble(grade.split("/")[0]), Double.parseDouble(grade.split("/")[1]));
+        } catch (IllegalArgumentException e){
+            throw new ParseException(e.getMessage());
+        }
+        return res;
     }
 }

@@ -106,6 +106,7 @@ public class UpdateExamCommand extends Command {
         String newExamName = this.examName.orElse(examToUpdate.getDescription());
         LocalDateTime newStartTime = this.startTime.orElse(examToUpdate.getStartTime());
         LocalDateTime newEndTime = this.endTime.orElse(examToUpdate.getEndTime());
+<<<<<<< HEAD
         if (newStartTime.isAfter(newEndTime)) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXAM_TIME);
         }
@@ -120,6 +121,11 @@ public class UpdateExamCommand extends Command {
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
+=======
+        //todo: change this below
+        Exam newExam = new Exam(newExamName, newStartTime, newEndTime, null, null);
+        student.setExam(examToUpdate, newExam);
+>>>>>>> branch-exam-enhancements
 
         return new CommandResult(
             String.format(Messages.MESSAGE_LESSON_UPDATED_SUCCESS, index.getOneBased(),
