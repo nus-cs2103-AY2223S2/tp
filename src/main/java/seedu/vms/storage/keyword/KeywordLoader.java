@@ -72,7 +72,9 @@ public class KeywordLoader {
         for (JsonAdaptedKeyword adapted : keywords) {
             Keyword keyword = adapted.toModelType();
             if (Keyword.isNotMainKeyword(keyword.getKeyword())
-                    && Keyword.isValidMainKeyword(keyword.getMainKeyword())) {
+                    && Keyword.isValidMainKeyword(keyword.getMainKeyword())
+                    && keyword.getKeyword().isBlank()
+                    && keyword.getKeyword().matches(".*\\s+.*")) {
                 manager.add(keyword);
             } else {
                 throw new IllegalValueException("Illegal values present.");
