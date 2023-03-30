@@ -72,7 +72,7 @@ public class PersonCard extends UiPart<Region> {
         remark.setText(person.getRemark().value);
         //Note to Jing Jie - updated this line below and 1 other line in PersonListCard.fxml to show Tasks currently
         //Allows me to be able to check if it can be shown properly
-        task.setText(person.getTask().value);
+        task.setText(person.getTasks().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

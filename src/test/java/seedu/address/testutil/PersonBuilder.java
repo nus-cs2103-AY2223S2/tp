@@ -79,7 +79,7 @@ public class PersonBuilder {
         jobTitle = personToCopy.getJobTitle();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
-        task = personToCopy.getTask();
+        task = personToCopy.getTasks();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
