@@ -259,6 +259,12 @@ public interface Model {
     ObservableList<Reminder> getReminderList();
 
     /**
+     * Sorts reminder list
+     */
+
+    void sortReminderList();
+
+    /**
      * Indicate that a reminder has already been shown for this app's runtime
      */
     void setHasShown(int i, boolean b);

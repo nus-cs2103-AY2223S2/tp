@@ -82,6 +82,11 @@ public interface Logic {
     ObservableList<Reminder> getReminderList();
 
     /**
+     * Sorts reminder list
+     */
+    void sortReminderList();
+
+    /**
      * Returns delivery job list in the week sorted into day
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();

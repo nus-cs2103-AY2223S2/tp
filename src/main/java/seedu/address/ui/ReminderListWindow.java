@@ -4,8 +4,10 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -19,6 +21,9 @@ public class ReminderListWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Logic logic;
     private Stage stage;
+
+    @FXML
+    private Button sortByOldestButton;
     @FXML
     private ListView<Reminder> reminderList;
 
@@ -33,7 +38,8 @@ public class ReminderListWindow extends UiPart<Stage> {
         this.stage = root;
         this.logic = logic;
         reminderList = new ListView<>(logic.getReminderList());
-        stage.setScene(new Scene(reminderList));
+        VBox vbox = new VBox(sortByOldestButton, reminderList);
+        stage.setScene(new Scene(vbox));
     }
 
     /**
@@ -98,5 +104,14 @@ public class ReminderListWindow extends UiPart<Stage> {
             }
         });
         stage.show();
+    }
+
+    /**
+     * Specifies button action. Sorts the reminder list by oldest reminders.
+     */
+    @FXML
+    public void sortByOldest() {
+        logger.info("[Event] sort Reminder List by Oldest");
+        logic.sortReminderList();
     }
 }

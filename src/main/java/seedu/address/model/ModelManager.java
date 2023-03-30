@@ -406,6 +406,14 @@ public class ModelManager implements Model {
         return reminderList;
     }
 
+    /**
+     * Sorts reminder list
+     */
+    @Override
+    public void sortReminderList() {
+        addressBook.sortReminderList();
+    }
+
     @Override
     public void setHasShown(int i, boolean b) {
         reminderList.get(i).setHasShown(b);
