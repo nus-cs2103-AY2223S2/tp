@@ -37,7 +37,8 @@ public class EventAddCommand extends EventCommand {
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the catalogue";
     public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before adding an event.";
-    public static final String MESSAGE_EVENT_CLASH_WARNING = "WARNING: This event CLASHES with another event.Use the clash command to see specifics.";
+    public static final String MESSAGE_EVENT_CLASH_WARNING = "WARNING: This event CLASHES with another event.\n"
+            + "New event added: %1$s\n" + "Use the clash command to see specifics.";
     public static final String MESSAGE_END_BEFORE_START = "End Date Time cannot be before Start Date Time.";
 
     private final Event eventToAdd;
