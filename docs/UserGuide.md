@@ -290,10 +290,8 @@ solution for you.
 
 CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Visit Section [4.2 Patient Commands](#42-patient-commands) for more information on how to
-manage patient data in CareFlow.
+<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.2 Patient Commands]
+(#42-patient-commands) for more information on how to manage patient data in CareFlow.
 </div>
 
 ## 3.2 Drug Inventory Management
@@ -302,20 +300,21 @@ If you find struggle to keep track of your drug inventory, CareFlow is here to h
 
 With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Visit Section [4.3 Drug Commands](#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
+<div markdown="block" class="alert alert-info">:information_source: Visit Section [4.3 Drug Commands]
+(#43-drug-commands) for more information on how to manage drug inventory in CareFlow.
 </div>
 
 ## 3.3 Hospital Information Directory
 
 if you encounter an emergency or serious medical issue that your clinic can't handle, our software provides you with a list of public hospitals and their contact details, including hospitals' name and emergency hotlines. This makes it easy for you to quickly locate and contact nearby hospitals for further medical attention.
 
-<div markdown="block" class="alert alert-info">:information_source:
-
-Please note that you are not allowed to edit or change the hospital list in CareFlow. However,
-if you believe that a hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
+<div markdown="block" class="alert alert-info">:information_source: Please note that you are not allowed to edit or 
+change the hospital list in CareFlow. However, if you believe that a hospital is missing from our directory, please 
+feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are 
+committed to constantly improving our software to meet your needs.
 </div>
+
+[↑ Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 # **4. Commands**
