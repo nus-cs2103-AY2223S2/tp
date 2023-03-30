@@ -26,7 +26,7 @@ _More details coming soon ..._
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
-  e.g. in `status s/STATUS`, `STATUS` is a parameter which can be used as `status s/interviewing`.
+  e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
 
 - Items in square brackets are optional.<br>
   e.g `c/COMPANY [d/KEYDATE]` can be used as `c/Google d/Interview@2023-04-01` or as `c/Google`.
