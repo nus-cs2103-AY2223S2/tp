@@ -35,21 +35,24 @@ Experienced users can delete the sample data and proceed with regular usage.
 Format: `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
 
 * User is *required* to enter **name, status, phone number, email, address**
+* Note that when entering course under "status", course should be only one word, and should be in alphanumeric
 * Tags can be optional
 * If the account exists, user can add in related field of interests to share with others
 
 Example:
+
 * `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348` will displays the
   necessary basic information that are the user's name, year/course, phone number, email, address. Optional fields are tags,
   for which there are commitment/cca tags, module tags and lastly the general tags for users to enter non-specific typed tags.
 
 Example (with the addition of tags):
 * `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
-  mt/cs2103` Note that the tags can be placed in any part of the command, and it will not break!
+  mt/cs2103` 
+* Note that the tags can be placed in any part of the command, and it will not break!
 
 Tags are categorised according to tag colors:
 * Commitment tags: `coral pink`
-* Module tags: `Dark green`
+* Module tags: `dark green`
 * General tags: `default blue`
 
 ### Delete user contacts: `delete`
@@ -136,7 +139,8 @@ Format: `add-image INDEX ai/[PATH-TO-IMAGE]`
 
 Examples:
 
-* `list` followed by `add-image 2 C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
+* `list` followed by `add-image 2 C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person 
+in the address book
 
 ### Delete an Image for contacts
 
@@ -181,4 +185,5 @@ Example:
 | **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                    |
 | **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                       |                                                                                                                       |
 | **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                                 |
+
 
