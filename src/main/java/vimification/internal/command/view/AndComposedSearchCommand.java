@@ -4,17 +4,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Predicate;
 
-public class ComposedSearchCommand extends SearchCommand {
+public class AndComposedSearchCommand extends SearchCommand {
 
-    public ComposedSearchCommand(SearchCommand... commands) {
+    public AndComposedSearchCommand(SearchCommand... commands) {
         this(Arrays.asList(commands));
     }
 
-    public ComposedSearchCommand(Collection<? extends SearchCommand> commands) {
+    public AndComposedSearchCommand(Collection<? extends SearchCommand> commands) {
         super(commands.stream()
                 .map(SearchCommand::getPredicate)
                 .reduce(Predicate::and)
                 .orElse(ignore -> true));
     }
-
 }

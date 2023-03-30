@@ -1,6 +1,10 @@
 package vimification.internal.parser;
 
-import vimification.internal.command.view.ComposedSearchCommand;
+import java.util.ArrayList;
+import java.util.List;
+
+import vimification.internal.command.view.AndComposedSearchCommand;
+import vimification.internal.command.view.OrComposedSearchCommand;
 import vimification.internal.command.view.SearchByDeadlineAfterCommand;
 import vimification.internal.command.view.SearchByDeadlineBeforeCommand;
 import vimification.internal.command.view.SearchByKeywordCommand;
@@ -27,44 +31,60 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                 Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
                 Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
-                Pair.of(CommandParserUtil.AFTER_FLAG, 1));
+                Pair.of(CommandParserUtil.AFTER_FLAG, 1),
+                Pair.of(CommandParserUtil.OR_FLAG, 1));
 
-        ApplicativeParser<SearchCommand> flagParser = ApplicativeParser.choice(
+        List<SearchCommand> commands = new ArrayList<>();
+        ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.WORD_PARSER)
-                        .map(SearchByKeywordCommand::new),
+                        .map(SearchByKeywordCommand::new)
+                        .consume(commands::add),
                 CommandParserUtil.STATUS_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.STATUS_PARSER)
-                        .map(SearchByStatusCommand::new),
+                        .map(SearchByStatusCommand::new)
+                        .consume(commands::add),
                 CommandParserUtil.LABEL_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.LABEL_PARSER)
-                        .map(SearchByLabelCommand::new),
+                        .map(SearchByLabelCommand::new)
+                        .consume(commands::add),
                 CommandParserUtil.PRIORITY_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.PRIORITY_PARSER)
-                        .map(SearchByPriorityCommand::new),
+                        .map(SearchByPriorityCommand::new)
+                        .consume(commands::add),
                 CommandParserUtil.BEFORE_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
-                        .map(SearchByDeadlineBeforeCommand::new),
+                        .map(SearchByDeadlineBeforeCommand::new)
+                        .consume(commands::add),
                 CommandParserUtil.AFTER_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
-                        .map(SearchByDeadlineAfterCommand::new));
+                        .map(SearchByDeadlineAfterCommand::new)
+                        .consume(commands::add),
+                CommandParserUtil.OR_FLAG_PARSER
+                        .consume(counter::add));
 
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .<SearchCommand>map(ComposedSearchCommand::new)
+                .map(ignore1 -> {
+                    if (counter.get(CommandParserUtil.OR_FLAG) == 0) {
+                        return new OrComposedSearchCommand(commands);
+                    } else {
+                        return new AndComposedSearchCommand(commands);
+                    }
+                }) // lazy evaluation
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .dropNext(ApplicativeParser.eof());
     }
