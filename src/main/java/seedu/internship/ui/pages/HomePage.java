@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
+import seedu.internship.logic.commands.*;
 import seedu.internship.model.event.Event;
 
 import java.util.logging.Logger;
@@ -22,6 +23,20 @@ public class HomePage extends Page {
 
     private static final String PAGE_TITLE = "Home";
     private static final String MESSAGE_WELCOME = "Welcome onboard.";
+
+    private static final String COMMAND_HELP = AddCommand.MESSAGE_USAGE + "\n\n"
+            + CalendarCommand.MESSAGE_USAGE + "\n\n"
+            + ClashCommand.MESSAGE_USAGE + "\n\n"
+            + DeleteAllCommand.MESSAGE_USAGE + "\n\n"
+            + DeleteCommand.MESSAGE_USAGE + "\n\n"
+            + EditCommand.MESSAGE_USAGE + "\n\n"
+            + ExitCommand.MESSAGE_USAGE + "\n\n"
+            + FindCommand.MESSAGE_USAGE + "\n\n"
+            + HelpCommand.MESSAGE_USAGE + "\n\n"
+            + HomeCommand.MESSAGE_USAGE + "\n\n"
+            + ListCommand.MESSAGE_USAGE + "\n\n"
+            + SelectCommand.MESSAGE_USAGE + "\n\n"
+            + StatsCommand.MESSAGE_USAGE + "\n\n";
 
     private ObservableList<Event> reminderEvents;
 
@@ -40,6 +55,9 @@ public class HomePage extends Page {
 
     @FXML
     private VBox helpBox;
+
+    @FXML
+    private Label commands;
 
 
     /**
@@ -79,6 +97,7 @@ public class HomePage extends Page {
         }
 
         // setting helpBox
+        commands.setText(COMMAND_HELP);
     }
 
 }
