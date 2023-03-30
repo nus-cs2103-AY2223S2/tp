@@ -19,6 +19,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 
 /**
  * API of the Logic component
@@ -121,6 +122,10 @@ public interface Logic {
     int getTotalCompleted(ObservableList<DeliveryJob> list);
 
     int getTotalPending(ObservableList<DeliveryJob> list);
+
+    ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date);
+
+    boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats);
 
     /**
      * Returns the user prefs' delivery job system file path.
