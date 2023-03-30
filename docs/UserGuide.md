@@ -52,6 +52,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
             1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
             2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
         3. [**Meet Commands**](#meet-commands)
+            1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
     5. [**Other Commands**](#other-commands)
         1. [**Exit the application**](#exit-the-application)
 8. [**FAQ**](#faq)
@@ -488,10 +489,10 @@ The search commands in EduMate help you to efficiently navigate and manage your 
 
 #### Filter contacts by keywords `find`
 
-EduMate's `find` command allows you to quickly locate specific contacts by searching for keywords within their fields. This can be useful when you need to find someone with a specific tag or shared module, or when you want to obtain specific information about a particular contact. Additionally, you can use the `find` command to generate a list of contacts that meet certain criteria, which can help you manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria you want to search for.
+EduMate's `find` command helps you quickly locate specific contacts by searching for keywords within their fields. This tool allows you to generate a list of contacts that meet certain criteria and manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria. The command can also be used with multiple prefixes to refine your search. The results returned will contain at least one keyword from each specified field. Use the `find` command to save time and easily find the information you need.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `find z/KEYWORD [MORE_KEYWORDS]…​`
+Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+* `find z/KEYWORD [MORE_KEYWORDS]… z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
 {GUI}<br>
@@ -646,7 +647,7 @@ suggest new features and it is easily extensible!
 | **Delete a contact** | `delete INDEX`                                                                         | `delete 3`                                                  |
 | **Tag a contact**    | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
 | **Untag a contact**  | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
-| **Filter contacts**  | `find z/FIELD`                                                                         | `find n/Tan`, `find m/CS1231`                               |
+| **Filter contacts**  | `find z/FIELD... z/FIELD...`                                                           | `find n/Tan`, `find m/CS1231`                               |
 | **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                          | `sort`, `sort n/a`, `sort m/ p/d`                           |
 | **Save a copy**      | `save FILE_NAME`                                                                       | `save backup`                                               |
 | **Load a copy**      | `load FILE_NAME`                                                                       | `load backup`                                               |

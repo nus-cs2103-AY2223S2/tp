@@ -12,7 +12,6 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
     private ArrayList<String> eduMateHistory;
     private int index = 0;
     private final int minIndex = 0;
-    private final int maxIndex = 100;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -73,7 +72,7 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
         }
         if (isUp) {
             String previousCommand = eduMateHistory.get(index);
-            if ((index < eduMateHistory.size() - 1) && (eduMateHistory.size() < maxIndex)) {
+            if (index < eduMateHistory.size() - 1) {
                 index++;
             }
             return previousCommand;
