@@ -5,14 +5,19 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.StateHistory;
+import seedu.address.model.exceptions.InputHistoryTimelineException;
 
 /**
  * Redoes a number of the recently undone {@code Command}s.
  */
 public class RedoCommand extends Command {
+    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
+
     //CHECKSTYLE.OFF: VisibilityModifier
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("redo", "r", "heal"));
     //CHECKSTYLE.ON: VisibilityModifier
@@ -36,7 +41,7 @@ public class RedoCommand extends Command {
     }
 
     @Override
-    public void setHistory(StateHistory history) {
+    public void setStateHistory(StateHistory history) {
         this.history = history;
     }
 
@@ -47,6 +52,11 @@ public class RedoCommand extends Command {
         int redoneCommands = history.redo(numCommands);
         Model redoneModel = history.presentModel();
         model.replicateStateOf(redoneModel);
+        try {
+            model.getInputHistory().redo(redoneCommands);
+        } catch (InputHistoryTimelineException ex) {
+            logger.warning("Input history could not be redone: " + ex.getMessage());
+        }
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, redoneCommands, numCommands), false, false);
     }

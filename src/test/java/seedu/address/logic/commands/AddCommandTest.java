@@ -213,12 +213,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setHistory(InputHistory inputHistory) {
+        public void setInputHistory(InputHistory inputHistory) {
             throw new AssertionError("This method should not be called");
         }
 
         @Override
-        public InputHistory getHistory() {
+        public InputHistory getInputHistory() {
             throw new AssertionError("This method should not be called");
         }
 

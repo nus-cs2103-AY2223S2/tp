@@ -2,7 +2,6 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -16,7 +15,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.StateHistory;
-import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -29,7 +27,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final StateHistory history;
+    private final StateHistory stateHistory;
     private final AddressBookParser addressBookParser;
 
     /**
@@ -38,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        history = new StateHistory(model);
+        stateHistory = new StateHistory(model);
         addressBookParser = new AddressBookParser();
     }
 
@@ -48,19 +46,15 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        command.setHistory(history);
+        command.setStateHistory(stateHistory);
         commandResult = command.execute(model);
-        history.addCommand(command, model, commandResult);
+        stateHistory.offerCommand(command, model, commandResult);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
 
-            List<String> inputPast = model.getHistory().getPast();
-            List<String> inputFuture = model.getHistory().getFuture();
-            inputPast.add(commandText);
-            InputHistory updatedHistory = new InputHistory(inputPast, inputFuture);
-            model.setHistory(updatedHistory);
-            storage.saveInputHistory(updatedHistory);
+            model.getInputHistory().offerCommand(commandText, commandResult);
+            storage.saveInputHistory(model.getInputHistory());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

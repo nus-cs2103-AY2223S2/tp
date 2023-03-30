@@ -5,8 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.exceptions.InputHistoryTimelineException;
 
 /**
  * Encapsulates the executed input command that the user entered.
@@ -21,6 +25,7 @@ public class InputHistory {
     public InputHistory(List<String> past, List<String> future) {
         this.past.addAll(past);
         this.future.addAll(future);
+        Collections.reverse(this.future);
     }
 
     /**
@@ -47,7 +52,37 @@ public class InputHistory {
     }
 
     public List<String> getFuture() {
-        return new ArrayList<>(future);
+        List<String> outFuture = new ArrayList<>(future);
+        Collections.reverse(outFuture);
+        return outFuture;
+    }
+
+    public void undo(int num) throws InputHistoryTimelineException {
+        if (num > past.size()) {
+            throw new InputHistoryTimelineException("Attempted to undo more inputs than exists");
+        }
+        while (num-- > 0) {
+            future.add(past.get(past.size() - 1));
+            past.remove(past.size() - 1);
+        }
+    }
+
+    public void redo(int num) throws InputHistoryTimelineException {
+        if (num > future.size()) {
+            throw new InputHistoryTimelineException("Attempted to redo more inputs than exists");
+        }
+        while (num-- > 0) {
+            past.add(future.get(future.size() - 1));
+            future.remove(future.size() - 1);
+        }
+    }
+
+    public void offerCommand(String commandString, CommandResult commandResult) {
+        if (!commandResult.isDeterministic()) { // not exactly accurate, <exportCommand> - to fix
+            return;
+        }
+        future.clear();
+        past.add(commandString);
     }
 
     /**

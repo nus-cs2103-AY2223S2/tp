@@ -57,7 +57,7 @@ public class StateHistory {
      * @param model {@code Model} after the execution of {@code command}
      * @param result {@code CommandResult} of the execution of {@code command}
      */
-    public void addCommand(Command command, Model model, CommandResult result) {
+    public void offerCommand(Command command, Model model, CommandResult result) {
         if (!result.affectsModel()) {
             return;
         }

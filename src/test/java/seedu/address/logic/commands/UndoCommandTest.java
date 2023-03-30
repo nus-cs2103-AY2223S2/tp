@@ -32,7 +32,7 @@ public class UndoCommandTest {
         StateHistory history = new StateHistory(model);
         Model expectedModel = new ModelManager();
         UndoCommand undoCommand = new UndoCommand(1);
-        undoCommand.setHistory(history);
+        undoCommand.setStateHistory(history);
         assertCommandSuccess(undoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
     }
 
@@ -55,10 +55,10 @@ public class UndoCommandTest {
             StateHistory history = new StateHistory(model);
             for (Command command : commands) {
                 CommandResult rs = command.execute(model);
-                history.addCommand(command, model, rs);
+                history.offerCommand(command, model, rs);
             }
             UndoCommand undoCommand = new UndoCommand(commands.length - i);
-            undoCommand.setHistory(history);
+            undoCommand.setStateHistory(history);
             assertCommandSuccess(undoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
 
             if (i < commands.length) {
@@ -119,10 +119,10 @@ public class UndoCommandTest {
             StateHistory history = new StateHistory(model);
             for (Command command : commands) {
                 CommandResult rs = command.execute(model);
-                history.addCommand(command, model, rs);
+                history.offerCommand(command, model, rs);
             }
             UndoCommand undoCommand = new UndoCommand(commands.length - i);
-            undoCommand.setHistory(history);
+            undoCommand.setStateHistory(history);
             assertCommandSuccess(undoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
 
             if (i < referenceCommands.length) {

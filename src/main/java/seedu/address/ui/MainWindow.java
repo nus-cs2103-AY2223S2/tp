@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -132,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         historyDisplay = new HistoryDisplay();
         historyDisplayPlaceholder.getChildren().add(historyDisplay.getRoot());
 
-        historyDisplay.displayHistoryToUser(model.getHistory());
+        historyDisplay.displayHistoryToUser(model.getInputHistory());
     }
 
     /**
@@ -189,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            historyDisplay.displayHistoryToUser(model.getHistory());
+            historyDisplay.displayHistoryToUser(model.getInputHistory());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

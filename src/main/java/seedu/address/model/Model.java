@@ -169,8 +169,8 @@ public interface Model {
     /**
      * Sets new {@code History} object to the model.
      */
-    void setHistory(InputHistory inputHistory);
+    void setInputHistory(InputHistory inputHistory);
 
     /** Returns the {@code History}*/
-    InputHistory getHistory();
+    InputHistory getInputHistory();
 }

@@ -2,10 +2,10 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.address.model.history.InputHistory;
@@ -33,10 +33,16 @@ public class HistoryDisplay extends UiPart<Region> {
         requireNonNull(history);
         historyDisplay.getChildren().clear();
         for (String s : history.getPast()) {
-            historyDisplay.getChildren().add(new Text(s + "\n"));
+            Text commandText = new Text(s + "\n");
+            commandText.setFont(Font.font("Segoe UI", 14));
+            commandText.setFill(Color.WHITE);
+            historyDisplay.getChildren().add(commandText);
         }
         for (String s : history.getFuture()) {
-            historyDisplay.getChildren().add(new Text(s + "\n"));
+            Text commandText = new Text(s + "\n");
+            commandText.setFont(Font.font("Segoe UI", 14));
+            commandText.setFill(Color.GRAY);
+            historyDisplay.getChildren().add(commandText);
         }
     }
 }

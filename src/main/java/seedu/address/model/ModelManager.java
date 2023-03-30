@@ -180,12 +180,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public InputHistory getHistory() {
+    public InputHistory getInputHistory() {
         return inputHistory;
     }
 
     @Override
-    public void setHistory(InputHistory newInputHistory) {
+    public void setInputHistory(InputHistory newInputHistory) {
         inputHistory.resetData(newInputHistory);
     }
 
