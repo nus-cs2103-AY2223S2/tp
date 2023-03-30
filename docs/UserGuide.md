@@ -373,7 +373,7 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-<div markdown="block" class="alert alert-sucess">
+<div markdown="block" class="alert alert-success">
 
 :bulb: **Example 1 : All fields are present**<br>
 * `add n/Wen Li p/89229358 a/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
@@ -411,7 +411,7 @@ The `view` command retrieves either the user's information or the contact's info
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `view`: Views your profile.
 * `view INDEX`: Views the contact at index `INDEX`.
 * `view n/NAME`: Views the contact with name `NAME`.
@@ -424,8 +424,9 @@ What you should see:<br>
 <div markdown="block" class="alert alert-success">
 
 :bulb: Examples<br>
-* `view 5`: Views the profile of the fifth contact in EduMate.
-* `view n/Wen Li`: Views Wen Li's profile.
+* `view` : Displays your profile.
+* `view 5`: Displays the profile of the fifth contact in EduMate.
+* `view n/Wen Li`: Displays Wen Li's profile.
 
 </div>
 
