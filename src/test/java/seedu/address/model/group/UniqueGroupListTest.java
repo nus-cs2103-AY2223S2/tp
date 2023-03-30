@@ -7,14 +7,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.model.person.Person;
 
 public class UniqueGroupListTest {
     private final UniqueGroupList emptyGroupList = new UniqueGroupList();

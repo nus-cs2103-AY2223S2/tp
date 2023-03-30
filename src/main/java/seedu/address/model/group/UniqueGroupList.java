@@ -5,13 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.group.exceptions.DuplicateGroupException;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
  * A group is considered unique by comparing using {@code Group#isSameGroup(Group)}. As such, adding and updating of

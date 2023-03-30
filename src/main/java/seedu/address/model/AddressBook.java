@@ -195,7 +195,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         for (Person person: personSet) {
             person.removeGroup(group);
-            persons.setPerson(person,person);
+            persons.setPerson(person, person);
         }
         groups.delete(group);
     }
