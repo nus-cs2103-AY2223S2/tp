@@ -147,9 +147,7 @@ public class ZoomView extends UiPart<Region> {
             } else {
                 ratingStar.setVisible(false);
             }
-
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new AssertionError(e);
         }
 
