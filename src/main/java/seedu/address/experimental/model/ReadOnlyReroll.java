@@ -1,7 +1,6 @@
 package seedu.address.experimental.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.entity.Template;
+import java.util.List;
 
 /**
  * Unmodifiable view of Reroll.
@@ -28,7 +27,7 @@ public interface ReadOnlyReroll {
     ReadOnlyEntities getEntities();
 
     /**
-     * Returns an unmodifiable view of all templates.
+     * Returns list of template names.
      */
-    ObservableList<Template> getTemplates();
+    List<String> getTemplates();
 }

@@ -109,7 +109,7 @@ public class EditValueCommand extends Command {
         Set<Tag> updatedTags = editCharacterDescriptor.getTags().orElse(charToEdit.getTags());
         Inventory updatedInventory = editCharacterDescriptor.getInventory().orElse(charToEdit.getInventory());
 
-        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedTags, updatedInventory);
+        return new Character(updatedName, updatedStats, updatedLevel, updatedXp, updatedInventory, updatedTags);
     }
 
     /**

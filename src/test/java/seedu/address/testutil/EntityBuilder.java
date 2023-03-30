@@ -46,15 +46,15 @@ public class EntityBuilder {
     }
 
     public Entity buildChar() {
-        return new Character(name, tags);
+        return new Character(name);
     }
 
     public Entity buildItem() {
-        return new Item(name, tags);
+        return new Item(name);
     }
 
     public Entity buildMob() {
-        return new Mob(name, tags);
+        return new Mob(name);
     }
 
 }
