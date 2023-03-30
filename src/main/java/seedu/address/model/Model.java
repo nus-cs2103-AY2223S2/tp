@@ -310,12 +310,12 @@ public interface Model {
     /**
      * Returns the module code of the listed lectures or listed videos.
      */
-    ReadOnlyModule getListedLecturesByModuleCode();
+    ReadOnlyModule getListedLecturesByModule();
 
     /**
      * Returns the lecture name of the listed videos.
      */
-    ReadOnlyLecture getListedVideosByLectureName();
+    ReadOnlyLecture getListedVideosByLecture();
 
     /**
      * Navigates to the parent layer.

@@ -28,8 +28,8 @@ public class ListObserver implements
 
     @Override
     public void onVideoEdited(ModuleCode moduleCode, LectureName lectureName, Video originalVideo, Video editedVideo) {
-        ReadOnlyModule curModule = model.getListedLecturesByModuleCode();
-        ReadOnlyLecture curLecture = model.getListedVideosByLectureName();
+        ReadOnlyModule curModule = model.getListedLecturesByModule();
+        ReadOnlyLecture curLecture = model.getListedVideosByLecture();
         DisplayListLevel curDisplayListLevel = model.getLastListLevel();
 
         if (isVideosAffectedByVideoEdit(curDisplayListLevel, curModule, curLecture, moduleCode, lectureName)) {
@@ -48,8 +48,8 @@ public class ListObserver implements
 
     @Override
     public void onLectureEdited(ModuleCode moduleCode, ReadOnlyLecture originalLecture, ReadOnlyLecture editedLecture) {
-        ReadOnlyModule curModule = model.getListedLecturesByModuleCode();
-        ReadOnlyLecture curLecture = model.getListedVideosByLectureName();
+        ReadOnlyModule curModule = model.getListedLecturesByModule();
+        ReadOnlyLecture curLecture = model.getListedVideosByLecture();
         DisplayListLevel curDisplayListLevel = model.getLastListLevel();
 
         if (isLecturesAffectedByLectureEdit(curDisplayListLevel, curModule, curLecture, originalLecture, moduleCode)) {
@@ -78,26 +78,28 @@ public class ListObserver implements
 
     @Override
     public void onModuleEdited(ReadOnlyModule originalModule, ReadOnlyModule editedModule) {
-        ReadOnlyModule curModule = model.getListedLecturesByModuleCode();
-        ReadOnlyLecture curLecture = model.getListedVideosByLectureName();
+        ReadOnlyModule curModule = model.getListedLecturesByModule();
+        ReadOnlyLecture curLecture = model.getListedVideosByLecture();
         DisplayListLevel curDisplayListLevel = model.getLastListLevel();
 
-        if (isLecturesAffectedByModuleEdit(curDisplayListLevel, curModule.getCode(), originalModule)) {
+        if (isLecturesAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
             model.updateFilteredLectureList(new LecturePredicate(editedModule), editedModule);
         }
 
-        if (isVideosAffectedByModuleEdit(curDisplayListLevel, curModule.getCode(), originalModule)) {
+        if (isVideosAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
             model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), curLecture);
         }
     }
 
     private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
-            ModuleCode curModuleCode, ReadOnlyModule originalModule) {
-        return curDisplayListLevel == DisplayListLevel.LECTURE && curModuleCode.equals(originalModule.getCode());
+            ReadOnlyModule curModule, ReadOnlyModule originalModule) {
+        return curDisplayListLevel == DisplayListLevel.LECTURE
+                && curModule.getCode().equals(originalModule.getCode());
     }
 
     private boolean isVideosAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
-            ModuleCode curModuleCode, ReadOnlyModule originalModule) {
-        return curDisplayListLevel == DisplayListLevel.VIDEO && curModuleCode.equals(originalModule.getCode());
+            ReadOnlyModule curModule, ReadOnlyModule originalModule) {
+        return curDisplayListLevel == DisplayListLevel.VIDEO
+                && curModule.getCode().equals(originalModule.getCode());
     }
 }

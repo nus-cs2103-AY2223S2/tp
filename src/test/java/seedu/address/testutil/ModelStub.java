@@ -197,12 +197,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ReadOnlyModule getListedLecturesByModuleCode() {
+    public ReadOnlyModule getListedLecturesByModule() {
         throw new AssertionError("This method should not be called.");
     };
 
     @Override
-    public ReadOnlyLecture getListedVideosByLectureName() {
+    public ReadOnlyLecture getListedVideosByLecture() {
         throw new AssertionError("This method should not be called.");
     }
 

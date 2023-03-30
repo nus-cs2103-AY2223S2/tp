@@ -235,12 +235,12 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public ReadOnlyModule getListedLecturesByModuleCode() {
+    public ReadOnlyModule getListedLecturesByModule() {
         return listedLecturesByModule;
     };
 
     @Override
-    public ReadOnlyLecture getListedVideosByLectureName() {
+    public ReadOnlyLecture getListedVideosByLecture() {
         return listedVideosByLecture;
     }
 
