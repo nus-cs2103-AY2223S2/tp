@@ -43,7 +43,7 @@ public class EditCommandTest {
         // Original person should retain their old meetings after using edit command.
         Person originalPerson = model.getFilteredPersonList().get(0);
 
-        // Expected person can have fields Name, Phone, Email, Address, Tag edited,
+        // Expected person can have fields Name, Phone, Email, Address, PolicyTag edited,
         // but meeting field should NOT change with edit command.
         // Using updated expectedPerson enforces this behaviour by setting expectedPerson's
         // meeting field to the original person's meeting.

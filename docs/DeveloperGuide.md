@@ -221,6 +221,33 @@ sequence diagram:
 ### 5. Find Meeting Feature
 ![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 
+### 6. Policy Tag Feature
+
+#### 6.1 Implementation
+
+Every `Person` contains a `PolicyTag`, which represents financial policies adopted by the user's clients and prosepctive clients.
+Every time a new `Person` is created, it contains a list of `PolicyTag` objects, which can be empty or non-empty. A new `PolicyTag` object
+is created with the use of `add` command when a new `Person` is added or `edit` command when a new policy needs to be added
+under an existing `Person`.
+
+### 7. Find Policy Feature
+
+#### 7.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
+
+* `FindPolicyCommandParser`: 
+  * checks that the command contains `FindPolicyCommand.COMMAND_WORD`.
+  * checks that the arguments given are Strings.
+* `FindPolicyCommand`:
+  * updates list of `Person` objects with a filtered list of `Person` objects with matching policy names
+
+After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
+policy names are displayed. The following sequence diagram illustrates the description for finding policy:
+
+![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

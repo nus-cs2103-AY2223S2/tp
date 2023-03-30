@@ -149,7 +149,7 @@ Examples:
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
+Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
 * `PERSON_INDEX`: Index of a person in address book
@@ -175,11 +175,13 @@ Format: `meetingRemove PERSON_INDEX MEETING_INDEX`
 
 Required Information:
 * `PERSON_INDEX`: Index of a person already in address book
-* `MEETING_INDEX`: Meeting ID
+* `MEETING_INDEX`: Index of meeting in a person
 
 Examples:
-* `meetingRemove 3 2` Deletes a meeting with index 2 from a person with index 3.
-* `meetingRemove 20 6` Deletes a meeting with index 6 from a person with index 20.
+* `meetingRemove 20 6` Deletes the 6th meeting added from the person with index 20.
+* `meetingRemove 3 1` Deletes the 1st meeting added from the person with index 3.
+
+![result for meetingRemove 3 1](images/meetingRemove31.PNG)
 
 ### Updating a meeting : `meetingUpdate`
 
@@ -229,6 +231,20 @@ Required information:
 
 Examples:
 * `find Central` Finds people from Central region in the address book
+
+### Find people by policy name : `findPolicy`
+
+Lists all person that are under a given policy
+
+Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
+
+Required information:
+* Name of policy to search for
+
+Examples:
+* `findPolicy Insurance` Finds people with Insurance Policy as their tag
+
+![result for findPolicy Insurance](images/findPolicyInsurance.PNG)
 
 ### Clearing all entries : `clear`
 
