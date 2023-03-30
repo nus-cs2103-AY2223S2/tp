@@ -245,19 +245,22 @@ public class ModelManager implements Model {
         List<Person> persons = this.addressBook.getPersonList();
         TimeMask baseMask = new TimeMask();
         for (Person person: persons) {
-            baseMask.mergeMask(person.getRecurringMask());
-            IsolatedEventList isolatedEventList = person.getIsolatedEventList();
-            if (isolatedEventList == null) {
-                continue;
+            if (person.getGroups().contains(group)) {
+                baseMask.mergeMask(person.getRecurringMask());
+                IsolatedEventList isolatedEventList = person.getIsolatedEventList();
+                if (isolatedEventList == null) {
+                    continue;
+                }
+                baseMask.mergeIsolatedEvents(isolatedEventList);
             }
-            baseMask.mergeIsolatedEvents(isolatedEventList);
         }
 
         // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
-        System.out.println(timetable);
+//        System.out.println(timetable);
 
         // TODO: INSERT CALL TO TIMETABLE UI
+        addressBook.getScheduleWeek().setInternalList(timetable);
     }
 
     @Override
