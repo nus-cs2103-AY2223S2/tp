@@ -423,7 +423,7 @@ What you should see:<br>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: Examples<br>
+:bulb: **Examples**<br>
 * `view` : Displays your profile.
 * `view 5`: Displays the profile of the fifth contact in EduMate.
 * `view n/Wen Li`: Displays Wen Li's profile.
@@ -436,7 +436,7 @@ Edits the profile of a contact. You can choose to edit as many fields as you'd l
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
 * `edit [z/FIELD]…​`: Edits your user profile.
@@ -446,10 +446,10 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-<div markdown="block" class="alert alert-primary">
-:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+<div markdown="block" class="alert alert-success">
 
-Examples:
+:bulb: **Examples**<br>
+
 * `edit 3 n/Wen Qing`: Changes the name of the third contact to `Wen Qing`.
 * `edit 6 p/89229358 t/@wenqing`: Changes the phone number and telegram handle of the sixth contact.
 * `edit a/Bedok`: Updates your address to `Bedok`.
@@ -459,15 +459,25 @@ Examples:
 
 Removes a contact from EduMate.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+
 * `delete INDEX`: Deletes the contact at index `INDEX`.
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
+
 * `delete 5`: Removes the fifth contact from EduMate.
+
+</div>
 
 ### Add a label to a contact `tag`
 
