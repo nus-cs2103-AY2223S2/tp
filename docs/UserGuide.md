@@ -5,7 +5,7 @@ title: User Guide
 
 NeoBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
-Apart from being your all-encompassing address book, NeoBook also has a calendar function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, NeoBook also has a Events function for you to keep track of your daily schedule.
 
 ## Table Of Contents
 * Table of Contents
@@ -56,7 +56,7 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 ![neobook](images/userguide/neobook.png)
 
 1. Current Displayed List
-   * show contacts based on command input
+   * show contacts based on command parameters
    * contains the `index` you should use to refer to each contact
    * A : Contains favorite contacts for easy access
    * B : Contains all contacts
@@ -142,31 +142,31 @@ Use this command to add him/her to your NeoBook.
 
 **Syntax:**
 
-`add n/NAME SPECIFIER/INPUT...`
+`add n/NAME PREFIX/PARAMETER...`
 
-Here are all the specifiers that can be used:
+Here are all the prefixes that can be used:
 
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | Name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
-| f         | Faculty                         | Yes       |
+| Prefix  | Name of Field                   | Optional? |
+|---------|---------------------------------|-----------|
+| n       | Name                            | No        |
+| e       | Email address                   | Yes       |
+| a       | Address                         | Yes       |
+| m       | Major                           | Yes       |
+| mt      | Mods Taken                      | Yes       |
+| f       | Faculty                         | Yes       |
+| g       | Gender                          | Yes       |
+| t       | Tags                            | Yes       |
+| c       | Preferred Communication Channel | Yes       |
+| f       | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
 
 IMPT: If you want to add multiple tags or modules in one statement,
-every tag or module has to have its corresponding specifier.
+every tag or module has to have its corresponding prefix.
 
 Only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for future syncing with the calendar.
+to prevent any messiness and also allows for future syncing with the Events.
 </div>
 
 Examples:
@@ -238,7 +238,7 @@ Use this command to edit his/her details easily!
 
 **Syntax:**
 
-`edit INDEX SPECIFIER/DATA...`
+`edit INDEX PREFIX/PARAMETER...`
 
 _Here are some important requirements for you to take note:_
 
@@ -250,14 +250,14 @@ For the following fields, they are considered a `SuperField`.
 * Modules
 * Tags
 
-A `SuperField` can contain many inputs in that single field.
-When using edit, the command looks for each input in the `SuperField`:
-* If the input already exists in the `SuperField` it will be removed.
-* Otherwise, the input will be added into the `SuperField`.
+A `SuperField` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `SuperField`:
+* If the parameter already exists in the `SuperField` it will be removed.
+* Otherwise, the parameter will be added into the `SuperField`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
 of a person if it already exists and adds it if it does not.
   
-| Specifier | Name of Field                   | Optional? |
+| Prefix | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
 | n         | name                            | No        |
 | e         | Email address                   | Yes       |
@@ -300,19 +300,19 @@ Use this command to find contacts using keywords and fields you specify!
 
 **Syntax:**
 
-`find KEYWORD SPECIFIER/KEYWORDS...`
+`find KEYWORD PREFIX/KEYWORDS...`
 
-| Specifier | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
+| Prefix   | Name of Field                   | Optional? |
+|----------|---------------------------------|-----------|
+| n        | name                            | No        |
+| e        | Email address                   | Yes       |
+| a        | Address                         | Yes       |
+| m        | Major                           | Yes       |
+| mt       | Mods Taken                      | Yes       |
+| f        | Faculty                         | Yes       |
+| g        | Gender                          | Yes       |
+| t        | Tags                            | Yes       |
+| c        | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
 * The keywords are case-insensitive.
@@ -400,7 +400,7 @@ Simply use this command to clear all contacts from your NeoBook.
 
 ### Switching between UI tabs: `tab`
 
-Looking for a faster way to switch between NeoBook and the Calendar?
+Looking for a faster way to switch between NeoBook and the Events?
 
 Use this command to navigate to the specified tab.
 
@@ -414,7 +414,7 @@ _Here are some important requirements for you to take note:_
 
 _Examples:_
 * `tab 1` switches to the NeoBook tab.
-* `tab 2` switches to the Calendar tab.
+* `tab 2` switches to the Events tab.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -496,13 +496,12 @@ _Examples:_
 * `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
 
 
-| Specifier | Name of Field                 | Optional? |
-|-----------|-------------------------------|-----------|
-| d         | Description of Event          | No        |
-| s         | Start Date and Time of Event  | No        |
-| e         | End Date and Time of Event    | No        |
-| r         | Recurrence Interval           | Yes       |
->>>>>>> 6c2571badb8299bcb80616959f5499a70671b8df
+| Prefix   | Name of Field                 | Optional? |
+|----------|-------------------------------|-----------|
+| d        | Description of Event          | No        |
+| s        | Start Date and Time of Event  | No        |
+| e        | End Date and Time of Event    | No        |
+| r        | Recurrence Interval           | Yes       |
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -523,6 +522,36 @@ _Here are some important requirements for you to take note:_
 
 _Examples:_
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Editing An Event : `editevent`
+
+Want to change the details of a particular event?
+
+Use this command to edit the specified event in your NeoBook.
+
+**Syntax:**
+
+`editevent INDEX PREFIX/PARAMETER...`
+
+_Here are some important requirements for you to take note:_
+
+* `INDEX` refers to the index of the event you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+* At least one field must be provided.
+
+| Prefix | Name of Field                 | Optional? |
+|--------|-------------------------------|-----------|
+| d      | Description of Event          | Yes       |
+| s      | Start Date and Time of Event  | Yes       |
+| e      | End Date and Time of Event    | Yes       |
+| r      | Recurrence Interval           | Yes       |
+
+Examples:
+*  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
+*  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -582,6 +611,7 @@ _For more advanced users_
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
 | **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
+| **Edit Event**             | `editevent INDEX PREFIX/PARAMETER...` <br> e.g.,`editevent 1 d/read book e/weekly`                                                                                                              |
 | **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
 | **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
 
@@ -633,7 +663,7 @@ If you edit the taggedPerson in User data, beware that you may end up unlinking 
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NeoBook will discard all data and start with an empty data file at the next run.
 </div>
 
 [Back To Contents](#table-of-contents)
