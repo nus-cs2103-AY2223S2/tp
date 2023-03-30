@@ -13,6 +13,7 @@ import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.tag.PriorityTag;
 import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
@@ -22,6 +23,7 @@ import seedu.patientist.model.tag.Tag;
  */
 public class Patient extends Person {
     public static final RoleTag PATIENT_TAG = new RoleTag("Patient");
+    private PriorityTag priority = new PriorityTag("LOW");
     private List<PatientStatusDetails> details = new ArrayList<>();
     private List<PatientToDo> toDos = new ArrayList<>();
 
@@ -30,6 +32,18 @@ public class Patient extends Person {
      */
     public Patient(Email email, Name name, Phone phone, IdNumber id, Address address, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(IdNumber id, Name name, Phone phone, Email email,
+                   Address address, PriorityTag priority, List<PatientStatusDetails> details,
+                   List<PatientToDo> toDos, Set<Tag> tags) {
+        super(name, phone, email, id, address, tags);
+        this.priority = priority;
+        this.details.addAll(details);
+        this.toDos.addAll(toDos);
     }
 
     /**
@@ -94,6 +108,10 @@ public class Patient extends Person {
      */
     public List<PatientToDo> getPatientToDoList() {
         return Collections.unmodifiableList(this.toDos);
+    }
+
+    public PriorityTag getPriority() {
+        return priority;
     }
 
     private boolean toDoIndexInRange(Index index) {
