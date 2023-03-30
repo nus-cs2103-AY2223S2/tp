@@ -12,7 +12,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -114,8 +114,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withCcaPositions(String... ccaPositions) {
-        Set<CcaPosition> ccaPositionSet = Stream.of(ccaPositions).map(CcaPosition::new).collect(Collectors.toSet());
-        descriptor.setCcaPositions(ccaPositionSet);
+        Set<Major> majorSet = Stream.of(ccaPositions).map(Major::new).collect(Collectors.toSet());
+        descriptor.setCcaPositions(majorSet);
         return this;
     }
 

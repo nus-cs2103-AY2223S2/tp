@@ -22,7 +22,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -174,13 +174,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
+    public static Major parseCcaPosition(String ccaPosition) throws ParseException {
         requireNonNull(ccaPosition);
         String trimmedCcaPosition = ccaPosition.trim();
         if (!Cca.isValidTagName(trimmedCcaPosition)) {
-            throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new CcaPosition(trimmedCcaPosition);
+        return new Major(trimmedCcaPosition);
     }
 
     /**
@@ -222,13 +222,13 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
      */
-    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions) throws ParseException {
+    public static Set<Major> parseCcaPositions(Collection<String> ccaPositions) throws ParseException {
         requireNonNull(ccaPositions);
-        final Set<CcaPosition> ccaPositionSet = new HashSet<>();
+        final Set<Major> majorSet = new HashSet<>();
         for (String ccaPositionName : ccaPositions) {
-            ccaPositionSet.add(parseCcaPosition(ccaPositionName));
+            majorSet.add(parseCcaPosition(ccaPositionName));
         }
-        return ccaPositionSet;
+        return majorSet;
     }
 
     private static Instagram parseInstagram(String instagram) throws ParseException {

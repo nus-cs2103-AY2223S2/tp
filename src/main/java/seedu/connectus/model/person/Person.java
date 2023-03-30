@@ -11,7 +11,7 @@ import java.util.Set;
 
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -32,7 +32,7 @@ public class Person {
     private Set<Module> modules = new HashSet<>();
     private Set<Remark> remarks = new HashSet<>();
     private Set<Cca> ccas = new HashSet<>();
-    private Set<CcaPosition> ccaPositions = new HashSet<>();
+    private Set<Major> majors = new HashSet<>();
     private Optional<Birthday> birthday;
 
     // Social media fields
@@ -42,7 +42,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name) {
-        requireAllNonNull(name, remarks, modules, ccas, ccaPositions);
+        requireAllNonNull(name, remarks, modules, ccas, majors);
         this.name = name;
         this.phone = Optional.empty();
         this.email = Optional.empty();
@@ -55,7 +55,7 @@ public class Person {
      * Copy constructor allowing additions to tag list.
      */
     public Person(Person toCopy, Set<Remark> remarks, Set<Module> modules,
-                  Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
+                  Set<Cca> ccas, Set<Major> majors) {
         requireNonNull(toCopy);
         this.name = toCopy.name;
         this.phone = toCopy.phone;
@@ -66,7 +66,7 @@ public class Person {
         this.remarks.addAll(remarks);
         this.modules.addAll(modules);
         this.ccas.addAll(ccas);
-        this.ccaPositions.addAll(ccaPositions);
+        this.majors.addAll(majors);
     }
 
     public void setPhone(Phone phone) {
@@ -101,8 +101,8 @@ public class Person {
         this.ccas = ccas;
     }
 
-    public void setCcaPositions(Set<CcaPosition> ccaPositions) {
-        this.ccaPositions = ccaPositions;
+    public void setCcaPositions(Set<Major> majors) {
+        this.majors = majors;
     }
 
     public Name getName() {
@@ -131,7 +131,7 @@ public class Person {
 
     public String getAllFieldsAsString() {
         return String.format("%s %s %s %s %s %s %s %s %s %s",
-                name, phone, email, address, birthday, socialMedia, remarks, modules, ccas, ccaPositions);
+                name, phone, email, address, birthday, socialMedia, remarks, modules, ccas, majors);
     }
 
     /**
@@ -166,8 +166,8 @@ public class Person {
      * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<CcaPosition> getCcaPositions() {
-        return Collections.unmodifiableSet(ccaPositions);
+    public Set<Major> getCcaPositions() {
+        return Collections.unmodifiableSet(majors);
     }
 
     /**
@@ -211,7 +211,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, remarks, modules, ccas, ccaPositions);
+        return Objects.hash(name, phone, email, address, remarks, modules, ccas, majors);
     }
 
     @Override
@@ -244,10 +244,10 @@ public class Person {
             builder.append("; Ccas: ");
             ccas.forEach(builder::append);
         }
-        Set<CcaPosition> ccaPositions = getCcaPositions();
-        if (!ccaPositions.isEmpty()) {
+        Set<Major> majors = getCcaPositions();
+        if (!majors.isEmpty()) {
             builder.append("; CcaPositions: ");
-            ccaPositions.forEach(builder::append);
+            majors.forEach(builder::append);
         }
         return builder.toString();
     }

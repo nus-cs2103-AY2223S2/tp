@@ -17,7 +17,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -149,9 +149,9 @@ public class SampleDataUtil {
     /**
      * Returns a ccaPosition set containing the list of strings given.
      */
-    public static Set<CcaPosition> getCcaPositionSet(String... strings) {
+    public static Set<Major> getCcaPositionSet(String... strings) {
         return Arrays.stream(strings)
-                .map(CcaPosition::new)
+                .map(Major::new)
                 .collect(Collectors.toSet());
     }
 }

@@ -53,7 +53,7 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 import seedu.connectus.testutil.PersonBuilder;
@@ -205,7 +205,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + REMARK_DESC_HUSBAND + VALID_REMARK_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
                         + CCA_DESC_ICS + INVALID_CCA_POSITION_DESC,
-                CcaPosition.MESSAGE_CONSTRAINTS);
+                Major.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,

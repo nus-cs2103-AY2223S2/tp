@@ -3,7 +3,7 @@ package seedu.connectus.logic.parser;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.logic.commands.AddTagToPersonCommand.AddTagDescriptor;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -15,7 +15,7 @@ import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -26,7 +26,7 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
     @Override
     public AddTagToPersonCommand parse(String userInput) throws ParseException {
         var argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_REMARK, PREFIX_MODULE,
-            PREFIX_CCA, PREFIX_CCA_POSITION);
+            PREFIX_CCA, PREFIX_MAJOR);
 
         Index index;
 
@@ -44,9 +44,9 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
                 .map(Module::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
             Optional.ofNullable(argMultimap.getAllValues(PREFIX_CCA)).map(l -> l.stream().filter(s -> !s.isBlank())
                 .map(Cca::new).collect(Collectors.toSet())).orElse(new HashSet<>()),
-            Optional.ofNullable(argMultimap.getAllValues(PREFIX_CCA_POSITION))
+            Optional.ofNullable(argMultimap.getAllValues(PREFIX_MAJOR))
                 .map(l -> l.stream().filter(s -> !s.isBlank())
-                .map(CcaPosition::new).collect(Collectors.toSet())).orElse(new HashSet<>()));
+                .map(Major::new).collect(Collectors.toSet())).orElse(new HashSet<>()));
 
         if (addTagDescriptor.isEmpty()) {
             throw new ParseException(

@@ -3,7 +3,7 @@ package seedu.connectus.logic.parser;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 
@@ -18,7 +18,7 @@ public class DeleteTagFromPersonCommandParser implements Parser<DeleteTagFromPer
     @Override
     public DeleteTagFromPersonCommand parse(String userInput) throws ParseException {
         var argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_REMARK, PREFIX_MODULE,
-            PREFIX_CCA, PREFIX_CCA_POSITION);
+            PREFIX_CCA, PREFIX_MAJOR);
 
         Index personIndex;
         Index remarkIndex;
@@ -37,8 +37,8 @@ public class DeleteTagFromPersonCommandParser implements Parser<DeleteTagFromPer
             ccaIndex = argMultimap.getValue(PREFIX_CCA).isPresent()
                 ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA).get())
                 : null;
-            ccaPositionIndex = argMultimap.getValue(PREFIX_CCA_POSITION).isPresent()
-                ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CCA_POSITION).get())
+            ccaPositionIndex = argMultimap.getValue(PREFIX_MAJOR).isPresent()
+                ? ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MAJOR).get())
                 : null;
 
             if (!isAnyNonNull(remarkIndex, moduleIndex, ccaIndex, ccaPositionIndex)) {
