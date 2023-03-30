@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 # CoDoc User Guide
-#### Welcome to CoDoc, a desktop app for students in SoC to connect with each other for the benefit of their course of study.
+#### Welcome to CoDoc, a desktop app for students in NUS to connect with each other for the benefit of their course of study.
 CoDoc is **optimized for** use via a **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
 If you can type fast, CoDoc can get your **contact management** tasks **done faster** than traditional GUI apps.
 
@@ -422,7 +422,8 @@ Here is a list of available commands and its details.
 
 ### 1. Viewing help : `help`
 
-Opens help menu <br>
+Forgotten the commands? Open the help menu! <br>
+
 Equivalent to clicking Help > Help F1 via the GUI <br>
 `help`<br>
 > <img src="images/UiHelpMenu.png"/>
@@ -431,7 +432,7 @@ Equivalent to clicking Help > Help F1 via the GUI <br>
 
 ### 2. Adding a person : `add`
 
-Adds a new contact into your CoDoc application. 
+Met a new friend? Add their contact into your CoDoc application! 
 
 There are **compulsory** parameters that must be specified to create the new contact.
 Once the person has been created, the result display will show a confirmation message and the person can be seen at the bottom of the person list panel.
@@ -462,7 +463,7 @@ Once the person has been created, the result display will show a confirmation me
 
 ### 3. Viewing a person/Changing tabs : `view`
 
-Controls what is displayed in the right panel. 
+Want to look a contact with greater detail? Use view to see more information on the right panel!  
 
 If an `integer` is specified, the person displayed on the right will be the person in the person list that has the **same index** as the integer given.
 
@@ -493,7 +494,9 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 ### 4. Editing a person : `edit`
 
-Edits the person displayed in the view panel. Existing values will be updated to the input values.
+Does one of your contact have outdated information? Overwrite them in the view panel with the edit command! 
+>💡 Existing values will be <b><u>overwritten</u></b> by the input values.<br/>
+> Use m+/ or s+/ to <b><u>append</u></b> information instead
 
 At least one of the optional fields must be provided.
 
@@ -533,7 +536,7 @@ At least one of the optional fields must be provided.
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
-Find all people that contain the given constraints. <br>
+Want to find people with certain qualities? Use find command to find people that contain the given constraints! <br>
 - `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
 - All constraints applied are shown in *Result Display*.
 - To remove all constraints, use `list`. 
@@ -557,16 +560,15 @@ Find all people that contain the given constraints. <br>
 > 
 >
 > **Examples:**
-> - We shall start with an unfiltered list. <br> ![UiFind_01](images/UiFind_01.png)
-> - Next, we execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
-> - Then, we proceed to execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
-> - Finally, we shall clear all constraints by with `list`![UiFind_04](images/UiFind_04.png)
+> - execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
+> - execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
+> - Finally, execute `list` to get back every contact in Codoc
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 6. Listing all persons/Resetting filters : `list`
 
-Displays the full list of all persons stored in the person list panel.<br>
+Want to see all your contacts? Display everyone stored in Codoc with the list command!<br>
 
 `list`<br>
 
@@ -578,7 +580,7 @@ Displays the full list of all persons stored in the person list panel.<br>
 
 ### 7. Deleting a person : `delete`
 
-Deletes the person at the specified INDEX. 
+Want to remove a contact from Codoc? Delete them at the specified INDEX with the delete command! 
 
 INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.<br>
 
@@ -600,7 +602,7 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 
 ### 9. Exiting the program : `exit`
 
-Exits the program. <br>
+Want to quit? Use exit command to exit the program! <br>
 Equivalent to clicking the close button via the GUI. <br>
 
 >`exit`<br>
