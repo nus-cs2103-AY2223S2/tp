@@ -1,0 +1,10 @@
+diff a/src/main/java/teambuilder/ui/TeamCard.java b/src/main/java/teambuilder/ui/TeamCard.java	(rejected hunks)
+@@ -10,7 +10,7 @@
+ import teambuilder.model.team.Team;
+ 
+ /**
+- * A UI component that displays information of a {@code Team}.
++ * A UI component that displays the information of a {@code Team}.
+  */
+ public class TeamCard extends UiPart<Region> {
+ 

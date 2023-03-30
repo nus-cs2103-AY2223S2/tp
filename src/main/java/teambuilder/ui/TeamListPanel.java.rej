@@ -1,0 +1,15 @@
+diff a/src/main/java/teambuilder/ui/TeamListPanel.java b/src/main/java/teambuilder/ui/TeamListPanel.java	(rejected hunks)
+@@ -11,10 +11,12 @@
+ import teambuilder.model.team.Team;
+ 
+ /**
+- * Panel containing the list of teams.
++ * A panel containing the list of teams.
+  */
+ public class TeamListPanel extends UiPart<Region> {
++
+     private static final String FXML = "TeamListPanel.fxml";
++
+     private final Logger logger = LogsCenter.getLogger(TeamListPanel.class);
+ 
+     @FXML
