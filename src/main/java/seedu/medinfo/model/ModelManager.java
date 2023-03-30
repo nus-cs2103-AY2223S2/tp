@@ -192,7 +192,7 @@ public class ModelManager implements Model {
 
     @Override
     public List<String> getStatsInfo() {
-        return addressBook.getStatsInfo();
+        return medInfo.getStatsInfo();
     }
     @Override
     public boolean equals(Object obj) {
