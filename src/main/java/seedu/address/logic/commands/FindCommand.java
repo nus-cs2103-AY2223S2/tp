@@ -22,7 +22,8 @@ public class FindCommand extends Command {
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "PREFIX/KEYWORD [PREFIX/KEYWORD]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "n/alice mt/CS2103T")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
-                    "Note that the indices of the contacts in the resulting list may be different.");
+                    "Note that the indices of the contacts in the resulting list may be different.",
+                    "For more information on prefixes, refer to the user guide using the help command.");
 
     private final PersonContainsKeywordsPredicate predicate;
 
