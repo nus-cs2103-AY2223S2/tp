@@ -91,9 +91,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Delete
 
-- `delete {module_code}`: Deletes module(s) from Le Tracker
-- `delete {lecture_name} /mod {module_code}`: Deletes the specified lecture(s) from the specified module
-- `delete {video_name} /mod {module_code} /lec {lecture_name}`: Deletes the specified video(s) from the specified lecture from the specified module
+- `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`: Deletes module(s) from Le Tracker
+- `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`: Deletes the specified lecture(s) from the specified module
+- `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] [/mod {module_code}] [/lec {lecture_name}]`: Deletes the specified video(s) from the specified lecture from the specified module
 
 ### Tag
 
@@ -340,10 +340,10 @@ Examples:
 
 > Deletes the specified module(s) and all its embodied content from the application
 
-Format: `delete {module_code}`
+Format: `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`
 
-- Deletes the module of the specified `module_code`
-- Multiple modules can be specified to be deleted, separating them by commas(",")
+- `module_code_1`, `module_code_2`, `module_code_3`, ...: Multiple modules can be specified to be deleted by specifying multiple module codes, separating them by commas(",")
+- Module codes must be of valid format
 - If any module specified does not exist, nothing changes within the model
 
 Examples:
@@ -353,13 +353,14 @@ Examples:
 
 ### Delete Lecture(s)
 
-> Deletes the specified lecture(s) and all its embodied content from the specified module
+> Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-Format: `delete {lecture_name} /mod {module_code}`
+Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
 
-- Deletes the lecture of the specified `lecture_name` from the specified `module_code`
-- Multiple lectures within the same module can be specified to be deleted, separating them by commas(",")
-- If the module or any lecture specified does not exist, nothing changes within the model
+- `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
+- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
+- Lecture names must be of valid format
+- If any lecture specified does not exist within specified module, nothing changes within the model
 
 Examples:
 
@@ -368,13 +369,15 @@ Examples:
 
 ### Delete Video(s)
 
-> Deletes the specified video(s) and all its embodied content from the specified lecture from the specified module
+> Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
-Format: `delete {video_name} /mod {module_code} /lec {lecture_name}`
+Format: `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`
 
-- Deletes the video of the specified `video_name` from the specified `lecture_name` of the specified `module_code`
-- Multiple videos within the same lecture of a module can be specified to be deleted, separating them by commas(",")
-- If the module, lecture or any video specified does not exist, nothing changes within the model
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos within the same lecture of a module can be specified to be deleted by specifying their video names, separating them by commas(",")
+- `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
+- `lecture_name` must be of valid format and have a lecture of `lecture_name` exist in module of `module_code`
+- Video names must be of valid format
+- If any video specified does not exist within the specified lecture of the specified module, nothing changes within the model
 
 Examples:
 
