@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,6 +63,12 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final String VALID_TIMETABLE_DATE = " date/2023-03-03";
+    public static final String MISSING_PREFIX_TIMETABLE_DATE = "2023-03-03";
+    public static final String INVALID_TIMETABLE_DATE = " date/202";
+    public static final LocalDate VALID_DATE_ARG = LocalDate.parse("2023-03-03");
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

@@ -36,5 +36,11 @@ public class TimetableCommand extends Command {
 
         return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof TimetableCommand; // instanceof handles nulls
+    }
 }
 

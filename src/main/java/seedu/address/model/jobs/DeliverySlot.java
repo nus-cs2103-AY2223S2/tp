@@ -57,6 +57,14 @@ public class DeliverySlot {
         return ((Integer.parseInt(value) < 6) && (Integer.parseInt(value) > 0));
     }
 
+    /**
+     * Checks if delivery slot is positive (larger than 0)
+     * @return
+     */
+    public boolean isPositive() {
+        return Integer.parseInt(value) > 0;
+    }
+
     @Override
     public String toString() {
         return value;
