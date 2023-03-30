@@ -857,24 +857,16 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 <br>
 
 The `Recommender` component,
-* consists of 3 sub-components (modules) : `TimingRecommender`, `LocationRecommender` and `LocationTracker`.
+* consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
 * recommends timing and location of meetups for relevant participants and the user.
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
-2. The `TimingRecommender` is initialised with a set of participants.
-3. The `LocationRecommender` is initialised with a set of destinations.
-4. New `LocationTracker`s are created to give approximate locations of each person.
-5. The `TimingRecommender` recommends common available timings amongst users and participants.
-6. Based on the timings provided, the `LocationTracker`s return each person's approximate locations.
-7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
-8. Feedbacks to user the recommended meetup locations and timings.
-
-<img src="images/RecommenderSequenceDiagram.png" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.6.1</b> Sequence Diagram for Recommender Module
-</div>
-<br>
+2. Triggers the `TimingRecommender` to recommend common available timings amongst users and participants.
+3. `TimingRecommender` passes the recommended timings to `LocationRecommender`
+4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
+   their `Location` at that particular timing.
+5. Feedbacks to user the recommended meetup locations and timings.
 
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
@@ -883,7 +875,7 @@ will be free so that a meetup could be scheduled.
 
 <img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.6.2</b> Activity Diagram for <code>TimingRecommender</code>
+    <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -896,35 +888,7 @@ the participants could meet up.
 
 #### Location Recommender
 
-The `LocationRecommender`'s role is to recommend a **central location** where persons can meet. It accepts two sets of locations:
-1. A set of `destinations` to be suggested. They could be places to study, eat or both.
-2. A set of `sources` representing the participants' locations given a particular time.
-
-The midpoint of these `sources` is calculated, and then we compare the `destinations` based on how close they are to this midpoint. In this way, we recommend the locations that are the closest for everybody.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **DistanceUtil**
-As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
-
-</div>
-
-#### Location Tracker
-
-The `LocationTracker`'s role is to give an approximate location of a person given a certain timing. These approximations are then fed into the `LocationRecommender` to give more accurate recommendations.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **How we approximate a location**
-A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
-
-</div>
-
-The process of getting a recommendation is as follows:
-1. From the person's timetable, we gather their set of **known locations**. For example, if the person has a lesson at NUS on Monday 8AM to 9AM, we know their location at that time period.
-2. Next, between any two **consecutive known locations**, we calculate the number of unknown locations between them.
-3. Based on this calculation, the `DistanceUtil` will return a list of approximations that achieve what was mentioned earlier.
-4. Finally, these locations are put in their respective places in the `LocationTracker`.
+{to be filled by Hafeez}
 
 ---
 
