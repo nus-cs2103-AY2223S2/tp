@@ -56,7 +56,11 @@ public class SampleDataUtil {
     public static Tag[] getSampleTags() {
         return new Tag[] {
             new Tag("MaleProtagonist"),
-            new Tag("FemaleProtagonist")
+            new Tag("FemaleProtagonist"),
+            new Tag("Manhwa"),
+            new Tag("Manhua"),
+            new Tag("Manga"),
+            new Tag("Novel")
         };
     }
 
