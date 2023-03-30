@@ -49,49 +49,37 @@ title: User Guide
 
 ---
 
-## 1. About HMHero
+# 1. About HMHero
 
-In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant.
+Have you ever found it difficult to manage the constant influx of applicants during each application cycle?
+Have you ever found it strenuous filtering through countless applicants to find those that fit specific job requirements?
+HMHero is here to help!
 
-HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, and recruiters who want to streamline the recruitment process and make it more efficient, helping their organizations manage job applications and hiring processes more effectively. 
-
-As a hiring manager, you can easily track applicant progress. HMHero allows you to store all applicant information in one centralized location, making it easy to filter applicants based on skill-sets to find the right applicant for your job.
-
-In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
-
-[Back to Table of Contents](#table-of-contents)
-
----
-
-## 2. Features
+## Overview of key features
 
 There are two core features that HMHero provides:
 
-- Applicant Management System
-- Hiring Process Analytics
+1. Applicant Management System
+2. Hiring Process Analytics
+---
 
-[Back to Table of Contents](#table-of-contents)
+### Applicant Management System
 
-### 2.1 Applicant Management System
-
-HMHero empowers you to manage applicants during hiring process.
-
+HMHero empowers you to manage applicants during hiring process.<br>
+You can:
 1. Easily add, edit, delete, and view your applicants.
 2. Quickly advance applicants through application statuses or reject them.
 3. Filter shortlisted applicants and sort them by interview date.
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
-
-[Back to Table of Contents](#table-of-contents)
-
 ---
+### Hiring Process Analytics
 
-### 2.2 Hiring Process Analytics
-
-HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
-
+HMHero provides analysis on your hiring process. <br>
+You can:
 1. Find out how many applicants are accepted out of total applicants.
 2. Find out the average time taken to process each applicant.
+
 
 [Back to Table of Contents](#table-of-contents)
 
