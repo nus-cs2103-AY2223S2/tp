@@ -9,6 +9,8 @@ import seedu.address.model.Model;
  * Shows summary of descriptive statistics to user.
  */
 public class StatisticsCommand extends Command {
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.STAT;
+
     public static final String COMMAND_WORD = "stats";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
