@@ -71,7 +71,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'medimeet.jar'
 }
 
 defaultTasks 'clean', 'test'
