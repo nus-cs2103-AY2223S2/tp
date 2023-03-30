@@ -90,8 +90,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Group> getFilteredGroupList();
 
-    /** Returns an unmodifiable view of the filtered time slot list */
-    ObservableList<String> getFilteredTimeSlotList();
+//    /** Returns an unmodifiable view of the filtered time slot list */
+//    ObservableList<String> getFilteredTimeSlotList();
 
     /**
      * Adds the given person into a group.
