@@ -90,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 //                primaryStage.setHeight(800);
 //                primaryStage.setResizable(true);
 //            }
-//        });
+        //});
         setAccelerators();
         helpWindow = new HelpWindow();
 
