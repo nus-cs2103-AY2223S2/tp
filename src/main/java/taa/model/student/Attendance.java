@@ -144,13 +144,9 @@ public class Attendance {
      * @return string version of attendancelist to be stored in json file
      */
     public String atdStrorageStr() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (boolean atd : this.attendanceList) {
-            if (atd) {
-                res += "1;";
-            } else {
-                res += "0;";
-            }
+            res.append(atd?"1;":"0;");
         }
         return res.substring(0, 23);
     }
@@ -159,9 +155,9 @@ public class Attendance {
      * @return returns string version of participation points to be stored in json file
      */
     public String partPointsStorageStr() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int val : this.participationPoint) {
-            res += String.valueOf(val) + ";";
+            res.append(val).append(";");
         }
         return res.substring(0, res.length() - 1);
     }
@@ -179,21 +175,21 @@ public class Attendance {
      * @return String version of participation points for list command
      */
     public String listAtdString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < this.attendanceList.length; i++) {
-            res += String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " ");
+            res.append(String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " "));
         }
-        return res;
+        return res.toString();
     }
 
     /**
      * @return String version of participation points for list command
      */
     public String listPpString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < this.participationPoint.length; i++) {
-            res += String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]);
+            res.append(String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]));
         }
-        return res;
+        return res.toString();
     }
 }
