@@ -42,6 +42,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
+  
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -58,7 +59,9 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-- [FAQ](#faq)        
+        - 
+- [FAQ](#faq)    
+
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -127,7 +130,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 </div>
 
-### Main features: Tracking applied internships
+## Main features: Tracking applied internships
 
 ### View help : `help`
 Shows a user guide message on how to use the internship tracker
@@ -373,7 +376,7 @@ Exits the program.
 
 Format: `exit`
 
-### Side features: Planning to apply internships
+## Side features: Planning to apply internships
 
 ### Display lists of tasks (todos and notes) : `list_task`
 
@@ -550,6 +553,7 @@ Action | Format, Examples
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
+**List Todo** |`list_todo`
 **Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Clear Note** |`clear_note`
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
