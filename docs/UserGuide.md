@@ -103,6 +103,18 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
+### Retrieve doctors information : `listDoctors`
+
+Shows a list of all doctors in MediConnect.
+
+Format: `listDoctors`
+
+### Retrieve patients information : `listPatients`
+
+Shows a list of all patients in MediConnect.
+
+Format: `listPatients`
+
 ### Prescribing patient’s medication : `prescribe medication to patient`
 
 Prescribe a patient’s medication.
@@ -111,7 +123,6 @@ Format: `prescribe m/MEDICATION to n/NAME`
 
 Examples:
 *  `prescribe m/paracetamol to n/John Tan` Prescribes paracetamol to John Tan
-
 
 ### Finding persons (patient or doctor) by NRIC : `find`
 
@@ -217,5 +228,5 @@ No, MediConnect data is saved on the hard disk automatically after any command t
 | **Exit**               | `exit`                                                                                                                                                                                                                                                                                                                                                   | 
 | **Find**               | `find ic/NRIC`<br> e.g., `find ic/S1234567A`                                                                                                                                                                                                                                                                                                             |
 | **Help**               | `help`                                                                                                                                                                                                                                                                                                                                                   |
-| **List**               | `list`                                                                                                                                                                                                                                                                                                                                                   |
+| **List**               | `list`, `listDoctors`, `listPatients`                                                                                                                                                                                                                                                                                                                    |
 | **Prescribe**          | `prescribe medication to patient`                                                                                                                                                                                                                                                                                                                        |
