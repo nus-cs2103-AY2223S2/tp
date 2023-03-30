@@ -107,6 +107,7 @@ public class CalendarPage extends Page {
         for (Event event : events) {
             Entry<Event> entry = new CalendarEntry(event);
             if (event.isDeadline()) {
+                entry.setInterval(event.getStart().getLocalDateTime());
                 entry.setFullDay(true);
                 entry.setInterval(event.getStart().getLocalDateTime());
             } else {

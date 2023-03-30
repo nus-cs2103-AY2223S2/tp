@@ -12,6 +12,9 @@ public class CalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "calendar";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays calendar view of events.\n"
+            + "Example: " + COMMAND_WORD;
+
     public static final String MESSAGE_SHOW_CALENDAR = "Showing calendar ...";
     public static final String MESSAGE_CALENDAR_TIP = "Tip: If there are too many events in a day, you may use "
             + "`event find` command with the date to list all events in that day!";
