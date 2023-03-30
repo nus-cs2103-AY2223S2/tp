@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.ArchiveCommand;
@@ -11,8 +10,6 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
@@ -45,21 +42,9 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
     private Label internshipStatus;
     @FXML
     private Label interviewDate;
-    @FXML
-    private Label resume;
-    @FXML
-    private Label coverLetter;
     @FXML
     private Button editButton;
 
@@ -76,29 +61,11 @@ public class ApplicationCard extends UiPart<Region> {
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         internshipStatus.setText(application.getStatus().name());
-        Contact companyContact = application.getContact();
-        if (companyContact != null) {
-            email.setText(companyContact.getEmail().value);
-            phone.setText(companyContact.getPhone().value);
-            email.setVisible(true);
-            phone.setVisible(true);
-            email.setManaged(true);
-            phone.setManaged(true);
-        }
         InterviewDate interviewDateStr = application.getInterviewDate();
         if (interviewDateStr != null) {
             interviewDate.setText(interviewDateStr.toString());
             interviewDate.setVisible(true);
             interviewDate.setManaged(true);
-        }
-        Documents documents = application.getDocuments();
-        if (documents != null) {
-            resume.setText(documents.getResumeLink().value);
-            coverLetter.setText(documents.getCoverLetterLink().value);
-            resume.setVisible(true);
-            coverLetter.setVisible(true);
-            resume.setManaged(true);
-            coverLetter.setManaged(true);
         }
     }
 
