@@ -15,7 +15,7 @@ import seedu.address.model.exceptions.DuplicateDataException;
  */
 public class SortedUniqueDataList<T extends Comparable<T>> extends UniqueDataList<T> {
     /**
-     * Constructs a {@code UniqueDataList<T>}.
+     * Constructs a {@code SortedUniqueDataList<T>}.
      *
      * @param isSameChecker Checks if 2 data are the same.
      * @param duplicateExceptionCreator Creates an exception to throw in the event that duplicate data is detected.
