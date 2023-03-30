@@ -261,6 +261,12 @@ public class Person {
         return true;
     }
 
+    /**
+     * Returns true if {@code p} has the exact same name as {@code this}.
+     */
+    public boolean hasSameNameAs(Person p) {
+        return this.name.value.equals(p.name.value);
+    }
 
 
     /**
@@ -293,35 +299,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender, major,
+                modules, race, comms, faculty, tags, isFavorite);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
-                .append("; Gender: ")
-                .append(this.getGender())
-                .append("; Major: ")
-                .append(this.getMajor())
-                .append("; Race: ")
-                .append(this.getRace())
-                .append("; Preferred Communication: ")
-                .append(this.getComms())
-                .append("; Faculty: ")
-                .append(this.getFaculty());
-
-        Set<Tag> tags = getSetOfTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
+        return getName() + "; Phone: " + getPhone() + "; Email: " + getEmail() + "; Address: " + getAddress()
+                + "; Gender: " + this.getGender() + "; Major: " + this.getMajor() + "; Race: " + this.getRace()
+                + "; Preferred Communication: " + this.getComms() + "; Faculty: " + this.getFaculty() + "; Tags: "
+                + this.getTags() + "; Modules: " + this.getModules();
     }
 }

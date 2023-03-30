@@ -203,25 +203,29 @@
     -fx-padding: 0;
 }
 
+.pane-transparent {
+    -fx-background-color: transparent;
+}
+
 .pane-with-border {
-     -fx-background-color: -fx-primary-background;
-     -fx-border-color: -fx-primary;
-     -fx-border-width: 1 0 0 0;
+    -fx-background-color: -fx-primary-background;
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 1 0 0 0;
 }
 
 .pane-with-rounded-corner {
-     -fx-background-color: -fx-primary-foreground;
-     -fx-background-radius: 10;
+    -fx-background-color: -fx-primary-foreground;
+    -fx-background-radius: 10;
 }
 
 .pane-with-rounded-corner-accented {
-     -fx-background-color: -fx-primary;
-     -fx-background-radius: 10;
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 10;
 }
 
 .pane-with-rounded-corner-muted {
-     -fx-background-color: -fx-primary-background;
-     -fx-background-radius: 10;
+    -fx-background-color: -fx-primary-background;
+    -fx-background-radius: 10;
 }
 
 .result-display {

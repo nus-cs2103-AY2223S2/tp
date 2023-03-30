@@ -15,8 +15,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Panel containing the list of persons.
@@ -31,22 +34,41 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<PersonListCellData> personListView;
+    private int selectedIndex; //used to bind Logic and Clicks on All Contacts
 
-    private int selectedIndex;
+    private int originalClick; //required to differentiate clicks on Favourites
+
+    private List<PersonListCardData> allData;
+
+    private List<PersonListCardData> favData;
+
+    private final Logic logic;
+
+    private final ResultDisplay resultDisplay;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
+    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel, Logic logic,
+                           ResultDisplay resultDisplay) {
         super(FXML);
+        this.allData = null;
+        this.favData = null;
+        this.logic = logic;
+        this.resultDisplay = resultDisplay;
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
+
         personListView.setOnMouseClicked(event -> {
+            resultDisplay.setFeedbackToUser("Enter command below");
             int clickedIndex = personListView.getSelectionModel().getSelectedIndex();
-            if (clickedIndex == selectedIndex) {
+            if (clickedIndex == selectedIndex || clickedIndex == originalClick) {
                 clearSelection();
             } else {
                 selectedIndex = clickedIndex;
+                originalClick = clickedIndex;
+                logic.setSelectedPerson(getActualIndex(clickedIndex));
+                this.setOriginalClick();
             }
         });
 
@@ -65,6 +87,12 @@ public class PersonListPanel extends UiPart<Region> {
                 panel.setDisplayedIndex(newValue.getIndex());
             }
         });
+
+    }
+
+    private void setOriginalClick() {
+        MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
+        model.select(originalClick);
     }
 
     /**
@@ -80,6 +108,65 @@ public class PersonListPanel extends UiPart<Region> {
     public void clearSelection() {
         personListView.getSelectionModel().clearSelection();
         selectedIndex = EMPTY_INDEX;
+        originalClick = EMPTY_INDEX;
+    }
+
+    /**
+     * Binds the CLI select output with the UI's selection, selects contact in {@code ListView}.
+     * @param commandIndex
+     */
+    public void bindSelectedIndex(int commandIndex) {
+        Objects.requireNonNull(this.allData);
+        MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
+        int actualIndex = getListIndex(commandIndex);
+        for (PersonListCardData cardData : this.allData) {
+            if (cardData.index == commandIndex) {
+                model.select(actualIndex);
+                this.selectedIndex = actualIndex;
+            }
+        }
+    }
+
+    /**
+     * Gets index of the selected person in the list panel
+     * @return
+     */
+    private int getListIndex(int commandIndex) {
+        if (this.favData.isEmpty()) {
+            return commandIndex;
+        } else {
+            return commandIndex + this.favData.size() + 1;
+        }
+    }
+
+    /**
+     * Gets index of selected person to display by looping through all contacts and matching
+     * @param person
+     * @return (int) index to display
+     */
+    public int getIndexOfSelectedPerson(Person person) {
+        for (PersonListCardData card: allData) {
+            if (Objects.equals(card.getPerson(), person)) {
+                return card.getIndex();
+            }
+        }
+        return 0; // change to exception later
+    }
+
+    /**
+     * Gets the actual index of person in filtered list corresponding to the UI clicked index
+     * @param listIndex
+     * @return Index to specify in logic's selectPerson
+     */
+    private Index getActualIndex(int listIndex) {
+        int actualIndex;
+        if (listIndex > favData.size()) {
+            actualIndex = listIndex - favData.size() - 1;
+        } else {
+            PersonListCardData specifiedCard = favData.get(listIndex - 1);
+            actualIndex = specifiedCard.getIndex();
+        }
+        return Index.fromOneBased(actualIndex);
     }
 
     private void fillListView(Collection<? extends Person> people) {
@@ -100,6 +187,8 @@ public class PersonListPanel extends UiPart<Region> {
             items.add(new PersonListDividerData(String.format(DIVIDER_ALL, allData.size())));
             items.addAll(allData);
         }
+        this.allData = allData;
+        this.favData = favoriteData;
     }
 
     private List<PersonListCardData> assignIndices(Collection<? extends Person> people) {
