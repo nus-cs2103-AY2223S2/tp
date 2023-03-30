@@ -183,7 +183,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the Den
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David d/2000 31 Jan...` to add a new person. The `add` command also calls `Model#saveChanges()`, causing another modified Dengue Hotspot Tracker state to be deep-copied and saved into the `TemporaryMemory` stack, under its `Deque`.
+Step 3. The user executes `add n/David d/2000 31 January...` to add a new person. The `add` command also calls `Model#saveChanges()`, causing another modified Dengue Hotspot Tracker state to be deep-copied and saved into the `TemporaryMemory` stack, under its `Deque`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
