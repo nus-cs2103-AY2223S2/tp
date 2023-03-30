@@ -44,7 +44,7 @@ public class Instagram implements Openable {
      * Returns if a given string is a valid instagram username.
      */
     public static boolean isValid(String test) {
-        return test.matches(USERNAME_REGEX);
+        return test.matches(USERNAME_REGEX) && test.length() <= 30;
     }
 
     @Override
