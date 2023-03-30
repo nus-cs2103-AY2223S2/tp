@@ -29,7 +29,7 @@ public class ClientBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_CALORIE = "2000";
-    public static final String DEFAULT_WEIGHT = "50.00";
+    public static final String DEFAULT_WEIGHT = "50.0";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_GOAL = "lose weight";
     public static final String DEFAULT_WEIGHT_DATE = "23-03-2023 18:00";
