@@ -25,7 +25,9 @@ public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            INDEX_PLACEHOLDER, REMARK_PLACEHOLDER));
+            INDEX_PLACEHOLDER,
+            REMARK_PLACEHOLDER.asOptional()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
