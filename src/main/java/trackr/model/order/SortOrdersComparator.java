@@ -37,8 +37,8 @@ public class SortOrdersComparator implements Comparator<Order> {
         requireAllNonNull(order1, order2);
 
         switch(criteria) {
-        //case TIME_ADDED:
-        //return order1.compareTimeAdded(order2);
+        case TIME_ADDED:
+            return order1.compareTimeAdded(order2);
         case DEADLINE:
             return order1.compareDeadline(order2);
         case STATUS:

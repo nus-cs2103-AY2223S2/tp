@@ -81,11 +81,11 @@ public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"),
-                    new TaskStatus(), LocalDateTime.now()),
+                    new TaskStatus()),
             new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"),
-                    new TaskStatus("D"), LocalDateTime.now().minusDays(2)),
+                    new TaskStatus("D")),
             new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"),
-                    new TaskStatus("N"), LocalDateTime.now().minusHours(1)),
+                    new TaskStatus("N"))
         };
     }
 
@@ -101,7 +101,7 @@ public class SampleDataUtil {
         return new MenuItem[] {
             new MenuItem(new ItemName("Chocolate Cookies"), new ItemPrice("5"), new ItemCost("1")),
             new MenuItem(new ItemName("Cupcake"), new ItemPrice("6"), new ItemCost("1")),
-            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("5")),
+            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("5"))
         };
     }
 
@@ -138,7 +138,7 @@ public class SampleDataUtil {
                     new OrderDeadline("02/01/2024"),
                     new OrderStatus("D"),
                     new OrderQuantity("100"),
-                    charlie),
+                    charlie)
         };
     }
 

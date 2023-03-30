@@ -2,6 +2,7 @@ package trackr.model.order;
 
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import trackr.model.ModelEnum;
@@ -19,6 +20,7 @@ public class Order extends Item {
     private final OrderDeadline orderDeadline;
     private final OrderStatus orderStatus;
     private final OrderQuantity orderQuantity;
+    private final LocalDateTime timeAdded;
 
     //Customer
     private final Customer customer;
@@ -35,7 +37,24 @@ public class Order extends Item {
         this.orderStatus = orderStatus;
         this.orderQuantity = orderQuantity;
         this.customer = customer;
+        timeAdded = LocalDateTime.now();
     }
+
+    /**
+     * Every field must be present and not null
+     */
+    public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
+        super(ModelEnum.ORDER);
+        requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
+        this.orderName = orderName;
+        this.orderDeadline = orderDeadline;
+        this.orderStatus = orderStatus;
+        this.orderQuantity = orderQuantity;
+        this.customer = customer;
+        this.timeAdded = timeAdded;
+    }
+
 
     public OrderName getOrderName() {
         return orderName;
@@ -55,6 +74,20 @@ public class Order extends Item {
 
     public Customer getCustomer() {
         return customer;
+    }
+    public LocalDateTime getTimeAdded() {
+        return timeAdded;
+    }
+
+    /**
+     * Compares 2 tasks using their time added.
+     * @param otherOrder The order to compare with.
+     * @return -1 if this order was added earlier than the other order.
+     *         Returns 1 if this order was added later than the other order
+     *         Returns 0 if both orders were added at the same time.
+     */
+    public int compareTimeAdded(Order otherOrder) {
+        return timeAdded.compareTo(otherOrder.timeAdded);
     }
 
     /**
