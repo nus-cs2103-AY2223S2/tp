@@ -13,10 +13,17 @@ public class TaskList {
 
     private final ArrayList<Task> tasks;
 
+    /**
+     * Class constructor. Empty TaskList returned.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Class constructor.
+     * @param tasks input tasks.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
