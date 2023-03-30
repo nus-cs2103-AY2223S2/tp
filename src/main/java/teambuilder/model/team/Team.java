@@ -42,6 +42,10 @@ public class Team {
         return this.teamName;
     }
 
+    public Desc getDesc() {
+        return this.teamDesc;
+    }
+
     /**
      * Returns true if both teams have the same name.
      * This defines a weaker notion of equality between two teams.
@@ -65,6 +69,10 @@ public class Team {
 
     public Set<Name> getMembers() {
         return members;
+    }
+
+    public Set<Tag> getTags() {
+        return skillTags;
     }
 
     @Override
