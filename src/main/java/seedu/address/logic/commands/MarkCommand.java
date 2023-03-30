@@ -10,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.shared.Datetime;
 import seedu.address.model.shared.Id;
 import seedu.address.model.task.Content;
@@ -44,8 +43,7 @@ public class MarkCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
 
-        RepositoryModelManager<Task> taskManager = officeConnectModel.getTaskModelManager();
-        List<Task> taskList = taskManager.getFilteredItemList();
+        List<Task> taskList = officeConnectModel.getTaskModelManagerFilteredItemList();
 
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -57,7 +55,7 @@ public class MarkCommand extends Command {
         }
 
         Task markedTask = createMarkedTask(taskToMark);
-        taskManager.setItem(taskToMark, markedTask);
+        officeConnectModel.setTaskModelManagerItem(taskToMark, markedTask);
 
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }

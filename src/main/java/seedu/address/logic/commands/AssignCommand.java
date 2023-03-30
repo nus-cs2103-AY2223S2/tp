@@ -11,10 +11,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
-import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -61,16 +59,14 @@ public class AssignCommand extends Command {
 
         Person person = personList.get(personIndex.getZeroBased());
         Task task = taskList.get(taskIndex.getZeroBased());
-        Id pId = person.getId();
-        Id tId = task.getId();
-        AssignTask toAdd = new AssignTask(pId, tId);
 
-        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
-        if (personTaskModelManager.hasItem(toAdd)) {
+        AssignTask toAdd = new AssignTask(person, task);
+
+        if (officeConnectModel.hasAssignTaskModelManagerItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        personTaskModelManager.addItem(toAdd);
+        officeConnectModel.addAssignTaskModelManagerItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, person, task));
     }
 
