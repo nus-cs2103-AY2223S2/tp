@@ -1,7 +1,5 @@
 package seedu.ultron.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -41,7 +39,7 @@ public class OpeningCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
-    private FlowPane dates;
+    private FlowPane keydates;
 
     /**
      * Creates a {@code OpeningCode} with the given {@code Opening} and index to display.
@@ -53,11 +51,8 @@ public class OpeningCard extends UiPart<Region> {
         company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
         status.setText(opening.getStatus().fullStatus);
-        email.setText(opening.getEmail().value);
-        remark.setText(String.format("Remark: [%s]", opening.getRemark().value));
         opening.getKeydates().stream()
-                .sorted(Comparator.comparing(date -> date.fullDate))
-                .forEach(date -> dates.getChildren().add(new Label(date.fullDate)));
+                .forEach(keydate -> keydates.getChildren().add(new KeydateCard(keydate)));
     }
 
     @Override

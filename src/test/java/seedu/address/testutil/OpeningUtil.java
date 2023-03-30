@@ -7,7 +7,7 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import java.util.Set;
+import java.util.List;
 
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
@@ -37,7 +37,7 @@ public class OpeningUtil {
         sb.append(PREFIX_STATUS + opening.getStatus().fullStatus + " ");
         sb.append(PREFIX_REMARK + opening.getRemark().value + " ");
         opening.getKeydates().stream().forEach(
-            s -> sb.append(PREFIX_KEYDATE + s.fullName + "@" + s.fullDate + " ")
+            s -> sb.append(PREFIX_KEYDATE + s.fullKey + "@" + s.fullDate + " ")
         );
         return sb.toString();
     }
@@ -53,8 +53,13 @@ public class OpeningUtil {
                 .append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.fullStatus).append(" "));
+<<<<<<< HEAD
         if (descriptor.getKeydates().isPresent()) {
             Set<Keydate> dates = descriptor.getKeydates().get();
+=======
+        if (descriptor.getDates().isPresent()) {
+            List<Date> dates = descriptor.getDates().get();
+>>>>>>> master
             if (dates.isEmpty()) {
                 sb.append(PREFIX_KEYDATE);
             } else {

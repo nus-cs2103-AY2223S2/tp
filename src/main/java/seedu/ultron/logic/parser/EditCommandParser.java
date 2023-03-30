@@ -10,8 +10,8 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.EditCommand;
@@ -71,15 +71,15 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Keydate>> parseKeydatesForEdit(Collection<String> keydates) throws ParseException {
+    private Optional<List<Keydate>> parseKeydatesForEdit(Collection<String> keydates) throws ParseException {
         assert keydates != null;
 
         if (keydates.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> keydateSet = keydates.size() == 1
-                && keydates.contains("") ? Collections.emptySet() : keydates;
-        return Optional.of(ParserUtil.parseKeydates(keydateSet));
+        Collection<String> keydateList = keydates.size() == 1
+                && keydates.contains("") ? Collections.emptyList() : keydates;
+        return Optional.of(ParserUtil.parseKeydates(keydateList));
     }
 
 }

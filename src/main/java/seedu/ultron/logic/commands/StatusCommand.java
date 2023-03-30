@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.ultron.commons.core.Messages;
 import seedu.ultron.model.Model;
-import seedu.ultron.model.opening.StatusContainsKeywordPredicate;
+import seedu.ultron.model.opening.ContainsStatusPredicate;
 
 /**
  * Finds and lists all openings in Ultron whose status is the keyword.
@@ -19,9 +19,9 @@ public class StatusCommand extends Command {
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " applied";
 
-    private final StatusContainsKeywordPredicate predicate;
+    private final ContainsStatusPredicate predicate;
 
-    public StatusCommand(StatusContainsKeywordPredicate predicate) {
+    public StatusCommand(ContainsStatusPredicate predicate) {
         this.predicate = predicate;
     }
 

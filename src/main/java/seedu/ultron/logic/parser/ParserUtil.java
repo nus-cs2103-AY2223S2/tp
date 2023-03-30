@@ -2,9 +2,9 @@ package seedu.ultron.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.util.StringUtil;
@@ -95,10 +95,15 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into an {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException
      */
-    public static Status parseStatus(String status) {
+    public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
         return new Status(trimmedStatus);
     }
 
@@ -121,9 +126,9 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> keydates} into a {@code Set<Keydate>}.
      */
-    public static Set<Keydate> parseKeydates(Collection<String> keydates) throws ParseException {
+    public static List<Keydate> parseKeydates(Collection<String> keydates) throws ParseException {
         requireNonNull(keydates);
-        final Set<Keydate> keydateSet = new HashSet<>();
+        final List<Keydate> keydateSet = new ArrayList<>();
         for (String keydate : keydates) {
             keydateSet.add(parseKeydate(keydate));
         }

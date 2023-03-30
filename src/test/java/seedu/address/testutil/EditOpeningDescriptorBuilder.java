@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -77,9 +77,14 @@ public class EditOpeningDescriptorBuilder {
      * that we are building.
      */
     public EditOpeningDescriptorBuilder withDates(ArrayList<String>... dates) {
+<<<<<<< HEAD
         Set<Keydate> dateSet = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1)))
                 .collect(Collectors.toSet());
         descriptor.setKeydates(dateSet);
+=======
+        List<Date> dateSet = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toList());
+        descriptor.setDates(dateSet);
+>>>>>>> master
         return this;
     }
 

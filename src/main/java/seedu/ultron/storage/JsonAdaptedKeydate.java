@@ -27,7 +27,7 @@ class JsonAdaptedKeydate {
      * Converts a given {@code keydate} into this class for Jackson use.
      */
     public JsonAdaptedKeydate(Keydate source) {
-        name = source.fullName;
+        name = source.fullKey;
         date = source.fullDate;
     }
 

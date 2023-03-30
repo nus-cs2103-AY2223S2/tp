@@ -1,7 +1,7 @@
 package seedu.ultron.model.util;
 
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.ultron.model.ReadOnlyUltron;
@@ -22,15 +22,15 @@ public class SampleDataUtil {
     public static Opening[] getSampleOpenings() {
         return new Opening[] {
             new Opening(new Position("Software Engineer"), new Company("Google"), new Email("johnDoe@google.com"),
-                    new Status("FOUND"), null, getKeydateSet(new Keydate("Interview", "2023-11-21"))),
+                    new Status("FOUND"), null, getKeydateList(new Keydate("Interview", "2023-11-21"))),
             new Opening(new Position("Software Developer"), new Company("Shopee"), new Email("alice@shopee.com"),
                     new Status("APPLIED"), new Remark("Dream Company"),
-                    getKeydateSet(new Keydate("Interview", "2023-10-15"))),
+                    getKeydateList(new Keydate("Interview", "2023-10-15"))),
             new Opening(new Position("UX Designer"), new Company("Grab"), new Email("tenz@grab.com"),
-                    new Status("FOUND"), null, getKeydateSet(new Keydate("Interview", "2023-04-12"),
+                    new Status("FOUND"), null, getKeydateList(new Keydate("Interview", "2023-04-12"),
                         new Keydate("Practical Assessment", "2023-05-11"))),
             new Opening(new Position("Software Engineer"), new Company("Gojek"), new Email("sleepy@gojek.com"),
-                    new Status("FOUND"), null, getKeydateSet())
+                    new Status("FOUND"), null, getKeydateList())
         };
     }
 
@@ -46,8 +46,8 @@ public class SampleDataUtil {
     /**
      * Returns a keydate set containing the list of arraylist of string given.
      */
-    public static Set<Keydate> getKeydateSet(Keydate... keydates) {
+    public static List<Keydate> getKeydateList(Keydate... keydates) {
         return Arrays.stream(keydates)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

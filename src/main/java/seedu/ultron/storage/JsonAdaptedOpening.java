@@ -1,9 +1,7 @@
 package seedu.ultron.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.ultron.commons.exceptions.IllegalValueException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
@@ -115,8 +113,7 @@ class JsonAdaptedOpening {
         }
         final Remark modelRemark = new Remark(remark);
 
-
-        final Set<Keydate> modelKeydates = new HashSet<>(openingKeydates);
+        final List<Keydate> modelKeydates = new ArrayList<>(openingKeydates);
         return new Opening(modelPosition, modelCompany, modelEmail, modelStatus, modelRemark, modelKeydates);
     }
 
