@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a video of a lecture.<p>
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Video {
+public class Video implements Comparable<Video> {
 
     private final VideoName name;
     private final boolean hasWatched;
@@ -34,6 +34,11 @@ public class Video {
         this.hasWatched = hasWatched;
         this.timestamp = timestamp;
         this.tags.addAll(tags);
+    }
+
+    @Override
+    public int compareTo(Video other) {
+        return getName().compareTo(other.getName());
     }
 
     public VideoName getName() {
