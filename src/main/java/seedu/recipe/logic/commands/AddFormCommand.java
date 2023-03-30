@@ -17,7 +17,7 @@ public class AddFormCommand extends Command {
 
     public static final String COMMAND_WORD = "addf";
     public static final String MESSAGE_EMPTY = "An empty form was submitted. Please enter a recipe name before "
-            + "submitting.";
+        + "submitting.";
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
     public static final String MESSAGE_PARSE_RECIPE = "This recipe could not be parsed properly.";
@@ -38,15 +38,14 @@ public class AddFormCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StringBuilder commands = new StringBuilder();
-        AddRecipeForm recipeForm = new AddRecipeForm(commands);
+        StringBuilder data = new StringBuilder();
+        AddRecipeForm recipeForm = new AddRecipeForm(data);
         recipeForm.display();
-        String commandString = commands.toString();
 
+        String commandString = data.toString();
         if (commandString.isEmpty()) {
             throw new CommandException(MESSAGE_EMPTY);
         }
-
         try {
             RecipeDescriptor toAdd = AddCommandParser.parseToRecipeDescriptor(commandString);
             Recipe recipeToAdd = toAdd.toRecipe();

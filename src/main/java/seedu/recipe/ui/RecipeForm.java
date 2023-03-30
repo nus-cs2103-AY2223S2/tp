@@ -41,7 +41,10 @@ public abstract class RecipeForm extends UiPart<Region> {
     private final Recipe recipe;
     private final Map<String, String> initialValues = new HashMap<>();
     private final String title;
-
+    @FXML
+    protected VBox ingredientsBox;
+    @FXML
+    protected VBox stepsBox;
     //UI child elements
     @FXML
     private TextField nameField;
@@ -53,10 +56,6 @@ public abstract class RecipeForm extends UiPart<Region> {
     private TextField tagsField;
     @FXML
     private FlowPane tags;
-    @FXML
-    private VBox ingredientsBox;
-    @FXML
-    private VBox stepsBox;
     //Core CTA Group
     @FXML
     private Region buttonCtrLeft;

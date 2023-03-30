@@ -14,9 +14,10 @@ public class EditRecipeForm extends RecipeForm {
     private final int index;
 
     /**
-     * Creates a new RecipeForm with the given recipe and displayed index.
+     * Creates a new EditRecipeForm with the given recipe and displayed index.
      * If the recipe is not null, the form fields are pre-populated with the recipe's data.
      *
+     * @param data   The StringBuilder used to store form data.
      * @param recipe The recipe to edit or null for creating a new recipe.
      * @param index  The index of the recipe in the displayed list.
      */
