@@ -120,6 +120,10 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 - `find {keywords} [/mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in specified module whose name starts with any of the keyword(s)
 - `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
+### Clear
+
+- `clear`: Clears all information from Le Tracker
+
 Refer to the [Features](#features) below for details of each command.
 
 ---
@@ -563,6 +567,16 @@ Examples:
 - In any context: `find content /byTag /mod CS2040S /lec Week 2`\
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
+
+### Clear
+
+> Clears all information (modules, lectures, videos, tags) from Le Tracker
+
+Format:
+- `clear`
+
+- any information entered after `clear` is ignored
+- calling `clear` will result in an empty Tracker
 
 ---
 
