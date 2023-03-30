@@ -53,7 +53,6 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new SudoHr(), new UserPrefs());
-
     }
 
     // =========== UserPrefs
