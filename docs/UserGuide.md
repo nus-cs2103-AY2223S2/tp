@@ -1,6 +1,5 @@
 ---  
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---  
 
 # Introduction
@@ -89,8 +88,7 @@ Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 ### Notes:
 
--  Input words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a 
-parameter which can be used as `add n/John Doe`.
+- Input words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Commands in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -196,11 +194,12 @@ that you have loaded.
 Find patients according to a particular command prefix stated followed by the change.
 
 Command Prefixes that can be searched:
-  * name(`n/`)
-  * nric(`i/`)
-  * tag(`t/`)
-  * doctor(`ad/`)
-  * medicine(`m/`)
+
+* name(`n/`)
+* nric(`i/`)
+* tag(`t/`)
+* doctor(`ad/`)
+* medicine(`m/`)
 
 Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
 
@@ -278,12 +277,10 @@ Example:
 Purges all data from the database.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Data cannot be retrieved after clearing.
+Use this command with caution.
 </div>
 
 Format: `clear`
-
-💡**Tip**:
-<br/>Use this command with caution!
 
 ### Switch to light mode: `light`
 
@@ -296,6 +293,9 @@ Format: `light`
 Switches the GUI to dark mode.
 
 Format: `dark`
+
+💡**Tip**:
+<br/>The default GUI is light mode. Use these commands and see which is your preferred GUI!
   
 --------------------------------------------------------------------------------------------------------------------  
 <sub>[return to table of contents](#table-of-contents)</sub>
