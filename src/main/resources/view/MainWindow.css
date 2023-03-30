@@ -110,7 +110,7 @@
     -fx-text-fill: #5e5e5e;
 }
 
-.person-list-panel {
+.list-panel {
     -fx-background-color: transparent;
     -fx-background-radius: 10;
     -fx-border-color: transparent;
@@ -155,4 +155,52 @@
 .meet-placeholder {
     -fx-background-radius: 10;
     -fx-background-color: white;
+}
+
+.no-background {
+    -fx-background-color: transparent;
+}
+
+.meet-list-card {
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-background-radius: 5;
+}
+
+.meet-list-panel {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.meet-list-bold-text {
+    -fx-font-family: 'Inter Bold';
+}
+
+.meet-list-regular-text {
+    -fx-font-family: 'Inter SemiBold';
+}
+
+.organised-meet-list {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+}
+
+.organised-meet-main-card {
+    -fx-background-color: black;
+    -fx-background-radius: 5;
+}
+
+.organised-meet-card-top {
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-background-radius: 5;
+}
+
+.organised-meet-card-top-label {
+    -fx-font-family: 'Inter SemiBold';
+    -fx-font-size: 11;
+}
+
+.organised-meet-card-bottom-label {
+    -fx-text-fill: white;
+    -fx-font-size: 11;
+    -fx-font-family: 'Inter SemiBold';
 }

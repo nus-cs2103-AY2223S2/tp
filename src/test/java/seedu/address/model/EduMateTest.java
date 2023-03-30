@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -135,6 +137,16 @@ public class EduMateTest {
         @Override
         public User getUser() {
             return user;
+        }
+
+        @Override
+        public ObservableList<MeetUp> getMeetUpList() {
+            return null;
+        }
+
+        @Override
+        public Participants getParticipantList() {
+            return null;
         }
     }
 

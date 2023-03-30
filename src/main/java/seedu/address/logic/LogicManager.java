@@ -15,6 +15,7 @@ import seedu.address.logic.parser.EduMateParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
@@ -96,6 +97,12 @@ public class LogicManager implements Logic {
     public ObservableList<Recommendation> getObservableRecommendationList() {
         return model.getObservableRecommendationList();
     }
+
+    @Override
+    public ObservableList<MeetUp> getObservableMeetUpList() {
+        return model.getObservableMeetUpList();
+    }
+
 
     @Override
     public Path getEduMateFilePath() {
