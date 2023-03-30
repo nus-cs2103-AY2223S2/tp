@@ -5,8 +5,12 @@ import static ezschedule.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ezschedule.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.DeleteCommand;
 
 /**
@@ -22,7 +26,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_EVENT));
+        List<Index> indexFirstEvent = new ArrayList<>();
+        indexFirstEvent.add(INDEX_FIRST_EVENT);
+        assertParseSuccess(parser, "1", new DeleteCommand(indexFirstEvent));
     }
 
     @Test
