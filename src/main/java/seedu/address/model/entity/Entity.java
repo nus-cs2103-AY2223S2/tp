@@ -1,6 +1,5 @@
 package seedu.address.model.entity;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
@@ -23,21 +22,22 @@ public abstract class Entity {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Initial declaration of entity
-     * @param name name of the entity
-     */
-    public Entity(Name name) {
-        requireNonNull(name);
-        this.name = name;
-    }
-
-    /**
      * Every field must be present and not null.
      */
     public Entity(Name name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
         this.name = name;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Initial declaration of entity
+     *
+     * @param name name of the entity
+     */
+    public Entity(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
     }
 
     public abstract List<Pair<String, String>> getFields();
@@ -93,7 +93,7 @@ public abstract class Entity {
             String field = String.format("%s: %s\n", p.getKey(), p.getValue());
             builder.append(field);
         }
-        return builder.toString();
+        return "Name: " + getName().toString() + "\n" + builder.toString();
     }
 
     public abstract boolean isSameEntity(Entity otherEntity);
