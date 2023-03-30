@@ -38,6 +38,19 @@ public class Character extends Entity {
      * Every field should be present and non-null. Dummy values used for character specific fields.
      *
      * @param name name of the character
+     */
+    public Character(Name name, Set<Tag> tags) {
+        super(name, tags);
+        this.stats = new Stats(1, 1, 1);
+        this.level = BASE_LEVEL;
+        this.xp = BASE_XP;
+        this.inventory = Inventory.emptyInventory();
+    }
+
+    /**
+     * Every field should be present and non-null. Dummy values used for character specific fields.
+     *
+     * @param name name of the character
      * @param stats stats of the character
      */
     public Character(Name name, Stats stats) {
