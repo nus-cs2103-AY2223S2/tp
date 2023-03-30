@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
@@ -27,7 +27,7 @@ public class EditRecurringExpenseManagerCommandParser implements Parser<EditRecu
     public EditRecurringExpenseManagerCommand parse(String args) throws ParseException {
         //First check if the given index is valid.
         ArgumentMultimap argMultiMap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_ENDDATE, PREFIX_NAME, PREFIX_PRICE,
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_END_DATE, PREFIX_NAME, PREFIX_PRICE,
                         PREFIX_TIMESPAN);
         Index index = ParserUtil.parseIndex(argMultiMap.getPreamble());
         String newExpenseName;
@@ -59,8 +59,8 @@ public class EditRecurringExpenseManagerCommandParser implements Parser<EditRecu
             newPrice = null;
         }
 
-        if (isPrefixPresent(argMultiMap, PREFIX_ENDDATE)) {
-            String inputDateInString = argMultiMap.getValue(PREFIX_ENDDATE).get();
+        if (isPrefixPresent(argMultiMap, PREFIX_END_DATE)) {
+            String inputDateInString = argMultiMap.getValue(PREFIX_END_DATE).get();
             try {
                 newEndDate = ParserUtil.parseDate(inputDateInString);
             } catch (ParseException pe) {

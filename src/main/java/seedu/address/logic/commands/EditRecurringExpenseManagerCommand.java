@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
@@ -32,7 +32,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
             + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "[" + PREFIX_PRICE + "AMOUNT] "
             + "[" + PREFIX_TIMESPAN + "FREQUENCY] \n"
-            + "[" + PREFIX_ENDDATE + "END-DATE] \n"
+            + "[" + PREFIX_END_DATE + "END-DATE] \n"
             + "Example: " + COMMAND_WORD + " 1 n/KFC c/food p/10 t/weekly ed/20/03/23 ";
 
     private final Index targetIndex;
