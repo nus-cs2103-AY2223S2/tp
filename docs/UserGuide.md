@@ -36,8 +36,8 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
     - **`list`** : Lists all employees in the company.
 
-    - **`add`** `add n/Mark Doe p/98765432 e/markd@example.com a/311, Clementi Ave 2, #02-25 d/Marketing 
-   t/SoftwareEngineer ` : Adds an employee named `Mark Doe`, with fields phone number, email, address,
+    - **`add`** :`add n/Mark Doe p/98765432 e/markd@example.com a/311, Clementi Ave 2, #02-25 d/Marketing 
+   t/SoftwareEngineer` : Adds an employee named `Mark Doe`, with fields phone number, email, address,
    department and tags to ExecutivePro's database.
 
     - **`delete 3`** : Deletes employee with ID 3.
@@ -63,7 +63,7 @@ Here are some of the symbols to take note of when going through this user guide:
 <div markdown="block" class="alert alert-info">
 
 * Tags are optional.<br>
-  e.g `[n/NAME] [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `[n/NAME] [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
