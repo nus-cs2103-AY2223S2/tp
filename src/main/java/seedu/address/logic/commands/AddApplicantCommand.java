@@ -75,9 +75,13 @@ public class AddApplicantCommand extends Command {
 
     private Listing createListingWithApplicant(Listing listingToChange, Applicant applicantToAdd) {
         ArrayList<Applicant> oldApplicants = listingToChange.getApplicants();
-        oldApplicants.add(applicantToAdd);
+        ArrayList<Applicant> newApplicants = new ArrayList<>();
+        for (Applicant applicant : oldApplicants) {
+            newApplicants.add(applicant);
+        }
+        newApplicants.add(applicantToAdd);
 
-        return new Listing(listingToChange.getTitle(), listingToChange.getDescription(), oldApplicants);
+        return new Listing(listingToChange.getTitle(), listingToChange.getDescription(), newApplicants);
     }
 
     @Override

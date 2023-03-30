@@ -17,11 +17,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the listing identified by the index number used in the displayed listing book.\n"
+            + ": Deletes the listing identified by the index used in the displayed listing book.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Listing: %1$s has been deleted!";
+    public static final String MESSAGE_SUCCESS = "Deleted listing:%1$s";
 
     private final Index targetIndex;
 
