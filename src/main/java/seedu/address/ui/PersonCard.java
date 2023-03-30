@@ -111,7 +111,7 @@ public class PersonCard extends UiPart<Region> {
             flowpane.setVisible(false);
             flowpane.setManaged(false);
         } else {
-            Image tagIcon = new Image(getClass().getResourceAsStream("/images/tag.png"));
+            Image tagIcon = new Image(getClass().getResourceAsStream("/images/books.png"));
             ImageView tagIconView = new ImageView(tagIcon);
             tagIconView.setFitWidth(16);
             tagIconView.setFitHeight(16);
