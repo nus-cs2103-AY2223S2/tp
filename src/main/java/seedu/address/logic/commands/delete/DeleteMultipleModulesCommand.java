@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MultipleEventsParser;
 import seedu.address.model.Model;
@@ -46,14 +47,21 @@ public class DeleteMultipleModulesCommand extends DeleteCommand {
         }
 
         if (invalidModuleCodes.size() == 0) {
-            for (ModuleCode each: this.targetModuleCodes) {
-                DeleteModuleCommand dmc = new DeleteModuleCommand(each);
+            ModuleEditInfo[] editedModules = new ModuleEditInfo[this.targetModuleCodes.size()];
+
+            for (int i = 0; i < this.targetModuleCodes.size(); i++) {
+                ModuleCode moduleCode = this.targetModuleCodes.get(i);
+                DeleteModuleCommand dmc = new DeleteModuleCommand(moduleCode);
                 dmc.execute(model);
+                editedModules[i] = new ModuleEditInfo(model.getModule(moduleCode), null);
             }
 
+
+
             return new CommandResult(String.format(MESSAGE_SUCCESS,
-                    this.targetModuleCodes.size(),
-                    MultipleEventsParser.convertArrayListToString(this.targetModuleCodes)));
+                            this.targetModuleCodes.size(),
+                            MultipleEventsParser.convertArrayListToString(this.targetModuleCodes)),
+                    editedModules);
         } else {
             throw new CommandException(String.format((
                         invalidModuleCodes.size() == 1

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MultipleEventsParser;
 import seedu.address.model.Model;
@@ -65,16 +66,23 @@ public class DeleteMultipleVideosCommand extends DeleteCommand {
         }
 
         if (invalidVideoNames.size() == 0) {
-            for (VideoName each: this.targetVideoNames) {
-                DeleteVideoCommand dvc = new DeleteVideoCommand(this.moduleCode, this.lectureName, each);
+            VideoEditInfo[] editedVideos = new VideoEditInfo[this.targetVideoNames.size()];
+
+            for (int i = 0; i < this.targetVideoNames.size(); i++) {
+                VideoName videoName = this.targetVideoNames.get(i);
+                DeleteVideoCommand dvc = new DeleteVideoCommand(this.moduleCode, this.lectureName, videoName);
                 dvc.execute(model);
+
+                editedVideos[i] = new VideoEditInfo(moduleCode, lectureName,
+                        model.getVideo(moduleCode, lectureName, videoName), null);
             }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     targetVideoNames.size(),
                     this.moduleCode,
                     this.lectureName,
-                    MultipleEventsParser.convertArrayListToString(targetVideoNames)));
+                    MultipleEventsParser.convertArrayListToString(targetVideoNames)),
+                    editedVideos);
         } else {
             throw new CommandException(String.format((
                         invalidVideoNames.size() == 1

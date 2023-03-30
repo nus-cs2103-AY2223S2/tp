@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_210
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -36,7 +37,8 @@ public class DeleteModuleCommandTest {
         // tests string output
         assertEquals(new CommandResult(String.format(
                         DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
-                        TypicalModules.getCs2040s().getCode())),
+                        TypicalModules.getCs2040s().getCode()),
+                new ModuleEditInfo(TypicalModules.getCs2040s(), null)),
                 actual);
         // tests model
         assertEquals(expectedModel.getTracker().getModuleList(),
