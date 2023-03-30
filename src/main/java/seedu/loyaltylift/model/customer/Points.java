@@ -16,6 +16,26 @@ public class Points implements Comparable<Points> {
 
     public static final Integer MAXIMUM_POINTS_ADD = 999999;
     public static final Integer MAXIMUM_POINTS_SUBTRACT = -999999;
+    public enum Tier {
+        NONE("No Tier"),
+        BRONZE("Bronze"),
+        SILVER("Silver"),
+        GOLD("Gold");
+
+        private final String name;
+
+        private Tier(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+    public static final Integer BRONZE_TIER = 1000;
+    public static final Integer SILVER_TIER = 5000;
+    public static final Integer GOLD_TIER = 10000;
 
     public static final String MESSAGE_CONSTRAINTS = "Points must be a positive integer "
             + "and can only range from "
@@ -73,6 +93,18 @@ public class Points implements Comparable<Points> {
             return new Points(newPoints, this.cumulative);
         } else {
             throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public Points.Tier getLoyaltyTier() {
+        if (this.cumulative >= GOLD_TIER) {
+            return Tier.GOLD;
+        } else if (this.cumulative >= SILVER_TIER) {
+            return Tier.SILVER;
+        } else if (this.cumulative >= BRONZE_TIER) {
+            return Tier.BRONZE;
+        } else {
+            return Tier.NONE;
         }
     }
 
