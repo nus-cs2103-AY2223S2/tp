@@ -91,14 +91,27 @@ public class PersonCard extends UiPart<Region> {
      * @param person a given person
      */
     private void personCardImage(Person person) {
-        if (person.getTags().contains(new Tag("male")) && person.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
-        } else if (person.getTags().contains(new Tag("male"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
-        } else if (person.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
-        } else {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+        if (person.getTags() != null) {
+            boolean isMale = false;
+            boolean isFemale = false;
+
+            for (Tag tag : person.getTags()) {
+                if (tag.tagName.toLowerCase().equals("male")) {
+                    isMale = true;
+                } else if (tag.tagName.toLowerCase().equals("female")) {
+                    isFemale = true;
+                }
+            }
+
+            if (isMale && isFemale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+            } else if (isMale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
+            } else if (isFemale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
+            } else {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+            }
         }
     }
 
