@@ -9,7 +9,7 @@ public class BusinessSize {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Business Size can take any number greater than or equal to 0, and it should not be blank";
-    public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
+    public static final String VALIDATION_REGEX = "^-?\\d+$";
     public final String value;
 
     /**
@@ -18,7 +18,7 @@ public class BusinessSize {
      * @param businessSize A valid address.
      */
     public BusinessSize(String businessSize) {
-        this.value = String.valueOf(businessSize.strip());
+        this.value = businessSize.strip();
     }
 
     public int getNumericValue() {

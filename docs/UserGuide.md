@@ -12,7 +12,7 @@ NextBigFish (NBF) is a
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `nextbigfish.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `nextbigfish.jar` from [here](https://github.com/AY2223S2-CS2103-F10-4/tp/releases/).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your nextbigfish.
 
@@ -25,7 +25,7 @@ NextBigFish (NBF) is a
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/50 c/software engineering is not cs pr/HIGH tr/0 t/friends t/owesMoney` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -149,8 +149,8 @@ Format : `mark INDEX m/NEED FOLLOWUP:yes/no`
 
 Examples :
 
-- `mark 1 m/yes` marks a contact at index one as requiring a follow up.
-- `mark 1 m/no` marks a contact at index one as not requiring a follow up.
+- `mark 1 m/yes` marks a contact at index one as requiring a follow-up.
+- `mark 1 m/no` marks a contact at index one as not requiring a follow-up.
 
 ### Marking as done : `markDone` [coming soon]
 
@@ -200,7 +200,6 @@ Format: `summary`
 
 ### Clearing all entries : `clear`
 
-
 Clears all entries from the address book.
 
 Format: `clear`
@@ -235,8 +234,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter TAG [MORE_TAGS]`<br> e.g., `filter friends clients insurance`
-**Sort by potential sale or business size Ascending** | `sortAsc`
-**Sort by potential sale or business size Descending** | `sortDesc`
-**Sort by name in alphabetical order** | `sortName`
+**Sort** | `sort FIELD DIRECTION` <br> e.g, `sort trans desc` FIELDS: `[trans, size, name, priority]` DIRECTION: `[asc, desc]`
 **List** | `list`
 **Help** | `help`
