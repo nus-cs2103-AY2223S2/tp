@@ -20,6 +20,14 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 - [Quick Start](#quick-start)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
+    - [Course Page Commands: ](#course-page-commands)
+    - [Group Page Commands: ](#group-page-commands)
+    - [Students Page Commands: ](#students-page-commands)
+    - [Session Page Commands: ](#session-page-commands)
+    - [Attendance Page Commands: ](#attendance-page-commands)
+    - [Task Page Commands: ](#task-page-commands)
+    - [Grades Page Commands: ](#grades-page-commands)
+    - [General Commands: ](#general-commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -36,8 +44,8 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 <br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
     1. `select 1` : Selects the first item in the list displayed in the list panel.
-    2. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
-    3. `delete 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
+    2. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
+    3. `delete student 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
     4. `undo` : Returns to the state before the last command you entered.
     5. `exit` : Exits the app.
 6. Refer to the commands list below for a detailed description for each command.
@@ -75,7 +83,7 @@ List of commands:
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
     - [Editing a student: ](#editing-a-student-edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name: ](#finding-students-by-name-find) `find`
+    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id--find) `find student`
     - [Displays a student's information:  ](#displays-a-students-information-select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
@@ -335,7 +343,7 @@ Examples:
 
 ### Editing a student: `edit student`
 
-Edits an existing student in the student roster.
+Did your student change their phone number or you realised you mispelled their name? Do not worry, because you can easily change this with the edit command.
 
 Format:
 ```
@@ -371,20 +379,26 @@ Examples:
 
 
 
-### Finding students by name: `find`
+### Finding students by name or student ID: `find student`
 
-Finds students whose names contain any of the given keywords.
+Finds students whose names or student IDs contain any of the given keywords(s).
 
 Format:
 ```
-find <KEYWORD> [<MORE_KEYWORDS>]
+find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
+- You can find students using either name or student ID for the keyword(s).
 - Keywords are separated by spaces.
+- Student IDs of invalid format will not return any students
+    - For example, `find student A1234` will not return the student with student ID A1234567X.
+    
 
 Examples:
-- `find John` returns John.
-- `find Alex Yu` returns `Alex Yeoh`, `Bernice Yu` 
+- `find student John` returns John.
+- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`. 
+
+- `find A1234567X` returns the student whose student ID is A1234567X.
 
 [Back to list of commands](#commands)
 
