@@ -19,7 +19,7 @@ public class DeleteVaxTypeParser implements CommandParser {
     public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
             + ": Deletes the specified vaccination\n"
             + "Syntax: "
-            + "vaccination delete VACCINATION\n"
+            + "vaccination delete VACCINATION [--force IS_FORCE]\n"
             + "Example: "
             + "vaccination delete INDEX::1";
 

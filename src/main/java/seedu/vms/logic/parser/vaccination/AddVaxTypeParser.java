@@ -20,7 +20,7 @@ public class AddVaxTypeParser extends VaxTypeBuilderParser {
             + "vaccination add VAX_NAME [--g ...GROUP...] [--lal MIN_AGE] [--ual MAX_AGE] "
             + "[--i ...INGREDIENT...]... [--h HISTORY_REQ]...\n"
             + "Example: "
-            + "vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --a ALC-0315, ALC-0159 --h NONE::ABC";
+            + "vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC";
 
 
     @Override
