@@ -30,8 +30,10 @@ import seedu.patientist.logic.commands.ListPatientsCommand;
 import seedu.patientist.logic.commands.ListStaffCommand;
 import seedu.patientist.logic.commands.ListWardPatientsCommand;
 import seedu.patientist.logic.commands.ListWardsCommand;
+import seedu.patientist.logic.commands.UpdatePatientWardCommand;
 import seedu.patientist.logic.commands.ViewCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -110,6 +112,9 @@ public class PatientistParser {
 
         case DeleteWardCommand.COMMAND_WORD:
             return new DeleteWardCommandParser().parse(arguments);
+
+        case UpdatePatientWardCommand.COMMAND_WORD:
+            return new UpdatePatientWardParser().parse(arguments);
 
         case AddPatientStatusCommand.COMMAND_WORD:
             return new AddPatientStatusCommandParser().parse(arguments);
