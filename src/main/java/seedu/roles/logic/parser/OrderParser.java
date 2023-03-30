@@ -1,4 +1,4 @@
-package seedu.roles.model.job;
+package seedu.roles.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.roles.commons.util.AppUtil.checkArgument;
@@ -7,7 +7,7 @@ import static seedu.roles.commons.util.AppUtil.checkArgument;
  * Represents a Job's company name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidOrder(String)}
  */
-public class Order {
+public class OrderParser {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Order should only be asc or desc in lower caps";
@@ -19,7 +19,7 @@ public class Order {
      *
      * @param order A valid order.
      */
-    public Order(String order) {
+    public OrderParser(String order) {
         requireNonNull(order);
         checkArgument(isValidOrder(order), MESSAGE_CONSTRAINTS);
         this.order = order;
