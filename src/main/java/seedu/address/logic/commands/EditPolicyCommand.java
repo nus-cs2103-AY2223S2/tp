@@ -42,6 +42,7 @@ public class EditPolicyCommand extends Command {
             + "[" + PREFIX_POLICY_PREMIUM + "PREMIUM] "
             + "[" + PREFIX_POLICY_FREQUENCY + "FREQUENCY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_POLICY_INDEX + "1 "
             + PREFIX_POLICY_NAME + "Travel Insurance "
             + PREFIX_POLICY_PREMIUM + "2000";
     public static final String MESSAGE_EDIT_POLICY_SUCCESS = "Edited Policy: %1$s";
@@ -56,8 +57,9 @@ public class EditPolicyCommand extends Command {
 
     /**
      * Creates an EditPolicyCommand to edit the specified {@code Policy} given the {@code Client} index.
-     * @param clientIndex The index of the client in the client list.
-     * @param policyIndex The index of the policy display from the client.
+     *
+     * @param clientIndex          The index of the client in the client list.
+     * @param policyIndex          The index of the policy display from the client.
      * @param editPolicyDescriptor The details to edit the policy with.
      */
     public EditPolicyCommand(Index clientIndex, Index policyIndex, EditPolicyDescriptor editPolicyDescriptor) {
@@ -67,6 +69,17 @@ public class EditPolicyCommand extends Command {
         this.clientIndex = clientIndex;
         this.policyIndex = policyIndex;
         this.editPolicyDescriptor = editPolicyDescriptor;
+    }
+
+    private static Policy createEditedPolicy(Policy policyToEdit, EditPolicyDescriptor editPolicyDescriptor) {
+        assert policyToEdit != null;
+
+        PolicyName updatedPolicyName = editPolicyDescriptor.getPolicyName().orElse(policyToEdit.getPolicyName());
+        CustomDate updatedCustomDate = editPolicyDescriptor.getStartDate().orElse(policyToEdit.getStartDate());
+        Premium updatedPremium = editPolicyDescriptor.getPremium().orElse(policyToEdit.getPremium());
+        Frequency updatedFrequency = editPolicyDescriptor.getFrequency().orElse(policyToEdit.getFrequency());
+
+        return new Policy(updatedPolicyName, updatedCustomDate, updatedPremium, updatedFrequency);
     }
 
     @Override
@@ -100,19 +113,8 @@ public class EditPolicyCommand extends Command {
 
     private String generateSuccessMessage(Client client, Policy policy) {
         return String.format(
-              MESSAGE_EDIT_POLICY_SUCCESS, policy.toString()) + " from: "
-                    + client.getName().toString();
-    }
-
-    private static Policy createEditedPolicy(Policy policyToEdit, EditPolicyDescriptor editPolicyDescriptor) {
-        assert policyToEdit != null;
-
-        PolicyName updatedPolicyName = editPolicyDescriptor.getPolicyName().orElse(policyToEdit.getPolicyName());
-        CustomDate updatedCustomDate = editPolicyDescriptor.getStartDate().orElse(policyToEdit.getStartDate());
-        Premium updatedPremium = editPolicyDescriptor.getPremium().orElse(policyToEdit.getPremium());
-        Frequency updatedFrequency = editPolicyDescriptor.getFrequency().orElse(policyToEdit.getFrequency());
-
-        return new Policy(updatedPolicyName, updatedCustomDate, updatedPremium, updatedFrequency);
+                MESSAGE_EDIT_POLICY_SUCCESS, policy.toString()) + " from: "
+                + client.getName().toString();
     }
 
     @Override
@@ -165,37 +167,38 @@ public class EditPolicyCommand extends Command {
             return CollectionUtil.isAnyNonNull(policyName, startDate, premium, frequency);
         }
 
-        public void setPolicyName(PolicyName policyName) {
-            this.policyName = policyName;
-        }
-
         public Optional<PolicyName> getPolicyName() {
             return Optional.ofNullable(policyName);
         }
 
-        public void setStartDate(CustomDate startDate) {
-            this.startDate = startDate;
+        public void setPolicyName(PolicyName policyName) {
+            this.policyName = policyName;
         }
 
         public Optional<CustomDate> getStartDate() {
             return Optional.ofNullable(startDate);
         }
 
-        public void setPremium(Premium premium) {
-            this.premium = premium;
+        public void setStartDate(CustomDate startDate) {
+            this.startDate = startDate;
         }
 
         public Optional<Premium> getPremium() {
             return Optional.ofNullable(premium);
         }
 
-        public void setFrequency(Frequency frequency) {
-            this.frequency = frequency;
+        public void setPremium(Premium premium) {
+            this.premium = premium;
         }
 
         public Optional<Frequency> getFrequency() {
             return Optional.ofNullable(frequency);
         }
+
+        public void setFrequency(Frequency frequency) {
+            this.frequency = frequency;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {

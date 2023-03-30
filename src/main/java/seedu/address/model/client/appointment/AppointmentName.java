@@ -16,13 +16,13 @@ public class AppointmentName {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public final String appointmentName;
+    public final String value;
 
     /**
      * Constructs an empty {@code AppointmentName}.
      */
     public AppointmentName() {
-        appointmentName = null;
+        value = null;
     }
 
     /**
@@ -32,7 +32,7 @@ public class AppointmentName {
     public AppointmentName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        appointmentName = name;
+        value = name;
     }
 
     public static boolean isValidName(String test) {
@@ -41,7 +41,7 @@ public class AppointmentName {
 
     @Override
     public String toString() {
-        return appointmentName;
+        return value;
     }
 
     @Override
@@ -54,18 +54,18 @@ public class AppointmentName {
         }
 
         AppointmentName an = (AppointmentName) other;
-        if (an.appointmentName == null && appointmentName == null) {
+        if (an.value == null && value == null) {
             return true;
         }
-        if (an.appointmentName == null || appointmentName == null) {
+        if (an.value == null || value == null) {
             return false;
         }
-        return appointmentName.equals(an.appointmentName);
+        return value.equals(an.value);
     }
 
     @Override
     public int hashCode() {
-        return appointmentName.hashCode();
+        return value.hashCode();
     }
 }
 
