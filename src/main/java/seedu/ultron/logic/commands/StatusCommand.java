@@ -19,6 +19,8 @@ public class StatusCommand extends Command {
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " applied";
 
+    private static final String MESSAGE_SUCCESS = "%1$d openings found based on provided status!";
+
     private final ContainsStatusPredicate predicate;
 
     public StatusCommand(ContainsStatusPredicate predicate) {
@@ -30,7 +32,7 @@ public class StatusCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
+                String.format(MESSAGE_SUCCESS, model.getFilteredOpeningList().size()));
     }
 
     @Override

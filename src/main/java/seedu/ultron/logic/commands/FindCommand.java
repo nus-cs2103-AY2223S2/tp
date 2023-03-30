@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " engineer analyst google";
 
-    private static final String MESSAGE_SUCCESS = "%1$d openings found!";
+    private static final String MESSAGE_SUCCESS = "%1$d openings with given keywords found!";
 
     private final CompanyOrPositionContainsKeywordsPredicate predicate;
 
