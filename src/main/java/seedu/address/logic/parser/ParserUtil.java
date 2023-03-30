@@ -243,7 +243,7 @@ public class ParserUtil {
             return null;
         }
         String trimmedTag = module.trim();
-        if (!NusMod.isValidModName(trimmedTag)) {
+        if (!NusMod.isModuleCodeValid(trimmedTag)) {
             throw new ParseException(NusMod.MESSAGE_CONSTRAINTS);
         }
         return new NusMod(trimmedTag);

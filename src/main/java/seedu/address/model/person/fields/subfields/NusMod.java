@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashSet;
@@ -22,17 +23,25 @@ public class NusMod extends Field {
     private static final Set<String> MODULE_MAP = new HashSet<>();
 
     static {
-        try (Reader reader = new InputStreamReader(Objects
-                .requireNonNull(NusMod.class.getResourceAsStream(MODULES_FILE_PATH)))) {
+        InputStream inputStream = Objects.requireNonNull(NusMod.class.getResourceAsStream(MODULES_FILE_PATH));
+        try (Reader reader = new InputStreamReader(inputStream)) {
             BufferedReader bufferedReader = new BufferedReader(reader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
-                if (line.contains("\"moduleCode\":")) {
-                    String moduleCode = line.split(":")[1].trim().replace("\"", "");
-                    MODULE_MAP.add(moduleCode);
+            bufferedReader.lines().forEach(line -> {
+                if (line == null || !line.contains("moduleCode")) {
+                    // not a line with a module code
+                    return;
                 }
-            }
+                String[] parts = line.split(":");
+                if (parts.length < 2) {
+                    return;
+                }
+
+                String moduleCode = parts[1].replace("\"", "").trim();
+                if (moduleCode.isBlank()) {
+                    return;
+                }
+                MODULE_MAP.add(moduleCode);
+            });
             bufferedReader.close();
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
@@ -45,7 +54,7 @@ public class NusMod extends Field {
      */
     public NusMod(String modsString) {
         super(modsString);
-        checkArgument(isValidModName(modsString), MESSAGE_CONSTRAINTS);
+        checkArgument(isModuleCodeValid(modsString), MESSAGE_CONSTRAINTS);
     }
 
     /**
@@ -55,7 +64,7 @@ public class NusMod extends Field {
      * @return true if the module exists in NUSMods;
      *         false otherwise.
      */
-    public static boolean isValidModName(String moduleCode) {
+    public static boolean isModuleCodeValid(String moduleCode) {
         return MODULE_MAP.contains(moduleCode);
     }
 
