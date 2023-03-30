@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.StateHistory;
-import seedu.address.model.history.History;
+import seedu.address.model.history.InputHistory;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
             String previousHistoryString = model.getHistory().getHistoryString();
             String historyStringAfterExecution = previousHistoryString + commandText + "\n";
-            model.setHistory(new History(historyStringAfterExecution));
+            model.setHistory(new InputHistory(historyStringAfterExecution));
             storage.saveHistoryString(historyStringAfterExecution);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

@@ -14,13 +14,13 @@ import seedu.address.commons.util.TxtUtil;
  * This class implements {@code HistoryStorage}, represent as a
  * manager for the .txt file that storing executed commands.
  */
-public class TxtHistoryStorage implements HistoryStorage {
+public class TxtInputHistoryStorage implements InputHistoryStorage {
 
-    private Path filePath = Paths.get("data", "history.txt");
+    private Path filePath = Paths.get("data", "inputHistory.txt");
 
-    public TxtHistoryStorage() {}
+    public TxtInputHistoryStorage() {}
 
-    public TxtHistoryStorage(Path filePath) {
+    public TxtInputHistoryStorage(Path filePath) {
         this.filePath = filePath;
     }
 

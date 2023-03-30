@@ -19,7 +19,7 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
-    private HistoryStorage historyStorage;
+    private InputHistoryStorage inputHistoryStorage;
 
     /**
      * Creates a {@code StorageManager} with the given
@@ -27,13 +27,13 @@ public class StorageManager implements Storage {
      *
      * @param addressBookStorage An object represents storage of address book.
      * @param userPrefsStorage An object represents storage of user preferences.
-     * @param historyStorage An object represents storage of executed commands.
+     * @param inputHistoryStorage An object represents storage of executed commands.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
-            UserPrefsStorage userPrefsStorage, HistoryStorage historyStorage) {
+            UserPrefsStorage userPrefsStorage, InputHistoryStorage inputHistoryStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.historyStorage = historyStorage;
+        this.inputHistoryStorage = inputHistoryStorage;
     }
 
     /**
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.historyStorage = new TxtHistoryStorage();
+        this.inputHistoryStorage = new TxtInputHistoryStorage();
     }
 
     // ================ UserPrefs methods ==============================
@@ -102,28 +102,28 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getHistoryStoragePath() {
-        return historyStorage.getHistoryStoragePath();
+        return inputHistoryStorage.getHistoryStoragePath();
     }
 
     @Override
     public Optional<String> readHistoryString() throws IOException {
-        return readHistoryString(historyStorage.getHistoryStoragePath());
+        return readHistoryString(inputHistoryStorage.getHistoryStoragePath());
     }
 
     @Override
     public Optional<String> readHistoryString(Path filePath) throws IOException {
         logger.fine("Reading from history file" + filePath);
-        return historyStorage.readHistoryString(filePath);
+        return inputHistoryStorage.readHistoryString(filePath);
     }
 
     @Override
     public void saveHistoryString(String historyString) throws IOException {
-        saveHistoryString(historyString, historyStorage.getHistoryStoragePath());
+        saveHistoryString(historyString, inputHistoryStorage.getHistoryStoragePath());
     }
 
     @Override
     public void saveHistoryString(String historyString, Path filePath) throws IOException {
         logger.fine("Saving previous executed command(s) to the history file: " + filePath);
-        historyStorage.saveHistoryString(historyString, filePath);
+        inputHistoryStorage.saveHistoryString(historyString, filePath);
     }
 }
