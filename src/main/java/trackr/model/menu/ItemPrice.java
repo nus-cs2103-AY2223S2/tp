@@ -9,9 +9,9 @@ import static trackr.commons.util.AppUtil.checkArgument;
  */
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, and it should be at most 4 digits long";
-    public static final String VALIDATION_REGEX = "\\d{1,3}";
-    public final float value;
+            "Price should only contain positive numbers, and it should be at most 2 decimal place";
+    public static final String VALIDATION_REGEX = "^\\d+(.\\d{0,2})?$";
+    public final Double value;
 
     /**
      * Constructs a Price Object
@@ -19,7 +19,7 @@ public class ItemPrice {
     public ItemPrice(String value) {
         requireNonNull(value);
         checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
-        this.value = Float.parseFloat(value);
+        this.value = Double.parseDouble(value);
     }
 
     /**
@@ -35,10 +35,10 @@ public class ItemPrice {
     }
 
     public String toJsonString() {
-        return Float.toString(value);
+        return Double.toString(value);
     }
 
-    public float getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -51,6 +51,6 @@ public class ItemPrice {
 
     @Override
     public int hashCode() {
-        return Float.hashCode(value);
+        return Double.hashCode(value);
     }
 }
