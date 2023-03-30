@@ -444,7 +444,7 @@ ___
         <p align="center">
              <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:100%">
         </p>
- 
+
       <br>
 
 [↑ Back to top](#top)
