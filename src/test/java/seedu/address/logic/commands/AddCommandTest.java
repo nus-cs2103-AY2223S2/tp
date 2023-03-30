@@ -265,6 +265,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortLabPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addNoteToTutorial(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
