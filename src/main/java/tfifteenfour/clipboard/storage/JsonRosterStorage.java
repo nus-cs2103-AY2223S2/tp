@@ -119,11 +119,17 @@ public class JsonRosterStorage implements RosterStorage {
         return rosterJson;
     }
 
-    private Roster jsonToRoster(SerializedRoster serializedRoster) {
+    public static Roster jsonToRoster(SerializedRoster serializedRoster) {
         return serializedRoster.toModelType();
     }
 
-    private void writeJsonToFile(String json, Path filePath) throws IOException {
+    /**
+     * Writes the given JSON string to a file specified by the given file path.
+     * @param json the JSON string to be written to file
+     * @param filePath the path of the file to write the JSON to
+     * @throws IOException if an I/O error occurs while writing to the file
+     */
+    public void writeJsonToFile(String json, Path filePath) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath.toString());
         fileWriter.write(json);
         fileWriter.close();

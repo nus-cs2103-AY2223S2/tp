@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -38,6 +37,10 @@ public class HelpWindow extends UiPart<Stage> {
         helpMessage.setText(HELP_MESSAGE);
     }
 
+    /**
+     * Creates a new instance of HelpWindow with the given help message.
+     * @param message the help message to be displayed in the HelpWindow
+     */
     public HelpWindow(String message) {
         this(new Stage());
         helpMessage.setText(message);
