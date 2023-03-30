@@ -57,6 +57,7 @@ Here are some of the symbols to take note of when going through this user guide:
 | [`code`]    | The brackets around the code indicate that the field is optional. | 
 | :bulb:      | Tips for ExecutivePro Users.                                      |
 | :warning:   | Be wary and proceed with caution.                                 |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
