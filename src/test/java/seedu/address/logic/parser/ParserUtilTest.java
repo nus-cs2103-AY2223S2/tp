@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -54,6 +55,13 @@ public class ParserUtilTest {
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void checkDateExists_throwsParseException() {
+        LocalDateTime date = LocalDateTime.of(2024, 04, 30, 18, 00);
+        assertThrows(ParseException.class, Messages.MESSAGE_NONEXISTENT_DATE, ()
+                -> ParserUtil.checkDateExist(date, String.valueOf(31)));
     }
 
     @Test
