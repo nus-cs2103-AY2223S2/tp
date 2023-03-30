@@ -63,7 +63,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [5.9 Tags](#59-tags)
     - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
     - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
-    - [5.9.3 Major Tags: `major/`](#593-major-tags-major)
+    - [5.9.3 Major Tags: `maj/`](#593-major-tags-maj)
     - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 - [6. FAQ](#6-faq)
 - [7. Command Summary](#7-command-summary)
@@ -731,7 +731,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 - [5.9 Tags](#59-tags)
   - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
   - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
-  - [5.9.3 Major Tags: `major`](#593-major-tags-maj)
+  - [5.9.3 Major Tags: `maj`](#593-major-tags-maj)
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
 <div style="page-break-after: always"></div>
@@ -836,7 +836,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 Tags are used to assign additional information to a contact. 
 
-There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA Tags, and Remark Tags.
+There are four kinds of tags in ConnectUS. They are Module Tags, CCA Tags, Major Tags, and Remark Tags.
 
 ![TagTypes](images/TagTypes.png)
 
@@ -929,21 +929,21 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 
 # 7. Command Summary
 
-| Command                | Format                                                                                                                                                                     | Example                                                                               |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| **Add a Contact**      | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​`               | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
-| **Add Tag**            | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA#CCA_POSITION] [major/major]`                                                                                          | `add-t 1 r/friends mod/CS2103T`                                                       |
-| **Chat with Contact**  | `chat PERSON_INDEX wa/ m/`                                                                                                                                                 | `chat 1 wa/ m/hello world!`                                                           |
-| **Clear Data**         | `clear`                                                                                                                                                                    |                                                                                       |
-| **Delete a Contact**   | `delete PERSON_INDEX`                                                                                                                                                      | `delete 3`                                                                            |
-| **Delete Tag**         | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`                                                                                            | `delete-t 1 mod/1`                                                                    |
-| **Edit a Contact**     | `edit PERSON_INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`                                                       | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
-| **Help**               | `help [COMMAND]`                                                                                                                                                           | `help`, `help add`                                                                    |
-| **List All Contacts**  | `list`                                                                                                                                                                     |                                                                                       |
-| **Open Social Media**  | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                                                      | `open 1 tg/`                                                                          |
-| **Search**             | `search KEYWORDS`, `search [n/NAME} [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​` | `search alex january`                                                                 | `search n/lex Y mod/CS2103T mod/CS2101`
-| **Upcoming Birthdays** | `upcoming-b`                                                                                                                                                               |                                                                                       |
-| **Exit**               | `exit`                                                                                                                                                                     |                                                                                       |
+| Command                | Format                                                                                                                                                                                                                                                       | Example                                                                               |
+|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a Contact**      | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA#CCA_POSITION]…​ [major/MAJOR]…​`                                                                                                 | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
+| **Add Tag**            | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA[#CCA_POSITION]] [maj/major]`                                                                                                                                                                            | `add-t 1 r/friends mod/CS2103T cca/NUS Hackers#President`                             |
+| **Chat with Contact**  | `chat PERSON_INDEX wa/ m/`                                                                                                                                                                                                                                   | `chat 1 wa/ m/hello world!`                                                           |
+| **Clear Data**         | `clear`                                                                                                                                                                                                                                                      |                                                                                       |
+| **Delete a Contact**   | `delete PERSON_INDEX`                                                                                                                                                                                                                                        | `delete 3`                                                                            |
+| **Delete Tag**         | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`                                                                                                                                                                              | `delete-t 1 mod/1`                                                                    |
+| **Edit a Contact**     | `edit PERSON_INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`                                                                                                                                         | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
+| **Help**               | `help [COMMAND]`                                                                                                                                                                                                                                             | `help`, `help add`                                                                    |
+| **List All Contacts**  | `list`                                                                                                                                                                                                                                                       |                                                                                       |
+| **Open Social Media**  | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                                                                                                                                        | `open 1 tg/`                                                                          |
+| **Search**             | `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [maj/MAJOR_KEYWORD]...` | `search alex january`,<br> `search n/lex Y mod/CS2103T mod/CS2101`                    | 
+| **Upcoming Birthdays** | `upcoming-b`                                                                                                                                                                                                                                                 |                                                                                       |
+| **Exit**               | `exit`                                                                                                                                                                                                                                                       |                                                                                       |
 
 [↑ Back to top](#table-of-contents)
 
