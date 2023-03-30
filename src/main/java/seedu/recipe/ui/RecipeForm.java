@@ -29,14 +29,19 @@ import seedu.recipe.ui.util.FieldsUtil;
 /**
  * Represents the form element for users to edit {@code Recipe}s
  */
-public class RecipeForm extends UiPart<Region> {
+public abstract class RecipeForm extends UiPart<Region> {
+    // constants
     private static final String FXML = "RecipeForm.fxml";
     private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
     private static final double DEFAULT_HEIGHT = 500;
-    //Data fields
-    private final int displayedIndex;
+
+    // data fields
+    protected final StringBuilder data;
+
     private final Recipe recipe;
-    private final StringBuilder data;
+    private final Map<String, String> initialValues = new HashMap<>();
+    private final String title;
+
     //UI child elements
     @FXML
     private TextField nameField;
@@ -59,23 +64,25 @@ public class RecipeForm extends UiPart<Region> {
     private Button saveButton;
     @FXML
     private Button cancelButton;
-    private Map<String, String> initialValues;
 
     /**
      * Creates a new RecipeForm with the given recipe and displayed index.
      * If the recipe is not null, the form fields are pre-populated with the recipe's data.
      *
-     * @param recipe         The recipe to edit or null for creating a new recipe.
-     * @param displayedIndex The index of the recipe in the displayed list.
+     * @param recipe The recipe to edit or null for creating a new recipe.
      */
-    public RecipeForm(Recipe recipe, int displayedIndex, StringBuilder data) {
+    public RecipeForm(Recipe recipe, StringBuilder data, String title) {
         super(FXML);
         this.recipe = recipe;
-        this.displayedIndex = displayedIndex;
         this.data = data;
+        this.title = title;
+
+        // populate form fields, if a seed recipe was given
         if (recipe != null) {
             populateFields();
         }
+        storeInitialValues();
+
         HBox.setHgrow(buttonCtrLeft, Priority.ALWAYS);
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
@@ -83,39 +90,50 @@ public class RecipeForm extends UiPart<Region> {
 
     /**
      * Saves the changes made to the recipe and closes the form.
-     * If any fields have been modified, the new values are stored
-     * in a map of changed values.
      */
     private void saveRecipe() {
+        Map<String, String> changedValues = getFormData();
+        if (!changedValues.isEmpty()) {
+            handle(changedValues);
+        }
+        closeForm();
+    }
+
+    /**
+     * Reads form data and extracts changes from initial values.
+     *
+     * @return A map of the changed values.
+     */
+    private Map<String, String> getFormData() {
         // Check which fields have been changed
         Map<String, String> changedValues = new HashMap<>();
         for (Map.Entry<String, String> entry : initialValues.entrySet()) {
             String key = entry.getKey();
             String initialValue = entry.getValue();
-            String currentValue = null;
+            String currentValue;
 
             switch (key) {
             case "name":
-                currentValue = nameField.getText();
+                currentValue = nameField.getText().trim();
                 break;
             case "duration":
-                currentValue = durationField.getText();
+                currentValue = durationField.getText().trim();
                 break;
             case "portion":
-                currentValue = portionField.getText();
+                currentValue = portionField.getText().trim();
                 break;
             case "ingredients":
                 currentValue = ingredientsBox.getChildren().stream()
-                    .map(node -> ((TextArea) node).getText())
+                    .map(node -> ((TextArea) node).getText().trim())
                     .collect(Collectors.joining(", "));
                 break;
             case "steps":
                 currentValue = stepsBox.getChildren().stream()
-                    .map(node -> ((TextArea) node).getText())
+                    .map(node -> ((TextArea) node).getText().trim())
                     .collect(Collectors.joining(", "));
                 break;
             case "tags":
-                currentValue = tagsField.getText();
+                currentValue = tagsField.getText().trim();
                 break;
             default:
                 currentValue = "";
@@ -127,10 +145,7 @@ public class RecipeForm extends UiPart<Region> {
             }
         }
 
-        if (!changedValues.isEmpty()) {
-            handleEditRecipeEvent(displayedIndex, changedValues);
-        }
-        closeForm();
+        return changedValues;
     }
 
     /**
@@ -150,7 +165,7 @@ public class RecipeForm extends UiPart<Region> {
         Stage window = new Stage();
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
+        window.setTitle(title);
 
         double maxHeight = Screen.getPrimary().getBounds().getMaxY();
         window.setMaxHeight(maxHeight);
@@ -177,19 +192,18 @@ public class RecipeForm extends UiPart<Region> {
      * which fields have been changed.
      */
     private void storeInitialValues() {
-        initialValues = new HashMap<>();
-        initialValues.put("name", nameField.getText());
-        initialValues.put("duration", durationField.getText());
-        initialValues.put("portion", portionField.getText());
+        initialValues.put("name", nameField.getText().trim());
+        initialValues.put("duration", durationField.getText().trim());
+        initialValues.put("portion", portionField.getText().trim());
         initialValues.put("ingredients", ingredientsBox.getChildren().stream()
-            .map(node -> ((TextArea) node).getText())
+            .map(node -> ((TextArea) node).getText().trim())
             .collect(Collectors.joining(", ")));
 
         initialValues.put("steps", stepsBox.getChildren().stream()
-            .map(node -> ((TextArea) node).getText())
+            .map(node -> ((TextArea) node).getText().trim())
             .collect(Collectors.joining(", ")));
 
-        initialValues.put("tags", tagsField.getText());
+        initialValues.put("tags", tagsField.getText().trim());
     }
 
     /*----------------------------------------------------------------------------------------------------------- */
@@ -250,8 +264,6 @@ public class RecipeForm extends UiPart<Region> {
         } else {
             tagsField.setText("");
         }
-
-        storeInitialValues();
     }
 
     /**
@@ -306,15 +318,5 @@ public class RecipeForm extends UiPart<Region> {
         }
     }
 
-    /**
-     * Handles the edit recipe event by updating the recipe with the changed values.
-     *
-     * @param index         The index of the recipe to be edited.
-     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
-     */
-    private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
-        data.append("edit ");
-        data.append(index);
-        collectFields(changedValues);
-    }
+    public abstract void handle(Map<String, String> changedValues);
 }

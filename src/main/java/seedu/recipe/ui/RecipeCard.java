@@ -139,7 +139,7 @@ public class RecipeCard extends UiPart<Region> {
             } else if (event.getCode() == KeyCode.F) {
                 // create and display form
                 StringBuilder data = new StringBuilder();
-                RecipeForm form = new RecipeForm(recipe, displayedIndex, data);
+                EditRecipeForm form = new EditRecipeForm(recipe, displayedIndex, data);
                 form.display();
 
                 // trigger EditRecipeEvent with form data
