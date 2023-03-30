@@ -8,6 +8,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import arb.logic.commands.client.AddClientCommand;
@@ -56,7 +57,8 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
             email = ParserUtil.parseEmail(emailString.get());
         }
 
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG).stream()
+                .filter(s -> !s.isEmpty()).collect(Collectors.toList()));
 
         Client client = new Client(name, phone, email, tagList);
 

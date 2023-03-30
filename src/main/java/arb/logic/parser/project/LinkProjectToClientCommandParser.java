@@ -1,7 +1,5 @@
 package arb.logic.parser.project;
 
-import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.LinkProjectToClientCommand;
 import arb.logic.parser.Parser;
@@ -24,7 +22,7 @@ public class LinkProjectToClientCommandParser implements Parser<LinkProjectToCli
             return new LinkProjectToClientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkProjectToClientCommand.MESSAGE_USAGE), pe);
+                    "Invalid index! " + LinkProjectToClientCommand.MESSAGE_USAGE, pe);
         }
     }
 }

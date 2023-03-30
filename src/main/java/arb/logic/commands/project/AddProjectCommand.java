@@ -10,8 +10,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import arb.logic.commands.Command;
@@ -29,7 +29,8 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
-    public static final String MESSAGE_CANNOT_FIND_CLIENT = "Cannot find this client: %1$s";
+    public static final String MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS =
+            "Cannot find any client with given keywords: %1$s";
 
     private static final String MAIN_COMMAND_WORD = "add-project";
     private static final String ALIAS_COMMAND_WORD = "ap";
@@ -49,15 +50,15 @@ public class AddProjectCommand extends Command {
             + PREFIX_CLIENT + "Alice";
 
     private final Project toAdd;
-    private final Optional<String> clientToBeLinked;
+    private final List<String> listOfClientNameKeywords;
 
     /**
      * Creates an AddProjectCommand to add the specified {@code Project}
      */
-    public AddProjectCommand(Project project, Optional<String> clientToBeLinked) {
+    public AddProjectCommand(Project project, List<String> listOfClientNameKeywords) {
         requireNonNull(project);
         toAdd = project;
-        this.clientToBeLinked = clientToBeLinked;
+        this.listOfClientNameKeywords = listOfClientNameKeywords;
     }
 
     @Override
@@ -70,23 +71,23 @@ public class AddProjectCommand extends Command {
 
         String message = String.format(MESSAGE_SUCCESS, toAdd);
         ListType toBeShown = ListType.PROJECT;
-        if (clientToBeLinked.isPresent()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(clientToBeLinked.get())));
+        if (!listOfClientNameKeywords.isEmpty()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(listOfClientNameKeywords));
             if (model.getFilteredClientList().size() == 0) {
                 model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT, clientToBeLinked.get()));
+                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS, keywordsToString()));
             }
             model.setProjectToLink(toAdd);
         }
         model.addProject(toAdd);
 
-        if (clientToBeLinked.isPresent()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(clientToBeLinked.get())));
-            message = LinkProjectToClientCommand.MESSAGE_USAGE;
+        if (!listOfClientNameKeywords.isEmpty()) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(listOfClientNameKeywords));
+            message += "\n" + LinkProjectToClientCommand.MESSAGE_USAGE;
             toBeShown = ListType.CLIENT;
         }
 
-        return new CommandResult(message, clientToBeLinked.isPresent(), toBeShown);
+        return new CommandResult(message, !listOfClientNameKeywords.isEmpty(), toBeShown);
     }
 
     @Override
@@ -94,7 +95,8 @@ public class AddProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddProjectCommand // instanceof handles nulls
                 && toAdd.equals(((AddProjectCommand) other).toAdd)
-                && clientToBeLinked.equals(((AddProjectCommand) other).clientToBeLinked));
+                && new HashSet<>(listOfClientNameKeywords)
+                .equals(new HashSet<>(((AddProjectCommand) other).listOfClientNameKeywords)));
     }
 
     public static boolean isCommandWord(String commandWord) {
@@ -103,5 +105,12 @@ public class AddProjectCommand extends Command {
 
     public static List<String> getCommandWords() {
         return new ArrayList<>(COMMAND_WORDS);
+    }
+
+    private String keywordsToString() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> keywordsIterator = listOfClientNameKeywords.iterator();
+        keywordsIterator.forEachRemaining(s -> sb.append(s + ", "));
+        return sb.delete(sb.length() - 2, sb.length()).toString();
     }
 }
