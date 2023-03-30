@@ -1,6 +1,7 @@
 package seedu.address.model;
-
 import java.util.LinkedList;
+
+import seedu.address.model.client.Client;
 
 /**
  * Stores a addressBookStateList which holds history of AddressBook
@@ -8,6 +9,8 @@ import java.util.LinkedList;
 public class VersionedAddressBook {
     private LinkedList<AddressBook> addressBookStateList = new LinkedList<>();
     private int currentStatePointer;
+
+    private LinkedList<Client> selectedClient = new LinkedList<>();
 
     public VersionedAddressBook() {}
 

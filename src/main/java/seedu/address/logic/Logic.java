@@ -43,9 +43,14 @@ public interface Logic {
     ObservableList<Policy> getFilteredPolicyList();
 
     /**
-     * Updates the selected Client
+     * Returns the selected Client
      */
-    void updateSelectedClient(Client targetClient);
+    Client getSelectedClient();
+
+    /**
+     * Returns the selected Client index
+     */
+    int getSelectedClientIndex();
 
     /**
      * Returns the user prefs' address book file path.

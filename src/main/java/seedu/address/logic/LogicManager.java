@@ -70,12 +70,14 @@ public class LogicManager implements Logic {
         return model.getFilteredPolicyList();
     }
 
-    /**
-     * Updates the selected Client
-     */
     @Override
-    public void updateSelectedClient(Client targetClient) {
-        model.updateSelectedClient(targetClient);
+    public Client getSelectedClient() {
+        return model.getSelectedClient();
+    }
+
+    @Override
+    public int getSelectedClientIndex() {
+        return model.getSelectedClientIndex();
     }
 
     @Override

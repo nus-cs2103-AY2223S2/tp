@@ -39,7 +39,8 @@ public class AddPolicyCommand extends Command {
 
     /**
      * Creates an AddPolicyCommand to add the specified {@code Policy}
-     * @param index of the person to add the policy to
+     *
+     * @param index  of the person to add the policy to
      * @param policy to be added
      */
     public AddPolicyCommand(Index index, Policy policy) {
@@ -67,12 +68,13 @@ public class AddPolicyCommand extends Command {
         model.setClient(clientToAddPolicy, addedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage(), addedPolicyClient, true, false, false);
+        return new CommandResult(generateSuccessMessage());
     }
 
 
     /**
      * Generates a command execution success message based on the policy added
+     *
      * @return success message
      */
     private String generateSuccessMessage() {

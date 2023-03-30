@@ -31,10 +31,10 @@ public class DeletePolicyCommand extends Command {
     public final Index policyIndex;
 
 
-
     /**
      * Creates a DeletePolicyCommand to remove the specified {@code Policy} by the index displayed in the client policy
      * list.
+     *
      * @param clientIndex the client index displayed from the address book.
      * @param policyIndex the policy index displayed from the client.
      */
@@ -43,6 +43,7 @@ public class DeletePolicyCommand extends Command {
         this.clientIndex = clientIndex;
         this.policyIndex = policyIndex;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,8 +55,6 @@ public class DeletePolicyCommand extends Command {
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
         Client deletedPolicyClient = clientToDeletePolicy.cloneClient();
-        // Work with titus on how to select the client that we are interested in first.
-        CommandResult cr = new SelectCommand(clientIndex).execute(model);
 
         List<Policy> lastShownPolicyList = clientToDeletePolicy.getFilteredPolicyList();
 
@@ -64,7 +63,6 @@ public class DeletePolicyCommand extends Command {
         }
 
         Policy policyToDelete = lastShownPolicyList.get(policyIndex.getZeroBased());
-        //clientToDeletePolicy.getPolicyList().remove(policyToDelete);
         deletedPolicyClient.getPolicyList().remove(policyToDelete);
         model.setClient(clientToDeletePolicy, deletedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
@@ -74,7 +72,7 @@ public class DeletePolicyCommand extends Command {
 
     private String generateSuccessMessage(Client client, Policy policy) {
         return String.format(
-            MESSAGE_DELETE_POLICY_SUCCESS, policy.toString()) + " from: "
+                MESSAGE_DELETE_POLICY_SUCCESS, policy.toString()) + " from: "
                 + client.getName().toString();
     }
 

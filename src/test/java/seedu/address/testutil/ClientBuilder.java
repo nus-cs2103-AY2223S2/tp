@@ -8,6 +8,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
@@ -25,6 +26,9 @@ public class ClientBuilder {
 
     public static final Policy DEFAULT_POLICY = new PolicyBuilder().build();
 
+    public static final Appointment DEFAULT_APPOINTMENT = new AppointmentBuilder().build();
+    public static final Appointment DEFAULT_EMPTY_APPOINTMENT = new AppointmentBuilder().emptyBuild();
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -32,6 +36,7 @@ public class ClientBuilder {
     private Set<Tag> tags;
 
     private UniquePolicyList policyList;
+    private Appointment appointment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,6 +48,7 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policyList = new UniquePolicyList();
+        appointment = DEFAULT_EMPTY_APPOINTMENT;
     }
 
     /**
@@ -55,6 +61,7 @@ public class ClientBuilder {
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
         policyList = clientToCopy.getPolicyList();
+        appointment = clientToCopy.getAppointment();
     }
 
     /**
@@ -119,9 +126,19 @@ public class ClientBuilder {
         this.policyList = policyList;
         return this;
     }
+
+    /**
+     * Sets the {@code Appointment} of the {@code Client} that we are building.
+     * @param appointment the appointment that belongs to the client.
+     * @return A ClientBuilder that builds into {@code Client} when called.
+     */
+    public ClientBuilder withAppointment(Appointment appointment) {
+        this.appointment = appointment;
+        return this;
+    }
     // Don't need withPolicyList() because by default it should always be empty
     public Client build() {
-        return new Client(name, phone, email, address, tags, policyList);
+        return new Client(name, phone, email, address, tags, policyList, appointment);
     }
 
 }

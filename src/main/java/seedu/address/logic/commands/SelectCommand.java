@@ -40,7 +40,8 @@ public class SelectCommand extends Command {
         }
 
         Client clientToSelect = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect, true, false, false);
+        model.setSelectedClientIndex(targetIndex);
+        return new CommandResult(MESSAGE_SELECT_CLIENT_SUCCESS);
     }
 
     @Override

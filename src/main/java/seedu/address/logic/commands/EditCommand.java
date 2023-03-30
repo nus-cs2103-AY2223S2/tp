@@ -24,6 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
@@ -66,6 +67,26 @@ public class EditCommand extends Command {
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
     }
 
+    /**
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     * edited with {@code editClientDescriptor}.
+     */
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+        assert clientToEdit != null;
+
+        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
+        Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+
+        UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
+        Appointment appointment = clientToEdit.getAppointment();
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
+                appointment);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -85,24 +106,6 @@ public class EditCommand extends Command {
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
-    }
-
-    /**
-     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     * edited with {@code editClientDescriptor}.
-     */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
-        assert clientToEdit != null;
-
-        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
-        Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
-        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
-        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-
-        UniquePolicyList policyList = clientToEdit.getPolicyList(); // To change policyList you must use EditPolicy
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
     }
 
     @Override
@@ -134,7 +137,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditClientDescriptor() {}
+        public EditClientDescriptor() {
+        }
 
         /**
          * Copy constructor.

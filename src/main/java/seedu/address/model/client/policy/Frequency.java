@@ -43,7 +43,7 @@ public class Frequency {
 
     @Override
     public String toString() {
-        return frequency.toString();
+        return frequency;
     }
 
     @Override

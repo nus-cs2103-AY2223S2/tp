@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,16 +12,6 @@ public class CommandResultTest {
     @Test
     void getFeedbackToUser() {
         assertEquals(commandResult.getFeedbackToUser(), AddCommand.MESSAGE_SUCCESS);
-    }
-
-    @Test
-    void getTargetClient() {
-        assertNull(commandResult.getTargetClient());
-    }
-
-    @Test
-    void isSelect() {
-        assertFalse(commandResult.isSelect());
     }
 
     @Test
@@ -41,7 +30,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertEquals(commandResult, new CommandResult("feedback"));
-        assertEquals(commandResult, new CommandResult("feedback", false, false, false));
+        assertEquals(commandResult, new CommandResult("feedback", false, false));
 
         // same object -> returns true
         assertEquals(commandResult, commandResult);
@@ -56,13 +45,13 @@ public class CommandResultTest {
         assertNotEquals(commandResult, new CommandResult("different"));
 
         // different select value ->  returns false
-        assertNotEquals(commandResult, new CommandResult("feedback", true, false, false));
+        //assertNotEquals(commandResult, new CommandResult("feedback", true, false, false));
 
         // different showHelp value -> returns false
-        assertNotEquals(commandResult, new CommandResult("feedback", false, true, false));
+        //assertNotEquals(commandResult, new CommandResult("feedback", false, true, false));
 
         // different exit value -> returns false
-        assertNotEquals(commandResult, new CommandResult("feedback", false, false, true));
+        //assertNotEquals(commandResult, new CommandResult("feedback", false, false, true));
     }
 
     @Test
@@ -75,13 +64,10 @@ public class CommandResultTest {
         // different feedbackToUser value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
-        // different select value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
-
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
     }
 }

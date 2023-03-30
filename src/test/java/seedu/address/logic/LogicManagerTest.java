@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -37,7 +36,7 @@ public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
     @TempDir
     public Path temporaryFolder;
-    private final Model model = new ModelManager();
+    private Model model;
     private Logic logic;
 
     @BeforeEach
@@ -46,6 +45,7 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        model = new ModelManager();
         logic = new LogicManager(model, storage);
     }
 
@@ -96,14 +96,6 @@ public class LogicManagerTest {
     void getFilteredPolicyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(IndexOutOfBoundsException.class, () -> logic.getFilteredPolicyList().remove(0));
     }
-
-    @Test
-    void updateSelectedClient_modify_throwsUnsupportedOperationException() {
-        Client targetClient = new ClientBuilder(AMY).withTags().build();
-        logic.updateSelectedClient(targetClient);
-        assertTrue(true);
-    }
-
 
     /**
      * Executes the command and confirms that

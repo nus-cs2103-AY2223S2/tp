@@ -8,12 +8,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -149,7 +152,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateSelectedClient(Client targetClient) {
+        public Client getSelectedClient() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getSelectedClientIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedClientIndex(Index targetIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -164,22 +177,43 @@ public class AddCommandTest {
         }
 
         @Override
-        public void commit() {
-
-        }
-
-        @Override
         public boolean canUndo() {
             return false;
         }
 
         @Override
+        public void commit() {
+
+        }
+
+        public int getNumberOfClients() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getWeeklyEarnings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public HashMap<String, Integer> getSummary() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        //todo
         public void redo() {
 
         }
 
+        //todo
         @Override
         public void undo() {
+
+        }
+
+        @Override
+        public void sort(List<Client> lastShownList) {
 
         }
 

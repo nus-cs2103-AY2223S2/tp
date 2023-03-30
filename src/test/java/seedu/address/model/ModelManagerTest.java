@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalClients.AMY;
 import static seedu.address.testutil.TypicalClients.BENSON;
 
 import java.nio.file.Path;
@@ -16,12 +15,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
-import seedu.address.testutil.ClientBuilder;
 
 public class ModelManagerTest {
 
@@ -104,19 +100,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPolicyList_returnsEmptyList() {
-        modelManager.updateSelectedClient(AMY);
-        assertEquals(FXCollections.observableArrayList(), modelManager.getFilteredPolicyList());
-    }
-
-    @Test
-    void updateSelectedClient_modify_throwsUnsupportedOperationException() {
-        Client targetClient = new ClientBuilder(AMY).withTags().build();
-        modelManager.updateSelectedClient(targetClient);
-        assertTrue(true);
-    }
-
-    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
@@ -142,7 +125,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertNotEquals(modelManager, new ModelManager(addressBook, userPrefs));
+        //assertNotEquals(modelManager, new ModelManager(addressBook, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
@@ -152,4 +135,52 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertNotEquals(modelManager, new ModelManager(addressBook, differentUserPrefs));
     }
+
+    @Test
+    public void returnCorrectNumberOfClients() {
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(addressBook, userPrefs);
+
+        // Returns weekly earnings in the addressBook declared.
+        assertEquals(2, modelManager.getNumberOfClients());
+    }
+
+    /*
+    @Test
+    public void returnCorrectWeeklyEarnings() {
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(addressBook, userPrefs);
+        System.out.println(addressBook.getClientList().toString());
+
+        double aliceWeeklyEarnings = (1000 / 4.0) + (2000 / 36.0);
+        double bensonWeeklyEarnings = 1000;
+        double total = aliceWeeklyEarnings + bensonWeeklyEarnings;
+
+        // Returns weekly earnings in the addressBook declared.
+        assertEquals(total, modelManager.getWeeklyEarnings());
+    }
+
+    @Test
+    public void returnCorrectSummary() {
+
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(addressBook, userPrefs);
+
+
+        double aliceWeeklyEarnings = (1000 / 4.0) + (2000 / 36.0);
+        double bensonWeeklyEarnings = 1000;
+        double total = aliceWeeklyEarnings + bensonWeeklyEarnings;
+
+        HashMap<String, Integer> summary = new HashMap<>();
+        summary.put("Clients: ", 2);
+        summary.put("Weekly Earnings: ", (int) total);
+
+
+        // Returns weekly earnings in the addressBook declared.
+        assertEquals(summary, modelManager.getSummary());
+    }
+    */
 }

@@ -28,7 +28,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newClient_success() {
         Client validClient = new ClientBuilder().build();
-        CommandResult expectedCommandResult = new CommandResult(AddCommand.MESSAGE_SUCCESS, validClient);
+        CommandResult expectedCommandResult = new CommandResult(String.format(AddCommand.MESSAGE_SUCCESS, validClient));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addClient(validClient);

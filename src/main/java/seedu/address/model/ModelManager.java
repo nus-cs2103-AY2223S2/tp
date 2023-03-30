@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +14,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.Policy;
 
 /**
@@ -25,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final VersionedAddressBook versionedAddressBook;
-    private Client selectedClient = null;
+    private Index selectedClientIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         versionedAddressBook = new VersionedAddressBook(this.addressBook);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        selectedClientIndex = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
@@ -138,6 +143,13 @@ public class ModelManager implements Model {
         setAddressBook(ab);
     }
 
+    //===============Sort ================================================================================
+    @Override
+    public void sort(List<Client> sortList) {
+        addressBook.setClients(sortList);
+        commit();
+    }
+
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
@@ -154,7 +166,6 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
         commit();
     }
@@ -178,18 +189,77 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Policy> getFilteredPolicyList() {
+        Client selectedClient = getSelectedClient();
+
         if (selectedClient == null) {
             return FXCollections.observableArrayList();
         }
         return selectedClient.getFilteredPolicyList();
     }
 
+    @Override
+    public int getNumberOfClients() {
+        return filteredClients.size();
+    }
+
+    @Override
+    public double getWeeklyEarnings() {
+        Client selectedClient = getSelectedClient();
+        double totalEarnings = 0;
+
+        for (int i = 0; i < filteredClients.size(); i++) {
+            selectedClient = filteredClients.get(i);
+            ObservableList<Policy> policyList = selectedClient.getFilteredPolicyList();
+            for (int j = 0; j < policyList.size(); j++) {
+                Policy policy = policyList.get(j);
+                Frequency freq = policy.getFrequency();
+                if (freq.toString() == "monthly") {
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 4.0;
+                    totalEarnings = totalEarnings + earnings;
+                } else if (freq.toString() == "yearly") {
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 36.0;
+                    totalEarnings = totalEarnings + earnings;
+                } else {
+                    double earnings = Double.valueOf(policy.getPremium().toString());
+                    totalEarnings = totalEarnings + earnings;
+                }
+            }
+        }
+        return totalEarnings;
+    }
+
+    @Override
+    public HashMap<String, Integer> getSummary() {
+        HashMap<String, Integer> summary = new HashMap<String, Integer>();
+
+        // Adding information to hashmap
+        summary.put("Clients: ", getNumberOfClients());
+        summary.put("Weekly Earnings: ", (int) getWeeklyEarnings());
+
+        return summary;
+    }
+
     /**
-     * Updates the selected Client
+     * Returns the selected Client
+     */
+    public Client getSelectedClient() {
+        ObservableList<Client> updatedClientList = this.addressBook.getClientList();
+        return updatedClientList.get(selectedClientIndex.getZeroBased());
+    }
+
+    /**
+     * Returns the selected Client index
+     */
+    public int getSelectedClientIndex() {
+        return this.selectedClientIndex.getOneBased();
+    }
+
+    /**
+     * Sets the selected Client
      */
     @Override
-    public void updateSelectedClient(Client targetClient) {
-        this.selectedClient = targetClient;
+    public void setSelectedClientIndex(Index targetIndex) {
+        this.selectedClientIndex = targetIndex;
     }
 
     @Override
@@ -207,8 +277,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && userPrefs.equals(other.userPrefs);
+        //&& filteredClients.equals(other.filteredClients);
     }
 
 }

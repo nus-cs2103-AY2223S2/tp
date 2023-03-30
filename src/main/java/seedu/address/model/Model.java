@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.policy.Policy;
 
@@ -92,9 +95,19 @@ public interface Model {
     ObservableList<Policy> getFilteredPolicyList();
 
     /**
-     * Updates the selected Client
+     * Returns the selected Client
      */
-    void updateSelectedClient(Client targetClient);
+    Client getSelectedClient();
+
+    /**
+     * Returns the selected Client index
+     */
+    int getSelectedClientIndex();
+
+    /**
+     * Sets the selected Client
+     */
+    void setSelectedClientIndex(Index targetIndex);
 
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
@@ -102,6 +115,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    /**
+     * Get total number of clients present in address book.
+     */
+    int getNumberOfClients();
+
+    /**
+     * Get summary of all the data to be displayed
+     */
+    HashMap<String, Integer> getSummary();
+
+    /**
+     * Get total weekly earnings of the user.
+     *
+     * @return Total weekly earnings from all the clients the user has.
+     */
+    double getWeeklyEarnings();
 
     boolean canRedo();
 
@@ -113,4 +143,6 @@ public interface Model {
     void redo();
 
     void undo();
+
+    void sort(List<Client> sortList);
 }

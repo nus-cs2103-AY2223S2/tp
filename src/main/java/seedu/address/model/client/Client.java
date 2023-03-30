@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
@@ -17,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client {
+public class Client implements Comparable<Client> {
 
     // Identity fields
     private final Name name;
@@ -30,10 +31,13 @@ public class Client {
     private final UniquePolicyList policyList;
     private final FilteredList<Policy> filteredPolicies;
 
+    private final Appointment appointment;
+
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policyList) {
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policyList,
+                  Appointment appointment) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -41,6 +45,7 @@ public class Client {
         this.address = address;
         this.tags.addAll(tags);
         this.policyList = policyList; // TODO: @pangrwa Need to read from Storage
+        this.appointment = appointment;
         filteredPolicies = new FilteredList<>(this.policyList.asUnmodifiableObservableList());
     }
 
@@ -68,6 +73,9 @@ public class Client {
         return filteredPolicies;
     }
 
+    public Appointment getAppointment() {
+        return appointment;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -110,7 +118,8 @@ public class Client {
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
                 && otherClient.getTags().equals(getTags())
-                && otherClient.getPolicyList().equals(getPolicyList());
+                && otherClient.getPolicyList().equals(getPolicyList())
+                && otherClient.getAppointment().equals(getAppointment());
     }
 
     @Override
@@ -140,7 +149,18 @@ public class Client {
         Set<Tag> updatedTags = this.getTags();
 
         UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
+        Appointment appointment = this.getAppointment();
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
+                appointment);
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.toString().compareTo(o.toString());
+    }
+
+    public String getPhoneNumber() {
+        return this.getPhoneNumber().toString();
     }
 
 }
