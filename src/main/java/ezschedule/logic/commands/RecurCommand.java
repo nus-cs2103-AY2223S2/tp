@@ -203,5 +203,4 @@ public class RecurCommand extends Command {
                 && endDate.equals(e.endDate)
                 && factor.equals(e.factor);
     }
-
 }

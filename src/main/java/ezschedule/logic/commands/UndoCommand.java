@@ -36,8 +36,10 @@ public class UndoCommand extends Command {
             model.setEvent(editedEvent, toEditEvent);
             break;
         case "delete":
-            Event deletedEvent = model.recentEvent().get(0);
-            model.addEvent(deletedEvent);
+            ArrayList<Event> deletedEventList = model.recentEvent();
+            for (Event event : deletedEventList) {
+                model.addEvent(event);
+            }
             break;
         case "recur":
             ArrayList<Event> recurEventList = model.recentEvent();
