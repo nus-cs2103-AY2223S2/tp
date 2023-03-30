@@ -783,7 +783,9 @@ For example, if the user wants to search for a person but does not know the full
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-This command can be used before the other commands to return a list of contacts the user wants to work with. 
+* This command can be used before the other commands to return a list of contacts the user wants to work with.
+* The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
+  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
 
 </div>
 

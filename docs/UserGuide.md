@@ -198,6 +198,15 @@ The Command Box is where you can input the [Commands](#commands) when using `Edu
 
 The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
 
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Pro Tip:** <br>
+Did you know that the UP and DOWN arrow keys can be used to quickly access previously typed commands in the Command Box? This feature has been specially designed for you to save time and increase your productivity.<br>
+<br>
+In the current session, all of your previously typed commands can be accessed using the UP and DOWN arrow keys. Additionally, we automatically save up to 100 of your most recent commands to a file for your convenience in the next session. This way, you can easily refer back to your previous commands without having to retype them, saving you time and increasing your efficiency.
+
+</div>
+
 ### Command Response
 
 The Command Response box is where you will receive feedback for any command you execute. It could give you some information if the command execution was successful or if you had executed a command of an invalid format.
@@ -240,7 +249,7 @@ s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-success">
 
-:bulb: **Tip:** 
+:bulb: **Tip:** <br>
 You do not have to enter all your information at once! You can omit some of the information
 and **its corresponding prefix** and enter them in the future!
 <br>
@@ -688,6 +697,8 @@ will filter out contacts who have are tagged with CCA and CS2100.
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
+* `find n/Edward m/CS2103T` : Returns all persons with name Edward and module CS2103T
+* `find n/Edward Richards m/CS2103T CS2109S` : Returns all persons named Edward or Richards with module CS2103T or CS2109S.
 
 </div>
 
@@ -699,6 +710,16 @@ will filter out contacts who have are tagged with CCA and CS2100.
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+**:warning: Filtered list**<br>
+
+* The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
+  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
+* If you want to run commands related to persons not in the filtered list, just run the `list` command to obtain the full list of your contacts.
 
 </div>
 
@@ -940,21 +961,21 @@ suggest new features and it is easily extensible!
 
 ### Command Summary
 
-| Action                   | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))    | Examples                                                     |
-|--------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| **Add a contact**        | `add n/NAME p/PHONE...`                                                              | `add n/Wen Li...`                                            |
-| **View a profile**       | `view`, `view INDEX`, `view n/NAME`                                                  | `view 5`, `view n/Wen Li`                                    |
-| **Edit a contact**       | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                         | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                 |
-| **Delete a contact**     | `delete INDEX`                                                                       | `delete 3`                                                   |
-| **Tag a contact**        | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`       | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`    |
-| **Untag a contact**      | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `tag 1 g/Friend` |
-| **Filter contacts**      | `find z/FIELD`                                                                       | `find n/Tan`, `find m/CS1231`                                |
-| **Sort contacts**        | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                        | `sort`, `sort n/a`, `sort m/ p/d`                            |
-| **Save a copy**          | `save FILE_NAME`                                                                     | `save backup`                                                |
-| **Load a copy**          | `load FILE_NAME`                                                                     | `load backup`                                                |
-| **Suggest meet ups**     | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                 | `meet 1 6 4`, `eat 10 4 7`                                   |
-| **Organise a meet up**   | `organise INDEX`, `organise [INDEX]... d/DAY T/START_TIME END_TIME l/LOCATION`       | `organise 1`, `organise 1 2 3 d/MONDAY T/10 12 l/NUS`        |
-| **Unorganise a meet up** | `unorganise INDEX` | `unorganise 1`   |
+| Action                   | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))    | Examples                                                       |
+|--------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| **Add a contact**        | `add n/NAME p/PHONE...`                                                              | `add n/Wen Li...`                                              |
+| **View a profile**       | `view`, `view INDEX`, `view n/NAME`                                                  | `view 5`, `view n/Wen Li`                                      |
+| **Edit a contact**       | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                         | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                   |
+| **Delete a contact**     | `delete INDEX`                                                                       | `delete 3`                                                     |
+| **Tag a contact**        | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`       | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`      |
+| **Untag a contact**      | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `untag 1 g/Friend` |
+| **Filter contacts**      | `find z/FIELD... z/FIELD...`                                                           | `find n/Tan`, `find m/CS1231`, `find n/Tan m/CS1231`           |
+| **Sort contacts**        | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                        | `sort`, `sort n/a`, `sort m/ p/d`                              |
+| **Save a copy**          | `save FILE_NAME`                                                                     | `save backup`                                                  |
+| **Load a copy**          | `load FILE_NAME`                                                                     | `load backup`                                                  |
+| **Suggest meet ups**     | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                 | `meet 1 6 4`, `eat 10 4 7`                                     |
+| **Organise a meet up**   | `organise INDEX`, `organise [INDEX]... d/DAY T/START_TIME END_TIME l/LOCATION`       | `organise 1`, `organise 1 2 3 d/MONDAY T/10 12 l/NUS`          |
+| **Unorganise a meet up** | `unorganise INDEX` | `unorganise 1`                                                 |
 
 
 ## Troubleshooting
