@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.AvailableDate;
 
@@ -59,6 +60,10 @@ public class ElderlyCard extends UiPart<Region> {
     @FXML
     private HBox addressBox;
     @FXML
+    private HBox emailBox;
+    @FXML
+    private VBox phoneBox;
+    @FXML
     private FlowPane availableDates;
 
     /**
@@ -98,13 +103,16 @@ public class ElderlyCard extends UiPart<Region> {
             availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());
         }
         if (elderly.getAddress().toString().isEmpty()) {
-            addressBox.getChildren().removeAll(address);
+            addressBox.getChildren().removeAll(addressBox.getChildren());
+        }
+        if (elderly.getEmail().toString().isEmpty()) {
+            emailBox.getChildren().removeAll(emailBox.getChildren());
         }
         if (elderly.getRegion().toString().isEmpty()) {
-            regionBox.getChildren().removeAll(region);
+            regionBox.getChildren().removeAll(regionBox.getChildren());
         }
         if (elderly.getPhone().toString().isEmpty()) {
-            phone.setVisible(false);
+            phoneBox.getChildren().removeAll(phoneBox.getChildren());
         }
         if (displayedIndex == 0) {
             id.setVisible(false);
