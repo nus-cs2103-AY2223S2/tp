@@ -38,19 +38,23 @@ neatly.<br>
 2. [Quick Start](#quick_start)
 3. [Features](#features)
 
-   1. Adding an Internship Application: [`add`](#add_function)
-   2. Listing all Internship Applications in TinS: [`list`](#list_function)
-   3. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-   4. Editing Details of an Internship Application: [`edit`](#edit_function)
-   5. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-   6. Deleting an Internship Application: [`delete`](#delete_function)
-   7. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-   8. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-   9. Finding all Clashing Events: [`clash`](#clash_function)
-   10. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-   11. Getting Help: [`help`](#help_function)
-   12. Exiting TinS: [`exit`](#exit_function)
-   13. [Saving Data in TinS](#save_function)
+   1. Opening Home Page: [`home`](#home_function)
+   2. Opening Statistics Page: [`stats`](#stats_function)
+   3. Opening Calendar Page: [`calendar`](#calendar_function)
+   4. Adding an Internship Application: [`add`](#add_function)
+   5. Listing all Internship Applications in TinS: [`list`](#list_function)
+   6. Finding a Particular Internship Application in TinS: [`find`](#find_function)
+   7. Editing Details of an Internship Application: [`edit`](#edit_function)
+   8. Viewing Details of a Particular Internship Application: [`select`](#select_function)
+   9. Deleting an Internship Application: [`delete`](#delete_function)
+   10. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
+   11. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
+   12. Finding a Particular Event: [`event find`](#eventfind_function)
+   13. Finding all Clashing Events: [`clash`](#clash_function)
+   14. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
+   15. Getting help: [`help`](#help_function)
+   16. Exiting the program: [`exit`](#exit_function)
+   17. [Saving data in TinS](#save_function)
 
 4. [Command Summary](#command_summary)
 
@@ -125,11 +129,12 @@ TinS command can be found [here](#features).
 9. Deleting an Internship Application: [`delete`](#delete_function)
 10. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
 11. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-12. Finding all Clashing Events: [`clash`](#clash_function)
-13. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-14. Getting help: [`help`](#help_function)
-15. Exiting the program: [`exit`](#exit_function)
-16. [Saving data in TinS](#save_function)
+12. Finding a Particular Event: [`event find`](#eventfind_function)
+13. Finding all Clashing Events: [`clash`](#clash_function)
+14. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
+15. Getting help: [`help`](#help_function)
+16. Exiting the program: [`exit`](#exit_function)
+17. [Saving data in TinS](#save_function)
 </div>
 
 
@@ -356,6 +361,19 @@ Format: `event delete ID`
 * `ID`: The ID of the selected event in the list
 
 Examples: `event delete 1` entered after `select 1` deletes the first event in the first internship.
+
+</div>
+
+<div style="page-break-after:always; break-after: page;">
+
+<h3 id="eventfind_function">Finding a particular Event : `find event`</h3>
+
+Finds events based on certain filters.
+
+Format: `event add na/[EVENT_NAME] st/[START_DATETIME] en/[END_DATETIME]`
+
+Example: `event add na/Technical Interview st/20/03/2023 1400` returns a list of events with the name Technical
+Interview and starting time 20 March 2023, 2pm.
 
 </div>
 

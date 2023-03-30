@@ -1,5 +1,6 @@
 package seedu.internship.ui.pages;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -79,10 +80,23 @@ public class InternshipInfoPage extends Page {
         company.setText(internship.getCompany().companyName);
         status.setText(internship.getStatus().toString());
         description.setText(internship.getDescription().descriptionMessage);
-        eventPanel.getChildren().addAll(internshipEvents.stream()
-                .map(event -> EventCard.of(event, true)
-                        .getRoot())
+        eventPanel.getChildren().addAll(makeEventCards()
+                        .stream()
+                        .map(param -> param.getRoot())
                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Returns an ArrayList<EventCard> of indexed {@code EventCard}
+     */
+    public ArrayList<EventCard> makeEventCards() {
+        ArrayList<EventCard> eventCards = new ArrayList<>();
+        for (Event event : internshipEvents) {
+            EventCard eventCard = EventCard.of(event, true);
+            eventCard.setEventId(eventCards.size() + 1);
+            eventCards.add(eventCard);
+        }
+        return eventCards;
     }
 
 

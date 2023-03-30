@@ -23,7 +23,7 @@ public class ClashInfoPage extends Page {
 
     private static final String FXML = "ClashInfoPage.fxml";
     private static final String PAGE_TITLE = "Event clashes";
-    private static final String MESSAGE_TIP = "Click on any date to view a list of events that clash in that day.";
+    private static final String MESSAGE_TIP = "Click on any date to view a list of events that clash on that day.";
     private static final String MESSAGE_NO_CLASHES = "No clashes found :)";
     private static final String DATE_PATTERN = "d MMM uuuu EEE";
 

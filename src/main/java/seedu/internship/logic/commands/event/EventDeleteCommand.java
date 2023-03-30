@@ -1,15 +1,11 @@
 package seedu.internship.logic.commands.event;
 
-import static seedu.internship.logic.parser.CliSyntax.*;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_DESCRIPTION;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.CommandResult;
-import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.ResultType;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
@@ -20,11 +16,11 @@ import seedu.internship.model.internship.Internship;
 public class EventDeleteCommand extends EventCommand {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "
-            + EventAddCommand.COMMAND_WORD + ": Deletes a event to the event catalogue. "
-            + "Parameters"
-            + "Index of Delete Command"
+            + EventDeleteCommand.COMMAND_WORD + ": Deletes a event to the event catalogue. \n"
+            + "Parameters: "
+            + "Index of Delete Command\n"
             + "Example: " + EventCommand.COMMAND_WORD + " "
-            + EventAddCommand.COMMAND_WORD + " "
+            + EventDeleteCommand.COMMAND_WORD + " "
             + "1";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event deleted: %1$s";
     public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before adding an event.";

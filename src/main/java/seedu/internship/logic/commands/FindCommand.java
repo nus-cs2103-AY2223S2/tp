@@ -8,8 +8,9 @@ import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
-import java.util.List;
-import java.util.Optional;
+import seedu.internship.model.tag.Tag;
+
+import java.util.*;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -22,9 +23,9 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
             + "Parameters: [" + CliSyntax.PREFIX_POSITION + "POSITION] "
-            + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY] "
+            + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY]"
             + "[" + CliSyntax.PREFIX_STATUS + "STATUS]\n"
-            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + "c/ Grab";
+            + "Example: " + COMMAND_WORD + " p/ Software Engineer" + " c/ Grab";
 
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";
 
@@ -45,19 +46,28 @@ public class FindCommand extends Command {
         Predicate<Internship> filterPos = unused -> true;
         Predicate<Internship> filterCom = unused -> true;
         Predicate<Internship> filterStat = unused -> true;
+        Predicate<Internship> filterTags = unused -> true;
         if (filterInternshipDescriptor.getPosition().isPresent()) {
-            filterPos = x -> x.getPosition().equals(filterInternshipDescriptor.getPosition().get());
+            filterPos = x -> x.getPosition().positionName.toLowerCase().contains(filterInternshipDescriptor.getPosition()
+                    .get().positionName.toLowerCase());
         }
         if (filterInternshipDescriptor.getCompany().isPresent()) {
-            filterCom = x -> x.getCompany().equals(filterInternshipDescriptor.getCompany().get());
+            filterCom = x -> x.getCompany().companyName.toLowerCase().contains(filterInternshipDescriptor.getCompany()
+                    .get().companyName.toLowerCase());
         }
         if (filterInternshipDescriptor.getStatus().isPresent()) {
             filterStat = x -> x.getStatus().equals(filterInternshipDescriptor.getStatus().get());
         }
+
+        if (filterInternshipDescriptor.getTags().isPresent()) {
+            filterStat = x -> x.getTags().containsAll(filterInternshipDescriptor.getTags().get());
+        }
         Predicate<Internship> finalFilterPos = filterPos;
         Predicate<Internship> finalFilterCom = filterCom;
         Predicate<Internship> finalFilterStat = filterStat;
-        Predicate<Internship> filter = x -> finalFilterPos.test(x) && finalFilterCom.test(x) && finalFilterStat.test(x);
+        Predicate<Internship> finalFilterTags = filterTags;
+        Predicate<Internship> filter = x -> finalFilterPos.test(x) && finalFilterCom.test(x) && finalFilterStat.test(x)
+                && finalFilterTags.test(x);
         model.updateFilteredInternshipList(filter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()),
                 ResultType.FIND);
@@ -85,6 +95,7 @@ public class FindCommand extends Command {
         private Position position;
         private Company company;
         private Status status;
+        private Set<Tag> tags;
 
         public FilterInternshipDescriptor() {
         }
@@ -93,7 +104,7 @@ public class FindCommand extends Command {
          * Returns true if at least one field is filtered.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(position, company, status);
+            return CollectionUtil.isAnyNonNull(position, company, status, tags);
         }
 
         public void setPosition(Position position) {
@@ -118,6 +129,23 @@ public class FindCommand extends Command {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override

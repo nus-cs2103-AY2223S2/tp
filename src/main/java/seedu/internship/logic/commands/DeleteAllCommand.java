@@ -15,7 +15,7 @@ public class DeleteAllCommand extends Command {
 
     public static final String CONFIRMATION_CODE = "confirm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes all internships and events. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes all internships and events.\n"
             + "Enter \"" + CONFIRMATION_CODE + "\" after to verify deleting all data\n"
             + "Example: " + COMMAND_WORD + " " + CONFIRMATION_CODE;
 

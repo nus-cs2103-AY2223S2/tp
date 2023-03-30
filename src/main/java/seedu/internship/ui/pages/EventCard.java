@@ -47,6 +47,10 @@ public class EventCard extends UiPart<Region> {
     private VBox cardContent;
     @FXML
     private Separator separator2;
+    @FXML
+    private HBox wrapper;
+    @FXML
+    private Label eventId;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -75,15 +79,13 @@ public class EventCard extends UiPart<Region> {
             eventCard.circle.setVisible(false);
             eventCard.separator.setManaged(false);
             eventCard.timelineContainer.setManaged(false);
-            eventCard.eventCard.setStyle(
-                    "-fx-background-color: derive(#9bd2ec, 60%);" + "-fx-padding: 10 10 10 10;");
+            eventCard.eventCard.setStyle("-fx-padding: 10 10 10 10;");
             eventCard.eventCard.setPrefWidth(300);
             eventCard.eventCard.setPrefHeight(200);
             String companyAndPositionString = String.format("[%s, %s] ",
                     event.getInternship().getCompany(),
                     event.getInternship().getPosition());
             eventCard.companyAndPosition.setText(companyAndPositionString);
-
         }
         return eventCard;
     }
@@ -117,5 +119,13 @@ public class EventCard extends UiPart<Region> {
         // state check
         EventCard card = (EventCard) other;
         return event.equals(card.event);
+    }
+
+    /**
+     * Sets id for this EventCard
+     * @param i Integer for the index
+     */
+    public void setEventId(int i) {
+        this.eventId.setText(String.format("%d. ", i));
     }
 }
