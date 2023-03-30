@@ -125,7 +125,9 @@ public class SessionListPanel extends UiPart<Region> {
         thisMonth.setText("$" + String.format("%.2f", monthlyEarnings));
         lifetime.setText("$" + String.format("%.2f", lifetimeEarnings));
 
-        earningsChart.getChildren().add(new EarningsBarChart(sessionList));
+        EarningsBarChart barChart = new EarningsBarChart(sessionList);
+        barChart.setStyle("-fx-text-inner-color: white;");
+        earningsChart.getChildren().add(barChart);
 
 
         try {
@@ -202,10 +204,10 @@ public class SessionListPanel extends UiPart<Region> {
     }
 
     private void setStatisticsFieldDisplay(Label[] fields) {
-        todayField.setText("Today's Earnings");
-        thisWeekField.setText("This Week's Earnings");
-        thisMonthField.setText("This Month's Earnings");
-        lifetimeField.setText("Lifetime Earnings");
+        todayField.setText("Today");
+        thisWeekField.setText("This Week");
+        thisMonthField.setText("This Month");
+        lifetimeField.setText("Lifetime");
         for (Label field: fields) {
             field.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(4),
                     new Insets(-3, -10, -3, -10))));
