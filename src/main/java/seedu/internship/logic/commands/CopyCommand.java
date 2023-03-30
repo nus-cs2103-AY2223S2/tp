@@ -20,7 +20,7 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Copies the details of the internship identified by the index"
             + " number used in the displayed internship list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Fields: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_COPY_INTERNSHIP_SUCCESS = "Copied Internship: %1$s";
