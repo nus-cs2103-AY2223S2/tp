@@ -40,12 +40,12 @@ deactivate EditDeliveryJobDescriptor
 
 EditDeliveryJobCommandParser -> EditDeliveryJobDescriptor: setJobId("ABCXX")
 activate EditDeliveryJobDescriptor
-EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser 
+EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser
 deactivate EditDeliveryJobDescriptor
 
 EditDeliveryJobCommandParser -> EditDeliveryJobDescriptor: setDeliverySlot("1")
 activate EditDeliveryJobDescriptor
-EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser 
+EditDeliveryJobDescriptor --> EditDeliveryJobCommandParser
 deactivate EditDeliveryJobDescriptor
 
 create EditDeliveryJobCommand
