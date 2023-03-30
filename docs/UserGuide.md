@@ -23,7 +23,7 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to ModCheck.
+   * `add n/John Doe p/98765432 e/johnd@example.com d/John street, block 123, #01-01` : Adds a contact named `John Doe` to ModCheck.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -74,13 +74,13 @@ Format: `help`
 
 Adds a person contact details to ModCheck.
 
-Compulsory Fields:
+Compulsory Field:
 * `n/` : name of the person
-* `d/` : description of the person
-* `e/` : email 
-* `p/` : phone number
 
 Additional Fields:
+* `d/` : description of the person
+* `e/` : email
+* `p/` : phone number
 * `t/` : tags 
 * `m/` : module codes
 
@@ -253,6 +253,14 @@ undo!` will be shown.
 Format: `undo`
 
 Use `redo` to reapply the changes undone by undo.
+
+### Dark/Light Mode
+
+Choose your favourite theme !
+
+`light` To change to light mode.
+
+`dark`  To change to dark mode. (default)
 
 --------------------------------------------------------------------------------------------------------------------
 

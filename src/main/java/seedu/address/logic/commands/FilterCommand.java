@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,7 +30,8 @@ public class FilterCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "DESCRIPTION "
-            + PREFIX_TAG + "TAG...\n"
+            + PREFIX_TAG + "TAG "
+            + PREFIX_MODULE_TAG + "MODULE TAG\n"
             + "Examples:\n" + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe\n"
             + COMMAND_WORD + " "
@@ -41,7 +42,9 @@ public class FilterCommand extends Command {
             + PREFIX_ADDRESS + "My favourite TA\n"
             + COMMAND_WORD + " "
             + PREFIX_TAG + "Friends "
-            + PREFIX_TAG + "Family";
+            + PREFIX_TAG + "Family\n"
+            + COMMAND_WORD + " "
+            + PREFIX_MODULE_TAG + "CS2103";
 
     private final Predicate<Person> predicate;
 
@@ -52,6 +55,7 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.resetPersonHiddenStatus();
         model.updateFilteredPersonList(this.predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

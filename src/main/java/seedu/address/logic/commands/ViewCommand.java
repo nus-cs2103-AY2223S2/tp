@@ -43,7 +43,6 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-
         Optional<Index> maxIndex = this.index.stream().max(Comparator.naturalOrder());
         int max = maxIndex.get().getOneBased();
 

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -123,7 +124,7 @@ public class ModelManager implements Model, Undoable {
         for (Person target: list) {
             addressBook.removePerson(target);
         }
-        undoManager.addToHistory(this.addressBook, String.format("Deleted list of people"));
+        undoManager.addToHistory(this.addressBook, "Deleted list of people");
     }
 
     @Override
@@ -141,6 +142,20 @@ public class ModelManager implements Model, Undoable {
         undoManager.addToHistory(this.addressBook, String.format("Edit %1$s", editedPerson));
     }
 
+    @Override
+    public void combine(ReadOnlyAddressBook toBeCombined, String path) {
+        AddressBook newAddressBook = new AddressBook(toBeCombined);
+        for (Person p : newAddressBook.getPersonList()) {
+            if (addressBook.hasPerson(p)) {
+                //Future improvements can be made to specify whether to overwrite or keep persons with the same name
+                continue;
+            } else {
+                addressBook.addPerson(p);
+            }
+        }
+        undoManager.addToHistory(this.addressBook, String.format("Load contents of %s", path));
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -156,6 +171,16 @@ public class ModelManager implements Model, Undoable {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetPersonHiddenStatus() {
+        List<Person> personlist = getFilteredPersonList();
+        personlist.stream().forEach(x -> {
+            if (!x.getHidden()) {
+                x.toggleHidden();
+            }
+        });
     }
 
     //=========== Undo management =============================================================================

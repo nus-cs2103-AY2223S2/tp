@@ -121,6 +121,7 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -160,6 +161,14 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void combine(ReadOnlyAddressBook ab, String s) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void resetPersonHiddenStatus() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,6 +225,16 @@ public class AddCommandTest {
             requireNonNull(person);
             personsAdded.add(person);
         }
+
+        @Override
+        public void resetPersonHiddenStatus() {
+            personsAdded.stream().forEach(x -> {
+                if (!x.getHidden()) {
+                    x.toggleHidden();
+                }
+            });
+        }
+
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {

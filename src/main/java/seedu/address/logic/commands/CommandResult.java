@@ -19,6 +19,7 @@ public class CommandResult {
     /** The application is in dark theme mode*/
     private Boolean darkTheme;
 
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
