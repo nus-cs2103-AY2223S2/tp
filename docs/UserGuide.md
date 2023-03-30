@@ -244,7 +244,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage1.PNG)
+![help message](images/helpMessage.PNG)
 
 Format: `help`
 
