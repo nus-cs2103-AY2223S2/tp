@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Represents the in-memory model of the expense tracker data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
+    private final FilteredList<RecurringExpenseManager> filteredRecurringExpense;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenses = new FilteredList<>(this.expenseTracker.getExpenseList());
         filteredCategories = new FilteredList<>(this.expenseTracker.getCategoryList());
+        filteredRecurringExpense = new FilteredList<>(this.expenseTracker.getRecurringExpenseGenerators());
     }
 
     public ModelManager() {
@@ -186,6 +189,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setExpense(int index, Expense newExpense) {
+        expenseTracker.setExpense(index, newExpense);
+    }
+
+    @Override
     public void updateFilteredExpensesList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
         filteredExpenses.setPredicate(predicate);
@@ -216,5 +224,44 @@ public class ModelManager implements Model {
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenseTracker.hasExpense(expense);
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        expenseTracker.setBudget(budget);
+    }
+
+    // =========== Recurring Expense Manager List Accessors
+    // =============================================================
+
+    @Override
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return expenseTracker.hasRecurringExpense(recurringExpenseManager);
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        expenseTracker.addRecurringGenerator(recurringExpenseManager);
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return expenseTracker.getRecurringExpenseGenerators();
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
+        requireNonNull(predicate);
+        filteredRecurringExpense.setPredicate(predicate);
+    }
+
+    @Override
+    public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        expenseTracker.removeRecurringExpense(recurringExpenseManager);
+    }
+
+    @Override
+    public void addRetroactiveExpenses() {
+        expenseTracker.generateRetroactiveExpenses();
     }
 }

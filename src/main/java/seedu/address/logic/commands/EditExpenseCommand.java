@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,16 +17,25 @@ import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
 /**
- * JavaDoc
+ * Edits an Expense in the expense tracker.
  */
 public class EditExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "eexp";
+    public static final String COMMAND_WORD = "edexp";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the expense identified by the index number used in the displayed expenses list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "[" + PREFIX_NAME + "EXPENSE NAME] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + "[" + PREFIX_PRICE + "AMOUNT] "
+            + "[" + PREFIX_DATE + "DATE] \n"
+            + "Example: " + COMMAND_WORD + " 1 n/KFC c/food p/10 d/20/03/23 ";
 
     private final Index targetIndex;
     private final String newExpenseName;
     private final Double newExpenseAmount;
     private final LocalDate newExpenseDate;
     private final String newExpenseCategoryInString;
+
 
     /**
      * JavaDoc
@@ -62,29 +75,39 @@ public class EditExpenseCommand extends Command {
         }
 
         //Check if index is valid
-        if (targetIndex == null || targetIndex.getZeroBased() >= lastShownListOfExpenses.size()) {
+        if (targetIndex == null) {
+            throw new CommandException(MESSAGE_USAGE);
+        }
+        if (targetIndex.getZeroBased() >= lastShownListOfExpenses.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
 
         Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
+        String name = expenseToEdit.getName();
+        Double amount = expenseToEdit.getAmount();
+        Category category = expenseToEdit.getCategory();
+        LocalDate date = expenseToEdit.getDate();
 
         if (toBeAllocated != null) {
-            expenseToEdit.setCategory(toBeAllocated);
+            category = toBeAllocated;
         } else if (this.newExpenseCategoryInString != null && toBeAllocated == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
         if (newExpenseName != null) {
-            expenseToEdit.setName(newExpenseName);
+            name = newExpenseName;
         }
 
         if (newExpenseAmount != null) {
-            expenseToEdit.setAmount(newExpenseAmount);
+            amount = newExpenseAmount;
         }
 
         if (newExpenseDate != null) {
-            expenseToEdit.setDate(newExpenseDate);
+            date = newExpenseDate;
         }
-        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, expenseToEdit), true);
+
+        Expense newExpense = new Expense(name, amount, date, category);
+        model.setExpense(targetIndex.getZeroBased(), newExpense);
+        return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense), true);
     }
 }

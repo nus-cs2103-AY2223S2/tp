@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UserDefinedCategory;
+import seedu.address.model.expense.RecurringExpenseType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -231,6 +232,28 @@ public class ParserUtil {
             return Timespan.YEAR;
         }
         throw new ParseException("Not a valid date format (week, month, year)");
+    }
+
+    /**
+     * Parses {@code String timespan} into a {@code RecurringExpenseType}.
+     */
+    public static RecurringExpenseType parseTimeSpanRecurringExpense(String timespan) throws ParseException {
+        assert timespan != null : "input should not be null";
+        requireNonNull(timespan);
+        String trimmedTimespan = timespan.trim();
+        if (trimmedTimespan.equals("day") || trimmedTimespan.equals("d")) {
+            return RecurringExpenseType.DAILY;
+        }
+        if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
+            return RecurringExpenseType.WEEKLY;
+        }
+        if (trimmedTimespan.equals("month") || trimmedTimespan.equals("m")) {
+            return RecurringExpenseType.MONTHLY;
+        }
+        if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
+            return RecurringExpenseType.YEARLY;
+        }
+        throw new ParseException("Not a valid date format (day, week, month, year)");
     }
 
     /**

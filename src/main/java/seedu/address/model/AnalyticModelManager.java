@@ -8,6 +8,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.logging.Logger;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -25,9 +26,7 @@ public class AnalyticModelManager implements AnalyticModel {
 
     private final ObservableList<Expense> allExpenses;
     private final ObservableList<Category> allCategories;
-
-    //TODO link this to Budget class
-    private final double budget = 1000;
+    private final ObjectProperty<Budget> budget;
 
     private DoubleProperty monthlySpent;
     private DoubleProperty monthlyRemaining;
@@ -49,17 +48,24 @@ public class AnalyticModelManager implements AnalyticModel {
         requireNonNull(referenceDate);
         allExpenses = expenseTracker.getExpenseList();
         allCategories = expenseTracker.getCategoryList();
-        monthlySpent = new SimpleDoubleProperty();
-        monthlyRemaining = new SimpleDoubleProperty();
-        weeklySpent = new SimpleDoubleProperty();
-        weeklyRemaining = new SimpleDoubleProperty();
-        weeklyChange = new SimpleDoubleProperty();
-        monthlyChange = new SimpleDoubleProperty();
-        totalSpent = new SimpleDoubleProperty();
-        budgetPercentage = new SimpleDoubleProperty();
+        budget = expenseTracker.getBudgetForStats();
+        monthlySpent = new SimpleDoubleProperty(0);
+        monthlyRemaining = new SimpleDoubleProperty(0);
+        weeklySpent = new SimpleDoubleProperty(0);
+        weeklyRemaining = new SimpleDoubleProperty(0);
+        weeklyChange = new SimpleDoubleProperty(0);
+        monthlyChange = new SimpleDoubleProperty(0);
+        totalSpent = new SimpleDoubleProperty(0);
+        budgetPercentage = new SimpleDoubleProperty(0);
         currentDate = referenceDate;
         updateAllStatistics();
         allExpenses.addListener((ListChangeListener<Expense>) expenseChange -> {
+            updateAllStatistics();
+        });
+        budget.addListener((observable, oldValue, newValue) -> {
+            logger.info(String.valueOf(newValue));
+            setBudget(newValue);
+            logger.info(String.valueOf(budget.get().getMonthlyBudget()));
             updateAllStatistics();
         });
     }
@@ -70,6 +76,10 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     public AnalyticModelManager(ReadOnlyExpenseTracker expenseTracker) {
         this(expenseTracker, LocalDate.now());
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget.set(budget);
     }
 
     /**
@@ -102,7 +112,7 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getMonthlyRemaining() {
-        double remaining = budget - monthlySpent.get();
+        double remaining = budget.get().getMonthlyBudget() - monthlySpent.get();
         monthlyRemaining.set(remaining);
         return monthlyRemaining;
     }
@@ -134,7 +144,7 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getWeeklyRemaining() {
-        double remaining = (budget / 4) - weeklySpent.get();
+        double remaining = budget.get().getWeeklyBudget() - weeklySpent.get();
         weeklyRemaining.set(remaining);
         return weeklyRemaining;
     }
@@ -209,7 +219,7 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getBudgetPercentage() {
-        double percentage = (monthlySpent.get() / budget) * 100;
+        double percentage = (monthlySpent.get() / budget.get().getMonthlyBudget()) * 100;
         if (percentage > 100) {
             percentage = 100;
         }
@@ -225,6 +235,18 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public DoubleProperty getAnalyticsData(AnalyticsType type) throws IllegalArgumentException {
+        if (this.budget.get().getMonthlyBudget() == 0) {
+            switch (type) {
+            case MONTHLY_SPENT:
+                return getMonthlySpent();
+            case WEEKLY_SPENT:
+                return getWeeklySpent();
+            case TOTAL_SPENT:
+                return getTotalSpent();
+            default:
+                return new SimpleDoubleProperty(0);
+            }
+        }
         switch(type) {
         case MONTHLY_SPENT:
             return getMonthlySpent();
@@ -252,13 +274,26 @@ public class AnalyticModelManager implements AnalyticModel {
      */
     @Override
     public void updateAllStatistics() {
+        if (this.budget.get().getMonthlyBudget() == 0) {
+            logger.info("entered");
+            getTotalSpent();
+            getMonthlySpent();
+            getWeeklySpent();
+            this.weeklyChange.set(0);
+            this.monthlyChange.set(0);
+            this.weeklyRemaining.set(0);
+            this.monthlyRemaining.set(0);
+            this.budgetPercentage.set(0);
+            return;
+        }
+        logger.info("entered 2");
+        getTotalSpent();
         getMonthlySpent();
-        getMonthlyRemaining();
         getWeeklySpent();
+        getMonthlyRemaining();
         getWeeklyRemaining();
         getWeeklyChange();
         getMonthlyChange();
-        getTotalSpent();
         getBudgetPercentage();
     }
 

@@ -8,12 +8,14 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Budget;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * A default model stub that have some methods failing.
@@ -21,6 +23,7 @@ import seedu.address.model.expense.Expense;
 public class ModelStub implements Model {
     private ObservableList<Category> categories = FXCollections.observableArrayList();
     private ObservableList<Expense> expenses = FXCollections.observableArrayList();
+    private ObservableList<RecurringExpenseManager> recurringGenerators = FXCollections.observableArrayList();
 
     @Override
     public void addCategory(Category toAdd) {
@@ -96,6 +99,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setExpense(int index, Expense newExpense) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasExpense(Expense expense) {
         // Check if the expense is in the list
         return expenses.contains(expense);
@@ -151,6 +159,41 @@ public class ModelStub implements Model {
     public Category getCategoryInstance(Category categoryName) {
         // get the category instance
         return null;
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return recurringGenerators;
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRetroactiveExpenses() {
+        throw new AssertionError("This method should not be called.");
     }
 
 }

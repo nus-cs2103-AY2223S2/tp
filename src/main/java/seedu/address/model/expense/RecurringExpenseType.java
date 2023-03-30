@@ -4,7 +4,7 @@ import java.time.LocalDate;
 /**
  * Enum for Recurring Expense Type.
  */
-enum RecurringExpenseType {
+public enum RecurringExpenseType {
     MONTHLY,
     WEEKLY,
     DAILY,
@@ -16,23 +16,21 @@ enum RecurringExpenseType {
      * @return The next expense date.
      */
     public LocalDate getNextExpenseDate(LocalDate currentDate) {
-        while (currentDate.isBefore(LocalDate.now())) {
-            switch (this) {
-            case MONTHLY:
-                currentDate = currentDate.plusMonths(1);
-                break;
-            case WEEKLY:
-                currentDate = currentDate.plusWeeks(1);
-                break;
-            case DAILY:
-                currentDate = LocalDate.now().plusDays(1);
-                break;
-            case YEARLY:
-                currentDate = currentDate.plusYears(1);
-                break;
-            default:
-                break;
-            }
+        switch (this) {
+        case MONTHLY:
+            currentDate = currentDate.plusMonths(1);
+            break;
+        case WEEKLY:
+            currentDate = currentDate.plusWeeks(1);
+            break;
+        case DAILY:
+            currentDate = LocalDate.now().plusDays(1);
+            break;
+        case YEARLY:
+            currentDate = currentDate.plusYears(1);
+            break;
+        default:
+            break;
         }
         return currentDate;
     }

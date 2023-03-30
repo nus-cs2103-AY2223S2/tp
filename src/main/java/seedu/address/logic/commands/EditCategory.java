@@ -16,7 +16,7 @@ import seedu.address.model.category.UserDefinedCategory;
  * Edits a category in the ExpenseTracker
  */
 public class EditCategory extends Command {
-    public static final String COMMAND_WORD = "ecat";
+    public static final String COMMAND_WORD = "edcat";
 
     private final Index targetIndex;
 

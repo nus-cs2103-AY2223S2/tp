@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * The API of the DataModel component.
@@ -76,6 +77,13 @@ public interface Model {
     void clearExpense();
 
     /**
+     * Replaces the Expense in the expense list at the given index.
+     * @param index
+     * @param expense
+     */
+    void setExpense(int index, Expense expense);
+
+    /**
      * Replaces the given expense {@code target} with {@code editedExpense}.
      * {@code target} must exist in the expense list
      */
@@ -141,4 +149,40 @@ public interface Model {
      * @return the category instance if it exists, and null if it does not
      */
     Category getCategoryInstance(Category category);
+
+    /**
+     * Sets budget for FastTrack.
+     * @param budget
+     */
+    void setBudget(Budget budget);
+
+    /**
+     * Indicates if a RecurringExpense exists in the RecurringExpenseList
+     * @param recurringExpense the RecurringExpense to check for
+     */
+    boolean hasRecurringExpense(RecurringExpenseManager recurringExpense);
+
+    /**
+     * Adds a RecurringExpense to the RecurringExpense list.
+     * @param recurringExpenseManager the Recurring expense to add.
+     */
+    void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager);
+
+    /** Returns an unmodifiable view of the recurring expense list */
+    ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
+
+    /**
+     * Updates the filter of the filtered recurring expense manager list to filter by the given
+     * {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate);
+
+    /**
+     * Deletes the target {@code RecurringExpense} from the recurring expense list.
+     * @param recurringExpenseManager the recurring expense to be deleted.
+     */
+    void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager);
+
+    void addRetroactiveExpenses();
 }

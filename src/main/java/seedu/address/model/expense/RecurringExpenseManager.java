@@ -18,6 +18,7 @@ public class RecurringExpenseManager {
     private LocalDate endDate = null;
     private RecurringExpenseType recurringExpenseType;
 
+
     /**
      * The constructor for the RecurringExpenseManager class with a start and end date.
      * @param expenseName The name of the recurring expense.
@@ -36,6 +37,7 @@ public class RecurringExpenseManager {
         this.startDate = startDate;
         this.endDate = endDate;
         this.recurringExpenseType = recurringExpenseType;
+        this.nextExpenseDate = startDate;
     }
 
     /**
@@ -53,31 +55,38 @@ public class RecurringExpenseManager {
         this.expenseCategory = expenseCategory;
         this.startDate = startDate;
         this.recurringExpenseType = recurringExpenseType;
-        // Get the next expense date from recurringExpenseType
-        this.nextExpenseDate = recurringExpenseType.getNextExpenseDate(startDate);
+        this.nextExpenseDate = startDate;
     }
 
 
     public ArrayList<Expense> getExpenses() {
         ArrayList<Expense> expenses = new ArrayList<>();
-        LocalDate currentExpense = startDate;
-        LocalDate lastDate = endDate == null ? nextExpenseDate : endDate;
-        while (currentExpense.isBefore(lastDate)) {
-            expenses.add(new Expense(expenseName, expenseAmount, currentExpense, expenseCategory));
-            currentExpense = recurringExpenseType.getNextExpenseDate(currentExpense);
-        }
-        nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
-        if (LocalDate.now().isAfter(nextExpenseDate)) {
+        while (nextExpenseDate.isBefore(LocalDate.now())) {
+            expenses.add(new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory));
             nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
-            Expense nextExpense = new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory);
-            // add the next expense if it is not already in the list
-            if (!expenses.contains(nextExpense)) {
-                expenses.add(nextExpense);
-            }
         }
-        startDate = nextExpenseDate;
         numberOfExpenses = expenses.size();
         return expenses;
+    }
+
+    public void setExpenseCategory(Category expenseCategory) {
+        this.expenseCategory = expenseCategory;
+    }
+
+    public void setExpenseName(String expenseName) {
+        this.expenseName = expenseName;
+    }
+
+    public void setExpenseAmount(double expenseAmount) {
+        this.expenseAmount = expenseAmount;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setRecurringExpenseType(RecurringExpenseType recurringExpenseType) {
+        this.recurringExpenseType = recurringExpenseType;
     }
 
     public void editRecurringExpenseName(String name) {
@@ -100,10 +109,89 @@ public class RecurringExpenseManager {
         return expenseAmount * numberOfExpenses;
     }
 
+    public LocalDate getNextExpenseDate() {
+        return nextExpenseDate;
+    }
+
+    public LocalDate getExpenseStartDate() {
+        return startDate;
+    }
+
+    public RecurringExpenseType getRecurringExpenseType() {
+        return recurringExpenseType;
+    }
+
+    public LocalDate getExpenseEndDate() {
+        return endDate;
+    }
+
+    public String getExpenseName() {
+        return expenseName;
+    }
+
+
+
+    public Category getExpenseCategory() {
+        return expenseCategory;
+    }
+
+    public double getExpenseAmount() {
+        return expenseAmount;
+    }
+
+    public void setNextExpenseDate(LocalDate nextExpenseDate) {
+        this.nextExpenseDate = nextExpenseDate;
+    }
+
     @Override
     public String toString() {
         return "Recurring Expense: " + expenseName + " Amount: " + expenseAmount + " Category: "
                 + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
                 + " Recurring Expense Type: " + recurringExpenseType;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        RecurringExpenseManager recurringExpense = (RecurringExpenseManager) object;
+
+        if (!recurringExpense.startDate.isEqual(this.startDate)) {
+            return false;
+        }
+
+        if (recurringExpense.expenseAmount != this.expenseAmount) {
+            return false;
+        }
+
+        if (!recurringExpense.nextExpenseDate.isEqual(this.nextExpenseDate)) {
+            return false;
+        }
+
+        if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
+            return false;
+        }
+
+        if (!recurringExpense.expenseCategory.equals(this.expenseCategory)) {
+            return false;
+        }
+
+        if (!recurringExpense.expenseName.equals(this.expenseName)) {
+            return false;
+        }
+
+        if (recurringExpense.endDate == null) {
+            return this.endDate == null;
+        }
+
+        if (!recurringExpense.endDate.isEqual(this.endDate)) {
+            return false;
+        }
+        return true;
     }
 }

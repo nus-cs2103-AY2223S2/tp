@@ -8,19 +8,22 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.commands.AddExpenseCommand;
+import seedu.address.logic.commands.AddRecurringExpenseCommand;
 import seedu.address.logic.commands.CategorySummaryCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCategoryCommand;
 import seedu.address.logic.commands.DeleteExpenseCommand;
+import seedu.address.logic.commands.DeleteRecurringExpenseCommand;
 import seedu.address.logic.commands.EditCategory;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditExpenseCommand;
+import seedu.address.logic.commands.EditRecurringExpenseManagerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCategoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SetBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,9 +57,6 @@ public class ExpenseTrackerParser {
         case AddExpenseCommand.COMMAND_WORD:
             return new AddExpenseCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case DeleteExpenseCommand.COMMAND_WORD:
             return new DeleteExpenseCommandParser().parse(arguments);
 
@@ -87,11 +87,23 @@ public class ExpenseTrackerParser {
         case EditExpenseCommand.COMMAND_WORD:
             return new EditExpenseCommandParser().parse(arguments);
 
+        case SetBudgetCommand.COMMAND_WORD:
+            return new SetBudgetParser().parse(arguments);
+
         case CategorySummaryCommand.COMMAND_WORD:
             return new CategorySummaryParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case EditRecurringExpenseManagerCommand.COMMAND_WORD:
+            return new EditRecurringExpenseManagerCommandParser().parse(arguments);
+
+        case AddRecurringExpenseCommand.COMMAND_WORD:
+            return new AddRecurringExpenseParser().parse(arguments);
+
+        case DeleteRecurringExpenseCommand.COMMAND_WORD:
+            return new DeleteRecurringExpenseParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

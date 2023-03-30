@@ -13,6 +13,7 @@ import seedu.address.model.ExpenseTracker;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * An Immutable ExpenseTracker that is serializable to JSON format.
@@ -26,6 +27,9 @@ class JsonSerializableExpenseTracker {
     private final List<JsonAdaptedCategory> categories = new ArrayList<>();
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
 
+    private final List<JsonAdaptedRecurringExpenseManager> recurringGenerators = new ArrayList<>();
+    private final JsonAdaptedBudget budget;
+
     /**
      * Constructs a {@code JsonSerializableExpenseTracker} with the given expenses
      * and categories.
@@ -34,9 +38,13 @@ class JsonSerializableExpenseTracker {
      */
     @JsonCreator
     public JsonSerializableExpenseTracker(@JsonProperty("categories") List<JsonAdaptedCategory> listOfCategories,
-            @JsonProperty("expenses") List<JsonAdaptedExpense> listOfExpenses) {
+            @JsonProperty("expenses") List<JsonAdaptedExpense> listOfExpenses,
+            @JsonProperty("budget") JsonAdaptedBudget budget,
+            @JsonProperty("recurringGenerators") List<JsonAdaptedRecurringExpenseManager> recurringGenerators) {
         this.categories.addAll(listOfCategories);
         this.expenses.addAll(listOfExpenses);
+        this.budget = budget;
+        this.recurringGenerators.addAll(recurringGenerators);
     }
 
     /**
@@ -50,6 +58,9 @@ class JsonSerializableExpenseTracker {
                 .stream().map(JsonAdaptedCategory::new).collect(Collectors.toList()));
         this.expenses.addAll(source.getExpenseList()
                 .stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
+        this.budget = new JsonAdaptedBudget(source.getBudget());
+        this.recurringGenerators.addAll(source.getRecurringExpenseGenerators()
+                .stream().map(JsonAdaptedRecurringExpenseManager::new).collect(Collectors.toList()));
     }
 
     /**
@@ -64,6 +75,17 @@ class JsonSerializableExpenseTracker {
             expenseTracker.addCategory(category);
         }
 
+        for (JsonAdaptedRecurringExpenseManager jsonAdaptedGenerator : recurringGenerators) {
+            RecurringExpenseManager expenseGenerator = jsonAdaptedGenerator.toModelType();
+            Category associatedCategory = getAssociatedCategoryForRecurring(expenseGenerator, expenseTracker);
+            if (associatedCategory == null) {
+                expenseTracker.addCategory(expenseGenerator.getExpenseCategory());
+            } else {
+                expenseGenerator.setExpenseCategory(associatedCategory);
+            }
+            expenseTracker.addRecurringGenerator(expenseGenerator);
+        }
+
         for (JsonAdaptedExpense jsonAdaptedExpense : expenses) {
             Expense expense = jsonAdaptedExpense.toModelType();
             Category associatedCategory = getAssociatedCategory(expense, expenseTracker);
@@ -75,6 +97,8 @@ class JsonSerializableExpenseTracker {
             expenseTracker.addExpense(expense);
         }
 
+        expenseTracker.setBudget(budget.toModelType());
+
         return expenseTracker;
     }
 
@@ -82,4 +106,7 @@ class JsonSerializableExpenseTracker {
         return expenseTracker.getCategoryInstance(expense.getCategory());
     }
 
+    private Category getAssociatedCategoryForRecurring(RecurringExpenseManager recur, ExpenseTracker expenseTracker) {
+        return expenseTracker.getCategoryInstance(recur.getExpenseCategory());
+    }
 }

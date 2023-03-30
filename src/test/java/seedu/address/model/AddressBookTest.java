@@ -8,15 +8,19 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.person.Person;
 
 public class AddressBookTest {
 
     private final ExpenseTracker addressBook = new ExpenseTracker();
+
 
     @Test
     public void constructor() {
@@ -84,6 +88,8 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Category> categories = FXCollections.observableArrayList();
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
+        private final ObservableList<RecurringExpenseManager> expenseGenerators = FXCollections.observableArrayList();
+        private final ObjectProperty<Budget> simpleBudget = new SimpleObjectProperty<>(new Budget(0));
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -97,6 +103,21 @@ public class AddressBookTest {
         @Override
         public ObservableList<Expense> getExpenseList() {
             return expenses;
+        }
+
+        @Override
+        public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+            return expenseGenerators;
+        }
+
+        @Override
+        public ObjectProperty<Budget> getBudgetForStats() {
+            return this.simpleBudget;
+        }
+
+        @Override
+        public Budget getBudget() {
+            return this.simpleBudget.get();
         }
     }
 

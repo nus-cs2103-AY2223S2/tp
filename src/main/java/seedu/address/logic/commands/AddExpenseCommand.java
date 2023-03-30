@@ -23,7 +23,7 @@ public class AddExpenseCommand extends Command {
             + PREFIX_NAME + "EXPENSE NAME "
             + PREFIX_CATEGORY + "CATEGORY "
             + PREFIX_PRICE + "AMOUNT "
-            + PREFIX_DATE + "[DATE]"
+            + "[" + PREFIX_DATE + "DATE]"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Milk"
             + PREFIX_CATEGORY + "groceries"
