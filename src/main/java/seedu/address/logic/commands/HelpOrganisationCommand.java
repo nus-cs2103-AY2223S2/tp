@@ -11,7 +11,7 @@ public class HelpOrganisationCommand extends HelpCommand {
 
     public static final String HEADER_1 = "----- Tab-leport Commands -----\n";
 
-    public static final String HEADER_2 = "----- Filtering/Sorting Commands -----\n";
+    public static final String HEADER_2 = "\n----- Filtering/Sorting Commands -----\n";
 
     public static final String CD_STUDENT = "Go to Students tab: "
             + "         cd_student\n";
