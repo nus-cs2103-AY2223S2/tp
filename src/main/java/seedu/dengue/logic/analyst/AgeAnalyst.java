@@ -46,19 +46,4 @@ public class AgeAnalyst extends Analyst {
     List<DataBin> getBins() {
         return this.bins;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-
-        if (!(obj instanceof AgeAnalyst)) {
-            return false;
-        }
-
-        AgeAnalyst other = (AgeAnalyst) obj;
-        return this.bins.equals(other.bins)
-                && (this.total == other.total);
-    }
 }

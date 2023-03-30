@@ -5,28 +5,28 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Verdana";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Verdana";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Verdana";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Verdana";
 }
 
 .tab-pane {
@@ -333,7 +333,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #FFF5DA;
+    -fx-background-color: #B3A79B;
     -fx-background-insets: 2;
 }
 
@@ -400,20 +400,34 @@
     -fx-font-size: 11;
 }
 
+#overviewDisplay {
+    -fx-background-color: #CCD5AE;
+}
+
 .overview-title {
-    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-family: "Verdana";
     -fx-font-size: 16px;
-    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+    -fx-text-fill: #3D4A5A;
 }
 
 .overview-subtitle {
     -fx-font-family: "Lucida Sans Typewriter";
+    -fx-padding: 2;
     -fx-font-size: 14px;
-    -fx-text-fill: black;
+    -fx-font-style: italic;
+    -fx-text-fill: #3D4A5A;
 }
 
 .overview-content {
     -fx-font-family: "Lucida Sans Typewriter";
     -fx-font-size: 12px;
-    -fx-text-fill: black;
+    -fx-padding: 5 0 5 0;
+    -fx-background-color: #E9EDC9;
+    -fx-text-fill: #3D4A5A;
+}
+
+#overviewContent .content {
+    -fx-background-color: #E9EDC9;
 }
