@@ -49,10 +49,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyModuleTracker addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyModuleTracker getAddressBook();
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.

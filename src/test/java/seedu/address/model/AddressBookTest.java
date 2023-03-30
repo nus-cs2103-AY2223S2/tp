@@ -86,7 +86,7 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose modules list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyModuleTracker {
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Module> modules) {

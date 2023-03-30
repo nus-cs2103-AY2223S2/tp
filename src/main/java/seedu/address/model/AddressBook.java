@@ -12,7 +12,7 @@ import seedu.address.model.module.UniqueModuleList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameModule comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class AddressBook implements ReadOnlyModuleTracker {
 
     private final UniqueModuleList modules;
 
@@ -32,7 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Modules in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public AddressBook(ReadOnlyModuleTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyModuleTracker newData) {
         requireNonNull(newData);
 
         setModules(newData.getModuleList());

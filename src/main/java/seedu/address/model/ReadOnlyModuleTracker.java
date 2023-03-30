@@ -6,7 +6,7 @@ import seedu.address.model.module.Module;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyModuleTracker {
 
     /**
      * Returns an unmodifiable view of the modules list.
