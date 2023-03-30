@@ -45,6 +45,7 @@ public class RecipeForm extends UiPart<Region> {
     //Logic executors and system logging
     private final CommandExecutor commandExecutor;
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final StringBuilder data;
     //UI child elements
     @FXML
     private TextField nameField;
@@ -76,11 +77,12 @@ public class RecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to edit or null for creating a new recipe.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public RecipeForm(Recipe recipe, int displayedIndex, CommandExecutor commandExecutor) {
+    public RecipeForm(Recipe recipe, int displayedIndex, CommandExecutor commandExecutor, StringBuilder data) {
         super(FXML);
         this.recipe = recipe;
         this.commandExecutor = commandExecutor;
         this.displayedIndex = displayedIndex;
+        this.data = data;
         if (recipe != null) {
             populateFields();
         }
@@ -219,13 +221,13 @@ public class RecipeForm extends UiPart<Region> {
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                             );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                            );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
@@ -343,18 +345,14 @@ public class RecipeForm extends UiPart<Region> {
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
     private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
-        try {
-            StringBuilder commands = new StringBuilder();
+        StringBuilder commands = new StringBuilder();
 
-            // Add the index of the item to edit.
-            commands.append(index);
-            commands = collectFields(commands, changedValues);
-            String commandText = "edit " + commands.toString();
+        // Add the index of the item to edit.
+        commands.append(index);
+        commands = collectFields(commands, changedValues);
+        String commandText = "edit " + commands.toString();
 
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: " + index);
-        }
+        data.append(commandText);
     }
 
     /**

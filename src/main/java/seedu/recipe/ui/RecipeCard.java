@@ -25,6 +25,7 @@ import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
 
 /**
@@ -137,8 +138,11 @@ public class RecipeCard extends UiPart<Region> {
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
                 try {
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex, commandExecutor);
+                    StringBuilder data = new StringBuilder();
+                    RecipeForm form = new RecipeForm(recipe, displayedIndex, commandExecutor, data);
                     form.display();
+                    EditRecipeEvent editEvent = new EditRecipeEvent(data.toString());
+                    cardPane.fireEvent(editEvent);
                 } catch (Exception e) {
                     // catch-em-all is bad!
                     System.out.println(e);
