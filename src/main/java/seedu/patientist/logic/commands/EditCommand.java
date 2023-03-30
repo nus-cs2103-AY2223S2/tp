@@ -114,7 +114,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
 
         return new Patient(patientToEdit.getIdNumber(), updatedName, updatedPhone, updatedEmail, updatedAddress,
-                patientToEdit.getPatientStatusDetails(), updatedTags);
+                patientToEdit.getPatientStatusDetails(), patientToEdit.getPatientToDoList(), updatedTags);
     }
 
     /**

@@ -41,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_PID_BOB = "Y78932734N";
     public static final String VALID_STATUS_AMY = "Doing fine";
     public static final String VALID_STATUS_BOB = "Feeling dizzy";
+    public static final String VALID_TODO_AMY = "Take medicine";
+    public static final String VALID_TODO_BOB = "Physiotherapy at 2pm";
 
     public static final String VALID_WARD_AMY = "Block A Ward 1";
     public static final String VALID_WARD_BOB = "Block B Ward 2";
