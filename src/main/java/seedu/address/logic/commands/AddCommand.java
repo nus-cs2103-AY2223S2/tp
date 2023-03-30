@@ -50,7 +50,7 @@ public class AddCommand extends Command {
             + PREFIX_REMARK + "Needs help with algebra"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
-            + PREFIX_MODULE + "Math";
+            + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
