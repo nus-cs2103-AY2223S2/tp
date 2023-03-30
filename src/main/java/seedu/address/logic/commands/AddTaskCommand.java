@@ -12,7 +12,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Task;
-import seedu.address.model.person.TaskList;
 
 /**
  * Changes the task of an existing person in the address book.
@@ -30,8 +29,8 @@ public class AddTaskCommand extends Command {
             + PREFIX_ADD_TASK + "Time to swim.";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Task: %2$s";
-    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added task to Person: %1$s";
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed task from person: %1$s";
+    public static final String MESSAGE_ADD_TASK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed remark from Person: %1$s";
 
     private final Index index;
     private final Task task;
@@ -55,13 +54,12 @@ public class AddTaskCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        TaskList editedTaskList = personToEdit.getTasks().add(task);
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getGender(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getCompany(), personToEdit.getLocation(),
                 personToEdit.getOccupation(), personToEdit.getJobTitle(),
                 personToEdit.getAddress(), personToEdit.getRemark(),
-                personToEdit.getTags(), editedTaskList, personToEdit.getStatus());
+                personToEdit.getTags(), task, personToEdit.getStatus());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

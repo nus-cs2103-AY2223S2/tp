@@ -34,16 +34,15 @@ public class Person {
 
     private final Remark remark;
     private final LeadStatus status;
-    private final TaskList tasks;
+    private final Task task;
 
     /**
      * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark,
-                  Set<Tag> tags, TaskList tasks) {
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task) {
         requireAllNonNull(name, gender, phone, email, company, location,
-                occupation, jobTitle, address, tags, remark, tasks);
+                occupation, jobTitle, address, tags, remark, task);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -56,18 +55,17 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = new LeadStatus(LeadStatusName.UNCONTACTED.getLabel());
-        this.tasks = tasks;
+        this.task = task;
     }
 
     /**
      * Constructor for a person with a given LeadStatus.
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
-                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark,
-                  Set<Tag> tags, TaskList tasks,
+                  Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task,
                   LeadStatus status) {
         requireAllNonNull(name, gender, phone, email, company, location,
-                occupation, jobTitle, address, tags, remark, tasks, status);
+                occupation, jobTitle, address, tags, remark, task, status);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -80,7 +78,7 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = status;
-        this.tasks = tasks;
+        this.task = task;
 
     }
 
@@ -128,8 +126,8 @@ public class Person {
         return status;
     }
 
-    public TaskList getTasks() {
-        return this.tasks;
+    public Task getTask() {
+        return this.task;
     }
 
     /**
@@ -162,8 +160,8 @@ public class Person {
             return remark.toString();
         case "status":
             return status.getStatusName().getLabel();
-        case "task": //"should be changed to tasklist but need to check through based on where it is
-            return tasks.toString();
+        case "task":
+            return task.toString();
         default:
             throw new IllegalValueException("Attribute does not exists!");
         }
@@ -249,7 +247,7 @@ public class Person {
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Task: ")
-                .append(getTasks());
+                .append(getTask());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -282,7 +280,7 @@ public class Person {
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Task: ")
-                .append(getTasks());
+                .append(getTask());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

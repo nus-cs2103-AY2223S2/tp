@@ -150,7 +150,7 @@ If no status is specified, lists the status associated with the contact.
 
 The lead status follows a set of rules, to be implemented in v1.3
 
-Format:
+Format:  
 `status INDEX_NUMBER|NAME`
 `status INDEX_NUMBER|NAME [STATUS …]`
 
@@ -201,13 +201,13 @@ The user can use either the long form or short form method to search
 
 The 4 stages of lead status
 UNCONTACTED: `Uncontacted` or `U`
-WORKING: `Working` or `W`
+WORKING: `Working` or `W` 
 QUALIFIED: `Qualified` or `Q`
 UNQUALIFIED: `Unqualified` or `X`
 
 - The search is case-insensitive. e.g `u` will match `U`
 - The search works for both short form and long form. e.g `U` will match `Uncontacted`
-- Persons matching the tag will be returned
+- Persons matching the tag will be returned 
   e.g. `findlead U` will return `Hans Gruber` who is a contact with a lead status of `Uncontacted`
 
 Examples:
