@@ -70,12 +70,15 @@ public class EditCommand extends Command {
 
         return new Event(updatedName, updatedDate, updatedStartTime, updatedEndTime);
     }
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
@@ -89,6 +92,10 @@ public class EditCommand extends Command {
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+        model.clearRecent();
+        model.recentCommand().add(this);
+        model.addRecentEvent(eventToEdit);
+        model.addRecentEvent(editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
