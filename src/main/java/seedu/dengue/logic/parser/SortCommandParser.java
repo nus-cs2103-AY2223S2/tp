@@ -5,6 +5,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.dengue.logic.commands.RedoCommand;
 import seedu.dengue.logic.commands.SortCommand;
 import seedu.dengue.logic.comparators.PersonAgeComparator;
 import seedu.dengue.logic.comparators.PersonDateComparator;
@@ -14,7 +15,7 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new SortCommand object.
  */
-public class SortCommandParser {
+public class SortCommandParser implements Parser<SortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
