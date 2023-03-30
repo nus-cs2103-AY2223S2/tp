@@ -16,6 +16,7 @@ public class CheckPlaneCommand implements Command {
     private static final String INVALID_INDEX_VALUE_MESSAGE =
             "%s is an invalid value.\n"
                     + "Please try using an integer instead.";
+
     /**
      * The UUID of the plane whose availability is to be checked.
      */
@@ -52,7 +53,6 @@ public class CheckPlaneCommand implements Command {
         }
 
         isAvailable = model.checkPlaneByIndex(planeId);
-
         Plane plane = model.getPlaneManager().getItem(planeId);
         if (isAvailable) {
             return new CommandResult(String.format(
