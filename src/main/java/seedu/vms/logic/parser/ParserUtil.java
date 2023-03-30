@@ -1,7 +1,9 @@
 package seedu.vms.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.vms.commons.core.Messages.*;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
+import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
+import static seedu.vms.commons.core.Messages.MESSAGE_KEYWORD_IS_EMPTY;
 import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
@@ -23,7 +25,6 @@ import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.keyword.Keyword;
-import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
