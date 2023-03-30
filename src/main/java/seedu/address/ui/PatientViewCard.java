@@ -5,6 +5,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
+import java.util.Comparator;
+
 public class PatientViewCard extends UiPart<Stage> {
 
     private static final String FXML = "PatientViewCard.fxml";
@@ -17,7 +19,9 @@ public class PatientViewCard extends UiPart<Stage> {
         if (patient == null) {
             patientViewCard.setText("");
         } else {
-            patientViewCard.setGraphic(new PatientCard(patient).getRoot());
+            patientViewCard.setText(patient.getName().fullName + "\n" + patient.getAddress().value + "\n"
+                    + patient.getPhone().value + "\n" + patient.getEmail().value + "\n" + patient.getRemark() + "\n"
+                    + patient.getTags().toString());
         }
     }
 
