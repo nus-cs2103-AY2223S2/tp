@@ -6,7 +6,6 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.dengue.logic.commands.RedoCommand;
 import seedu.dengue.logic.commands.SortCommand;
 import seedu.dengue.logic.comparators.PersonAgeComparator;
 import seedu.dengue.logic.comparators.PersonDateComparator;
