@@ -130,8 +130,6 @@
 }
 
 .list-view {
-    -fx-padding: 2px;
-    -fx-background-color: derive(#a1826d, 50%);
 }
 
 .list-view .scroll-bar:vertical {
@@ -140,10 +138,7 @@
 }
 
 .list-cell {
-    -fx-padding: 4px;
     -fx-label-padding: 5 5 5 5;
-    -fx-graphic-text-gap : 10;
-    -fx-background-insets: 0px, 2px ;
     -fx-background-radius: 10;
 }
 
@@ -154,11 +149,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color:  derive(#a1826d, 50%);
+    -fx-background-color:  transparent;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color:  derive(#a1826d, 50%);
+    -fx-background-color:  transparent;
 }
 
 .list-cell:filled:selected {
@@ -247,11 +242,13 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#a1826d, 50%);
+    -fx-background-color: derive(#a1826d, 0%);
 }
 
 .context-menu .label {
-    -fx-text-fill: derive(#a1826d, 20%);
+    -fx-font-family: "Satoshi Black";
+
+    -fx-text-fill: white;
 }
 
 .menu-bar {
