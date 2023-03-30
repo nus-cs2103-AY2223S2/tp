@@ -15,8 +15,10 @@ title: User Guide
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+   ![Ui](images/Ui2.png)
+   ![Ui](images/Ui3.png)
+   ![Ui](images/Ui4.png)
 
-   
 --------------------------------------------------------------------------------------------------------------------
 User Guide
 
@@ -171,16 +173,6 @@ Examples:
 * `openFile Tutorial/1`
 * `openFile Lab/5`
 
-### Exit from application: `Exit application`
-
-Exits from TrAcker
-
-Format: `:wq`
-
-Examples:
-
-* `:wq`
-
 --------------------------------------------------------------------
 *Student-Event CRUD Features*
 
@@ -217,7 +209,7 @@ Examples:
 
 * `rm 1`
 
-### Add student to event: `addStudent`
+### Add student to event: `addStudent to Event`
 
 Add a student to an event.
 
@@ -234,7 +226,7 @@ Examples:
 * `addStudent 1 Tutorial/tut1`
 * `addStudent 4 Lab/mock_lab_session`
 
-### Delete student from event: `deleteStudent`
+### Delete student from event: `deleteStudent from Event`
 
 Deletes a student from an event.
 
@@ -254,7 +246,7 @@ Examples:
 --------------------------------------------------------------------
 *Note Features*
 
-### Add note for event: `add-note`
+### Add note for event: `Add Note`
 
 Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
 
@@ -303,100 +295,10 @@ Examples:
 * `edit-note -content grade student labs timely\n -type Lab -name 2 -index 1`
 * `edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0`
 
------------------------------------------------------------------
-Old UG commands (to remove)
------------------------------------------------------------------
+--------------------------------------------------------------------
+*Help Features*
 
-Sort student: `sort student`
-
-Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
-
-Format: `sort student [type] [sorting order]`
-
-This method is designed for ease of grading students based on their attendance to tutorials and labs.
-
-Examples:
-* `sort students labs reverse`
-* `sort students tutorials nonreverse`
-
-
-Find specific non-recurring event: `find event`
-
-Find a specific task on a particular date and (optional) time
-
-Format: `/ event [date] [startTime] [endTime]`
-
-Examples:
-
-
-
-Navigate to students in recurring event: `show event students`
-
-Show specific task’s students based on index from list of **all **non-recurring tasks or based on name.
-
-Once entered, use the students command features to add, delete, edit students.
-
-Format:
-
-* `:cd nr [name] or [index] students`
-
-Examples:
-
-* `:cd nr 1 students`
-* `:cd nr consultation students`
-
-
-
-Navigate to students in recurring event: `show recur students`
-
-Show specific recurring task students based on index from list of **all **recurring tasks or based on name.
-
-Once entered, use the students command features to add, delete, edit students.
-
-Format:
-
-* `:cd [name] or [index] students`
-
-Examples:
-
-* `:cd 1 students`
-* `:cd weeklyTutorials students`
-
-
-### Sort recurring events: `sort recur`
-
-Sorts the recurring events available in the order specified by the TA. The sorting method can either be alphabetical, date or duration. With each sorting method, the TA can also choose top down or bottom up order as well.
-
-The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
-
-Format: `sort [type] [sorting method] [sorting order]`
-
-Examples:
-
-* `sort lab alphabetical reverse`
-* `sort tutorial duration nonreverse`
-* `sort consultation date nonreverse`
-
-
-### Replace existing list with sorted list: `replace sort recur`
-
-Similar to the sorting command, except with a "replace" keyword in front. This function overwrites the recurring event list with a sorted one with the sorting parameters specified.
-
-There should be a prompt to ask if the TA wants to proceed with overwriting as the process is irreversible.
-
-Format: `replace sort [type] [sorting method] [sorting order]`
-
-Examples:
-
-
-
-* `replace sort lab alphabetical reverse`
-* `replace sort tutorial duration nonreverse`
-* `replace sort consultation date nonreverse`
-
-
-
-### Help tutorial for recurring events: `help recur`
+### Help for events: `help`
 
 Returns a list of instructions on what the event encompasses and also what parameters and input format is required to successfully create said event.
 
@@ -405,15 +307,15 @@ This should help new TAs understand the syntax better and also reduces the need 
 Format: `help [type]`
 
 Examples:
-
-
-
+* `help`
 * `help lab`
 * `help tutorial`
 * `help consultation`
 
+--------------------------------------------------------------------
+*Sort / Filter features*
 
-### Sort students in recurring events: `sort-student`
+### Sort students in recurring events: `Sort Students`
 
 Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
 
@@ -431,7 +333,7 @@ Examples:
 * `sort-student all remark nonreverse`
 
 
-### Filter students in recurring events: `filter`
+### Filter students in recurring events: `Filter Students`
 
 Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
 
@@ -449,145 +351,17 @@ Examples:
 * `filter consultation urgency 20`
 * `filter all urgency 90`
 
+--------------------------------------------------------------------
+*Exit Application*
+### Exit from application: `Exit application`
 
-### Alert students in recurring events: `alert student`
+Exits from TrAcker
 
-Provides a list of students who are suddenly performing poorly based on a certain metric, such as a sudden drop in participation level or a sudden increase in urgency level.
-
-The filtered list should be a secondary list and does not replace the existing, non-sorted one. As of now, this can be subjective and we will increase ways to customise this so that the TA can specify what he defines as a “sudden change”.
-
-Format: `alert student [type] [metric] `
-
-Examples:
-
-* `alert student lab urgency `
-* `alert student tutorial participation`
-* `alert student consultation urgency`
-* `alert student all participation`
-
-
-### Adding a student: `add student`
-
-Adds a student to the student list.
-
-Format: `add student n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]`
-
-
-```
-Fields with brackets [] are optional. If they are empty, corresponding fields in the student's records will also be empty
-```
-
+Format: `:wq`
 
 Examples:
 
-
-
-* `add student n/Dijkstra`
-* `add student n/Tony Hoare p/97482842 t/T03 l/B09`
-
-
-### List all students: `list student`
-
-Lists all students of the TA user. Can be filtered according to events.
-
-Format: `ls student [task]`
-
-Examples:
-
-
-
-* `ls student`
-* `ls student Tutorials`
-* `ls student Labs`
-
-Deleting student: `delete student`
-
-Delete students based on index from list of students corresponding to an event
-
-Format:
-
-
-
-1. `:cd EVENT students`
-2. `:delete student INDEX`
-
-Examples:
-
-
-
-* `example 1`
-    * `:cd weeklyTutorials students`
-    * `:delete student 5`
-* `example 2`
-    * `:cd weeklyLabs students`
-    * `:delete student 1`
-
-Edit student: `edit student`
-
-Edit student details from list of all students
-
-Format: `edit INDEX n/NAME [p/PHONE_NUMBER] [e/EMAIL] [t/TUTORIAL_GROUP] [l/LAB_GROUP]`
-
-Edits the student at the specified INDEX within the student list.
-
-Existing values will be updated to the input values.
-
-Examples:
-
-
-
-* `edit 1 n/Dijkstra`
-* `edit 2 n/Tony Hoare p/97482842 t/T03 l/B09`
-
-
-
-* `/ event 2023-04-01`
-* `/ event 2023-03-12 8:00 10:00`
-
-Deleting non-recurring event: `delete event`
-
-Delete tasks based on index from list of **all **non-recurring tasks
-
-Format: `:delete event [start],[end]d`
-
-Examples:
-
-
-
-* `:delete event 5d`
-* `:delete event 5,10d`
-* `:delete event %d`
-* `:delete event .,10d`
-* `:delete event 1d,$`
-
-Edit non-recurring event: `edit event`
-
-Edit tasks based on index from list of **all **non-recurring tasks or unique name
-
-Format:
-
-
-
-* `:/%s/nr/[name] or [index]/[new task details]/g`
-* `:/%s/nr/[name] or [index]/[new task details]/gc`
-
-
-```
-nr stands for non-recurring
-```
-
-
-Examples:
-
-
-
-* `:/%s/nr/make-up-Tutorial/Extra-tutorial Tutorials 2023-04-14 14:00 1/g`
-* `:/%s/nr/1/Consultation Consultations 2023-04-14 16:00 1/g`
-
-
-```
-nr stands for non-recurring
-```
+* `:wq`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -747,7 +521,7 @@ nr stands for non-recurring
          </ul>
       </td>
    </tr>
-    <tr>
+   <tr>
       <td><strong>Add Note To Event</strong>
       </td>
       <td><code>add-note note -content hello world -type tutorial -name 2</code>
@@ -760,7 +534,7 @@ nr stands for non-recurring
          </ul>
       </td>
    </tr>
-    <tr>
+   <tr>
       <td><strong>Delete Note From Event</strong>
       </td>
       <td><code>delete note [type] [name or index] [note-index]</code>
@@ -773,7 +547,7 @@ nr stands for non-recurring
          </ul>
       </td>
    </tr>
-    <tr>
+   <tr>
       <td><strong>Edit Note In Event</strong>
       </td>
       <td><code>edit-note [type] [name or index] [note-index] [newcontent]</code>
@@ -786,7 +560,52 @@ nr stands for non-recurring
          </ul>
       </td>
    </tr>
-    <tr>
+   <tr>
+      <td><strong>Help</strong>
+      </td>
+      <td><code>help [type]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>help</code>
+            <li><code>help tutorial</code>
+            <li><code>help lab</code>
+            <li><code>help consultation</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Sort Students</strong>
+      </td>
+      <td><code>sort-student [group] [metric] [sorting order]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>sort-student lab name reverse</code>
+            <li><code>sort-student tutorial performance nonreverse</code>
+            <li><code>sort-student consultation email nonreverse</code>
+            <li><code>sort-student all remark nonreverse</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
+      <td><strong>Filter Students</strong>
+      </td>
+      <td><code>filter [type] [metric] [threshold]</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>filter lab performance 60</code>
+            <li><code>filter tutorial performance 50</code>
+            <li><code>filter consultation urgency 20</code>
+            <li><code>filter all urgency 90</code>
+            </li>
+         </ul>
+      </td>
+   </tr>
+   <tr>
       <td><strong>Exit application</strong>
       </td>
       <td><code>:wq</code>
@@ -800,14 +619,75 @@ nr stands for non-recurring
    </tr>
 </table>
 
+-----------------------------------------------------------------
+Old UG commands (to remove)
+-----------------------------------------------------------------
+
+Sort student: `sort student`
+
+Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
+
+Format: `sort student [type] [sorting order]`
+
+This method is designed for ease of grading students based on their attendance to tutorials and labs.
+
+Examples:
+* `sort students labs reverse`
+* `sort students tutorials nonreverse`
+
+### Sort students in recurring events: `sort-student`
+
+Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
+
+The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+
+Format: `sort-student [group] [metric] [sorting order]`
+For the [group], it can be only lab, tutorial, consultation, or all.
+For the [metric], it can be only name, address, email, performance or remark.
+
+Examples:
+
+* `sort-student lab name reverse`
+* `sort-student tutorial performance nonreverse`
+* `sort-student consultation email nonreverse`
+* `sort-student all remark nonreverse`
 
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+### Filter students in recurring events: `filter`
+
+Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
+
+The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
+
+Format: `filter [type] [metric] [threshold]`
+For the [group], it can be only lab, tutorial, consultation, or all.
+For the [metric], it can be only performance or urgency.
+The [threshold] value must be an integer between 0 to 100 (inclusive).
+
+Examples:
+
+* `filter lab performance 60 `
+* `filter tutorial performance 50`
+* `filter consultation urgency 20`
+* `filter all urgency 90`
+
+
+### Alert students in recurring events: `alert student`
+
+Provides a list of students who are suddenly performing poorly based on a certain metric, such as a sudden drop in participation level or a sudden increase in urgency level.
+
+The filtered list should be a secondary list and does not replace the existing, non-sorted one. As of now, this can be subjective and we will increase ways to customise this so that the TA can specify what he defines as a “sudden change”.
+
+Format: `alert student [type] [metric] `
+
+Examples:
+
+* `alert student lab urgency `
+* `alert student tutorial participation`
+* `alert student consultation urgency`
+* `alert student all participation`
+
+
+```
+nr stands for non-recurring
+```
