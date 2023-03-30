@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.HelpWindow;
 import seedu.address.ui.MainWindow;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
@@ -29,6 +30,7 @@ public class AddressBookWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
+    private final HelpWindow helpWindow;
     private final MainWindow dukeDriverWindow;
 
     private Stage primaryStage;
@@ -60,6 +62,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
         this.dukeDriverWindow = new MainWindow(primaryStage, logic);
+        this.helpWindow = this.dukeDriverWindow.getHelpWindow();
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -72,9 +75,11 @@ public class AddressBookWindow extends UiPart<Stage> {
      * {@code Logic} with a select handler and {@code MainWindow}.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic,
-                             Consumer<Person> selectHandler, MainWindow dukeDriverWindow) {
+                             Consumer<Person> selectHandler, MainWindow dukeDriverWindow,
+                             HelpWindow helpWindow) {
         super(FXML, primaryStage);
         this.dukeDriverWindow = dukeDriverWindow;
+        this.helpWindow = helpWindow;
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -110,6 +115,18 @@ public class AddressBookWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+            logger.info("Opened help window.");
+        } else {
+            helpWindow.focus();
+        }
     }
 
     /**
@@ -166,6 +183,10 @@ public class AddressBookWindow extends UiPart<Stage> {
 
             if (commandResult.isShowJobList()) {
                 handleListJob();
+            }
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
             }
 
             return commandResult;

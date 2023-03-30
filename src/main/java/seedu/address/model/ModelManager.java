@@ -245,12 +245,14 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
+        requireNonNull(sorter);
         sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         Collections.sort(sortedDeliveryJobs, sorter);
     }
 
     @Override
     public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+        requireNonNull(sorter);
         sortedDeliveryJobsList.setComparator(sorter);
     }
 

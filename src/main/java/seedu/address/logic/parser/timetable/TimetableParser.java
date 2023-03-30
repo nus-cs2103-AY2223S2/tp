@@ -38,6 +38,9 @@ public class TimetableParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
         case TimetableDateCommand.COMMAND_WORD:
             return new TimetableDateCommandParser().parse(arguments);
 

@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,11 +11,14 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -74,6 +78,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setDeliveryJobSystemFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setDeliveryJobSystemFilePath(null));
+    }
+
+    @Test
+    public void setDeliveryJobSystemFilePath_validPath_setsDeliveryJobSystemFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setDeliveryJobSystemFilePath(path);
+        assertEquals(path, modelManager.getDeliveryJobSystemFilePath());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
@@ -93,6 +109,59 @@ public class ModelManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void getFilteredDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredDeliveryJobList().remove(0));
+    }
+
+    @Test
+    public void getSortedDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedDeliveryJobList().remove(0));
+    }
+
+    @Test
+    public void getSortedDeliveryJobListByComparator_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedDeliveryJobListByComparator().remove(0));
+    }
+
+    @Test
+    public void getUnscheduledDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getUnscheduledDeliveryJobList().remove(0));
+    }
+
+    @Test
+    public void getCompletedDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCompletedDeliveryJobList().remove(0));
+    }
+
+
+    @Test
+    public void updateSortedDeliveryJobList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSortedDeliveryJobList(null));
+    }
+
+    @Test
+    public void updateSortedDeliveryJobListByComparator_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateSortedDeliveryJobListByComparator(null));
+    }
+
+    @Test
+    public void updateWeekDeliveryJobList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateWeekDeliveryJobList(null));
+    }
+
+    @Test
+    public void updateFocusDate_returnsTrue() {
+        modelManager.updateFocusDate(LocalDate.now());
+        assertEquals(LocalDate.now(), modelManager.getFocusDate());
+    }
+
+    @Test
+    public void updateFocusDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFocusDate(null));
+    }
+
 
     @Test
     public void equals() {
@@ -131,4 +200,5 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, deliveryJobSystem, differentUserPrefs)));
     }
+
 }
