@@ -288,8 +288,8 @@
     -fx-background-color: transparent;
 }
 
-#personListView .scroll-bar .thumb {
-    -fx-background-color: #FFF5DA;
+.scroll-bar .thumb {
+    -fx-background-color: #B3A79B;
     -fx-background-insets: 2;
 }
 
@@ -385,9 +385,4 @@
 
 #overviewContent .content {
     -fx-background-color: #E9EDC9;
-}
-
-#overviewContent .scroll-bar .thumb {
-    -fx-background-color: #B9C19D;
-    -fx-background-insets: 2;
 }

@@ -49,17 +49,10 @@
         <HBox prefWidth="800" prefHeight="600" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" styleClass="pane-with-border"
                      minWidth="450" prefWidth="450" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="20" bottom="10" left="20" />
-            </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <StackPane fx:id="overviewDisplayPlaceholder" styleClass="pane-with-border"
-                     minWidth="300" prefWidth="300" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
+          <StackPane fx:id="overviewDisplayPlaceholder" minWidth="300" prefWidth="300" HBox.hgrow="ALWAYS">
           </StackPane>
         </HBox>
 
