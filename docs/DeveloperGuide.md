@@ -305,17 +305,26 @@ Step 2. The user inputs a series of commands to modify the state of the delivery
 Step 3. The user now wants to view a summary of the statistics of the jobs in the deliveryJobList.
 The `stats` command will open up the statistics window, where a list of statistics will be shown.
 
+The `stats` command will call `Logic#getFilteredDeliveryJobList()` which will return a list of delivery jobs.
+The statistics is then generated based on the list of delivery jobs and shown to the user in the Statistics Window. 
+
 The following sequence diagram shows how the statistics operation works:
 
-//to be added
+![StatisticsSequenceDiagram](images/StatisticsSequenceDiagram.png)
 
-The following sequence diagram shows how the statistics operation works:
-
-//to be added
 
 #### Design considerations:
 
-//to be added
+**Aspect: How statistics are stored:**
+
+* **Alternative 1 (current choice):** Saves each statistic as a Statistic object in the list
+    * Pros: Easy to store and display statistics 
+    * Cons: May have performance issues in terms of memory usage and execution delay.
+
+* **Alternative 2:** Display each statistic individually 
+    * Pros: Will use less memory and faster to execute
+    * Cons: Will make code longer and increases coupling
+
 
 _{more aspects and alternatives to be added}_
 
