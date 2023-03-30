@@ -98,11 +98,12 @@ public class DeleteContactCommand extends Command {
         Rating rating = internshipToDeleteContact.getRating();
         Set<Reflection> reflections = internshipToDeleteContact.getReflections();
         InternshipStatus status = internshipToDeleteContact.getStatus();
+        boolean isArchived = internshipToDeleteContact.isArchived();
         InterviewDate interviewDate = internshipToDeleteContact.getInterviewDate();
         Documents documents = internshipToDeleteContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, null, status, interviewDate, documents);
+                salary, notes, rating, reflections, null, status, isArchived, interviewDate, documents);
     }
 
     @Override

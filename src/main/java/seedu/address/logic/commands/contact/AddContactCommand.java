@@ -99,11 +99,12 @@ public class AddContactCommand extends Command {
         Rating rating = internshipToAddContact.getRating();
         Set<Reflection> reflections = internshipToAddContact.getReflections();
         InternshipStatus status = internshipToAddContact.getStatus();
+        boolean isArchived = internshipToAddContact.isArchived();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
         Documents documents = internshipToAddContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate, documents);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

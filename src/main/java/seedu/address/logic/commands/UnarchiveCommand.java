@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_APPLICATIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ONGOING_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
@@ -27,29 +27,29 @@ import seedu.address.model.person.Review;
 import seedu.address.model.person.Salary;
 
 /**
- * Archives an internship application identified using it's displayed index from the list of internship applications.
+ * Unarchives an internship application identified using it's displayed index from the list of internship applications.
  */
-public class ArchiveCommand extends Command {
+public class UnarchiveCommand extends Command {
 
-    public static final String COMMAND_WORD = "archive";
+    public static final String COMMAND_WORD = "unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Archives the specified application from the list of internships applied.\n"
-            + "Archives the application of internship at the specified INDEX.\n"
+            + ": Unarchives the specified application from the list of internships applied.\n"
+            + "Unarchives the application of internship at the specified INDEX.\n"
             + "The index refers to the index number shown in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer 1, 2, 3, ...)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Archived Application: %1$s";
+    public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Unarchived Application: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Creates an ArchiveCommand to archive the specified {@code targetIndex} internship
+     * Creates an UnarchiveCommand to unarchive the specified {@code targetIndex} internship
      *
-     * @param targetIndex of the internship application to archive
+     * @param targetIndex of the internship application to unarchive
      */
-    public ArchiveCommand(Index targetIndex) {
+    public UnarchiveCommand(Index targetIndex) {
         requireNonNull(targetIndex);
 
         this.targetIndex = targetIndex;
@@ -64,18 +64,18 @@ public class ArchiveCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
         }
 
-        InternshipApplication internshipToArchive = lastShownList.get(targetIndex.getZeroBased());
-        InternshipApplication archivedApplication = createdArchivedApplication(internshipToArchive);
+        InternshipApplication internshipToUnarchive = lastShownList.get(targetIndex.getZeroBased());
+        InternshipApplication archivedApplication = createdUnarchivedApplication(internshipToUnarchive);
 
-        model.setApplication(internshipToArchive, archivedApplication);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ARCHIVED_APPLICATIONS);
+        model.setApplication(internshipToUnarchive, archivedApplication);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, archivedApplication));
     }
 
     /**
      * Creates and returns an archived {@code InternshipApplication}
      */
-    private static InternshipApplication createdArchivedApplication(InternshipApplication internshipApplication) {
+    private static InternshipApplication createdUnarchivedApplication(InternshipApplication internshipApplication) {
         assert internshipApplication != null;
 
         CompanyName companyName = internshipApplication.getCompanyName();
@@ -94,14 +94,14 @@ public class ArchiveCommand extends Command {
         Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, true, interviewDate,
+                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, false, interviewDate,
                 documents);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ArchiveCommand // instanceof handles nulls
-                && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
+                || (other instanceof UnarchiveCommand // instanceof handles nulls
+                && targetIndex.equals(((UnarchiveCommand) other).targetIndex)); // state check
     }
 }

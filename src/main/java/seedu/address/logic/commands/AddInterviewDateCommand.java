@@ -92,11 +92,12 @@ public class AddInterviewDateCommand extends Command {
         Rating rating = internshipToAddInterviewDate.getRating();
         Set<Reflection> reflections = internshipToAddInterviewDate.getReflections();
         Contact contact = internshipToAddInterviewDate.getContact();
+        boolean isArchived = internshipToAddInterviewDate.isArchived();
         InternshipStatus status = internshipToAddInterviewDate.getStatus();
         Documents documents = internshipToAddInterviewDate.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-            salary, notes, rating, reflections, contact, status, interviewDate, documents);
+            salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

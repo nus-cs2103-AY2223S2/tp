@@ -93,11 +93,12 @@ public class EditStatusCommand extends Command {
         Rating rating = internshipApplication.getRating();
         Set<Reflection> reflections = internshipApplication.getReflections();
         Contact contact = internshipApplication.getContact();
+        boolean isArchived = internshipApplication.isArchived();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
         Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate, documents);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

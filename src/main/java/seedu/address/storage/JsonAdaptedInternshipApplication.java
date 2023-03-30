@@ -48,6 +48,7 @@ public class JsonAdaptedInternshipApplication {
     private final List<String> reflections = new ArrayList<>();
     private final List<String> contact = new ArrayList<>();
     private final String status;
+    private final boolean archived;
     private final String interviewDate;
     private final List<String> documents = new ArrayList<>();
 
@@ -66,6 +67,7 @@ public class JsonAdaptedInternshipApplication {
                                             @JsonProperty("rating") String rating,
                                             @JsonProperty("reflection") List<String> reflections,
                                             @JsonProperty("status") String status,
+                                            @JsonProperty("archived") boolean archived,
                                             @JsonProperty("interviewDate") String interviewDate,
                                             @JsonProperty("contact") List<String> contact,
                                             @JsonProperty("documents") List<String> documents) {
@@ -93,6 +95,7 @@ public class JsonAdaptedInternshipApplication {
             this.contact.addAll(contact);
         }
         this.status = status;
+        this.archived = archived;
         this.interviewDate = interviewDate;
         if (documents != null) {
             this.documents.addAll(documents);
@@ -128,6 +131,7 @@ public class JsonAdaptedInternshipApplication {
             contact.add(source.getContact().getEmail().value);
         }
         status = source.getStatus().name();
+        archived = source.isArchived();
         if (source.getInterviewDate() != null) {
             interviewDate = source.getInterviewDate().toString();
         } else {
@@ -233,6 +237,7 @@ public class JsonAdaptedInternshipApplication {
         return InternshipStatus.valueOf(status);
     }
 
+
     private InterviewDate getInterviewDate() throws IllegalValueException {
         if (!InterviewDate.isValidInterviewDate(interviewDate)) {
             throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
@@ -253,9 +258,7 @@ public class JsonAdaptedInternshipApplication {
                 throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
             }
             final Email modelEmail = new Email(contact.get(1));
-            final Contact modelContact = new Contact(modelPhone, modelEmail);
-
-            return modelContact;
+            return new Contact(modelPhone, modelEmail);
         } else {
             return null;
         }
@@ -274,9 +277,8 @@ public class JsonAdaptedInternshipApplication {
                 throw new IllegalValueException(CoverLetterLink.MESSAGE_CONSTRAINTS);
             }
             final CoverLetterLink modelCoverLetterLink = new CoverLetterLink(documents.get(1));
-            final Documents modelDocuments = new Documents(modelResumeLink, modelCoverLetterLink);
 
-            return modelDocuments;
+            return new Documents(modelResumeLink, modelCoverLetterLink);
         } else {
             return null;
         }
@@ -306,6 +308,7 @@ public class JsonAdaptedInternshipApplication {
 
         return new InternshipApplication(modelCompanyName, modelJobTitle, modelReviews,
                 modelProgrammingLanguages, modelQualifications, modelLocation, modelSalary, modelNotes,
-                modelRating, modelReflections, modelContact, modelStatus, modelInterviewDate, modelDocuments);
+                modelRating, modelReflections, modelContact, modelStatus, archived, modelInterviewDate,
+                modelDocuments);
     }
 }

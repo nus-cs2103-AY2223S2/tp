@@ -102,11 +102,12 @@ public class AddDocumentsCommand extends Command {
         Rating rating = internshipToAddDocuments.getRating();
         Set<Reflection> reflections = internshipToAddDocuments.getReflections();
         Contact contact = internshipToAddDocuments.getContact();
+        boolean isArchived = internshipToAddDocuments.isArchived();
         InternshipStatus status = internshipToAddDocuments.getStatus();
         InterviewDate interviewDate = internshipToAddDocuments.getInterviewDate();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate, documents);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, documents);
     }
 
     @Override

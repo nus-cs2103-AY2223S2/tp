@@ -31,6 +31,7 @@ public class InternshipApplication {
     // Interview fields
     private final InterviewDate interviewDate;
     private final InternshipStatus status;
+    private final boolean isArchived;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -54,6 +55,7 @@ public class InternshipApplication {
         this.contact = null;
         //Interview field
         this.status = InternshipStatus.NA;
+        this.isArchived = false;
         this.interviewDate = null;
         this.documents = null;
     }
@@ -73,6 +75,7 @@ public class InternshipApplication {
         this.reviews.addAll(reviews);
         this.contact = null;
         this.status = status;
+        this.isArchived = false;
         this.interviewDate = null;
         this.documents = documents;
     }
@@ -100,6 +103,7 @@ public class InternshipApplication {
         // Data field
         this.contact = null;
         this.status = InternshipStatus.NA;
+        this.isArchived = false;
         this.documents = null;
 
         //Interview field
@@ -121,6 +125,7 @@ public class InternshipApplication {
         this.location = null;
         this.salary = null;
         this.rating = null;
+        this.isArchived = false;
         this.documents = documents;
     }
 
@@ -130,7 +135,7 @@ public class InternshipApplication {
     public InternshipApplication(CompanyName companyName, JobTitle job, Set<Review> reviews,
         Set<ProgrammingLanguage> programmingLanguages, Set<Qualification> qualifications, Location location,
         Salary salary, Set<Note> notes, Rating rating, Set<Reflection> reflections, Contact contact,
-        InternshipStatus status, InterviewDate interviewDate, Documents documents) {
+        InternshipStatus status, boolean isArchived, InterviewDate interviewDate, Documents documents) {
         requireAllNonNull(companyName, job);
         //Identity field
         this.companyName = companyName;
@@ -147,6 +152,7 @@ public class InternshipApplication {
         // Data field
         this.contact = contact;
         this.status = status;
+        this.isArchived = isArchived;
         this.interviewDate = interviewDate;
         this.documents = documents;
     }
@@ -211,6 +217,10 @@ public class InternshipApplication {
         return interviewDate;
     }
 
+    public boolean isArchived() {
+        return isArchived;
+    }
+
     public Documents getDocuments() {
         return documents;
     }
@@ -262,7 +272,9 @@ public class InternshipApplication {
                 .append("; Job Title: ")
                 .append(getJobTitle())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Archived: ")
+                .append(isArchived());
 
         if (!reviews.isEmpty()) {
             builder.append("; Review: ");

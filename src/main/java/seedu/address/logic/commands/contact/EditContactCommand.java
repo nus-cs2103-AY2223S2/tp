@@ -115,11 +115,12 @@ public class EditContactCommand extends Command {
                 .orElse(internshipToUpdateContact.getContact().getEmail());
         Contact newContact = new Contact(phone, email);
         InternshipStatus status = internshipToUpdateContact.getStatus();
+        boolean isArchived = internshipToUpdateContact.isArchived();
         InterviewDate interviewDate = internshipToUpdateContact.getInterviewDate();
         Documents documents = internshipToUpdateContact.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, newContact, status, interviewDate, documents);
+                salary, notes, rating, reflections, newContact, status, isArchived, interviewDate, documents);
     }
 
     @Override

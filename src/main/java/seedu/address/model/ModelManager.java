@@ -54,7 +54,7 @@ public class ModelManager implements Model {
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
         this.reminder = new Reminder(filteredInternships);
         cachedInternshipList = new ArrayList<>();
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
     }
 
     public ModelManager() {

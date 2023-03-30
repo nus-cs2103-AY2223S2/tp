@@ -118,6 +118,7 @@ public class EditDocumentsCommand extends Command {
         Contact contact = internshipToEditDocuments.getContact();
         InternshipStatus status = internshipToEditDocuments.getStatus();
         InterviewDate interviewDate = internshipToEditDocuments.getInterviewDate();
+        boolean isArchived = internshipToEditDocuments.isArchived();
 
         ResumeLink resumeLink = editDocumentsDescriptor.getResumeLink()
                 .orElse(internshipToEditDocuments.getDocuments().getResumeLink());
@@ -127,7 +128,7 @@ public class EditDocumentsCommand extends Command {
         Documents newDocuments = new Documents(resumeLink, coverLetterLink);
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate, newDocuments);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, newDocuments);
     }
 
     @Override

@@ -99,10 +99,11 @@ public class DeleteDocumentsCommand extends Command {
         Set<Reflection> reflections = internshipToDeleteDocuments.getReflections();
         Contact contact = internshipToDeleteDocuments.getContact();
         InternshipStatus status = internshipToDeleteDocuments.getStatus();
+        boolean isArchived = internshipToDeleteDocuments.isArchived();
         InterviewDate interviewDate = internshipToDeleteDocuments.getInterviewDate();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, status, interviewDate, null);
+                salary, notes, rating, reflections, contact, status, isArchived, interviewDate, null);
     }
 
     @Override
