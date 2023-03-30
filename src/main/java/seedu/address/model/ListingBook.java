@@ -77,7 +77,8 @@ public class ListingBook implements ReadOnlyListingBook {
     /**
      * Replaces the given listing {@code target} in the list with {@code editedListing}.
      * {@code target} must exist in the listing book.
-     * The listing identity of {@code editedListing} must not be the same as another existing listing in the listing book.
+     * The listing identity of {@code editedListing} must not be the same as
+     * another existing listing in the listing book.
      */
     public void setListing(Listing target, Listing editedListing) {
         requireNonNull(editedListing);
