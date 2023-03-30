@@ -14,7 +14,7 @@ public class Note {
     protected static final int LENGTH_LIMIT = 200;
     private static final String PATTERN = "@[a-z]+";
     private String content;
-    private List<String> names = new ArrayList<>(20); // referenced up to 20 students in the notes
+    private List<String> names = new ArrayList<>(20); // referenced up to 20 people in the notes
 
     /**
      * Initates the note object with actual content and parsed referees
@@ -61,7 +61,7 @@ public class Note {
     }
 
     public String getContent() {
-        return this.content;
+        return this.content.replace("\n", "");
     }
 
     public List<String> getReferees() {
@@ -106,14 +106,6 @@ public class Note {
         return other == this // short circuit if same object
                 || (other instanceof Note // instanceof handles nulls
                 && content.equals(((Note) other).content));
-    }
-
-    /**
-     * Makes guide of how to leave a note for an event with focus on mentioning people
-     * @return A {@code String} of note-adding guide
-     */
-    public String help() {
-        return "Hint: Use @ to refer to students in the event"; // TODO: Help format to be determined later. @Jiatong
     }
 
     /**

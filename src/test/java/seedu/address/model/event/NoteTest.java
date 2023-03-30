@@ -60,16 +60,10 @@ public class NoteTest {
                 + "And I need to regrade tutorial for @Han.");
 
         assertEquals("Contents: \n"
-                + "This is my first note!! \n"
-                + "Please remind me that I have to send report to @Jim, @Lin by next meeting \n"
+                + "This is my first note!! "
+                + "Please remind me that I have to send report to @Jim, @Lin by next meeting "
                 + "And I need to regrade tutorial for @Han."
                 + ";\n Relevant personnel: "
                 + "Jim Lin Han", note.toString());
-    }
-
-    @Test
-    public void help_noInput_returnsHelpGuide() {
-        Note note = new Note();
-        assertNotNull(note.help());
     }
 }
