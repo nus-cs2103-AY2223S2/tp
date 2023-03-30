@@ -79,6 +79,7 @@ public class TimeMask {
     }
 
     private void occupySlots(int dayIndex, int startHourIndex, int endHourIndex) {
+        dayIndex = dayIndex - 1;
         checkValidDayIndex(dayIndex);
         checkValidHourIndexes(startHourIndex, endHourIndex);
 
@@ -119,7 +120,7 @@ public class TimeMask {
         }
     }
 
-//    public static ObservableList<Integer> getTimetable(TimeMask timeMask) {
+//   public static ObservableList<Integer> getTimetable(TimeMask timeMask) {
 //        ObservableList<Integer> linearTimetable = FXCollections.observableArrayList();
 //        for (int offset = 0; offset < WINDOW_RANGE; offset++) {
 //            linearTimetable.addAll(getTimeSlotIndexes(timeMask.getDayMask(offset), offset));

@@ -72,7 +72,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<String> getFilteredTimeSlotList() {
-        return model.getFilteredTimeSlotList();
+        return null;
     }
 
     @Override

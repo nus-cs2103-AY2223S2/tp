@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -14,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 import seedu.address.model.timeslot.ScheduleDay;
+import seedu.address.model.timeslot.ScheduleWeek;
 import seedu.address.model.timeslot.Status;
 
 /**
@@ -23,23 +23,10 @@ public class WhereGotTimeTable extends UiPart<Region> {
 
     private static final String FXML = "WhereGotTimeTable.fxml";
 
-    private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = conditionForColouredCell();
+    private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory =
+            conditionForColouredCell();
 
-    private final ObservableList<ScheduleDay> data = FXCollections.observableArrayList(
-            new ScheduleDay("Monday", new ArrayList<>(Arrays.asList(Status.BUSY, Status.FREE, Status.BUSY,
-                    Status.FREE, Status.BUSY))),
-            new ScheduleDay("Tuesday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))),
-            new ScheduleDay("Wednesday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))),
-            new ScheduleDay("Thursday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))),
-            new ScheduleDay("Friday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))),
-            new ScheduleDay("Saturday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))),
-            new ScheduleDay("Sunday", new ArrayList<>(Arrays.asList(Status.FREE, Status.FREE, Status.FREE,
-                    Status.BUSY, Status.BUSY))));
+    private ScheduleWeek scheduleWeek = new ScheduleWeek();
 
     @FXML
     private TableView<ScheduleDay> table;
@@ -61,22 +48,75 @@ public class WhereGotTimeTable extends UiPart<Region> {
 
     @FXML
     private TableColumn<ScheduleDay, Status> time4;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time5;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time6;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time7;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time8;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time9;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time10;
+    @FXML
+    private TableColumn<ScheduleDay, Status> time11;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time12;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time13;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time14;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time15;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time16;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time17;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time18;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time19;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time20;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time21;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time22;
+
+    @FXML
+    private TableColumn<ScheduleDay, Status> time23;
 
     private ArrayList<TableColumn<ScheduleDay, Status>> allColumns;
     private ArrayList<String> columnNames;
-
 
     /**
      * Creates a table with the given {@code ScheduleDay} to display.
      */
     public WhereGotTimeTable() {
         super(FXML);
-        allColumns = new ArrayList<>(Arrays.asList(time0, time1, time2, time3, time4));
-        columnNames = new ArrayList<>(Arrays.asList("time0", "time1", "time2", "time3", "time4"));
+        allColumns = new ArrayList<>(Arrays.asList(time0, time1, time2, time3, time4, time5, time6, time7, time8,
+        time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20, time21,
+        time22, time23));
+        columnNames = new ArrayList<>(Arrays.asList("time0", "time1", "time2", "time3", "time4", "time5", "time6",
+                "time7", "time8", "time9", "time10", "time11", "time12", "time13", "time14", "time15", "time16",
+                "time17", "time18", "time19", "time20", "time21", "time22", "time23"));
 
         day.setCellValueFactory(new PropertyValueFactory<ScheduleDay, String>("day"));
 
-        updateTable(data);
+        updateTable(scheduleWeek.getInternalList());
 
     }
 
@@ -85,7 +125,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
      * according to the Status.
      */
     private Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> conditionForColouredCell() {
-        Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = new Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>>() {
+        Callback<TableColumn<ScheduleDay, Status>, TableCell<ScheduleDay, Status>> factory = new Callback<>() {
             @Override
             public TableCell<ScheduleDay, Status> call(TableColumn<ScheduleDay, Status> param) {
                 return new TableCell<ScheduleDay, Status>() {
@@ -103,7 +143,6 @@ public class WhereGotTimeTable extends UiPart<Region> {
                         } else {
                             setStyle("-fx-background-color: grey");
                         }
-
                     }
                 };
             }
