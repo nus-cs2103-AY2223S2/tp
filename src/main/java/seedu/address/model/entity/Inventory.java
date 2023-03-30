@@ -1,10 +1,10 @@
 package seedu.address.model.entity;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents an inventory, belonging to an Entity.
