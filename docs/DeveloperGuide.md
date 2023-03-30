@@ -238,6 +238,23 @@ modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5new.png) 
 
+### Filtering contacts
+**Purpose:** Allow users to filter contacts based on criteria given
+
+Formats: 
+1. `filter n/NAME `
+2. `filter p/PHONE_NUMBER`
+3. `filter e/EMAIL_ADDRESS`
+4. `filter d/DESCRIPTION`
+5. `filter t/TAG`
+
+#### Implementation
+
+The implementation of this feature is requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
+
+Below is an activity diagram that shows what happens when a user executes the `filter` command
+
+![FilterActivityDiagram](images/filter/filterActivityDiagram.png)
 
 
 ### \[Proposed\] Data archiving
@@ -399,19 +416,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. ModCheck shows an error message with a list of persons with the same name.
 
       Use case ends.
-  
-#### Use case: Filter contacts by tag
+
+#### Use case: Filter contacts 
 
 **MSS**
 
-1. Student requests to filter persons by tag.
-2. ModCheck shows a list of persons with the tag.
+1. Student requests to filter contacts with the required details
+2. ModCheck shows a list of persons based on details given
     
     Use case ends.
 
 **Extensions**
 
-* 2a. There are no persons with the tag.
+* 2a. There are no contacts that matches the details given
 
     * 2a1. ModCheck shows an error message.
         
