@@ -52,7 +52,7 @@
               </ImageView>
           </graphic>
       </Label>
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true">
+      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true" >
           <graphic>
               <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                   <Image url="@/images/remark.png"/>
