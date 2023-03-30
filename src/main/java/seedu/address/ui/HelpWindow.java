@@ -14,34 +14,52 @@ import seedu.address.commons.core.LogsCenter;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
-    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
-    public static final String FEATURE_AVAILABLE = "\n\nFeatures:\n";
-    public static final String PARAMETERS_COMPULSORY = "/nMODULE_NAME t/TAG (Lecture, Tutorial, Lab) ";
-    public static final String PARAMETERS_OPTIONAL = "[e/TIMESLOT] [a/VENUE] [c/RESOURCE] "
+    public static final String USERGUIDE_URL = "Refer to the user guide: "
+            + "https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
+    public static final String FEATURE_HEADER = "\n\nFeatures:\n";
+    public static final String PARAMETERS_COMPULSORY_ADD_MODULE = "n/MODULE_NAME t/DESCRIPTION";
+    public static final String PARAMETERS_OPTIONAL_ADD_MODULE = "[e/TIMESLOT] [a/VENUE] [c/RESOURCE] "
             + "[s/TEACHER] [d/DEADLINES] [r/REMARKS]\n";
-
-    public static final String ADD = "1. Adding a module.\n" + "Parameters: " + PARAMETERS_COMPULSORY
-            + PARAMETERS_OPTIONAL + "Example: add n/CS2103T t/Lecture a/COM3";
-    public static final String DELETE = "\n\n2. Deleting a module.\n" + "Parameters: INDEX (positive integer)"
-            + "\nExample: delete 1";
-    public static final String EDIT = "\n\n3. Editing a module.\n" + "Parameters: INDEX (positive integer)"
-            + "[/nMODULE_NAME] [t/TAG]" + PARAMETERS_OPTIONAL + "Example: edit 2 t/Lecture r/Hybrid lectures";
-    public static final String FIND = "\n\n4. Finding a module.\n" + "Parameters: KEYWORDS [MORE KEYWORDS]"
-            + "\nExample: find Tutorial\nExample: find CS2103T";
-    public static final String CLEAR = "\n\n5. Clear all entries.\n" + "No Parameters\nExample: clear";
-    public static final String LIST = "\n\n6. List all entries.\n" + "No Parameters\nExample: list";
-    public static final String EXIT = "\n\n7. Exit the application.\n" + "No Parameters\nExample: exit";
-    public static final String HELP = "\n\n8. Getting help.\n" + "No Parameters\nExample: help";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + FEATURE_AVAILABLE
-            + ADD + DELETE + EDIT + FIND + CLEAR + LIST + EXIT + HELP;
-
+    public static final String PARAMETERS_EDIT_MODULE = "[n/MODULE_NAME] [t/DESCRIPTION] [e/TIMESLOT] [a/VENUE] "
+            + "[c/RESOURCE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]\n";
+    public static final String ADD = "1. Adding a module.\n"
+            + "Usage: " + PARAMETERS_COMPULSORY_ADD_MODULE + PARAMETERS_OPTIONAL_ADD_MODULE
+            + "Note: Compulsory fields (n/...  t/...) Optional fields (e/... a/... c/... s... d/... r/...)\n"
+            + "Example: add n/CS2101 t/Tutorial e/Tuesday 10:00 12:00 a/COM1\n"
+            + "Example: add n/CS2030S t/Tutorial d/250520 15:00\n"
+            + "Example: add n/CS2103T t/Lecture";
+    public static final String DELETE = "\n\n2. Deleting a module.\n"
+            + "Usage: delete INDEX\n"
+            + "Example: delete 1\n"
+            + "Example: delete 2";
+    public static final String EDIT = "\n\n3. Editing a module.\n"
+            + "Usage: edit INDEX" + PARAMETERS_EDIT_MODULE
+            + "Example: edit 2 t/Lecture r/Hybrid lectures\n"
+            + "Note: At least one field is required.";
+    public static final String FIND = "\n\n4. Finding a module based on its description.\n"
+            + "Usage: find SEARCH_DESCRIPTION\n"
+            + "Example: find Tutorial\n"
+            + "Example: find CS2103T";
+    public static final String SORT = "\n\n5. Sorting the modules.\n"
+            + "Usage: sort TIMESLOT/DEADLINE\n"
+            + "Example: sort timeslot\n"
+            + "Example: sort deadline\n"
+            + "Note: Currently, only sorting by either timeslot or deadline is supported. Please stay tuned for more "
+            + "features. :)";
+    public static final String CLEAR = "\n\n6. Clear all entries.\n" + "Example: clear";
+    public static final String LIST = "\n\n7. List all entries.\n" + "Example: list";
+    public static final String EXIT = "\n\n8. Exit the application.\n" + "Example: exit";
+    public static final String HELP = "\n\n9. Getting help.\n" + "Example: help";
+    public static final String HELP_MESSAGE =  ADD + DELETE + EDIT + FIND + SORT
+            + CLEAR + LIST + EXIT + HELP;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-
     @FXML
     private Button copyButton;
-
+    @FXML
+    private Label urlLink;
+    @FXML
+    private Label featuresHeader;
     @FXML
     private Label helpMessage;
 
@@ -52,6 +70,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        urlLink.setText(USERGUIDE_URL);
+        featuresHeader.setText(FEATURE_HEADER);
         helpMessage.setText(HELP_MESSAGE);
     }
 

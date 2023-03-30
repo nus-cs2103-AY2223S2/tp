@@ -1,4 +1,4 @@
-#copyButton, #helpMessage {
+#copyButton, #helpMessage, #urlLink, #featuresHeader {
     -fx-text-fill: white;
 }
 
