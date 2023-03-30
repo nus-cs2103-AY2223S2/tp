@@ -380,6 +380,18 @@ Examples:
 
 * `tab t/HOME` switches the tab to the `Home` tab
 
+# Upload csv file
+
+### Uploading a csv file
+
+Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. It is important that a strict format is used in order for the commands to be parsed correctly.
+* First indicate what item is to be added. (i.e. `Orders`)
+* List out the item fields in the next row. (i.e. `OrderName`, `Quanity`, `Deadline`, etc.)
+* Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
+* If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
+Below is an example of a valid csv file
+![Valid csv file](images/ValidCsvFile.png)
+
 # Exit
 
 ### Exiting the program : `exit`
@@ -399,16 +411,6 @@ Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
-
-### Uploading a csv file
-
-Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. It is important that a strict format is used in order for the commands to be parsed correctly.
-* First indicate what item is to be added. (i.e. `Orders`)
-* List out the item fields in the next row. (i.e. `OrderName`, `Quanity`, `Deadline`, etc.)
-* Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
-* If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
-Below is an example of a valid csv file
-![Valid csv file](images/ValidCsvFile.png)
 
 ### Archiving data files `[coming in v1.3]`
 
