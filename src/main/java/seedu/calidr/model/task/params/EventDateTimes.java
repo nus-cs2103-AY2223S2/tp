@@ -12,57 +12,50 @@ import java.time.format.DateTimeFormatter;
 public class EventDateTimes {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The END date-time should be after the current date-time and the START date-time";
+            "The END date-time should be after the START date-time";
 
-    public final LocalDateTime fromDateTime;
-    public final LocalDateTime toDateTime;
+    public static final DateTimeFormatter PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
+    public final LocalDateTime from;
+    public final LocalDateTime to;
 
 
     /**
      * Constructs an {@code EventDateTimes}
      *
-     * @param fromDateTime A valid START date-time.
-     * @param toDateTime A valid END date-time.
+     * @param from A valid START date-time.
+     * @param to A valid END date-time.
      */
-    public EventDateTimes(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
-        requireAllNonNull(fromDateTime, toDateTime);
-        checkArgument(isValidEventDateTimes(fromDateTime, toDateTime), MESSAGE_CONSTRAINTS);
+    public EventDateTimes(LocalDateTime from, LocalDateTime to) {
+        requireAllNonNull(from, to);
+        checkArgument(isValidEventDateTimes(from, to), MESSAGE_CONSTRAINTS);
 
-        this.fromDateTime = fromDateTime;
-        this.toDateTime = toDateTime;
+        this.from = from;
+        this.to = to;
 
-    }
-
-    /**
-     * Returns true if a given date-time has passed.
-     */
-    public boolean isOver(LocalDateTime test) {
-        return test.isBefore(LocalDateTime.now());
     }
 
     /**
      * Returns true if a particular set of START and END date-times
      * is valid.
      */
-    public boolean isValidEventDateTimes(LocalDateTime start, LocalDateTime end) {
-        return (!isOver(end) && end.isAfter(start));
+    public static boolean isValidEventDateTimes(LocalDateTime start, LocalDateTime end) {
+        return end.isAfter(start);
     }
 
     /**
      * Returns the string representation of the EventDateTimes object.
      */
     public String toString() {
-        DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return "from: " + fromDateTime.format(formatToPrint)
-                + " ; to: " + toDateTime.format(formatToPrint);
+        return "from: " + from.format(PRINT_FORMAT)
+                + " ; to: " + to.format(PRINT_FORMAT);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EventDateTimes // instanceof handles nulls
-                && fromDateTime.equals(((EventDateTimes) other).fromDateTime)
-                && toDateTime.equals(((EventDateTimes) other).toDateTime)); // state check
+                && from.equals(((EventDateTimes) other).from)
+                && to.equals(((EventDateTimes) other).to)); // state check
     }
 
 }

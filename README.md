@@ -20,13 +20,12 @@ Calidr is designed to help students manage their time and tasks more effectively
 
 
 ## Resources
-To learn more about Calidr, please visit our [Project Website](https://ay2223s2-cs2103t-w10-2.github.io/tp/), where you can find comprehensive information on the application and its features. Check out the [About Us](https://github.com/AY2223S2-CS2103T-W10-2/tp/blob/master/docs/AboutUs.md) page to get to know about our team. 
-
+To learn more about Calidr, please visit our [Project Website](https://ay2223s2-cs2103t-w10-2.github.io/tp/), where you can find comprehensive information on the application and its features. Check out the [About Us](https://github.com/AY2223S2-CS2103T-W10-2/tp/blob/master/docs/AboutUs.md) page to get to know about our team.
 We have also provided user and developer guides to help you get started:
 * [User Guide](https://github.com/AY2223S2-CS2103T-W10-2/tp/blob/master/docs/UserGuide.md)
 * [Developer Guide](https://github.com/AY2223S2-CS2103T-W10-2/tp/blob/master/docs/DeveloperGuide.md)
 
 
 
-## Acknowledgements:  
+## Acknowledgements:
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

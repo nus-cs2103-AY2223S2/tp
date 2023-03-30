@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "{abstract}\nUiPart" as UiPart
+Class MainWindow
+Class CalendarPanel {
+  ViewType currentView
+}
+Class CalendarSource
+Class DayPage
+Class WeekPage
+Class MonthPage
+Class Calendar
+Class TaskEntry
+Class DateControl
+Class "<<enumeration>>\nViewType" as ViewType {
+  DAY
+  WEEK
+  MONTH
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+
+MainWindow --> "1" CalendarPanel
+
+CalendarPanel --> "1" DayPage
+
+CalendarPanel --> "1" WeekPage
+
+CalendarPanel --> "1" MonthPage
+
+CalendarPanel --> "2" Calendar
+
+MainWindow -left-|> UiPart
+
+CalendarPanel -up-|> UiPart
+
+DayPage -right-|> DateControl
+
+WeekPage --|> DateControl
+
+MonthPage --|> DateControl
+
+DateControl -right-> "*" CalendarSource
+
+CalendarSource *-up-> "*" Calendar
+
+Calendar *-up-> "*" TaskEntry
+
+TaskEntry ..> Model
+
+@enduml

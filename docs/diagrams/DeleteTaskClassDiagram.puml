@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+
+package logic {
+
+package commands {
+Class "{abstract}\nCommand" as Command #9AEA54
+Class DeleteTaskCommand #61B417 extends Command
+}
+
+package parser {
+Class "<<interface>>\nParser" as Parser #18F2D8
+Class DeleteTaskCommandParser #15B4A1 implements Parser
+
+}
+
+@enduml

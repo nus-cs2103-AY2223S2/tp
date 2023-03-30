@@ -42,7 +42,7 @@ public class CalendarStorage {
      */
     public void saveTaskList(TaskList taskList, OutputStream stream) throws IOException {
         var cal = new Calendar();
-        taskList.getTasks()
+        taskList.getTaskList().stream()
             .map(this::taskToComponent)
             .forEach(cal::add);
 
@@ -62,7 +62,9 @@ public class CalendarStorage {
         var tasks = cal.getComponents().stream()
             .flatMap(c -> componentToTask(c).stream())
             .collect(Collectors.toList());
-        return new TaskList(tasks);
+        var taskList = new TaskList();
+        taskList.setTasks(tasks);
+        return taskList;
     }
 
     private CalendarComponent taskToComponent(Task t) {
@@ -70,14 +72,14 @@ public class CalendarStorage {
             var event = (Event) t;
 
             var vevent = new VEvent(
-                event.getFrom(),
-                event.getTo(),
-                event.getTitle());
+                event.getEventDateTimes().from,
+                event.getEventDateTimes().to,
+                event.getTitle().value);
             return vevent;
         } else if (t instanceof ToDo) {
             var todo = (ToDo) t;
 
-            var vtodo = new VToDo(todo.getBy(), todo.getTitle());
+            var vtodo = new VToDo(todo.getBy().value, todo.getTitle().value);
 
             vtodo.add(new net.fortuna.ical4j.model.property.Priority(convertPriority(todo.getPriority())));
 

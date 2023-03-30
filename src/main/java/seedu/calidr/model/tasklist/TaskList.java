@@ -1,11 +1,11 @@
 package seedu.calidr.model.tasklist;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import static java.util.Objects.requireNonNull;
 
-import seedu.calidr.exception.CalidrException;
-import seedu.calidr.exception.CalidrInvalidArgumentException;
+import java.util.List;
+
+import javafx.collections.ObservableList;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.params.Priority;
 
@@ -13,185 +13,106 @@ import seedu.calidr.model.task.params.Priority;
  * Represents a task list manager that aids in storing and manipulating the
  * list of Tasks.
  */
-public class TaskList {
+public class TaskList implements ReadOnlyTaskList {
+    private final UniqueTaskList tasks = new UniqueTaskList();
 
-    private final ArrayList<Task> tasks;
-
-    /**
-     * Construct a new TaskList
-     */
     public TaskList() {
-        this.tasks = new ArrayList<>();
     }
 
     /**
-     * Construct a new TaskList seeded with tasks
-     * @param tasks Tasks to seed this TaskList with
+     * Creates a TaskList using the Tasks in the {@code toBeCopied}
      */
-    public TaskList(List<Task> tasks) {
-        this.tasks = new ArrayList<>(tasks);
+    public TaskList(ReadOnlyTaskList toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
-     * Get a read-only view of the tasks.
-     */
-    public Stream<Task> getTasks() {
-        return tasks.stream();
-    }
-
-    /**
-     * Returns all the Tasks in the list of Tasks.
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
      *
-     * @return The String response of the chatbot.
+     * @param newData The new data to update the task list.
      */
-    public String listTasks() {
-        if (this.tasks.isEmpty()) {
-            return "You do not have any tasks added to the list.\n";
-        } else {
-            StringBuilder response = new StringBuilder("Listing all tasks...\n");
-            for (int i = 0; i < this.tasks.size(); i++) {
-                response.append(i + 1).append(") ").append(this.tasks.get(i)).append("\n");
-            }
-            return response.toString();
-        }
-    }
+    public void resetData(ReadOnlyTaskList newData) {
+        requireNonNull(newData);
 
-    private String markUnmark(int taskNumber, boolean isMarkCommand) throws CalidrException {
-
-        taskNumber--;
-
-        if (taskNumber >= 0 && taskNumber < this.tasks.size()) {
-            if (isMarkCommand) {
-                this.tasks.get(taskNumber).mark();
-                return String.format("I have marked Task %d as done.\n%s\n", //
-                        taskNumber, this.tasks.get(taskNumber));
-            } else {
-                this.tasks.get(taskNumber).unmark();
-                return String.format("I have marked Task %d as undone.\n%s\n", //
-                        taskNumber, this.tasks.get(taskNumber));
-            }
-        } else {
-            throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");
-        }
-
+        setTasks(newData.getTaskList());
     }
 
     /**
-     * Marks a particular Task in the list of Tasks, as done.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      *
-     * @param taskNumber The number to indicate which Task is to be marked as done.
-     * @return The String response of the chatbot.
-     * @throws CalidrException When the task number given is not valid or
-     *                         when there is an error in writing to the file.
+     * @param task The task to check.
+     * @return true if task already exists in the task list and false otherwise.
      */
-    public String markTask(int taskNumber) throws CalidrException {
-        return this.markUnmark(taskNumber, true);
-    }
-
-    /**
-     * Marks a particular Task in the list of Tasks, as undone.
-     *
-     * @param taskNumber The number to indicate which Task is to be marked as undone.
-     * @return The String response of the chatbot.
-     * @throws CalidrException When the task number given is not valid or
-     *                         when there is an error in writing to the file.
-     */
-    public String unmarkTask(int taskNumber) throws CalidrException {
-        return this.markUnmark(taskNumber, false);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
 
     /**
      * Adds a given Task to the list of Tasks.
      *
-     * @param task     The Task to be added to the list of Tasks.
-     * @param taskType The type of the given task.
-     * @return The String response of the chatbot.
-     * @throws CalidrException When there is an error in writing to the file.
+     * @param task The Task to be added to the list of Tasks.
      */
-    public String addTask(Task task, String taskType) throws CalidrException {
-        assert task != null;
-        assert taskType != null;
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 
-        this.tasks.add(task);
-
-        return "I have added the " + taskType + " to the list :)\n" + task + "\n";
-
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        tasks.setTask(target, editedTask);
     }
 
     /**
      * Deletes a Task from the list of Tasks.
      *
-     * @param taskNumber The number to indicate which Task is to be deleted.
-     * @return The String response of the chatbot.
-     * @throws CalidrException When the task number given is not valid or
-     *                         when there is an error in writing to the file.
+     * @param key The number to indicate which Task is to be deleted.
      */
-    public String deleteTask(int taskNumber) throws CalidrException {
-        boolean isValidTaskNumber = (taskNumber > 0 && taskNumber <= this.tasks.size());
+    public void deleteTask(Task key) {
+        tasks.remove(key);
+    }
 
-        if (isValidTaskNumber) {
-            Task removedTask = this.tasks.remove(taskNumber - 1);
-
-            return String.format("I have removed Task %d from the list.\n%s" //
-                            + "\nYou now have %d task(s) in the list.\n", //
-                    taskNumber, removedTask, this.tasks.size());
-
-        } else {
-            throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");
-        }
-
+    public void setTaskPriority(Task target, Priority priority) {
+        tasks.setTaskPriority(target, priority);
     }
 
     /**
-     * Returns all the Tasks in the list of Tasks, that have the given keyword.
+     * Marks a particular Task in the list of Tasks, as done.
      *
-     * @param keyword The keyword to search for, in the list of Tasks.
-     * @return The String response of the chatbot.
+     * @param task The number to indicate which Task is to be marked as done.
      */
-    public String findKeywordInTasks(String keyword) {
-        assert keyword != null;
-
-        ArrayList<Task> tasksWithKeyword = new ArrayList<>();
-        ArrayList<Integer> requiredTaskNumbers = new ArrayList<>();
-
-        for (int i = 0; i < this.tasks.size(); i++) {
-            Task task = this.tasks.get(i);
-            String taskDescription = task.getTitle().toLowerCase();
-
-            int findIndex = taskDescription.indexOf(keyword.toLowerCase());
-
-            if (findIndex != -1) {
-                tasksWithKeyword.add(task);
-                requiredTaskNumbers.add(i + 1);
-            }
-
-        }
-
-        if (tasksWithKeyword.size() == 0) {
-            return "I could not find any tasks with the keyword '" + keyword + "' :/\n";
-
-        } else {
-            StringBuilder response = new StringBuilder();
-            response.append("Listing all tasks with the keyword '").append(keyword).append("'...\n");
-            for (int i = 0; i < tasksWithKeyword.size(); i++) {
-                response.append(requiredTaskNumbers.get(i)).append(") ").append(tasksWithKeyword.get(i)).append("\n");
-            }
-
-            return response.toString();
-
-        }
+    public void markTask(Task task) {
+        tasks.mark(task);
     }
 
-    public String setTaskPriority(int taskNumber, Priority priority) throws CalidrException {
-        taskNumber--;
+    /**
+     * Marks a particular Task in the list of Tasks, as undone.
+     *
+     * @param task The number to indicate which Task is to be marked as undone.
+     */
+    public void unmarkTask(Task task) {
+        tasks.unmark(task);
+    }
 
-        if (taskNumber >= 0 && taskNumber < this.tasks.size()) {
-            this.tasks.get(taskNumber).setPriority(priority);
-            return String.format("I have changed the priority of Task %d to %s.\n%s\n", //
-                    taskNumber, priority, this.tasks.get(taskNumber));
-        } else {
-            throw new CalidrInvalidArgumentException("Sorry... That is an invalid task number :/");
-        }
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof TaskList
+                && tasks.equals(((TaskList) other).tasks));
+    }
+
+    @Override
+    public int hashCode() {
+        return tasks.hashCode();
     }
 
 }
