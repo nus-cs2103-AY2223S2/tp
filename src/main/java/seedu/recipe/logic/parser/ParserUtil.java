@@ -40,6 +40,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
+        final String[] indices = oneBasedIndices.split(",");
+        final List<Index> indicesList = new ArrayList<>();
+        for (String s: indices) {
+            indicesList.add(parseIndex(s));
+        }
+        return indicesList;
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
