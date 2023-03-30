@@ -33,17 +33,19 @@ public class Reminder {
         if (applications == null || applications.isEmpty()) {
             this.upcomingApplication = null;
         } else {
-            for (int i = 1; i < applications.size(); i++) {
+            for (int i = 0; i < applications.size(); i++) {
                 InternshipApplication application = applications.get(i);
-                if (application.getInterviewDate().getDateTime().isAfter(now)) {
-                    closestApplication = application;
-                    break;
+                if (application.getInterviewDate() != null) {
+                    if (application.getInterviewDate().getDateTime().isAfter(now)) {
+                        closestApplication = application;
+                        break;
+                    }
                 }
             }
-            for (int i = 1; i < applications.size(); i++) {
+            for (int i = 0; i < applications.size(); i++) {
                 InternshipApplication application = applications.get(i);
-                if (application.getInterviewDate().getDateTime().isAfter(now)) {
-                    if (application.getInterviewDate() != null) {
+                if (application.getInterviewDate() != null) {
+                    if (application.getInterviewDate().getDateTime().isAfter(now)) {
                         if (closestApplication.getInterviewDate() == null
                                 || application.getInterviewDate()
                                 .isBeforeInclusive(closestApplication.getInterviewDate())) {
@@ -52,7 +54,7 @@ public class Reminder {
                     }
                 }
             }
-            if (closestApplication.getInterviewDate() == null) {
+            if (closestApplication == null) {
                 this.upcomingApplication = null;
             } else {
                 this.upcomingApplication = closestApplication;
