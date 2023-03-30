@@ -8,11 +8,14 @@ public class Prefix {
     private final String prefix;
     private final String placeholderText;
     private final boolean isOptionalPrefix;
+    private final boolean isRepeatablePrefix;
 
-    private Prefix(String prefix, String placeholderText, boolean isOptionalPrefix) {
+    private Prefix(String prefix, String placeholderText, boolean isOptionalPrefix,
+            boolean isRepeatablePrefix) {
         this.prefix = prefix;
         this.placeholderText = placeholderText;
         this.isOptionalPrefix = isOptionalPrefix;
+        this.isRepeatablePrefix = isRepeatablePrefix;
     }
 
     /**
@@ -20,7 +23,7 @@ public class Prefix {
      * @param prefix Prefix value.
      */
     public Prefix(String prefix) {
-        this(prefix, "", false);
+        this(prefix, "", false, false);
     }
 
     //@@author EvitanRelta-reused
@@ -32,7 +35,7 @@ public class Prefix {
      * @param placeholderText Placeholder text describing the expected data for the prefix.
      */
     public Prefix(String prefix, String placeholderText) {
-        this(prefix, placeholderText, false);
+        this(prefix, placeholderText, false, false);
     }
     //@@author
 
@@ -66,10 +69,24 @@ public class Prefix {
     }
 
     /**
+     * Returns true if this prefix can be repeated multiple times in a command.
+     */
+    public boolean isRepeatable() {
+        return isRepeatablePrefix;
+    }
+
+    /**
      * Returns a copy of this {@code Prefix}, but as an optional prefix.
      */
     public Prefix asOptional() {
-        return new Prefix(this.prefix, this.placeholderText, true);
+        return new Prefix(getPrefix(), getPlaceholderText(), true, isRepeatable());
+    }
+
+    /**
+     * Returns a copy of this {@code Prefix}, but as an optional prefix.
+     */
+    public Prefix asRepeatable() {
+        return new Prefix(getPrefix(), getPlaceholderText(), isOptional(), true);
     }
 
     @Override
