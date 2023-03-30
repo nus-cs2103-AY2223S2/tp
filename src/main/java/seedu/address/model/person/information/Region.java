@@ -73,6 +73,9 @@ public class Region {
 
     @Override
     public String toString() {
+        if (region.equals(Place.NOT_SPECIFIED)) {
+            return FIELD_NOT_SPECIFIED;
+        }
         return region.toString().toLowerCase();
     }
 
