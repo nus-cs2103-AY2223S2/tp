@@ -109,6 +109,7 @@
   -fx-graphic-text-gap: 0;
   -fx-padding: 5 5 5 5;
   -fx-background-color: #1B1B1B;
+  -fx-border-color: #4E4E4E;
 }
 
 .list-cell:filled:even {
@@ -192,13 +193,26 @@
 }
 
 .result-display {
-  -fx-background-color: transparent;
+  -fx-background-color: #1B1B1B;
+  -fx-control-inner-background: #1B1B1B;
   -fx-font-size: 13pt;
   -fx-text-fill: white;
+  -fx-border-color: #4E4E4E;
+  -fx-border-width: 1.5;
+  -fx-border-radius: 8;
+  -fx-background-insets: 0;
+  -fx-text-box-border: transparent;
+  -fx-faint-focus-color: transparent;
+  -fx-focus-color: transparent;
 }
 
 .result-display .label {
   -fx-text-fill: black !important;
+}
+
+#resultDisplay .content {
+  -fx-background-radius: 0;
+  -fx-background-color: #1B1B1B;
 }
 
 .status-bar .label {
@@ -326,12 +340,16 @@
 }
 
 .scroll-bar {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-border-color:#505050;
+  -fx-border-radius: 32px;
+  -fx-background-color: transparent;
+  -fx-padding: 0;
 }
 
 .scroll-bar .thumb {
-  -fx-background-color: derive(#1d1d1d, 50%);
+  -fx-background-color: #4a4a4a;
   -fx-background-insets: 3;
+  -fx-background-radius: 32px;
 }
 
 .scroll-bar .increment-button,
@@ -394,7 +412,6 @@
   -fx-border-width: 1.5;
   -fx-border-radius: 64;
   -fx-background-color: transparent #616060 transparent #616060;
-  -fx-background-insets: 0;
   -fx-font-size: 13pt;
   -fx-text-fill: white;
 }
@@ -403,13 +420,6 @@
 #personListPanel,
 #personWebpage {
   -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-  -fx-background-color: #1B1B1B;
-  -fx-border-color: #616060;
-  -fx-border-width: 1.5;
-  -fx-border-radius: 0;
 }
 
 #tags {
