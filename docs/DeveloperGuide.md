@@ -351,10 +351,15 @@ to a person in OfficeConnect. </br>
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
-  * Step 1.1: User executes `listp` to list all persons or `findp David` to search for David in the contact
-    list.
-  * Step 1.2: User executes `listt` to list all the tasks or `findt slides` to search for a task containing the
-    word slides in its title.
+  * User executes `findp David` to search for David in the contact list followed by `listt` to lists all the tasks.
+  * User executes `findt slides`to search for a task containing the word `slides` in its title followed by `listp`
+    to list all the persons.
+  * User executes `viewunassignedall` to list all the persons that have not been assigned to any tasks and all tasks
+    that have not been assigned to any persons.
+  * User executes `findp David` to search for David in the contact list followed by `viewunassignedt` to list all tasks
+    that have not been assigned to any person.
+  * User executes `findt slides` to search for a task containing the word `slides` in its title followed by 
+    `viewunassignedp` to list all persons that have not been assigned to any tasks.
 * After this step, the target task to assign and the target person to be assigned to said task will appear in the list
   of persons and tasks displayed.
 
@@ -367,7 +372,7 @@ The following activity diagram summarizes what happens when a user wants to exec
 #### 3.6.2 Design Considerations
 **Aspect: Steps Leading to Execution of Assign Command**
 
-* **Alternative 1 (current choice):** Users execute `listp` or `findp` to display a list of persons and `listt` or
+* **Alternative 1 (current choice 1):** Users execute `listp` or `findp` to display a list of persons and `listt` or
   `findt` to display a list of tasks on the application.
   * Pros: Users can search for a specific person or task before assigning.
   * Cons: If `listp` and `listt` are used, users may have to scroll through a long list to search for the desired
@@ -375,7 +380,7 @@ The following activity diagram summarizes what happens when a user wants to exec
     to search for a person, the user will then have to execute `listt` to access the full list of tasks in order to
     identify the task that the user wants to be assigned to that person.
 
-* **Alternative 2 (proposed additional choice):** Users can execute a command to display a list tasks that have not been
+* **Alternative 2 (current choice 2):** Users can execute a command to display a list tasks that have not been
   assigned to any person or to display a people that have not been assigned to that task.
   * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
     `findt` to search for unassigned tasks one at a time.
