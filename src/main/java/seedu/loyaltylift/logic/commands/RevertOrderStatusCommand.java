@@ -1,7 +1,6 @@
 package seedu.loyaltylift.logic.commands;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.List;
 
@@ -9,14 +8,7 @@ import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
-import seedu.loyaltylift.model.attribute.Address;
-import seedu.loyaltylift.model.attribute.Name;
-import seedu.loyaltylift.model.attribute.Note;
-import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
-import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 
 /**
  * Reverts the status of the order

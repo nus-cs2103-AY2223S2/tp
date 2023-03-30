@@ -25,8 +25,8 @@ public class Order {
     public static final Comparator<Order> SORT_STATUS = Comparator.comparing(Order::getStatus)
             .thenComparing(SORT_CREATED_DATE);
 
-    public static final String MESSAGE_INVALID_STATE = "This order is already completed or cancelled";
-
+    public static final String MESSAGE_INVALID_REVERT_COMMAND = "This order status is already at its earliest stage";
+    public static final String MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND = "This order is already completed or cancelled";
     private final Customer customer;
     private final Name name;
     private final Quantity quantity;
@@ -105,10 +105,11 @@ public class Order {
         try {
             advancedStatus = this.getStatus().newStatusWithNewUpdate(LocalDate.now());
         } catch (IllegalStateException e) {
-            throw new CommandException(MESSAGE_INVALID_STATE);
+            throw new CommandException(MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND);
         }
 
-        return new Order(getCustomer(), getName(), getQuantity(), getAddress(), advancedStatus, getCreatedDate(), getNote());
+        return new Order(getCustomer(), getName(), getQuantity(),
+                getAddress(), advancedStatus, getCreatedDate(), getNote());
     }
 
     /**
@@ -120,10 +121,11 @@ public class Order {
         try {
             revertedStatus = status.newStatusWithRemoveLatest();
         } catch (IllegalStateException e) {
-            throw new CommandException(MESSAGE_INVALID_STATE);
+            throw new CommandException(MESSAGE_INVALID_REVERT_COMMAND);
         }
 
-        return new Order(getCustomer(), getName(), getQuantity(), getAddress(), revertedStatus, getCreatedDate(), getNote());
+        return new Order(getCustomer(), getName(), getQuantity(),
+                getAddress(), revertedStatus, getCreatedDate(), getNote());
     }
 
     /**
@@ -134,9 +136,9 @@ public class Order {
         Status currentStatus = getStatus();
 
         try {
-            newStatus =currentStatus.newStatusForCancelledOrder(LocalDate.now());
+            newStatus = currentStatus.newStatusForCancelledOrder(LocalDate.now());
         } catch (IllegalStateException e) {
-            throw new CommandException(MESSAGE_INVALID_STATE);
+            throw new CommandException(MESSAGE_INVALID_ADVANCE_CANCEL_COMMAND);
         }
 
         return new Order(getCustomer(), getName(), getQuantity(), getAddress(), newStatus, getCreatedDate(), getNote());
