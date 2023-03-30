@@ -378,6 +378,8 @@ appointment delete INDEX
 
 #### `edit` - Edit an appointment
 
+Edits the details of an existing appointment.
+
 ```text
 appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] [--v VAX_GROUP]
 ```
