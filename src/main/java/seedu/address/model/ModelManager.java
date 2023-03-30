@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -328,24 +327,29 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(sortedData);
     }
 
+    /**
+     * Updates the list of students in the tutorial if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
     public void updateSortTutorialPersonList(String metric, boolean isIncreasing) {
         requireNonNull(metric);
         Comparator<Person> comparator;
         switch (metric) {
-            case "performance":
-                comparator = new PerformanceComparator(isIncreasing);
-                break;
-            case "email":
-                comparator = new EmailComparator(isIncreasing);
-                break;
-            case "name":
-                comparator = new NameComparator(isIncreasing);
-                break;
-            case "address":
-                comparator = new AddressComparator(isIncreasing);
-                break;
-            default:
-                comparator = new RemarkComparator(isIncreasing);
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
         }
 
         for (Tutorial tutorial : filteredTutorials) {
@@ -353,48 +357,59 @@ public class ModelManager implements Model {
         }
     }
 
+    /**
+     * Updates the list of students in the lab if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
     public void updateSortLabPersonList(String metric, boolean isIncreasing) {
         requireNonNull(metric);
         Comparator<Person> comparator;
         switch (metric) {
-            case "performance":
-                comparator = new PerformanceComparator(isIncreasing);
-                break;
-            case "email":
-                comparator = new EmailComparator(isIncreasing);
-                break;
-            case "name":
-                comparator = new NameComparator(isIncreasing);
-                break;
-            case "address":
-                comparator = new AddressComparator(isIncreasing);
-                break;
-            default:
-                comparator = new RemarkComparator(isIncreasing);
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
         }
 
         for (Lab lab : filteredLabs) {
             Collections.sort(lab.getStudents(), comparator);
         }
     }
+
+    /**
+     * Updates the list of students in the consultation if that is the group of students the TA wishes to sort
+     * @param metric Type of indicator to sort by
+     * @param isIncreasing Sort in ascending or descending order
+     */
     public void updateSortConsultationPersonList(String metric, boolean isIncreasing) {
         requireNonNull(metric);
         Comparator<Person> comparator;
         switch (metric) {
-            case "performance":
-                comparator = new PerformanceComparator(isIncreasing);
-                break;
-            case "email":
-                comparator = new EmailComparator(isIncreasing);
-                break;
-            case "name":
-                comparator = new NameComparator(isIncreasing);
-                break;
-            case "address":
-                comparator = new AddressComparator(isIncreasing);
-                break;
-            default:
-                comparator = new RemarkComparator(isIncreasing);
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
         }
 
         for (Consultation consultation : filteredConsultations) {
