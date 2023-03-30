@@ -25,7 +25,7 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                 Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
                 Pair.of(CommandParserUtil.AFTER_FLAG, 1),
-                Pair.of(CommandParserUtil.OR_FLAG, 1)); // TODO: and and flag
+                Pair.of(CommandParserUtil.SEARCH_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
@@ -57,12 +57,29 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
-                        .consume(request::setSearchedDeadlineAfter));
+                        .consume(request::setSearchedDeadlineAfter),
+                CommandParserUtil.SEARCH_FLAG_PARSER
+                        .consume(flag -> {
+                            counter.add(flag);
+                            LiteralArgumentFlag literalFlag = flag.getActualFlag();
+                            if (literalFlag.equals(CommandParserUtil.AND_FLAG)) {
+                                request.setMode(SearchRequest.Mode.AND);
+                                return;
+                            }
+                            if (literalFlag.equals(CommandParserUtil.OR_FLAG)) {
+                                request.setMode(SearchRequest.Mode.OR);
+                                return;
+                            }
+                            throw new ParserException("Should not reach here!");
+                        }));
 
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
+                .filter(ignore1 -> !request.getMode().equals(SearchRequest.Mode.DEFAULT)
+                        || counter.totalCount() <= 2)
                 .constMap(new SearchCommand(request));
+
     }
 
     public static SearchCommandParser getInstance() {
