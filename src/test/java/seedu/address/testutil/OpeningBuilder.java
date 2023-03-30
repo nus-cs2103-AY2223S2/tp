@@ -66,7 +66,7 @@ public class OpeningBuilder {
     /**
      * Parses the {@code keydates} into a {@code Set<Keydate>} and set it to the {@code Opening} that we are building.
      */
-    public OpeningBuilder withDates(ArrayList<String>... dates) {
+    public OpeningBuilder withKeydates(ArrayList<String>... dates) {
         this.keydates = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1)))
                 .collect(Collectors.toList());
         return this;
