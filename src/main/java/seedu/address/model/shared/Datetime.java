@@ -19,7 +19,7 @@ public class Datetime {
     public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp!";
     public static final String MESSAGE_CONSTRAINTS_DATETIME = "Invalid datetime format!\n"
         + "e.g: 2023-03-27 15:30:00\nNote the leading zeros!\nTime is optional."
-        + "\nWe are too lazy to support more format...";
+        + "\nPlease follow this format strictly...";
     private final Long timestamp;
 
     /**
