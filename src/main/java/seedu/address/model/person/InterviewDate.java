@@ -12,8 +12,8 @@ import java.time.format.DateTimeParseException;
  */
 public class InterviewDate extends InternshipApplicationAttribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Interview dates should be of the format 'MM/dd/yyyy hh:mm a'.";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+    public static final String MESSAGE_CONSTRAINTS = "Interview dates should be of the format 'yyyy-MM-dd hh:mm a'.";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
     public final LocalDateTime value;
 
     /**
@@ -76,6 +76,10 @@ public class InterviewDate extends InternshipApplicationAttribute {
     @Override
     public String toString() {
         return value.format(FORMATTER);
+    }
+
+    public LocalDateTime getDateTime() {
+        return value;
     }
 
     @Override

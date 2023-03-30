@@ -34,7 +34,6 @@ public class LogicManager implements Logic {
     private final StatsManager statsManager;
     private final InternEaseParser internEaseParser;
 
-
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */

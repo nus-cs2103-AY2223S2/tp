@@ -7,11 +7,11 @@ public enum InternshipStatus {
     PENDING("Pending reply", "#FDA50F"),
     RECEIVED("Offer received", "#89CFF0"),
     ACCEPTED("Offer accepted", "#32CD32"),
-    REJECTED("Offer rejected", "#808080"),
-    NO("Application rejected", "#D40E2F");
+    DECLINED("Offer rejected", "#808080"),
+    REJECTED("Application rejected", "#D40E2F");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be of one of the following five types: PENDING, RECEIVED, ACCEPTED, REJECTED or NO";
+            "Status can only be of one of the following five types: PENDING, RECEIVED, ACCEPTED, DECLINED, REJECTED";
 
     public final String label;
     public final String labelColour;
