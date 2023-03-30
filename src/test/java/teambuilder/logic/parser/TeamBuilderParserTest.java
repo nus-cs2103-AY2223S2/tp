@@ -22,10 +22,12 @@ import teambuilder.logic.commands.ExitCommand;
 import teambuilder.logic.commands.FindCommand;
 import teambuilder.logic.commands.HelpCommand;
 import teambuilder.logic.commands.ListCommand;
+import teambuilder.logic.commands.ShowCommand;
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.PersonContainsKeywordsPredicate;
+import teambuilder.model.person.TeamContainsKeywordsPredicate;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 import teambuilder.testutil.PersonBuilder;
 import teambuilder.testutil.PersonUtil;
@@ -79,6 +81,14 @@ public class TeamBuilderParserTest {
     }
 
     @Test
+    public void parseCommand_show() throws Exception {
+        List<String> keywords = Arrays.asList("TeamA");
+        ShowCommand command = (ShowCommand) parser
+                .parseCommand(ShowCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new ShowCommand(new TeamContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -107,4 +117,6 @@ public class TeamBuilderParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
 }
+
