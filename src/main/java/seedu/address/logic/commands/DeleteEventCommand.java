@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -118,10 +119,16 @@ public class DeleteEventCommand extends Command {
 
         LocalDateTime deleteDate = tutorialToDelete.getDate();
         LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
+
+        ArrayList<LocalDateTime[]> toRemove = new ArrayList<>();
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
-                ParserUtil.MASTER_TIME.remove(range);
+                toRemove.add(range);
             }
+        }
+
+        for (LocalDateTime[] toRemoveRange: toRemove) {
+            ParserUtil.MASTER_TIME.remove(toRemoveRange);
         }
 
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
@@ -159,12 +166,19 @@ public class DeleteEventCommand extends Command {
         Lab labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
 
         LocalDateTime deleteDate = labToDelete.getDate();
-        LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
+        LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(2)};
+
+        ArrayList<LocalDateTime[]> toRemove = new ArrayList<>();
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
-                ParserUtil.MASTER_TIME.remove(range);
+                toRemove.add(range);
             }
         }
+
+        for (LocalDateTime[] toRemoveRange: toRemove) {
+            ParserUtil.MASTER_TIME.remove(toRemoveRange);
+        }
+
 
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
             labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
@@ -203,11 +217,18 @@ public class DeleteEventCommand extends Command {
 
         LocalDateTime deleteDate = consultationToDelete.getDate();
         LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
+
+        ArrayList<LocalDateTime[]> toRemove = new ArrayList<>();
         for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
             if (range[0].isEqual(deleteRange[0]) && range[1].isEqual(deleteRange[1])) {
-                ParserUtil.MASTER_TIME.remove(range);
+                toRemove.add(range);
             }
         }
+
+        for (LocalDateTime[] toRemoveRange: toRemove) {
+            ParserUtil.MASTER_TIME.remove(toRemoveRange);
+        }
+
 
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
             consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
