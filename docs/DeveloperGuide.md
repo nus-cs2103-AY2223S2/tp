@@ -324,7 +324,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2d. Input contains incorrect details
     * 2d1. ModCheck shows an error message.
 
-**Use case: Delete a single person**
+#### Use case: Delete a single person
 
 **MSS**
 
@@ -348,14 +348,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: Delete multiple persons**
+#### Use case: Delete multiple persons 
 
 **MSS**
 
 1.  Student requests to list persons
 2.  ModCheck shows a list of persons
-3.  Student requests to delete multiple people in the list
-4.  ModCheck deletes the people
+3.  Student requests to delete multiple persons in the list
+4.  ModCheck deletes the persons
 
     Use case ends.
 
@@ -371,7 +371,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+#### Use case: Delete single person by name
 
+**MSS**
+
+1.  Student requests to list persons
+2.  ModCheck shows a list of persons
+3.  Student requests to delete person in the list by their name.
+4.  ModCheck deletes the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. There is no person with the specified name.
+
+    * 3a1. ModCheck shows an error message and empty list.
+
+      Use case ends.
+
+* 3b. There are multiple persons with the same name.
+
+    * 3b1. ModCheck shows an error message with a list of persons with the same name.
+
+      Use case ends.
+  
 #### Use case: Filter contacts by tag
 
 **MSS**
@@ -425,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       * 3b1b. ModChecks shows an error message.
 
 
-#### Use case: Edit a contact
+#### Use case: Edit a contact by INDEX
 
 **MSS**
 
@@ -436,15 +464,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
+* 1a The new value for the specified field is invalid
+    * 1a1. ModCheck informs student that the given value for the specified field is invalid
+
+      Use case ends.
+
 * 2a. The contact does not exist
     * 2a1. ModCheck informs student that contact does not exist
 
         Use case ends.
 
-* 3a. The new value for the specified field is invalid
-    * 3a1. ModCheck informs student that the given value for the specified field is invalid 
 
-      Use case ends.
 
 #### Use case: Switch to light or dark mode
 
