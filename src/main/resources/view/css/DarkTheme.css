@@ -332,7 +332,6 @@
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
     -fx-wrap-text: true;
-    -fx-max-width: 150px;
 }
 
 .cell_small_label {
@@ -340,7 +339,6 @@
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
     -fx-wrap-text: true;
-    -fx-max-width: 150px;
 }
 
 .stack-pane {
