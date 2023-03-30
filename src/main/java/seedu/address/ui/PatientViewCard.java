@@ -5,8 +5,9 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
-import java.util.Comparator;
-
+/**
+ * A UI component that pops up and displays information of an individual {@code Patient}.
+ */
 public class PatientViewCard extends UiPart<Stage> {
 
     private static final String FXML = "PatientViewCard.fxml";
@@ -14,6 +15,9 @@ public class PatientViewCard extends UiPart<Stage> {
     @FXML
     private Label patientViewCard;
 
+    /**
+     * Creates a card to view details of the {@code Patient}.
+     */
     public PatientViewCard(Patient patient, Stage root) {
         super(FXML, root);
         if (patient == null) {
@@ -25,6 +29,9 @@ public class PatientViewCard extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Shows the patientCard window.
+     */
     public void show() {
         getRoot().show();
         getRoot().centerOnScreen();

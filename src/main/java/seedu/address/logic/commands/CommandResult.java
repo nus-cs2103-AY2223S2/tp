@@ -32,6 +32,10 @@ public class CommandResult {
         this.index = index;
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code view} and {@code index},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, boolean view, int index) {
         this(feedbackToUser, false, false, view, index);
     }
