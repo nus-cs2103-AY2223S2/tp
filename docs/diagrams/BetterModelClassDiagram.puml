@@ -8,18 +8,18 @@ AddressBook *--right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- Subject
+UniqueTagList -[hidden]down- Module
 UniqueTagList -[hidden]down- Tag
-Tag -[hidden]right- Subject
+Tag -[hidden]right- Module
 
 UniqueTagList -right-> "*" Tag
-UniqueTagList -down-> "*" Subject
+UniqueTagList -down-> "*" Module
 UniquePersonList -right-> Student
 
 Student *-up-> "*" Tag
-Student *-up-> "*" Subject
-Student -[hidden]right-> Subject
-Student -[hidden]up-> Subject
+Student *-up-> "*" Module
+Student -[hidden]right-> Module
+Student -[hidden]up-> Module
 
 Student *--> Name
 Student *--> Phone

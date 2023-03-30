@@ -188,7 +188,7 @@ The `Student` object is composed of attributes:
 * `Email`: The email address of the student.
 * `Address`: The address of the student.
 * `Education`: The education level of the student.
-* `Subject`: The subjects the tutor is teaching the student.
+* `Module`: The modules the tutor is teaching the student.
 * `Remark`: Remarks/notes the tutor has about the student.
 * `Tags`: Qualities a student has.
 
@@ -201,7 +201,7 @@ The `add` command has the following fields:
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
 * Prefix `edu/` followed by the student's education level.
-* Prefix `s/` followed by the subject name.
+* Prefix `m/` followed by the module name.
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
@@ -221,9 +221,9 @@ Here is a sequence diagram showing the interactions between components when `add
 The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. 
 Hence, resulting in a similar implementation of the `add` feature. </br>
 
-Some additions made were the `Education`, `Subject` and `Remark` attributes. </br>
+Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
-2. `Subject` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate subject names that are more than one word long as in real life.
+2. `Module` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate module names that are more than one word long as in real life.
 3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
 
@@ -297,7 +297,7 @@ This is done with the help of the `EditPersonDescriptor` class, which helps crea
 * Prefix `e/` followed by the student's email.
 * Prefix `a/` followed by the student's address.
 * Prefix `edu/` followed by the student's education level.
-* Prefix `s/` followed by the subject name.
+* Prefix `m/` followed by the module name.
 * Prefix `t/` followed by the tag name.
 * Prefix `r/` followed by the remarks/notes on the student.
 
@@ -488,7 +488,7 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
     * Simpler command for users to execute
   * Cons:
     * Less flexible as users cannot decide which attribute to sort by.
-    * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
+    * Reduces extensibility of the feature (eg. sort by module tag is more complicated if `sort` doesn't accept inputs)
     * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
 * **Alternative 2 (Current choice):** `sort ORDER`
   * Pros:
@@ -652,7 +652,7 @@ _{more aspects and alternatives to be added}_
 | **`HIGH`** | tutor    | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
 | **`HIGH`** | tutor    | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
 | **`HIGH`** | tutor    | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
-| **`HIGH`** | tutor    | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                          | keep track of what subjects I'm teaching the student                        |
+| **`HIGH`** | tutor    | include the modules I'm teaching a student to their entry (eg. CS2101, CS4243)                                | keep track of what modules I'm teaching the student                        |
 | **`HIGH`** | tutor    | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
 | **`HIGH`** | tutor    | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
 | **`HIGH`** | tutor    | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
@@ -662,12 +662,12 @@ _{more aspects and alternatives to be added}_
 | **`HIGH`** | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
 | **`HIGH`** | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
 | **`HIGH`** | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
-| **`HIGH`** | tutor    | edit the subjects I'm teaching a particular student                                                            | update or correct a student's records                                       |
+| **`HIGH`** | tutor    | edit the modules I'm teaching a particular student                                                            | update or correct a student's records                                       |
 | **`HIGH`** | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
 | **`HIGH`** | tutor    | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
 | **`HIGH`** | tutor    | be able to ask for help                                                                                        | learn how to use the app                                                    |
 |   `MED`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
-|   `MED`    | tutor    | filter my students by subjects                                                                                 | view all the student's I'm teaching a particular subject to                 |
+|   `MED`    | tutor    | filter my students by modules                                                                                 | view all the student's I'm teaching a particular module to                 |
 |   `MED`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
 |   `MED`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
 |   `MED`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |

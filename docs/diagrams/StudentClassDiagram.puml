@@ -5,7 +5,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Student *-right-> "*" Tag
-Student *-left-> "*" Subject
+Student *-left-> "*" Module
 
 Student *--> "1" Name
 Student *--> "0..1" Phone

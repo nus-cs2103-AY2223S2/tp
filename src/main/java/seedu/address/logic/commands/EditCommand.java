@@ -5,9 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -32,7 +32,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             PREFIX_ADDRESS.asOptional(),
             PREFIX_EDUCATION.asOptional(),
             PREFIX_TAG.asOptional().asRepeatable(),
-            PREFIX_SUBJECT.asOptional().asRepeatable()
+            PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
@@ -127,9 +127,9 @@ public class EditCommand extends Command {
                 .orElse(personToEdit.getOptionalEducation()).orElse(null);
         Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
+        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedEducation, oldRemark,
-                    updatedSubjects, updatedTags);
+                    updatedModules, updatedTags);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class EditCommand extends Command {
         private Optional<Address> address;
         private Optional<Education> education;
         private Optional<Remark> remark;
-        private Set<Subject> subjects;
+        private Set<Module> modules;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setEducation(toCopy.education);
             setAddress(toCopy.address);
-            setSubjects(toCopy.subjects);
+            setModules(toCopy.modules);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
@@ -185,7 +185,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, education, subjects, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, education, modules, tags);
         }
 
         public void setName(Name name) {
@@ -265,11 +265,11 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code subjects} to this object's {@code subjects}.
-         * A defensive copy of {@code subjects} is used internally.
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
          */
-        public void setSubjects(Set<Subject> subjects) {
-            this.subjects = (subjects != null) ? new HashSet<>(subjects) : null;
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
         }
 
         /**
@@ -282,12 +282,12 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable subject set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code subjects} is null.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
          */
-        public Optional<Set<Subject>> getSubjects() {
-            return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 
         @Override
@@ -310,7 +310,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getAddress().equals(e.getAddress())
-                    && getSubjects().equals(e.getSubjects())
+                    && getModules().equals(e.getModules())
                     && getTags().equals(e.getTags());
         }
     }
