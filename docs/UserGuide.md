@@ -277,6 +277,8 @@ Note: <br>
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get binded to the matching parent.
 3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
 Please delete the student and add without the image source path. 
+4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly.
+It is recommended to store the images using the folder [method](#images) instead.
 
 [Back to Table of Contents](#table-of-contents)
 
