@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.Region?>
 <fx:root resizable="false" title="Help Page" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
