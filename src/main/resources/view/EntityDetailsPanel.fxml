@@ -3,7 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -26,7 +26,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <StackPane fx:id="inventoryPlaceholder" />
+            <FlowPane fx:id="inventoryPlaceholder" />
          </children>
          <padding>
             <Insets left="10.0" />

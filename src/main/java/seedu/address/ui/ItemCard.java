@@ -38,12 +38,11 @@ public class ItemCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
-    public ItemCard(Entity item, int displayedIndex) {
+    public ItemCard(Item item, int displayedIndex) {
         super(FXML);
         this.entity = item;
         name.setText(item.getName().fullName);
-        assert (item instanceof Item);
-        weight.setText(String.valueOf(((Item) item).getWeight()));
+        weight.setText(String.valueOf((item).getWeight()));
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
