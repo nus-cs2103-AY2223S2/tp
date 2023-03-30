@@ -7,9 +7,7 @@ import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.logic.commands.CommandResult;
 import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.logic.parser.exceptions.ParseException;
-import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyTaskList;
-import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 
 /**

@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
-import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.tasklist.TaskList;
 
