@@ -22,8 +22,9 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_GROUP = "appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Unmarks the appointment identified by the index number used in the displayed appointment list as"
-            + " completed.\nParameters: INDEX (must be a positive integer)\n"
+            + ": Unmarks the appointment identified by the index number used in the displayed appointment list"
+            + " and change its status to incomplete.\n"
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNMARK_APPOINTMENT_SUCCESS = "Unmarked Appointment: %1$s";

@@ -41,8 +41,8 @@ public class AddCommand extends Command {
     public static final String COMMAND_GROUP = "appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Adds an appointment to the patient manager. "
-            + "Parameters: "
+            + ": Adds an appointment to the patient manager.\n"
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_PATIENT + " PATIENT_ID "
             + DELIMITER + PREFIX_STARTTIME + " START_TIME "
             + DELIMITER + PREFIX_ENDTIME + " END_TIME "

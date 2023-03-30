@@ -23,7 +23,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Marks the appointment identified by the index number used in the displayed appointment list as"
-            + " completed.\nParameters: INDEX (must be a positive integer)\n"
+            + " completed.\n"
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_APPOINTMENT_SUCCESS = "Marked Appointment: %1$s";

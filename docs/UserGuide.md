@@ -629,6 +629,8 @@ Output:<br>
 
 Adds a new appointment to the appointment manager
 
+##### Syntax
+
 ```text
 appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 ```
@@ -656,6 +658,8 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 Removes the specified appointment from the appointment manager.
 
+##### Syntax
+
 ```text
 appointment delete INDEX
 ```
@@ -676,6 +680,8 @@ appointment delete INDEX
 
 Edits the details of an existing appointment.
 
+##### Syntax
+
 ```text
 appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
     [--v VAX_GROUP]
@@ -689,7 +695,7 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 ##### Example
 
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
+* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Dose 1 (Pfizer)`
 
 ##### Restrictions
 
@@ -706,6 +712,8 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 Resets the view of the appointment pane to display all the appointments. Useful command after using the find command.
 
+##### Syntax
+
 ```text
 appointment list
 ```
@@ -721,6 +729,8 @@ List all the appointments that matches the predicates provided.
 * <code><var>ENDING_TIME</var></code> : List appointments before the ending time
 * <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
 * <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
+
+##### Syntax
 
 ```text
 appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
@@ -746,6 +756,8 @@ appointment find [...KEYWORDS...]
 
 Marks an existing appointment as completed.
 
+##### Syntax
+
 ```text
 appointment mark INDEX
 ```
@@ -766,6 +778,8 @@ appointment mark INDEX
 #### `unmark` - Changes an appointment's status to not done
 
 Changes the completion status to not done.
+
+##### Syntax
 
 ```text
 appointment unmark INDEX
