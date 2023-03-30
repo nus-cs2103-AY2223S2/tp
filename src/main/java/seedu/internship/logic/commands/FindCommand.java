@@ -20,8 +20,8 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships containing at least one of the "
-            + "inputs from every different type of field (name, role, status, date or tag) and displays them as a "
-            + "list with index numbers.\n"
+            + "inputs for every different type of field (name, role, status, date or tag) given by the user"
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
             + "[" + PREFIX_ROLE + "ROLE]... "

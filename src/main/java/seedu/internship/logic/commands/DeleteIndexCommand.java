@@ -27,7 +27,7 @@ public class DeleteIndexCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes all internships identified by the index numbers used in the displayed internship list.\n"
-            + "Parameters: [INDEX]+ (must be a positive integer)\n"
+            + "Parameters: INDEX [INDEX]... (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internships have been deleted!";
@@ -35,7 +35,7 @@ public class DeleteIndexCommand extends Command {
 
     private final List<Index> targetIndexes;
     /**
-     * Create a DeleteCommand object from the list of user supplied indexes and a predicate
+     * Create a DeleteIndexCommand object from the list of user supplied indexes and a predicate
      * @param targetIndexes A list of {@code Index} that refers to the index of internship entries in list.
      */
     public DeleteIndexCommand(List<Index> targetIndexes) {
