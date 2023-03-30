@@ -292,7 +292,7 @@ EduMate is a command-driven application, which means that its various functional
 
 Contacts in EduMate have two types of attributes: single-valued and multi-valued.
 
-Single-valued attributes for each contact can only have one value. Examples of single-valued attributes include a contact's name, phone number, email address, Telegram handle, and home address.
+Single-valued attributes for each contact can only have one value. Examples of single-valued attributes include a contact's name, phone number, email address, Telegram handle, and home station.
 
 Multi-valued attributes, on the other hand, can have multiple values associated with a single contact. Examples of multi-valued attributes include the groups and modules that a contact belongs to.
 
@@ -360,7 +360,7 @@ These commands will help you to perform basic functions on EduMate. These are fu
 
 ### Add a contact `add`
 
-You can easily add a new contact to EduMate using the `add` command. This allows you to quickly store their information for future reference, such as their name, phone number, email address, Telegram handle, and home address. Once added, you can also assign them to groups or modules using the `tag` command.
+You can easily add a new contact to EduMate using the `add` command. This allows you to quickly store their information for future reference, such as their name, phone number, email address, Telegram handle, and home station. Once added, you can also assign them to groups or modules using the `tag` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -389,7 +389,7 @@ What you should see:<br>
 * `add n/Wen Qing`: Adds a contact with the following details. Note the default values for each attribute:
     * Name: `Wen Qing`
     * Phone number: `00000000`
-    * Address: `NUS`
+    * Station: `NUS`
     * Email: `wenqing@gmail.com`
     * Telegram handle: `@wenqing`
     * Groups:
