@@ -25,6 +25,8 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    Predicate<Meeting> PREDICATE_UNDONE_MEETINGS = meeting -> !meeting.getIsDone() && !meeting.hasPassed();
+
     /**
      * Returns the user prefs.
      */
