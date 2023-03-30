@@ -118,7 +118,8 @@ public class QuickContactsParserTest {
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(meeting).build();
         EditMeetingsCommand command = (EditMeetingsCommand) parser.parseCommand(
                 EditMeetingsCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST_PERSON.getOneBased() + " " + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
+                        + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
         assertEquals(new EditMeetingsCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
