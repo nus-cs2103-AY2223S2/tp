@@ -822,12 +822,12 @@ _{Explain here how the data archiving feature will be implemented}_
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## **Model Implementation**
+### **Model Implementation**
 
 This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more
 information about this package.
 
-### **Person Class**
+#### **Person Class**
 Each `Person` in CoDoc is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
@@ -836,13 +836,20 @@ All `Person` must have a `Name`, `Email`, `Course` and `Year`.
 
 `Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
 
-#### Design Considerations
+##### Handling Duplicates
 
 For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The class is design in such a way where no two person can have the same email.
+</div>
 
+##### Skills Attribute
 We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
 
-**Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
+
+##### Design Consideration
+
+**How to implement the `GitHub` and `Linkedin` attributes:**
 
 - Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL
   - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
