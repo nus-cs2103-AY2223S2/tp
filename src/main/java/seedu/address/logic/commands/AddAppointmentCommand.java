@@ -32,7 +32,6 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_TIMESLOT_OCCUPIED = "That timeslot is occupied";
     public static final String MESSAGE_PATIENT_DOES_NOT_EXIST = "This patient does not exist";
 
-
     private final Appointment toAdd;
 
     /**

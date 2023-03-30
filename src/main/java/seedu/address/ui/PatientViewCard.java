@@ -23,9 +23,7 @@ public class PatientViewCard extends UiPart<Stage> {
         if (patient == null) {
             patientViewCard.setText("");
         } else {
-            patientViewCard.setText(patient.getName().fullName + "\n" + patient.getAddress().value + "\n"
-                    + patient.getPhone().value + "\n" + patient.getEmail().value + "\n" + patient.getRemark() + "\n"
-                    + patient.getTags().toString());
+            patientViewCard.setGraphic(new PatientCard(patient).bindPrefProperty(root).getRoot());
         }
     }
 

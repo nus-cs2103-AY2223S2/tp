@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -58,6 +59,25 @@ public class PatientCard extends UiPart<Region> {
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    public PatientCard(Patient patient) {
+        super(FXML);
+        this.patient = patient;
+        name.setText(patient.getName().fullName);
+        phone.setText(patient.getPhone().value);
+        address.setText(patient.getAddress().value);
+        email.setText(patient.getEmail().value);
+        remark.setText(patient.getRemark().value);
+        patient.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    public PatientCard bindPrefProperty(Stage stage) {
+        this.cardPane.prefHeightProperty().bind(stage.heightProperty());
+        this.cardPane.prefWidthProperty().bind(stage.widthProperty());
+        return this;
     }
 
     @Override
