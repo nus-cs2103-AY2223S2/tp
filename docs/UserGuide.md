@@ -62,7 +62,7 @@ There are two core features that HMHero provides:
 1. Applicant Management System
 2. Hiring Process Analytics
 
----
+
 
 ### Applicant Management System
 
@@ -74,7 +74,7 @@ You can:
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
 
----
+
 
 ### Hiring Process Analytics
 
