@@ -34,8 +34,6 @@
                     <Label fx:id="interviewDate" managed="false" styleClass="cell_small_label" text="\$interviewDate" visible="false" />
                     <Label fx:id="phone" managed="false" styleClass="cell_small_label" visible="false" />
                     <Label fx:id="email" managed="false" styleClass="cell_small_label" visible="false" />
-                    <Label fx:id="resume" managed="false" styleClass="cell_small_label" visible="false" />
-                    <Label fx:id="coverLetter" managed="false" styleClass="cell_small_label" visible="false" />
                 </VBox>
             </children>
         </HBox>
