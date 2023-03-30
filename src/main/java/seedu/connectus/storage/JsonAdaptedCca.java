@@ -47,7 +47,7 @@ class JsonAdaptedCca {
 
     public String couple(String str) {
         String[] arr = str.split("-");
-        if(arr.length == 2) {
+        if (arr.length == 2) {
             return arr[0] + "#" + arr[1];
         }
         else {
