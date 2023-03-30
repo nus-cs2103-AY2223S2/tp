@@ -549,15 +549,21 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 ## 4.9 Searching for contact information: `search`
 
-Format: `search KEYWORD`
+Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [ccapos/CCA_POSITION_KEYWORD]...`
 
-> Finds all contacts whose information fields and tags contain any of the given keywords.
+> For keywords without a specified field, finds all contacts whose information from any field contains the given keywords. For keywords in a specified field, finds all contacts whose field contains given keyword.
 
 Examples:
 * `search january` returns all contacts whose information fields contain the keyword `january`.
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
+* `search may blk n\alex` returns all contacts whose name contains the keyword `alex` and which contain the keywords `may` and `blk` in any of the information fields.
+* `search n\lex y`returns all contacts whose name contains the keyword `lex y`
+* `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
+* `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
+* `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
+* Only unspecified keywords treat space as a separator. This means `search yu alex` will search for a contact that contains both `yu` and `alex` in the information, but `search n/yu alex` will search for a contact that contains the string `yu alex` in its name. 
 
 <div style="page-break-after: always"></div>
 
