@@ -3,8 +3,11 @@ package seedu.ultron.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.ultron.commons.core.LogsCenter;
 import seedu.ultron.model.opening.Opening;
@@ -42,6 +45,7 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         status.setText("Status: " + opening.getStatus().fullStatus);
         email.setText("Email: " + opening.getEmail().value);
         remark.setText(String.format("Remark: %s", opening.getRemark().value));
+        dates.setHgap(20);
         opening.getKeydates().stream()
                 .forEach(date -> {
                     KeydateCard keydateCard = new KeydateCard(date);
