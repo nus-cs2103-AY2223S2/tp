@@ -25,7 +25,10 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Fish> PREDICATE_SHOW_ALL_FISHES = unused -> true;
     Predicate<Tank> PREDICATE_SHOW_ALL_TANKS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     Function<Tank, Predicate<Fish>> SHOW_FISHES_IN_TANK = tank -> (fish -> fish.isInTank(tank));
+    Function<Tank, Predicate<Task>> SHOW_TANK_TASKS = tank
+            -> (task -> task.isTankRelatedTask() && task.getTank().isSameTank(tank));
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

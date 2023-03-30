@@ -21,6 +21,8 @@ public class ListCommandParser implements Parser<ListCommand> {
             return ListCommand.LIST_FISHES;
         } else if (Objects.equals(argMultimap.getPreamble(), "tanks")) {
             return ListCommand.LIST_TANKS;
+        } else if (Objects.equals(argMultimap.getPreamble(), "tasks")) {
+            return ListCommand.LIST_TASKS;
         } else {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }

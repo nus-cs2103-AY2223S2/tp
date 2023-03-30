@@ -29,6 +29,15 @@ import seedu.address.model.task.TaskFeedingReminder;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    /* Compares tasks and sorts them in order of high > medium > low */
+    public static final Comparator<Task> PRIORITY_COMPARATOR = (t1, t2) -> {
+        return t1.hasPriority()
+                ? t2.hasPriority()
+                    ? t1.getPriority().compare(t2.getPriority())
+                    : -1 /* if t2 has no priority, order behind t1*/
+                : -1; /* if t1 has no priority, order behind t2 regardless*/
+
+    };
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -56,7 +65,9 @@ public class ModelManager implements Model {
         filteredFish = new FilteredList<>(this.addressBook.getFishList());
         sortedFish = new SortedList<>(filteredFish);
         this.taskList = new TaskList(taskList);
-        filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        SortedList<Task> sortedTasks = new SortedList<>(this.taskList.getTaskList());
+        sortedTasks.setComparator(PRIORITY_COMPARATOR);
+        filteredTasks = new FilteredList<>(sortedTasks);
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
         this.fullReadingLevels = new FullReadingLevels(fullReadings);
