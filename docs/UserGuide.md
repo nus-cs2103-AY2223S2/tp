@@ -150,13 +150,13 @@ Let's take a look at the different components in ConnectUS.<br>
 
 ![Layout](images/Layout.png)
 
+<div style="page-break-after: always"></div>
+
 ### 3.1.1 Command Box
 
 ![CommandBox](images/CommandBox.png)
 
 The command box allows you to enter commands that you wish to perform. For starters, try typing the `help` command and hit enter!
-
-<div style="page-break-after: always"></div>
 
 ### 3.1.2 Command Result Feedback
 
@@ -530,8 +530,6 @@ The `delete` command:
 * Deletes the contact at the specified `PERSON_INDEX`.
 * The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
-
-<div style="page-break-after: always"></div>
 
 **Delete Example 1:**
 
