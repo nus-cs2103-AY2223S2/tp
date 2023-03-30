@@ -49,7 +49,7 @@
             <Label fx:id="drugAllergy" prefHeight="37.0" prefWidth="316.0" styleClass="cell_small_label" text="$drugAllergy" />
             <FlowPane fx:id="medicines">
                 <padding>
-                    <Insets bottom="2.0" top="5.0"/>
+                    <Insets bottom="2.0" top="5.0" />
                 </padding>
             </FlowPane>
             <GridPane.margin>

@@ -372,7 +372,7 @@
     -fx-font-size: 13;
 }
 
-.gender {
+#gender .label {
      -fx-background-color: #C4AE78;
      -fx-padding: 1 2 1 2;
      -fx-border-radius: 1;
