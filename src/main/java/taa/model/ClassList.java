@@ -15,13 +15,13 @@ import taa.model.student.UniqueStudentList;
  */
 public class ClassList implements ReadOnlyAddressBook {
 
-    private static int lastId = 0;
+    private static int lastId;
 
     private UniqueStudentList students;
     private AssignmentList assignments;
     private String className = "DEFAULT";
     private int classId;
-    private int studentCount = 0;
+    private int studentCount;
 
     /**
      * Creates a class list instance with the given class name.

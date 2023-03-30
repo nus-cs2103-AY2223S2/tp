@@ -7,9 +7,11 @@ import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
 import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.commands.AddStudentCommand;
+import taa.logic.commands.ClassStatisticsCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
 import taa.logic.commands.CreateClassCommand;
+import taa.logic.commands.DeleteAlarmCommand;
 import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
@@ -19,9 +21,12 @@ import taa.logic.commands.GradeCommand;
 import taa.logic.commands.HelpCommand;
 import taa.logic.commands.ImportCommand;
 import taa.logic.commands.InsertParticipationCommand;
+import taa.logic.commands.ListAlarmsCommand;
 import taa.logic.commands.ListAssignmentCommand;
+import taa.logic.commands.ListAttendanceCommand;
 import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
+import taa.logic.commands.ListParticipationCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
 import taa.logic.commands.UngradeCommand;
@@ -66,6 +71,12 @@ public class TaaParser {
 
         case InsertParticipationCommand.COMMAND_WORD:
             return new InsertParticipationParser().parse(arguments);
+
+        case ListAttendanceCommand.COMMAND_WORD:
+            return new ListAttendanceParser().parse(arguments);
+
+        case ListParticipationCommand.COMMAND_WORD:
+            return new ListParticipationParser().parse(arguments);
 
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
@@ -117,6 +128,15 @@ public class TaaParser {
 
         case AddAlarmCommand.COMMAND_WORD:
             return new AddAlarmCommandParser().parse(arguments);
+
+        case ClassStatisticsCommand.COMMAND_WORD:
+            return new ClassStatisticsCommandParser().parse(arguments);
+
+        case ListAlarmsCommand.COMMAND_WORD:
+            return new ListAlarmsCommand();
+
+        case DeleteAlarmCommand.COMMAND_WORD:
+            return new DeleteAlarmCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

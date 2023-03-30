@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
 import taa.assignment.exceptions.InvalidGradeException;
-import taa.assignment.exceptions.SubmissiontNotFoundException;
+import taa.assignment.exceptions.SubmissionNotFoundException;
 import taa.model.student.Student;
 
 /**
@@ -75,23 +75,23 @@ public class Assignment {
      * @param isLateSubmission
      */
     public void gradeSubmission(Student student, int marks, boolean isLateSubmission)
-            throws SubmissiontNotFoundException, InvalidGradeException {
+            throws SubmissionNotFoundException, InvalidGradeException {
         if (submissionMap.containsKey(student)) {
             submissionMap.get(student).grade(marks, isLateSubmission);
         } else {
-            throw new SubmissiontNotFoundException("Submission of " + student.getName().fullName + " not found");
+            throw new SubmissionNotFoundException(student.getName().fullName);
         }
     }
 
     /**
      * @param student
-     * @throws SubmissiontNotFoundException
+     * @throws SubmissionNotFoundException
      */
-    public void ungradeSubmission(Student student) throws SubmissiontNotFoundException {
+    public void ungradeSubmission(Student student) throws SubmissionNotFoundException {
         if (submissionMap.containsKey(student)) {
             submissionMap.get(student).ungrade();
         } else {
-            throw new SubmissiontNotFoundException("Submission of " + student.getName().fullName + " not found");
+            throw new SubmissionNotFoundException(student.getName().fullName);
         }
     }
 

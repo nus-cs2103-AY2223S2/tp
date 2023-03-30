@@ -14,12 +14,13 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
-import taa.model.Alarm;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ReadOnlyAddressBook;
 import taa.model.ReadOnlyUserPrefs;
+import taa.model.alarm.Alarm;
 import taa.model.student.Student;
 import taa.testutil.Assert;
 import taa.testutil.PersonBuilder;
@@ -225,6 +226,30 @@ public class AddStudentCommandTest {
         public void addStudentAssignment(Student stu) {
         }
 
+        public String listAlarms() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public int getClassListSize() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasAssignment(String assignmentName) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void displayChart(ChartType chart, String... args) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void deleteAlarm(int index) throws CommandException {
+            throw new AssertionError("This method should not be called");
+
+        }
     }
 
     /**
@@ -267,6 +292,7 @@ public class AddStudentCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new ClassList();
         }
+
     }
 
 }

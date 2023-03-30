@@ -2,9 +2,13 @@ package taa.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -12,17 +16,42 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.Marker;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.ValueMarker;
+import org.jfree.chart.ui.RectangleAnchor;
+import org.jfree.chart.ui.TextAnchor;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.function.Function2D;
+import org.jfree.data.function.NormalDistributionFunction2D;
+import org.jfree.data.general.DatasetUtils;
+import org.jfree.data.xy.XYDataset;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert;
 import javafx.util.Duration;
 import taa.assignment.AssignmentList;
+import taa.assignment.exceptions.AssignmentException;
+import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.DuplicateAssignmentException;
+import taa.assignment.exceptions.NoGradeVarianceException;
+import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
-import taa.logic.commands.exceptions.CommandException;
+import taa.logic.commands.enums.ChartType;
+import taa.model.alarm.Alarm;
+import taa.model.alarm.AlarmList;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
@@ -39,6 +68,7 @@ public class ModelManager implements Model {
     private final Tutor tutor;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<ClassList> filteredClassLists;
+    private final AlarmList alarmList;
 
     private final AssignmentList assignmentList = new AssignmentList();
     private Predicate<ClassList> activeClassListPredicate;
@@ -58,6 +88,7 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
         this.filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
         this.activeClassListPredicate = null;
+        this.alarmList = new AlarmList();
 
         for (Student student : this.classList.getUniqueStudentList()) {
             addStudentToTaggedClasses(student);
@@ -208,8 +239,13 @@ public class ModelManager implements Model {
         if (filtered.size() > 0) {
             filteredStudents.setPredicate(new SameStudentPredicate(filtered.get(0)));
         } else {
-            filteredStudents.setPredicate(p->false);
+            filteredStudents.setPredicate(p -> false);
         }
+    }
+
+    @Override
+    public int getClassListSize() {
+        return this.filteredStudents.size();
     }
 
     @Override
@@ -234,7 +270,13 @@ public class ModelManager implements Model {
     //=========== AssignmentList Helpers =============================================================
 
     @Override
-    public void addAssignment(String assignmentName, int totalMarks) throws CommandException {
+    public boolean hasAssignment(String assignmentName) {
+        requireNonNull(assignmentName);
+        return assignmentList.contains(assignmentName);
+    }
+
+    @Override
+    public void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException {
         assignmentList.add(assignmentName, filteredStudents, totalMarks);
         for (Student student : filteredStudents) {
             updateStudent(student);
@@ -242,7 +284,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteAssignment(String assignmentName) throws CommandException {
+    public void deleteAssignment(String assignmentName) throws AssignmentNotFoundException {
         assignmentList.delete(assignmentName);
         for (Student student : filteredStudents) {
             updateStudent(student);
@@ -251,14 +293,14 @@ public class ModelManager implements Model {
 
     @Override
     public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission)
-            throws CommandException {
+            throws AssignmentException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
         assignmentList.grade(assignmentName, student, marks, isLateSubmission);
         updateStudent(student);
     }
 
     @Override
-    public void ungrade(String assignmentName, int studentId) throws CommandException {
+    public void ungrade(String assignmentName, int studentId) throws AssignmentException {
         Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
         assignmentList.ungrade(assignmentName, student);
         updateStudent(student);
@@ -297,8 +339,175 @@ public class ModelManager implements Model {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            String alertString = AlarmList.getAlarmAlert(alarm);
+            AlarmList.deleteTheAlarm(alarm); //when the alarm is sounded, it's deleted from the alarm list
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alarm Warning");
+            alert.setHeaderText("Hey, your time's up!");
+            alert.setContentText("Note: " + alertString);
+            alert.show();
+
         }));
+        timeline.setCycleCount(1);
         timeline.play();
+        alarm.addTimeline(timeline);
+        this.alarmList.addAlarm(alarm);
+    }
+
+    //Solution below adapted from ChatGPT
+    @Override
+    public String listAlarms() {
+        if (AlarmList.getAlarmCount() == 0) {
+            return "There is no alarm as of now.";
+        }
+        return this.alarmList.list();
+    }
+
+    @Override
+    public void deleteAlarm(int index) {
+        AlarmList.deleteTheAlarm(index);
+    }
+
+    @Override
+    public void displayChart(ChartType chartType, String... args)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException {
+        String title;
+        JFreeChart chart;
+
+        switch (chartType) {
+        case CLASS_GRADES:
+            // args[0] should not be null here -- should be ensured in ClassStatisticsCommandParser
+            assert args[0] != null;
+
+            title = "Grade Distribution";
+            chart = generateGradeDistribution(args[0]);
+            break;
+        case CLASS_ATTENDANCE:
+            title = "Attendance Distribution";
+            chart = generateAttendanceDistribution();
+            break;
+        default:
+            // this should be unreachable; any invalid ChartType should
+            // already be handled by ClassStatisticsCommandParser
+            assert false;
+            return;
+        }
+
+        ChartFrame frame = new ChartFrame(title, chart);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private JFreeChart generateGradeDistribution(String assignmentName)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException {
+        requireNonNull(assignmentName);
+
+        final int numStdToShow = 4;
+        final int numPointsToSample = 300;
+
+        IntStatistics statistics = getGradeStatistics(assignmentName);
+        double mean = statistics.getMean();
+        double std = statistics.getStdDev();
+
+        if (std == 0) {
+            // No variance, don't need bell curve
+            throw new NoGradeVarianceException(assignmentName, mean);
+        }
+
+        Function2D bellCurve = new NormalDistributionFunction2D(mean, std);
+        XYDataset dataset = DatasetUtils.sampleFunction2D(
+                bellCurve,
+                mean - numStdToShow * std,
+                mean + numStdToShow * std,
+                numPointsToSample,
+                "Normal"
+        );
+
+        JFreeChart result = ChartFactory.createXYLineChart(
+                "Grade Distribution for Assignment " + assignmentName,
+                "Score",
+                "Probability",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        double maxY = result.getXYPlot().getRangeAxis().getRange().getUpperBound();
+        final Marker meanInfo = new ValueMarker(maxY);
+        meanInfo.setLabel(String.format("Mean: %.2f", mean));
+        meanInfo.setLabelPaint(Color.blue);
+        meanInfo.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        meanInfo.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        meanInfo.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(meanInfo);
+
+        final Marker stdInfo = new ValueMarker(0.95 * maxY);
+        stdInfo.setLabel(String.format("Std. Dev: %.4f", std));
+        stdInfo.setLabelPaint(Color.blue);
+        stdInfo.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        stdInfo.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        stdInfo.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(stdInfo);
+
+        return result;
+    }
+
+    private JFreeChart generateAttendanceDistribution() {
+        JFreeChart result;
+        DefaultCategoryDataset attendanceData = new DefaultCategoryDataset();
+        int[] studentAttendance = countStudentAttendance();
+
+        for (int i = 0; i < studentAttendance.length; i++) {
+            attendanceData.setValue(
+                    studentAttendance[i],
+                    "Present",
+                    String.format("W%d", i + 1));
+        }
+
+        result = ChartFactory.createBarChart(
+                "Attendance",
+                "Week",
+                "Number of Students",
+                attendanceData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        ValueAxis axis = result.getCategoryPlot().getRangeAxis();
+        axis.setRange(0, filteredStudents.size());
+        axis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+        return result;
+    }
+
+    private int[] countStudentAttendance() {
+        int[] result = new int[Attendance.NUM_WEEKS];
+
+        for (Student student : filteredStudents) {
+            student.updateAttendanceCounter(result);
+        }
+
+        return result;
+    }
+
+    private IntStatistics getGradeStatistics(String assignmentName)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException {
+        requireNonNull(assignmentName);
+
+        List<Integer> grades = new ArrayList<>();
+
+        for (Student student : filteredStudents) {
+            student.getGradesForAssignment(assignmentName).ifPresent(grades::add);
+        }
+
+        if (grades.isEmpty()) {
+            throw new NoSubmissionsFoundException(assignmentName);
+        }
+
+        return new IntStatistics(grades);
     }
 
     @Override

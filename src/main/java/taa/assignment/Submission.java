@@ -6,13 +6,13 @@ import taa.model.student.Student;
 /**
  * An assignment submission
  */
+
 public class Submission {
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
     private int marks = 0;
     private final Assignment assignment;
     private final Student student;
-
 
     /**
      * @param student The student who made this submission.
@@ -77,6 +77,25 @@ public class Submission {
         String gradeStatus = this.isGraded ? marks + "/" + assignment.getTotalMarks() : "Ungraded";
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
         return String.format("%s (Grade: %s) %s", this.assignment.toString(), gradeStatus, late);
+    }
+
+    /**
+     * Returns true if this submission belongs to an assignment with the given name.
+     */
+    public boolean isForAssignment(String assignmentName) {
+        return this.assignment.toString().equals(assignmentName);
+    }
+
+    /**
+     * Returns the score of this submission, if graded.
+     * Otherwise, an Optional.empty() is returned.
+     */
+    public Optional<Integer> getScore() {
+        if (isGraded) {
+            return Optional.of(this.marks);
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override

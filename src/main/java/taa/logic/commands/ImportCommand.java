@@ -92,6 +92,7 @@ public class ImportCommand extends Command {
         ArrayList<String> submissions = new ArrayList<>();
         Collections.addAll(submissions, record.get(CsvUtil.KW_SUBMISSION).trim().split(","));
 
+
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
         }
@@ -168,13 +169,3 @@ public class ImportCommand extends Command {
         return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }
-
-
-
-
-
-
-
-
-
-

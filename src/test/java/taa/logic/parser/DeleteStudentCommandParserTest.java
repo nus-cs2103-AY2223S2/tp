@@ -15,7 +15,7 @@ import taa.testutil.TypicalIndexes;
  */
 public class DeleteStudentCommandParserTest {
 
-    private DeleteStudentCommandParser parser = new DeleteStudentCommandParser();
+    private final DeleteStudentCommandParser parser = new DeleteStudentCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {

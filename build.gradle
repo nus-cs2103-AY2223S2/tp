@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'org.openrewrite.rewrite' version '5.38.0'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
@@ -22,6 +23,10 @@ checkstyle {
 
 run {
     enableAssertions = true
+}
+
+rewrite {
+    activeRecipe("org.openrewrite.java.cleanup.Cleanup")
 }
 
 test {
@@ -69,10 +74,15 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 
     implementation "org.apache.commons:commons-csv:1.10.0"
+
+    implementation group: 'org.jfree', name: 'jfreechart', version: '1.5.4'
+    implementation group: 'org.jfree', name: 'jcommon', version: '1.0.23'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'taa.jar'
 }
 
 defaultTasks 'clean', 'test'

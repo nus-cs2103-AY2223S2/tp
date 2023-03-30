@@ -2,6 +2,7 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import taa.assignment.exceptions.AssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 
@@ -30,7 +31,17 @@ public class UngradeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.ungrade(assignmentName, studentId);
+
+        try {
+            model.ungrade(assignmentName, studentId);
+        } catch (AssignmentException e) {
+            throw new CommandException(
+                    String.format(
+                            "An error occurred when ungrading assignment %%s for student %d:\n",
+                            assignmentName, studentId)
+                    + e.getMessage());
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentName, studentId));
     }
 }
