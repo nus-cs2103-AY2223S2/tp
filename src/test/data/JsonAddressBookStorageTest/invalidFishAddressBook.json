@@ -1,9 +1,10 @@
 {
-  "Fishes": [ {
+  "fishes": [ {
     "name": "Fish with invalid name field: Ha!ns Mu@ster",
-    "lastFedDateTime": "9482424",
+    "lastFedDateTime": "01/01/2000 00:00",
     "species": "Guppy",
     "feedingInterval": "0d12h",
-    "tank": "tank 1"
+    "tank": "tank 1",
+    "tagged" : [ "owesMoney", "friends" ]
   } ]
 }
