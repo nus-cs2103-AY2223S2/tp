@@ -1,5 +1,6 @@
 package seedu.calidr.storage;
 
+import static java.util.Objects.requireNonNull;
 import static net.fortuna.ical4j.model.Property.DESCRIPTION;
 import static net.fortuna.ical4j.model.Property.LOCATION;
 import static net.fortuna.ical4j.model.Property.CATEGORIES;
@@ -7,11 +8,12 @@ import static net.fortuna.ical4j.model.property.Priority.VALUE_HIGH;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_LOW;
 import static net.fortuna.ical4j.model.property.Priority.VALUE_MEDIUM;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import net.fortuna.ical4j.data.CalendarBuilder;
@@ -27,6 +29,10 @@ import net.fortuna.ical4j.model.property.Status;
 import net.fortuna.ical4j.model.property.Categories;
 import net.fortuna.ical4j.model.property.Description;
 import net.fortuna.ical4j.model.property.Location;
+import seedu.calidr.commons.core.LogsCenter;
+import seedu.calidr.commons.exceptions.DataConversionException;
+import seedu.calidr.commons.util.FileUtil;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.ToDo;
@@ -38,40 +44,100 @@ import seedu.calidr.model.task.params.Tag;
 import seedu.calidr.model.tasklist.TaskList;
 
 /**
- * Abstract representation of .ics file storage
+ * Abstract representation of ics file storage
  */
-public class CalendarStorage {
+public class IcsCalendarStorage implements TaskListStorage {
+    private static final Logger logger = LogsCenter.getLogger(TaskListStorage.class);
+
+    private Path filePath;
 
     /**
-     * Save the TaskList to a stream
+     * Create a new IcsCalendarStorage instance from a File path
+     * @param filePath Path to ics file
+     */
+    public IcsCalendarStorage(Path filePath) {
+        this.filePath = filePath;
+    }
+
+    /**
+     * Get the file path for this storage medium
+     */
+    @Override
+    public Path getTaskListFilePath() {
+        return filePath;
+    }
+
+    /**
+     * @see #saveTaskList(ReadOnlyTaskList, Path)
      * @param taskList Task List
-     * @param stream Output Stream
      * @throws IOException Thrown while writing to the output stream
      */
-    public void saveTaskList(TaskList taskList, OutputStream stream) throws IOException {
+    @Override
+    public void saveTaskList(ReadOnlyTaskList taskList) throws IOException {
+        saveTaskList(taskList, filePath);
+    }
+
+    /**
+     * Save the TaskList to a ics file
+     * @param taskList Task List
+     * @param filePath Output file path
+     * @throws IOException Thrown while writing to the output stream
+     */
+    public void saveTaskList(ReadOnlyTaskList taskList, Path filePath) throws IOException {
         var cal = new Calendar();
         taskList.getTaskList().stream()
             .map(this::taskToComponent)
             .forEach(cal::add);
 
-        new CalendarOutputter().output(cal, stream);
+        var writer = new StringWriter();
+        new CalendarOutputter().output(cal, writer);
+
+        FileUtil.createIfMissing(filePath);
+        FileUtil.writeToFile(filePath, writer.toString());
+    }
+
+
+    /**
+     * @see #readTaskList(Path)
+     * @return Parsed task list
+     * @throws DataConversionException If invalid format for ics file stream
+     * @throws IOException Thrown while reading the ics file
+     */
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException {
+        return readTaskList(filePath);
     }
 
     /**
-     * Read the task list from the stream
+     * Read the task list from an ics file
+     * @param filePath Path to ics file
      * @return Parsed task list
-     * @throws ParserException If invalid format for ics file stream
+     * @throws DataConversionException If invalid format for ics file stream
      * @throws IOException Thrown while reading the ics file
      */
-    public TaskList readTaskList(InputStream stream) throws ParserException, IOException {
-        var cal = new CalendarBuilder().build(stream);
+    @Override
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException, IOException {
+        requireNonNull(filePath);
+
+        if (!Files.exists(filePath)) {
+            logger.info("ICS file " + filePath + " not found");
+            return Optional.empty();
+        }
+
+        var file = FileUtil.readFromFile(filePath);
+        Calendar cal;
+        try {
+            cal = new CalendarBuilder().build(new StringReader(file));
+        } catch (ParserException pe) {
+            throw new DataConversionException(pe);
+        }
 
         var tasks = cal.getComponents().stream()
             .flatMap(c -> componentToTask(c).stream())
             .collect(Collectors.toList());
         var taskList = new TaskList();
         taskList.setTasks(tasks);
-        return taskList;
+        return Optional.of(taskList);
     }
 
     private CalendarComponent taskToComponent(Task task) {
