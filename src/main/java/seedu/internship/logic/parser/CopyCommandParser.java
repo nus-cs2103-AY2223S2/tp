@@ -4,29 +4,30 @@ import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 
 import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new CopyCommand object
  */
-public class ViewCommandParser implements Parser<ViewCommand> {
+public class CopyCommandParser implements Parser<CopyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * and returns a ViewCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CopyCommand
+     * and returns a CopyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewCommand parse(String args) throws ParseException {
+    public CopyCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new ViewCommand(index);
+            assert index.getZeroBased() > -1;
+            return new CopyCommand(index);
         } catch (ParseException pe) {
             if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
                 throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
             } else {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE), pe);
             }
         }
     }

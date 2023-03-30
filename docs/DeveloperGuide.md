@@ -526,32 +526,21 @@ The following gives a more detailed explanation of the `upcoming` operation.
     * Pros: May be more intuitive for users to understand
     * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
    
-### Delete Internship Entries - `delete`
+### Delete Internship Entries - `delete-field`
 #### Implementation
-The following sequence diagram provides an overview on how the `delete` operation works.
+The following sequence diagram provides an overview on how the `delete-field` operation works.
 
-![AddSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteFieldSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The following gives a more detailed explanation of the `delete` operation.
+The following gives a more detailed explanation of the `delete-field` operation.
 
-1. When the user enters a `delete` command, the  `DeleteCommandParser` parses the user's input. It uses regex to check if the 
-argument is a set of integers separated by white spaces. Otherwise, it attempts to parse the arguments as a set of prefixed
-parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE]`). Hence there are 2 cases:
+1. When the user enters a `delete-field` command, the  `DeleteFieldCommandParser` parses the user's input. It attempts to parse the arguments as a set of prefixed
+parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
+2. A new `InternshipContainsKeywordPredicate` object is created. A `DeleteFieldCommand` object is then created.
+3. When the `DeleteFieldCommand` object executes, a list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
+4. For each `Internship` object in the list that matches with **at least one** value for
+  **every** parameter type that is specified, it will be deleted using `model.deleteInternship(internshipToDelete)`
 
-#### Case 1: The argument is a set of integers
-1. A list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
-2. The parser will check if the integers are all positive integers and not exceeding the length of the list.
-3. For each positive integer `i` in the argument, the corresponding `Internship` object will be deleted using `model.deleteInternship(internshipToDelete)`. This
-method deletes the internship from the underlying `ObservableList` of `Internship` objects.
-
-#### Case 2: The argument is a set of prefixed parameters
-1. The parser checks for if the following optional arguments exist:
-   - `n/` followed by the company's name
-   - `r/` followed by the role applied
-   - `s/` followed by the status of the internship application
-   - `d/` followed by date
-2. A list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
-3. For each `Internship` object in the list that matches all the conditions, it will be deleted using `model.deleteInternship(internshipToDelete)`
 ### Design Considerations
 
 **Aspect: Whether to use an AND relationship or OR relationship for predicate matching**
@@ -598,7 +587,6 @@ method deletes the internship from the underlying `ObservableList` of `Internshi
       is to mass delete internships that are no longer required.
         * Difficult to define a suitable interpretation of the parameters. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
-
 
 ### \[Proposed\] Undo/Redo Actions - `undo`/`redo`
 
@@ -1479,4 +1467,4 @@ optional parameter must be specified.
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) (Primarily for the purpose of GUI testing).

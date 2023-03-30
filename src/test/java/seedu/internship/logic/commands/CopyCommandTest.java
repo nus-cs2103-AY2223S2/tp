@@ -20,9 +20,9 @@ import seedu.internship.model.internship.Internship;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code ViewCommand}.
+ * {@code CopyCommand}.
  */
-public class ViewCommandTest {
+public class CopyCommandTest {
 
 
 
@@ -30,40 +30,40 @@ public class ViewCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Internship internshipToView = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_INTERNSHIP);
+        Internship internshipToCopy = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_INTERNSHIP);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView);
+        String expectedMessage = String.format(CopyCommand.MESSAGE_COPY_INTERNSHIP_SUCCESS, internshipToCopy);
 
         ModelManager expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
-        expectedModel.viewInternship(internshipToView);
+        expectedModel.copyInternship(internshipToCopy);
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
+        CopyCommand copyCommand = new CopyCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(copyCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        Internship internshipToView = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_INTERNSHIP);
+        Internship internshipToCopy = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        CopyCommand copyCommand = new CopyCommand(INDEX_FIRST_INTERNSHIP);
 
-        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView);
+        String expectedMessage = String.format(CopyCommand.MESSAGE_COPY_INTERNSHIP_SUCCESS, internshipToCopy);
 
 
         Model expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
         showInternshipAtIndex(expectedModel, INDEX_FIRST_INTERNSHIP);
-        expectedModel.viewInternship(internshipToView);
+        expectedModel.copyInternship(internshipToCopy);
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(copyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -74,31 +74,31 @@ public class ViewCommandTest {
         // ensures that outOfBoundIndex is still in bounds of internship list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInternBuddy().getInternshipList().size());
 
-        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
+        CopyCommand copyCommand = new CopyCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(copyCommand, model, Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_INTERNSHIP);
-        ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_INTERNSHIP);
+        CopyCommand copyFirstCommand = new CopyCommand(INDEX_FIRST_INTERNSHIP);
+        CopyCommand copySecondCommand = new CopyCommand(INDEX_SECOND_INTERNSHIP);
 
         // same object -> returns true
-        assertTrue(viewFirstCommand.equals(viewFirstCommand));
+        assertTrue(copyFirstCommand.equals(copyFirstCommand));
 
         // same values -> returns true
-        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_INTERNSHIP);
-        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
+        CopyCommand copyFirstCommandCopy = new CopyCommand(INDEX_FIRST_INTERNSHIP);
+        assertTrue(copyFirstCommand.equals(copyFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(viewFirstCommand.equals(1));
+        assertFalse(copyFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(viewFirstCommand.equals(null));
+        assertFalse(copyFirstCommand.equals(null));
 
         // different internship -> returns false
-        assertFalse(viewFirstCommand.equals(viewSecondCommand));
+        assertFalse(copyFirstCommand.equals(copySecondCommand));
     }
 
 }

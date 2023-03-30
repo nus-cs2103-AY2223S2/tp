@@ -11,22 +11,23 @@ import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 
 /**
- * Views an internship identified using it's displayed index from InternBuddy.
+ * Copies the internship information identified using it's displayed index from InternBuddy.
  */
-public class ViewCommand extends Command {
+public class CopyCommand extends Command {
 
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "copy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the internship identified by the index number used in the displayed internship list.\n"
+            + ": Copies the details of the internship identified by the index"
+            + " number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewed Internship: %1$s";
+    public static final String MESSAGE_COPY_INTERNSHIP_SUCCESS = "Copied Internship: %1$s";
 
     private final Index targetIndex;
 
-    public ViewCommand(Index targetIndex) {
+    public CopyCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -40,18 +41,19 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
         }
 
-        //Gets the internship to view
-        Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
+        //Gets the internship to copy
+        Internship internshipToCopy = lastShownList.get(targetIndex.getZeroBased());
 
-        //Functionality of the view internship command
-        model.updateSelectedInternship(internshipToView);
-        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView));
+        //Functionality of the copy internship command
+        model.copyInternship(internshipToCopy);
+
+        return new CommandResult(String.format(MESSAGE_COPY_INTERNSHIP_SUCCESS, internshipToCopy));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                || (other instanceof CopyCommand // instanceof handles nulls
+                && targetIndex.equals(((CopyCommand) other).targetIndex)); // state check
     }
 }

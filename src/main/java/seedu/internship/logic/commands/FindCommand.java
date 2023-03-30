@@ -2,6 +2,7 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,13 +19,15 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose company names contain any"
-            + " of the specified name, role, status and tag keywords and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships containing at least one of the "
+            + "inputs for every different type of field (name, role, status, date or tag) given by the user"
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "[" + PREFIX_COMPANY_NAME + "NAME_KEYWORD]... "
-            + "[" + PREFIX_ROLE + "ROLE_KEYWORD]... "
-            + "[" + PREFIX_STATUS + "STATUS_KEYWORD]... "
-            + "[" + PREFIX_TAG + "TAG_KEYWORD]...\n"
+            + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
+            + "[" + PREFIX_ROLE + "ROLE]... "
+            + "[" + PREFIX_STATUS + "STATUS]... "
+            + "[" + PREFIX_DATE + "DATE]..."
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD
             + PREFIX_COMPANY_NAME + "apple "
             + PREFIX_COMPANY_NAME + "google "
@@ -32,6 +35,8 @@ public class FindCommand extends Command {
             + PREFIX_ROLE + "developer "
             + PREFIX_STATUS + "applied "
             + PREFIX_STATUS + "offered "
+            + PREFIX_DATE + "2023-01-01 "
+            + PREFIX_DATE + "2023-02-02 "
             + PREFIX_TAG + "python "
             + PREFIX_TAG + "java";
 

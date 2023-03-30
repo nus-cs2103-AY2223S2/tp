@@ -34,6 +34,7 @@ import static seedu.internship.testutil.TypicalIndexes.INDEX_THIRD_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
@@ -52,6 +53,7 @@ public class EditCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_INDEX = Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -70,10 +72,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + COMPANY_NAME_DESC_APPLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + COMPANY_NAME_DESC_APPLE, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + COMPANY_NAME_DESC_APPLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + COMPANY_NAME_DESC_APPLE, MESSAGE_INVALID_INDEX);
+
+        // integer with positive sign
+        assertParseFailure(parser, "+10", MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
