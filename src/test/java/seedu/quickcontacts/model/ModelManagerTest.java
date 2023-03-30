@@ -148,7 +148,7 @@ public class ModelManagerTest {
         Model modelManager = new ModelManager();
         modelManager.addMeeting(UNDONE_MEETING);
         modelManager.markMeetingsAsDone(List.of(Index.fromZeroBased(0)));
-        assertTrue(modelManager.getFilteredMeetingList().get(0).getIsDone());
+        assertTrue(modelManager.getFilteredMeetingList().get(0).getIsCompleted());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class ModelManagerTest {
         Model modelManager = new ModelManager();
         modelManager.addMeeting(DONE_MEETING);
         modelManager.markMeetingsAsNotDone(List.of(Index.fromZeroBased(0)));
-        assertFalse(modelManager.getFilteredMeetingList().get(0).getIsDone());
+        assertFalse(modelManager.getFilteredMeetingList().get(0).getIsCompleted());
     }
 
     @Test

@@ -63,7 +63,7 @@ public class MeetingCard extends UiPart<Region> {
     }
 
     private void formatIsDone() {
-        if (meeting.getIsDone()) {
+        if (meeting.getIsCompleted()) {
             title.getStyleClass().add(DONE_STYLE_CLASS);
         } else {
             title.getStyleClass().remove(DONE_STYLE_CLASS);

@@ -67,7 +67,7 @@ public class JsonAdaptedMeeting {
         attendees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
-        this.isDone = source.getIsDone();
+        this.isDone = source.getIsCompleted();
     }
 
     /**

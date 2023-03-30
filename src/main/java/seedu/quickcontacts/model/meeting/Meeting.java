@@ -23,7 +23,7 @@ public class Meeting {
     // Data fields
     private final Location location;
     private final Description description;
-    private final boolean isDone;
+    private final boolean isCompleted;
 
     /**
      * Every field must be present and not null.
@@ -35,7 +35,7 @@ public class Meeting {
         this.attendees.addAll(attendees);
         this.location = location;
         this.description = description;
-        this.isDone = false;
+        this.isCompleted = false;
     }
 
     /**
@@ -46,17 +46,17 @@ public class Meeting {
      * @param attendees   people attending the meeting
      * @param location    location of the meeting
      * @param description description of the meeting
-     * @param isDone      whether the meeting is done
+     * @param isCompleted      whether the meeting is done
      */
     public Meeting(Title title, DateTime dateTime, Set<Person> attendees, Location location, Description description,
-                   boolean isDone) {
+                   boolean isCompleted) {
         requireAllNonNull(title, dateTime);
         this.title = title;
         this.dateTime = dateTime;
         this.attendees.addAll(attendees);
         this.location = location;
         this.description = description;
-        this.isDone = isDone;
+        this.isCompleted = isCompleted;
     }
 
     public Title getTitle() {
@@ -108,8 +108,8 @@ public class Meeting {
     /**
      * Returns true if {@code Meeting} has been marked as done.
      */
-    public boolean getIsDone() {
-        return isDone;
+    public boolean getIsCompleted() {
+        return isCompleted;
     }
 
     /**

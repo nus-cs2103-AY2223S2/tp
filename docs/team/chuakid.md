@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * Commands: `mark` and `unmark`
   * Mark meetings as done and not done and update the view with different colors for the title based on the state of
   the meeting.  
-* Command: `undone`
+* Command: `pending`
   * Command for showing all meetings that are not marked as done or are in the past
 * Modified DateTime to use an Optional for time and added the comparison logic for DateTime
 * Added comparison logic for whether a meeting is between two dates, used for exporting meetings between two timings
