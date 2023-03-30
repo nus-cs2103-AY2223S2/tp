@@ -192,6 +192,10 @@ public class Service implements Findable {
         return new ArrayList<>(this.assignedToIds);
     }
 
+    public Set<Integer> getAssignedToIdsSet() {
+        return this.assignedToIds;
+    }
+
     /**
      * This method returns the status of this service.
      *
@@ -255,7 +259,7 @@ public class Service implements Findable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vehicleId, description);
+        return Objects.hash(id);
     }
 
     @Override

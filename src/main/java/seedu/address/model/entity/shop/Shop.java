@@ -32,6 +32,7 @@ public class Shop implements ReadOnlyShop {
     private final UniqueVehicleList vehicles = new UniqueVehicleList();
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
     private final ServiceList services = new ServiceList();
+
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
     private final PartMap partMap = new PartMap();
 
@@ -113,6 +114,11 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+    public void setService(Service services, Service edit) {
+
+        this.services.setService(services, edit);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -147,6 +153,11 @@ public class Shop implements ReadOnlyShop {
 
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
+    }
+
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+        appointments.setAppointment(target, editedAppointment);
     }
 
     /**
@@ -230,6 +241,24 @@ public class Shop implements ReadOnlyShop {
             .findFirst()
             .orElseThrow();
         service.assignTechnician(technicianId);
+    }
+
+    /**
+     * Assigns existing technician to existing appointment
+     *
+     * @param technicianId ID of technician
+     * @param appointmentId ID of appointment
+     * @throws NoSuchElementException if technician ID or appointment ID does not exist
+     */
+    public void addTechnicianToAppointment(int technicianId, int appointmentId) throws NoSuchElementException {
+        if (!this.hasTechnician(technicianId)) {
+            throw new NoSuchElementException();
+        }
+        Appointment appointment = this.getAppointmentList().stream()
+            .filter(a -> a.getId() == appointmentId)
+            .findFirst()
+            .orElseThrow();
+        appointment.addTechnician(technicianId);
     }
 
     /**

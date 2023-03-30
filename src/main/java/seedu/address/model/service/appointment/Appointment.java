@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.Findable;
@@ -97,6 +98,24 @@ public class Appointment implements Findable {
     }
 
     /**
+     * Adds technician ID to the appointment
+     *
+     * @param technicianId ID of technician
+     */
+    public void addTechnician(int technicianId) {
+        this.staffIds.add(technicianId);
+    }
+
+    /**
+     * Removes technician ID from staffIds
+     *
+     * @param technicianId ID of technician
+     */
+    public void removeTechnician(int technicianId) {
+        this.staffIds.remove(technicianId);
+    }
+
+    /**
      * Returns true if both staffs have the same id.
      */
     public boolean isSameAppointment(Appointment otherAppointment) {
@@ -146,6 +165,23 @@ public class Appointment implements Findable {
             // Date is today
             return DateStatus.NOW;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Appointment) {
+            Appointment other = (Appointment) obj;
+            return this.id == other.id;
+        }
+        return false;
     }
 
     @Override

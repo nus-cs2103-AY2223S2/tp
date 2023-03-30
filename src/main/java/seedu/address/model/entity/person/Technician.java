@@ -3,6 +3,7 @@ package seedu.address.model.entity.person;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -48,4 +49,20 @@ public class Technician extends Staff {
         return new ArrayList<>(this.appointmentIds);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Technician) {
+            Technician other = (Technician) obj;
+            return this.getId() == other.getId();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getId());
+    }
 }

@@ -271,6 +271,7 @@ public class ModelManager implements Model {
     public void setCustomer(Customer target, Customer editedPerson) {
         requireAllNonNull(target, editedPerson);
         this.shop.setCustomer(target, editedPerson);
+        resetMaps();
     }
 
     @Override
@@ -329,6 +330,13 @@ public class ModelManager implements Model {
         updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+    }
+
+    @Override
+    public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+        requireAllNonNull(target, editedVehicle);
+        this.shop.setVehicle(target, editedVehicle);
+        resetMaps();
     }
 
     // ==== For Services ==
@@ -427,6 +435,11 @@ public class ModelManager implements Model {
         this.shop.addTechnicianToService(serviceId, techId);
     }
 
+    @Override
+    public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
+        this.shop.addTechnicianToAppointment(techId, appointmentId);
+    }
+
     /**
      * Checks if part already exists
      *
@@ -460,6 +473,13 @@ public class ModelManager implements Model {
         this.shop.removeTechnician(target);
         updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setTechnician(Technician target, Technician editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        shop.setTechnician(target, editedPerson);
+        this.resetMaps();
     }
 
     // ==== Mapped ==
@@ -567,6 +587,13 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        this.shop.setAppointment(target, editedAppointment);
+        this.resetMaps();
+    }
+
     //    @Override
     //    public void updateFilteredPartList(Predicate<? super Part> predicate) {
     //        requireNonNull(predicate);
@@ -651,6 +678,13 @@ public class ModelManager implements Model {
     @Override
     public Technician getSelectedTechnician() {
         return selectedTechnician;
+    }
+
+    @Override
+    public void setService(Service target, Service editedService) {
+        requireAllNonNull(target, editedService);
+        this.shop.setService(target, editedService);
+        this.resetMaps();
     }
 
     @Override

@@ -223,6 +223,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setVehicle(Vehicle target, Vehicle editedVehicle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addService(int vehicleId, Service service) {
             throw new AssertionError("This method should not be called.");
         }
@@ -268,6 +273,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPart(String partName) {
             throw new AssertionError("This method should not be called.");
         }
@@ -298,6 +308,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTechnician(Technician target, Technician editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -314,6 +329,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredServiceList(Predicate<? super Service> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -395,6 +415,11 @@ public class AddCommandTest {
         public void selectTechnician(Technician technician) {
             throw new AssertionError("This method should not be called.");
         }
+        
+        @Override
+        public void setService(Service target, Service editedService) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void updateCustomerComparator(Comparator<? super Customer> cmp) {
@@ -420,6 +445,7 @@ public class AddCommandTest {
         public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public ReadOnlyShop getShop() {

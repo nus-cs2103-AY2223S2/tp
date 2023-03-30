@@ -189,6 +189,8 @@ public interface Model {
 
     void deleteVehicle(Vehicle target);
 
+    void setVehicle(Vehicle target, Vehicle editedVehicle);
+
     // ==== For Services ==
 
     /**
@@ -255,6 +257,15 @@ public interface Model {
     void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
 
     /**
+     * Assigns existing technician to existing appointment
+     *
+     * @param techId ID of technician
+     * @param appointmentId ID of appointment
+     * @throws NoSuchElementException if technician ID or appointment ID does not exist
+     */
+    void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException;
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of the part to check against
@@ -283,9 +294,13 @@ public interface Model {
 
     void updateFilteredServiceList(Predicate<? super Service> predicate);
 
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
     void updatePartsMap();
 
     void deleteTechnician(Technician target);
+
+    void setTechnician(Technician target, Technician editedPerson);
 
     CustomerVehicleMap getCustomerVehicleMap();
 
@@ -346,6 +361,8 @@ public interface Model {
      * Sets currently selected technician
      */
     void selectTechnician(Technician technician);
+
+    void setService(Service target, Service editedService);
 
     // Sort helper functions
 
