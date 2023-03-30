@@ -308,12 +308,12 @@ public interface Model {
     DisplayListLevel getLastListLevel();
 
     /**
-     * Returns the module code of the listed lectures or listed videos.
+     * Returns the module of the listed lectures or listed videos.
      */
     ReadOnlyModule getListedLecturesByModule();
 
     /**
-     * Returns the lecture name of the listed videos.
+     * Returns the lecture of the listed videos.
      */
     ReadOnlyLecture getListedVideosByLecture();
 
