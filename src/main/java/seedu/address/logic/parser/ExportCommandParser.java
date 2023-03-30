@@ -10,9 +10,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ExportCommandParser implements Parser<ExportCommand> {
     private static final String ALL_KEYWORD = "all";
+    private static final String SHOWN_KEYWORD = "shown";
 
     /**
      * Creates a ExportCommand where isAllEnabled depends on the parsed user input.
+     * If keyword is "shown" or no keyword is present, export only the filtered list.
      *
      * @param args The input from user.
      * @return ExportCommand with isAllEnabled set to true if the keyword "all" is in the user input.
@@ -20,7 +22,7 @@ public class ExportCommandParser implements Parser<ExportCommand> {
      */
     public ExportCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim().toLowerCase();
-        if (trimmedArgs.isEmpty()) {
+        if (trimmedArgs.isEmpty() || trimmedArgs.equals(SHOWN_KEYWORD)) {
             return new ExportCommand(false);
         } else if (trimmedArgs.equals(ALL_KEYWORD)) {
             return new ExportCommand(true);
