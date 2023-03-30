@@ -27,6 +27,7 @@ Without further ado, let's get started!
 
 3. [Features](#features)
     1. [Legend](#legend)
+   
     <details><summary>Student Features</summary>
 
     2. [Student Features: `student`](#student)
@@ -39,7 +40,6 @@ Without further ado, let's get started!
          7. [Editing a student's particulars: `edit`](#editstudent)
          8. [Searching students: `find`](#findstudent)
          9. [Deleting a student: `delete`](#deletestudent)
-
        </details>
         <details><summary>Parent Features</summary>
 
@@ -275,6 +275,8 @@ Imagesource will be displayed in decreasing priority: <br>
 Note: <br>
 1. User cannot create two students of the same index number and same class
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get binded to the matching parent.
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
+Please delete the student and add without the image source path. 
 
 [Back to Table of Contents](#table-of-contents)
 
