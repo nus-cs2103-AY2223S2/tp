@@ -91,11 +91,6 @@
                                              <Font size="14.0" />
                                           </font>
                                        </Label>
-                                       <Label text="(Amount Currency)">
-                                          <font>
-                                             <Font size="14.0" />
-                                          </font>
-                                       </Label>
                                     </children>
                                  </HBox>
                                  <TextField fx:id="salary" prefHeight="25.0" prefWidth="121.0" promptText="3000 SGD" />
