@@ -107,7 +107,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Consumer<DeliveryJob> editDeliveryJobHandler = (job) -> {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, commandResult -> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -146,19 +146,24 @@ public class MainWindow extends UiPart<Stage> {
     };
 
     private BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>> sortDeliveryJobHandler = (by, asc) -> {
+        String feedback = "List empty!";
         if (deliveryJobListPanel.size() > 0) {
             switch (by) {
             case COM:
                 logic.updateSortedDeliveryJobListByComparator(new SortbyDelivered(asc));
+                feedback = "Sort by delivery status.";
                 break;
             case EARN:
                 logic.updateSortedDeliveryJobListByComparator(new SortbyEarning(asc));
+                feedback = "Sort by earning.";
                 break;
             default:
                 logic.updateSortedDeliveryJobListByComparator(new SortbyDate(asc));
+                feedback = "Sort by delivery schedule.";
                 break;
             }
         }
+        resultDisplay.setFeedbackToUser(feedback + (asc ? " (ASC)" : " (DESC)"));
         return logic.getSortedDeliveryJobList();
     };
 
@@ -166,12 +171,16 @@ public class MainWindow extends UiPart<Stage> {
         switch (by) {
         case COM:
             logic.updateFilteredDeliveryJobList(job -> job.getDeliveredStatus());
+            resultDisplay.setFeedbackToUser("Filter completed delivery.");
             break;
         case PEN:
             logic.updateFilteredDeliveryJobList(job -> !job.getDeliveredStatus());
+            resultDisplay.setFeedbackToUser("Filter pending delivery.");
             break;
         default:
             logic.updateFilteredDeliveryJobList(job -> true);
+            logic.updateSortedDeliveryJobListByComparator(new SortbyDate(true));
+            resultDisplay.setFeedbackToUser("Show all delivery jobs.");
             break;
         }
     };
@@ -197,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, this.helpWindow);
+        addressBookWindow = new AddressBookWindow(new Stage(), logic);
     }
 
     /**
@@ -293,6 +302,8 @@ public class MainWindow extends UiPart<Stage> {
                 refreshDeliveryJobListView();
             }
         });
+        // Set default ordering
+        logic.updateSortedDeliveryJobListByComparator(new SortbyDate(true));
     }
 
     /**
@@ -440,7 +451,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleAddressBook() {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
 
         if (!addressBookWindow.isShowing()) {
@@ -465,7 +476,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleDeliveryJobSystemCreateAction() {
         if (addDeliveryJobWindow != null) {
-            addDeliveryJobWindow.getRoot().close();
+            addDeliveryJobWindow.hide();
         }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
         addDeliveryJobWindow.show();
@@ -508,6 +519,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         timetableWindow.hide();
         unscheduleWindow.hide();
+        completeWindow.hide();
         statsWindow.hide();
         addressBookWindow.hide();
         if (addDeliveryJobWindow != null) {

@@ -44,6 +44,12 @@ public class DeliveryJobContainsKeywordsPredicate implements Predicate<DeliveryJ
             }
         }
 
+        if (toFind.getEarning().isPresent()) {
+            if (Double.compare(job.getEarning().get().getEarning(), toFind.getEarning().get().getEarning()) == 0) {
+                return true;
+            }
+        }
+
         if (toFind.getDeliveredStatus() != null) {
             if (job.getDeliveredStatus() == toFind.getDeliveredStatus()) {
                 return true;

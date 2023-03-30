@@ -7,8 +7,5 @@ import seedu.address.logic.commands.CommandGroup;
  * Defines PersonCommand.
  */
 abstract class DeliveryJobCommand extends Command {
-    @Override
-    public CommandGroup getGroup() {
-        return CommandGroup.JOB;
-    }
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.JOB;
 }

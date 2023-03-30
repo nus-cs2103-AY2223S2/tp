@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryDate;
@@ -23,10 +24,10 @@ import seedu.address.ui.person.PersonCard;
 public class DeliveryJobDetailPane extends UiPart<Region> {
 
     private static final String FXML = "DeliveryJobDetailPane.fxml";
-    private static final String BUTTON_LABEL_NOTCOMPLETE = "Mark Pending";
-    private static final String BUTTON_LABEL_COMPLETE = "Mark Delivered";
-    private static final String BUTTON_LABEL_SHOW = "Show";
-    private static final String BUTTON_LABEL_HIDE = "Hide";
+    private static final String BUTTON_LABEL_NOTCOMPLETE = "❌";
+    private static final String BUTTON_LABEL_COMPLETE = "✅";
+    private static final String BUTTON_LABEL_SHOW = "🔓";
+    private static final String BUTTON_LABEL_HIDE = "🔒";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -64,6 +65,10 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     private GridPane contactDetailPane;
     @FXML
     private Button toggleContactButton;
+    @FXML
+    private VBox detailMessageContainer;
+    @FXML
+    private VBox invalidMessageContainer;
 
     /**
      * DeliveryJobDetailPanel
@@ -107,18 +112,18 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
             earningCent.setText("00");
         });
 
-        ab.getPersonById(job.getSenderId()).ifPresent(per -> {
-            PersonCard card = new PersonCard(per, "Sender");
-            card.getRoot().getStyleClass().add("job_person_card");
-            senderContactInfoPlaceholder.getChildren().add(card.getRoot());
-        });
+        if (ab.getPersonById(job.getSenderId()).isPresent() && ab.getPersonById(job.getRecipientId()).isPresent()) {
+            PersonCard cardSender = new PersonCard(ab.getPersonById(job.getSenderId()).get(), "Sender");
+            cardSender.getRoot().getStyleClass().add("job_person_card");
+            senderContactInfoPlaceholder.getChildren().add(cardSender.getRoot());
 
-        ab.getPersonById(job.getRecipientId()).ifPresent(per -> {
-            PersonCard card = new PersonCard(per, "Recipient");
-            card.getRoot().getStyleClass().add("job_person_card");
-            deliveryAddress.setText(per.getAddress().toString());
-            recipientContactInfoPlaceholder.getChildren().add(card.getRoot());
-        });
+            PersonCard cardRecipient = new PersonCard(ab.getPersonById(job.getRecipientId()).get(), "Recipient");
+            cardRecipient.getRoot().getStyleClass().add("job_person_card");
+            deliveryAddress.setText(ab.getPersonById(job.getRecipientId()).get().getAddress().toString());
+            recipientContactInfoPlaceholder.getChildren().add(cardRecipient.getRoot());
+        } else {
+            setErrorMode();
+        }
 
         description.setText(job.getDescription());
         handleEdit = (job) -> {};
@@ -189,5 +194,12 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         } else {
             completeButton.setText(BUTTON_LABEL_COMPLETE);
         }
+    }
+
+    private void setErrorMode() {
+        deliveryAddress.setText("");
+        completeButton.setDisable(true);
+        detailMessageContainer.setVisible(false);
+        invalidMessageContainer.setVisible(true);
     }
 }
