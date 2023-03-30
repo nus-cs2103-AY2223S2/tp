@@ -61,6 +61,12 @@ public class CommandFormat {
             "Sets the picture for the specified employee",
             "setpicture 2");
 
+    private static final CommandFormat LEAVE_COMMAND_FORMAT = new CommandFormat(
+            "leave",
+            "Helps an employee take leave.",
+            "leave EMPLOYEE_ID l/LEAVE_COUNT");
+
+
     // All misc commands below
     private static final CommandFormat HELP_COMMAND_FORMAT = new CommandFormat(
             "help",
@@ -102,7 +108,8 @@ public class CommandFormat {
                 LIST_COMMAND_FORMAT,
                 FIND_COMMAND_FORMAT,
                 THEME_COMMAND_FORMAT,
-                SETPICTURE_COMMAND_FORMAT
+                SETPICTURE_COMMAND_FORMAT,
+                LEAVE_COMMAND_FORMAT
         );
     }
 
