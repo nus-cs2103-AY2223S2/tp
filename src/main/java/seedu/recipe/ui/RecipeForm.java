@@ -32,16 +32,17 @@ public abstract class RecipeForm extends UiPart<Region> {
     private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
     private static final double DEFAULT_HEIGHT = 500;
 
-    // data fields
+    // protected fields for package access
     protected final StringBuilder data;
-
-    private final Recipe recipe;
-    private final Map<String, String> initialValues = new HashMap<>();
-    private final String title;
     @FXML
     protected VBox ingredientsBox;
     @FXML
     protected VBox stepsBox;
+
+    //data fields
+    private final Recipe recipe;
+    private final Map<String, String> initialValues = new HashMap<>();
+    private final String title;
 
     //UI child elements
     @FXML
@@ -214,13 +215,13 @@ public abstract class RecipeForm extends UiPart<Region> {
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
                 .orElse("")
-                             );
+        );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
                 .orElse("")
-                            );
+        );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
