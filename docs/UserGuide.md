@@ -645,19 +645,19 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 Examples follow after vaccination clear and then add command examples.
 
 ```text
-vaccination 1
+vaccination delete 1
 ```
 
 ```text
-vaccination INDEX::1
+vaccination delete INDEX::1
 ```
 
 ```text
-vaccination ABC VAX
+vaccination delete ABC VAX
 ```
 
 ```text
-vaccination NAME::ABC VAX
+vaccination delete NAME::ABC VAX
 ```
 
 Output:<br>
