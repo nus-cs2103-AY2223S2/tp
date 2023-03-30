@@ -79,6 +79,15 @@
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
+                <HBox>
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Todo:  " />
+                        <VBox fx:id="todos" minHeight="-Infinity" minWidth="-Infinity"  HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
             </VBox>
          <columnConstraints>
             <ColumnConstraints />
