@@ -31,16 +31,18 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
         //Must have exactly 2 keywords, one for field and one for direction, consider using assertions here
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        String fieldKeyword = nameKeywords[0];
-        String directionKeyword = nameKeywords[1];
-
-
-
-        //We only allow sorting by 1 field at a time and commands must match pattern of field direction
-        if (nameKeywords.length != 2 || !COMMAND_STRINGS.contains(fieldKeyword) || !DIR_STRINGS.contains(directionKeyword)) {
+        if (nameKeywords.length != 2) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
+        String fieldKeyword = nameKeywords[0].toLowerCase();
+        String directionKeyword = nameKeywords[1].toLowerCase();
+        //We only allow sorting by 1 field at a time and commands must match pattern of field direction
+        if (!COMMAND_STRINGS.contains(fieldKeyword) || !DIR_STRINGS.contains(directionKeyword)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
 
         return new SortCommand(fieldKeyword, directionKeyword);
     }

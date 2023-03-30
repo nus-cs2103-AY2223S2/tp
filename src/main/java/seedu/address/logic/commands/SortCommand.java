@@ -17,25 +17,23 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons according to a specified field "
             + "(case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: asc [desc, name, priority, trans]...\n"
+            + "Parameters: [size, name, priority, trans] [asc, desc]...\n"
             + "Example: " + COMMAND_WORD + " trans \n"
-            + "Note that only 2 arguments may be specified at one time. One for ";
-
+            + "Note that only 2 arguments may be specified at one time. One specifying the field, the other, direction.";
 
     private final String subCommand;
     private final String direction;
-
     private final boolean ascending;
 
 
     public SortCommand(String subCommand, String direction) {
         //TODO assert subcommand and direction is correct
-        this.subCommand = subCommand;
+        this.subCommand = subCommand.toLowerCase();
         this.direction = direction;
-        this.ascending = direction.equals("asc");
+        this.ascending = direction.equalsIgnoreCase("asc");
     }
 
-    public static final String MESSAGE_SUCCESS = "sorted by: ";
+    public static final String MESSAGE_SUCCESS = "Sorted by: ";
 
 
     @Override

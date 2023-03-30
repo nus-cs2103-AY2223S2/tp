@@ -99,7 +99,7 @@ public class ParserUtil {
      */
     public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
         requireNonNull(businessSize);
-        String trimmedBusinessSize = businessSize.trim();
+        String trimmedBusinessSize = businessSize.strip();
         if (!BusinessSize.isValidBusinessSize(trimmedBusinessSize)) {
             throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
         }
