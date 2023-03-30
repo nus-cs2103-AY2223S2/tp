@@ -1,5 +1,10 @@
+@font-face {
+  font-family: "Roboto Medium";
+  src: url('Roboto-Medium.ttf');
+}
+
 .root {
-  -fx-font-family: 'Roboto';
+  -fx-font-family: 'Roboto Medium';
 }
 
 #copyButton,

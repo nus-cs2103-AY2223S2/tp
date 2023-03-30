@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -19,7 +19,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox alignment="CENTER_LEFT" spacing="5" styleClass="card-header">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="lectureName" styleClass="cell_big_label" text="\$lectureName" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" styleClass="card-tags" />
       <Label fx:id="progress" styleClass="cell_small_label" text="\$progress" />
     </VBox>
       <rowConstraints>

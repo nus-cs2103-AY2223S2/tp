@@ -19,7 +19,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox alignment="CENTER_LEFT" spacing="5" styleClass="card-header">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="moduleCode" styleClass="cell_big_label" text="\$moduleCode" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" styleClass="card-tags" />
       <Label fx:id="moduleName" styleClass="cell_small_label" text="\$moduleName" />
       <Label fx:id="progress" styleClass="cell_small_label" text="\$lectureCount" />
     </VBox>

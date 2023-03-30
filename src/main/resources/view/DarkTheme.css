@@ -1,10 +1,20 @@
 @font-face {
-  font-family: "Roboto";
-  src: url('Roboto-Medium.ttf');
+  font-family: "Roboto", sans-serif;
+  src: url('fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: "Roboto Medium", sans-serif;
+  src: url('fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: "Roboto Bold", sans-serif;
+  src: url('fonts/Roboto-Bold.ttf');
 }
 
 .root {
-  -fx-font-family: "Roboto";
+  -fx-font-family: 'Roboto';
 }
 
 .background {
@@ -95,10 +105,9 @@
 }
 
 .list-cell {
-  -fx-label-padding: 0 0 0 0;
+  -fx-label-padding: 2 2 2 2;
   -fx-graphic-text-gap: 0;
-  -fx-margins: 2 2 2 2;
-  -fx-padding: 2 2 2 2;
+  -fx-padding: 5 5 5 5;
   -fx-background-color: #1B1B1B;
 }
 
@@ -117,7 +126,6 @@
 .list-cell:filled:selected #cardPane {
   -fx-border-color: #3e7b91;
   -fx-border-width: 1;
-  -fx-border-radius: 20px;
 }
 
 .list-cell .label {
@@ -125,13 +133,22 @@
 }
 
 .cell_big_label {
-  -fx-font-size: 16px;
-  -fx-text-fill: #010504;
+  -fx-font-family: 'Roboto Medium';
+  -fx-font-size: 18px;
+  -fx-text-fill: #010505;
 }
 
 .cell_small_label {
   -fx-font-size: 13px;
   -fx-text-fill: #010504;
+}
+
+.card-header {
+  -fx-padding: 0 0 0 0;
+}
+
+.card-tags {
+  -fx-padding: 10 0 10 0;
 }
 
 .stack-pane {
@@ -323,9 +340,9 @@
 }
 
 .context-label {
+  -fx-font-family: 'Roboto Bold';
   -fx-font-size: 12px;
   -fx-text-fill: white;
-  -fx-font-weight: bold;
 }
 
 .context-label-container {
