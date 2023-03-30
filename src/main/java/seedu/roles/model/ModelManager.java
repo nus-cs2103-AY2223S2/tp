@@ -27,14 +27,14 @@ public class ModelManager implements Model {
     private final FilteredList<Role> filteredRoles;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given roleBook and userPrefs.
      */
-    public ModelManager(ReadOnlyRoleBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyRoleBook roleBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(roleBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + roleBook + " and user prefs " + userPrefs);
 
-        this.roleBook = new RoleBook(addressBook);
+        this.roleBook = new RoleBook(roleBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredRoles = new FilteredList<>(this.roleBook.getRoleList());
     }
@@ -78,7 +78,7 @@ public class ModelManager implements Model {
         userPrefs.setRoleBookFilePath(roleBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== RoleBook ================================================================================
 
     @Override
     public void setRoleBook(ReadOnlyRoleBook roleBook) {

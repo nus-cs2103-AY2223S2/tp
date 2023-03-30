@@ -46,7 +46,7 @@ public interface Model {
     void setRoleBookFilePath(Path roleBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code roleBook}.
      */
     void setRoleBook(ReadOnlyRoleBook addressBook);
 

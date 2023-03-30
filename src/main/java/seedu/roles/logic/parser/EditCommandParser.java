@@ -2,15 +2,7 @@ package seedu.roles.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.roles.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.roles.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.roles.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -36,7 +28,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT, PREFIX_EMAIL,
-                PREFIX_COMPANY, PREFIX_TAG, PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE, PREFIX_EXPERIENCE);
+                PREFIX_WEBSITE, PREFIX_COMPANY, PREFIX_TAG, PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE,
+                PREFIX_EXPERIENCE);
         Index index;
 
         try {
@@ -57,6 +50,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             editRoleDescriptor.setCompany(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_COMPANY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_WEBSITE).isPresent()) {
+            editRoleDescriptor.setWebsite(ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get()));
         }
         if (argMultimap.getValue(PREFIX_JOBDESCRIPTION).isPresent()) {
             editRoleDescriptor.setJobDescription(ParserUtil.parseJobDescription(argMultimap

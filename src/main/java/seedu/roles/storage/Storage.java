@@ -27,6 +27,6 @@ public interface Storage extends RoleBookStorage, UserPrefsStorage {
     Optional<ReadOnlyRoleBook> readRoleBook() throws DataConversionException, IOException;
 
     @Override
-    void saveRoleBook(ReadOnlyRoleBook addressBook) throws IOException;
+    void saveRoleBook(ReadOnlyRoleBook roleBook) throws IOException;
 
 }
