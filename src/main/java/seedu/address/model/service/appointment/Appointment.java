@@ -89,6 +89,15 @@ public class Appointment implements Findable {
     }
 
     /**
+     * Removes technician ID from staffIds
+     *
+     * @param technicianId ID of technician
+     */
+    public void removeTechnician(int technicianId) {
+        this.staffIds.remove(technicianId);
+    }
+
+    /**
      * Returns true if both staffs have the same id.
      */
     public boolean isSameAppointment(Appointment otherAppointment) {
