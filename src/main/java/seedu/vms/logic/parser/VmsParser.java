@@ -53,7 +53,6 @@ public class VmsParser {
         }
 
         final String featureName = matcher.group("featureName");
-        System.out.println(featureName);
         final String arguments = matcher.group("arguments");
         switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
 
