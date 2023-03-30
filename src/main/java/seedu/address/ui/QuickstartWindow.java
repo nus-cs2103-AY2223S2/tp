@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
- * Controller for a help page
+ * Controller for a QuickstartWindow.
  */
 public class QuickstartWindow extends UiPart<Stage> {
 

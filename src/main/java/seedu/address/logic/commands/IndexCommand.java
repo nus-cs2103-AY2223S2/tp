@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 
 /**
  * Represents an IndexCommand that focuses on a person or a task identified using their displayed index
- * from the address book.
+ * from OfficeConnect.
  */
 public class IndexCommand extends Command {
     public static final String COMMAND_WORD_PERSON = "pi";

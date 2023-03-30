@@ -86,8 +86,8 @@ public class EditTaskCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
@@ -123,7 +123,7 @@ public class EditTaskCommand extends Command {
 
     /**
      * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private Title title;
@@ -139,7 +139,6 @@ public class EditTaskCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
