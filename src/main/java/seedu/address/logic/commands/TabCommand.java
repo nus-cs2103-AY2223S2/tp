@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.model.Model;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Switches between UI tabs in the application.
@@ -13,11 +14,11 @@ import seedu.address.model.Model;
 public class TabCommand extends Command {
     public static final String COMMAND_WORD = "tab";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Switches between UI tabs in the application "
-            + "by the index of the tab.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD,
+                    "Switches between tabs in the application by the index of the tab.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "INDEX (must be a positive integer)")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
     public static final String MESSAGE_INVALID_INDEX = "The provided tab index "
             + "should be in the range of %d to %d (inclusive).";

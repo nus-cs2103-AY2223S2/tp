@@ -9,12 +9,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditUserCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -22,6 +26,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
+import seedu.address.logic.commands.TagEventCommand;
+import seedu.address.logic.commands.UnTagEventCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.ui.UiPart;
 
@@ -29,14 +35,21 @@ import seedu.address.ui.UiPart;
  * A ui for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
+    public static final String KEYWORD_PARAMETERS = "Parameters";
+    public static final String KEYWORD_EXAMPLE = "Example";
+    public static final String KEYWORD_MORE_INFO = "More Info";
 
     private static final String FXML = "result/ResultDisplay.fxml";
-    private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
-            DeleteCommand.COMMAND_WORD, EditContactCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
+    private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, AddEventCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, DeleteEventCommand.COMMAND_WORD,
+            EditContactCommand.COMMAND_WORD, EditUserCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             UnfavoriteCommand.COMMAND_WORD, FavoriteCommand.COMMAND_WORD, TabCommand.COMMAND_WORD,
-            SelectCommand.COMMAND_WORD, "Parameters", "Example");
+            UnTagEventCommand.COMMAND_WORD, TagEventCommand.COMMAND_WORD, SelectCommand.COMMAND_WORD,
+            KEYWORD_PARAMETERS, KEYWORD_EXAMPLE, KEYWORD_MORE_INFO);
 
+    @FXML
+    private ScrollPane scrollContainer;
     @FXML
     private VBox resultDisplayContainer;
     @FXML
@@ -73,6 +86,19 @@ public class ResultDisplay extends UiPart<Region> {
             }
         }
         resultDisplayLabel.setText(extractor.getLeftoverFeedback());
+        scrollContainer.setVvalue(0); // scrolls back to the top
+    }
+
+    /**
+     * Formats the messages to be displayed properly in a card.
+     *
+     * @param keyword One of the keywords in the internal {@code KEYWORDS} list,
+     *                which includes all the command words and constant keywords in {@code ResultDisplay}.
+     * @param messages Messages to be joined with a space.
+     * @return The formatted message.
+     */
+    public static String formatMessage(String keyword, String ...messages) {
+        return String.format("%s: %s\n", keyword, String.join(" ", messages));
     }
 
     /**

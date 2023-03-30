@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.fields.DateTime;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Adds an Event to the Calendar.
@@ -18,20 +19,21 @@ import seedu.address.model.event.fields.DateTime;
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "addevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the event list.\n"
-            + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_START_DATE_TIME + "START DATE TIME "
-            + PREFIX_END_DATE_TIME + "END DATE TIME"
-            + "[" + PREFIX_RECURRENCE + "INTERVAL]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "CS2103T Lecture "
-            + PREFIX_START_DATE_TIME + "2023-03-10 1600 "
-            + PREFIX_END_DATE_TIME + "2023-03-10 1800 "
-            + PREFIX_RECURRENCE + "weekly";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD, "Adds an event to the event list.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
+                    PREFIX_DESCRIPTION + "DESCRIPTION",
+                    PREFIX_START_DATE_TIME + "START DATE TIME",
+                    PREFIX_END_DATE_TIME + "END DATE TIME",
+                    "[" + PREFIX_RECURRENCE + "INTERVAL]")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    PREFIX_DESCRIPTION + "CS2103T Lecture",
+                    PREFIX_START_DATE_TIME + "2023-03-10 1600",
+                    PREFIX_END_DATE_TIME + "2023-03-10 1800",
+                    PREFIX_RECURRENCE + "weekly");
 
     private static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the Calendar!";
+    private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists!";
     private static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
             + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
             + PREFIX_START_DATE_TIME + ")";
