@@ -165,4 +165,9 @@ public class LogicManager implements Logic {
     public Appointment getSelectedAppointment() {
         return model.getSelectedAppointment();
     }
+
+    @Override
+    public Technician getSelectedTechnician() {
+        return model.getSelectedTechnician();
+    }
 }

@@ -102,4 +102,7 @@ public interface Logic {
 
     /** Returns currently selected appointment*/
     Appointment getSelectedAppointment();
+
+    /** Returns currently selected technician*/
+    Technician getSelectedTechnician();
 }

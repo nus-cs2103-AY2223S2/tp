@@ -45,6 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private VehicleDetailsPanel vehicleDetailsPanel;
     private ServiceDetailsPanel serviceDetailsPanel;
     private AppointmentDetailsPanel appointmentDetailsPanel;
+    private TechnicianDetailsPanel technicianDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -280,6 +281,10 @@ public class MainWindow extends UiPart<Stage> {
         appointmentDetailsPlaceholder.getChildren().clear();
         appointmentDetailsPanel = new AppointmentDetailsPanel(logic.getSelectedAppointment(), logic.getAppointmentDataMap());
         appointmentDetailsPlaceholder.getChildren().add(appointmentDetailsPanel.getRoot());
+
+        technicianDetailsPlaceholder.getChildren().clear();
+        technicianDetailsPanel = new TechnicianDetailsPanel(logic.getSelectedTechnician(), logic.getTechnicianDataMap());
+        technicianDetailsPlaceholder.getChildren().add(technicianDetailsPanel.getRoot());
     }
 
 

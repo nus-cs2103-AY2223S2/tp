@@ -288,7 +288,9 @@ public interface Model {
     VehicleDataMap getVehicleDataMap();
 
     ServiceDataMap getServiceDataMap();
+
     AppointmentDataMap getAppointmentDataMap();
+
     TechnicianDataMap getTechnicianDataMap();
 
     /**
@@ -330,6 +332,16 @@ public interface Model {
      * Returns currently selected service
      */
     Service getSelectedService();
+
+    /**
+     * Returns currently selected technician
+     */
+    Technician getSelectedTechnician();
+
+    /**
+     * Sets currently selected technician
+     */
+    void selectTechnician(Technician technician);
 
     // Sort helper functions
 

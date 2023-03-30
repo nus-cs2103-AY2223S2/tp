@@ -52,6 +52,7 @@ public class ModelManager implements Model {
     private Vehicle selectedVehicle;
     private Service selectedService;
     private Appointment selectedAppointment;
+    private Technician selectedTechnician;
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
@@ -117,6 +118,9 @@ public class ModelManager implements Model {
         }
         if (filteredAppointments.size() > 0) {
             selectedAppointment = sortedFilteredAppointments.get(0);
+        }
+        if (filteredTechnicians.size() > 0) {
+            selectedTechnician = filteredTechnicians.get(0);
         }
     }
 
@@ -573,6 +577,16 @@ public class ModelManager implements Model {
     @Override
     public Appointment getSelectedAppointment() {
         return selectedAppointment;
+    }
+
+    @Override
+    public void selectTechnician(Technician technician) {
+        selectedTechnician = technician;
+    }
+
+    @Override
+    public Technician getSelectedTechnician() {
+        return selectedTechnician;
     }
 
     @Override
