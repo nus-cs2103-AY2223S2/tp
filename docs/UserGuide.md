@@ -20,7 +20,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Add](#)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
-    - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name%2C-job-title%2C-status%2C-or-interview-date--find)
+    - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
     - [Manage company contact for an internship application](#add-contact-details--add_contact)
         - [Add a company contact : `add_contact`](#add-contact-details--add_contact)
         - [Edit a company contact : `edit_contact`](#edit-contact-details--edit_contact)
