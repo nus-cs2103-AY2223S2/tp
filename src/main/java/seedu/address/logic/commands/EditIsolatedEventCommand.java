@@ -70,6 +70,11 @@ public class EditIsolatedEventCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());
+
+        if (eventIndex.getZeroBased() >= personToEdit.getIsolatedEventList().getSize()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX);
+        }
+
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
@@ -81,7 +86,6 @@ public class EditIsolatedEventCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
                 + " from " + originalEvent + " for " + personToEdit.getName());
-
     }
 
     /**
