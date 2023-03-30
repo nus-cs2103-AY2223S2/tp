@@ -256,6 +256,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteCustomer(Customer target) {
         this.shop.removeCustomer(target);
+        resetMaps();
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
@@ -316,6 +321,10 @@ public class ModelManager implements Model {
     @Override
     public void deleteVehicle(Vehicle target) {
         this.shop.removeVehicle(target);
+        resetMaps();
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
     }
 
     // ==== For Services ==
@@ -349,6 +358,9 @@ public class ModelManager implements Model {
     @Override
     public void deleteService(Service service) {
         this.shop.removeService(service);
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     // ==== For Appointment ==
@@ -361,6 +373,8 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
@@ -371,6 +385,8 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment target) {
         this.shop.removeAppointment(target);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
@@ -426,6 +442,8 @@ public class ModelManager implements Model {
     @Override
     public void addTechnician(Technician technician) {
         this.shop.addTechnician(technician);
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -436,6 +454,8 @@ public class ModelManager implements Model {
     @Override
     public void deleteTechnician(Technician target) {
         this.shop.removeTechnician(target);
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     // ==== Mapped ==
