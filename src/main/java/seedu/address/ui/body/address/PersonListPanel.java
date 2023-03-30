@@ -34,8 +34,6 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<PersonListCellData> personListView;
 
-    private final Logic logic;
-
     private List<PersonListCardData> allData;
     private List<PersonListCardData> favData;
     private int selectedIndex;
@@ -45,7 +43,6 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
-        this.logic = logic;
 
         allData = null;
         favData = null;
