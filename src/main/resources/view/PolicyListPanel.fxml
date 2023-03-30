@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <Label text="Subscriptions" textFill="WHITE">
+   <Label text="Policies" textFill="WHITE">
       <font>
          <Font name="SansSerif Bold" size="16.0" />
       </font>
