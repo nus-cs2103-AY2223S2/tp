@@ -70,6 +70,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -114,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        openingListPanel = new OpeningListPanel(logic.getFilteredOpeningList());
+        openingListPanel = new OpeningListPanel(logic.getFilteredOpeningList(), logic, this);
         openingListPanelPlaceholder.getChildren().add(openingListPanel.getRoot());
 
         handleShow();
