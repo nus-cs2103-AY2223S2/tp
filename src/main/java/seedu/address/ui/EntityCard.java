@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.io.File;
+//import java.io.File;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -54,21 +55,21 @@ public class EntityCard extends UiPart<Region> {
     }
 
     private void setLogo() {
-        File file;
+        String filePath;
         switch (entity.getClass().getSimpleName()) {
         case "Character":
-            file = new File("src/main/resources/images/Monster4.png");
+            filePath = "images/Monster4.png";
             break;
         case "Mob":
-            file = new File("src/main/resources/images/Ghost1.png");
+            filePath = "images/Ghost1.png";
             break;
         case "Item":
-            file = new File("src/main/resources/images/Potion1.png");
+            filePath = "images/Potion1.png";
             break;
         default:
-            file = new File("src/main/resources/images/address_book_32.png");
+            filePath = "images/address_book_32.png";
         }
-        Image image = new Image(file.toURI().toString());
+        Image image = new Image(getClass().getClassLoader().getResourceAsStream(filePath));
         logoImageView.setImage(image);
     }
 
