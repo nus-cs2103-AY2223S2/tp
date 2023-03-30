@@ -3,17 +3,25 @@ layout: page
 title: User Guide
 ---
 
-Introducing **Trackr - the ultimate desktop application** designed to simplify the delivery management process for your business!
-With Trackr, you can seamlessly manage your deliveries through a powerful Command Line Interface (CLI), while still enjoying the benefits of a user-friendly Graphical User Interface (GUI).
+# Overview
+
+Introducing **Trackr - the ultimate desktop application** designed to simplify the delivery management process for your home business!
+
+With Trackr, you can seamlessly manage your suppliers, orders and tasks.
+
+It utilizes a Command Line Interface (CLI), while still enjoying the benefits of a user-friendly Graphical User Interface (GUI).
+
 Say goodbye to the hassle of Excel and the stress of time constraints! Whether you're a busy home business owner or simply looking for an efficient and streamlined solution, Trackr is the perfect fit for you.
 Experience the convenience of delivery management like never before with Trackr.
+
+# About This Guide
 
 This guide shows you the relevant information for setting up and using Trackr to manage your suppliers, orders and tasks.
 
 You can click on any of the links below to navigate to the respective sections for more information.
 
 
-**Table of Contents**
+# Table of Contents
 
 <!-- TOC -->
 * [Quick start](#quick-start)
@@ -55,17 +63,80 @@ You can click on any of the links below to navigate to the respective sections f
 
 # Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## Prerequisites
+
+### Java
+Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) installed.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: How to check your current Java version:**<br>
+
+1. Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
+
+1. Type and run the command `java -version`
+
+1. Check the version number provided (`xxx`) is at least `11`
+
+An example is shown below.
+
+```
+> java -version
+java version "xxx" <Other information>
+```
+
+</div>
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **CLI**: Command-Line Interface
+* **GUI**: Graphical User Interface
+* **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
+* **Customer**: Customer refers to someone whom the user receives an order from
+* **Order**: Order refers to the customers' orders the user accepts
+* **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
+* **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
+* **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
+
+## Installation
 
 1. Download the latest `trackr.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Trackr.
+1. Copy the file to the folder where you will use Trackr.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar trackr.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double click on the `trackr.jar` file.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Cannot open your Trackr:**<br>
+
+1. Open a command terminal
+
+1. Type in `java -jar ` (Keep in mind of the space at the end)
+
+1. Drag and drop `trackr.jar` into the command terminal
+
+1. Press enter and execute the command.
+
+An example of the final command is displayed below.
+
+```
+> java -jar xxxx/xxxx/trackr.jar
+```
+
+</div>
+
+A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
+
+<p align="center">
+    <img src="images/Ui.png" />
+    <br>Figure 1: Initial Setup UI
+</p>
+
+1. Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
+   
    Some example commands you can try:
 
    * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
