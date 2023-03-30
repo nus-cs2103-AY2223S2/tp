@@ -154,7 +154,7 @@ public class IsolatedEventList {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder("");
+        StringBuilder output = new StringBuilder("Isolated Events\n");
         int count = 1;
         for (IsolatedEvent ie : isolatedEvents) {
             output.append(count).append(". ").append(ie.toString()).append("\n");
