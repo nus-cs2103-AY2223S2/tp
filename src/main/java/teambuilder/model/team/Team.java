@@ -83,7 +83,7 @@ public class Team {
         return teamName;
     }
 
-    public Desc getTeamDesc() {
+    public Desc getDesc() {
         return teamDesc;
     }
 

@@ -51,7 +51,7 @@ public class JsonAdaptedTeam {
      */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getTeamName().toString();
-        teamDesc = source.getTeamDesc().toString();
+        teamDesc = source.getDesc().toString();
         skills.addAll(source.getSkillTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
