@@ -37,4 +37,36 @@ public class LectureNameTest {
         assertTrue(LectureName.isValidName("Lorem Ipsum")); // with capital letters
     }
 
+    @Test
+    public void compareTo() {
+        LectureName name = new LectureName("CbA");
+        LectureName otherName = new LectureName("AbC");
+
+        // same case
+        assertTrue(name.compareTo(name) == 0);
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+
+        // different case, same order
+        name = new LectureName("abc");
+        otherName = new LectureName("ABC");
+
+        assertTrue(name.compareTo(otherName) == 0);
+
+        // different case, upper case has higher order
+        name = new LectureName("CDE");
+        otherName = new LectureName("abc");
+
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+
+        // different case, lower case has higher order
+        name = new LectureName("cde");
+        otherName = new LectureName("ABC");
+
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+    }
+
+
 }

@@ -166,6 +166,16 @@ public class ModuleTest {
     }
 
     @Test
+    public void compareTo() {
+        Module cs2040s = TypicalModules.getCs2040s();
+        Module st2334 = TypicalModules.getSt2334();
+
+        assertTrue(cs2040s.compareTo(cs2040s) == 0);
+        assertTrue(cs2040s.compareTo(st2334) < 0);
+        assertTrue(st2334.compareTo(cs2040s) > 0);
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Module moduleCopy = new ModuleBuilder(module).build();

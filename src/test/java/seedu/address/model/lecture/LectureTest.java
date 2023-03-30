@@ -156,6 +156,16 @@ public class LectureTest {
     }
 
     @Test
+    public void compareTo() {
+        Lecture cs2040sWeek1 = TypicalLectures.getCs2040sWeek1();
+        Lecture cs2040sWeek2 = TypicalLectures.getCs2040sWeek2();
+
+        assertTrue(cs2040sWeek1.compareTo(cs2040sWeek1) == 0);
+        assertTrue(cs2040sWeek1.compareTo(cs2040sWeek2) < 0);
+        assertTrue(cs2040sWeek2.compareTo(cs2040sWeek1) > 0);
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Lecture lectureCopy = new LectureBuilder(lecture).build();
