@@ -21,6 +21,7 @@ public class SortMeetingCommand extends Command {
             + "Example: `sortm m/`.i \n"
             + "For reverse sorting, append an `r` after the prefix.\n"
             + "Example: `sortm m/r`";
+    public static final String COMMAND_DESCRIPTION = "Sorts meetings by their attributes.";
     private static Prefix sortByPrefix;
     private static String prefix;
     private static boolean isReverse;

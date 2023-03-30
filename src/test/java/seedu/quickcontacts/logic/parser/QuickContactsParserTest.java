@@ -87,6 +87,9 @@ public class QuickContactsParserTest {
 
     @Test
     public void parseCommand_help() throws Exception {
+        HelpCommand command = (HelpCommand) parser.parseCommand(HelpCommand.COMMAND_WORD
+                + " " + AddCommand.COMMAND_WORD);
+        assertEquals(new HelpCommand(AddCommand.COMMAND_WORD), command);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
