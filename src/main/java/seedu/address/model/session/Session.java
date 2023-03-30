@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
@@ -27,6 +29,7 @@ public class Session implements Comparable<Session> {
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private String command;
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private final String startDateTime;
     private final String endDateTime;
     private final SessionName name;
@@ -327,14 +330,19 @@ public class Session implements Comparable<Session> {
         float totalPay = 0;
         long durationInMins = getSessionDuration().toMinutes();
 
-        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
-            if (entry.getValue()) {
-                float indivPay = payRateMap.get(entry.getKey()).toInt();
-                totalPay += indivPay / 60 * durationInMins;
+        try {
+            for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+                if (entry.getValue()) {
+                    float indivPay = payRateMap.get(entry.getKey()).toInt();
+                    totalPay += indivPay / 60 * durationInMins;
+                }
             }
+        } catch (NullPointerException e) {
+            logger.warning("No pay rates for session " + getName());
         }
         return totalPay;
     }
+
 
     /**
      * Returns a string representation of the attendance count for the session.

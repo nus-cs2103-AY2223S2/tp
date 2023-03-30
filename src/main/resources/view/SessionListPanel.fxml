@@ -1,38 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.chart.PieChart?>
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
-    <ListView fx:id="sessionListView" HBox.hgrow="ALWAYS"/>
-    <ScrollPane fx:id="sessionDetailDisplay" prefWidth="300" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
-                xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #252745;">
-        <padding>
-            <Insets top="5" right="5" bottom="5" left="15"/>
-        </padding>
-        <VBox fx:id="sessionDetailContainer" maxWidth="400" prefWidth="265" prefHeight="700" style="-fx-background-color: #252745;">
-            <VBox>
-                <Label fx:id="selectedName" maxHeight="Infinity" text="Please select a session"
-                       style="-fx-text-fill: white;"/>
-            </VBox>
-            <VBox>
-                <Label fx:id="dateField" styleClass="field_label"/>
-                <Label fx:id="selectedDate" maxHeight="Infinity" style="-fx-text-fill: white;"/>
-            </VBox>
-            <VBox>
-                <Label fx:id="locationField" styleClass="field_label"/>
-                <Label fx:id="selectedLocation" maxHeight="Infinity" style="-fx-text-fill: white;"/>
-            </VBox>
-            <VBox>
-                <Label fx:id="studentsField" styleClass="field_label"/>
-                <PieChart fx:id="attendanceChart" prefHeight="200" prefWidth="200" />
-            </VBox>
-        </VBox>
-    </ScrollPane>
-</HBox>
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="457.0" prefWidth="485.0">
+          <ListView fx:id="sessionListView" editable="true" prefHeight="457.0" prefWidth="275.0" />
+         <VBox>
+            <children>
+                <ScrollPane fx:id="sessionDetailDisplay" hbarPolicy="NEVER" hvalue="1.0" style="-fx-background-color: #252745;">
+                    <padding>
+                        <Insets bottom="5" left="15" right="5" top="5" />
+                    </padding>
+                  <HBox style="-fx-background-color: #252745;">
+                     <children>
+                          <VBox fx:id="sessionDetailContainer" style="-fx-background-color: #252745;">
+                              <VBox>
+                                  <Label fx:id="selectedName" maxHeight="Infinity" style="-fx-text-fill: white;" text="Please select a session" />
+                              </VBox>
+                              <VBox>
+                                  <Label fx:id="dateField" styleClass="field_label" />
+                                  <Label fx:id="selectedDate" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                              </VBox>
+                              <VBox>
+                                  <Label fx:id="locationField" styleClass="field_label" />
+                                  <Label fx:id="selectedLocation" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                              </VBox>
+                          </VBox>
+                        <VBox style="-fx-background-color: #252745;" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <Pane prefHeight="39.0" prefWidth="200.0" />
+                                 <VBox>
+                                     <Label fx:id="earningsField" styleClass="field_label" />
+                                     <Label fx:id="selectedEarnings" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                                 </VBox>
+                                 <VBox>
+                                     <Label fx:id="studentsField" styleClass="field_label" />
+                                     <PieChart fx:id="attendanceChart" prefHeight="200" prefWidth="200" />
+                                 </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                </ScrollPane>
+               <Pane />
+            </children>
+         </VBox>
+      </HBox>
+      <TitledPane animated="false" prefHeight="311.0" prefWidth="548.0" style="-fx-background-color: #252745;" text="Income Analytics">
+        <content>
+            <HBox prefHeight="214.0" prefWidth="546.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <VBox prefHeight="176.0" prefWidth="140.0" style="-fx-background-color: #5B5D88;">
+                            <Label fx:id="todayField" styleClass="field_label" />
+                            <Label fx:id="today" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                        </VBox>
+                        <Separator prefHeight="0.0" prefWidth="100.0" />
+                         <VBox prefHeight="176.0" prefWidth="140.0" style="-fx-background-color: #5B5D88;">
+                             <Label fx:id="thisMonthField" styleClass="field_label" />
+                             <Label fx:id="thisMonth" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                         </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="263.0" prefWidth="150.0">
+                     <children>
+                         <VBox prefHeight="176.0" prefWidth="140.0" style="-fx-background-color: #5B5D88;">
+                             <Label fx:id="thisWeekField" styleClass="field_label" />
+                             <Label fx:id="thisWeek" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                         </VBox>
+                         <Separator prefHeight="0.0" prefWidth="87.0" />
+                         <VBox prefHeight="176.0" prefWidth="140.0" style="-fx-background-color: #5B5D88;">
+                             <Label fx:id="lifetimeField" styleClass="field_label" />
+                             <Label fx:id="lifetime" maxHeight="Infinity" style="-fx-text-fill: white;" />
+                         </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="263.0" prefWidth="13.0" />
+                  <Pane prefHeight="197.0" prefWidth="282.0">
+                     <children>
+                         <VBox fx:id="earningsChart" prefHeight="200.0" prefWidth="400.0">
+                         </VBox>
+
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+        </content>
+      </TitledPane>
+   </children>
+</VBox>

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -48,6 +51,9 @@ public class SessionListPanel extends UiPart<Region> {
     private Label selectedStudents;
 
     @FXML
+    private Label selectedEarnings;
+
+    @FXML
     private PieChart attendanceChart;
 
     @FXML
@@ -58,6 +64,33 @@ public class SessionListPanel extends UiPart<Region> {
     private Label locationField;
     @FXML
     private Label studentsField;
+    @FXML
+    private Label earningsField;
+
+    //Statistics
+    @FXML
+    private Label todayField;
+    @FXML
+    private Label today;
+
+    @FXML
+    private Label thisWeekField;
+    @FXML
+    private Label thisWeek;
+
+    @FXML
+    private Label thisMonthField;
+    @FXML
+    private Label thisMonth;
+
+    @FXML
+    private Label lifetimeField;
+    @FXML
+    private Label lifetime;
+
+    @FXML
+    private VBox earningsChart;
+
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -68,8 +101,117 @@ public class SessionListPanel extends UiPart<Region> {
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
         updateDisplay(sessionListView.getItems().get(0));
+        getStatistics(sessionList);
         setClickEventListener();
         setUpdateEventListener(logic);
+    }
+
+    private void getStatistics(ObservableList<Session> sessionList) {
+        Label[] fields = new Label[]{todayField, thisWeekField, thisMonthField, lifetimeField};
+        Label[] details = new Label[]{today, thisWeek, thisMonth, lifetime};
+
+        setStatisticsFieldDisplay(fields);
+        updateStatisticsDetail(sessionList, details);
+    }
+
+    private void updateStatisticsDetail(ObservableList<Session> sessionList, Label[] details) {
+        float todaysEarnings = getTodaysEarnings(sessionList);
+        float weeklyEarnings = getWeeklyEarnings(sessionList);
+        float monthlyEarnings = getMonthlyEarnings(sessionList);
+        float lifetimeEarnings = getLifetimeEarnings(sessionList);
+
+        today.setText("$" + String.format("%.2f", todaysEarnings));
+        thisWeek.setText("$" + String.format("%.2f", weeklyEarnings));
+        thisMonth.setText("$" + String.format("%.2f", monthlyEarnings));
+        lifetime.setText("$" + String.format("%.2f", lifetimeEarnings));
+
+        earningsChart.getChildren().add(new EarningsBarChart(sessionList));
+
+
+        try {
+            for (Label detail : details) {
+                detail.setWrapText(true);
+                detail.setMinWidth(0);
+            }
+        } catch (NullPointerException e) {
+            logger.info("Pay rate calculation error");
+        }
+    }
+
+    /**
+     * Gets the earnings from sessions that occurred on the current date.
+     * @param sessionList The list of sessions to search through.
+     * @return The total earnings from today's sessions.
+     */
+    private float getTodaysEarnings(ObservableList<Session> sessionList) {
+        float totalEarnings = 0;
+        LocalDate now = LocalDate.now();
+
+        for (Session session : sessionList) {
+            LocalDate sessionDate = LocalDate.parse(session.getStartDateTime().split(" ")[0],
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            if (sessionDate.isEqual(now)) {
+                totalEarnings += session.getTotalPay();
+            }
+        }
+        return totalEarnings;
+    }
+
+    private float getWeeklyEarnings(ObservableList<Session> sessionList) {
+        float totalEarnings = 0;
+        LocalDate now = LocalDate.now();
+        LocalDate startOfWeek = now.with(DayOfWeek.MONDAY);
+
+        for (Session session : sessionList) {
+            LocalDate sessionDate = LocalDate.parse(session.getStartDateTime().split(" ")[0],
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            if (sessionDate.isEqual(now) || sessionDate.isAfter(startOfWeek)) {
+                totalEarnings += session.getTotalPay();
+            }
+        }
+        return totalEarnings;
+    }
+
+    /**
+     * Gets the earnings from sessions that occurred in the current month.
+     * @param sessionList The list of sessions to search through.
+     * @return The total earnings from this month's sessions.
+     */
+    private float getMonthlyEarnings(ObservableList<Session> sessionList) {
+        float totalEarnings = 0;
+        LocalDate now = LocalDate.now();
+        LocalDate startOfMonth = now.withDayOfMonth(1);
+
+        for (Session session : sessionList) {
+            LocalDate sessionDate = LocalDate.parse(session.getStartDateTime().split(" ")[0],
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            if (sessionDate.isEqual(now) || (sessionDate.isAfter(startOfMonth)
+                    && sessionDate.isBefore(now.plusDays(1)))) {
+                totalEarnings += session.getTotalPay();
+            }
+        }
+        return totalEarnings;
+    }
+
+    private float getLifetimeEarnings(ObservableList<Session> sessionList) {
+        float totalEarnings = 0;
+        for (Session session : sessionList) {
+            totalEarnings += session.getTotalPay();
+        }
+        return totalEarnings;
+    }
+
+    private void setStatisticsFieldDisplay(Label[] fields) {
+        todayField.setText("Today's Earnings");
+        thisWeekField.setText("This Week's Earnings");
+        thisMonthField.setText("This Month's Earnings");
+        lifetimeField.setText("Lifetime Earnings");
+        for (Label field: fields) {
+            field.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(4),
+                    new Insets(-3, -10, -3, -10))));
+            VBox parent = (VBox) field.getParent();
+            parent.setMargin(field, new Insets(0, 0, 10, 0));
+        }
     }
 
 
@@ -104,8 +246,8 @@ public class SessionListPanel extends UiPart<Region> {
      * @param selectedSession the session to be displayed
      */
     public void updateDisplay(Session selectedSession) {
-        Label[] fields = new Label[]{dateField, locationField, studentsField};
-        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation};
+        Label[] fields = new Label[]{dateField, locationField, studentsField, earningsField};
+        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation, selectedEarnings};
         setupStyle();
         setSessionFieldDisplay(fields);
         updateDisplayedSessionDetail(selectedSession, details);
@@ -119,6 +261,7 @@ public class SessionListPanel extends UiPart<Region> {
         locationField.setText("Location");
         dateField.setText("Date");
         studentsField.setText("Students");
+        earningsField.setText("Session Earnings");
         for (Label field: fields) {
             field.setBackground(new Background(new BackgroundFill(Color.WHITE, new CornerRadii(4),
                     new Insets(-3, -10, -3, -10))));
@@ -140,6 +283,11 @@ public class SessionListPanel extends UiPart<Region> {
 
         attendanceChart.setData(SessionPieChart.generateAttendancePieChart(selectedSession.getAttendanceMap()));
         attendanceChart.setLabelsVisible(false);
+
+        float sessionEarnings = selectedSession.getTotalPay();
+        selectedEarnings.setText("$" + String.format("%.2f", sessionEarnings));
+        selectedEarnings.setPadding(new Insets(5, -10, 5, -10));
+
         try {
             for (Label detail : details) {
                 detail.setWrapText(true);
