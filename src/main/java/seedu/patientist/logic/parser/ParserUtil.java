@@ -17,6 +17,7 @@ import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.ward.Ward;
 
@@ -131,6 +132,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String todo} into a {@code PatientToDo}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static PatientToDo parseToDo(String toDo) {
+        requireNonNull(toDo);
+        String trimmedToDo = toDo.trim();
+
+        return new PatientToDo(trimmedToDo);
+    }
+
+    /**
      * Parses {@code Collection<String> details} into a {@code List<PatientStatusDetail>}.
      */
     public static List<PatientStatusDetails> parseDetails(Collection<String> details) {
@@ -140,6 +154,18 @@ public class ParserUtil {
             detailsList.add(parseDetail(detail));
         }
         return detailsList;
+    }
+
+    /**
+     * Parses {@code Collection<String> todo} into a {@code List<PatientToDo>}.
+     */
+    public static List<PatientToDo> parseToDos(Collection<String> toDos) {
+        requireNonNull(toDos);
+        final List<PatientToDo> toDoList = new ArrayList<>();
+        for (String toDo : toDos) {
+            toDoList.add(parseToDo(toDo));
+        }
+        return toDoList;
     }
 
     /**
