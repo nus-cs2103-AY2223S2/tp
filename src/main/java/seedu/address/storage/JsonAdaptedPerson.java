@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     protected final String name;
     protected final String phone;
     protected final String email;
-    protected final String address;
+    protected final String station;
     protected final String telegramHandle;
     protected final Integer index;
     protected final List<JsonAdaptedGroupTag> groups = new ArrayList<>();
@@ -41,7 +41,7 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("station") String station,
             @JsonProperty("telegramHandle") String telegramHandle,
             @JsonProperty("index") Integer index,
             @JsonProperty("groups") List<JsonAdaptedGroupTag> groups,
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.station = station;
         this.telegramHandle = telegramHandle;
         this.index = index;
         if (groups != null) {
@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         name = source.getName().getValue();
         phone = source.getPhone().getValue();
         email = source.getEmail().getValue();
-        address = source.getAddress().getValue().getName();
+        station = source.getStation().getValue().getName();
         telegramHandle = source.getTelegramHandle().getValue();
         index = source.getContactIndex().getValue();
         groups.addAll(source.getImmutableGroupTags().stream()
@@ -116,13 +116,13 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (station == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Station.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Station.isValidStation(station)) {
+            throw new IllegalValueException(Station.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Station modelStation = new Station(station);
         if (telegramHandle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
@@ -139,7 +139,7 @@ class JsonAdaptedPerson {
         final TelegramHandle modelTelegramHandle = new TelegramHandle(telegramHandle);
         final Set<GroupTag> modelGroupTags = new HashSet<>(personGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(personModuleTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+        return new Person(modelName, modelPhone, modelEmail, modelStation,
                 modelTelegramHandle, modelContactIndex, modelGroupTags, modelModuleTags);
     }
 

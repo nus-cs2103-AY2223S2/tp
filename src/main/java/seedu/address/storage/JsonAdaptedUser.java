@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
@@ -30,12 +30,12 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("station") String station,
                              @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("index") Integer index,
                              @JsonProperty("groups") List<JsonAdaptedGroupTag> tagged,
                              @JsonProperty("modules") List<JsonAdaptedModuleTag> modules) {
-        super(name, phone, email, address, telegramHandle, index, tagged, modules);
+        super(name, phone, email, station, telegramHandle, index, tagged, modules);
     }
 
     /**
@@ -86,14 +86,14 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
+        if (station == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Address.class.getSimpleName()));
+                    Station.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Station.isValidStation(station)) {
+            throw new IllegalValueException(Station.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Station modelStation = new Station(station);
 
         if (telegramHandle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -112,7 +112,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         final Set<GroupTag> modelGroupTags = new HashSet<>(userGroupTags);
         final Set<ModuleTag> modelModuleTags = new HashSet<>(userModuleTags);
         return new User(modelName, modelPhone, modelEmail,
-                modelAddress, modelTelegramHandle, modelContactIndex,
+                modelStation, modelTelegramHandle, modelContactIndex,
                 modelGroupTags, modelModuleTags);
     }
 }

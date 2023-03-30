@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 
 import org.junit.jupiter.api.Test;
@@ -47,8 +47,8 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_ALEX).withEmail(EMAIL_BEN).build();
         assertFalse(DESC_ALEX.equals(editedAmy));
 
-        // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_ALEX).withAddress(ADDRESS_BEN).build();
+        // different station -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_ALEX).withStation(STATION_BEN).build();
         assertFalse(DESC_ALEX.equals(editedAmy));
 
         // different tags -> returns false

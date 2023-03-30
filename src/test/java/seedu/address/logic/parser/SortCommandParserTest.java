@@ -57,13 +57,13 @@ public class SortCommandParserTest {
         testSinglePrefix(String.format(" %sd", Prefix.TELEGRAM_HANDLE.getPrefix()),
                 Comparator.comparing(Person::getTelegramHandle), "Telegram Handle: Descending");
 
-        // address
-        testSinglePrefix(String.format(" %s", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Ascending");
-        testSinglePrefix(String.format(" %sa", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Ascending");
-        testSinglePrefix(String.format(" %sd", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Descending");
+        // station
+        testSinglePrefix(String.format(" %s", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Ascending");
+        testSinglePrefix(String.format(" %sa", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Ascending");
+        testSinglePrefix(String.format(" %sd", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Descending");
 
         // group tags
         testSinglePrefix(String.format(" %s", Prefix.GROUP_TAG.getPrefix()),

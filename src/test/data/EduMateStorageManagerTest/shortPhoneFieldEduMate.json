@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -24,7 +24,7 @@
       "name": "Adam Tan",
       "email": "adamtan@gmail.com",
       "telegramHandle": "@adamtan",
-      "address": "Tan Kah Kee",
+      "station": "Tan Kah Kee",
       "groups": [
         "TA"
       ],

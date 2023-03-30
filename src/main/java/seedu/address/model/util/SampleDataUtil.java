@@ -23,12 +23,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
@@ -112,11 +112,11 @@ public class SampleDataUtil {
         Name name = new Name(personDataList.get(0));
         Phone phone = new Phone(personDataList.get(1));
         Email email = new Email(personDataList.get(2));
-        Address address = new Address(personDataList.get(3));
+        Station station = new Station(personDataList.get(3));
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
 
-        Person person = new Person(name, phone, email, address,
+        Person person = new Person(name, phone, email, station,
                 telegramHandle, contactIndex, groupTagSet, new HashSet<>());
 
         Set<ModuleTag> moduleTagSet = getModuleTagSetFromLines(personDataList.get(6).split(","));
@@ -135,7 +135,7 @@ public class SampleDataUtil {
         return new User(new Name("Linus Richards"),
                 new Phone("90102030"),
                 new Email("linusrichards@gmail.com"),
-                new Address("National University of Singapore"),
+                new Station("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
                 new ContactIndex(0),
                 getGroupTagSet(),

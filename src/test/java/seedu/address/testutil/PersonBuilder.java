@@ -3,12 +3,12 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
@@ -22,14 +22,14 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amirah Tan";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amirahtan@gmail.com";
-    public static final String DEFAULT_ADDRESS = "Tanah Merah";
+    public static final String DEFAULT_STATION = "Tanah Merah";
     public static final String DEFAULT_TELEGRAM_HANDLE = "@amirahtan";
     public static final Integer DEFAULT_CONTACT_INDEX = 1;
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Station station;
     private TelegramHandle telegramHandle;
     private ContactIndex contactIndex;
     private Set<GroupTag> groupTags;
@@ -42,7 +42,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        station = new Station(DEFAULT_STATION);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         contactIndex = new ContactIndex(DEFAULT_CONTACT_INDEX);
         groupTags = new HashSet<>();
@@ -56,7 +56,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        station = personToCopy.getStation();
         groupTags = new HashSet<>(personToCopy.getImmutableGroupTags());
         moduleTags = new HashSet<>(personToCopy.getImmutableModuleTags());
         telegramHandle = personToCopy.getTelegramHandle();
@@ -89,10 +89,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Station} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withStation(String station) {
+        this.station = new Station(station);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class PersonBuilder {
      * Returns a {@code Person} with input features called so far.
      */
     public Person build() {
-        return new Person(name, phone, email, address, telegramHandle, contactIndex,
+        return new Person(name, phone, email, station, telegramHandle, contactIndex,
                 groupTags, moduleTags);
     }
 

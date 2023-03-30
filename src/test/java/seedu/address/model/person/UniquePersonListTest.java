@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
@@ -44,7 +44,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALBERT);
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
+        Person editedAlbert = new PersonBuilder(ALBERT).withStation(STATION_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlbert));
     }
@@ -87,7 +87,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALBERT);
-        Person editedAlbert = new PersonBuilder(ALBERT).withAddress(ADDRESS_BEN).withGroupTags(VALID_GROUP_1)
+        Person editedAlbert = new PersonBuilder(ALBERT).withStation(STATION_BEN).withGroupTags(VALID_GROUP_1)
                 .build();
         uniquePersonList.setPerson(ALBERT, editedAlbert);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();

@@ -30,7 +30,7 @@ public class PersonUtil {
         sb.append(Prefix.NAME + person.getName().getValue() + " ");
         sb.append(Prefix.PHONE + person.getPhone().getValue() + " ");
         sb.append(Prefix.EMAIL + person.getEmail().getValue() + " ");
-        sb.append(Prefix.ADDRESS + person.getAddress().getValue().getName() + " ");
+        sb.append(Prefix.STATION + person.getStation().getValue().getName() + " ");
         sb.append(Prefix.TELEGRAM_HANDLE + person.getTelegramHandle().getValue() + " ");
         person.getImmutableGroupTags().stream().forEach(
             s -> sb.append(Prefix.GROUP_TAG + s.tagName + " ")
@@ -50,9 +50,9 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(Prefix.NAME).append(name.getValue()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(Prefix.PHONE).append(phone.getValue()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(Prefix.EMAIL).append(email.getValue()).append(" "));
-        descriptor.getAddress()
-                .ifPresent(address -> sb.append(Prefix.ADDRESS)
-                        .append(address.getValue().getName()).append(" "));
+        descriptor.getStation()
+                .ifPresent(station -> sb.append(Prefix.STATION)
+                        .append(station.getValue().getName()).append(" "));
         descriptor.getTelegramHandle().ifPresent(telegramHandle -> sb.append(Prefix.TELEGRAM_HANDLE)
                 .append(telegramHandle.getValue()).append(" "));
         if (descriptor.getGroupTags().isPresent()) {
