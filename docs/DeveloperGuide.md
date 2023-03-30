@@ -166,7 +166,7 @@ The find tag feature allows the sales person to find contacts in the address boo
 
 #### Implementation
 
-In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to process parameters of Set of Tags 
+In `StringUtil.java`, created a new method - `containsTagsIgnoreCase` to process parameters of Set of Tags
 
 The find tag mechanism is facilitated by `FindTagCommandParser` where it parses the find tag command, triggering and associating the given arguments to a `FindTagCommand` class which extends `Command`. When `FindTagCommand` gets executed, it triggers the `getFilteredList()` based on the predicate `TagContainsKeywordsPredicate` set in `StringUtil`
 
