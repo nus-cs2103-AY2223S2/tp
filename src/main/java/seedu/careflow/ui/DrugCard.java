@@ -40,9 +40,9 @@ public class DrugCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         StringBuilder text = new StringBuilder(this.drug.getTradeName().tradeName);
         if(drug.getStorageCount().isBelowThreshold()) {
-            text.append("\tLow Storage!");
-            tradeName.setStyle("-fx-text-fill:red");
-            id.setStyle("-fx-text-fill:red");
+            text.append("   ***Low Storage!***");
+            tradeName.setStyle("-fx-text-fill:maroon");
+            id.setStyle("-fx-text-fill:maroon");
         }
         tradeName.setText(text.toString());
     }
