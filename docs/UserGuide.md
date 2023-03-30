@@ -252,6 +252,7 @@ Format: `list_asgn`
 ## Class List
 For class lists, you can call the following commands:
 - Create class list: `create`
+- View class statistics: `class_stats`
 - (Random) Groupings: `rand_grp`
 - Adding a student: `add`
 - Deleting a student: `delete`
@@ -270,6 +271,22 @@ Examples:
 - `create_class cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
 - `create_class cs6244` creates an empty class list.
 
+#### View class statistics: `class_stats`
+Displays statistics for the class, based on the specified field.
+
+Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
+- The argument `FIELD` must only be one of `attendance`/`grades`
+- If `attendance` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is not required and will be ignored.
+- If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
+
+Examples:
+- `class_stats st/attendance`
+- `class_stats st/grades as/Test 1`
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
+i.e. `atTenDanCE` is still a valid argument to `FIELD`.
+</div>
 
 #### Group students at random: `rand_grp` [coming soon]
 Forms random groups of a specified size within a given class list.
