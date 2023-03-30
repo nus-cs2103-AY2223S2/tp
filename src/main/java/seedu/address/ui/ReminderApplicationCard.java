@@ -1,16 +1,10 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ArchiveCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
@@ -18,13 +12,12 @@ import seedu.address.model.person.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
 
 /**
- * An UI component that displays information of a {@code InternshipApplication}.
+ * An UI component that displays information of a {@code InternshipApplication} for ReminderWindow.
  */
-public class ApplicationCard extends UiPart<Region> {
-    private static final String FXML = "ApplicationListCard.fxml";
+public class ReminderApplicationCard extends UiPart<Region> {
+    private static final String FXML = "ReminderApplicationCard.fxml";
     public final InternshipApplication application;
     private PopupEditInternship popupEditInternship;
-    private int index;
     private final MainWindow mainWindow;
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -60,19 +53,15 @@ public class ApplicationCard extends UiPart<Region> {
     private Label resume;
     @FXML
     private Label coverLetter;
-    @FXML
-    private Button editButton;
 
     /**
-     * Creates a {@code InternshipApplicationCode} with the given {@code InternshipApplication} and index to display.
+     * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
      */
-    public ApplicationCard(InternshipApplication application, int displayedIndex, MainWindow mainWindow) {
+    public ReminderApplicationCard(InternshipApplication application, MainWindow mainWindow) {
         super(FXML);
         this.application = application;
         this.mainWindow = mainWindow;
-        this.index = displayedIndex;
         this.popupEditInternship = new PopupEditInternship(mainWindow);
-        id.setText(displayedIndex + ". ");
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         internshipStatus.setText(application.getStatus().name());
@@ -116,63 +105,7 @@ public class ApplicationCard extends UiPart<Region> {
 
         // state check
         ApplicationCard card = (ApplicationCard) other;
-        return id.getText().equals(card.id.getText())
-                && application.equals(card.application);
+        return application.equals(card.application);
     }
 
-    /**
-     * Handles the edit internship button clicked event.
-     */
-    @FXML
-    private void handleEditInternshipClicked() {
-        if (!popupEditInternship.isShowing()) {
-            popupEditInternship.show(index, application);
-        } else {
-            popupEditInternship.focus();
-        }
-    }
-
-    /**
-     * Handles the delete internship button clicked event.
-     */
-    @FXML
-    private void handleDeleteInternshipClicked() {
-        try {
-            mainWindow.executeCommand(makeDeleteCommand());
-        } catch (CommandException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Make delete command.
-     */
-    private String makeDeleteCommand() {
-        String commandText = DeleteCommand.COMMAND_WORD + " " + index;
-        return commandText;
-    }
-
-    /**
-     * Handles the archive internship button clicked event.
-     */
-    @FXML
-    private void handleArchiveInternshipClicked() {
-        try {
-            mainWindow.executeCommand(makeArchiveCommand());
-        } catch (CommandException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Make archive command.
-     */
-    private String makeArchiveCommand() {
-        String commandText = ArchiveCommand.COMMAND_WORD + " " + index;
-        return commandText;
-    }
 }
