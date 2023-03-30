@@ -2,7 +2,6 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**

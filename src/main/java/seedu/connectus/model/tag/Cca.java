@@ -47,8 +47,7 @@ public class Cca extends Tag {
             cca = arr[0];
             position = arr[1];
             decoupled = cca + " - " + position;
-        }
-        else {
+        } else {
             cca = arr[0];
             position = "";
             decoupled = cca;

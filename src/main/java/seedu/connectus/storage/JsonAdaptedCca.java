@@ -49,8 +49,7 @@ class JsonAdaptedCca {
         String[] arr = str.split("-");
         if (arr.length == 2) {
             return arr[0] + "#" + arr[1];
-        }
-        else {
+        } else {
             return arr[0];
         }
     }
