@@ -77,7 +77,10 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getDescription().equals(description);
+        boolean bothHasTank = isTankRelatedTask() && otherTask.isTankRelatedTask();
+        boolean hasSameTank = bothHasTank && (tank.equals(otherTask.getTank()));
+        return otherTask.getDescription().equals(description)
+                && hasSameTank;
     }
 
     @Override

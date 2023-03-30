@@ -13,7 +13,8 @@ public abstract class TaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + "<task command word>\n"
             + "Task commands: add, "
-            + "delete";
+            + "delete, "
+            + "edit";
 
     /**
      * Executes the command and returns the result message.
