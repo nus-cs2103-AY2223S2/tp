@@ -6,7 +6,7 @@ title: User Guide
 Army Information Management System (AIMS) is a **desktop app for managing the personal information of military personnel,
 optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
 
-This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. 
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
 
