@@ -4,7 +4,6 @@ import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import seedu.sprint.logic.commands.FindCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.person.NameContainsKeywordsPredicate;
 

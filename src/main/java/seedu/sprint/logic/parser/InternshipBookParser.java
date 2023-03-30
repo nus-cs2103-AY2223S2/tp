@@ -8,18 +8,18 @@ import java.util.regex.Pattern;
 
 import seedu.sprint.logic.commands.AddApplicationCommand;
 import seedu.sprint.logic.commands.AddTaskCommand;
-import seedu.sprint.logic.commands.ApplicationCommand;
+import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.commands.ClearApplicationCommand;
 import seedu.sprint.logic.commands.DeleteApplicationCommand;
 import seedu.sprint.logic.commands.DeleteTaskCommand;
 import seedu.sprint.logic.commands.EditApplicationCommand;
 import seedu.sprint.logic.commands.EditTaskCommand;
-import seedu.sprint.logic.commands.ExitSprintCommand;
-import seedu.sprint.logic.commands.FindApplicationCommand;
-import seedu.sprint.logic.commands.HelpApplicationCommand;
-import seedu.sprint.logic.commands.ListApplicationCommand;
+import seedu.sprint.logic.commands.ExitCommand;
+import seedu.sprint.logic.commands.FindCommand;
+import seedu.sprint.logic.commands.HelpCommand;
+import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.RedoCommand;
-import seedu.sprint.logic.commands.SortApplicationCommand;
+import seedu.sprint.logic.commands.SortCommand;
 import seedu.sprint.logic.commands.UndoCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
@@ -40,13 +40,13 @@ public class InternshipBookParser {
      * @return the command based on the user input.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public ApplicationCommand parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 
 
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            HelpApplicationCommand.MESSAGE_USAGE));
+            HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -60,8 +60,8 @@ public class InternshipBookParser {
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 
-        case ExitSprintCommand.COMMAND_WORD:
-            return new ExitSprintCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         //=========== Application Commands ===========================================================================
         case AddApplicationCommand.COMMAND_WORD:
@@ -76,16 +76,16 @@ public class InternshipBookParser {
         case EditApplicationCommand.COMMAND_WORD:
             return new EditApplicationCommandParser().parse(arguments);
 
-        case FindApplicationCommand.COMMAND_WORD:
+        case FindCommand.COMMAND_WORD:
             return new FindApplicationCommandParser().parse(arguments);
 
-        case HelpApplicationCommand.COMMAND_WORD:
-            return new HelpApplicationCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-        case ListApplicationCommand.COMMAND_WORD:
-            return new ListApplicationCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-        case SortApplicationCommand.COMMAND_WORD:
+        case SortCommand.COMMAND_WORD:
             return new SortApplicationCommandParser().parse(arguments);
 
         //=========== Task Commands ==================================================================================

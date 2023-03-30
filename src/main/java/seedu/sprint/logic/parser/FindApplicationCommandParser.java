@@ -10,26 +10,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
-import seedu.sprint.logic.commands.FindApplicationCommand;
+import seedu.sprint.logic.commands.FindCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindApplicationCommand object.
  */
-public class FindApplicationCommandParser implements ApplicationParser<FindApplicationCommand> {
+public class FindApplicationCommandParser implements ApplicationParser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindApplicationCommand
      * and returns a FindApplicationCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public FindApplicationCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindApplicationCommand.MESSAGE_USAGE));
+                    FindCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -37,7 +37,7 @@ public class FindApplicationCommandParser implements ApplicationParser<FindAppli
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS)) {
             String[] keywords = trimmedArgs.split("\\s+");
-            return new FindApplicationCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         Prefix[] prefixArray = {PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS};
@@ -56,7 +56,7 @@ public class FindApplicationCommandParser implements ApplicationParser<FindAppli
                 }
             }
         }
-        return new FindApplicationCommand(new NameContainsKeywordsPredicate(map));
+        return new FindCommand(new NameContainsKeywordsPredicate(map));
     }
 
 

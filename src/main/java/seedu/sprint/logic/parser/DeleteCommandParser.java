@@ -3,7 +3,6 @@ package seedu.sprint.logic.parser;
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.sprint.commons.core.index.Index;
-import seedu.sprint.logic.commands.DeleteCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**

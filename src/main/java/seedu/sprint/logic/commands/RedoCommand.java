@@ -10,7 +10,7 @@ import seedu.sprint.model.ApplicationModel;
 /**
  * Reverts the {@code model}'s sprint book to its previously undone state.
  */
-public class RedoCommand extends ApplicationCommand {
+public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 

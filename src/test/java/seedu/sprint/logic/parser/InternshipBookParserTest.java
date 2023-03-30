@@ -25,10 +25,10 @@ import seedu.sprint.logic.commands.EditApplicationCommand;
 import seedu.sprint.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
 import seedu.sprint.logic.commands.EditTaskCommand;
 import seedu.sprint.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.sprint.logic.commands.ExitSprintCommand;
-import seedu.sprint.logic.commands.FindApplicationCommand;
-import seedu.sprint.logic.commands.HelpApplicationCommand;
-import seedu.sprint.logic.commands.ListApplicationCommand;
+import seedu.sprint.logic.commands.ExitCommand;
+import seedu.sprint.logic.commands.FindCommand;
+import seedu.sprint.logic.commands.HelpCommand;
+import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.RedoCommand;
 import seedu.sprint.logic.commands.UndoCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
@@ -112,29 +112,29 @@ public class InternshipBookParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitSprintCommand.COMMAND_WORD) instanceof ExitSprintCommand);
-        assertTrue(parser.parseCommand(ExitSprintCommand.COMMAND_WORD + " 3") instanceof ExitSprintCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindApplicationCommand command = (FindApplicationCommand) parser.parseCommand(
-                FindApplicationCommand.COMMAND_WORD + " "
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindApplicationCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpApplicationCommand.COMMAND_WORD) instanceof HelpApplicationCommand);
-        assertTrue(parser.parseCommand(HelpApplicationCommand.COMMAND_WORD + " 3") instanceof HelpApplicationCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListApplicationCommand.COMMAND_WORD) instanceof ListApplicationCommand);
-        assertTrue(parser.parseCommand(ListApplicationCommand.COMMAND_WORD + " 3") instanceof ListApplicationCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
     @Test
@@ -152,7 +152,7 @@ public class InternshipBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        HelpApplicationCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
+                        HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test

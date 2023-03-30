@@ -10,7 +10,7 @@ import seedu.sprint.model.ApplicationModel;
 /**
  * Reverts the displayed internship book to its previous state.
  */
-public class UndoCommand extends ApplicationCommand {
+public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 

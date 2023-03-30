@@ -8,7 +8,7 @@ import java.util.Set;
 
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.commons.util.StringUtil;
-import seedu.sprint.logic.commands.SortApplicationCommand;
+import seedu.sprint.logic.commands.SortCommand;
 import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingOrder;
 import seedu.sprint.logic.parser.SortApplicationCommandParser.SortingSequence;
 import seedu.sprint.logic.parser.exceptions.ParseException;
@@ -137,7 +137,7 @@ public class ApplicationParserUtil {
         requireNonNull(sortingOrder);
         String trimmedSortingOrder = sortingOrder.trim();
         if (!SortingOrder.isValidSortingOrder(trimmedSortingOrder)) {
-            throw new ParseException(SortApplicationCommand.MESSAGE_CONSTRAINTS);
+            throw new ParseException(SortCommand.MESSAGE_CONSTRAINTS);
         }
 
         return SortingOrder.valueOf(sortingOrder.toUpperCase());
@@ -159,7 +159,7 @@ public class ApplicationParserUtil {
                 return SortingSequence.DESCENDING;
             }
         }
-        throw new ParseException(SortApplicationCommand.MESSAGE_CONSTRAINTS);
+        throw new ParseException(SortCommand.MESSAGE_CONSTRAINTS);
     }
 
     /**

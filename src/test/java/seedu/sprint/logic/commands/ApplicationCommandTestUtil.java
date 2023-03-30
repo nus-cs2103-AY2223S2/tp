@@ -93,7 +93,7 @@ public class ApplicationCommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
+    public static void assertCommandSuccess(Command command, ApplicationModel actualModel,
                                             CommandHistory actualCommandHistory,
                                             CommandResult expectedCommandResult, ApplicationModel expectedModel) {
         actualCommandHistory.addCommand(command.toString());
@@ -124,11 +124,11 @@ public class ApplicationCommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(ApplicationCommand, ApplicationModel, CommandHistory,
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, ApplicationModel, CommandHistory,
      * CommandResult, ApplicationModel)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(ApplicationCommand command, ApplicationModel actualModel,
+    public static void assertCommandSuccess(Command command, ApplicationModel actualModel,
                                             CommandHistory actualCommandHistory,
                                             String expectedMessage, ApplicationModel expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
@@ -141,7 +141,7 @@ public class ApplicationCommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the internship book, filtered application list and selected application in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(ApplicationCommand command, ApplicationModel actualModel,
+    public static void assertCommandFailure(Command command, ApplicationModel actualModel,
                                             CommandHistory actualCommandHistory, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.

@@ -2,7 +2,6 @@ package seedu.sprint.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**

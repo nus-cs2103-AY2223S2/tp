@@ -18,7 +18,7 @@ import seedu.sprint.model.application.DefaultComparator;
 /**
  * Sorts applications in the order specified by user.
  */
-public class SortApplicationCommand extends ApplicationCommand {
+public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = "Format: "
@@ -43,13 +43,13 @@ public class SortApplicationCommand extends ApplicationCommand {
     private final Comparator<Application> comparator;
 
     /**
-     * Constructs a {@code SortApplicationCommand} with a comparator that
+     * Constructs a {@code SortCommand} with a comparator that
      * corresponds to the sorting order the user requests.
      *
      * @param sortingOrder The sorting order requested by user.
      * @param sortingSequence The sorting sequence requested by user.
      */
-    public SortApplicationCommand(SortingOrder sortingOrder, SortingSequence sortingSequence) {
+    public SortCommand(SortingOrder sortingOrder, SortingSequence sortingSequence) {
         this.sortingOrder = sortingOrder;
         this.sortingSequence = sortingSequence;
 

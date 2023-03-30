@@ -1,6 +1,5 @@
 package seedu.sprint.logic.parser;
 
-import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**

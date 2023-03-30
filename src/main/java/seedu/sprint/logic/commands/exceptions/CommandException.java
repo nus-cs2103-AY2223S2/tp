@@ -1,9 +1,9 @@
 package seedu.sprint.logic.commands.exceptions;
 
-import seedu.sprint.logic.commands.ApplicationCommand;
+import seedu.sprint.logic.commands.Command;
 
 /**
- * Represents an error which occurs during execution of a {@link ApplicationCommand}.
+ * Represents an error which occurs during execution of a {@link Command}.
  */
 public class CommandException extends Exception {
     public CommandException(String message) {

@@ -10,7 +10,6 @@ import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.sprint.logic.commands.AddCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.person.Address;
 import seedu.sprint.model.person.Email;

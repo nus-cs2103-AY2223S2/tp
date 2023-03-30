@@ -111,7 +111,7 @@ public class DeleteTaskCommandTest {
         assertFalse(deleteTaskCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(deleteTaskCommand.equals(new ListApplicationCommand()));
+        assertFalse(deleteTaskCommand.equals(new ListCommand()));
 
         // different index -> returns false
         assertFalse(deleteTaskCommand.equals(new DeleteTaskCommand(indexSecondLastApplication)));

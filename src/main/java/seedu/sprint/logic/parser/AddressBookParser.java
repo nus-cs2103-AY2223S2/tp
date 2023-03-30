@@ -6,15 +6,6 @@ import static seedu.sprint.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.sprint.logic.commands.AddCommand;
-import seedu.sprint.logic.commands.ClearCommand;
-import seedu.sprint.logic.commands.Command;
-import seedu.sprint.logic.commands.DeleteCommand;
-import seedu.sprint.logic.commands.EditCommand;
-import seedu.sprint.logic.commands.ExitCommand;
-import seedu.sprint.logic.commands.FindCommand;
-import seedu.sprint.logic.commands.HelpCommand;
-import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**

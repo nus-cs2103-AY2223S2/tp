@@ -22,7 +22,7 @@ import seedu.sprint.model.task.Description;
 /**
  * Edits an existing task in the internship book.
  */
-public class EditTaskCommand extends ApplicationCommand {
+public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit-task";
 
     public static final String MESSAGE_USAGE = "Format: INDEX "

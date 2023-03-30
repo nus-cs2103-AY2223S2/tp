@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
-import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.AddressBookParser;

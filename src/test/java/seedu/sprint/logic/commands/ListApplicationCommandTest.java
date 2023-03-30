@@ -16,7 +16,7 @@ import seedu.sprint.model.UserPrefs;
  * Contains integration tests (interaction with the ApplicationModel)
  * and unit tests for ListApplicationCommand.
  */
-public class ListApplicationCommandTest {
+public class ListCommandTest {
 
     private ApplicationModel model;
     private ApplicationModel expectedModel;

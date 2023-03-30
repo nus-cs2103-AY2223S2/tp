@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
-import seedu.sprint.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sprint.model.AddressBook;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;

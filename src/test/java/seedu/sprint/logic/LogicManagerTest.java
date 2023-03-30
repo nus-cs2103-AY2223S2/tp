@@ -17,9 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.sprint.logic.commands.AddCommand;
 import seedu.sprint.logic.commands.CommandResult;
-import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.Model;

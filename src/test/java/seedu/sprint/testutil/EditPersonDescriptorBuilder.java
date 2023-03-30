@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.sprint.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sprint.model.person.Address;
 import seedu.sprint.model.person.Email;
 import seedu.sprint.model.person.Name;

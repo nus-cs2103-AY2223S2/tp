@@ -1,6 +1,7 @@
 package seedu.sprint.logic.commands;
 
-import seedu.sprint.model.Model;
+import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.model.ApplicationModel;
 
 /**
  * Terminates the program.
@@ -8,10 +9,10 @@ import seedu.sprint.model.Model;
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting sprINT as requested ...";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 

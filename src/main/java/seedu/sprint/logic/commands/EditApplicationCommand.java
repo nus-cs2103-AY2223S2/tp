@@ -34,7 +34,7 @@ import seedu.sprint.model.task.Task;
 /**
  * Edits the details of an existing application in the internship book.
  */
-public class EditApplicationCommand extends ApplicationCommand {
+public class EditApplicationCommand extends Command {
 
     public static final String COMMAND_WORD = "edit-app";
 

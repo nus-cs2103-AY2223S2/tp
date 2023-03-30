@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
-import seedu.sprint.logic.commands.ApplicationCommand;
+import seedu.sprint.logic.commands.Command;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.InternshipBookParser;
@@ -45,7 +45,7 @@ public class ApplicationLogicManager implements ApplicationLogic {
 
         CommandResult commandResult;
         commandHistory.addCommand(commandText);
-        ApplicationCommand command = internshipBookParser.parseCommand(commandText);
+        Command command = internshipBookParser.parseCommand(commandText);
         commandResult = command.execute(model, commandHistory);
 
         try {

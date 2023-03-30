@@ -13,15 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sprint.logic.commands.AddCommand;
-import seedu.sprint.logic.commands.ClearCommand;
-import seedu.sprint.logic.commands.DeleteCommand;
-import seedu.sprint.logic.commands.EditCommand;
-import seedu.sprint.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.sprint.logic.commands.ExitCommand;
-import seedu.sprint.logic.commands.FindCommand;
-import seedu.sprint.logic.commands.HelpCommand;
-import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.person.NameContainsKeywordsPredicate;
 import seedu.sprint.model.person.Person;

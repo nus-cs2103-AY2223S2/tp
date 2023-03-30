@@ -20,7 +20,7 @@ import seedu.sprint.model.task.Deadline;
 /**
  * Adds a task to an application in the internship book.
  */
-public class AddTaskCommand extends ApplicationCommand {
+public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add-task";
 
     public static final String MESSAGE_USAGE = "Format: INDEX "

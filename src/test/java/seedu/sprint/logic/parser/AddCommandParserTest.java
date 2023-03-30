@@ -31,7 +31,6 @@ import static seedu.sprint.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sprint.logic.commands.AddCommand;
 import seedu.sprint.model.person.Address;
 import seedu.sprint.model.person.Email;
 import seedu.sprint.model.person.Name;

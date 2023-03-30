@@ -34,8 +34,6 @@ import static seedu.sprint.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.core.index.Index;
-import seedu.sprint.logic.commands.EditCommand;
-import seedu.sprint.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sprint.model.person.Address;
 import seedu.sprint.model.person.Email;
 import seedu.sprint.model.person.Name;

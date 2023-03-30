@@ -2,13 +2,13 @@ package seedu.sprint.logic.parser;
 
 import static seedu.sprint.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.sprint.logic.commands.SortApplicationCommand;
+import seedu.sprint.logic.commands.SortCommand;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new SortApplicationCommand object.
+ * Parses input arguments and creates a new SortCommand object.
  */
-public class SortApplicationCommandParser implements ApplicationParser<SortApplicationCommand> {
+public class SortApplicationCommandParser implements ApplicationParser<SortCommand> {
     /**
      * Represents permitted values for the inputted order.
      */
@@ -46,20 +46,20 @@ public class SortApplicationCommandParser implements ApplicationParser<SortAppli
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the SortApplicationCommand
-     * and returns a SortApplicationCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SortCommand
+     * and returns a SortCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public SortApplicationCommand parse(String args) throws ParseException {
+    public SortCommand parse(String args) throws ParseException {
         String[] trimmedArgs = args.trim().split("\\s+");
         if (trimmedArgs.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortApplicationCommand.MESSAGE_USAGE));
+                    SortCommand.MESSAGE_USAGE));
         }
         String userInputtedSequence = trimmedArgs[0].toLowerCase();
         String userInputtedOrder = trimmedArgs[1].toLowerCase();
         SortingOrder sortingOrder = ApplicationParserUtil.parseSortingOrder(userInputtedOrder);
         SortingSequence sortingSequence = ApplicationParserUtil.parseSortingSequence(userInputtedSequence);
-        return new SortApplicationCommand(sortingOrder, sortingSequence);
+        return new SortCommand(sortingOrder, sortingSequence);
     }
 }

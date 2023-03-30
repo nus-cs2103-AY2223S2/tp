@@ -20,7 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 //import seedu.sprint.logic.commands.AddApplicationCommand;
 import seedu.sprint.logic.commands.CommandResult;
-import seedu.sprint.logic.commands.ListApplicationCommand;
+import seedu.sprint.logic.commands.ListCommand;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.ApplicationModel;
@@ -65,8 +65,8 @@ public class ApplicationLogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListApplicationCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListApplicationCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     /*

@@ -1,21 +1,21 @@
 package seedu.sprint.logic.commands;
 
-import seedu.sprint.model.Model;
+import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.model.ApplicationModel;
 
 /**
- * Format full help instructions for every command for display.
+ * Provides program usage instructions to user.
  */
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD;
 
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    public static final String SHOWING_HELP_MESSAGE = "Opened Help window.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

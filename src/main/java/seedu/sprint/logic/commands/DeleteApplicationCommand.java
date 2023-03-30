@@ -14,7 +14,7 @@ import seedu.sprint.model.application.Application;
 /**
  * Deletes an application identified using its displayed index from the internship book.
  */
-public class DeleteApplicationCommand extends ApplicationCommand {
+public class DeleteApplicationCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-app";
 

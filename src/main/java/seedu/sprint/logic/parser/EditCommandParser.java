@@ -14,8 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.sprint.commons.core.index.Index;
-import seedu.sprint.logic.commands.EditCommand;
-import seedu.sprint.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.tag.Tag;
 

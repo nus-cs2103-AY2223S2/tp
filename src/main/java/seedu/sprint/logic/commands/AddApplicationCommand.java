@@ -15,7 +15,7 @@ import seedu.sprint.model.application.Application;
 /**
  * Adds an application to the internship book.
  */
-public class AddApplicationCommand extends ApplicationCommand {
+public class AddApplicationCommand extends Command {
 
     public static final String COMMAND_WORD = "add-app";
 

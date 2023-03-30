@@ -16,7 +16,7 @@ import seedu.sprint.model.application.Application;
 /**
  * Deletes a task from a specified application in the internship book.
  */
-public class DeleteTaskCommand extends ApplicationCommand {
+public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete-task";
 
     public static final String MESSAGE_USAGE = "Format: delete-task INDEX\n"

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.commands.DeleteApplicationCommand;
-import seedu.sprint.logic.commands.ListApplicationCommand;
+import seedu.sprint.logic.commands.ListCommand;
 
 public class CommandHistoryTest {
     private CommandHistory commandHistory;
@@ -35,9 +35,9 @@ public class CommandHistoryTest {
 
     @Test
     public void addApplicationCommand() {
-        commandHistory.addCommand(ListApplicationCommand.COMMAND_WORD);
+        commandHistory.addCommand(ListCommand.COMMAND_WORD);
         commandHistory.addCommand(DeleteApplicationCommand.COMMAND_WORD);
-        assertEquals(Arrays.asList(ListApplicationCommand.COMMAND_WORD, DeleteApplicationCommand.COMMAND_WORD),
+        assertEquals(Arrays.asList(ListCommand.COMMAND_WORD, DeleteApplicationCommand.COMMAND_WORD),
                 commandHistory.getHistory());
     }
 
@@ -106,7 +106,7 @@ public class CommandHistoryTest {
         final CommandHistory anotherCommandHistoryWithDelete = new CommandHistory();
         anotherCommandHistoryWithDelete.addCommand(DeleteApplicationCommand.COMMAND_WORD);
         final CommandHistory commandHistoryWithList = new CommandHistory();
-        commandHistoryWithList.addCommand(ListApplicationCommand.COMMAND_WORD);
+        commandHistoryWithList.addCommand(ListCommand.COMMAND_WORD);
 
         // same object -> returns true
         assertTrue(commandHistoryWithDelete.equals(commandHistoryWithDelete));

@@ -22,7 +22,7 @@ import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
  */
-public class FindApplicationCommandTest {
+public class FindCommandTest {
     private ApplicationModel model = new ApplicationModelManager(
             getTypicalInternshipBook(), new UserPrefs());
     private ApplicationModel expectedModel = new ApplicationModelManager(
@@ -36,14 +36,14 @@ public class FindApplicationCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindApplicationCommand findFirstCommand = new FindApplicationCommand(firstPredicate);
-        FindApplicationCommand findSecondCommand = new FindApplicationCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(firstPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindApplicationCommand findFirstCommandCopy = new FindApplicationCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -61,7 +61,7 @@ public class FindApplicationCommandTest {
     public void execute_invalidKeywords_noApplicationFound() {
         String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate("?");
-        FindApplicationCommand command = new FindApplicationCommand(predicate);
+        FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getSortedApplicationList());
@@ -71,7 +71,7 @@ public class FindApplicationCommandTest {
     public void execute_oneKeywords_oneApplicationFound() {
         String expectedMessage = String.format(MESSAGE_APPLICATIONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = preparePredicate("Google");
-        FindApplicationCommand command = new FindApplicationCommand(predicate);
+        FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
         assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GOOGLE), model.getSortedApplicationList());

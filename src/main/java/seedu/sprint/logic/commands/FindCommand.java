@@ -3,34 +3,36 @@ package seedu.sprint.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.sprint.commons.core.Messages;
-import seedu.sprint.model.Model;
-import seedu.sprint.model.person.NameContainsKeywordsPredicate;
+import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in sprint book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all internship applications in internship book which has company names
+ * containing any of the argument keywords. Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
-
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = "Formats: find keyword(s) "
+            + "OR find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)] \n"
+            + "Example: " + COMMAND_WORD + " Google c/Meta";
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates an FindApplicationCommand to find applications that fulfil the given predicate.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        model.updateFilteredApplicationList(predicate);
+        return new CommandResult(String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,
+                model.getFilteredApplicationList().size()));
     }
 
     @Override
