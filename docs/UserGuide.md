@@ -89,7 +89,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 | `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
 | `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
 | `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
-| `SUBJECT`         | The subject you're teaching the student                                              | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
+| `MODULE`         | The module you're teaching the student                                              | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module will be removed by the app                                                                                                |
 | `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
 
 [↑ Back to top](#table-of-contents)
@@ -138,18 +138,18 @@ Shows a list of the saved all students. Useful for resetting the list after usin
 
 Adds a student to the list, along with their education level and any student-specific notes.
 
-> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`
+> Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [m/MODULE]...`
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `SUBJECT` will be displayed as blue tags.
+:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as blue tags.
 * You only the name ie. `n/` is compulsory. You can add details for other fields using commands that we will talk about later!
 </div>
 
 Examples:
 
 - `add n/Shaun a/123 NUS Street r/Good in Japanese t/submitted`
-- `add n/Shao Hong edu/Bachelors y2 r/Good in German s/German`
+- `add n/Shao Hong edu/Bachelors y2 r/Good in German m/CS2101`
 - `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/Kent Ridge PGPR r/Very hardworking :)`
 
 <p align=center>
@@ -172,7 +172,7 @@ Examples:
 
 Edits a student's info _(all info except remark)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
-> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [s/SUBJECT]...`
+> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [m/MODULE]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -257,8 +257,8 @@ Finds entries of students based on a keyword in the field that you want. <br>
 
 The `find` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
 `find Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
-This applies to all fields EXCEPT tags and subjects, where you will have to enter and find them by the 
-tags and subjects in full.
+This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the 
+tags and modules in full.
 
 > Format: `find FIELD KEYWORDS...` <br>
 * `FIELD` refers to the type of details such as name, address, email and so on.
@@ -270,7 +270,7 @@ tags and subjects in full.
   * Education: `edu/`
   * Remark: `r/`
   * Tags: `t/`
-  * Subjects: `s/`
+  * Modules: `m/`
 
 <div markdown="block" class="alert alert-info">
 
@@ -283,7 +283,7 @@ Examples:
 - `find Sh` will display the students named "Shao Hong" & "Shaun"
 - `find a/ pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
 - `find t/ URGENT` will display students who have the exact tag `URGENT`
-- `find s/ German` will display students who have the exact subject `German`
+- `find m/ CS2101` will display students who have the exact module `CS2101`
 
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
@@ -353,9 +353,9 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 | Action | Format, Examples                                                                                                                                                                                                                                       |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking s/CS2103T s/CS2101` |
+| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
 | Delete | `delete INDEX`<br>eg. `delete 3`                                                                                                                                                                                                                       |
-| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [s/SUBJECT]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                  |
 | Find   | `find KEYWORD1 [KEYWORD2]` <br/>eg. `find Sh` <br/>eg. `find Shao Hong`                                                                                                                                                                                |
 | List   | `list`                                                                                                                                                                                                                                                 |
@@ -377,7 +377,7 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | edu/   | Education level of student               | `edu/P6`                              |
 | r/     | Remark for student                       | `r/Good in German`                    |
 | t/     | Tag of student                           | `t/active` or `t/submited t/late ...` |
-| s/     | Subject that the student is being taught | `s/Math` or `s/Math s/Science ...`    |
+| m/     | Module that the student is being taught | `m/CS2101` or `m/CS2101 m/CS4243 ...`    |
 
 
 [↑ Back to top](#table-of-contents)
