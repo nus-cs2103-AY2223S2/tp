@@ -1,5 +1,6 @@
 package seedu.calidr.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -16,7 +17,7 @@ import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
-import seedu.calidr.storage.AB3StorageComposite;
+import seedu.calidr.storage.Storage;
 
 /**
  * The main LogicManager of the app.
@@ -26,7 +27,7 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final AB3StorageComposite aB3StorageComposite;
+    private final Storage storage;
     // private final AddressBookParser addressBookParser;
 
     private final CalidrParser calidrParser;
@@ -34,9 +35,9 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, AB3StorageComposite aB3StorageComposite) {
+    public LogicManager(Model model, Storage storage) {
         this.model = model;
-        this.aB3StorageComposite = aB3StorageComposite;
+        this.storage = storage;
         // addressBookParser = new AddressBookParser();
         calidrParser = new CalidrParser();
     }
@@ -49,26 +50,13 @@ public class LogicManager implements Logic {
         Command command = calidrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        // TODO Storage integration
-        /*
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskList(model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-         */
 
         return commandResult;
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
