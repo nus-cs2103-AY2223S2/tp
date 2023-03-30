@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
 import seedu.address.logic.commands.ExportCommand;
-import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.Storage;
 
@@ -23,13 +22,13 @@ public class ExportCommandParser {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE);
         boolean isOverwritingExistingFile = false;
 
-        String overwritingFileArgument = argMultimap.getValue(PREFIX_OVERWRITE).orElse("");
+        String overwritingFileArgument = argMultimap.getValue(PREFIX_OVERWRITE).orElse("").trim();
 
         if (overwritingFileArgument.equals("true")) {
             isOverwritingExistingFile = true;
         }
 
-        String fileName = argMultimap.getPreamble();
+        String fileName = argMultimap.getPreamble().trim();
 
         if (fileName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExportCommand.MESSAGE_USAGE));

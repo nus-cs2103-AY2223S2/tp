@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_MODULE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
@@ -7,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
@@ -35,15 +35,17 @@ public class ImportCommandParser {
             isOverwritingExistingModule = true;
         }
 
-        //Potential bug: "/mod" has nothing
-        String stringOfModuleCodes = argMultimap.getValue(PREFIX_MODULE).orElse("");
-        if (!stringOfModuleCodes.isEmpty()) {
-            moduleCodeSet = ParserUtil.parseMultiModuleCode(stringOfModuleCodes);
-        } else {
+        if (!argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             isImportingAllModules = true;
+        } else if (argMultimap.getValue(PREFIX_MODULE).orElse("").isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_MODULE);
+        } else {
+            String stringOfModuleCodes = argMultimap.getValue(PREFIX_MODULE).get();
+            moduleCodeSet = ParserUtil.parseMultiModuleCode(stringOfModuleCodes);
+
         }
 
-        String fileName = argMultimap.getPreamble();
+        String fileName = argMultimap.getPreamble().trim();
 
         if (fileName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
