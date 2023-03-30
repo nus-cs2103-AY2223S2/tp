@@ -55,6 +55,7 @@ public class SummaryListCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
     }
 
     @Override

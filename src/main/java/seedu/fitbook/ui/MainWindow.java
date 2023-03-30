@@ -250,8 +250,6 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExercise() {
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
-        rightPanelPlaceholder.setManaged(false);
-        leftPanelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
         rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
@@ -259,8 +257,6 @@ public class MainWindow extends UiPart<Stage> {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredClientList());
         leftPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
 
-        rightPanelPlaceholder.setManaged(true);
-        leftPanelPlaceholder.setManaged(true);
     }
 
     @FXML
@@ -325,45 +321,32 @@ public class MainWindow extends UiPart<Stage> {
     private void handleSummary() {
         setMainTitleText(SUMMARY);
         setSubTitle(SUMMARY);
-        rightPanelPlaceholder.setManaged(false);
-        leftPanelPlaceholder.setManaged(false);
 
         ObservableList<Client> list = FXCollections.observableArrayList();
-        summaryPanel = new SummaryPanel(list);
+        summaryPanel = new SummaryPanel(list, null);
         rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
         leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
 
-
-        rightPanelPlaceholder.setManaged(true);
-        leftPanelPlaceholder.setManaged(true);
     }
 
     @FXML
     private void handleSummaryCommand(Client clientToView) {
         setMainTitleText(SUMMARY);
         setSubTitle(SUMMARY);
-        rightPanelPlaceholder.setManaged(false);
-        leftPanelPlaceholder.setManaged(false);
 
         summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
         leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
 
-        ObservableList<Client> list = FXCollections.observableArrayList(clientToView);
-        summaryPanel = new SummaryPanel(list);
+        summaryPanel = new SummaryPanel(logic.getFilteredClientList(), clientToView);
         rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
-        rightPanelPlaceholder.setManaged(true);
-        leftPanelPlaceholder.setManaged(true);
     }
     @FXML
     private void handleSchedule() {
         setMainTitleText(TITLE);
         setSubTitle(SCHEDULE);
-
-        rightPanelPlaceholder.setManaged(false);
-        leftPanelPlaceholder.setManaged(false);
 
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         leftPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
@@ -371,15 +354,11 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel = new SchedulePanel(logic.getFilteredClientList());
         rightPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
-
-        rightPanelPlaceholder.setManaged(true);
-        leftPanelPlaceholder.setManaged(true);
-
     }
 
     private void handleCommand(CommandResult commandResult) {
         if (commandResult.equals("view")) {
-            summaryPanel = new SummaryPanel(logic.getFilteredClientList());
+            summaryPanel = new SummaryPanel(logic.getFilteredClientList(), null);
             rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
         }
     }

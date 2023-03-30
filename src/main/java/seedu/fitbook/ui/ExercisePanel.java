@@ -2,13 +2,10 @@ package seedu.fitbook.ui;
 
 import java.util.logging.Logger;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.util.Duration;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.routines.Routine;
 
@@ -29,11 +26,6 @@ public class ExercisePanel extends UiPart<Region> {
         super(FXML);
         exerciseView.setItems(routineList);
         exerciseView.setCellFactory(listView -> new ExercisePanel.RoutineListViewCell());
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            exerciseView.refresh();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }
 
     /**

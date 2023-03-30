@@ -21,7 +21,7 @@ public class AddWeightCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a weight to a client in the FitBook.\n"
             + "Parameters: i/INDEX w/WEIGHT d/DATE\n"
-            + "Example: " + COMMAND_WORD + " 1 w/70 d/10-03-2024 19:00";
+            + "Example: " + COMMAND_WORD + " 1 w/70 d/10-03-2010 19:00";
 
     public static final String MESSAGE_SUCCESS = "New weight added to client %1$s:" + " %2$skg " + "on %3$s";
 

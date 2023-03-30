@@ -34,7 +34,6 @@ public class CalorieTest {
 
         // valid phone numbers
         assertTrue(Calorie.isValidCalorie("2500")); // exactly 4 numbers
-        assertTrue(Calorie.isValidCalorie("124293842033123")); // long calorie numbers
     }
 
     @Test

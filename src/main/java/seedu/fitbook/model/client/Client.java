@@ -119,15 +119,12 @@ public class Client {
     public List<Weight> getWeightList() {
         return weightHistory.weights;
     }
-
-    public boolean isAppointmentEmpty() {
-        return appointments.isEmpty();
-    }
-
     public String getWeightValue() {
         return weight.value;
     }
-
+    public boolean isAppointmentEmpty() {
+        return appointments.isEmpty();
+    }
     /**
      * Copies a routine set to this instance object's {@code routine}.
      */

@@ -15,5 +15,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ROUTINE_DISPLAYED_INDEX = "The routine index provided is invalid";
     public static final String MESSAGE_ROUTINES_LISTED_OVERVIEW = "%1$d routine(s) listed!";
     public static final String MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX = "The exercise index provided is invalid";
-    public static final String MESSAGE_INVALID_DATE = "The date provided is invalid";
+    public static final String MESSAGE_INVALID_DATE = "The date and time provided is invalid, date and time should"
+            + " be your current date and time or before ";
 }
