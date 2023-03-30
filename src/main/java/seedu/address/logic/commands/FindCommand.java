@@ -105,7 +105,7 @@ public class FindCommand extends Command {
         Predicate<Video> videoPredicate = hasByTag
                 ? new VideoTagContainsKeywordsPredicate(keywords)
                 : new VideoNameContainsKeywordsPredicate(keywords);
-        model.updateFilteredVideoList(videoPredicate, model.getLecture(moduleCode, lectureName));
+        model.updateFilteredVideoList(videoPredicate, moduleCode, model.getLecture(moduleCode, lectureName));
         return new CommandResult(
                 String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, model.getFilteredVideoList().size()));
     }

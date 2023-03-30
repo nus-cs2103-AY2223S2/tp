@@ -1,4 +1,4 @@
-package seedu.address.logic.trackereventsystem.navigation;
+package seedu.address.logic.trackereventsystem.observers;
 
 import seedu.address.logic.trackereventsystem.OnLectureEditedEventObserver;
 import seedu.address.logic.trackereventsystem.OnModuleEditedEventObserver;
@@ -11,7 +11,8 @@ import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 /**
- * Represents a navigation observer that responds to on module edited and on lecture edited events.
+ * Represents a navigation observer that responds to on module edited and on
+ * lecture edited events.
  */
 public class NavigationObserver implements OnModuleEditedEventObserver, OnLectureEditedEventObserver {
 
