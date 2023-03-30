@@ -136,7 +136,7 @@ Example: `tag Tech`
 ![Salary](images/UICommandImages/TagCommand0.png)
 
 ### Sorting by Salary
-Sort roles based on salary, in ascending/descending order.
+Sort roles based on salary, in ascending/descending orderParser.
 
 Format: `salary asc/desc`
 
@@ -147,7 +147,7 @@ Example 2: `salary desc`
 ![Salary](images/UICommandImages/SalaryCommand2.png)
 
 ### Sorting by Deadline
-Sort roles based on deadline, in ascending/descending order.
+Sort roles based on deadline, in ascending/descending orderParser.
 
 Format: `deadline asc/desc`
 

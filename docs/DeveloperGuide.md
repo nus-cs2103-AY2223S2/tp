@@ -206,7 +206,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed SalaryCommand feature allows the user to sort their roles based on the given salaries. The idea is that the
 user can sort the list with different attributes with commands such as the salary command which allows the roles to be
-sorted in ascending or descending order.
+sorted in ascending or descending orderParser.
 
 The feature uses operations in the `Model` interface as `Model#displaySortedSalaryList()`.
 
@@ -217,13 +217,13 @@ Given below is an example usage of how Salary Command is being used in the follo
 
    <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
 
-2. The user can choose to use the `SalaryCommand` in asc or desc order.
+2. The user can choose to use the `SalaryCommand` in asc or desc orderParser.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
-      order.
+      orderParser.
 
       <img src="images/UICommandImages/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
-      order.
+      orderParser.
 
       <img src="images/UICommandImages/SalaryCommand2.png" width="800" />
 
@@ -239,7 +239,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How Salary Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc order.
+* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc orderParser.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
@@ -254,7 +254,7 @@ _{more aspects and alternatives to be added}_
 
 The proposed DeadlineCommand feature allows the user to sort their roles based on the given deadline of application. The idea is that the
 user can sort the list with different attributes with commands such as the deadline command which allows the roles to be
-sorted in ascending or descending order.
+sorted in ascending or descending orderParser.
 
 The feature uses operations in the `Model` interface as `Model#displaySortedDeadlineList()`.
 
@@ -263,7 +263,7 @@ Given below is an example usage of how Salary Command is being used in the follo
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
    current address book. <img src="images/DeadlineCommand0.png" width="800" />
 
-2. The user can choose to use the `DeadlineCommand` in asc or desc order.
+2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
       order. <img src="images/UICommandImages/DeadlineCommand1.png" width="800" />
     - The user executes `deadline desc` command to sort the salary of the roles in the descending
@@ -281,7 +281,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How Salary Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc order.
+* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc orderParser.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
 
@@ -515,7 +515,7 @@ Use case ends.
 
 1. User opens the application
 2. User enters the “salary” command followed by either "asc" or "desc"
-3. UI display the list of jobs sorted by salaries in either ascending or descending order with indexes.
+3. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
 
 Use case ends.
 
@@ -533,7 +533,7 @@ Use case ends.
 
 1. User opens the application
 2. User enters the “deadline” command followed by either "asc" or "desc"
-3. UI display the list of jobs sorted by deadlines in either ascending or descending order with their indexes.
+3. UI display the list of jobs sorted by deadlines in either ascending or descending orderParser with their indexes.
 
 Use case ends.
 

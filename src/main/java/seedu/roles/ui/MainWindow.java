@@ -219,6 +219,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.place(StringDisplay.of(e.getMessage()));
             throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

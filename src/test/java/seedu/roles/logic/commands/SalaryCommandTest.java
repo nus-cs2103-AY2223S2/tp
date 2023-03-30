@@ -7,10 +7,10 @@ import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.roles.logic.parser.OrderParser;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
 import seedu.roles.model.UserPrefs;
-import seedu.roles.model.job.Order;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code NameCommand}.
@@ -22,11 +22,11 @@ public class SalaryCommandTest {
     @Test
     public void equals() {
 
-        Order order1 = new Order("asc");
-        Order order2 = new Order("desc");
+        OrderParser orderParser1 = new OrderParser("asc");
+        OrderParser orderParser2 = new OrderParser("desc");
 
-        SalaryCommand salaryFirstCommand = new SalaryCommand(order1);
-        SalaryCommand salarySecondCommand = new SalaryCommand(order2);
+        SalaryCommand salaryFirstCommand = new SalaryCommand(orderParser1);
+        SalaryCommand salarySecondCommand = new SalaryCommand(orderParser2);
 
         // different types -> returns false
         assertFalse(salaryFirstCommand.equals(1));
@@ -41,8 +41,8 @@ public class SalaryCommandTest {
     @Test
     public void execute_asecOrder() {
         String expectedMessage = String.format(MESSAGE_SALARY_COMMAND_FORMAT, "asc");
-        SalaryCommand command = new SalaryCommand(new Order("asc"));
-        expectedModel.displaySortedSalaryList(new Order("asc"));
+        SalaryCommand command = new SalaryCommand(new OrderParser("asc"));
+        expectedModel.displaySortedSalaryList(new OrderParser("asc"));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
