@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.OfficeConnectModel.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,9 +78,7 @@ public class EditTaskCommand extends Command {
         if (!taskToEdit.isSame(editedTask) && taskModelManager.hasItem(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
-        taskModelManager.setItem(taskToEdit, editedTask);
-        officeConnectModel.getTaskModelManager().updateFilteredItemList(PREDICATE_SHOW_ALL_TASKS);
+        officeConnectModel.setTaskModelManagerItem(taskToEdit, editedTask, model);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
