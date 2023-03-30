@@ -32,7 +32,7 @@ public class AddCommandParser implements CommandParser {
 
         String keywordMain = ParserUtil.parseMainKeyword(argsMap.getValue(PREFIX_KEYWORD_MAIN).get());
         String keywordSub = ParserUtil.parseKeyword(argsMap.getValue(PREFIX_KEYWORD_SUB).get());
-        if (keywordSub.matches(".*\\s+.*")) {
+        if (keywordSub.matches(".*\\s+.*") || keywordSub.matches(".*[\\s(--)]+.*")) {
             throw new ParseException("Subkeyword must be 1 word.");
         }
 

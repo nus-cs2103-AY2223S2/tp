@@ -73,8 +73,9 @@ public class KeywordLoader {
             Keyword keyword = adapted.toModelType();
             if (Keyword.isNotMainKeyword(keyword.getKeyword())
                     && Keyword.isValidMainKeyword(keyword.getMainKeyword())
-                    && keyword.getKeyword().isBlank()
-                    && keyword.getKeyword().matches(".*\\s+.*")) {
+                    && !keyword.getKeyword().isBlank()
+                    && !keyword.getKeyword().matches(".*\\s+.*")
+                    && !keyword.getKeyword().matches(".*[\\s(--)]+.*")){
                 manager.add(keyword);
             } else {
                 throw new IllegalValueException("Illegal values present.");
