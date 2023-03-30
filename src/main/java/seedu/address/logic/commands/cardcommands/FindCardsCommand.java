@@ -46,7 +46,8 @@ public class FindCardsCommand extends Command {
         assert selectedDeck.isPresent() : MESSAGE_NO_SELECTED_DECK;
         model.updateFilteredCardList(cardPredicate.and(new CardInDeckPredicate(selectedDeck.get())));
         return new CommandResult(
-                String.format(Messages.MESSAGE_CARDS_LISTED_OVERVIEW, model.getFilteredCardList().size()));
+                String.format(Messages.MESSAGE_CARDS_LISTED_OVERVIEW, model.getFilteredCardList().size()),
+                false, false, false, false, false, false, true, false, false, false);
     }
 
     @Override

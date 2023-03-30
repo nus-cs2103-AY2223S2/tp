@@ -29,7 +29,7 @@ public class SelectDeckCommandTest {
         String expectedMessage = String.format(SelectDeckCommand.MESSAGE_SUCCESS, testDeck.getDeckName());
         Model expectedModel = new ModelManager();
         CommandResult expectedCommandResult = new CommandResult(
-                expectedMessage, false, false, false, false, true, false);
+                expectedMessage, false, false, false, false, true, false, false, false, false, false);
         expectedModel.addDeck(testDeck);
         expectedModel.selectDeck(validIndex);
 

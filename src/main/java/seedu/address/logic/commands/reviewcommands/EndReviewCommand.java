@@ -21,6 +21,6 @@ public class EndReviewCommand extends Command {
         requireNonNull(model);
         model.endReview();
         return new CommandResult(MESSAGE_SUCCESS,
-                false, false, false, true, false, false);
+                false, false, false, true, false, false, false, false, false, false);
     }
 }

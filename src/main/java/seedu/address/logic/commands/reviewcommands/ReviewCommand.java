@@ -83,7 +83,7 @@ public class ReviewCommand extends Command {
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getReviewDeckName(), diffString),
-                false, false, true, false, false, false
+                false, false, true, false, false, false, false, false, false, false
         );
     }
 

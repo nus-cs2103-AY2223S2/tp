@@ -20,6 +20,7 @@ public class ShowDecksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS,
+                false, false, false, false, false, false, false, false, false, true);
     }
 }
