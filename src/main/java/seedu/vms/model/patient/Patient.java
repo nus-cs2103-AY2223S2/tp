@@ -195,25 +195,8 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; DateOfBirth: ")
-                .append(getDob())
-                .append("; BloodType: ")
-                .append(getBloodType());
+        builder.append(getName());
 
-        Set<GroupName> allergySet = getAllergy();
-        if (!allergySet.isEmpty()) {
-            builder.append("; Allergies: ");
-            allergySet.forEach(builder::append);
-        }
-        Set<GroupName> vaccineSet = getVaccine();
-        if (!vaccineSet.isEmpty()) {
-            builder.append("; Vaccines: ");
-            vaccineSet.forEach(builder::append);
-        }
         return builder.toString();
     }
-
 }
