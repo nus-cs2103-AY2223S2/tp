@@ -131,11 +131,20 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
+        this.editPersonForAllEvents(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
 
     @Override
+    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+        return addressBook.getSelectedPerson();
+    }
+    @Override
+    public void setSelectedPerson(Index index) {
+        Person selectedPerson = filteredPersons.get(index.getZeroBased());
+        addressBook.setSelectedPerson(selectedPerson);
+    }
+
     public Person getPersonWithName(String name) {
         return this.addressBook.getPersonWithName(name);
     }
@@ -188,19 +197,35 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void tagPersonToEvent(Index index, Person p) {
-        this.userData.tagPersonToEvent(index, p);
+    public Event getEvent(Index index) {
+        return this.userData.getEvent(index);
     }
 
     @Override
-    public void untagPersonFromEvent(Index index, Person p) {
-        this.userData.untagPersonFromEvent(index, p);
+    public void setEvent(Event oldEvent, Event newEvent) {
+        this.userData.setEvent(oldEvent, newEvent);
+    }
+
+    @Override
+    public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.userData.tagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    @Override
+    public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.userData.untagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    @Override
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.userData.editPersonForAllEvents(personToEdit, editedPerson);
     }
 
     @Override
     public boolean isPersonTaggedToEvent(Index index, Person p) {
         return this.userData.isPersonTaggedToEvent(index, p);
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

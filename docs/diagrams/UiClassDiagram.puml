@@ -21,6 +21,7 @@ package Calendar <<Rectangle>> {
 Class CalendarPanel
 Class CalendarDayCard
 Class CalendarEventCard
+Class CalendarPersonTag
 }
 package Address <<Rectangle>> {
 Class AddressPanel
@@ -72,6 +73,7 @@ BodyPanel *-down-> "1" AddressPanel
 BodyPanel *-down-> "1" CalendarPanel
 BodyPanel *-down-> "1" UserPanel
 
+CalendarEventCard *-down-> "*" CalendarPersonTag
 CalendarDayCard *-down-> "*" CalendarEventCard
 CalendarPanel *-down-> "*" CalendarDayCard
 

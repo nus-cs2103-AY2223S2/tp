@@ -3,10 +3,11 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Neo is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
+NeoBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, it can get your contact management tasks done faster than traditional GUI apps.
 
-Apart from being your all-encompassing address book, AddressBook Neo also has a calendar function for you to keep track of your daily schedule.
+Apart from being your all-encompassing address book, NeoBook also has a calendar function for you to keep track of your daily schedule.
 
+## Table Of Contents
 * Table of Contents
 {:toc}
 
@@ -16,11 +17,11 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `neobook.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-3/tp/releases/tag/v1.2.1).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your NeoBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar neobook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -34,21 +35,23 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
-   
+
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
 
-6. Refer to the [Address Book Features](#address-book-features) below for details of each command.
+6. Refer to the [NeoBook Features](#neobook-features) below for details of each command.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-1. Use these tabs to toggle between the Address Book and Calendar!
+1. Use these tabs to toggle between the NeoBook, Calendar and your own information!
 
 ![highlightTabs](images/userguide/highlightTab.png)
 
-### UI Breakdown For `Address Book`
+### UI Breakdown For `NeoBook`
 
 ![addressBkUI](images/userguide/addressBkUI.png)
 
@@ -62,7 +65,7 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
    * displays the result of input command
 4. Command Line:
    * type command and press enter to execute it
-   * refer to the [Address Book Features](#address-book-features ) below for possible commands to execute
+   * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
 ### UI Breakdown For `Calendar`
 
@@ -76,8 +79,15 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
    * type command and press enter to execute it
    * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
 
+### UI Breakdown For `Me`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
+</div>
+
+[Back To Contents](#table-of-contents)
 ____________________________________________________________________________________________________________________
-## Address Book Features
+## NeoBook Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -90,7 +100,7 @@ ________________________________________________________________________________
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `t/TAG…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -103,22 +113,32 @@ ________________________________________________________________________________
 
 </div>
 
+<hr style="border:2px solid gray">
+
 ### Viewing Help : `help`
 
 Don't know how to get started? Don't worry!
 
 Simply use this command to get access to our help page!
 
->Command: `help`
+**Syntax:**
+
+`help`
 
 ![help message](images/helpMessage.png)
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Adding A New Contact: `add`
 
 Met a new friend?
-Use this command to add him/her to your address book.
 
-> Command: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Use this command to add him/her to your NeoBook.
+
+**Syntax:**
+
+`add n/NAME SPECIFIER/INPUT...`
 
 Here are all the specifiers that can be used:
 
@@ -130,25 +150,27 @@ Here are all the specifiers that can be used:
 | m         | Major                           | Yes       |
 | mt        | Mods Taken                      | Yes       |
 | f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
 | g         | Gender                          | Yes       |
 | t         | Tags                            | Yes       |
 | c         | Preferred Communication Channel | Yes       |
 | f         | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags and modules taken(including 0). 
+A person can have any number of tags and modules taken(including 0).
 
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
 
-In the future, only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for syncing with the calendar.
+Only modules that are a part of NUS' mod systems will be allowed. This is
+to prevent any messiness and also allows for future syncing with the calendar.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Listing All Contacts : `list`
 
@@ -156,7 +178,13 @@ Want to see all your contacts?
 
 Use this command to gain access to all of them!
 
-> Command: `list`
+**Syntax:**
+
+`list`
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
 
 ### Favourite A Contact : `fav`
 
@@ -164,12 +192,17 @@ Contact someone very frequently?
 
 Use this command to favourite it so that you have easy access to it!
 
-> Command: `fav INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`fav INDEX`
+
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Unfavourite A Contact : `unfav`
 
@@ -177,12 +210,15 @@ No longer contact someone as frequently as you used to?
 
 Use this command to unfavourite it!
 
-> Command: `unfav INDEX`
+**Syntax:** `unfav INDEX`
 
-Here are some important requirements for you to take note:
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Editing a contact's details : `edit`
 
@@ -190,19 +226,27 @@ Learnt something new about your friend? Or perhaps he/she changed a particular d
 
 Use this command to edit his/her details easily!
 
-> Command: `edit INDEX [{SPECIFIER}/{DATA}]`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`edit INDEX SPECIFIER/DATA...`
+
+_Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-  * Note that when editing tags/mods taken, the existing tags/mods taken of/by the person will be removed
 
-  _[i.e  adding of tags and mods taken are not cumulative]_
-  * If you wish to remove all tags/mods from the person, simply type `t/` / `mt/`.
-* We plan to make a new function in the future to make both tags and mods taken cumulative, stay tuned!
+For the following fields, they are considered a `SuperField`.
+* Modules
+* Tags
 
+A `SuperField` can contain many inputs in that single field.
+When using edit, the command looks for each input in the `SuperField`:
+* If the input already exists in the `SuperField` it will be removed.
+* Otherwise, the input will be added into the `SuperField`.
+  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
+of a person if it already exists and adds it if it does not.
+  
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
 | n         | name                            | No        |
@@ -211,7 +255,6 @@ Here are some important requirements for you to take note:
 | m         | Major                           | Yes       |
 | mt        | Mods Taken                      | Yes       |
 | f         | Faculty                         | Yes       |
-| p         | Photo                           | Yes       |
 | g         | Gender                          | Yes       |
 | t         | Tags                            | Yes       |
 | c         | Preferred Communication Channel | Yes       |
@@ -221,33 +264,72 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Selecting A Particular Contact To View: `select'
+
+Want to see the details of a particular contact?
+
+You can either use your cursor to click on the contact or use this command!
+
+> Command: `select INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
 ### Finding Particular Contacts: `find`
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts whose names contain any of the given keywords!
+Use this command to find contacts using keywords and fields you specify!
 
-> Command: `find KEYWORD [MORE_KEYWORDS]`
+**Syntax:**
 
-Here are some important requirements for you to take note:
-* Only the name is searched.
-* The search is **case-insensitive**.
+`find KEYWORD SPECIFIER/KEYWORDS...`
 
-    _[e.g `hans`,`Hans`, `HANS` are all equivalent]_
-* The order of the keywords does not matter.
+| Specifier | Name of Field                   | Optional? |
+|-----------|---------------------------------|-----------|
+| n         | name                            | No        |
+| e         | Email address                   | Yes       |
+| a         | Address                         | Yes       |
+| m         | Major                           | Yes       |
+| mt        | Mods Taken                      | Yes       |
+| f         | Faculty                         | Yes       |
+| g         | Gender                          | Yes       |
+| t         | Tags                            | Yes       |
+| c         | Preferred Communication Channel | Yes       |
 
-    _[e.g. `Hans Bo` will match `Bo Hans`]_
+_Here are some important requirements for you to take note:_
+* The keywords are case-insensitive.
+  * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
-* Only full words will be matched
 
-    _[e.g. `Han` will not match `Hans`]_
-* Persons matching at least one keyword will be returned (i.e. `OR` search)
+* For each field specified, as long as one of the keywords is contained
+in that field, then the person will be returned.
+  * i.e. `find n/John n/Peter James`
+    * Can return:
+      * people with names of 'John', 'Peter James', 'Peter James John'
+    * Cannot return:
+      * A person with name of 'Peter'.
 
-    _[e.g `Hans Bo` will return both `Hans Gruber`, `Bo Yang`]_
+* All fields specified must have at least one keyword contained within that
+field for that person to be returned.
+  * i.e. `find n/Caleb p/9123 p/456`
+    * Can return: 
+      * A person with a name of 'Caleb' who
+has a phone number of '91234567', 
+    * Cannot return:
+      * A person whose name is 'Caleb' but has
+a phone number of '98765432'
+      * A person whose name is 'Joshua' even though
+his phone number is '91234567'
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Select contact to expand details: `select`
 
@@ -255,65 +337,90 @@ Want to see more details about a certain contact in your list?
 
 Use this command to expand and view more information about the selected contact.
 
-> Command: `select INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`select INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
     * `INDEX` must be a positive integer.
 
-Examples:
+_Examples:_
 * `select 1` expands the details of the first contact in your list.
 * `select 4` expands the details of the fourth contact in your list.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Deleting A Contact : `delete`
 
 No longer interact with someone in your contacts?
 
-Use this command to delete the specified contact from your address book.
+Use this command to delete the specified contact from your NeoBook.
 
-> Command: `delete INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`delete INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
-Examples:
+_Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Clearing all contacts : `clear`
 
 Want to start from a clean slate?
 
-Simply use this command to clear all contacts from your address book.
+Simply use this command to clear all contacts from your NeoBook.
 
-> Command: `clear`
+**Syntax:**
+
+`clear`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
 
 ### Switching between UI tabs: `tab`
 
-Looking for a faster way to switch between the address book and the calendar?
+Looking for a faster way to switch between NeoBook and the Calendar?
 
 Use this command to navigate to the specified tab.
 
-> Command: `tab INDEX`
+**Syntax:**
 
-Here are some important requirements for you to take note:
+`tab INDEX`
+
+_Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
   * `INDEX` must be a positive integer.
 
-Examples:
-* `tab 1` switches to the address book tab.
-* `tab 2` switches to the calendar tab.
+_Examples:_
+* `tab 1` switches to the NeoBook tab.
+* `tab 2` switches to the Calendar tab.
 
-### Exiting AddressBookNeo : `exit`
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Exiting NeoBook : `exit`
 
 Finished what you needed to do?
 
 Use this command to exit the application!
 
-> Command: `exit`
+**Syntax:**
 
-### Address Book Command Summary
+`exit`
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### NeoBook Command Summary
 
 | Action      | Format, Examples                                                                                                                                                      |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -328,36 +435,201 @@ Use this command to exit the application!
 | **List**    | `list`                                                                                                                                                                |
 | **Help**    | `help`                                                                                                                                                                |
 | **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
-| **Exit**    | `exit`                                                                                                                                                                |
+| **Exit**    | `exit`                                                                                                                                                                |                                                                                                                                |
 
+[Back To Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features
+<hr style="border:2px solid gray">
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
-</div>
+### Adding an Event : `addevent`
+
+Want to keep track of current events?
+
+Use this command to add events into your Event Section of your NeoBook.
+
+Moreover, you can add 2 types of Events:
+1. One Time Events
+2. Recurring Events (of various Intervals):
+    * Daily Events
+    * Weekly Events
+    * Monthly Events
+    * Yearly Events
+
+You can specify the Recurrence Intervals within the Command as well!
+
+Accepted Intervals:
+1. None
+2. Daily
+3. Weekly
+4. Monthly
+5. Yearly
+
+**Syntax:**
+
+`addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE`
+
+_Here are some important requirements for you to take note:_
+
+* `START DATE & START TIME` and `END DATE & END TIME` must follow this formatting YYYY-MM-DD HHMM.
+    * `START TIME` and `END TIME` follows the 24-Hour Clock format e.g. instead of 6:00pm, you must enter 1800.
+    * `START DATE & START TIME` must be before `END DATE & END TIME`
+* `INTERVAL OF RECURRENCE` doesn't need to be specified to add an event
+    *  Event will be automatically added as a `One Time Event`.
+
+_Examples:_
+* `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` will add a Weekly Recurring Event of CS2103T Lecture that occurs from 1600 to 1800, starting on 2023-03-30.
+* `addevent d/Catchup with John s/2023-03-30 1600 e/2023-03-30 1800 r/None` will add a One Time Event of Catchup with John that occurs from 1600 to 1800, on 2023-03-30.
+* `addevent d/Dinner with Family s/2023-03-30 1600 e/2023-03-30 1800` will add a One Time Event of Dinner with Family that occurs from 1600 to 1800, on 2023-03-30.
+
+
+| Specifier | Name of Field                 | Optional? |
+|-----------|-------------------------------|-----------|
+| d         | Description of Event          | No        |
+| s         | Start Date and Time of Event  | No        |
+| e         | End Date and Time of Event    | No        |
+| r         | Recurrence Interval           | Yes       |
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Deleting An Event : `delevent`
+
+You no longer need to track this particular event?
+
+Use this command to delete the specified event from your NeoBook.
+
+**Syntax:**
+
+`delevent INDEX`
+
+_Here are some important requirements for you to take note:_
+* `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
+    * `INDEX` must be a **positive integer**.
+
+_Examples:_
+* `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
+
+[Back To Contents](#table-of-contents)
+<hr style="border:2px solid gray">
+
+### Tagging Contacts to an Event: `tagpersonevent`
+
+Want to remember who was a part of a certain event? 
+
+Tag their contacts
+to the event using this command!
+
+**Syntax:**
+
+`tagpersonevent et/EVENT INDEX pt/NAME`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+  * NAME is **case_sensitive**.
+  * NAME must be the name of a contact already registered in NeoBook
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+It may cause the person to become unlinked from the event completely.
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
+
+
+### Untagging Contacts from an Event: `untagpersonevent`
+
+Want to remove somebody who was a part of a certain event?
+
+Untag their contacts from the event using this command!
+
+**Syntax:**
+
+`untagpersonevent et/EVENT INDEX pt/NAME`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+    * NAME is **case_sensitive**.
+    * NAME must be the name of a contact already registered in NeoBook and
+tagged to that event.
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+  It may cause the person to become unlinked from the event completely.
+
+[Back To Contents](#table-of-contents)
+
+### Events Command Summary
+
+| Action                     | Format, Examples                                                                                                                                                                                |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Event**              | `addevent d/DESCRIPTION OF EVENT s/START DATE & START TIME e/END DATE & END TIME r/INTERVAL OF RECURRENCE` <br> e.g., `addevent d/CS2103T Lecture s/2023-03-30 1600 e/2023-03-30 1800 r/weekly` |   
+| **Delete Event**           | `delevent INDEX` <br/> e,g., `delevent 1`                                                                                                                                                       |
+| **Tag Contact to Event**   | `tagpersonevent et/EVENT INDEX pt/NAME` e.g., `tagpersonevent et/1 pt/John`                                                                                                                     |
+| **Untag Contact to Event** | `untagpersonevent et/EVENT INDEX pt/NAME` <br> e.g.,`untagpersonevent et/1 pt/John`                                                                                                             |
+
+--------------------------------------------------------------------------------------------------------------------
+## UI Features
+<hr style="border:2px solid gray">
+
+### Light Mode: `light`
+
+Want to use a brighter version of our UI?
+
+Use Light mode!
+
+**Syntax:**
+
+`light`
+
+
+<hr style="border:2px solid gray">
+
+### Dark Mode: `dark`
+
+Want to use a darker version of our UI?
+
+Use Dark mode!
+
+**Syntax:**
+
+`dark`
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
+NeoBook data are saved in the hard disk automatically after any command that changes the data. There is no need for you to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+NeoBook data are saved as JSON files. Two of which will be of interest to you:
+- `[JAR file location]/data/addressbook.json`.
+- `[JAR file location]/data/userdata.json`.
 
 You are welcome to update the data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you edit the taggedPerson in User data, beware that you may end up unlinking the person from any changes to the original contact in NeoBook
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook Neo will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NeoBook home folder.
+
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
