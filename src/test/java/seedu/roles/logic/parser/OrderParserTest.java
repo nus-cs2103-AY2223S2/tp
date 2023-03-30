@@ -6,7 +6,7 @@ import static seedu.roles.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class OrderTest {
+public class OrderParserTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
