@@ -2,8 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -132,7 +133,6 @@ The `Model` component,
 
 </div>
 
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-2/tp/tree/master/src/main/java/seedu/age/storage/Storage.java)
@@ -144,6 +144,7 @@ The `Storage` component,
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 * temporarily saves `DengueHotspotTracker` data while the app is running, for `undo` and `redo` commands.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
