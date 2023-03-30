@@ -47,8 +47,4 @@ public class PlatformName {
                 && fullPlatformName.equals(((seedu.address.model.applicant.Name) other).fullName)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return fullPlatformName.hashCode();
-    }
 }
