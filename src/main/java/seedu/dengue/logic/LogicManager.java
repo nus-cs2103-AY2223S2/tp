@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
+import seedu.dengue.logic.analyst.DataBin;
 import seedu.dengue.logic.commands.Command;
 import seedu.dengue.logic.commands.CommandResult;
 import seedu.dengue.logic.commands.exceptions.CommandException;
@@ -83,5 +84,10 @@ public class LogicManager implements Logic {
     @Override
     public Overview getOverview() {
         return model.getOverview();
+    }
+
+    @Override
+    public ObservableList<DataBin> getOverviewContent() {
+        return getOverview().getOverviewContent();
     }
 }

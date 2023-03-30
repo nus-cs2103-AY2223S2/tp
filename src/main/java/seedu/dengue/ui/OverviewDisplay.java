@@ -1,12 +1,14 @@
 package seedu.dengue.ui;
 
-import static java.util.Objects.requireNonNull;
+import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.dengue.model.overview.Overview;
+import seedu.dengue.commons.core.LogsCenter;
+import seedu.dengue.logic.analyst.DataBin;
 
 /**
  * A ui for the current overview that is displayed on the right of the application.
@@ -14,44 +16,38 @@ import seedu.dengue.model.overview.Overview;
 public class OverviewDisplay extends UiPart<Region> {
     private static final String FXML = "OverviewDisplay.fxml";
 
+    private final Logger logger = LogsCenter.getLogger(OverviewDisplay.class);
+
     @FXML
-    private Label overviewTitle;
-    @FXML
-    private Label overviewSubtitle;
-    @FXML
-    private TextArea overviewContent;
+    private ListView<DataBin> overviewContentView;
 
     /**
      * Constructs a new blank {@code OverviewDisplay} instance.
      */
-    public OverviewDisplay() {
+    public OverviewDisplay(ObservableList<DataBin> dataBinList) {
         super(FXML);
+        overviewContentView.setItems(dataBinList);
+        overviewContentView.setCellFactory(listView -> new OverviewBinCell());
     }
 
-    private void setOverviewTitle(String newOverviewTitle) {
-        requireNonNull(newOverviewTitle);
-        overviewTitle.setText(newOverviewTitle);
-    }
-
-    private void setOverviewSubtitle(String newOverviewSubtitle) {
-        requireNonNull(newOverviewSubtitle);
-        overviewSubtitle.setText(newOverviewSubtitle);
-    }
-
-    private void setOverviewContent(String newOverviewContent) {
-        requireNonNull(newOverviewContent);
-        overviewContent.setText(newOverviewContent);
+    public void updateOverviewDisplay(ObservableList<DataBin> dataBinList) {
+        overviewContentView.setItems(dataBinList);
     }
 
     /**
-     * Updates the OverviewDisplay with the given {@code Overview}.
-     *
-     * @param overview The overview to display.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    public void setOverview(Overview overview) {
-        requireNonNull(overview);
-        setOverviewTitle(overview.getOverviewTitle());
-        setOverviewSubtitle(overview.getOverviewSubtitle());
-        setOverviewContent(overview.getOverviewContent());
+    class OverviewBinCell extends ListCell<DataBin> {
+        @Override
+        protected void updateItem(DataBin dataBin, boolean empty) {
+            super.updateItem(dataBin, empty);
+
+            if (empty || dataBin == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new DataBinCard(dataBin, getIndex() + 1).getRoot());
+            }
+        }
     }
 }
