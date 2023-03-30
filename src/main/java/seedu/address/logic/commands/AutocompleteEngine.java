@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.REMARK_PLACEHOLDER;
 
@@ -158,7 +160,11 @@ public class AutocompleteEngine {
     }
 
     private Map<Prefix, ArrayList<String>> getExistingArgValuesForAutocomplete() {
-        return new HashMap<>(Map.of(PREFIX_TAG, model.getExistingTagValues()));
+        return new HashMap<>(Map.of(
+                PREFIX_TAG, model.getExistingTagValues(),
+                PREFIX_MODULE, model.getExistingModuleValues(),
+                PREFIX_EDUCATION, model.getExistingEducationValues()
+        ));
     }
 
     /**
@@ -216,6 +222,8 @@ public class AutocompleteEngine {
                 String matchingExistingValues = existingArgValues.get(currPrefix)
                         .stream()
                         .filter(value -> value.startsWith(argValue))
+                        .filter(value -> argumentMultimap.getAllValues(currPrefix).stream()
+                                .noneMatch(value::equals))
                         .collect(Collectors.joining(" | "));
                 return matchingExistingValues.isEmpty()
                         ? ""

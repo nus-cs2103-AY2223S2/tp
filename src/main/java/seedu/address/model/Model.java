@@ -105,4 +105,16 @@ public interface Model {
      * in the person list.
      */
     ArrayList<String> getExistingTagValues();
+
+    /**
+     * Returns a list of all existing module values (without duplicates) contained
+     * in the person list.
+     */
+    ArrayList<String> getExistingModuleValues();
+
+    /**
+     * Returns a list of all existing education values (without duplicates) contained
+     * in the person list.
+     */
+    ArrayList<String> getExistingEducationValues();
 }
