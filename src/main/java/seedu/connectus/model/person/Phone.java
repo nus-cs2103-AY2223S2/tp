@@ -2,6 +2,7 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Represents a Person's phone number in ConnectUS.
@@ -10,7 +11,8 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Phone numbers should only contain numbers, and it should be at least 3 digits long\n"
+            + "Format: " + PREFIX_PHONE + "PHONE";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 

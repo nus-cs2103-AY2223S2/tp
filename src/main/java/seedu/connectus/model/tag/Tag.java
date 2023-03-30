@@ -10,7 +10,8 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 public class Tag implements Comparable<Tag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+";
+    public static final String VALIDATION_REGEX = "(?=.*\\p{Alnum})[\\p{Alnum} ]+";
+
 
     public final String tagName;
 
@@ -21,7 +22,6 @@ public class Tag implements Comparable<Tag> {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 
@@ -33,6 +33,7 @@ public class Tag implements Comparable<Tag> {
     public Tag(String tagName, String message) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), message);
+
         this.tagName = tagName;
     }
 
@@ -42,6 +43,8 @@ public class Tag implements Comparable<Tag> {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+
 
     @Override
     public boolean equals(Object other) {
@@ -67,3 +70,4 @@ public class Tag implements Comparable<Tag> {
         return this.tagName.compareTo(o.tagName);
     }
 }
+

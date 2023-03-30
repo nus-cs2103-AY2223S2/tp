@@ -175,7 +175,7 @@ public class ParserUtil {
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidTagName(trimmedModule)) {
+        if (!Module.isValidModuleName(trimmedModule)) {
             throw new ParseException(Module.MESSAGE_CONSTRAINTS);
         }
         return new Module(trimmedModule);
@@ -191,7 +191,7 @@ public class ParserUtil {
     public static Cca parseCca(String cca) throws ParseException {
         requireNonNull(cca);
         String trimmedCca = cca.trim();
-        if (!Cca.isValidTagName(trimmedCca)) {
+        if (!Cca.isValidCcaName(trimmedCca)) {
             throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
         }
         return new Cca(trimmedCca);
@@ -207,7 +207,7 @@ public class ParserUtil {
     public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
         requireNonNull(ccaPosition);
         String trimmedCcaPosition = ccaPosition.trim();
-        if (!Cca.isValidTagName(trimmedCcaPosition)) {
+        if (!CcaPosition.isValidCcaPositionName(trimmedCcaPosition)) {
             throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
         }
         return new CcaPosition(trimmedCcaPosition);
