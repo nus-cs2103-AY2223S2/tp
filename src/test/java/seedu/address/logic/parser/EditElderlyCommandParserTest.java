@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTH_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -55,7 +54,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.util.EditDescriptor;
-import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
@@ -107,7 +105,6 @@ public class EditElderlyCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
         assertParseFailure(parser, "1" + INVALID_BIRTH_DATE_DESC, BirthDate.MESSAGE_CONSTRAINTS); // invalid age
         assertParseFailure(parser, "1" + INVALID_REGION_DESC, Region.MESSAGE_CONSTRAINTS); // invalid region
