@@ -567,7 +567,7 @@ The search commands allow you to easily navigate and manage your EduMate. Instea
 
 #### Filter contacts by keywords `find`
 
-Finds persons whose specified fields contain any of the given keywords limited to only one attribute.
+You can find contacts whose specified fields contain any of the given keywords limited to only one attribute.
 
 <div markdown="block" class="alert alert-info">
 
@@ -577,8 +577,13 @@ Finds persons whose specified fields contain any of the given keywords limited t
 
 </div>
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
-* `find z/KEYWORD [MORE_KEYWORDS]…​`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `find z/KEYWORD [MORE_KEYWORDS]​`
+
+</div>
 
 What you should see:<br>
 {GUI}<br>
@@ -595,10 +600,16 @@ What you should see:<br>
 
 </div>
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
+
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
+
+</div>
+
 
 #### Arrange contacts based on criteria `sort`
 
@@ -612,13 +623,20 @@ Sorts persons based on certain criteria. For example, you can sort the contacts 
 
 </div>
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `sort`: Sorts the contacts by their indices.
 * `sort z/a`: Sorts the contacts by their `z` attribute **in ascending order**
 * `sort z/d`: Sorts the contacts by their `z` attribute **in descending order**
 * `sort z/`: Sorts the contacts by their `z` attribute based on our **default ordering**
 * `sort z1/ z2/`: Sorts the contacts by their `z1` attribute, and breaks ties using their `z2` attribute
-* `sort [z/]…​`: Sorts the contacts by multiple attributes
+* `sort [z/]...​`: Sorts the contacts by multiple attributes
+
+</div>
+
+We will now teach you how to effectively use the `sort` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -636,10 +654,15 @@ What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
 * `sort n/d`: Sorts by name in descending order
 * `sort m/a`: Sorts by the number of modules they have in common with you (in ascending order)
 * `sort t/`: Sorts by Telegram handle in its default ordering (ascending)
+
+</div>
+
 
 ### Storage Commands
 
